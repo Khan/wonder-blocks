@@ -16,7 +16,8 @@ type Props = AriaProps & {
      */
     color?: string;
     /**
-     * One of our named icons from icon-assets.js
+     * The icon to display. This is a React element that renders a Phosphor icon
+     * component.
      */
     icon: React.ReactElement<PhosphorIcon>;
     /**
@@ -25,8 +26,7 @@ type Props = AriaProps & {
      */
     size?: IconSize;
     /**
-     * Styles that can be processed by `addStyle` — bare style objects,
-     * Aphrodite style objects, or arrays thereof.
+     * Additional styles to apply to the icon.
      */
     style?: CSSProperties | Falsy;
     /**

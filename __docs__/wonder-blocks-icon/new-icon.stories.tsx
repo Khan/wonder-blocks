@@ -1,36 +1,16 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
-import {
-    PlusCircle,
-    CaretDown,
-    CaretUp,
-    CaretLeft,
-    CaretRight,
-    Check,
-    CheckCircle,
-    X,
-    XCircle,
-    MinusCircle,
-    Lightbulb,
-    SortAscending,
-    SortDescending,
-    Circle,
-    Info,
-    MagnifyingGlass,
-    MagnifyingGlassPlus,
-    MagnifyingGlassMinus,
-    Article,
-    Exam,
-    Video,
-} from "@phosphor-icons/react";
+import {PlusCircle, Circle, Info, MagnifyingGlass} from "@phosphor-icons/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {NewIcon, icons} from "@khanacademy/wonder-blocks-icon";
+import {NewIcon} from "@khanacademy/wonder-blocks-icon";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
+import NewIconArgtypes, {IconMappings} from "./new-icon.argtypes";
 
 /**
  * An Icon displays a small informational or decorative image as an SVG.
@@ -63,15 +43,8 @@ export default {
             />
         ),
     },
-    argTypes: {
-        icon: {
-            options: icons,
-        },
-        size: {
-            options: ["small", "medium", "large", "xlarge"],
-        },
-    },
-} as Meta<typeof NewIcon>;
+    argTypes: NewIconArgtypes,
+} satisfies Meta<typeof NewIcon>;
 
 type StoryComponentType = StoryObj<typeof NewIcon>;
 
@@ -83,89 +56,72 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * Minimal icon usage. This is a search icon.
+ * Minimal icon usage. This is a circle icon. Note that the `color` prop is set
+ * directly on the icon. If you specify a `color` or `size` props on the
+ * phosphor icon instance, they will be ignored.
+ *
  */
 export const Basic: StoryComponentType = {
     args: {
-        icon: <Circle size={32} color="#038170" weight="fill" />,
+        icon: (
+            <Circle
+                size={tokens.spacing.xSmall_8}
+                color="#ff0000"
+                weight="fill"
+            />
+        ),
         size: "large",
-        color: Color.green,
+        color: tokens.color.green,
     },
 };
 
-export const Sizes: StoryComponentType = () => {
-    return (
-        <table>
-            <tr>
-                <td>
-                    <LabelMedium>{"small"}</LabelMedium>
-                </td>
-                <td>
-                    <NewIcon icon={<MagnifyingGlass />} size="small" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <LabelMedium>{"medium"}</LabelMedium>
-                </td>
-                <td>
-                    <NewIcon icon={<MagnifyingGlass />} size="medium" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <LabelMedium>{"large"}</LabelMedium>
-                </td>
-                <td>
-                    <NewIcon icon={<MagnifyingGlass />} size="large" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <LabelMedium>{"xlarge"}</LabelMedium>
-                </td>
-                <td>
-                    <NewIcon icon={<MagnifyingGlass />} size="xlarge" />
-                </td>
-            </tr>
-        </table>
-    );
-};
-
-Sizes.parameters = {
-    docs: {
-        description: {
-            story: `The size of an icon is determined by the \`NewIcon\`'s
-            \`size\` prop. While we don't currently have assets for sizes
-            larger than medium, we can still render any icon at any size
-            in a pinch. The available sizes are \`"small"\`, \`"medium"\`,
-            \`"large"\`, and \`"xlarge"\`. `,
-        },
+/**
+ * The size of an icon is determined by the `NewIcon`'s `size` prop. While we
+ * don't currently have assets for sizes larger than medium, we can still render
+ * any icon at any size in a pinch. The available sizes are `"small"`,
+ * `"medium"`, `"large"`, and `"xlarge"`.
+ */
+export const Sizes: StoryComponentType = {
+    render: () => {
+        return (
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <LabelMedium>{"small"}</LabelMedium>
+                        </td>
+                        <td>
+                            <NewIcon icon={<MagnifyingGlass />} size="small" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <LabelMedium>{"medium"}</LabelMedium>
+                        </td>
+                        <td>
+                            <NewIcon icon={<MagnifyingGlass />} size="medium" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <LabelMedium>{"large"}</LabelMedium>
+                        </td>
+                        <td>
+                            <NewIcon icon={<MagnifyingGlass />} size="large" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <LabelMedium>{"xlarge"}</LabelMedium>
+                        </td>
+                        <td>
+                            <NewIcon icon={<MagnifyingGlass />} size="xlarge" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        );
     },
-};
-
-const someIcons = {
-    PlusCircle,
-    CaretDown,
-    CaretUp,
-    CaretLeft,
-    CaretRight,
-    Check,
-    CheckCircle,
-    X,
-    XCircle,
-    MinusCircle,
-    Lightbulb,
-    SortAscending,
-    SortDescending,
-    Circle,
-    Info,
-    MagnifyingGlass,
-    MagnifyingGlassPlus,
-    MagnifyingGlassMinus,
-    Article,
-    Exam,
-    Video,
 };
 
 /**
@@ -175,12 +131,12 @@ const someIcons = {
  */
 export const Variants: StoryComponentType = {
     render: () => {
-        const iconsWithLabels = Object.entries(someIcons).map(
-            ([name, Icon]) => {
+        const iconsWithLabels = Object.entries(IconMappings).map(
+            ([name, Icon], index) => {
                 return (
-                    <tr>
+                    <tr key={index}>
                         <td>
-                            <NewIcon icon={<Icon />} />
+                            <NewIcon icon={Icon} />
                         </td>
                         <td>
                             <LabelMedium>{name}</LabelMedium>
@@ -190,7 +146,11 @@ export const Variants: StoryComponentType = {
             },
         );
 
-        return <table>{iconsWithLabels}</table>;
+        return (
+            <table>
+                <tbody>{iconsWithLabels}</tbody>
+            </table>
+        );
     },
 };
 
