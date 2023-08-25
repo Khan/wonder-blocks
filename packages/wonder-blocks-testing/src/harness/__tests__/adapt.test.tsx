@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 
 import {Adapt} from "../adapt";
 
@@ -196,5 +196,53 @@ describe("Adapt", () => {
               </div>
             </div>
         `);
+    });
+
+    it("should not remount the component under test when rerendered", () => {
+        // Arrange
+        const MyComponent = ({value}: any) => {
+            const ref = React.useRef(value);
+
+            // If the ref matches the value, then things were just mounted
+            // as the ref was initialized with the value.
+            // If they don't match then we got re-rendered with a new value
+            // and the existing ref.
+            if (ref.current !== value) {
+                return <>RE-RENDERED</>;
+            }
+
+            return <>JUST MOUNTED</>;
+        };
+        const adapter: TestHarnessAdapter<string> = (c: any, conf: any) => (
+            <>
+                {conf}
+                {c}
+            </>
+        );
+        const adapters = {
+            adapterA: adapter,
+            adapterB: adapter,
+            adapterC: adapter,
+        } as const;
+        const configs: TestHarnessConfigs<typeof adapters> = {
+            adapterA: "A",
+            adapterB: null,
+            adapterC: "C",
+        };
+        const {rerender} = render(
+            <Adapt adapters={adapters} configs={configs}>
+                <MyComponent value={1} />
+            </Adapt>,
+        );
+
+        // Act
+        rerender(
+            <Adapt adapters={adapters} configs={configs}>
+                <MyComponent value={2} />
+            </Adapt>,
+        );
+
+        // Assert
+        expect(screen.getByText(/RE-RENDERED/)).toBeInTheDocument();
     });
 });
