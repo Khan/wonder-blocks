@@ -52,7 +52,11 @@ type StoryComponentType = StoryObj<typeof NewIcon>;
  * Icons are size `"small"` by default.
  */
 export const Default: StoryComponentType = {
-    args: {icon: <PlusCircle />, size: "small"},
+    args: {
+        icon: <PlusCircle />,
+        size: "small",
+        "aria-label": "Add",
+    },
 };
 
 /**

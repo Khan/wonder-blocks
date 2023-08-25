@@ -53,6 +53,7 @@ const NewIcon = React.forwardRef(function NewIcon(
         style,
         testId,
         className,
+        ...sharedProps
     } = props;
 
     const pixelSize = viewportPixelsForSize(size);
@@ -60,6 +61,7 @@ const NewIcon = React.forwardRef(function NewIcon(
     const classNames = css(styles.svg) + " " + className;
 
     return React.cloneElement(icon, {
+        ...sharedProps,
         className: classNames,
         style,
         "data-test-id": testId,
