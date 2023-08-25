@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SSR.adapter should throw on bad configuration ({"thisConfig": "isNotValid"}) 1`] = `"Unexpected configuration: set config to null to turn this adapter off"`;
+
+exports[`SSR.adapter should throw on bad configuration (false) 1`] = `"Unexpected configuration: set config to null to turn this adapter off"`;
+
+exports[`SSR.adapter should throw on bad configuration (string) 1`] = `"Unexpected configuration: set config to null to turn this adapter off"`;

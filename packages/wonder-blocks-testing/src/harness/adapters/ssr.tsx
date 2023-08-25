@@ -4,14 +4,13 @@ import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 
 import type {TestHarnessAdapter} from "../types";
 
-// We only support one configuration for this adapter; the default
-// behavior - it's either on or off.
-type Config = true | null;
+//
+type Config = true;
 
 // The default configuration is off since this will likely cause state changes
 // and add Testing Library act/waitFor calls in tests using the harness when
 // its enabled.
-export const defaultConfig: Config = null;
+export const defaultConfig: Config | null = null;
 
 /**
  * Test harness adapter for supporting portals.
@@ -33,5 +32,6 @@ export const adapter: TestHarnessAdapter<Config> = (
             },
         );
     }
-    return <RenderStateRoot>{children}</RenderStateRoot>;
+    // We never want to throw if the test harness is nested.
+    return <RenderStateRoot throwIfNested={false}>{children}</RenderStateRoot>;
 };
