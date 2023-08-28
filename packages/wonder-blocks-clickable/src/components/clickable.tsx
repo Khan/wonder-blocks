@@ -91,6 +91,7 @@ type CommonProps =
          * Set the tabindex attribute on the rendered element.
          */
         tabIndex?: number;
+        title?: string;
         /**
          * Run async code before navigating. If the promise returned rejects then
          * navigation will not occur.
