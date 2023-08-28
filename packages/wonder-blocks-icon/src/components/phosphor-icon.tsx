@@ -1,13 +1,18 @@
 import * as React from "react";
-import {StyleSheet, css, CSSProperties, Falsy} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 import {Icon} from "@phosphor-icons/react";
 
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
 
 import type {IconSize} from "../util/icon-assets";
 import {viewportPixelsForSize} from "../util/icon-util";
+import {processStyleList} from "../../../wonder-blocks-core/src/util/util";
 
 export type PhosphorIcon = Icon;
+
+type IconElement =
+    | React.ReactElement<PhosphorIcon>
+    | Array<React.ReactElement<PhosphorIcon>>;
 
 type Props = AriaProps & {
     /**
@@ -19,7 +24,7 @@ type Props = AriaProps & {
      * The icon to display. This is a React element that renders a Phosphor icon
      * component.
      */
-    icon: React.ReactElement<PhosphorIcon>;
+    icon: IconElement;
     /**
      * One of `small` (16px), `medium` (24px), `large` (48px),
      * or `xlarge` (96px).
@@ -28,7 +33,7 @@ type Props = AriaProps & {
     /**
      * Additional styles to apply to the icon.
      */
-    style?: CSSProperties | Falsy;
+    style?: StyleType;
     /**
      * Adds CSS classes to the Icon.
      */
@@ -42,7 +47,7 @@ type Props = AriaProps & {
 /**
  * An Icon displays a small informational or decorative image as an SVG.
  */
-const NewIcon = React.forwardRef(function NewIcon(
+const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
     ref: React.ForwardedRef<SVGSVGElement>,
 ) {
@@ -58,19 +63,33 @@ const NewIcon = React.forwardRef(function NewIcon(
 
     const pixelSize = viewportPixelsForSize(size);
 
-    const classNames = css(styles.svg) + " " + className;
+    const styleAttributes = processStyleList([styles.svg, style]);
 
-    return React.cloneElement(icon, {
-        ...sharedProps,
-        className: classNames,
-        style,
-        "data-test-id": testId,
-        weights: ["bold"],
-        ref: ref,
-        ...icon.props,
-        color,
-        size: pixelSize,
-    } as Partial<Icon>);
+    const classNames = styleAttributes.className + " " + className;
+
+    const renderIcon = (icon: React.ReactElement<PhosphorIcon>) => {
+        return React.cloneElement(icon, {
+            ...sharedProps,
+            className: classNames,
+            style: styleAttributes.style,
+            "data-test-id": testId,
+            weights: ["bold"],
+            ref: ref,
+            size: pixelSize,
+            ...icon.props,
+            color,
+        } as Partial<Icon>);
+    };
+
+    if (Array.isArray(icon)) {
+        return (
+            <View style={styles.composed}>
+                {icon.map((icon) => renderIcon(icon))}
+            </View>
+        );
+    }
+
+    return renderIcon(icon);
 });
 
 const styles = StyleSheet.create({
@@ -80,6 +99,10 @@ const styles = StyleSheet.create({
         flexShrink: 0,
         flexGrow: 0,
     },
+    composed: {
+        display: "inline-flex",
+        position: "relative",
+    },
 });
 
-export default NewIcon;
+export default PhosphorIcon;

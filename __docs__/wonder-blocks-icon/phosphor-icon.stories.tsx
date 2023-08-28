@@ -1,16 +1,23 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
-import {PlusCircle, Circle, Info, MagnifyingGlass} from "@phosphor-icons/react";
+import {
+    BookOpen,
+    PlusCircle,
+    Circle,
+    Info,
+    MagnifyingGlass,
+    CrownSimple,
+} from "@phosphor-icons/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {NewIcon} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
-import NewIconArgtypes, {IconMappings} from "./new-icon.argtypes";
+import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
 
 /**
  * An Icon displays a small informational or decorative image as an SVG.
@@ -18,10 +25,10 @@ import NewIconArgtypes, {IconMappings} from "./new-icon.argtypes";
  * ## Usage
  *
  * ```js
- * import {NewIcon} from "@khanacademy/wonder-blocks-icon";
+ * import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
  * import {Plus} from "@phosphor-icons/react";
  *
- * <Icon
+ * <PhosphorIcon
  *     icon={<Plus />}
  *     color={Color.white}
  *     size="medium"
@@ -33,8 +40,8 @@ import NewIconArgtypes, {IconMappings} from "./new-icon.argtypes";
  * respectively.
  */
 export default {
-    title: "Icon / NewIcon",
-    component: NewIcon,
+    title: "Icon / PhosphorIcon",
+    component: PhosphorIcon,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -43,10 +50,10 @@ export default {
             />
         ),
     },
-    argTypes: NewIconArgtypes,
-} satisfies Meta<typeof NewIcon>;
+    argTypes: PhosphorIconArgtypes,
+} satisfies Meta<typeof PhosphorIcon>;
 
-type StoryComponentType = StoryObj<typeof NewIcon>;
+type StoryComponentType = StoryObj<typeof PhosphorIcon>;
 
 /**
  * Icons are size `"small"` by default.
@@ -80,7 +87,7 @@ export const Basic: StoryComponentType = {
 };
 
 /**
- * The size of an icon is determined by the `NewIcon`'s `size` prop. While we
+ * The size of an icon is determined by the `PhosphorIcon`'s `size` prop. While we
  * don't currently have assets for sizes larger than medium, we can still render
  * any icon at any size in a pinch. The available sizes are `"small"`,
  * `"medium"`, `"large"`, and `"xlarge"`.
@@ -95,7 +102,10 @@ export const Sizes: StoryComponentType = {
                             <LabelMedium>{"small"}</LabelMedium>
                         </td>
                         <td>
-                            <NewIcon icon={<MagnifyingGlass />} size="small" />
+                            <PhosphorIcon
+                                icon={<MagnifyingGlass />}
+                                size="small"
+                            />
                         </td>
                     </tr>
                     <tr>
@@ -103,7 +113,10 @@ export const Sizes: StoryComponentType = {
                             <LabelMedium>{"medium"}</LabelMedium>
                         </td>
                         <td>
-                            <NewIcon icon={<MagnifyingGlass />} size="medium" />
+                            <PhosphorIcon
+                                icon={<MagnifyingGlass />}
+                                size="medium"
+                            />
                         </td>
                     </tr>
                     <tr>
@@ -111,7 +124,10 @@ export const Sizes: StoryComponentType = {
                             <LabelMedium>{"large"}</LabelMedium>
                         </td>
                         <td>
-                            <NewIcon icon={<MagnifyingGlass />} size="large" />
+                            <PhosphorIcon
+                                icon={<MagnifyingGlass />}
+                                size="large"
+                            />
                         </td>
                     </tr>
                     <tr>
@@ -119,7 +135,10 @@ export const Sizes: StoryComponentType = {
                             <LabelMedium>{"xlarge"}</LabelMedium>
                         </td>
                         <td>
-                            <NewIcon icon={<MagnifyingGlass />} size="xlarge" />
+                            <PhosphorIcon
+                                icon={<MagnifyingGlass />}
+                                size="xlarge"
+                            />
                         </td>
                     </tr>
                 </tbody>
@@ -130,7 +149,7 @@ export const Sizes: StoryComponentType = {
 
 /**
  * The icons are defined in the Phosphor Icons package. We just import them
- * and pass them to the `NewIcon` component.
+ * and pass them to the `PhosphorIcon` component.
  * @see https://phosphoricons.com/
  */
 export const Variants: StoryComponentType = {
@@ -140,7 +159,7 @@ export const Variants: StoryComponentType = {
                 return (
                     <tr key={index}>
                         <td>
-                            <NewIcon icon={Icon} />
+                            <PhosphorIcon icon={Icon} />
                         </td>
                         <td>
                             <LabelMedium>{name}</LabelMedium>
@@ -177,7 +196,7 @@ export const Inline: StoryComponentType = {
         return (
             <View>
                 Here is an icon
-                <NewIcon
+                <PhosphorIcon
                     size="small"
                     icon={<Info />}
                     style={{margin: 2}}
@@ -189,6 +208,26 @@ export const Inline: StoryComponentType = {
     },
 };
 
+/**
+ * Here's just an experiment to create custom icons by composing multiple
+ * phosphor icons together. This is not a recommended usage, but it's possible
+ * to do.
+ */
+export const Composed: StoryComponentType = {
+    args: {
+        icon: [
+            <BookOpen size={32} />,
+            <CrownSimple
+                size={16}
+                weight="fill"
+                style={{position: "absolute", bottom: 0, right: 0}}
+            />,
+        ],
+        size: "medium",
+        "aria-label": "Add",
+    },
+};
+
 // STOPSHIP(juan): Need to figure out how to use custom icons.
 // export const CustomIcon: StoryComponentType = () => {
 //     const share: IconAsset = {
@@ -196,7 +235,7 @@ export const Inline: StoryComponentType = {
 //     };
 
 //     return (
-//         <NewIcon
+//         <PhosphorIcon
 //             icon={share}
 //             style={{
 //                 fillRule: "evenodd",
