@@ -71,18 +71,20 @@ describe("useIsMounted", () => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(true);
         });
 
-        it("should not throw", () => {
+        it("should not cause an error", () => {
             // Arrange
+            // In prod, React throws, but in dev, it just logs a console error.
+            const errorSpy = jest.spyOn(console, "error");
             const Component = () => {
                 const isMounted = useIsMounted();
                 return isMounted() ? <>MOUNTED</> : <>UNMOUNTED</>;
             };
 
             // Act
-            const underTest = () => renderToString(<Component />);
+            renderToString(<Component />);
 
             // Assert
-            expect(underTest).not.toThrowError();
+            expect(errorSpy).not.toHaveBeenCalled();
         });
 
         it("should return false", () => {
