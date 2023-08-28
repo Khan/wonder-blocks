@@ -35,7 +35,7 @@ describe("useIsomorphicLayoutEffect", () => {
         });
     });
 
-    describe("when server side, the returned function", () => {
+    describe("when server side", () => {
         beforeEach(() => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(true);
         });
