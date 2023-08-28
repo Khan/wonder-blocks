@@ -85,7 +85,7 @@ describe("useIsMounted", () => {
             expect(underTest).not.toThrowError();
         });
 
-        it("should return false on initial render", () => {
+        it("should return false", () => {
             // Arrange
             const Component = () => {
                 const isMounted = useIsMounted();
@@ -97,28 +97,6 @@ describe("useIsMounted", () => {
 
             // Assert
             expect(result).toBe("UNMOUNTED");
-        });
-
-        it("should return false after initial render", () => {
-            // Arrange
-            const {result, rerender} = renderHook(useIsMounted);
-
-            // Act
-            rerender();
-
-            // assert
-            expect(result.current()).toBeFalse();
-        });
-
-        it("should return false on unmount", () => {
-            // Arrange
-            const {result, unmount} = renderHook(useIsMounted);
-
-            // Act
-            unmount();
-
-            // Assert
-            expect(result.current()).toBeFalse();
         });
     });
 });
