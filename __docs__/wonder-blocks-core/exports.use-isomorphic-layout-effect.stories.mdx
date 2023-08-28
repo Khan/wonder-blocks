@@ -1,0 +1,37 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Core / Exports / useIsomorphicLayoutEffect()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useIsomorphicLayoutEffect()
+
+```ts
+function useIsomorphicLayoutEffect(
+    effect: EffectCallback,
+    deps?: DependencyList,
+): void);
+```
+
+The `useIsomorphicLayoutEffect` hook is a drop-in replacement for the `useLayoutEffect` hook. It works exactly the same when clientside, but is a no-op on the server. It is useful for when you need to perform side-effects clientside after mounting, but you don't want to break server-side rendering.
+
+When using `eslint`, you can get exhaustive dependency checks for this hook by updating your configuration for the `react-hooks/exhaustive-deps` rule:
+
+For example:
+```json
+{
+    "rules": {
+        "react-hooks/exhaustive-deps": [
+            "error",
+            {
+                "additionalHooks": "(useIsomorphicLayoutEffect)"
+            }
+        ]
+    }
+}
+```
