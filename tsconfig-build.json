@@ -20,6 +20,7 @@
         {"path": "./packages/wonder-blocks-i18n/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-icon/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-icon-button/tsconfig-build.json"},
+        {"path": "./packages/wonder-blocks-labeled-field/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-layout/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-link/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-modal/tsconfig-build.json"},

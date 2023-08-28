@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-testing
 
+## 9.3.1
+
+### Patch Changes
+
+-   9c608281: Make sure ssr adapter doesn't throw if it gets nested
+
+## 9.3.0
+
+### Minor Changes
+
+-   f530fbeb: Fix bug where the test harness was causing the component under test to be remounted when rerendering instead of reusing the existing instance
+
 ## 9.2.0
 
 ### Minor Changes
