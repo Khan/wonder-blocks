@@ -19,7 +19,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 # useLatestRef()
 
 ```ts
-function useLatestRef<T>(value: T): React.RefObject<T>;
+function useLatestRef<T>(value: T): {readonly current: T};
 ```
 
 The `useLatestRef` hook returns a ref that always contains the `value` passed

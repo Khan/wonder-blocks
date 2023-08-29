@@ -81,8 +81,10 @@ export const useSharedCache = <TValue extends ValidCacheData>(
     // since our last run through. Also, our cache does not know what type it
     // stores, so we have to cast it to the type we're exporting. This is a
     // dev time courtesy, rather than a runtime thing.
-    // @ts-expect-error [FEI-5019] - TS2322 - Type 'ValidCacheData | null | undefined' is not assignable to type 'TValue | null | undefined'.
-    let currentValue: TValue | null | undefined = cache.get(scope, id);
+    let currentValue: TValue | null | undefined = cache.get(scope, id) as
+        | TValue
+        | null
+        | undefined;
 
     // If we have an initial value, we need to add it to the cache
     // and use it as our current value.

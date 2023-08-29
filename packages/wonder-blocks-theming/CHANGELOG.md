@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 0.3.0
+
+### Minor Changes
+
+-   b2634f7c: Add `themeName` return value to `useScopedTheme` to allow getting the name of the theme in use.
+
 ## 0.2.0
 
 ### Minor Changes

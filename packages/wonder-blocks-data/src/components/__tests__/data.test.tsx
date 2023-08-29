@@ -47,7 +47,7 @@ describe("Data", () => {
 
             it("should make request for data on construction", async () => {
                 // Arrange
-                const response = Promise.resolve("data");
+                const response: any = Promise.resolve("data");
                 const fakeHandler = jest.fn().mockReturnValue(response);
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -57,7 +57,6 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 await act(() => response);
 
                 // Assert
@@ -66,7 +65,7 @@ describe("Data", () => {
 
             it("should initially render children with loading", async () => {
                 // Arrange
-                const response = Promise.resolve("data");
+                const response: any = Promise.resolve("data");
                 const fakeHandler = jest.fn().mockReturnValue(response);
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -76,7 +75,6 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 await act(() => response);
 
                 // Assert
@@ -272,7 +270,7 @@ describe("Data", () => {
 
             it("should ignore resolution of pending handler fulfillment when id changes", async () => {
                 // Arrange
-                const oldRequest = Promise.resolve("OLD DATA");
+                const oldRequest: any = Promise.resolve("OLD DATA");
                 const oldHandler = jest
                     .fn()
                     .mockReturnValueOnce(oldRequest)
@@ -294,7 +292,6 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 await act(() => oldRequest);
 
                 // Assert
@@ -343,14 +340,13 @@ describe("Data", () => {
 
             it("should ignore catastrophic request fulfillment when id changes", async () => {
                 // Arrange
-                const catastrophe = Promise.resolve({
+                const catastrophe: any = Promise.resolve({
                     status: "error",
                     error: new Error("CATASTROPHE!"),
                 });
                 jest.spyOn(
                     RequestFulfillment.Default,
                     "fulfill",
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'Promise<{ status: string; error: Error; }>' is not assignable to parameter of type 'Promise<Result<ValidCacheData>>'.
                 ).mockReturnValueOnce(catastrophe);
                 const oldHandler = jest.fn().mockResolvedValue("OLD DATA");
 
@@ -367,7 +363,6 @@ describe("Data", () => {
                     </Data>,
                 );
                 await act(() =>
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                     catastrophe.catch(() => {
                         /* ignore */
                     }),
@@ -428,8 +423,8 @@ describe("Data", () => {
 
             it("should retain old data while reloading if retainResultOnChange is true", async () => {
                 // Arrange
-                const response1 = Promise.resolve("data1");
-                const response2 = Promise.resolve("data2");
+                const response1: any = Promise.resolve("data1");
+                const response2: any = Promise.resolve("data2");
                 const fakeHandler1 = () => response1;
                 const fakeHandler2 = () => response2;
                 const fakeChildrenFn = jest.fn(() => null);
@@ -445,7 +440,6 @@ describe("Data", () => {
                     </Data>,
                 );
                 fakeChildrenFn.mockClear();
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 await act(() => response1);
                 wrapper.rerender(
                     <Data
@@ -456,7 +450,6 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 await act(() => response2);
 
                 // Assert

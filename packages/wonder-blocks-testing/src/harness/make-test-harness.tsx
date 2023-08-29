@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {renderAdapters} from "./render-adapters";
+import {Adapt} from "./adapt";
 
 import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
 
@@ -43,13 +43,11 @@ export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
             ...defaultConfigs,
             ...configs,
         };
-        const harnessedComponent = React.forwardRef((props: TProps, ref) =>
-            renderAdapters<TAdapters>(
-                adapters,
-                fullConfig,
-                <Component {...(props as TProps)} ref={ref} />,
-            ),
-        );
+        const harnessedComponent = React.forwardRef((props: TProps, ref) => (
+            <Adapt adapters={adapters} configs={fullConfig}>
+                <Component {...(props as TProps)} ref={ref} />
+            </Adapt>
+        ));
 
         // We add a name for the component here so that we can detect that
         // later and also see it in traces and what have you.

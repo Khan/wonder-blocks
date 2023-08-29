@@ -139,8 +139,7 @@ describe("#useServerEffect", () => {
             const interceptedHandler = jest.fn();
             jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
                 data: "DATA",
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'undefined'.
-                error: null,
+                error: undefined,
             });
             jest.spyOn(
                 UseRequestInterception,
@@ -165,8 +164,7 @@ describe("#useServerEffect", () => {
             const fakeHandler = jest.fn();
             jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
                 data: "DATA",
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'undefined'.
-                error: null,
+                error: undefined,
             });
 
             // Act
@@ -221,8 +219,7 @@ describe("#useServerEffect", () => {
             const fakeHandler = jest.fn();
             jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
                 data: "DATA",
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'undefined'.
-                error: null,
+                error: undefined,
             });
 
             // Act

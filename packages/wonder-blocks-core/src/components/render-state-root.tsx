@@ -32,8 +32,7 @@ const RenderStateRoot = ({
         }
         // Avoid rendering multiple providers if this RenderStateRoot
         // is nested inside another one.
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-        return children;
+        return <>{children}</>;
     }
 
     const value = firstRender ? RenderState.Initial : RenderState.Standard;

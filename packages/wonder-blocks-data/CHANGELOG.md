@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-data
 
+## 13.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+
+## 13.0.0
+
+### Major Changes
+
+-   65c02cff: Return new no-data state from useCachedEffect when it is not loading and there is no data to return
+
+### Patch Changes
+
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+
 ## 12.0.0
 
 ### Major Changes

@@ -23,7 +23,8 @@ export const mergeGqlContext = <TContext extends GqlContext>(
                     delete acc[key];
                 } else {
                     // Otherwise, we set it.
-                    // @ts-expect-error [FEI-5019] - TS2536 - Type 'string' cannot be used to index type 'TContext'.
+                    // @ts-expect-error TypeScript doesn't seem to see that
+                    // TContext can have string keys.
                     acc[key] = overrides[key];
                 }
             }

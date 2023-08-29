@@ -48,6 +48,9 @@ export type Result<TData extends ValidCacheData> =
           status: "loading";
       }
     | {
+          status: "no-data";
+      }
+    | {
           status: "success";
           data: TData;
       }

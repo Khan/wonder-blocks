@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.0.3
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+
+## 4.0.2
+
+### Patch Changes
+
+-   8dc4a5a3: Allow 'beforeNav' and 'safeWithNav' to be used without an 'href'
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+
 ## 4.0.1
 
 ### Patch Changes

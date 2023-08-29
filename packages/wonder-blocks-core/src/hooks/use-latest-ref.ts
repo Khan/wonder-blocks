@@ -10,7 +10,7 @@ import * as React from "react";
  * be passed to useEffect without causing unnecessary re-renders. See the
  * Storybook docs for a usage example.
  */
-export function useLatestRef<T>(value: T): React.RefObject<T> {
+export function useLatestRef<T>(value: T): {readonly current: T} {
     const ref = React.useRef(value);
     ref.current = value;
     return ref;
