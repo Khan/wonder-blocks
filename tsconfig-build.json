@@ -5,6 +5,7 @@
     // in each package directory.
     "files": [],
     "references": [
+        {"path": "./packages/wonder-blocks-accordion/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-banner/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-birthday-picker/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-breadcrumbs/tsconfig-build.json"},
