@@ -19,7 +19,6 @@
     },
     "peerDependencies": {
         "@khanacademy/wonder-stuff-core": "^1.2.2",
-        "@khanacademy/wonder-stuff-testing": "^2.3.3",
         "@storybook/addon-actions": "^6.4.8",
         "node-fetch": "^2.6.7",
         "aphrodite": "^1.2.5",
@@ -27,7 +26,8 @@
         "react-router-dom": "5.3.0"
     },
     "devDependencies": {
-        "@khanacademy/wb-dev-build-settings": "^1.0.0"
+        "@khanacademy/wb-dev-build-settings": "^1.0.0",
+        "@khanacademy/wonder-stuff-testing": "^3.0.1"
     },
     "author": "",
     "license": "MIT"
