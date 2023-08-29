@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-theming": major
 ---
 
-Make theming package public
+First public release of theming package
