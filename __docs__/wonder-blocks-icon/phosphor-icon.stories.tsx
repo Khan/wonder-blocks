@@ -11,7 +11,8 @@ import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
 
 /**
- * An Icon displays a small informational or decorative image as an SVG.
+ * An Icon displays a small informational or decorative image as an icon font
+ * family.
  *
  * ## Usage
  *

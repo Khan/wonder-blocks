@@ -3,12 +3,10 @@ import {StyleSheet} from "aphrodite";
 
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import icons from "./phosphor-catalog";
+import type {IconNames} from "./phosphor-catalog";
 
 import type {IconSize} from "../util/icon-assets";
 import {viewportPixelsForSize} from "../util/icon-util";
-
-type IconName = typeof icons[number];
 
 const StyledIcon = addStyle("i");
 
@@ -22,7 +20,7 @@ type Props = AriaProps & {
      * The icon to display. This is a string that corresponds to the name of
      * the icon in the catalog.
      */
-    icon: IconName;
+    icon: IconNames;
     /**
      * One of `small` (16px), `medium` (24px), `large` (48px),
      * or `xlarge` (96px).

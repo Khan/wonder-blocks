@@ -7,7 +7,7 @@
  * This is just an experiment to determine if we can use the phosphor icons
  * catalog to enforce type safety. We need to verify the bundle size.
  */
-export default [
+const catalog = [
     "address-book",
     "air-traffic-control",
     "airplane",
@@ -1257,3 +1257,5 @@ export default [
     "yin-yang",
     "youtube-logo",
 ] as const;
+
+export type IconNames = typeof catalog[number];
