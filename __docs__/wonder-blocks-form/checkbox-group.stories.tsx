@@ -97,7 +97,7 @@ export const Error: StoryComponentType = () => {
         "cheese-3",
         "pepper-3",
     ]);
-    const [error, setError] = React.useState(toppingsError);
+    const [error, setError] = React.useState<string | undefined>(toppingsError);
 
     // Returns an error message if more than 3 items are selected,
     // and it returns undefined otherwise. We use undefined instead of
@@ -113,7 +113,6 @@ export const Error: StoryComponentType = () => {
     const handleChange = (input: Array<string>) => {
         const errorMessage = checkForError(input);
         setSelectedValues(input);
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'string | undefined' is not assignable to parameter of type 'SetStateAction<string>'.
         setError(errorMessage);
     };
 

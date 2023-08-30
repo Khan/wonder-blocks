@@ -15,7 +15,7 @@ import type {IInterval, SchedulePolicy, ClearPolicy} from "./types";
  * @implements {IInterval}
  */
 export default class Interval implements IInterval {
-    _intervalId: number | null | undefined;
+    _intervalId: ReturnType<typeof setInterval> | null | undefined;
     _action: () => unknown;
     _intervalMs: number;
 
@@ -75,7 +75,6 @@ export default class Interval implements IInterval {
         if (this.isSet) {
             this.clear(ClearPolicies.Cancel);
         }
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Timer' is not assignable to type 'number'.
         this._intervalId = setInterval(() => this._action(), this._intervalMs);
     }
 
