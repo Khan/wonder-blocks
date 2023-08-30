@@ -144,7 +144,6 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         width: theme.size.width.large,
         borderRadius: theme.border.radius.small,
         flexShrink: 0,
-        cursor: "pointer",
         ":hover": {
             outlineOffset: theme.size.offset.default,
         },
