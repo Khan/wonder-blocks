@@ -16,7 +16,7 @@ type Props = Pick<
     "aria-labelledby" | "aria-label" | "aria-describedby"
 > & {
     /**
-     * Whether this compoonent is checked.
+     * Whether this component is checked.
      */
     checked: boolean;
     /**
