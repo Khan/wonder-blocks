@@ -81,7 +81,6 @@ const Switch = React.forwardRef(function Switch(
             size: "small",
             style: [sharedStyles.icon, stateStyles.icon],
             "aria-hidden": true,
-            ...icon.props,
         } as Partial<React.ComponentProps<typeof Icon>>);
     }
 
