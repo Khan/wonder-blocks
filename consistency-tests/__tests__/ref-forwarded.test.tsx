@@ -40,6 +40,7 @@ import LabelSmall from "../../packages/wonder-blocks-typography/src/components/l
 import LabelXSmall from "../../packages/wonder-blocks-typography/src/components/label-xsmall";
 import Tagline from "../../packages/wonder-blocks-typography/src/components/tagline";
 import Title from "../../packages/wonder-blocks-typography/src/components/title";
+import {RenderStateRoot} from "../../packages/wonder-blocks-core/src/components/render-state-root";
 
 describe("Typography elements", () => {
     test.each`
@@ -364,7 +365,11 @@ describe("Form elements", () => {
             const ref: React.RefObject<HTMLInputElement> = React.createRef();
 
             // Act
-            render(<Switch checked={false} ref={ref} />);
+            render(
+                <RenderStateRoot>
+                    <Switch checked={false} ref={ref} />
+                </RenderStateRoot>,
+            );
 
             // Assert
             expect(ref.current).toBeInstanceOf(HTMLInputElement);

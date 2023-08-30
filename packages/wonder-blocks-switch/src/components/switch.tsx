@@ -3,9 +3,9 @@ import {StyleSheet} from "aphrodite";
 
 import {
     AriaProps,
-    UniqueIDProvider,
     View,
     addStyle,
+    useUniqueIdWithMock,
 } from "@khanacademy/wonder-blocks-core";
 import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import Icon from "@khanacademy/wonder-blocks-icon";
@@ -62,6 +62,9 @@ const Switch = React.forwardRef(function Switch(
         testId,
     } = props;
 
+    const ids = useUniqueIdWithMock("labeled-field");
+    const uniqueId = id ?? ids.get("labeled-field-id");
+
     const handleClick = () => {
         if (!disabled && onChange) {
             onChange(!checked);
@@ -85,45 +88,35 @@ const Switch = React.forwardRef(function Switch(
     }
 
     return (
-        <UniqueIDProvider mockOnFirstRender={true} scope="switch">
-            {(ids) => {
-                const uniqueId = id || ids.get("switch");
-
-                return (
-                    <View
-                        onClick={handleClick}
-                        style={[
-                            sharedStyles.switch,
-                            stateStyles.switch,
-                            disabled && sharedStyles.disabled,
-                        ]}
-                        testId={testId}
-                    >
-                        <StyledInput
-                            aria-describedby={ariaDescribedBy}
-                            aria-label={ariaLabel}
-                            aria-labelledby={ariaLabelledBy}
-                            checked={checked}
-                            disabled={disabled}
-                            id={uniqueId}
-                            // Need to specify because this is a controlled React component, but we
-                            // handle the clicks on the outer View
-                            onChange={handleChange}
-                            ref={ref}
-                            role="switch"
-                            // Input is visually hidden because we use a view and span to render
-                            // the actual switch. The input is used for accessibility.
-                            style={sharedStyles.hidden}
-                            type="checkbox"
-                        />
-                        {icon && styledIcon}
-                        <StyledSpan
-                            style={[sharedStyles.slider, stateStyles.slider]}
-                        />
-                    </View>
-                );
-            }}
-        </UniqueIDProvider>
+        <View
+            onClick={handleClick}
+            style={[
+                sharedStyles.switch,
+                stateStyles.switch,
+                disabled && sharedStyles.disabled,
+            ]}
+            testId={testId}
+        >
+            <StyledInput
+                aria-describedby={ariaDescribedBy}
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledBy}
+                checked={checked}
+                disabled={disabled}
+                id={uniqueId}
+                // Need to specify because this is a controlled React component, but we
+                // handle the clicks on the outer View
+                onChange={handleChange}
+                ref={ref}
+                role="switch"
+                // Input is visually hidden because we use a view and span to render
+                // the actual switch. The input is used for accessibility.
+                style={sharedStyles.hidden}
+                type="checkbox"
+            />
+            {icon && styledIcon}
+            <StyledSpan style={[sharedStyles.slider, stateStyles.slider]} />
+        </View>
     );
 });
 

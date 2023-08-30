@@ -28,6 +28,13 @@ export default {
             />
         ),
     },
+    decorators: [
+        (Story) => (
+            <RenderStateRoot>
+                <Story />
+            </RenderStateRoot>
+        ),
+    ],
     argTypes: SwitchArgtypes,
 } as Meta<typeof Switch>;
 
