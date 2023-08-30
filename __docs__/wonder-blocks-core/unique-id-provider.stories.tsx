@@ -41,7 +41,7 @@ export default {
 
 const Template = (args: any) => {
     const [count, setCount] = React.useState(0);
-    const renders = React.useRef([]);
+    const renders = React.useRef<Array<string>>([]);
     const handleClick = () => {
         setCount(count + 1);
     };
@@ -57,7 +57,6 @@ const Template = (args: any) => {
 
             <UniqueIDProvider {...args}>
                 {(ids) => {
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'string' is not assignable to parameter of type 'never'.
                     renders.current.push(ids.get("my-unique-id"));
 
                     return renders.current.map((value, index) => (
