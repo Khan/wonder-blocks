@@ -186,7 +186,7 @@ module.exports = {
         "react-hooks/exhaustive-deps": [
             "error",
             {
-                additionalHooks: "(useIsomorphicLayoutEffect)",
+                additionalHooks: "(usePreHydrationEffect)",
             },
         ],
 
