@@ -2825,12 +2825,17 @@
   resolved "https://registry.yarnpkg.com/@khanacademy/wonder-stuff-core/-/wonder-stuff-core-1.4.2.tgz#e9e97ac91e7a882f610b39f33e64cb5490bcb6c2"
   integrity sha512-6DqDx1umwmb8y8tMVQ66pjjjn5XBxEgcdbD3J6CppZQ6NBhCsJmQwGO9jhudsFyXqo40dalG9aiGf6rceUfaaw==
 
-"@khanacademy/wonder-stuff-testing@^2.4.2":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-stuff-testing/-/wonder-stuff-testing-2.4.2.tgz#78e0792a5a28d69851a762adc0f9848af60d44c5"
-  integrity sha512-zxxbyJxsyGv2J0GAfFrdApKYEiqJLmjIfhmyi9LVX7UKD/nJJVWAAkzAI+K2TXpISkQGJKbrmXCoiKKR8xUypg==
+"@khanacademy/wonder-stuff-core@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-stuff-core/-/wonder-stuff-core-1.5.1.tgz#3f179b1dc3795117ae7104e37132403f4cf26043"
+  integrity sha512-3/8d8+ewqhMwYj5L9slJwrX8rmZ8BYTJvToB/7L13bq7b8CYBCcxPMRY9B6hJJdKytpBwq1EGfv2p3rKWHXR5w==
+
+"@khanacademy/wonder-stuff-testing@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-stuff-testing/-/wonder-stuff-testing-3.0.1.tgz#ca4b27a2aa249ed61f916ddbda215ce07772ac79"
+  integrity sha512-x3aZ6iV9iaZqCvV12u1TRPfbvp18Tda2c00W2QN2SiwbexlXXoX2KFiZcBJx2yy7m9nlwd4KljwuZlJOEbVchg==
   dependencies:
-    "@khanacademy/wonder-stuff-core" "^1.4.2"
+    "@khanacademy/wonder-stuff-core" "^1.5.1"
 
 "@manypkg/find-root@^1.1.0":
   version "1.1.0"

@@ -10,13 +10,11 @@ import * as ReactDOM from "react-dom";
 import type {PopperChildrenProps} from "react-popper";
 
 type PopperRef = PopperChildrenProps["ref"];
+type TargetFn = (target?: HTMLElement | null) => void;
 
 export default class RefTracker {
     _lastRef: HTMLElement | null | undefined;
-    // @ts-expect-error [FEI-5019] - TS2564 - Property '_targetFn' has no initializer and is not definitely assigned in the constructor.
-    _targetFn: (
-        arg1?: HTMLElement | null | undefined,
-    ) => void | null | undefined;
+    _targetFn: TargetFn | undefined;
 
     updateRef: (
         ref?: React.Component<any> | Element | null | undefined,
@@ -41,8 +39,7 @@ export default class RefTracker {
                 throw new Error("targetFn must be a function");
             }
 
-            // @ts-expect-error [FEI-5019] - TS2322 - Type '((instance: any) => void) | null' is not assignable to type '(arg1?: HTMLElement | null | undefined) => void | null | undefined'.
-            this._targetFn = targetFn || null;
+            this._targetFn = targetFn || undefined;
             if (this._lastRef && this._targetFn) {
                 this._targetFn(this._lastRef);
             }

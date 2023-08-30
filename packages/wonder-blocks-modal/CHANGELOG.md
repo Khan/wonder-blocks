@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.0.24
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.1.7
+    -   @khanacademy/wonder-blocks-icon@2.1.5
+    -   @khanacademy/wonder-blocks-icon-button@4.1.8
+    -   @khanacademy/wonder-blocks-layout@2.0.21
+    -   @khanacademy/wonder-blocks-typography@2.1.7
+
+## 4.0.23
+
+### Patch Changes
+
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.1.6
+    -   @khanacademy/wonder-blocks-icon@2.1.4
+    -   @khanacademy/wonder-blocks-icon-button@4.1.7
+    -   @khanacademy/wonder-blocks-layout@2.0.20
+    -   @khanacademy/wonder-blocks-typography@2.1.6
+
 ## 4.0.22
 
 ### Patch Changes

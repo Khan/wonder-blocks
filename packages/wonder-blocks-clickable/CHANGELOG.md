@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.0.5
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+
+## 4.0.4
+
+### Patch Changes
+
+-   834855e5: Allow 'title' as a prop on Clickable
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+
 ## 4.0.3
 
 ### Patch Changes

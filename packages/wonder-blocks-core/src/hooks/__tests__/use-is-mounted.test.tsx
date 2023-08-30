@@ -1,4 +1,5 @@
 import * as React from "react";
+import {render, screen} from "@testing-library/react";
 import {renderHook} from "@testing-library/react-hooks";
 import {renderToString} from "react-dom/server";
 
@@ -24,24 +25,22 @@ describe("useIsMounted", () => {
 
         it("should return false on initial render", () => {
             // Arrange
-            jest.spyOn(console, "error").mockImplementation(() => {
-                // We need to capture the initial render only, without mounting
-                // so we can't use Testing Library. Instead, we're going to
-                // use `renderToString` from `react-dom/server`, but that is
-                // going to log an error because we use `useLayoutEffect`.
-                // So, we suppress that error for our testing purposes.
-                /* no-op */
-            });
+            // We cannot use renderHook on useIsMounted directly here and then
+            // look at the result.all[0] to see the first render as the result
+            // is a function that accesses the underlying ref, and that ref will
+            // have changed to `true` even if it was `false` in the initial
+            // render. So, we use a component.
             const Component = () => {
                 const isMounted = useIsMounted();
                 return isMounted() ? <>MOUNTED</> : <>UNMOUNTED</>;
             };
 
             // Act
-            const result = renderToString(<Component />);
+            render(<Component />);
+            const result = screen.getByText("UNMOUNTED");
 
             // Assert
-            expect(result).toBe("UNMOUNTED");
+            expect(result).toBeInTheDocument();
         });
 
         it("should return true after mounting", () => {
@@ -69,22 +68,6 @@ describe("useIsMounted", () => {
     describe("when server side, the returned function", () => {
         beforeEach(() => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-        });
-
-        it("should not cause an error", () => {
-            // Arrange
-            // In prod, React throws, but in dev, it just logs a console error.
-            const errorSpy = jest.spyOn(console, "error");
-            const Component = () => {
-                const isMounted = useIsMounted();
-                return isMounted() ? <>MOUNTED</> : <>UNMOUNTED</>;
-            };
-
-            // Act
-            renderToString(<Component />);
-
-            // Assert
-            expect(errorSpy).not.toHaveBeenCalled();
         });
 
         it("should return false", () => {

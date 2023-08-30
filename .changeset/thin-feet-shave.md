@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-core": minor
 ---
 
-Add `useIsomorphicLayoutEffect`
+Remove deps argument from `usePreHydrationEffect`

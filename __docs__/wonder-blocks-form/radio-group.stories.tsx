@@ -89,7 +89,7 @@ Basic.parameters = {
 export const Error: StoryComponentType = () => {
     const emptyError = "You must select an option to continue.";
     const [selectedValue, setSelectedValue] = React.useState("");
-    const [error, setError] = React.useState(emptyError);
+    const [error, setError] = React.useState<string | undefined>(emptyError);
 
     // This returns an error message if no option is selected,
     // and it returns undefined otherwise. We use undefined instead of
@@ -105,7 +105,6 @@ export const Error: StoryComponentType = () => {
     const handleChange = (input: string) => {
         const errorMessage = checkForError(input);
         setSelectedValue(input);
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'string | undefined' is not assignable to parameter of type 'SetStateAction<string>'.
         setError(errorMessage);
     };
 

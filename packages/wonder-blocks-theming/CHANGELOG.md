@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 1.0.0
+
+### Major Changes
+
+-   bad46d23: First public release of theming package
+
 ## 0.3.0
 
 ### Minor Changes

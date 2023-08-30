@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.1.1
+
+### Patch Changes
+
+-   2871f0a9: Add new usePreHydrationEffect hook to module exports
+
+## 6.1.0
+
+### Minor Changes
+
+-   efb59c29: Add `usePreHydrationEffect`
+
+### Patch Changes
+
+-   8bc40ed2: Change the return type of `useLatestRef` from `RefObject<T>` to
+    `{readonly current: T}`, so the `current` property is not nullable.
+
+    This fixes a bug introduced by the migration to TypeScript.
+
 ## 6.0.2
 
 ### Patch Changes

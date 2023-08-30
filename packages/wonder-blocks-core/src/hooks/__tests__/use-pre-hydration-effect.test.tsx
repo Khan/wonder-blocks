@@ -4,7 +4,7 @@ import {renderToString} from "react-dom/server";
 
 import Server from "../../util/server";
 
-import {useIsomorphicLayoutEffect} from "../use-isomorphic-layout-effect";
+import {usePreHydrationEffect} from "../use-pre-hydration-effect";
 
 // We need to make useLayoutEffect spy-able.
 jest.mock("react", () => {
@@ -17,7 +17,7 @@ jest.mock("react", () => {
     };
 });
 
-describe("useIsomorphicLayoutEffect", () => {
+describe("usePreHydrationEffect", () => {
     describe("client side mode", () => {
         beforeEach(() => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);
@@ -27,13 +27,12 @@ describe("useIsomorphicLayoutEffect", () => {
             // Arrange
             const useLayoutEffectSpy = jest.spyOn(React, "useLayoutEffect");
             const effect = () => {};
-            const deps = ["foo", "bar"];
 
             // Act
-            renderHook(() => useIsomorphicLayoutEffect(effect, deps));
+            renderHook(() => usePreHydrationEffect(effect));
 
             // assert
-            expect(useLayoutEffectSpy).toHaveBeenCalledWith(effect, deps);
+            expect(useLayoutEffectSpy).toHaveBeenCalledWith(effect, []);
         });
 
         it("should cause an error if statically rendered (i.e. rendered server-side)", () => {
@@ -47,7 +46,7 @@ describe("useIsomorphicLayoutEffect", () => {
                     /* no-op */
                 });
             const Component = () => {
-                useIsomorphicLayoutEffect(() => {}, []);
+                usePreHydrationEffect(() => {});
                 return null;
             };
 
@@ -75,7 +74,7 @@ describe("useIsomorphicLayoutEffect", () => {
                     /* no-op */
                 });
             const Component = () => {
-                useIsomorphicLayoutEffect(() => {}, []);
+                usePreHydrationEffect(() => {});
                 return null;
             };
 

@@ -15,7 +15,7 @@ import type {ITimeout, SchedulePolicy, ClearPolicy} from "./types";
  * @implements {ITimeout}
  */
 export default class Timeout implements ITimeout {
-    _timeoutId: number | null | undefined;
+    _timeoutId: ReturnType<typeof setTimeout> | null | undefined;
     _action: () => unknown;
     _timeoutMs: number;
 
@@ -77,7 +77,6 @@ export default class Timeout implements ITimeout {
         if (this.isSet) {
             this.clear(ClearPolicies.Cancel);
         }
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Timeout' is not assignable to type 'number'.
         this._timeoutId = setTimeout(
             () => this.clear(ClearPolicies.Resolve),
             this._timeoutMs,
