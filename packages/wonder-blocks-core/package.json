@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-core",
-  "version": "6.1.0",
+  "version": "6.1.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"

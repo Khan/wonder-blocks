@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.1.1
+
+### Patch Changes
+
+-   2871f0a9: Add new usePreHydrationEffect hook to module exports
+
 ## 6.1.0
 
 ### Minor Changes
