@@ -5,10 +5,10 @@ import {expect} from "@storybook/jest";
 import {userEvent, within} from "@storybook/testing-library";
 
 import Switch from "@khanacademy/wonder-blocks-switch";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -52,7 +52,7 @@ export const Controlled: StoryComponentType = () => {
     return (
         <View style={styles.column}>
             <Switch checked={checkedOne} onChange={setCheckedOne} />
-            <Strut size={Spacing.xSmall_8} />
+
             <Switch
                 testId="test-switch"
                 aria-label="test switch"
@@ -100,15 +100,12 @@ Controlled.parameters = {
 export const Disabled: StoryComponentType = () => (
     <View style={styles.column}>
         <Switch checked={false} disabled={true} />
-        <Strut size={Spacing.xSmall_8} />
         <Switch checked={true} disabled={true} />
-        <Strut size={Spacing.xSmall_8} />
         <Switch
             checked={false}
             disabled={true}
             icon={<Icon icon={icons.search} />}
         />
-        <Strut size={Spacing.xSmall_8} />
         <Switch
             checked={true}
             disabled={true}
@@ -129,7 +126,7 @@ export const WithIcon: StoryComponentType = () => {
     return (
         <View style={styles.column}>
             <Switch checked={false} icon={<Icon icon={icons.search} />} />
-            <Strut size={Spacing.xSmall_8} />
+
             <Switch checked={true} icon={<Icon icon={icons.search} />} />
         </View>
     );
@@ -143,9 +140,72 @@ WithIcon.parameters = {
     },
 };
 
+export const KhanmigoTheme: StoryComponentType = () => {
+    const [checkedOne, setCheckedOne] = React.useState(false);
+    const [checkedTwo, setCheckedTwo] = React.useState(false);
+
+    return (
+        <ThemeSwitcherContext.Provider value="khanmigo">
+            <View style={[styles.dark, styles.row]}>
+                <View style={styles.column}>
+                    <LabelMedium style={styles.textLight}>Default</LabelMedium>
+                    <Switch checked={checkedOne} onChange={setCheckedOne} />
+                    <Switch checked={true} />
+                    <Switch checked={false} disabled={true} />
+                    <Switch checked={true} disabled={true} />
+                </View>
+                <View style={styles.column}>
+                    <LabelMedium style={styles.textLight}>
+                        With Icon
+                    </LabelMedium>
+                    <Switch
+                        checked={checkedTwo}
+                        onChange={setCheckedTwo}
+                        icon={<Icon icon={icons.search} />}
+                    />
+                    <Switch
+                        checked={true}
+                        icon={<Icon icon={icons.search} />}
+                    />
+                    <Switch
+                        checked={false}
+                        disabled={true}
+                        icon={<Icon icon={icons.search} />}
+                    />
+                    <Switch
+                        checked={true}
+                        disabled={true}
+                        icon={<Icon icon={icons.search} />}
+                    />
+                </View>
+            </View>
+        </ThemeSwitcherContext.Provider>
+    );
+};
+
+KhanmigoTheme.parameters = {
+    docs: {
+        description: {
+            story: `The switch supports the \`khanmigo\` theme.`,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     column: {
         flexDirection: "column",
         alignItems: "start",
+        gap: tokens.spacing.xSmall_8,
+    },
+    dark: {
+        backgroundColor: tokens.color.eggplant,
+        padding: tokens.spacing.xSmall_8,
+    },
+    row: {
+        flexDirection: "row",
+        gap: tokens.spacing.medium_16,
+    },
+    textLight: {
+        color: tokens.color.white,
     },
 });
