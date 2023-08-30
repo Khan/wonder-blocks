@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import {usePreHydrationEffect} from "./use-pre-hydration-effect";
-
 /**
  * Hook to provide a function for determining component mounted state.
  *
@@ -11,13 +9,19 @@ import {usePreHydrationEffect} from "./use-pre-hydration-effect";
  * be reactive to the mounted state, but instead should be accessing it in
  * callbacks to guard against setting state on an unmounted component.
  *
+ * NOTE: This marks the component as mounted after the initial render.
+ * Therefore, if you were to use the return value of the `isMounted` before
+ * the initial render is complete (i.e. inside a `useLayoutEffect` or an
+ * event handler subscribed before the initial render completes), the value
+ * will be `false`.
+ *
  * @returns {() => boolean} A function that returns the component mounted state.
  */
 export const useIsMounted = (): (() => boolean) => {
     const isMountedRef = React.useRef<boolean>(false);
     const isMounted = React.useCallback(() => isMountedRef.current, []);
 
-    usePreHydrationEffect(() => {
+    React.useEffect(() => {
         isMountedRef.current = true;
         return () => {
             isMountedRef.current = false;
