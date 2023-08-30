@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {useIsomorphicLayoutEffect} from "./use-isomorphic-layout-effect";
+import {usePreHydrationEffect} from "./use-pre-hydration-effect";
 
 /**
  * Hook to provide a function for determining component mounted state.
@@ -17,7 +17,7 @@ export const useIsMounted = (): (() => boolean) => {
     const isMountedRef = React.useRef<boolean>(false);
     const isMounted = React.useCallback(() => isMountedRef.current, []);
 
-    useIsomorphicLayoutEffect(() => {
+    usePreHydrationEffect(() => {
         isMountedRef.current = true;
         return () => {
             isMountedRef.current = false;

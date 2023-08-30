@@ -1,0 +1,45 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Core / Exports / usePreHydrationEffect()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# usePreHydrationEffect()
+
+```ts
+function usePreHydrationEffect(
+    effect: EffectCallback,
+    deps?: DependencyList,
+): void);
+```
+
+The `usePreHydrationEffect` hook provides means to run some code during the
+initial render cycle. It is a drop-in replacement for the `useLayoutEffect` hook except that it does not cause an error during server-side rendering.
+
+It is highly recommended that you use `useLayoutEffect` in your components unless you are certain that you need the functionality provided here, you have reliable testing for hydration errors, and you understand the implications of using this hook.
+
+Because it runs pre-hydration, it should never be used for anything that might
+change the rendered output or the DOM as that will cause hydration errors. It
+should only be used for things like setting up event listeners or other
+side-effects that do not affect the rendered output.
+
+When using `eslint`, you can get exhaustive dependency checks for this hook by updating your configuration for the `react-hooks/exhaustive-deps` rule:
+
+For example:
+```json
+{
+    "rules": {
+        "react-hooks/exhaustive-deps": [
+            "error",
+            {
+                "additionalHooks": "(usePreHydrationEffect)"
+            }
+        ]
+    }
+}
+```
