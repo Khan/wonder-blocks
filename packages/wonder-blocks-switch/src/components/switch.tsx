@@ -7,9 +7,16 @@ import {
     addStyle,
     useUniqueIdWithMock,
 } from "@khanacademy/wonder-blocks-core";
-import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import Icon from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {
+    ThemedStylesFn,
+    useScopedTheme,
+    useStyles,
+} from "@khanacademy/wonder-blocks-theming";
+import ThemedSwitch, {
+    SwitchThemeContext,
+    SwitchThemeContract,
+} from "../themes/themed-switch";
 
 type Props = Pick<
     AriaProps,
@@ -46,7 +53,7 @@ type Props = Pick<
 const StyledSpan = addStyle("span");
 const StyledInput = addStyle("input");
 
-const Switch = React.forwardRef(function Switch(
+const SwitchCore = React.forwardRef(function SwitchCore(
     props: Props,
     ref: React.ForwardedRef<HTMLInputElement>,
 ) {
@@ -65,6 +72,9 @@ const Switch = React.forwardRef(function Switch(
     const ids = useUniqueIdWithMock("labeled-field");
     const uniqueId = id ?? ids.get("labeled-field-id");
 
+    const {theme, themeName} = useScopedTheme(SwitchThemeContext);
+    const sharedStyles = useStyles(themedSharedStyles, theme);
+
     const handleClick = () => {
         if (!disabled && onChange) {
             onChange(!checked);
@@ -74,8 +84,10 @@ const Switch = React.forwardRef(function Switch(
 
     const stateStyles = _generateStyles(
         checked,
-        disabled,
         onChange !== undefined,
+        disabled,
+        theme,
+        themeName,
     );
 
     let styledIcon: React.ReactElement<typeof Icon> | undefined;
@@ -120,23 +132,26 @@ const Switch = React.forwardRef(function Switch(
     );
 });
 
-const sharedStyles = StyleSheet.create({
+const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
     hidden: {
         opacity: 0,
-        height: 0,
-        width: 0,
+        height: theme.size.height.none,
+        width: theme.size.width.none,
     },
     switch: {
         display: "inline-flex",
-        height: Spacing.large_24,
-        width: `calc(${Spacing.xLarge_32}px + ${Spacing.xSmall_8}px)`,
-        borderRadius: Spacing.small_12,
+        height: theme.size.height.large,
+        width: theme.size.width.large,
+        borderRadius: theme.border.radius.small,
         flexShrink: 0,
         cursor: "pointer",
         ":hover": {
-            outlineOffset: 1,
+            outlineOffset: theme.size.offset.default,
         },
-        transition: "background-color 0.15s ease-in-out",
+        ":focus-within": {
+            outline: `solid ${theme.size.width.small}px ${theme.color.outline.default}`,
+            outlineOffset: theme.size.offset.default,
+        },
     },
     disabled: {
         cursor: "auto",
@@ -146,85 +161,92 @@ const sharedStyles = StyleSheet.create({
     },
     slider: {
         position: "absolute",
-        top: Spacing.xxxxSmall_2,
-        left: Spacing.xxxxSmall_2,
-        height: `calc(${Spacing.medium_16}px + ${Spacing.xxxSmall_4}px)`,
-        width: `calc(${Spacing.medium_16}px + ${Spacing.xxxSmall_4}px)`,
-        borderRadius: "50%",
-        backgroundColor: Color.white,
+        top: theme.spacing.slider.position,
+        left: theme.spacing.slider.position,
+        height: theme.size.height.medium,
+        width: theme.size.width.medium,
+        borderRadius: theme.border.radius.full,
+        backgroundColor: theme.color.bg.slider.on,
         transition: "transform 0.15s ease-in-out",
     },
     icon: {
         position: "absolute",
-        top: Spacing.xxxSmall_4,
-        left: Spacing.xxxSmall_4,
+        top: theme.spacing.icon.position,
+        left: theme.spacing.icon.position,
         zIndex: 1,
-        transition: "0.15s ease-in-out",
-        transitionProperty: "transform, color",
+        transition: "transform 0.15s ease-in-out",
     },
 });
 
 const styles: Record<string, any> = {};
 const _generateStyles = (
     checked: boolean,
-    disabled: boolean,
     clickable: boolean,
+    disabled: boolean,
+    theme: SwitchThemeContract,
+    themeName: string,
 ) => {
-    const checkedStyle = `${checked}-${disabled}-${clickable}`;
+    const checkedStyle = `${checked}-${clickable}-${disabled}-${themeName}`;
     // The styles are cached to avoid creating a new object on every render.
     if (styles[checkedStyle]) {
         return styles[checkedStyle];
     }
 
     let newStyles: Record<string, any> = {};
-
-    const disabledBlue = mix(Color.blue, Color.offBlack50);
-    const activeBlue = mix(Color.offBlack32, Color.blue);
+    const sharedSwitchStyles = {
+        cursor: clickable ? "pointer" : "auto",
+        ":hover": {
+            outline: clickable
+                ? `solid ${theme.size.width.small}px ${theme.color.outline.default}`
+                : "none",
+        },
+    };
 
     if (checked) {
         newStyles = {
             switch: {
-                backgroundColor: disabled ? disabledBlue : Color.blue,
+                backgroundColor: disabled
+                    ? theme.color.bg.switch.disabledOn
+                    : theme.color.bg.switch.on,
                 ":active": {
-                    backgroundColor: !disabled && clickable && activeBlue,
+                    backgroundColor:
+                        !disabled &&
+                        clickable &&
+                        theme.color.bg.switch.activeOn,
                 },
-                ":focus-within": {
-                    outline: `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`,
-                    outlineOffset: 1,
-                },
-                ":hover": {
-                    outline: clickable
-                        ? `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`
-                        : "none",
-                },
+                ...sharedSwitchStyles,
             },
             slider: {
-                transform: `translateX(${Spacing.medium_16}px)`,
+                transform: theme.spacing.transform,
             },
             icon: {
-                color: disabled ? disabledBlue : Color.blue,
-                transform: `translateX(${Spacing.medium_16}px)`,
+                color: disabled
+                    ? theme.color.bg.icon.disabledOn
+                    : theme.color.bg.icon.on,
+                transform: theme.spacing.transform,
             },
         };
     } else {
         newStyles = {
             switch: {
-                backgroundColor: disabled ? Color.offBlack32 : Color.offBlack50,
+                backgroundColor: disabled
+                    ? theme.color.bg.switch.disabledOff
+                    : theme.color.bg.switch.off,
                 ":active": {
-                    backgroundColor: !disabled && clickable && Color.offBlack64,
+                    backgroundColor:
+                        !disabled &&
+                        clickable &&
+                        theme.color.bg.switch.activeOff,
                 },
-                ":focus-within": {
-                    outline: `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`,
-                    outlineOffset: 1,
-                },
-                ":hover": {
-                    outline: clickable
-                        ? `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`
-                        : "none",
-                },
+                ...sharedSwitchStyles,
+            },
+            slider: {
+                backgroundColor: theme.color.bg.slider.off,
             },
             icon: {
-                color: disabled ? Color.offBlack32 : Color.offBlack50,
+                color: disabled
+                    ? theme.color.bg.icon.disabledOff
+                    : theme.color.bg.icon.off,
             },
         };
     }
@@ -232,6 +254,17 @@ const _generateStyles = (
     styles[checkedStyle] = StyleSheet.create(newStyles);
     return styles[checkedStyle];
 };
+
+const Switch = React.forwardRef(function Switch(
+    props: Props,
+    ref: React.ForwardedRef<HTMLInputElement>,
+) {
+    return (
+        <ThemedSwitch>
+            <SwitchCore {...props} ref={ref} />
+        </ThemedSwitch>
+    );
+});
 
 Switch.displayName = "Switch";
 
