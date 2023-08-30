@@ -17,10 +17,12 @@ import Server from "../util/server";
  * that won't affect the current render. In those cases, rather than erroring,
  * we want the server side to just silently no-op like `useEffect` calls do.
  * This hook allows that but should be used with extreme care.
+ *
+ * @param effect The effect to run.
  */
-export const usePreHydrationEffect: typeof React.useLayoutEffect = (
-    ...args
-): void => {
+export const usePreHydrationEffect: (effect: React.EffectCallback) => void = (
+    effect,
+) => {
     // We are breaking the rules of hooks here by calling a hook conditionally,
     // but that's OK since effects don't run on the server anyway. If we don't
     // do this, `useLayoutEffect` will give an error when rendered on the
@@ -39,5 +41,7 @@ export const usePreHydrationEffect: typeof React.useLayoutEffect = (
             : React.useLayoutEffect,
     );
 
-    effectCallRef.current(...args);
+    effectCallRef.current(effect, [
+        /* no-deps: this only runs the very first time */
+    ]);
 };
