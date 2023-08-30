@@ -183,12 +183,7 @@ module.exports = {
          * react-hooks rules
          */
         "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": [
-            "error",
-            {
-                additionalHooks: "(usePreHydrationEffect)",
-            },
-        ],
+        "react-hooks/exhaustive-deps": "error",
 
         /**
          * testing-library rules

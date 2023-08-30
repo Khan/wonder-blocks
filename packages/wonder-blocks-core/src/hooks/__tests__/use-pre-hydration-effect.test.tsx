@@ -27,13 +27,12 @@ describe("usePreHydrationEffect", () => {
             // Arrange
             const useLayoutEffectSpy = jest.spyOn(React, "useLayoutEffect");
             const effect = () => {};
-            const deps = ["foo", "bar"];
 
             // Act
-            renderHook(() => usePreHydrationEffect(effect, deps));
+            renderHook(() => usePreHydrationEffect(effect));
 
             // assert
-            expect(useLayoutEffectSpy).toHaveBeenCalledWith(effect, deps);
+            expect(useLayoutEffectSpy).toHaveBeenCalledWith(effect, []);
         });
 
         it("should cause an error if statically rendered (i.e. rendered server-side)", () => {
@@ -47,7 +46,7 @@ describe("usePreHydrationEffect", () => {
                     /* no-op */
                 });
             const Component = () => {
-                usePreHydrationEffect(() => {}, []);
+                usePreHydrationEffect(() => {});
                 return null;
             };
 
@@ -75,7 +74,7 @@ describe("usePreHydrationEffect", () => {
                     /* no-op */
                 });
             const Component = () => {
-                usePreHydrationEffect(() => {}, []);
+                usePreHydrationEffect(() => {});
                 return null;
             };
 
