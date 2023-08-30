@@ -122,42 +122,34 @@ export const styles: StyleDeclaration = StyleSheet.create({
 });
 
 export const Variants: StoryComponentType = () => (
-    <View style={{padding: Spacing.medium_16}}>
-        <View style={{flexDirection: "row"}}>
+    <View style={{padding: Spacing.medium_16, gap: Spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
             <Button onClick={() => {}}>Hello, world!</Button>
-            <Strut size={16} />
             <Button onClick={() => {}} kind="secondary">
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} kind="tertiary">
                 Hello, world!
             </Button>
         </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
+        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
             <Button onClick={() => {}} disabled={true}>
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} disabled={true} kind="secondary">
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} disabled={true} kind="tertiary">
                 Hello, world!
             </Button>
         </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
+        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
             <Button onClick={() => {}} color="destructive">
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} kind="secondary" color="destructive">
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} kind="tertiary" color="destructive">
                 Hello, world!
             </Button>

@@ -288,13 +288,7 @@ const _generateStyles = (
             ? theme.color.bg.critical
             : theme.color.bg.action;
 
-    const buttonType =
-        color +
-        kind +
-        light.toString() +
-        iconWidth.toString() +
-        size +
-        themeName;
+    const buttonType = `${color}-${kind}-${light}-${iconWidth}-${size}-${themeName}`;
 
     if (styles[buttonType]) {
         return styles[buttonType];
