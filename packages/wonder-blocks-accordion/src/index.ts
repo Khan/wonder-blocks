@@ -1,2 +1,4 @@
-// Just a temporary export to have some code.
-export const NOTHING = "NOTHING";
+import Accordion from "./components/accordion";
+import AccordionSection from "./components/accordion-section";
+
+export {Accordion, AccordionSection};
