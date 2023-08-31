@@ -16,12 +16,47 @@ type Props = AriaProps & {
      * The unique identifier for the accordion.
      */
     id?: string;
+    /**
+     * The AccordionSection components to display within this Accordion.
+     */
     children: Array<
         React.ReactElement<React.ComponentProps<typeof AccordionSection>>
     >;
+    /**
+     * Custom styles for the overall accordion container.
+     */
     style?: StyleType;
 };
 
+/**
+ * An accordion displays a vertically stacked list of sections, each of which
+ * contains content that can be shown or hidden by clicking its title.
+ *
+ * The Wonder Blocks Accordion component is a styled wrapper for a list of
+ * AccordionSection components. It also wraps the AccordionSection
+ * components in list items.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {
+ *      Accordion,
+ *      AccordionSection
+ * } from "@khanacademy/wonder-blocks-accordion";
+ *
+ * <Accordion>
+ *   <AccordionSection title="First section">
+ *       This is the information present in the first section
+ *   </AccordionSection>,
+ *   <AccordionSection title="Second section">
+ *       This is the information present in the second section
+ *   </AccordionSection>,
+ *   <AccordionSection title="Third section">
+ *       This is the information present in the third section
+ *   </AccordionSection>
+ * </Accordion>
+ * ```
+ */
 const Accordion = React.forwardRef(function Accordion(
     props: Props,
     ref: React.ForwardedRef<HTMLUListElement>,
@@ -34,11 +69,7 @@ const Accordion = React.forwardRef(function Accordion(
                 // they are part of a list, so they should be list items.
                 children.map((child, index) => {
                     return (
-                        <StyledListItem
-                            key={index}
-                            id={id}
-                            style={styles.listItem}
-                        >
+                        <StyledListItem key={index} id={id}>
                             {child}
                         </StyledListItem>
                     );
@@ -57,13 +88,9 @@ const styles = StyleSheet.create({
         borderRadius: Spacing.xxxSmall_4,
         listStyle: "none",
         padding: Spacing.xSmall_8,
-    },
-    listItem: {
-        marginBottom: Spacing.xSmall_8,
-
-        ":last-child": {
-            marginBottom: 0,
-        },
+        // Don't want to double up the bottom padding with the
+        // bottom margin on the last AccordionSection.
+        paddingBottom: 0,
     },
 });
 

@@ -5,6 +5,8 @@ import * as ReactDOM from "react-dom";
 
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
+import Accordion from "../../packages/wonder-blocks-accordion/src/components/accordion";
+import AccordionSection from "../../packages/wonder-blocks-accordion/src/components/accordion-section";
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
@@ -70,6 +72,46 @@ describe("Typography elements", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(type);
+    });
+});
+
+describe("Accordion elements", () => {
+    test("Accordion forwards ref", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLUListElement> = React.createRef();
+
+        // Act
+        render(
+            <Accordion ref={ref}>
+                <AccordionSection title="First section">
+                    This is the information present in the first section
+                </AccordionSection>
+                <AccordionSection title="Second section">
+                    This is the information present in the second section
+                </AccordionSection>
+                <AccordionSection title="Third section">
+                    This is the information present in the third section
+                </AccordionSection>
+            </Accordion>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLUListElement);
+    });
+
+    test("AccordionSection forwards ref", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLDivElement> = React.createRef();
+
+        // Act
+        render(
+            <AccordionSection title="Section" ref={ref}>
+                This is the information present in the first section
+            </AccordionSection>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLDivElement);
     });
 });
 
