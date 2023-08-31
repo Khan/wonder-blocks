@@ -9,7 +9,6 @@ import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
 import type {CellProps} from "../../util/types";
@@ -131,61 +130,38 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         target,
     } = props;
 
-    const renderCell = (eventState?: ClickableState): React.ReactElement => {
+    const renderCell = (): React.ReactElement => {
         const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
         return (
             <View
                 style={[
-                    styles.wrapper,
-                    // focused applied to the main wrapper to make the border
-                    // outline part of the wrapper
-                    eventState?.focused && styles.focused,
+                    styles.innerWrapper,
+                    innerStyle,
+                    // custom styles
+                    style,
+                    horizontalRuleStyles,
                 ]}
-                aria-current={active ? "true" : undefined}
             >
-                <View
-                    style={[
-                        styles.innerWrapper,
-                        innerStyle,
-                        // custom styles
-                        style,
-                        horizontalRuleStyles,
-                        disabled && styles.disabled,
-                        active && styles.active,
-                        // other states applied to the inner wrapper to blend
-                        // the background color properly
-                        !disabled && eventState?.hovered && styles.hovered,
-                        // active + hovered
-                        active && eventState?.hovered && styles.activeHovered,
-                        !disabled && eventState?.pressed && styles.pressed,
-                        // active + pressed
-                        !disabled &&
-                            active &&
-                            eventState?.pressed &&
-                            styles.activePressed,
-                    ]}
-                >
-                    {/* Left accessory */}
-                    <LeftAccessory
-                        leftAccessory={leftAccessory}
-                        leftAccessoryStyle={leftAccessoryStyle}
-                        disabled={disabled}
-                    />
+                {/* Left accessory */}
+                <LeftAccessory
+                    leftAccessory={leftAccessory}
+                    leftAccessoryStyle={leftAccessoryStyle}
+                    disabled={disabled}
+                />
 
-                    {/* Cell contents */}
-                    <View style={styles.content} testId={testId}>
-                        {children}
-                    </View>
-
-                    {/* Right accessory */}
-                    <RightAccessory
-                        rightAccessory={rightAccessory}
-                        rightAccessoryStyle={rightAccessoryStyle}
-                        active={active}
-                        disabled={disabled}
-                    />
+                {/* Cell contents */}
+                <View style={styles.content} testId={testId}>
+                    {children}
                 </View>
+
+                {/* Right accessory */}
+                <RightAccessory
+                    rightAccessory={rightAccessory}
+                    rightAccessoryStyle={rightAccessoryStyle}
+                    active={active}
+                    disabled={disabled}
+                />
             </View>
         );
     };
@@ -201,28 +177,44 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 hideDefaultFocusRing={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 target={target}
+                style={[
+                    styles.wrapper,
+                    styles.clickable,
+                    active && styles.active,
+                    disabled && styles.disabled,
+                ]}
+                aria-current={active ? "true" : undefined}
             >
-                {(eventState) => renderCell(eventState)}
+                {() => renderCell()}
             </Clickable>
         );
     }
 
     // No click event attached, so just render the cell as-is.
-    return renderCell();
+    return (
+        <View
+            style={[styles.wrapper, active && styles.active]}
+            aria-current={active ? "true" : undefined}
+        >
+            {renderCell()}
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
         color: Color.offBlack,
-        minHeight: CellMeasurements.cellMinHeight,
+        // minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
     },
 
     innerWrapper: {
+        minHeight: CellMeasurements.cellMinHeight,
         padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
         flex: 1,
+        height: "100%",
     },
 
     content: {
@@ -250,44 +242,52 @@ const styles = StyleSheet.create({
     /**
      * States
      */
-    hovered: {
-        background: Color.offBlack8,
-    },
+    clickable: {
+        outline: "none",
+        /**
+         * States
+         */
+        // disabled
+        [":hover[aria-disabled=true]" as any]: {
+            cursor: "not-allowed",
+        },
 
-    // Handling the focus ring internally because clickable doesn't support
-    // rounded focus ring.
-    focused: {
-        borderRadius: Spacing.xxxSmall_4,
-        outline: `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`,
-        // The focus ring is not visible when there are stacked cells.
-        // Using outlineOffset to display the focus ring inside the cell.
-        outlineOffset: -Spacing.xxxxSmall_2,
-        // To hide the internal corners of the cell.
-        overflow: "hidden",
-    },
+        // focus (only visible when using keyboard navigation)
+        ":focus-visible": {
+            borderRadius: Spacing.xxxSmall_4,
+            outline: `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`,
+            outlineOffset: 0,
+            // To hide the internal corners of the cell.
+            overflow: "hidden",
+            zIndex: 1,
+        },
 
-    pressed: {
-        background: Color.offBlack16,
+        // hover + enabled
+        [":hover[aria-disabled=false]" as any]: {
+            background: Color.offBlack8,
+        },
+
+        // pressed + enabled
+        [":active[aria-disabled=false]" as any]: {
+            background: Color.offBlack16,
+        },
     },
 
     active: {
         background: fade(Color.blue, 0.08),
         color: Color.blue,
-    },
 
-    activeHovered: {
-        background: fade(Color.blue, 0.16),
-    },
+        [":hover[aria-disabled=false]" as any]: {
+            background: fade(Color.blue, 0.16),
+        },
 
-    activePressed: {
-        background: fade(Color.blue, 0.24),
+        [":active[aria-disabled=false]" as any]: {
+            background: fade(Color.blue, 0.24),
+        },
     },
 
     disabled: {
         color: Color.offBlack32,
-        ":hover": {
-            cursor: "not-allowed",
-        },
     },
 
     accessoryActive: {

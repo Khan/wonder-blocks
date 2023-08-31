@@ -198,27 +198,38 @@ export const CompactCellHorizontalRules: StoryComponentType = {
     name: "Defining horizontal rule variants",
     render: () => (
         <>
-            <CompactCell
-                title="This is a basic cell with an 'inset' horizontal rule"
-                leftAccessory={
-                    <Icon icon={icons.contentArticle} size="medium" />
-                }
-                horizontalRule="inset"
-            />
-            <CompactCell
-                title="This is a basic cell with a 'full-width' horizontal rule"
-                leftAccessory={
-                    <Icon icon={icons.contentArticle} size="medium" />
-                }
-                horizontalRule="full-width"
-            />
-            <CompactCell
-                title="This is a basic cell without a horizontal rule"
-                leftAccessory={
-                    <Icon icon={icons.contentArticle} size="medium" />
-                }
-                horizontalRule="none"
-            />
+            <View style={{zIndex: "unset"}}>
+                <CompactCell
+                    title="Cell with a faded background color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    href="https://www.wix.com"
+                    horizontalRule="full-width"
+                    style={{background: Color.offBlack50}}
+                />
+            </View>
+            <View style={{zIndex: "unset"}}>
+                <CompactCell
+                    title="Cell with a solid background color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    href="https://www.wix.com"
+                    style={{background: Color.pink}}
+                    horizontalRule="inset"
+                />
+            </View>
+            <View style={{zIndex: "unset"}}>
+                <CompactCell
+                    title="Cell with default bg color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    href="https://www.wix.com"
+                    horizontalRule="none"
+                />
+            </View>
         </>
     ),
 };
