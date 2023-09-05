@@ -166,14 +166,14 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         width: theme.size.width.medium,
         borderRadius: theme.border.radius.full,
         backgroundColor: theme.color.bg.slider.on,
-        transition: "transform 0.15s ease-in-out",
+        transition: theme.spacing.transform.transition,
     },
     icon: {
         position: "absolute",
         top: theme.spacing.icon.position,
         left: theme.spacing.icon.position,
         zIndex: 1,
-        transition: "transform 0.15s ease-in-out",
+        transition: theme.spacing.transform.transition,
     },
 });
 
@@ -216,13 +216,13 @@ const _generateStyles = (
                 ...sharedSwitchStyles,
             },
             slider: {
-                transform: theme.spacing.transform,
+                transform: theme.spacing.transform.default,
             },
             icon: {
                 color: disabled
                     ? theme.color.bg.icon.disabledOn
                     : theme.color.bg.icon.on,
-                transform: theme.spacing.transform,
+                transform: theme.spacing.transform.default,
             },
         };
     } else {

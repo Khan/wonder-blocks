@@ -63,7 +63,10 @@ const theme = {
         icon: {
             position: tokens.spacing.xxxSmall_4,
         },
-        transform: `translateX(${tokens.spacing.medium_16}px)`,
+        transform: {
+            default: `translateX(${tokens.spacing.medium_16}px)`,
+            transition: "transform 0.15s ease-in-out",
+        },
     },
 };
 
