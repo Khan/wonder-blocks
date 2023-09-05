@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {CSSProperties, StyleSheet} from "aphrodite";
 
 import {
     AriaProps,
@@ -191,7 +191,7 @@ const _generateStyles = (
         return styles[checkedStyle];
     }
 
-    let newStyles: Record<string, any> = {};
+    let newStyles: Record<string, CSSProperties> = {};
     const sharedSwitchStyles = {
         cursor: clickable ? "pointer" : "auto",
         ":hover": {
@@ -209,9 +209,9 @@ const _generateStyles = (
                     : theme.color.bg.switch.on,
                 ":active": {
                     backgroundColor:
-                        !disabled &&
-                        clickable &&
-                        theme.color.bg.switch.activeOn,
+                        !disabled && clickable
+                            ? theme.color.bg.switch.activeOn
+                            : undefined,
                 },
                 ...sharedSwitchStyles,
             },
@@ -233,9 +233,9 @@ const _generateStyles = (
                     : theme.color.bg.switch.off,
                 ":active": {
                     backgroundColor:
-                        !disabled &&
-                        clickable &&
-                        theme.color.bg.switch.activeOff,
+                        !disabled && clickable
+                            ? theme.color.bg.switch.activeOff
+                            : undefined,
                 },
                 ...sharedSwitchStyles,
             },
