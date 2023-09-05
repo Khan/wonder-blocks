@@ -198,7 +198,7 @@ export const CompactCellHorizontalRules: StoryComponentType = {
     name: "Defining horizontal rule variants",
     render: () => (
         <>
-            <View style={{zIndex: "unset"}}>
+            <View>
                 <CompactCell
                     title="Cell with a faded background color"
                     leftAccessory={
@@ -209,7 +209,7 @@ export const CompactCellHorizontalRules: StoryComponentType = {
                     style={{background: Color.offBlack50}}
                 />
             </View>
-            <View style={{zIndex: "unset"}}>
+            <View>
                 <CompactCell
                     title="Cell with a solid background color"
                     leftAccessory={
@@ -220,7 +220,7 @@ export const CompactCellHorizontalRules: StoryComponentType = {
                     horizontalRule="inset"
                 />
             </View>
-            <View style={{zIndex: "unset"}}>
+            <View>
                 <CompactCell
                     title="Cell with default bg color"
                     leftAccessory={

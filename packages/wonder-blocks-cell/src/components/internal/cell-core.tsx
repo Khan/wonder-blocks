@@ -142,6 +142,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                     style,
                     horizontalRuleStyles,
                 ]}
+                className="cell-core-inner-wrapper"
             >
                 {/* Left accessory */}
                 <LeftAccessory
@@ -210,11 +211,19 @@ const styles = StyleSheet.create({
     },
 
     innerWrapper: {
-        minHeight: CellMeasurements.cellMinHeight,
+        // minHeight: CellMeasurements.cellMinHeight,
         padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
         flex: 1,
         height: "100%",
+
+        // Reduce the padding of the innerWrapper when the focus ring is
+        // visible.
+        ":focus-visible": {
+            padding: `${CellMeasurements.cellPadding.paddingVertical - 2}px ${
+                CellMeasurements.cellPadding.paddingHorizontal - 2
+            }px`,
+        },
     },
 
     content: {
@@ -255,11 +264,26 @@ const styles = StyleSheet.create({
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
             borderRadius: Spacing.xxxSmall_4,
-            outline: `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`,
-            outlineOffset: 0,
             // To hide the internal corners of the cell.
             overflow: "hidden",
+            // To display the focus ring based on the cell's border.
+            position: "relative",
+        },
+        [":focus-visible:after" as any]: {
+            content: "''",
+            // Since we are using a pseudo element, we need to manually
+            // calculate the width/height and use absolute position to
+            // prevent other elements from being shifted around.
+            position: "absolute",
+            top: 0,
+            left: 0,
             zIndex: 1,
+            // We remove the border width from the width/height to ensure
+            // that the focus ring is drawn inside the cell.
+            width: `calc(100% - ${Spacing.xxxSmall_4}px)`,
+            height: `calc(100% - ${Spacing.xxxSmall_4}px)`,
+            border: `${Spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            borderRadius: Spacing.xxxSmall_4,
         },
 
         // hover + enabled
