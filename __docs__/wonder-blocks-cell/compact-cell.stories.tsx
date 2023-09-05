@@ -198,38 +198,27 @@ export const CompactCellHorizontalRules: StoryComponentType = {
     name: "Defining horizontal rule variants",
     render: () => (
         <>
-            <View>
-                <CompactCell
-                    title="Cell with a faded background color"
-                    leftAccessory={
-                        <Icon icon={icons.contentArticle} size="medium" />
-                    }
-                    href="https://www.wix.com"
-                    horizontalRule="full-width"
-                    style={{background: Color.offBlack50}}
-                />
-            </View>
-            <View>
-                <CompactCell
-                    title="Cell with a solid background color"
-                    leftAccessory={
-                        <Icon icon={icons.contentArticle} size="medium" />
-                    }
-                    href="https://www.wix.com"
-                    style={{background: Color.pink}}
-                    horizontalRule="inset"
-                />
-            </View>
-            <View>
-                <CompactCell
-                    title="Cell with default bg color"
-                    leftAccessory={
-                        <Icon icon={icons.contentArticle} size="medium" />
-                    }
-                    href="https://www.wix.com"
-                    horizontalRule="none"
-                />
-            </View>
+            <CompactCell
+                title="This is a basic cell with an 'inset' horizontal rule"
+                leftAccessory={
+                    <Icon icon={icons.contentArticle} size="medium" />
+                }
+                horizontalRule="inset"
+            />
+            <CompactCell
+                title="This is a basic cell with a 'full-width' horizontal rule"
+                leftAccessory={
+                    <Icon icon={icons.contentArticle} size="medium" />
+                }
+                horizontalRule="full-width"
+            />
+            <CompactCell
+                title="This is a basic cell without a horizontal rule"
+                leftAccessory={
+                    <Icon icon={icons.contentArticle} size="medium" />
+                }
+                horizontalRule="none"
+            />
         </>
     ),
 };
@@ -324,6 +313,73 @@ CompactCellDisabled.parameters = {
     docs: {
         description: {
             story: "In the following example we can see how the `disabled` state works. Note that we apply an opacity to all the elements to make it more apparent that the cell is disabled. This includes text, SVG icons, images, etc.",
+        },
+    },
+};
+
+/**
+ * These are `CompactCell` instances with custom background colors. Note that we
+ * use the `style` prop to pass a custom style object to the cell.
+ *
+ * We recommend using a faded background color (third cell) to make the cell
+ * look as expected with different states (e.g. hover, focus, active).
+ *
+ * If you use a solid background color (last cell), the cell states will not
+ * change the background color.
+ */
+export const CompactCellsAsListItems: StoryComponentType = {
+    render: () => (
+        <section role="list">
+            <View role="listitem">
+                <CompactCell
+                    title="Active Cell"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    active={true}
+                    href="https://khanacademy.org"
+                    horizontalRule="full-width"
+                />
+            </View>
+            <View role="listitem">
+                <CompactCell
+                    title="Cell with default bg color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    href="https://khanacademy.org"
+                    horizontalRule="full-width"
+                />
+            </View>
+            <View role="listitem">
+                <CompactCell
+                    title="Cell with a faded background color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    href="https://khanacademy.org"
+                    horizontalRule="full-width"
+                    style={{background: Color.offBlack50}}
+                />
+            </View>
+            <View role="listitem">
+                <CompactCell
+                    title="Cell with a solid background color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    onClick={() => {}}
+                    style={{background: Color.pink}}
+                    horizontalRule="full-width"
+                />
+            </View>
+        </section>
+    ),
+    parameters: {
+        chromatic: {
+            // This includes tests with custom background colors via the `style`
+            // prop, so no need to capture screenshots.
+            disableSnapshot: true,
         },
     },
 };

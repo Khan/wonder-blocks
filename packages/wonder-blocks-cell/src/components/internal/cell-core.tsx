@@ -257,18 +257,23 @@ const styles = StyleSheet.create({
          * States
          */
         // disabled
+        // NOTE: We use `aria-disabled` instead of `disabled` because we want
+        // to allow the cell to be focusable even when it's disabled.
         [":hover[aria-disabled=true]" as any]: {
             cursor: "not-allowed",
         },
 
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
-            borderRadius: Spacing.xxxSmall_4,
+            // borderRadius: Spacing.xxxSmall_4,
             // To hide the internal corners of the cell.
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
             position: "relative",
         },
+        // NOTE: We use a pseudo element to draw the focus ring because we can't
+        // use `outline` since it conflicts with different layout contexts (e.g.
+        // `View` elements add their own z-index).
         [":focus-visible:after" as any]: {
             content: "''",
             // Since we are using a pseudo element, we need to manually
@@ -312,6 +317,11 @@ const styles = StyleSheet.create({
 
     disabled: {
         color: Color.offBlack32,
+        ":focus-visible": {
+            // Prevent the focus ring from being displayed when the cell is
+            // disabled.
+            outline: "none",
+        },
     },
 
     accessoryActive: {
