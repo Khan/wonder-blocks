@@ -7,6 +7,8 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Link} from "react-router-dom";
 import IconButtonCore from "./icon-button-core";
 
+export type IconButtonSize = "xsmall" | "small" | "medium";
+
 export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * A Wonder Blocks icon asset, an object specifing paths for one or more of
@@ -40,6 +42,12 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Size of the icon button.
+     * One of `xsmall` (16 icon, 20 target), `small` (24, 32), or `medium (24, 40).
+     * Defaults to `medium`.
+     */
+    size?: IconButtonSize;
     /**
      * Optional custom styles.
      */
@@ -158,15 +166,16 @@ const IconButton: React.ForwardRefExoticComponent<
     SharedProps
 >(function IconButton(props: SharedProps, ref) {
     const {
-        onClick,
+        color = "default",
+        disabled = false,
         href,
+        kind = "primary",
+        light = false,
+        onClick,
+        size = "medium",
         skipClientNav,
         tabIndex,
         target,
-        color = "default",
-        kind = "primary",
-        light = false,
-        disabled = false,
         ...sharedProps
     } = props;
     const renderClickableBehavior = (router: any): React.ReactNode => {
@@ -191,14 +200,15 @@ const IconButton: React.ForwardRefExoticComponent<
                             {...state}
                             {...childrenProps}
                             color={color}
+                            disabled={disabled}
+                            href={href}
                             kind={kind}
                             light={light}
-                            disabled={disabled}
+                            ref={ref}
                             skipClientNav={skipClientNav}
-                            href={href}
+                            size={size}
                             target={target}
                             tabIndex={tabIndex}
-                            ref={ref}
                         />
                     );
                 }}

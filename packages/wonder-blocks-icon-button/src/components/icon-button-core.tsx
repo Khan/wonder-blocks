@@ -16,7 +16,11 @@ import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
-import type {SharedProps} from "./icon-button";
+import type {IconButtonSize, SharedProps} from "./icon-button";
+import {
+    iconSizeForButtonSize,
+    targetPixelsForSize,
+} from "../util/icon-button-util";
 
 type Props = SharedProps &
     ChildrenProps &
@@ -42,7 +46,6 @@ const IconButtonCore: React.ForwardRefExoticComponent<
     Props
 >(function IconButtonCore(props: Props, ref) {
     const {
-        skipClientNav,
         color,
         disabled,
         focused,
@@ -52,6 +55,8 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         kind = "primary",
         light = false,
         pressed,
+        size = "medium",
+        skipClientNav,
         style,
         testId,
         waiting: _,
@@ -64,20 +69,25 @@ const IconButtonCore: React.ForwardRefExoticComponent<
                 ? SemanticColor.controlDestructive
                 : SemanticColor.controlDefault;
 
-        const buttonStyles = _generateStyles(buttonColor, kind, light);
+        const buttonStyles = _generateStyles(buttonColor, kind, light, size);
 
         const defaultStyle = [
             sharedStyles.shared,
-            disabled && sharedStyles.disabled,
             buttonStyles.default,
-            disabled && buttonStyles.disabled,
+            disabled && [sharedStyles.disabled, buttonStyles.disabled],
             !disabled &&
                 (pressed
                     ? buttonStyles.active
                     : (hovered || focused) && buttonStyles.focus),
         ];
 
-        const child = <Icon size="medium" color="currentColor" icon={icon} />;
+        const child = (
+            <Icon
+                size={iconSizeForButtonSize(size)}
+                color="currentColor"
+                icon={icon}
+            />
+        );
 
         const commonProps = {
             "data-test-id": testId,
@@ -133,8 +143,6 @@ const sharedStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         boxSizing: "border-box",
-        height: 40,
-        width: 40,
         padding: 0,
         cursor: "pointer",
         border: "none",
@@ -161,8 +169,9 @@ const _generateStyles = (
     color: string,
     kind: "primary" | "secondary" | "tertiary",
     light: boolean,
+    size: IconButtonSize,
 ) => {
-    const buttonType = color + kind + light.toString();
+    const buttonType = `${color}-${kind}-${light}-${size}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -172,9 +181,25 @@ const _generateStyles = (
     }
 
     const {white, offBlack32, offBlack64, offBlack} = Color;
+    const defaultColor = ((): string => {
+        switch (kind) {
+            case "primary":
+                return light ? white : color;
+            case "secondary":
+                return offBlack;
+            case "tertiary":
+                return offBlack64;
+            default:
+                throw new Error("IconButton kind not recognized");
+        }
+    })();
 
     const newStyles = {
-        default: {},
+        default: {
+            height: targetPixelsForSize(size),
+            width: targetPixelsForSize(size),
+            color: defaultColor,
+        },
         focus: {
             color: light ? white : color,
             borderWidth: 2,
@@ -198,24 +223,6 @@ const _generateStyles = (
             cursor: "default",
         },
     } as const;
-    if (kind === "primary") {
-        // @ts-expect-error [FEI-5019] - TS2540 - Cannot assign to 'default' because it is a read-only property.
-        newStyles["default"] = {
-            color: light ? white : color,
-        };
-    } else if (kind === "secondary") {
-        // @ts-expect-error [FEI-5019] - TS2540 - Cannot assign to 'default' because it is a read-only property.
-        newStyles["default"] = {
-            color: offBlack,
-        };
-    } else if (kind === "tertiary") {
-        // @ts-expect-error [FEI-5019] - TS2540 - Cannot assign to 'default' because it is a read-only property.
-        newStyles["default"] = {
-            color: offBlack64,
-        };
-    } else {
-        throw new Error("IconButton kind not recognized");
-    }
 
     styles[buttonType] = StyleSheet.create(newStyles);
     return styles[buttonType];
