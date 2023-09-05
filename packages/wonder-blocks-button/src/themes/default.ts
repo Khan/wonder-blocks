@@ -3,16 +3,28 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
 const theme = {
     color: {
         bg: {
-            // color="destructive"
-            critical: tokens.color.red,
-            criticalActive: tokens.color.activeRed,
-            criticalInverse: tokens.color.fadedRed,
+            /**
+             * Color
+             */
             // color="default"
             action: tokens.color.blue,
             actionActive: tokens.color.activeBlue,
             actionInverse: tokens.color.fadedBlue,
+            // color="destructive"
+            critical: tokens.color.red,
+            criticalActive: tokens.color.activeRed,
+            criticalInverse: tokens.color.fadedRed,
+
+            /**
+             * Kind
+             */
             // kind="primary", light=true | kind="secondary", light=false
             primary: tokens.color.white,
+            // kind="primary", disabled=true
+            primaryDisabled: tokens.color.offBlack32,
+            // SHADOW kind="primary", state="focus, active"
+            primaryInverse: tokens.color.darkBlue,
+
             // kind="secondary", light=false
             secondary: "none",
             // kind="secondary", light=true
@@ -20,29 +32,38 @@ const theme = {
             secondaryFocus: tokens.color.white,
             // kind="secondary", light=false, active=true
             secondaryActive: tokens.color.fadedBlue,
-            // disabled=true
-            disabled: tokens.color.offBlack32,
-            // SHADOW kind="primary", state="focus, active"
-            inverse: tokens.color.darkBlue,
         },
         text: {
-            // kind="primary", disabled=true
-            primaryDisabled: tokens.color.white64,
-            // kind="primary, secondary", light=false | kind="tertiary", light=true
-            inverse: tokens.color.white,
-            // kind="secondary", disabled=true, light=true
-            secondaryInverse: tokens.color.white50,
+            /**
+             * Default
+             */
             // kind="secondary, tertiary", disabled=true, light=false
             disabled: tokens.color.offBlack32,
+            // kind="primary", light=false | kind="secondary, tertiary", light=true
+            inverse: tokens.color.white,
+            /**
+             * Kind
+             */
+            // kind="primary", disabled=true
+            primaryDisabled: tokens.color.white64,
+            // kind="secondary", disabled=true, light=true
+            secondaryInverse: tokens.color.white50,
         },
         border: {
+            /**
+             * Default
+             */
+            // kind="secondary", light=false | kind="tertiary", light=false
+            disabled: tokens.color.offBlack32,
+            /**
+             * Kind
+             */
             primaryInverse: tokens.color.white,
             secondaryAction: tokens.color.offBlack50,
             secondaryCritical: tokens.color.offBlack50,
             secondaryInverse: tokens.color.white50,
             // kind="tertiary", state="hover", light=true
             tertiaryInverse: tokens.color.white,
-            disabled: tokens.color.offBlack32,
         },
     },
     border: {

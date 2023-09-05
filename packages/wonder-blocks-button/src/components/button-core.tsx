@@ -320,25 +320,31 @@ const _generateStyles = (
                 // box shadow/ring is also small enough for a slight variation
                 // in the background color not to matter too much.
                 boxShadow: `0 0 0 1px ${
-                    light ? theme.color.bg.inverse : theme.color.bg.primary
+                    light
+                        ? theme.color.bg.primaryInverse
+                        : theme.color.bg.primary
                 }, 0 0 0 3px ${light ? theme.color.bg.primary : color}`,
             },
             active: {
                 boxShadow: `0 0 0 1px ${
-                    light ? theme.color.bg.inverse : theme.color.bg.primary
+                    light
+                        ? theme.color.bg.primaryInverse
+                        : theme.color.bg.primary
                 }, 0 0 0 3px ${light ? fadedColor : activeColor}`,
                 background: light ? fadedColor : activeColor,
                 color: light ? activeColor : fadedColor,
             },
             disabled: {
-                background: light ? fadedColor : theme.color.bg.disabled,
+                background: light ? fadedColor : theme.color.bg.primaryDisabled,
                 color: light ? color : theme.color.text.primaryDisabled,
                 cursor: "default",
                 ":focus": {
                     boxShadow: `0 0 0 1px ${
-                        light ? theme.color.bg.disabled : theme.color.bg.primary
+                        light
+                            ? theme.color.bg.primaryDisabled
+                            : theme.color.bg.primary
                     }, 0 0 0 3px ${
-                        light ? fadedColor : theme.color.bg.disabled
+                        light ? fadedColor : theme.color.bg.primaryDisabled
                     }`,
                 },
             },
@@ -431,7 +437,11 @@ const _generateStyles = (
                     // calculate the width/height and use absolute position to
                     // prevent other elements from being shifted around.
                     position: "absolute",
+                    // Keeps the button at the same size when applying the
+                    // borderWidth property, so we can apply the correct value
+                    // per theme for each side (left and right).
                     width: `calc(100% + ${theme.border.width.focused * 2}px)`,
+                    // Same as above, but for the height (top and bottom).
                     height: `calc(100% - ${theme.border.width.focused * 2}px)`,
                     borderStyle: "solid",
                     borderColor: light
@@ -455,8 +465,8 @@ const _generateStyles = (
             disabledFocus: {
                 ":after": {
                     borderColor: light
-                        ? theme.color.bg.primary
-                        : theme.color.bg.disabled,
+                        ? theme.color.border.tertiaryInverse
+                        : theme.color.border.disabled,
                 },
             },
         };
