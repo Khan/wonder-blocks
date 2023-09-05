@@ -7,13 +7,17 @@ import defaultTheme from "./default";
 const theme = mergeTheme(defaultTheme, {
     color: {
         bg: {
-            secondary: tokens.color.offWhite,
-            secondaryActive: tokens.color.fadedBlue8,
-            secondaryFocus: tokens.color.offWhite,
+            secondary: {
+                default: tokens.color.offWhite,
+                active: tokens.color.fadedBlue8,
+                focus: tokens.color.offWhite,
+            },
         },
         border: {
-            secondaryAction: tokens.color.fadedBlue,
-            secondaryCritical: tokens.color.fadedRed,
+            secondary: {
+                action: tokens.color.fadedBlue,
+                critical: tokens.color.fadedRed,
+            },
         },
     },
     border: {

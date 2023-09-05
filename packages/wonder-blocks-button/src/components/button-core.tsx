@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {CSSProperties, StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
@@ -283,10 +283,10 @@ const _generateStyles = (
     theme: ButtonThemeContract,
     themeName: string,
 ) => {
-    const color =
+    const color: string =
         buttonColor === "destructive"
-            ? theme.color.bg.critical
-            : theme.color.bg.action;
+            ? theme.color.bg.critical.default
+            : theme.color.bg.action.default;
 
     const buttonType = `${color}-${kind}-${light}-${iconWidth}-${size}-${themeName}`;
 
@@ -296,20 +296,24 @@ const _generateStyles = (
 
     const fadedColor =
         buttonColor === "destructive"
-            ? theme.color.bg.criticalInverse
-            : theme.color.bg.actionInverse;
+            ? theme.color.bg.critical.inverse
+            : theme.color.bg.action.inverse;
     const activeColor =
         buttonColor === "destructive"
-            ? theme.color.bg.criticalActive
-            : theme.color.bg.actionActive;
+            ? theme.color.bg.critical.active
+            : theme.color.bg.action.active;
     const padding =
         size === "large" ? theme.padding.xLarge : theme.padding.large;
 
-    let newStyles: Record<string, any> = {};
+    let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
+        const boxShadowInnerColor: string = light
+            ? theme.color.bg.primary.inverse
+            : theme.color.bg.primary.default;
+
         newStyles = {
             default: {
-                background: light ? theme.color.bg.primary : color,
+                background: light ? theme.color.bg.primary.default : color,
                 color: light ? color : theme.color.text.inverse,
                 paddingLeft: padding,
                 paddingRight: padding,
@@ -319,32 +323,30 @@ const _generateStyles = (
                 // a background of darkBlue for the light version. The inner
                 // box shadow/ring is also small enough for a slight variation
                 // in the background color not to matter too much.
-                boxShadow: `0 0 0 1px ${
-                    light
-                        ? theme.color.bg.primaryInverse
-                        : theme.color.bg.primary
-                }, 0 0 0 3px ${light ? theme.color.bg.primary : color}`,
+                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
+                    light ? theme.color.bg.primary.default : color
+                }`,
             },
             active: {
-                boxShadow: `0 0 0 1px ${
-                    light
-                        ? theme.color.bg.primaryInverse
-                        : theme.color.bg.primary
-                }, 0 0 0 3px ${light ? fadedColor : activeColor}`,
+                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
+                    light ? fadedColor : activeColor
+                }`,
                 background: light ? fadedColor : activeColor,
                 color: light ? activeColor : fadedColor,
             },
             disabled: {
-                background: light ? fadedColor : theme.color.bg.primaryDisabled,
-                color: light ? color : theme.color.text.primaryDisabled,
+                background: light
+                    ? fadedColor
+                    : theme.color.bg.primary.disabled,
+                color: light ? color : theme.color.text.primary.disabled,
                 cursor: "default",
                 ":focus": {
                     boxShadow: `0 0 0 1px ${
                         light
-                            ? theme.color.bg.primaryDisabled
-                            : theme.color.bg.primary
+                            ? theme.color.bg.primary.disabled
+                            : theme.color.bg.primary.default
                     }, 0 0 0 3px ${
-                        light ? fadedColor : theme.color.bg.primaryDisabled
+                        light ? fadedColor : theme.color.bg.primary.disabled
                     }`,
                 },
             },
@@ -353,17 +355,17 @@ const _generateStyles = (
         const horizontalPadding = padding - (theme.border.width.focused - 1);
         const secondaryBorderColor =
             buttonColor === "destructive"
-                ? theme.color.border.secondaryCritical
-                : theme.color.border.secondaryAction;
+                ? theme.color.border.secondary.critical
+                : theme.color.border.secondary.action;
 
         newStyles = {
             default: {
                 background: light
-                    ? theme.color.bg.secondaryInverse
-                    : theme.color.bg.secondary,
+                    ? theme.color.bg.secondary.inverse
+                    : theme.color.bg.secondary.default,
                 color: light ? theme.color.text.inverse : color,
                 borderColor: light
-                    ? theme.color.border.secondaryInverse
+                    ? theme.color.border.secondary.inverse
                     : secondaryBorderColor,
                 borderStyle: "solid",
                 borderWidth: theme.border.width.secondary,
@@ -372,9 +374,9 @@ const _generateStyles = (
             },
             focus: {
                 background: light
-                    ? theme.color.bg.secondaryInverse
-                    : theme.color.bg.secondaryFocus,
-                borderColor: light ? theme.color.border.primaryInverse : color,
+                    ? theme.color.bg.secondary.inverse
+                    : theme.color.bg.secondary.focus,
+                borderColor: light ? theme.color.border.primary.inverse : color,
                 borderWidth: theme.border.width.focused,
                 paddingLeft: horizontalPadding,
                 paddingRight: horizontalPadding,
@@ -383,7 +385,7 @@ const _generateStyles = (
             active: {
                 background: light
                     ? activeColor
-                    : theme.color.bg.secondaryActive,
+                    : theme.color.bg.secondary.active,
                 color: light ? fadedColor : activeColor,
                 borderColor: light ? fadedColor : activeColor,
                 borderWidth: theme.border.width.focused,
@@ -394,13 +396,13 @@ const _generateStyles = (
             },
             disabled: {
                 color: light
-                    ? theme.color.text.secondaryInverse
+                    ? theme.color.text.secondary.inverse
                     : theme.color.text.disabled,
                 borderColor: light ? fadedColor : theme.color.border.disabled,
                 cursor: "default",
                 ":focus": {
                     borderColor: light
-                        ? theme.color.border.secondaryInverse
+                        ? theme.color.border.secondary.inverse
                         : theme.color.border.disabled,
                     borderWidth: theme.border.width.disabled,
                     // We need to reduce padding to offset the difference
@@ -426,7 +428,7 @@ const _generateStyles = (
                     width: "100%",
                     right: 0,
                     bottom: 0,
-                    background: light ? theme.color.bg.primary : color,
+                    background: light ? theme.color.bg.tertiary.hover : color,
                     borderRadius: theme.border.radius.tertiary,
                 },
             },
@@ -445,7 +447,7 @@ const _generateStyles = (
                     height: `calc(100% - ${theme.border.width.focused * 2}px)`,
                     borderStyle: "solid",
                     borderColor: light
-                        ? theme.color.border.tertiaryInverse
+                        ? theme.color.border.tertiary.inverse
                         : color,
                     borderWidth: theme.border.width.focused,
                     borderRadius: theme.border.radius.default,
@@ -465,7 +467,7 @@ const _generateStyles = (
             disabledFocus: {
                 ":after": {
                     borderColor: light
-                        ? theme.color.border.tertiaryInverse
+                        ? theme.color.border.tertiary.inverse
                         : theme.color.border.disabled,
                 },
             },

@@ -7,31 +7,38 @@ const theme = {
              * Color
              */
             // color="default"
-            action: tokens.color.blue,
-            actionActive: tokens.color.activeBlue,
-            actionInverse: tokens.color.fadedBlue,
+            action: {
+                default: tokens.color.blue,
+                active: tokens.color.activeBlue,
+                inverse: tokens.color.fadedBlue,
+            },
             // color="destructive"
-            critical: tokens.color.red,
-            criticalActive: tokens.color.activeRed,
-            criticalInverse: tokens.color.fadedRed,
+            critical: {
+                default: tokens.color.red,
+                active: tokens.color.activeRed,
+                inverse: tokens.color.fadedRed,
+            },
 
             /**
              * Kind
              */
-            // kind="primary", light=true | kind="secondary", light=false
-            primary: tokens.color.white,
-            // kind="primary", disabled=true
-            primaryDisabled: tokens.color.offBlack32,
-            // SHADOW kind="primary", state="focus, active"
-            primaryInverse: tokens.color.darkBlue,
+            primary: {
+                default: tokens.color.white,
+                disabled: tokens.color.offBlack32,
+                // used in boxShadow
+                inverse: tokens.color.darkBlue,
+            },
 
-            // kind="secondary", light=false
-            secondary: "none",
-            // kind="secondary", light=true
-            secondaryInverse: "none",
-            secondaryFocus: tokens.color.white,
-            // kind="secondary", light=false, active=true
-            secondaryActive: tokens.color.fadedBlue,
+            secondary: {
+                default: "none",
+                inverse: "none",
+                focus: tokens.color.white,
+                active: tokens.color.fadedBlue,
+            },
+
+            tertiary: {
+                hover: tokens.color.white,
+            },
         },
         text: {
             /**
@@ -44,10 +51,12 @@ const theme = {
             /**
              * Kind
              */
-            // kind="primary", disabled=true
-            primaryDisabled: tokens.color.white64,
-            // kind="secondary", disabled=true, light=true
-            secondaryInverse: tokens.color.white50,
+            primary: {
+                disabled: tokens.color.white64,
+            },
+            secondary: {
+                inverse: tokens.color.white50,
+            },
         },
         border: {
             /**
@@ -58,12 +67,17 @@ const theme = {
             /**
              * Kind
              */
-            primaryInverse: tokens.color.white,
-            secondaryAction: tokens.color.offBlack50,
-            secondaryCritical: tokens.color.offBlack50,
-            secondaryInverse: tokens.color.white50,
-            // kind="tertiary", state="hover", light=true
-            tertiaryInverse: tokens.color.white,
+            primary: {
+                inverse: tokens.color.white,
+            },
+            secondary: {
+                action: tokens.color.offBlack50,
+                critical: tokens.color.offBlack50,
+                inverse: tokens.color.white50,
+            },
+            tertiary: {
+                inverse: tokens.color.white,
+            },
         },
     },
     border: {
