@@ -18,6 +18,9 @@ const tokens = {
         activeRed: mix(Color.offBlack32, Color.red),
         fadedRed: mix(fade(Color.red, 0.32), Color.white),
         // Additional colors (e.g. for use in other themes)
+        // Khanmigo
+        white32: fade(Color.white, 0.32),
+        eggplant: "#5f1e5c",
     },
     spacing: Spacing,
     border: {
