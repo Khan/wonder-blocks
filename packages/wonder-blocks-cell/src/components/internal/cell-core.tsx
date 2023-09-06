@@ -206,12 +206,12 @@ const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
         color: Color.offBlack,
-        // minHeight: CellMeasurements.cellMinHeight,
+        minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
     },
 
     innerWrapper: {
-        // minHeight: CellMeasurements.cellMinHeight,
+        minHeight: CellMeasurements.cellMinHeight,
         padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
         flex: 1,
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
 
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
-            // borderRadius: Spacing.xxxSmall_4,
+            borderRadius: Spacing.xxxSmall_4,
             // To hide the internal corners of the cell.
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
