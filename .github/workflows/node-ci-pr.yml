@@ -215,7 +215,7 @@ jobs:
           comment-author: "github-actions[bot]"
           body-includes: "npm Snapshot:"
 
-      - name: Create or update npm snapshot comment - Success :)
+      - name: Create or update npm snapshot comment - Success
         if: steps.publish-snapshot.outputs.npm_snapshot_tag != ''
         uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d
         with:
