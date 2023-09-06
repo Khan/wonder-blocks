@@ -31,7 +31,6 @@ export default function withActionScheduler<
     );
 
     C.displayName = displayName;
-    C.WrappedComponent = WrappedComponent;
 
     return C;
 }
