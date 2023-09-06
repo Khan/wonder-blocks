@@ -2,6 +2,7 @@ import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {configure} from "@storybook/testing-library";
 
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {Preview} from "@storybook/react";
@@ -51,12 +52,16 @@ export const parameters = {
         values: [
             {
                 name: "light",
-                value: "#ffffff",
+                value: tokens.color.white,
             },
             {
                 name: "darkBlue",
-                value: "#0b2149",
+                value: tokens.color.darkBlue,
             },
+            {
+                name: "khanmigo",
+                value: tokens.color.eggplant,
+            }
         ],
     },
     // https://storybook.js.org/docs/react/configure/story-layout
