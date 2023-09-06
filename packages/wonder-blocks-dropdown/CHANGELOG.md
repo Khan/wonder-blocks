@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 3.0.28
+
+### Patch Changes
+
+-   Updated dependencies [695f2567]
+    -   @khanacademy/wonder-blocks-timing@4.0.2
+    -   @khanacademy/wonder-blocks-modal@4.0.26
+
 ## 3.0.27
 
 ### Patch Changes

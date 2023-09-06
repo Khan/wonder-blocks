@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 4.2.0
+
+### Minor Changes
+
+-   5725703a: Add theming support to the Button component
+
 ## 4.1.9
 
 ### Patch Changes
