@@ -98,7 +98,7 @@ const theme = {
             // tertiary
             tertiary: tokens.border.radius.xSmall_2,
             // small button
-            small: tokens.border.radius.small_3,
+            small: tokens.border.radius.medium_4,
             // large button
             large: tokens.border.radius.large_6,
         },
