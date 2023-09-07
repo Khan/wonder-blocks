@@ -357,6 +357,10 @@ const _generateStyles = (
             buttonColor === "destructive"
                 ? theme.color.border.secondary.critical
                 : theme.color.border.secondary.action;
+        const secondaryActiveColor =
+            buttonColor === "destructive"
+                ? theme.color.bg.secondary.active.critical
+                : theme.color.bg.secondary.active.action;
 
         newStyles = {
             default: {
@@ -383,9 +387,7 @@ const _generateStyles = (
             },
 
             active: {
-                background: light
-                    ? activeColor
-                    : theme.color.bg.secondary.active,
+                background: light ? activeColor : secondaryActiveColor,
                 color: light ? fadedColor : activeColor,
                 borderColor: light ? fadedColor : activeColor,
                 borderWidth: theme.border.width.focused,

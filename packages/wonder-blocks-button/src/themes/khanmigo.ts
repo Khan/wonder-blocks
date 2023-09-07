@@ -9,7 +9,10 @@ const theme = mergeTheme(defaultTheme, {
         bg: {
             secondary: {
                 default: tokens.color.offWhite,
-                active: tokens.color.fadedBlue8,
+                active: {
+                    action: tokens.color.fadedBlue8,
+                    critical: tokens.color.fadedRed8,
+                },
                 focus: tokens.color.offWhite,
             },
         },
