@@ -33,7 +33,10 @@ const theme = {
                 default: "none",
                 inverse: "none",
                 focus: tokens.color.white,
-                active: tokens.color.fadedBlue,
+                active: {
+                    action: tokens.color.fadedBlue,
+                    critical: tokens.color.fadedRed,
+                },
             },
 
             tertiary: {
@@ -91,7 +94,7 @@ const theme = {
         },
         radius: {
             // default
-            default: tokens.border.radius.small_3,
+            default: tokens.border.radius.medium_4,
             // tertiary
             tertiary: tokens.border.radius.xSmall_2,
             // small button
@@ -126,6 +129,9 @@ const theme = {
         },
         lineHeight: {
             large: tokens.font.lineHeight.medium,
+        },
+        weight: {
+            default: tokens.font.weight.bold,
         },
     },
 };
