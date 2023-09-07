@@ -167,7 +167,7 @@ jobs:
           exclude: "{**/*.map,**/node_modules/**}"
 
   publish_snapshot:
-    name: Publish npm snapshot!
+    name: Publish npm snapshot!!
     # We don't publish snapshots on draft PRs or
     # on the main Changeset "Version Packages" PR
     if: |
