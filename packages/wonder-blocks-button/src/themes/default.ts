@@ -130,6 +130,9 @@ const theme = {
         lineHeight: {
             large: tokens.font.lineHeight.medium,
         },
+        weight: {
+            default: tokens.font.weight.bold,
+        },
     },
 };
 

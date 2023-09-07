@@ -33,6 +33,11 @@ const theme = mergeTheme(defaultTheme, {
             focused: tokens.border.width.hairline,
         },
     },
+    font: {
+        weight: {
+            default: tokens.font.weight.regular,
+        },
+    },
 });
 
 export default theme;

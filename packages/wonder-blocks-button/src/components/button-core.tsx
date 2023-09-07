@@ -247,7 +247,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     },
     text: {
         alignItems: "center",
-        fontWeight: "bold",
+        fontWeight: theme.font.weight.default,
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
