@@ -74,7 +74,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         const defaultStyle = [
             sharedStyles.shared,
             buttonStyles.default,
-            disabled && [sharedStyles.disabled, buttonStyles.disabled],
+            disabled && buttonStyles.disabled,
             !disabled &&
                 (pressed
                     ? buttonStyles.active
@@ -158,9 +158,6 @@ const sharedStyles = StyleSheet.create({
             WebkitTapHighlightColor: "rgba(0,0,0,0)",
         },
     },
-    disabled: {
-        cursor: "default",
-    },
 });
 
 const styles: Record<string, any> = {};
@@ -193,11 +190,12 @@ const _generateStyles = (
                 throw new Error("IconButton kind not recognized");
         }
     })();
+    const pixelsForSize = targetPixelsForSize(size);
 
     const newStyles = {
         default: {
-            height: targetPixelsForSize(size),
-            width: targetPixelsForSize(size),
+            height: pixelsForSize,
+            width: pixelsForSize,
             color: defaultColor,
         },
         focus: {

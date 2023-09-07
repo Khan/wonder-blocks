@@ -7,6 +7,14 @@ export default {
         },
         description: "Color of the icon button.",
         options: ["default", "destructive"],
+        table: {
+            type: {
+                summary: `"default" | "destructive"`,
+            },
+            defaultValue: {
+                summary: `"default"`,
+            },
+        },
     },
     disabled: {
         control: {
@@ -27,6 +35,14 @@ export default {
         },
         description: "The kind of the icon button.",
         options: ["primary", "secondary", "tertiary"],
+        table: {
+            type: {
+                summary: `"primary" | "secondary" | "tertiary"`,
+            },
+            defaultValue: {
+                summary: `"primary"`,
+            },
+        },
     },
     size: {
         control: {
@@ -34,5 +50,13 @@ export default {
         },
         description: "The size of the icon button.",
         options: ["xsmall", "small", "medium"],
+        table: {
+            type: {
+                summary: `"xsmall" | "small" | "medium"`,
+            },
+            defaultValue: {
+                summary: `"medium"`,
+            },
+        },
     },
 };
