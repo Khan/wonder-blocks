@@ -142,7 +142,6 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                     style,
                     horizontalRuleStyles,
                 ]}
-                className="cell-core-inner-wrapper"
             >
                 {/* Left accessory */}
                 <LeftAccessory
