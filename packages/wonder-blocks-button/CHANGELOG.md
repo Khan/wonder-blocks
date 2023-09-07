@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 4.2.2
+
+### Patch Changes
+
+-   1644f651: Fix borderRadius value for small variant
+
 ## 4.2.1
 
 ### Patch Changes
