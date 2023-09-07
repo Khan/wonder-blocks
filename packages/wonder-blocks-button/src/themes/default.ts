@@ -91,7 +91,7 @@ const theme = {
         },
         radius: {
             // default
-            default: tokens.border.radius.small_3,
+            default: tokens.border.radius.medium_4,
             // tertiary
             tertiary: tokens.border.radius.xSmall_2,
             // small button
