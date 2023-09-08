@@ -33,6 +33,12 @@ The `addStyle` function is a HOC that accepts a **React Component** or a **DOM**
 styles as its second argument. This HOC returns a **React Component** with a
 `style` prop included ready to be rendered.
 
+_Note: this differs from using a bare **DOM** **intrinsic** with a `style`
+prop. The bare **DOM** **intrinsic** will generate inline styles whereas a
+component that has been wrapped with `addStyle` will process the styles with
+[Aphrodite](https://github.com/Khan/aphrodite). As a result, always use
+`addStyle` if you need to style the component/element._
+
 ## Usage
 
 ```js
