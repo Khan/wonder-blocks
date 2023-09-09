@@ -1,24 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Clickable from "@khanacademy/wonder-blocks-clickable";
-import Color, {fade, mix} from "@khanacademy/wonder-blocks-color";
+import Color from "@khanacademy/wonder-blocks-color";
 import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-type TitleProps = {
-    // Whether this section is open.
-    isOpen: boolean;
-    // The function to call when the title is clicked.
-    onClick: () => void;
-    //The unique identifier for the content section.
-    sectionId: string;
-    //The title for this section.
-    title: string | React.ReactNode;
-};
+import AccordionSectionTitle from "./accordion-section-title";
 
 type Props = AriaProps & {
     /**
@@ -37,45 +26,50 @@ type Props = AriaProps & {
      */
     title: string | React.ReactElement;
     /**
-     * Whether this section should be open on initial load.
-     * Defaults to false.
+     * Whether to put the caret at the start (the left side in left-to-right
+     * languages) or end (the right side in right-to-left languages) of the
+     * title block in this section. Defaults to "end".
+     *
+     * If this prop is specified both here in the AccordionSection and
+     * within a parent Accordion component, the Accordion’s caretPosition
+     * value is prioritized.
+     */
+    caretPosition?: "start" | "end";
+    /**
+     * The preset styles for the corners of this accordion.
+     * `square` - corners have no border radius.
+     * `rounded` - the overall container's corners are rounded.
+     * `rounded-per-section` - each section's corners are rounded, and there
+     * is white space between each section.
+     *
+     * If this prop is specified both here in the AccordionSection and
+     * within a parent Accordion component, the Accordion’s cornerKind
+     * value is prioritized.
+     */
+    cornerKind?: "square" | "rounded" | "rounded-per-section";
+    /**
+     * Whether this section is initially open or closed. Defaults to false.
      */
     initialIsOpen?: boolean;
+    /**
+     * Called when the title is clicked.
+     */
+    onTitleClick?: () => void;
     /**
      * Custom styles for the overall accordion section container.
      */
     style?: StyleType;
-};
+    /**
+     * Custom styles for the title.
+     */
+    titleStyle?: StyleType;
 
-/**
- * The clickable title for an AccordionSection.
- */
-const AccordionTitle = ({isOpen, onClick, sectionId, title}: TitleProps) => {
-    return (
-        <Clickable
-            aria-expanded={isOpen}
-            aria-controls={sectionId}
-            onClick={onClick}
-            style={[styles.titleWrapper, isOpen && styles.titleWrapperOpen]}
-        >
-            {() => (
-                <>
-                    <View style={styles.titleContent}>
-                        {typeof title === "string" ? (
-                            <Body>{title}</Body>
-                        ) : (
-                            title
-                        )}
-                    </View>
-                    <Icon
-                        icon={icons.caretDown}
-                        color={Color.offBlack64}
-                        style={isOpen && styles.iconOpen}
-                    />
-                </>
-            )}
-        </Clickable>
-    );
+    /**
+     * Whether this section is the last section in the accordion.
+     * For internal use only.
+     * @ignore
+     */
+    isLastSection?: boolean;
 };
 
 /**
@@ -120,13 +114,22 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         id,
         title,
         initialIsOpen = false,
+        onTitleClick,
+        caretPosition = "end",
+        cornerKind = "rounded",
         style,
+        titleStyle,
+        isLastSection,
         ...ariaProps
     } = props;
+
     const [isOpen, setIsOpen] = React.useState(initialIsOpen);
 
     const handleClick = () => {
         setIsOpen(!isOpen);
+        if (onTitleClick) {
+            onTitleClick();
+        }
     };
 
     return (
@@ -140,23 +143,35 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 return (
                     <View
                         id={id}
-                        style={[styles.wrapper, style]}
+                        style={[
+                            styles.wrapper,
+                            isLastSection && styles.wrapperLastSection,
+                            cornerKind === "rounded-per-section" &&
+                                styles.wrapperRoundedPerSection,
+                            style,
+                        ]}
                         {...ariaProps}
                         ref={ref}
                     >
-                        <AccordionTitle
+                        <AccordionSectionTitle
+                            title={title}
+                            caretPosition={caretPosition}
                             isOpen={isOpen}
                             onClick={handleClick}
-                            sectionId={sectionContentUniqueId}
-                            title={title}
+                            sectionContentUniqueId={sectionContentUniqueId}
+                            titleStyle={titleStyle}
                         />
+                        {/* The content is the section that
+                        opens and closes. */}
                         {isOpen ? (
                             <View
                                 id={sectionContentUniqueId}
                                 style={styles.contentWrapper}
                             >
                                 {typeof children === "string" ? (
-                                    <Body>{children}</Body>
+                                    <Body style={styles.stringContent}>
+                                        {children}
+                                    </Body>
                                 ) : (
                                     children
                                 )}
@@ -169,61 +184,23 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     );
 });
 
-// Same as the Banner blue after factoring in opacity
-const backgroundBlue = mix(fade(Color.blue, 0.08), Color.white);
-const fadedBlue = mix(fade(Color.blue, 0.16), Color.white);
-
 const styles = StyleSheet.create({
     wrapper: {
         display: "flex",
         flexDirection: "column",
         boxSizing: "border-box",
-        marginBottom: Spacing.xSmall_8,
+        borderBottom: `1px solid ${Color.offBlack16}`,
     },
-    titleWrapper: {
-        display: "flex",
-        flexDirection: "row",
-        padding: Spacing.xSmall_8,
-        alignItems: "center",
-        backgroundColor: backgroundBlue,
+    wrapperLastSection: {
+        borderBottom: "none",
+    },
+    wrapperRoundedPerSection: {
         border: `1px solid ${Color.offBlack16}`,
-        borderRadius: Spacing.xxxSmall_4,
-
-        ":hover": {
-            border: `1px solid ${Color.blue}`,
-        },
-        ":active": {
-            backgroundColor: fadedBlue,
-            outline: "none",
-            border: `1px solid ${Color.blue}`,
-        },
-        ":focus-visible": {
-            // Reset the default thick blue outline
-            outline: "none",
-            border: `1px solid ${Color.blue}`,
-        },
+        borderRadius: Spacing.small_12,
+        marginBottom: Spacing.medium_16,
     },
-    titleWrapperOpen: {
-        // We want the title to be seamless with the content when
-        // the accordion section is open, so we remove the border
-        // radius on the bottom.
-        borderEndEndRadius: 0,
-        borderEndStartRadius: 0,
-    },
-    titleContent: {
-        flexGrow: 1,
-        textAlign: "start",
-    },
-    contentWrapper: {
-        border: `1px solid ${Color.offBlack16}`,
-        borderTop: "none",
-        // Only the bottom corners should be rounded.
-        borderEndEndRadius: Spacing.xxxSmall_4,
-        borderEndStartRadius: Spacing.xxxSmall_4,
-        padding: Spacing.xSmall_8,
-    },
-    iconOpen: {
-        transform: "rotate(180deg)",
+    stringContent: {
+        padding: Spacing.medium_16,
     },
 });
 

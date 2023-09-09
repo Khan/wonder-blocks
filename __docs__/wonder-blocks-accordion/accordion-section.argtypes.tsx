@@ -17,6 +17,15 @@ export default {
             },
         },
     },
+    title: {
+        control: {type: "text"},
+        description: `The title for this section. If a string is passed in,
+            it will automatically be given Body typography from Wonder Blocks
+            Typography.`,
+        table: {
+            type: {summary: "string"},
+        },
+    },
     caretPosition: {
         control: {type: "select"},
         description: `Whether to put the caret at the start (the left side in
@@ -33,22 +42,13 @@ export default {
             required: false,
         },
     },
-    cornerKind: {
-        control: {type: "select"},
-        description: `The preset styles for the corners of this accordion.
-            \`square\` - corners have no border radius.
-            \`rounded\` - the overall container's corners are rounded.
-            \`rounded-per-section\` - each section's corners are rounded, and
-            there is white space between each section.`,
-        defaultValue: "rounded",
+    initialIsOpen: {
+        control: {type: "boolean"},
+        description: `Whether this section should be open on initial load.
+            Defaults to false.`,
         table: {
-            defaultValue: {summary: "rounded"},
-            type: {summary: '"square" | "rounded" | "rounded-per-section"'},
-        },
-        type: {
-            name: "enum",
-            value: ["square", "rounded", "rounded-per-section"],
-            required: false,
+            defaultValue: {summary: "false"},
+            type: {summary: "boolean"},
         },
     },
     style: {

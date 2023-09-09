@@ -8,8 +8,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import AccordionSection from "./accordion-section";
 
-const StyledList = addStyle("ul");
-const StyledListItem = addStyle("li");
+const StyledUnorderedList = addStyle("ul");
 
 type Props = AriaProps & {
     /**
@@ -22,6 +21,29 @@ type Props = AriaProps & {
     children: Array<
         React.ReactElement<React.ComponentProps<typeof AccordionSection>>
     >;
+    /**
+     * Whether to put the caret at the start (the left side in left-to-right
+     * languages) or end (the right side in right-to-left languages) of the
+     * title block in all the sections within this accordion.
+     * Defaults to "end".
+     *
+     * If this prop is specified both here in the Accordion and within
+     * a child AccordionSection component, the Accordion’s caretPosition
+     * value is prioritized.
+     */
+    caretPosition?: "start" | "end";
+    /**
+     * The preset styles for the corners of this accordion.
+     * `square` - corners have no border radius.
+     * `rounded` - the overall container's corners are rounded.
+     * `rounded-per-section` - each section's corners are rounded,
+     * and there is vertical white space between each section.
+     *
+     * If this prop is specified both here in the Accordion and within
+     * a child AccordionSection component, the Accordion’s cornerKind
+     * value is prioritized.
+     */
+    cornerKind?: "square" | "rounded" | "rounded-per-section";
     /**
      * Custom styles for the overall accordion container.
      */
@@ -61,36 +83,78 @@ const Accordion = React.forwardRef(function Accordion(
     props: Props,
     ref: React.ForwardedRef<HTMLUListElement>,
 ) {
-    const {children, id, style, ...ariaProps} = props;
+    const {
+        children,
+        id,
+        caretPosition,
+        cornerKind = "rounded",
+        style,
+        ...ariaProps
+    } = props;
+
+    let cornerStyle;
+    switch (cornerKind) {
+        case "square":
+            cornerStyle = styles.wrapperSquare;
+            break;
+        case "rounded":
+            cornerStyle = styles.wrapperRounded;
+            break;
+        case "rounded-per-section":
+            cornerStyle = styles.wrapperRoundedPerSection;
+            break;
+    }
+
     return (
-        <StyledList style={[styles.wrapper, style]} {...ariaProps} ref={ref}>
+        <StyledUnorderedList
+            style={[styles.wrapper, cornerStyle, style]}
+            {...ariaProps}
+            ref={ref}
+        >
             {
                 // If the AccordionSections are rendered within the Accordion,
                 // they are part of a list, so they should be list items.
                 children.map((child, index) => {
+                    const {
+                        caretPosition: childCaretPosition,
+                        cornerKind: childCornerKind,
+                    } = child.props;
+
+                    const isLastChild = index === children.length - 1;
+
                     return (
-                        <StyledListItem key={index} id={id}>
-                            {child}
-                        </StyledListItem>
+                        <li key={index} id={id}>
+                            {React.cloneElement(child, {
+                                caretPosition:
+                                    caretPosition ?? childCaretPosition,
+                                cornerKind: cornerKind ?? childCornerKind,
+                                isLastSection: isLastChild,
+                            })}
+                        </li>
                     );
                 })
             }
-        </StyledList>
+        </StyledUnorderedList>
     );
 });
 
 const styles = StyleSheet.create({
     wrapper: {
-        display: "flex",
-        flexDirection: "column",
-        boxSizing: "border-box",
-        border: `1px solid ${Color.offBlack16}`,
-        borderRadius: Spacing.xxxSmall_4,
         listStyle: "none",
-        padding: Spacing.xSmall_8,
-        // Don't want to double up the bottom padding with the
-        // bottom margin on the last AccordionSection.
-        paddingBottom: 0,
+        // Reset the default padding for lists.
+        padding: 0,
+        width: "100%",
+
+        border: `1px solid ${Color.offBlack16}`,
+    },
+    wrapperSquare: {
+        borderRadius: 0,
+    },
+    wrapperRounded: {
+        borderRadius: Spacing.small_12,
+    },
+    wrapperRoundedPerSection: {
+        border: "none",
     },
 });
 
