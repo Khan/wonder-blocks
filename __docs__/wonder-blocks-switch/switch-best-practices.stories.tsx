@@ -5,7 +5,7 @@ import Switch from "@khanacademy/wonder-blocks-switch";
 import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
@@ -31,13 +31,6 @@ export default {
             disableSnapshot: true,
         },
     },
-    decorators: [
-        (Story) => (
-            <RenderStateRoot>
-                <Story />
-            </RenderStateRoot>
-        ),
-    ],
     argTypes: SwitchArgtypes,
 } as Meta<typeof Switch>;
 

@@ -5,6 +5,7 @@ import {configure} from "@storybook/testing-library";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
 import {Preview} from "@storybook/react";
 
 configure({
@@ -61,7 +62,7 @@ export const parameters = {
             {
                 name: "khanmigo",
                 value: tokens.color.eggplant,
-            }
+            },
         ],
     },
     // https://storybook.js.org/docs/react/configure/story-layout
@@ -90,6 +91,18 @@ export const parameters = {
 export const decorators = [
     (Story, context) => {
         const theme = context.globals.theme;
+        const enableRenderStateRootDecorator =
+            context.parameters.enableRenderStateRootDecorator;
+
+        if (enableRenderStateRootDecorator) {
+            return (
+                <RenderStateRoot>
+                    <ThemeSwitcherContext.Provider value={theme}>
+                        <Story />
+                    </ThemeSwitcherContext.Provider>
+                </RenderStateRoot>
+            );
+        }
         return (
             <ThemeSwitcherContext.Provider value={theme}>
                 <Story />
@@ -99,6 +112,10 @@ export const decorators = [
 ];
 
 const preview: Preview = {
+    parameters: {
+        // Enable the RenderStateRoot decorator by default.
+        enableRenderStateRootDecorator: true,
+    },
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
