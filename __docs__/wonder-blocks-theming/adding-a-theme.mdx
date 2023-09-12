@@ -1,18 +1,23 @@
-import {Meta} from "@storybook/blocks";
+import {Canvas, Meta} from "@storybook/blocks";
+
+import * as ButtonStories from "../wonder-blocks-button/button.stories";
 
 <Meta title="Theming / Guides / Adding a theme" />
 
-# Adding a theme
+# Adding a new theme
 
 ## Introduction
 
-In order to support theming in a particular component, we need first to define a
-default theme. This theme is composed of a set of **component tokens** that will
-be used by the component styles.
+In order to support theming in a particular component, we need to create a theme
+and complete a series of steps before making the component themeable.
 
 ## Steps
 
 ### Define the default theme
+
+Themes are composed by core Wonder Blocks tokens. The first step is to define
+the default theme for the component. This theme should be defined in the
+component folder (under `themes`).
 
 ```ts
 // e.g. wonder-blocks-button/src/themes/default.js
@@ -91,7 +96,11 @@ export default mergeTheme(themeDefault, {
 });
 ```
 
-Then, you can create a wrapper that will allow theming the component:
+### Create a `ThemedComponent` wrapper
+
+The next step is to create a wrapper that will allow theming the component. By
+doing this, we can use the `useScopedTheme`. `useStyles` and `withScopedTheme`
+to access the theme values in the component styles.
 
 ```tsx
 // e.g. wonder-blocks-button/src/themes/themed-button.tsx
@@ -132,6 +141,8 @@ export default function ThemedButton({children}: Props) {
 }
 ```
 
+### Import the ThemedComponent wrapper in the component
+
 After this, you can use use the new `ThemedButton` component to support multiple
 themes in the existing component.
 
@@ -149,6 +160,8 @@ export default Button(props) {
     );
 }
 ```
+
+### Use the theme values in the component styles
 
 Finally, you can use the `theme` values in the component styles.
 
@@ -192,3 +205,8 @@ const wbThemeStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     ...
 });
 ```
+
+Below you can see the result of using the `Button` component with the
+`KhanmigoTheme`:
+
+<Canvas of={ButtonStories.KhanmigoTheme} />
