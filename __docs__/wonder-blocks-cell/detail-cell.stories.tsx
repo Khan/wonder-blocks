@@ -227,10 +227,15 @@ DetailCellNavigation.parameters = {
  *
  * If you use a solid background color (last cell), the cell states will not
  * change the background color.
+ *
+ * _NOTE:_ We use custom roles here to make sure that the cell focus ring is
+ * displayed correctly while using `View` elements as parent containers. We
+ * encourage using semantic HTML elements (e.g. `ul`, `li`) when possible (via
+ * `addStyle("ul")` if you need to add Aphrodite Styles).
  */
 export const DetailCellsAsListItems: StoryComponentType = {
     render: () => (
-        <section role="list">
+        <View role="list">
             <View role="listitem">
                 <DetailCell
                     title="Active Cell"
@@ -285,7 +290,7 @@ export const DetailCellsAsListItems: StoryComponentType = {
                     horizontalRule="full-width"
                 />
             </View>
-        </section>
+        </View>
     ),
     parameters: {
         chromatic: {

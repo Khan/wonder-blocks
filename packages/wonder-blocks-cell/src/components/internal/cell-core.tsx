@@ -89,6 +89,60 @@ const RightAccessory = ({
     );
 };
 
+/**
+ * The Cell inner wrapper is the main container for the Cell contents. It
+ * doesn't include the optional Clickable wrapper, which is added by the Cell
+ * component.
+ */
+function CellInner(props: CellCoreProps): React.ReactElement {
+    const {
+        active,
+        children,
+        disabled,
+        horizontalRule = "inset",
+        leftAccessory = undefined,
+        leftAccessoryStyle = undefined,
+        rightAccessory = undefined,
+        rightAccessoryStyle = undefined,
+        style,
+        testId,
+        innerStyle,
+    } = props;
+    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
+
+    return (
+        <View
+            style={[
+                styles.innerWrapper,
+                innerStyle,
+                // custom styles
+                style,
+                horizontalRuleStyles,
+            ]}
+        >
+            {/* Left accessory */}
+            <LeftAccessory
+                leftAccessory={leftAccessory}
+                leftAccessoryStyle={leftAccessoryStyle}
+                disabled={disabled}
+            />
+
+            {/* Cell contents */}
+            <View style={styles.content} testId={testId}>
+                {children}
+            </View>
+
+            {/* Right accessory */}
+            <RightAccessory
+                rightAccessory={rightAccessory}
+                rightAccessoryStyle={rightAccessoryStyle}
+                active={active}
+                disabled={disabled}
+            />
+        </View>
+    );
+}
+
 type CellCoreProps = Partial<Omit<CellProps, "title">> & {
     /**
      * The content of the cell.
@@ -114,57 +168,12 @@ type CellCoreProps = Partial<Omit<CellProps, "title">> & {
 const CellCore = (props: CellCoreProps): React.ReactElement => {
     const {
         active,
-        children,
         disabled,
         href,
-        horizontalRule = "inset",
-        leftAccessory = undefined,
-        leftAccessoryStyle = undefined,
         onClick,
-        rightAccessory = undefined,
-        rightAccessoryStyle = undefined,
-        style,
-        testId,
         "aria-label": ariaLabel,
-        innerStyle,
         target,
     } = props;
-
-    const renderCell = (): React.ReactElement => {
-        const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
-
-        return (
-            <View
-                style={[
-                    styles.innerWrapper,
-                    innerStyle,
-                    // custom styles
-                    style,
-                    horizontalRuleStyles,
-                ]}
-            >
-                {/* Left accessory */}
-                <LeftAccessory
-                    leftAccessory={leftAccessory}
-                    leftAccessoryStyle={leftAccessoryStyle}
-                    disabled={disabled}
-                />
-
-                {/* Cell contents */}
-                <View style={styles.content} testId={testId}>
-                    {children}
-                </View>
-
-                {/* Right accessory */}
-                <RightAccessory
-                    rightAccessory={rightAccessory}
-                    rightAccessoryStyle={rightAccessoryStyle}
-                    active={active}
-                    disabled={disabled}
-                />
-            </View>
-        );
-    };
 
     // Pressable cell.
     if (onClick || href) {
@@ -185,18 +194,19 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 ]}
                 aria-current={active ? "true" : undefined}
             >
-                {() => renderCell()}
+                {() => <CellInner {...props} />}
             </Clickable>
         );
     }
 
-    // No click event attached, so just render the cell as-is.
+    // No click event attached, so just render the cell without a Clickable
+    // wrapper.
     return (
         <View
             style={[styles.wrapper, active && styles.active]}
             aria-current={active ? "true" : undefined}
         >
-            {renderCell()}
+            <CellInner {...props} />
         </View>
     );
 };
@@ -214,7 +224,6 @@ const styles = StyleSheet.create({
         padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
         flex: 1,
-        height: "100%",
 
         // Reduce the padding of the innerWrapper when the focus ring is
         // visible.
