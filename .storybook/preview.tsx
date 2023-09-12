@@ -1,8 +1,11 @@
-import React from "react";
+import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {configure} from "@storybook/testing-library";
 
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 import Link from "@khanacademy/wonder-blocks-link";
+import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {Preview} from "@storybook/react";
 
 configure({
     testIdAttribute: "data-test-id",
@@ -49,12 +52,16 @@ export const parameters = {
         values: [
             {
                 name: "light",
-                value: "#ffffff",
+                value: tokens.color.white,
             },
             {
                 name: "darkBlue",
-                value: "#0b2149",
+                value: tokens.color.darkBlue,
             },
+            {
+                name: "khanmigo",
+                value: tokens.color.eggplant,
+            }
         ],
     },
     // https://storybook.js.org/docs/react/configure/story-layout
@@ -79,3 +86,45 @@ export const parameters = {
         viewports: wbViewports,
     },
 };
+
+export const decorators = [
+    (Story, context) => {
+        const theme = context.globals.theme;
+        return (
+            <ThemeSwitcherContext.Provider value={theme}>
+                <Story />
+            </ThemeSwitcherContext.Provider>
+        );
+    },
+];
+
+const preview: Preview = {
+    globalTypes: {
+        // Allow the user to select a theme from the toolbar.
+        theme: {
+            description: "Global theme for components",
+            toolbar: {
+                // The label to show for this toolbar item
+                title: "Theme",
+                icon: "switchalt",
+                // Array of plain string values or MenuItem shape (see below)
+                items: [
+                    {
+                        value: "default",
+                        icon: "circlehollow",
+                        title: "Wonder Blocks (default)",
+                    },
+                    {
+                        value: "khanmigo",
+                        icon: "circle",
+                        title: "Khanmigo",
+                    },
+                ],
+                // Change title based on selected value
+                dynamicTitle: true,
+            },
+        },
+    },
+};
+
+export default preview;

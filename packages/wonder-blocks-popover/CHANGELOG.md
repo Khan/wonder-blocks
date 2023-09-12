@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.0.7
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.26
+-   @khanacademy/wonder-blocks-tooltip@2.1.9
+
 ## 3.0.6
 
 ### Patch Changes

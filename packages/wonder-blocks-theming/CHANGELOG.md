@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-theming
 
+## 1.1.0
+
+### Minor Changes
+
+-   5725703a: Add new color tokens (more faded values)
+-   fc6cec0b: Add theming to Switch and new color tokens for theming
+
 ## 1.0.0
 
 ### Major Changes

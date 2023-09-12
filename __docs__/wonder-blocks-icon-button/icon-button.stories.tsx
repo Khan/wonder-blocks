@@ -7,15 +7,17 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
+import IconButtonArgtypes from "./icon-button.argtypes";
 
 export default {
-    title: "IconButton / IconButton",
+    title: "IconButton",
     component: IconButton,
     parameters: {
         componentSubtitle: (
@@ -25,11 +27,7 @@ export default {
             />
         ),
     },
-    argTypes: {
-        icon: {
-            options: icons,
-        },
-    },
+    argTypes: IconButtonArgtypes,
 } as Meta<typeof IconButton>;
 
 type StoryComponentType = StoryObj<typeof IconButton>;
@@ -38,7 +36,9 @@ export const Default: StoryComponentType = {
     args: {
         icon: icons.search,
         color: "default",
+        disabled: false,
         kind: "primary",
+        size: "medium",
 
         onClick: (e: React.SyntheticEvent) => {
             console.log("Click!");
@@ -62,143 +62,161 @@ Basic.parameters = {
     },
 };
 
-export const Variants: StoryComponentType = () => {
+/**
+ * Icon buttons can be one of three sizes: `xsmall` (16px icon with a 24px touch target),
+ * `small` (24px icon with a 32px touch target), and `medium` (24px icon with a 40px touch target).
+ * The default size is `medium`.
+ */
+export const Sizes: StoryComponentType = (() => {
     return (
-        <View style={{flexDirection: "row"}}>
-            <IconButton
-                icon={icons.search}
-                aria-label="search"
-                onClick={(e) => console.log("Click!")}
-            />
-            <Strut size={Spacing.medium_16} />
-            <IconButton
-                icon={icons.search}
-                aria-label="search"
-                kind="secondary"
-                onClick={(e) => console.log("Click!")}
-            />
-            <Strut size={Spacing.medium_16} />
-            <IconButton
-                icon={icons.search}
-                aria-label="search"
-                kind="tertiary"
-                onClick={(e) => console.log("Click!")}
-            />
-            <Strut size={Spacing.medium_16} />
-            <IconButton
-                disabled={true}
-                icon={icons.search}
-                aria-label="search"
-                onClick={(e) => console.log("Click!")}
-            />
+        <View style={{flexDirection: "column"}}>
+            <View style={styles.row}>
+                <LabelMedium style={styles.label}>xsmall</LabelMedium>
+                <IconButton
+                    icon={icons.search}
+                    size="xsmall"
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                />
+            </View>
+            <Strut size={Spacing.large_24} />
+            <View style={styles.row}>
+                <LabelMedium style={styles.label}>small</LabelMedium>
+                <IconButton
+                    icon={icons.search}
+                    size="small"
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                />
+            </View>
+            <Strut size={Spacing.large_24} />
+            <View style={styles.row}>
+                <LabelMedium style={styles.label}>medium</LabelMedium>
+                <IconButton
+                    icon={icons.search}
+                    size="medium"
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                />
+            </View>
         </View>
     );
-};
+}) as StoryComponentType;
 
-Variants.parameters = {
-    docs: {
-        description: {
-            story: `In this example, we have primary, secondary,
-            tertiary, and disabled \`IconButton\`s from left to right.`,
-        },
+/**
+ * In this example, we have primary, secondary, tertiary,
+ * and disabled `IconButton`s from left to right.
+ */
+export const Variants: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.row}>
+                <IconButton
+                    icon={icons.search}
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                />
+                <IconButton
+                    icon={icons.search}
+                    aria-label="search"
+                    kind="secondary"
+                    onClick={(e) => console.log("Click!")}
+                />
+                <IconButton
+                    icon={icons.search}
+                    aria-label="search"
+                    kind="tertiary"
+                    onClick={(e) => console.log("Click!")}
+                />
+                <IconButton
+                    disabled={true}
+                    icon={icons.search}
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                />
+            </View>
+        );
     },
 };
 
-export const Light: StoryComponentType = () => {
-    return (
-        <View style={styles.dark}>
-            <IconButton
-                icon={icons.search}
-                aria-label="search"
-                light={true}
-                onClick={(e) => console.log("Click!")}
-            />
-        </View>
-    );
-};
-
-Light.parameters = {
-    docs: {
-        description: {
-            story: `An IconButton on a dark background.
-            Only the primary kind is allowed to have the \`light\`
-            prop set to true.`,
-        },
+/**
+ * An IconButton on a dark background.
+ * Only the primary kind is allowed to have the `light` prop set to true.
+ */
+export const Light: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.dark}>
+                <IconButton
+                    icon={icons.search}
+                    aria-label="search"
+                    light={true}
+                    onClick={(e) => console.log("Click!")}
+                />
+            </View>
+        );
     },
 };
 
-export const DisabledLight: StoryComponentType = () => {
-    return (
-        <View style={styles.dark}>
-            <IconButton
-                disabled={true}
-                icon={icons.search}
-                aria-label="search"
-                light={true}
-                onClick={(e) => console.log("Click!")}
-            />
-        </View>
-    );
-};
-
-DisabledLight.parameters = {
-    docs: {
-        description: {
-            story: "This is a disabled icon button with the `light` prop set to true.",
-        },
+/**
+ * This is a disabled icon button with the `light` prop set to true.
+ */
+export const DisabledLight: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.dark}>
+                <IconButton
+                    disabled={true}
+                    icon={icons.search}
+                    aria-label="search"
+                    light={true}
+                    onClick={(e) => console.log("Click!")}
+                />
+            </View>
+        );
     },
 };
 
-export const UsingHref: StoryComponentType = () => {
-    return (
-        <IconButton
-            icon={icons.info}
-            aria-label="More information"
-            href="/"
-            target="_blank"
-            onClick={(e) => console.log("Click!")}
-        />
-    );
-};
-
-UsingHref.parameters = {
-    docs: {
-        description: {
-            story: `This example has an \`href\` prop in addition to the
-            \`onClick\` prop. \`href\` takes a URL or path, and clicking the
-            icon button will result in a navigation to the specified page.
-            Note that \`onClick\` is not required if \`href\` is defined.
-            The \`target="_blank"\` prop will cause the href page to open in
-            a new tab.`,
-        },
+/**
+ * This example has an `href` prop in addition to the `onClick` prop. `href` takes a URL or path,
+ * and clicking the icon button will result in a navigation to the specified page. Note that
+ * `onClick` is not required if `href` is defined. The `target="_blank"` prop will cause the href
+ *  page to open in a new tab.
+ */
+export const UsingHref: StoryComponentType = {
+    render: () => {
+        return (
+            <IconButton
+                icon={icons.info}
+                aria-label="More information"
+                href="/"
+                target="_blank"
+                onClick={(e) => console.log("Click!")}
+            />
+        );
     },
 };
 
-export const WithAriaLabel: StoryComponentType = () => {
-    return (
-        <View style={styles.arrowsWrapper}>
-            <IconButton
-                icon={icons.caretLeft}
-                onClick={(e) => console.log("Click!")}
-                aria-label="Previous page"
-            />
-            <IconButton
-                icon={icons.caretRight}
-                onClick={(e) => console.log("Click!")}
-                aria-label="Next page"
-            />
-        </View>
-    );
-};
-
-WithAriaLabel.parameters = {
-    docs: {
-        description: {
-            story: `By default, the icon buttons do not have
-            accessible names. The \`aria-label\` prop must be used to explain
-            the function of the button. Remember to keep the description
-            concise but understandable.`,
-        },
+/**
+ * By default, the icon buttons do not have accessible names. The `aria-label` prop must be used
+ * to explain the function of the button. Remember to keep the description concise but understandable.
+ */
+export const WithAriaLabel: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.arrowsWrapper}>
+                <IconButton
+                    icon={icons.caretLeft}
+                    onClick={(e) => console.log("Click!")}
+                    aria-label="Previous page"
+                />
+                <IconButton
+                    icon={icons.caretRight}
+                    onClick={(e) => console.log("Click!")}
+                    aria-label="Next page"
+                />
+            </View>
+        );
     },
 };
 
@@ -210,6 +228,14 @@ const styles = StyleSheet.create({
     arrowsWrapper: {
         flexDirection: "row",
         justifyContent: "space-between",
+        width: Spacing.xxxLarge_64,
+    },
+    row: {
+        flexDirection: "row",
+        gap: Spacing.medium_16,
+        alignItems: "center",
+    },
+    label: {
         width: Spacing.xxxLarge_64,
     },
 });

@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.0.26
+
+### Patch Changes
+
+-   Updated dependencies [695f2567]
+    -   @khanacademy/wonder-blocks-timing@4.0.2
+
 ## 4.0.25
 
 ### Patch Changes

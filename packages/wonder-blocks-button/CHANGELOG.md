@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-button
 
+## 4.2.2
+
+### Patch Changes
+
+-   1644f651: Fix borderRadius value for small variant
+
+## 4.2.1
+
+### Patch Changes
+
+-   a194f5e2: - Fix default borderRadius value.
+    -   Fix secondary pressed background color (to support action and destructive buttons).
+    -   Change fontWeight for khanmigo theme (bold -> regular).
+
+## 4.2.0
+
+### Minor Changes
+
+-   5725703a: Add theming support to the Button component
+
 ## 4.1.9
 
 ### Patch Changes

@@ -4,6 +4,7 @@ import * as renderer from "react-test-renderer";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
 import IconButtonCore from "../components/icon-button-core";
+import {IconButtonSize} from "../components/icon-button";
 
 const defaultHandlers = {
     onClick: () => void 0,
@@ -23,7 +24,11 @@ const defaultHandlers = {
 describe("IconButtonCore", () => {
     for (const kind of ["primary", "secondary", "tertiary"] as const) {
         for (const color of ["default", "destructive"] as const) {
-            for (const size of ["default", "small"] as const) {
+            for (const size of [
+                "xsmall",
+                "small",
+                "medium",
+            ] as IconButtonSize[]) {
                 for (const light of kind === "primary"
                     ? [true, false]
                     : [false]) {
@@ -52,6 +57,7 @@ describe("IconButtonCore", () => {
                                         kind={kind}
                                         color={color}
                                         light={light}
+                                        size={size}
                                         tabIndex={disabled ? -1 : 0}
                                         {...stateProps}
                                         {...defaultHandlers}
