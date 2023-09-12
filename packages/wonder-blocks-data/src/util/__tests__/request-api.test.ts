@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-unassigned-import
+import "jest-extended";
+import {jest as wsJest} from "@khanacademy/wonder-stuff-testing";
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestFulfillment} from "../request-fulfillment";
 import {RequestTracker} from "../request-tracking";
@@ -45,18 +48,11 @@ describe("#fetchTrackedRequests", () => {
     });
 
     describe("when client-side", () => {
-        const NODE_ENV = process.env.NODE_ENV;
         beforeEach(() => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);
         });
 
-        afterEach(() => {
-            if (NODE_ENV === undefined) {
-                delete process.env.NODE_ENV;
-            } else {
-                process.env.NODE_ENV = NODE_ENV;
-            }
-        });
+        wsJest.afterEachRestoreEnv("NODE_ENV");
 
         describe("in production", () => {
             it("should reject with error", async () => {
@@ -123,24 +119,16 @@ describe("#hasTrackedRequestsToBeFetched", () => {
             const result = hasTrackedRequestsToBeFetched();
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeTrue' does not exist on type 'JestMatchers<boolean>'.
             expect(result).toBeTrue();
         });
     });
 
     describe("when client-side", () => {
-        const NODE_ENV = process.env.NODE_ENV;
         beforeEach(() => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);
         });
 
-        afterEach(() => {
-            if (NODE_ENV === undefined) {
-                delete process.env.NODE_ENV;
-            } else {
-                process.env.NODE_ENV = NODE_ENV;
-            }
-        });
+        wsJest.afterEachRestoreEnv("NODE_ENV");
 
         describe("in production", () => {
             it("should reject with error", () => {

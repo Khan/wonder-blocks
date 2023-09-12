@@ -193,6 +193,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     // Pressable cell.
     if (onClick || href) {
         return (
+            // @ts-expect-error - TypeScript doesn't know that `target` can only be defined when `href` is.
             <Clickable
                 disabled={disabled}
                 onClick={onClick}

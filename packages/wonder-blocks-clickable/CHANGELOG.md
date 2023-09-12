@@ -1,5 +1,73 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.0.6
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+
+## 4.0.5
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+
+## 4.0.4
+
+### Patch Changes
+
+-   834855e5: Allow 'title' as a prop on Clickable
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+
+## 4.0.3
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+
+## 4.0.2
+
+### Patch Changes
+
+-   8dc4a5a3: Allow 'beforeNav' and 'safeWithNav' to be used without an 'href'
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+
+## 4.0.1
+
+### Patch Changes
+
+-   f230b267: Allow 'safeWithNav()' to be used on its own without 'beforeNav()' in prop types
+
+## 4.0.0
+
+### Major Changes
+
+-   674a1e5c: Props are using discriminated union types to prevent invalid combinations of props
+
+### Minor Changes
+
+-   8c77f29d: Create new Switch component and add 'switch' role to ClickableRole
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-core@6.0.0
+
+## 3.1.3
+
+### Patch Changes
+
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-core@5.4.0
+
 ## 3.1.2
 
 ### Patch Changes

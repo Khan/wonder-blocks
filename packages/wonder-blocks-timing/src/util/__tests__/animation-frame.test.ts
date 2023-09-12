@@ -9,8 +9,7 @@ describe("AnimationFrame", () => {
         // it here and map it to timeouts, that way we can use the fake timer
         // API to test our animation frame things.
         jest.spyOn(global, "requestAnimationFrame").mockImplementation(
-            // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(fn: any, ...args: any) => NodeJS.Timeout' is not assignable to parameter of type '(callback: FrameRequestCallback) => number'.
-            (fn: any, ...args: any) => setTimeout(fn, 0),
+            (fn: any, ...args: any) => setTimeout(fn, 0) as any,
         );
         jest.spyOn(global, "cancelAnimationFrame").mockImplementation(
             (id: any, ...args: any) => clearTimeout(id),
@@ -46,13 +45,14 @@ describe("AnimationFrame", () => {
 
         it("requests an animation frame when schedule policy is SchedulePolicy.Immediately", () => {
             // Arrange
+            const spy = jest.spyOn(global, "requestAnimationFrame");
 
             // Act
             // eslint-disable-next-line no-new
             new AnimationFrame(() => {}, SchedulePolicy.Immediately);
 
             // Assert
-            expect(requestAnimationFrame).toHaveBeenCalledTimes(1);
+            expect(spy).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -98,27 +98,25 @@ describe("AnimationFrame", () => {
     describe("#set", () => {
         it("should call requestAnimationFrame", () => {
             // Arrange
+            const spy = jest.spyOn(global, "requestAnimationFrame");
             const animationFrame = new AnimationFrame(() => {});
 
             // Act
             animationFrame.set();
 
             // Assert
-            expect(requestAnimationFrame).toHaveBeenNthCalledWith(
-                1,
-                expect.any(Function),
-            );
+            expect(spy).toHaveBeenNthCalledWith(1, expect.any(Function));
         });
 
         it("should invoke requestAnimationFrame to call the given action", () => {
             // Arrange
+            const spy = jest.spyOn(global, "requestAnimationFrame");
             const action = jest.fn();
             const animationFrame = new AnimationFrame((time: any) =>
                 action(time),
             );
             animationFrame.set();
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type '(callback: FrameRequestCallback) => number'.
-            const scheduledAction = requestAnimationFrame.mock.calls[0][0];
+            const scheduledAction = spy.mock.calls[0][0];
 
             // Act
             scheduledAction(2001);
@@ -144,6 +142,7 @@ describe("AnimationFrame", () => {
 
         it("should set the timeout again if it has already executed", () => {
             // Arrange
+            const spy = jest.spyOn(global, "requestAnimationFrame");
             const action = jest.fn();
             const animationFrame = new AnimationFrame(
                 action,
@@ -156,7 +155,7 @@ describe("AnimationFrame", () => {
             animationFrame.set();
 
             // Assert
-            expect(requestAnimationFrame).toHaveBeenCalledTimes(2);
+            expect(spy).toHaveBeenCalledTimes(2);
         });
     });
 

@@ -125,12 +125,11 @@ describe("../ssr-cache.js", () => {
             const cache = new SsrCache();
             const sourceData = {
                 MY_KEY: {data: "THE_DATA"},
-            } as const;
+            };
 
             // Act
             cache.initialize(sourceData);
             // Try to mutate the cache.
-            // @ts-expect-error [FEI-5019] - TS2540 - Cannot assign to 'MY_KEY' because it is a read-only property.
             sourceData["MY_KEY"] = {data: "SOME_NEW_DATA"};
             const result = cache.getEntry("MY_KEY");
 
@@ -448,8 +447,7 @@ describe("../ssr-cache.js", () => {
             const cloneSpy = jest
                 .spyOn(hydrationCache, "clone")
                 .mockReturnValue({
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type '{ [id: string]: ValidCacheData; }'.
-                    default: "CLONE!",
+                    default: "CLONE!" as any,
                 });
             const cache = new SsrCache(hydrationCache);
             // Let's add to the initialized state to check that everything

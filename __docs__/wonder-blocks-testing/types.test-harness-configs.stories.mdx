@@ -27,6 +27,7 @@ const DefaultAdapters = {
     data: data.adapter,
     portal: portal.adapter,
     router: router.adapter,
+    ssr: ssr.adapter,
 };
 ```
 
@@ -34,10 +35,11 @@ const DefaultAdapters = {
 
 ```ts
 type DefaultAdaptersType = {|
-   css: typeof css.adapter,
-   data: typeof data.adapter,
-   portal: typeof portal.adapter,
-   router: typeof router.adapter,
+    css: typeof css.adapter,
+    data: typeof data.adapter,
+    portal: typeof portal.adapter,
+    router: typeof router.adapter,
+    ssr: typeof ssr.adapter,
 |};
 ```
 
@@ -49,6 +51,7 @@ const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {
     data: data.defaultConfig,
     portal: portal.defaultConfig,
     router: router.defaultConfig,
+    ssr: ssr.defaultConfig,
 };
 ```
 

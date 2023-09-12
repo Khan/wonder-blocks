@@ -3,30 +3,29 @@ import type {Metadata} from "@khanacademy/wonder-stuff-core";
 /**
  * Defines the various fetch policies that can be applied to requests.
  */
-// TODO(FEI-5000): Convert to TS enum after all codebases have been migrated
-export const FetchPolicy = {
+export enum FetchPolicy {
     /**
      * If the data is in the cache, return that; otherwise, fetch from the
      * server.
      */
-    CacheBeforeNetwork: "CacheBeforeNetwork" as const,
+    CacheBeforeNetwork = "CacheBeforeNetwork",
 
     /**
      * If the data is in the cache, return that; always fetch from the server
      * regardless of cache.
      */
-    CacheAndNetwork: "CacheAndNetwork" as const,
+    CacheAndNetwork = "CacheAndNetwork",
 
     /**
      * If the data is in the cache, return that; otherwise, do nothing.
      */
-    CacheOnly: "CacheOnly" as const,
+    CacheOnly = "CacheOnly",
 
     /**
      * Ignore any existing cached result; always fetch from the server.
      */
-    NetworkOnly: "NetworkOnly" as const,
-} as const;
+    NetworkOnly = "NetworkOnly",
+}
 
 /**
  * Define what can be cached.
@@ -47,6 +46,9 @@ export type ValidCacheData =
 export type Result<TData extends ValidCacheData> =
     | {
           status: "loading";
+      }
+    | {
+          status: "no-data";
       }
     | {
           status: "success";

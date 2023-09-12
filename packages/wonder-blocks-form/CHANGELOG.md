@@ -1,5 +1,97 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.3.9
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.6
+    -   @khanacademy/wonder-blocks-icon@2.1.6
+    -   @khanacademy/wonder-blocks-layout@2.0.22
+    -   @khanacademy/wonder-blocks-typography@2.1.8
+
+## 4.3.8
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.5
+    -   @khanacademy/wonder-blocks-icon@2.1.5
+    -   @khanacademy/wonder-blocks-layout@2.0.21
+    -   @khanacademy/wonder-blocks-typography@2.1.7
+
+## 4.3.7
+
+### Patch Changes
+
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [834855e5]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.4
+    -   @khanacademy/wonder-blocks-icon@2.1.4
+    -   @khanacademy/wonder-blocks-layout@2.0.20
+    -   @khanacademy/wonder-blocks-typography@2.1.6
+
+## 4.3.6
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+    -   @khanacademy/wonder-blocks-clickable@4.0.3
+    -   @khanacademy/wonder-blocks-icon@2.1.3
+    -   @khanacademy/wonder-blocks-layout@2.0.19
+    -   @khanacademy/wonder-blocks-typography@2.1.5
+
+## 4.3.5
+
+### Patch Changes
+
+-   Updated dependencies [8dc4a5a3]
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-clickable@4.0.2
+    -   @khanacademy/wonder-blocks-core@6.0.1
+    -   @khanacademy/wonder-blocks-icon@2.1.2
+    -   @khanacademy/wonder-blocks-layout@2.0.18
+    -   @khanacademy/wonder-blocks-typography@2.1.4
+
+## 4.3.4
+
+### Patch Changes
+
+-   Updated dependencies [f230b267]
+    -   @khanacademy/wonder-blocks-clickable@4.0.1
+
+## 4.3.3
+
+### Patch Changes
+
+-   Updated dependencies [8c77f29d]
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-clickable@4.0.0
+    -   @khanacademy/wonder-blocks-core@6.0.0
+    -   @khanacademy/wonder-blocks-icon@2.1.1
+    -   @khanacademy/wonder-blocks-layout@2.0.17
+    -   @khanacademy/wonder-blocks-typography@2.1.3
+
+## 4.3.2
+
+### Patch Changes
+
+-   4f8133ed: Fix props so `variants` doesn't show up in underlying input attributes
+-   Updated dependencies [ec6a33a4]
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-icon@2.1.0
+    -   @khanacademy/wonder-blocks-core@5.4.0
+    -   @khanacademy/wonder-blocks-clickable@3.1.3
+    -   @khanacademy/wonder-blocks-layout@2.0.16
+    -   @khanacademy/wonder-blocks-typography@2.1.2
+
 ## 4.3.1
 
 ### Patch Changes

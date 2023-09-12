@@ -1,5 +1,58 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.2.0
+
+### Minor Changes
+
+-   4b97b9a2: Remove deps argument from `usePreHydrationEffect`
+
+## 6.1.1
+
+### Patch Changes
+
+-   2871f0a9: Add new usePreHydrationEffect hook to module exports
+
+## 6.1.0
+
+### Minor Changes
+
+-   efb59c29: Add `usePreHydrationEffect`
+
+### Patch Changes
+
+-   8bc40ed2: Change the return type of `useLatestRef` from `RefObject<T>` to
+    `{readonly current: T}`, so the `current` property is not nullable.
+
+    This fixes a bug introduced by the migration to TypeScript.
+
+## 6.0.2
+
+### Patch Changes
+
+-   f19da46e: Allow 'title' on View and typography components
+
+## 6.0.1
+
+### Patch Changes
+
+-   1920feb8: `RenderStateRoot` now wraps children in a React fragment
+
+## 6.0.0
+
+### Major Changes
+
+-   674a1e5c: POJOs have been replace with TS enums
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+
+## 5.4.0
+
+### Minor Changes
+
+-   1344436f: Add `PropsFor` type to simplify `JSX.LibraryManagedAttributes` usage
+
 ## 5.3.1
 
 ### Patch Changes

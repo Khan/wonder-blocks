@@ -1,5 +1,56 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 2.0.22
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+
+## 2.0.21
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+
+## 2.0.20
+
+### Patch Changes
+
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+
+## 2.0.19
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+
+## 2.0.18
+
+### Patch Changes
+
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+
+## 2.0.17
+
+### Patch Changes
+
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-core@6.0.0
+
+## 2.0.16
+
+### Patch Changes
+
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-core@5.4.0
+
 ## 2.0.15
 
 ### Patch Changes

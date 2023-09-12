@@ -21,8 +21,12 @@ describe("WonderBlocksData.adapter", () => {
         const TestFixture = () => {
             const [result] = useCachedEffect("ID", jest.fn());
 
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'data' does not exist on type 'Result<ValidCacheData>'.
-            return <div>CONTENT: {result?.data}</div>;
+            return (
+                <div>
+                    CONTENT:{" "}
+                    {result.status === "success" ? result.data : undefined}
+                </div>
+            );
         };
 
         // Act
@@ -43,8 +47,12 @@ describe("WonderBlocksData.adapter", () => {
         const TestFixture = () => {
             const [result] = useCachedEffect("ID", jest.fn());
 
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'data' does not exist on type 'Result<ValidCacheData>'.
-            return <div>CONTENT:{result?.data}</div>;
+            return (
+                <div>
+                    CONTENT:
+                    {result.status === "success" ? result.data : undefined}
+                </div>
+            );
         };
 
         // Act

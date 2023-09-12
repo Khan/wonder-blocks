@@ -1,5 +1,56 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 2.1.8
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+
+## 2.1.7
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+
+## 2.1.6
+
+### Patch Changes
+
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+
+## 2.1.5
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+
+## 2.1.4
+
+### Patch Changes
+
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+
+## 2.1.3
+
+### Patch Changes
+
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-core@6.0.0
+
+## 2.1.2
+
+### Patch Changes
+
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-core@5.4.0
+
 ## 2.1.1
 
 ### Patch Changes

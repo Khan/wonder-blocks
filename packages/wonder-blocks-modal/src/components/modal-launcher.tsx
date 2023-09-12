@@ -11,7 +11,6 @@ import ScrollDisabler from "./scroll-disabler";
 import type {ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
 
-// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
 type Props = Readonly<{
     /**
      * The modal to render.
@@ -46,6 +45,7 @@ type Props = Readonly<{
      * Test ID used for e2e testing. It's set on the ModalBackdrop
      */
     testId?: string;
+
     /**
      * Renders the modal when true, renders nothing when false.
      *
@@ -56,6 +56,7 @@ type Props = Readonly<{
      * error being thrown.
      */
     opened?: boolean;
+
     /**
      * If the parent needs to be notified when the modal is closed, use this
      * prop. You probably want to use this instead of `onClose` on the modals
@@ -68,6 +69,7 @@ type Props = Readonly<{
      * component.
      */
     onClose?: () => unknown;
+
     /**
      * WARNING: This props should only be used when using the component as a
      * controlled component.

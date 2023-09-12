@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-unassigned-import
+import "jest-extended";
 import * as React from "react";
 import {render, act as reactAct} from "@testing-library/react";
 import {renderHook} from "@testing-library/react-hooks";
@@ -13,7 +15,6 @@ describe("useOnline", () => {
         const {result} = renderHook(useOnline);
 
         // Assert
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeTrue' does not exist on type 'JestMatchers<boolean>'.
         expect(result.current).toBeTrue();
     });
 
@@ -25,7 +26,6 @@ describe("useOnline", () => {
         const {result} = renderHook(useOnline);
 
         // Assert
-        // @ts-expect-error [FEI-5019] - TS2551 - Property 'toBeFalse' does not exist on type 'JestMatchers<boolean>'. Did you mean 'toBeFalsy'?
         expect(result.current).toBeFalse();
     });
 

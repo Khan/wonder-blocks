@@ -21,6 +21,7 @@ export {useIsMounted} from "./hooks/use-is-mounted";
 export {useLatestRef} from "./hooks/use-latest-ref";
 export {useOnMountEffect} from "./hooks/use-on-mount-effect";
 export {useOnline} from "./hooks/use-online";
+export {usePreHydrationEffect} from "./hooks/use-pre-hydration-effect";
 export {useRenderState} from "./hooks/use-render-state";
 export {RenderStateRoot} from "./components/render-state-root";
 export {RenderState} from "./components/render-state-context";

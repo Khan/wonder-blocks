@@ -1,5 +1,97 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.29
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@3.0.28
+
+## 2.0.28
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+    -   @khanacademy/wonder-blocks-dropdown@3.0.27
+    -   @khanacademy/wonder-blocks-icon@2.1.6
+    -   @khanacademy/wonder-blocks-layout@2.0.22
+    -   @khanacademy/wonder-blocks-typography@2.1.8
+
+## 2.0.27
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+    -   @khanacademy/wonder-blocks-dropdown@3.0.26
+    -   @khanacademy/wonder-blocks-icon@2.1.5
+    -   @khanacademy/wonder-blocks-layout@2.0.21
+    -   @khanacademy/wonder-blocks-typography@2.1.7
+
+## 2.0.26
+
+### Patch Changes
+
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+    -   @khanacademy/wonder-blocks-dropdown@3.0.25
+    -   @khanacademy/wonder-blocks-icon@2.1.4
+    -   @khanacademy/wonder-blocks-layout@2.0.20
+    -   @khanacademy/wonder-blocks-typography@2.1.6
+
+## 2.0.25
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+    -   @khanacademy/wonder-blocks-dropdown@3.0.24
+    -   @khanacademy/wonder-blocks-icon@2.1.3
+    -   @khanacademy/wonder-blocks-layout@2.0.19
+    -   @khanacademy/wonder-blocks-typography@2.1.5
+
+## 2.0.24
+
+### Patch Changes
+
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+    -   @khanacademy/wonder-blocks-dropdown@3.0.23
+    -   @khanacademy/wonder-blocks-icon@2.1.2
+    -   @khanacademy/wonder-blocks-layout@2.0.18
+    -   @khanacademy/wonder-blocks-typography@2.1.4
+
+## 2.0.23
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@3.0.22
+
+## 2.0.22
+
+### Patch Changes
+
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-core@6.0.0
+    -   @khanacademy/wonder-blocks-dropdown@3.0.21
+    -   @khanacademy/wonder-blocks-icon@2.1.1
+    -   @khanacademy/wonder-blocks-layout@2.0.17
+    -   @khanacademy/wonder-blocks-typography@2.1.3
+
+## 2.0.21
+
+### Patch Changes
+
+-   Updated dependencies [ec6a33a4]
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-icon@2.1.0
+    -   @khanacademy/wonder-blocks-core@5.4.0
+    -   @khanacademy/wonder-blocks-dropdown@3.0.20
+    -   @khanacademy/wonder-blocks-layout@2.0.16
+    -   @khanacademy/wonder-blocks-typography@2.1.2
+
 ## 2.0.20
 
 ### Patch Changes

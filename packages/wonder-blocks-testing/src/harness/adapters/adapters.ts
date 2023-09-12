@@ -1,10 +1,8 @@
-// WARNING: If you modify this file you may need to update adapters.js.flow
-// to ensure that the Flow types are still correct.
-
 import * as css from "./css";
 import * as data from "./data";
 import * as portal from "./portal";
 import * as router from "./router";
+import * as ssr from "./ssr";
 
 import type {TestHarnessConfigs} from "../types";
 
@@ -22,6 +20,7 @@ export const DefaultAdapters = {
     data: data.adapter,
     portal: portal.adapter,
     router: router.adapter,
+    ssr: ssr.adapter,
 } as const;
 
 /**
@@ -32,4 +31,5 @@ export const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {
     data: data.defaultConfig,
     portal: portal.defaultConfig,
     router: router.defaultConfig,
+    ssr: ssr.defaultConfig,
 } as const;

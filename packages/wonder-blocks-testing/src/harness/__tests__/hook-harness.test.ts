@@ -34,7 +34,8 @@ describe("#hookHarness", () => {
         const config = {
             router: "/boo",
         } as const;
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'harnessFake' does not exist on type 'typeof import("/Users/kevinbarabash/khan/wonder-blocks/packages/wonder-blocks-testing/src/harness/make-hook-harness")'.
+        // @ts-expect-error We know harnessFake isn't real, we add it in the
+        // mocks at the top of this file.
         const [{harnessFake}, {hookHarness}] = await ws.isolateModules(() =>
             Promise.all([
                 import("../make-hook-harness"),
@@ -54,7 +55,8 @@ describe("#hookHarness", () => {
         const config = {
             router: "/boo",
         } as const;
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'returnValueFake' does not exist on type 'typeof import("/Users/kevinbarabash/khan/wonder-blocks/packages/wonder-blocks-testing/src/harness/make-hook-harness")'.
+        // @ts-expect-error We know harnessFake isn't real, we add it in the
+        // mocks at the top of this file.
         const [{returnValueFake}, {hookHarness}] = await ws.isolateModules(() =>
             Promise.all([
                 import("../make-hook-harness"),

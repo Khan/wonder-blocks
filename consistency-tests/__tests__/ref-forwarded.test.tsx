@@ -11,6 +11,8 @@ import Button from "../../packages/wonder-blocks-button/src/components/button";
 import Icon from "../../packages/wonder-blocks-icon/src/components/icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
+import Pill from "../../packages/wonder-blocks-pill/src/components/pill";
+import Switch from "../../packages/wonder-blocks-switch/src/components/switch";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
 import View from "../../packages/wonder-blocks-core/src/components/view";
 
@@ -38,6 +40,7 @@ import LabelSmall from "../../packages/wonder-blocks-typography/src/components/l
 import LabelXSmall from "../../packages/wonder-blocks-typography/src/components/label-xsmall";
 import Tagline from "../../packages/wonder-blocks-typography/src/components/tagline";
 import Title from "../../packages/wonder-blocks-typography/src/components/title";
+import {RenderStateRoot} from "../../packages/wonder-blocks-core/src/components/render-state-root";
 
 describe("Typography elements", () => {
     test.each`
@@ -355,6 +358,23 @@ describe("Form elements", () => {
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLFieldSetElement);
     });
+
+    describe("Switch", () => {
+        test("forwards ref to an HTMLInputElement", () => {
+            // Arrange
+            const ref: React.RefObject<HTMLInputElement> = React.createRef();
+
+            // Act
+            render(
+                <RenderStateRoot>
+                    <Switch checked={false} ref={ref} />
+                </RenderStateRoot>,
+            );
+
+            // Assert
+            expect(ref.current).toBeInstanceOf(HTMLInputElement);
+        });
+    });
 });
 
 describe("Icon", () => {
@@ -367,5 +387,33 @@ describe("Icon", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(SVGSVGElement);
+    });
+});
+
+describe("Pill", () => {
+    test("forwards ref to an HTMLElement when there's no onClick", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLElement> = React.createRef();
+
+        // Act
+        render(<Pill ref={ref}>This is a pill</Pill>);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLElement);
+    });
+
+    test("forwards ref to an HTMLButtonElement when there's an onClick", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLButtonElement> = React.createRef();
+
+        // Act
+        render(
+            <Pill ref={ref} onClick={() => {}}>
+                This is a pill
+            </Pill>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     });
 });

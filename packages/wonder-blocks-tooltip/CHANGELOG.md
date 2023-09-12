@@ -1,5 +1,89 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.1.9
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.26
+
+## 2.1.8
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+    -   @khanacademy/wonder-blocks-layout@2.0.22
+    -   @khanacademy/wonder-blocks-modal@4.0.25
+    -   @khanacademy/wonder-blocks-typography@2.1.8
+
+## 2.1.7
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+    -   @khanacademy/wonder-blocks-layout@2.0.21
+    -   @khanacademy/wonder-blocks-modal@4.0.24
+    -   @khanacademy/wonder-blocks-typography@2.1.7
+
+## 2.1.6
+
+### Patch Changes
+
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+    -   @khanacademy/wonder-blocks-layout@2.0.20
+    -   @khanacademy/wonder-blocks-modal@4.0.23
+    -   @khanacademy/wonder-blocks-typography@2.1.6
+
+## 2.1.5
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+    -   @khanacademy/wonder-blocks-layout@2.0.19
+    -   @khanacademy/wonder-blocks-modal@4.0.22
+    -   @khanacademy/wonder-blocks-typography@2.1.5
+
+## 2.1.4
+
+### Patch Changes
+
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+    -   @khanacademy/wonder-blocks-layout@2.0.18
+    -   @khanacademy/wonder-blocks-modal@4.0.21
+    -   @khanacademy/wonder-blocks-typography@2.1.4
+
+## 2.1.3
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.20
+
+## 2.1.2
+
+### Patch Changes
+
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-modal@4.0.19
+    -   @khanacademy/wonder-blocks-core@6.0.0
+    -   @khanacademy/wonder-blocks-layout@2.0.17
+    -   @khanacademy/wonder-blocks-typography@2.1.3
+
+## 2.1.1
+
+### Patch Changes
+
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-core@5.4.0
+    -   @khanacademy/wonder-blocks-modal@4.0.18
+    -   @khanacademy/wonder-blocks-layout@2.0.16
+    -   @khanacademy/wonder-blocks-typography@2.1.2
+
 ## 2.1.0
 
 ### Minor Changes

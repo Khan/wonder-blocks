@@ -37,8 +37,7 @@ export interface IActiveTrackerSubscriber {
  */
 export default class ActiveTracker {
     _subscribers: Array<IActiveTrackerSubscriber> = [];
-    // @ts-expect-error [FEI-5019] - TS2564 - Property '_active' has no initializer and is not definitely assigned in the constructor.
-    _active: boolean;
+    _active = false;
 
     _getIndex(who: IActiveTrackerSubscriber): number {
         return this._subscribers.findIndex((v) => v === who);

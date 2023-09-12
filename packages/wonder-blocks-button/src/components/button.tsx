@@ -10,6 +10,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import {Link} from "react-router-dom";
 import ButtonCore from "./button-core";
+import ThemedButton from "../themes/themed-button";
 
 export type SharedProps =
     /**
@@ -287,9 +288,11 @@ const Button: React.ForwardRefExoticComponent<
     };
 
     return (
-        <__RouterContext.Consumer>
-            {(router) => renderClickableBehavior(router)}
-        </__RouterContext.Consumer>
+        <ThemedButton>
+            <__RouterContext.Consumer>
+                {(router) => renderClickableBehavior(router)}
+            </__RouterContext.Consumer>
+        </ThemedButton>
     );
 });
 

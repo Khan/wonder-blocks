@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 4.0.2
+
+### Patch Changes
+
+-   695f2567: Provide a friendly name (for dev tools) for withActionScheduler
+
 ## 4.0.1
 
 ### Patch Changes

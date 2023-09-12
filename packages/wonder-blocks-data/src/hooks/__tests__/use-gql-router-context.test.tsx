@@ -123,8 +123,7 @@ describe("#useGqlRouterContext", () => {
             },
         );
         const result1 = wrapper.result.current;
-        // @ts-expect-error [FEI-5019] - TS2741 - Property 'fiz' is missing in type '{}' but required in type '{ fiz: string; }'.
-        wrapper.rerender({overrides: {}});
+        wrapper.rerender({overrides: {} as any});
         const result2 = wrapper.result.current;
 
         // Assert

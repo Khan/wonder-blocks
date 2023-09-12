@@ -48,7 +48,7 @@ type Props<
      * loading state and data or error that gets retrieved from cache or loaded
      * via the request if no cached value is available.
      */
-    children: (result: Result<TData>) => React.ReactNode;
+    children: (result: Result<TData>) => React.ReactElement | null;
 };
 
 /**
@@ -62,13 +62,11 @@ const Data = <TData extends ValidCacheData>({
     children,
     retainResultOnChange = false,
     clientBehavior = WhenClientSide.ExecuteWhenNoSuccessResult,
-}: Props<TData>): React.ReactElement => {
+}: Props<TData>): React.ReactElement | null => {
     const result = useHydratableEffect(requestId, handler, {
         retainResultOnChange,
         clientBehavior,
     });
-    // @ts-expect-error: React TS types don't allow functional components to return
-    // ReactNodes even though React itself does.
     return children(result);
 };
 

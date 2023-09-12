@@ -1,19 +1,13 @@
+import {jest as wsJest} from "@khanacademy/wonder-stuff-testing";
 import {graphQLDocumentNodeParser} from "../graphql-document-node-parser";
 
 describe("#graphQLDocumentNodeParser", () => {
     describe("in production - shorter error messages", () => {
-        const NODE_ENV = process.env.NODE_ENV;
         beforeEach(() => {
             process.env.NODE_ENV = "production";
         });
 
-        afterEach(() => {
-            if (NODE_ENV != null) {
-                process.env.NODE_ENV = NODE_ENV;
-            } else {
-                delete process.env.NODE_ENV;
-            }
-        });
+        wsJest.afterEachRestoreEnv("NODE_ENV");
 
         it("should throw if the document lacks the kind property", () => {
             // Arrange

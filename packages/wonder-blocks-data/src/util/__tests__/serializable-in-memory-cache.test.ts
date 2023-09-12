@@ -9,12 +9,11 @@ describe("SerializableInMemoryCache", () => {
                 scope: {
                     key: "value",
                 },
-            } as const;
+            };
 
             // Act
             const cache = new SerializableInMemoryCache(sourceData);
             // Try to mutate the cache.
-            // @ts-expect-error [FEI-5019] - TS2540 - Cannot assign to 'scope' because it is a read-only property.
             sourceData["scope"] = {key: "SOME_NEW_DATA"};
             const result = cache.get("scope", "key");
 

@@ -1,5 +1,3 @@
-// WARNING: If you modify this file you may need to update router.jsx.flow
-// to ensure that the Flow types are still correct.
 import * as React from "react";
 
 import {StaticRouter, MemoryRouter, Route, Switch} from "react-router-dom";
@@ -100,8 +98,7 @@ const maybeWithRoute = (
     path?: string | null,
 ): React.ReactElement => {
     if (path == null) {
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-        return children;
+        return <>{children}</>;
     }
 
     return (
@@ -144,14 +141,12 @@ export const adapter: TestHarnessAdapter<Config> = (
 
     // Wrap children with the various contexts and routes, as per the config.
     const wrappedWithRoute = maybeWithRoute(children, config.path);
-    // @ts-expect-error [FEI-5019] - TS2339 - Property 'forceStatic' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
-    if (config.forceStatic) {
+    if ("forceStatic" in config && config.forceStatic) {
         /**
          * There may be times (SSR testing comes to mind) where we will be
          * really strict about not permitting client-side navigation events.
          */
         return (
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'location' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
             <StaticRouter location={config.location} context={{}}>
                 {wrappedWithRoute}
             </StaticRouter>
@@ -166,10 +161,8 @@ export const adapter: TestHarnessAdapter<Config> = (
      *
      * First, the easy one.
      */
-    // @ts-expect-error [FEI-5019] - TS2339 - Property 'location' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
-    if (typeof config.location !== "undefined") {
+    if ("location" in config && config.location !== undefined) {
         return (
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'location' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
             <MemoryRouter initialEntries={[config.location]}>
                 {wrappedWithRoute}
             </MemoryRouter>
@@ -180,8 +173,7 @@ export const adapter: TestHarnessAdapter<Config> = (
      * If it's not the easy one, it should be the complex one.
      * Let's make sure we have good data (also keeps TypeScript happy).
      */
-    // @ts-expect-error [FEI-5019] - TS2339 - Property 'initialEntries' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
-    if (typeof config.initialEntries === "undefined") {
+    if (!("initialEntries" in config) || config.initialEntries === undefined) {
         throw new Error(
             "A location or initial history entries must be provided.",
         );
@@ -193,25 +185,19 @@ export const adapter: TestHarnessAdapter<Config> = (
      * we want, so let's ensure we always have our default location at least.
      */
     const entries =
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'initialEntries' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
         config.initialEntries.length === 0
             ? [defaultConfig.location]
-            : // @ts-expect-error [FEI-5019] - TS2339 - Property 'initialEntries' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
-              config.initialEntries;
+            : config.initialEntries;
 
     // Memory router doesn't allow us to pass maybe types in its TypeScript types.
     // So let's build props then spread them.
     const routerProps: MemoryRouterProps = {
         initialEntries: entries,
     };
-    // @ts-expect-error [FEI-5019] - TS2339 - Property 'initialIndex' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
     if (config.initialIndex != null) {
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'initialIndex' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
         routerProps.initialIndex = config.initialIndex;
     }
-    // @ts-expect-error [FEI-5019] - TS2339 - Property 'getUserConfirmation' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
     if (config.getUserConfirmation != null) {
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'getUserConfirmation' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
         routerProps.getUserConfirmation = config.getUserConfirmation;
     }
 

@@ -2,11 +2,11 @@ import * as React from "react";
 
 import Link from "../link";
 
-// TODO(FEI-5000): Re-enable test after updating props to be conditional.
-// <Link beforeNav={() => Promise.resolve()}>Hello, world!</Link>;
+// @ts-expect-error - href must be used with safeWithNav
+<Link beforeNav={() => Promise.resolve()}>Hello, world!</Link>;
 
-// TODO(FEI-5000): Re-enable test after updating props to be conditional.
-// <Link safeWithNav={() => Promise.resolve()}>Hello, world!</Link>;
+// @ts-expect-error - href must be used with safeWithNav
+<Link safeWithNav={() => Promise.resolve()}>Hello, world!</Link>;
 
 // It's okay to use onClick with href
 <Link href="/foo" onClick={() => {}}>
@@ -18,6 +18,11 @@ import Link from "../link";
 </Link>;
 
 <Link href="/foo" safeWithNav={() => Promise.resolve()}>
+    Hello, world!
+</Link>;
+
+// @ts-expect-error - `target="_blank"` cannot beused with `beforeNav`
+<Link href="/foo" target="_blank" beforeNav={() => Promise.resolve()}>
     Hello, world!
 </Link>;
 

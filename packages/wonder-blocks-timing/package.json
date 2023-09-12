@@ -1,7 +1,7 @@
 {
   "name": "@khanacademy/wonder-blocks-timing",
   "private": false,
-  "version": "4.0.1",
+  "version": "4.0.2",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,7 @@
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.9.7"
+    "@khanacademy/wb-dev-build-settings": "^1.0.0"
   },
   "author": "",
   "license": "MIT"

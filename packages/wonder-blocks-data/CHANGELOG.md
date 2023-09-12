@@ -1,5 +1,65 @@
 # @khanacademy/wonder-blocks-data
 
+## 13.0.4
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+
+## 13.0.3
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+
+## 13.0.2
+
+### Patch Changes
+
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+
+## 13.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+
+## 13.0.0
+
+### Major Changes
+
+-   65c02cff: Return new no-data state from useCachedEffect when it is not loading and there is no data to return
+
+### Patch Changes
+
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+
+## 12.0.0
+
+### Major Changes
+
+-   674a1e5c: POJOs have been replace with TS enums
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-core@6.0.0
+
+## 11.0.16
+
+### Patch Changes
+
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-core@5.4.0
+
 ## 11.0.15
 
 ### Patch Changes

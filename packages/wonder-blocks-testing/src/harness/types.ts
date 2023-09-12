@@ -1,5 +1,3 @@
-// WARNING: If you modify this file you may need to update types.js.flow
-// to ensure that the Flow types are still correct.
 import * as React from "react";
 
 /**
@@ -8,7 +6,7 @@ import * as React from "react";
 export type TestHarnessAdapter<TConfig> = (
     children: React.ReactNode,
     config: TConfig,
-) => React.ReactElement<any>;
+) => React.ReactElement;
 
 /**
  * A general map of adapters by their identifiers.

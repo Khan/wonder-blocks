@@ -1,5 +1,87 @@
 # @khanacademy/wonder-blocks-testing
 
+## 9.3.4
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+    -   @khanacademy/wonder-blocks-data@13.0.4
+
+## 9.3.3
+
+### Patch Changes
+
+-   Updated dependencies [2871f0a9]
+    -   @khanacademy/wonder-blocks-core@6.1.1
+    -   @khanacademy/wonder-blocks-data@13.0.3
+
+## 9.3.2
+
+### Patch Changes
+
+-   Updated dependencies [efb59c29]
+-   Updated dependencies [8bc40ed2]
+    -   @khanacademy/wonder-blocks-core@6.1.0
+    -   @khanacademy/wonder-blocks-data@13.0.2
+
+## 9.3.1
+
+### Patch Changes
+
+-   9c608281: Make sure ssr adapter doesn't throw if it gets nested
+
+## 9.3.0
+
+### Minor Changes
+
+-   f530fbeb: Fix bug where the test harness was causing the component under test to be remounted when rerendering instead of reusing the existing instance
+
+## 9.2.0
+
+### Minor Changes
+
+-   76883b4e: Make sure Wonder Blocks Testing is dependent on Core
+
+### Patch Changes
+
+-   76883b4e: Output the adapter name with the Adapter component
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+    -   @khanacademy/wonder-blocks-data@13.0.1
+
+## 9.1.0
+
+### Minor Changes
+
+-   6ed7e928: Test harness adapters are now rendered as React components which should ensure that contexts are properly available when children are rendered inside the adapters that require those contexts
+
+## 9.0.0
+
+### Major Changes
+
+-   1920feb8: Added new SSR adapter for test harnesses to support `RenderStateRoot` in tests and stories
+
+### Patch Changes
+
+-   Updated dependencies [65c02cff]
+    -   @khanacademy/wonder-blocks-data@13.0.0
+
+## 8.0.21
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-data@12.0.0
+
+## 8.0.20
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-data@11.0.16
+
 ## 8.0.19
 
 ### Patch Changes
