@@ -32,7 +32,7 @@ const AccordionSectionTitle = (props: Props) => {
 
     return (
         <Clickable
-            /* The opener is the cli    ckable title that opens
+            /* The opener is the clickable title that opens
             and closes the section. */
             aria-expanded={isOpen}
             aria-controls={sectionContentUniqueId}

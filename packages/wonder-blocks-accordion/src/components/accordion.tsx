@@ -1,9 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import AccordionSection from "./accordion-section";
@@ -92,22 +90,9 @@ const Accordion = React.forwardRef(function Accordion(
         ...ariaProps
     } = props;
 
-    let cornerStyle;
-    switch (cornerKind) {
-        case "square":
-            cornerStyle = styles.wrapperSquare;
-            break;
-        case "rounded":
-            cornerStyle = styles.wrapperRounded;
-            break;
-        case "rounded-per-section":
-            cornerStyle = styles.wrapperRoundedPerSection;
-            break;
-    }
-
     return (
         <StyledUnorderedList
-            style={[styles.wrapper, cornerStyle, style]}
+            style={[styles.wrapper, style]}
             {...ariaProps}
             ref={ref}
         >
@@ -120,6 +105,7 @@ const Accordion = React.forwardRef(function Accordion(
                         cornerKind: childCornerKind,
                     } = child.props;
 
+                    const isFirstChild = index === 0;
                     const isLastChild = index === children.length - 1;
 
                     return (
@@ -128,6 +114,7 @@ const Accordion = React.forwardRef(function Accordion(
                                 caretPosition:
                                     caretPosition ?? childCaretPosition,
                                 cornerKind: cornerKind ?? childCornerKind,
+                                isFirstSection: isFirstChild,
                                 isLastSection: isLastChild,
                             })}
                         </li>
@@ -144,17 +131,6 @@ const styles = StyleSheet.create({
         // Reset the default padding for lists.
         padding: 0,
         width: "100%",
-
-        border: `1px solid ${Color.offBlack16}`,
-    },
-    wrapperSquare: {
-        borderRadius: 0,
-    },
-    wrapperRounded: {
-        borderRadius: Spacing.small_12,
-    },
-    wrapperRoundedPerSection: {
-        border: "none",
     },
 });
 

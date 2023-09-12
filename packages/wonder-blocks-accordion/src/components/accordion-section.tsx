@@ -1,5 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import type {StyleDeclaration} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
@@ -8,6 +9,8 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import AccordionSectionTitle from "./accordion-section-title";
+
+type CornerKindType = "square" | "rounded" | "rounded-per-section";
 
 type Props = AriaProps & {
     /**
@@ -46,7 +49,7 @@ type Props = AriaProps & {
      * within a parent Accordion component, the Accordion’s cornerKind
      * value is prioritized.
      */
-    cornerKind?: "square" | "rounded" | "rounded-per-section";
+    cornerKind?: CornerKindType;
     /**
      * Whether this section is initially open or closed. Defaults to false.
      */
@@ -64,6 +67,12 @@ type Props = AriaProps & {
      */
     titleStyle?: StyleType;
 
+    /**
+     * Whether this section is the first section in the accordion.
+     * For internal use only.
+     * @ignore
+     */
+    isFirstSection?: boolean;
     /**
      * Whether this section is the last section in the accordion.
      * For internal use only.
@@ -119,7 +128,8 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         cornerKind = "rounded",
         style,
         titleStyle,
-        isLastSection,
+        isFirstSection = false,
+        isLastSection = false,
         ...ariaProps
     } = props;
 
@@ -132,6 +142,12 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         }
     };
 
+    const sectionStyles = _generateStyles(
+        cornerKind,
+        isFirstSection,
+        isLastSection,
+    );
+
     return (
         <UniqueIDProvider mockOnFirstRender={true} scope="switch">
             {(ids) => {
@@ -143,13 +159,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 return (
                     <View
                         id={id}
-                        style={[
-                            styles.wrapper,
-                            isLastSection && styles.wrapperLastSection,
-                            cornerKind === "rounded-per-section" &&
-                                styles.wrapperRoundedPerSection,
-                            style,
-                        ]}
+                        style={[styles.wrapper, sectionStyles.wrapper, style]}
                         {...ariaProps}
                         ref={ref}
                     >
@@ -189,19 +199,81 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         boxSizing: "border-box",
-        borderBottom: `1px solid ${Color.offBlack16}`,
-    },
-    wrapperLastSection: {
-        borderBottom: "none",
-    },
-    wrapperRoundedPerSection: {
-        border: `1px solid ${Color.offBlack16}`,
-        borderRadius: Spacing.small_12,
-        marginBottom: Spacing.medium_16,
     },
     stringContent: {
         padding: Spacing.medium_16,
     },
 });
+
+const cornerStyles: Record<string, any> = {};
+
+const _generateStyles = (
+    cornerKind: CornerKindType,
+    isFirstSection: boolean,
+    isLastSection: boolean,
+) => {
+    const sectionType = `${cornerKind}-${isFirstSection.toString()}-${isLastSection.toString()}`;
+    if (cornerStyles[sectionType]) {
+        return cornerStyles[sectionType];
+    }
+
+    let wrapperStyle: StyleType = Object.freeze({});
+    let firstSectionStyle: StyleType = Object.freeze({});
+    let lastSectionStyle: StyleType = Object.freeze({});
+
+    if (cornerKind === "square") {
+        wrapperStyle = {
+            border: `1px solid ${Color.offBlack16}`,
+            borderBottom: "none",
+            borderRadius: 0,
+        };
+
+        if (isLastSection) {
+            lastSectionStyle = {
+                borderBottom: `1px solid ${Color.offBlack16}`,
+            };
+        }
+    }
+
+    if (cornerKind === "rounded") {
+        wrapperStyle = {
+            border: `1px solid ${Color.offBlack16}`,
+            borderBottom: "none",
+        };
+
+        if (isFirstSection) {
+            firstSectionStyle = {
+                borderStartStartRadius: Spacing.small_12,
+                borderStartEndRadius: Spacing.small_12,
+            };
+        }
+        if (isLastSection) {
+            lastSectionStyle = {
+                borderBottom: `1px solid ${Color.offBlack16}`,
+                borderEndStartRadius: Spacing.small_12,
+                borderEndEndRadius: Spacing.small_12,
+            };
+        }
+    }
+
+    if (cornerKind === "rounded-per-section") {
+        wrapperStyle = {
+            border: `1px solid ${Color.offBlack16}`,
+            borderRadius: Spacing.small_12,
+            marginBottom: Spacing.medium_16,
+        };
+    }
+
+    const newStyles: StyleDeclaration = {
+        wrapper: {
+            ...wrapperStyle,
+            ...firstSectionStyle,
+            ...lastSectionStyle,
+        },
+    };
+
+    cornerStyles[sectionType] = StyleSheet.create(newStyles);
+    return cornerStyles[sectionType];
+};
 
 export default AccordionSection;
