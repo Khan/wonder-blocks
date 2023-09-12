@@ -5,7 +5,7 @@ import {expect} from "@storybook/jest";
 import {userEvent, within} from "@storybook/testing-library";
 
 import Switch from "@khanacademy/wonder-blocks-switch";
-import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -43,13 +43,6 @@ export default {
             />
         ),
     },
-    decorators: [
-        (Story) => (
-            <RenderStateRoot>
-                <Story />
-            </RenderStateRoot>
-        ),
-    ],
     argTypes: SwitchArgtypes,
 } as Meta<typeof Switch>;
 
