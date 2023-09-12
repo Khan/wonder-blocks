@@ -8,7 +8,7 @@ import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconSize} from "../util/icon-assets";
 import {viewportPixelsForSize} from "../util/icon-util";
 
-const StyledIcon = addStyle("img");
+const StyledIcon = addStyle("i");
 
 type Props = AriaProps & {
     /**
@@ -50,7 +50,7 @@ type Props = AriaProps & {
  */
 const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
-    ref: React.ForwardedRef<HTMLImageElement>,
+    ref: React.ForwardedRef<HTMLElement>,
 ) {
     const {
         color = "currentColor",
@@ -69,12 +69,21 @@ const PhosphorIcon = React.forwardRef(function PhosphorIcon(
         <StyledIcon
             {...sharedProps}
             className={classNames}
-            style={[styles.svg, {color: color}, {fontSize: pixelSize}, style]}
+            style={[
+                styles.svg,
+                {
+                    maskImage: `url(${icon})`,
+                    maskSize: "100%",
+                    maskRepeat: "no-repeat",
+                    maskPosition: "center",
+                    backgroundColor: color,
+                    width: pixelSize,
+                    height: pixelSize,
+                },
+                style,
+            ]}
             data-test-id={testId}
             ref={ref}
-            src={icon}
-            width={pixelSize}
-            height={pixelSize}
         />
     );
 });
