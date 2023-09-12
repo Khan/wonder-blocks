@@ -166,10 +166,13 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                         <AccordionSectionTitle
                             title={title}
                             caretPosition={caretPosition}
+                            cornerKind={cornerKind}
                             isOpen={isOpen}
                             onClick={handleClick}
                             sectionContentUniqueId={sectionContentUniqueId}
                             titleStyle={titleStyle}
+                            isFirstSection={isFirstSection}
+                            isLastSection={isLastSection}
                         />
                         {/* The content is the section that
                         opens and closes. */}

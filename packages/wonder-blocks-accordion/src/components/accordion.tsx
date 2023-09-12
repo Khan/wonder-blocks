@@ -127,6 +127,7 @@ const Accordion = React.forwardRef(function Accordion(
 
 const styles = StyleSheet.create({
     wrapper: {
+        boxSizing: "border-box",
         listStyle: "none",
         // Reset the default padding for lists.
         padding: 0,

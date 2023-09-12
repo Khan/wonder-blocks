@@ -158,11 +158,27 @@ export const WithStyle: StoryComponentType = {
     render: () => {
         const customStyles = {
             border: `2px solid ${Color.pink}`,
-            borderRadius: Spacing.large_24,
             padding: Spacing.xLarge_32,
         };
 
-        return <Accordion style={customStyles}>{defaultSections}</Accordion>;
+        const customSectionStyles = {
+            borderStartStartRadius: 0,
+            borderStartEndRadius: 0,
+        };
+
+        return (
+            <Accordion style={customStyles}>
+                <AccordionSection
+                    title="This section has a custom border radius at the top"
+                    style={customSectionStyles}
+                >
+                    Something
+                </AccordionSection>
+                <AccordionSection title="Just a section">
+                    Something
+                </AccordionSection>
+            </Accordion>
+        );
     },
 };
 
