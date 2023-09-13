@@ -173,7 +173,7 @@ jobs:
   #   # on the main Changeset "Version Packages" PR
   #   if: |
   #     github.event.pull_request.draft == false
-  #     && github.ref_name != 'changeset-release/main'
+  #     && !startsWith(github.head_ref, 'changeset-release/')
   #   runs-on: ${{ matrix.os }}
   #   strategy:
   #     matrix:
