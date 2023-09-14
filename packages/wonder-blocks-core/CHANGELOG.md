@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.2.0
+
+### Minor Changes
+
+-   4b97b9a2: Remove deps argument from `usePreHydrationEffect`
+
 ## 6.1.1
 
 ### Patch Changes

@@ -3,6 +3,7 @@ import {render, screen} from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import Switch from "../switch";
 
 describe("Switch", () => {
@@ -10,7 +11,11 @@ describe("Switch", () => {
         test("clicking the switch should call onChange", () => {
             // Arrange
             const onChangeSpy = jest.fn();
-            render(<Switch checked={false} onChange={onChangeSpy} />);
+            render(
+                <RenderStateRoot>
+                    <Switch checked={false} onChange={onChangeSpy} />
+                </RenderStateRoot>,
+            );
 
             // Act
             const switchComponent = screen.getByRole("switch");
@@ -24,11 +29,13 @@ describe("Switch", () => {
             // Arrange
             const onChangeSpy = jest.fn();
             render(
-                <Switch
-                    checked={false}
-                    onChange={onChangeSpy}
-                    disabled={true}
-                />,
+                <RenderStateRoot>
+                    <Switch
+                        checked={false}
+                        onChange={onChangeSpy}
+                        disabled={true}
+                    />
+                </RenderStateRoot>,
             );
 
             // Act
@@ -42,7 +49,11 @@ describe("Switch", () => {
         test("pressing the space key should call onChange", () => {
             // Arrange
             const onChangeSpy = jest.fn();
-            render(<Switch checked={false} onChange={onChangeSpy} />);
+            render(
+                <RenderStateRoot>
+                    <Switch checked={false} onChange={onChangeSpy} />
+                </RenderStateRoot>,
+            );
 
             // Act
             const switchComponent = screen.getByRole("switch");
@@ -57,14 +68,14 @@ describe("Switch", () => {
             // Arrange
             const onChangeSpy = jest.fn();
             render(
-                <>
+                <RenderStateRoot>
                     <Switch
                         id="switch-id"
                         checked={false}
                         onChange={onChangeSpy}
                     />
                     <label htmlFor="switch-id">Switch</label>
-                </>,
+                </RenderStateRoot>,
             );
 
             // Act
@@ -80,7 +91,13 @@ describe("Switch", () => {
         it("should set the accessibility attributes accordingly", () => {
             // Arrange
             render(
-                <Switch aria-label="Gravity" checked={true} disabled={true} />,
+                <RenderStateRoot>
+                    <Switch
+                        aria-label="Gravity"
+                        checked={true}
+                        disabled={true}
+                    />
+                </RenderStateRoot>,
             );
 
             // Act
@@ -94,10 +111,12 @@ describe("Switch", () => {
         it("should render an icon if one is provided", () => {
             // Arrange
             render(
-                <Switch
-                    checked={false}
-                    icon={<Icon icon={icons.add} testId="test-icon" />}
-                />,
+                <RenderStateRoot>
+                    <Switch
+                        checked={false}
+                        icon={<Icon icon={icons.add} testId="test-icon" />}
+                    />
+                </RenderStateRoot>,
             );
 
             // Act

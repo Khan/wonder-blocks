@@ -6,9 +6,9 @@ import {userEvent, within} from "@storybook/testing-library";
 
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -17,6 +17,21 @@ import SwitchArgtypes from "./switch.argtypes";
 
 type StoryComponentType = StoryObj<typeof Switch>;
 
+/**
+ * A Switch is an input that allows users to toggle between two states, typically `on` and `off`.
+ * It is a controlled component, meaning that the state of the switch is controlled by the
+ * `checked` prop.
+ * See the Best Practices tab for more information on how to use this component with labels,
+ * descriptions, tooltips, and more.
+ *
+ * ### Usage
+ * ```jsx
+ *
+ * import Switch from "@khanacademy/wonder-blocks-switch";
+ *
+ * <Switch checked={false} onChange={() => {}} />
+ * ```
+ */
 export default {
     title: "Switch",
     component: Switch,
@@ -36,7 +51,21 @@ export const Default: StoryComponentType = {
         checked: false,
         onChange: () => {},
     },
+    decorators: [
+        (Story) => (
+            <View>
+                <Story />
+            </View>
+        ),
+    ],
 };
+
+/**
+ * The switch is a controlled component, so state should
+ * be used to keep track of whether it is checked or not.
+ * The `onChange` prop is optional in case the toggle will
+ * be wrapped in a larger clickable component.
+ */
 
 export const Controlled: StoryComponentType = () => {
     const [checkedOne, setCheckedOne] = React.useState(false);
@@ -45,7 +74,7 @@ export const Controlled: StoryComponentType = () => {
     return (
         <View style={styles.column}>
             <Switch checked={checkedOne} onChange={setCheckedOne} />
-            <Strut size={Spacing.xSmall_8} />
+
             <Switch
                 testId="test-switch"
                 aria-label="test switch"
@@ -80,65 +109,104 @@ Controlled.play = async ({canvasElement}) => {
     expect(switchWithIcon).toHaveStyle("background-color: rgb(24, 101, 242)");
 };
 
-Controlled.parameters = {
-    docs: {
-        description: {
-            story: `The switch is a controlled component, so state should be used to keep track of
-            whether it is checked or not. The \`onChange\` prop is optional in case the toggle
-            will be wrapped in a larger clickable component.`,
-        },
-    },
-};
-
-export const Disabled: StoryComponentType = () => (
-    <View style={styles.column}>
-        <Switch checked={false} disabled={true} />
-        <Strut size={Spacing.xSmall_8} />
-        <Switch checked={true} disabled={true} />
-        <Strut size={Spacing.xSmall_8} />
-        <Switch
-            checked={false}
-            disabled={true}
-            icon={<Icon icon={icons.search} />}
-        />
-        <Strut size={Spacing.xSmall_8} />
-        <Switch
-            checked={true}
-            disabled={true}
-            icon={<Icon icon={icons.search} />}
-        />
-    </View>
-);
-
-Disabled.parameters = {
-    docs: {
-        description: {
-            story: `The switch can be disabled.`,
-        },
-    },
-};
-
-export const WithIcon: StoryComponentType = () => {
-    return (
+/**
+ * The switch can be disabled.
+ */
+export const Disabled: StoryComponentType = {
+    render: () => (
         <View style={styles.column}>
-            <Switch checked={false} icon={<Icon icon={icons.search} />} />
-            <Strut size={Spacing.xSmall_8} />
-            <Switch checked={true} icon={<Icon icon={icons.search} />} />
+            <Switch checked={false} disabled={true} />
+            <Switch checked={true} disabled={true} />
+            <Switch
+                checked={false}
+                disabled={true}
+                icon={<Icon icon={icons.search} />}
+            />
+            <Switch
+                checked={true}
+                disabled={true}
+                icon={<Icon icon={icons.search} />}
+            />
         </View>
-    );
+    ),
 };
 
-WithIcon.parameters = {
-    docs: {
-        description: {
-            story: `The switch can take an \`Icon\` element which will be rendered inside the slider.`,
-        },
+/**
+ * The switch can take an `Icon` element which will be rendered inside the slider.
+ */
+export const WithIcon: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={styles.column}>
+                <Switch checked={false} icon={<Icon icon={icons.search} />} />
+
+                <Switch checked={true} icon={<Icon icon={icons.search} />} />
+            </View>
+        );
     },
+};
+
+/**
+ * The switch supports the `khanmigo` theme.
+ */
+export const KhanmigoTheme = () => {
+    const [checkedOne, setCheckedOne] = React.useState(false);
+    const [checkedTwo, setCheckedTwo] = React.useState(false);
+
+    return (
+        <ThemeSwitcherContext.Provider value="khanmigo">
+            <View style={[styles.dark, styles.row]}>
+                <View style={styles.column}>
+                    <LabelMedium style={styles.textLight}>Default</LabelMedium>
+                    <Switch checked={checkedOne} onChange={setCheckedOne} />
+                    <Switch checked={true} />
+                    <Switch checked={false} disabled={true} />
+                    <Switch checked={true} disabled={true} />
+                </View>
+                <View style={styles.column}>
+                    <LabelMedium style={styles.textLight}>
+                        With Icon
+                    </LabelMedium>
+                    <Switch
+                        checked={checkedTwo}
+                        onChange={setCheckedTwo}
+                        icon={<Icon icon={icons.search} />}
+                    />
+                    <Switch
+                        checked={true}
+                        icon={<Icon icon={icons.search} />}
+                    />
+                    <Switch
+                        checked={false}
+                        disabled={true}
+                        icon={<Icon icon={icons.search} />}
+                    />
+                    <Switch
+                        checked={true}
+                        disabled={true}
+                        icon={<Icon icon={icons.search} />}
+                    />
+                </View>
+            </View>
+        </ThemeSwitcherContext.Provider>
+    );
 };
 
 const styles = StyleSheet.create({
     column: {
         flexDirection: "column",
         alignItems: "start",
+        gap: tokens.spacing.xSmall_8,
+    },
+    dark: {
+        backgroundColor: tokens.color.eggplant,
+        padding: tokens.spacing.xSmall_8,
+    },
+    row: {
+        flexDirection: "row",
+        gap: tokens.spacing.medium_16,
+    },
+    textLight: {
+        color: tokens.color.white,
     },
 });

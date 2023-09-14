@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.0
+
+### Minor Changes
+
+-   fc6cec0b: Add theming to Switch and new color tokens for theming
+
+### Patch Changes
+
+-   Updated dependencies [5725703a]
+-   Updated dependencies [fc6cec0b]
+    -   @khanacademy/wonder-blocks-theming@1.1.0
+
+## 1.0.6
+
+### Patch Changes
+
+-   Updated dependencies [4b97b9a2]
+    -   @khanacademy/wonder-blocks-core@6.2.0
+    -   @khanacademy/wonder-blocks-icon@2.1.6
+
 ## 1.0.5
 
 ### Patch Changes

@@ -1,25 +1,25 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {CSSProperties, StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import Color, {
-    SemanticColor,
-    mix,
-    fade,
-} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import Icon from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
+import {
+    ThemedStylesFn,
+    useScopedTheme,
+    useStyles,
+} from "@khanacademy/wonder-blocks-theming";
 
 import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./button";
+import {ButtonThemeContext, ButtonThemeContract} from "../themes/themed-button";
 
 type Props = SharedProps & ChildrenProps & ClickableState;
 
@@ -34,6 +34,9 @@ const ButtonCore: React.ForwardRefExoticComponent<
     typeof Link | HTMLButtonElement | HTMLAnchorElement,
     Props
 >(function ButtonCore(props: Props, ref) {
+    const {theme, themeName} = useScopedTheme(ButtonThemeContext);
+    const sharedStyles = useStyles(themedSharedStyles, theme);
+
     const renderInner = (router: any): React.ReactNode => {
         const {
             children,
@@ -57,18 +60,19 @@ const ButtonCore: React.ForwardRefExoticComponent<
             ...restProps
         } = props;
 
-        const buttonColor =
-            color === "destructive"
-                ? SemanticColor.controlDestructive
-                : SemanticColor.controlDefault;
-
-        const iconWidth = icon ? (size === "small" ? 16 : 24) + 8 : 0;
+        const iconWidth = icon
+            ? size === "small"
+                ? theme.size.width.medium
+                : theme.size.width.large
+            : 0;
         const buttonStyles = _generateStyles(
-            buttonColor,
+            color,
             kind,
             light,
             iconWidth,
             size,
+            theme,
+            themeName,
         );
 
         const disabled = spinner || disabledProp;
@@ -200,19 +204,19 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
 export default ButtonCore;
 
-const sharedStyles = StyleSheet.create({
+const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     shared: {
         position: "relative",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        height: 40,
+        height: theme.size.height.medium,
         paddingTop: 0,
         paddingBottom: 0,
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: theme.padding.large,
+        paddingRight: theme.padding.large,
         border: "none",
-        borderRadius: 4,
+        borderRadius: theme.border.radius.default,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -228,21 +232,22 @@ const sharedStyles = StyleSheet.create({
     },
     withIcon: {
         // The left padding for the button with icon should have 4px less padding
-        paddingLeft: 12,
+        paddingLeft: theme.padding.medium,
     },
     disabled: {
         cursor: "auto",
     },
     small: {
-        height: 32,
+        borderRadius: theme.border.radius.small,
+        height: theme.size.height.small,
     },
     large: {
-        borderRadius: Spacing.xxSmall_6,
-        height: 56,
+        borderRadius: theme.border.radius.large,
+        height: theme.size.height.large,
     },
     text: {
         alignItems: "center",
-        fontWeight: "bold",
+        fontWeight: theme.font.weight.default,
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
@@ -250,8 +255,8 @@ const sharedStyles = StyleSheet.create({
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
     largeText: {
-        fontSize: 18,
-        lineHeight: "20px",
+        fontSize: theme.font.size.large,
+        lineHeight: theme.font.lineHeight.large,
     },
     textWithFocus: {
         position: "relative", // allows the tertiary button border to use the label width
@@ -263,36 +268,53 @@ const sharedStyles = StyleSheet.create({
         position: "absolute",
     },
     icon: {
-        paddingRight: Spacing.xSmall_8,
+        paddingRight: theme.padding.small,
     },
 });
 
 const styles: Record<string, any> = {};
 
 const _generateStyles = (
-    color: string,
+    buttonColor = "default",
     kind: "primary" | "secondary" | "tertiary",
     light: boolean,
     iconWidth: number,
     size: "large" | "medium" | "small",
+    theme: ButtonThemeContract,
+    themeName: string,
 ) => {
-    const buttonType =
-        color + kind + light.toString() + iconWidth.toString() + size;
+    const color: string =
+        buttonColor === "destructive"
+            ? theme.color.bg.critical.default
+            : theme.color.bg.action.default;
+
+    const buttonType = `${color}-${kind}-${light}-${iconWidth}-${size}-${themeName}`;
+
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
-    const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
-    const fadedColor = mix(fade(color, 0.32), white);
-    const activeColor = mix(offBlack32, color);
-    const padding = size === "large" ? Spacing.xLarge_32 : Spacing.medium_16;
+    const fadedColor =
+        buttonColor === "destructive"
+            ? theme.color.bg.critical.inverse
+            : theme.color.bg.action.inverse;
+    const activeColor =
+        buttonColor === "destructive"
+            ? theme.color.bg.critical.active
+            : theme.color.bg.action.active;
+    const padding =
+        size === "large" ? theme.padding.xLarge : theme.padding.large;
 
-    let newStyles: Record<string, any> = {};
+    let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
+        const boxShadowInnerColor: string = light
+            ? theme.color.bg.primary.inverse
+            : theme.color.bg.primary.default;
+
         newStyles = {
             default: {
-                background: light ? white : color,
-                color: light ? color : white,
+                background: light ? theme.color.bg.primary.default : color,
+                color: light ? color : theme.color.text.inverse,
                 paddingLeft: padding,
                 paddingRight: padding,
             },
@@ -301,63 +323,90 @@ const _generateStyles = (
                 // a background of darkBlue for the light version. The inner
                 // box shadow/ring is also small enough for a slight variation
                 // in the background color not to matter too much.
-                boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 3px ${
-                    light ? white : color
+                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
+                    light ? theme.color.bg.primary.default : color
                 }`,
             },
             active: {
-                boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 3px ${
+                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
                     light ? fadedColor : activeColor
                 }`,
                 background: light ? fadedColor : activeColor,
                 color: light ? activeColor : fadedColor,
             },
             disabled: {
-                background: light ? fadedColor : offBlack32,
-                color: light ? color : white64,
+                background: light
+                    ? fadedColor
+                    : theme.color.bg.primary.disabled,
+                color: light ? color : theme.color.text.primary.disabled,
                 cursor: "default",
                 ":focus": {
                     boxShadow: `0 0 0 1px ${
-                        light ? offBlack32 : white
-                    }, 0 0 0 3px ${light ? fadedColor : offBlack32}`,
+                        light
+                            ? theme.color.bg.primary.disabled
+                            : theme.color.bg.primary.default
+                    }, 0 0 0 3px ${
+                        light ? fadedColor : theme.color.bg.primary.disabled
+                    }`,
                 },
             },
         };
     } else if (kind === "secondary") {
+        const horizontalPadding = padding - (theme.border.width.focused - 1);
+        const secondaryBorderColor =
+            buttonColor === "destructive"
+                ? theme.color.border.secondary.critical
+                : theme.color.border.secondary.action;
+        const secondaryActiveColor =
+            buttonColor === "destructive"
+                ? theme.color.bg.secondary.active.critical
+                : theme.color.bg.secondary.active.action;
+
         newStyles = {
             default: {
-                background: "none",
-                color: light ? white : color,
-                borderColor: light ? white50 : offBlack50,
+                background: light
+                    ? theme.color.bg.secondary.inverse
+                    : theme.color.bg.secondary.default,
+                color: light ? theme.color.text.inverse : color,
+                borderColor: light
+                    ? theme.color.border.secondary.inverse
+                    : secondaryBorderColor,
                 borderStyle: "solid",
-                borderWidth: 1,
+                borderWidth: theme.border.width.secondary,
                 paddingLeft: padding,
                 paddingRight: padding,
             },
             focus: {
-                background: light ? "transparent" : white,
-                borderColor: light ? white : color,
-                borderWidth: 2,
-                paddingLeft: padding - 1,
-                paddingRight: padding - 1,
+                background: light
+                    ? theme.color.bg.secondary.inverse
+                    : theme.color.bg.secondary.focus,
+                borderColor: light ? theme.color.border.primary.inverse : color,
+                borderWidth: theme.border.width.focused,
+                paddingLeft: horizontalPadding,
+                paddingRight: horizontalPadding,
             },
+
             active: {
-                background: light ? activeColor : fadedColor,
+                background: light ? activeColor : secondaryActiveColor,
                 color: light ? fadedColor : activeColor,
                 borderColor: light ? fadedColor : activeColor,
-                borderWidth: 2,
+                borderWidth: theme.border.width.focused,
                 // We need to reduce padding to offset the difference
                 // caused by the border becoming thicker on focus.
-                paddingLeft: padding - 1,
-                paddingRight: padding - 1,
+                paddingLeft: horizontalPadding,
+                paddingRight: horizontalPadding,
             },
             disabled: {
-                color: light ? white50 : offBlack32,
-                borderColor: light ? fadedColor : offBlack32,
+                color: light
+                    ? theme.color.text.secondary.inverse
+                    : theme.color.text.disabled,
+                borderColor: light ? fadedColor : theme.color.border.disabled,
                 cursor: "default",
                 ":focus": {
-                    borderColor: light ? white50 : offBlack32,
-                    borderWidth: 2,
+                    borderColor: light
+                        ? theme.color.border.secondary.inverse
+                        : theme.color.border.disabled,
+                    borderWidth: theme.border.width.disabled,
                     // We need to reduce padding to offset the difference
                     // caused by the border becoming thicker on focus.
                     paddingLeft: padding - 1,
@@ -369,7 +418,7 @@ const _generateStyles = (
         newStyles = {
             default: {
                 background: "none",
-                color: light ? white : color,
+                color: light ? theme.color.text.inverse : color,
                 paddingLeft: 0,
                 paddingRight: 0,
             },
@@ -377,12 +426,12 @@ const _generateStyles = (
                 ":after": {
                     content: "''",
                     position: "absolute",
-                    height: 2,
+                    height: theme.size.height.tertiaryHover,
                     width: "100%",
                     right: 0,
                     bottom: 0,
-                    background: light ? white : color,
-                    borderRadius: 2,
+                    background: light ? theme.color.bg.tertiary.hover : color,
+                    borderRadius: theme.border.radius.tertiary,
                 },
             },
             focus: {
@@ -392,12 +441,18 @@ const _generateStyles = (
                     // calculate the width/height and use absolute position to
                     // prevent other elements from being shifted around.
                     position: "absolute",
-                    width: `calc(100% + ${Spacing.xxxSmall_4}px)`,
-                    height: `calc(100% - ${Spacing.xxxSmall_4}px)`,
+                    // Keeps the button at the same size when applying the
+                    // borderWidth property, so we can apply the correct value
+                    // per theme for each side (left and right).
+                    width: `calc(100% + ${theme.border.width.focused * 2}px)`,
+                    // Same as above, but for the height (top and bottom).
+                    height: `calc(100% - ${theme.border.width.focused * 2}px)`,
                     borderStyle: "solid",
-                    borderColor: light ? white : color,
-                    borderWidth: Spacing.xxxxSmall_2,
-                    borderRadius: Spacing.xxxSmall_4,
+                    borderColor: light
+                        ? theme.color.border.tertiary.inverse
+                        : color,
+                    borderWidth: theme.border.width.focused,
+                    borderRadius: theme.border.radius.default,
                 },
             },
             active: {
@@ -408,12 +463,14 @@ const _generateStyles = (
                 },
             },
             disabled: {
-                color: light ? fadedColor : offBlack32,
+                color: light ? fadedColor : theme.color.text.disabled,
                 cursor: "default",
             },
             disabledFocus: {
                 ":after": {
-                    borderColor: light ? white50 : offBlack32,
+                    borderColor: light
+                        ? theme.color.border.tertiary.inverse
+                        : theme.color.border.disabled,
                 },
             },
         };

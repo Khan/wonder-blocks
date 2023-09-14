@@ -19,6 +19,7 @@ import packageConfig from "../../packages/wonder-blocks-button/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
+import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 
 export default {
     title: "Button",
@@ -120,51 +121,41 @@ export const styles: StyleDeclaration = StyleSheet.create({
     },
 });
 
-export const Variants: StoryComponentType = {
-    render: () => (
-        <View>
-            <View style={{flexDirection: "row"}}>
-                <Button onClick={() => {}}>Hello, world!</Button>
-                <Strut size={16} />
-                <Button onClick={() => {}} kind="secondary">
-                    Hello, world!
-                </Button>
-                <Strut size={16} />
-                <Button onClick={() => {}} kind="tertiary">
-                    Hello, world!
-                </Button>
-            </View>
-            <Strut size={16} />
-            <View style={{flexDirection: "row"}}>
-                <Button onClick={() => {}} disabled={true}>
-                    Hello, world!
-                </Button>
-                <Strut size={16} />
-                <Button onClick={() => {}} disabled={true} kind="secondary">
-                    Hello, world!
-                </Button>
-                <Strut size={16} />
-                <Button onClick={() => {}} disabled={true} kind="tertiary">
-                    Hello, world!
-                </Button>
-            </View>
-            <Strut size={16} />
-            <View style={{flexDirection: "row"}}>
-                <Button onClick={() => {}} color="destructive">
-                    Hello, world!
-                </Button>
-                <Strut size={16} />
-                <Button onClick={() => {}} kind="secondary" color="destructive">
-                    Hello, world!
-                </Button>
-                <Strut size={16} />
-                <Button onClick={() => {}} kind="tertiary" color="destructive">
-                    Hello, world!
-                </Button>
-            </View>
+export const Variants: StoryComponentType = () => (
+    <View style={{padding: Spacing.medium_16, gap: Spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+            <Button onClick={() => {}}>Hello, world!</Button>
+            <Button onClick={() => {}} kind="secondary">
+                Hello, world!
+            </Button>
+            <Button onClick={() => {}} kind="tertiary">
+                Hello, world!
+            </Button>
         </View>
-    ),
-};
+        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+            <Button onClick={() => {}} disabled={true}>
+                Hello, world!
+            </Button>
+            <Button onClick={() => {}} disabled={true} kind="secondary">
+                Hello, world!
+            </Button>
+            <Button onClick={() => {}} disabled={true} kind="tertiary">
+                Hello, world!
+            </Button>
+        </View>
+        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+            <Button onClick={() => {}} color="destructive">
+                Hello, world!
+            </Button>
+            <Button onClick={() => {}} kind="secondary" color="destructive">
+                Hello, world!
+            </Button>
+            <Button onClick={() => {}} kind="tertiary" color="destructive">
+                Hello, world!
+            </Button>
+        </View>
+    </View>
+);
 
 Variants.parameters = {
     docs: {
@@ -211,10 +202,15 @@ WithColor.parameters = {
             story: "Buttons have a `color` that is either `default` (the default, as shown above) or `destructive` (as can seen below):",
         },
     },
+    chromatic: {
+        // NOTE: We already have screenshots of other stories that cover more of
+        // the button states (see Variants).
+        disableSnapshot: true,
+    },
 };
 
 export const Dark: StoryComponentType = () => (
-    <View style={{backgroundColor: Color.darkBlue}}>
+    <View style={{backgroundColor: Color.darkBlue, padding: Spacing.medium_16}}>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}} light={true}>
                 Hello, world!
@@ -568,5 +564,32 @@ WithRouter.parameters = {
     },
     chromatic: {
         disableSnapshot: true,
+    },
+};
+
+/**
+ * Button supports theming via the `ThemeSwitcherContext`. This story shows the
+ * button in the `khanmigo` theme using all the variants.
+ *
+ * **Note:** You can also use the "Theme" addon in the toolbar to switch themes.
+ */
+export const KhanmigoTheme: StoryComponentType = {
+    render: () => {
+        const stories = [
+            Variants,
+            Dark,
+            Size,
+            Icon,
+        ] as Array<React.ElementType>;
+
+        return (
+            <ThemeSwitcherContext.Provider value="khanmigo">
+                <View style={{gap: Spacing.medium_16}}>
+                    {stories.map((Story, i) => (
+                        <Story key={i} />
+                    ))}
+                </View>
+            </ThemeSwitcherContext.Provider>
+        );
     },
 };
