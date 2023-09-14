@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.0.25
+
+### Patch Changes
+
+-   80cab317: - Change styles to use CSS pseudo-classes instead of relying on `clickableState`
+    values.
+    -   Move `outline` to the button/link element instead of an internal container.
+-   Updated dependencies [80cab317]
+    -   @khanacademy/wonder-blocks-clickable@4.0.7
+
 ## 3.0.24
 
 ### Patch Changes
