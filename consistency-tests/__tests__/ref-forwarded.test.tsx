@@ -84,13 +84,13 @@ describe("Accordion elements", () => {
         // Act
         render(
             <Accordion ref={ref}>
-                <AccordionSection title="First section">
+                <AccordionSection header="First section">
                     This is the information present in the first section
                 </AccordionSection>
-                <AccordionSection title="Second section">
+                <AccordionSection header="Second section">
                     This is the information present in the second section
                 </AccordionSection>
-                <AccordionSection title="Third section">
+                <AccordionSection header="Third section">
                     This is the information present in the third section
                 </AccordionSection>
             </Accordion>,
@@ -106,7 +106,7 @@ describe("Accordion elements", () => {
 
         // Act
         render(
-            <AccordionSection title="Section" ref={ref}>
+            <AccordionSection header="Section" ref={ref}>
                 This is the information present in the first section
             </AccordionSection>,
         );

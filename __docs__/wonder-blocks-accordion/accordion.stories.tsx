@@ -33,24 +33,40 @@ export default {
 
 type StoryComponentType = StoryObj<typeof Accordion>;
 
-const defaultSections = [
-    <AccordionSection title="First section">
+const exampleSections = [
+    <AccordionSection header="First section">
         This is the information present in the first section
     </AccordionSection>,
-    <AccordionSection title="Second section">
+    <AccordionSection header="Second section">
         This is the information present in the second section
     </AccordionSection>,
-    <AccordionSection title="Third section">
+    <AccordionSection header="Third section">
         This is the information present in the third section
     </AccordionSection>,
 ];
 
+/**
+ * By default, an accordion has a caret at the end of the header block and
+ * rounded corners.
+ */
 export const Default: StoryComponentType = {
     args: {
-        children: defaultSections,
+        children: exampleSections,
+        caretPosition: "end",
+        cornerKind: "rounded",
     },
 };
 
+/**
+ * An accordion can have the caret at the start or the end of the header block.
+ * "start" means it’s on the left of a left-to-right language (and on the
+ * right of a right-to-left language), and "end" means it’s on the right of
+ * a left-to-right language (and on the left of a right-to-left language).
+ *
+ * If the `caretPosition` prop is specified both here in the Accordion and
+ * within a child AccordionSection component, the Accordion's
+ * `caretPosition` value is prioritized.
+ */
 export const CaretPositions: StoryComponentType = {
     render: () => {
         return (
@@ -63,7 +79,7 @@ export const CaretPositions: StoryComponentType = {
                             right
                         </LabelLarge>
                         <Accordion caretPosition="end">
-                            {defaultSections}
+                            {exampleSections}
                         </Accordion>
                     </View>
                     <Strut size={Spacing.xLarge_32} />
@@ -73,7 +89,7 @@ export const CaretPositions: StoryComponentType = {
                             right
                         </LabelLarge>
                         <Accordion caretPosition="start">
-                            {defaultSections}
+                            {exampleSections}
                         </Accordion>
                     </View>
                 </View>
@@ -86,15 +102,15 @@ export const CaretPositions: StoryComponentType = {
                             left
                         </LabelLarge>
                         <Accordion caretPosition="end">
-                            <AccordionSection title="پہلا سیکشن">
+                            <AccordionSection header="پہلا سیکشن">
                                 یہ کچھ معلومات ہے۔
                             </AccordionSection>
 
-                            <AccordionSection title="دوسرا سیکشن">
+                            <AccordionSection header="دوسرا سیکشن">
                                 یہ کچھ معلومات ہے۔
                             </AccordionSection>
 
-                            <AccordionSection title="تیسرا حصہ">
+                            <AccordionSection header="تیسرا حصہ">
                                 یہ کچھ معلومات ہے۔
                             </AccordionSection>
                         </Accordion>
@@ -106,15 +122,15 @@ export const CaretPositions: StoryComponentType = {
                             left
                         </LabelLarge>
                         <Accordion caretPosition="start">
-                            <AccordionSection title="پہلا سیکشن">
+                            <AccordionSection header="پہلا سیکشن">
                                 یہ کچھ معلومات ہے۔
                             </AccordionSection>
 
-                            <AccordionSection title="دوسرا سیکشن">
+                            <AccordionSection header="دوسرا سیکشن">
                                 یہ کچھ معلومات ہے۔
                             </AccordionSection>
 
-                            <AccordionSection title="تیسرا حصہ">
+                            <AccordionSection header="تیسرا حصہ">
                                 یہ کچھ معلومات ہے۔
                             </AccordionSection>
                         </Accordion>
@@ -125,24 +141,35 @@ export const CaretPositions: StoryComponentType = {
     },
 };
 
+/**
+ * An accordion can have different corner kinds. If `cornerKind` is `square`,
+ * the corners have no border radius. If `cornerKind` is `rounded`,
+ * the overall container's corners are rounded. If `cornerKind` is
+ * `rounded-per-section`, each section's corners are rounded, and there is
+ * vertical white space between each section.
+ *
+ * If `cornerKind` is specified both here in the Accordion and within
+ * a child AccordionSection component, the AccordionSection’s `cornerKind`
+ * value is prioritized.
+ */
 export const CornerKinds: StoryComponentType = {
     render: () => {
         return (
             <View style={styles.sideBySide}>
                 <View style={[styles.fullWidth, styles.space]}>
                     <LabelLarge>Corner kind: square</LabelLarge>
-                    <Accordion cornerKind="square">{defaultSections}</Accordion>
+                    <Accordion cornerKind="square">{exampleSections}</Accordion>
                 </View>
                 <View style={[styles.fullWidth, styles.space]}>
                     <LabelLarge>Corner kind: rounded</LabelLarge>
                     <Accordion cornerKind="rounded">
-                        {defaultSections}
+                        {exampleSections}
                     </Accordion>
                 </View>
                 <View style={[styles.fullWidth, styles.space]}>
                     <LabelLarge>Corner kind: rounded-per-section</LabelLarge>
                     <Accordion cornerKind="rounded-per-section">
-                        {defaultSections}
+                        {exampleSections}
                     </Accordion>
                 </View>
             </View>
@@ -152,7 +179,13 @@ export const CornerKinds: StoryComponentType = {
 
 /**
  * An Accordion with custom styles. The custom styles in this example
- * include a pink border, larger border radius, and extra padding.
+ * include a pink border and extra padding.
+ * Note that the Accordian's border is different than the AccordionSection
+ * border styles. Passing custom styles here will not affect the sections'
+ * styles. If you want to change the corner kind of a single section,
+ * that can be done using the `cornerKind` prop (as demonstrated here).
+ * Passing in a custom border radius to the section is NOT recommended,
+ * as it would cause the header's focus outline to no longer match the section.
  */
 export const WithStyle: StoryComponentType = {
     render: () => {
@@ -161,20 +194,15 @@ export const WithStyle: StoryComponentType = {
             padding: Spacing.xLarge_32,
         };
 
-        const customSectionStyles = {
-            borderStartStartRadius: 0,
-            borderStartEndRadius: 0,
-        };
-
         return (
             <Accordion style={customStyles}>
                 <AccordionSection
-                    title="This section has a custom border radius at the top"
-                    style={customSectionStyles}
+                    header="This section has a custom border radius at the top?"
+                    cornerKind="square"
                 >
                     Something
                 </AccordionSection>
-                <AccordionSection title="Just a section">
+                <AccordionSection header="Just a section">
                     Something
                 </AccordionSection>
             </Accordion>
@@ -182,7 +210,59 @@ export const WithStyle: StoryComponentType = {
     },
 };
 
-// Nested Accordions
+/**
+ * An Accordion can have another Accordion within its sections.
+ */
+export const NestedExample: StoryComponentType = {
+    render: () => {
+        return (
+            <Accordion>
+                <AccordionSection header="Unit 1">
+                    <Accordion
+                        style={{
+                            padding: Spacing.medium_16,
+                        }}
+                    >
+                        <AccordionSection header="Lesson 1">
+                            Unit 1 Lesson 1 information...
+                        </AccordionSection>
+                        <AccordionSection header="Lesson 2">
+                            Unit 1 Lesson 2 information...
+                        </AccordionSection>
+                    </Accordion>
+                </AccordionSection>
+                <AccordionSection header="Unit 2">
+                    <Accordion style={{padding: Spacing.medium_16}}>
+                        <AccordionSection header="Lesson 1">
+                            Unit 2 Lesson 1 information...
+                        </AccordionSection>
+                        <AccordionSection header="Lesson 2">
+                            Unit 2 Lesson 2 information...
+                        </AccordionSection>
+                    </Accordion>
+                </AccordionSection>
+            </Accordion>
+        );
+    },
+};
+
+/**
+ * To use an Accordion with only one section, you must pass in an array
+ * of one element.
+ */
+export const SingleSection: StoryComponentType = {
+    render: () => {
+        return (
+            <Accordion>
+                {[
+                    <AccordionSection header="First section">
+                        This is the information present in the first section
+                    </AccordionSection>,
+                ]}
+            </Accordion>
+        );
+    },
+};
 
 const styles = StyleSheet.create({
     sideBySide: {

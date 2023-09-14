@@ -21,7 +21,7 @@ export default {
         control: {type: "select"},
         description: `Whether to put the caret at the start (the left side in
             left-to-right languages) or end (the right side in right-to-left
-            languages) of the title block in this section. Defaults to "end".`,
+            languages) of the header block in this section. Defaults to "end".`,
         defaultValue: "end",
         table: {
             defaultValue: {summary: "end"},

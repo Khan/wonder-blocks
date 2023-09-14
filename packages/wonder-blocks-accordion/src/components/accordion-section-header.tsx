@@ -9,21 +9,21 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
-    // Title content.
-    title: string | React.ReactElement;
-    // Whether the caret shows up at the start or end of the title block.
+    // Header content.
+    header: string | React.ReactElement;
+    // Whether the caret shows up at the start or end of the header block.
     caretPosition: "start" | "end";
     // Corner roundedness type.
     cornerKind: "square" | "rounded" | "rounded-per-section";
     // Whether the section is open or not.
     isOpen: boolean;
-    // Called on title click.
+    // Called on header click.
     onClick: () => void;
-    // The ID for the content that the title's `aria-controls` should
+    // The ID for the content that the header's `aria-controls` should
     // point to.
     sectionContentUniqueId: string;
-    // Custom styles for the title container.
-    titleStyle?: StyleType;
+    // Custom styles for the header container.
+    headerStyle?: StyleType;
     // Whether this section is the first section in the accordion.
     // For internal use only.
     isFirstSection: boolean;
@@ -32,68 +32,66 @@ type Props = {
     isLastSection: boolean;
 };
 
-const AccordionSectionTitle = (props: Props) => {
+const AccordionSectionHeader = (props: Props) => {
     const {
-        title,
+        header,
         caretPosition,
         cornerKind,
         isOpen,
         onClick,
         sectionContentUniqueId,
-        titleStyle,
+        headerStyle,
         isFirstSection,
         isLastSection,
     } = props;
 
-    const titleIsString = typeof title === "string";
+    const headerIsString = typeof header === "string";
 
-    // Only round out the top corners if the section is the first section
-    // and if the cornerKind is rounded.
+    // Conditions in which the top and bottom corners should be rounded.
     const roundedTop: boolean =
         cornerKind === "rounded-per-section" ||
         (cornerKind === "rounded" && isFirstSection);
-    // Only round out the bottom corners if the section is the last section,
-    // the cornerKind is rounded, and the section is open.
     const roundedBottom: boolean =
+        // If it's open, the content section opens under the header so the
+        // header corners shouldn't be round anymore - the content gains
+        // the rounded corners instead.
         (cornerKind === "rounded-per-section" && !isOpen) ||
         (cornerKind === "rounded" && isLastSection && !isOpen);
 
     return (
         <Clickable
-            /* The opener is the clickable title that opens
-            and closes the section. */
             aria-expanded={isOpen}
             aria-controls={sectionContentUniqueId}
             onClick={onClick}
             style={[
-                styles.titleWrapper,
-                isOpen && styles.titleWrapperOpen,
-                caretPosition === "start" && styles.titleWrapperCaretStart,
+                styles.headerWrapper,
+                isOpen && styles.headerWrapperOpen,
+                caretPosition === "start" && styles.headerWrapperCaretStart,
                 roundedTop && styles.roundedTop,
                 roundedBottom && styles.roundedBottom,
-                titleStyle,
+                headerStyle,
             ]}
         >
             {() => (
                 <>
                     <View
                         style={[
-                            styles.titleContent,
-                            titleIsString && styles.titleString,
+                            styles.headerContent,
+                            headerIsString && styles.headerString,
                         ]}
                     >
-                        {titleIsString ? (
+                        {headerIsString ? (
                             <Body
                                 style={[
                                     caretPosition === "end"
-                                        ? styles.titleStringCaretEnd
-                                        : styles.titleStringCaretStart,
+                                        ? styles.headerStringCaretEnd
+                                        : styles.headerStringCaretStart,
                                 ]}
                             >
-                                {title}
+                                {header}
                             </Body>
                         ) : (
-                            title
+                            header
                         )}
                     </View>
                     <Icon
@@ -113,12 +111,18 @@ const AccordionSectionTitle = (props: Props) => {
 };
 
 const activeBlue = mix(Color.offBlack32, Color.blue);
+// The AccordionSection border radius for rounded corners is 12px.
+// If we set the inner radius to the same value, there ends up being
+// a 1px gap between the border and the outline. To fix this, we
+// subtract 1 from the border radius.
+const INNER_BORDER_RADIUS = Spacing.small_12 - 1;
 
 const styles = StyleSheet.create({
-    titleWrapper: {
+    headerWrapper: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
+        overflow: "hidden",
 
         ":active": {
             outline: `2px solid ${activeBlue}`,
@@ -130,34 +134,34 @@ const styles = StyleSheet.create({
             outline: `2px solid ${Color.blue}`,
         },
     },
-    titleWrapperCaretStart: {
+    headerWrapperCaretStart: {
         flexDirection: "row-reverse",
     },
     // Even though the border radius is already set on the AccordionSection,
-    // the hover/focus outline is on the title. We need to have the same
+    // the hover/focus outline is on the header. We need to have the same
     // border radius here to round out the outline so it looks right over
     // the border.
     roundedTop: {
-        borderStartStartRadius: Spacing.small_12,
-        borderStartEndRadius: Spacing.small_12,
+        borderStartStartRadius: INNER_BORDER_RADIUS,
+        borderStartEndRadius: INNER_BORDER_RADIUS,
     },
     roundedBottom: {
-        borderEndStartRadius: Spacing.small_12,
-        borderEndEndRadius: Spacing.small_12,
+        borderEndStartRadius: INNER_BORDER_RADIUS,
+        borderEndEndRadius: INNER_BORDER_RADIUS,
     },
-    titleContent: {
+    headerContent: {
         flexGrow: 1,
         textAlign: "start",
     },
-    titleString: {
+    headerString: {
         paddingTop: Spacing.medium_16,
         paddingBottom: Spacing.medium_16,
     },
-    titleStringCaretEnd: {
+    headerStringCaretEnd: {
         paddingInlineEnd: Spacing.small_12,
         paddingInlineStart: Spacing.medium_16,
     },
-    titleStringCaretStart: {
+    headerStringCaretStart: {
         paddingInlineEnd: Spacing.medium_16,
         paddingInlineStart: Spacing.small_12,
     },
@@ -173,4 +177,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AccordionSectionTitle;
+export default AccordionSectionHeader;
