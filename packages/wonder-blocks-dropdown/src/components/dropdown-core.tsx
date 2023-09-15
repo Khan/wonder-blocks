@@ -15,7 +15,7 @@ import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
@@ -111,6 +111,7 @@ type DefaultProps = Readonly<{
 
 type DropdownAriaRole = "listbox" | "menu";
 type ItemAriaRole = "option" | "menuitem";
+type DropdownAriaProps = Pick<AriaProps, "aria-invalid" | "aria-required">;
 
 type ExportProps = Readonly<{
     // Required props
@@ -217,7 +218,10 @@ type ExportProps = Readonly<{
     selectionType?: "single" | "multi";
 }>;
 
-type Props = DefaultProps & ExportProps & WithActionSchedulerProps;
+type Props = DefaultProps &
+    ExportProps &
+    WithActionSchedulerProps &
+    DropdownAriaProps;
 
 type State = Readonly<{
     /**
@@ -928,7 +932,15 @@ class DropdownCore extends React.Component<Props, State> {
         listRenderer: React.ReactNode,
         isReferenceHidden?: boolean | null,
     ): React.ReactNode {
-        const {dropdownStyle, light, openerElement} = this.props;
+        const {
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
+            dropdownStyle,
+            isFilterable,
+            light,
+            openerElement,
+            role,
+        } = this.props;
 
         // The dropdown width is at least the width of the opener.
         // It's only used if the element exists in the DOM
@@ -953,9 +965,9 @@ class DropdownCore extends React.Component<Props, State> {
                 ]}
                 testId="dropdown-core-container"
             >
-                {this.props.isFilterable && this.renderSearchField()}
+                {isFilterable && this.renderSearchField()}
                 <View
-                    role={this.props.role}
+                    role={role}
                     style={[
                         styles.listboxOrMenu,
                         generateDropdownMenuStyles(
@@ -964,6 +976,12 @@ class DropdownCore extends React.Component<Props, State> {
                             maxDropdownHeight,
                         ),
                     ]}
+                    // Only the `listbox` role supports aria-invalid and aria-required because
+                    // the `menu` role is not a form control.
+                    aria-invalid={role === "listbox" ? ariaInvalid : undefined}
+                    aria-required={
+                        role === "listbox" ? ariaRequired : undefined
+                    }
                 >
                     {listRenderer}
                 </View>

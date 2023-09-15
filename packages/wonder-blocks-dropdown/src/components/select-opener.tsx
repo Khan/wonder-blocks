@@ -4,18 +4,15 @@ import {__RouterContext} from "react-router";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
 const StyledButton = addStyle("button");
-
-const {blue, white, white50, offBlack, offBlack16, offBlack32, offBlack64} =
-    Color;
 
 type SelectOpenerProps = AriaProps & {
     /**
@@ -28,13 +25,14 @@ type SelectOpenerProps = AriaProps & {
      */
     disabled: boolean;
     /**
+     * Whether or not the input is in an error state. Defaults to false.
+     */
+    error: boolean;
+    /**
      * Auto-populated by parent. Used for accessibility purposes, where the label
      * id should match the field id.
      */
     id?: string;
-    //TODO: error state
-    // error: boolean,
-
     /**
      * Whether the displayed text is a placeholder, determined by the creator
      * of this component. A placeholder has more faded text colors and styles.
@@ -46,10 +44,6 @@ type SelectOpenerProps = AriaProps & {
      */
     light: boolean;
     /**
-     * Test ID used for e2e testing.
-     */
-    testId?: string;
-    /**
      * Callback for when the SelectOpener is pressed.
      */
     onOpenChanged: (open: boolean) => unknown;
@@ -57,10 +51,15 @@ type SelectOpenerProps = AriaProps & {
      * Whether the dropdown is open.
      */
     open: boolean;
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string;
 };
 
 type DefaultProps = {
     disabled: SelectOpenerProps["disabled"];
+    error: SelectOpenerProps["error"];
     light: SelectOpenerProps["light"];
     isPlaceholder: SelectOpenerProps["isPlaceholder"];
 };
@@ -71,6 +70,7 @@ type DefaultProps = {
 export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static defaultProps: DefaultProps = {
         disabled: false,
+        error: false,
         light: false,
         isPlaceholder: false,
     };
@@ -84,6 +84,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         const {
             children,
             disabled,
+            error,
             id,
             isPlaceholder,
             light,
@@ -99,7 +100,11 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         return (
             <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
                 {(state, childrenProps) => {
-                    const stateStyles = _generateStyles(light, isPlaceholder);
+                    const stateStyles = _generateStyles(
+                        light,
+                        isPlaceholder,
+                        error,
+                    );
                     const {hovered, focused, pressed} = state;
 
                     // The icon colors are kind of fickle. This is just logic
@@ -107,10 +112,10 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                     const iconColor = light
                         ? disabled || pressed
                             ? "currentColor"
-                            : white
+                            : tokens.color.white
                         : disabled
-                        ? offBlack32
-                        : offBlack64;
+                        ? tokens.color.offBlack32
+                        : tokens.color.offBlack64;
 
                     const style = [
                         styles.shared,
@@ -162,8 +167,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
     }
 }
 
-const buttonRadius = 4;
-
 const styles = StyleSheet.create({
     // TODO: Dedupe with Button styles
     shared: {
@@ -171,15 +174,15 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
-        color: offBlack,
+        color: tokens.color.offBlack,
         height: DROPDOWN_ITEM_HEIGHT,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.
-        paddingLeft: 16,
-        paddingRight: 12,
+        paddingLeft: tokens.spacing.medium_16,
+        paddingRight: tokens.spacing.small_12,
         borderWidth: 0,
-        borderRadius: buttonRadius,
+        borderRadius: tokens.border.radius.medium_4,
         borderStyle: "solid",
         outline: "none",
         textDecoration: "none",
@@ -191,7 +194,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        marginRight: Spacing.xSmall_8,
+        marginRight: tokens.spacing.xSmall_8,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",
@@ -206,14 +209,18 @@ const styles = StyleSheet.create({
 // These values are default padding (16 and 12) minus 1, because
 // changing the borderWidth to 2 messes up the button width
 // and causes it to move a couple pixels. This fixes that.
-const adjustedPaddingLeft = 16 - 1;
-const adjustedPaddingRight = 12 - 1;
+const adjustedPaddingLeft = tokens.spacing.medium_16 - 1;
+const adjustedPaddingRight = tokens.spacing.small_12 - 1;
 
 const stateStyles: Record<string, any> = {};
 
-const _generateStyles = (light: boolean, placeholder: boolean) => {
+const _generateStyles = (
+    light: boolean,
+    placeholder: boolean,
+    error: boolean,
+) => {
     // "hash" the parameters
-    const styleKey = `${String(light)}-${String(placeholder)}`;
+    const styleKey = `${light}-${placeholder}-${error}`;
     if (stateStyles[styleKey]) {
         return stateStyles[styleKey];
     }
@@ -222,58 +229,67 @@ const _generateStyles = (light: boolean, placeholder: boolean) => {
     if (light) {
         newStyles = {
             default: {
-                background: "transparent",
-                color: placeholder ? white50 : white,
-                borderColor: white50,
-                borderWidth: 1,
+                background: error ? tokens.color.fadedRed8 : "transparent",
+                color: placeholder ? tokens.color.white50 : tokens.color.white,
+                borderColor: error ? tokens.color.red : tokens.color.white50,
+                borderWidth: tokens.border.width.hairline,
             },
             focus: {
-                borderColor: white,
-                borderWidth: 2,
+                borderColor: error
+                    ? tokens.color.fadedRed8
+                    : tokens.color.white,
+                borderWidth: tokens.spacing.xxxxSmall_2,
                 paddingLeft: adjustedPaddingLeft,
                 paddingRight: adjustedPaddingRight,
             },
             active: {
                 paddingLeft: adjustedPaddingLeft,
                 paddingRight: adjustedPaddingRight,
-                borderColor: mix(fade(blue, 0.32), white),
-                borderWidth: 2,
+                borderColor: error ? tokens.color.red : tokens.color.fadedBlue,
+                borderWidth: tokens.border.width.thin,
                 color: placeholder
-                    ? mix(fade(white, 0.32), blue)
-                    : mix(fade(blue, 0.32), white),
-                backgroundColor: mix(offBlack32, blue),
+                    ? mix(tokens.color.white32, tokens.color.blue)
+                    : tokens.color.fadedBlue,
+                backgroundColor: error
+                    ? tokens.color.fadedRed
+                    : tokens.color.activeBlue,
             },
             disabled: {
-                borderColor: mix(fade(white, 0.32), blue),
-                color: mix(fade(white, 0.32), blue),
+                background: "transparent",
+                borderColor: mix(tokens.color.white32, tokens.color.blue),
+                color: mix(tokens.color.white32, tokens.color.blue),
                 cursor: "auto",
             },
         };
     } else {
         newStyles = {
             default: {
-                background: white,
-                borderColor: offBlack16,
-                borderWidth: 1,
-                color: placeholder ? offBlack64 : offBlack,
+                background: error ? tokens.color.fadedRed8 : tokens.color.white,
+                borderColor: error ? tokens.color.red : tokens.color.offBlack16,
+                borderWidth: tokens.border.width.hairline,
+                color: placeholder
+                    ? tokens.color.offBlack64
+                    : tokens.color.offBlack,
             },
             focus: {
-                borderColor: blue,
-                borderWidth: 2,
+                borderColor: error ? tokens.color.red : tokens.color.blue,
+                borderWidth: tokens.border.width.thin,
                 paddingLeft: adjustedPaddingLeft,
                 paddingRight: adjustedPaddingRight,
             },
             active: {
-                background: mix(fade(blue, 0.32), white),
-                borderColor: mix(offBlack32, blue),
-                borderWidth: 2,
+                background: error
+                    ? tokens.color.fadedRed
+                    : tokens.color.fadedBlue,
+                borderColor: error ? tokens.color.red : tokens.color.activeBlue,
+                borderWidth: tokens.border.width.thin,
                 paddingLeft: adjustedPaddingLeft,
                 paddingRight: adjustedPaddingRight,
             },
             disabled: {
-                background: Color.offWhite,
-                borderColor: offBlack16,
-                color: offBlack64,
+                background: tokens.color.offWhite,
+                borderColor: tokens.color.offBlack16,
+                color: tokens.color.offBlack64,
                 cursor: "auto",
             },
         };

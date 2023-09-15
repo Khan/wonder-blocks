@@ -10,7 +10,11 @@ import Icon from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {
+    Body,
+    HeadingLarge,
+    LabelMedium,
+} from "@khanacademy/wonder-blocks-typography";
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import {
@@ -40,6 +44,7 @@ export default {
         },
     },
     args: {
+        error: false,
         isFilterable: true,
         opened: false,
         disabled: false,
@@ -338,6 +343,41 @@ Disabled.parameters = {
             story: "This select is disabled and cannot be interacted with.",
         },
     },
+};
+
+const ErrorWrapper = () => {
+    const [error, setError] = React.useState(true);
+    const [selectedValue, setSelectedValue] = React.useState("");
+    const [opened, setOpened] = React.useState(false);
+
+    return (
+        <>
+            <LabelMedium style={{marginBottom: Spacing.xSmall_8}}>
+                Select any fruit other than lemon to clear the error!
+            </LabelMedium>
+            <SingleSelect
+                error={error}
+                onChange={(value) => {
+                    setSelectedValue(value);
+                    setError(value === "lemon");
+                }}
+                onToggle={setOpened}
+                opened={opened}
+                placeholder="Choose a fruit"
+                selectedValue={selectedValue}
+            >
+                {items}
+            </SingleSelect>
+        </>
+    );
+};
+
+/**
+ * This select is in an error state.
+ * Selecting any option other than lemon will clear the error state by updating the `error` prop to `false`.
+ */
+export const Error: StoryComponentType = {
+    render: ErrorWrapper,
 };
 
 /**

@@ -15,6 +15,7 @@
         {"path": "../wonder-blocks-modal/tsconfig-build.json"},
         {"path": "../wonder-blocks-search-field/tsconfig-build.json"},
         {"path": "../wonder-blocks-spacing/tsconfig-build.json"},
+        {"path": "../wonder-blocks-theming/tsconfig-build.json"},
         {"path": "../wonder-blocks-timing/tsconfig-build.json"},
         {"path": "../wonder-blocks-typography/tsconfig-build.json"},
     ]
