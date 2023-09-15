@@ -275,13 +275,13 @@ export const Invalid: StoryComponentType = {
         expect(dropdown).toHaveStyle("border-width: 2px");
 
         // Focus style
-        fireEvent.focus(dropdown);
+        await fireEvent.focus(dropdown);
         expect(dropdown).toHaveStyle("border-color: #d92916");
         expect(dropdown).toHaveStyle("border-width: 2px");
 
         // Active (mouse down) style
         // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.mouseDown(dropdown);
+        await fireEvent.mouseDown(dropdown);
         expect(dropdown).toHaveStyle("background-color: rgb(243, 187, 180)");
     },
 };
