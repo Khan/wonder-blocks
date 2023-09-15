@@ -10,7 +10,11 @@ import Icon from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {
+    Body,
+    HeadingLarge,
+    LabelMedium,
+} from "@khanacademy/wonder-blocks-typography";
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import {
@@ -347,25 +351,30 @@ const ErrorWrapper = () => {
     const [opened, setOpened] = React.useState(false);
 
     return (
-        <SingleSelect
-            error={error}
-            onChange={(value) => {
-                setSelectedValue(value);
-                setError(false);
-            }}
-            onToggle={setOpened}
-            opened={opened}
-            placeholder="Choose a fruit"
-            selectedValue={selectedValue}
-        >
-            {items}
-        </SingleSelect>
+        <>
+            <LabelMedium style={{marginBottom: Spacing.xSmall_8}}>
+                Select any fruit other than lemon to clear the error!
+            </LabelMedium>
+            <SingleSelect
+                error={error}
+                onChange={(value) => {
+                    setSelectedValue(value);
+                    setError(value === "lemon");
+                }}
+                onToggle={setOpened}
+                opened={opened}
+                placeholder="Choose a fruit"
+                selectedValue={selectedValue}
+            >
+                {items}
+            </SingleSelect>
+        </>
     );
 };
 
 /**
  * This select is in an error state.
- * Selecting an option will clear the error state by updating the `error` prop to `false`.
+ * Selecting any option other than lemon will clear the error state by updating the `error` prop to `false`.
  */
 export const Error: StoryComponentType = {
     render: ErrorWrapper,

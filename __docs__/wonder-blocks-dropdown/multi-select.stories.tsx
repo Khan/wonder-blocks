@@ -9,7 +9,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
@@ -260,12 +260,15 @@ const ErrorWrapper = (args: any) => {
 
     return (
         <View style={styles.wrapper}>
+            <LabelMedium style={{marginBottom: Spacing.xSmall_8}}>
+                Select at least 2 options to clear the error!
+            </LabelMedium>
             <MultiSelect
                 {...args}
                 error={error}
                 onChange={(values) => {
                     setSelectedValues(values);
-                    setError(false);
+                    setError(values.length < 2);
                 }}
                 onToggle={setOpened}
                 opened={opened}
@@ -279,7 +282,7 @@ const ErrorWrapper = (args: any) => {
 
 /**
  * Here is an example of a dropdown that is in an error state.
- * Selecting one or more options will clear the error by setting the `error` prop to `false`.
+ * Selecting two or more options will clear the error by setting the `error` prop to `false`.
  */
 export const Error: StoryComponentType = {
     render: ErrorWrapper,
