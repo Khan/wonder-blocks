@@ -28,6 +28,7 @@ export default {
     argTypes: multiSelectArgtypes,
     args: {
         isFilterable: false,
+        isInvalid: false,
         opened: false,
         disabled: false,
         light: false,
@@ -250,6 +251,16 @@ CustomStylesOpened.parameters = {
             story: "Here you can see an example of the previous dropdown opened",
         },
     },
+};
+
+/**
+ * Here is an example of a dropdown that is in an invalid state.
+ */
+export const Invalid: StoryComponentType = {
+    render: Template,
+    args: {
+        isInvalid: true,
+    } as MultiSelectArgs,
 };
 
 /**

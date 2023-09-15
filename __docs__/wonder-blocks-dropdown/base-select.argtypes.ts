@@ -17,6 +17,12 @@ export default {
         },
     },
 
+    isInvalid: {
+        table: {
+            category: "States",
+        },
+    },
+
     light: {
         table: {
             category: "States",

@@ -41,6 +41,7 @@ export default {
     },
     args: {
         isFilterable: true,
+        isInvalid: false,
         opened: false,
         disabled: false,
         light: false,
@@ -338,6 +339,23 @@ Disabled.parameters = {
             story: "This select is disabled and cannot be interacted with.",
         },
     },
+};
+
+/**
+ * This select is in an invalid state.
+ */
+export const Invalid: StoryComponentType = {
+    render: (args) => (
+        <SingleSelect
+            {...args}
+            placeholder="Choose a fruit"
+            onChange={() => {}}
+            selectedValue=""
+            isInvalid={true}
+        >
+            {items}
+        </SingleSelect>
+    ),
 };
 
 /**

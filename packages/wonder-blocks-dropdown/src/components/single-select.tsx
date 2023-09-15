@@ -141,6 +141,10 @@ type Props = AriaProps &
          * top. The items will be filtered by the input.
          */
         isFilterable?: boolean;
+        /**
+         * Whether or not the input has an invalid value. Defaults to false.
+         */
+        isInvalid?: boolean;
     }>;
 
 type State = Readonly<{
@@ -365,6 +369,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             children,
             disabled,
             id,
+            isInvalid,
             light,
             opener,
             placeholder,
@@ -384,7 +389,8 @@ export default class SingleSelect extends React.Component<Props, State> {
             opened,
             style,
             className,
-            /* eslint-enable @typescript-eslint/no-unused-vars */
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
             ...sharedProps
         } = this.props;
 
@@ -411,6 +417,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 {...sharedProps}
                 disabled={numItems === 0 || disabled}
                 id={id}
+                isInvalid={isInvalid}
                 isPlaceholder={!selectedItem}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
@@ -436,6 +443,8 @@ export default class SingleSelect extends React.Component<Props, State> {
             labels,
             light,
             style,
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
         } = this.props;
         const {searchText} = this.state;
         const allChildren = React.Children.toArray(children).filter(Boolean);
@@ -470,6 +479,8 @@ export default class SingleSelect extends React.Component<Props, State> {
                 }
                 searchText={isFilterable ? searchText : ""}
                 labels={labels}
+                aria-invalid={ariaInvalid}
+                aria-required={ariaRequired}
             />
         );
     }

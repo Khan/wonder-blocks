@@ -481,6 +481,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             shortcuts,
             style,
             className,
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
             /* eslint-enable @typescript-eslint/no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -526,6 +528,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             dropdownStyle,
             children,
             isFilterable,
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
         } = this.props;
         const {open, searchText} = this.state;
         const {clearSearch, filter, noResults, someSelected} =
@@ -567,6 +571,8 @@ export default class MultiSelect extends React.Component<Props, State> {
                     noResults,
                     someResults: someSelected,
                 }}
+                aria-invalid={ariaInvalid}
+                aria-required={ariaRequired}
             />
         );
     }

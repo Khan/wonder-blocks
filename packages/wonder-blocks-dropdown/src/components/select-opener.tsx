@@ -11,6 +11,7 @@ import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
+import tokens from "../../../wonder-blocks-theming/src/tokens";
 
 const StyledButton = addStyle("button");
 
@@ -32,9 +33,10 @@ type SelectOpenerProps = AriaProps & {
      * id should match the field id.
      */
     id?: string;
-    //TODO: error state
-    // error: boolean,
-
+    /**
+     * Whether or not the input has an invalid value. Defaults to false.
+     */
+    isInvalid: boolean;
     /**
      * Whether the displayed text is a placeholder, determined by the creator
      * of this component. A placeholder has more faded text colors and styles.
@@ -46,10 +48,6 @@ type SelectOpenerProps = AriaProps & {
      */
     light: boolean;
     /**
-     * Test ID used for e2e testing.
-     */
-    testId?: string;
-    /**
      * Callback for when the SelectOpener is pressed.
      */
     onOpenChanged: (open: boolean) => unknown;
@@ -57,11 +55,16 @@ type SelectOpenerProps = AriaProps & {
      * Whether the dropdown is open.
      */
     open: boolean;
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string;
 };
 
 type DefaultProps = {
     disabled: SelectOpenerProps["disabled"];
     light: SelectOpenerProps["light"];
+    isInvalid: SelectOpenerProps["isInvalid"];
     isPlaceholder: SelectOpenerProps["isPlaceholder"];
 };
 
@@ -72,6 +75,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
     static defaultProps: DefaultProps = {
         disabled: false,
         light: false,
+        isInvalid: false,
         isPlaceholder: false,
     };
 
@@ -85,6 +89,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
             children,
             disabled,
             id,
+            isInvalid,
             isPlaceholder,
             light,
             open,
@@ -99,7 +104,11 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         return (
             <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
                 {(state, childrenProps) => {
-                    const stateStyles = _generateStyles(light, isPlaceholder);
+                    const stateStyles = _generateStyles(
+                        light,
+                        isPlaceholder,
+                        isInvalid,
+                    );
                     const {hovered, focused, pressed} = state;
 
                     // The icon colors are kind of fickle. This is just logic
@@ -211,9 +220,13 @@ const adjustedPaddingRight = 12 - 1;
 
 const stateStyles: Record<string, any> = {};
 
-const _generateStyles = (light: boolean, placeholder: boolean) => {
+const _generateStyles = (
+    light: boolean,
+    placeholder: boolean,
+    invalid: boolean,
+) => {
     // "hash" the parameters
-    const styleKey = `${String(light)}-${String(placeholder)}`;
+    const styleKey = `${light}-${placeholder}-${invalid}`;
     if (stateStyles[styleKey]) {
         return stateStyles[styleKey];
     }
@@ -222,13 +235,13 @@ const _generateStyles = (light: boolean, placeholder: boolean) => {
     if (light) {
         newStyles = {
             default: {
-                background: "transparent",
+                background: invalid ? tokens.color.fadedRed8 : "transparent",
                 color: placeholder ? white50 : white,
-                borderColor: white50,
+                borderColor: invalid ? Color.red : white50,
                 borderWidth: 1,
             },
             focus: {
-                borderColor: white,
+                borderColor: invalid ? tokens.color.fadedRed8 : white,
                 borderWidth: 2,
                 paddingLeft: adjustedPaddingLeft,
                 paddingRight: adjustedPaddingRight,
@@ -236,14 +249,17 @@ const _generateStyles = (light: boolean, placeholder: boolean) => {
             active: {
                 paddingLeft: adjustedPaddingLeft,
                 paddingRight: adjustedPaddingRight,
-                borderColor: mix(fade(blue, 0.32), white),
+                borderColor: invalid ? Color.red : mix(fade(blue, 0.32), white),
                 borderWidth: 2,
                 color: placeholder
                     ? mix(fade(white, 0.32), blue)
                     : mix(fade(blue, 0.32), white),
-                backgroundColor: mix(offBlack32, blue),
+                backgroundColor: Color
+                    ? tokens.color.fadedRed
+                    : mix(offBlack32, blue),
             },
             disabled: {
+                background: "transparent",
                 borderColor: mix(fade(white, 0.32), blue),
                 color: mix(fade(white, 0.32), blue),
                 cursor: "auto",
@@ -252,20 +268,22 @@ const _generateStyles = (light: boolean, placeholder: boolean) => {
     } else {
         newStyles = {
             default: {
-                background: white,
-                borderColor: offBlack16,
+                background: invalid ? tokens.color.fadedRed8 : white,
+                borderColor: invalid ? Color.red : offBlack16,
                 borderWidth: 1,
                 color: placeholder ? offBlack64 : offBlack,
             },
             focus: {
-                borderColor: blue,
+                borderColor: invalid ? Color.red : blue,
                 borderWidth: 2,
                 paddingLeft: adjustedPaddingLeft,
                 paddingRight: adjustedPaddingRight,
             },
             active: {
-                background: mix(fade(blue, 0.32), white),
-                borderColor: mix(offBlack32, blue),
+                background: invalid
+                    ? tokens.color.fadedRed
+                    : mix(fade(blue, 0.32), white),
+                borderColor: invalid ? Color.red : mix(offBlack32, blue),
                 borderWidth: 2,
                 paddingLeft: adjustedPaddingLeft,
                 paddingRight: adjustedPaddingRight,
