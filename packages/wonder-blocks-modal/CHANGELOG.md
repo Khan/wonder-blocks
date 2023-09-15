@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.0.27
+
+### Patch Changes
+
+-   Updated dependencies [fb704043]
+    -   @khanacademy/wonder-blocks-icon-button@4.2.0
+
 ## 4.0.26
 
 ### Patch Changes
