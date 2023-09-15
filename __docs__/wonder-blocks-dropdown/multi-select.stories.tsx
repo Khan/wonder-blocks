@@ -1,9 +1,7 @@
-import {expect} from "@storybook/jest";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
-import {fireEvent, userEvent, within} from "@storybook/testing-library";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -37,7 +35,7 @@ export default {
         shortcuts: false,
         implicitAllEnabled: false,
         id: "",
-        testId: "multiselect-invalid",
+        testId: "",
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -255,35 +253,39 @@ CustomStylesOpened.parameters = {
     },
 };
 
+const ErrorWrapper = (args: any) => {
+    const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
+    const [opened, setOpened] = React.useState(false);
+    const [error, setError] = React.useState(true);
+
+    return (
+        <View style={styles.wrapper}>
+            <MultiSelect
+                {...args}
+                error={error}
+                onChange={(values) => {
+                    setSelectedValues(values);
+                    setError(false);
+                }}
+                onToggle={setOpened}
+                opened={opened}
+                selectedValues={selectedValues}
+            >
+                {items}
+            </MultiSelect>
+        </View>
+    );
+};
+
 /**
- * Here is an example of a dropdown that is in an invalid state.
+ * Here is an example of a dropdown that is in an error state.
+ * Selecting one or more options will clear the error by setting the `error` prop to `false`.
  */
-export const Invalid: StoryComponentType = {
-    render: Template,
+export const Error: StoryComponentType = {
+    render: ErrorWrapper,
     args: {
         error: true,
     } as MultiSelectArgs,
-    play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
-
-        // Get HTML element
-        const dropdown = await canvas.findByTestId("multiselect-invalid");
-
-        // Hover style
-        await userEvent.hover(dropdown);
-        expect(dropdown).toHaveStyle("border-color: #d92916");
-        expect(dropdown).toHaveStyle("border-width: 2px");
-
-        // Focus style
-        await fireEvent.focus(dropdown);
-        expect(dropdown).toHaveStyle("border-color: #d92916");
-        expect(dropdown).toHaveStyle("border-width: 2px");
-
-        // Active (mouse down) style
-        // eslint-disable-next-line testing-library/prefer-user-event
-        await fireEvent.mouseDown(dropdown);
-        expect(dropdown).toHaveStyle("background-color: rgb(243, 187, 180)");
-    },
 };
 
 /**

@@ -11,13 +11,13 @@ export default {
         },
     },
 
-    isFilterable: {
+    error: {
         table: {
             category: "States",
         },
     },
 
-    isInvalid: {
+    isFilterable: {
         table: {
             category: "States",
         },

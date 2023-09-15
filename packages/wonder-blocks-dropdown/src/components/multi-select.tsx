@@ -69,6 +69,10 @@ type DefaultProps = Readonly<{
      */
     disabled: boolean;
     /**
+     * Whether this component is in an error state. Defaults to false.
+     */
+    error: boolean;
+    /**
      * Whether to display the "light" version of this component instead, for
      * use when the component is used on a dark background.
      */
@@ -206,6 +210,7 @@ export default class MultiSelect extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         alignment: "left",
         disabled: false,
+        error: false,
         light: false,
         shortcuts: false,
         selectedValues: [],

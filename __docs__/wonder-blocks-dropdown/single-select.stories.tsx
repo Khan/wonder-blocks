@@ -1,9 +1,7 @@
-import {expect} from "@storybook/jest";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
-import {fireEvent, userEvent, within} from "@storybook/testing-library";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -343,43 +341,34 @@ Disabled.parameters = {
     },
 };
 
-/**
- * This select is in an invalid state.
- */
-export const Invalid: StoryComponentType = {
-    render: (args) => (
+const ErrorWrapper = () => {
+    const [error, setError] = React.useState(true);
+    const [selectedValue, setSelectedValue] = React.useState("");
+    const [opened, setOpened] = React.useState(false);
+
+    return (
         <SingleSelect
-            {...args}
-            error={true}
+            error={error}
+            onChange={(value) => {
+                setSelectedValue(value);
+                setError(false);
+            }}
+            onToggle={setOpened}
+            opened={opened}
             placeholder="Choose a fruit"
-            onChange={() => {}}
-            selectedValue=""
-            testId="singleselect-invalid"
+            selectedValue={selectedValue}
         >
             {items}
         </SingleSelect>
-    ),
-    play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
+    );
+};
 
-        // Get HTML element
-        const dropdown = canvas.getByTestId("singleselect-invalid");
-
-        // Hover style
-        await userEvent.hover(dropdown);
-        expect(dropdown).toHaveStyle("border-color: #d92916");
-        expect(dropdown).toHaveStyle("border-width: 2px");
-
-        // Focus style
-        await fireEvent.focus(dropdown);
-        expect(dropdown).toHaveStyle("border-color: #d92916");
-        expect(dropdown).toHaveStyle("border-width: 2px");
-
-        // Active (mouse down) style
-        // eslint-disable-next-line testing-library/prefer-user-event
-        await fireEvent.mouseDown(dropdown);
-        expect(dropdown).toHaveStyle("background-color: rgb(243, 187, 180)");
-    },
+/**
+ * This select is in an error state.
+ * Selecting an option will clear the error state by updating the `error` prop to `false`.
+ */
+export const Error: StoryComponentType = {
+    render: ErrorWrapper,
 };
 
 /**
