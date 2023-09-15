@@ -976,6 +976,8 @@ class DropdownCore extends React.Component<Props, State> {
                             maxDropdownHeight,
                         ),
                     ]}
+                    // Only the `listbox` role supports aria-invalid and aria-required because
+                    // the `menu` role is not a form control.
                     aria-invalid={role === "listbox" ? ariaInvalid : undefined}
                     aria-required={
                         role === "listbox" ? ariaRequired : undefined

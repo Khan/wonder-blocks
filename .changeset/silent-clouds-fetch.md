@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-dropdown": minor
 ---
 
-Added isInvalid prop
+Added error prop

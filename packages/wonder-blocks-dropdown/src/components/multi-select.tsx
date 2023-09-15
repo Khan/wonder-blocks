@@ -15,7 +15,11 @@ import {
 } from "../util/constants";
 
 import OptionItem from "./option-item";
-import type {DropdownItem, OpenerProps} from "../util/types";
+import type {
+    DropdownItem,
+    OpenerProps,
+    OptionItemComponentArray,
+} from "../util/types";
 
 export type Labels = {
     /**
@@ -285,11 +289,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         onChange([]);
     };
 
-    getMenuText(
-        children: Array<
-            React.ReactElement<React.ComponentProps<typeof OptionItem>>
-        >,
-    ): string {
+    getMenuText(children: OptionItemComponentArray): string {
         const {implicitAllEnabled, selectedValues} = this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
 
@@ -317,7 +317,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     }
 
-    getShortcuts(numOptions: number): Array<DropdownItem> {
+    getShortcuts(numOptions: number): DropdownItem[] {
         const {selectedValues, shortcuts} = this.props;
         const {selectAllLabel, selectNoneLabel} = this.state.labels;
 
@@ -363,11 +363,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     }
 
-    getMenuItems(
-        children: Array<
-            React.ReactElement<React.ComponentProps<typeof OptionItem>>
-        >,
-    ): Array<DropdownItem> {
+    getMenuItems(children: OptionItemComponentArray): DropdownItem[] {
         const {isFilterable} = this.props;
         // If it's not filterable, no need to do any extra besides mapping the
         // option items to dropdown items.
@@ -386,10 +382,12 @@ export default class MultiSelect extends React.Component<Props, State> {
                 props.label.toLowerCase().indexOf(lowercasedSearchText) > -1,
         );
 
-        // @ts-expect-error [FEI-5019] - TS2315 - Type 'Element' is not generic.
-        const lastSelectedChildren: Array<Element<typeof OptionItem>> = [];
-        // @ts-expect-error [FEI-5019] - TS2315 - Type 'Element' is not generic.
-        const restOfTheChildren: Array<Element<typeof OptionItem>> = [];
+        const lastSelectedChildren: React.ReactElement<
+            React.ComponentProps<typeof OptionItem>
+        >[] = [];
+        const restOfTheChildren: React.ReactElement<
+            React.ComponentProps<typeof OptionItem>
+        >[] = [];
         for (const child of filteredChildren) {
             if (lastSelectedValues.includes(child.props.value)) {
                 lastSelectedChildren.push(child);
@@ -454,9 +452,9 @@ export default class MultiSelect extends React.Component<Props, State> {
     };
 
     renderOpener(
-        allChildren: Array<
-            React.ReactElement<React.ComponentProps<typeof OptionItem>>
-        >,
+        allChildren: React.ReactElement<
+            React.ComponentProps<typeof OptionItem>
+        >[],
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> {
@@ -535,11 +533,13 @@ export default class MultiSelect extends React.Component<Props, State> {
         const {clearSearch, filter, noResults, someSelected} =
             this.state.labels;
 
-        const allChildren = React.Children.toArray(children).filter(Boolean);
+        const allChildren = (
+            React.Children.toArray(children) as Array<
+                React.ReactElement<React.ComponentProps<typeof OptionItem>>
+            >
+        ).filter(Boolean);
         const numOptions = allChildren.length;
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(ReactChild | ReactFragment | ReactPortal)[]' is not assignable to parameter of type 'ReactElement<{}, string | JSXElementConstructor<any>>[]'.
         const filteredItems = this.getMenuItems(allChildren);
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(ReactChild | ReactFragment | ReactPortal)[]' is not assignable to parameter of type 'ReactElement<{}, string | JSXElementConstructor<any>>[]'.
         const opener = this.renderOpener(allChildren);
 
         return (

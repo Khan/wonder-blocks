@@ -42,8 +42,8 @@ export default {
         },
     },
     args: {
+        error: false,
         isFilterable: true,
-        isInvalid: false,
         opened: false,
         disabled: false,
         light: false,
@@ -350,10 +350,10 @@ export const Invalid: StoryComponentType = {
     render: (args) => (
         <SingleSelect
             {...args}
+            error={true}
             placeholder="Choose a fruit"
             onChange={() => {}}
             selectedValue=""
-            isInvalid={true}
             testId="singleselect-invalid"
         >
             {items}

@@ -30,7 +30,7 @@ export default {
     argTypes: multiSelectArgtypes,
     args: {
         isFilterable: false,
-        isInvalid: false,
+        error: false,
         opened: false,
         disabled: false,
         light: false,
@@ -261,7 +261,7 @@ CustomStylesOpened.parameters = {
 export const Invalid: StoryComponentType = {
     render: Template,
     args: {
-        isInvalid: true,
+        error: true,
     } as MultiSelectArgs,
     play: async ({canvasElement}) => {
         const canvas = within(canvasElement);
