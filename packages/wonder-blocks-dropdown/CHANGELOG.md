@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 3.1.0
+
+### Minor Changes
+
+-   d1a5796a: Added error prop
+
 ## 3.0.29
 
 ### Patch Changes
