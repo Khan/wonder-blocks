@@ -1,7 +1,9 @@
+import {expect} from "@storybook/jest";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
+import {fireEvent, userEvent, within} from "@storybook/testing-library";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -352,10 +354,32 @@ export const Invalid: StoryComponentType = {
             onChange={() => {}}
             selectedValue=""
             isInvalid={true}
+            testId="singleselect-invalid"
         >
             {items}
         </SingleSelect>
     ),
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+
+        // Get HTML element
+        const dropdown = canvas.getByTestId("singleselect-invalid");
+
+        // Hover style
+        await userEvent.hover(dropdown);
+        expect(dropdown).toHaveStyle("border-color: #d92916");
+        expect(dropdown).toHaveStyle("border-width: 2px");
+
+        // Focus style
+        fireEvent.focus(dropdown);
+        expect(dropdown).toHaveStyle("border-color: #d92916");
+        expect(dropdown).toHaveStyle("border-width: 2px");
+
+        // Active (mouse down) style
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.mouseDown(dropdown);
+        expect(dropdown).toHaveStyle("background-color: rgb(243, 187, 180)");
+    },
 };
 
 /**

@@ -1,7 +1,9 @@
+import {expect} from "@storybook/jest";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
+import {fireEvent, userEvent, within} from "@storybook/testing-library";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -35,7 +37,7 @@ export default {
         shortcuts: false,
         implicitAllEnabled: false,
         id: "",
-        testId: "",
+        testId: "multiselect-invalid",
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -261,6 +263,27 @@ export const Invalid: StoryComponentType = {
     args: {
         isInvalid: true,
     } as MultiSelectArgs,
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+
+        // Get HTML element
+        const dropdown = await canvas.findByTestId("multiselect-invalid");
+
+        // Hover style
+        await userEvent.hover(dropdown);
+        expect(dropdown).toHaveStyle("border-color: #d92916");
+        expect(dropdown).toHaveStyle("border-width: 2px");
+
+        // Focus style
+        fireEvent.focus(dropdown);
+        expect(dropdown).toHaveStyle("border-color: #d92916");
+        expect(dropdown).toHaveStyle("border-width: 2px");
+
+        // Active (mouse down) style
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.mouseDown(dropdown);
+        expect(dropdown).toHaveStyle("background-color: rgb(243, 187, 180)");
+    },
 };
 
 /**
