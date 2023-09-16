@@ -18,6 +18,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 
 import AccordionSectionArgtypes from "./accordion-section.argtypes";
+import Button from "../../packages/wonder-blocks-button/src/components/button";
 
 export default {
     title: "Accordion / AccordionSection",
@@ -220,24 +221,18 @@ export const CornerKinds: StoryComponentType = {
 };
 
 /**
- * An AccordionSection can be open or closed by default. If `initialIsOpen`
- * is `true`, the section will be open by default.
+ * An AccordionSection can be expanded or closed by default. If `expanded`
+ * is `true`, the section will be expanded by default.
  */
-export const WithInitialIsOpen: StoryComponentType = {
+export const WithExpanded: StoryComponentType = {
     render: () => {
         return (
             <Accordion>
-                <AccordionSection
-                    initialIsOpen={false}
-                    header="initialIsOpen false"
-                >
+                <AccordionSection expanded={false} header="expanded false">
                     {"I'm closed at first."}
                 </AccordionSection>
-                <AccordionSection
-                    initialIsOpen={true}
-                    header="initialIsOpen true"
-                >
-                    {"I'm already open!"}
+                <AccordionSection expanded={true} header="expanded true">
+                    {"I'm already expanded!"}
                 </AccordionSection>
             </Accordion>
         );

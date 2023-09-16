@@ -8,6 +8,11 @@ import AccordionSection from "./accordion-section";
 
 const StyledUnorderedList = addStyle("ul");
 
+export type AccordionCornerKindType =
+    | "square"
+    | "rounded"
+    | "rounded-per-section";
+
 type Props = AriaProps & {
     /**
      * The unique identifier for the accordion.
@@ -43,7 +48,7 @@ type Props = AriaProps & {
      * a child AccordionSection component, the AccordionSection’s cornerKind
      * value is prioritized.
      */
-    cornerKind?: "square" | "rounded" | "rounded-per-section";
+    cornerKind?: AccordionCornerKindType;
     /**
      * Custom styles for the overall accordion container.
      */

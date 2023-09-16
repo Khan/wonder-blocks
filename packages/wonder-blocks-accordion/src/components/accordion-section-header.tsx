@@ -8,15 +8,18 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import type {AccordionCornerKindType} from "./accordion";
+import {getRoundedValuesForHeader} from "../utils";
+
 type Props = {
     // Header content.
     header: string | React.ReactElement;
     // Whether the caret shows up at the start or end of the header block.
     caretPosition: "start" | "end";
     // Corner roundedness type.
-    cornerKind: "square" | "rounded" | "rounded-per-section";
-    // Whether the section is open or not.
-    isOpen: boolean;
+    cornerKind: AccordionCornerKindType;
+    // Whether the section is expanded or not.
+    expanded: boolean;
     // Called on header click.
     onClick: () => void;
     // The ID for the content that the header's `aria-controls` should
@@ -37,7 +40,7 @@ const AccordionSectionHeader = (props: Props) => {
         header,
         caretPosition,
         cornerKind,
-        isOpen,
+        expanded,
         onClick,
         sectionContentUniqueId,
         headerStyle,
@@ -47,25 +50,20 @@ const AccordionSectionHeader = (props: Props) => {
 
     const headerIsString = typeof header === "string";
 
-    // Conditions in which the top and bottom corners should be rounded.
-    const roundedTop: boolean =
-        cornerKind === "rounded-per-section" ||
-        (cornerKind === "rounded" && isFirstSection);
-    const roundedBottom: boolean =
-        // If it's open, the content section opens under the header so the
-        // header corners shouldn't be round anymore - the content gains
-        // the rounded corners instead.
-        (cornerKind === "rounded-per-section" && !isOpen) ||
-        (cornerKind === "rounded" && isLastSection && !isOpen);
+    const {roundedTop, roundedBottom} = getRoundedValuesForHeader(
+        cornerKind,
+        isFirstSection,
+        isLastSection,
+        expanded,
+    );
 
     return (
         <Clickable
-            aria-expanded={isOpen}
+            aria-expanded={expanded}
             aria-controls={sectionContentUniqueId}
             onClick={onClick}
             style={[
                 styles.headerWrapper,
-                isOpen && styles.headerWrapperOpen,
                 caretPosition === "start" && styles.headerWrapperCaretStart,
                 roundedTop && styles.roundedTop,
                 roundedBottom && styles.roundedBottom,
@@ -101,7 +99,7 @@ const AccordionSectionHeader = (props: Props) => {
                             caretPosition === "start"
                                 ? styles.iconStart
                                 : styles.iconEnd,
-                            isOpen && styles.iconOpen,
+                            expanded && styles.iconExpanded,
                         ]}
                     />
                 </>
@@ -165,7 +163,7 @@ const styles = StyleSheet.create({
         paddingInlineEnd: Spacing.medium_16,
         paddingInlineStart: Spacing.small_12,
     },
-    iconOpen: {
+    iconExpanded: {
         // Turn the caret upside down
         transform: "rotate(180deg)",
     },

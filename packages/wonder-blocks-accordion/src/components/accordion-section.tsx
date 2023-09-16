@@ -8,9 +8,8 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import type {AccordionCornerKindType} from "./accordion";
 import AccordionSectionHeader from "./accordion-section-header";
-
-type CornerKindType = "square" | "rounded" | "rounded-per-section";
 
 type Props = AriaProps & {
     /**
@@ -52,15 +51,15 @@ type Props = AriaProps & {
      * within a parent Accordion component, the AccordionSection’s cornerKind
      * value is prioritized.
      */
-    cornerKind?: CornerKindType;
+    cornerKind?: AccordionCornerKindType;
     /**
-     * Whether this section is initially open or closed. Defaults to false.
+     * Whether this section is expanded or closed. Defaults to false.
      */
-    initialIsOpen?: boolean;
+    expanded?: boolean;
     /**
      * Called when the header is clicked.
      */
-    onHeaderClick?: () => void;
+    onToggle?: (newExpandedState: boolean) => void;
     /**
      * Custom styles for the overall accordion section container.
      */
@@ -125,8 +124,8 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         children,
         id,
         header,
-        initialIsOpen = false,
-        onHeaderClick,
+        expanded = false,
+        onToggle,
         caretPosition = "end",
         cornerKind = "rounded",
         style,
@@ -140,12 +139,12 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         ...ariaProps
     } = props;
 
-    const [isOpen, setIsOpen] = React.useState(initialIsOpen);
+    const [internalExpanded, setInternalExpanded] = React.useState(expanded);
 
     const handleClick = () => {
-        setIsOpen(!isOpen);
-        if (onHeaderClick) {
-            onHeaderClick();
+        setInternalExpanded(!internalExpanded);
+        if (onToggle) {
+            onToggle(internalExpanded);
         }
     };
 
@@ -175,7 +174,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                             header={header}
                             caretPosition={caretPosition}
                             cornerKind={cornerKind}
-                            isOpen={isOpen}
+                            expanded={internalExpanded}
                             onClick={handleClick}
                             sectionContentUniqueId={sectionContentUniqueId}
                             headerStyle={headerStyle}
@@ -183,8 +182,8 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                             isLastSection={isLastSection}
                         />
                         {/* The content is the section that
-                        opens and closes. */}
-                        {isOpen ? (
+                        expands and closes. */}
+                        {internalExpanded ? (
                             <View
                                 id={sectionContentUniqueId}
                                 style={[
@@ -228,7 +227,7 @@ const styles = StyleSheet.create({
 const cornerStyles: Record<string, any> = {};
 
 const _generateStyles = (
-    cornerKind: CornerKindType,
+    cornerKind: AccordionCornerKindType,
     isFirstSection: boolean,
     isLastSection: boolean,
 ) => {

@@ -68,9 +68,9 @@ export default {
             required: false,
         },
     },
-    initialIsOpen: {
+    expanded: {
         control: {type: "boolean"},
-        description: `Whether this section should be open on initial load.
+        description: `Whether this section should be expanded on initial load.
             Defaults to false.`,
         table: {
             defaultValue: {summary: "false"},
