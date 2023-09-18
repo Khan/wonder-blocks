@@ -60,7 +60,7 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: 'github-actions[bot]'
-          body-includes: Static-only Deploy + E2E tests
+          body-includes: A new build was pushed to Chromatic!
 
       - name: Create comment, if none exists
         if: ${{ steps.fc.outputs.comment-id == '' && steps.summary.outputs.SUMMARY_BODY != '' }}
