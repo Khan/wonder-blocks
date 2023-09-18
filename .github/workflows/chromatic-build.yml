@@ -35,7 +35,7 @@ jobs:
         node-version: [16.x]
     # Map the job output to the workflow output.
     outputs:
-      buildResult: ${{ steps.chromatic_publish.outputs }}
+      buildResult: ${{ fromJson(steps.chromatic_publish.outputs) }}
     steps:
     - name: Checking out latest commit
       uses: actions/checkout@v2

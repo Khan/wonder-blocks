@@ -1,13 +1,12 @@
-name: Chromatic - Release PR opened
+name: Chromatic - Pull Request
 
-on:
-  pull_request
+on: pull_request
 
 jobs:
   chromatic_changesets:
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Build on Release PR (PR opened)
+    name: Chromatic - Build on Release PR (changesets)
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'release'
@@ -18,7 +17,7 @@ jobs:
   chromatic_review:
     # (if) Run this step on non-dependabot PRs.
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-    name: Chromatic - Build on review PR
+    name: Chromatic - Build on review PR (regular PRs)
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'review'
