@@ -41,13 +41,13 @@ jobs:
         run: |
           # Summarize the results of the build
           echo "A new build was pushed to Chromatic! :rocket:"
-          echo "Storybook URL: ${{ needs.chromatic_review.outputs.buildResult.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
-          echo "Number of captured snapshots: ${{ needs.chromatic_review.outputs.buildResult.actualCaptureCount }}" >> $GITHUB_STEP_SUMMARY
-          echo "Number of changes: ${{ needs.chromatic_review.outputs.buildResult.changeCount }}" >> $GITHUB_STEP_SUMMARY
-          echo "Number of components: ${{ needs.chromatic_review.outputs.buildResult.componentCount }}" >> $GITHUB_STEP_SUMMARY
-          echo "Number of not captured snapshots (TurboSnap): ${{ needs.chromatic_review.outputs.buildResult.inheritedCaptureCount }}" >> $GITHUB_STEP_SUMMARY
-          echo "Number of stories in the published Storybook: ${{ needs.chromatic_review.outputs.buildResult.specCount }}" >> $GITHUB_STEP_SUMMARY
-          echo "Number of tests on the build: ${{ needs.chromatic_review.outputs.buildResult.testCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Storybook URL: ${{ needs.chromatic_review.outputs.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of captured snapshots: ${{ needs.chromatic_review.outputs.actualCaptureCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of changes: ${{ needs.chromatic_review.outputs.changeCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of components: ${{ needs.chromatic_review.outputs.componentCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of not captured snapshots (TurboSnap): ${{ needs.chromatic_review.outputs.inheritedCaptureCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of stories in the published Storybook: ${{ needs.chromatic_review.outputs.specCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of tests on the build: ${{ needs.chromatic_review.outputs.testCount }}" >> $GITHUB_STEP_SUMMARY
 
           # echo "SUMMARY_BODY<<EOF" >> $GITHUB_OUTPUT
           # cat $GITHUB_STEP_SUMMARY >> $GITHUB_OUTPUT
