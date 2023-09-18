@@ -65,6 +65,10 @@ export const parameters = {
             },
         ],
     },
+    // Disables Chromatic's snapshotting on a global level
+    chromatic: {
+        disableSnapshot: true
+    },
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",
     options: {
