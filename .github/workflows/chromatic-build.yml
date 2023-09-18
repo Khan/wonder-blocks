@@ -10,6 +10,14 @@ on:
       target:
         required: true
         type: string
+    # Map the workflow outputs to the job outputs - used in workflows that use
+    # this reusable workflow (e.g. chromatic-push.yml)
+    outputs:
+      # @see https://www.chromatic.com/docs/github-actions/#available-options
+      buildResult:
+        description: "The result of the chromatic build"
+        value: ${{ jobs.chromatic.outputs }}
+
     secrets:
       # The project token for the Chromatic app.
       projectToken:
@@ -25,6 +33,9 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node-version: [16.x]
+    # Map the job output to the workflow output.
+    outputs:
+      buildResult: ${{ steps.chromatic_publish.outputs }}
     steps:
     - name: Checking out latest commit
       uses: actions/checkout@v2
@@ -49,6 +60,7 @@ jobs:
 
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing (review PRs only)
+      id: chromatic_publish
       if: ${{ inputs.target == 'review' }}
       uses: chromaui/action@v1
       with:
@@ -82,5 +94,6 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
+        onlyChanged: true
         storybookBuildDir: storybook-static
         autoAcceptChanges: true

@@ -1,12 +1,10 @@
 name: Chromatic - Release PR opened
 
 on:
-  pull_request:
-    types:
-      - opened
+  pull_request
 
 jobs:
-  chromatic:
+  chromatic_changesets:
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
     name: Chromatic - Build on Release PR (PR opened)
@@ -15,3 +13,69 @@ jobs:
       target: 'release'
     secrets:
       projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+
+  # ------- Regular PRs --------
+  chromatic_review:
+    # (if) Run this step on non-dependabot PRs.
+    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+    name: Chromatic - Build on review PR
+    uses: ./.github/workflows/chromatic-build.yml
+    with:
+      target: 'review'
+    secrets:
+      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+
+  chromatic_review_results:
+    # (if) Run this step on non-dependabot PRs.
+    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+    name: Chromatic - Build on review PR - Get results
+    needs: chromatic_review
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
+    steps:
+      - name: "Read chromatic results"
+        id: summary
+        run: |
+          # Summarize the results of the build
+          echo "A new build was pushed to Chromatic! :rocket:"
+          echo "Storybook URL: ${{ needs.chromatic_review.outputs.buildResult.storybookUrl }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of captured snapshots: ${{ needs.chromatic_review.outputs.buildResult.actualCaptureCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of changes: ${{ needs.chromatic_review.outputs.buildResult.changeCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of components: ${{ needs.chromatic_review.outputs.buildResult.componentCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of not captured snapshots (TurboSnap): ${{ needs.chromatic_review.outputs.buildResult.inheritedCaptureCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of stories in the published Storybook: ${{ needs.chromatic_review.outputs.buildResult.specCount }}" >> $GITHUB_STEP_SUMMARY
+          echo "Number of tests on the build: ${{ needs.chromatic_review.outputs.buildResult.testCount }}" >> $GITHUB_STEP_SUMMARY
+
+          # echo "SUMMARY_BODY<<EOF" >> $GITHUB_OUTPUT
+          # cat $GITHUB_STEP_SUMMARY >> $GITHUB_OUTPUT
+
+          # Create/update PR comment
+
+      - name: Find existing comment
+        uses: peter-evans/find-comment@b657a70ff16d17651703a84bee1cb9ad9d2be2ea
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Static-only Deploy + E2E tests
+
+      - name: Create comment, if none exists
+        if: ${{ steps.fc.outputs.comment-id == '' && steps.summary.outputs.SUMMARY_BODY != '' }}
+        uses: peter-evans/create-or-update-comment@5adcb0bb0f9fb3f95ef05400558bdb3f329ee808
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ${{ steps.summary.outputs.SUMMARY_BODY }}
+
+      - name: Update comment, if one already exists
+        if: ${{ steps.fc.outputs.comment-id != '' && steps.summary.outputs.SUMMARY_BODY != '' }}
+        uses: peter-evans/create-or-update-comment@5adcb0bb0f9fb3f95ef05400558bdb3f329ee808
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            ${{ steps.summary.outputs.SUMMARY_BODY }}
