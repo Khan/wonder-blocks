@@ -10,6 +10,32 @@ on:
       target:
         required: true
         type: string
+    # Map the workflow outputs to the job outputs - used in workflows that use
+    # this reusable workflow (e.g. chromatic-push.yml)
+    outputs:
+      # @see https://www.chromatic.com/docs/github-actions/#available-options
+      storybookUrl:
+        description: "The Storybook preview URL for your current branch / Pull Request."
+        value: ${{ jobs.chromatic.outputs.storybookUrl }}
+      actualCaptureCount:
+        description: "The number of captured snapshots."
+        value: ${{ jobs.chromatic.outputs.actualCaptureCount }}
+      changeCount:
+        description: "The number of tests with visual changes, including any inherited changes (e.g., due to TurboSnap)."
+        value: ${{ jobs.chromatic.outputs.changeCount }}
+      componentCount:
+        description: "The number of components in the published Storybook."
+        value: ${{ jobs.chromatic.outputs.componentCount }}
+      inheritedCaptureCount:
+        description: "The number of inherited (not captured) snapshots (e.g., due to TurboSnap)."
+        value: ${{ jobs.chromatic.outputs.inheritedCaptureCount }}
+      specCount:
+        description: "The number of stories in the published Storybook."
+        value: ${{ jobs.chromatic.outputs.specCount }}
+      testCount:
+        description: "The number of tests on the build."
+        value: ${{ jobs.chromatic.outputs.testCount }}
+
     secrets:
       # The project token for the Chromatic app.
       projectToken:
@@ -25,6 +51,15 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node-version: [16.x]
+    # Map the job output to the workflow output.
+    outputs:
+      storybookUrl: ${{ steps.chromatic_publish.outputs.storybookUrl }}
+      actualCaptureCount: ${{ steps.chromatic_publish.outputs.actualCaptureCount }}
+      changeCount: ${{ steps.chromatic_publish.outputs.changeCount }}
+      componentCount: ${{ steps.chromatic_publish.outputs.componentCount }}
+      inheritedCaptureCount: ${{ steps.chromatic_publish.outputs.inheritedCaptureCount }}
+      specCount: ${{ steps.chromatic_publish.outputs.specCount }}
+      testCount: ${{ steps.chromatic_publish.outputs.testCount }}
     steps:
     - name: Checking out latest commit
       uses: actions/checkout@v2
@@ -49,6 +84,7 @@ jobs:
 
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing (review PRs only)
+      id: chromatic_publish
       if: ${{ inputs.target == 'review' }}
       uses: chromaui/action@v1
       with:
@@ -82,5 +118,6 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
+        onlyChanged: true
         storybookBuildDir: storybook-static
         autoAcceptChanges: true
