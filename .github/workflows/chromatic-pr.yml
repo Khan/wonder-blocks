@@ -33,7 +33,10 @@ jobs:
 
   chromatic_review_results:
     # (if) Run this step on regular PRs.
-    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+    if: |
+      github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
+      !startsWith(github.head_ref, 'changeset-release/') &&
+      github.event.pull_request.draft == false
     name: Chromatic - Get results on non-draft regular PRs
     needs: chromatic_review
     runs-on: ${{ matrix.os }}
