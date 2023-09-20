@@ -11,6 +11,6 @@ jobs:
     name: Chromatic - Skip on dependabot PRs (push)
     uses: ./.github/workflows/chromatic-build.yml
     with:
-      target: 'dependabot'
+      target: 'bot'
     secrets:
       projectToken: ${{ secrets.CHROMATIC_APP_CODE }}

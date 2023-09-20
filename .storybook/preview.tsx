@@ -47,7 +47,9 @@ const wbViewports = {
     },
 };
 
-export const parameters = {
+const parameters = {
+    // Enable the RenderStateRoot decorator by default.
+    enableRenderStateRootDecorator: true,
     backgrounds: {
         default: "light",
         values: [
@@ -72,14 +74,7 @@ export const parameters = {
         // display the stories (or examples first), then we will display all the
         // mdx pages under __docs__.
         storySort: {
-            includeNames: true,
-            order: [
-                "Overview",
-                "*",
-                ["Overview", "*"],
-                "**/__docs__/**/*.mdx",
-                "**/*.stories.@(js|jsx|ts|tsx)",
-            ],
+            order: ["Components", "**/__docs__/**", "Overview"],
         },
     },
     docs: {
@@ -119,10 +114,7 @@ export const decorators = [
 ];
 
 const preview: Preview = {
-    parameters: {
-        // Enable the RenderStateRoot decorator by default.
-        enableRenderStateRootDecorator: true,
-    },
+    parameters,
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
