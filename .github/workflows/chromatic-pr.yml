@@ -1,17 +1,76 @@
-name: Chromatic - Release PR opened
+name: Chromatic - Pull Request
 
-on:
-  pull_request:
-    types:
-      - opened
+on: pull_request
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  chromatic:
+  chromatic_changesets:
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Build on Release PR (PR opened)
+    name: Chromatic - Skip on Release PR (changesets)
     uses: ./.github/workflows/chromatic-build.yml
     with:
-      target: 'release'
+      target: 'bot'
     secrets:
       projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+
+  # ------- Regular PRs --------
+  chromatic_review:
+    # (if) Run this step on non-draft regular PRs.
+    if: |
+      github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
+      !startsWith(github.head_ref, 'changeset-release/') &&
+      github.event.pull_request.draft == false
+    name: Chromatic - Build on non-draft regular PRs
+    uses: ./.github/workflows/chromatic-build.yml
+    with:
+      target: 'review'
+    secrets:
+      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+
+  chromatic_review_results:
+    # (if) Run this step on regular PRs.
+    if: |
+      github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
+      !startsWith(github.head_ref, 'changeset-release/') &&
+      github.event.pull_request.draft == false
+    name: Chromatic - Get results on non-draft regular PRs
+    needs: chromatic_review
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
+    steps:
+      # Create/update PR comment with Chromatic results
+      - name: Find existing comment
+        uses: peter-evans/find-comment@b657a70ff16d17651703a84bee1cb9ad9d2be2ea
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: A new build was pushed to Chromatic!
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@5adcb0bb0f9fb3f95ef05400558bdb3f329ee808
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            # A new build was pushed to Chromatic! :rocket:
+            ${{ needs.chromatic_review.outputs.storybookUrl }}
+
+            ## Chromatic results:
+
+            | Metric | Total |
+            |---|---|
+            | Captured snapshots | ${{ needs.chromatic_review.outputs.actualCaptureCount }} |
+            | Tests with visual changes | ${{ needs.chromatic_review.outputs.changeCount }} |
+            | Total stories | ${{ needs.chromatic_review.outputs.specCount }} |
+            | Inherited (not captured) snapshots [TurboSnap] | ${{ needs.chromatic_review.outputs.inheritedCaptureCount }} |
+            | Tests on the build | ${{ needs.chromatic_review.outputs.testCount }} |

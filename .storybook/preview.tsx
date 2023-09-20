@@ -47,7 +47,9 @@ const wbViewports = {
     },
 };
 
-export const parameters = {
+const parameters = {
+    // Enable the RenderStateRoot decorator by default.
+    enableRenderStateRootDecorator: true,
     backgrounds: {
         default: "light",
         values: [
@@ -112,10 +114,7 @@ export const decorators = [
 ];
 
 const preview: Preview = {
-    parameters: {
-        // Enable the RenderStateRoot decorator by default.
-        enableRenderStateRootDecorator: true,
-    },
+    parameters,
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
