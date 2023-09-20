@@ -2,6 +2,10 @@ name: Chromatic - Pull Request
 
 on: pull_request
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   chromatic_changesets:
     # Only run this workflow when the Release PR is opened/created.
