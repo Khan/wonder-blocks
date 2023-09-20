@@ -70,24 +70,14 @@ export default {
     argTypes: BannerArgTypes,
 } as Meta<typeof Banner>;
 
+/**
+ * This is an example of a banner with all the props set to their default
+ * values and the `text` prop set to some example text.
+ */
 export const Default: StoryComponentType = {
     args: {
         text: "Here is some example text.",
     },
-};
-
-/**
- * These are examples of banners with just the `text` prop and the `layout`
- * prop.
- */
-export const Simple: StoryComponentType = {
-    render: () => (
-        <View style={styles.container}>
-            <Banner text="This is some example text." layout="floating" />
-            <Strut size={Spacing.medium_16} />
-            <Banner text="This is some example text." layout="full-width" />
-        </View>
-    ),
 };
 
 /**

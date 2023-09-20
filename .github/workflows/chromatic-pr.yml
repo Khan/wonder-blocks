@@ -13,7 +13,7 @@ jobs:
     name: Chromatic - Build on Release PR (changesets)
     uses: ./.github/workflows/chromatic-build.yml
     with:
-      target: 'release'
+      target: 'bot'
     secrets:
       projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
 
