@@ -10,7 +10,7 @@ jobs:
   chromatic_changesets:
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Build on Release PR (changesets)
+    name: Chromatic - Skip on Release PR (changesets)
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'bot'
@@ -19,9 +19,12 @@ jobs:
 
   # ------- Regular PRs --------
   chromatic_review:
-    # (if) Run this step on non-dependabot PRs.
-    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-    name: Chromatic - Build on review PR (regular PRs)
+    # (if) Run this step on non-draft regular PRs.
+    if: |
+      github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
+      !startsWith(github.head_ref, 'changeset-release/') &&
+      github.event.pull_request.draft == false
+    name: Chromatic - Build on non-draft regular PRs
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'review'
@@ -29,9 +32,9 @@ jobs:
       projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
 
   chromatic_review_results:
-    # (if) Run this step on non-dependabot PRs.
+    # (if) Run this step on regular PRs.
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-    name: Chromatic - Build on review PR - Get results
+    name: Chromatic - Get results on non-draft regular PRs
     needs: chromatic_review
     runs-on: ${{ matrix.os }}
     strategy:
