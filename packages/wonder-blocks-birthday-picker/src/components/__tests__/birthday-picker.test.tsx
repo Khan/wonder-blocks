@@ -162,6 +162,33 @@ describe("BirthdayPicker", () => {
             // Assert
             expect(screen.getByRole("alert")).toBeInTheDocument();
         });
+
+        it.each(["day", "month", "year"])(
+            "%s > renders the listbox as invalid with an invalid default value",
+            async (fragment) => {
+                // Arrange
+                const defaultValue = "2021-02-31";
+
+                render(
+                    <BirthdayPicker
+                        defaultValue={defaultValue}
+                        onChange={() => {}}
+                    />,
+                );
+
+                const button = screen.getByTestId(
+                    `birthday-picker-${fragment}`,
+                );
+                userEvent.click(button);
+
+                // Act
+                // wait for the listbox (options list) to appear
+                const listbox = await screen.findByRole("listbox");
+
+                // Assert
+                expect(listbox).toHaveAttribute("aria-invalid", "true");
+            },
+        );
     });
 
     describe("onChange", () => {
