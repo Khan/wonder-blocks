@@ -1,6 +1,10 @@
 name: Chromatic - Pull Request
 
-on: pull_request
+on:
+  pull_request:
+    # This allows us to run the workflow on PRs from when they move from draft
+    # to non-draft.
+    types: [edited, opened, synchronize, reopened]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
