@@ -110,7 +110,9 @@ Controlled.play = async ({canvasElement}) => {
 };
 
 /**
- * The switch can be disabled.
+ * The switch can be disabled. Note that we use `aria-disabled` to allow the
+ * switch to receive focus even when disabled. This helps Screen Readers to
+ * announce the state of the switch.
  */
 export const Disabled: StoryComponentType = {
     render: () => (
