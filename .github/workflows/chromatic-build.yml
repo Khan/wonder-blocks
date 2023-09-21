@@ -121,3 +121,6 @@ jobs:
         projectToken: ${{ secrets.projectToken }}
         storybookBuildDir: storybook-static
         autoAcceptChanges: true
+        # Generate snapshots for only changed stories
+        # See: https://www.chromatic.com/docs/turbosnap
+        onlyChanged: true
