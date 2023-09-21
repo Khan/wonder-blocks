@@ -6,7 +6,7 @@ on:
   workflow_call:
     inputs:
       # Determines which Chromatic step to run.
-      # One of: "review" | "dependabot" | "release".
+      # One of: "review" | "bot" | "main".
       target:
         required: true
         type: string
@@ -64,6 +64,9 @@ jobs:
     - name: Checking out latest commit
       uses: actions/checkout@v2
       with:
+        # This makes Actions fetch all Git history so that Chromatic can track
+        # baselines with the correct commits.
+        # see: https://www.chromatic.com/docs/branching-and-baselines
         fetch-depth: 0
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
@@ -108,3 +111,13 @@ jobs:
         # Skip Chromatic tests, but mark the Release PR as passing. It avoids
         # blocking this PR due to required merge checks.
         skip: true
+
+    # (if) Run this step on the main branch.
+    - name: Auto-accept Chromatic build on main branch.
+      if: ${{ inputs.target == 'main' }}
+      uses: chromaui/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        projectToken: ${{ secrets.projectToken }}
+        storybookBuildDir: storybook-static
+        autoAcceptChanges: true
