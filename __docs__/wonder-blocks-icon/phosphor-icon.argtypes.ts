@@ -1,6 +1,6 @@
 import type {InputType} from "@storybook/csf";
 
-import PlusCircle from "@phosphor-icons/core/regular/plus-circle.svg";
+import PlusCircle from "@phosphor-icons/core/bold/plus-circle-bold.svg";
 import XCircle from "@phosphor-icons/core/fill/x-circle-fill.svg";
 import X from "@phosphor-icons/core/regular/x.svg";
 import CheckCircle from "@phosphor-icons/core/regular/check-circle.svg";
@@ -14,40 +14,48 @@ import Lightbulb from "@phosphor-icons/core/regular/lightbulb.svg";
 import SortAscending from "@phosphor-icons/core/regular/sort-ascending.svg";
 import SortDescending from "@phosphor-icons/core/regular/sort-descending.svg";
 import Circle from "@phosphor-icons/core/regular/circle.svg";
-import Info from "@phosphor-icons/core/regular/info.svg";
+import Info from "@phosphor-icons/core/bold/info-bold.svg";
 import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import MagnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import MagnifyingGlassPlus from "@phosphor-icons/core/regular/magnifying-glass-plus.svg";
 import MagnifyingGlassMinus from "@phosphor-icons/core/regular/magnifying-glass-minus.svg";
 import Article from "@phosphor-icons/core/regular/article.svg";
 import Exam from "@phosphor-icons/core/regular/exam.svg";
 import Video from "@phosphor-icons/core/regular/video.svg";
+// STOPSHIP(juan): This import should complain about the missing type. Only
+// testing that by trying to import an "invalid" weight TypeScript should
+// complain.
+import VideoDuoTone from "@phosphor-icons/core/duotone/video-duotone.svg";
+
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 
 /**
  * Some pre-defined icon examples to use in our stories.
  */
 const someIcons = {
-    PlusCircle: PlusCircle,
-    CaretDown: CaretDown,
-    CaretUp: CaretUp,
-    CaretLeft: CaretLeft,
-    CaretRight: CaretRight,
-    Check: Check,
-    CheckCircle: CheckCircle,
-    X: X,
-    XCircle: XCircle,
-    MinusCircle: MinusCircle,
-    Lightbulb: Lightbulb,
-    SortAscending: SortAscending,
-    SortDescending: SortDescending,
-    Circle: Circle,
-    Info: Info,
-    MagnifyingGlass: MagnifyingGlass,
-    MagnifyingGlassPlus: MagnifyingGlassPlus,
-    MagnifyingGlassMinus: MagnifyingGlassMinus,
+    PlusCircle,
+    CaretDown,
+    CaretUp,
+    CaretLeft,
+    CaretRight,
+    Check,
+    CheckCircle,
+    X,
+    XCircle,
+    MinusCircle,
+    Lightbulb,
+    SortAscending,
+    SortDescending,
+    Circle,
+    Info,
+    MagnifyingGlass,
+    MagnifyingGlassBold,
+    MagnifyingGlassPlus,
+    MagnifyingGlassMinus,
     Article,
     Exam,
     Video,
+    VideoDuoTone,
 } as const;
 
 export const IconMappings = someIcons;

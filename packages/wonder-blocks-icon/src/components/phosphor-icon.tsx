@@ -5,12 +5,11 @@ import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 // import type {IconNames} from "./phosphor-catalog";
 
-import type {IconSize} from "../util/icon-assets";
 import {viewportPixelsForSize} from "../util/icon-util";
 
 const StyledIcon = addStyle("i");
 
-type Props = AriaProps & {
+type BaseProps = AriaProps & {
     /**
      * The color of the icon. Will default to `currentColor`, which means that
      * it will take on the CSS `color` value from the parent element.
@@ -20,13 +19,12 @@ type Props = AriaProps & {
      * The icon to display. This is a string that corresponds to the name of
      * the icon in the catalog.
      */
-    // icon: IconNames;
-    icon: string;
+    // icon: string;
     /**
      * One of `small` (16px), `medium` (24px), `large` (48px),
      * or `xlarge` (96px).
      */
-    size?: IconSize;
+    // size?: IconSize;
     /**
      * Additional styles to apply to the icon.
      */
@@ -41,6 +39,26 @@ type Props = AriaProps & {
     testId?: string;
 };
 
+// Define icon size by icon weight
+type PropsByWeight =
+    | {
+          size?: "small";
+          // eslint-disable-next-line no-undef
+          icon: PhosphorBold | PhosphorFill;
+      }
+    | {
+          size?: "medium";
+          // eslint-disable-next-line no-undef
+          icon: PhosphorRegular | PhosphorFill;
+      }
+    | {
+          size?: "large" | "xlarge";
+          // eslint-disable-next-line no-undef
+          icon: PhosphorRegular | PhosphorBold | PhosphorFill;
+      };
+
+type Props = BaseProps & PropsByWeight;
+
 /**
  * An Icon displays a small informational or decorative image as an icon font
  * family.
@@ -48,10 +66,7 @@ type Props = AriaProps & {
  * @see https://phosphoricons.com/
  * @see https://github.com/phosphor-icons/web
  */
-const PhosphorIcon = React.forwardRef(function PhosphorIcon(
-    props: Props,
-    ref: React.ForwardedRef<HTMLElement>,
-) {
+function PhosphorIconInner(props: Props, ref: React.ForwardedRef<HTMLElement>) {
     const {
         color = "currentColor",
         icon,
@@ -86,7 +101,15 @@ const PhosphorIcon = React.forwardRef(function PhosphorIcon(
             ref={ref}
         />
     );
-});
+}
+
+// const PhosphorIcon = React.forwardRef(PhosphorIconInner) as <
+//     T extends PhosphorWeight,
+// >(
+//     props: Props<T> & {ref?: React.ForwardedRef<HTMLElement>},
+// ) => ReturnType<typeof PhosphorIconInner>;
+
+const PhosphorIcon = React.forwardRef(PhosphorIconInner);
 
 const styles = StyleSheet.create({
     svg: {

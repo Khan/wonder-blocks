@@ -63,11 +63,15 @@ export const Default: StoryComponentType = {
  *
  */
 export const Basic: StoryComponentType = {
-    args: {
-        icon: IconMappings.XCircle,
-        size: "large",
-        color: tokens.color.green,
-    },
+    render: () => (
+        // STOPSHIP(juan): PlusCircle (bold) + medium is not a valid
+        // combination.
+        <PhosphorIcon
+            icon={IconMappings.PlusCircle}
+            size="medium"
+            color={tokens.color.green}
+        />
+    ),
 };
 
 /**
@@ -87,7 +91,7 @@ export const Sizes: StoryComponentType = {
                         </td>
                         <td>
                             <PhosphorIcon
-                                icon={IconMappings.MagnifyingGlass}
+                                icon={IconMappings.MagnifyingGlassBold}
                                 size="small"
                             />
                         </td>
