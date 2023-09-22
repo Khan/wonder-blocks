@@ -10,13 +10,17 @@ import * as SwitchBestPracticesStories from "./switch-best-practices.stories";
 
 ### With Labelling
 
-The switch can be paired with a visible label which should be an html `label` element. The label
-should include the `htmlFor` attribute, and the switch should include the `aria-labelledby`
-attribute.
+The switch can be paired with a visible label which should be an html `label`
+element. The label should include the `htmlFor` attribute, and the switch should
+include the `aria-labelledby` attribute.
+
+**Note:** If you are already using a label to describe the switch, we encourage
+you not to use the `aria-label` attribute because it could override the
+`label`'s text.
 
 #### Label
 
-The label text should __not__ change as the state of the switch changes.
+The label text should **not** change as the state of the switch changes.
 
 <Canvas of={SwitchBestPracticesStories.WithLabel} />
 
