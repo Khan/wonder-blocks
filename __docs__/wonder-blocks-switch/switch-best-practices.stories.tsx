@@ -8,12 +8,12 @@ import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 
 import SwitchArgtypes from "./switch.argtypes";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 type StoryComponentType = StoryObj<typeof Switch>;
 

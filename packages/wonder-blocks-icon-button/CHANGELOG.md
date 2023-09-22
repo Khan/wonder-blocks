@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 4.2.0
+
+### Minor Changes
+
+-   fb704043: Add size prop to icon button
+
+### Patch Changes
+
+-   Updated dependencies [80cab317]
+    -   @khanacademy/wonder-blocks-clickable@4.0.7
+
 ## 4.1.9
 
 ### Patch Changes

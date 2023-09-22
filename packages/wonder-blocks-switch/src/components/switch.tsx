@@ -114,7 +114,7 @@ const SwitchCore = React.forwardRef(function SwitchCore(
                 aria-label={ariaLabel}
                 aria-labelledby={ariaLabelledBy}
                 checked={checked}
-                disabled={disabled}
+                aria-disabled={disabled}
                 id={uniqueId}
                 // Need to specify because this is a controlled React component, but we
                 // handle the clicks on the outer View
@@ -153,7 +153,7 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         },
     },
     disabled: {
-        cursor: "auto",
+        cursor: "not-allowed",
         ":hover": {
             outline: "none",
         },

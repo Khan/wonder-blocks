@@ -317,6 +317,78 @@ CompactCellDisabled.parameters = {
     },
 };
 
+/**
+ * These are `CompactCell` instances with custom background colors. Note that we
+ * use the `style` prop to pass a custom style object to the cell.
+ *
+ * We recommend using a faded background color (third cell) to make the cell
+ * look as expected with different states (e.g. hover, focus, active).
+ *
+ * If you use a solid background color (last cell), the cell states will not
+ * change the background color.
+ *
+ * _NOTE:_ We use custom roles here to make sure that the cell focus ring is
+ * displayed correctly while using `View` elements as parent containers. We
+ * encourage using semantic HTML elements (e.g. `ul`, `li`) when possible (via
+ * `addStyle("ul")` if you need to add Aphrodite Styles).
+ */
+export const CompactCellsAsListItems: StoryComponentType = {
+    render: () => (
+        <View role="list">
+            <View role="listitem">
+                <CompactCell
+                    title="Active Cell"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    active={true}
+                    href="https://khanacademy.org"
+                    horizontalRule="full-width"
+                />
+            </View>
+            <View role="listitem">
+                <CompactCell
+                    title="Cell with default bg color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    href="https://khanacademy.org"
+                    horizontalRule="full-width"
+                />
+            </View>
+            <View role="listitem">
+                <CompactCell
+                    title="Cell with a faded background color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    href="https://khanacademy.org"
+                    horizontalRule="full-width"
+                    style={{background: Color.offBlack50}}
+                />
+            </View>
+            <View role="listitem">
+                <CompactCell
+                    title="Cell with a solid background color"
+                    leftAccessory={
+                        <Icon icon={icons.contentArticle} size="medium" />
+                    }
+                    onClick={() => {}}
+                    style={{background: Color.pink}}
+                    horizontalRule="full-width"
+                />
+            </View>
+        </View>
+    ),
+    parameters: {
+        chromatic: {
+            // This includes tests with custom background colors via the `style`
+            // prop, so no need to capture screenshots.
+            disableSnapshot: true,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     example: {
         backgroundColor: Color.offWhite,

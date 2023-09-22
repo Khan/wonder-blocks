@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable max-lines */
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {ngettext} from "@khanacademy/wonder-blocks-i18n";
@@ -37,7 +37,7 @@ describe("MultiSelect", () => {
 
     describe("uncontrolled", () => {
         const onChange = jest.fn();
-        const uncontrolledSingleSelect = (
+        const uncontrolledMultiSelect = (
             <MultiSelect
                 onChange={onChange}
                 selectedValues={[]}
@@ -52,7 +52,7 @@ describe("MultiSelect", () => {
 
         it("opens the select on mouse click", () => {
             // Arrange
-            render(uncontrolledSingleSelect);
+            render(uncontrolledMultiSelect);
 
             // Act
             userEvent.click(screen.getByRole("button"));
@@ -63,7 +63,7 @@ describe("MultiSelect", () => {
 
         it("closes the select on {escape}", () => {
             // Arrange
-            render(uncontrolledSingleSelect);
+            render(uncontrolledMultiSelect);
 
             userEvent.tab();
             userEvent.keyboard("{enter}"); // open
@@ -78,7 +78,7 @@ describe("MultiSelect", () => {
 
         it("displays correct text for opener", () => {
             // Arrange
-            render(uncontrolledSingleSelect);
+            render(uncontrolledMultiSelect);
 
             // Act
             const opener = screen.getByRole("button");
@@ -460,7 +460,7 @@ describe("MultiSelect", () => {
     describe("isFilterable", () => {
         const onChange = jest.fn();
 
-        const filterableSingleSelect = (
+        const filterableMultiSelect = (
             <MultiSelect
                 onChange={onChange}
                 selectedValues={[]}
@@ -476,7 +476,7 @@ describe("MultiSelect", () => {
 
         it("displays SearchTextInput when isFilterable is true", () => {
             // Arrange
-            render(filterableSingleSelect);
+            render(filterableMultiSelect);
             // open the dropdown menu
             userEvent.click(screen.getByRole("button"));
 
@@ -489,7 +489,7 @@ describe("MultiSelect", () => {
 
         it("displays SearchTextInput with dismiss button when search text exists", () => {
             // Arrange
-            render(filterableSingleSelect);
+            render(filterableMultiSelect);
             // open the dropdown menu
             userEvent.click(screen.getByRole("button"));
 
@@ -504,7 +504,7 @@ describe("MultiSelect", () => {
 
         it("filters the items by the search input (case insensitive)", () => {
             // Arrange
-            render(filterableSingleSelect);
+            render(filterableMultiSelect);
             // open the dropdown menu
             userEvent.click(screen.getByRole("button"));
 
@@ -545,7 +545,7 @@ describe("MultiSelect", () => {
 
         it("should focus on the search input after opening the dropdown", () => {
             // Arrange
-            render(filterableSingleSelect);
+            render(filterableMultiSelect);
             // open the dropdown menu
             userEvent.click(screen.getByRole("button"));
 
@@ -643,7 +643,7 @@ describe("MultiSelect", () => {
 
         it("Click dismiss button should clear the searchText in MultiSelect", () => {
             // Arrange
-            render(filterableSingleSelect);
+            render(filterableMultiSelect);
             // open the dropdown menu
             userEvent.click(screen.getByRole("button"));
 
@@ -661,7 +661,7 @@ describe("MultiSelect", () => {
 
         it("Open MultiSelect should clear the searchText", () => {
             // Arrange
-            render(filterableSingleSelect);
+            render(filterableMultiSelect);
             // open the dropdown menu
             const opener = screen.getByRole("button");
             userEvent.click(opener);
@@ -1304,6 +1304,54 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(container).toHaveTextContent("1 planet");
+        });
+    });
+
+    describe("error state styles", () => {
+        it("should apply the error styles to the dropdown on hover", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    error={true}
+                    testId="multiselect-error-hover"
+                >
+                    {[<OptionItem label="Banana" value="banana" />]}
+                </MultiSelect>,
+            );
+            const dropdown = screen.getByTestId("multiselect-error-hover");
+
+            // Act
+            userEvent.hover(dropdown);
+
+            // Assert
+            expect(dropdown).toHaveStyle("border-color: #d92916");
+            expect(dropdown).toHaveStyle("border-width: 2px");
+        });
+
+        it("should apply the error styles to the dropdown on mouse down", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    error={true}
+                    testId="multiselect-error-active"
+                >
+                    {[<OptionItem label="Banana" value="banana" />]}
+                </MultiSelect>,
+            );
+            const dropdown = screen.getByTestId("multiselect-error-active");
+
+            // Act
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.mouseDown(dropdown);
+
+            // Assert
+            expect(dropdown).toHaveStyle("border-color: #d92916");
+            expect(dropdown).toHaveStyle("border-width: 2px");
+            expect(dropdown).toHaveStyle(
+                "background-color: rgb(243, 187, 180)",
+            );
         });
     });
 });

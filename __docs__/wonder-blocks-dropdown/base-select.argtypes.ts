@@ -11,6 +11,12 @@ export default {
         },
     },
 
+    error: {
+        table: {
+            category: "States",
+        },
+    },
+
     isFilterable: {
         table: {
             category: "States",

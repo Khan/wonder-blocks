@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import OptionItem from "../option-item";
@@ -871,6 +871,56 @@ describe("SingleSelect", () => {
 
             // Assert
             expect(screen.getByText("No hay resultados")).toBeInTheDocument();
+        });
+    });
+
+    describe("error state styles", () => {
+        it("should apply the error styles to the dropdown on hover", () => {
+            // Arrange
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose a fruit"
+                    error={true}
+                    testId="singleselect-error-hover"
+                >
+                    {[<OptionItem label="Banana" value="banana" />]}
+                </SingleSelect>,
+            );
+            const dropdown = screen.getByTestId("singleselect-error-hover");
+
+            // Act
+            userEvent.hover(dropdown);
+
+            // Assert
+            expect(dropdown).toHaveStyle("border-color: #d92916");
+            expect(dropdown).toHaveStyle("border-width: 2px");
+        });
+
+        it("should apply the error styles to the dropdown on mouse down", () => {
+            // Arrange
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose a fruit"
+                    error={true}
+                    testId="singleselect-error-active"
+                >
+                    {[<OptionItem label="Banana" value="banana" />]}
+                </SingleSelect>,
+            );
+            const dropdown = screen.getByTestId("singleselect-error-active");
+
+            // Act
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.mouseDown(dropdown);
+
+            // Assert
+            expect(dropdown).toHaveStyle("border-color: #d92916");
+            expect(dropdown).toHaveStyle("border-width: 2px");
+            expect(dropdown).toHaveStyle(
+                "background-color: rgb(243, 187, 180)",
+            );
         });
     });
 });

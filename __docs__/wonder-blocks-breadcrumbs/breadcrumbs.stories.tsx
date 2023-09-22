@@ -35,15 +35,16 @@ type StoryComponentType = StoryObj<typeof Breadcrumbs>;
  * story and it can be interacted with the controls panel in the Browser.
  */
 export const Default: StoryComponentType = {
-    render: (args) => (
-        <Breadcrumbs {...args}>
+    args: {
+        children: [
             <BreadcrumbsItem>
                 <Link href="">Course</Link>
-            </BreadcrumbsItem>
+            </BreadcrumbsItem>,
             <BreadcrumbsItem>
                 <Link href="">Unit</Link>
-            </BreadcrumbsItem>
-            <BreadcrumbsItem>Lesson</BreadcrumbsItem>
-        </Breadcrumbs>
-    ),
+            </BreadcrumbsItem>,
+            <BreadcrumbsItem>Lesson</BreadcrumbsItem>,
+        ],
+        "aria-label": "Navigation Menu",
+    },
 };

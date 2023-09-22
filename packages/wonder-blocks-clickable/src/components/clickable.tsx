@@ -221,7 +221,7 @@ const Clickable = React.forwardRef(function Clickable(
                     to={props.href}
                     role={props.role}
                     target={props.target || undefined}
-                    aria-disabled={props.disabled ? "true" : undefined}
+                    aria-disabled={props.disabled ? "true" : "false"}
                     ref={ref as React.Ref<typeof Link>}
                 >
                     {props.children(clickableState)}
@@ -234,7 +234,7 @@ const Clickable = React.forwardRef(function Clickable(
                     href={props.href}
                     role={props.role}
                     target={props.target || undefined}
-                    aria-disabled={props.disabled ? "true" : undefined}
+                    aria-disabled={props.disabled ? "true" : "false"}
                     ref={ref as React.Ref<HTMLAnchorElement>}
                 >
                     {props.children(clickableState)}

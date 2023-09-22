@@ -269,6 +269,8 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <SingleSelect
+                aria-invalid={!!this.state.error}
+                error={!!this.state.error}
                 disabled={disabled}
                 placeholder={this.labels.month}
                 onChange={this.handleMonthChange}
@@ -297,6 +299,8 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             <>
                 <Strut size={Spacing.xSmall_8} />
                 <SingleSelect
+                    aria-invalid={!!this.state.error}
+                    error={!!this.state.error}
                     disabled={disabled}
                     placeholder={this.labels.day}
                     onChange={this.handleDayChange}
@@ -325,6 +329,8 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <SingleSelect
+                aria-invalid={!!this.state.error}
+                error={!!this.state.error}
                 disabled={disabled}
                 placeholder={this.labels.year}
                 onChange={this.handleYearChange}

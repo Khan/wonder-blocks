@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 3.1.0
+
+### Minor Changes
+
+-   d1a5796a: Added error prop
+
+## 3.0.29
+
+### Patch Changes
+
+-   Updated dependencies [80cab317]
+    -   @khanacademy/wonder-blocks-clickable@4.0.7
+    -   @khanacademy/wonder-blocks-modal@4.0.27
+    -   @khanacademy/wonder-blocks-search-field@2.1.14
+
 ## 3.0.28
 
 ### Patch Changes
