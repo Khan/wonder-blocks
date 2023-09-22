@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.1
+
+### Patch Changes
+
+-   1f263385: Use `aria-disabled` instead of `disabled` for enabling focus on Screen Readers.
+
 ## 1.1.0
 
 ### Minor Changes
