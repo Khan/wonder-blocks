@@ -153,7 +153,7 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         },
     },
     disabled: {
-        cursor: "auto",
+        cursor: "not-allowed",
         ":hover": {
             outline: "none",
         },
