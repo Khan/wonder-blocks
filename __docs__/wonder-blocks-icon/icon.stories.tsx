@@ -9,6 +9,7 @@ import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
+import tokens from "../../packages/wonder-blocks-theming/src/tokens";
 
 export default {
     title: "Icon / Icon",

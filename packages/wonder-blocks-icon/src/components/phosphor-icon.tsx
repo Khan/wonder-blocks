@@ -3,70 +3,113 @@ import {StyleSheet} from "aphrodite";
 
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-// import type {IconNames} from "./phosphor-catalog";
-
 import {viewportPixelsForSize} from "../util/icon-util";
 
-const StyledIcon = addStyle("i");
+// We use a span instead of an img because we want to use the mask-image CSS
+// property.
+const StyledIcon = addStyle("span");
 
-type BaseProps = AriaProps & {
-    /**
-     * The color of the icon. Will default to `currentColor`, which means that
-     * it will take on the CSS `color` value from the parent element.
-     */
-    color?: string;
-    /**
-     * The icon to display. This is a string that corresponds to the name of
-     * the icon in the catalog.
-     */
-    // icon: string;
-    /**
-     * One of `small` (16px), `medium` (24px), `large` (48px),
-     * or `xlarge` (96px).
-     */
-    // size?: IconSize;
-    /**
-     * Additional styles to apply to the icon.
-     */
-    style?: StyleType;
-    /**
-     * Adds CSS classes to the Icon.
-     */
-    className?: string;
-    /**
-     * Test ID used for e2e testing.
-     */
-    testId?: string;
-};
+type CommonProps = AriaProps &
+    Readonly<{
+        /**
+         * The color of the icon. Will default to `currentColor`, which means that
+         * it will take on the CSS `color` value from the parent element.
+         */
+
+        /** Rhw aslkdaldkj  */
+        color?: string;
+        /**
+         * Additional styles to apply to the icon.
+         */
+        style?: StyleType;
+        /**
+         * Adds CSS classes to the Icon.
+         */
+        className?: string;
+        /**
+         * Test ID used for e2e testing.
+         */
+        testId?: string;
+    }>;
 
 // Define icon size by icon weight
-type PropsByWeight =
-    | {
+type Props =
+    | (CommonProps & {
+          /**
+           * The icon size (16px).
+           */
           size?: "small";
-          // eslint-disable-next-line no-undef
+          /**
+           * The icon to display. This is a reference to the icon asset
+           * (imported as a static SVG file).
+           * __NOTE:__ small icons only support `bold` and `fill` weights.
+           */
           icon: PhosphorBold | PhosphorFill;
-      }
-    | {
+      })
+    | (CommonProps & {
+          /**
+           * The icon size (24px).
+           */
           size?: "medium";
-          // eslint-disable-next-line no-undef
+          /**
+           * The icon to display. This is a reference to the icon asset
+           * (imported as a static SVG file).
+           * __NOTE:__ medium icons only support `regular` and `fill` weights.
+           */
           icon: PhosphorRegular | PhosphorFill;
-      }
-    | {
-          size?: "large" | "xlarge";
-          // eslint-disable-next-line no-undef
+      })
+    | (CommonProps & {
+          /**
+           * The icon size (48px).
+           */
+          size?: "large";
+          /**
+           * The icon to display. This is a reference to the icon asset
+           * (imported as a static SVG file).
+           */
           icon: PhosphorRegular | PhosphorBold | PhosphorFill;
-      };
-
-type Props = BaseProps & PropsByWeight;
+      })
+    | (CommonProps & {
+          /**
+           * The icon size (96px).
+           */
+          size?: "xlarge";
+          /**
+           * The icon to display. This is a reference to the icon asset
+           * (imported as a static SVG file).
+           */
+          icon: PhosphorRegular | PhosphorBold | PhosphorFill;
+      });
 
 /**
- * An Icon displays a small informational or decorative image as an icon font
- * family.
+ * A `PhosphorIcon` displays a small informational or decorative image as an
+ * HTML element that renders a Phosphor Icon SVG available from the
+ * `@phosphor-icons/core` package.
  *
- * @see https://phosphoricons.com/
- * @see https://github.com/phosphor-icons/web
+ * For more information about the icons catalog, check the [Phosphor Icons
+ * website](https://phosphoricons.com/).
+ *
+ * ## Usage
+ *
+ * ```js
+ * import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+ * import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+ *
+ * <PhosphorIcon
+ *     icon={MagnifyingGlass}
+ *     color={Color.blue}
+ *     size="medium"
+ *     style={{margin: Spacing.xxxxSmall_2}}
+ * />
+ * ```
+ *
+ * These icons should fit into a viewport of `16`, `24`, `48`, and `96` pixels,
+ * respectively.
  */
-function PhosphorIconInner(props: Props, ref: React.ForwardedRef<HTMLElement>) {
+const PhosphorIcon = React.forwardRef(function PhosphorIcon(
+    props: Props,
+    ref: React.ForwardedRef<HTMLSpanElement>,
+) {
     const {
         color = "currentColor",
         icon,
@@ -101,15 +144,7 @@ function PhosphorIconInner(props: Props, ref: React.ForwardedRef<HTMLElement>) {
             ref={ref}
         />
     );
-}
-
-// const PhosphorIcon = React.forwardRef(PhosphorIconInner) as <
-//     T extends PhosphorWeight,
-// >(
-//     props: Props<T> & {ref?: React.ForwardedRef<HTMLElement>},
-// ) => ReturnType<typeof PhosphorIconInner>;
-
-const PhosphorIcon = React.forwardRef(PhosphorIconInner);
+});
 
 const styles = StyleSheet.create({
     svg: {
@@ -119,5 +154,7 @@ const styles = StyleSheet.create({
         flexGrow: 0,
     },
 });
+
+PhosphorIcon.displayName = "PhosphorIcon";
 
 export default PhosphorIcon;
