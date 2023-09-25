@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-icon": minor
 ---
 
-Add `PhosphorIcon` to wrap phosphor SVG files using an `img` element.
+Add `PhosphorIcon` to display Phosphor SVG files.

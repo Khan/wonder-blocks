@@ -152,6 +152,6 @@ const styles = StyleSheet.create({
     },
 });
 
-// PhosphorIcon.displayName = "PhosphorIcon";
+PhosphorIcon.displayName = "PhosphorIcon";
 
 export default PhosphorIcon;
