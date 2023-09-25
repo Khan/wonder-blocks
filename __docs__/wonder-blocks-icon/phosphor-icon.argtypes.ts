@@ -92,7 +92,7 @@ export const IconMappings = {
 export default {
     icon: {
         description:
-            "The icon to display. This is a string that corresponds to the name of the icon in the catalog.",
+            "The icon to display. This is a reference to the icon asset (imported as a static SVG file). `small` size should use a `bold` icon, and `medium` size should use a `regular` icon.",
         options: Object.keys(IconMappings),
         mapping: IconMappings,
         type: {
@@ -159,6 +159,7 @@ export default {
             type: "boolean",
         },
         table: {
+            category: "Accessibility",
             type: {
                 summary: "boolean",
             },
@@ -171,6 +172,7 @@ export default {
             type: "text",
         },
         table: {
+            category: "Accessibility",
             type: {
                 summary: "string",
             },
