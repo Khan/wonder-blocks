@@ -9,28 +9,25 @@ import {viewportPixelsForSize} from "../util/icon-util";
 // property.
 const StyledIcon = addStyle("span");
 
-type CommonProps = AriaProps &
-    Readonly<{
-        /**
-         * The color of the icon. Will default to `currentColor`, which means that
-         * it will take on the CSS `color` value from the parent element.
-         */
-
-        /** Rhw aslkdaldkj  */
-        color?: string;
-        /**
-         * Additional styles to apply to the icon.
-         */
-        style?: StyleType;
-        /**
-         * Adds CSS classes to the Icon.
-         */
-        className?: string;
-        /**
-         * Test ID used for e2e testing.
-         */
-        testId?: string;
-    }>;
+type CommonProps = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
+    /**
+     * The color of the icon. Will default to `currentColor`, which means that
+     * it will take on the CSS `color` value from the parent element.
+     */
+    color?: string;
+    /**
+     * Additional styles to apply to the icon.
+     */
+    style?: StyleType;
+    /**
+     * Adds CSS classes to the Icon.
+     */
+    className?: string;
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string;
+};
 
 // Define icon size by icon weight
 type Props =
@@ -155,6 +152,6 @@ const styles = StyleSheet.create({
     },
 });
 
-PhosphorIcon.displayName = "PhosphorIcon";
+// PhosphorIcon.displayName = "PhosphorIcon";
 
 export default PhosphorIcon;

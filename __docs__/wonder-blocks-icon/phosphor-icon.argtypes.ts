@@ -152,4 +152,28 @@ export default {
             },
         },
     },
+    "aria-hidden": {
+        description:
+            "Whether or not the icon should be visible to screenreaders.",
+        control: {
+            type: "boolean",
+        },
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+    },
+    "aria-label": {
+        description:
+            "The description of this component for the screenreader to read.",
+        control: {
+            type: "text",
+        },
+        table: {
+            type: {
+                summary: "string",
+            },
+        },
+    },
 } satisfies Record<string, InputType>;

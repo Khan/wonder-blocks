@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Body, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
@@ -136,8 +136,8 @@ export const Sizes: StoryComponentType = {
 };
 
 type IconGroup = {
-    small: PhosphorBold;
-    medium: PhosphorFill;
+    small: PhosphorBold | null;
+    medium: PhosphorRegular | null;
 };
 
 const IconEntries = Object.entries(IconMappings);
@@ -148,17 +148,26 @@ const groupIconsByNames = () => {
         const key = name.replace("Bold", "");
 
         if (!acc[key]) {
-            acc[key] = {
-                small: isSmall ? icon : null,
-                medium: !isSmall ? icon : null,
-            };
+            if (isSmall) {
+                acc[key] = {small: icon as PhosphorBold, medium: null};
+            } else {
+                acc[key] = {small: null, medium: icon as PhosphorRegular};
+            }
         } else {
-            acc[key][isSmall ? "small" : "medium"] = icon;
+            if (isSmall) {
+                acc[key].small = icon as PhosphorBold;
+            } else {
+                acc[key].medium = icon as PhosphorRegular;
+            }
         }
 
         return acc;
     }, {} as Record<string, IconGroup>);
 };
+
+const StyledTable = addStyle("table");
+const StyledTh = addStyle("th");
+const StyledTd = addStyle("td");
 
 /**
  * The icons are defined in the Phosphor Icons package. We just import them and
@@ -181,49 +190,35 @@ export const Variants: StoryComponentType = {
                 const MediumIcon = iconsGroup.medium;
                 return (
                     <tr key={index}>
-                        <td
-                            style={{
-                                border: `${tokens.border.width.hairline}px solid ${tokens.color.offBlack}`,
-                            }}
-                        >
+                        <StyledTd style={styles.tableCell}>
                             <LabelMedium>{name}</LabelMedium>
-                        </td>
-                        <td
-                            style={{
-                                border: `${tokens.border.width.hairline}px solid ${tokens.color.offBlack}`,
-                            }}
-                        >
-                            <PhosphorIcon icon={SmallIcon} size="small" />
-                        </td>
-                        <td
-                            style={{
-                                border: `${tokens.border.width.hairline}px solid ${tokens.color.offBlack}`,
-                            }}
-                        >
-                            <PhosphorIcon icon={MediumIcon} size="medium" />
-                        </td>
+                        </StyledTd>
+                        <StyledTd style={styles.tableCell}>
+                            {SmallIcon && (
+                                <PhosphorIcon icon={SmallIcon} size="small" />
+                            )}
+                        </StyledTd>
+                        <StyledTd style={styles.tableCell}>
+                            {MediumIcon && (
+                                <PhosphorIcon icon={MediumIcon} size="medium" />
+                            )}
+                        </StyledTd>
                     </tr>
                 );
             },
         );
 
         return (
-            <table
-                style={{
-                    border: `${tokens.border.width.hairline}px solid ${tokens.color.offBlack}`,
-                    borderCollapse: "collapse",
-                    borderSpacing: 0,
-                }}
-            >
+            <StyledTable style={[styles.table, styles.tableCell]}>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>small</th>
-                        <th>medium</th>
+                        <StyledTh style={styles.tableCell}>Name</StyledTh>
+                        <StyledTh style={styles.tableCell}>small</StyledTh>
+                        <StyledTh style={styles.tableCell}>medium</StyledTh>
                     </tr>
                 </thead>
                 <tbody>{iconsWithLabels}</tbody>
-            </table>
+            </StyledTable>
         );
     },
     decorators: [
@@ -270,7 +265,7 @@ export const Inline: StoryComponentType = {
     },
 };
 
-// TODO(juan): Need to figure out how to use custom icons.
+// TODO(WB-1611): Need to figure out how to use custom icons.
 /**
  * Icons can be customized by passing in a custom icon.
  *
@@ -303,6 +298,17 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
+        padding: tokens.spacing.medium_16,
+    },
+    table: {
+        borderCollapse: "collapse",
+        borderSpacing: 0,
+        maxWidth: 600,
+        textAlign: "center",
+    },
+
+    tableCell: {
+        border: `${tokens.border.width.hairline}px solid ${tokens.color.offBlack}`,
         padding: tokens.spacing.medium_16,
     },
 });

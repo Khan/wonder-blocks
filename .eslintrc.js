@@ -70,6 +70,10 @@ module.exports = {
         DOMHighResTimeStamp: false,
         RequestInfo: false,
         RequestInit: false,
+        // from types/assets.d.ts
+        PhosphorBold: false,
+        PhosphorFill: false,
+        PhosphorRegular: false,
         // from types/utility.d.ts
         Empty: false,
         ObjMap: false,
