@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.2
+
+### Patch Changes
+
+-   65148738: Add `not-allowed` cursor to disabled+hover
+    -   @khanacademy/wonder-blocks-theming@1.1.1
+
 ## 1.1.1
 
 ### Patch Changes

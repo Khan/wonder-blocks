@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-theming
 
+## 1.1.1
+
+### Patch Changes
+
+-   Updated dependencies [48d3c7e9]
+    -   @khanacademy/wonder-blocks-color@3.0.0
+
 ## 1.1.0
 
 ### Minor Changes
