@@ -76,6 +76,7 @@ describe("mix", () => {
             ["rgba(0,0,0,0.25)", "#fFfFfF", "#bfbfbf"],
             ["rgba(0,0,0,0.25)", "rgb(255,255,0)", "#bfbf00"],
             ["rgba(100,200,100,0.25)", "rgb(255,255,0)", "#d8f119"],
+            ["rgba(33,36,44,0.32)", "#00a60e", "#0b7c18"],
         ];
 
         for (const [color, background, expectation] of testpoints) {

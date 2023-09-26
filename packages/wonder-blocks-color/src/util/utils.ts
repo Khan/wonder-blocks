@@ -61,10 +61,9 @@ const format = (color: Color): string => {
     const b = Math.round(color.b);
 
     if (color.a === 1) {
-        // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'c' implicitly has an 'any' type.
-        const _s = (c) => {
+        const _s = (c: number) => {
             const asString = c.toString(16);
-            return asString.length === 1 ? asString + asString : asString;
+            return asString.length === 1 ? `0${asString}` : asString;
         };
         return `#${_s(r)}${_s(g)}${_s(b)}`;
     } else {
