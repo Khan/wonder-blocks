@@ -108,7 +108,7 @@ type Props =
  * These icons should fit into a viewport of `16`, `24`, `48`, and `96` pixels,
  * respectively.
  */
-const PhosphorIcon = React.forwardRef(function PhosphorIcon(
+export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     props: Props,
     ref: React.ForwardedRef<HTMLSpanElement>,
 ) {
@@ -158,5 +158,3 @@ const styles = StyleSheet.create({
 });
 
 PhosphorIcon.displayName = "PhosphorIcon";
-
-export default PhosphorIcon;

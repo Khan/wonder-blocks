@@ -4,7 +4,7 @@ import {render, screen} from "@testing-library/react";
 import Plus from "@phosphor-icons/core/regular/plus.svg";
 import PlusBold from "@phosphor-icons/core/bold/plus-bold.svg";
 
-import PhosphorIcon from "../phosphor-icon";
+import {PhosphorIcon} from "../phosphor-icon";
 import * as utils from "../../util/icon-util";
 
 describe("PhosphorIcon", () => {
@@ -12,7 +12,7 @@ describe("PhosphorIcon", () => {
         jest.clearAllMocks();
     });
 
-    test("forwards the ref to the `span` element", async () => {
+    it("forwards the ref to the `span` element", async () => {
         // Arrange
         const ref: React.RefObject<HTMLSpanElement> = React.createRef();
 
@@ -23,7 +23,7 @@ describe("PhosphorIcon", () => {
         expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     });
 
-    test("applies aria-label to icon", async () => {
+    it("applies aria-label to icon", async () => {
         // Arrange
 
         // Act
@@ -42,7 +42,7 @@ describe("PhosphorIcon", () => {
         );
     });
 
-    test("calls viewportPixelsForSize with size from props", async () => {
+    it("calls viewportPixelsForSize with size from props", async () => {
         // Arrange
         const viewPortPixelsForSizeSpy = jest.spyOn(
             utils,
@@ -56,7 +56,7 @@ describe("PhosphorIcon", () => {
         expect(viewPortPixelsForSizeSpy).toHaveBeenCalledWith("small");
     });
 
-    test("sets image to asset dimensions", async () => {
+    it("sets correct width", async () => {
         // Arrange
         const expectedRenderSize = 24;
 
@@ -70,10 +70,25 @@ describe("PhosphorIcon", () => {
         // Assert
         const icon = screen.getByTestId("phosphor-icon");
         expect(icon).toHaveStyle(`width: ${expectedRenderSize}px`);
+    });
+
+    it("sets correct height", async () => {
+        // Arrange
+        const expectedRenderSize = 24;
+
+        jest.spyOn(utils, "viewportPixelsForSize").mockImplementationOnce(
+            () => expectedRenderSize,
+        );
+
+        // Act
+        render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
+
+        // Assert
+        const icon = screen.getByTestId("phosphor-icon");
         expect(icon).toHaveStyle(`height: ${expectedRenderSize}px`);
     });
 
-    test("applies style prop", async () => {
+    it("applies style prop", async () => {
         // Arrange
         const expectedStyle = {
             display: "none",
@@ -94,20 +109,11 @@ describe("PhosphorIcon", () => {
         );
     });
 
-    test("includes SVG using the maskImage css attribute", async () => {
+    it("includes SVG using the maskImage css attribute", async () => {
         // Arrange
-        const expectedStyle = {
-            display: "none",
-        } as const;
 
         // Act
-        render(
-            <PhosphorIcon
-                icon={Plus}
-                style={expectedStyle}
-                testId="phosphor-icon"
-            />,
-        );
+        render(<PhosphorIcon icon={Plus} testId="phosphor-icon" />);
 
         // Assert
         expect(screen.getByTestId("phosphor-icon")).toHaveStyle(

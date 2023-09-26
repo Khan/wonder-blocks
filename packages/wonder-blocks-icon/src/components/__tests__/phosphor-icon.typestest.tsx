@@ -7,7 +7,7 @@ import PlusCircleFill from "@phosphor-icons/core/fill/plus-circle-fill.svg";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import VideoDuoTone from "@phosphor-icons/core/duotone/video-duotone.svg";
 
-import PhosphorIcon from "../phosphor-icon";
+import {PhosphorIcon} from "../phosphor-icon";
 
 // Valid: small + bold
 <PhosphorIcon icon={PlusCircleBold} size="small" color="green" />;
