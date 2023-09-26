@@ -93,7 +93,7 @@ type Props =
  *
  * ## Usage
  *
- * ```js
+ * ```tsx
  * import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
  * import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
  *
