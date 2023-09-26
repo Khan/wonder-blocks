@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 3.0.23
+
+### Patch Changes
+
+-   Updated dependencies [48d3c7e9]
+    -   @khanacademy/wonder-blocks-color@3.0.0
+
 ## 3.0.22
 
 ### Patch Changes
