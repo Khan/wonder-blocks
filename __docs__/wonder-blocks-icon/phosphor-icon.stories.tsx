@@ -221,6 +221,11 @@ export const Variants: StoryComponentType = {
             </StyledTable>
         );
     },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
     decorators: [
         (Story) => (
             <View style={{gap: tokens.spacing.medium_16}}>

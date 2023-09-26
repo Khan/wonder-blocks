@@ -4,6 +4,11 @@ import {StyleSheet} from "aphrodite";
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {viewportPixelsForSize} from "../util/icon-util";
+import {
+    PhosphorIconAsset,
+    PhosphorIconMedium,
+    PhosphorIconSmall,
+} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
@@ -41,7 +46,7 @@ type Props =
            * (imported as a static SVG file).
            * __NOTE:__ small icons only support `bold` and `fill` weights.
            */
-          icon: PhosphorBold | PhosphorFill;
+          icon: PhosphorIconSmall;
       })
     | (CommonProps & {
           /**
@@ -53,7 +58,7 @@ type Props =
            * (imported as a static SVG file).
            * __NOTE:__ medium icons only support `regular` and `fill` weights.
            */
-          icon: PhosphorRegular | PhosphorFill;
+          icon: PhosphorIconMedium;
       })
     | (CommonProps & {
           /**
@@ -64,7 +69,7 @@ type Props =
            * The icon to display. This is a reference to the icon asset
            * (imported as a static SVG file).
            */
-          icon: PhosphorRegular | PhosphorBold | PhosphorFill;
+          icon: PhosphorIconAsset;
       })
     | (CommonProps & {
           /**
@@ -75,7 +80,7 @@ type Props =
            * The icon to display. This is a reference to the icon asset
            * (imported as a static SVG file).
            */
-          icon: PhosphorRegular | PhosphorBold | PhosphorFill;
+          icon: PhosphorIconAsset;
       });
 
 /**
