@@ -34,54 +34,53 @@ type CommonProps = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
     testId?: string;
 };
 
+type PropsForSmallIcon = CommonProps & {
+    /**
+     * The icon size (16px).
+     *
+     * __NOTE:__ small icons only support `bold` and `fill` weights. **Make sure
+     * you are not using a `regular` icon.**
+     */
+    size?: "small";
+    /**
+     * The icon to display. This is a reference to the icon asset
+     * (imported as a static SVG file).
+     * __NOTE:__ small icons only support `bold` and `fill` weights.
+     */
+    icon: PhosphorIconSmall;
+};
+
+type PropsForMediumIcon = CommonProps & {
+    /**
+     * The icon size (24px). Defaults to `medium`.
+     *
+     * __NOTE:__ medium icons only support `regular` and `fill` weights. **Make
+     * sure you are not using a `bold` icon.**
+     */
+    size?: "medium";
+    /**
+     * The icon to display. This is a reference to the icon asset
+     * (imported as a static SVG file).
+     * __NOTE:__ medium icons only support `regular` and `fill` weights.
+     */
+    icon: PhosphorIconMedium;
+};
+
+type PropsForOtherSizes = CommonProps & {
+    /**
+     * large: The icon size (48px).
+     * xlarge: The icon size (96px).
+     */
+    size?: "large" | "xlarge";
+    /**
+     * The icon to display. This is a reference to the icon asset
+     * (imported as a static SVG file).
+     */
+    icon: PhosphorIconAsset;
+};
+
 // Define icon size by icon weight
-type Props =
-    | (CommonProps & {
-          /**
-           * The icon size (16px).
-           */
-          size?: "small";
-          /**
-           * The icon to display. This is a reference to the icon asset
-           * (imported as a static SVG file).
-           * __NOTE:__ small icons only support `bold` and `fill` weights.
-           */
-          icon: PhosphorIconSmall;
-      })
-    | (CommonProps & {
-          /**
-           * The icon size (24px).
-           */
-          size?: "medium";
-          /**
-           * The icon to display. This is a reference to the icon asset
-           * (imported as a static SVG file).
-           * __NOTE:__ medium icons only support `regular` and `fill` weights.
-           */
-          icon: PhosphorIconMedium;
-      })
-    | (CommonProps & {
-          /**
-           * The icon size (48px).
-           */
-          size?: "large";
-          /**
-           * The icon to display. This is a reference to the icon asset
-           * (imported as a static SVG file).
-           */
-          icon: PhosphorIconAsset;
-      })
-    | (CommonProps & {
-          /**
-           * The icon size (96px).
-           */
-          size?: "xlarge";
-          /**
-           * The icon to display. This is a reference to the icon asset
-           * (imported as a static SVG file).
-           */
-          icon: PhosphorIconAsset;
-      });
+type Props = PropsForSmallIcon | PropsForMediumIcon | PropsForOtherSizes;
 
 /**
  * A `PhosphorIcon` displays a small informational or decorative image as an
