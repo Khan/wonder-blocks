@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-icon-button",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -19,7 +19,7 @@
     "@khanacademy/wonder-blocks-clickable": "^4.0.8",
     "@khanacademy/wonder-blocks-color": "^3.0.0",
     "@khanacademy/wonder-blocks-core": "^6.2.0",
-    "@khanacademy/wonder-blocks-icon": "^2.1.6"
+    "@khanacademy/wonder-blocks-icon": "^2.2.0"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
