@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 2.2.0
+
+### Minor Changes
+
+-   0d8501f7: Add `PhosphorIcon` to display Phosphor SVG files.
+
 ## 2.1.6
 
 ### Patch Changes
