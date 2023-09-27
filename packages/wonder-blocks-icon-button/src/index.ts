@@ -1,3 +1,1 @@
-import IconButton from "./components/icon-button";
-
-export {IconButton as default};
+export {IconButton as default} from "./components/icon-button";

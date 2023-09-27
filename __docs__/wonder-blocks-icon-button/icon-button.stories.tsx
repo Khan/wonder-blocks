@@ -4,11 +4,15 @@ import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
+import CaretLeft from "@phosphor-icons/core/regular/caret-left.svg";
+import CaretRight from "@phosphor-icons/core/regular/caret-right.svg";
+import Info from "@phosphor-icons/core/regular/info.svg";
+import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import MagnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
+
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {icons} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
@@ -16,6 +20,45 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
 import IconButtonArgtypes from "./icon-button.argtypes";
 
+/**
+ * An `IconButton` is a button whose contents are an SVG image.
+ *
+ * To use, supply an `onClick` function, a Phosphor icon asset (see the
+ * `Icon>PhosphorIcon` section) and an `aria-label` to describe the button
+ * functionality. Optionally specify href (URL), clientSideNav, color (Wonder
+ * Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"), light
+ * (whether the IconButton will be rendered on a dark background), disabled ,
+ * test ID, and custom styling.
+ *
+ * The size of an `IconButton` is based on how the `size` prop is defined (see
+ * `Sizes` below for more details). The focus ring which is displayed on hover
+ * and focus is much larger but does not affect its size. This matches the
+ * behavior of Button.
+ *
+ * IconButtons require a certain amount of space between them to ensure the
+ * focus rings don't overlap. The minimum amount of spacing is 16px, but you
+ * should refer to the mocks provided by design.  Using a Strut in between
+ * IconButtons is the preferred way to for adding this spacing.
+ *
+ * Many layouts require alignment of visual left (or right) side of an
+ * `IconButton`. This requires a little bit of pixel nudging since each icon as
+ * a different amount of internal padding.
+ *
+ * See the Toolbar documentation for examples of `IconButton` use that follow
+ * the best practices described above.
+ *
+ * ```js
+ * import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+ * import IconButton from "@khanacademy/wonder-blocks-icon-button";
+ *
+ * <IconButton
+ *     icon={MagnifyingGlass}
+ *     aria-label="An Icon"
+ *     onClick={(e) => console.log("Hello, world!")}
+ *     size="medium"
+ * />
+ * ```
+ */
 export default {
     title: "IconButton",
     component: IconButton,
@@ -32,9 +75,13 @@ export default {
 
 type StoryComponentType = StoryObj<typeof IconButton>;
 
+/**
+ * Minimal icon button. The only props specified in this example are `icon` and
+ * `onClick`.
+ */
 export const Default: StoryComponentType = {
     args: {
-        icon: icons.search,
+        icon: MagnifyingGlass,
         color: "default",
         disabled: false,
         kind: "primary",
@@ -47,61 +94,41 @@ export const Default: StoryComponentType = {
     },
 };
 
-export const Basic: StoryComponentType = () => {
-    return (
-        <IconButton icon={icons.search} onClick={() => console.log("Click!")} />
-    );
-};
-
-Basic.parameters = {
-    docs: {
-        description: {
-            story: `Minimal icon button. The only props specified in
-            this example are \`icon\` and \`onClick\`.`,
-        },
-    },
-};
-
 /**
- * Icon buttons can be one of three sizes: `xsmall` (16px icon with a 24px touch target),
- * `small` (24px icon with a 32px touch target), and `medium` (24px icon with a 40px touch target).
- * The default size is `medium`.
+ * IconButtons can be used with any icon from the `@phosphor-icons/core`
+ * package. The `icon` prop takes an SVG asset from the package.
+ *
+ * In this example you can see the different sizes of the icon button:
+ * - `xsmall` (16px icon with a 24px touch target).
+ * - `small` (24px icon with a 32px touch target).
+ * - `medium` (24px icon with a 40px touch target).
  */
-export const Sizes: StoryComponentType = (() => {
-    return (
-        <View style={{flexDirection: "column"}}>
+export const Sizes: StoryComponentType = {
+    ...Default,
+    args: {
+        icon: MagnifyingGlass,
+    },
+    render: (args) => (
+        <View style={{gap: Spacing.medium_16}}>
             <View style={styles.row}>
                 <LabelMedium style={styles.label}>xsmall</LabelMedium>
                 <IconButton
-                    icon={icons.search}
+                    {...args}
+                    icon={MagnifyingGlassBold}
                     size="xsmall"
-                    aria-label="search"
-                    onClick={(e) => console.log("Click!")}
                 />
             </View>
-            <Strut size={Spacing.large_24} />
             <View style={styles.row}>
                 <LabelMedium style={styles.label}>small</LabelMedium>
-                <IconButton
-                    icon={icons.search}
-                    size="small"
-                    aria-label="search"
-                    onClick={(e) => console.log("Click!")}
-                />
+                <IconButton {...args} size="small" />
             </View>
-            <Strut size={Spacing.large_24} />
             <View style={styles.row}>
                 <LabelMedium style={styles.label}>medium</LabelMedium>
-                <IconButton
-                    icon={icons.search}
-                    size="medium"
-                    aria-label="search"
-                    onClick={(e) => console.log("Click!")}
-                />
+                <IconButton {...args} size="medium" />
             </View>
         </View>
-    );
-}) as StoryComponentType;
+    ),
+};
 
 /**
  * In this example, we have primary, secondary, tertiary,
@@ -112,25 +139,25 @@ export const Variants: StoryComponentType = {
         return (
             <View style={styles.row}>
                 <IconButton
-                    icon={icons.search}
+                    icon={MagnifyingGlass}
                     aria-label="search"
                     onClick={(e) => console.log("Click!")}
                 />
                 <IconButton
-                    icon={icons.search}
+                    icon={MagnifyingGlass}
                     aria-label="search"
                     kind="secondary"
                     onClick={(e) => console.log("Click!")}
                 />
                 <IconButton
-                    icon={icons.search}
+                    icon={MagnifyingGlass}
                     aria-label="search"
                     kind="tertiary"
                     onClick={(e) => console.log("Click!")}
                 />
                 <IconButton
                     disabled={true}
-                    icon={icons.search}
+                    icon={MagnifyingGlass}
                     aria-label="search"
                     onClick={(e) => console.log("Click!")}
                 />
@@ -148,7 +175,7 @@ export const Light: StoryComponentType = {
         return (
             <View style={styles.dark}>
                 <IconButton
-                    icon={icons.search}
+                    icon={MagnifyingGlass}
                     aria-label="search"
                     light={true}
                     onClick={(e) => console.log("Click!")}
@@ -167,7 +194,7 @@ export const DisabledLight: StoryComponentType = {
             <View style={styles.dark}>
                 <IconButton
                     disabled={true}
-                    icon={icons.search}
+                    icon={MagnifyingGlass}
                     aria-label="search"
                     light={true}
                     onClick={(e) => console.log("Click!")}
@@ -187,7 +214,7 @@ export const UsingHref: StoryComponentType = {
     render: () => {
         return (
             <IconButton
-                icon={icons.info}
+                icon={Info}
                 aria-label="More information"
                 href="/"
                 target="_blank"
@@ -206,12 +233,12 @@ export const WithAriaLabel: StoryComponentType = {
         return (
             <View style={styles.arrowsWrapper}>
                 <IconButton
-                    icon={icons.caretLeft}
+                    icon={CaretLeft}
                     onClick={(e) => console.log("Click!")}
                     aria-label="Previous page"
                 />
                 <IconButton
-                    icon={icons.caretRight}
+                    icon={CaretRight}
                     onClick={(e) => console.log("Click!")}
                     aria-label="Next page"
                 />

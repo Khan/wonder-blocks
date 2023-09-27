@@ -1,5 +1,5 @@
 import * as React from "react";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import X from "@phosphor-icons/core/regular/x.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -46,7 +46,7 @@ export default class CloseButton extends React.Component<Props> {
 
                     return (
                         <IconButton
-                            icon={icons.dismiss}
+                            icon={X}
                             // TODO(mdr): Translate this string for i18n.
                             // TODO(kevinb): provide a way to set this label
                             aria-label="Close modal"
