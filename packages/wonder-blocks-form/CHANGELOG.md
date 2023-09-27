@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.3.12
+
+### Patch Changes
+
+-   Updated dependencies [ea0e7c02]
+    -   @khanacademy/wonder-blocks-icon@2.2.0
+
 ## 4.3.11
 
 ### Patch Changes

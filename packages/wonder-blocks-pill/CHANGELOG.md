@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-pill
 
+## 1.0.8
+
+### Patch Changes
+
+-   5aabf760: Copy tweaks (forcing a new version)
+    -   @khanacademy/wonder-blocks-link@5.0.9
+
 ## 1.0.7
 
 ### Patch Changes
