@@ -30,7 +30,11 @@ jobs:
   changeset:
     name: Check for .changeset entries for all changed files
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+        matrix:
+            os: [ubuntu-latest]
+            node-version: [16.x]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
