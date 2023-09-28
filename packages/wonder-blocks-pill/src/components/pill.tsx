@@ -75,8 +75,8 @@ const PillInner = (props: {
 };
 
 /**
- * A Pill component displays text in a rounded, colored container.
- * This is usually used to add label tags or indicate a status.
+ * A `Pill` component displays text in a rounded, colored container. This is
+ * usually used to add label tags or indicate a status.
  *
  * ### Usage
  *
