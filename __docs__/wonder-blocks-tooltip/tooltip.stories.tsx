@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {within, userEvent} from "@storybook/testing-library";
 import {expect} from "@storybook/jest";
 
-import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -251,7 +251,7 @@ export const TooltipOnButtons: StoryComponentType = () => {
             </Tooltip>
             <Tooltip content="Short and stout">
                 <IconButton
-                    icon={MagnifyingGlass}
+                    icon={magnifyingGlass}
                     aria-label="search"
                     onClick={() => {}}
                 />

@@ -23,11 +23,11 @@ import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
  * ## Usage
  *
  * ```tsx
+ * import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
  * import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
- * import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
  *
  * <PhosphorIcon
- *     icon={MagnifyingGlass}
+ *     icon={magnifyingGlassIcon}
  *     color={Color.blue}
  *     size="medium"
  *     style={{margin: Spacing.xxxxSmall_2}}
@@ -68,7 +68,7 @@ ${code.replace(iconPropRegex, `{${iconName}}`)}
  */
 export const Default: StoryComponentType = {
     args: {
-        icon: IconMappings.MagnifyingGlassBold,
+        icon: IconMappings.magnifyingGlassBold,
         size: "small",
         "aria-label": "Search",
     },
@@ -80,7 +80,7 @@ export const Default: StoryComponentType = {
                     transformCode(
                         code,
                         "MagnifyingGlassBold",
-                        IconMappings.MagnifyingGlassBold,
+                        IconMappings.magnifyingGlassBold,
                     ),
             },
         },
@@ -103,14 +103,14 @@ export const Sizes: StoryComponentType = {
                 <View style={styles.row}>
                     <LabelMedium>small</LabelMedium>
                     <PhosphorIcon
-                        icon={IconMappings.MagnifyingGlassBold}
+                        icon={IconMappings.magnifyingGlassBold}
                         size="small"
                     />
                 </View>
                 <View style={styles.row}>
                     <LabelMedium>medium</LabelMedium>
                     <PhosphorIcon
-                        icon={IconMappings.MagnifyingGlass}
+                        icon={IconMappings.magnifyingGlass}
                         size="medium"
                     />
                 </View>
@@ -118,7 +118,7 @@ export const Sizes: StoryComponentType = {
                     <LabelMedium>large</LabelMedium>
 
                     <PhosphorIcon
-                        icon={IconMappings.MagnifyingGlass}
+                        icon={IconMappings.magnifyingGlass}
                         size="large"
                     />
                 </View>
@@ -126,7 +126,7 @@ export const Sizes: StoryComponentType = {
                     <LabelMedium>xlarge</LabelMedium>
 
                     <PhosphorIcon
-                        icon={IconMappings.MagnifyingGlass}
+                        icon={IconMappings.magnifyingGlass}
                         size="xlarge"
                     />
                 </View>
@@ -245,7 +245,7 @@ export const Variants: StoryComponentType = {
 export const WithColor: StoryComponentType = {
     args: {
         size: "small",
-        icon: IconMappings.InfoBold,
+        icon: IconMappings.infoBold,
         color: tokens.color.red,
     },
 };
@@ -260,7 +260,7 @@ export const Inline: StoryComponentType = {
                 Here is an icon
                 <PhosphorIcon
                     size="small"
-                    icon={IconMappings.InfoBold}
+                    icon={IconMappings.infoBold}
                     style={{margin: tokens.spacing.xxxxSmall_2}}
                     className="foo"
                 />

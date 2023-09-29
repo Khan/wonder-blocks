@@ -148,11 +148,11 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
  * the best practices described above.
  *
  * ```js
- * import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+ * import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
  * import IconButton from "@khanacademy/wonder-blocks-icon-button";
  *
  * <IconButton
- *     icon={MagnifyingGlass}
+ *     icon={magnifyingGlassIcon}
  *     aria-label="An Icon"
  *     onClick={(e) => console.log("Hello, world!")}
  *     size="medium"

@@ -4,11 +4,11 @@ import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import CaretLeft from "@phosphor-icons/core/regular/caret-left.svg";
-import CaretRight from "@phosphor-icons/core/regular/caret-right.svg";
-import Info from "@phosphor-icons/core/regular/info.svg";
-import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
-import MagnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
+import caretLeft from "@phosphor-icons/core/regular/caret-left.svg";
+import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
+import info from "@phosphor-icons/core/regular/info.svg";
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -48,11 +48,11 @@ import IconButtonArgtypes from "./icon-button.argtypes";
  * the best practices described above.
  *
  * ```js
- * import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+ * import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
  * import IconButton from "@khanacademy/wonder-blocks-icon-button";
  *
  * <IconButton
- *     icon={MagnifyingGlass}
+ *     icon={magnifyingGlassIcon}
  *     aria-label="An Icon"
  *     onClick={(e) => console.log("Hello, world!")}
  *     size="medium"
@@ -81,7 +81,7 @@ type StoryComponentType = StoryObj<typeof IconButton>;
  */
 export const Default: StoryComponentType = {
     args: {
-        icon: MagnifyingGlass,
+        icon: magnifyingGlass,
         color: "default",
         disabled: false,
         kind: "primary",
@@ -106,7 +106,7 @@ export const Default: StoryComponentType = {
 export const Sizes: StoryComponentType = {
     ...Default,
     args: {
-        icon: MagnifyingGlass,
+        icon: magnifyingGlass,
     },
     render: (args) => (
         <View style={{gap: Spacing.medium_16}}>
@@ -114,7 +114,7 @@ export const Sizes: StoryComponentType = {
                 <LabelMedium style={styles.label}>xsmall</LabelMedium>
                 <IconButton
                     {...args}
-                    icon={MagnifyingGlassBold}
+                    icon={magnifyingGlassBold}
                     size="xsmall"
                 />
             </View>
@@ -139,25 +139,25 @@ export const Variants: StoryComponentType = {
         return (
             <View style={styles.row}>
                 <IconButton
-                    icon={MagnifyingGlass}
+                    icon={magnifyingGlass}
                     aria-label="search"
                     onClick={(e) => console.log("Click!")}
                 />
                 <IconButton
-                    icon={MagnifyingGlass}
+                    icon={magnifyingGlass}
                     aria-label="search"
                     kind="secondary"
                     onClick={(e) => console.log("Click!")}
                 />
                 <IconButton
-                    icon={MagnifyingGlass}
+                    icon={magnifyingGlass}
                     aria-label="search"
                     kind="tertiary"
                     onClick={(e) => console.log("Click!")}
                 />
                 <IconButton
                     disabled={true}
-                    icon={MagnifyingGlass}
+                    icon={magnifyingGlass}
                     aria-label="search"
                     onClick={(e) => console.log("Click!")}
                 />
@@ -175,7 +175,7 @@ export const Light: StoryComponentType = {
         return (
             <View style={styles.dark}>
                 <IconButton
-                    icon={MagnifyingGlass}
+                    icon={magnifyingGlass}
                     aria-label="search"
                     light={true}
                     onClick={(e) => console.log("Click!")}
@@ -194,7 +194,7 @@ export const DisabledLight: StoryComponentType = {
             <View style={styles.dark}>
                 <IconButton
                     disabled={true}
-                    icon={MagnifyingGlass}
+                    icon={magnifyingGlass}
                     aria-label="search"
                     light={true}
                     onClick={(e) => console.log("Click!")}
@@ -214,7 +214,7 @@ export const UsingHref: StoryComponentType = {
     render: () => {
         return (
             <IconButton
-                icon={Info}
+                icon={info}
                 aria-label="More information"
                 href="/"
                 target="_blank"
@@ -233,12 +233,12 @@ export const WithAriaLabel: StoryComponentType = {
         return (
             <View style={styles.arrowsWrapper}>
                 <IconButton
-                    icon={CaretLeft}
+                    icon={caretLeft}
                     onClick={(e) => console.log("Click!")}
                     aria-label="Previous page"
                 />
                 <IconButton
-                    icon={CaretRight}
+                    icon={caretRight}
                     onClick={(e) => console.log("Click!")}
                     aria-label="Next page"
                 />

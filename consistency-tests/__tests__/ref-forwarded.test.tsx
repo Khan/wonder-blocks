@@ -3,7 +3,7 @@ import {render, waitFor} from "@testing-library/react";
 import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
 import * as ReactDOM from "react-dom";
 
-import Plus from "@phosphor-icons/core/regular/plus.svg";
+import plus from "@phosphor-icons/core/regular/plus.svg";
 
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
@@ -252,7 +252,7 @@ describe("IconButton", () => {
         const ref: React.RefObject<HTMLButtonElement> = React.createRef();
 
         // Act
-        render(<IconButton ref={ref} icon={Plus} />);
+        render(<IconButton ref={ref} icon={plus} />);
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLButtonElement);
@@ -270,7 +270,7 @@ describe("IconButton", () => {
                 href="/foo"
                 skipClientNav={true}
                 ref={ref}
-                icon={Plus}
+                icon={plus}
             />,
         );
 
@@ -291,7 +291,7 @@ describe("IconButton", () => {
                     href="/foo"
                     skipClientNav={false}
                     ref={ref}
-                    icon={Plus}
+                    icon={plus}
                 />
                 ,
             </MemoryRouter>,

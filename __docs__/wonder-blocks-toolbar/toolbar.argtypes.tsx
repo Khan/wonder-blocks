@@ -1,10 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import X from "@phosphor-icons/core/regular/x.svg";
-import Lightbulb from "@phosphor-icons/core/regular/lightbulb.svg";
-import MagnifyingGlassPlus from "@phosphor-icons/core/regular/magnifying-glass-plus.svg";
-import MagnifyingGlassMinus from "@phosphor-icons/core/regular/magnifying-glass-minus.svg";
+import xIcon from "@phosphor-icons/core/regular/x.svg";
+import lightbulb from "@phosphor-icons/core/regular/lightbulb.svg";
+import magnifyingGlassPlus from "@phosphor-icons/core/regular/magnifying-glass-plus.svg";
+import magnifyingGlassMinus from "@phosphor-icons/core/regular/magnifying-glass-minus.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
@@ -35,14 +35,14 @@ type Mappings = {
 
 export const leftContentMappings: Mappings = {
     none: null,
-    dismissButton: <IconButton icon={X} kind="tertiary" />,
-    lightButton: <IconButton icon={X} light={true} />,
-    hintButton: <IconButton icon={Lightbulb} kind="primary" />,
+    dismissButton: <IconButton icon={xIcon} kind="tertiary" />,
+    lightButton: <IconButton icon={xIcon} light={true} />,
+    hintButton: <IconButton icon={lightbulb} kind="primary" />,
     multipleContent: (
         <>
-            <IconButton icon={MagnifyingGlassMinus} kind="primary" />
+            <IconButton icon={magnifyingGlassMinus} kind="primary" />
             <Strut size={Spacing.medium_16} />
-            <IconButton icon={MagnifyingGlassPlus} kind="primary" />
+            <IconButton icon={magnifyingGlassPlus} kind="primary" />
         </>
     ),
 };

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import X from "@phosphor-icons/core/regular/x.svg";
+import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -263,7 +263,7 @@ const Banner = (props: Props): React.ReactElement => {
                 {onDismiss ? (
                     <View style={styles.dismissContainer}>
                         <IconButton
-                            icon={X}
+                            icon={xIcon}
                             kind="tertiary"
                             onClick={onDismiss}
                             style={styles.dismiss}
