@@ -215,6 +215,7 @@ const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
         color: Color.offBlack,
+        display: "flex",
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
     },
