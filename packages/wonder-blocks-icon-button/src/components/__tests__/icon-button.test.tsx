@@ -3,10 +3,10 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import expectRenderError from "../../../../../utils/testing/expect-render-error";
-import IconButton from "../icon-button";
+import {IconButton} from "../icon-button";
 
 describe("IconButton", () => {
     const {location} = window;
@@ -22,13 +22,13 @@ describe("IconButton", () => {
         window.location = location;
     });
 
-    test("render an icon", () => {
+    test("render a span containing the reference to the icon", () => {
         // Arrange
 
         // Act
         render(
             <IconButton
-                icon={icons.search}
+                icon={magnifyingGlassIcon}
                 aria-label="search"
                 onClick={() => {}}
                 testId="icon-button"
@@ -38,13 +38,13 @@ describe("IconButton", () => {
         const icon = screen.getByLabelText("search");
 
         // Assert
-        expect(icon.innerHTML).toEqual(expect.stringContaining("<svg"));
+        expect(icon.innerHTML).toEqual(expect.stringContaining("mask-image"));
     });
 
     test("throw an error for if light and not primary", () => {
         expectRenderError(
             <IconButton
-                icon={icons.search}
+                icon={magnifyingGlassIcon}
                 aria-label="search"
                 kind="secondary"
                 light={true}
@@ -60,7 +60,7 @@ describe("IconButton", () => {
             <MemoryRouter>
                 <div>
                     <IconButton
-                        icon={icons.search}
+                        icon={magnifyingGlassIcon}
                         aria-label="search"
                         testId="icon-button"
                         href="/foo"
@@ -87,7 +87,7 @@ describe("IconButton", () => {
             <MemoryRouter>
                 <div>
                     <IconButton
-                        icon={icons.search}
+                        icon={magnifyingGlassIcon}
                         aria-label="search"
                         testId="icon-button"
                         href="/unknown"
@@ -114,7 +114,7 @@ describe("IconButton", () => {
             <MemoryRouter>
                 <div>
                     <IconButton
-                        icon={icons.search}
+                        icon={magnifyingGlassIcon}
                         aria-label="search"
                         testId="icon-button"
                         href="/foo"
@@ -141,7 +141,7 @@ describe("IconButton", () => {
             <MemoryRouter>
                 <div>
                     <IconButton
-                        icon={icons.search}
+                        icon={magnifyingGlassIcon}
                         aria-label="search"
                         testId="icon-button"
                         href="/foo"

@@ -10,7 +10,7 @@ import Color, {
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import type {
     ChildrenProps,
@@ -21,6 +21,39 @@ import {
     iconSizeForButtonSize,
     targetPixelsForSize,
 } from "../util/icon-button-util";
+
+/**
+ * Returns the phosphor icon component based on the size. This is necessary
+ * so we can cast the icon to the correct type.
+ */
+function IconChooser({
+    icon,
+    size,
+}: {
+    icon: SharedProps["icon"];
+    size: IconButtonSize;
+}) {
+    const iconSize = iconSizeForButtonSize(size);
+    switch (iconSize) {
+        case "small":
+            return (
+                <PhosphorIcon
+                    size="small"
+                    color="currentColor"
+                    icon={icon as PhosphorBold | PhosphorFill}
+                />
+            );
+        case "medium":
+        default:
+            return (
+                <PhosphorIcon
+                    size="medium"
+                    color="currentColor"
+                    icon={icon as PhosphorRegular | PhosphorFill}
+                />
+            );
+    }
+}
 
 type Props = SharedProps &
     ChildrenProps &
@@ -81,13 +114,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
                     : (hovered || focused) && buttonStyles.focus),
         ];
 
-        const child = (
-            <Icon
-                size={iconSizeForButtonSize(size)}
-                color="currentColor"
-                icon={icon}
-            />
-        );
+        const child = <IconChooser size={size} icon={icon} />;
 
         const commonProps = {
             "data-test-id": testId,

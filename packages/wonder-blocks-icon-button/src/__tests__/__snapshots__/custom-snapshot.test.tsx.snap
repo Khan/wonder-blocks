@@ -46,25 +46,24 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false disab
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -118,25 +117,24 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false focus
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -190,25 +188,24 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false hover
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -262,25 +259,24 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false press
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -330,25 +326,24 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true disabl
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -402,25 +397,24 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true focuse
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -474,25 +468,24 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true hovere
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -546,25 +539,24 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true presse
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -614,25 +606,24 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -686,25 +677,24 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -758,25 +748,24 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -830,25 +819,24 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -898,25 +886,24 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -970,25 +957,24 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1042,25 +1028,24 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1114,25 +1099,24 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1182,25 +1166,24 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false disab
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1254,25 +1237,24 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false focus
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1326,25 +1308,24 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false hover
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1398,25 +1379,24 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false press
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1466,25 +1446,24 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabl
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1538,25 +1517,24 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true focuse
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1610,25 +1588,24 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true hovere
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1682,25 +1659,24 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true presse
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1750,25 +1726,24 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false d
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1822,25 +1797,24 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false f
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1894,25 +1868,24 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false h
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -1966,25 +1939,24 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false p
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2034,25 +2006,24 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true di
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2106,25 +2077,24 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true fo
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2178,25 +2148,24 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true ho
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2250,25 +2219,24 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true pr
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2318,25 +2286,24 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2390,25 +2357,24 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2462,25 +2428,24 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2534,25 +2499,24 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2602,25 +2566,24 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2674,25 +2637,24 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2746,25 +2708,24 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2818,25 +2779,24 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2886,25 +2846,24 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false d
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -2958,25 +2917,24 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false f
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3030,25 +2988,24 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false h
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3102,25 +3059,24 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false p
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3170,25 +3126,24 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true di
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3242,25 +3197,24 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true fo
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3314,25 +3268,24 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true ho
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3386,25 +3339,24 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true pr
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3454,25 +3406,24 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false dis
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3526,25 +3477,24 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false foc
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3598,25 +3548,24 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false hov
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3670,25 +3619,24 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false pre
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3738,25 +3686,24 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3810,25 +3757,24 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3882,25 +3828,24 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -3954,25 +3899,24 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4022,25 +3966,24 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false dis
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4094,25 +4037,24 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false foc
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4166,25 +4108,24 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false hov
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4238,25 +4179,24 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false pre
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4306,25 +4246,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4378,25 +4317,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4450,25 +4388,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4522,25 +4459,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4590,25 +4526,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4662,25 +4597,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4734,25 +4668,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4806,25 +4739,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4874,25 +4806,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -4946,25 +4877,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5018,25 +4948,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5090,25 +5019,24 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5158,25 +5086,24 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false disa
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5230,25 +5157,24 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false focu
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5302,25 +5228,24 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false hove
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5374,25 +5299,24 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false pres
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5442,25 +5366,24 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5514,25 +5437,24 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5586,25 +5508,24 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5658,25 +5579,24 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5726,25 +5646,24 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disa
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5798,25 +5717,24 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false focu
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5870,25 +5788,24 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false hove
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -5942,25 +5859,24 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false pres
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6010,25 +5926,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6082,25 +5997,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6154,25 +6068,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6226,25 +6139,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6294,25 +6206,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6366,25 +6277,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6438,25 +6348,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6510,25 +6419,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={24}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 24,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 24,
       }
     }
-    viewBox="0 0 24 24"
-    width={24}
-  >
-    <path
-      d="M11 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm6.32-1.094l3.387 3.387a1 1 0 0 1-1.414 1.414l-3.387-3.387a8 8 0 1 1 1.414-1.414z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6578,25 +6486,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   tabIndex={-1}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6650,25 +6557,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6722,25 +6628,24 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
 
@@ -6794,24 +6699,23 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   tabIndex={0}
   type="button"
 >
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "currentColor",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 16,
+        "maskImage": "url([object Object])",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "verticalAlign": "text-bottom",
+        "width": 16,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.172 9.757l2.535 2.536a1 1 0 0 1-1.414 1.414l-2.536-2.535a5 5 0 1 1 1.414-1.414zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-      fill="currentColor"
-    />
-  </svg>
+  />
 </button>
 `;
