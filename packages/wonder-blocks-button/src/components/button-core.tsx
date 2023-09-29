@@ -4,9 +4,8 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
     ThemedStylesFn,
@@ -20,56 +19,13 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./button";
 import {ButtonThemeContext, ButtonThemeContract} from "../themes/themed-button";
+import {ButtonIcon} from "./button-icon";
 
 type Props = SharedProps & ChildrenProps & ClickableState;
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
-
-/**
- * Returns the phosphor icon component based on the size. This is necessary
- * so we can cast the icon to the correct type.
- */
-function IconChooser({
-    icon,
-    size,
-    style,
-    testId,
-}: {
-    icon: SharedProps["icon"];
-    size: "small" | "medium";
-    style?: StyleType;
-    testId?: string;
-}) {
-    const commonProps = {
-        "aria-hidden": true,
-        color: "currentColor",
-        style: style,
-        testId,
-    };
-
-    switch (size) {
-        case "small":
-            return (
-                <PhosphorIcon
-                    {...commonProps}
-                    size="small"
-                    icon={icon as PhosphorBold | PhosphorFill}
-                />
-            );
-
-        case "medium":
-        default:
-            return (
-                <PhosphorIcon
-                    {...commonProps}
-                    size="medium"
-                    icon={icon as PhosphorRegular | PhosphorFill}
-                />
-            );
-    }
-}
 
 const ButtonCore: React.ForwardRefExoticComponent<
     Props &
@@ -186,7 +142,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
         const contents = (
             <React.Fragment>
                 {icon && (
-                    <IconChooser
+                    <ButtonIcon
                         size={iconSize}
                         icon={icon}
                         style={sharedStyles.icon}

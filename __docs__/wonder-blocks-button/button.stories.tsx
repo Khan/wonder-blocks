@@ -25,6 +25,26 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import ButtonArgTypes from "./button.argtypes";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 
+/**
+ * Reusable button component.
+ *
+ * Consisting of a [`ClickableBehavior`](#clickablebehavior) surrounding a
+ * `ButtonCore`. `ClickableBehavior` handles interactions and state changes.
+ * `ButtonCore` is a stateless component which displays the different states the
+ * `Button` can take.
+ *
+ * ### Usage
+ *
+ * ```tsx
+ * import Button from "@khanacademy/wonder-blocks-button";
+ *
+ * <Button
+ *     onClick={(e) => console.log("Hello, world!")}
+ * >
+ *     Hello, world!
+ * </Button>
+ * ```
+ */
 export default {
     title: "Button",
     component: Button,
@@ -292,40 +312,49 @@ Dark.parameters = {
 
 const kinds = ["primary", "secondary", "tertiary"] as const;
 
-export const Icon: StoryComponentType = () => (
-    <View>
-        <View style={styles.row}>
-            {kinds.map((kind, idx) => (
-                <Button
-                    kind={kind}
-                    icon={pencilSimple}
-                    style={styles.button}
-                    key={idx}
-                >
-                    {kind}
-                </Button>
-            ))}
+/**
+ * Buttons can have an icon on it's left side.
+ *
+ * __NOTE:__ Icons are available from the [Phosphor
+ * Icons](https://phosphoricons.com/) library.
+ *
+ * To import an icon, you can use the following syntax:
+ *
+ * e.g.
+ * ```
+ * import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
+ * ```
+ */
+export const Icon: StoryComponentType = {
+    render: () => (
+        <View>
+            <View style={styles.row}>
+                {kinds.map((kind, idx) => (
+                    <Button
+                        kind={kind}
+                        icon={pencilSimple}
+                        style={styles.button}
+                        key={idx}
+                    >
+                        {kind}
+                    </Button>
+                ))}
+            </View>
+            <View style={styles.row}>
+                {kinds.map((kind, idx) => (
+                    <Button
+                        kind={kind}
+                        icon={pencilSimpleBold}
+                        style={styles.button}
+                        key={idx}
+                        size="small"
+                    >
+                        {`${kind} small`}
+                    </Button>
+                ))}
+            </View>
         </View>
-        <View style={styles.row}>
-            {kinds.map((kind, idx) => (
-                <Button
-                    kind={kind}
-                    icon={pencilSimpleBold}
-                    style={styles.button}
-                    key={idx}
-                    size="small"
-                >
-                    {`${kind} small`}
-                </Button>
-            ))}
-        </View>
-    </View>
-);
-
-Icon.parameters = {
-    docs: {
-        description: {story: "Buttons can have an icon on it's left side."},
-    },
+    ),
 };
 
 export const Size: StoryComponentType = () => (
