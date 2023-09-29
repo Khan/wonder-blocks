@@ -312,6 +312,36 @@ Dark.parameters = {
 
 const kinds = ["primary", "secondary", "tertiary"] as const;
 
+const IconExample = () => (
+    <View>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    icon={pencilSimple}
+                    style={styles.button}
+                    key={idx}
+                >
+                    {kind}
+                </Button>
+            ))}
+        </View>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    icon={pencilSimpleBold}
+                    style={styles.button}
+                    key={idx}
+                    size="small"
+                >
+                    {`${kind} small`}
+                </Button>
+            ))}
+        </View>
+    </View>
+);
+
 /**
  * Buttons can have an icon on it's left side.
  *
@@ -326,35 +356,7 @@ const kinds = ["primary", "secondary", "tertiary"] as const;
  * ```
  */
 export const Icon: StoryComponentType = {
-    render: () => (
-        <View>
-            <View style={styles.row}>
-                {kinds.map((kind, idx) => (
-                    <Button
-                        kind={kind}
-                        icon={pencilSimple}
-                        style={styles.button}
-                        key={idx}
-                    >
-                        {kind}
-                    </Button>
-                ))}
-            </View>
-            <View style={styles.row}>
-                {kinds.map((kind, idx) => (
-                    <Button
-                        kind={kind}
-                        icon={pencilSimpleBold}
-                        style={styles.button}
-                        key={idx}
-                        size="small"
-                    >
-                        {`${kind} small`}
-                    </Button>
-                ))}
-            </View>
-        </View>
-    ),
+    render: () => <IconExample />,
 };
 
 export const Size: StoryComponentType = () => (
@@ -612,7 +614,7 @@ export const KhanmigoTheme: StoryComponentType = {
             Variants,
             Dark,
             Size,
-            Icon,
+            IconExample,
         ] as Array<React.ElementType>;
 
         return (
