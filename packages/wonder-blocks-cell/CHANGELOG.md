@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.0.27
+
+### Patch Changes
+
+-   bf5a2d4f: Add display:flex to top node to ensure that cells render correctly
+
 ## 3.0.26
 
 ### Patch Changes
