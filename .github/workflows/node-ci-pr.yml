@@ -54,7 +54,7 @@ jobs:
             globs: "!(**/__tests__/*), !(**/dist/*)" # Ignore test files
 
       - name: Verify changeset entries
-        uses: Khan/changeset-per-package@v1.0.1
+        uses: Khan/changeset-per-package@v1.0.2-pre
         with:
             changed_files: ${{ steps.match.outputs.filtered }}
 
