@@ -1,6 +1,6 @@
 import type {InputType} from "@storybook/csf";
 
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     children: {
@@ -8,14 +8,13 @@ export default {
         type: {name: "string", required: true},
     },
     icon: {
-        description: "An icon, displayed to the left of the title.",
-        type: {name: "other", value: "IconAsset", required: false},
+        description: "A Phosphor icon asset (imported as a static SVG file).",
+        type: {name: "other", value: "PhosphorIconAsset", required: false},
         control: {type: "select"},
-        options: Object.keys(icons) as Array<string>,
-        mapping: icons,
+        options: IconMappings,
         table: {
             category: "Layout",
-            type: {summary: "IconAsset"},
+            type: {summary: "PhosphorIconAsset"},
         },
     },
     spinner: {

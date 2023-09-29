@@ -4,9 +4,9 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
     ThemedStylesFn,
@@ -26,6 +26,50 @@ type Props = SharedProps & ChildrenProps & ClickableState;
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
+
+/**
+ * Returns the phosphor icon component based on the size. This is necessary
+ * so we can cast the icon to the correct type.
+ */
+function IconChooser({
+    icon,
+    size,
+    style,
+    testId,
+}: {
+    icon: SharedProps["icon"];
+    size: "small" | "medium";
+    style?: StyleType;
+    testId?: string;
+}) {
+    const commonProps = {
+        "aria-hidden": true,
+        color: "currentColor",
+        style: style,
+        testId,
+    };
+
+    switch (size) {
+        case "small":
+            return (
+                <PhosphorIcon
+                    {...commonProps}
+                    size="small"
+                    icon={icon as PhosphorBold | PhosphorFill}
+                />
+            );
+
+        case "medium":
+        default:
+            return (
+                <PhosphorIcon
+                    {...commonProps}
+                    size="medium"
+                    icon={icon as PhosphorRegular | PhosphorFill}
+                />
+            );
+    }
+}
 
 const ButtonCore: React.ForwardRefExoticComponent<
     Props &
@@ -109,10 +153,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
         const Label = size === "small" ? LabelSmall : LabelLarge;
 
-        // We have to use `medium` for both md and lg buttons so we can fit the
-        // icons in large buttons.
-        const iconSize = size === "small" ? "small" : "medium";
-
         const label = (
             <Label
                 style={[
@@ -139,15 +179,17 @@ const ButtonCore: React.ForwardRefExoticComponent<
             large: "medium",
         } as const;
 
+        // We have to use `medium` for both md and lg buttons so we can fit the
+        // icons in large buttons.
+        const iconSize = size === "small" ? "small" : "medium";
+
         const contents = (
             <React.Fragment>
                 {icon && (
-                    <Icon
+                    <IconChooser
                         size={iconSize}
-                        color="currentColor"
                         icon={icon}
                         style={sharedStyles.icon}
-                        aria-hidden="true"
                         testId={testId ? `${testId}-icon` : undefined}
                     />
                 )}
@@ -268,7 +310,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         position: "absolute",
     },
     icon: {
-        paddingRight: theme.padding.small,
+        marginRight: theme.padding.small,
     },
 });
 
