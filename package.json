@@ -136,6 +136,8 @@
   ],
   "resolutions": {
     "@types/react": "16",
-    "@types/react-dom": "16"
+    "@types/react-dom": "16",
+    "strip-ansi": "6.0.1",
+    "strip-ansi-explanation": "There's an issue with strip-ansi v7 which causes conflicts with the Khan/changeset-per-package action"
   }
 }
