@@ -209,7 +209,9 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 
         const queries = [
             ...Object.values(MEDIA_DEFAULT_SPEC).map((spec: any) => spec.query),
-            ...Object.values(MEDIA_INTERNAL_SPEC).map((spec: any) => spec.query),
+            ...Object.values(MEDIA_INTERNAL_SPEC).map(
+                (spec: any) => spec.query,
+            ),
             ...Object.values(MEDIA_MODAL_SPEC).map((spec: any) => spec.query),
             ...Object.values(mediaSpec).map((spec: any) => spec.query),
         ];
