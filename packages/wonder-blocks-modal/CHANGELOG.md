@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.0.30
+
+### Patch Changes
+
+-   cc6b1950: Switch internal `IconButton` instances to use phosphor.
+-   Updated dependencies [b6fbd635]
+-   Updated dependencies [cc6b1950]
+    -   @khanacademy/wonder-blocks-layout@2.0.23
+    -   @khanacademy/wonder-blocks-icon-button@5.0.0
+
 ## 4.0.29
 
 ### Patch Changes

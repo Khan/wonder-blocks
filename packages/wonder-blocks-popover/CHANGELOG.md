@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.0.11
+
+### Patch Changes
+
+-   cc6b1950: Switch internal `IconButton` instances to use phosphor.
+-   Updated dependencies [cc6b1950]
+-   Updated dependencies [cc6b1950]
+    -   @khanacademy/wonder-blocks-modal@4.0.30
+    -   @khanacademy/wonder-blocks-icon-button@5.0.0
+    -   @khanacademy/wonder-blocks-tooltip@2.1.13
+
 ## 3.0.10
 
 ### Patch Changes

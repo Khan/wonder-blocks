@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.0.22
+
+### Patch Changes
+
+-   cc6b1950: Switch internal `IconButton` instances to use phosphor.
+-   Updated dependencies [cc6b1950]
+    -   @khanacademy/wonder-blocks-icon-button@5.0.0
+
 ## 3.0.21
 
 ### Patch Changes

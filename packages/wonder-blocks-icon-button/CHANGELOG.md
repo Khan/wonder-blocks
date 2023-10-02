@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.0.0
+
+### Major Changes
+
+-   cc6b1950: Change `icon` type to use `PhosphorIcon` (instead of `Icon`).
+
 ## 4.2.2
 
 ### Patch Changes

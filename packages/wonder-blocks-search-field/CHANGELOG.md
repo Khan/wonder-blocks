@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.1.17
+
+### Patch Changes
+
+-   cc6b1950: Switch internal `IconButton` instances to use phosphor.
+-   Updated dependencies [cc6b1950]
+    -   @khanacademy/wonder-blocks-icon-button@5.0.0
+    -   @khanacademy/wonder-blocks-form@4.3.13
+
 ## 2.1.16
 
 ### Patch Changes

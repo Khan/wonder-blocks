@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-layout
 
+## 2.0.23
+
+### Patch Changes
+
+-   b6fbd635: Handle custom media layout specs.
+
 ## 2.0.22
 
 ### Patch Changes
