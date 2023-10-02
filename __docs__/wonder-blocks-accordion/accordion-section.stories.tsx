@@ -18,7 +18,6 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 
 import AccordionSectionArgtypes from "./accordion-section.argtypes";
-import Button from "../../packages/wonder-blocks-button/src/components/button";
 
 export default {
     title: "Accordion / AccordionSection",
