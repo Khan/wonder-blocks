@@ -11,12 +11,6 @@ import {
     MEDIA_MODAL_SPEC,
 } from "../util/specs";
 
-const queries = [
-    ...Object.values(MEDIA_DEFAULT_SPEC).map((spec: any) => spec.query),
-    ...Object.values(MEDIA_INTERNAL_SPEC).map((spec: any) => spec.query),
-    ...Object.values(MEDIA_MODAL_SPEC).map((spec: any) => spec.query),
-];
-
 const mediaQueryLists: {
     [key: string]: MediaQueryList;
 } = {};
@@ -212,6 +206,13 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 
     render(): React.ReactNode {
         const {children, mediaSpec, ssrSize, overrideSize} = this.props;
+
+        const queries = [
+            ...Object.values(MEDIA_DEFAULT_SPEC).map((spec: any) => spec.query),
+            ...Object.values(MEDIA_INTERNAL_SPEC).map((spec: any) => spec.query),
+            ...Object.values(MEDIA_MODAL_SPEC).map((spec: any) => spec.query),
+            ...Object.values(mediaSpec).map((spec: any) => spec.query),
+        ];
 
         // We need to create the MediaQueryLists during the first render in order
         // to query whether any of them match.
