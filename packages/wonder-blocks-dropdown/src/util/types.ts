@@ -32,3 +32,7 @@ export type DropdownItem = {
 export type OpenerProps = ClickableState & {
     text: string;
 };
+
+export type OptionItemComponentArray = React.ReactElement<
+    React.ComponentProps<typeof OptionItem>
+>[];

@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-pill
 
+## 1.0.8
+
+### Patch Changes
+
+-   5aabf760: Copy tweaks (forcing a new version)
+    -   @khanacademy/wonder-blocks-link@5.0.9
+
+## 1.0.7
+
+### Patch Changes
+
+-   Updated dependencies [48d3c7e9]
+    -   @khanacademy/wonder-blocks-color@3.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.8
+    -   @khanacademy/wonder-blocks-link@5.0.8
+
+## 1.0.6
+
+### Patch Changes
+
+-   Updated dependencies [80cab317]
+    -   @khanacademy/wonder-blocks-clickable@4.0.7
+    -   @khanacademy/wonder-blocks-link@5.0.7
+
 ## 1.0.5
 
 ### Patch Changes

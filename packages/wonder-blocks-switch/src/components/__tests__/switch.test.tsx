@@ -125,5 +125,44 @@ describe("Switch", () => {
             // Assert
             expect(icon).toBeInTheDocument();
         });
+
+        it("should have set aria-disabled if disabled is set", () => {
+            // Arrange
+            render(
+                <RenderStateRoot>
+                    <Switch
+                        aria-label="Gravity"
+                        checked={true}
+                        disabled={true}
+                    />
+                </RenderStateRoot>,
+            );
+
+            // Act
+            const switchComponent = screen.getByRole("switch");
+
+            // Assert
+            expect(switchComponent).toHaveAttribute("aria-disabled", "true");
+        });
+
+        it("should receive focus even if disabled is set", () => {
+            // Arrange
+            render(
+                <RenderStateRoot>
+                    <Switch
+                        aria-label="Gravity"
+                        checked={true}
+                        disabled={true}
+                    />
+                </RenderStateRoot>,
+            );
+
+            // Act
+            userEvent.tab();
+
+            // Assert
+            const switchComponent = screen.getByRole("switch");
+            expect(switchComponent).toHaveFocus();
+        });
     });
 });

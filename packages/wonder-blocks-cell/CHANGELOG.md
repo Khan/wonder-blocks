@@ -1,5 +1,36 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.0.28
+
+### Patch Changes
+
+-   Updated dependencies [b6fbd635]
+    -   @khanacademy/wonder-blocks-layout@2.0.23
+
+## 3.0.27
+
+### Patch Changes
+
+-   bf5a2d4f: Add display:flex to top node to ensure that cells render correctly
+
+## 3.0.26
+
+### Patch Changes
+
+-   Updated dependencies [48d3c7e9]
+    -   @khanacademy/wonder-blocks-color@3.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.8
+
+## 3.0.25
+
+### Patch Changes
+
+-   80cab317: - Change styles to use CSS pseudo-classes instead of relying on `clickableState`
+    values.
+    -   Move `outline` to the button/link element instead of an internal container.
+-   Updated dependencies [80cab317]
+    -   @khanacademy/wonder-blocks-clickable@4.0.7
+
 ## 3.0.24
 
 ### Patch Changes

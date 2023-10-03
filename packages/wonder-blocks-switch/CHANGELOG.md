@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.3
+
+### Patch Changes
+
+-   Updated dependencies [ea0e7c02]
+    -   @khanacademy/wonder-blocks-icon@2.2.0
+
+## 1.1.2
+
+### Patch Changes
+
+-   65148738: Add `not-allowed` cursor to disabled+hover
+    -   @khanacademy/wonder-blocks-theming@1.1.1
+
+## 1.1.1
+
+### Patch Changes
+
+-   1f263385: Use `aria-disabled` instead of `disabled` for enabling focus on Screen Readers.
+
 ## 1.1.0
 
 ### Minor Changes

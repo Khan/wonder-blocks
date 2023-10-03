@@ -118,6 +118,7 @@
   "dependencies": {
     "@babel/runtime": "^7.18.6",
     "@khanacademy/wonder-stuff-core": "^1.5.1",
+    "@phosphor-icons/core": "^2.0.2",
     "@popperjs/core": "^2.11.5",
     "aphrodite": "^1.2.5",
     "moment": "2.29.4",
@@ -135,6 +136,8 @@
   ],
   "resolutions": {
     "@types/react": "16",
-    "@types/react-dom": "16"
+    "@types/react-dom": "16",
+    "strip-ansi": "6.0.1",
+    "strip-ansi-explanation": "There's an issue with strip-ansi v7 which causes conflicts with the Khan/changeset-per-package action"
   }
 }

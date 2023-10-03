@@ -1,10 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import xIcon from "@phosphor-icons/core/regular/x.svg";
+
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import Icon from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -261,8 +263,8 @@ const Banner = (props: Props): React.ReactElement => {
                 {onDismiss ? (
                     <View style={styles.dismissContainer}>
                         <IconButton
-                            icon={icons.dismiss}
-                            kind={"tertiary"}
+                            icon={xIcon}
+                            kind="tertiary"
                             onClick={onDismiss}
                             style={styles.dismiss}
                             aria-label={dismissAriaLabel}

@@ -1,8 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import xIcon from "@phosphor-icons/core/regular/x.svg";
+import lightbulb from "@phosphor-icons/core/regular/lightbulb.svg";
+import magnifyingGlassPlus from "@phosphor-icons/core/regular/magnifying-glass-plus.svg";
+import magnifyingGlassMinus from "@phosphor-icons/core/regular/magnifying-glass-minus.svg";
+
 import Button from "@khanacademy/wonder-blocks-button";
-import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -31,14 +35,14 @@ type Mappings = {
 
 export const leftContentMappings: Mappings = {
     none: null,
-    dismissButton: <IconButton icon={icons.dismiss} kind="tertiary" />,
-    lightButton: <IconButton icon={icons.dismiss} light={true} />,
-    hintButton: <IconButton icon={icons.hint} kind="primary" />,
+    dismissButton: <IconButton icon={xIcon} kind="tertiary" />,
+    lightButton: <IconButton icon={xIcon} light={true} />,
+    hintButton: <IconButton icon={lightbulb} kind="primary" />,
     multipleContent: (
         <>
-            <IconButton icon={icons.zoomOut} kind="primary" />
+            <IconButton icon={magnifyingGlassMinus} kind="primary" />
             <Strut size={Spacing.medium_16} />
-            <IconButton icon={icons.zoomIn} kind="primary" />
+            <IconButton icon={magnifyingGlassPlus} kind="primary" />
         </>
     ),
 };

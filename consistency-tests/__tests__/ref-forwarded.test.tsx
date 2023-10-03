@@ -3,6 +3,8 @@ import {render, waitFor} from "@testing-library/react";
 import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
 import * as ReactDOM from "react-dom";
 
+import plus from "@phosphor-icons/core/regular/plus.svg";
+
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
 import Accordion from "../../packages/wonder-blocks-accordion/src/components/accordion";
@@ -292,7 +294,7 @@ describe("IconButton", () => {
         const ref: React.RefObject<HTMLButtonElement> = React.createRef();
 
         // Act
-        render(<IconButton ref={ref} icon={icons.add} />);
+        render(<IconButton ref={ref} icon={plus} />);
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLButtonElement);
@@ -310,7 +312,7 @@ describe("IconButton", () => {
                 href="/foo"
                 skipClientNav={true}
                 ref={ref}
-                icon={icons.add}
+                icon={plus}
             />,
         );
 
@@ -331,7 +333,7 @@ describe("IconButton", () => {
                     href="/foo"
                     skipClientNav={false}
                     ref={ref}
-                    icon={icons.add}
+                    icon={plus}
                 />
                 ,
             </MemoryRouter>,

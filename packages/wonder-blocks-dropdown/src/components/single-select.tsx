@@ -13,7 +13,11 @@ import {
 } from "../util/constants";
 
 import OptionItem from "./option-item";
-import type {DropdownItem, OpenerProps} from "../util/types";
+import type {
+    DropdownItem,
+    OpenerProps,
+    OptionItemComponentArray,
+} from "../util/types";
 
 export type SingleSelectLabels = {
     /**
@@ -45,6 +49,11 @@ type DefaultProps = Readonly<{
      */
     autoFocus: boolean;
     /**
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
+     */
+    disabled: boolean;
+    /**
      * Whether to enable the type-ahead suggestions feature. Defaults to true.
      *
      * This feature allows to navigate the listbox using the keyboard.
@@ -59,10 +68,9 @@ type DefaultProps = Readonly<{
      */
     enableTypeAhead: boolean;
     /**
-     * Whether this component is disabled. A disabled dropdown may not be opened
-     * and does not support interaction. Defaults to false.
+     * Whether or not the input in is an error state. Defaults to false.
      */
-    disabled: boolean;
+    error: boolean;
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the component is used on a dark background.
@@ -213,6 +221,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         autoFocus: true,
         disabled: false,
         enableTypeAhead: true,
+        error: false,
         light: false,
         labels: {
             clearSearch: defaultLabels.clearSearch,
@@ -278,10 +287,8 @@ export default class SingleSelect extends React.Component<Props, State> {
     };
 
     mapOptionItemsToDropdownItems: (
-        children: Array<
-            React.ReactElement<React.ComponentProps<typeof OptionItem>>
-        >,
-    ) => Array<DropdownItem> = (children) => {
+        children: OptionItemComponentArray,
+    ) => DropdownItem[] = (children) => {
         // Figure out which index should receive focus when this select opens
         // Needs to exclude counting items that are disabled
         let indexCounter = 0;
@@ -313,10 +320,8 @@ export default class SingleSelect extends React.Component<Props, State> {
     };
 
     filterChildren(
-        children: Array<
-            React.ReactElement<React.ComponentProps<typeof OptionItem>>
-        >,
-    ): Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>> {
+        children: OptionItemComponentArray,
+    ): OptionItemComponentArray {
         const {searchText} = this.state;
 
         const lowercasedSearchText = searchText.toLowerCase();
@@ -329,11 +334,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         );
     }
 
-    getMenuItems(
-        children: Array<
-            React.ReactElement<React.ComponentProps<typeof OptionItem>>
-        >,
-    ): Array<DropdownItem> {
+    getMenuItems(children: OptionItemComponentArray): DropdownItem[] {
         const {isFilterable} = this.props;
 
         // If it's not filterable, no need to do any extra besides mapping the
@@ -364,6 +365,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         const {
             children,
             disabled,
+            error,
             id,
             light,
             opener,
@@ -384,17 +386,19 @@ export default class SingleSelect extends React.Component<Props, State> {
             opened,
             style,
             className,
-            /* eslint-enable @typescript-eslint/no-unused-vars */
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
             ...sharedProps
         } = this.props;
 
-        const selectedItem = React.Children.toArray(children).find(
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
+        const items = React.Children.toArray(
+            children,
+        ) as OptionItemComponentArray;
+        const selectedItem = items.find(
             (option) => option.props.value === selectedValue,
         );
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
         const menuText = selectedItem ? selectedItem.props.label : placeholder;
 
         const dropdownOpener = opener ? (
@@ -411,6 +415,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 {...sharedProps}
                 disabled={numItems === 0 || disabled}
                 id={id}
+                error={error}
                 isPlaceholder={!selectedItem}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
@@ -436,6 +441,8 @@ export default class SingleSelect extends React.Component<Props, State> {
             labels,
             light,
             style,
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
         } = this.props;
         const {searchText} = this.state;
         const allChildren = React.Children.toArray(children).filter(Boolean);
@@ -470,6 +477,8 @@ export default class SingleSelect extends React.Component<Props, State> {
                 }
                 searchText={isFilterable ? searchText : ""}
                 labels={labels}
+                aria-invalid={ariaInvalid}
+                aria-required={ariaRequired}
             />
         );
     }

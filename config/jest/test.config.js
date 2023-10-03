@@ -26,6 +26,7 @@ module.exports = {
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.ts",
+        "^@phosphor-icons/(.*)+\\.svg$": "<rootDir>/config/jest/__mocks__/svg-mock.tsx",
     },
     collectCoverageFrom: [
         "packages/**/*.{ts,tsx}",

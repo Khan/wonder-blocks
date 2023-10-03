@@ -1,5 +1,48 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.35
+
+### Patch Changes
+
+-   Updated dependencies [b6fbd635]
+    -   @khanacademy/wonder-blocks-layout@2.0.23
+    -   @khanacademy/wonder-blocks-dropdown@3.1.3
+
+## 2.0.34
+
+### Patch Changes
+
+-   Updated dependencies [ea0e7c02]
+    -   @khanacademy/wonder-blocks-icon@2.2.0
+    -   @khanacademy/wonder-blocks-dropdown@3.1.2
+
+## 2.0.33
+
+### Patch Changes
+
+-   Updated dependencies [48d3c7e9]
+    -   @khanacademy/wonder-blocks-color@3.0.0
+    -   @khanacademy/wonder-blocks-dropdown@3.1.1
+
+## 2.0.32
+
+### Patch Changes
+
+-   6c7a3a13: Add visual error state to the day, month and year dropdowns
+
+## 2.0.31
+
+### Patch Changes
+
+-   Updated dependencies [d1a5796a]
+    -   @khanacademy/wonder-blocks-dropdown@3.1.0
+
+## 2.0.30
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@3.0.29
+
 ## 2.0.29
 
 ### Patch Changes

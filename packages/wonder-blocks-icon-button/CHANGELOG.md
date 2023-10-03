@@ -1,5 +1,37 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.0.0
+
+### Major Changes
+
+-   cc6b1950: Change `icon` type to use `PhosphorIcon` (instead of `Icon`).
+
+## 4.2.2
+
+### Patch Changes
+
+-   Updated dependencies [ea0e7c02]
+    -   @khanacademy/wonder-blocks-icon@2.2.0
+
+## 4.2.1
+
+### Patch Changes
+
+-   Updated dependencies [48d3c7e9]
+    -   @khanacademy/wonder-blocks-color@3.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.8
+
+## 4.2.0
+
+### Minor Changes
+
+-   fb704043: Add size prop to icon button
+
+### Patch Changes
+
+-   Updated dependencies [80cab317]
+    -   @khanacademy/wonder-blocks-clickable@4.0.7
+
 ## 4.1.9
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import xIcon from "@phosphor-icons/core/regular/x.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import PopoverContext from "./popover-context";
@@ -45,7 +45,7 @@ export default class CloseButton extends React.Component<Props> {
                 {({close}) => {
                     return (
                         <IconButton
-                            icon={icons.dismiss}
+                            icon={xIcon}
                             aria-label={ariaLabel}
                             onClick={close}
                             kind={light ? "primary" : "tertiary"}

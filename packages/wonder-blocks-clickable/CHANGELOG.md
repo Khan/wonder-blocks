@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.0.8
+
+### Patch Changes
+
+-   Updated dependencies [48d3c7e9]
+    -   @khanacademy/wonder-blocks-color@3.0.0
+
+## 4.0.7
+
+### Patch Changes
+
+-   80cab317: Include `aria-disabled=false` for `Links` (instead of `undefined`).
+
 ## 4.0.6
 
 ### Patch Changes

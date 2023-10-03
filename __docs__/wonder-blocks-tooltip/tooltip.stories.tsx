@@ -5,12 +5,13 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {within, userEvent} from "@storybook/testing-library";
 import {expect} from "@storybook/jest";
 
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {icons} from "@khanacademy/wonder-blocks-icon";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
@@ -250,7 +251,7 @@ export const TooltipOnButtons: StoryComponentType = () => {
             </Tooltip>
             <Tooltip content="Short and stout">
                 <IconButton
-                    icon={icons.search}
+                    icon={magnifyingGlass}
                     aria-label="search"
                     onClick={() => {}}
                 />

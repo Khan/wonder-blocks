@@ -1,5 +1,50 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 3.1.3
+
+### Patch Changes
+
+-   Updated dependencies [b6fbd635]
+-   Updated dependencies [cc6b1950]
+    -   @khanacademy/wonder-blocks-layout@2.0.23
+    -   @khanacademy/wonder-blocks-search-field@2.1.17
+    -   @khanacademy/wonder-blocks-modal@4.0.30
+
+## 3.1.2
+
+### Patch Changes
+
+-   Updated dependencies [ea0e7c02]
+    -   @khanacademy/wonder-blocks-icon@2.2.0
+    -   @khanacademy/wonder-blocks-modal@4.0.29
+    -   @khanacademy/wonder-blocks-search-field@2.1.16
+
+## 3.1.1
+
+### Patch Changes
+
+-   Updated dependencies [48d3c7e9]
+    -   @khanacademy/wonder-blocks-color@3.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.8
+    -   @khanacademy/wonder-blocks-modal@4.0.28
+    -   @khanacademy/wonder-blocks-search-field@2.1.15
+    -   @khanacademy/wonder-blocks-theming@1.1.1
+
+## 3.1.0
+
+### Minor Changes
+
+-   d1a5796a: Added error prop
+
+## 3.0.29
+
+### Patch Changes
+
+-   Updated dependencies [80cab317]
+    -   @khanacademy/wonder-blocks-clickable@4.0.7
+    -   @khanacademy/wonder-blocks-modal@4.0.27
+    -   @khanacademy/wonder-blocks-search-field@2.1.14
+
 ## 3.0.28
 
 ### Patch Changes

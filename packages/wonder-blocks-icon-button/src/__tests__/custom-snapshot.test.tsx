@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import IconButtonCore from "../components/icon-button-core";
 import {IconButtonSize} from "../components/icon-button";
@@ -52,7 +52,7 @@ describe("IconButtonCore", () => {
                             const tree = renderer
                                 .create(
                                     <IconButtonCore
-                                        icon={icons.search}
+                                        icon={MagnifyingGlass}
                                         aria-label="search"
                                         kind={kind}
                                         color={color}

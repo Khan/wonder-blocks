@@ -9,7 +9,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
@@ -28,6 +28,7 @@ export default {
     argTypes: multiSelectArgtypes,
     args: {
         isFilterable: false,
+        error: false,
         opened: false,
         disabled: false,
         light: false,
@@ -250,6 +251,44 @@ CustomStylesOpened.parameters = {
             story: "Here you can see an example of the previous dropdown opened",
         },
     },
+};
+
+const ErrorWrapper = (args: any) => {
+    const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
+    const [opened, setOpened] = React.useState(false);
+    const [error, setError] = React.useState(true);
+
+    return (
+        <View style={styles.wrapper}>
+            <LabelMedium style={{marginBottom: Spacing.xSmall_8}}>
+                Select at least 2 options to clear the error!
+            </LabelMedium>
+            <MultiSelect
+                {...args}
+                error={error}
+                onChange={(values) => {
+                    setSelectedValues(values);
+                    setError(values.length < 2);
+                }}
+                onToggle={setOpened}
+                opened={opened}
+                selectedValues={selectedValues}
+            >
+                {items}
+            </MultiSelect>
+        </View>
+    );
+};
+
+/**
+ * Here is an example of a dropdown that is in an error state.
+ * Selecting two or more options will clear the error by setting the `error` prop to `false`.
+ */
+export const Error: StoryComponentType = {
+    render: ErrorWrapper,
+    args: {
+        error: true,
+    } as MultiSelectArgs,
 };
 
 /**

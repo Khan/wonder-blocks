@@ -1,4 +1,4 @@
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     color: {
@@ -26,8 +26,8 @@ export default {
         control: {
             type: "select",
         },
-        description: "Icon to use.",
-        options: icons,
+        description: "A Phosphor icon asset (imported as a static SVG file).",
+        options: IconMappings,
     },
     kind: {
         control: {

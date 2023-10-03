@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-color",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "design": "v2",
   "publishConfig": {
     "access": "public"

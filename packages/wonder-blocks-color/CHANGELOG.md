@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-color
 
+## 3.0.0
+
+### Major Changes
+
+-   48d3c7e9: Fix how mix formats single-digit color components
+
 ## 2.0.1
 
 ### Patch Changes
