@@ -1,9 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
+
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color, {mix} from "@khanacademy/wonder-blocks-color";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -92,9 +94,10 @@ const AccordionSectionHeader = (props: Props) => {
                             header
                         )}
                     </View>
-                    <Icon
-                        icon={icons.caretDown}
+                    <PhosphorIcon
+                        icon={caretDown}
                         color={Color.offBlack64}
+                        size="small"
                         style={[
                             caretPosition === "start"
                                 ? styles.iconStart
