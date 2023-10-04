@@ -8,7 +8,14 @@ module.exports = {
     rootDir: path.join(__dirname, "../../"),
     transform: {
         "^.+\\.(j|t)sx?$": "<rootDir>/config/jest/test.transform.js",
+        // Compile .svg files using a custom transformer that returns the
+        // basename of the file being transformed.
+        "^.+.svg$": "<rootDir>/config/jest/svg.transform.js",
     },
+    // Allow transforming files imported from @phosphor-icons/core.
+    // This is required by the .svg transform above.
+    transformIgnorePatterns: ["/node_modules/(?!(@phosphor-icons/core)/)"],
+
     testEnvironment: "jest-environment-jsdom",
     globals: {
         SNAPSHOT_INLINE_APHRODITE: true,
@@ -26,7 +33,6 @@ module.exports = {
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.ts",
-        "^@phosphor-icons/(.*)+\\.svg$": "<rootDir>/config/jest/__mocks__/svg-mock.tsx",
     },
     collectCoverageFrom: [
         "packages/**/*.{ts,tsx}",
