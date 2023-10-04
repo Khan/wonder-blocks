@@ -7,7 +7,7 @@ import type {
     ChildrenProps,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import {Link} from "react-router-dom";
 import ButtonCore from "./button-core";
 import ThemedButton from "../themes/themed-button";
@@ -24,9 +24,9 @@ export type SharedProps =
          */
         children: string;
         /**
-         * An icon, displayed to the left of the title.
+         * A Phosphor icon asset (imported as a static SVG file).
          */
-        icon?: IconAsset;
+        icon?: PhosphorIconAsset;
         /**
          * If true, replaces the contents with a spinner.
          *

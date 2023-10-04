@@ -6,7 +6,6 @@ import {__RouterContext} from "react-router";
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
-import Icon from "@khanacademy/wonder-blocks-icon";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
     ThemedStylesFn,
@@ -20,6 +19,7 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./button";
 import {ButtonThemeContext, ButtonThemeContract} from "../themes/themed-button";
+import {ButtonIcon} from "./button-icon";
 
 type Props = SharedProps & ChildrenProps & ClickableState;
 
@@ -109,10 +109,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
         const Label = size === "small" ? LabelSmall : LabelLarge;
 
-        // We have to use `medium` for both md and lg buttons so we can fit the
-        // icons in large buttons.
-        const iconSize = size === "small" ? "small" : "medium";
-
         const label = (
             <Label
                 style={[
@@ -139,15 +135,17 @@ const ButtonCore: React.ForwardRefExoticComponent<
             large: "medium",
         } as const;
 
+        // We have to use `medium` for both md and lg buttons so we can fit the
+        // icons in large buttons.
+        const iconSize = size === "small" ? "small" : "medium";
+
         const contents = (
             <React.Fragment>
                 {icon && (
-                    <Icon
+                    <ButtonIcon
                         size={iconSize}
-                        color="currentColor"
                         icon={icon}
                         style={sharedStyles.icon}
-                        aria-hidden="true"
                         testId={testId ? `${testId}-icon` : undefined}
                     />
                 )}
@@ -268,7 +266,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         position: "absolute",
     },
     icon: {
-        paddingRight: theme.padding.small,
+        marginRight: theme.padding.small,
     },
 });
 
