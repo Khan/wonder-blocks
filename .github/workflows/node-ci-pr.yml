@@ -52,6 +52,7 @@ jobs:
             changed-files: ${{ steps.changed.outputs.files }}
             files: packages/ # Only look for changes in packages
             globs: "!(**/__tests__/*), !(**/dist/*)" # Ignore test files
+            matchAllGlobs: true # All globs must match (disjunction is the default)
             conjunctive: true # Only return files that match all of the above
 
       - name: Verify changeset entries
