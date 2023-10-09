@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {AccordionCornerKindType} from "./accordion";
@@ -23,12 +23,15 @@ type Props = {
     // Whether the section is expanded or not.
     expanded: boolean;
     // Called on header click.
-    onClick: () => void;
+    onClick?: () => void;
     // The ID for the content that the header's `aria-controls` should
     // point to.
     sectionContentUniqueId: string;
     // Custom styles for the header container.
     headerStyle?: StyleType;
+    // The semantic tag for this clickable header (e.g. "h1", "h2", etc.)
+    // Please use this to ensure that the header is hierarchically correct.
+    tag?: string;
     // Whether this section is the first section in the accordion.
     // For internal use only.
     isFirstSection: boolean;
@@ -46,6 +49,7 @@ const AccordionSectionHeader = (props: Props) => {
         onClick,
         sectionContentUniqueId,
         headerStyle,
+        tag,
         isFirstSection,
         isLastSection,
     } = props;
@@ -60,54 +64,56 @@ const AccordionSectionHeader = (props: Props) => {
     );
 
     return (
-        <Clickable
-            aria-expanded={expanded}
-            aria-controls={sectionContentUniqueId}
-            onClick={onClick}
-            style={[
-                styles.headerWrapper,
-                caretPosition === "start" && styles.headerWrapperCaretStart,
-                roundedTop && styles.roundedTop,
-                roundedBottom && styles.roundedBottom,
-                headerStyle,
-            ]}
-        >
-            {() => (
-                <>
-                    <View
-                        style={[
-                            styles.headerContent,
-                            headerIsString && styles.headerString,
-                        ]}
-                    >
-                        {headerIsString ? (
-                            <Body
-                                style={[
-                                    caretPosition === "end"
-                                        ? styles.headerStringCaretEnd
-                                        : styles.headerStringCaretStart,
-                                ]}
-                            >
-                                {header}
-                            </Body>
-                        ) : (
-                            header
-                        )}
-                    </View>
-                    <PhosphorIcon
-                        icon={caretDown}
-                        color={Color.offBlack64}
-                        size="small"
-                        style={[
-                            caretPosition === "start"
-                                ? styles.iconStart
-                                : styles.iconEnd,
-                            expanded && styles.iconExpanded,
-                        ]}
-                    />
-                </>
-            )}
-        </Clickable>
+        <HeadingSmall tag={tag} style={styles.heading}>
+            <Clickable
+                aria-expanded={expanded}
+                aria-controls={sectionContentUniqueId}
+                onClick={onClick}
+                style={[
+                    styles.headerWrapper,
+                    caretPosition === "start" && styles.headerWrapperCaretStart,
+                    roundedTop && styles.roundedTop,
+                    roundedBottom && styles.roundedBottom,
+                    headerStyle,
+                ]}
+            >
+                {() => (
+                    <>
+                        <View
+                            style={[
+                                styles.headerContent,
+                                headerIsString && styles.headerString,
+                            ]}
+                        >
+                            {headerIsString ? (
+                                <View
+                                    style={[
+                                        caretPosition === "end"
+                                            ? styles.headerStringCaretEnd
+                                            : styles.headerStringCaretStart,
+                                    ]}
+                                >
+                                    {header}
+                                </View>
+                            ) : (
+                                header
+                            )}
+                        </View>
+                        <PhosphorIcon
+                            icon={caretDown}
+                            color={Color.offBlack64}
+                            size="small"
+                            style={[
+                                caretPosition === "start"
+                                    ? styles.iconStart
+                                    : styles.iconEnd,
+                                expanded && styles.iconExpanded,
+                            ]}
+                        />
+                    </>
+                )}
+            </Clickable>
+        </HeadingSmall>
     );
 };
 
@@ -119,11 +125,16 @@ const activeBlue = mix(Color.offBlack32, Color.blue);
 const INNER_BORDER_RADIUS = Spacing.small_12 - 1;
 
 const styles = StyleSheet.create({
+    heading: {
+        marginTop: 0,
+    },
     headerWrapper: {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         overflow: "hidden",
+        minWidth: "auto",
+        width: "100%",
 
         ":active": {
             outline: `2px solid ${activeBlue}`,

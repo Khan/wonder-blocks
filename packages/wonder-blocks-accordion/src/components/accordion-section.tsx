@@ -53,13 +53,17 @@ type Props = AriaProps & {
      */
     cornerKind?: AccordionCornerKindType;
     /**
-     * Whether this section is expanded or closed. Defaults to false.
+     * Whether this section is expanded or closed.
+     *
+     * NOTE: This prop is NOT used when this AccordionSection is rendered
+     * within an Accordion component. In that case, the Accordion component
+     * manages the expanded state of the AccordionSection.
      */
     expanded?: boolean;
     /**
      * Called when the header is clicked.
      */
-    onToggle?: (newExpandedState: boolean) => void;
+    onToggle?: () => void;
     /**
      * Custom styles for the overall accordion section container.
      */
@@ -68,6 +72,16 @@ type Props = AriaProps & {
      * Custom styles for the header.
      */
     headerStyle?: StyleType;
+    /**
+     * The semantic tag for this clickable header (e.g. "h1", "h2", etc.)
+     * Please use this to ensure that the header is hierarchically correct.
+     * Defaults to "h2".
+     *
+     * If this prop is specified both here in the AccordionSection and
+     * within a parent Accordion component, the Accordion’s tag
+     * value is prioritized.
+     * */
+    tag?: string;
 
     /**
      * Whether this section is the first section in the accordion.
@@ -130,6 +144,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         cornerKind = "rounded",
         style,
         headerStyle,
+        tag = "h2",
         // Assume it's the first section and last section by default
         // in case this component is being used standalone. If it's part
         // of an accordion, these will be overridden by the Accordion
@@ -138,15 +153,6 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         isLastSection = true,
         ...ariaProps
     } = props;
-
-    const [internalExpanded, setInternalExpanded] = React.useState(expanded);
-
-    const handleClick = () => {
-        setInternalExpanded(!internalExpanded);
-        if (onToggle) {
-            onToggle(internalExpanded);
-        }
-    };
 
     const sectionStyles = _generateStyles(
         cornerKind,
@@ -174,16 +180,17 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                             header={header}
                             caretPosition={caretPosition}
                             cornerKind={cornerKind}
-                            expanded={internalExpanded}
-                            onClick={handleClick}
+                            expanded={expanded}
+                            onClick={onToggle}
                             sectionContentUniqueId={sectionContentUniqueId}
                             headerStyle={headerStyle}
+                            tag={tag}
                             isFirstSection={isFirstSection}
                             isLastSection={isLastSection}
                         />
                         {/* The content is the section that
                         expands and closes. */}
-                        {internalExpanded ? (
+                        {expanded ? (
                             <View
                                 id={sectionContentUniqueId}
                                 style={[

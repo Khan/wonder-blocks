@@ -25,6 +25,17 @@ type Props = AriaProps & {
         React.ReactElement<React.ComponentProps<typeof AccordionSection>>
     >;
     /**
+     * The index of the AccordionSection that should be expanded when the
+     * Accordion is first rendered. If not specified, no AccordionSections
+     * will be expanded when the Accordion is first rendered.
+     */
+    initiallyExpandedIndex?: number;
+    /**
+     * Whether multiple AccordionSections can be expanded at the same time.
+     * If not specified, multiple AccordionSections can be expanded at a time.
+     */
+    allowMultipleExpanded?: boolean;
+    /**
      * Whether to put the caret at the start or end of the header block
      * in this section. "start" means it’s on the left of a left-to-right
      * language (and on the right of a right-to-left language), and "end"
@@ -53,6 +64,16 @@ type Props = AriaProps & {
      * Custom styles for the overall accordion container.
      */
     style?: StyleType;
+    /**
+     * The semantic tag for this clickable header in every section (e.g. "h1",
+     * "h2", etc.). Please use this to ensure that the header is
+     * hierarchically correct. Defaults to "h2".
+     *
+     * If this prop is specified both here in the Accordion and within
+     * a child AccordionSection component, the Accordion’s tag
+     * value is prioritized.
+     * */
+    tag?: string;
 };
 
 /**
@@ -91,11 +112,36 @@ const Accordion = React.forwardRef(function Accordion(
     const {
         children,
         id,
+        initiallyExpandedIndex,
+        allowMultipleExpanded = true,
         caretPosition,
         cornerKind = "rounded",
         style,
+        tag,
         ...ariaProps
     } = props;
+
+    const startingArray = Array(children.length).fill(false);
+    if (initiallyExpandedIndex !== undefined) {
+        startingArray[initiallyExpandedIndex] = true;
+    }
+
+    const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
+
+    const handleSectionClick = (index: number, childOnToggle?: () => void) => {
+        // If allowMultipleExpanded is false, we want to close all other
+        // sections when one is opened.
+        const newSectionsOpened = allowMultipleExpanded
+            ? [...sectionsOpened]
+            : Array(children.length).fill(false);
+
+        newSectionsOpened[index] = !sectionsOpened[index];
+        setSectionsOpened(newSectionsOpened);
+
+        if (childOnToggle) {
+            childOnToggle();
+        }
+    };
 
     return (
         <StyledUnorderedList
@@ -107,20 +153,30 @@ const Accordion = React.forwardRef(function Accordion(
                 const {
                     caretPosition: childCaretPosition,
                     cornerKind: childCornerKind,
+                    tag: childTag,
+                    onToggle: childOnToggle,
                 } = child.props;
 
                 const isFirstChild = index === 0;
                 const isLastChild = index === children.length - 1;
 
                 return (
-                    // If the AccordionSections are rendered within the Accordion,
-                    // they are part of a list, so they should be list items.
+                    // If the AccordionSections are rendered within the
+                    // Accordion, they are part of a list, so they should
+                    // be list items.
                     <li key={index} id={id}>
                         {React.cloneElement(child, {
                             // Prioritize the Accordion's caretPosition
                             caretPosition: caretPosition ?? childCaretPosition,
                             // Prioritize the AccordionSection's cornerKind
                             cornerKind: childCornerKind ?? cornerKind,
+                            // Don't use the AccordionSection's expanded prop
+                            // when it's rendered within Accordion.
+                            expanded: sectionsOpened[index],
+                            onToggle: () =>
+                                handleSectionClick(index, childOnToggle),
+                            // Prioritize the AccordionSection's tag
+                            tag: childTag ?? tag,
                             isFirstSection: isFirstChild,
                             isLastSection: isLastChild,
                         })}

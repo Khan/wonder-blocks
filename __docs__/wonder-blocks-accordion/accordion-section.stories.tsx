@@ -2,10 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {
-    Accordion,
-    AccordionSection,
-} from "@khanacademy/wonder-blocks-accordion";
+import {AccordionSection} from "@khanacademy/wonder-blocks-accordion";
+import Button from "@khanacademy/wonder-blocks-button";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -53,13 +51,54 @@ export const Default: StoryComponentType = {
 };
 
 /**
+ * AccordionSection is a controlled component. Its \`expanded\` prop
+ * determines whether the section is expanded or closed, and its
+ * \`onToggle\` prop function is called when the section header is clicked.
+ *
+ * Here is an example of how to set this up. The \`expanded\` prop is
+ * initially set to \`false\` and is toggled by the \`handleToggle\`
+ * function. The \`handleToggle\` function is passed into the \`onToggle\`
+ * prop of the AccordionSection. The \`handleToggle\` function is also
+ * called when the button is clicked.
+ */
+export const Controlled: StoryComponentType = {
+    render: function Render() {
+        const [expanded, setExpanded] = React.useState(false);
+
+        const handleToggle = () => {
+            setExpanded(!expanded);
+        };
+
+        return (
+            <View>
+                <Button onClick={handleToggle} style={styles.button}>
+                    Click me to toggle the accordion section
+                </Button>
+                <AccordionSection
+                    expanded={expanded}
+                    header="Controlled section"
+                    onToggle={handleToggle}
+                >
+                    This is the information present in this controlled section
+                </AccordionSection>
+            </View>
+        );
+    },
+};
+
+/**
  * An AccordionSection can have either a string or a React Element passed
  * in as its header. Passing in a React Element means no built in styling
  * will be applied to the header. In this example, all the header styles are
  * coming from the DetailCell component.
  */
 export const ReactElementInHeader: StoryComponentType = {
-    render: () => {
+    render: function Render() {
+        const [expanded, setExpanded] = React.useState(false);
+
+        const handleToggle = () => {
+            setExpanded(!expanded);
+        };
         return (
             <AccordionSection
                 header={
@@ -71,6 +110,8 @@ export const ReactElementInHeader: StoryComponentType = {
                         horizontalRule="none"
                     />
                 }
+                expanded={expanded}
+                onToggle={handleToggle}
             >
                 This is the information present in the first section
             </AccordionSection>
@@ -90,9 +131,18 @@ export const ReactElementInHeader: StoryComponentType = {
  * React Element will have its corners cut off.
  */
 export const ReactElementInChildren: StoryComponentType = {
-    render: () => {
+    render: function Render() {
+        const [expanded, setExpanded] = React.useState(false);
+
+        const handleToggle = () => {
+            setExpanded(!expanded);
+        };
         return (
-            <AccordionSection header="First section">
+            <AccordionSection
+                header="First section"
+                expanded={expanded}
+                onToggle={handleToggle}
+            >
                 <DetailCell
                     title="Header for article item"
                     leftAccessory={
@@ -120,7 +170,15 @@ export const ReactElementInChildren: StoryComponentType = {
  * the Accordion's `caretPosition` value is prioritized.
  */
 export const CaretPositions: StoryComponentType = {
-    render: () => {
+    render: function Render() {
+        const [expanded, setExpanded] = React.useState(Array(4).fill(false));
+
+        const handleToggle = (index: number) => {
+            const newExpanded = [...expanded];
+            newExpanded[index] = !newExpanded[index];
+            setExpanded(newExpanded);
+        };
+
         return (
             <View>
                 {/* Left-to-right */}
@@ -130,7 +188,12 @@ export const CaretPositions: StoryComponentType = {
                             Caret position: end, language direction: left to
                             right
                         </LabelLarge>
-                        <AccordionSection caretPosition="end" header="Header">
+                        <AccordionSection
+                            caretPosition="end"
+                            header="Header"
+                            expanded={expanded[0]}
+                            onToggle={() => handleToggle(0)}
+                        >
                             Something
                         </AccordionSection>
                     </View>
@@ -140,7 +203,12 @@ export const CaretPositions: StoryComponentType = {
                             Caret position: start, language direction: left to
                             right
                         </LabelLarge>
-                        <AccordionSection caretPosition="start" header="Header">
+                        <AccordionSection
+                            caretPosition="start"
+                            header="Header"
+                            expanded={expanded[1]}
+                            onToggle={() => handleToggle(1)}
+                        >
                             Something
                         </AccordionSection>
                     </View>
@@ -153,7 +221,12 @@ export const CaretPositions: StoryComponentType = {
                             Caret position: end, language direction: right to
                             left
                         </LabelLarge>
-                        <AccordionSection caretPosition="end" header="ہیڈر">
+                        <AccordionSection
+                            caretPosition="end"
+                            header="ہیڈر"
+                            expanded={expanded[2]}
+                            onToggle={() => handleToggle(2)}
+                        >
                             کچھ
                         </AccordionSection>
                     </View>
@@ -163,7 +236,12 @@ export const CaretPositions: StoryComponentType = {
                             Caret position: start, language direction: right to
                             left
                         </LabelLarge>
-                        <AccordionSection caretPosition="start" header="ہیڈر">
+                        <AccordionSection
+                            caretPosition="start"
+                            header="ہیڈر"
+                            expanded={expanded[3]}
+                            onToggle={() => handleToggle(3)}
+                        >
                             کچھ
                         </AccordionSection>
                     </View>
@@ -184,14 +262,27 @@ export const CaretPositions: StoryComponentType = {
  * value is prioritized.
  */
 export const CornerKinds: StoryComponentType = {
-    render: () => {
+    render: function Render() {
+        const [expanded, setExpanded] = React.useState(Array(4).fill(false));
+
+        const handleToggle = (index: number) => {
+            const newExpanded = [...expanded];
+            newExpanded[index] = !newExpanded[index];
+            setExpanded(newExpanded);
+        };
+
         return (
             <View style={styles.sideBySide}>
                 <View style={[styles.fullWidth, styles.space]}>
                     <LabelLarge style={styles.space}>
                         Corner kind: square
                     </LabelLarge>
-                    <AccordionSection cornerKind="square" header="Header">
+                    <AccordionSection
+                        cornerKind="square"
+                        header="Header"
+                        expanded={expanded[0]}
+                        onToggle={() => handleToggle(0)}
+                    >
                         Something
                     </AccordionSection>
                 </View>
@@ -199,7 +290,12 @@ export const CornerKinds: StoryComponentType = {
                     <LabelLarge style={styles.space}>
                         Corner kind: rounded
                     </LabelLarge>
-                    <AccordionSection cornerKind="rounded" header="Header">
+                    <AccordionSection
+                        cornerKind="rounded"
+                        header="Header"
+                        expanded={expanded[1]}
+                        onToggle={() => handleToggle(1)}
+                    >
                         Something
                     </AccordionSection>
                 </View>
@@ -210,6 +306,8 @@ export const CornerKinds: StoryComponentType = {
                     <AccordionSection
                         cornerKind="rounded-per-section"
                         header="Header"
+                        expanded={expanded[2]}
+                        onToggle={() => handleToggle(2)}
                     >
                         Something
                     </AccordionSection>
@@ -220,38 +318,26 @@ export const CornerKinds: StoryComponentType = {
 };
 
 /**
- * An AccordionSection can be expanded or closed by default. If `expanded`
- * is `true`, the section will be expanded by default.
- */
-export const WithExpanded: StoryComponentType = {
-    render: () => {
-        return (
-            <Accordion>
-                <AccordionSection expanded={false} header="expanded false">
-                    {"I'm closed at first."}
-                </AccordionSection>
-                <AccordionSection expanded={true} header="expanded true">
-                    {"I'm already expanded!"}
-                </AccordionSection>
-            </Accordion>
-        );
-    },
-};
-
-/**
  * An AccordionSection can have custom styles passed in. In this example,
  * the AccordionSection has a gray background and a border, as well as
  * extra margin.
  */
 export const WithStyle: StoryComponentType = {
-    render: () => {
+    render: function Render() {
+        const [expanded, setExpanded] = React.useState(false);
+
         const customStyles = {
             backgroundColor: Color.offBlack8,
             margin: Spacing.large_24,
             outline: `2px solid ${Color.offBlack32}`,
         };
         return (
-            <AccordionSection header="Section with style" style={customStyles}>
+            <AccordionSection
+                header="Section with style"
+                style={customStyles}
+                expanded={expanded}
+                onToggle={() => setExpanded(!expanded)}
+            >
                 {"I have a gray background!"}
             </AccordionSection>
         );
@@ -263,7 +349,9 @@ export const WithStyle: StoryComponentType = {
  * In this example, the header has a gray background.
  */
 export const WithHeaderStyle: StoryComponentType = {
-    render: () => {
+    render: function Render() {
+        const [expanded, setExpanded] = React.useState(false);
+
         const headerStyle = {
             backgroundColor: Color.offBlack8,
         };
@@ -271,8 +359,36 @@ export const WithHeaderStyle: StoryComponentType = {
             <AccordionSection
                 header="Section with style"
                 headerStyle={headerStyle}
+                expanded={expanded}
+                onToggle={() => setExpanded(!expanded)}
             >
                 {"I have a gray background!"}
+            </AccordionSection>
+        );
+    },
+};
+
+/**
+ * An AccordionSection can be given a semantic tag to apply to its header.
+ * This is h2 by default, but it should be changed to match the
+ * hierarchy of the page for accessibility!!!
+ *
+ * If this prop is specified both here in the AccordionSection and within
+ * a pare t Accordioncomponent, this AccordionSection's tag value is
+ * prioritized.
+ */
+export const WithTag: StoryComponentType = {
+    render: function Render() {
+        const [expanded, setExpanded] = React.useState(false);
+
+        return (
+            <AccordionSection
+                header="h3 section"
+                tag="h3"
+                expanded={expanded}
+                onToggle={() => setExpanded(!expanded)}
+            >
+                I am an h3!
             </AccordionSection>
         );
     },
@@ -290,5 +406,9 @@ const styles = StyleSheet.create({
     },
     space: {
         margin: Spacing.xSmall_8,
+    },
+    button: {
+        width: "fit-content",
+        marginBottom: Spacing.large_24,
     },
 });

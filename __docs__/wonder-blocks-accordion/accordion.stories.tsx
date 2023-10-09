@@ -58,6 +58,28 @@ export const Default: StoryComponentType = {
 };
 
 /**
+ * An accordion allows multiple sections to be expanded at the same time
+ * by default. However, if `allowMultipleExpanded` is set to `false`, only
+ * one section can be expanded at a time.
+ */
+export const AllowMultipleExpanded = {
+    render: () => (
+        <View style={styles.sideBySide}>
+            <View style={[styles.fullWidth, styles.space]}>
+                <LabelLarge>Allow multiple expanded</LabelLarge>
+                <Accordion allowMultipleExpanded>{exampleSections}</Accordion>
+            </View>
+            <View style={[styles.fullWidth, styles.space]}>
+                <LabelLarge>Allow only one expanded</LabelLarge>
+                <Accordion allowMultipleExpanded={false}>
+                    {exampleSections}
+                </Accordion>
+            </View>
+        </View>
+    ),
+};
+
+/**
  * An accordion can have the caret at the start or the end of the header block.
  * "start" means it’s on the left of a left-to-right language (and on the
  * right of a right-to-left language), and "end" means it’s on the right of
@@ -211,35 +233,26 @@ export const WithStyle: StoryComponentType = {
 };
 
 /**
- * An Accordion can have another Accordion within its sections.
+ * An Accordion can be given a semantic tag to apply to the header of each
+ * section. This is h2 by default, but it should be changed to match the
+ * hierarchy of the page for accessibility!!!
+ *
+ * If this prop is specified both here in the Accordion and within
+ * a child AccordionSection component, the AccordionSection's tag
+ * value is prioritized.
  */
-export const NestedExample: StoryComponentType = {
+export const WithTag: StoryComponentType = {
     render: () => {
         return (
-            <Accordion>
-                <AccordionSection header="Unit 1">
-                    <Accordion
-                        style={{
-                            padding: Spacing.medium_16,
-                        }}
-                    >
-                        <AccordionSection header="Lesson 1">
-                            Unit 1 Lesson 1 information...
-                        </AccordionSection>
-                        <AccordionSection header="Lesson 2">
-                            Unit 1 Lesson 2 information...
-                        </AccordionSection>
-                    </Accordion>
+            <Accordion tag="h3">
+                <AccordionSection header="This is an h3">
+                    Something
                 </AccordionSection>
-                <AccordionSection header="Unit 2">
-                    <Accordion style={{padding: Spacing.medium_16}}>
-                        <AccordionSection header="Lesson 1">
-                            Unit 2 Lesson 1 information...
-                        </AccordionSection>
-                        <AccordionSection header="Lesson 2">
-                            Unit 2 Lesson 2 information...
-                        </AccordionSection>
-                    </Accordion>
+                <AccordionSection header="This is also an h3">
+                    Something
+                </AccordionSection>
+                <AccordionSection header="This is actually an h4" tag="h4">
+                    Something
                 </AccordionSection>
             </Accordion>
         );
