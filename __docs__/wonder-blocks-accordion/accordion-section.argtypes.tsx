@@ -77,7 +77,7 @@ export default {
             type: {summary: "boolean"},
         },
     },
-    onHeaderClick: {
+    onToggle: {
         control: {type: null},
         description: "Called when the header is clicked.",
         table: {
@@ -99,5 +99,15 @@ export default {
             type: {summary: "StyleType"},
         },
         type: {name: "StyleType", required: false},
+    },
+    tag: {
+        control: {type: "text"},
+        description: `The semantic tag for this clickable header (e.g. "h1",
+            "h2", etc.) Please use this to ensure that the header is
+            hierarchically correct.`,
+        table: {
+            type: {summary: "string"},
+        },
+        type: {name: "string", required: false},
     },
 };

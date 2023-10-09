@@ -54,6 +54,7 @@ export const Default: StoryComponentType = {
         children: exampleSections,
         caretPosition: "end",
         cornerKind: "rounded",
+        allowMultipleExpanded: true,
     },
 };
 

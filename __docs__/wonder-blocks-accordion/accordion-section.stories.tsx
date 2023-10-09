@@ -47,6 +47,7 @@ export const Default: StoryComponentType = {
         header: "Standalone section",
         caretPosition: "end",
         cornerKind: "rounded",
+        expanded: false,
     },
 };
 

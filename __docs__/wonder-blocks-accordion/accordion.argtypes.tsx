@@ -16,6 +16,29 @@ export default {
                 summary: `Array<React.ReactElement<React.ComponentProps<typeof AccordionSection>>>`,
             },
         },
+        type: {name: "ReactElement | string", required: true},
+    },
+    initialExpandedIndex: {
+        control: {type: "number"},
+        description: `The index of the AccordionSection that should be expanded
+            when the Accordion is first rendered. If not specified, no
+            AccordionSections will be expanded when the Accordion is first
+            rendered.`,
+        table: {
+            type: {summary: "number"},
+        },
+        type: {name: "number", required: false},
+    },
+    allowMultipleExpanded: {
+        control: {type: "boolean"},
+        description: `Whether multiple AccordionSections can be expanded at the
+            same time. If not specified, multiple AccordionSections can be
+            expanded at a time.`,
+        table: {
+            defaultValue: {summary: true},
+            type: {summary: "boolean"},
+        },
+        type: {name: "boolean", required: false},
     },
     caretPosition: {
         control: {type: "select"},
@@ -58,5 +81,15 @@ export default {
             type: {summary: "StyleType"},
         },
         type: {name: "StyleType", required: false},
+    },
+    tag: {
+        control: {type: "text"},
+        description: `The semantic tag for this clickable header (e.g. "h1",
+            "h2", etc.) Please use this to ensure that the header is
+            hierarchically correct.`,
+        table: {
+            type: {summary: "string"},
+        },
+        type: {name: "string", required: false},
     },
 };
