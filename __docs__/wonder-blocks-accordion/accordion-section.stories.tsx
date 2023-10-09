@@ -376,6 +376,9 @@ export const WithHeaderStyle: StoryComponentType = {
  * If this prop is specified both here in the AccordionSection and within
  * a pare t Accordioncomponent, this AccordionSection's tag value is
  * prioritized.
+ *
+ * In this example, the AccordionSection has an h3 tag, so the header
+ * will show up as an h3 in the DOM.
  */
 export const WithTag: StoryComponentType = {
     render: function Render() {

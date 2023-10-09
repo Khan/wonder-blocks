@@ -29,7 +29,7 @@ type Props = AriaProps & {
      * Accordion is first rendered. If not specified, no AccordionSections
      * will be expanded when the Accordion is first rendered.
      */
-    initiallyExpandedIndex?: number;
+    initialExpandedIndex?: number;
     /**
      * Whether multiple AccordionSections can be expanded at the same time.
      * If not specified, multiple AccordionSections can be expanded at a time.
@@ -112,7 +112,7 @@ const Accordion = React.forwardRef(function Accordion(
     const {
         children,
         id,
-        initiallyExpandedIndex,
+        initialExpandedIndex,
         allowMultipleExpanded = true,
         caretPosition,
         cornerKind = "rounded",
@@ -122,8 +122,8 @@ const Accordion = React.forwardRef(function Accordion(
     } = props;
 
     const startingArray = Array(children.length).fill(false);
-    if (initiallyExpandedIndex !== undefined) {
-        startingArray[initiallyExpandedIndex] = true;
+    if (initialExpandedIndex !== undefined) {
+        startingArray[initialExpandedIndex] = true;
     }
 
     const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);

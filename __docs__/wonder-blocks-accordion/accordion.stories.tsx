@@ -200,6 +200,21 @@ export const CornerKinds: StoryComponentType = {
 };
 
 /**
+ * An Accordion can have an initial expanded index. If this prop is specified,
+ * the AccordionSection at that index will be expanded when the Accordion
+ * is first rendered. If this prop is not specified, no AccordionSections
+ * will be expanded when the Accordion is first rendered. In this example,
+ * the AccordionSection at index 1 (the second section) is expanded by default.
+ */
+export const WithIniitalExpandedIndex: StoryComponentType = {
+    render: () => {
+        return (
+            <Accordion initialExpandedIndex={1}>{exampleSections}</Accordion>
+        );
+    },
+};
+
+/**
  * An Accordion with custom styles. The custom styles in this example
  * include a pink border and extra padding.
  * Note that the Accordian's border is different than the AccordionSection
@@ -240,6 +255,11 @@ export const WithStyle: StoryComponentType = {
  * If this prop is specified both here in the Accordion and within
  * a child AccordionSection component, the AccordionSection's tag
  * value is prioritized.
+ *
+ * In this example, the accordion has been given an h3 tag, and the last
+ * section has been given an h4 tag. This means the first two sections
+ * will be h3s, and the last section will be an h4. This is apparent in
+ * the DOM.
  */
 export const WithTag: StoryComponentType = {
     render: () => {
