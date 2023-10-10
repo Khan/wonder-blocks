@@ -36,10 +36,9 @@ type StoryComponentType = StoryObj<typeof AccordionSection>;
 /**
  * By default, an AccordionSection has a caret at the end of the header block
  * and rounded corners. Passing in a string into the header prop will
- * automatically give the header Body typography from Wonder Blocks Typography
- * and spacing between the header and the caret. Passing in a string into the
- * children prop will also automatically give the children Body typography from
- * Wonder Blocks Typography.
+ * automatically style the header and add spacing between the header and
+ * the caret. Passing in a string into the children prop will automatically
+ * give the children Body typography from Wonder Blocks Typography.
  */
 export const Default: StoryComponentType = {
     args: {
@@ -124,7 +123,7 @@ export const ReactElementInHeader: StoryComponentType = {
  * An AccordionSection can have either a string or a React Element passed
  * in as its children. Passing in a React Element means no built in styling
  * will be applied to the children. In this example, all the children styles
- * are coming from the DetailCell component, including the horitzontal line
+ * are coming from the DetailCell component, including the horizontal line
  * between the header and the content (added as a borderTop on the DetailCell).
  *
  * Note that if the AccordionSection

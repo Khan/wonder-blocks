@@ -70,7 +70,7 @@ type Props = AriaProps & {
      * hierarchically correct. Defaults to "h2".
      *
      * If this prop is specified both here in the Accordion and within
-     * a child AccordionSection component, the Accordion’s tag
+     * a child AccordionSection component, the AccordionSection’s tag
      * value is prioritized.
      * */
     tag?: string;
@@ -95,10 +95,10 @@ type Props = AriaProps & {
  * <Accordion>
  *   <AccordionSection header="First section">
  *       This is the information present in the first section
- *   </AccordionSection>,
+ *   </AccordionSection>
  *   <AccordionSection header="Second section">
  *       This is the information present in the second section
- *   </AccordionSection>,
+ *   </AccordionSection>
  *   <AccordionSection header="Third section">
  *       This is the information present in the third section
  *   </AccordionSection>

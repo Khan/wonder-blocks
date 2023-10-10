@@ -207,7 +207,7 @@ export const CornerKinds: StoryComponentType = {
  * will be expanded when the Accordion is first rendered. In this example,
  * the AccordionSection at index 1 (the second section) is expanded by default.
  */
-export const WithIniitalExpandedIndex: StoryComponentType = {
+export const WithInitialExpandedIndex: StoryComponentType = {
     render: () => {
         return (
             <Accordion initialExpandedIndex={1}>{exampleSections}</Accordion>

@@ -73,12 +73,12 @@ type Props = AriaProps & {
      */
     headerStyle?: StyleType;
     /**
-     * The semantic tag for this clickable header (e.g. "h1", "h2", etc.)
+     * The semantic tag for this clickable header (e.g. "h1", "h2", etc).
      * Please use this to ensure that the header is hierarchically correct.
      * Defaults to "h2".
      *
      * If this prop is specified both here in the AccordionSection and
-     * within a parent Accordion component, the Accordion’s tag
+     * within a parent Accordion component, the AccordionSection’s tag
      * value is prioritized.
      * */
     tag?: string;
@@ -115,10 +115,10 @@ type Props = AriaProps & {
  * <Accordion>
  *   <AccordionSection header="First section">
  *       This is the information present in the first section
- *   </AccordionSection>,
+ *   </AccordionSection>
  *   <AccordionSection header="Second section">
  *       This is the information present in the second section
- *   </AccordionSection>,
+ *   </AccordionSection>
  *   <AccordionSection header="Third section">
  *       This is the information present in the third section
  *   </AccordionSection>
