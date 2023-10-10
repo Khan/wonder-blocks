@@ -82,6 +82,15 @@ type Props = AriaProps & {
      * value is prioritized.
      * */
     tag?: string;
+    /**
+     * The test ID used to locate this component in automated tests.
+     */
+    testId?: string;
+    /**
+     * The test ID used to locate this component's clickable header in
+     * automated tests.
+     */
+    headerTestId?: string;
 
     /**
      * Whether this section is the first section in the accordion.
@@ -145,6 +154,8 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         style,
         headerStyle,
         tag = "h2",
+        testId,
+        headerTestId,
         // Assume it's the first section and last section by default
         // in case this component is being used standalone. If it's part
         // of an accordion, these will be overridden by the Accordion
@@ -173,6 +184,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                     <View
                         id={sectionId}
                         style={[styles.wrapper, sectionStyles.wrapper, style]}
+                        testId={testId}
                         {...ariaProps}
                         ref={ref}
                     >
@@ -185,6 +197,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                             sectionContentUniqueId={sectionContentUniqueId}
                             headerStyle={headerStyle}
                             tag={tag}
+                            testId={headerTestId}
                             isFirstSection={isFirstSection}
                             isLastSection={isLastSection}
                         />

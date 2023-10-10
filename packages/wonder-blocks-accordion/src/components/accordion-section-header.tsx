@@ -32,6 +32,8 @@ type Props = {
     // The semantic tag for this clickable header (e.g. "h1", "h2", etc.)
     // Please use this to ensure that the header is hierarchically correct.
     tag?: string;
+    // The test ID used for e2e testing.
+    testId?: string;
     // Whether this section is the first section in the accordion.
     // For internal use only.
     isFirstSection: boolean;
@@ -50,6 +52,7 @@ const AccordionSectionHeader = (props: Props) => {
         sectionContentUniqueId,
         headerStyle,
         tag,
+        testId,
         isFirstSection,
         isLastSection,
     } = props;
@@ -69,6 +72,7 @@ const AccordionSectionHeader = (props: Props) => {
                 aria-expanded={expanded}
                 aria-controls={sectionContentUniqueId}
                 onClick={onClick}
+                testId={testId}
                 style={[
                     styles.headerWrapper,
                     caretPosition === "start" && styles.headerWrapperCaretStart,
