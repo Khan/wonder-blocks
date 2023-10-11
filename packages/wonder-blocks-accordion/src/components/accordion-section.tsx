@@ -240,7 +240,6 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
 const styles = StyleSheet.create({
     wrapper: {
-        display: "flex",
         flexDirection: "column",
         boxSizing: "border-box",
     },
