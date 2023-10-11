@@ -1,7 +1,7 @@
 export default {
     id: {
         control: {type: "text"},
-        description: "The unique identifier for the accordion.",
+        description: "The unique identifier for the accordion section.",
         table: {
             type: {summary: "string"},
         },
