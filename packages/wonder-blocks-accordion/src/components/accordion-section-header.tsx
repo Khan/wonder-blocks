@@ -4,10 +4,9 @@ import caretDown from "@phosphor-icons/core/bold/caret-down-bold.svg";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {AccordionCornerKindType} from "./accordion";
@@ -52,7 +51,7 @@ const AccordionSectionHeader = (props: Props) => {
         onClick,
         sectionContentUniqueId,
         headerStyle,
-        tag,
+        tag = "h2",
         testId,
         isFirstSection,
         isLastSection,
@@ -106,7 +105,7 @@ const AccordionSectionHeader = (props: Props) => {
                         </View>
                         <PhosphorIcon
                             icon={caretDown}
-                            color={Color.offBlack64}
+                            color={tokens.color.offBlack64}
                             size="small"
                             style={[
                                 caretPosition === "start"
@@ -122,12 +121,11 @@ const AccordionSectionHeader = (props: Props) => {
     );
 };
 
-const activeBlue = mix(Color.offBlack32, Color.blue);
 // The AccordionSection border radius for rounded corners is 12px.
 // If we set the inner radius to the same value, there ends up being
 // a 1px gap between the border and the outline. To fix this, we
 // subtract 1 from the border radius.
-const INNER_BORDER_RADIUS = Spacing.small_12 - 1;
+const INNER_BORDER_RADIUS = tokens.spacing.small_12 - 1;
 
 const styles = StyleSheet.create({
     heading: {
@@ -142,13 +140,13 @@ const styles = StyleSheet.create({
         width: "100%",
 
         ":active": {
-            outline: `2px solid ${activeBlue}`,
+            outline: `2px solid ${tokens.color.activeBlue}`,
         },
         ":focus-visible": {
-            outline: `2px solid ${Color.blue}`,
+            outline: `2px solid ${tokens.color.blue}`,
         },
         ":hover": {
-            outline: `2px solid ${Color.blue}`,
+            outline: `2px solid ${tokens.color.blue}`,
         },
     },
     headerWrapperCaretStart: {
@@ -171,26 +169,26 @@ const styles = StyleSheet.create({
         textAlign: "start",
     },
     headerString: {
-        paddingTop: Spacing.medium_16,
-        paddingBottom: Spacing.medium_16,
+        paddingTop: tokens.spacing.medium_16,
+        paddingBottom: tokens.spacing.medium_16,
     },
     headerStringCaretEnd: {
-        paddingInlineEnd: Spacing.small_12,
-        paddingInlineStart: Spacing.medium_16,
+        paddingInlineEnd: tokens.spacing.small_12,
+        paddingInlineStart: tokens.spacing.medium_16,
     },
     headerStringCaretStart: {
-        paddingInlineEnd: Spacing.medium_16,
-        paddingInlineStart: Spacing.small_12,
+        paddingInlineEnd: tokens.spacing.medium_16,
+        paddingInlineStart: tokens.spacing.small_12,
     },
     iconExpanded: {
         // Turn the caret upside down
         transform: "rotate(180deg)",
     },
     iconStart: {
-        marginInlineStart: Spacing.medium_16,
+        marginInlineStart: tokens.spacing.medium_16,
     },
     iconEnd: {
-        marginInlineEnd: Spacing.medium_16,
+        marginInlineEnd: tokens.spacing.medium_16,
     },
 });
 

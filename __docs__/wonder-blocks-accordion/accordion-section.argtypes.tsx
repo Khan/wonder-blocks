@@ -9,8 +9,9 @@ export default {
     },
     children: {
         control: {type: "text"},
-        description: `The AccordionSection components to
-            display within this Accordion.`,
+        description: `The contents to display within this section's
+            expanded panel. If a string is passed in, it will automatically
+            be given Body typography from Wonder Blocks Typography.`,
         table: {
             type: {
                 summary: `ReactElement | string`,
@@ -105,6 +106,24 @@ export default {
         description: `The semantic tag for this clickable header (e.g. "h1",
             "h2", etc.) Please use this to ensure that the header is
             hierarchically correct.`,
+        table: {
+            type: {summary: "string"},
+        },
+        type: {name: "string", required: false},
+    },
+    testId: {
+        control: {type: "text"},
+        description:
+            "The test ID used to locate this component in automated tests.",
+        table: {
+            type: {summary: "string"},
+        },
+        type: {name: "string", required: false},
+    },
+    headerTestId: {
+        control: {type: "text"},
+        description: `The test ID used to locate this component's
+            clickable header in automated tests.`,
         table: {
             type: {summary: "string"},
         },

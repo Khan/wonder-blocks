@@ -5,11 +5,10 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {AccordionSection} from "@khanacademy/wonder-blocks-accordion";
 import Button from "@khanacademy/wonder-blocks-button";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -85,6 +84,13 @@ export const Controlled: StoryComponentType = {
     },
 };
 
+Controlled.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
+    },
+};
+
 /**
  * An AccordionSection can have either a string or a React Element passed
  * in as its header. Passing in a React Element means no built in styling
@@ -128,7 +134,7 @@ export const ReactElementInHeader: StoryComponentType = {
  */
 export const ReactElementInChildren: StoryComponentType = {
     render: function Render() {
-        const [expanded, setExpanded] = React.useState(false);
+        const [expanded, setExpanded] = React.useState(true);
 
         return (
             <AccordionSection
@@ -143,7 +149,7 @@ export const ReactElementInChildren: StoryComponentType = {
                     }
                     horizontalRule="none"
                     style={{
-                        borderTop: `1px solid ${Color.offBlack16}`,
+                        borderTop: `1px solid ${tokens.color.offBlack16}`,
                     }}
                 />
             </AccordionSection>
@@ -190,7 +196,7 @@ export const CaretPositions: StoryComponentType = {
                             Something
                         </AccordionSection>
                     </View>
-                    <Strut size={Spacing.xLarge_32} />
+                    <Strut size={tokens.spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge style={styles.space}>
                             Caret position: start, language direction: left to
@@ -206,7 +212,7 @@ export const CaretPositions: StoryComponentType = {
                         </AccordionSection>
                     </View>
                 </View>
-                <Strut size={Spacing.xLarge_32} />
+                <Strut size={tokens.spacing.xLarge_32} />
                 {/* Right-to-left */}
                 <View style={[styles.sideBySide, styles.rtl]}>
                     <View style={styles.fullWidth}>
@@ -223,7 +229,7 @@ export const CaretPositions: StoryComponentType = {
                             کچھ
                         </AccordionSection>
                     </View>
-                    <Strut size={Spacing.xLarge_32} />
+                    <Strut size={tokens.spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge style={styles.space}>
                             Caret position: start, language direction: right to
@@ -317,12 +323,12 @@ export const CornerKinds: StoryComponentType = {
  */
 export const WithStyle: StoryComponentType = {
     render: function Render() {
-        const [expanded, setExpanded] = React.useState(false);
+        const [expanded, setExpanded] = React.useState(true);
 
         const customStyles = {
-            backgroundColor: Color.offBlack8,
-            margin: Spacing.large_24,
-            outline: `2px solid ${Color.offBlack32}`,
+            backgroundColor: tokens.color.offBlack8,
+            margin: tokens.spacing.large_24,
+            outline: `2px solid ${tokens.color.offBlack32}`,
         };
 
         return (
@@ -347,7 +353,7 @@ export const WithHeaderStyle: StoryComponentType = {
         const [expanded, setExpanded] = React.useState(false);
 
         const headerStyle = {
-            backgroundColor: Color.offBlack8,
+            backgroundColor: tokens.color.offBlack8,
         };
 
         return (
@@ -399,10 +405,10 @@ const styles = StyleSheet.create({
         direction: "rtl",
     },
     space: {
-        margin: Spacing.xSmall_8,
+        margin: tokens.spacing.xSmall_8,
     },
     button: {
         width: "fit-content",
-        marginBottom: Spacing.large_24,
+        marginBottom: tokens.spacing.large_24,
     },
 });

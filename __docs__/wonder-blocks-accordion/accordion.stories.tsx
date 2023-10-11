@@ -6,10 +6,9 @@ import {
     Accordion,
     AccordionSection,
 } from "@khanacademy/wonder-blocks-accordion";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -105,7 +104,7 @@ export const CaretPositions: StoryComponentType = {
                             {exampleSections}
                         </Accordion>
                     </View>
-                    <Strut size={Spacing.xLarge_32} />
+                    <Strut size={tokens.spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: left to
@@ -138,7 +137,7 @@ export const CaretPositions: StoryComponentType = {
                             </AccordionSection>
                         </Accordion>
                     </View>
-                    <Strut size={Spacing.xLarge_32} />
+                    <Strut size={tokens.spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: right to
@@ -228,8 +227,8 @@ export const WithInitialExpandedIndex: StoryComponentType = {
 export const WithStyle: StoryComponentType = {
     render: () => {
         const customStyles = {
-            border: `2px solid ${Color.pink}`,
-            padding: Spacing.xLarge_32,
+            border: `2px solid ${tokens.color.pink}`,
+            padding: tokens.spacing.xLarge_32,
         };
 
         return (
@@ -250,7 +249,9 @@ export const WithStyle: StoryComponentType = {
 
 /**
  * To use an Accordion with only one section, you must pass in an array
- * of one element.
+ * of one element. Another approach to displaying a single AccordionSection
+ * can be to use the AccordionSection component directly (not as a child
+ * of an Accordion).
  */
 export const SingleSection: StoryComponentType = {
     render: () => {
@@ -266,6 +267,14 @@ export const SingleSection: StoryComponentType = {
     },
 };
 
+SingleSection.parameters = {
+    chromatic: {
+        // Disabling this story because it's just a usage demo,
+        // not testing anything visual.
+        disableSnapshot: true,
+    },
+};
+
 const styles = StyleSheet.create({
     sideBySide: {
         flexDirection: "row",
@@ -277,6 +286,6 @@ const styles = StyleSheet.create({
         direction: "rtl",
     },
     space: {
-        margin: Spacing.xSmall_8,
+        margin: tokens.spacing.xSmall_8,
     },
 });

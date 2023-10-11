@@ -2,9 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -158,7 +157,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         cornerKind = "rounded",
         style,
         headerStyle,
-        tag = "h2",
+        tag,
         testId,
         headerTestId,
         // Assume it's the first section and last section by default
@@ -247,10 +246,10 @@ const styles = StyleSheet.create({
         // Add a small margin to the top of the content block so that the
         // header outline doesn't overlap with the content (and the content
         // doesn't overlap with the header outline).
-        marginTop: Spacing.xxxxSmall_2,
+        marginTop: tokens.spacing.xxxxSmall_2,
     },
     stringContent: {
-        padding: Spacing.medium_16,
+        padding: tokens.spacing.medium_16,
     },
 });
 
@@ -273,21 +272,21 @@ const _generateStyles = (
 
     if (cornerKind === "square") {
         wrapperStyle = {
-            border: `1px solid ${Color.offBlack16}`,
+            border: `1px solid ${tokens.color.offBlack16}`,
             borderBottom: "none",
             borderRadius: 0,
         };
 
         if (isLastSection) {
             lastSectionStyle = {
-                borderBottom: `1px solid ${Color.offBlack16}`,
+                borderBottom: `1px solid ${tokens.color.offBlack16}`,
             };
         }
     }
 
     if (cornerKind === "rounded") {
         wrapperStyle = {
-            border: `1px solid ${Color.offBlack16}`,
+            border: `1px solid ${tokens.color.offBlack16}`,
             borderBottom: "none",
         };
 
@@ -296,31 +295,31 @@ const _generateStyles = (
             // so that the content doesn't overflow out the corners. We
             // can't put `overflow: "hidden"` on the overall container
             // because it cuts off the header's focus outline.
-            borderEndEndRadius: Spacing.small_12,
-            borderEndStartRadius: Spacing.small_12,
+            borderEndEndRadius: tokens.spacing.small_12,
+            borderEndStartRadius: tokens.spacing.small_12,
             overflow: "hidden",
         };
 
         if (isFirstSection) {
             firstSectionStyle = {
-                borderStartStartRadius: Spacing.small_12,
-                borderStartEndRadius: Spacing.small_12,
+                borderStartStartRadius: tokens.spacing.small_12,
+                borderStartEndRadius: tokens.spacing.small_12,
             };
         }
         if (isLastSection) {
             lastSectionStyle = {
-                borderBottom: `1px solid ${Color.offBlack16}`,
-                borderEndStartRadius: Spacing.small_12,
-                borderEndEndRadius: Spacing.small_12,
+                borderBottom: `1px solid ${tokens.color.offBlack16}`,
+                borderEndStartRadius: tokens.spacing.small_12,
+                borderEndEndRadius: tokens.spacing.small_12,
             };
         }
     }
 
     if (cornerKind === "rounded-per-section") {
         wrapperStyle = {
-            border: `1px solid ${Color.offBlack16}`,
-            borderRadius: Spacing.small_12,
-            marginBottom: Spacing.medium_16,
+            border: `1px solid ${tokens.color.offBlack16}`,
+            borderRadius: tokens.spacing.small_12,
+            marginBottom: tokens.spacing.medium_16,
         };
 
         contentWrapperStyle = {
@@ -328,8 +327,8 @@ const _generateStyles = (
             // so that the content doesn't overflow out the corners. We
             // can't put `overflow: "hidden"` on the overall container
             // because it cuts off the header's focus outline.
-            borderEndEndRadius: Spacing.small_12,
-            borderEndStartRadius: Spacing.small_12,
+            borderEndEndRadius: tokens.spacing.small_12,
+            borderEndStartRadius: tokens.spacing.small_12,
             overflow: "hidden",
         };
     }
