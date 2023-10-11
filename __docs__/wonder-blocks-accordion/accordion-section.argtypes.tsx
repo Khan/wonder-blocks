@@ -86,7 +86,7 @@ export default {
     },
     style: {
         control: {type: "object"},
-        description: "Custom styles for the overall accordion container.",
+        description: "Custom styles for the overall accordion section container.",
         table: {
             type: {summary: "StyleType"},
         },
