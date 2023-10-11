@@ -1,6 +1,8 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+
 import Accordion from "../accordion";
 import AccordionSection from "../accordion-section";
 
@@ -18,6 +20,7 @@ describe("Accordion", () => {
                     Section 2 content
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Assert
@@ -36,6 +39,7 @@ describe("Accordion", () => {
                     Section 2 content
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         const button1 = screen.getByRole("button", {name: "Section 1"});
@@ -61,6 +65,7 @@ describe("Accordion", () => {
                     Section 2 content
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         const button1 = screen.getByRole("button", {name: "Section 1"});
@@ -93,6 +98,7 @@ describe("Accordion", () => {
                     Section 3 content
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -116,6 +122,7 @@ describe("Accordion", () => {
                     Section 3 content
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -140,6 +147,7 @@ describe("Accordion", () => {
                     Section 2 content
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         const button = screen.getByRole("button", {name: "Section 1"});
@@ -168,6 +176,7 @@ describe("Accordion", () => {
                     Section 2 content
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -189,6 +198,7 @@ describe("Accordion", () => {
                     </AccordionSection>,
                 ]}
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -210,6 +220,7 @@ describe("Accordion", () => {
                     </AccordionSection>,
                 ]}
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -234,6 +245,7 @@ describe("Accordion", () => {
                     </AccordionSection>,
                 ]}
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -259,6 +271,7 @@ describe("Accordion", () => {
                     </AccordionSection>,
                 ]}
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -283,6 +296,7 @@ describe("Accordion", () => {
                     </AccordionSection>,
                 ]}
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -307,6 +321,7 @@ describe("Accordion", () => {
                     </AccordionSection>,
                 ]}
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -332,6 +347,7 @@ describe("Accordion", () => {
                     </AccordionSection>,
                 ]}
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -354,6 +370,7 @@ describe("Accordion", () => {
                     Section 2 content
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act

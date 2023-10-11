@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
-import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
+import {useUniqueIdWithMock, View} from "@khanacademy/wonder-blocks-core";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -169,6 +169,12 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         ...ariaProps
     } = props;
 
+    const ids = useUniqueIdWithMock();
+    const sectionId = id ?? ids.get("accordion-section");
+    // We need an ID for the content section so that the opener's
+    // aria-controls attribute can point to it.
+    const sectionContentUniqueId = ids.get("accordion-section-content");
+
     const sectionStyles = _generateStyles(
         cornerKind,
         isFirstSection,
@@ -182,58 +188,43 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     };
 
     return (
-        <UniqueIDProvider mockOnFirstRender={true} scope="accordion-section">
-            {(ids) => {
-                const sectionId = id || ids.get("accordion-section");
-                // We need an ID for the content section so that the opener's
-                // aria-controls attribute can point to it.
-                const sectionContentUniqueId = ids.get(
-                    "accordion-section-content",
-                );
-                return (
-                    <View
-                        id={sectionId}
-                        style={[styles.wrapper, sectionStyles.wrapper, style]}
-                        testId={testId}
-                        {...ariaProps}
-                        ref={ref}
-                    >
-                        <AccordionSectionHeader
-                            header={header}
-                            caretPosition={caretPosition}
-                            cornerKind={cornerKind}
-                            expanded={expanded}
-                            onClick={handleClick}
-                            sectionContentUniqueId={sectionContentUniqueId}
-                            headerStyle={headerStyle}
-                            tag={tag}
-                            testId={headerTestId}
-                            isFirstSection={isFirstSection}
-                            isLastSection={isLastSection}
-                        />
-                        {/* The content is the section that
-                        expands and closes. */}
-                        {expanded ? (
-                            <View
-                                id={sectionContentUniqueId}
-                                style={[
-                                    styles.contentWrapper,
-                                    sectionStyles.contentWrapper,
-                                ]}
-                            >
-                                {typeof children === "string" ? (
-                                    <Body style={styles.stringContent}>
-                                        {children}
-                                    </Body>
-                                ) : (
-                                    children
-                                )}
-                            </View>
-                        ) : null}
-                    </View>
-                );
-            }}
-        </UniqueIDProvider>
+        <View
+            id={sectionId}
+            style={[styles.wrapper, sectionStyles.wrapper, style]}
+            testId={testId}
+            {...ariaProps}
+            ref={ref}
+        >
+            <AccordionSectionHeader
+                header={header}
+                caretPosition={caretPosition}
+                cornerKind={cornerKind}
+                expanded={expanded}
+                onClick={handleClick}
+                sectionContentUniqueId={sectionContentUniqueId}
+                headerStyle={headerStyle}
+                tag={tag}
+                testId={headerTestId}
+                isFirstSection={isFirstSection}
+                isLastSection={isLastSection}
+            />
+            {/* The content is the section that expands and closes. */}
+            {expanded ? (
+                <View
+                    id={sectionContentUniqueId}
+                    style={[
+                        styles.contentWrapper,
+                        sectionStyles.contentWrapper,
+                    ]}
+                >
+                    {typeof children === "string" ? (
+                        <Body style={styles.stringContent}>{children}</Body>
+                    ) : (
+                        children
+                    )}
+                </View>
+            ) : null}
+        </View>
     );
 });
 

@@ -96,6 +96,7 @@ describe("Accordion elements", () => {
                     This is the information present in the third section
                 </AccordionSection>
             </Accordion>,
+            {wrapper: RenderStateRoot},
         );
 
         // Assert
@@ -111,6 +112,7 @@ describe("Accordion elements", () => {
             <AccordionSection header="Section" ref={ref}>
                 This is the information present in the first section
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Assert
@@ -409,11 +411,9 @@ describe("Form elements", () => {
             const ref: React.RefObject<HTMLInputElement> = React.createRef();
 
             // Act
-            render(
-                <RenderStateRoot>
-                    <Switch checked={false} ref={ref} />
-                </RenderStateRoot>,
-            );
+            render(<Switch checked={false} ref={ref} />, {
+                wrapper: RenderStateRoot,
+            });
 
             // Assert
             expect(ref.current).toBeInstanceOf(HTMLInputElement);

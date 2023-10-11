@@ -1,6 +1,8 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+
 import AccordionSection from "../accordion-section";
 
 describe("AccordionSection", () => {
@@ -10,6 +12,7 @@ describe("AccordionSection", () => {
         // Act
         render(
             <AccordionSection header="Title">Section content</AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Assert
@@ -25,6 +28,7 @@ describe("AccordionSection", () => {
             <AccordionSection header="Title" expanded={true}>
                 Section content
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Assert
@@ -40,6 +44,7 @@ describe("AccordionSection", () => {
             <AccordionSection header="Title" expanded={true}>
                 <div>Section content</div>
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Assert
@@ -59,6 +64,7 @@ describe("AccordionSection", () => {
             >
                 Section content
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         const button = screen.getByRole("button", {name: "Title"});
@@ -74,6 +80,7 @@ describe("AccordionSection", () => {
         // Arrange
         render(
             <AccordionSection header="Title">Section content</AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -89,6 +96,7 @@ describe("AccordionSection", () => {
             <AccordionSection header="Title" tag="h3">
                 Section content
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -107,6 +115,7 @@ describe("AccordionSection", () => {
             >
                 Section content
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -129,6 +138,7 @@ describe("AccordionSection", () => {
             >
                 Section content
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -148,6 +158,7 @@ describe("AccordionSection", () => {
             >
                 Section content
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
@@ -172,6 +183,7 @@ describe("AccordionSection", () => {
             >
                 Section content
             </AccordionSection>,
+            {wrapper: RenderStateRoot},
         );
 
         // Act
