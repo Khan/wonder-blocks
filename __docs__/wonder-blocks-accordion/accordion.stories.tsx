@@ -249,38 +249,6 @@ export const WithStyle: StoryComponentType = {
 };
 
 /**
- * An Accordion can be given a semantic tag to apply to the header of each
- * section. This is h2 by default, but it should be changed to match the
- * hierarchy of the page for accessibility!!!
- *
- * If this prop is specified both here in the Accordion and within
- * a child AccordionSection component, the AccordionSection's tag
- * value is prioritized.
- *
- * In this example, the accordion has been given an h3 tag, and the last
- * section has been given an h4 tag. This means the first two sections
- * will be h3s, and the last section will be an h4. This is apparent in
- * the DOM.
- */
-export const WithTag: StoryComponentType = {
-    render: () => {
-        return (
-            <Accordion tag="h3">
-                <AccordionSection header="This is an h3">
-                    Something
-                </AccordionSection>
-                <AccordionSection header="This is also an h3">
-                    Something
-                </AccordionSection>
-                <AccordionSection header="This is actually an h4" tag="h4">
-                    Something
-                </AccordionSection>
-            </Accordion>
-        );
-    },
-};
-
-/**
  * To use an Accordion with only one section, you must pass in an array
  * of one element.
  */

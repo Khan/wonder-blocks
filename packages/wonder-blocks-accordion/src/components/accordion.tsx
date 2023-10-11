@@ -64,16 +64,6 @@ type Props = AriaProps & {
      * Custom styles for the overall accordion container.
      */
     style?: StyleType;
-    /**
-     * The semantic tag for this clickable header in every section (e.g. "h1",
-     * "h2", etc.). Please use this to ensure that the header is
-     * hierarchically correct. Defaults to "h2".
-     *
-     * If this prop is specified both here in the Accordion and within
-     * a child AccordionSection component, the AccordionSection’s tag
-     * value is prioritized.
-     * */
-    tag?: string;
 };
 
 /**
@@ -117,7 +107,6 @@ const Accordion = React.forwardRef(function Accordion(
         caretPosition,
         cornerKind = "rounded",
         style,
-        tag,
         ...ariaProps
     } = props;
 
@@ -128,18 +117,22 @@ const Accordion = React.forwardRef(function Accordion(
 
     const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
 
-    const handleSectionClick = (index: number, childOnToggle?: () => void) => {
+    const handleSectionClick = (
+        index: number,
+        childOnToggle?: (newExpandedState: boolean) => unknown,
+    ) => {
         // If allowMultipleExpanded is false, we want to close all other
         // sections when one is opened.
         const newSectionsOpened = allowMultipleExpanded
             ? [...sectionsOpened]
             : Array(children.length).fill(false);
+        const newOpenedValueAtIndex = !sectionsOpened[index];
 
-        newSectionsOpened[index] = !sectionsOpened[index];
+        newSectionsOpened[index] = newOpenedValueAtIndex;
         setSectionsOpened(newSectionsOpened);
 
         if (childOnToggle) {
-            childOnToggle();
+            childOnToggle(newOpenedValueAtIndex);
         }
     };
 
@@ -153,7 +146,6 @@ const Accordion = React.forwardRef(function Accordion(
                 const {
                     caretPosition: childCaretPosition,
                     cornerKind: childCornerKind,
-                    tag: childTag,
                     onToggle: childOnToggle,
                 } = child.props;
 
@@ -175,8 +167,6 @@ const Accordion = React.forwardRef(function Accordion(
                             expanded: sectionsOpened[index],
                             onToggle: () =>
                                 handleSectionClick(index, childOnToggle),
-                            // Prioritize the AccordionSection's tag
-                            tag: childTag ?? tag,
                             isFirstSection: isFirstChild,
                             isLastSection: isLastChild,
                         })}

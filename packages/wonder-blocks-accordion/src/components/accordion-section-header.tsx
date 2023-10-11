@@ -11,6 +11,7 @@ import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {AccordionCornerKindType} from "./accordion";
+import type {TagType} from "./accordion-section";
 import {getRoundedValuesForHeader} from "../utils";
 
 type Props = {
@@ -31,7 +32,7 @@ type Props = {
     headerStyle?: StyleType;
     // The semantic tag for this clickable header (e.g. "h1", "h2", etc.)
     // Please use this to ensure that the header is hierarchically correct.
-    tag?: string;
+    tag?: TagType;
     // The test ID used for e2e testing.
     testId?: string;
     // Whether this section is the first section in the accordion.

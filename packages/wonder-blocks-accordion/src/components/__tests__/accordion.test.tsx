@@ -151,49 +151,6 @@ describe("Accordion", () => {
         expect(onToggleSpy).toHaveBeenCalledTimes(1);
     });
 
-    test("Uses the correct tag for the headers", () => {
-        // Arrange
-        render(
-            <Accordion tag="h3">
-                <AccordionSection header="Section 1">
-                    Section 1 content
-                </AccordionSection>
-                <AccordionSection header="Section 2">
-                    Section 2 content
-                </AccordionSection>
-            </Accordion>,
-        );
-
-        // Act
-        // Assert
-        const headers = screen.getAllByRole("heading", {level: 3});
-        expect(headers).toHaveLength(2);
-    });
-
-    test("Uses the child's tag for the headers when the child tag is set", () => {
-        // Arrange
-        render(
-            <Accordion tag="h3">
-                <AccordionSection header="Section 1" tag="h4">
-                    Section 1 content
-                </AccordionSection>
-                <AccordionSection header="Section 2">
-                    Section 2 content
-                </AccordionSection>
-                <AccordionSection header="Section 3">
-                    Section 3 content
-                </AccordionSection>
-            </Accordion>,
-        );
-
-        // Act
-        // Assert
-        const headers = screen.getAllByRole("heading", {level: 3});
-        const headerWithProp = screen.getByRole("heading", {level: 4});
-        expect(headers).toHaveLength(2);
-        expect(headerWithProp).toBeVisible();
-    });
-
     test("Other props are passed to the section", () => {
         // Arrange
         render(

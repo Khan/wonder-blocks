@@ -82,14 +82,4 @@ export default {
         },
         type: {name: "StyleType", required: false},
     },
-    tag: {
-        control: {type: "text"},
-        description: `The semantic tag for this clickable header (e.g. "h1",
-            "h2", etc.) Please use this to ensure that the header is
-            hierarchically correct.`,
-        table: {
-            type: {summary: "string"},
-        },
-        type: {name: "string", required: false},
-    },
 };

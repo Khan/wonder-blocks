@@ -11,6 +11,8 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {AccordionCornerKindType} from "./accordion";
 import AccordionSectionHeader from "./accordion-section-header";
 
+export type TagType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
 type Props = AriaProps & {
     /**
      * The unique identifier for the accordion section.
@@ -62,8 +64,10 @@ type Props = AriaProps & {
     expanded?: boolean;
     /**
      * Called when the header is clicked.
+     * Takes the new expanded state as an argument. This way, the function
+     * returned from React.useState can be passed in directly.
      */
-    onToggle?: () => void;
+    onToggle?: (newExpandedState: boolean) => unknown;
     /**
      * Custom styles for the overall accordion section container.
      */
@@ -76,12 +80,8 @@ type Props = AriaProps & {
      * The semantic tag for this clickable header (e.g. "h1", "h2", etc).
      * Please use this to ensure that the header is hierarchically correct.
      * Defaults to "h2".
-     *
-     * If this prop is specified both here in the AccordionSection and
-     * within a parent Accordion component, the AccordionSection’s tag
-     * value is prioritized.
      * */
-    tag?: string;
+    tag?: TagType;
     /**
      * The test ID used to locate this component in automated tests.
      */
@@ -134,7 +134,12 @@ type Props = AriaProps & {
  * </Accordion>
  *
  * // On its own
- * <AccordionSection header="A standalone section">
+ * const [expanded, setExpanded] = React.useState(false);
+ * <AccordionSection
+ *     header="A standalone section"
+ *     expanded={expanded}
+ *     onToggle={setExpanded}
+ * >
  *    This is the information present in the standalone section
  * </AccordionSection>
  * ```
@@ -171,6 +176,12 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         isLastSection,
     );
 
+    const handleClick = () => {
+        if (onToggle) {
+            onToggle(!expanded);
+        }
+    };
+
     return (
         <UniqueIDProvider mockOnFirstRender={true} scope="accordion-section">
             {(ids) => {
@@ -193,7 +204,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                             caretPosition={caretPosition}
                             cornerKind={cornerKind}
                             expanded={expanded}
-                            onClick={onToggle}
+                            onClick={handleClick}
                             sectionContentUniqueId={sectionContentUniqueId}
                             headerStyle={headerStyle}
                             tag={tag}

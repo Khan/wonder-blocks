@@ -9,13 +9,7 @@ describe("AccordionSection", () => {
 
         // Act
         render(
-            <AccordionSection
-                header="Title"
-                expanded={false}
-                onToggle={() => {}}
-            >
-                Section content
-            </AccordionSection>,
+            <AccordionSection header="Title">Section content</AccordionSection>,
         );
 
         // Assert
@@ -28,11 +22,7 @@ describe("AccordionSection", () => {
 
         // Act
         render(
-            <AccordionSection
-                header="Title"
-                expanded={true}
-                onToggle={() => {}}
-            >
+            <AccordionSection header="Title" expanded={true}>
                 Section content
             </AccordionSection>,
         );
@@ -47,11 +37,7 @@ describe("AccordionSection", () => {
 
         // Act
         render(
-            <AccordionSection
-                header="Title"
-                expanded={true}
-                onToggle={() => {}}
-            >
+            <AccordionSection header="Title" expanded={true}>
                 <div>Section content</div>
             </AccordionSection>,
         );

@@ -81,7 +81,7 @@ export default {
         control: {type: null},
         description: "Called when the header is clicked.",
         table: {
-            type: {summary: "() => void"},
+            type: {summary: "(newExpandedState: boolean) => unknown"},
         },
     },
     style: {

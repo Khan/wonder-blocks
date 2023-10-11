@@ -65,19 +65,18 @@ export const Controlled: StoryComponentType = {
     render: function Render() {
         const [expanded, setExpanded] = React.useState(false);
 
-        const handleToggle = () => {
-            setExpanded(!expanded);
-        };
-
         return (
             <View>
-                <Button onClick={handleToggle} style={styles.button}>
+                <Button
+                    onClick={() => setExpanded(!expanded)}
+                    style={styles.button}
+                >
                     Click me to toggle the accordion section
                 </Button>
                 <AccordionSection
                     expanded={expanded}
                     header="Controlled section"
-                    onToggle={handleToggle}
+                    onToggle={setExpanded}
                 >
                     This is the information present in this controlled section
                 </AccordionSection>
@@ -96,9 +95,6 @@ export const ReactElementInHeader: StoryComponentType = {
     render: function Render() {
         const [expanded, setExpanded] = React.useState(false);
 
-        const handleToggle = () => {
-            setExpanded(!expanded);
-        };
         return (
             <AccordionSection
                 header={
@@ -111,7 +107,7 @@ export const ReactElementInHeader: StoryComponentType = {
                     />
                 }
                 expanded={expanded}
-                onToggle={handleToggle}
+                onToggle={setExpanded}
             >
                 This is the information present in the first section
             </AccordionSection>
@@ -134,14 +130,11 @@ export const ReactElementInChildren: StoryComponentType = {
     render: function Render() {
         const [expanded, setExpanded] = React.useState(false);
 
-        const handleToggle = () => {
-            setExpanded(!expanded);
-        };
         return (
             <AccordionSection
                 header="First section"
                 expanded={expanded}
-                onToggle={handleToggle}
+                onToggle={setExpanded}
             >
                 <DetailCell
                     title="Header for article item"
@@ -331,12 +324,13 @@ export const WithStyle: StoryComponentType = {
             margin: Spacing.large_24,
             outline: `2px solid ${Color.offBlack32}`,
         };
+
         return (
             <AccordionSection
                 header="Section with style"
                 style={customStyles}
                 expanded={expanded}
-                onToggle={() => setExpanded(!expanded)}
+                onToggle={setExpanded}
             >
                 {"I have a gray background!"}
             </AccordionSection>
@@ -355,12 +349,13 @@ export const WithHeaderStyle: StoryComponentType = {
         const headerStyle = {
             backgroundColor: Color.offBlack8,
         };
+
         return (
             <AccordionSection
                 header="Section with style"
                 headerStyle={headerStyle}
                 expanded={expanded}
-                onToggle={() => setExpanded(!expanded)}
+                onToggle={setExpanded}
             >
                 {"I have a gray background!"}
             </AccordionSection>
@@ -389,7 +384,7 @@ export const WithTag: StoryComponentType = {
                 header="h3 section"
                 tag="h3"
                 expanded={expanded}
-                onToggle={() => setExpanded(!expanded)}
+                onToggle={setExpanded}
             >
                 I am an h3!
             </AccordionSection>
