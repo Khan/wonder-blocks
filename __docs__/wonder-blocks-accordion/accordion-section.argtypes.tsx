@@ -36,8 +36,8 @@ export default {
             language), and "end" means it’s on the right of a left-to-right
             language (and on the left of a right-to-left language).
             Defaults to "end".
-            If this prop is specified both here in the Accordion and within
-            a child AccordionSection component, the Accordion’s caretPosition
+            If this prop is specified both here in the `AccordionSection` and within
+            the `Accordion` component, the Accordion’s caretPosition
             value is prioritized.`,
         defaultValue: "end",
         table: {
