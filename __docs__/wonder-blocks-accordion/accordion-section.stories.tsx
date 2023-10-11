@@ -332,7 +332,7 @@ export const WithStyle: StoryComponentType = {
                 expanded={expanded}
                 onToggle={setExpanded}
             >
-                {"I have a gray background!"}
+                I have a gray background!
             </AccordionSection>
         );
     },
@@ -357,7 +357,7 @@ export const WithHeaderStyle: StoryComponentType = {
                 expanded={expanded}
                 onToggle={setExpanded}
             >
-                {"I have a gray background!"}
+                I have a gray background!
             </AccordionSection>
         );
     },
