@@ -368,10 +368,6 @@ export const WithHeaderStyle: StoryComponentType = {
  * This is h2 by default, but it should be changed to match the
  * hierarchy of the page for accessibility!!!
  *
- * If this prop is specified both here in the AccordionSection and within
- * a pare t Accordioncomponent, this AccordionSection's tag value is
- * prioritized.
- *
  * In this example, the AccordionSection has an h3 tag, so the header
  * will show up as an h3 in the DOM.
  */
