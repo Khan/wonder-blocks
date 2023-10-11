@@ -51,14 +51,14 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * AccordionSection is a controlled component. Its \`expanded\` prop
+ * AccordionSection is a controlled component. Its `expanded` prop
  * determines whether the section is expanded or closed, and its
- * \`onToggle\` prop function is called when the section header is clicked.
+ * `onToggle` prop function is called when the section header is clicked.
  *
- * Here is an example of how to set this up. The \`expanded\` prop is
- * initially set to \`false\` and is toggled by the \`handleToggle\`
- * function. The \`handleToggle\` function is passed into the \`onToggle\`
- * prop of the AccordionSection. The \`handleToggle\` function is also
+ * Here is an example of how to set this up. The `expanded` prop is
+ * initially set to `false` and is toggled by the `handleToggle`
+ * function. The `handleToggle` function is passed into the `onToggle`
+ * prop of the AccordionSection. The `handleToggle` function is also
  * called when the button is clicked.
  */
 export const Controlled: StoryComponentType = {
