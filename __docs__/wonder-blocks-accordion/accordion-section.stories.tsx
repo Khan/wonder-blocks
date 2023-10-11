@@ -50,9 +50,11 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * AccordionSection is a controlled component. Its `expanded` prop
- * determines whether the section is expanded or closed, and its
- * `onToggle` prop function is called when the section header is clicked.
+ * AccordionSection is a controlled component if the `expanded` and
+ * `onToggle` props are passed in. The `expanded` prop determines whether
+ * the section is expanded or closed, and the `onToggle` prop function is
+ * called when the section header is clicked, and is generally used to
+ * set the `expanded` state outside where this section is used.
  *
  * Here is an example of how to set this up. The `expanded` prop is
  * initially set to `false` and is toggled by the `handleToggle`
@@ -64,6 +66,12 @@ export const Controlled: StoryComponentType = {
     render: function Render() {
         const [expanded, setExpanded] = React.useState(false);
 
+        const handleToggle = () => {
+            // eslint-disable-next-line no-console
+            console.log("Click! This function is being called!");
+            setExpanded(!expanded);
+        };
+
         return (
             <View>
                 <Button
@@ -72,10 +80,13 @@ export const Controlled: StoryComponentType = {
                 >
                     Click me to toggle the accordion section
                 </Button>
+                <LabelLarge style={styles.space}>
+                    {`Expanded state: ${expanded}`}
+                </LabelLarge>
                 <AccordionSection
                     expanded={expanded}
                     header="Controlled section"
-                    onToggle={setExpanded}
+                    onToggle={handleToggle}
                 >
                     This is the information present in this controlled section
                 </AccordionSection>
@@ -85,6 +96,41 @@ export const Controlled: StoryComponentType = {
 };
 
 Controlled.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
+    },
+};
+
+/**
+ * AccordionSection is an uncontrolled component when the `expanded` prop
+ * is not passed in. In this case, the AccordionSection will manage its
+ * own state. It will still call the `onToggle` prop function if it's
+ * passed in; this is to ensure that any functions depending on the
+ * title click will still work (e.g. analytics).
+ *
+ * In this example, you can see that there is no explicit state management
+ * (as opposed to the Controlled example above). The AccordionSection
+ * manages its own state, but the `onToggle` prop function is still called
+ * when the section header is clicked.
+ */
+export const Uncontrolled: StoryComponentType = {
+    render: function Render() {
+        return (
+            <AccordionSection
+                header="Controlled section"
+                onToggle={() =>
+                    // eslint-disable-next-line no-console
+                    console.log("Click! This function is being called!")
+                }
+            >
+                This is the information present in this controlled section
+            </AccordionSection>
+        );
+    },
+};
+
+Uncontrolled.parameters = {
     chromatic: {
         // Disabling because this doesn't test anything visual.
         disableSnapshot: true,

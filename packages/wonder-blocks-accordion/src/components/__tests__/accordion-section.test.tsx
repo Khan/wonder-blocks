@@ -52,7 +52,7 @@ describe("AccordionSection", () => {
         expect(screen.queryByText("Section content")).toBeVisible();
     });
 
-    test("calls onToggle when clicked", () => {
+    test("calls onToggle when clicked (controlled)", () => {
         // Arrange
         const onToggleSpy = jest.fn();
 
@@ -74,6 +74,48 @@ describe("AccordionSection", () => {
 
         // Assert
         expect(onToggleSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test("calls onToggle when clicked (uncontrolled)", () => {
+        // Arrange
+        const onToggleSpy = jest.fn();
+
+        render(
+            <AccordionSection header="Title" onToggle={onToggleSpy}>
+                Section content
+            </AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        const button = screen.getByRole("button", {name: "Title"});
+
+        // Act
+        button.click();
+
+        // Assert
+        expect(onToggleSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test("shows/hides panel when clicked (uncontrolled)", () => {
+        // Arrange
+        render(
+            <AccordionSection header="Title">Section content</AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        // Make sure the section is closed at first
+        expect(screen.queryByText("Section content")).not.toBeInTheDocument();
+
+        const button = screen.getByRole("button", {name: "Title"});
+        button.click();
+
+        // Assert
+        // Make sure the section has opened after clicking
+        expect(screen.getByText("Section content")).toBeVisible();
+        // Repeat clicking to confirm behavior
+        button.click();
+        expect(screen.queryByText("Section content")).not.toBeInTheDocument();
     });
 
     test("is h2 by default", () => {

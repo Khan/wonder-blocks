@@ -151,7 +151,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         children,
         id,
         header,
-        expanded = false,
+        expanded,
         onToggle,
         caretPosition = "end",
         cornerKind = "rounded",
@@ -169,6 +169,10 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         ...ariaProps
     } = props;
 
+    const [internalExpanded, setInternalExpanded] = React.useState(
+        expanded ?? false,
+    );
+
     const ids = useUniqueIdWithMock();
     const sectionId = id ?? ids.get("accordion-section");
     // We need an ID for the content section so that the opener's
@@ -182,10 +186,23 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     );
 
     const handleClick = () => {
-        if (onToggle) {
+        // Controlled mode
+        if (expanded !== undefined && onToggle) {
             onToggle(!expanded);
+        } else {
+            // Uncontrolled mode
+            setInternalExpanded(!internalExpanded);
+            if (onToggle) {
+                onToggle(!internalExpanded);
+            }
         }
     };
+
+    // If the expanded prop is undefined, we're in uncontrolled mode and
+    // should use the internal state to determine the expanded state.
+    // Otherwise, we're in controlled mode and should use the expanded prop
+    // that's passed in to determine the expanded state.
+    const expandedState = expanded !== undefined ? expanded : internalExpanded;
 
     return (
         <View
@@ -199,7 +216,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 header={header}
                 caretPosition={caretPosition}
                 cornerKind={cornerKind}
-                expanded={expanded}
+                expanded={expandedState}
                 onClick={handleClick}
                 sectionContentUniqueId={sectionContentUniqueId}
                 headerStyle={headerStyle}
@@ -209,7 +226,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 isLastSection={isLastSection}
             />
             {/* The content is the section that expands and closes. */}
-            {expanded ? (
+            {expandedState ? (
                 <View
                     id={sectionContentUniqueId}
                     style={[
