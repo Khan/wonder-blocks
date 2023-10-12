@@ -76,7 +76,7 @@ describe("AccordionSection", () => {
         expect(onToggleSpy).toHaveBeenCalledTimes(1);
     });
 
-    test("calls onToggle when clicked (uncontrolled)", () => {
+    test("calls onToggle when clicked (uncontrolled: no expanded, includes onToggle)", () => {
         // Arrange
         const onToggleSpy = jest.fn();
 
@@ -96,7 +96,31 @@ describe("AccordionSection", () => {
         expect(onToggleSpy).toHaveBeenCalledTimes(1);
     });
 
-    test("shows/hides panel when clicked (uncontrolled)", () => {
+    test("shows/hides panel when clicked (uncontrolled: includes expanded, no onToggle)", () => {
+        // Arrange
+        render(
+            <AccordionSection header="Title" expanded={true}>
+                Section content
+            </AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        // Make sure the section is open at first
+        expect(screen.getByText("Section content")).toBeVisible();
+
+        const button = screen.getByRole("button", {name: "Title"});
+        button.click();
+
+        // Assert
+        // Make sure the section has closed after clicking
+        expect(screen.queryByText("Section content")).not.toBeInTheDocument();
+        // Repeat clicking to confirm behavior
+        button.click();
+        expect(screen.getByText("Section content")).toBeVisible();
+    });
+
+    test("shows/hides panel when clicked (uncontrolled: no expanded, no onToggle)", () => {
         // Arrange
         render(
             <AccordionSection header="Title">Section content</AccordionSection>,

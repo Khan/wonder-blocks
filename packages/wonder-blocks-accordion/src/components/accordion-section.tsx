@@ -173,6 +173,8 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         expanded ?? false,
     );
 
+    const controlledMode = expanded !== undefined && onToggle;
+
     const ids = useUniqueIdWithMock();
     const sectionId = id ?? ids.get("accordion-section");
     // We need an ID for the content section so that the opener's
@@ -187,7 +189,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
     const handleClick = () => {
         // Controlled mode
-        if (expanded !== undefined && onToggle) {
+        if (controlledMode) {
             onToggle(!expanded);
         } else {
             // Uncontrolled mode
@@ -202,7 +204,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     // should use the internal state to determine the expanded state.
     // Otherwise, we're in controlled mode and should use the expanded prop
     // that's passed in to determine the expanded state.
-    const expandedState = expanded !== undefined ? expanded : internalExpanded;
+    const expandedState = controlledMode ? expanded : internalExpanded;
 
     return (
         <View

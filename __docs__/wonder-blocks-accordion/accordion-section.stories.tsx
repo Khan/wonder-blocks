@@ -104,10 +104,13 @@ Controlled.parameters = {
 
 /**
  * AccordionSection is an uncontrolled component when the `expanded` prop
- * is not passed in. In this case, the AccordionSection will manage its
- * own state. It will still call the `onToggle` prop function if it's
- * passed in; this is to ensure that any functions depending on the
- * title click will still work (e.g. analytics).
+ * is not passed in or the `onToggle` prop is not passed in. In this case,
+ * the AccordionSection will manage its own state. If the `onToggle` prop
+ * is passed in (and `expanded` is not), the `onToggle` function will be
+ * called; this is to ensure that any functions depending on the title click
+ * will still work (e.g. analytics). If the `expanded` prop is passed in
+ * (and `onToggle` is not), this `expanded` prop will be used to determine
+ * whether the section is expanded at first.
  *
  * In this example, you can see that there is no explicit state management
  * (as opposed to the Controlled example above). The AccordionSection
