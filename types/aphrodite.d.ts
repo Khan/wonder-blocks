@@ -29,9 +29,11 @@ declare module "aphrodite" {
         "::placeholder"?: _CSSProperties;
         ":active"?: _CSSProperties;
         ":after"?: _CSSProperties;
+        ":first-child"?: _CSSProperties;
         ":focus-visible"?: _CSSProperties;
         ":focus"?: _CSSProperties;
         ":hover"?: _CSSProperties;
+        ":last-child"?: _CSSProperties;
     };
 
     /**

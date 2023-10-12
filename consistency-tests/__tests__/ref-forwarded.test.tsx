@@ -7,6 +7,8 @@ import plus from "@phosphor-icons/core/regular/plus.svg";
 
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
+import Accordion from "../../packages/wonder-blocks-accordion/src/components/accordion";
+import AccordionSection from "../../packages/wonder-blocks-accordion/src/components/accordion-section";
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
@@ -73,6 +75,48 @@ describe("Typography elements", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(type);
+    });
+});
+
+describe("Accordion elements", () => {
+    test("Accordion forwards ref", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLUListElement> = React.createRef();
+
+        // Act
+        render(
+            <Accordion ref={ref}>
+                <AccordionSection header="First section">
+                    This is the information present in the first section
+                </AccordionSection>
+                <AccordionSection header="Second section">
+                    This is the information present in the second section
+                </AccordionSection>
+                <AccordionSection header="Third section">
+                    This is the information present in the third section
+                </AccordionSection>
+            </Accordion>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLUListElement);
+    });
+
+    test("AccordionSection forwards ref", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLDivElement> = React.createRef();
+
+        // Act
+        render(
+            <AccordionSection header="Section" ref={ref}>
+                This is the information present in the first section
+            </AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLDivElement);
     });
 });
 
@@ -367,11 +411,9 @@ describe("Form elements", () => {
             const ref: React.RefObject<HTMLInputElement> = React.createRef();
 
             // Act
-            render(
-                <RenderStateRoot>
-                    <Switch checked={false} ref={ref} />
-                </RenderStateRoot>,
-            );
+            render(<Switch checked={false} ref={ref} />, {
+                wrapper: RenderStateRoot,
+            });
 
             // Assert
             expect(ref.current).toBeInstanceOf(HTMLInputElement);

@@ -5,6 +5,7 @@
         "rootDir": "./"
     },
     "references": [
+        {"path": "../packages/wonder-blocks-accordion/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-button/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-cell/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-clickable/tsconfig-build.json"},
@@ -17,6 +18,7 @@
         {"path": "../packages/wonder-blocks-icon-button/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-layout/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-modal/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-pill/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-search-field/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-spacing/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-switch/tsconfig-build.json"},
