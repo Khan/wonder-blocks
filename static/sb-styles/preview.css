@@ -5,15 +5,15 @@
 .sbdocs li,
 .sbdocs p,
 .sbdocs p *:not(a) {
-    color: var(--color-text) !important;
-    font-size: var(--typography-body-size-md) !important;
-    line-height: var(--typography-base-line-height) !important;
+    color: var(--color-text);
+    font-size: var(--typography-body-size-md);
+    line-height: var(--typography-base-line-height);
 }
 
 .sbdocs .docblock-argstable p,
 .sbdocs .docblock-argstable ul,
 .sbdocs .docblock-argstable li {
-    font-size: 1em !important;
+    font-size: 1em;
 }
 
 .sbdocs h1,
@@ -23,29 +23,29 @@
 .sbdocs h4,
 .sbdocs h5,
 .sbdocs h6 {
-    color: var(--color-text) !important;
-    font-family: 'Source Serif Pro', sans-serif !important;
-    font-weight: 400 !important;
-    margin-top: 1.5rem !important;
+    color: var(--color-text);
+    font-family: 'Source Serif Pro', sans-serif;
+    font-weight: 400;
+    margin-top: 1.5rem;
 }
 
 .sbdocs h1,
 .sbdocs title {
-    font-size: var(--typography-heading-size-xxl) !important;
-    line-height: var(--typography-heading-line-height-xxl) !important;
-    margin-top: 0 !important;
+    font-size: var(--typography-heading-size-xxl);
+    line-height: var(--typography-heading-line-height-xxl);
+    margin-top: 0;
 }
 
 .sbdocs h2 {
     counter-reset: story;
-    font-size: var(--typography-heading-size-xl) !important;
-    letter-spacing: initial !important;
-    line-height: var(--typography-heading-line-height-xl) !important;
+    font-size: var(--typography-heading-size-xl);
+    letter-spacing: initial;
+    line-height: var(--typography-heading-line-height-xl);
 }
 
 .sbdocs h3 {
-    font-size: var(--typography-heading-size-lg) !important;
-    line-height: var(--typography-heading-line-height-lg) !important;
+    font-size: var(--typography-heading-size-lg);
+    line-height: var(--typography-heading-line-height-lg);
 }
 
 /* only include the counter to the stories titles */
@@ -56,16 +56,16 @@
 }
 
 .sbdocs h4 {
-    font-size: var(--typography-heading-size-md) !important;
-    line-height: var(--typography-heading-line-height-md) !important;
+    font-size: var(--typography-heading-size-md);
+    line-height: var(--typography-heading-line-height-md);
 }
 
 .sbdocs h5 {
-    font-size: var(--typography-heading-size-sm) !important;
-    line-height: var(--typography-heading-line-height-sm) !important;
+    font-size: var(--typography-heading-size-sm);
+    line-height: var(--typography-heading-line-height-sm);
 }
 
 .sbdocs h6 {
-    font-size: var(--typography-heading-size-xs) !important;
-    line-height: var(--typography-heading-line-height-xs) !important;
+    font-size: var(--typography-heading-size-xs);
+    line-height: var(--typography-heading-line-height-xs);
 }
