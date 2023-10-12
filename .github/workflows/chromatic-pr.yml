@@ -23,12 +23,11 @@ jobs:
 
   # ------- Regular PRs --------
   chromatic_review:
-    # (if) Run this step on non-draft regular PRs.
+    # (if) Run this step on regular PRs.
     if: |
       github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
-      !startsWith(github.head_ref, 'changeset-release/') &&
-      github.event.pull_request.draft == false
-    name: Chromatic - Build on non-draft regular PRs
+      !startsWith(github.head_ref, 'changeset-release/')
+    name: Chromatic - Build on regular PRs
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'review'
@@ -39,9 +38,8 @@ jobs:
     # (if) Run this step on regular PRs.
     if: |
       github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
-      !startsWith(github.head_ref, 'changeset-release/') &&
-      github.event.pull_request.draft == false
-    name: Chromatic - Get results on non-draft regular PRs
+      !startsWith(github.head_ref, 'changeset-release/')
+    name: Chromatic - Get results on regular PRs
     needs: chromatic_review
     runs-on: ${{ matrix.os }}
     strategy:
