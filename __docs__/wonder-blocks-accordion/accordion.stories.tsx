@@ -62,7 +62,7 @@ export const Default: StoryComponentType = {
  * by default. However, if `allowMultipleExpanded` is set to `false`, only
  * one section can be expanded at a time.
  */
-export const AllowMultipleExpanded = {
+export const AllowMultipleExpanded: StoryComponentType = {
     render: () => (
         <View style={styles.sideBySide}>
             <View style={[styles.fullWidth, styles.space]}>
@@ -77,6 +77,13 @@ export const AllowMultipleExpanded = {
             </View>
         </View>
     ),
+};
+
+AllowMultipleExpanded.parameters = {
+    chromatic: {
+        // Disabling because this snapshot isn't helpful for visual testing.
+        disableSnapshot: true,
+    },
 };
 
 /**

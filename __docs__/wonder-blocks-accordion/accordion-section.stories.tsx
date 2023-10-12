@@ -33,11 +33,17 @@ export default {
 type StoryComponentType = StoryObj<typeof AccordionSection>;
 
 /**
- * By default, an AccordionSection has a caret at the end of the header block
- * and rounded corners. Passing in a string into the header prop will
- * automatically style the header and add spacing between the header and
- * the caret. Passing in a string into the children prop will automatically
- * give the children Body typography from Wonder Blocks Typography.
+ * By default, an AccordionSection is an uncontrolled component. To make it
+ * a controlled component, pass in BOTH the `expanded` prop and the `onToggle`
+ * prop. See more in the [Controlled](#controlled) and
+ * [Uncontrolled](#uncontrolled) examples below.
+ *
+ * Visually by default, an AccordionSection has a caret at the end of the
+ * header block and rounded corners. Passing in a string into the header
+ * prop will automatically style the header and add spacing between the
+ * header and the caret. Passing in a string into the children prop will
+ * automatically give the children Body typography from Wonder Blocks
+ * Typography.
  */
 export const Default: StoryComponentType = {
     args: {
@@ -113,9 +119,9 @@ Controlled.parameters = {
  * whether the section is expanded at first.
  *
  * In this example, you can see that there is no explicit state management
- * (as opposed to the Controlled example above). The AccordionSection
- * manages its own state, but the `onToggle` prop function is still called
- * when the section header is clicked.
+ * (as opposed to the [Controlled](#controlled) example above).
+ * The AccordionSection manages its own state, but the `onToggle` prop
+ * function is still called when the section header is clicked.
  */
 export const Uncontrolled: StoryComponentType = {
     render: function Render() {
