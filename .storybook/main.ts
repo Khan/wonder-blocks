@@ -1,4 +1,4 @@
-import {resolve} from "path";
+import { resolve, dirname, join } from "path";
 import {mergeConfig} from "vite";
 import turbosnap from "vite-plugin-turbosnap";
 import type {StorybookConfig} from "@storybook/react-vite";
@@ -6,18 +6,18 @@ import type {StorybookConfig} from "@storybook/react-vite";
 const config: StorybookConfig = {
     stories: ["../__docs__/**/*.stories.@(ts|tsx|mdx)", "../__docs__/**/*.mdx"],
     addons: [
-        "@storybook/addon-essentials",
-        "@storybook/addon-a11y",
-        "@storybook/addon-designs",
-        "@storybook/addon-interactions",
-        "@storybook/addon-mdx-gfm",
-        "@storybook/addon-mdx-gfm",
+        getAbsolutePath("@storybook/addon-essentials"),
+        getAbsolutePath("@storybook/addon-a11y"),
+        getAbsolutePath("@storybook/addon-designs"),
+        getAbsolutePath("@storybook/addon-interactions"),
+        getAbsolutePath("@storybook/addon-mdx-gfm"),
+        getAbsolutePath("@storybook/addon-mdx-gfm"),
     ],
     staticDirs: ["../static"],
     core: {
         disableTelemetry: true,
     },
-    framework: "@storybook/react-vite",
+    framework: getAbsolutePath("@storybook/react-vite"),
     async viteFinal(config, {configType}) {
         // Merge custom configuration into the default config
         const mergedConfig = mergeConfig(config, {
@@ -51,3 +51,7 @@ const config: StorybookConfig = {
 };
 
 export default config;
+
+function getAbsolutePath(value: string): any {
+    return dirname(require.resolve(join(value, "package.json")));
+}
