@@ -27,6 +27,11 @@ export type SharedProps =
          * A Phosphor icon asset (imported as a static SVG file).
          */
         icon?: PhosphorIconAsset;
+
+        /**
+         * An optional icon displayed after the button label.
+         */
+        endIcon?: PhosphorIconAsset;
         /**
          * If true, replaces the contents with a spinner.
          *

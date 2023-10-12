@@ -39,6 +39,7 @@ import articleBold from "@phosphor-icons/core/bold/article-bold.svg";
 import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import play from "@phosphor-icons/core/regular/play.svg";
+import arrowSquareOut from "@phosphor-icons/core/regular/arrow-square-out.svg";
 import playBold from "@phosphor-icons/core/bold/play-bold.svg";
 
 import {tokens} from "@khanacademy/wonder-blocks-theming";
@@ -47,6 +48,7 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
  * Some pre-defined icon examples to use in our stories.
  */
 export const IconMappings = {
+    arrowSquareOut,
     plusCircle,
     plusCircleBold,
     caretDown,

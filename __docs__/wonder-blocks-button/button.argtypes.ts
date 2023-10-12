@@ -11,7 +11,19 @@ export default {
         description: "A Phosphor icon asset (imported as a static SVG file).",
         type: {name: "other", value: "PhosphorIconAsset", required: false},
         control: {type: "select"},
-        options: IconMappings,
+        options: Object.keys(IconMappings),
+        mapping: IconMappings,
+        table: {
+            category: "Layout",
+            type: {summary: "PhosphorIconAsset"},
+        },
+    },
+    endIcon: {
+        description: "A Phosphor icon asset (imported as a static SVG file).",
+        type: {name: "other", value: "PhosphorIconAsset", required: false},
+        control: {type: "select"},
+        options: Object.keys(IconMappings),
+        mapping: IconMappings,
         table: {
             category: "Layout",
             type: {summary: "PhosphorIconAsset"},

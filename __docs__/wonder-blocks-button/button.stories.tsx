@@ -24,6 +24,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 /**
  * Reusable button component.
@@ -68,6 +69,7 @@ export const Default: StoryComponentType = {
         kind: "primary",
         color: "default",
         size: "medium",
+        endIcon: IconMappings.arrowSquareOut,
         light: false,
         disabled: false,
         style: {maxWidth: 200},

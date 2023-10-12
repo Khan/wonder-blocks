@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
@@ -54,6 +54,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             testId,
             type = undefined,
             spinner,
+            endIcon,
             icon,
             id,
             waiting: _,
@@ -150,6 +151,21 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     />
                 )}
                 {label}
+                {endIcon && (
+                    <View
+                        style={[
+                            sharedStyles.iconWrapper,
+                            (focused || hovered) &&
+                                sharedStyles.iconWrapperHovered,
+                        ]}
+                    >
+                        <ButtonIcon
+                            size={iconSize}
+                            icon={endIcon}
+                            testId={testId ? `${testId}-end-icon` : undefined}
+                        />
+                    </View>
+                )}
                 {spinner && (
                     <CircularSpinner
                         style={sharedStyles.spinner}
@@ -267,6 +283,18 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     },
     icon: {
         marginRight: theme.padding.small,
+    },
+    iconWrapper: {
+        borderRadius: theme.border.radius.icon,
+        backgroundColor: theme.color.bg.icon.secondary,
+        color: theme.color.text.icon.secondary,
+        marginLeft: theme.padding.small,
+        marginRight: -theme.padding.xsmall,
+        padding: theme.padding.xsmall,
+    },
+    iconWrapperHovered: {
+        backgroundColor: theme.color.bg.icon.secondaryHover,
+        color: theme.color.text.icon.secondaryHover,
     },
 });
 

@@ -15,6 +15,16 @@ const theme = mergeTheme(defaultTheme, {
                 },
                 focus: tokens.color.offWhite,
             },
+            icon: {
+                secondary: tokens.color.fadedBlue16,
+                secondaryHover: tokens.color.blue,
+            },
+        },
+        text: {
+            icon: {
+                secondary: tokens.color.blue,
+                secondaryHover: tokens.color.white,
+            },
         },
         border: {
             secondary: {
