@@ -2,7 +2,7 @@ import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import plus from "@phosphor-icons/core/regular/plus.svg";
 
 import Button from "../button";
 
@@ -833,7 +833,7 @@ describe("Button", () => {
         test("icon is displayed when button contains icon", () => {
             // Arrange
             render(
-                <Button testId={"button-focus-test"} icon={icons.add}>
+                <Button testId={"button-focus-test"} icon={plus}>
                     Label
                 </Button>,
             );
@@ -842,7 +842,22 @@ describe("Button", () => {
             const icon = screen.getByTestId("button-focus-test-icon");
 
             // Assert
-            expect(icon).toBeDefined();
+            expect(icon).toBeInTheDocument();
+            expect(icon).toHaveAttribute("aria-hidden", "true");
+        });
+
+        test("icon should be hidden from Screen Readers", () => {
+            // Arrange
+            render(
+                <Button testId={"button-focus-test"} icon={plus}>
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = screen.getByTestId("button-focus-test-icon");
+
+            // Assert
             expect(icon).toHaveAttribute("aria-hidden", "true");
         });
     });

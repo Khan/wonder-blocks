@@ -6,10 +6,14 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 import type {StyleDeclaration} from "aphrodite";
+
+import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
+import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
+import plus from "@phosphor-icons/core/regular/plus.svg";
+
 import {fireEvent, userEvent, within} from "@storybook/testing-library";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {icons} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -21,6 +25,26 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import ButtonArgTypes from "./button.argtypes";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 
+/**
+ * Reusable button component.
+ *
+ * Consisting of a [`ClickableBehavior`](#clickablebehavior) surrounding a
+ * `ButtonCore`. `ClickableBehavior` handles interactions and state changes.
+ * `ButtonCore` is a stateless component which displays the different states the
+ * `Button` can take.
+ *
+ * ### Usage
+ *
+ * ```tsx
+ * import Button from "@khanacademy/wonder-blocks-button";
+ *
+ * <Button
+ *     onClick={(e) => console.log("Hello, world!")}
+ * >
+ *     Hello, world!
+ * </Button>
+ * ```
+ */
 export default {
     title: "Button",
     component: Button,
@@ -288,13 +312,13 @@ Dark.parameters = {
 
 const kinds = ["primary", "secondary", "tertiary"] as const;
 
-export const Icon: StoryComponentType = () => (
+const IconExample = () => (
     <View>
         <View style={styles.row}>
             {kinds.map((kind, idx) => (
                 <Button
                     kind={kind}
-                    icon={icons.contentExercise}
+                    icon={pencilSimple}
                     style={styles.button}
                     key={idx}
                 >
@@ -306,7 +330,7 @@ export const Icon: StoryComponentType = () => (
             {kinds.map((kind, idx) => (
                 <Button
                     kind={kind}
-                    icon={icons.contentExercise}
+                    icon={pencilSimpleBold}
                     style={styles.button}
                     key={idx}
                     size="small"
@@ -318,10 +342,21 @@ export const Icon: StoryComponentType = () => (
     </View>
 );
 
-Icon.parameters = {
-    docs: {
-        description: {story: "Buttons can have an icon on it's left side."},
-    },
+/**
+ * Buttons can have an icon on it's left side.
+ *
+ * __NOTE:__ Icons are available from the [Phosphor
+ * Icons](https://phosphoricons.com/) library.
+ *
+ * To import an icon, you can use the following syntax:
+ *
+ * e.g.
+ * ```
+ * import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
+ * ```
+ */
+export const Icon: StoryComponentType = {
+    render: () => <IconExample />,
 };
 
 export const Size: StoryComponentType = () => (
@@ -452,7 +487,7 @@ export const TruncatingLabels: StoryComponentType = {
                 label too long for the parent container
             </Button>
             <Strut size={16} />
-            <Button onClick={() => {}} style={{maxWidth: 200}} icon={icons.add}>
+            <Button onClick={() => {}} style={{maxWidth: 200}} icon={plus}>
                 label too long for the parent container
             </Button>
         </View>
@@ -579,7 +614,7 @@ export const KhanmigoTheme: StoryComponentType = {
             Variants,
             Dark,
             Size,
-            Icon,
+            IconExample,
         ] as Array<React.ElementType>;
 
         return (
