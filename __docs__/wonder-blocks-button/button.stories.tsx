@@ -16,7 +16,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {LabelMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import packageConfig from "../../packages/wonder-blocks-button/package.json";
@@ -142,6 +142,10 @@ export const styles: StyleDeclaration = StyleSheet.create({
     example: {
         background: Color.offWhite,
         padding: Spacing.medium_16,
+    },
+    label: {
+        marginTop: Spacing.large_24,
+        marginBottom: Spacing.xSmall_8,
     },
 });
 
@@ -314,11 +318,12 @@ const kinds = ["primary", "secondary", "tertiary"] as const;
 
 const IconExample = () => (
     <View>
+        <LabelLarge style={styles.label}>Using `startIcon` prop</LabelLarge>
         <View style={styles.row}>
             {kinds.map((kind, idx) => (
                 <Button
                     kind={kind}
-                    icon={pencilSimple}
+                    startIcon={pencilSimple}
                     style={styles.button}
                     key={idx}
                 >
@@ -330,7 +335,63 @@ const IconExample = () => (
             {kinds.map((kind, idx) => (
                 <Button
                     kind={kind}
-                    icon={pencilSimpleBold}
+                    startIcon={pencilSimpleBold}
+                    style={styles.button}
+                    key={idx}
+                    size="small"
+                >
+                    {`${kind} small`}
+                </Button>
+            ))}
+        </View>
+        <LabelLarge style={styles.label}>Using `endIcon` prop</LabelLarge>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    endIcon={pencilSimple}
+                    style={styles.button}
+                    key={idx}
+                >
+                    {kind}
+                </Button>
+            ))}
+        </View>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    endIcon={pencilSimpleBold}
+                    style={styles.button}
+                    key={idx}
+                    size="small"
+                >
+                    {`${kind} small`}
+                </Button>
+            ))}
+        </View>
+        <LabelLarge style={styles.label}>
+            Using both `startIcon` and `endIcon` props
+        </LabelLarge>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    startIcon={pencilSimple}
+                    endIcon={plus}
+                    style={styles.button}
+                    key={idx}
+                >
+                    {kind}
+                </Button>
+            ))}
+        </View>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    startIcon={pencilSimpleBold}
+                    endIcon={plus}
                     style={styles.button}
                     key={idx}
                     size="small"
@@ -343,7 +404,10 @@ const IconExample = () => (
 );
 
 /**
- * Buttons can have an icon on it's left side.
+ * Buttons can have a start icon or an end icon. The `startIcon` prop
+ * results in the icon appearing before the label (left for LTR, right for RTL)
+ * and the `endIcon` prop results in the icon appearing after the label (right
+ * for LTR, left for RTL).
  *
  * __NOTE:__ Icons are available from the [Phosphor
  * Icons](https://phosphoricons.com/) library.
@@ -487,7 +551,7 @@ export const TruncatingLabels: StoryComponentType = {
                 label too long for the parent container
             </Button>
             <Strut size={16} />
-            <Button onClick={() => {}} style={{maxWidth: 200}} icon={plus}>
+            <Button onClick={() => {}} style={{maxWidth: 200}} startIcon={plus}>
                 label too long for the parent container
             </Button>
         </View>

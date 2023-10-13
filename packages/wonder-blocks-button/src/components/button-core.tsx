@@ -54,22 +54,17 @@ const ButtonCore: React.ForwardRefExoticComponent<
             testId,
             type = undefined,
             spinner,
-            icon,
+            startIcon,
+            endIcon,
             id,
             waiting: _,
             ...restProps
         } = props;
 
-        const iconWidth = icon
-            ? size === "small"
-                ? theme.size.width.medium
-                : theme.size.width.large
-            : 0;
         const buttonStyles = _generateStyles(
             color,
             kind,
             light,
-            iconWidth,
             size,
             theme,
             themeName,
@@ -80,7 +75,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
         const defaultStyle = [
             sharedStyles.shared,
             disabled && sharedStyles.disabled,
-            icon && sharedStyles.withIcon,
+            startIcon && sharedStyles.withStartIcon,
+            endIcon && sharedStyles.withEndIcon,
             buttonStyles.default,
             disabled && buttonStyles.disabled,
             // apply focus effect only to default and secondary buttons
@@ -141,12 +137,12 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
         const contents = (
             <React.Fragment>
-                {icon && (
+                {startIcon && (
                     <ButtonIcon
                         size={iconSize}
-                        icon={icon}
-                        style={sharedStyles.icon}
-                        testId={testId ? `${testId}-icon` : undefined}
+                        icon={startIcon}
+                        style={sharedStyles.startIcon}
+                        testId={testId ? `${testId}-start-icon` : undefined}
                     />
                 )}
                 {label}
@@ -156,6 +152,14 @@ const ButtonCore: React.ForwardRefExoticComponent<
                         size={sizeMapping[size]}
                         light={kind === "primary"}
                         testId={`${testId || "button"}-spinner`}
+                    />
+                )}
+                {endIcon && (
+                    <ButtonIcon
+                        size={iconSize}
+                        icon={endIcon}
+                        style={sharedStyles.endIcon}
+                        testId={testId ? `${testId}-end-icon` : undefined}
                     />
                 )}
             </React.Fragment>
@@ -265,8 +269,11 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     spinner: {
         position: "absolute",
     },
-    icon: {
-        marginRight: theme.padding.small,
+    startIcon: {
+        marginInlineEnd: theme.padding.small,
+    },
+    endIcon: {
+        marginInlineStart: theme.padding.small,
     },
 });
 
@@ -276,7 +283,6 @@ const _generateStyles = (
     buttonColor = "default",
     kind: "primary" | "secondary" | "tertiary",
     light: boolean,
-    iconWidth: number,
     size: "large" | "medium" | "small",
     theme: ButtonThemeContract,
     themeName: string,
@@ -286,7 +292,7 @@ const _generateStyles = (
             ? theme.color.bg.critical.default
             : theme.color.bg.action.default;
 
-    const buttonType = `${color}-${kind}-${light}-${iconWidth}-${size}-${themeName}`;
+    const buttonType = `${color}-${kind}-${light}-${size}-${themeName}`;
 
     if (styles[buttonType]) {
         return styles[buttonType];
