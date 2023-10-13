@@ -830,32 +830,86 @@ describe("Button", () => {
     });
 
     describe("button with icon", () => {
-        test("icon is displayed when button contains icon", () => {
+        test("icon is displayed when button contains startIcon", () => {
             // Arrange
             render(
-                <Button testId={"button-focus-test"} icon={plus}>
+                <Button testId={"button-focus-test"} startIcon={plus}>
                     Label
                 </Button>,
             );
 
             // Act
-            const icon = screen.getByTestId("button-focus-test-icon");
+            const icon = screen.getByTestId("button-focus-test-start-icon");
 
             // Assert
             expect(icon).toBeInTheDocument();
             expect(icon).toHaveAttribute("aria-hidden", "true");
         });
 
-        test("icon should be hidden from Screen Readers", () => {
+        test("icon is displayed when button contains endIcon", () => {
             // Arrange
             render(
-                <Button testId={"button-focus-test"} icon={plus}>
+                <Button testId={"button-focus-test"} endIcon={plus}>
                     Label
                 </Button>,
             );
 
             // Act
-            const icon = screen.getByTestId("button-focus-test-icon");
+            const icon = screen.getByTestId("button-focus-test-end-icon");
+
+            // Assert
+            expect(icon).toBeInTheDocument();
+            expect(icon).toHaveAttribute("aria-hidden", "true");
+        });
+
+        test("both icons are displayed when button contains startIcon and endIcon", () => {
+            // Arrange
+            render(
+                <Button
+                    testId={"button-focus-test"}
+                    startIcon={plus}
+                    endIcon={plus}
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const startIcon = screen.getByTestId(
+                "button-focus-test-start-icon",
+            );
+            const endIcon = screen.getByTestId("button-focus-test-end-icon");
+
+            // Assert
+            expect(startIcon).toBeInTheDocument();
+            expect(endIcon).toBeInTheDocument();
+        });
+
+        test("start icon should be hidden from Screen Readers", () => {
+            // Arrange
+            render(
+                <Button testId={"button-focus-test"} startIcon={plus}>
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = screen.getByTestId("button-focus-test-start-icon");
+
+            // Assert
+            expect(icon).toHaveAttribute("aria-hidden", "true");
+        });
+
+        test("end icon should be hidden from Screen Readers", () => {
+            // Arrange
+            render(
+                <Button testId={"button-focus-test"} endIcon={plus}>
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = screen.getByTestId("button-focus-test-end-icon");
 
             // Assert
             expect(icon).toHaveAttribute("aria-hidden", "true");

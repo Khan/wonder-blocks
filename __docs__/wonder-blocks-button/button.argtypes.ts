@@ -7,8 +7,22 @@ export default {
         description: "Text to appear on the button.",
         type: {name: "string", required: true},
     },
-    icon: {
-        description: "A Phosphor icon asset (imported as a static SVG file).",
+    startIcon: {
+        description: `A Phosphor icon asset (imported as a static SVG file)
+            that will appear at the start of the button (left for LTR, right
+            for RTL).`,
+        type: {name: "other", value: "PhosphorIconAsset", required: false},
+        control: {type: "select"},
+        options: IconMappings,
+        table: {
+            category: "Layout",
+            type: {summary: "PhosphorIconAsset"},
+        },
+    },
+    endIcon: {
+        description: `A Phosphor icon asset (imported as a static SVG file)
+            that will appear at the end of the button (right for LTR, left
+            for RTL).`,
         type: {name: "other", value: "PhosphorIconAsset", required: false},
         control: {type: "select"},
         options: IconMappings,
