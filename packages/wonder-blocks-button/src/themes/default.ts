@@ -104,10 +104,6 @@ const theme = {
         },
     },
     size: {
-        width: {
-            medium: tokens.spacing.large_24,
-            large: tokens.spacing.xLarge_32,
-        },
         height: {
             tertiaryHover: tokens.spacing.xxxxSmall_2,
             small: tokens.spacing.xLarge_32,

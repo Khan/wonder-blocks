@@ -13,7 +13,8 @@ export default {
             for RTL).`,
         type: {name: "other", value: "PhosphorIconAsset", required: false},
         control: {type: "select"},
-        options: IconMappings,
+        options: Object.keys(IconMappings),
+        mapping: IconMappings,
         table: {
             category: "Layout",
             type: {summary: "PhosphorIconAsset"},
@@ -25,7 +26,8 @@ export default {
             for RTL).`,
         type: {name: "other", value: "PhosphorIconAsset", required: false},
         control: {type: "select"},
-        options: IconMappings,
+        options: Object.keys(IconMappings),
+        mapping: IconMappings,
         table: {
             category: "Layout",
             type: {summary: "PhosphorIconAsset"},
