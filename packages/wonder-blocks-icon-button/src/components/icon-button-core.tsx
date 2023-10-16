@@ -3,14 +3,10 @@ import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
-import Color, {
-    SemanticColor,
-    mix,
-    fade,
-} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
 
 import type {
     ChildrenProps,
@@ -21,6 +17,10 @@ import {
     iconSizeForButtonSize,
     targetPixelsForSize,
 } from "../util/icon-button-util";
+import {
+    IconButtonThemeContext,
+    IconButtonThemeContract,
+} from "../themes/themed-icon-button";
 
 /**
  * Returns the phosphor icon component based on the size. This is necessary
@@ -96,13 +96,17 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         ...restProps
     } = props;
 
-    const renderInner = (router: any): React.ReactNode => {
-        const buttonColor =
-            color === "destructive"
-                ? SemanticColor.controlDestructive
-                : SemanticColor.controlDefault;
+    const {theme, themeName} = useScopedTheme(IconButtonThemeContext);
 
-        const buttonStyles = _generateStyles(buttonColor, kind, light, size);
+    const renderInner = (router: any): React.ReactNode => {
+        const buttonStyles = _generateStyles(
+            color,
+            kind,
+            light,
+            size,
+            theme,
+            themeName,
+        );
 
         const defaultStyle = [
             sharedStyles.shared,
@@ -190,12 +194,19 @@ const sharedStyles = StyleSheet.create({
 const styles: Record<string, any> = {};
 
 const _generateStyles = (
-    color: string,
+    buttonColor = "default",
     kind: "primary" | "secondary" | "tertiary",
     light: boolean,
     size: IconButtonSize,
+    theme: IconButtonThemeContract,
+    themeName: string,
 ) => {
-    const buttonType = `${color}-${kind}-${light}-${size}`;
+    const color: string =
+        buttonColor === "destructive"
+            ? theme.color.text.critical.default
+            : theme.color.text.action.default;
+
+    const buttonType = `${color}-${kind}-${light}-${size}-${themeName}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -204,20 +215,28 @@ const _generateStyles = (
         throw new Error("Light is only supported for primary IconButtons");
     }
 
-    const {white, offBlack32, offBlack64, offBlack} = Color;
     const defaultColor = ((): string => {
         switch (kind) {
             case "primary":
-                return light ? white : color;
+                return light ? theme.color.text.primary.inverse : color;
             case "secondary":
-                return offBlack;
+                return theme.color.text.secondary.default;
             case "tertiary":
-                return offBlack64;
+                return theme.color.text.tertiary.default;
             default:
                 throw new Error("IconButton kind not recognized");
         }
     })();
     const pixelsForSize = targetPixelsForSize(size);
+
+    const inverseColor =
+        buttonColor === "destructive"
+            ? theme.color.text.critical.inverse
+            : theme.color.text.action.inverse;
+    const activeColor =
+        buttonColor === "destructive"
+            ? theme.color.text.critical.active
+            : theme.color.text.action.active;
 
     const newStyles = {
         default: {
@@ -226,25 +245,21 @@ const _generateStyles = (
             color: defaultColor,
         },
         focus: {
-            color: light ? white : color,
-            borderWidth: 2,
-            borderColor: light ? white : color,
+            color: light ? theme.color.text.focusInverse : color,
+            borderWidth: theme.border.width.focused,
+            borderColor: light ? theme.color.border.focusInverse : color,
             borderStyle: "solid",
-            borderRadius: 4,
+            borderRadius: theme.border.radius.focused,
         },
         active: {
-            color: light
-                ? mix(fade(color, 0.32), white)
-                : mix(offBlack32, color),
-            borderWidth: 2,
-            borderColor: light
-                ? mix(fade(color, 0.32), white)
-                : mix(offBlack32, color),
+            color: light ? inverseColor : activeColor,
+            borderWidth: theme.border.width.active,
+            borderColor: light ? inverseColor : activeColor,
             borderStyle: "solid",
-            borderRadius: 4,
+            borderRadius: theme.border.radius.active,
         },
         disabled: {
-            color: light ? mix(fade(white, 0.32), color) : offBlack32,
+            color: light ? inverseColor : theme.color.text.disabled,
             cursor: "default",
         },
     } as const;

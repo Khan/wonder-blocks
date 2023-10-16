@@ -9,6 +9,7 @@ import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
+import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -131,7 +132,7 @@ export const Sizes: StoryComponentType = {
 };
 
 /**
- * In this example, we have primary, secondary, tertiary,
+ * In this example, we have `primary`, `secondary`, `tertiary`,
  * and disabled `IconButton`s from left to right.
  */
 export const Variants: StoryComponentType = {
@@ -167,14 +168,57 @@ export const Variants: StoryComponentType = {
 };
 
 /**
- * An IconButton on a dark background.
- * Only the primary kind is allowed to have the `light` prop set to true.
+ * IconButton has a `color` that is either `default` (the default, as shown
+ * above) or `destructive` (as can seen below):
+ */
+export const WithColor: StoryComponentType = {
+    name: "Color",
+    render: () => (
+        <View style={styles.row}>
+            <IconButton
+                icon={minusCircle}
+                onClick={() => {}}
+                color="destructive"
+            />
+            <IconButton
+                icon={minusCircle}
+                onClick={() => {}}
+                kind="secondary"
+                color="destructive"
+            />
+            <IconButton
+                icon={minusCircle}
+                onClick={() => {}}
+                kind="tertiary"
+                color="destructive"
+            />
+            <IconButton
+                disabled={true}
+                icon={minusCircle}
+                aria-label="search"
+                onClick={(e) => console.log("Click!")}
+                color="destructive"
+            />
+        </View>
+    ),
+};
+
+/**
+ * An `IconButton` on a dark background. Only the primary kind is allowed to have
+ * the `light` prop set to true.
  */
 export const Light: StoryComponentType = {
     render: () => {
         return (
-            <View style={styles.dark}>
+            <View style={[styles.dark, styles.row]}>
                 <IconButton
+                    icon={magnifyingGlass}
+                    aria-label="search"
+                    light={true}
+                    onClick={(e) => console.log("Click!")}
+                />
+                <IconButton
+                    color="destructive"
                     icon={magnifyingGlass}
                     aria-label="search"
                     light={true}
@@ -191,8 +235,16 @@ export const Light: StoryComponentType = {
 export const DisabledLight: StoryComponentType = {
     render: () => {
         return (
-            <View style={styles.dark}>
+            <View style={[styles.dark, styles.row]}>
                 <IconButton
+                    disabled={true}
+                    icon={magnifyingGlass}
+                    aria-label="search"
+                    light={true}
+                    onClick={(e) => console.log("Click!")}
+                />
+                <IconButton
+                    color="destructive"
                     disabled={true}
                     icon={magnifyingGlass}
                     aria-label="search"
