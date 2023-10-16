@@ -42,6 +42,16 @@ const theme = {
             tertiary: {
                 hover: tokens.color.white,
             },
+
+            /**
+             * Icons
+             */
+            icon: {
+                primary: "transparent",
+                primaryHover: "transparent",
+                secondary: "transparent",
+                secondaryHover: "transparent",
+            },
         },
         text: {
             /**
@@ -51,6 +61,7 @@ const theme = {
             disabled: tokens.color.offBlack32,
             // kind="primary", light=false | kind="secondary, tertiary", light=true
             inverse: tokens.color.white,
+
             /**
              * Kind
              */
@@ -59,6 +70,19 @@ const theme = {
             },
             secondary: {
                 inverse: tokens.color.white50,
+            },
+
+            /**
+             * Icons
+             */
+            icon: {
+                // kind="primary"
+                primary: tokens.color.white,
+                primaryHover: tokens.color.white,
+
+                // kind="secondary"
+                secondary: tokens.color.blue,
+                secondaryHover: tokens.color.blue,
             },
         },
         border: {
@@ -101,6 +125,11 @@ const theme = {
             small: tokens.border.radius.medium_4,
             // large button
             large: tokens.border.radius.large_6,
+
+            /**
+             * Icons
+             */
+            icon: tokens.border.radius.full,
         },
     },
     size: {
@@ -113,6 +142,7 @@ const theme = {
         },
     },
     padding: {
+        xsmall: tokens.spacing.xxxxSmall_2,
         small: tokens.spacing.xSmall_8,
         medium: tokens.spacing.small_12,
         large: tokens.spacing.medium_16,

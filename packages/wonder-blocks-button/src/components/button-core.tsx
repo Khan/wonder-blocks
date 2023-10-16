@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
@@ -138,12 +138,28 @@ const ButtonCore: React.ForwardRefExoticComponent<
         const contents = (
             <React.Fragment>
                 {startIcon && (
-                    <ButtonIcon
-                        size={iconSize}
-                        icon={startIcon}
-                        style={sharedStyles.startIcon}
-                        testId={testId ? `${testId}-start-icon` : undefined}
-                    />
+                    <View
+                        style={[
+                            styles.startIcon,
+                            sharedStyles.iconWrapper,
+                            sharedStyles.startIconWrapper,
+                            kind === "primary"
+                                ? sharedStyles.iconWrapperPrimary
+                                : sharedStyles.iconWrapperSecondary,
+                            kind === "tertiary" &&
+                                sharedStyles.tertiaryStartIconWrapper,
+                            (focused || hovered) &&
+                                (kind === "primary"
+                                    ? sharedStyles.iconWrapperPrimaryHovered
+                                    : sharedStyles.iconWrapperSecondaryHovered),
+                        ]}
+                    >
+                        <ButtonIcon
+                            size={iconSize}
+                            icon={startIcon}
+                            testId={testId ? `${testId}-start-icon` : undefined}
+                        />
+                    </View>
                 )}
                 {label}
                 {spinner && (
@@ -155,12 +171,28 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     />
                 )}
                 {endIcon && (
-                    <ButtonIcon
-                        size={iconSize}
-                        icon={endIcon}
-                        style={sharedStyles.endIcon}
-                        testId={testId ? `${testId}-end-icon` : undefined}
-                    />
+                    <View
+                        style={[
+                            styles.endIcon,
+                            sharedStyles.iconWrapper,
+                            sharedStyles.endIconWrapper,
+                            kind === "tertiary" &&
+                                sharedStyles.tertiaryEndIconWrapper,
+                            kind === "primary"
+                                ? sharedStyles.iconWrapperPrimary
+                                : sharedStyles.iconWrapperSecondary,
+                            (focused || hovered) &&
+                                (kind === "primary"
+                                    ? sharedStyles.iconWrapperPrimaryHovered
+                                    : sharedStyles.iconWrapperSecondaryHovered),
+                        ]}
+                    >
+                        <ButtonIcon
+                            size={iconSize}
+                            icon={endIcon}
+                            testId={testId ? `${testId}-end-icon` : undefined}
+                        />
+                    </View>
                 )}
             </React.Fragment>
         );
@@ -232,10 +264,6 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
             WebkitTapHighlightColor: "rgba(0,0,0,0)",
         },
     },
-    withIcon: {
-        // The left padding for the button with icon should have 4px less padding
-        paddingLeft: theme.padding.medium,
-    },
     disabled: {
         cursor: "auto",
     },
@@ -274,6 +302,40 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     },
     endIcon: {
         marginInlineStart: theme.padding.small,
+    },
+    iconWrapper: {
+        borderRadius: theme.border.radius.icon,
+        padding: theme.padding.xsmall,
+    },
+    iconWrapperPrimary: {
+        backgroundColor: theme.color.bg.icon.primary,
+        color: theme.color.text.icon.primary,
+    },
+    iconWrapperSecondary: {
+        backgroundColor: theme.color.bg.icon.secondary,
+        color: theme.color.text.icon.secondary,
+    },
+    iconWrapperPrimaryHovered: {
+        backgroundColor: theme.color.bg.icon.primaryHover,
+        color: theme.color.text.icon.primaryHover,
+    },
+    iconWrapperSecondaryHovered: {
+        backgroundColor: theme.color.bg.icon.secondaryHover,
+        color: theme.color.text.icon.secondaryHover,
+    },
+    startIconWrapper: {
+        marginInlineStart: -theme.padding.small,
+        marginInlineEnd: theme.padding.small,
+    },
+    endIconWrapper: {
+        marginInlineStart: theme.padding.small,
+        marginInlineEnd: -theme.padding.small,
+    },
+    tertiaryStartIconWrapper: {
+        marginInlineStart: 0,
+    },
+    tertiaryEndIconWrapper: {
+        marginInlineEnd: 0,
     },
 });
 
