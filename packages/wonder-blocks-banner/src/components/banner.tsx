@@ -6,13 +6,19 @@ import xIcon from "@phosphor-icons/core/regular/x.svg";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {
+    PhosphorIcon,
+    PhosphorIconMedium,
+} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import * as bannerIcons from "./banner-icons";
+import infoIcon from "@phosphor-icons/core/regular/info.svg";
+import successIcon from "@phosphor-icons/core/regular/smiley.svg";
+import warningIcon from "@phosphor-icons/core/regular/warning.svg";
+import criticalIcon from "@phosphor-icons/core/regular/warning-circle.svg";
 
 type ActionTriggerBase = {
     title: string;
@@ -71,6 +77,7 @@ type BannerLayout =
 
 type BannerValues = {
     color: string;
+    icon: PhosphorIconMedium;
     role: "status" | "alert";
     ariaLive?: "assertive" | "polite";
 };
@@ -114,27 +121,31 @@ type Props = {
     testId?: string;
 };
 
-const valuesForKind = (kind: BannerKind): BannerValues => {
+const getValuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
         case "success":
             return {
                 color: Color.green,
+                icon: successIcon,
                 role: "status",
             };
         case "warning":
             return {
                 color: Color.gold,
+                icon: warningIcon,
                 role: "alert",
                 ariaLive: "polite",
             };
         case "critical":
             return {
                 color: Color.red,
+                icon: criticalIcon,
                 role: "alert",
             };
         default:
             return {
                 color: Color.blue,
+                icon: infoIcon,
                 role: "status",
             };
     }
@@ -224,27 +235,29 @@ const Banner = (props: Props): React.ReactElement => {
         });
     };
 
+    const valuesForKind = getValuesForKind(kind);
+
     return (
         <View
             style={[
                 styles.containerOuter,
                 layout === "floating" && styles.floatingBorder,
-                {borderInlineStartColor: valuesForKind(kind).color},
+                {borderInlineStartColor: valuesForKind.color},
             ]}
-            role={valuesForKind(kind).role}
+            role={valuesForKind.role}
             aria-label={ariaLabel}
-            aria-live={valuesForKind(kind).ariaLive}
+            aria-live={valuesForKind.ariaLive}
             testId={testId}
         >
             <View
                 style={[
                     styles.backgroundColor,
-                    {backgroundColor: valuesForKind(kind).color},
+                    {backgroundColor: valuesForKind.color},
                 ]}
             />
             <View style={styles.containerInner}>
-                <Icon
-                    icon={bannerIcons[kind]}
+                <PhosphorIcon
+                    icon={valuesForKind.icon}
                     size="medium"
                     style={styles.icon}
                     aria-label={kind}
