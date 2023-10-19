@@ -28,9 +28,7 @@ import * as React from "react";
  *
  * If you only need to do something on mount, don't return a cleanup function from `callback`.
  */
-export const useOnMountEffect = (
-    callback: () => void | undefined | (() => void),
-): void => {
+export const useOnMountEffect = (callback: () => void | (() => void)): void => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     React.useEffect(callback, []);
 };
