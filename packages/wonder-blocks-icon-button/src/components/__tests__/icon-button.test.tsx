@@ -162,4 +162,37 @@ describe("IconButton", () => {
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
+
+    it("sets the 'target' prop on the underlying element", () => {
+        // Arrange
+        render(
+            <IconButton
+                icon={magnifyingGlassIcon}
+                href="https://www.khanacademy.org"
+                target="_blank"
+            />,
+        );
+
+        // Act
+        const link = screen.getByRole("link");
+        userEvent.click(link);
+
+        // Assert
+        expect(link).toHaveAttribute("target", "_blank");
+    });
+
+    it("renders an <a> if the href is '#'", () => {
+        // Arrange
+        render(
+            <MemoryRouter>
+                <IconButton icon={magnifyingGlassIcon} href="#" />,
+            </MemoryRouter>,
+        );
+
+        // Act
+        const link = screen.getByRole("link");
+
+        // Assert
+        expect(link.tagName).toBe("A");
+    });
 });

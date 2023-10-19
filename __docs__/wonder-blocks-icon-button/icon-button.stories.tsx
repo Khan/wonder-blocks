@@ -6,6 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import caretLeft from "@phosphor-icons/core/regular/caret-left.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
+import externalLinkIcon from "@phosphor-icons/core/regular/arrow-square-out.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
@@ -311,6 +312,9 @@ export const WithAriaLabel: StoryComponentType = {
     },
 };
 
+/**
+ * Icon Buttons do client-side navigation by default, if React Router exists:
+ */
 export const WithRouter: StoryComponentType = {
     name: "Navigation with React Router",
     render: () => (
@@ -318,15 +322,16 @@ export const WithRouter: StoryComponentType = {
             <View style={styles.row}>
                 <IconButton
                     href="/foo"
-                    icon={caretLeft}
-                    onClick={(e) => console.log("Click!")}
-                    aria-label="Previous page"
+                    icon={caretRight}
+                    onClick={() => console.log("Click!")}
+                    aria-label="Navigate to /foo using React Router"
                 />
                 <IconButton
-                    href="/foo"
-                    icon={caretLeft}
-                    onClick={(e) => console.log("Click!")}
-                    aria-label="Previous page"
+                    href="https://www.khanacademy.org"
+                    target="_blank"
+                    icon={externalLinkIcon}
+                    onClick={() => console.log("Click!")}
+                    aria-label="Skip client navigation"
                     skipClientNav
                 />
                 <Switch>
@@ -342,10 +347,6 @@ export const WithRouter: StoryComponentType = {
 const styles = StyleSheet.create({
     dark: {
         backgroundColor: tokens.color.darkBlue,
-        padding: Spacing.medium_16,
-    },
-    khanmigoDark: {
-        backgroundColor: tokens.color.eggplant,
         padding: Spacing.medium_16,
     },
     arrowsWrapper: {
