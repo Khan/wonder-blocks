@@ -179,15 +179,56 @@ function getStylesByKind(
     theme: IconButtonThemeContract,
     color: string,
     light: boolean,
+    buttonColor: string,
 ) {
     switch (kind) {
         case "primary":
+            const primaryHoveredColor =
+                buttonColor === "destructive"
+                    ? theme.color.stroke.primary.critical.hovered
+                    : theme.color.stroke.primary.action.hovered;
+
             return {
                 ":hover": {
+                    backgroundColor: theme.color.bg.hovered,
+                    color: light
+                        ? theme.color.stroke.primary.inverse.hovered
+                        : primaryHoveredColor,
                     outlineColor: light ? theme.color.stroke.inverse : color,
                     outlineOffset: 1,
                     outlineStyle: "solid",
-                    outlineWidth: theme.border.width.default,
+                    outlineWidth: light
+                        ? theme.border.width.hoveredInverse
+                        : theme.border.width.hovered,
+                },
+                ":active": {
+                    backgroundColor: theme.color.bg.active,
+                },
+            };
+        case "secondary":
+        case "tertiary":
+            return {
+                ":hover": {
+                    backgroundColor:
+                        buttonColor === "destructive"
+                            ? theme.color.bg.filled.critical.hovered
+                            : theme.color.bg.filled.action.hovered,
+                    color:
+                        buttonColor === "destructive"
+                            ? theme.color.stroke.filled.critical.hovered
+                            : theme.color.stroke.filled.action.hovered,
+                    outlineWidth: theme.border.width.active,
+                },
+                ":active": {
+                    backgroundColor:
+                        buttonColor === "destructive"
+                            ? theme.color.bg.filled.critical.active
+                            : theme.color.bg.filled.action.active,
+                    color:
+                        buttonColor === "destructive"
+                            ? theme.color.stroke.filled.critical.active
+                            : theme.color.stroke.filled.action.active,
+                    outlineWidth: theme.border.width.active,
                 },
             };
         default:
@@ -224,7 +265,9 @@ const _generateStyles = (
     const defaultColor = ((): string => {
         switch (kind) {
             case "primary":
-                return light ? theme.color.stroke.primary.inverse : color;
+                return light
+                    ? theme.color.stroke.primary.inverse.default
+                    : color;
             case "secondary":
                 return theme.color.stroke.secondary.default;
             case "tertiary":
@@ -235,6 +278,16 @@ const _generateStyles = (
     })();
     const pixelsForSize = targetPixelsForSize(size);
 
+    // Override styles for each kind of button. This is useful for merging
+    // pseudo-classes properly.
+    const kindOverrides = getStylesByKind(
+        kind,
+        theme,
+        color,
+        light,
+        buttonColor,
+    );
+
     const activeInverseColor =
         buttonColor === "destructive"
             ? theme.color.stroke.critical.inverse
@@ -244,15 +297,17 @@ const _generateStyles = (
             ? theme.color.stroke.critical.active
             : theme.color.stroke.action.active;
 
-    const kindOverrides = getStylesByKind(kind, theme, color, light);
+    // Shared by hover and focus states.
+    const defaultStrokeColor = light ? theme.color.stroke.inverse : color;
+
+    const disabledStrokeColor = light
+        ? theme.color.stroke.disabled.inverse
+        : theme.color.stroke.disabled.default;
 
     const disabledStatesStyles = {
-        color: light
-            ? theme.color.stroke.disabledInverse
-            : theme.color.stroke.disabled,
-        outlineColor: light
-            ? theme.color.stroke.disabledInverse
-            : theme.color.stroke.disabled,
+        backgroundColor: theme.color.bg.disabled,
+        color: disabledStrokeColor,
+        outlineColor: disabledStrokeColor,
     };
 
     const newStyles = {
@@ -265,14 +320,19 @@ const _generateStyles = (
             /**
              * States
              *
-             * Defined in the following order: focus, hover, active.
+             * Defined in the following order: hover, focus, active.
              */
+            ":hover": {
+                boxShadow: "none",
+                color: defaultStrokeColor,
+                borderRadius: theme.border.radius.default,
+                outlineWidth: theme.border.width.default,
+                ...kindOverrides[":hover"],
+            },
             // Provide basic, default focus styles on older browsers (e.g.
             // Safari 14)
             ":focus": {
-                boxShadow: `0 0 0 ${theme.border.width.default}px ${
-                    light ? theme.color.stroke.inverse : color
-                }`,
+                boxShadow: `0 0 0 ${theme.border.width.default}px ${defaultStrokeColor}`,
                 borderRadius: theme.border.radius.default,
             },
             // Remove default focus styles for mouse users ONLY if
@@ -284,21 +344,13 @@ const _generateStyles = (
             ":focus-visible": {
                 // Reset default focus styles
                 boxShadow: "none",
-                // TODO: Fix color on focus + hover
                 // Apply modern focus styles
-                color: light ? theme.color.stroke.inverse : color,
                 outlineWidth: theme.border.width.default,
-                outlineColor: light ? theme.color.stroke.inverse : color,
+                outlineColor: defaultStrokeColor,
                 outlineOffset: 1,
                 outlineStyle: "solid",
                 borderRadius: theme.border.radius.default,
                 ...kindOverrides[":focus-visible"],
-            },
-            ":hover": {
-                boxShadow: "none",
-                color: light ? theme.color.stroke.inverse : color,
-                borderRadius: theme.border.radius.default,
-                ...kindOverrides[":hover"],
             },
             ":active": {
                 color: light ? activeInverseColor : activeColor,
@@ -311,9 +363,7 @@ const _generateStyles = (
             },
         },
         disabled: {
-            color: light
-                ? theme.color.stroke.disabledInverse
-                : theme.color.stroke.disabled,
+            color: disabledStrokeColor,
             cursor: "not-allowed",
             // NOTE: Even that browsers recommend to specify pseudo-classes in
             // this order: link, visited, focus, hover, active, we need to
@@ -326,11 +376,7 @@ const _generateStyles = (
             // Provide basic, default focus styles on older browsers (e.g.
             // Safari 14)
             ":focus": {
-                boxShadow: `0 0 0 ${theme.border.width.default}px ${
-                    light
-                        ? theme.color.stroke.disabledInverse
-                        : theme.color.stroke.disabled
-                }`,
+                boxShadow: `0 0 0 ${theme.border.width.default}px ${disabledStrokeColor}`,
                 borderRadius: theme.border.radius.default,
             },
             // Remove default focus styles for mouse users ONLY if

@@ -6,7 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
@@ -33,56 +33,99 @@ const KindVariants = ({
     light: boolean;
 }) => {
     return (
-        <>
-            <View style={[styles.gridRow, light && styles.darkDefault]}>
-                <LabelMedium style={light && {color: tokens.color.white}}>
-                    {kind}-default
-                </LabelMedium>
-                <IconButton
-                    icon={paperPlaneIcon}
-                    onClick={action("clicked")}
-                    kind={kind}
-                    light={light}
-                    color="default"
-                />
-            </View>
-            <View style={[styles.gridRow, light && styles.darkDefault]}>
-                <LabelMedium style={light && {color: tokens.color.white}}>
-                    {kind}-destructive
-                </LabelMedium>
-                <IconButton
-                    icon={paperPlaneIcon}
-                    onClick={action("clicked")}
-                    kind={kind}
-                    light={light}
-                    color="destructive"
-                />
-            </View>
-            <View style={[styles.gridRow, light && styles.darkDefault]}>
-                <LabelMedium style={light && {color: tokens.color.white}}>
-                    {kind}-disabled
-                </LabelMedium>
-                <IconButton
-                    icon={paperPlaneIcon}
-                    onClick={action("clicked")}
-                    kind={kind}
-                    light={light}
-                    disabled={true}
-                />
-            </View>
-        </>
+        <ThemeSwitcherContext.Consumer>
+            {(theme) => (
+                <>
+                    <View
+                        style={[
+                            styles.gridRow,
+                            light &&
+                                (theme === "khanmigo"
+                                    ? styles.darkKhanmigo
+                                    : styles.darkDefault),
+                        ]}
+                    >
+                        <LabelMedium
+                            style={light && {color: tokens.color.white}}
+                        >
+                            {kind}-default
+                        </LabelMedium>
+                        <IconButton
+                            icon={paperPlaneIcon}
+                            onClick={action("clicked")}
+                            kind={kind}
+                            light={light}
+                            color="default"
+                        />
+                    </View>
+                    <View
+                        style={[
+                            styles.gridRow,
+                            light &&
+                                (theme === "khanmigo"
+                                    ? styles.darkKhanmigo
+                                    : styles.darkDefault),
+                        ]}
+                    >
+                        <LabelMedium
+                            style={light && {color: tokens.color.white}}
+                        >
+                            {kind}-destructive
+                        </LabelMedium>
+                        <IconButton
+                            icon={paperPlaneIcon}
+                            onClick={action("clicked")}
+                            kind={kind}
+                            light={light}
+                            color="destructive"
+                        />
+                    </View>
+                    <View
+                        style={[
+                            styles.gridRow,
+                            light &&
+                                (theme === "khanmigo"
+                                    ? styles.darkKhanmigo
+                                    : styles.darkDefault),
+                        ]}
+                    >
+                        <LabelMedium
+                            style={light && {color: tokens.color.white}}
+                        >
+                            {kind}-disabled
+                        </LabelMedium>
+                        <IconButton
+                            icon={paperPlaneIcon}
+                            onClick={action("clicked")}
+                            kind={kind}
+                            light={light}
+                            disabled={true}
+                        />
+                    </View>
+                </>
+            )}
+        </ThemeSwitcherContext.Consumer>
     );
 };
 
-const AllVariants = () => (
-    <>
-        <HeadingLarge>Default theme</HeadingLarge>
+const VariantsByTheme = ({themeName = "Default"}: {themeName?: string}) => (
+    <View style={{marginBottom: Spacing.large_24}}>
+        <HeadingLarge>{themeName} theme</HeadingLarge>
         <View style={styles.grid}>
             <KindVariants kind="primary" light={false} />
             <KindVariants kind="secondary" light={false} />
             <KindVariants kind="tertiary" light={false} />
             <KindVariants kind="primary" light={true} />
         </View>
+    </View>
+);
+
+const AllVariants = () => (
+    <>
+        <VariantsByTheme />
+        <ThemeSwitcherContext.Provider value="khanmigo">
+            <VariantsByTheme themeName="Khanmigo" />
+        </ThemeSwitcherContext.Provider>
     </>
 );
 
@@ -114,6 +157,9 @@ export const Active: StoryComponentType = {
 const styles = StyleSheet.create({
     darkDefault: {
         backgroundColor: tokens.color.darkBlue,
+    },
+    darkKhanmigo: {
+        backgroundColor: tokens.color.eggplant,
     },
     grid: {
         display: "grid",
