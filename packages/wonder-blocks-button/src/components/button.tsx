@@ -24,9 +24,15 @@ export type SharedProps =
          */
         children: string;
         /**
-         * A Phosphor icon asset (imported as a static SVG file).
+         * A Phosphor icon asset (imported as a static SVG file) that
+         * will appear at the start of the button (left for LTR, right for RTL).
          */
-        icon?: PhosphorIconAsset;
+        startIcon?: PhosphorIconAsset;
+        /**
+         * A Phosphor icon asset (imported as a static SVG file) that
+         * will appear at the end of the button (right for LTR, left for RTL).
+         */
+        endIcon?: PhosphorIconAsset;
         /**
          * If true, replaces the contents with a spinner.
          *

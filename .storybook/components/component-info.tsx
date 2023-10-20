@@ -44,7 +44,7 @@ const ComponentInfo: React.FC<Props> = (
                 href={`https://github.com/Khan/wonder-blocks/tree/main/packages/${packageFolder}`}
                 target="_blank"
                 style={{color: "black"}}
-                icon={githubLogo}
+                startIcon={githubLogo}
             >
                 Source code
             </Button>
