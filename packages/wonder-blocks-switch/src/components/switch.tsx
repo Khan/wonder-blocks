@@ -7,7 +7,7 @@ import {
     addStyle,
     useUniqueIdWithMock,
 } from "@khanacademy/wonder-blocks-core";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
     ThemedStylesFn,
     useScopedTheme,
@@ -33,7 +33,7 @@ type Props = Pick<
     /**
      * Optional icon to display on the slider.
      */
-    icon?: React.ReactElement<typeof Icon>;
+    icon?: React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>;
     /**
      * The unique identifier for the switch.
      */
@@ -90,13 +90,15 @@ const SwitchCore = React.forwardRef(function SwitchCore(
         themeName,
     );
 
-    let styledIcon: React.ReactElement<typeof Icon> | undefined;
+    let styledIcon:
+        | React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+        | undefined;
     if (icon) {
         styledIcon = React.cloneElement(icon, {
             size: "small",
             style: [sharedStyles.icon, stateStyles.icon],
             "aria-hidden": true,
-        } as Partial<React.ComponentProps<typeof Icon>>);
+        } as Partial<React.ComponentProps<typeof PhosphorIcon>>);
     }
 
     return (

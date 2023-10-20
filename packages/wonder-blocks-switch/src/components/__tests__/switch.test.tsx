@@ -2,8 +2,9 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
 import userEvent from "@testing-library/user-event";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import Switch from "../switch";
 
 describe("Switch", () => {
@@ -114,7 +115,12 @@ describe("Switch", () => {
                 <RenderStateRoot>
                     <Switch
                         checked={false}
-                        icon={<Icon icon={icons.add} testId="test-icon" />}
+                        icon={
+                            <PhosphorIcon
+                                icon={magnifyingGlassIcon}
+                                testId="test-icon"
+                            />
+                        }
                     />
                 </RenderStateRoot>,
             );
