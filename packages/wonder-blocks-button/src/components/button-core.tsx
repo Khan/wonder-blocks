@@ -138,28 +138,16 @@ const ButtonCore: React.ForwardRefExoticComponent<
         const contents = (
             <React.Fragment>
                 {startIcon && (
-                    <View
+                    <ButtonIcon
+                        size={iconSize}
+                        icon={startIcon}
                         style={[
-                            styles.startIcon,
-                            sharedStyles.iconWrapper,
-                            sharedStyles.startIconWrapper,
-                            kind === "primary"
-                                ? sharedStyles.iconWrapperPrimary
-                                : sharedStyles.iconWrapperSecondary,
+                            sharedStyles.startIcon,
                             kind === "tertiary" &&
-                                sharedStyles.tertiaryStartIconWrapper,
-                            (focused || hovered) &&
-                                (kind === "primary"
-                                    ? sharedStyles.iconWrapperPrimaryHovered
-                                    : sharedStyles.iconWrapperSecondaryHovered),
+                                sharedStyles.tertiaryStartIcon,
                         ]}
-                    >
-                        <ButtonIcon
-                            size={iconSize}
-                            icon={startIcon}
-                            testId={testId ? `${testId}-start-icon` : undefined}
-                        />
-                    </View>
+                        testId={testId ? `${testId}-start-icon` : undefined}
+                    />
                 )}
                 {label}
                 {spinner && (
@@ -299,6 +287,10 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     },
     startIcon: {
         marginInlineEnd: theme.padding.small,
+        marginInlineStart: -theme.padding.small,
+    },
+    tertiaryStartIcon: {
+        marginInlineStart: 0,
     },
     endIcon: {
         marginInlineStart: theme.padding.small,
@@ -323,16 +315,9 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         backgroundColor: theme.color.bg.icon.secondaryHover,
         color: theme.color.text.icon.secondaryHover,
     },
-    startIconWrapper: {
-        marginInlineStart: -theme.padding.small,
-        marginInlineEnd: theme.padding.small,
-    },
     endIconWrapper: {
         marginInlineStart: theme.padding.small,
         marginInlineEnd: -theme.padding.small,
-    },
-    tertiaryStartIconWrapper: {
-        marginInlineStart: 0,
     },
     tertiaryEndIconWrapper: {
         marginInlineEnd: 0,
