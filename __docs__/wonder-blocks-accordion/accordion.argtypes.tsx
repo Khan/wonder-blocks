@@ -74,6 +74,18 @@ export default {
             required: false,
         },
     },
+    includeAnimation: {
+        control: {type: "boolean"},
+        description: `Whether to include animation on the header. This should
+            be false if the user has \`prefers-reduced-motion\` opted in.
+            Defaults to false.`,
+        defaultValue: false,
+        table: {
+            defaultValue: {summary: false},
+            type: {summary: "boolean"},
+        },
+        type: {name: "boolean", required: false},
+    },
     style: {
         control: {type: "object"},
         description: "Custom styles for the overall accordion container.",
