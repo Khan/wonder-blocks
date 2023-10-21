@@ -80,8 +80,8 @@ describe("Accordion", () => {
         button2.click();
 
         // Assert
-        expect(screen.queryByText("Section 1 content")).not.toBeInTheDocument();
-        expect(screen.queryByText("Section 2 content")).not.toBeInTheDocument();
+        expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+        expect(screen.queryByText("Section 2 content")).not.toBeVisible();
     });
 
     test("initialExpandedIndex opens the correct section", () => {
@@ -103,9 +103,9 @@ describe("Accordion", () => {
 
         // Act
         // Assert
-        expect(screen.queryByText("Section 1 content")).not.toBeInTheDocument();
+        expect(screen.queryByText("Section 1 content")).not.toBeVisible();
         expect(screen.getByText("Section 2 content")).toBeVisible();
-        expect(screen.queryByText("Section 3 content")).not.toBeInTheDocument();
+        expect(screen.queryByText("Section 3 content")).not.toBeVisible();
     });
 
     test("only allows one section to be open at a time when allowMultipleExpanded is false", () => {
@@ -130,8 +130,8 @@ describe("Accordion", () => {
         button.click();
 
         // Assert
-        expect(screen.queryByText("Section 1 content")).not.toBeInTheDocument();
-        expect(screen.queryByText("Section 2 content")).not.toBeInTheDocument();
+        expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+        expect(screen.queryByText("Section 2 content")).not.toBeVisible();
         expect(screen.getByText("Section 3 content")).toBeVisible();
     });
 
@@ -356,6 +356,32 @@ describe("Accordion", () => {
         // Assert
         expect(sectionHeader).toHaveStyle({
             flexDirection: "row-reverse",
+        });
+    });
+
+    test("prioritizes the parent's includeAnimation prop", () => {
+        // Arrange
+        render(
+            <Accordion includeAnimation={true}>
+                {[
+                    <AccordionSection
+                        header="Title"
+                        includeAnimation={false}
+                        headerTestId="section-header-test-id"
+                    >
+                        Section content
+                    </AccordionSection>,
+                ]}
+            </Accordion>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const sectionHeader = screen.getByTestId("section-header-test-id");
+
+        // Assert
+        expect(sectionHeader).toHaveStyle({
+            transition: "border-radius 300ms",
         });
     });
 

@@ -16,6 +16,49 @@ import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 
 import AccordionSectionArgtypes from "./accordion-section.argtypes";
 
+/**
+ * An AccordionSection displays a section of content that can be shown or
+ * hidden by clicking its header. This is generally used within the Accordion
+ * component, but it can also be used on its own if you need only one
+ * collapsible section.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {
+ *      Accordion,
+ *      AccordionSection
+ * } from "@khanacademy/wonder-blocks-accordion";
+ *
+ * // Within an Accordion
+ * <Accordion>
+ *   <AccordionSection header="First section">
+ *       This is the information present in the first section
+ *   </AccordionSection>
+ *   <AccordionSection header="Second section">
+ *       This is the information present in the second section
+ *   </AccordionSection>
+ *   <AccordionSection header="Third section">
+ *       This is the information present in the third section
+ *   </AccordionSection>
+ * </Accordion>
+ *
+ * // On its own, controlled
+ * const [expanded, setExpanded] = React.useState(false);
+ * <AccordionSection
+ *     header="A standalone section"
+ *     expanded={expanded}
+ *     onToggle={setExpanded}
+ * >
+ *    This is the information present in the standalone section
+ * </AccordionSection>
+ *
+ * // On its own, uncontrolled
+ * <AccordionSection header="A standalone section">
+ *   This is the information present in the standalone section
+ * </AccordionSection>
+ * ```
+ */
 export default {
     title: "Accordion / AccordionSection",
     component: AccordionSection,
@@ -367,6 +410,32 @@ export const CornerKinds: StoryComponentType = {
                     </AccordionSection>
                 </View>
             </View>
+        );
+    },
+};
+
+/**
+ * An AccordionSection can be animated using the `includeAnimation` prop.
+ * This animation includes the caret, the expansion/collapse, and the
+ * border radius.
+ *
+ * If the user has `prefers-reduced-motion` opted in, this animation should
+ * be disabled. This can be done by passing `includeAnimation={false}` to
+ * the AccordionSection.
+ *
+ * If `includeAnimation` is specified both here in the AccordionSection
+ * and within a parent Accordion component, the Accordion's
+ * `includeAnimation` value is prioritized.
+ */
+export const WithAnimation: StoryComponentType = {
+    render: () => {
+        return (
+            <AccordionSection
+                header="This section is animated"
+                includeAnimation={true}
+            >
+                Something
+            </AccordionSection>
         );
     },
 };

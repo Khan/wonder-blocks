@@ -17,7 +17,7 @@ describe("AccordionSection", () => {
 
         // Assert
         expect(screen.getByText("Title")).toBeVisible();
-        expect(screen.queryByText("Section content")).not.toBeInTheDocument();
+        expect(screen.queryByText("Section content")).not.toBeVisible();
     });
 
     test("renders with open panel when expanded is true", () => {
@@ -114,7 +114,7 @@ describe("AccordionSection", () => {
 
         // Assert
         // Make sure the section has closed after clicking
-        expect(screen.queryByText("Section content")).not.toBeInTheDocument();
+        expect(screen.queryByText("Section content")).not.toBeVisible();
         // Repeat clicking to confirm behavior
         button.click();
         expect(screen.getByText("Section content")).toBeVisible();
@@ -129,7 +129,7 @@ describe("AccordionSection", () => {
 
         // Act
         // Make sure the section is closed at first
-        expect(screen.queryByText("Section content")).not.toBeInTheDocument();
+        expect(screen.queryByText("Section content")).not.toBeVisible();
 
         const button = screen.getByRole("button", {name: "Title"});
         button.click();
@@ -139,7 +139,7 @@ describe("AccordionSection", () => {
         expect(screen.getByText("Section content")).toBeVisible();
         // Repeat clicking to confirm behavior
         button.click();
-        expect(screen.queryByText("Section content")).not.toBeInTheDocument();
+        expect(screen.queryByText("Section content")).not.toBeVisible();
     });
 
     test("is h2 by default", () => {
@@ -258,6 +258,60 @@ describe("AccordionSection", () => {
         // Assert
         expect(wrapper).toHaveStyle({
             "border-radius": "12px",
+        });
+    });
+
+    test("includes transition when includeAnimation is true", () => {
+        // Arrange
+        render(
+            <AccordionSection
+                header="Title"
+                includeAnimation={true}
+                testId="accordion-section-test-id"
+                headerTestId="accordion-section-header"
+            >
+                Section content
+            </AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const wrapper = screen.getByTestId("accordion-section-test-id");
+        const header = screen.getByTestId("accordion-section-header");
+
+        // Assert
+        expect(wrapper).toHaveStyle({
+            transition: "grid-template-rows 300ms",
+        });
+        expect(header).toHaveStyle({
+            transition: "border-radius 300ms",
+        });
+    });
+
+    test("does not include transition when includeAnimation is false", () => {
+        // Arrange
+        render(
+            <AccordionSection
+                header="Title"
+                includeAnimation={false}
+                testId="accordion-section-test-id"
+                headerTestId="accordion-section-header"
+            >
+                Section content
+            </AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const wrapper = screen.getByTestId("accordion-section-test-id");
+        const header = screen.getByTestId("accordion-section-header");
+
+        // Assert
+        expect(wrapper).not.toHaveStyle({
+            transition: "grid-template-rows 300ms",
+        });
+        expect(header).not.toHaveStyle({
+            transition: "border-radius 300ms",
         });
     });
 });
