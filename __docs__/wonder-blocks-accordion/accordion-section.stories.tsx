@@ -518,9 +518,15 @@ export const WithTag: StoryComponentType = {
     },
 };
 
+const mobile = "@media (max-width: 1023px)";
+
 const styles = StyleSheet.create({
     sideBySide: {
         flexDirection: "row",
+
+        [mobile]: {
+            flexDirection: "column",
+        },
     },
     fullWidth: {
         width: "100%",
