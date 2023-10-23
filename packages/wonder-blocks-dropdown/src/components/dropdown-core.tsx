@@ -527,7 +527,7 @@ class DropdownCore extends React.Component<Props, State> {
      */
     focusCurrentItem(onFocus?: (node: HTMLElement) => void) {
         const focusedItemRef = this.state.itemRefs[this.focusedIndex];
-
+        console.log("shoould focus", focusedItemRef);
         if (focusedItemRef) {
             // force react-window to scroll to ensure the focused item is visible
             if (this.virtualizedListRef.current) {
@@ -543,6 +543,7 @@ class DropdownCore extends React.Component<Props, State> {
             const node = ReactDOM.findDOMNode(
                 focusedItemRef.ref.current,
             ) as HTMLElement;
+            console.log("node!! ", node);
             if (node) {
                 node.focus();
                 // Keep track of the original index of the newly focused item.

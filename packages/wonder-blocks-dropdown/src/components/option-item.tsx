@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -120,8 +121,6 @@ export default class OptionItem extends React.Component<OptionProps> {
             onClick,
             onToggle,
             variant,
-            /* eslint-enable @typescript-eslint/no-unused-vars */
-            ...sharedProps
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior();
@@ -138,35 +137,36 @@ export default class OptionItem extends React.Component<OptionProps> {
                     const {pressed, hovered, focused} = state;
 
                     const defaultStyle = [
-                        styles.itemContainer,
-                        pressed
-                            ? styles.active
-                            : (hovered || focused) && styles.focus,
-                        disabled && styles.disabled,
                         // pass optional styles from react-window (if applies)
                         style,
+                        disabled && styles.disabled,
                     ];
 
                     return (
-                        <View
-                            {...sharedProps}
-                            testId={testId}
-                            style={defaultStyle}
+                        <CompactCell
+                            disabled={disabled}
+                            horizontalRule="none"
+                            outerStyle={defaultStyle}
+                            style={styles.itemContainer}
                             aria-selected={selected ? "true" : "false"}
                             role={role}
+                            testId={testId}
+                            leftAccessory={
+                                <CheckComponent
+                                    disabled={disabled}
+                                    selected={selected}
+                                    pressed={pressed}
+                                    hovered={hovered}
+                                    focused={focused}
+                                />
+                            }
+                            title={
+                                <LabelMedium style={styles.label}>
+                                    {label}
+                                </LabelMedium>
+                            }
                             {...childrenProps}
-                        >
-                            <CheckComponent
-                                disabled={disabled}
-                                selected={selected}
-                                pressed={pressed}
-                                hovered={hovered}
-                                focused={focused}
-                            />
-                            <LabelMedium style={styles.label}>
-                                {label}
-                            </LabelMedium>
-                        </View>
+                        />
                     );
                 }}
             </ClickableBehavior>
@@ -179,7 +179,7 @@ const {blue, white, offBlack, offBlack32} = Color;
 const styles = StyleSheet.create({
     itemContainer: {
         flexDirection: "row",
-        background: white,
+        // background: white,
         color: offBlack,
         alignItems: "center",
         height: DROPDOWN_ITEM_HEIGHT,
@@ -190,16 +190,21 @@ const styles = StyleSheet.create({
         paddingRight: Spacing.medium_16,
         whiteSpace: "nowrap",
         cursor: "default",
-    },
 
-    focus: {
-        color: white,
-        background: blue,
-    },
+        // ":focus-within": {
+        //     color: white,
+        //     background: blue,
+        // },
 
-    active: {
-        color: mix(fade(blue, 0.32), white),
-        background: mix(offBlack32, blue),
+        ":hover": {
+            color: white,
+            background: blue,
+        },
+
+        // ":active": {
+        //     color: mix(fade(blue, 0.32), white),
+        //     background: mix(offBlack32, blue),
+        // },
     },
 
     disabled: {

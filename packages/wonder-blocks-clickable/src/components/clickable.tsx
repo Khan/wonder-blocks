@@ -244,7 +244,7 @@ const Clickable = React.forwardRef(function Clickable(
             return (
                 <StyledButton
                     {...commonProps}
-                    type="button"
+                    type={props.role === "button" ? "button" : undefined}
                     aria-disabled={props.disabled}
                     ref={ref as React.Ref<HTMLButtonElement>}
                 >

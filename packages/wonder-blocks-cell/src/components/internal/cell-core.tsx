@@ -172,6 +172,8 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         href,
         onClick,
         "aria-label": ariaLabel,
+        outerStyle,
+        role,
         target,
     } = props;
 
@@ -183,12 +185,14 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 disabled={disabled}
                 onClick={onClick}
                 href={href}
+                role={role}
                 hideDefaultFocusRing={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 target={target}
                 style={[
                     styles.wrapper,
                     styles.clickable,
+                    outerStyle,
                     active && styles.active,
                     disabled && styles.disabled,
                 ]}
@@ -203,8 +207,9 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     // wrapper.
     return (
         <View
-            style={[styles.wrapper, active && styles.active]}
+            style={[styles.wrapper, outerStyle, active && styles.active]}
             aria-current={active ? "true" : undefined}
+            role={role}
         >
             <CellInner {...props} />
         </View>
@@ -216,8 +221,9 @@ const styles = StyleSheet.create({
         background: Color.white,
         color: Color.offBlack,
         display: "flex",
-        minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
+        minHeight: 40,
+        width: "100%",
     },
 
     innerWrapper: {
@@ -262,6 +268,7 @@ const styles = StyleSheet.create({
      */
     clickable: {
         outline: "none",
+
         /**
          * States
          */
@@ -273,7 +280,7 @@ const styles = StyleSheet.create({
         },
 
         // focus (only visible when using keyboard navigation)
-        ":focus-visible": {
+        ":focus": {
             borderRadius: Spacing.xxxSmall_4,
             // To hide the internal corners of the cell.
             overflow: "hidden",
@@ -283,7 +290,7 @@ const styles = StyleSheet.create({
         // NOTE: We use a pseudo element to draw the focus ring because we can't
         // use `outline` since it conflicts with different layout contexts (e.g.
         // `View` elements add their own z-index).
-        [":focus-visible:after" as any]: {
+        [":focus:after" as any]: {
             content: "''",
             // Since we are using a pseudo element, we need to manually
             // calculate the width/height and use absolute position to
