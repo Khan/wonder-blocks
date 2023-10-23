@@ -67,7 +67,7 @@ export default {
         mapping: iconsMap,
         table: {
             type: {
-                summary: "Icon",
+                summary: "PhosphorIcon",
             },
         },
     },
