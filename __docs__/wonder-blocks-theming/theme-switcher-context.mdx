@@ -24,10 +24,13 @@ const ThemeSwitcherContext: React.Context<string>;
 <ThemeSwitcherContextExample />
 
 ```ts
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {
+    SupportedThemes,
+    ThemeSwitcherContext,
+} from "@khanacademy/wonder-blocks-theming";
 
 export default function App() {
-    const [theme, setTheme] = React.useState("default");
+    const [theme, setTheme] = React.useState<SupportedThemes>("default");
 
     const changeTheme = () => {
         const newTheme = theme === "brand" ? "default" : "brand";

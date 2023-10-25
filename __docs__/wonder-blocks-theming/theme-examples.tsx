@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
+import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {
     createThemeContext,
@@ -12,6 +13,7 @@ import {
     ThemeSwitcherContext,
     withScopedTheme,
     WithThemeProps,
+    SupportedThemes,
 } from "@khanacademy/wonder-blocks-theming";
 
 const defaultTheme = {
@@ -41,9 +43,8 @@ const customTheme = mergeTheme(defaultTheme, {
 
 const ThemeContext = createThemeContext(defaultTheme);
 
-// TODO(WB-1577): Replace this with the actual WB Button component.
 type ButtonProps = {
-    children?: React.ReactNode;
+    children?: string;
     onClick?: (e: React.SyntheticEvent) => unknown;
 };
 
@@ -54,7 +55,7 @@ const ThemedButton = ({
     const {theme} = useScopedTheme(ThemeContext);
 
     return (
-        <button
+        <Button
             style={{
                 background: theme.color.bg.primary,
                 color: theme.color.text.light,
@@ -64,7 +65,7 @@ const ThemedButton = ({
             onClick={onClick}
         >
             {children}
-        </button>
+        </Button>
     );
 };
 
@@ -197,10 +198,10 @@ function ThemedButtonContainer(props: ButtonProps) {
 }
 
 export const ThemeSwitcherContextExample = () => {
-    const [theme, setTheme] = React.useState("default");
+    const [theme, setTheme] = React.useState<SupportedThemes>("default");
 
     const changeTheme = () => {
-        const newTheme = theme === "custom" ? "default" : "custom";
+        const newTheme = theme === "khanmigo" ? "default" : "khanmigo";
         setTheme(newTheme);
     };
 

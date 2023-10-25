@@ -107,13 +107,18 @@ to access the theme values in the component styles.
 import {
     createThemeContext,
     ThemeSwitcherContext,
+    Themes,
 } from "@khanacademy/wonder-blocks-theming";
 
 import defaultTheme from "./default";
 import brandTheme from "./brand";
 
+// Infer the type of the theme from the default theme.
+// NOTE: Any other theme created should be compatible with this type.
+export type ButtonThemeContract = typeof defaultTheme;
+
 // Define the themes that will be available to the consumer(s).
-const themes = {
+const themes: Themes<ButtonThemeContract> = {
     default: defaultTheme,
     brand: brandTheme,
 };
@@ -121,17 +126,13 @@ const themes = {
 // Create the theme context and assign an initial value.
 export const ButtonThemeContext = createThemeContext(themes.default);
 
-// Infer the type of the theme from the default theme.
-// NOTE: Any other theme created should be compatible with this type.
-export type ButtonThemeContract = typeof defaultTheme;
-
 type Props = {
     children: React.ReactNode;
 };
 
 export default function ThemedButton({children}: Props) {
     const currentTheme = React.useContext(ThemeSwitcherContext);
-    const theme = themes[currentTheme as keyof typeof themes] ?? themes.default;
+    const theme = themes[currentTheme] ?? themes.default;
 
     return (
         <ButtonThemeContext.Provider value={theme}>
