@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
         transition: "transform 300ms",
     },
     contentWrapperWithAnimation: {
-        transform: "translateY(-50%)",
+        transform: `translateY(-16px)`,
     },
     conentWrapperCollapsed: {
         // Make sure screen readers don't read the content when it's
