@@ -224,15 +224,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     return (
         <View
             id={sectionId}
-            style={[
-                styles.wrapper,
-                includeAnimation && styles.wrapperWithAnimation,
-                sectionStyles.wrapper,
-                expandedState
-                    ? styles.wrapperExpanded
-                    : styles.wrapperCollapsed,
-                style,
-            ]}
+            style={[styles.wrapper, sectionStyles.wrapper, style]}
             testId={testId}
             {...ariaProps}
             ref={ref}
@@ -255,6 +247,8 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 id={sectionContentUniqueId}
                 style={[
                     styles.contentWrapper,
+                    includeAnimation && styles.contentWrapperWithAnimation,
+
                     expandedState
                         ? styles.contentWrapperExpanded
                         : styles.conentWrapperCollapsed,
@@ -273,26 +267,21 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
 const styles = StyleSheet.create({
     wrapper: {
-        // Use grid layout for more performant animation
-        display: "grid",
+        display: "flex",
         boxSizing: "border-box",
-    },
-    wrapperWithAnimation: {
-        transition: "grid-template-rows 300ms",
-    },
-    wrapperCollapsed: {
-        gridTemplateRows: "min-content 0fr",
-    },
-    wrapperExpanded: {
-        gridTemplateRows: "min-content 1fr",
     },
     contentWrapper: {
         overflow: "hidden",
+        transition: "transform 300ms",
+    },
+    contentWrapperWithAnimation: {
+        transform: "translateY(-50%)",
     },
     conentWrapperCollapsed: {
         // Make sure screen readers don't read the content when it's
         // collapsed.
         visibility: "hidden",
+        height: 0,
     },
     contentWrapperExpanded: {
         visibility: "visible",
@@ -300,6 +289,8 @@ const styles = StyleSheet.create({
         // header outline doesn't overlap with the content (and the content
         // doesn't overlap with the header outline).
         marginTop: tokens.spacing.xxxxSmall_2,
+        transform: "translateY(0)",
+        height: "auto",
     },
     stringContent: {
         padding: tokens.spacing.medium_16,
@@ -344,12 +335,7 @@ const _generateStyles = (
         };
 
         contentWrapperStyle = {
-            // Give the content wrapper the same border radius as the wrapper
-            // so that the content doesn't overflow out the corners. We
-            // can't put `overflow: "hidden"` on the overall container
-            // because it cuts off the header's focus outline.
-            borderEndEndRadius: tokens.spacing.small_12,
-            borderEndStartRadius: tokens.spacing.small_12,
+            overflow: "hidden",
         };
 
         if (isFirstSection) {
@@ -361,6 +347,10 @@ const _generateStyles = (
         if (isLastSection) {
             lastSectionStyle = {
                 borderBottom: `1px solid ${tokens.color.offBlack16}`,
+                // Give the content wrapper the same border radius as the wrapper
+                // so that the content doesn't overflow out the corners. We
+                // can't put `overflow: "hidden"` on the overall container
+                // because it cuts off the header's focus outline.
                 borderEndStartRadius: tokens.spacing.small_12,
                 borderEndEndRadius: tokens.spacing.small_12,
             };
