@@ -3,10 +3,11 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
 import {expect} from "@storybook/jest";
 import {userEvent, within} from "@storybook/testing-library";
+import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
@@ -94,7 +95,7 @@ export const Controlled: StoryComponentType = () => {
                 aria-label="test switch"
                 checked={checkedTwo}
                 onChange={setCheckedTwo}
-                icon={<Icon icon={icons.search} />}
+                icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
             />
         </View>
     );
@@ -136,27 +137,34 @@ export const Disabled: StoryComponentType = {
             <Switch
                 checked={false}
                 disabled={true}
-                icon={<Icon icon={icons.search} />}
+                icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
             />
             <Switch
                 checked={true}
                 disabled={true}
-                icon={<Icon icon={icons.search} />}
+                icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
             />
         </View>
     ),
 };
 
 /**
- * The switch can take an `Icon` element which will be rendered inside the slider.
+ * The switch can take a `PhosphorIcon` element which will be rendered inside
+ * the slider.
  */
 export const WithIcon: StoryComponentType = {
     render: () => {
         return (
             <View style={styles.column}>
-                <Switch checked={false} icon={<Icon icon={icons.search} />} />
+                <Switch
+                    checked={false}
+                    icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
+                />
 
-                <Switch checked={true} icon={<Icon icon={icons.search} />} />
+                <Switch
+                    checked={true}
+                    icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
+                />
             </View>
         );
     },
@@ -186,21 +194,21 @@ export const KhanmigoTheme = () => {
                     <Switch
                         checked={checkedTwo}
                         onChange={setCheckedTwo}
-                        icon={<Icon icon={icons.search} />}
+                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                     />
                     <Switch
                         checked={true}
-                        icon={<Icon icon={icons.search} />}
+                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                     />
                     <Switch
                         checked={false}
                         disabled={true}
-                        icon={<Icon icon={icons.search} />}
+                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                     />
                     <Switch
                         checked={true}
                         disabled={true}
-                        icon={<Icon icon={icons.search} />}
+                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                     />
                 </View>
             </View>

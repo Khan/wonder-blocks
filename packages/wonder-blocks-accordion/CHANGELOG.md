@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.0.0
+
+### Major Changes
+
+-   ff34408e: Create Accordion and AccordionSection components
+
+### Patch Changes
+
+-   Updated dependencies [7055ca94]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.9
+    -   @khanacademy/wonder-blocks-icon@2.2.1
+    -   @khanacademy/wonder-blocks-typography@2.1.9
+
 ## 0.0.5
 
 ### Patch Changes

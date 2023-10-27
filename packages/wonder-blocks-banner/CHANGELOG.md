@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.0.24
+
+### Patch Changes
+
+-   9489dde8: Add PhosphorIcon support to Banners
+-   Updated dependencies [7055ca94]
+-   Updated dependencies [f620da39]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-button@6.0.0
+    -   @khanacademy/wonder-blocks-icon@2.2.1
+    -   @khanacademy/wonder-blocks-icon-button@5.0.1
+    -   @khanacademy/wonder-blocks-link@5.0.10
+    -   @khanacademy/wonder-blocks-typography@2.1.9
+
 ## 3.0.23
 
 ### Patch Changes

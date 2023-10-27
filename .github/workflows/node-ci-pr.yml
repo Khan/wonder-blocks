@@ -2,7 +2,9 @@ name: Node CI (PR)
 
 on:
   pull_request:
-    types: [edited, opened, synchronize, reopened]
+    # ready_for_review is useful for when a PR is converted from "draft" to "not
+    # draft".
+    types: [edited, opened, synchronize, ready_for_review, reopened]
 
 # Our jobs run like this to minimize wasting resource cycles:
 #   1. Prime caches for primary configuration (ubuntu on node 16).
