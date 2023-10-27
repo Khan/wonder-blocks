@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.0.0
+
+### Major Changes
+
+-   f620da39: Add `endIcon` prop and change existing `icon` prop to `startIcon`
+
+### Patch Changes
+
+-   Updated dependencies [7055ca94]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.9
+    -   @khanacademy/wonder-blocks-icon@2.2.1
+    -   @khanacademy/wonder-blocks-progress-spinner@2.0.24
+    -   @khanacademy/wonder-blocks-typography@2.1.9
+
 ## 5.0.0
 
 ### Major Changes
