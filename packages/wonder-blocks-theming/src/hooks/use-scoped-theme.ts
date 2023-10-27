@@ -12,7 +12,7 @@ type ScopedTheme<T> = {
     themeName: string;
 };
 
-export default function useScopedTheme<T>(
+export default function useScopedTheme<T extends object>(
     themeContext: React.Context<T>,
 ): ScopedTheme<T> {
     const theme = React.useContext(themeContext);
