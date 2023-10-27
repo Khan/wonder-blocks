@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // We need to use fireEvent for mouseDown in these tests, none of the userEvent
 // alternatives work. Click includes mouseUp, which removes the pressed style.
 /* eslint-disable testing-library/prefer-user-event */
@@ -10,7 +11,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
@@ -23,6 +24,7 @@ import packageConfig from "../../packages/wonder-blocks-link/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LinkArgTypes from "./link.argtypes";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Link",
@@ -257,14 +259,16 @@ export const StartAndEndIcons: StoryComponentType = () => (
         <View style={{padding: Spacing.large_24}}>
             <Link
                 href="#"
-                startIcon={<Icon icon={icons.add} />}
+                startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
                 style={styles.standaloneLinkWrapper}
             >
                 This link has a start icon
             </Link>
             <Link
                 href="#"
-                endIcon={<Icon icon={icons.search} />}
+                endIcon={
+                    <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
+                }
                 kind="secondary"
                 style={styles.standaloneLinkWrapper}
             >
@@ -272,7 +276,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="https://stuffonmycat.com/"
-                endIcon={<Icon icon={icons.info} />}
+                endIcon={<PhosphorIcon icon={IconMappings.infoBold} />}
                 target="_blank"
                 style={styles.standaloneLinkWrapper}
             >
@@ -281,8 +285,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={<Icon icon={icons.caretLeft} />}
-                endIcon={<Icon icon={icons.caretRight} />}
+                startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
+                endIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
                 kind="secondary"
                 style={styles.standaloneLinkWrapper}
             >
@@ -290,8 +294,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={<Icon icon={icons.caretLeft} />}
-                endIcon={<Icon icon={icons.caretRight} />}
+                startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
+                endIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
                 style={styles.multiLine}
             >
                 This is a multi-line link with start and end icons
@@ -301,7 +305,9 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 <Link
                     href="#"
                     inline={true}
-                    startIcon={<Icon icon={icons.caretLeft} />}
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.caretLeftBold} />
+                    }
                 >
                     link with a start icon
                 </Link>{" "}
@@ -310,7 +316,9 @@ export const StartAndEndIcons: StoryComponentType = () => (
                     href="#"
                     inline={true}
                     target="_blank"
-                    endIcon={<Icon icon={icons.caretRight} />}
+                    endIcon={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
                 >
                     link with an end icon
                 </Link>
@@ -326,7 +334,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
         >
             <Link
                 href="#"
-                startIcon={<Icon icon={icons.add} />}
+                startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
                 light={true}
                 style={styles.standaloneLinkWrapper}
             >
@@ -334,7 +342,9 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                endIcon={<Icon icon={icons.search} />}
+                endIcon={
+                    <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
+                }
                 light={true}
                 style={styles.standaloneLinkWrapper}
             >
@@ -342,7 +352,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="https://stuffonmycat.com/"
-                endIcon={<Icon icon={icons.info} />}
+                endIcon={<PhosphorIcon icon={IconMappings.infoBold} />}
                 target="_blank"
                 light={true}
                 style={styles.standaloneLinkWrapper}
@@ -352,8 +362,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={<Icon icon={icons.caretLeft} />}
-                endIcon={<Icon icon={icons.caretRight} />}
+                startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
+                endIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
                 light={true}
                 style={styles.standaloneLinkWrapper}
             >
@@ -361,8 +371,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={<Icon icon={icons.caretLeft} />}
-                endIcon={<Icon icon={icons.caretRight} />}
+                startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
+                endIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
                 light={true}
                 style={styles.multiLine}
             >
@@ -372,7 +382,9 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This is an inline{" "}
                 <Link
                     href="#"
-                    startIcon={<Icon icon={icons.caretLeft} />}
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.caretLeftBold} />
+                    }
                     inline={true}
                     light={true}
                 >
@@ -381,7 +393,9 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 and an inline{" "}
                 <Link
                     href="#"
-                    endIcon={<Icon icon={icons.caretRight} />}
+                    endIcon={
+                        <PhosphorIcon icon={IconMappings.caretRightBold} />
+                    }
                     inline={true}
                     light={true}
                     target="_blank"
@@ -914,18 +928,24 @@ WithTitle.play = async ({canvasElement}) => {
 export const RightToLeftWithIcons: StoryComponentType = () => (
     <View style={{padding: Spacing.medium_16}}>
         <View style={styles.rightToLeft}>
-            <Link href="/" startIcon={<Icon icon={icons.caretRight} />}>
-                هذا الرابط مكتوب باللغة العربية
-            </Link>
-            <Strut size={Spacing.medium_16} />
-            <Link href="/" endIcon={<Icon icon={icons.caretLeft} />}>
+            <Link
+                href="/"
+                startIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
+            >
                 هذا الرابط مكتوب باللغة العربية
             </Link>
             <Strut size={Spacing.medium_16} />
             <Link
                 href="/"
-                startIcon={<Icon icon={icons.caretRight} />}
-                endIcon={<Icon icon={icons.caretLeft} />}
+                endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
+            >
+                هذا الرابط مكتوب باللغة العربية
+            </Link>
+            <Strut size={Spacing.medium_16} />
+            <Link
+                href="/"
+                startIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
+                endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
             >
                 هذا الرابط مكتوب باللغة العربية
             </Link>

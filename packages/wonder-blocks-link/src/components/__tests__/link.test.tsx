@@ -3,7 +3,8 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import plusIcon from "@phosphor-icons/core/bold/plus-bold.svg";
 
 import Link from "../link";
 
@@ -362,12 +363,12 @@ describe("Link", () => {
             );
 
             // Act
-            const link = screen.getByRole("link");
             const icon = screen.getByTestId("external-icon");
 
             // Assert
-            expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
-            expect(icon).toBeInTheDocument();
+            expect(icon).toHaveStyle({
+                maskImage: "url(arrow-square-out-bold.svg)",
+            });
         });
 
         test("does not render external icon when `target=_blank` and link is relative", () => {
@@ -414,19 +415,17 @@ describe("Link", () => {
             render(
                 <Link
                     href="https://www.khanacademy.org/"
-                    startIcon={<Icon icon={icons.add} />}
+                    startIcon={<PhosphorIcon icon={plusIcon} />}
                 >
                     Add new item
                 </Link>,
             );
 
             // Act
-            const link = screen.getByRole("link");
             const icon = screen.getByTestId("start-icon");
 
             // Assert
-            expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
-            expect(icon).toBeInTheDocument();
+            expect(icon).toHaveStyle({maskImage: "url(plus-bold.svg)"});
         });
 
         test("does not render icon when startIcon prop is not passed in", () => {
@@ -445,7 +444,7 @@ describe("Link", () => {
             render(
                 <Link
                     href="https://www.khanacademy.org/"
-                    startIcon={<Icon icon={icons.add} />}
+                    startIcon={<PhosphorIcon icon={plusIcon} />}
                 >
                     Add new item
                 </Link>,
@@ -453,13 +452,9 @@ describe("Link", () => {
 
             // Act
             const icon = screen.getByTestId("start-icon");
-            const iconToExpect =
-                "M11 11V7a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4zm1 13C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z";
 
             // Assert
-            expect(icon.innerHTML).toEqual(
-                expect.stringContaining(iconToExpect),
-            );
+            expect(icon).toHaveStyle({maskImage: "url(plus-bold.svg)"});
         });
 
         test("render icon with link when endIcon prop is passed in", () => {
@@ -467,19 +462,17 @@ describe("Link", () => {
             render(
                 <Link
                     href="https://www.khanacademy.org/"
-                    endIcon={<Icon icon={icons.caretRight} />}
+                    endIcon={<PhosphorIcon icon={plusIcon} />}
                 >
                     Click to go back
                 </Link>,
             );
 
             // Act
-            const link = screen.getByRole("link");
             const icon = screen.getByTestId("end-icon");
 
             // Assert
-            expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
-            expect(icon).toBeInTheDocument();
+            expect(icon).toHaveStyle({maskImage: "url(plus-bold.svg)"});
         });
 
         test("does not render icon when endIcon prop is not passed in", () => {
@@ -498,7 +491,7 @@ describe("Link", () => {
             render(
                 <Link
                     href="https://www.google.com/"
-                    endIcon={<Icon icon={icons.caretRight} />}
+                    endIcon={<PhosphorIcon icon={plusIcon} />}
                     target="_blank"
                 >
                     Open a new tab
@@ -517,7 +510,7 @@ describe("Link", () => {
             render(
                 <Link
                     href="https://www.google.com/"
-                    endIcon={<Icon icon={icons.caretRight} />}
+                    endIcon={<PhosphorIcon icon={plusIcon} />}
                     target="_blank"
                 >
                     Open a new tab
@@ -525,31 +518,25 @@ describe("Link", () => {
             );
 
             // Act
-            const link = screen.getByRole("link");
-            const endIcon = screen.getByTestId("end-icon");
+            const icon = screen.getByTestId("end-icon");
 
             // Assert
-            expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
-            expect(endIcon).toBeInTheDocument();
+            expect(icon).toHaveStyle({maskImage: "url(plus-bold.svg)"});
         });
 
         test("endIcon prop passed down correctly", () => {
             // Arrange
             render(
-                <Link href="/" endIcon={<Icon icon={icons.caretRight} />}>
+                <Link href="/" endIcon={<PhosphorIcon icon={plusIcon} />}>
                     Click to go back
                 </Link>,
             );
 
             // Act
             const icon = screen.getByTestId("end-icon");
-            const iconToExpect =
-                "M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z";
 
             // Assert
-            expect(icon.innerHTML).toEqual(
-                expect.stringContaining(iconToExpect),
-            );
+            expect(icon).toHaveStyle({maskImage: "url(plus-bold.svg)"});
         });
     });
 });
