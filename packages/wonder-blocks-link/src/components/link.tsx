@@ -4,7 +4,7 @@ import {Link as ReactRouterLink} from "react-router-dom";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import LinkCore from "./link-core";
 
@@ -123,13 +123,13 @@ type CommonProps = AriaProps & {
     /**
      * An optional icon displayed before the link label.
      */
-    startIcon?: React.ReactElement<typeof Icon>;
+    startIcon?: React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>;
     /**
      * An optional icon displayed after the link label.
      * If `target="_blank"` and `endIcon` is passed in, `endIcon` will override
      * the default `externalIcon`.
      */
-    endIcon?: React.ReactElement<typeof Icon>;
+    endIcon?: React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>;
 };
 
 export type SharedProps =

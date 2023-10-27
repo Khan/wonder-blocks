@@ -14,7 +14,7 @@ export type WithoutTheme<T> = Omit<T, keyof WithThemeProps>;
  * A higher order component that includes the themed styles in the props of the
  * wrapped component as `wbThemeStyles`.
  */
-export default function withScopedTheme<T>(
+export default function withScopedTheme<T extends object>(
     styleSheet: ThemedStylesFn<T>,
     themeContext: React.Context<T>,
 ) {
