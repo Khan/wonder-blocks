@@ -2,12 +2,15 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
 
 const theme = {
     color: {
-        text: {
+        // Shared colors for icon and borders
+        stroke: {
             /**
              * Default
              */
             disabled: tokens.color.offBlack32,
-            focusInverse: tokens.color.white,
+            disabledInverse: tokens.color.white50,
+            // focus, hover
+            inverse: tokens.color.white,
 
             /**
              * Color
@@ -38,21 +41,13 @@ const theme = {
                 default: tokens.color.offBlack64,
             },
         },
-        border: {
-            /**
-             * Default
-             */
-            focusInverse: tokens.color.white,
-        },
     },
     border: {
         width: {
-            active: tokens.border.width.thin,
-            focused: tokens.border.width.thin,
+            default: tokens.border.width.thin,
         },
         radius: {
-            active: tokens.border.radius.medium_4,
-            focused: tokens.border.radius.medium_4,
+            default: tokens.border.radius.medium_4,
         },
     },
 };

@@ -6,16 +6,18 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import caretLeft from "@phosphor-icons/core/regular/caret-left.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
+import externalLinkIcon from "@phosphor-icons/core/regular/arrow-square-out.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 
-import Color from "@khanacademy/wonder-blocks-color";
+import {MemoryRouter, Route, Switch} from "react-router";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -63,6 +65,7 @@ import IconButtonArgtypes from "./icon-button.argtypes";
 export default {
     title: "IconButton",
     component: IconButton,
+    decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -70,6 +73,16 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // Disabling all snapshots because we are testing all the variants
+            // in `icon-button-variants.stories.tsx`.
+            disableSnapshot: true,
+        },
+        docs: {
+            source: {
+                type: "code",
+            },
+        },
     },
     argTypes: IconButtonArgtypes,
 } as Meta<typeof IconButton>;
@@ -299,9 +312,41 @@ export const WithAriaLabel: StoryComponentType = {
     },
 };
 
+/**
+ * Icon Buttons do client-side navigation by default, if React Router exists:
+ */
+export const WithRouter: StoryComponentType = {
+    name: "Navigation with React Router",
+    render: () => (
+        <MemoryRouter>
+            <View style={styles.row}>
+                <IconButton
+                    href="/foo"
+                    icon={caretRight}
+                    onClick={() => console.log("Click!")}
+                    aria-label="Navigate to /foo using React Router"
+                />
+                <IconButton
+                    href="https://www.khanacademy.org"
+                    target="_blank"
+                    icon={externalLinkIcon}
+                    onClick={() => console.log("Click!")}
+                    aria-label="Skip client navigation"
+                    skipClientNav
+                />
+                <Switch>
+                    <Route path="/foo">
+                        <View id="foo">Hello, world!</View>
+                    </Route>
+                </Switch>
+            </View>
+        </MemoryRouter>
+    ),
+};
+
 const styles = StyleSheet.create({
     dark: {
-        backgroundColor: Color.darkBlue,
+        backgroundColor: tokens.color.darkBlue,
         padding: Spacing.medium_16,
     },
     arrowsWrapper: {

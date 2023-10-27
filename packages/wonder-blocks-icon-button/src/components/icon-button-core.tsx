@@ -8,10 +8,6 @@ import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
 
-import type {
-    ChildrenProps,
-    ClickableState,
-} from "@khanacademy/wonder-blocks-clickable";
 import type {IconButtonSize, SharedProps} from "./icon-button";
 import {
     iconSizeForButtonSize,
@@ -55,17 +51,15 @@ function IconChooser({
     }
 }
 
-type Props = SharedProps &
-    ChildrenProps &
-    ClickableState & {
-        /**
-         * URL to navigate to.
-         *
-         * Used to determine whether to render an `<a>` or `<button>` tag. Also
-         * passed in as the `<a>` tag's `href` if present.
-         */
-        href?: string;
-    };
+type Props = SharedProps & {
+    /**
+     * URL to navigate to.
+     *
+     * Used to determine whether to render an `<a>` or `<button>` tag. Also
+     * passed in as the `<a>` tag's `href` if present.
+     */
+    href?: string;
+};
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
@@ -81,21 +75,16 @@ const IconButtonCore: React.ForwardRefExoticComponent<
     const {
         color,
         disabled,
-        focused,
-        hovered,
         href,
         icon,
         kind = "primary",
         light = false,
-        pressed,
         size = "medium",
         skipClientNav,
         style,
         testId,
-        waiting: _,
         ...restProps
     } = props;
-
     const {theme, themeName} = useScopedTheme(IconButtonThemeContext);
 
     const renderInner = (router: any): React.ReactNode => {
@@ -112,10 +101,6 @@ const IconButtonCore: React.ForwardRefExoticComponent<
             sharedStyles.shared,
             buttonStyles.default,
             disabled && buttonStyles.disabled,
-            !disabled &&
-                (pressed
-                    ? buttonStyles.active
-                    : (hovered || focused) && buttonStyles.focus),
         ];
 
         const child = <IconChooser size={size} icon={icon} />;
@@ -149,7 +134,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
                 <StyledButton
                     type="button"
                     {...commonProps}
-                    disabled={disabled}
+                    aria-disabled={disabled}
                     ref={ref as React.Ref<HTMLButtonElement>}
                 >
                     {child}
@@ -184,14 +169,35 @@ const sharedStyles = StyleSheet.create({
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
-        ":focus": {
-            // Mobile: Removes a blue highlight style shown when the user clicks a button
-            WebkitTapHighlightColor: "rgba(0,0,0,0)",
-        },
     },
 });
 
 const styles: Record<string, any> = {};
+
+function getStylesByKind(
+    kind: "primary" | "secondary" | "tertiary",
+    theme: IconButtonThemeContract,
+    color: string,
+    light: boolean,
+) {
+    switch (kind) {
+        case "primary":
+            return {
+                ":hover": {
+                    outlineColor: light ? theme.color.stroke.inverse : color,
+                    outlineOffset: 1,
+                    outlineStyle: "solid",
+                    outlineWidth: theme.border.width.default,
+                },
+            };
+        default:
+            return {
+                ":focus-visible": {},
+                ":hover": {},
+                ":active": {},
+            };
+    }
+}
 
 const _generateStyles = (
     buttonColor = "default",
@@ -203,8 +209,8 @@ const _generateStyles = (
 ) => {
     const color: string =
         buttonColor === "destructive"
-            ? theme.color.text.critical.default
-            : theme.color.text.action.default;
+            ? theme.color.stroke.critical.default
+            : theme.color.stroke.action.default;
 
     const buttonType = `${color}-${kind}-${light}-${size}-${themeName}`;
     if (styles[buttonType]) {
@@ -218,49 +224,121 @@ const _generateStyles = (
     const defaultColor = ((): string => {
         switch (kind) {
             case "primary":
-                return light ? theme.color.text.primary.inverse : color;
+                return light ? theme.color.stroke.primary.inverse : color;
             case "secondary":
-                return theme.color.text.secondary.default;
+                return theme.color.stroke.secondary.default;
             case "tertiary":
-                return theme.color.text.tertiary.default;
+                return theme.color.stroke.tertiary.default;
             default:
                 throw new Error("IconButton kind not recognized");
         }
     })();
     const pixelsForSize = targetPixelsForSize(size);
 
-    const inverseColor =
+    const activeInverseColor =
         buttonColor === "destructive"
-            ? theme.color.text.critical.inverse
-            : theme.color.text.action.inverse;
+            ? theme.color.stroke.critical.inverse
+            : theme.color.stroke.action.inverse;
     const activeColor =
         buttonColor === "destructive"
-            ? theme.color.text.critical.active
-            : theme.color.text.action.active;
+            ? theme.color.stroke.critical.active
+            : theme.color.stroke.action.active;
+
+    const kindOverrides = getStylesByKind(kind, theme, color, light);
+
+    const disabledStatesStyles = {
+        color: light
+            ? theme.color.stroke.disabledInverse
+            : theme.color.stroke.disabled,
+        outlineColor: light
+            ? theme.color.stroke.disabledInverse
+            : theme.color.stroke.disabled,
+    };
 
     const newStyles = {
         default: {
             height: pixelsForSize,
             width: pixelsForSize,
             color: defaultColor,
-        },
-        focus: {
-            color: light ? theme.color.text.focusInverse : color,
-            borderWidth: theme.border.width.focused,
-            borderColor: light ? theme.color.border.focusInverse : color,
-            borderStyle: "solid",
-            borderRadius: theme.border.radius.focused,
-        },
-        active: {
-            color: light ? inverseColor : activeColor,
-            borderWidth: theme.border.width.active,
-            borderColor: light ? inverseColor : activeColor,
-            borderStyle: "solid",
-            borderRadius: theme.border.radius.active,
+            borderRadius: theme.border.radius.default,
+
+            /**
+             * States
+             *
+             * Defined in the following order: focus, hover, active.
+             */
+            // Provide basic, default focus styles on older browsers (e.g.
+            // Safari 14)
+            ":focus": {
+                boxShadow: `0 0 0 ${theme.border.width.default}px ${
+                    light ? theme.color.stroke.inverse : color
+                }`,
+                borderRadius: theme.border.radius.default,
+            },
+            // Remove default focus styles for mouse users ONLY if
+            // :focus-visible is supported on this platform.
+            ":focus:not(:focus-visible)": {
+                boxShadow: "none",
+            },
+            // Provide focus styles for keyboard users on modern browsers.
+            ":focus-visible": {
+                // Reset default focus styles
+                boxShadow: "none",
+                // TODO: Fix color on focus + hover
+                // Apply modern focus styles
+                color: light ? theme.color.stroke.inverse : color,
+                outlineWidth: theme.border.width.default,
+                outlineColor: light ? theme.color.stroke.inverse : color,
+                outlineOffset: 1,
+                outlineStyle: "solid",
+                borderRadius: theme.border.radius.default,
+                ...kindOverrides[":focus-visible"],
+            },
+            ":hover": {
+                boxShadow: "none",
+                color: light ? theme.color.stroke.inverse : color,
+                borderRadius: theme.border.radius.default,
+                ...kindOverrides[":hover"],
+            },
+            ":active": {
+                color: light ? activeInverseColor : activeColor,
+                outlineWidth: theme.border.width.default,
+                outlineColor: light ? activeInverseColor : activeColor,
+                outlineOffset: 1,
+                outlineStyle: "solid",
+                borderRadius: theme.border.radius.default,
+                ...kindOverrides[":active"],
+            },
         },
         disabled: {
-            color: light ? inverseColor : theme.color.text.disabled,
-            cursor: "default",
+            color: light
+                ? theme.color.stroke.disabledInverse
+                : theme.color.stroke.disabled,
+            cursor: "not-allowed",
+            // NOTE: Even that browsers recommend to specify pseudo-classes in
+            // this order: link, visited, focus, hover, active, we need to
+            // specify focus after hover to override hover styles. By doing this
+            // we are able to remove the hover outline when the button is
+            // disabled.
+            // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
+            ":hover": {...disabledStatesStyles, outline: "none"},
+            ":active": {...disabledStatesStyles, outline: "none"},
+            // Provide basic, default focus styles on older browsers (e.g.
+            // Safari 14)
+            ":focus": {
+                boxShadow: `0 0 0 ${theme.border.width.default}px ${
+                    light
+                        ? theme.color.stroke.disabledInverse
+                        : theme.color.stroke.disabled
+                }`,
+                borderRadius: theme.border.radius.default,
+            },
+            // Remove default focus styles for mouse users ONLY if
+            // :focus-visible is supported on this platform.
+            ":focus:not(:focus-visible)": {
+                boxShadow: "none",
+            },
+            ":focus-visible": disabledStatesStyles,
         },
     } as const;
 

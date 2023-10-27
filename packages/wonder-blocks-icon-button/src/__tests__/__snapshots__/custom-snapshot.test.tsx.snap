@@ -2,9 +2,11 @@
 
 exports[`IconButtonCore kind:primary color:default size:medium light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -17,20 +19,40 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -45,6 +67,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false disab
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -69,9 +92,11 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false disab
 
 exports[`IconButtonCore kind:primary color:default size:medium light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -84,21 +109,49 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -116,6 +169,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false focus
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -140,9 +194,11 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false focus
 
 exports[`IconButtonCore kind:primary color:default size:medium light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -155,21 +211,49 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -187,6 +271,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false hover
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -211,9 +296,11 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false hover
 
 exports[`IconButtonCore kind:primary color:default size:medium light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -226,23 +313,51 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -258,6 +373,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false press
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -282,9 +398,11 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false press
 
 exports[`IconButtonCore kind:primary color:default size:medium light:true disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -297,20 +415,40 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(255,255,255,0.50)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(255,255,255,0.50)",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
+      ":hover": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#b5cefb",
-      "cursor": "default",
+      "color": "rgba(255,255,255,0.50)",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -325,6 +463,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true disabl
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -349,9 +488,11 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true disabl
 
 exports[`IconButtonCore kind:primary color:default size:medium light:true focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -364,21 +505,49 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -396,6 +565,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true focuse
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -420,9 +590,11 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true focuse
 
 exports[`IconButtonCore kind:primary color:default size:medium light:true hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -435,21 +607,49 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -467,6 +667,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true hovere
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -491,9 +692,11 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true hovere
 
 exports[`IconButtonCore kind:primary color:default size:medium light:true pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -506,23 +709,51 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#b5cefb",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#b5cefb",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -538,6 +769,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true presse
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -562,9 +794,11 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true presse
 
 exports[`IconButtonCore kind:primary color:default size:small light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -577,20 +811,40 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -605,6 +859,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -629,9 +884,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
 
 exports[`IconButtonCore kind:primary color:default size:small light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -644,21 +901,49 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -676,6 +961,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -700,9 +986,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
 
 exports[`IconButtonCore kind:primary color:default size:small light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -715,21 +1003,49 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -747,6 +1063,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -771,9 +1088,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
 
 exports[`IconButtonCore kind:primary color:default size:small light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -786,23 +1105,51 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -818,6 +1165,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -842,9 +1190,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
 
 exports[`IconButtonCore kind:primary color:default size:small light:true disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -857,20 +1207,40 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(255,255,255,0.50)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(255,255,255,0.50)",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
+      ":hover": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#b5cefb",
-      "cursor": "default",
+      "color": "rgba(255,255,255,0.50)",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -885,6 +1255,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -909,9 +1280,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
 
 exports[`IconButtonCore kind:primary color:default size:small light:true focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -924,21 +1297,49 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -956,6 +1357,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -980,9 +1382,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
 
 exports[`IconButtonCore kind:primary color:default size:small light:true hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -995,21 +1399,49 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1027,6 +1459,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1051,9 +1484,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
 
 exports[`IconButtonCore kind:primary color:default size:small light:true pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1066,23 +1501,51 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#b5cefb",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#b5cefb",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -1098,6 +1561,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1122,9 +1586,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
 
 exports[`IconButtonCore kind:primary color:default size:xsmall light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1137,20 +1603,40 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 24,
       "justifyContent": "center",
@@ -1165,6 +1651,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false disab
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1189,9 +1676,11 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false disab
 
 exports[`IconButtonCore kind:primary color:default size:xsmall light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1204,21 +1693,49 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -1236,6 +1753,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false focus
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1260,9 +1778,11 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false focus
 
 exports[`IconButtonCore kind:primary color:default size:xsmall light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1275,21 +1795,49 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#1865f2",
       "cursor": "pointer",
@@ -1307,6 +1855,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false hover
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1331,9 +1880,11 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false hover
 
 exports[`IconButtonCore kind:primary color:default size:xsmall light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1346,23 +1897,51 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -1378,6 +1957,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false press
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1402,9 +1982,11 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false press
 
 exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1417,20 +1999,40 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabl
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(255,255,255,0.50)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(255,255,255,0.50)",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
+      ":hover": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#b5cefb",
-      "cursor": "default",
+      "color": "rgba(255,255,255,0.50)",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 24,
       "justifyContent": "center",
@@ -1445,6 +2047,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabl
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1469,9 +2072,11 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabl
 
 exports[`IconButtonCore kind:primary color:default size:xsmall light:true focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1484,21 +2089,49 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true focuse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1516,6 +2149,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true focuse
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1540,9 +2174,11 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true focuse
 
 exports[`IconButtonCore kind:primary color:default size:xsmall light:true hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1555,21 +2191,49 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true hovere
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -1587,6 +2251,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true hovere
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1611,9 +2276,11 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true hovere
 
 exports[`IconButtonCore kind:primary color:default size:xsmall light:true pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1626,23 +2293,51 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true presse
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#b5cefb",
+        "outlineColor": "#b5cefb",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#b5cefb",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#b5cefb",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -1658,6 +2353,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true presse
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1682,9 +2378,11 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true presse
 
 exports[`IconButtonCore kind:primary color:destructive size:medium light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1697,20 +2395,40 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false d
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -1725,6 +2443,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false d
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1749,9 +2468,11 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false d
 
 exports[`IconButtonCore kind:primary color:destructive size:medium light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1764,21 +2485,49 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false f
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1796,6 +2545,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false f
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1820,9 +2570,11 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false f
 
 exports[`IconButtonCore kind:primary color:destructive size:medium light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1835,21 +2587,49 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false h
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -1867,6 +2647,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false h
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1891,9 +2672,11 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false h
 
 exports[`IconButtonCore kind:primary color:destructive size:medium light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1906,23 +2689,51 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false p
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -1938,6 +2749,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false p
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -1962,9 +2774,11 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false p
 
 exports[`IconButtonCore kind:primary color:destructive size:medium light:true disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -1977,20 +2791,40 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true di
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(255,255,255,0.50)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(255,255,255,0.50)",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
+      ":hover": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#f3bbb4",
-      "cursor": "default",
+      "color": "rgba(255,255,255,0.50)",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -2005,6 +2839,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true di
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2029,9 +2864,11 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true di
 
 exports[`IconButtonCore kind:primary color:destructive size:medium light:true focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2044,21 +2881,49 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true fo
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -2076,6 +2941,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true fo
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2100,9 +2966,11 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true fo
 
 exports[`IconButtonCore kind:primary color:destructive size:medium light:true hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2115,21 +2983,49 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true ho
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -2147,6 +3043,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true ho
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2171,9 +3068,11 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true ho
 
 exports[`IconButtonCore kind:primary color:destructive size:medium light:true pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2186,23 +3085,51 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true pr
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#f3bbb4",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#f3bbb4",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -2218,6 +3145,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true pr
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2242,9 +3170,11 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true pr
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2257,20 +3187,40 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -2285,6 +3235,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2309,9 +3260,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2324,21 +3277,49 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -2356,6 +3337,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2380,9 +3362,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2395,21 +3379,49 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -2427,6 +3439,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2451,9 +3464,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2466,23 +3481,51 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -2498,6 +3541,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2522,9 +3566,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2537,20 +3583,40 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(255,255,255,0.50)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(255,255,255,0.50)",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
+      ":hover": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#f3bbb4",
-      "cursor": "default",
+      "color": "rgba(255,255,255,0.50)",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -2565,6 +3631,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2589,9 +3656,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2604,21 +3673,49 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -2636,6 +3733,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2660,9 +3758,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2675,21 +3775,49 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -2707,6 +3835,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2731,9 +3860,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
 
 exports[`IconButtonCore kind:primary color:destructive size:small light:true pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2746,23 +3877,51 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#f3bbb4",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#f3bbb4",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -2778,6 +3937,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2802,9 +3962,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
 
 exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2817,20 +3979,40 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false d
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 24,
       "justifyContent": "center",
@@ -2845,6 +4027,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false d
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2869,9 +4052,11 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false d
 
 exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2884,21 +4069,49 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false f
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -2916,6 +4129,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false f
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -2940,9 +4154,11 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false f
 
 exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -2955,21 +4171,49 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false h
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#d92916",
       "cursor": "pointer",
@@ -2987,6 +4231,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false h
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3011,9 +4256,11 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false h
 
 exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3026,23 +4273,51 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false p
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -3058,6 +4333,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false p
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3082,9 +4358,11 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false p
 
 exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3097,20 +4375,40 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true di
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(255,255,255,0.50)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(255,255,255,0.50)",
+        "outlineColor": "rgba(255,255,255,0.50)",
+      },
+      ":hover": {
+        "color": "rgba(255,255,255,0.50)",
+        "outline": "none",
+        "outlineColor": "rgba(255,255,255,0.50)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#f3bbb4",
-      "cursor": "default",
+      "color": "rgba(255,255,255,0.50)",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 24,
       "justifyContent": "center",
@@ -3125,6 +4423,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true di
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3149,9 +4448,11 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true di
 
 exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3164,21 +4465,49 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true fo
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -3196,6 +4525,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true fo
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3220,9 +4550,11 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true fo
 
 exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3235,21 +4567,49 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true ho
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#ffffff",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
       "color": "#ffffff",
       "cursor": "pointer",
@@ -3267,6 +4627,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true ho
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3291,9 +4652,11 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true ho
 
 exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3306,23 +4669,51 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true pr
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#f3bbb4",
+        "outlineColor": "#f3bbb4",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #ffffff",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#ffffff",
+        "outlineColor": "#ffffff",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#f3bbb4",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#f3bbb4",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -3338,6 +4729,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true pr
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3362,9 +4754,11 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true pr
 
 exports[`IconButtonCore kind:secondary color:default size:medium light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3377,20 +4771,40 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false dis
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -3405,6 +4819,7 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false dis
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3429,9 +4844,11 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false dis
 
 exports[`IconButtonCore kind:secondary color:default size:medium light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3444,23 +4861,47 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false foc
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -3476,6 +4917,7 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false foc
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3500,9 +4942,11 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false foc
 
 exports[`IconButtonCore kind:secondary color:default size:medium light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3515,23 +4959,47 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false hov
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -3547,6 +5015,7 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false hov
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3571,9 +5040,11 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false hov
 
 exports[`IconButtonCore kind:secondary color:default size:medium light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3586,23 +5057,47 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false pre
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -3618,6 +5113,7 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false pre
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3642,9 +5138,11 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false pre
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3657,20 +5155,40 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -3685,6 +5203,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3709,9 +5228,11 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3724,23 +5245,47 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -3756,6 +5301,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3780,9 +5326,11 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3795,23 +5343,47 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -3827,6 +5399,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3851,9 +5424,11 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
 
 exports[`IconButtonCore kind:secondary color:default size:small light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3866,23 +5441,47 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -3898,6 +5497,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3922,9 +5522,11 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
 
 exports[`IconButtonCore kind:secondary color:default size:xsmall light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -3937,20 +5539,40 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false dis
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 24,
       "justifyContent": "center",
@@ -3965,6 +5587,7 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false dis
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -3989,9 +5612,11 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false dis
 
 exports[`IconButtonCore kind:secondary color:default size:xsmall light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4004,23 +5629,47 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false foc
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -4036,6 +5685,7 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false foc
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4060,9 +5710,11 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false foc
 
 exports[`IconButtonCore kind:secondary color:default size:xsmall light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4075,23 +5727,47 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false hov
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -4107,6 +5783,7 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false hov
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4131,9 +5808,11 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false hov
 
 exports[`IconButtonCore kind:secondary color:default size:xsmall light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4146,23 +5825,47 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false pre
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -4178,6 +5881,7 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false pre
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4202,9 +5906,11 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false pre
 
 exports[`IconButtonCore kind:secondary color:destructive size:medium light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4217,20 +5923,40 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -4245,6 +5971,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4269,9 +5996,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
 
 exports[`IconButtonCore kind:secondary color:destructive size:medium light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4284,23 +6013,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -4316,6 +6069,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4340,9 +6094,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
 
 exports[`IconButtonCore kind:secondary color:destructive size:medium light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4355,23 +6111,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -4387,6 +6167,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4411,9 +6192,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
 
 exports[`IconButtonCore kind:secondary color:destructive size:medium light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4426,23 +6209,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -4458,6 +6265,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4482,9 +6290,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4497,20 +6307,40 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -4525,6 +6355,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4549,9 +6380,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4564,23 +6397,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -4596,6 +6453,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4620,9 +6478,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4635,23 +6495,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -4667,6 +6551,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4691,9 +6576,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 
 exports[`IconButtonCore kind:secondary color:destructive size:small light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4706,23 +6593,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -4738,6 +6649,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4762,9 +6674,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
 
 exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4777,20 +6691,40 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 24,
       "justifyContent": "center",
@@ -4805,6 +6739,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4829,9 +6764,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
 
 exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4844,23 +6781,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -4876,6 +6837,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4900,9 +6862,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
 
 exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4915,23 +6879,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -4947,6 +6935,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -4971,9 +6960,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
 
 exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -4986,23 +6977,47 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -5018,6 +7033,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5042,9 +7058,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
 
 exports[`IconButtonCore kind:tertiary color:default size:medium light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5057,20 +7075,40 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -5085,6 +7123,7 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false disa
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5109,9 +7148,11 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false disa
 
 exports[`IconButtonCore kind:tertiary color:default size:medium light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5124,23 +7165,47 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -5156,6 +7221,7 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false focu
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5180,9 +7246,11 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false focu
 
 exports[`IconButtonCore kind:tertiary color:default size:medium light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5195,23 +7263,47 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -5227,6 +7319,7 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false hove
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5251,9 +7344,11 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false hove
 
 exports[`IconButtonCore kind:tertiary color:default size:medium light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5266,23 +7361,47 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -5298,6 +7417,7 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false pres
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5322,9 +7442,11 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false pres
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5337,20 +7459,40 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -5365,6 +7507,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5389,9 +7532,11 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5404,23 +7549,47 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -5436,6 +7605,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5460,9 +7630,11 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5475,23 +7647,47 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -5507,6 +7703,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5531,9 +7728,11 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
 
 exports[`IconButtonCore kind:tertiary color:default size:small light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5546,23 +7745,47 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -5578,6 +7801,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5602,9 +7826,11 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
 
 exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5617,20 +7843,40 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disa
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 24,
       "justifyContent": "center",
@@ -5645,6 +7891,7 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disa
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5669,9 +7916,11 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disa
 
 exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5684,23 +7933,47 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false focu
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -5716,6 +7989,7 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false focu
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5740,9 +8014,11 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false focu
 
 exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5755,23 +8031,47 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false hove
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1865f2",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1865f2",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -5787,6 +8087,7 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false hove
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5811,9 +8112,11 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false hove
 
 exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5826,23 +8129,47 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false pres
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#1b50b3",
+        "outlineColor": "#1b50b3",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #1865f2",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
+        "outlineColor": "#1865f2",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#1865f2",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#1b50b3",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -5858,6 +8185,7 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false pres
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5882,9 +8210,11 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false pres
 
 exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5897,20 +8227,40 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 40,
       "justifyContent": "center",
@@ -5925,6 +8275,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -5949,9 +8300,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
 
 exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -5964,23 +8317,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -5996,6 +8373,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6020,9 +8398,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
 
 exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6035,23 +8415,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -6067,6 +8471,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6091,9 +8496,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
 
 exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6106,23 +8513,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -6138,6 +8569,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6162,9 +8594,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6177,20 +8611,40 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 32,
       "justifyContent": "center",
@@ -6205,6 +8659,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6229,9 +8684,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6244,23 +8701,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -6276,6 +8757,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6300,9 +8782,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6315,23 +8799,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -6347,6 +8855,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6371,9 +8880,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
 
 exports[`IconButtonCore kind:tertiary color:destructive size:small light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6386,23 +8897,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -6418,6 +8953,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6442,9 +8978,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
 
 exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false disabled 1`] = `
 <button
+  aria-disabled={true}
   aria-label="search"
   className=""
-  disabled={true}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6457,20 +8995,40 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px rgba(33,36,44,0.32)",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "color": "rgba(33,36,44,0.32)",
+        "outlineColor": "rgba(33,36,44,0.32)",
+      },
+      ":hover": {
+        "color": "rgba(33,36,44,0.32)",
+        "outline": "none",
+        "outlineColor": "rgba(33,36,44,0.32)",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
+      "borderRadius": 4,
       "boxSizing": "border-box",
       "color": "rgba(33,36,44,0.32)",
-      "cursor": "default",
+      "cursor": "not-allowed",
       "display": "inline-flex",
       "height": 24,
       "justifyContent": "center",
@@ -6485,6 +9043,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   }
   tabIndex={-1}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6509,9 +9068,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
 
 exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false focused 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={true}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6524,23 +9085,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -6556,6 +9141,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6580,9 +9166,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
 
 exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false hovered 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={true}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6595,23 +9183,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={false}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#d92916",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#d92916",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -6627,6 +9239,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
@@ -6651,9 +9264,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
 
 exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false pressed 1`] = `
 <button
+  aria-disabled={false}
   aria-label="search"
   className=""
-  disabled={false}
+  focused={false}
+  hovered={false}
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
@@ -6666,23 +9281,47 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   onTouchCancel={[Function]}
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
+  pressed={true}
   style={
     {
       "::MozFocusInner": {
         "border": 0,
       },
+      ":active": {
+        "borderRadius": 4,
+        "color": "#9e271d",
+        "outlineColor": "#9e271d",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
       ":focus": {
-        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "borderRadius": 4,
+        "boxShadow": "0 0 0 2px #d92916",
+      },
+      ":focus:not(:focusVisible)": {
+        "boxShadow": "none",
+      },
+      ":focusVisible": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
+        "outlineColor": "#d92916",
+        "outlineOffset": 1,
+        "outlineStyle": "solid",
+        "outlineWidth": 2,
+      },
+      ":hover": {
+        "borderRadius": 4,
+        "boxShadow": "none",
+        "color": "#d92916",
       },
       "alignItems": "center",
       "background": "none",
       "border": "none",
-      "borderColor": "#9e271d",
       "borderRadius": 4,
-      "borderStyle": "solid",
-      "borderWidth": 2,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 24,
@@ -6698,6 +9337,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   }
   tabIndex={0}
   type="button"
+  waiting={false}
 >
   <span
     className=""
