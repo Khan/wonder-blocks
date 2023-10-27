@@ -170,8 +170,9 @@ const ButtonCore: React.ForwardRefExoticComponent<
                                 ? sharedStyles.iconWrapperPrimary
                                 : sharedStyles.iconWrapperSecondary,
                             (focused || hovered) &&
-                                kind !== "primary" &&
-                                sharedStyles.iconWrapperSecondaryHovered,
+                                (kind === "primary"
+                                    ? sharedStyles.iconWrapperPrimaryHovered
+                                    : sharedStyles.iconWrapperSecondaryHovered),
                         ]}
                     >
                         <ButtonIcon
@@ -301,6 +302,10 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     iconWrapperPrimary: {
         backgroundColor: theme.color.bg.icon.primary,
         color: theme.color.text.icon.primary,
+    },
+    iconWrapperPrimaryHovered: {
+        backgroundColor: theme.color.bg.icon.primaryHover,
+        color: theme.color.text.icon.primaryHover,
     },
     iconWrapperSecondary: {
         backgroundColor: theme.color.bg.icon.secondary,
