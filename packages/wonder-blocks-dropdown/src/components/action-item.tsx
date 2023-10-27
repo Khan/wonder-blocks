@@ -1,22 +1,18 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
+import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {
-    getClickableBehavior,
-    isClientSideUrl,
-} from "@khanacademy/wonder-blocks-clickable";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
-const {blue, white, offBlack, offBlack32} = Color;
+const {blue, white, offBlack32} = Color;
 
 type ActionProps = {
     /**
@@ -99,10 +95,6 @@ type DefaultProps = {
     role: ActionProps["role"];
 };
 
-const StyledAnchor = addStyle("a");
-const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
-
 /**
  * The action item trigger actions, such as navigating to a different page or
  * opening a modal. Supply the href and/or onClick props. Used as a child of
@@ -150,65 +142,42 @@ export default class ActionItem extends React.Component<ActionProps> {
                 target={target}
             >
                 {(state, childrenProps) => {
-                    const {pressed, hovered, focused} = state;
+                    // const {pressed, hovered, focused} = state;
 
                     const defaultStyle = [
-                        styles.shared,
-                        disabled && styles.disabled,
-                        !disabled &&
-                            (pressed
-                                ? styles.active
-                                : (hovered || focused) && styles.focus),
+                        styles.wrapper,
+                        // styles.shared,
+                        // disabled && styles.disabled,
+                        // !disabled &&
+                        //     (pressed
+                        //         ? styles.a   ctive
+                        //         : (hovered || focused) && styles.focus),
                         // pass optional styles from react-window (if applies)
                         style,
                     ];
 
-                    const props = {
-                        "data-test-id": testId,
-                        disabled,
-                        role,
-                        style: [defaultStyle],
-                        ...childrenProps,
-                    } as const;
-
-                    const children = (
-                        <React.Fragment>
-                            <LabelMedium
-                                lang={lang}
-                                style={[indent && styles.indent, styles.label]}
-                            >
-                                {label}
-                            </LabelMedium>
-                        </React.Fragment>
+                    return (
+                        <CompactCell
+                            disabled={disabled}
+                            horizontalRule="none"
+                            outerStyle={defaultStyle}
+                            style={styles.shared}
+                            role={role}
+                            testId={testId}
+                            title={
+                                <LabelMedium
+                                    lang={lang}
+                                    style={[
+                                        indent && styles.indent,
+                                        styles.label,
+                                    ]}
+                                >
+                                    {label}
+                                </LabelMedium>
+                            }
+                            {...childrenProps}
+                        />
                     );
-
-                    if (href && !disabled) {
-                        return router &&
-                            !skipClientNav &&
-                            isClientSideUrl(href) ? (
-                            <StyledLink {...props} to={href}>
-                                {children}
-                            </StyledLink>
-                        ) : (
-                            <StyledAnchor
-                                {...props}
-                                href={href}
-                                target={target}
-                            >
-                                {children}
-                            </StyledAnchor>
-                        );
-                    } else {
-                        return (
-                            <StyledButton
-                                type="button"
-                                {...props}
-                                disabled={disabled}
-                            >
-                                {children}
-                            </StyledButton>
-                        );
-                    }
                 }}
             </ClickableBehavior>
         );
@@ -224,22 +193,29 @@ export default class ActionItem extends React.Component<ActionProps> {
 }
 
 const styles = StyleSheet.create({
-    shared: {
-        background: white,
-        color: offBlack,
-        textDecoration: "none",
-        border: "none",
-        outline: "none",
-        flexDirection: "row",
-        alignItems: "center",
-        display: "flex",
-        height: DROPDOWN_ITEM_HEIGHT,
-        minHeight: DROPDOWN_ITEM_HEIGHT,
-        paddingLeft: Spacing.medium_16,
-        paddingRight: Spacing.medium_16,
+    wrapper: {
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
+
+        /**
+         * States
+         */
+        // Overrides the default cell state for the button element.
+        [":hover[aria-disabled=false]" as any]: {
+            color: white,
+            background: blue,
+        },
+
+        // active and pressed states
+        [":active[aria-disabled=false]" as any]: {
+            color: mix(fade(blue, 0.32), white),
+            background: mix(offBlack32, blue),
+        },
+    },
+    shared: {
+        height: DROPDOWN_ITEM_HEIGHT,
+        minHeight: DROPDOWN_ITEM_HEIGHT,
     },
 
     label: {
@@ -249,23 +225,5 @@ const styles = StyleSheet.create({
 
     indent: {
         marginLeft: Spacing.medium_16,
-    },
-
-    // hover and focus states
-    focus: {
-        color: white,
-        background: blue,
-    },
-
-    // active and pressed states
-    active: {
-        color: mix(fade(blue, 0.32), white),
-        background: mix(offBlack32, blue),
-    },
-
-    // disabled state
-    disabled: {
-        color: offBlack32,
-        cursor: "default",
     },
 });

@@ -2,10 +2,9 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import Color, {fade, mix} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {View} from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -137,9 +136,10 @@ export default class OptionItem extends React.Component<OptionProps> {
                     const {pressed, hovered, focused} = state;
 
                     const defaultStyle = [
+                        styles.item,
                         // pass optional styles from react-window (if applies)
                         style,
-                        disabled && styles.disabled,
+                        // disabled && styles.disabled,
                     ];
 
                     return (
@@ -174,48 +174,47 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
-const {blue, white, offBlack, offBlack32} = Color;
+const {blue, white, offBlack32} = Color;
 
 const styles = StyleSheet.create({
-    itemContainer: {
-        flexDirection: "row",
-        // background: white,
-        color: offBlack,
-        alignItems: "center",
-        height: DROPDOWN_ITEM_HEIGHT,
-        minHeight: DROPDOWN_ITEM_HEIGHT,
-        border: 0,
-        outline: 0,
-        paddingLeft: Spacing.xSmall_8,
-        paddingRight: Spacing.medium_16,
-        whiteSpace: "nowrap",
-        cursor: "default",
-
-        // ":focus-within": {
-        //     color: white,
-        //     background: blue,
-        // },
-
-        ":hover": {
+    item: {
+        /**
+         * States
+         */
+        // Overrides the default cell state for the button element.
+        [":hover[aria-disabled=false]" as any]: {
             color: white,
             background: blue,
         },
 
-        // ":active": {
-        //     color: mix(fade(blue, 0.32), white),
-        //     background: mix(offBlack32, blue),
-        // },
+        // active and pressed states
+        [":active[aria-disabled=false]" as any]: {
+            color: mix(fade(blue, 0.32), white),
+            background: mix(offBlack32, blue),
+        },
+    },
+    itemContainer: {
+        // flexDirection: "row",
+        // alignItems: "center",
+        height: DROPDOWN_ITEM_HEIGHT,
+        minHeight: DROPDOWN_ITEM_HEIGHT,
+        // border: 0,
+        // outline: 0,
+        paddingLeft: Spacing.xSmall_8,
+        // paddingRight: Spacing.medium_16,
+        whiteSpace: "nowrap",
+        // cursor: "default",
     },
 
-    disabled: {
-        color: offBlack32,
-        background: white,
-    },
+    // disabled: {
+    //     color: offBlack32,
+    //     background: white,
+    // },
 
     label: {
         whiteSpace: "nowrap",
         userSelect: "none",
-        marginLeft: Spacing.xSmall_8,
+        marginLeft: -Spacing.xSmall_8,
         // added to truncate strings that are longer than expected
         overflow: "hidden",
         textOverflow: "ellipsis",

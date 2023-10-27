@@ -46,13 +46,13 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
         : selected && !clickInteraction
         ? blue
         : white;
-    const checkColor = disabled
-        ? offBlack32
-        : clickInteraction
-        ? pressed
-            ? activeBlue
-            : blue
-        : white;
+    // const checkColor = disabled
+    //     ? offBlack32
+    //     : clickInteraction
+    //     ? pressed
+    //         ? activeBlue
+    //         : blue
+    //     : white;
 
     return (
         <View
@@ -61,14 +61,14 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
                 (clickInteraction || (selected && !disabled)) &&
                     styles.noBorder,
                 disabled && styles.disabledCheckbox,
-                {backgroundColor: bgColor},
+                // {backgroundColor: bgColor},
             ]}
         >
             {selected && (
                 <Icon
                     icon={checkboxCheck}
                     size="small"
-                    color={checkColor}
+                    // color={checkColor}
                     style={[
                         disabled && selected && styles.disabledCheckFormatting,
                     ]}

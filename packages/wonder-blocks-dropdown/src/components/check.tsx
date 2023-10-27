@@ -32,13 +32,13 @@ const Check = function (props: CheckProps): React.ReactElement {
         <Icon
             icon={icons.check}
             size="small"
-            color={
-                disabled
-                    ? offBlack32
-                    : pressed || hovered || focused
-                    ? white
-                    : offBlack
-            }
+            // color={
+            //     disabled
+            //         ? offBlack32
+            //         : pressed || hovered || focused
+            //         ? white
+            //         : offBlack
+            // }
             style={[styles.bounds, !selected && styles.hide]}
         />
     );
