@@ -1,4 +1,5 @@
 import * as React from "react";
+import {SupportedThemes} from "../types";
 
 /**
  * A React Context that holds a reference to the selected theme. It should use
@@ -8,4 +9,5 @@ import * as React from "react";
  * @param theme The theme name to be used. It should be one of the themes
  * defined in the themes object. Defaults to `default`.
  */
-export const ThemeSwitcherContext = React.createContext<string>("default");
+export const ThemeSwitcherContext =
+    React.createContext<SupportedThemes>("default");

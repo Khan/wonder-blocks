@@ -23,7 +23,7 @@ describe("ThemeSwitcherContext", () => {
 
         // Act
         render(
-            <ThemeSwitcherContext.Provider value="dark">
+            <ThemeSwitcherContext.Provider value="khanmigo">
                 <ThemeSwitcherContext.Consumer>
                     {(value) => <>The current theme is: {value}</>}
                 </ThemeSwitcherContext.Consumer>
@@ -32,6 +32,6 @@ describe("ThemeSwitcherContext", () => {
         );
 
         // Assert
-        expect(screen.getByText(/The current theme is: dark/)).toBeTruthy();
+        expect(screen.getByText(/The current theme is: khanmigo/)).toBeTruthy();
     });
 });

@@ -10,7 +10,7 @@ import {ThemedStylesFn} from "../types";
  * @param theme The theme to be passed to the styles.
  * @returns The styleSheet object.
  */
-export default function useStyles<T>(
+export default function useStyles<T extends object>(
     styles: ThemedStylesFn<T>,
     theme: T,
 ): StyleDeclaration {
