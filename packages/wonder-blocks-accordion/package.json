@@ -12,9 +12,9 @@
   "types": "dist/index.d.ts",
   "author": "",
   "license": "MIT",
-  "private": false,
+  "private": true,
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "^4.0.8",
