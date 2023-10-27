@@ -6,6 +6,7 @@ import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Link} from "react-router-dom";
 import IconButtonCore from "./icon-button-core";
+import ThemedIconButton from "../themes/themed-icon-button";
 
 export type IconButtonSize = "xsmall" | "small" | "medium";
 
@@ -218,8 +219,10 @@ export const IconButton: React.ForwardRefExoticComponent<
     };
 
     return (
-        <__RouterContext.Consumer>
-            {(router) => renderClickableBehavior(router)}
-        </__RouterContext.Consumer>
+        <ThemedIconButton>
+            <__RouterContext.Consumer>
+                {(router) => renderClickableBehavior(router)}
+            </__RouterContext.Consumer>
+        </ThemedIconButton>
     );
 });
