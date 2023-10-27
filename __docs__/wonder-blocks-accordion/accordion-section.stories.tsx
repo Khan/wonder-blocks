@@ -415,25 +415,22 @@ export const CornerKinds: StoryComponentType = {
 };
 
 /**
- * An AccordionSection can be animated using the `includeAnimation` prop.
+ * An AccordionSection can be animated using the `animated` prop.
  * This animation includes the caret, the expansion/collapse, and the
  * border radius.
  *
  * If the user has `prefers-reduced-motion` opted in, this animation should
- * be disabled. This can be done by passing `includeAnimation={false}` to
+ * be disabled. This can be done by passing `animated={false}` to
  * the AccordionSection.
  *
- * If `includeAnimation` is specified both here in the AccordionSection
+ * If `animated` is specified both here in the AccordionSection
  * and within a parent Accordion component, the Accordion's
- * `includeAnimation` value is prioritized.
+ * `animated` value is prioritized.
  */
 export const WithAnimation: StoryComponentType = {
     render: () => {
         return (
-            <AccordionSection
-                header="This section is animated"
-                includeAnimation={true}
-            >
+            <AccordionSection header="This section is animated" animated={true}>
                 Something
             </AccordionSection>
         );

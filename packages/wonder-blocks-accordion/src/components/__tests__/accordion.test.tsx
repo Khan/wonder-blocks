@@ -359,14 +359,14 @@ describe("Accordion", () => {
         });
     });
 
-    test("prioritizes the parent's includeAnimation prop", () => {
+    test("prioritizes the parent's animated prop", () => {
         // Arrange
         render(
-            <Accordion includeAnimation={true}>
+            <Accordion animated={true}>
                 {[
                     <AccordionSection
                         header="Title"
-                        includeAnimation={false}
+                        animated={false}
                         headerTestId="section-header-test-id"
                     >
                         Section content

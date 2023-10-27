@@ -24,7 +24,7 @@ type Props = {
     expanded: boolean;
     // Whether to include animation on the header. This should be false
     // if the user has `prefers-reduced-motion` opted in. Defaults to false.
-    includeAnimation: boolean;
+    animated: boolean;
     // Called on header click.
     onClick?: () => void;
     // The ID for the content that the header's `aria-controls` should
@@ -51,7 +51,7 @@ const AccordionSectionHeader = (props: Props) => {
         caretPosition,
         cornerKind,
         expanded,
-        includeAnimation,
+        animated,
         onClick,
         sectionContentUniqueId,
         headerStyle,
@@ -79,7 +79,7 @@ const AccordionSectionHeader = (props: Props) => {
                 testId={testId}
                 style={[
                     styles.headerWrapper,
-                    includeAnimation && styles.headerWrapperWithAnimation,
+                    animated && styles.headerWrapperWithAnimation,
                     caretPosition === "start" && styles.headerWrapperCaretStart,
                     roundedTop && styles.roundedTop,
                     roundedBottom && styles.roundedBottom,
@@ -113,7 +113,7 @@ const AccordionSectionHeader = (props: Props) => {
                             color={tokens.color.offBlack64}
                             size="small"
                             style={[
-                                includeAnimation && styles.iconWithAnimation,
+                                animated && styles.iconWithAnimation,
                                 caretPosition === "start"
                                     ? styles.iconStart
                                     : styles.iconEnd,

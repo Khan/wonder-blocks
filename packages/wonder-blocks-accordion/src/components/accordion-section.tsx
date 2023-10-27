@@ -66,10 +66,10 @@ type Props = AriaProps & {
      * if the user has `prefers-reduced-motion` opted in. Defaults to false.
      *
      * If this prop is specified both here in the AccordionSection and
-     * within a parent Accordion component, the Accordion’s includeAnimation
+     * within a parent Accordion component, the Accordion’s animated
      * value is prioritized.
      */
-    includeAnimation?: boolean;
+    animated?: boolean;
     /**
      * Called when the header is clicked.
      * Takes the new expanded state as an argument. This way, the function
@@ -166,7 +166,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         id,
         header,
         expanded,
-        includeAnimation = false,
+        animated = false,
         onToggle,
         caretPosition = "end",
         cornerKind = "rounded",
@@ -226,7 +226,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
             id={sectionId}
             style={[
                 styles.wrapper,
-                includeAnimation && styles.wrapperWithAnimation,
+                animated && styles.wrapperWithAnimation,
                 sectionStyles.wrapper,
                 expandedState
                     ? styles.wrapperExpanded
@@ -242,7 +242,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 caretPosition={caretPosition}
                 cornerKind={cornerKind}
                 expanded={expandedState}
-                includeAnimation={includeAnimation}
+                animated={animated}
                 onClick={handleClick}
                 sectionContentUniqueId={sectionContentUniqueId}
                 headerStyle={headerStyle}

@@ -261,12 +261,12 @@ describe("AccordionSection", () => {
         });
     });
 
-    test("includes transition when includeAnimation is true", () => {
+    test("includes transition when animated is true", () => {
         // Arrange
         render(
             <AccordionSection
                 header="Title"
-                includeAnimation={true}
+                animated={true}
                 testId="accordion-section-test-id"
                 headerTestId="accordion-section-header"
             >
@@ -288,12 +288,12 @@ describe("AccordionSection", () => {
         });
     });
 
-    test("does not include transition when includeAnimation is false", () => {
+    test("does not include transition when animated is false", () => {
         // Arrange
         render(
             <AccordionSection
                 header="Title"
-                includeAnimation={false}
+                animated={false}
                 testId="accordion-section-test-id"
                 headerTestId="accordion-section-header"
             >

@@ -12,7 +12,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
-                includeAnimation={false}
+                animated={false}
                 onClick={() => {}}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -35,7 +35,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
-                includeAnimation={false}
+                animated={false}
                 onClick={() => {}}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -61,7 +61,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
-                includeAnimation={false}
+                animated={false}
                 onClick={() => {}}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -84,7 +84,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
-                includeAnimation={false}
+                animated={false}
                 onClick={onClickSpy}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -97,7 +97,7 @@ describe("AccordionSectionHeader", () => {
         expect(onClickSpy).toHaveBeenCalledTimes(1);
     });
 
-    test("includes transition styles when includeAnimation is true", () => {
+    test("includes transition styles when animated is true", () => {
         // Arrange
         render(
             <AccordionSectionHeader
@@ -105,7 +105,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
-                includeAnimation={true}
+                animated={true}
                 onClick={() => {}}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -122,7 +122,7 @@ describe("AccordionSectionHeader", () => {
         });
     });
 
-    test("does not include transition styles when includeAnimation is false", () => {
+    test("does not include transition styles when animated is false", () => {
         // Arrange
         render(
             <AccordionSectionHeader
@@ -130,7 +130,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
-                includeAnimation={false}
+                animated={false}
                 onClick={() => {}}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}

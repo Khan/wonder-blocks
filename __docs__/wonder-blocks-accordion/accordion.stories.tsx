@@ -277,7 +277,7 @@ export const WithInitialExpandedIndex: StoryComponentType = {
 };
 
 /**
- * An Accordion can be animated using the `includeAnimation` prop. This
+ * An Accordion can be animated using the `animated` prop. This
  * animation includes the caret, the expansion/collapse, and the last
  * section's border radius. In this example, animated accordions with
  * different corner kinds are shown to demonstrate the border radius transition,
@@ -285,12 +285,12 @@ export const WithInitialExpandedIndex: StoryComponentType = {
  * an accordion with sections of different heights.
  *
  * If the user has `prefers-reduced-motion` opted in, this animation should
- * be disabled. This can be done by passing `includeAnimation={false}` to
+ * be disabled. This can be done by passing `animated={false}` to
  * the Accordion.
  *
- * If `includeAnimation` is specified both here in the Accordion
+ * If `animated` is specified both here in the Accordion
  * and within a child AccordionSection component, the Accordion's
- * `includeAnimation` value is prioritized.
+ * `animated` value is prioritized.
  */
 export const WithAnimation: StoryComponentType = {
     render: () => {
@@ -299,13 +299,13 @@ export const WithAnimation: StoryComponentType = {
                 <View style={styles.sideBySide}>
                     <View style={[styles.fullWidth, styles.space]}>
                         <LabelLarge>cornerKind: square</LabelLarge>
-                        <Accordion cornerKind="square" includeAnimation={true}>
+                        <Accordion cornerKind="square" animated={true}>
                             {exampleSections}
                         </Accordion>
                     </View>
                     <View style={[styles.fullWidth, styles.space]}>
                         <LabelLarge>cornerKind: rounded</LabelLarge>
-                        <Accordion cornerKind="rounded" includeAnimation={true}>
+                        <Accordion cornerKind="rounded" animated={true}>
                             {exampleSections}
                         </Accordion>
                     </View>
@@ -313,7 +313,7 @@ export const WithAnimation: StoryComponentType = {
                         <LabelLarge>cornerKind: rounded-per-section</LabelLarge>
                         <Accordion
                             cornerKind="rounded-per-section"
-                            includeAnimation={true}
+                            animated={true}
                         >
                             {exampleSections}
                         </Accordion>
@@ -326,7 +326,7 @@ export const WithAnimation: StoryComponentType = {
                         </LabelLarge>
                         <Accordion
                             cornerKind="square"
-                            includeAnimation={true}
+                            animated={true}
                             allowMultipleExpanded={false}
                         >
                             {exampleSections}
@@ -338,7 +338,7 @@ export const WithAnimation: StoryComponentType = {
                         </LabelLarge>
                         <Accordion
                             cornerKind="rounded"
-                            includeAnimation={true}
+                            animated={true}
                             allowMultipleExpanded={false}
                         >
                             {exampleSections}
@@ -351,7 +351,7 @@ export const WithAnimation: StoryComponentType = {
                         </LabelLarge>
                         <Accordion
                             cornerKind="rounded-per-section"
-                            includeAnimation={true}
+                            animated={true}
                             allowMultipleExpanded={false}
                         >
                             {exampleSections}
@@ -363,10 +363,7 @@ export const WithAnimation: StoryComponentType = {
                         With unevenly sided sections, allowMultipleExpanded:
                         false
                     </LabelLarge>
-                    <Accordion
-                        includeAnimation={true}
-                        allowMultipleExpanded={false}
-                    >
+                    <Accordion animated={true} allowMultipleExpanded={false}>
                         <AccordionSection header="First section">
                             <View
                                 style={{
@@ -483,7 +480,7 @@ export const LongSections: StoryComponentType = {
                     {shown ? "Hide giant Accordion" : "Show giant Accordion"}
                 </Button>
                 {shown && (
-                    <Accordion includeAnimation={true}>
+                    <Accordion animated={true}>
                         {Array(20).fill(
                             <AccordionSection
                                 header={`This is a section with a really, really, really,

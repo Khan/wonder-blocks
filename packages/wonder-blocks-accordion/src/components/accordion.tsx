@@ -65,10 +65,10 @@ type Props = AriaProps & {
      * if the user has `prefers-reduced-motion` opted in. Defaults to false.
      *
      * If this prop is specified both here in the Accordion and within
-     * a child AccordionSection component, the Accordion’s includeAnimation
+     * a child AccordionSection component, the Accordion’s animated
      * value is prioritized.
      */
-    includeAnimation?: boolean;
+    animated?: boolean;
     /**
      * Custom styles for the overall accordion container.
      */
@@ -115,7 +115,7 @@ const Accordion = React.forwardRef(function Accordion(
         allowMultipleExpanded = true,
         caretPosition,
         cornerKind = "rounded",
-        includeAnimation,
+        animated,
         style,
         ...ariaProps
     } = props;
@@ -157,7 +157,7 @@ const Accordion = React.forwardRef(function Accordion(
                     caretPosition: childCaretPosition,
                     cornerKind: childCornerKind,
                     onToggle: childOnToggle,
-                    includeAnimation: childIncludeAnimation,
+                    animated: childanimated,
                 } = child.props;
 
                 const isFirstChild = index === 0;
@@ -176,9 +176,8 @@ const Accordion = React.forwardRef(function Accordion(
                             // Don't use the AccordionSection's expanded prop
                             // when it's rendered within Accordion.
                             expanded: sectionsOpened[index],
-                            // Prioritize the Accordion's includeAnimation
-                            includeAnimation:
-                                includeAnimation ?? childIncludeAnimation,
+                            // Prioritize the Accordion's animated
+                            animated: animated ?? childanimated,
                             onToggle: () =>
                                 handleSectionClick(index, childOnToggle),
                             isFirstSection: isFirstChild,

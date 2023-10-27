@@ -75,7 +75,7 @@ export default {
             type: {summary: "boolean"},
         },
     },
-    includeAnimation: {
+    animated: {
         control: {type: "boolean"},
         description: `Whether to include animation on the header. This should
             be false if the user has \`prefers-reduced-motion\` opted in.
