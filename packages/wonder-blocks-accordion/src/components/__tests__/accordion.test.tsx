@@ -380,7 +380,11 @@ describe("Accordion", () => {
         const sectionHeader = screen.getByTestId("section-header-test-id");
 
         // Assert
+        // The parent has animated=true, so the child's animated=false
+        // should be overridden.
         expect(sectionHeader).toHaveStyle({
+            // The existence of the transition style means that the
+            // accordion is animated.
             transition: "border-radius 300ms",
         });
     });
