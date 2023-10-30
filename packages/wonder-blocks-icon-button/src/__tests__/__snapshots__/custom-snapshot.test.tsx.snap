@@ -8,7 +8,6 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false disab
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -410,7 +409,6 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true disabl
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -812,7 +810,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1214,7 +1211,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1616,7 +1612,6 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false disab
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2018,7 +2013,6 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabl
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2420,7 +2414,6 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false d
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2822,7 +2815,6 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true di
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3224,7 +3216,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3626,7 +3617,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4028,7 +4018,6 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false d
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4430,7 +4419,6 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true di
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4832,7 +4820,6 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false dis
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5225,7 +5212,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5618,7 +5604,6 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false dis
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6011,7 +5996,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6404,7 +6388,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6797,7 +6780,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7190,7 +7172,6 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false disa
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7583,7 +7564,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7976,7 +7956,6 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disa
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8369,7 +8348,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8762,7 +8740,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9155,7 +9132,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
