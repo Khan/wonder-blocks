@@ -134,6 +134,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
                 <StyledButton
                     type="button"
                     {...commonProps}
+                    onClick={disabled ? undefined : restProps.onClick}
                     aria-disabled={disabled}
                     ref={ref as React.Ref<HTMLButtonElement>}
                 >

@@ -163,6 +163,26 @@ describe("IconButton", () => {
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
+    test("disallow press/click when disabled is set", () => {
+        // Arrange
+        const onClickMock = jest.fn();
+        render(
+            <IconButton
+                icon={magnifyingGlassIcon}
+                aria-label="search"
+                testId="icon-button"
+                onClick={onClickMock}
+                disabled={true}
+            />,
+        );
+
+        // Act
+        userEvent.click(screen.getByRole("button"));
+
+        // Assert
+        expect(onClickMock).not.toBeCalled();
+    });
+
     it("sets the 'target' prop on the underlying element", () => {
         // Arrange
         render(
