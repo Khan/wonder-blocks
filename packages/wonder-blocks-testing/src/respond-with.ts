@@ -2,6 +2,15 @@ import {SettleSignal} from "./settle-signal";
 import {ResponseImpl} from "./response-impl";
 import type {GraphQLJson} from "./types";
 
+/**
+ * This symbol is used so we can create an opaque type, using a custom field
+ * that cannot be directly referenced since folks won't have access to the
+ * symbol.
+ *
+ * See https://stackoverflow.com/a/56749647/23234
+ */
+declare const opaque: unique symbol;
+
 // We want the parameterization here so that folks can assert a response is
 // of a specific type if passing between various functions. For example,
 // the graphql mocking framework might want to assert a response is returning
@@ -12,6 +21,16 @@ import type {GraphQLJson} from "./types";
  * Describes a mock response to a fetch request.
  */
 export type MockResponse<TData> = {
+    /**
+     * This is used to enforce the use of the TData type parameter. We won't
+     * actually attach anything to this field. Doing this makes sure that
+     * TData is relevant to the response. Without it, it will get ignored
+     * and a value of type MockResponse<string> will be considered the same
+     * type as a value of type MockResponse<number> (or any other type
+     * constraint).
+     */
+    [opaque]: TData;
+
     /**
      * Create a promise from the mocked response.
      *
@@ -42,15 +61,16 @@ const textResponse = <TData>(
     text: string | (() => string),
     statusCode: number,
     signal?: SettleSignal | null,
-): MockResponse<TData> => ({
-    toPromise: () =>
-        makeMockResponse({
-            type: "text",
-            text,
-            statusCode,
-            signal,
-        }),
-});
+): MockResponse<TData> =>
+    ({
+        toPromise: () =>
+            makeMockResponse({
+                type: "text",
+                text,
+                statusCode,
+                signal,
+            }),
+    } as MockResponse<TData>);
 
 /**
  * Helper for creating a rejected mock response.
@@ -58,14 +78,15 @@ const textResponse = <TData>(
 const rejectResponse = (
     error: Error | (() => Error),
     signal?: SettleSignal | null,
-): MockResponse<never> => ({
-    toPromise: () =>
-        makeMockResponse({
-            type: "reject",
-            error,
-            signal,
-        }),
-});
+): MockResponse<never> =>
+    ({
+        toPromise: () =>
+            makeMockResponse({
+                type: "reject",
+                error,
+                signal,
+            }),
+    } as MockResponse<never>);
 
 /**
  * Helpers to define mock responses for mocked requests.
