@@ -8,7 +8,6 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false disab
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -26,6 +25,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false disab
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -38,10 +38,12 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false disab
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -116,6 +118,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false focus
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -133,13 +136,13 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false focus
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -218,6 +221,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false hover
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -235,13 +239,13 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false hover
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -320,6 +324,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false press
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -337,13 +342,13 @@ exports[`IconButtonCore kind:primary color:default size:medium light:false press
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -404,7 +409,6 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true disabl
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -422,6 +426,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true disabl
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -434,10 +439,12 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true disabl
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outlineColor": "rgba(255,255,255,0.50)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -512,6 +519,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true focuse
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -529,13 +537,13 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true focuse
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -614,6 +622,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true hovere
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -631,13 +640,13 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true hovere
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -716,6 +725,7 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true presse
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -733,13 +743,13 @@ exports[`IconButtonCore kind:primary color:default size:medium light:true presse
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -800,7 +810,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -818,6 +827,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -830,10 +840,12 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -908,6 +920,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -925,13 +938,13 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -1010,6 +1023,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -1027,13 +1041,13 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -1112,6 +1126,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -1129,13 +1144,13 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -1196,7 +1211,6 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1214,6 +1228,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -1226,10 +1241,12 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outlineColor": "rgba(255,255,255,0.50)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -1304,6 +1321,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -1321,13 +1339,13 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -1406,6 +1424,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -1423,13 +1442,13 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -1508,6 +1527,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -1525,13 +1545,13 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -1592,7 +1612,6 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false disab
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1610,6 +1629,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false disab
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -1622,10 +1642,12 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false disab
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -1700,6 +1722,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false focus
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -1717,13 +1740,13 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false focus
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -1802,6 +1825,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false hover
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -1819,13 +1843,13 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false hover
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -1904,6 +1928,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false press
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
@@ -1921,13 +1946,13 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:false press
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
@@ -1988,7 +2013,6 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabl
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2006,6 +2030,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabl
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -2018,10 +2043,12 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true disabl
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outlineColor": "rgba(255,255,255,0.50)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -2096,6 +2123,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true focuse
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -2113,13 +2141,13 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true focuse
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -2198,6 +2226,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true hovere
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -2215,13 +2244,13 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true hovere
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -2300,6 +2329,7 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true presse
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#b5cefb",
         "outlineColor": "#b5cefb",
@@ -2317,13 +2347,13 @@ exports[`IconButtonCore kind:primary color:default size:xsmall light:true presse
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -2384,7 +2414,6 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false d
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2402,6 +2431,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false d
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -2414,10 +2444,12 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false d
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -2492,6 +2524,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false f
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -2509,13 +2542,13 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false f
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -2594,6 +2627,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false h
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -2611,13 +2645,13 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false h
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -2696,6 +2730,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false p
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -2713,13 +2748,13 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:false p
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -2780,7 +2815,6 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true di
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2798,6 +2832,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true di
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -2810,10 +2845,12 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true di
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outlineColor": "rgba(255,255,255,0.50)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -2888,6 +2925,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true fo
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -2905,13 +2943,13 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true fo
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -2990,6 +3028,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true ho
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -3007,13 +3046,13 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true ho
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -3092,6 +3131,7 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true pr
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -3109,13 +3149,13 @@ exports[`IconButtonCore kind:primary color:destructive size:medium light:true pr
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -3176,7 +3216,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3194,6 +3233,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -3206,10 +3246,12 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -3284,6 +3326,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -3301,13 +3344,13 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -3386,6 +3429,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -3403,13 +3447,13 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -3488,6 +3532,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -3505,13 +3550,13 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -3572,7 +3617,6 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3590,6 +3634,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -3602,10 +3647,12 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outlineColor": "rgba(255,255,255,0.50)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -3680,6 +3727,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -3697,13 +3745,13 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -3782,6 +3830,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -3799,13 +3848,13 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -3884,6 +3933,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -3901,13 +3951,13 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -3968,7 +4018,6 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false d
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3986,6 +4035,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false d
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -3998,10 +4048,12 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false d
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -4076,6 +4128,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false f
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -4093,13 +4146,13 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false f
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -4178,6 +4231,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false h
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -4195,13 +4249,13 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false h
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -4280,6 +4334,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false p
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
@@ -4297,13 +4352,13 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:false p
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
@@ -4364,7 +4419,6 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true di
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4382,6 +4436,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true di
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -4394,10 +4449,12 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true di
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outlineColor": "rgba(255,255,255,0.50)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(255,255,255,0.50)",
         "outline": "none",
         "outlineColor": "rgba(255,255,255,0.50)",
@@ -4472,6 +4529,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true fo
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -4489,13 +4547,13 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true fo
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -4574,6 +4632,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true ho
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -4591,13 +4650,13 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true ho
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -4676,6 +4735,7 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true pr
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#f3bbb4",
         "outlineColor": "#f3bbb4",
@@ -4693,13 +4753,13 @@ exports[`IconButtonCore kind:primary color:destructive size:xsmall light:true pr
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#ffffff",
         "outlineColor": "#ffffff",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#ffffff",
@@ -4760,7 +4820,6 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false dis
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4778,6 +4837,7 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false dis
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -4790,10 +4850,12 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false dis
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -4868,12 +4930,13 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false foc
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -4885,16 +4948,17 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false foc
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -4966,12 +5030,13 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false hov
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -4983,16 +5048,17 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false hov
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -5064,12 +5130,13 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false pre
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -5081,16 +5148,17 @@ exports[`IconButtonCore kind:secondary color:default size:medium light:false pre
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -5144,7 +5212,6 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5162,6 +5229,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -5174,10 +5242,12 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -5252,12 +5322,13 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -5269,16 +5340,17 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -5350,12 +5422,13 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -5367,16 +5440,17 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -5448,12 +5522,13 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -5465,16 +5540,17 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -5528,7 +5604,6 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false dis
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5546,6 +5621,7 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false dis
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -5558,10 +5634,12 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false dis
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -5636,12 +5714,13 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false foc
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -5653,16 +5732,17 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false foc
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -5734,12 +5814,13 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false hov
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -5751,16 +5832,17 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false hov
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -5832,12 +5914,13 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false pre
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -5849,16 +5932,17 @@ exports[`IconButtonCore kind:secondary color:default size:xsmall light:false pre
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -5912,7 +5996,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5930,6 +6013,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -5942,10 +6026,12 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -6020,12 +6106,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -6037,16 +6124,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -6118,12 +6206,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -6135,16 +6224,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -6216,12 +6306,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -6233,16 +6324,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:medium light:false
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -6296,7 +6388,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6314,6 +6405,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -6326,10 +6418,12 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -6404,12 +6498,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -6421,16 +6516,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -6502,12 +6598,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -6519,16 +6616,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -6600,12 +6698,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -6617,16 +6716,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -6680,7 +6780,6 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6698,6 +6797,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -6710,10 +6810,12 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -6788,12 +6890,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -6805,16 +6908,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -6886,12 +6990,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -6903,16 +7008,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -6984,12 +7090,13 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -7001,16 +7108,17 @@ exports[`IconButtonCore kind:secondary color:destructive size:xsmall light:false
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -7064,7 +7172,6 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false disa
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7082,6 +7189,7 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false disa
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -7094,10 +7202,12 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false disa
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -7172,12 +7282,13 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false focu
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -7189,16 +7300,17 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false focu
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -7270,12 +7382,13 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false hove
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -7287,16 +7400,17 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false hove
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -7368,12 +7482,13 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false pres
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -7385,16 +7500,17 @@ exports[`IconButtonCore kind:tertiary color:default size:medium light:false pres
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -7448,7 +7564,6 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7466,6 +7581,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -7478,10 +7594,12 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -7556,12 +7674,13 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -7573,16 +7692,17 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -7654,12 +7774,13 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -7671,16 +7792,17 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -7752,12 +7874,13 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -7769,16 +7892,17 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -7832,7 +7956,6 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disa
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7850,6 +7973,7 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disa
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -7862,10 +7986,12 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false disa
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -7940,12 +8066,13 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false focu
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -7957,16 +8084,17 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false focu
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8038,12 +8166,13 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false hove
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -8055,16 +8184,17 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false hove
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8136,12 +8266,13 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false pres
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#1b50b3",
         "outlineColor": "#1b50b3",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -8153,16 +8284,17 @@ exports[`IconButtonCore kind:tertiary color:default size:xsmall light:false pres
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#1865f2",
         "outlineColor": "#1865f2",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#1865f2",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8216,7 +8348,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8234,6 +8365,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -8246,10 +8378,12 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -8324,12 +8458,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -8341,16 +8476,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8422,12 +8558,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -8439,16 +8576,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8520,12 +8658,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -8537,16 +8676,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:medium light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8600,7 +8740,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8618,6 +8757,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -8630,10 +8770,12 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -8708,12 +8850,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -8725,16 +8868,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8806,12 +8950,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -8823,16 +8968,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8904,12 +9050,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -8921,16 +9068,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -8984,7 +9132,6 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
   focused={false}
   hovered={false}
   onBlur={[Function]}
-  onClick={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9002,6 +9149,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -9014,10 +9162,12 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
         "boxShadow": "none",
       },
       ":focusVisible": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outlineColor": "rgba(33,36,44,0.32)",
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "color": "rgba(33,36,44,0.32)",
         "outline": "none",
         "outlineColor": "rgba(33,36,44,0.32)",
@@ -9092,12 +9242,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -9109,16 +9260,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -9190,12 +9342,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -9207,16 +9360,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
@@ -9288,12 +9442,13 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
         "border": 0,
       },
       ":active": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "color": "#9e271d",
         "outlineColor": "#9e271d",
         "outlineOffset": 1,
         "outlineStyle": "solid",
-        "outlineWidth": 2,
+        "outlineWidth": 0,
       },
       ":focus": {
         "borderRadius": 4,
@@ -9305,16 +9460,17 @@ exports[`IconButtonCore kind:tertiary color:destructive size:xsmall light:false 
       ":focusVisible": {
         "borderRadius": 4,
         "boxShadow": "none",
-        "color": "#d92916",
         "outlineColor": "#d92916",
         "outlineOffset": 1,
         "outlineStyle": "solid",
         "outlineWidth": 2,
       },
       ":hover": {
+        "backgroundColor": "transparent",
         "borderRadius": 4,
         "boxShadow": "none",
         "color": "#d92916",
+        "outlineWidth": 0,
       },
       "alignItems": "center",
       "background": "none",
