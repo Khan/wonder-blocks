@@ -37,12 +37,23 @@ export default function ComponentGallery() {
                     </Accordion>
                 </ComponentTile>
 
-                <ComponentTile name="Banner" href="/?path=/docs/banner--docs">
+                <ComponentTile
+                    name="Banner"
+                    description={`A banner displays a prominent message
+                        and related optional actions. It can be used as
+                        a way of informing the user of important changes.
+                        Typically, it is displayed toward the top of the
+                        screen.`}
+                    href="/?path=/docs/banner--docs"
+                >
                     <Banner text="This is a banner!" layout="floating" />
                 </ComponentTile>
 
                 <ComponentTile
                     name="Birthday Picker"
+                    description={`Birthday Picker is similar to a datepicker,
+                    but specifically for birthdates. It is composed of a set
+                    of dropdowns for month, day, and year.`}
                     href="/?path=/docs/birthdaypicker--docs"
                 >
                     <BirthdayPicker onChange={() => {}} />
