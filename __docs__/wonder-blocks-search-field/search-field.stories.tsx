@@ -16,7 +16,7 @@ import packageConfig from "../../packages/wonder-blocks-search-field/package.jso
 
 export default {
     component: SearchField,
-    title: "Search Field/SearchField",
+    title: "SearchField",
     args: {disabled: false, placeholder: "Placeholder"},
     parameters: {
         componentSubtitle: (

@@ -1,0 +1,79 @@
+import * as React from "react";
+import {StyleSheet} from "aphrodite";
+
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+
+import ComponentTile from "../component-tile";
+import {styles} from "../component-gallery";
+
+export default function ModalSection() {
+    return (
+        <>
+            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+                Modal
+            </HeadingLarge>
+
+            <View style={styles.section}>
+                <ComponentTile
+                    name="OnePaneDialog"
+                    href="/?path=/docs/modal-onepanedialog--docs"
+                >
+                    <View style={localStyles.previewSizer}>
+                        <View style={localStyles.modalPositioner}>
+                            <OnePaneDialog
+                                title="Dialog title"
+                                content={
+                                    <Body>
+                                        {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit
+                esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est.`}
+                                    </Body>
+                                }
+                                footer={
+                                    <View style={localStyles.footer}>
+                                        <Button>Next</Button>
+                                    </View>
+                                }
+                            />
+                        </View>
+                    </View>
+                </ComponentTile>
+            </View>
+        </>
+    );
+}
+
+const localStyles = StyleSheet.create({
+    modalPositioner: {
+        // Checkerboard background
+        backgroundImage:
+            "linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%)",
+        backgroundSize: "20px 20px",
+        backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+
+        position: "absolute",
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+    },
+    previewSizer: {
+        minHeight: 500,
+        width: "100%",
+    },
+    footer: {
+        justifyContent: "end",
+    },
+});
