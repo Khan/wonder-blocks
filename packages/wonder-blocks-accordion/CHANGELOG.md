@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.0.1
+
+### Patch Changes
+
+-   Updated dependencies [3f854fe8]
+    -   @khanacademy/wonder-blocks-theming@1.2.0
+
 ## 1.0.0
 
 ### Major Changes

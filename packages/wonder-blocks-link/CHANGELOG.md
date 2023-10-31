@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-link
 
+## 6.0.0
+
+### Major Changes
+
+-   d65b6000: Add support to PhosphorIcon in Link
+
 ## 5.0.10
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-accordion",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "design": "v1",
   "description": "Accordion components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -20,7 +20,7 @@
     "@khanacademy/wonder-blocks-clickable": "^4.0.9",
     "@khanacademy/wonder-blocks-core": "^6.3.0",
     "@khanacademy/wonder-blocks-icon": "^2.2.1",
-    "@khanacademy/wonder-blocks-theming": "^1.1.1",
+    "@khanacademy/wonder-blocks-theming": "^1.2.0",
     "@khanacademy/wonder-blocks-typography": "^2.1.9"
   },
   "peerDependencies": {
