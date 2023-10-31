@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.0.1
+
+### Patch Changes
+
+-   3f854fe8: Export supported themes list, change WB components to use these new exports
+
 ## 6.0.0
 
 ### Major Changes

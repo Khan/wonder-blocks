@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.1.0
+
+### Minor Changes
+
+-   ae97aeb6: Add theming support to the IconButton component
+-   22ccc5a9: Switch to pseudo-classes (`:hover, :focus-visible, :active`)
+-   0d875501: Add khanmigo theme to `IconButton`
+
+### Patch Changes
+
+-   Updated dependencies [3f854fe8]
+    -   @khanacademy/wonder-blocks-theming@1.2.0
+
 ## 5.0.1
 
 ### Patch Changes
