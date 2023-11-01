@@ -1,3 +1,4 @@
+import ModalContent from "./components/modal-content";
 import ModalDialog from "./components/modal-dialog";
 import ModalFooter from "./components/modal-footer";
 import ModalHeader from "./components/modal-header";
@@ -7,11 +8,12 @@ import OnePaneDialog from "./components/one-pane-dialog";
 import maybeGetPortalMountedModalHostElement from "./util/maybe-get-portal-mounted-modal-host-element";
 
 export {
-    ModalHeader,
-    ModalFooter,
+    ModalContent,
     ModalDialog,
-    ModalPanel,
+    ModalFooter,
+    ModalHeader,
     ModalLauncher,
+    ModalPanel,
     OnePaneDialog,
     maybeGetPortalMountedModalHostElement,
 };
