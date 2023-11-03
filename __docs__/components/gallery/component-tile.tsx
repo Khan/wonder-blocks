@@ -58,9 +58,7 @@ const styles = StyleSheet.create({
     tile: {
         display: "flex",
         flexDirection: "column",
-        marginRight: tokens.spacing.medium_16,
-        marginTop: tokens.spacing.xSmall_8,
-        marginBottom: tokens.spacing.xSmall_8,
+        margin: tokens.spacing.xSmall_8,
         // Set the width to half the max width of the stories page content.
         width: 484,
         minHeight: 300,
