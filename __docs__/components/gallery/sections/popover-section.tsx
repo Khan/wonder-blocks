@@ -13,17 +13,21 @@ export default function PopoverSection() {
 
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="popover" tag="h3" style={styles.sectionLabel}>
                 Popover
             </HeadingLarge>
+
             <ComponentTile
                 name="Popover"
                 href="/?path=/docs/popover-popover--docs"
+                description={`Provides additional information that is
+                    related to a particular element and/or content.
+                    Must be dismissed by clicking an element.`}
             >
                 <View
-                    // Add an artificaial height to the view so that the popover
+                    // Add an artificial height to the view so that the popover
                     // doesn't overlap the description text.
-                    style={{height: 100}}
+                    style={{height: 120}}
                 />
                 <Popover
                     opened={opened}

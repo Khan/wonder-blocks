@@ -10,12 +10,19 @@ export default function SearchFieldSection() {
     const [value, setValue] = React.useState<string>("");
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge
+                id="search-field"
+                tag="h3"
+                style={styles.sectionLabel}
+            >
                 Search Field
             </HeadingLarge>
+
             <ComponentTile
                 name="SearchField"
                 href="/?path=/docs/searchfield--docs"
+                description={`A text field with a search icon at its start
+                    and an X icon at its end (when containing text).`}
             >
                 <SearchField
                     placeholder="Search for a topic"

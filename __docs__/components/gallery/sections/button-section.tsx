@@ -11,10 +11,14 @@ import {styles} from "../styles";
 export default function BannerSection() {
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="button" tag="h3" style={styles.sectionLabel}>
                 Button
             </HeadingLarge>
-            <ComponentTile name="Button" href="/?path=/docs/button--docs">
+            <ComponentTile
+                name="Button"
+                href="/?path=/docs/button--docs"
+                description="Standard button. Triggers an action."
+            >
                 <Button
                     kind="primary"
                     onClick={() => {}}
