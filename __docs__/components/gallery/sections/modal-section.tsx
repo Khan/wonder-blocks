@@ -7,7 +7,7 @@ import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
-import {styles} from "../component-gallery";
+import {styles} from "../styles";
 
 export default function ModalSection() {
     return (

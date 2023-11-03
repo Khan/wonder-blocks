@@ -1,8 +1,6 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
 
 import AccordionGallerySection from "./sections/accordion-section";
 import BannerSection from "./sections/banner-section";
@@ -49,23 +47,3 @@ export default function ComponentGallery() {
         </View>
     );
 }
-
-export const styles = StyleSheet.create({
-    section: {
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-    },
-    sectionLabel: {
-        marginTop: tokens.spacing.xLarge_32,
-        marginBottom: tokens.spacing.large_24,
-    },
-    cellExample: {
-        backgroundColor: tokens.color.offWhite,
-        padding: tokens.spacing.large_24,
-    },
-    centerContent: {
-        width: "fit-content",
-        alignSelf: "center",
-    },
-});

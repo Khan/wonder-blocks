@@ -8,7 +8,7 @@ import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
-import {styles} from "../component-gallery";
+import {styles} from "../styles";
 
 export default function AccordionGallerySection() {
     return (
@@ -20,10 +20,6 @@ export default function AccordionGallerySection() {
             <View style={styles.section}>
                 <ComponentTile
                     name="Accordion"
-                    description={`An accordion displays a vertically
-         stacked list of sections, each of which
-         contains content that can be shown or hidden by
-         clicking its header.`}
                     href="/?path=/docs/accordion-accordion--docs"
                 >
                     <Accordion>

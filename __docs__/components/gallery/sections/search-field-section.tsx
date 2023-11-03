@@ -4,7 +4,7 @@ import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
-import {styles} from "../component-gallery";
+import {styles} from "../styles";
 
 export default function SearchFieldSection() {
     const [value, setValue] = React.useState<string>("");

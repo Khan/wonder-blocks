@@ -7,7 +7,7 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
-import {styles} from "../component-gallery";
+import {styles} from "../styles";
 
 export default function PillSection() {
     return (

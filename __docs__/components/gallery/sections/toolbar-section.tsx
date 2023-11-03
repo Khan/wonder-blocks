@@ -8,7 +8,7 @@ import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
-import {styles} from "../component-gallery";
+import {styles} from "../styles";
 
 export default function ToolbarSection() {
     return (

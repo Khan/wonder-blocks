@@ -1,12 +1,14 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
 import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
-import {styles} from "../component-gallery";
+import {styles} from "../styles";
 
 export default function BannerSection() {
     return (
@@ -19,7 +21,7 @@ export default function BannerSection() {
                     name="CompactCell"
                     href="/?path=/docs/cell-compactcell--docs"
                 >
-                    <View style={styles.cellExample}>
+                    <View style={localStyles.cellExample}>
                         <CompactCell
                             title="Intro to rational & irrational numbers"
                             rightAccessory={
@@ -33,7 +35,7 @@ export default function BannerSection() {
                     name="DetailCell"
                     href="/?path=/docs/cell-detailcell--docs"
                 >
-                    <View style={styles.cellExample}>
+                    <View style={localStyles.cellExample}>
                         <DetailCell
                             title="Title for article item"
                             subtitle1={"Subtitle 1 for article item"}
@@ -51,3 +53,10 @@ export default function BannerSection() {
         </>
     );
 }
+
+const localStyles = StyleSheet.create({
+    cellExample: {
+        backgroundColor: tokens.color.offWhite,
+        padding: tokens.spacing.large_24,
+    },
+});

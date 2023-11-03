@@ -5,7 +5,7 @@ import Switch from "@khanacademy/wonder-blocks-switch";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
-import {styles} from "../component-gallery";
+import {styles} from "../styles";
 
 export default function BannerSection() {
     const [checked, setChecked] = React.useState<boolean>(false);
