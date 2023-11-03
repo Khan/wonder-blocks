@@ -9,5 +9,14 @@
         "paths": {
             "@khanacademy/*": ["./packages/*/src"]
         },
+
+        "plugins": [
+            {
+                "name": "typescript-plugin-css-modules",
+                "options": {
+                    "goToDefinition": true,
+                }
+            }
+        ]
     }
 }

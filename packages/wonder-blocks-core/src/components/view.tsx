@@ -1,29 +1,31 @@
 // WARNING: If you modify this file you must update view.js.flow.
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+// import {StyleSheet} from "aphrodite";
 
 import addStyle from "../util/add-style";
 
 import type {TextViewSharedProps} from "../util/types";
 
-const styles = StyleSheet.create({
-    // https://github.com/facebook/css-layout#default-values
-    default: {
-        alignItems: "stretch",
-        borderWidth: 0,
-        borderStyle: "solid",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        margin: 0,
-        padding: 0,
-        position: "relative",
-        zIndex: 0,
-        // fix flexbox bugs
-        minHeight: 0,
-        minWidth: 0,
-    },
-});
+import styles from "./view.module.css";
+
+// const styles = StyleSheet.create({
+//     // https://github.com/facebook/css-layout#default-values
+//     default: {
+//         alignItems: "stretch",
+//         borderWidth: 0,
+//         borderStyle: "solid",
+//         boxSizing: "border-box",
+//         display: "flex",
+//         flexDirection: "column",
+//         margin: 0,
+//         padding: 0,
+//         position: "relative",
+//         zIndex: 0,
+//         // fix flexbox bugs
+//         minHeight: 0,
+//         minWidth: 0,
+//     },
+// });
 
 type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
 type Props = TextViewSharedProps & {
@@ -33,11 +35,11 @@ type Props = TextViewSharedProps & {
     tag?: ValidViewTags;
 };
 
-const StyledDiv = addStyle("div", styles.default);
-const StyledArticle = addStyle("article", styles.default);
-const StyledAside = addStyle("aside", styles.default);
-const StyledNav = addStyle("nav", styles.default);
-const StyledSection = addStyle("section", styles.default);
+const StyledDiv = addStyle("div", undefined, styles.default);
+const StyledArticle = addStyle("article", undefined, styles.default);
+const StyledAside = addStyle("aside", undefined, styles.default);
+const StyledNav = addStyle("nav", undefined, styles.default);
+const StyledSection = addStyle("section", undefined, styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly

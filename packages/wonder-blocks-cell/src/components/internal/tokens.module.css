@@ -1,0 +1,14 @@
+@value white: #ffffff;
+@value offWhite: #f7f8fa;
+@value offBlack: #21242c;
+@value blue: #1865f2;
+
+@value offBlack8: color-mix(in srgb, offBlack 8%, transparent);
+@value offBlack16: color-mix(in srgb, offBlack 16%, transparent);
+
+@value cellMinHeight: 48px;
+@value cellPaddingVertical: 12px;
+@value cellPaddingHorizontal: 16px;
+@value detailCellPaddingHorizontal: 16px;
+@value detailCellPaddingVertical: 16px;
+@value accessoryPaddingHorizontal: 16px;

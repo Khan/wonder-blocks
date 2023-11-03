@@ -1,0 +1,87 @@
+@value tokens: "./tokens.module.css";
+@value white, offBlack, offBlack8, offBlack16, blue, cellMinHeight, cellPaddingVertical, cellPaddingHorizontal from tokens;
+
+.wrapper {
+    background: white;
+    color: offBlack;
+    display: flex;
+    min-height: cellMinHeight;
+    text-align: left;
+}
+
+.innerWrapper {
+    min-height: cellMinHeight;
+    padding: cellPaddingVertical cellPaddingHorizontal;
+    flex-direction: row;
+    flex: 1;
+
+    /* Reduce the padding of the innerWrapper when the focus ring is */
+    /* visible. */
+    &:focus-visible {
+        padding: calc(cellPaddingVertical - 2px) calc(cellPaddingHorizontal - 2px);
+    }
+}
+
+.clickable {
+    outline: none;
+    /**
+     * States
+     */
+    /* disabled */
+    /* NOTE: We use `aria-disabled` instead of `disabled` because we want */
+    /* to allow the cell to be focusable even when it's disabled. */
+    &:hover[aria-disabled=true] {
+        cursor: not-allowed;
+    }
+
+    /* focus (only visible when using keyboard navigation) */
+    &:focus-visible {
+        border-radius: 4px;
+        /* To hide the internal corners of the cell. */
+        overflow: hidden;
+        /* To display the focus ring based on the cell's border. */
+        position: relative;
+    }
+    /* NOTE: We use a pseudo element to draw the focus ring because we can't */
+    /* use `outline` since it conflicts with different layout contexts (e.g. */
+    /* `View` elements add their own z-index). */
+    &:focus-visible:after {
+        content: '';
+        /* Since we are using a pseudo element, we need to manually */
+        /* calculate the width/height and use absolute position to */
+        /* prevent other elements from being shifted around. */
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        /* We remove the border width from the width/height to ensure */
+        /* that the focus ring is drawn inside the cell. */
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        border: 2px solid blue;
+        border-radius: 4px,
+    }
+
+    /* hover + enabled */
+    &:hover[aria-disabled=false] {
+        background: offBlack8;
+    }
+
+    /* pressed + enabled */
+    &:active[aria-disabled=false] {
+        background: offBlack16;
+    }
+}
+
+.active {
+    background: color-mix(in srgb, blue, transparent 8%);
+    color: blue;
+
+    &:hover[aria-disabled=false] {
+        background-color: color-mix(in srgb, blue, transparent 16%);
+    }
+
+    &:active[aria-disabled=false] {
+        background-color: color-mix(in srgb, blue, transparent 24%);
+    }
+}

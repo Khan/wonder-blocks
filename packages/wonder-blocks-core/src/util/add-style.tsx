@@ -16,7 +16,9 @@ export default function addStyle<
     } & Omit<React.ComponentProps<T>, "style">, // Removes the 'style' prop from the original component
 >(
     Component: T,
+    // TODO: only allow one of these to be set
     defaultStyle?: StyleType,
+    defaultClassName?: string,
 ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<Props> &
         React.RefAttributes<
@@ -33,11 +35,13 @@ export default function addStyle<
     >((props, ref) => {
         // eslint-disable-next-line react/prop-types
         const {className, style, ...otherProps} = props;
-        const reset =
-            typeof Component === "string" ? overrides[Component] : null;
+
+        // TODO(kevinb): add this back in later
+        // const reset =
+        //     typeof Component === "string" ? overrides[Component] : null;
 
         const {className: aphroditeClassName, style: inlineStyles} =
-            processStyleList([reset, defaultStyle, style]);
+            processStyleList([defaultStyle, style]);
 
         return (
             // @ts-expect-error: TS says this is not assignable to the return forwardRef()'s return type.
@@ -46,7 +50,7 @@ export default function addStyle<
             <Component
                 {...otherProps}
                 ref={ref}
-                className={[aphroditeClassName, className]
+                className={[defaultClassName, aphroditeClassName, className]
                     .filter(Boolean)
                     .join(" ")}
                 style={inlineStyles}

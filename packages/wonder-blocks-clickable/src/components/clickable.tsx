@@ -11,6 +11,8 @@ import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";
 import {isClientSideUrl} from "../util/is-client-side-url";
 
+import cssStyles from "./clickable.module.css";
+
 type CommonProps =
     /**
      * aria-label should be used when `spinner={true}` to let people using screen
@@ -208,6 +210,8 @@ const Clickable = React.forwardRef(function Clickable(
             [key: string]: any;
         },
     ) => React.ReactElement = (clickableState, router, commonProps) => {
+        console.log(commonProps);
+
         const activeHref = props.href && !props.disabled;
         const useClient =
             router && !props.skipClientNav && isClientSideUrl(props.href || "");
@@ -241,6 +245,7 @@ const Clickable = React.forwardRef(function Clickable(
                 </StyledAnchor>
             );
         } else {
+            console.log(`className = ${commonProps.className}`);
             return (
                 <StyledButton
                     {...commonProps}
@@ -272,6 +277,7 @@ const Clickable = React.forwardRef(function Clickable(
             light,
             disabled,
             tabIndex,
+            className,
             ...restProps
         } = props;
         const ClickableBehavior = getClickableBehavior(
@@ -290,6 +296,9 @@ const Clickable = React.forwardRef(function Clickable(
             style,
         ];
 
+        const finalClassName = `${cssStyles.reset} ${cssStyles.link} ${className}`;
+        console.log(`finalClassName = ${finalClassName}`);
+
         if (beforeNav) {
             return (
                 <ClickableBehavior
@@ -306,7 +315,8 @@ const Clickable = React.forwardRef(function Clickable(
                         getCorrectTag(state, router, {
                             ...restProps,
                             "data-test-id": testId,
-                            style: getStyle(state),
+                            // style: getStyle(state),
+                            className: finalClassName,
                             ...childrenProps,
                         })
                     }
@@ -328,7 +338,8 @@ const Clickable = React.forwardRef(function Clickable(
                         getCorrectTag(state, router, {
                             ...restProps,
                             "data-test-id": testId,
-                            style: getStyle(state),
+                            // style: getStyle(state),
+                            className: finalClassName,
                             ...childrenProps,
                         })
                     }

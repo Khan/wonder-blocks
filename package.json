@@ -111,6 +111,7 @@
     "rollup-plugin-babel": "^4.0.0-beta.2",
     "storybook": "^7.5.1",
     "storybook-addon-pseudo-states": "^2.1.2",
+    "storybook-css-modules": "^1.0.8",
     "typescript": "^4.9.5",
     "typescript-coverage-report": "^0.7.0",
     "vite": "^4.4.8",

@@ -24,3 +24,8 @@ declare module "@phosphor-icons/core/fill/*-fill.svg" {
     const icon: PhosphorFill;
     export default icon;
 }
+
+declare module "*.module.css" {
+    const classes: {[key: string]: string};
+    export default classes;
+}

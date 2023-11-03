@@ -1,0 +1,28 @@
+.reset {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+
+    background: transparent;
+    text-decoration: none;
+
+    color: inherit;
+    font: inherit;
+
+    box-sizing: border-box;
+    touch-action: manipulation;
+    user-select: none;
+
+    outline: none;
+
+    line-height: normal;
+
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+}
+
+.link {
+    cursor: pointer;
+}

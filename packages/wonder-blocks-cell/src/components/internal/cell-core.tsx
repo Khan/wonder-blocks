@@ -13,6 +13,8 @@ import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
 import type {CellProps} from "../../util/types";
 
+import cssStyles from "./cell-core.module.css";
+
 type LeftAccessoryProps = {
     leftAccessory?: CellProps["leftAccessory"];
     leftAccessoryStyle?: CellProps["leftAccessoryStyle"];
@@ -110,15 +112,18 @@ function CellInner(props: CellCoreProps): React.ReactElement {
     } = props;
     const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
+    const className = cssStyles.innerWrapper;
+
     return (
         <View
-            style={[
-                styles.innerWrapper,
-                innerStyle,
-                // custom styles
-                style,
-                horizontalRuleStyles,
-            ]}
+            // style={[
+            //     styles.innerWrapper,
+            //     innerStyle,
+            //     // custom styles
+            //     style,
+            //     horizontalRuleStyles,
+            // ]}
+            className={className}
         >
             {/* Left accessory */}
             <LeftAccessory
@@ -177,6 +182,13 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 
     // Pressable cell.
     if (onClick || href) {
+        let className = `${cssStyles.wrapper} ${cssStyles.clickable}`;
+        if (active) {
+            className += ` ${cssStyles.active}`;
+        }
+        if (disabled) {
+            className += ` ${cssStyles.disabled}`;
+        }
         return (
             // @ts-expect-error - TypeScript doesn't know that `target` can only be defined when `href` is.
             <Clickable
@@ -186,12 +198,13 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 hideDefaultFocusRing={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 target={target}
-                style={[
-                    styles.wrapper,
-                    styles.clickable,
-                    active && styles.active,
-                    disabled && styles.disabled,
-                ]}
+                // style={[
+                //     styles.wrapper,
+                //     styles.clickable,
+                //     active && styles.active,
+                //     disabled && styles.disabled,
+                // ]}
+                className={className}
                 aria-current={active ? "true" : undefined}
             >
                 {() => <CellInner {...props} />}
@@ -201,9 +214,14 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 
     // No click event attached, so just render the cell without a Clickable
     // wrapper.
+    let className = cssStyles.wrapper;
+    if (active) {
+        className += ` ${cssStyles.active}`;
+    }
     return (
         <View
-            style={[styles.wrapper, active && styles.active]}
+            // style={[styles.wrapper, active && styles.active]}
+            className={className}
             aria-current={active ? "true" : undefined}
         >
             <CellInner {...props} />

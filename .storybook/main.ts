@@ -12,6 +12,7 @@ const config: StorybookConfig = {
         getAbsolutePath("@storybook/addon-interactions"),
         getAbsolutePath("@storybook/addon-mdx-gfm"),
         getAbsolutePath("storybook-addon-pseudo-states"),
+        getAbsolutePath("storybook-css-modules"),
     ],
     staticDirs: ["../static"],
     core: {
