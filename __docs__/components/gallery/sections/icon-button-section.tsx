@@ -11,13 +11,14 @@ import {styles} from "../styles";
 export default function IconButtonSection() {
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="icon-button" tag="h3" style={styles.sectionLabel}>
                 Icon Button
             </HeadingLarge>
             <View style={styles.section}>
                 <ComponentTile
                     name="IconButton"
                     href="/?path=/docs/iconbutton--docs"
+                    description="A button whose contents are an SVG image."
                 >
                     <View style={styles.centerContent}>
                         <IconButton

@@ -12,11 +12,17 @@ import {styles} from "../styles";
 export default function PillSection() {
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="pill" tag="h3" style={styles.sectionLabel}>
                 Pill
             </HeadingLarge>
-            <ComponentTile name="Pill" href="/?path=/docs/pill--docs">
-                <View style={localStyles.grid}>
+
+            <ComponentTile
+                name="Pill"
+                href="/?path=/docs/pill--docs"
+                description={`Used to display a small amount of
+                    information, such as a tag or a status.`}
+            >
+                <View style={[styles.centerContent, localStyles.grid]}>
                     <View>
                         <Pill
                             kind="neutral"

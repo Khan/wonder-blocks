@@ -13,7 +13,7 @@ import {styles} from "../styles";
 export default function AccordionGallerySection() {
     return (
         <RenderStateRoot>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="accordion" tag="h3" style={styles.sectionLabel}>
                 Accordion
             </HeadingLarge>
 
@@ -21,6 +21,9 @@ export default function AccordionGallerySection() {
                 <ComponentTile
                     name="Accordion"
                     href="/?path=/docs/accordion-accordion--docs"
+                    description={`A vertically stacked list of sections,
+                        each of which contains content that can be expanded
+                        or collapsed by clicking its header.`}
                 >
                     <Accordion>
                         <AccordionSection header="First section">
@@ -39,6 +42,9 @@ export default function AccordionGallerySection() {
                 <ComponentTile
                     name="AccordionSection"
                     href="/?path=/docs/accordion-accordionsection--docs"
+                    description={`A single collapsible section within
+                        an accordion. It can be used by itself or within
+                        an accordion.`}
                 >
                     <AccordionSection header="Accordion Section">
                         This is an accordion section.

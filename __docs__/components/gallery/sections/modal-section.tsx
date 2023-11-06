@@ -12,7 +12,7 @@ import {styles} from "../styles";
 export default function ModalSection() {
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="modal" tag="h3" style={styles.sectionLabel}>
                 Modal
             </HeadingLarge>
 
@@ -20,6 +20,10 @@ export default function ModalSection() {
                 <ComponentTile
                     name="OnePaneDialog"
                     href="/?path=/docs/modal-onepanedialog--docs"
+                    description={`Standard layout for most straightforward
+                        modal experiences. Modals display in front of the
+                        current view and prevent interaction background until
+                        they are dismissed.`}
                 >
                     <View style={localStyles.previewSizer}>
                         <View style={localStyles.modalPositioner}>

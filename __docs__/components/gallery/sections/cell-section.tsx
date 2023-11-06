@@ -13,13 +13,16 @@ import {styles} from "../styles";
 export default function BannerSection() {
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="cell" tag="h3" style={styles.sectionLabel}>
                 Cell
             </HeadingLarge>
             <View style={styles.section}>
                 <ComponentTile
                     name="CompactCell"
                     href="/?path=/docs/cell-compactcell--docs"
+                    description={`A compacted-height cell with limited
+                        subviews and accessories. Typically they represent
+                        additional info or selection lists.`}
                 >
                     <View style={localStyles.cellExample}>
                         <CompactCell
@@ -34,6 +37,10 @@ export default function BannerSection() {
                 <ComponentTile
                     name="DetailCell"
                     href="/?path=/docs/cell-detailcell--docs"
+                    description={`A compact cell that allows adding
+                        subtitles before and after the cell title. They
+                        typically represent an item that can be
+                        clicked/tapped to view more complex details.`}
                 >
                     <View style={localStyles.cellExample}>
                         <DetailCell

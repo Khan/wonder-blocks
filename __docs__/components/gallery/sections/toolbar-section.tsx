@@ -13,10 +13,17 @@ import {styles} from "../styles";
 export default function ToolbarSection() {
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="toolbar" tag="h3" style={styles.sectionLabel}>
                 Toolbar
             </HeadingLarge>
-            <ComponentTile name="Toolbar" href="/?path=/docs/toolbar--docs">
+
+            <ComponentTile
+                name="Toolbar"
+                href="/?path=/docs/toolbar--docs"
+                description={`A generic toolbar wrapper that exposes
+                    customization options, including a title and left/right
+                    content.`}
+            >
                 <View>
                     <Toolbar
                         title="Counting with small numbers"

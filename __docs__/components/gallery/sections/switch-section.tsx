@@ -11,10 +11,16 @@ export default function BannerSection() {
     const [checked, setChecked] = React.useState<boolean>(false);
     return (
         <RenderStateRoot>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="switch" tag="h3" style={styles.sectionLabel}>
                 Switch
             </HeadingLarge>
-            <ComponentTile name="Switch" href="/?path=/docs/switch--docs">
+
+            <ComponentTile
+                name="Switch"
+                href="/?path=/docs/switch--docs"
+                description={`An input that allows users to toggle
+                    between two states (typically "on" and "off").`}
+            >
                 <View style={styles.centerContent}>
                     <Switch
                         checked={checked}

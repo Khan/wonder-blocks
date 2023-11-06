@@ -14,15 +14,18 @@ import {styles} from "../styles";
 export default function IconSection() {
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="icon" tag="h3" style={styles.sectionLabel}>
                 Icon
             </HeadingLarge>
             <View style={styles.section}>
                 <ComponentTile
                     name="PhosphorIcon"
                     href="/?path=/docs/icon-phosphoricon--docs"
+                    description={`Displays a small informational or
+                        decorative image available from the
+                        @phosphor-icons/core package.`}
                 >
-                    <View style={localStyles.content}>
+                    <View style={[localStyles.content, styles.centerContent]}>
                         <PhosphorIcon
                             icon={magnifyingGlassBold}
                             size="xlarge"

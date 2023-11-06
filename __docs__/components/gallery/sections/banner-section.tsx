@@ -9,10 +9,16 @@ import {styles} from "../styles";
 export default function BannerSection() {
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="banner" tag="h3" style={styles.sectionLabel}>
                 Banner
             </HeadingLarge>
-            <ComponentTile name="Banner" href="/?path=/docs/banner--docs">
+            <ComponentTile
+                name="Banner"
+                href="/?path=/docs/banner--docs"
+                description={`Displays a prominent message and
+                    related optional actions. It can be used as a way
+                    of informing the user of important changes.`}
+            >
                 <Banner text="This is a banner!" layout="floating" />
             </ComponentTile>
         </>

@@ -24,13 +24,14 @@ export default function BannerSection() {
 
     return (
         <>
-            <HeadingLarge tag="h3" style={styles.sectionLabel}>
+            <HeadingLarge id="form" tag="h3" style={styles.sectionLabel}>
                 Form
             </HeadingLarge>
             <View style={styles.section}>
                 <ComponentTile
                     name="Checkbox"
                     href="/?path=/docs/form-checkbox--docs"
+                    description="A selection that can be checked or unchecked."
                 >
                     <Checkbox
                         label={"Checkbox label"}
@@ -43,6 +44,7 @@ export default function BannerSection() {
                 <ComponentTile
                     name="CheckboxGroup"
                     href="/?path=/docs/form-checkboxgroup--docs"
+                    description="Allows multiple selections."
                 >
                     <CheckboxGroup
                         groupName="toppings"
@@ -64,6 +66,7 @@ export default function BannerSection() {
                 <ComponentTile
                     name="RadioGroup"
                     href="/?path=/docs/form-radiogroup--docs"
+                    description="Allows only a single selection."
                 >
                     <RadioGroup
                         groupName="pokemon"
@@ -85,6 +88,9 @@ export default function BannerSection() {
                 <ComponentTile
                     name="TextField"
                     href="/?path=/docs/form-textfield--docs"
+                    description={`Standard text input field. This is
+                        used to accept a single line of text from
+                        the user.`}
                 >
                     <TextField
                         id="text-field"
@@ -98,6 +104,9 @@ export default function BannerSection() {
                 <ComponentTile
                     name="LabeledTextField"
                     href="/?path=/docs/form-labeledtextfield--docs"
+                    description={`Used to accept a single line of text
+                        from the user paired with a label, description,
+                        and error field elements.`}
                 >
                     <LabeledTextField
                         label="Name (Label)"
