@@ -281,7 +281,7 @@ export const WithInitialExpandedIndex: StoryComponentType = {
  * animation includes the caret, the expansion/collapse, and the last
  * section's border radius. In this example, animated accordions with
  * different corner kinds are shown to demonstrate the border radius transition,
- * as well as accordions with \`allowMultipleExpanded\` set to \`false\`, and
+ * as well as accordions with `allowMultipleExpanded` set to `false`, and
  * an accordion with sections of different heights.
  *
  * If the user has `prefers-reduced-motion` opted in, this animation should
@@ -404,6 +404,13 @@ export const WithAnimation: StoryComponentType = {
     },
 };
 
+WithAnimation.parameters = {
+    chromatic: {
+        // Disabling because we cannot visually test this in chromatic.
+        disableSnapshot: true,
+    },
+};
+
 /**
  * An Accordion with custom styles. The custom styles in this example
  * include a pink border and extra padding.
@@ -507,6 +514,13 @@ export const LongSections: StoryComponentType = {
                 )}
             </View>
         );
+    },
+};
+
+LongSections.parameters = {
+    chromatic: {
+        // Disabling because we cannot visually test this in chromatic.
+        disableSnapshot: true,
     },
 };
 

@@ -437,6 +437,13 @@ export const WithAnimation: StoryComponentType = {
     },
 };
 
+WithAnimation.parameters = {
+    chromatic: {
+        // Disabling because we cannot visually test this in chromatic.
+        disableSnapshot: true,
+    },
+};
+
 /**
  * An AccordionSection can have custom styles passed in. In this example,
  * the AccordionSection has a gray background and a border, as well as
