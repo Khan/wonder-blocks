@@ -22,6 +22,9 @@ type Props = {
     cornerKind: AccordionCornerKindType;
     // Whether the section is expanded or not.
     expanded: boolean;
+    // Whether to include animation on the header. This should be false
+    // if the user has `prefers-reduced-motion` opted in. Defaults to false.
+    animated: boolean;
     // Called on header click.
     onClick?: () => void;
     // The ID for the content that the header's `aria-controls` should
@@ -48,6 +51,7 @@ const AccordionSectionHeader = (props: Props) => {
         caretPosition,
         cornerKind,
         expanded,
+        animated,
         onClick,
         sectionContentUniqueId,
         headerStyle,
@@ -75,6 +79,7 @@ const AccordionSectionHeader = (props: Props) => {
                 testId={testId}
                 style={[
                     styles.headerWrapper,
+                    animated && styles.headerWrapperWithAnimation,
                     caretPosition === "start" && styles.headerWrapperCaretStart,
                     roundedTop && styles.roundedTop,
                     roundedBottom && styles.roundedBottom,
@@ -108,6 +113,7 @@ const AccordionSectionHeader = (props: Props) => {
                             color={tokens.color.offBlack64}
                             size="small"
                             style={[
+                                animated && styles.iconWithAnimation,
                                 caretPosition === "start"
                                     ? styles.iconStart
                                     : styles.iconEnd,
@@ -126,6 +132,7 @@ const AccordionSectionHeader = (props: Props) => {
 // a 1px gap between the border and the outline. To fix this, we
 // subtract 1 from the border radius.
 const INNER_BORDER_RADIUS = tokens.spacing.small_12 - 1;
+const ANIMATION_LENGTH = "300ms";
 
 const styles = StyleSheet.create({
     heading: {
@@ -148,6 +155,9 @@ const styles = StyleSheet.create({
         ":hover": {
             outline: `2px solid ${tokens.color.blue}`,
         },
+    },
+    headerWrapperWithAnimation: {
+        transition: `border-radius ${ANIMATION_LENGTH}`,
     },
     headerWrapperCaretStart: {
         flexDirection: "row-reverse",
@@ -179,6 +189,9 @@ const styles = StyleSheet.create({
     headerStringCaretStart: {
         paddingInlineEnd: tokens.spacing.medium_16,
         paddingInlineStart: tokens.spacing.small_12,
+    },
+    iconWithAnimation: {
+        transition: `transform ${ANIMATION_LENGTH}`,
     },
     iconExpanded: {
         // Turn the caret upside down

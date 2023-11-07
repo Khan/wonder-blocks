@@ -12,6 +12,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
+                animated={false}
                 onClick={() => {}}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -34,6 +35,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
+                animated={false}
                 onClick={() => {}}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -59,6 +61,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
+                animated={false}
                 onClick={() => {}}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -81,6 +84,7 @@ describe("AccordionSectionHeader", () => {
                 caretPosition="end"
                 cornerKind="square"
                 expanded={false}
+                animated={false}
                 onClick={onClickSpy}
                 sectionContentUniqueId="section-content-unique-id"
                 isFirstSection={false}
@@ -91,5 +95,55 @@ describe("AccordionSectionHeader", () => {
 
         // Assert
         expect(onClickSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test("includes transition styles when animated is true", () => {
+        // Arrange
+        render(
+            <AccordionSectionHeader
+                header="Title"
+                caretPosition="end"
+                cornerKind="square"
+                expanded={false}
+                animated={true}
+                onClick={() => {}}
+                sectionContentUniqueId="section-content-unique-id"
+                isFirstSection={false}
+                isLastSection={false}
+            />,
+        );
+
+        // Act
+        const header = screen.getByRole("button");
+
+        // Assert
+        expect(header).toHaveStyle({
+            transition: "border-radius 300ms",
+        });
+    });
+
+    test("does not include transition styles when animated is false", () => {
+        // Arrange
+        render(
+            <AccordionSectionHeader
+                header="Title"
+                caretPosition="end"
+                cornerKind="square"
+                expanded={false}
+                animated={false}
+                onClick={() => {}}
+                sectionContentUniqueId="section-content-unique-id"
+                isFirstSection={false}
+                isLastSection={false}
+            />,
+        );
+
+        // Act
+        const header = screen.getByRole("button");
+
+        // Assert
+        expect(header).not.toHaveStyle({
+            transition: "border-radius 300ms",
+        });
     });
 });

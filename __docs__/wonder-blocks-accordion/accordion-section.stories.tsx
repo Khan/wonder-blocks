@@ -16,6 +16,49 @@ import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 
 import AccordionSectionArgtypes from "./accordion-section.argtypes";
 
+/**
+ * An AccordionSection displays a section of content that can be shown or
+ * hidden by clicking its header. This is generally used within the Accordion
+ * component, but it can also be used on its own if you need only one
+ * collapsible section.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {
+ *      Accordion,
+ *      AccordionSection
+ * } from "@khanacademy/wonder-blocks-accordion";
+ *
+ * // Within an Accordion
+ * <Accordion>
+ *   <AccordionSection header="First section">
+ *       This is the information present in the first section
+ *   </AccordionSection>
+ *   <AccordionSection header="Second section">
+ *       This is the information present in the second section
+ *   </AccordionSection>
+ *   <AccordionSection header="Third section">
+ *       This is the information present in the third section
+ *   </AccordionSection>
+ * </Accordion>
+ *
+ * // On its own, controlled
+ * const [expanded, setExpanded] = React.useState(false);
+ * <AccordionSection
+ *     header="A standalone section"
+ *     expanded={expanded}
+ *     onToggle={setExpanded}
+ * >
+ *    This is the information present in the standalone section
+ * </AccordionSection>
+ *
+ * // On its own, uncontrolled
+ * <AccordionSection header="A standalone section">
+ *   This is the information present in the standalone section
+ * </AccordionSection>
+ * ```
+ */
 export default {
     title: "Accordion / AccordionSection",
     component: AccordionSection,
@@ -372,6 +415,36 @@ export const CornerKinds: StoryComponentType = {
 };
 
 /**
+ * An AccordionSection can be animated using the `animated` prop.
+ * This animation includes the caret, the expansion/collapse, and the
+ * border radius.
+ *
+ * If the user has `prefers-reduced-motion` opted in, this animation should
+ * be disabled. This can be done by passing `animated={false}` to
+ * the AccordionSection.
+ *
+ * If `animated` is specified both here in the AccordionSection
+ * and within a parent Accordion component, the Accordion's
+ * `animated` value is prioritized.
+ */
+export const WithAnimation: StoryComponentType = {
+    render: () => {
+        return (
+            <AccordionSection header="This section is animated" animated={true}>
+                Something
+            </AccordionSection>
+        );
+    },
+};
+
+WithAnimation.parameters = {
+    chromatic: {
+        // Disabling because we cannot visually test this in chromatic.
+        disableSnapshot: true,
+    },
+};
+
+/**
  * An AccordionSection can have custom styles passed in. In this example,
  * the AccordionSection has a gray background and a border, as well as
  * extra margin.
@@ -449,9 +522,15 @@ export const WithTag: StoryComponentType = {
     },
 };
 
+const mobile = "@media (max-width: 1023px)";
+
 const styles = StyleSheet.create({
     sideBySide: {
         flexDirection: "row",
+
+        [mobile]: {
+            flexDirection: "column",
+        },
     },
     fullWidth: {
         width: "100%",

@@ -61,6 +61,15 @@ type Props = AriaProps & {
      */
     cornerKind?: AccordionCornerKindType;
     /**
+     * Whether to include animation on the header. This should be false
+     * if the user has `prefers-reduced-motion` opted in. Defaults to false.
+     *
+     * If this prop is specified both here in the Accordion and within
+     * a child AccordionSection component, the Accordion’s animated
+     * value is prioritized.
+     */
+    animated?: boolean;
+    /**
      * Custom styles for the overall accordion container.
      */
     style?: StyleType;
@@ -106,6 +115,7 @@ const Accordion = React.forwardRef(function Accordion(
         allowMultipleExpanded = true,
         caretPosition,
         cornerKind = "rounded",
+        animated,
         style,
         ...ariaProps
     } = props;
@@ -147,6 +157,7 @@ const Accordion = React.forwardRef(function Accordion(
                     caretPosition: childCaretPosition,
                     cornerKind: childCornerKind,
                     onToggle: childOnToggle,
+                    animated: childanimated,
                 } = child.props;
 
                 const isFirstChild = index === 0;
@@ -165,6 +176,8 @@ const Accordion = React.forwardRef(function Accordion(
                             // Don't use the AccordionSection's expanded prop
                             // when it's rendered within Accordion.
                             expanded: sectionsOpened[index],
+                            // Prioritize the Accordion's animated
+                            animated: animated ?? childanimated,
                             onToggle: () =>
                                 handleSectionClick(index, childOnToggle),
                             isFirstSection: isFirstChild,

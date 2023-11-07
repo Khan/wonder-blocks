@@ -62,6 +62,15 @@ type Props = AriaProps & {
      */
     expanded?: boolean;
     /**
+     * Whether to include animation on the header. This should be false
+     * if the user has `prefers-reduced-motion` opted in. Defaults to false.
+     *
+     * If this prop is specified both here in the AccordionSection and
+     * within a parent Accordion component, the Accordion’s animated
+     * value is prioritized.
+     */
+    animated?: boolean;
+    /**
      * Called when the header is clicked.
      * Takes the new expanded state as an argument. This way, the function
      * returned from React.useState can be passed in directly.
@@ -108,7 +117,7 @@ type Props = AriaProps & {
 /**
  * An AccordionSection displays a section of content that can be shown or
  * hidden by clicking its header. This is generally used within the Accordion
- * component, but it can also be used on its own if you need only
+ * component, but it can also be used on its own if you need only one
  * collapsible section.
  *
  * ### Usage
@@ -132,7 +141,7 @@ type Props = AriaProps & {
  *   </AccordionSection>
  * </Accordion>
  *
- * // On its own
+ * // On its own, controlled
  * const [expanded, setExpanded] = React.useState(false);
  * <AccordionSection
  *     header="A standalone section"
@@ -140,6 +149,11 @@ type Props = AriaProps & {
  *     onToggle={setExpanded}
  * >
  *    This is the information present in the standalone section
+ * </AccordionSection>
+ *
+ * // On its own, uncontrolled
+ * <AccordionSection header="A standalone section">
+ *   This is the information present in the standalone section
  * </AccordionSection>
  * ```
  */
@@ -152,6 +166,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         id,
         header,
         expanded,
+        animated = false,
         onToggle,
         caretPosition = "end",
         cornerKind = "rounded",
@@ -209,7 +224,15 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     return (
         <View
             id={sectionId}
-            style={[styles.wrapper, sectionStyles.wrapper, style]}
+            style={[
+                styles.wrapper,
+                animated && styles.wrapperWithAnimation,
+                sectionStyles.wrapper,
+                expandedState
+                    ? styles.wrapperExpanded
+                    : styles.wrapperCollapsed,
+                style,
+            ]}
             testId={testId}
             {...ariaProps}
             ref={ref}
@@ -219,6 +242,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 caretPosition={caretPosition}
                 cornerKind={cornerKind}
                 expanded={expandedState}
+                animated={animated}
                 onClick={handleClick}
                 sectionContentUniqueId={sectionContentUniqueId}
                 headerStyle={headerStyle}
@@ -227,32 +251,51 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 isFirstSection={isFirstSection}
                 isLastSection={isLastSection}
             />
-            {/* The content is the section that expands and closes. */}
-            {expandedState ? (
-                <View
-                    id={sectionContentUniqueId}
-                    style={[
-                        styles.contentWrapper,
-                        sectionStyles.contentWrapper,
-                    ]}
-                >
-                    {typeof children === "string" ? (
-                        <Body style={styles.stringContent}>{children}</Body>
-                    ) : (
-                        children
-                    )}
-                </View>
-            ) : null}
+            <View
+                id={sectionContentUniqueId}
+                style={[
+                    styles.contentWrapper,
+                    expandedState
+                        ? styles.contentWrapperExpanded
+                        : styles.conentWrapperCollapsed,
+                    sectionStyles.contentWrapper,
+                ]}
+            >
+                {typeof children === "string" ? (
+                    <Body style={styles.stringContent}>{children}</Body>
+                ) : (
+                    children
+                )}
+            </View>
         </View>
     );
 });
 
 const styles = StyleSheet.create({
     wrapper: {
-        flexDirection: "column",
+        // Use grid layout for clean animations.
+        display: "grid",
         boxSizing: "border-box",
     },
+    wrapperWithAnimation: {
+        transition: "grid-template-rows 300ms",
+    },
+    wrapperCollapsed: {
+        gridTemplateRows: "min-content 0fr",
+    },
+    wrapperExpanded: {
+        gridTemplateRows: "min-content 1fr",
+    },
     contentWrapper: {
+        overflow: "hidden",
+    },
+    conentWrapperCollapsed: {
+        // Make sure screen readers don't read the content when it's
+        // collapsed.
+        visibility: "hidden",
+    },
+    contentWrapperExpanded: {
+        visibility: "visible",
         // Add a small margin to the top of the content block so that the
         // header outline doesn't overlap with the content (and the content
         // doesn't overlap with the header outline).
@@ -307,7 +350,6 @@ const _generateStyles = (
             // because it cuts off the header's focus outline.
             borderEndEndRadius: tokens.spacing.small_12,
             borderEndStartRadius: tokens.spacing.small_12,
-            overflow: "hidden",
         };
 
         if (isFirstSection) {
@@ -339,7 +381,6 @@ const _generateStyles = (
             // because it cuts off the header's focus outline.
             borderEndEndRadius: tokens.spacing.small_12,
             borderEndStartRadius: tokens.spacing.small_12,
-            overflow: "hidden",
         };
     }
 

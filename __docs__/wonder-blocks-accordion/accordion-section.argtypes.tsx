@@ -36,10 +36,7 @@ export default {
             left-to-right language (and on the right of a right-to-left
             language), and "end" means it’s on the right of a left-to-right
             language (and on the left of a right-to-left language).
-            Defaults to "end".
-            If this prop is specified both here in the \`AccordionSection\`
-            and within the \`Accordion\` component, the Accordion’s
-            caretPosition value is prioritized.`,
+            Defaults to "end".`,
         defaultValue: "end",
         table: {
             defaultValue: {summary: "end"},
@@ -72,6 +69,16 @@ export default {
     expanded: {
         control: {type: "boolean"},
         description: `Whether this section should be expanded on initial load.
+            Defaults to false.`,
+        table: {
+            defaultValue: {summary: "false"},
+            type: {summary: "boolean"},
+        },
+    },
+    animated: {
+        control: {type: "boolean"},
+        description: `Whether to include animation on the header. This should
+            be false if the user has \`prefers-reduced-motion\` opted in.
             Defaults to false.`,
         table: {
             defaultValue: {summary: "false"},
