@@ -48,7 +48,6 @@ const theme = {
              */
             icon: {
                 primary: "transparent",
-                primaryHover: "transparent",
                 secondary: "transparent",
                 secondaryHover: "transparent",
             },
@@ -78,7 +77,6 @@ const theme = {
             icon: {
                 // kind="primary"
                 primary: tokens.color.white,
-                primaryHover: tokens.color.white,
 
                 // kind="secondary"
                 secondary: tokens.color.blue,

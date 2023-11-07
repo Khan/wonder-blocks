@@ -170,9 +170,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
                                 ? sharedStyles.iconWrapperPrimary
                                 : sharedStyles.iconWrapperSecondary,
                             (focused || hovered) &&
-                                (kind === "primary"
-                                    ? sharedStyles.iconWrapperPrimaryHovered
-                                    : sharedStyles.iconWrapperSecondaryHovered),
+                                kind !== "primary" &&
+                                sharedStyles.iconWrapperSecondaryHovered,
                         ]}
                     >
                         <ButtonIcon
@@ -290,6 +289,8 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         marginInlineStart: -theme.padding.small,
     },
     tertiaryStartIcon: {
+        // Undo the negative padding from startIcon since tertiary
+        // buttons don't have extra padding.
         marginInlineStart: 0,
     },
     endIcon: {
@@ -302,10 +303,6 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     iconWrapperPrimary: {
         backgroundColor: theme.color.bg.icon.primary,
         color: theme.color.text.icon.primary,
-    },
-    iconWrapperPrimaryHovered: {
-        backgroundColor: theme.color.bg.icon.primaryHover,
-        color: theme.color.text.icon.primaryHover,
     },
     iconWrapperSecondary: {
         backgroundColor: theme.color.bg.icon.secondary,
