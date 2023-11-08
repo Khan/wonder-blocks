@@ -168,6 +168,9 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 )}
                 {endIcon && (
                     <View
+                        testId={
+                            testId ? `${testId}-end-icon-wrapper` : undefined
+                        }
                         style={[
                             styles.endIcon,
                             sharedStyles.iconWrapper,
@@ -324,7 +327,8 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (
+// export for testing only
+export const _generateStyles = (
     buttonColor = "default",
     kind: "primary" | "secondary" | "tertiary",
     light: boolean,
