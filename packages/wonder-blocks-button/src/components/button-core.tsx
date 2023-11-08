@@ -278,7 +278,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     },
     largeText: {
         fontSize: theme.font.size.large,
-        lineHeight: theme.font.lineHeight.large,
+        lineHeight: `${theme.font.lineHeight.large}px`,
     },
     textWithFocus: {
         position: "relative", // allows the tertiary button border to use the label width
