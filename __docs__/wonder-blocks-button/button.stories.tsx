@@ -136,6 +136,10 @@ export const styles: StyleDeclaration = StyleSheet.create({
     button: {
         marginRight: Spacing.xSmall_8,
     },
+    truncatedButton: {
+        maxWidth: 200,
+        marginBottom: Spacing.medium_16,
+    },
     fillSpace: {
         minWidth: 140,
     },
@@ -546,12 +550,33 @@ Spinner.parameters = {
 export const TruncatingLabels: StoryComponentType = {
     name: "Truncating labels",
     render: () => (
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}} style={{maxWidth: 200}}>
+        <View style={{flexDirection: "row", flexWrap: "wrap"}}>
+            <Button onClick={() => {}} style={styles.truncatedButton}>
                 label too long for the parent container
             </Button>
-            <Strut size={16} />
-            <Button onClick={() => {}} style={{maxWidth: 200}} startIcon={plus}>
+            <Strut size={Spacing.medium_16} />
+            <Button
+                onClick={() => {}}
+                style={styles.truncatedButton}
+                startIcon={plus}
+            >
+                label too long for the parent container
+            </Button>
+            <Strut size={Spacing.medium_16} />
+            <Button
+                size="small"
+                onClick={() => {}}
+                style={styles.truncatedButton}
+            >
+                label too long for the parent container
+            </Button>
+            <Strut size={Spacing.medium_16} />
+            <Button
+                size="small"
+                onClick={() => {}}
+                style={styles.truncatedButton}
+                startIcon={plus}
+            >
                 label too long for the parent container
             </Button>
         </View>
