@@ -16,7 +16,6 @@ const theme = mergeTheme(defaultTheme, {
                 focus: tokens.color.offWhite,
             },
             icon: {
-                secondary: tokens.color.offWhite,
                 secondaryHover: tokens.color.fadedBlue16,
             },
         },
@@ -41,6 +40,11 @@ const theme = mergeTheme(defaultTheme, {
         },
         width: {
             focused: tokens.border.width.hairline,
+        },
+    },
+    margin: {
+        icon: {
+            offset: -tokens.spacing.xSmall_8,
         },
     },
     font: {

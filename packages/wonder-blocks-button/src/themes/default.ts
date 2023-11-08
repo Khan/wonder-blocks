@@ -47,8 +47,6 @@ const theme = {
              * Icons
              */
             icon: {
-                primary: "transparent",
-                secondary: "transparent",
                 secondaryHover: "transparent",
             },
         },
@@ -139,9 +137,14 @@ const theme = {
             large: 56,
         },
     },
+    margin: {
+        icon: {
+            offset: -tokens.spacing.xxxxSmall_2,
+        },
+    },
     padding: {
         xsmall: tokens.spacing.xxxxSmall_2,
-        small: tokens.spacing.xSmall_8,
+        small: tokens.spacing.xxSmall_6,
         medium: tokens.spacing.small_12,
         large: tokens.spacing.medium_16,
         xLarge: tokens.spacing.xLarge_32,
