@@ -54,6 +54,11 @@ type Props = AriaProps & {
      */
     cornerKind?: AccordionCornerKindType;
     /**
+     * Whether this section is collapsible. If false, the header will not be
+     * clickable, and the section will be stay expanded at all times.
+     */
+    collapsible?: boolean;
+    /**
      * Whether this section is expanded or closed.
      *
      * NOTE: This prop is NOT used when this AccordionSection is rendered
@@ -94,12 +99,6 @@ type Props = AriaProps & {
      * The test ID used to locate this component in automated tests.
      */
     testId?: string;
-    /**
-     * The test ID used to locate this component's clickable header in
-     * automated tests.
-     */
-    headerTestId?: string;
-
     /**
      * Whether this section is the first section in the accordion.
      * For internal use only.
@@ -165,6 +164,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         children,
         id,
         header,
+        collapsible,
         expanded,
         animated = false,
         onToggle,
@@ -174,7 +174,6 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         headerStyle,
         tag,
         testId,
-        headerTestId,
         // Assume it's the first section and last section by default
         // in case this component is being used standalone. If it's part
         // of an accordion, these will be overridden by the Accordion
@@ -215,11 +214,17 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         }
     };
 
-    // If the expanded prop is undefined, we're in uncontrolled mode and
-    // should use the internal state to determine the expanded state.
-    // Otherwise, we're in controlled mode and should use the expanded prop
-    // that's passed in to determine the expanded state.
-    const expandedState = controlledMode ? expanded : internalExpanded;
+    let expandedState;
+    if (collapsible === false) {
+        // If the section is disabled, it should always be expanded.
+        expandedState = true;
+        // If the expanded prop is undefined, we're in uncontrolled mode and
+        // should use the internal state to determine the expanded state.
+        // Otherwise, we're in controlled mode and should use the expanded prop
+        // that's passed in to determine the expanded state.
+    } else {
+        expandedState = controlledMode ? expanded : internalExpanded;
+    }
 
     return (
         <View
@@ -241,13 +246,14 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 header={header}
                 caretPosition={caretPosition}
                 cornerKind={cornerKind}
+                collapsible={collapsible}
                 expanded={expandedState}
                 animated={animated}
                 onClick={handleClick}
                 sectionContentUniqueId={sectionContentUniqueId}
                 headerStyle={headerStyle}
                 tag={tag}
-                testId={headerTestId}
+                testId={testId}
                 isFirstSection={isFirstSection}
                 isLastSection={isLastSection}
             />

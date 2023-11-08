@@ -12,7 +12,7 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import packageConfig from "../../packages/wonder-blocks-icon/package.json";
+import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionSectionArgtypes from "./accordion-section.argtypes";
 
@@ -94,6 +94,7 @@ export const Default: StoryComponentType = {
         header: "Standalone section",
         caretPosition: "end",
         cornerKind: "rounded",
+        collapsible: true,
         expanded: false,
     },
 };
@@ -412,6 +413,25 @@ export const CornerKinds: StoryComponentType = {
             </View>
         );
     },
+};
+
+/**
+ * An AccordionSection can have its `collapsible` prop set to false.
+ * This means that the section's header will not be clickable, and the
+ * section will always be expanded.
+ *
+ * NOTE: It is recommended to only use this prop when the AccordionSection
+ * is used on its own, not within an Accordion.
+ */
+export const NotCollapsible: StoryComponentType = {
+    render: () => (
+        <AccordionSection
+            header="This section is not collapsible"
+            collapsible={false}
+        >
+            Something
+        </AccordionSection>
+    ),
 };
 
 /**

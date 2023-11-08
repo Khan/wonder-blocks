@@ -163,16 +163,10 @@ describe("Accordion", () => {
         // Arrange
         render(
             <Accordion>
-                <AccordionSection
-                    header="Section 1"
-                    headerTestId="header-test-id-1"
-                >
+                <AccordionSection header="Section 1" testId="test-id-1">
                     Section 1 content
                 </AccordionSection>
-                <AccordionSection
-                    header="Section 2"
-                    headerTestId="header-test-id-2"
-                >
+                <AccordionSection header="Section 2" testId="test-id-2">
                     Section 2 content
                 </AccordionSection>
             </Accordion>,
@@ -180,8 +174,8 @@ describe("Accordion", () => {
         );
 
         // Act
-        const header1 = screen.getByTestId("header-test-id-1");
-        const header2 = screen.getByTestId("header-test-id-2");
+        const header1 = screen.getByTestId("test-id-1-header");
+        const header2 = screen.getByTestId("test-id-2-header");
 
         // Assert
         expect(header1).toBeVisible();
@@ -288,10 +282,7 @@ describe("Accordion", () => {
         render(
             <Accordion caretPosition="start">
                 {[
-                    <AccordionSection
-                        header="Title"
-                        headerTestId="section-header-test-id"
-                    >
+                    <AccordionSection header="Title" testId="section-test-id">
                         Section content
                     </AccordionSection>,
                 ]}
@@ -300,7 +291,7 @@ describe("Accordion", () => {
         );
 
         // Act
-        const sectionHeader = screen.getByTestId("section-header-test-id");
+        const sectionHeader = screen.getByTestId("section-test-id-header");
 
         // Assert
         expect(sectionHeader).toHaveStyle({
@@ -313,10 +304,7 @@ describe("Accordion", () => {
         render(
             <Accordion caretPosition="end">
                 {[
-                    <AccordionSection
-                        header="Title"
-                        headerTestId="section-header-test-id"
-                    >
+                    <AccordionSection header="Title" testId="section-test-id">
                         Section content
                     </AccordionSection>,
                 ]}
@@ -325,7 +313,7 @@ describe("Accordion", () => {
         );
 
         // Act
-        const sectionHeader = screen.getByTestId("section-header-test-id");
+        const sectionHeader = screen.getByTestId("section-test-id-header");
 
         // Assert
         expect(sectionHeader).toHaveStyle({
@@ -341,7 +329,7 @@ describe("Accordion", () => {
                     <AccordionSection
                         header="Title"
                         caretPosition="end"
-                        headerTestId="section-header-test-id"
+                        testId="section-test-id"
                     >
                         Section content
                     </AccordionSection>,
@@ -351,7 +339,7 @@ describe("Accordion", () => {
         );
 
         // Act
-        const sectionHeader = screen.getByTestId("section-header-test-id");
+        const sectionHeader = screen.getByTestId("section-test-id-header");
 
         // Assert
         expect(sectionHeader).toHaveStyle({
@@ -367,7 +355,7 @@ describe("Accordion", () => {
                     <AccordionSection
                         header="Title"
                         animated={false}
-                        headerTestId="section-header-test-id"
+                        testId="section-test-id"
                     >
                         Section content
                     </AccordionSection>,
@@ -377,7 +365,7 @@ describe("Accordion", () => {
         );
 
         // Act
-        const sectionHeader = screen.getByTestId("section-header-test-id");
+        const sectionHeader = screen.getByTestId("section-test-id-header");
 
         // Assert
         // The parent has animated=true, so the child's animated=false

@@ -66,6 +66,17 @@ export default {
             required: false,
         },
     },
+    collapsible: {
+        control: {type: "boolean"},
+        description: `Whether the section is collapsible or not. If false,
+            the header will not be clickable, and the section will always
+            be expanded. Defaults to true.`,
+        defaultValue: true,
+        table: {
+            defaultValue: {summary: "true"},
+            type: {summary: "boolean"},
+        },
+    },
     expanded: {
         control: {type: "boolean"},
         description: `Whether this section should be expanded on initial load.

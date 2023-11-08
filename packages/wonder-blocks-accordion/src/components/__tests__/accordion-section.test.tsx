@@ -175,10 +175,7 @@ describe("AccordionSection", () => {
     test("uses headerTestId as button's data-test-id", () => {
         // Arrange
         render(
-            <AccordionSection
-                header="Title"
-                headerTestId="accordion-section-header"
-            >
+            <AccordionSection header="Title" testId="accordion-section">
                 Section content
             </AccordionSection>,
             {wrapper: RenderStateRoot},
@@ -261,14 +258,62 @@ describe("AccordionSection", () => {
         });
     });
 
+    test("aria-disabled is false by default", () => {
+        // Arrange
+        render(
+            <AccordionSection header="Title">Section content</AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const button = screen.getByRole("button", {name: "Title"});
+
+        // Assert
+        expect(button).toHaveAttribute("aria-disabled", "false");
+    });
+
+    test("sets aria-disabled to true when collapsible prop is false", () => {
+        // Arrange
+        render(
+            <AccordionSection header="Title" collapsible={false}>
+                Section content
+            </AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const button = screen.getByRole("button", {name: "Title"});
+
+        // Assert
+        expect(button).toHaveAttribute("aria-disabled", "true");
+    });
+
+    test("does not allow clicking when collapsible prop is false", () => {
+        // Arrange
+        render(
+            <AccordionSection header="Title" collapsible={false}>
+                Section content
+            </AccordionSection>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const button = screen.getByRole("button", {name: "Title"});
+        button.click();
+
+        // Assert
+        // Confirm the content is still visible even though the
+        // header button was clicked.
+        expect(screen.queryByText("Section content")).toBeVisible();
+    });
+
     test("includes transition when animated is true", () => {
         // Arrange
         render(
             <AccordionSection
                 header="Title"
                 animated={true}
-                testId="accordion-section-test-id"
-                headerTestId="accordion-section-header"
+                testId="accordion-section"
             >
                 Section content
             </AccordionSection>,
@@ -276,7 +321,7 @@ describe("AccordionSection", () => {
         );
 
         // Act
-        const wrapper = screen.getByTestId("accordion-section-test-id");
+        const wrapper = screen.getByTestId("accordion-section");
         const header = screen.getByTestId("accordion-section-header");
 
         // Assert
@@ -294,8 +339,7 @@ describe("AccordionSection", () => {
             <AccordionSection
                 header="Title"
                 animated={false}
-                testId="accordion-section-test-id"
-                headerTestId="accordion-section-header"
+                testId="accordion-section"
             >
                 Section content
             </AccordionSection>,
@@ -303,7 +347,7 @@ describe("AccordionSection", () => {
         );
 
         // Act
-        const wrapper = screen.getByTestId("accordion-section-test-id");
+        const wrapper = screen.getByTestId("accordion-section");
         const header = screen.getByTestId("accordion-section-header");
 
         // Assert
