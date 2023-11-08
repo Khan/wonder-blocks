@@ -305,7 +305,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         borderRadius: theme.border.radius.icon,
         padding: theme.padding.xsmall,
         // View has a default minWidth of 0, which causes the label text
-        // to encroach on the icon when it needs to trunacte. We can fix
+        // to encroach on the icon when it needs to truncate. We can fix
         // this by setting the minWidth to auto.
         minWidth: "auto",
     },
