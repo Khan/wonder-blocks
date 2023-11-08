@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
@@ -138,12 +138,24 @@ const ButtonCore: React.ForwardRefExoticComponent<
         const contents = (
             <React.Fragment>
                 {startIcon && (
-                    <ButtonIcon
-                        size={iconSize}
-                        icon={startIcon}
-                        style={sharedStyles.startIcon}
-                        testId={testId ? `${testId}-start-icon` : undefined}
-                    />
+                    <View
+                        // The start icon doesn't have the circle around it
+                        // in the Khanmigo theme, but we wrap it with
+                        // iconWrapper anyway to give it the same spacing
+                        // as the end icon so the button is symmetrical.
+                        style={sharedStyles.iconWrapper}
+                    >
+                        <ButtonIcon
+                            size={iconSize}
+                            icon={startIcon}
+                            style={[
+                                sharedStyles.startIcon,
+                                kind === "tertiary" &&
+                                    sharedStyles.tertiaryStartIcon,
+                            ]}
+                            testId={testId ? `${testId}-start-icon` : undefined}
+                        />
+                    </View>
                 )}
                 {label}
                 {spinner && (
@@ -155,12 +167,27 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     />
                 )}
                 {endIcon && (
-                    <ButtonIcon
-                        size={iconSize}
-                        icon={endIcon}
-                        style={sharedStyles.endIcon}
-                        testId={testId ? `${testId}-end-icon` : undefined}
-                    />
+                    <View
+                        testId={
+                            testId ? `${testId}-end-icon-wrapper` : undefined
+                        }
+                        style={[
+                            styles.endIcon,
+                            sharedStyles.iconWrapper,
+                            sharedStyles.endIconWrapper,
+                            kind === "tertiary" &&
+                                sharedStyles.endIconWrapperTertiary,
+                            (focused || hovered) &&
+                                kind !== "primary" &&
+                                sharedStyles.iconWrapperSecondaryHovered,
+                        ]}
+                    >
+                        <ButtonIcon
+                            size={iconSize}
+                            icon={endIcon}
+                            testId={testId ? `${testId}-end-icon` : undefined}
+                        />
+                    </View>
                 )}
             </React.Fragment>
         );
@@ -232,10 +259,6 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
             WebkitTapHighlightColor: "rgba(0,0,0,0)",
         },
     },
-    withIcon: {
-        // The left padding for the button with icon should have 4px less padding
-        paddingLeft: theme.padding.medium,
-    },
     disabled: {
         cursor: "auto",
     },
@@ -258,7 +281,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     },
     largeText: {
         fontSize: theme.font.size.large,
-        lineHeight: theme.font.lineHeight.large,
+        lineHeight: `${theme.font.lineHeight.large}px`,
     },
     textWithFocus: {
         position: "relative", // allows the tertiary button border to use the label width
@@ -270,16 +293,42 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         position: "absolute",
     },
     startIcon: {
-        marginInlineEnd: theme.padding.small,
+        marginRight: theme.padding.small,
+        marginLeft: theme.margin.icon.offset,
+    },
+    tertiaryStartIcon: {
+        // Undo the negative padding from startIcon since tertiary
+        // buttons don't have extra padding.
+        marginLeft: 0,
     },
     endIcon: {
-        marginInlineStart: theme.padding.small,
+        marginLeft: theme.padding.small,
+    },
+    iconWrapper: {
+        borderRadius: theme.border.radius.icon,
+        padding: theme.padding.xsmall,
+        // View has a default minWidth of 0, which causes the label text
+        // to encroach on the icon when it needs to truncate. We can fix
+        // this by setting the minWidth to auto.
+        minWidth: "auto",
+    },
+    iconWrapperSecondaryHovered: {
+        backgroundColor: theme.color.bg.icon.secondaryHover,
+        color: theme.color.text.icon.secondaryHover,
+    },
+    endIconWrapper: {
+        marginLeft: theme.padding.small,
+        marginRight: theme.margin.icon.offset,
+    },
+    endIconWrapperTertiary: {
+        marginRight: 0,
     },
 });
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (
+// export for testing only
+export const _generateStyles = (
     buttonColor = "default",
     kind: "primary" | "secondary" | "tertiary",
     light: boolean,
