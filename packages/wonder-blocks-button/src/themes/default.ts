@@ -73,11 +73,6 @@ const theme = {
              * Icons
              */
             icon: {
-                // kind="primary"
-                primary: tokens.color.white,
-
-                // kind="secondary"
-                secondary: tokens.color.blue,
                 secondaryHover: tokens.color.blue,
             },
         },

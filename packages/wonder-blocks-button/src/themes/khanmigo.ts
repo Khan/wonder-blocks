@@ -27,7 +27,6 @@ const theme = mergeTheme(defaultTheme, {
         },
         text: {
             icon: {
-                secondary: tokens.color.blue,
                 secondaryHover: tokens.color.blue,
             },
         },
@@ -44,6 +43,7 @@ const theme = mergeTheme(defaultTheme, {
     },
     margin: {
         icon: {
+            // Bring the icons closer to the edges of the button.
             offset: -tokens.spacing.xSmall_8,
         },
     },

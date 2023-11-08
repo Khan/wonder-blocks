@@ -138,7 +138,13 @@ const ButtonCore: React.ForwardRefExoticComponent<
         const contents = (
             <React.Fragment>
                 {startIcon && (
-                    <View style={sharedStyles.iconWrapper}>
+                    <View
+                        // The start icon doesn't have the circle around it
+                        // in the Khanmigo theme, but we wrap it with
+                        // iconWrapper anyway to give it the same spacing
+                        // as the end icon so the button is symmetrical.
+                        style={sharedStyles.iconWrapper}
+                    >
                         <ButtonIcon
                             size={iconSize}
                             icon={startIcon}
@@ -167,10 +173,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                             sharedStyles.iconWrapper,
                             sharedStyles.endIconWrapper,
                             kind === "tertiary" &&
-                                sharedStyles.tertiaryEndIconWrapper,
-                            kind === "primary"
-                                ? sharedStyles.iconWrapperPrimary
-                                : sharedStyles.iconWrapperSecondary,
+                                sharedStyles.endIconWrapperTertiary,
                             (focused || hovered) &&
                                 kind !== "primary" &&
                                 sharedStyles.iconWrapperSecondaryHovered,
@@ -287,16 +290,16 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         position: "absolute",
     },
     startIcon: {
-        marginInlineEnd: theme.padding.small,
-        marginInlineStart: theme.margin.icon.offset,
+        marginRight: theme.padding.small,
+        marginLeft: theme.margin.icon.offset,
     },
     tertiaryStartIcon: {
         // Undo the negative padding from startIcon since tertiary
         // buttons don't have extra padding.
-        marginInlineStart: 0,
+        marginLeft: 0,
     },
     endIcon: {
-        marginInlineStart: theme.padding.small,
+        marginLeft: theme.padding.small,
     },
     iconWrapper: {
         borderRadius: theme.border.radius.icon,
@@ -306,22 +309,16 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         // this by setting the minWidth to auto.
         minWidth: "auto",
     },
-    iconWrapperPrimary: {
-        color: theme.color.text.icon.primary,
-    },
-    iconWrapperSecondary: {
-        color: theme.color.text.icon.secondary,
-    },
     iconWrapperSecondaryHovered: {
         backgroundColor: theme.color.bg.icon.secondaryHover,
         color: theme.color.text.icon.secondaryHover,
     },
     endIconWrapper: {
-        marginInlineStart: theme.padding.small,
-        marginInlineEnd: theme.margin.icon.offset,
+        marginLeft: theme.padding.small,
+        marginRight: theme.margin.icon.offset,
     },
-    tertiaryEndIconWrapper: {
-        marginInlineEnd: 0,
+    endIconWrapperTertiary: {
+        marginRight: 0,
     },
 });
 
