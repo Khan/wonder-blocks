@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.1.0
+
+### Minor Changes
+
+-   2f0b77f2: Add animations to Accordion
+-   1424a2c3: Add `collapsible` prop to AccordionSection
+
 ## 1.0.1
 
 ### Patch Changes
