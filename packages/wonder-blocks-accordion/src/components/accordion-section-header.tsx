@@ -21,7 +21,7 @@ type Props = {
     // Corner roundedness type.
     cornerKind: AccordionCornerKindType;
     // Whether the section is collapsible or not. If false, the header will
-    // not be clickable.
+    // not be clickable, and the section will stay expanded at all times.
     collapsible?: boolean;
     // Whether the section is expanded or not.
     expanded: boolean;

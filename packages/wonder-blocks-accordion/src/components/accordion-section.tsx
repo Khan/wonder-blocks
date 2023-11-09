@@ -55,7 +55,7 @@ type Props = AriaProps & {
     cornerKind?: AccordionCornerKindType;
     /**
      * Whether this section is collapsible. If false, the header will not be
-     * clickable, and the section will be stay expanded at all times.
+     * clickable, and the section will stay expanded at all times.
      */
     collapsible?: boolean;
     /**
