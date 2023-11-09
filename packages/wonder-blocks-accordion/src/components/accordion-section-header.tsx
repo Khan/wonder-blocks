@@ -20,6 +20,9 @@ type Props = {
     caretPosition: "start" | "end";
     // Corner roundedness type.
     cornerKind: AccordionCornerKindType;
+    // Whether the section is collapsible or not. If false, the header will
+    // not be clickable, and the section will stay expanded at all times.
+    collapsible?: boolean;
     // Whether the section is expanded or not.
     expanded: boolean;
     // Whether to include animation on the header. This should be false
@@ -50,6 +53,7 @@ const AccordionSectionHeader = (props: Props) => {
         header,
         caretPosition,
         cornerKind,
+        collapsible = true,
         expanded,
         animated,
         onClick,
@@ -76,7 +80,8 @@ const AccordionSectionHeader = (props: Props) => {
                 aria-expanded={expanded}
                 aria-controls={sectionContentUniqueId}
                 onClick={onClick}
-                testId={testId}
+                disabled={!collapsible}
+                testId={testId ? `${testId}-header` : undefined}
                 style={[
                     styles.headerWrapper,
                     animated && styles.headerWrapperWithAnimation,
@@ -84,6 +89,7 @@ const AccordionSectionHeader = (props: Props) => {
                     roundedTop && styles.roundedTop,
                     roundedBottom && styles.roundedBottom,
                     headerStyle,
+                    !collapsible && styles.disabled,
                 ]}
             >
                 {() => (
@@ -108,18 +114,23 @@ const AccordionSectionHeader = (props: Props) => {
                                 header
                             )}
                         </View>
-                        <PhosphorIcon
-                            icon={caretDown}
-                            color={tokens.color.offBlack64}
-                            size="small"
-                            style={[
-                                animated && styles.iconWithAnimation,
-                                caretPosition === "start"
-                                    ? styles.iconStart
-                                    : styles.iconEnd,
-                                expanded && styles.iconExpanded,
-                            ]}
-                        />
+                        {collapsible && (
+                            <PhosphorIcon
+                                icon={caretDown}
+                                color={tokens.color.offBlack64}
+                                size="small"
+                                style={[
+                                    animated && styles.iconWithAnimation,
+                                    caretPosition === "start"
+                                        ? styles.iconStart
+                                        : styles.iconEnd,
+                                    expanded && styles.iconExpanded,
+                                ]}
+                                testId={
+                                    testId ? `${testId}-caret-icon` : undefined
+                                }
+                            />
+                        )}
                     </>
                 )}
             </Clickable>
@@ -202,6 +213,10 @@ const styles = StyleSheet.create({
     },
     iconEnd: {
         marginInlineEnd: tokens.spacing.medium_16,
+    },
+    disabled: {
+        pointerEvents: "none",
+        color: "inherit",
     },
 });
 

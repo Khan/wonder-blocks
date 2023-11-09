@@ -13,7 +13,7 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import packageConfig from "../../packages/wonder-blocks-icon/package.json";
+import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionArgtypes from "./accordion.argtypes";
 
