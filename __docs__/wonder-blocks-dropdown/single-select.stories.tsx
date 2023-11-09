@@ -33,6 +33,31 @@ import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/cons
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
 
+/**
+ * The single select allows the selection of one item. Clients are responsible
+ * for keeping track of the selected item in the select.
+ *
+ * The single select dropdown closes after the selection of an item. If the same
+ * item is selected, there is no callback.
+ *
+ * **NOTE:** If there are more than 125 items, the component automatically uses
+ * [react-window](https://github.com/bvaughn/react-window) to improve
+ * performance when rendering these elements and is capable of handling many
+ * hundreds of items without performance problems.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+ *
+ * const [selectedValue, setSelectedValue] = React.useState("");
+ *
+ * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ *     <OptionItem label="Pear" value="pear" />
+ *     <OptionItem label="Mango" value="mango" />
+ * </SingleSelect>
+ * ```
+ */
 export default {
     title: "Dropdown / SingleSelect",
     component: SingleSelect as unknown as React.ComponentType<any>,
@@ -54,7 +79,9 @@ export default {
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>{Story()}</View>
+            <View style={styles.example}>
+                <Story />
+            </View>
         ),
     ],
     parameters: {
@@ -64,15 +91,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
     },
 } as Meta<typeof SingleSelect>;
 
