@@ -15,6 +15,29 @@ import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 import PopoverArgtypes from "./popover.argtypes";
 
+/**
+ * Popovers provide additional information that is related to a particular
+ * element and/or content. They can include text, links, icons and
+ * illustrations. The main difference with `Tooltip` is that they must be
+ * dismissed by clicking an element.
+ *
+ * This component uses the `PopoverPopper` component to position the
+ * `PopoverContentCore` component according to the children it is wrapping.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+ *
+ * <Popover
+ *  onClose={() => {}}
+ *  content={
+ *      <PopoverContent title="Title" content="Some content" closeButtonVisible />
+ *  }>
+ *      <Button>Open popover</Button>
+ *  </Popover>
+ * ```
+ */
 export default {
     title: "Popover/Popover",
     component: Popover as unknown as React.ComponentType<any>,
@@ -26,15 +49,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
         // TODO(WB-1170): Reassess this after investigating more about Chromatic
         // flakyness.
         chromatic: {
@@ -85,7 +99,6 @@ export const Default: StoryComponentType = {
                 content="The popover content."
             />
         ),
-
         placement: "top",
         dismissEnabled: true,
         id: "",
@@ -336,6 +349,48 @@ WithInitialFocusId.parameters = {
             since its ID is passed into the \`initialFocusId\` prop.`,
         },
     },
+};
+
+/**
+ * In order to make the popover accessible, we need to make sure that:
+ * - The popover is focusable.
+ * - The popover is keyboard accessible.
+ * - The popover is announced to screen readers.
+ *
+ * This example shows how to make the popover accessible by using the
+ * `describedBy` prop.
+ * - When `describedBy` is set to `title`, the popover will be announced
+ *  as "Nice work!".
+ * - When `describedBy` is set to `content`, the popover will be announced
+ * as "You've completed this step. Now onto the next!".
+ * - When `describedBy` is set to `all-content`, the popover will be
+ * announced as "Nice work! You've completed this step. Now onto the next!".
+ */
+export const DescribedBy: StoryComponentType = {
+    args: {
+        describedBy: "all-content",
+    } as PopoverArgs,
+    render: (args) => (
+        <Popover
+            content={
+                <PopoverContent
+                    title="Nice work!"
+                    content="You've completed this step. Now onto the next!"
+                    closeButtonVisible
+                    icon={
+                        <img
+                            src="./logo.svg"
+                            width="100%"
+                            alt="Wonder Blocks logo"
+                        />
+                    }
+                />
+            }
+            {...args}
+        >
+            <Button>Open popover</Button>
+        </Popover>
+    ),
 };
 
 /**

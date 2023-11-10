@@ -34,7 +34,10 @@ The Popover component should follow these guidelines:
 The popover component will populate the
 [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
 attribute automatically, unless the user sets an `id` prop inside the Popover
-instance. Internally, it will be set on the trigger element.
+instance. Internally, it will be set on one of the contents of the dialog
+element. This will depend on which `describedBy` value is set. For more info,
+check the [describedBy](../?path=/docs/popover-popover--docs#described-by)
+example.
 
 ## Keyboard Interaction
 

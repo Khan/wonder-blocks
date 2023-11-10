@@ -56,6 +56,19 @@ type Props = AriaProps &
          * or clicking/tapping outside of it.
          */
         dismissEnabled?: boolean;
+
+        /**
+         * The type of content labelling this popover, if applicable.
+         * - title: References to the title of the popover.
+         * - content: References to the content of the popover.
+         * - all-content: References to both the title and content of the
+         *   popover.
+         *
+         * This is used to allow screen readers to announce the popover content
+         * when it is opened.
+         * Defaults to "title".
+         */
+        describedBy: "title" | "content" | "all-content";
         /**
          * The unique identifier to give to the popover. Provide this in cases where
          * you want to override the default accessibility solution. This identifier
@@ -117,6 +130,7 @@ type State = Readonly<{
 }>;
 
 type DefaultProps = Readonly<{
+    describedBy: Props["describedBy"];
     placement: Props["placement"];
     showTail: Props["showTail"];
 }>;
@@ -146,6 +160,7 @@ type DefaultProps = Readonly<{
  */
 export default class Popover extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
+        describedBy: "title",
         placement: "top",
         showTail: true,
     };
@@ -203,7 +218,7 @@ export default class Popover extends React.Component<Props, State> {
         }
     };
 
-    renderContent(): PopoverContents {
+    renderContent(uniqueId: string): PopoverContents {
         const {content} = this.props;
 
         const popoverContents: PopoverContents =
@@ -214,11 +229,16 @@ export default class Popover extends React.Component<Props, State> {
                 : content;
 
         // @ts-expect-error: TS2769 - No overload matches this call.
-        return React.cloneElement(popoverContents, {ref: this.contentRef});
+        return React.cloneElement(popoverContents, {
+            ref: this.contentRef,
+            // internal props only injected by Popover
+            uniqueId,
+            describedBy: this.props.describedBy,
+        });
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {initialFocusId, placement, showTail} = this.props;
+        const {describedBy, initialFocusId, placement, showTail} = this.props;
         const {anchorElement} = this.state;
 
         return (
@@ -233,12 +253,12 @@ export default class Popover extends React.Component<Props, State> {
                     {(props: PopperElementProps) => (
                         <PopoverDialog
                             {...props}
-                            aria-describedby={`${uniqueId}-anchor`}
+                            aria-describedby={`${uniqueId}-${describedBy}`}
                             id={uniqueId}
                             onUpdate={(placement) => this.setState({placement})}
                             showTail={showTail}
                         >
-                            {this.renderContent()}
+                            {this.renderContent(uniqueId)}
                         </PopoverDialog>
                     )}
                 </TooltipPopper>
