@@ -30,6 +30,8 @@ type Props = {
     animated: boolean;
     // Called on header click.
     onClick?: () => void;
+    // Called on header focus.
+    onFocus?: () => void;
     // The ID for the content that the header's `aria-controls` should
     // point to.
     sectionContentUniqueId: string;
@@ -48,7 +50,10 @@ type Props = {
     isLastSection: boolean;
 };
 
-const AccordionSectionHeader = (props: Props) => {
+const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
+    props: Props,
+    ref: React.ForwardedRef<HTMLButtonElement>,
+) {
     const {
         header,
         caretPosition,
@@ -57,6 +62,7 @@ const AccordionSectionHeader = (props: Props) => {
         expanded,
         animated,
         onClick,
+        onFocus,
         sectionContentUniqueId,
         headerStyle,
         tag = "h2",
@@ -80,6 +86,7 @@ const AccordionSectionHeader = (props: Props) => {
                 aria-expanded={expanded}
                 aria-controls={sectionContentUniqueId}
                 onClick={onClick}
+                onFocus={onFocus}
                 disabled={!collapsible}
                 testId={testId ? `${testId}-header` : undefined}
                 style={[
@@ -91,6 +98,7 @@ const AccordionSectionHeader = (props: Props) => {
                     headerStyle,
                     !collapsible && styles.disabled,
                 ]}
+                ref={ref}
             >
                 {() => (
                     <>
@@ -136,7 +144,7 @@ const AccordionSectionHeader = (props: Props) => {
             </Clickable>
         </HeadingSmall>
     );
-};
+});
 
 // The AccordionSection border radius for rounded corners is 12px.
 // If we set the inner radius to the same value, there ends up being

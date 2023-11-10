@@ -1,5 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 
@@ -396,5 +397,283 @@ describe("Accordion", () => {
 
         // Assert
         expect(wrapper).toHaveStyle({color: "red"});
+    });
+
+    describe("keyboard navigation", () => {
+        test("can open a section with the enter key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+
+            // Act
+            // Confirm that the section is closed.
+            expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+
+            button1.focus();
+            userEvent.keyboard("{enter}");
+
+            // Assert
+            // Confirm that the section is now open.
+            expect(screen.getByText("Section 1 content")).toBeVisible();
+        });
+
+        test("can open a section with the space key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+
+            // Act
+            // Confirm that the section is closed.
+            expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+
+            button1.focus();
+            userEvent.keyboard("{space}");
+
+            // Assert
+            // Confirm that the section is now open.
+            expect(screen.getByText("Section 1 content")).toBeVisible();
+        });
+
+        test("can close a section with the enter key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+
+            // Act
+            // Confirm that the section is open.
+            button1.click();
+            expect(screen.getByText("Section 1 content")).toBeVisible();
+
+            button1.focus();
+            userEvent.keyboard("{enter}");
+
+            // Assert
+            // Confirm that the section is now closed.
+            expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+        });
+
+        test("can close a section with the space key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+
+            // Act
+            // Confirm that the section is open.
+            button1.click();
+            expect(screen.getByText("Section 1 content")).toBeVisible();
+
+            button1.focus();
+            userEvent.keyboard("{space}");
+
+            // Assert
+            // Confirm that the section is now closed.
+            expect(screen.queryByText("Section 1 content")).not.toBeVisible();
+        });
+
+        test("can navigate to the next section with the tab key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+            const button2 = screen.getByRole("button", {name: "Section 2"});
+
+            // Act
+            button1.focus();
+            userEvent.tab();
+
+            // Assert
+            expect(button2).toHaveFocus();
+        });
+
+        test("can navigate to the previous section with the shift+tab key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+            const button2 = screen.getByRole("button", {name: "Section 2"});
+
+            // Act
+            button2.focus();
+            userEvent.tab({shift: true});
+
+            // Assert
+            expect(button1).toHaveFocus();
+        });
+
+        test("can navigate to the next section with the arrow down key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+            const button2 = screen.getByRole("button", {name: "Section 2"});
+
+            // Act
+            button1.focus();
+            userEvent.keyboard("{arrowdown}");
+
+            // Assert
+            expect(button2).toHaveFocus();
+        });
+
+        test("can navigate to the previous section with the arrow up key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+            const button2 = screen.getByRole("button", {name: "Section 2"});
+
+            // Act
+            button2.focus();
+            userEvent.keyboard("{arrowup}");
+
+            // Assert
+            expect(button1).toHaveFocus();
+        });
+
+        test("can navigate to the first section with the home key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 3">
+                        Section 3 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+            const button2 = screen.getByRole("button", {name: "Section 2"});
+            const button3 = screen.getByRole("button", {name: "Section 3"});
+
+            // Act
+            button3.focus();
+            userEvent.keyboard("{home}");
+
+            // Assert
+            expect(button1).toHaveFocus();
+            expect(button2).not.toHaveFocus();
+            expect(button3).not.toHaveFocus();
+        });
+
+        test("can navigate to the last section with the end key", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Section 2 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 3">
+                        Section 3 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+            const button2 = screen.getByRole("button", {name: "Section 2"});
+            const button3 = screen.getByRole("button", {name: "Section 3"});
+
+            // Act
+            button1.focus();
+            userEvent.keyboard("{end}");
+
+            // Assert
+            expect(button1).not.toHaveFocus();
+            expect(button2).not.toHaveFocus();
+            expect(button3).toHaveFocus();
+        });
     });
 });

@@ -111,6 +111,12 @@ type Props = AriaProps & {
      * @ignore
      */
     isLastSection?: boolean;
+    /**
+     * Called when the header is focused.
+     * For internal use only.
+     * @ignore
+     */
+    onFocus?: () => void;
 };
 
 /**
@@ -158,7 +164,9 @@ type Props = AriaProps & {
  */
 const AccordionSection = React.forwardRef(function AccordionSection(
     props: Props,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    // Using a button ref here beacuse the ref is pointing to the
+    // section header, which is a button.
+    ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
     const {
         children,
@@ -168,6 +176,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         expanded,
         animated = false,
         onToggle,
+        onFocus,
         caretPosition = "end",
         cornerKind = "rounded",
         style,
@@ -240,7 +249,6 @@ const AccordionSection = React.forwardRef(function AccordionSection(
             ]}
             testId={testId}
             {...ariaProps}
-            ref={ref}
         >
             <AccordionSectionHeader
                 header={header}
@@ -250,12 +258,14 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 expanded={expandedState}
                 animated={animated}
                 onClick={handleClick}
+                onFocus={onFocus}
                 sectionContentUniqueId={sectionContentUniqueId}
                 headerStyle={headerStyle}
                 tag={tag}
                 testId={testId}
                 isFirstSection={isFirstSection}
                 isLastSection={isLastSection}
+                ref={ref}
             />
             <View
                 id={sectionContentUniqueId}

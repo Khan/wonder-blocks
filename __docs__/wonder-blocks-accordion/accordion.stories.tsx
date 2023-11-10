@@ -63,13 +63,13 @@ export default {
 type StoryComponentType = StoryObj<typeof Accordion>;
 
 const exampleSections = [
-    <AccordionSection header="First section">
+    <AccordionSection key="first" header="First section">
         This is the information present in the first section
     </AccordionSection>,
-    <AccordionSection header="Second section">
+    <AccordionSection key="second" header="Second section">
         This is the information present in the second section
     </AccordionSection>,
-    <AccordionSection header="Third section">
+    <AccordionSection key="third" header="Third section">
         This is the information present in the third section
     </AccordionSection>,
 ];
