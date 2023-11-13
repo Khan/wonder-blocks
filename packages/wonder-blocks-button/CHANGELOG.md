@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.1.0
+
+### Minor Changes
+
+-   d73f6988: Add Khanmigo theming support to buttons with icons
+
 ## 6.0.1
 
 ### Patch Changes
