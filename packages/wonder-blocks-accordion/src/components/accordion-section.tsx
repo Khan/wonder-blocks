@@ -225,7 +225,8 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
     let expandedState;
     if (collapsible === false) {
-        // If the section is disabled, it should always be expanded.
+        // If the section is disabled (not collapsible), it should
+        // always be expanded.
         expandedState = true;
         // If the expanded prop is undefined, we're in uncontrolled mode and
         // should use the internal state to determine the expanded state.
