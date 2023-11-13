@@ -169,19 +169,24 @@ const Accordion = React.forwardRef(function Accordion(
         switch (event.key) {
             // ArrowUp focuses on the previous section.
             case "ArrowUp":
-                const previousSectionIndex = currentlyFocusedSection - 1;
-                if (previousSectionIndex >= 0) {
-                    const previousChildRef = childRefs[previousSectionIndex];
-                    previousChildRef.current.focus();
-                }
+                // Get the previous section, or cycle to last section if
+                // the first section is currently focused.
+                const previousSectionIndex =
+                    (currentlyFocusedSection + children.length - 1) %
+                    children.length;
+                const previousChildRef = childRefs[previousSectionIndex];
+                previousChildRef.current.focus();
+
                 break;
             // ArrowDown focuses on the next section.
             case "ArrowDown":
-                const nextSectionIndex = currentlyFocusedSection + 1;
-                if (nextSectionIndex < children.length) {
-                    const nextChildRef = childRefs[nextSectionIndex];
-                    nextChildRef.current.focus();
-                }
+                // Get the next section, or cycle to first section if
+                // the last section is currently focused.
+                const nextSectionIndex =
+                    (currentlyFocusedSection + 1) % children.length;
+                const nextChildRef = childRefs[nextSectionIndex];
+                nextChildRef.current.focus();
+
                 break;
             // Home focuses on the first section.
             case "Home":

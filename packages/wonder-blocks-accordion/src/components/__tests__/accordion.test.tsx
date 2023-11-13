@@ -589,6 +589,35 @@ describe("Accordion", () => {
             expect(button2).toHaveFocus();
         });
 
+        test("can cycle to the first section with the arrow down key from the last section", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2" testId="section-2">
+                        Section 2 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 3">
+                        Section 3 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+            const button3 = screen.getByRole("button", {name: "Section 3"});
+
+            // Act
+            button3.focus();
+            userEvent.keyboard("{arrowdown}");
+
+            // Assert
+            expect(button1).toHaveFocus();
+            expect(button3).not.toHaveFocus();
+        });
+
         test("can navigate to the previous section with the arrow up key", () => {
             // Arrange
             render(
@@ -612,6 +641,35 @@ describe("Accordion", () => {
 
             // Assert
             expect(button1).toHaveFocus();
+        });
+
+        test("can cycle to the last section with the arrow up key from the first section", () => {
+            // Arrange
+            render(
+                <Accordion>
+                    <AccordionSection header="Section 1">
+                        Section 1 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 2" testId="section-2">
+                        Section 2 content
+                    </AccordionSection>
+                    <AccordionSection header="Section 3">
+                        Section 3 content
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            const button1 = screen.getByRole("button", {name: "Section 1"});
+            const button3 = screen.getByRole("button", {name: "Section 3"});
+
+            // Act
+            button1.focus();
+            userEvent.keyboard("{arrowup}");
+
+            // Assert
+            expect(button3).toHaveFocus();
+            expect(button1).not.toHaveFocus();
         });
 
         test("can navigate to the first section with the home key", () => {
