@@ -61,14 +61,14 @@ type Props = AriaProps &
          * The type of content labelling this popover, if applicable.
          * - title: References to the title of the popover.
          * - content: References to the content of the popover.
-         * - all-content: References to both the title and content of the
+         * - title-and-content: References to both the title and content of the
          *   popover.
          *
          * This is used to allow screen readers to announce the popover content
          * when it is opened.
          * Defaults to "title".
          */
-        describedBy: "title" | "content" | "all-content";
+        describedBy: "title" | "content" | "title-and-content";
         /**
          * The unique identifier to give to the popover. Provide this in cases where
          * you want to override the default accessibility solution. This identifier
@@ -254,6 +254,7 @@ export default class Popover extends React.Component<Props, State> {
                         <PopoverDialog
                             {...props}
                             aria-describedby={`${uniqueId}-${describedBy}`}
+                            aria-labelledby={`${uniqueId}-title`}
                             id={uniqueId}
                             onUpdate={(placement) => this.setState({placement})}
                             showTail={showTail}

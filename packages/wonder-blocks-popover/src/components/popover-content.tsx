@@ -240,7 +240,7 @@ export default class PopoverContent extends React.Component<Props> {
                                 {this.maybeRenderIcon()}
 
                                 <View
-                                    id={`${uniqueId}-all-content`}
+                                    id={`${uniqueId}-title-and-content`}
                                     style={styles.text}
                                 >
                                     <HeadingSmall

@@ -359,16 +359,16 @@ WithInitialFocusId.parameters = {
  *
  * This example shows how to make the popover accessible by using the
  * `describedBy` prop.
- * - When `describedBy` is set to `title`, the popover will be announced
- *  as "Nice work!".
- * - When `describedBy` is set to `content`, the popover will be announced
- * as "You've completed this step. Now onto the next!".
- * - When `describedBy` is set to `all-content`, the popover will be
- * announced as "Nice work! You've completed this step. Now onto the next!".
+ * - When `describedBy` is set to `title`, the popover will be announced as
+ *   "Nice work!".
+ * - When `describedBy` is set to `content`, the popover will be announced as
+ *   "You've completed this step. Now onto the next!".
+ * - When `describedBy` is set to `title-and-content`, the popover will be
+ *   announced as "Nice work! You've completed this step. Now onto the next!".
  */
 export const DescribedBy: StoryComponentType = {
     args: {
-        describedBy: "all-content",
+        describedBy: "title-and-content",
     } as PopoverArgs,
     render: (args) => (
         <Popover

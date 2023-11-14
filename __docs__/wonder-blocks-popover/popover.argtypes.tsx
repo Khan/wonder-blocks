@@ -75,12 +75,12 @@ export default {
             "The type of content labelling this popover, if applicable.",
         defaultValue: "title",
         table: {
-            type: {summary: `"title" | "content" | "all-content"`},
+            type: {summary: `"title" | "content" | "title-and-content"`},
             defaultValue: {summary: `"title"`},
         },
         type: {
             name: "enum",
-            value: ["title", "content", "all-content"],
+            value: ["title", "content", "title-and-content"],
             required: false,
         },
     },
