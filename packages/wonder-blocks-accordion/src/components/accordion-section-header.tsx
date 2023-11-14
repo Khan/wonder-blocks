@@ -168,10 +168,24 @@ const styles = StyleSheet.create({
         ":active": {
             outline: `2px solid ${tokens.color.activeBlue}`,
         },
-        ":focus-visible": {
+
+        ":hover": {
             outline: `2px solid ${tokens.color.blue}`,
         },
-        ":hover": {
+
+        // Provide basic, default focus styles on older browsers (e.g.
+        // Safari 14)
+        ":focus": {
+            boxShadow: `0 0 0 2px ${tokens.color.blue}`,
+        },
+
+        // Remove default focus styles for mouse users ONLY if
+        // :focus-visible is supported on this platform.
+        ":focus:not(:focus-visible)": {
+            boxShadow: "none",
+        },
+
+        ":focus-visible": {
             outline: `2px solid ${tokens.color.blue}`,
         },
     },
@@ -225,6 +239,18 @@ const styles = StyleSheet.create({
     disabled: {
         pointerEvents: "none",
         color: "inherit",
+
+        // Provide basic, default focus styles on older browsers (e.g.
+        // Safari 14)
+        ":focus": {
+            boxShadow: `0 0 0 2px ${tokens.color.offBlack32}`,
+        },
+
+        // Remove default focus styles for mouse users ONLY if
+        // :focus-visible is supported on this platform.
+        ":focus:not(:focus-visible)": {
+            boxShadow: "none",
+        },
 
         ":focus-visible": {
             outline: `2px solid ${tokens.color.offBlack32}`,

@@ -155,6 +155,16 @@ const Accordion = React.forwardRef(function Accordion(
         }
     };
 
+    /**
+     * Set focus on the section that was selected.
+     *
+     * NOTE: It may seem like we should filter out non-collapsible sections
+     * here as they are effectively disabled. However, we should keep these
+     * disabled sections in the focus order as they'd receive focus anyway
+     * with `aria-disabled` and visually impaired users should still know
+     * they are there. Screenreaders will read them out as disabled, the
+     * status will still be clear to users.
+     */
     const handleSectionFocus = (index: number) => {
         setCurrentlyFocusedSection(index);
     };
