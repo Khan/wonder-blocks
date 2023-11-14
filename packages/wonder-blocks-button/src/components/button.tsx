@@ -111,6 +111,10 @@ export type SharedProps =
          */
         skipClientNav?: boolean;
         /**
+         * Optional custom styles for the inner label.
+         */
+        labelStyle?: StyleType;
+        /**
          * Optional custom styles.
          */
         style?: StyleType;

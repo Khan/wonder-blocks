@@ -47,6 +47,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             hovered,
             href = undefined,
             kind = "primary",
+            labelStyle,
             light = false,
             pressed,
             size = "medium",
@@ -110,6 +111,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 style={[
                     sharedStyles.text,
                     size === "large" && sharedStyles.largeText,
+                    labelStyle,
                     spinner && sharedStyles.hiddenText,
                     kind === "tertiary" && sharedStyles.textWithFocus,
                     // apply press/hover effects on the label
@@ -405,7 +407,6 @@ export const _generateStyles = (
             },
         };
     } else if (kind === "secondary") {
-        const horizontalPadding = padding - (theme.border.width.focused - 1);
         const secondaryBorderColor =
             buttonColor === "destructive"
                 ? theme.color.border.secondary.critical
@@ -421,11 +422,12 @@ export const _generateStyles = (
                     ? theme.color.bg.secondary.inverse
                     : theme.color.bg.secondary.default,
                 color: light ? theme.color.text.inverse : color,
-                borderColor: light
+                outlineColor: light
                     ? theme.color.border.secondary.inverse
                     : secondaryBorderColor,
-                borderStyle: "solid",
-                borderWidth: theme.border.width.secondary,
+                outlineStyle: "solid",
+                outlineWidth: theme.border.width.secondary,
+                outlineOffset: 1,
                 paddingLeft: padding,
                 paddingRight: padding,
             },
@@ -433,37 +435,29 @@ export const _generateStyles = (
                 background: light
                     ? theme.color.bg.secondary.inverse
                     : theme.color.bg.secondary.focus,
-                borderColor: light ? theme.color.border.primary.inverse : color,
-                borderWidth: theme.border.width.focused,
-                paddingLeft: horizontalPadding,
-                paddingRight: horizontalPadding,
+                outlineColor: light
+                    ? theme.color.border.primary.inverse
+                    : color,
+                outlineWidth: theme.border.width.focused,
             },
 
             active: {
                 background: light ? activeColor : secondaryActiveColor,
                 color: light ? fadedColor : activeColor,
-                borderColor: light ? fadedColor : activeColor,
-                borderWidth: theme.border.width.focused,
-                // We need to reduce padding to offset the difference
-                // caused by the border becoming thicker on focus.
-                paddingLeft: horizontalPadding,
-                paddingRight: horizontalPadding,
+                outlineColor: light ? fadedColor : activeColor,
+                outlineWidth: theme.border.width.focused,
             },
             disabled: {
                 color: light
                     ? theme.color.text.secondary.inverse
                     : theme.color.text.disabled,
-                borderColor: light ? fadedColor : theme.color.border.disabled,
+                outlineColor: light ? fadedColor : theme.color.border.disabled,
                 cursor: "default",
                 ":focus": {
-                    borderColor: light
+                    outlineColor: light
                         ? theme.color.border.secondary.inverse
                         : theme.color.border.disabled,
-                    borderWidth: theme.border.width.disabled,
-                    // We need to reduce padding to offset the difference
-                    // caused by the border becoming thicker on focus.
-                    paddingLeft: padding - 1,
-                    paddingRight: padding - 1,
+                    outlineWidth: theme.border.width.disabled,
                 },
             },
         };
@@ -488,25 +482,12 @@ export const _generateStyles = (
                 },
             },
             focus: {
-                ":after": {
-                    content: "''",
-                    // Since we are using a pseudo element, we need to manually
-                    // calculate the width/height and use absolute position to
-                    // prevent other elements from being shifted around.
-                    position: "absolute",
-                    // Keeps the button at the same size when applying the
-                    // borderWidth property, so we can apply the correct value
-                    // per theme for each side (left and right).
-                    width: `calc(100% + ${theme.border.width.focused * 2}px)`,
-                    // Same as above, but for the height (top and bottom).
-                    height: `calc(100% - ${theme.border.width.focused * 2}px)`,
-                    borderStyle: "solid",
-                    borderColor: light
-                        ? theme.color.border.tertiary.inverse
-                        : color,
-                    borderWidth: theme.border.width.focused,
-                    borderRadius: theme.border.radius.default,
-                },
+                outlineStyle: "solid",
+                outlineColor: light
+                    ? theme.color.border.tertiary.inverse
+                    : color,
+                outlineWidth: theme.border.width.focused,
+                borderRadius: theme.border.radius.default,
             },
             active: {
                 color: light ? fadedColor : activeColor,
@@ -520,11 +501,9 @@ export const _generateStyles = (
                 cursor: "default",
             },
             disabledFocus: {
-                ":after": {
-                    borderColor: light
-                        ? theme.color.border.tertiary.inverse
-                        : theme.color.border.disabled,
-                },
+                outlineColor: light
+                    ? theme.color.border.tertiary.inverse
+                    : theme.color.border.disabled,
             },
         };
     } else {
