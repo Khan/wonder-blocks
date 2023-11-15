@@ -399,6 +399,104 @@ describe("Accordion", () => {
         expect(wrapper).toHaveStyle({color: "red"});
     });
 
+    test("applies region role to sections when there are 6 or fewer", () => {
+        // Arrange
+        render(
+            <Accordion>
+                <AccordionSection header="Section 1" testId="section-1">
+                    Section 1 content
+                </AccordionSection>
+                <AccordionSection header="Section 2">
+                    Section 2 content
+                </AccordionSection>
+                <AccordionSection header="Section 3">
+                    Section 3 content
+                </AccordionSection>
+                <AccordionSection header="Section 4">
+                    Section 4 content
+                </AccordionSection>
+                <AccordionSection header="Section 5">
+                    Section 5 content
+                </AccordionSection>
+                <AccordionSection header="Section 6">
+                    Section 6 content
+                </AccordionSection>
+            </Accordion>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const section1ContentPanel = screen.getByTestId(
+            "section-1-content-panel",
+        );
+
+        // Assert
+        expect(section1ContentPanel).toHaveAttribute("role", "region");
+    });
+
+    test("does not apply region role to sections when there are more than 6", () => {
+        // Arrange
+        render(
+            <Accordion>
+                <AccordionSection header="Section 1" testId="section-1">
+                    Section 1 content
+                </AccordionSection>
+                <AccordionSection header="Section 2">
+                    Section 2 content
+                </AccordionSection>
+                <AccordionSection header="Section 3">
+                    Section 3 content
+                </AccordionSection>
+                <AccordionSection header="Section 4">
+                    Section 4 content
+                </AccordionSection>
+                <AccordionSection header="Section 5">
+                    Section 5 content
+                </AccordionSection>
+                <AccordionSection header="Section 6">
+                    Section 6 content
+                </AccordionSection>
+                <AccordionSection header="Section 7">
+                    Section 7 content
+                </AccordionSection>
+            </Accordion>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const section1ContentPanel = screen.getByTestId(
+            "section-1-content-panel",
+        );
+
+        // Assert
+        expect(section1ContentPanel).not.toHaveAttribute("role", "region");
+    });
+
+    test("appropriately sets aria-labelledby on the content panel", () => {
+        // Arrange
+        render(
+            <Accordion>
+                <AccordionSection header="Section 1" testId="section-1">
+                    Section 1 content
+                </AccordionSection>
+                <AccordionSection header="Section 2">
+                    Section 2 content
+                </AccordionSection>
+            </Accordion>,
+            {wrapper: RenderStateRoot},
+        );
+
+        // Act
+        const section1ContentPanel = screen.getByTestId(
+            "section-1-content-panel",
+        );
+
+        // Assert
+        // Not testing the actual value of the aria-labelledby attribute
+        // because it comes from the unique ID generator.
+        expect(section1ContentPanel).toHaveAttribute("aria-labelledby");
+    });
+
     describe("keyboard navigation", () => {
         test("can open a section with the enter key", () => {
             // Arrange

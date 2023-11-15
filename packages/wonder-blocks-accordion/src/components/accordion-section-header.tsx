@@ -14,6 +14,8 @@ import type {TagType} from "./accordion-section";
 import {getRoundedValuesForHeader} from "../utils";
 
 type Props = {
+    // Unique ID for this section's button.
+    id: string;
     // Header content.
     header: string | React.ReactElement;
     // Whether the caret shows up at the start or end of the header block.
@@ -55,6 +57,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
     ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
     const {
+        id,
         header,
         caretPosition,
         cornerKind,
@@ -83,6 +86,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
     return (
         <HeadingSmall tag={tag} style={styles.heading}>
             <Clickable
+                id={id}
                 aria-expanded={expanded}
                 aria-controls={sectionContentUniqueId}
                 onClick={onClick}

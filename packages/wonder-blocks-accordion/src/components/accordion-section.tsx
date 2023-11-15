@@ -112,6 +112,15 @@ type Props = AriaProps & {
      */
     isLastSection?: boolean;
     /**
+     * Whether this section should have role="region". True by default.
+     * According to W3, the panel container should have role region except
+     * when there are more than six panels in an accordion, in which case
+     * we should set this prop to false.
+     * For internal use only.
+     * @ignore
+     */
+    isRegion?: boolean;
+    /**
      * Called when the header is focused.
      * For internal use only.
      * @ignore
@@ -189,6 +198,9 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         // parent component.
         isFirstSection = true,
         isLastSection = true,
+        // Assume it's a region by default. Override this to be false
+        // if we know there are more than six panels in an accordion.
+        isRegion = true,
         ...ariaProps
     } = props;
 
@@ -200,6 +212,9 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
     const ids = useUniqueIdWithMock();
     const sectionId = id ?? ids.get("accordion-section");
+    // We need an ID for the header so that the content section's
+    // aria-labelledby attribute can point to it.
+    const headerId = ids.get("accordion-section-header");
     // We need an ID for the content section so that the opener's
     // aria-controls attribute can point to it.
     const sectionContentUniqueId = ids.get("accordion-section-content");
@@ -252,6 +267,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
             {...ariaProps}
         >
             <AccordionSectionHeader
+                id={headerId}
                 header={header}
                 caretPosition={caretPosition}
                 cornerKind={cornerKind}
@@ -270,6 +286,8 @@ const AccordionSection = React.forwardRef(function AccordionSection(
             />
             <View
                 id={sectionContentUniqueId}
+                role={isRegion ? "region" : undefined}
+                aria-labelledby={headerId}
                 style={[
                     styles.contentWrapper,
                     expandedState
@@ -277,6 +295,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                         : styles.conentWrapperCollapsed,
                     sectionStyles.contentWrapper,
                 ]}
+                testId={testId ? `${testId}-content-panel` : undefined}
             >
                 {typeof children === "string" ? (
                     <Body style={styles.stringContent}>{children}</Body>
