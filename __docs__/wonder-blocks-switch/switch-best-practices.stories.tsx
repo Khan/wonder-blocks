@@ -8,12 +8,13 @@ import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 
 import SwitchArgtypes from "./switch.argtypes";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 type StoryComponentType = StoryObj<typeof Switch>;
 
@@ -146,7 +147,7 @@ export const WithTooltip: StoryComponentType = (() => {
                 <Switch
                     checked={checked}
                     onChange={setChecked}
-                    icon={<Icon icon={icons.hint} />}
+                    icon={<PhosphorIcon icon={IconMappings.lightbulbBold} />}
                 />
             </Tooltip>
         </View>
@@ -202,7 +203,7 @@ export const InsideDetailCell: StoryComponentType = (() => {
                     the switch. Click me all you want and nothing will change.
                 </LabelSmall>
             }
-            leftAccessory={<Icon icon={icons.info} />}
+            leftAccessory={<PhosphorIcon icon={IconMappings.infoBold} />}
             rightAccessory={
                 <Switch
                     id="switch-inside-detail-cell"

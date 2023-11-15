@@ -2,13 +2,15 @@ import {Meta, Story, Canvas} from "@storybook/blocks";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
+import {IconMappings} from "./phosphor-icon.argtypes";
+
 <Meta
     title="Icon / Accessibility"
-    component={Icon}
+    component={PhosphorIcon}
     parameters={{
         previewTabs: {
             canvas: {hidden: true},
@@ -50,20 +52,16 @@ More information about all these points can be found in the
 <Canvas>
     <Story name="Icon contrast">
         <View style={{flexDirection: "row", marginBottom: Spacing.xSmall_8}}>
-            <LabelMedium style={{display: "inline"}}>
-                High contrast icon (GOOD):
-            </LabelMedium>
-            <Icon
-                icon={icons.correct}
+            <LabelMedium>High contrast icon (GOOD):</LabelMedium>
+            <PhosphorIcon
+                icon={IconMappings.checkCircle}
                 style={{color: Color.blue, marginInlineStart: Spacing.xSmall_8}}
             />
         </View>
         <View style={{flexDirection: "row"}}>
-            <LabelMedium style={{display: "inline"}}>
-                Low contrast icon (BAD):
-            </LabelMedium>
-            <Icon
-                icon={icons.incorrect}
+            <LabelMedium>Low contrast icon (BAD):</LabelMedium>
+            <PhosphorIcon
+                icon={IconMappings.xCircle}
                 style={{
                     color: Color.lightBlue,
                     marginInlineStart: Spacing.xSmall_8,
@@ -78,19 +76,15 @@ More information about all these points can be found in the
 <Canvas>
     <Story name="Right to left icons">
         <View style={{flexDirection: "row", direction: "ltr"}}>
-            <Icon icon={icons.caretRight} />
-            <LabelMedium
-                style={{display: "inline", marginInlineStart: Spacing.xSmall_8}}
-            >
-                Left to right
+            <PhosphorIcon icon={IconMappings.caretRight} />
+            <LabelMedium style={{marginInlineStart: Spacing.xSmall_8}}>
+                {"Left to right"}
             </LabelMedium>
         </View>
         <View style={{flexDirection: "row", direction: "rtl"}}>
-            <Icon icon={icons.caretLeft} />
-            <LabelMedium
-                style={{display: "inline", marginInlineStart: Spacing.xSmall_8}}
-            >
-                دائیں سے بائیں
+            <PhosphorIcon icon={IconMappings.caretLeft} />
+            <LabelMedium style={{marginInlineStart: Spacing.xSmall_8}}>
+                {"دائیں سے بائیں"}
             </LabelMedium>
         </View>
     </Story>
