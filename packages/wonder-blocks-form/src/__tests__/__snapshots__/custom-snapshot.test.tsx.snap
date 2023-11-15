@@ -86,27 +86,27 @@ exports[`CheckboxCore type:default checked:null 1`] = `
     }
     type="checkbox"
   />,
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "#ffffff",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 12,
+        "margin": 2,
+        "maskImage": "url(minus-bold.svg)",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
+        "width": 12,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
-      fill="#ffffff"
-    />
-  </svg>,
+  />,
 ]
 `;
 
@@ -150,27 +150,27 @@ exports[`CheckboxCore type:default checked:true 1`] = `
     }
     type="checkbox"
   />,
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "#ffffff",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 12,
+        "margin": 2,
+        "maskImage": "url(check-bold.svg)",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
+        "width": 12,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
-      fill="#ffffff"
-    />
-  </svg>,
+  />,
 ]
 `;
 
@@ -238,27 +238,27 @@ exports[`CheckboxCore type:disabled checked:null 1`] = `
     }
     type="checkbox"
   />,
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "rgba(33,36,44,0.32)",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 12,
+        "margin": 2,
+        "maskImage": "url(minus-bold.svg)",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
+        "width": 12,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
-      fill="rgba(33,36,44,0.32)"
-    />
-  </svg>,
+  />,
 ]
 `;
 
@@ -294,27 +294,27 @@ exports[`CheckboxCore type:disabled checked:true 1`] = `
     }
     type="checkbox"
   />,
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "rgba(33,36,44,0.32)",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 12,
+        "margin": 2,
+        "maskImage": "url(check-bold.svg)",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
+        "width": 12,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
-      fill="rgba(33,36,44,0.32)"
-    />
-  </svg>,
+  />,
 ]
 `;
 
@@ -404,27 +404,27 @@ exports[`CheckboxCore type:error checked:null 1`] = `
     }
     type="checkbox"
   />,
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "#ffffff",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 12,
+        "margin": 2,
+        "maskImage": "url(minus-bold.svg)",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
+        "width": 12,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
-      fill="#ffffff"
-    />
-  </svg>,
+  />,
 ]
 `;
 
@@ -468,27 +468,27 @@ exports[`CheckboxCore type:error checked:true 1`] = `
     }
     type="checkbox"
   />,
-  <svg
+  <span
     className=""
-    height={16}
     style={
       {
+        "backgroundColor": "#ffffff",
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
+        "height": 12,
+        "margin": 2,
+        "maskImage": "url(check-bold.svg)",
+        "maskPosition": "center",
+        "maskRepeat": "no-repeat",
+        "maskSize": "100%",
         "pointerEvents": "none",
         "position": "absolute",
         "verticalAlign": "text-bottom",
+        "width": 12,
       }
     }
-    viewBox="0 0 16 16"
-    width={16}
-  >
-    <path
-      d="M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z"
-      fill="#ffffff"
-    />
-  </svg>,
+  />,
 ]
 `;
 
