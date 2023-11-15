@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.0.30
+
+### Patch Changes
+
+-   ddcb198a: Updating code comments to use PhosphorIcon examples
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
 ## 3.0.29
 
 ### Patch Changes

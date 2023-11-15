@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.1.1
+
+### Patch Changes
+
+-   7b24db93: Add support for up arrow, down arrow, home, and end keys
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
 ## 1.1.0
 
 ### Minor Changes

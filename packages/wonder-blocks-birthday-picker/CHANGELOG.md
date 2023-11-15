@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.38
+
+### Patch Changes
+
+-   c8e9ce34: Add PhosphorIcon support (replace Icon)
+-   Updated dependencies [af26c590]
+    -   @khanacademy/wonder-blocks-dropdown@3.1.6
+
 ## 2.0.37
 
 ### Patch Changes
