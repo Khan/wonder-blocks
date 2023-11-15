@@ -3,6 +3,8 @@ import {render, screen} from "@testing-library/react";
 
 import Plus from "@phosphor-icons/core/regular/plus.svg";
 import PlusBold from "@phosphor-icons/core/bold/plus-bold.svg";
+// mock out the custom icon
+import customIcon from "./custom-icon-mock.svg";
 
 import {PhosphorIcon} from "../phosphor-icon";
 import * as utils from "../../util/icon-util";
@@ -118,6 +120,18 @@ describe("PhosphorIcon", () => {
         // Assert
         expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
             `mask-image: url(${Plus});`,
+        );
+    });
+
+    it("allows importing an arbitrary SVG file (custom icon)", async () => {
+        // Arrange
+
+        // Act
+        render(<PhosphorIcon icon={customIcon} testId="phosphor-icon" />);
+
+        // Assert
+        expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
+            `mask-image: url(${customIcon});`,
         );
     });
 });

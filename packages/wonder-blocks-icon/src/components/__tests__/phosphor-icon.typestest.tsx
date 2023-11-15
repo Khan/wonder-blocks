@@ -18,10 +18,8 @@ import {PhosphorIcon} from "../phosphor-icon";
 // Valid: large + fill
 <PhosphorIcon icon={PlusCircleFill} size="large" color="green" />;
 
-// Invalid: small + regular
-// @ts-expect-error - small icons only support `bold` and `fill` weights.
+// Valid: small + regular
 <PhosphorIcon icon={PlusCircleRegular} size="small" color="green" />;
 
-// Invalid: medium + bold
-// @ts-expect-error - medium icons only support `regular` and `fill` weights.
+// Valid: medium + bold
 <PhosphorIcon icon={PlusCircleBold} size="medium" color="green" />;

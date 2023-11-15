@@ -4,17 +4,13 @@ import {StyleSheet} from "aphrodite";
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {viewportPixelsForSize} from "../util/icon-util";
-import {
-    PhosphorIconAsset,
-    PhosphorIconMedium,
-    PhosphorIconSmall,
-} from "../types";
+import {PhosphorIconAsset} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
 const StyledIcon = addStyle("span");
 
-type CommonProps = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
+type Props = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
     /**
      * The color of the icon. Will default to `currentColor`, which means that
      * it will take on the CSS `color` value from the parent element.
@@ -32,55 +28,15 @@ type CommonProps = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
 
-type PropsForSmallIcon = CommonProps & {
-    /**
-     * The icon size (16px).
-     *
-     * __NOTE:__ small icons only support `bold` and `fill` weights. **Make sure
-     * you are not using a `regular` icon.**
-     */
-    size?: "small";
-    /**
-     * The icon to display. This is a reference to the icon asset
-     * (imported as a static SVG file).
-     * __NOTE:__ small icons only support `bold` and `fill` weights.
-     */
-    icon: PhosphorIconSmall;
-};
+    size?: "small" | "medium" | "large" | "xlarge";
 
-type PropsForMediumIcon = CommonProps & {
-    /**
-     * The icon size (24px). Defaults to `medium`.
-     *
-     * __NOTE:__ medium icons only support `regular` and `fill` weights. **Make
-     * sure you are not using a `bold` icon.**
-     */
-    size?: "medium";
-    /**
-     * The icon to display. This is a reference to the icon asset
-     * (imported as a static SVG file).
-     * __NOTE:__ medium icons only support `regular` and `fill` weights.
-     */
-    icon: PhosphorIconMedium;
-};
-
-type PropsForOtherSizes = CommonProps & {
-    /**
-     * large: The icon size (48px).
-     * xlarge: The icon size (96px).
-     */
-    size?: "large" | "xlarge";
     /**
      * The icon to display. This is a reference to the icon asset
      * (imported as a static SVG file).
      */
     icon: PhosphorIconAsset;
 };
-
-// Define icon size by icon weight
-type Props = PropsForSmallIcon | PropsForMediumIcon | PropsForOtherSizes;
 
 /**
  * A `PhosphorIcon` displays a small informational or decorative image as an
