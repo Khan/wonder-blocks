@@ -214,7 +214,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     const sectionId = id ?? ids.get("accordion-section");
     // We need an ID for the header so that the content section's
     // aria-labelledby attribute can point to it.
-    const headerId = ids.get("accordion-section-header");
+    const headerId = id ? `${id}-header` : ids.get("accordion-section-header");
     // We need an ID for the content section so that the opener's
     // aria-controls attribute can point to it.
     const sectionContentUniqueId = ids.get("accordion-section-content");

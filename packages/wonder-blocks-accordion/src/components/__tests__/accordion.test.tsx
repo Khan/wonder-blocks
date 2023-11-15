@@ -476,7 +476,11 @@ describe("Accordion", () => {
         // Arrange
         render(
             <Accordion>
-                <AccordionSection header="Section 1" testId="section-1">
+                <AccordionSection
+                    id="accordion-section-id-for-test"
+                    header="Section 1"
+                    testId="section-1"
+                >
                     Section 1 content
                 </AccordionSection>
                 <AccordionSection header="Section 2">
@@ -492,9 +496,10 @@ describe("Accordion", () => {
         );
 
         // Assert
-        // Not testing the actual value of the aria-labelledby attribute
-        // because it comes from the unique ID generator.
-        expect(section1ContentPanel).toHaveAttribute("aria-labelledby");
+        expect(section1ContentPanel).toHaveAttribute(
+            "aria-labelledby",
+            "accordion-section-id-for-test-header",
+        );
     });
 
     describe("keyboard navigation", () => {
