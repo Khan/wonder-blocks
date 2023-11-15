@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.0.10
+
+### Patch Changes
+
+-   7b24db93: Get onFocus to work for buttons
+
 ## 4.0.9
 
 ### Patch Changes
