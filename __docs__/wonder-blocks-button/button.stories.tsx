@@ -105,7 +105,7 @@ export const Tertiary: StoryComponentType = {
 
         // Get HTML elements
         const button = canvas.getByRole("button");
-        const computedStyleButton = getComputedStyle(button, ":after");
+        const computedStyleButton = getComputedStyle(button);
         const innerLabel = canvas.getByTestId("test-button-inner-label");
         const computedStyleLabel = getComputedStyle(innerLabel, ":after");
 
@@ -120,8 +120,10 @@ export const Tertiary: StoryComponentType = {
 
         // Focus style
         await fireEvent.focus(button);
-        await expect(computedStyleButton.borderColor).toBe("rgb(24, 101, 242)");
-        await expect(computedStyleButton.borderWidth).toBe("2px");
+        await expect(computedStyleButton.outlineColor).toBe(
+            "rgb(24, 101, 242)",
+        );
+        await expect(computedStyleButton.outlineWidth).toBe("2px");
 
         // Active (mouse down) style
         // eslint-disable-next-line testing-library/prefer-user-event
