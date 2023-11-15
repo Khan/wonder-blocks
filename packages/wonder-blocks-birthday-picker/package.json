@@ -23,6 +23,7 @@
     "@khanacademy/wonder-blocks-typography": "^2.1.9"
   },
   "peerDependencies": {
+    "@phosphor-icons/core": "^2.0.2",
     "aphrodite": "^1.2.5",
     "moment": "^2.24.0",
     "react": "16.14.0"
