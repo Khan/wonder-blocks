@@ -63,13 +63,14 @@ type DetailCellProps = CellProps & {
  *
  * ```jsx
  * import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+ * import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
  *
  * <DetailCell
- *  leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
+ *  leftAccessory={<PhosphorIcon icon={contentVideo} size="medium" />}
  *  subtitle1="Subtitle 1"
  *  title="Detail cell"
  *  subtitle1="Subtitle 2"
- *  rightAccessory={<Icon icon={icons.caretRight} size="medium" />}
+ *  rightAccessory={<PhosphorIcon icon={caretRight} size="medium" />}
  * />
  * ```
  */

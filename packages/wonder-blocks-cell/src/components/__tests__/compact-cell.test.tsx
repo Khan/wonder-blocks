@@ -1,8 +1,9 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
+import caretRightIcon from "@phosphor-icons/core/regular/caret-right.svg";
 
 import CompactCell from "../compact-cell";
 
@@ -39,7 +40,10 @@ describe("CompactCell", () => {
             <CompactCell
                 title="Compact cell"
                 leftAccessory={
-                    <Icon icon={icons.caretRight} aria-label="Caret icon" />
+                    <PhosphorIcon
+                        icon={caretRightIcon}
+                        aria-label="Caret icon"
+                    />
                 }
             />,
         );
@@ -56,7 +60,10 @@ describe("CompactCell", () => {
             <CompactCell
                 title="Compact cell"
                 rightAccessory={
-                    <Icon icon={icons.caretRight} aria-label="Caret icon" />
+                    <PhosphorIcon
+                        icon={caretRightIcon}
+                        aria-label="Caret icon"
+                    />
                 }
             />,
         );
