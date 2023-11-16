@@ -274,7 +274,7 @@ export const Inline: StoryComponentType = {
                 <PhosphorIcon
                     size="small"
                     icon={IconMappings.infoBold}
-                    style={{margin: tokens.spacing.xxxxSmall_2}}
+                    style={styles.inline}
                     className="foo"
                 />
                 when it is inline.
@@ -352,5 +352,10 @@ const styles = StyleSheet.create({
     tableCell: {
         border: `${tokens.border.width.hairline}px solid ${tokens.color.offBlack}`,
         padding: tokens.spacing.medium_16,
+    },
+    inline: {
+        margin: tokens.spacing.xxxxSmall_2,
+        width: 50,
+        height: 50,
     },
 });

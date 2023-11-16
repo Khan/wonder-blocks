@@ -93,7 +93,7 @@ describe("PhosphorIcon", () => {
     it("applies style prop", async () => {
         // Arrange
         const expectedStyle = {
-            display: "none",
+            width: 30,
         } as const;
 
         // Act
@@ -106,9 +106,7 @@ describe("PhosphorIcon", () => {
         );
 
         // Assert
-        expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
-            "display: none;",
-        );
+        expect(screen.getByTestId("phosphor-icon")).toHaveStyle("width: 30px");
     });
 
     it("includes SVG using the maskImage css attribute", async () => {

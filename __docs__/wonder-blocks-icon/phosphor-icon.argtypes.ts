@@ -104,7 +104,11 @@ export const IconMappings = {
 export default {
     icon: {
         description:
-            "The icon to display. This is a reference to the icon asset (imported as a static SVG file). `small` size should use a `bold` icon, and `medium` size should use a `regular` icon.",
+            `The icon to display. This is a reference to the icon asset ` +
+            `(imported as a static SVG file).\n\n` +
+            `It supports the following types:\n` +
+            `- \`PhosphorIconAsset\`: a reference to a Phosphor SVG asset.\n` +
+            `- \`string\`: an import referencing an arbitrary SVG file.`,
         options: Object.keys(IconMappings),
         mapping: IconMappings,
         type: {
@@ -114,7 +118,7 @@ export default {
         },
         table: {
             type: {
-                summary: "string",
+                summary: "PhosphorIconAsset | string",
             },
         },
     },
