@@ -250,11 +250,6 @@ const Clickable = React.forwardRef(function Clickable(
                     {...commonProps}
                     type="button"
                     aria-disabled={props.disabled}
-                    onFocus={(e) => {
-                        if (props.onFocus) {
-                            props.onFocus(e);
-                        }
-                    }}
                     ref={ref as React.Ref<HTMLButtonElement>}
                 >
                     {props.children(clickableState)}
