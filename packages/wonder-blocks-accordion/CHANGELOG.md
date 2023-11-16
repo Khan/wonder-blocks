@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.1.2
+
+### Patch Changes
+
+-   16d99bde: Add region and aria-labelledby to accordion
+-   Updated dependencies [6b8bf8d5]
+    -   @khanacademy/wonder-blocks-clickable@4.0.11
+
 ## 1.1.1
 
 ### Patch Changes

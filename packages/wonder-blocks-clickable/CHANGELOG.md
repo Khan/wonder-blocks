@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.0.11
+
+### Patch Changes
+
+-   6b8bf8d5: Fix onFocus handler on Clickable
+
 ## 4.0.10
 
 ### Patch Changes
