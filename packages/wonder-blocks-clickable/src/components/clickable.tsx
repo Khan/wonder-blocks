@@ -270,6 +270,7 @@ const Clickable = React.forwardRef(function Clickable(
             style,
             target = undefined,
             testId,
+            onFocus,
             onKeyDown,
             onKeyUp,
             hideDefaultFocusRing,
@@ -301,6 +302,7 @@ const Clickable = React.forwardRef(function Clickable(
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     disabled={disabled}
@@ -322,6 +324,7 @@ const Clickable = React.forwardRef(function Clickable(
                     href={href}
                     onClick={onClick}
                     safeWithNav={safeWithNav}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     target={target}
