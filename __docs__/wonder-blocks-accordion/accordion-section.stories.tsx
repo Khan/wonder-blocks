@@ -172,13 +172,13 @@ export const Uncontrolled: StoryComponentType = {
     render: function Render() {
         return (
             <AccordionSection
-                header="Controlled section"
+                header="Uncontrolled section"
                 onToggle={() =>
                     // eslint-disable-next-line no-console
                     console.log("Click! This function is being called!")
                 }
             >
-                This is the information present in this controlled section
+                This is the information present in this uncontrolled section
             </AccordionSection>
         );
     },

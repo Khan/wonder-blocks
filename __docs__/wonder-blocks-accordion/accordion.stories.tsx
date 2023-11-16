@@ -414,7 +414,7 @@ WithAnimation.parameters = {
 /**
  * An Accordion with custom styles. The custom styles in this example
  * include a pink border and extra padding.
- * Note that the Accordian's border is different than the AccordionSection
+ * Note that the Accordion's border is different than the AccordionSection
  * border styles. Passing custom styles here will not affect the sections'
  * styles. If you want to change the corner kind of a single section,
  * that can be done using the `cornerKind` prop (as demonstrated here).
