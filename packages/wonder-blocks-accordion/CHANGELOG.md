@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.2.0
+
+### Minor Changes
+
+-   b13d4321: Cleanup: prioritize all children overloaded props, fix typos, update documentation, make the accordion component public
+
 ## 1.1.2
 
 ### Patch Changes
