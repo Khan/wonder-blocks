@@ -45,7 +45,7 @@ const tokens = {
     },
     font: {
         family: {
-            sans: 'Lato,"Noto Sans" sans-serif',
+            sans: 'Lato, "Noto Sans", sans-serif',
             serif: '"Noto Serif", serif',
             mono: "Inconsolata, monospace",
         },
