@@ -105,7 +105,7 @@ describe("Accordion elements", () => {
 
     test("AccordionSection forwards ref", () => {
         // Arrange
-        const ref: React.RefObject<HTMLDivElement> = React.createRef();
+        const ref: React.RefObject<HTMLButtonElement> = React.createRef();
 
         // Act
         render(
@@ -116,7 +116,7 @@ describe("Accordion elements", () => {
         );
 
         // Assert
-        expect(ref.current).toBeInstanceOf(HTMLDivElement);
+        expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     });
 });
 

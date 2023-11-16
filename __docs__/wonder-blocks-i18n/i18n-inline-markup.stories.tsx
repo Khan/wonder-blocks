@@ -2,13 +2,14 @@ import * as React from "react";
 
 import type {Meta, StoryObj} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import * as i18n from "@khanacademy/wonder-blocks-i18n";
 
 import {I18nInlineMarkup} from "../../packages/wonder-blocks-i18n/src/components/i18n-inline-markup";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Translations/I18nInlineMarkup",
@@ -110,9 +111,9 @@ export const HandlingTranslationErrors: StoryComponentType = {
                             </TooltipContent>
                         }
                     >
-                        <Icon
+                        <PhosphorIcon
                             size="small"
-                            icon={icons.incorrect}
+                            icon={IconMappings.xCircleBold}
                             color={Color.red}
                         />
                     </Tooltip>

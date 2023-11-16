@@ -3,9 +3,11 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
+
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 <Meta
     title="Typography / Accessibility"
@@ -54,19 +56,15 @@ More information about all these points and more can be found in the
     <Story name="Font size">
         <View>
             <View style={styles.explanation}>
-                <Icon icon={icons.incorrect} style={styles.incorrect} />
-                <Body>
-                    The following text is too small for body text (10px):
-                </Body>
+                <PhosphorIcon icon={IconMappings.xCircle} style={styles.incorrect} />
+                <Body>The following text is too small for body text (10px):</Body>
             </View>
-            <View style={{fontSize: "10px"}}>
-                <p>The quick brown fox jumps over the lazy dog.</p>
+            <View>
+                <p style={{fontSize: "10px"}}>The quick brown fox jumps over the lazy dog.</p>
             </View>
             <View style={styles.explanation}>
-                <Icon icon={icons.correct} style={styles.correct} />
-                <Body>
-                    The following text is adequate for body text (16px):
-                </Body>
+                <PhosphorIcon icon={IconMappings.checkCircle} style={styles.correct} />
+                <Body>The following text is adequate for body text (16px):</Body>
             </View>
             <Body>The quick brown fox jumps over the lazy dog</Body>
         </View>
@@ -79,23 +77,15 @@ More information about all these points and more can be found in the
     <Story name="Color contrast">
         <View>
             <View style={styles.explanation}>
-                <Icon icon={icons.incorrect} style={styles.incorrect} />
-                <Body>
-                    The color contrast for the following text is too low:
-                </Body>
+                <PhosphorIcon icon={IconMappings.xCircle} style={styles.incorrect} />
+                <Body>The color contrast for the following text is too low:</Body>
             </View>
-            <Body style={{color: Color.offBlack32}}>
-                The quick brown fox jumps over the lazy dog
-            </Body>
+            <Body style={{color: Color.offBlack32}}>The quick brown fox jumps over the lazy dog</Body>
             <View style={styles.explanation}>
-                <Icon icon={icons.correct} style={styles.correct} />
-                <Body>
-                    The color contrast for the following text is adequate:
-                </Body>
+                <PhosphorIcon icon={IconMappings.checkCircle} style={styles.correct} />
+                <Body>The color contrast for the following text is adequate:</Body>
             </View>
-            <Body style={{color: Color.offBlack}}>
-                The quick brown fox jumps over the lazy dog
-            </Body>
+            <Body style={{color: Color.offBlack}}>The quick brown fox jumps over the lazy dog</Body>
         </View>
     </Story>
 </Canvas>
@@ -106,23 +96,21 @@ More information about all these points and more can be found in the
     <Story name="Line spacing">
         <View>
             <View style={styles.explanation}>
-                <Icon icon={icons.incorrect} style={styles.incorrect} />
+                <PhosphorIcon icon={IconMappings.xCircle} style={styles.incorrect} />
                 <Body>The following line spacing is too small:</Body>
             </View>
-            <View style={{lineHeight: 1}}>
-                <p>
-                    Khan Academy offers practice exercises, instructional
+            <View>
+                <p style={{lineHeight: 1}}>Khan Academy offers practice exercises, instructional
                     videos, and a personalized learning dashboard that empower
                     learners to study at their own pace in and outside of the
                     classroom. We tackle math, science, computing, history, art
                     history, economics, and more, including K-14 and test
                     preparation (SAT, Praxis, LSAT) content. We focus on skill
                     mastery to help learners establish strong foundations, so
-                    there's no limit to what they can learn next!
-                </p>
+                    there's no limit to what they can learn next!</p>
             </View>
             <View style={styles.explanation}>
-                <Icon icon={icons.correct} style={styles.correct} />
+                <PhosphorIcon icon={IconMappings.checkCircle} style={styles.correct} />
                 <Body>The following line spacing is adequate:</Body>
             </View>
             <Body>

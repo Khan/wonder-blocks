@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.2.0
+
+### Minor Changes
+
+-   a70a929b: Add `labelStyle` to override the styles of the internal label
+
+### Patch Changes
+
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
+## 6.1.0
+
+### Minor Changes
+
+-   d73f6988: Add Khanmigo theming support to buttons with icons
+
 ## 6.0.1
 
 ### Patch Changes

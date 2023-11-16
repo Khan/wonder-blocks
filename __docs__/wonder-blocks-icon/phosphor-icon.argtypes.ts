@@ -2,6 +2,10 @@ import type {InputType} from "@storybook/csf";
 
 import plusCircle from "@phosphor-icons/core/regular/plus-circle.svg";
 import plusCircleBold from "@phosphor-icons/core/bold/plus-circle-bold.svg";
+import calendar from "@phosphor-icons/core/regular/calendar.svg";
+import calendarBold from "@phosphor-icons/core/bold/calendar-bold.svg";
+import clock from "@phosphor-icons/core/regular/clock.svg";
+import clockBold from "@phosphor-icons/core/bold/clock-bold.svg";
 import xCircle from "@phosphor-icons/core/regular/x-circle.svg";
 import xCircleBold from "@phosphor-icons/core/bold/x-circle-bold.svg";
 import x from "@phosphor-icons/core/regular/x.svg";
@@ -40,6 +44,8 @@ import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import play from "@phosphor-icons/core/regular/play.svg";
 import playBold from "@phosphor-icons/core/bold/play-bold.svg";
+import playCircle from "@phosphor-icons/core/regular/play-circle.svg";
+import playCircleBold from "@phosphor-icons/core/bold/play-circle-bold.svg";
 
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 
@@ -49,6 +55,10 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
 export const IconMappings = {
     plusCircle,
     plusCircleBold,
+    calendar,
+    calendarBold,
+    clock,
+    clockBold,
     caretDown,
     caretDownBold,
     caretUp,
@@ -87,6 +97,8 @@ export const IconMappings = {
     pencilSimpleBold,
     play,
     playBold,
+    playCircle,
+    playCircleBold,
 } as const;
 
 export default {

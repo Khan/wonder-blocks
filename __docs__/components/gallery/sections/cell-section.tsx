@@ -3,14 +3,15 @@ import {StyleSheet} from "aphrodite";
 
 import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {IconMappings} from "../../../wonder-blocks-icon/phosphor-icon.argtypes";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
 
-export default function BannerSection() {
+export default function CellSection() {
     return (
         <>
             <HeadingLarge id="cell" tag="h3" style={styles.sectionLabel}>
@@ -28,7 +29,10 @@ export default function BannerSection() {
                         <CompactCell
                             title="Intro to rational & irrational numbers"
                             rightAccessory={
-                                <Icon icon={icons.caretRight} size="small" />
+                                <PhosphorIcon
+                                    icon={IconMappings.caretRightBold}
+                                    size="small"
+                                />
                             }
                         />
                     </View>
@@ -48,10 +52,16 @@ export default function BannerSection() {
                             subtitle1={"Subtitle 1 for article item"}
                             subtitle2={"Subtitle 2 for article item"}
                             leftAccessory={
-                                <Icon icon={icons.contentVideo} size="medium" />
+                                <PhosphorIcon
+                                    icon={IconMappings.playCircle}
+                                    size="medium"
+                                />
                             }
                             rightAccessory={
-                                <Icon icon={icons.caretRight} size="small" />
+                                <PhosphorIcon
+                                    icon={IconMappings.caretRightBold}
+                                    size="small"
+                                />
                             }
                         />
                     </View>

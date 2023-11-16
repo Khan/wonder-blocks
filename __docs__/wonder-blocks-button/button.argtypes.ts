@@ -139,6 +139,15 @@ export default {
             },
         },
     },
+    labelStyle: {
+        description: "Optional custom styles for the inner label.",
+        table: {
+            category: "Layout",
+            type: {
+                summary: "StyleType",
+            },
+        },
+    },
     className: {
         description: "Adds CSS classes to the Button.",
         control: {type: "text"},

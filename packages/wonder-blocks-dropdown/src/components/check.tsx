@@ -2,7 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
 const {offBlack, offBlack32, white} = Color;
 
@@ -29,8 +30,8 @@ type CheckProps = {
 const Check = function (props: CheckProps): React.ReactElement {
     const {disabled, selected, pressed, hovered, focused} = props;
     return (
-        <Icon
-            icon={icons.check}
+        <PhosphorIcon
+            icon={checkIcon}
             size="small"
             color={
                 disabled

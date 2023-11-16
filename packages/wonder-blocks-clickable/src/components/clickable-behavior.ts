@@ -112,6 +112,10 @@ type CommonProps = Readonly<{
      */
     role?: ClickableRole;
     /**
+     * Respond to raw "onfocus" event.
+     */
+    onFocus?: (e: React.FocusEvent) => unknown;
+    /**
      * Respond to raw "keydown" event.
      */
     onKeyDown?: (e: React.KeyboardEvent) => unknown;
@@ -580,7 +584,12 @@ export default class ClickableBehavior extends React.Component<
     };
 
     handleFocus: (e: React.FocusEvent) => void = (e) => {
-        this.setState({focused: true});
+        const {onFocus} = this.props;
+        this.setState({focused: true}, () => {
+            if (onFocus) {
+                onFocus(e);
+            }
+        });
     };
 
     handleBlur: (e: React.FocusEvent) => void = (e) => {

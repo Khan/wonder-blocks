@@ -75,6 +75,8 @@ type Props = AriaProps & {
     style?: StyleType;
 };
 
+const LANDMARK_PROLIFERATION_THRESHOLD = 6;
+
 /**
  * An accordion displays a vertically stacked list of sections, each of which
  * contains content that can be shown or hidden by clicking its header.
@@ -120,12 +122,31 @@ const Accordion = React.forwardRef(function Accordion(
         ...ariaProps
     } = props;
 
+    // Starting array for the initial expanded state of each section.
     const startingArray = Array(children.length).fill(false);
+    // If initialExpandedIndex is specified, we want to open that section.
     if (initialExpandedIndex !== undefined) {
         startingArray[initialExpandedIndex] = true;
     }
-
     const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
+
+    // Setting up focus state and refs for keyboard navigation.
+    const [currentlyFocusedSection, setCurrentlyFocusedSection] =
+        React.useState(0);
+    //  NOTE: It may seem like we should filter out non-collapsible sections
+    //  here as they are effectively disabled. However, we should keep these
+    //  disabled sections in the focus order as they'd receive focus anyway
+    //  with `aria-disabled` and visually impaired users should still know
+    //  they are there. Screenreaders will read them out as disabled, the
+    //  status will still be clear to users.
+    const childRefs = Array(children.length).fill(null);
+
+    // If the number of sections is greater than the threshold,
+    // we don't want to use the `region` role on the AccordionSection
+    // components because it will cause too many landmarks to be created.
+    // (See https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
+    const sectionsAreRegions =
+        children.length <= LANDMARK_PROLIFERATION_THRESHOLD;
 
     const handleSectionClick = (
         index: number,
@@ -141,14 +162,64 @@ const Accordion = React.forwardRef(function Accordion(
         newSectionsOpened[index] = newOpenedValueAtIndex;
         setSectionsOpened(newSectionsOpened);
 
+        // Keep track of the currently focused section for keyboard navigation.
+        setCurrentlyFocusedSection(index);
+
         if (childOnToggle) {
             childOnToggle(newOpenedValueAtIndex);
+        }
+    };
+
+    const handleSectionFocus = (index: number) => {
+        setCurrentlyFocusedSection(index);
+    };
+
+    /** Keyboard navigation for keys: ArrowUp, ArrowDown, Home, and End.
+     *
+     * Note that we don't have to use `setCurrentlyFocusedSection` in this
+     * function because the focus is handled by the browser + the
+     * section's onFocus handler (the `handleSectionFocus` function above).
+     */
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+        switch (event.key) {
+            // ArrowUp focuses on the previous section.
+            case "ArrowUp":
+                // Get the previous section, or cycle to last section if
+                // the first section is currently focused.
+                const previousSectionIndex =
+                    (currentlyFocusedSection + children.length - 1) %
+                    children.length;
+                const previousChildRef = childRefs[previousSectionIndex];
+                previousChildRef.current.focus();
+
+                break;
+            // ArrowDown focuses on the next section.
+            case "ArrowDown":
+                // Get the next section, or cycle to first section if
+                // the last section is currently focused.
+                const nextSectionIndex =
+                    (currentlyFocusedSection + 1) % children.length;
+                const nextChildRef = childRefs[nextSectionIndex];
+                nextChildRef.current.focus();
+
+                break;
+            // Home focuses on the first section.
+            case "Home":
+                const firstChildRef = childRefs[0];
+                firstChildRef.current.focus();
+                break;
+            // End focuses on the last section.
+            case "End":
+                const lastChildRef = childRefs[children.length - 1];
+                lastChildRef.current.focus();
+                break;
         }
     };
 
     return (
         <StyledUnorderedList
             style={[styles.wrapper, style]}
+            onKeyDown={handleKeyDown}
             {...ariaProps}
             ref={ref}
         >
@@ -159,6 +230,11 @@ const Accordion = React.forwardRef(function Accordion(
                     onToggle: childOnToggle,
                     animated: childanimated,
                 } = child.props;
+
+                // Create a ref for each child AccordionSection to
+                // be able to focus on them with keyboard navigation.
+                const childRef = React.createRef<HTMLButtonElement>();
+                childRefs[index] = childRef;
 
                 const isFirstChild = index === 0;
                 const isLastChild = index === children.length - 1;
@@ -180,8 +256,11 @@ const Accordion = React.forwardRef(function Accordion(
                             animated: animated ?? childanimated,
                             onToggle: () =>
                                 handleSectionClick(index, childOnToggle),
+                            onFocus: () => handleSectionFocus(index),
                             isFirstSection: isFirstChild,
                             isLastSection: isLastChild,
+                            isRegion: sectionsAreRegions,
+                            ref: childRef,
                         })}
                     </li>
                 );

@@ -29,6 +29,10 @@ type CommonProps =
          */
         onClick?: (e: React.SyntheticEvent) => unknown;
         /**
+         * An onFocus function which Clickable can execute when focused
+         */
+        onFocus?: (e: React.FocusEvent) => unknown;
+        /**
          * Optional href which Clickable should direct to, uses client-side routing
          * by default if react-router is present
          */
@@ -266,6 +270,7 @@ const Clickable = React.forwardRef(function Clickable(
             style,
             target = undefined,
             testId,
+            onFocus,
             onKeyDown,
             onKeyUp,
             hideDefaultFocusRing,
@@ -297,6 +302,7 @@ const Clickable = React.forwardRef(function Clickable(
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     disabled={disabled}
@@ -318,6 +324,7 @@ const Clickable = React.forwardRef(function Clickable(
                     href={href}
                     onClick={onClick}
                     safeWithNav={safeWithNav}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     target={target}

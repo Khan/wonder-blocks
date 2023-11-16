@@ -16,7 +16,11 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {
+    LabelMedium,
+    LabelLarge,
+    HeadingSmall,
+} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import packageConfig from "../../packages/wonder-blocks-button/package.json";
@@ -71,6 +75,7 @@ export const Default: StoryComponentType = {
         light: false,
         disabled: false,
         style: {maxWidth: 200},
+        labelStyle: {},
         onClick: () => {
             // eslint-disable-next-line no-alert
             alert("Click!");
@@ -100,7 +105,7 @@ export const Tertiary: StoryComponentType = {
 
         // Get HTML elements
         const button = canvas.getByRole("button");
-        const computedStyleButton = getComputedStyle(button, ":after");
+        const computedStyleButton = getComputedStyle(button);
         const innerLabel = canvas.getByTestId("test-button-inner-label");
         const computedStyleLabel = getComputedStyle(innerLabel, ":after");
 
@@ -115,8 +120,10 @@ export const Tertiary: StoryComponentType = {
 
         // Focus style
         await fireEvent.focus(button);
-        await expect(computedStyleButton.borderColor).toBe("rgb(24, 101, 242)");
-        await expect(computedStyleButton.borderWidth).toBe("2px");
+        await expect(computedStyleButton.outlineColor).toBe(
+            "rgb(24, 101, 242)",
+        );
+        await expect(computedStyleButton.outlineWidth).toBe("2px");
 
         // Active (mouse down) style
         // eslint-disable-next-line testing-library/prefer-user-event
@@ -589,6 +596,51 @@ TruncatingLabels.parameters = {
             story: "If the label is too long for the button width, the text will be truncated.",
         },
     },
+};
+
+/**
+ * Buttons can be styled with custom styles. This story shows a button with a
+ * custom width and height (using the `style` prop), and also a custom label
+ * style that prevents the label from being truncated (`labelStyle`).
+ *
+ * __NOTE:__ Please use this feature sparingly. This could be useful for simple
+ * cases like the one shown below, but it could cause some issues if used in
+ * more complex cases.
+ */
+export const CustomStyles = {
+    args: {
+        children: `This button does not truncate its label and can appear in multiple lines`,
+        disabled: false,
+        kind: "secondary",
+        onClick: () => {},
+        style: {
+            maxWidth: 200,
+            minHeight: 32,
+            height: "auto",
+        },
+        labelStyle: {
+            textOverflow: "initial",
+            whiteSpace: "normal",
+        },
+    },
+    render: (args: any) => (
+        <View style={{gap: Spacing.medium_16}}>
+            <HeadingSmall>Wonder Blocks theme (default)</HeadingSmall>
+            <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+                <Button {...args} kind="primary" />
+                <Button {...args} kind="secondary" />
+                <Button {...args} kind="tertiary" />
+            </View>
+            <HeadingSmall>Khanmigo theme</HeadingSmall>
+            <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+                <ThemeSwitcherContext.Provider value="khanmigo">
+                    <Button {...args} kind="primary" />
+                    <Button {...args} kind="secondary" />
+                    <Button {...args} kind="tertiary" />
+                </ThemeSwitcherContext.Provider>
+            </View>
+        </View>
+    ),
 };
 
 export const SubmittingForms: StoryComponentType = {

@@ -3,9 +3,11 @@ import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
+import minusIcon from "@phosphor-icons/core/bold/minus-bold.svg";
 
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {ChoiceCoreProps, Checked} from "../util/types";
 
 // `AriaChecked` and `mapCheckedToAriaChecked()` are used to convert the
@@ -26,15 +28,12 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
 
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
+// The checkbox size
+const size = Spacing.medium_16;
+// The check icon size
+const checkSize = Spacing.small_12;
+
 const StyledInput = addStyle("input");
-
-const checkPath: IconAsset = {
-    small: "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
-};
-
-const indeterminatePath: IconAsset = {
-    small: "M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z",
-};
 
 /**
  * The internal stateless ☑️ Checkbox
@@ -70,11 +69,18 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
     ];
 
     const checkboxIcon = (
-        <Icon
+        <PhosphorIcon
             color={disabled ? offBlack32 : white}
-            icon={checked ? checkPath : indeterminatePath}
+            icon={checked ? checkIcon : minusIcon}
             size="small"
-            style={sharedStyles.checkboxIcon}
+            style={[
+                sharedStyles.checkboxIcon,
+                // The check icon is smaller than the checkbox, as per design.
+                {
+                    width: checkSize,
+                    height: checkSize,
+                },
+            ]}
         />
     );
 
@@ -111,8 +117,6 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
     );
 });
 
-const size = 16;
-
 const sharedStyles = StyleSheet.create({
     // Reset the default styled input element
     inputReset: {
@@ -144,6 +148,8 @@ const sharedStyles = StyleSheet.create({
     checkboxIcon: {
         position: "absolute",
         pointerEvents: "none",
+        // This margin is to center the check icon in the checkbox.
+        margin: (size - checkSize) / 2,
     },
 });
 

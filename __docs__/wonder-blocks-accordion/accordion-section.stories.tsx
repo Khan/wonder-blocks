@@ -6,7 +6,7 @@ import {AccordionSection} from "@khanacademy/wonder-blocks-accordion";
 import Button from "@khanacademy/wonder-blocks-button";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
@@ -15,6 +15,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionSectionArgtypes from "./accordion-section.argtypes";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 /**
  * An AccordionSection displays a section of content that can be shown or
@@ -206,7 +207,10 @@ export const ReactElementInHeader: StoryComponentType = {
                     <DetailCell
                         title="Header for article item"
                         leftAccessory={
-                            <Icon icon={icons.contentVideo} size="medium" />
+                            <PhosphorIcon
+                                icon={IconMappings.playCircle}
+                                size="medium"
+                            />
                         }
                         horizontalRule="none"
                     />
@@ -244,7 +248,10 @@ export const ReactElementInChildren: StoryComponentType = {
                 <DetailCell
                     title="Header for article item"
                     leftAccessory={
-                        <Icon icon={icons.contentVideo} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.playCircle}
+                            size="medium"
+                        />
                     }
                     horizontalRule="none"
                     style={{
