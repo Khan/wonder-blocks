@@ -55,19 +55,18 @@ type StoryComponentType = StoryObj<typeof Clickable>;
 
 export const Default: StoryComponentType = (args: any) => (
     <Clickable {...args}>
-        {({hovered, pressed}) => {
-            return (
-                <View
-                    style={[
-                        styles.clickable,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                    ]}
-                >
-                    <Body>This text is clickable!</Body>
-                </View>
-            );
-        }}
+        {({hovered, pressed, focused}) => (
+            <View
+                style={[
+                    styles.clickable,
+                    hovered && styles.hovered,
+                    pressed && styles.pressed,
+                    focused && styles.focused,
+                ]}
+            >
+                <Body>This text is clickable!</Body>
+            </View>
+        )}
     </Clickable>
 );
 

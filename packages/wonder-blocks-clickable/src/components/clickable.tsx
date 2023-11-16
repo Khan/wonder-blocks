@@ -250,11 +250,6 @@ const Clickable = React.forwardRef(function Clickable(
                     {...commonProps}
                     type="button"
                     aria-disabled={props.disabled}
-                    onFocus={(e) => {
-                        if (props.onFocus) {
-                            props.onFocus(e);
-                        }
-                    }}
                     ref={ref as React.Ref<HTMLButtonElement>}
                 >
                     {props.children(clickableState)}
@@ -275,6 +270,7 @@ const Clickable = React.forwardRef(function Clickable(
             style,
             target = undefined,
             testId,
+            onFocus,
             onKeyDown,
             onKeyUp,
             hideDefaultFocusRing,
@@ -306,6 +302,7 @@ const Clickable = React.forwardRef(function Clickable(
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     disabled={disabled}
@@ -327,6 +324,7 @@ const Clickable = React.forwardRef(function Clickable(
                     href={href}
                     onClick={onClick}
                     safeWithNav={safeWithNav}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     target={target}
