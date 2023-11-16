@@ -4,11 +4,12 @@ import {StyleSheet} from "aphrodite";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import Color, {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
+import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
@@ -90,10 +91,11 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                     {label}
                 </View>
                 <Strut size={Spacing.xxxSmall_4} />
-                <Icon
+                <PhosphorIcon
                     size="small"
                     color="currentColor"
-                    icon={icons.caretDown}
+                    icon={caretDownIcon}
+                    aria-hidden="true"
                 />
             </StyledButton>
         );

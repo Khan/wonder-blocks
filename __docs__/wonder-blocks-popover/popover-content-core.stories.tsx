@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     Body,
@@ -15,8 +15,8 @@ import {
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
-
 import ComponentInfo from "../../.storybook/components/component-info";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 // NOTE: We are reusing an existing Cell SB Story to test how Popovers can be
 // composed by Cells.
@@ -92,7 +92,7 @@ export const WithIcon: StoryComponentType = {
     args: {
         children: (
             <>
-                <Icon size="large" icon={icons.contentArticle} />
+                <PhosphorIcon size="large" icon={IconMappings.article} />
                 <View>
                     <LabelLarge>This is an article</LabelLarge>
                     <Body>With the content</Body>
@@ -129,10 +129,6 @@ WithDetailCell.parameters = {
 /**
  * Dark custom popover
  */
-const customIcon = {
-    small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
-} as const;
-
 const CustomPopoverContent = (
     <>
         <HeadingSmall>Custom popover title</HeadingSmall>
@@ -140,8 +136,8 @@ const CustomPopoverContent = (
             <Clickable style={styles.action} onClick={close} id="btn-1">
                 {() => (
                     <>
-                        <Icon
-                            icon={customIcon}
+                        <PhosphorIcon
+                            icon={IconMappings.pencilSimple}
                             color={Color.gold}
                             size="large"
                         />
@@ -152,8 +148,8 @@ const CustomPopoverContent = (
             <Clickable style={styles.action} onClick={close} id="btn-2">
                 {() => (
                     <>
-                        <Icon
-                            icon={customIcon}
+                        <PhosphorIcon
+                            icon={IconMappings.pencilSimple}
                             color={Color.green}
                             size="large"
                         />
@@ -164,8 +160,8 @@ const CustomPopoverContent = (
             <Clickable style={styles.action} onClick={close} id="btn-3">
                 {() => (
                     <>
-                        <Icon
-                            icon={customIcon}
+                        <PhosphorIcon
+                            icon={IconMappings.pencilSimple}
                             color={Color.blue}
                             size="large"
                         />

@@ -1,11 +1,10 @@
 import * as React from "react";
-import {__RouterContext} from "react-router";
 
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Link} from "react-router-dom";
 import IconButtonCore from "./icon-button-core";
+import ThemedIconButton from "../themes/themed-icon-button";
 
 export type IconButtonSize = "xsmall" | "small" | "medium";
 
@@ -172,54 +171,28 @@ export const IconButton: React.ForwardRefExoticComponent<
         href,
         kind = "primary",
         light = false,
-        onClick,
         size = "medium",
         skipClientNav,
         tabIndex,
         target,
         ...sharedProps
     } = props;
-    const renderClickableBehavior = (router: any): React.ReactNode => {
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            router,
-        );
-
-        return (
-            <ClickableBehavior
-                disabled={disabled}
-                href={href}
-                onClick={onClick}
-                role="button"
-                target={target}
-            >
-                {(state, {...childrenProps}) => {
-                    return (
-                        <IconButtonCore
-                            {...sharedProps}
-                            {...state}
-                            {...childrenProps}
-                            color={color}
-                            disabled={disabled}
-                            href={href}
-                            kind={kind}
-                            light={light}
-                            ref={ref}
-                            skipClientNav={skipClientNav}
-                            size={size}
-                            target={target}
-                            tabIndex={tabIndex}
-                        />
-                    );
-                }}
-            </ClickableBehavior>
-        );
-    };
 
     return (
-        <__RouterContext.Consumer>
-            {(router) => renderClickableBehavior(router)}
-        </__RouterContext.Consumer>
+        <ThemedIconButton>
+            <IconButtonCore
+                {...sharedProps}
+                color={color}
+                disabled={disabled}
+                href={href}
+                kind={kind}
+                light={light}
+                ref={ref}
+                skipClientNav={skipClientNav}
+                size={size}
+                target={target}
+                tabIndex={tabIndex}
+            />
+        </ThemedIconButton>
     );
 });

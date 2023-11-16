@@ -15,11 +15,19 @@ const theme = mergeTheme(defaultTheme, {
                 },
                 focus: tokens.color.offWhite,
             },
+            icon: {
+                secondaryHover: tokens.color.fadedBlue16,
+            },
         },
         border: {
             secondary: {
                 action: tokens.color.fadedBlue,
                 critical: tokens.color.fadedRed,
+            },
+        },
+        text: {
+            icon: {
+                secondaryHover: tokens.color.blue,
             },
         },
     },
@@ -31,6 +39,12 @@ const theme = mergeTheme(defaultTheme, {
         },
         width: {
             focused: tokens.border.width.hairline,
+        },
+    },
+    margin: {
+        icon: {
+            // Bring the icons closer to the edges of the button.
+            offset: -tokens.spacing.xSmall_8,
         },
     },
     font: {

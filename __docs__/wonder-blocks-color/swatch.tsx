@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     Caption,
@@ -10,8 +10,8 @@ import {
     LabelSmall,
     LabelXSmall,
 } from "@khanacademy/wonder-blocks-typography";
-
 import Color from "@khanacademy/wonder-blocks-color";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 type Segments = 1 | 2 | 3;
 
@@ -21,7 +21,7 @@ const UseType = {
         label: "Text & Icons",
     },
     icons: {
-        content: <Icon icon={icons.hint} />,
+        content: <PhosphorIcon icon={IconMappings.lightbulbBold} />,
         label: "Icons",
     },
 } as const;

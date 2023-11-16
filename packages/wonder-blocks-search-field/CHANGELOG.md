@@ -1,5 +1,34 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.1.20
+
+### Patch Changes
+
+-   c8e9ce34: Add PhosphorIcon support (replace Icon)
+-   Updated dependencies [c8e9ce34]
+    -   @khanacademy/wonder-blocks-form@4.3.15
+    -   @khanacademy/wonder-blocks-icon-button@5.1.1
+
+## 2.1.19
+
+### Patch Changes
+
+-   Updated dependencies [ae97aeb6]
+-   Updated dependencies [22ccc5a9]
+-   Updated dependencies [0d875501]
+    -   @khanacademy/wonder-blocks-icon-button@5.1.0
+
+## 2.1.18
+
+### Patch Changes
+
+-   Updated dependencies [7055ca94]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-form@4.3.14
+    -   @khanacademy/wonder-blocks-icon@2.2.1
+    -   @khanacademy/wonder-blocks-icon-button@5.0.1
+    -   @khanacademy/wonder-blocks-typography@2.1.9
+
 ## 2.1.17
 
 ### Patch Changes

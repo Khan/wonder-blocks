@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 1.2.0
+
+### Minor Changes
+
+-   3f854fe8: Export supported themes list, change WB components to use these new exports
+
 ## 1.1.1
 
 ### Patch Changes

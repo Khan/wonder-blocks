@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-testing
 
+## 10.0.0
+
+### Major Changes
+
+-   a1675f63: Make sure that `MockResponse<TData>` properly enforces `TData` type. This is a breaking change as it affects the usage of the various mocking frameworks, and may result in new type errors in consuming code.
+
+## 9.3.5
+
+### Patch Changes
+
+-   Updated dependencies [7055ca94]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-data@13.0.5
+
 ## 9.3.4
 
 ### Patch Changes

@@ -1,5 +1,41 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.1.1
+
+### Patch Changes
+
+-   7b24db93: Add support for up arrow, down arrow, home, and end keys
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
+## 1.1.0
+
+### Minor Changes
+
+-   2f0b77f2: Add animations to Accordion
+-   1424a2c3: Add `collapsible` prop to AccordionSection
+
+## 1.0.1
+
+### Patch Changes
+
+-   Updated dependencies [3f854fe8]
+    -   @khanacademy/wonder-blocks-theming@1.2.0
+
+## 1.0.0
+
+### Major Changes
+
+-   ff34408e: Create Accordion and AccordionSection components
+
+### Patch Changes
+
+-   Updated dependencies [7055ca94]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.9
+    -   @khanacademy/wonder-blocks-icon@2.2.1
+    -   @khanacademy/wonder-blocks-typography@2.1.9
+
 ## 0.0.5
 
 ### Patch Changes

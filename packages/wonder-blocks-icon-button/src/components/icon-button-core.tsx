@@ -3,24 +3,20 @@ import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
-import Color, {
-    SemanticColor,
-    mix,
-    fade,
-} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
 
-import type {
-    ChildrenProps,
-    ClickableState,
-} from "@khanacademy/wonder-blocks-clickable";
 import type {IconButtonSize, SharedProps} from "./icon-button";
 import {
     iconSizeForButtonSize,
     targetPixelsForSize,
 } from "../util/icon-button-util";
+import {
+    IconButtonThemeContext,
+    IconButtonThemeContract,
+} from "../themes/themed-icon-button";
 
 /**
  * Returns the phosphor icon component based on the size. This is necessary
@@ -55,17 +51,15 @@ function IconChooser({
     }
 }
 
-type Props = SharedProps &
-    ChildrenProps &
-    ClickableState & {
-        /**
-         * URL to navigate to.
-         *
-         * Used to determine whether to render an `<a>` or `<button>` tag. Also
-         * passed in as the `<a>` tag's `href` if present.
-         */
-        href?: string;
-    };
+type Props = SharedProps & {
+    /**
+     * URL to navigate to.
+     *
+     * Used to determine whether to render an `<a>` or `<button>` tag. Also
+     * passed in as the `<a>` tag's `href` if present.
+     */
+    href?: string;
+};
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
@@ -81,37 +75,32 @@ const IconButtonCore: React.ForwardRefExoticComponent<
     const {
         color,
         disabled,
-        focused,
-        hovered,
         href,
         icon,
         kind = "primary",
         light = false,
-        pressed,
         size = "medium",
         skipClientNav,
         style,
         testId,
-        waiting: _,
         ...restProps
     } = props;
+    const {theme, themeName} = useScopedTheme(IconButtonThemeContext);
 
     const renderInner = (router: any): React.ReactNode => {
-        const buttonColor =
-            color === "destructive"
-                ? SemanticColor.controlDestructive
-                : SemanticColor.controlDefault;
-
-        const buttonStyles = _generateStyles(buttonColor, kind, light, size);
+        const buttonStyles = _generateStyles(
+            color,
+            kind,
+            light,
+            size,
+            theme,
+            themeName,
+        );
 
         const defaultStyle = [
             sharedStyles.shared,
             buttonStyles.default,
             disabled && buttonStyles.disabled,
-            !disabled &&
-                (pressed
-                    ? buttonStyles.active
-                    : (hovered || focused) && buttonStyles.focus),
         ];
 
         const child = <IconChooser size={size} icon={icon} />;
@@ -145,7 +134,8 @@ const IconButtonCore: React.ForwardRefExoticComponent<
                 <StyledButton
                     type="button"
                     {...commonProps}
-                    disabled={disabled}
+                    onClick={disabled ? undefined : restProps.onClick}
+                    aria-disabled={disabled}
                     ref={ref as React.Ref<HTMLButtonElement>}
                 >
                     {child}
@@ -180,22 +170,91 @@ const sharedStyles = StyleSheet.create({
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
-        ":focus": {
-            // Mobile: Removes a blue highlight style shown when the user clicks a button
-            WebkitTapHighlightColor: "rgba(0,0,0,0)",
-        },
     },
 });
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (
+function getStylesByKind(
+    kind: "primary" | "secondary" | "tertiary",
+    theme: IconButtonThemeContract,
     color: string,
+    light: boolean,
+    buttonColor: string,
+) {
+    switch (kind) {
+        case "primary":
+            const primaryHoveredColor =
+                buttonColor === "destructive"
+                    ? theme.color.stroke.primary.critical.hovered
+                    : theme.color.stroke.primary.action.hovered;
+
+            return {
+                ":hover": {
+                    backgroundColor: theme.color.bg.hovered,
+                    color: light
+                        ? theme.color.stroke.primary.inverse.hovered
+                        : primaryHoveredColor,
+                    outlineColor: light ? theme.color.stroke.inverse : color,
+                    outlineOffset: 1,
+                    outlineStyle: "solid",
+                    outlineWidth: light
+                        ? theme.border.width.hoveredInverse
+                        : theme.border.width.hovered,
+                },
+                ":active": {
+                    backgroundColor: theme.color.bg.active,
+                },
+            };
+        case "secondary":
+        case "tertiary":
+            return {
+                ":hover": {
+                    backgroundColor:
+                        buttonColor === "destructive"
+                            ? theme.color.bg.filled.critical.hovered
+                            : theme.color.bg.filled.action.hovered,
+                    color:
+                        buttonColor === "destructive"
+                            ? theme.color.stroke.filled.critical.hovered
+                            : theme.color.stroke.filled.action.hovered,
+                    outlineWidth: theme.border.width.active,
+                },
+                ":active": {
+                    backgroundColor:
+                        buttonColor === "destructive"
+                            ? theme.color.bg.filled.critical.active
+                            : theme.color.bg.filled.action.active,
+                    color:
+                        buttonColor === "destructive"
+                            ? theme.color.stroke.filled.critical.active
+                            : theme.color.stroke.filled.action.active,
+                    outlineWidth: theme.border.width.active,
+                },
+            };
+        default:
+            return {
+                ":focus-visible": {},
+                ":hover": {},
+                ":active": {},
+            };
+    }
+}
+
+const _generateStyles = (
+    buttonColor = "default",
     kind: "primary" | "secondary" | "tertiary",
     light: boolean,
     size: IconButtonSize,
+    theme: IconButtonThemeContract,
+    themeName: string,
 ) => {
-    const buttonType = `${color}-${kind}-${light}-${size}`;
+    const color: string =
+        buttonColor === "destructive"
+            ? theme.color.stroke.critical.default
+            : theme.color.stroke.action.default;
+
+    const buttonType = `${color}-${kind}-${light}-${size}-${themeName}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -204,48 +263,129 @@ const _generateStyles = (
         throw new Error("Light is only supported for primary IconButtons");
     }
 
-    const {white, offBlack32, offBlack64, offBlack} = Color;
     const defaultColor = ((): string => {
         switch (kind) {
             case "primary":
-                return light ? white : color;
+                return light
+                    ? theme.color.stroke.primary.inverse.default
+                    : color;
             case "secondary":
-                return offBlack;
+                return theme.color.stroke.secondary.default;
             case "tertiary":
-                return offBlack64;
+                return theme.color.stroke.tertiary.default;
             default:
                 throw new Error("IconButton kind not recognized");
         }
     })();
     const pixelsForSize = targetPixelsForSize(size);
 
+    // Override styles for each kind of button. This is useful for merging
+    // pseudo-classes properly.
+    const kindOverrides = getStylesByKind(
+        kind,
+        theme,
+        color,
+        light,
+        buttonColor,
+    );
+
+    const activeInverseColor =
+        buttonColor === "destructive"
+            ? theme.color.stroke.critical.inverse
+            : theme.color.stroke.action.inverse;
+    const activeColor =
+        buttonColor === "destructive"
+            ? theme.color.stroke.critical.active
+            : theme.color.stroke.action.active;
+
+    // Shared by hover and focus states.
+    const defaultStrokeColor = light ? theme.color.stroke.inverse : color;
+
+    const disabledStrokeColor = light
+        ? theme.color.stroke.disabled.inverse
+        : theme.color.stroke.disabled.default;
+
+    const disabledStatesStyles = {
+        backgroundColor: theme.color.bg.disabled,
+        color: disabledStrokeColor,
+        outlineColor: disabledStrokeColor,
+    };
+
     const newStyles = {
         default: {
             height: pixelsForSize,
             width: pixelsForSize,
             color: defaultColor,
-        },
-        focus: {
-            color: light ? white : color,
-            borderWidth: 2,
-            borderColor: light ? white : color,
-            borderStyle: "solid",
-            borderRadius: 4,
-        },
-        active: {
-            color: light
-                ? mix(fade(color, 0.32), white)
-                : mix(offBlack32, color),
-            borderWidth: 2,
-            borderColor: light
-                ? mix(fade(color, 0.32), white)
-                : mix(offBlack32, color),
-            borderStyle: "solid",
-            borderRadius: 4,
+            borderRadius: theme.border.radius.default,
+
+            /**
+             * States
+             *
+             * Defined in the following order: hover, focus, active.
+             */
+            ":hover": {
+                boxShadow: "none",
+                color: defaultStrokeColor,
+                borderRadius: theme.border.radius.default,
+                outlineWidth: theme.border.width.default,
+                ...kindOverrides[":hover"],
+            },
+            // Provide basic, default focus styles on older browsers (e.g.
+            // Safari 14)
+            ":focus": {
+                boxShadow: `0 0 0 ${theme.border.width.default}px ${defaultStrokeColor}`,
+                borderRadius: theme.border.radius.default,
+            },
+            // Remove default focus styles for mouse users ONLY if
+            // :focus-visible is supported on this platform.
+            ":focus:not(:focus-visible)": {
+                boxShadow: "none",
+            },
+            // Provide focus styles for keyboard users on modern browsers.
+            ":focus-visible": {
+                // Reset default focus styles
+                boxShadow: "none",
+                // Apply modern focus styles
+                outlineWidth: theme.border.width.default,
+                outlineColor: defaultStrokeColor,
+                outlineOffset: 1,
+                outlineStyle: "solid",
+                borderRadius: theme.border.radius.default,
+                ...kindOverrides[":focus-visible"],
+            },
+            ":active": {
+                color: light ? activeInverseColor : activeColor,
+                outlineWidth: theme.border.width.default,
+                outlineColor: light ? activeInverseColor : activeColor,
+                outlineOffset: 1,
+                outlineStyle: "solid",
+                borderRadius: theme.border.radius.default,
+                ...kindOverrides[":active"],
+            },
         },
         disabled: {
-            color: light ? mix(fade(white, 0.32), color) : offBlack32,
-            cursor: "default",
+            color: disabledStrokeColor,
+            cursor: "not-allowed",
+            // NOTE: Even that browsers recommend to specify pseudo-classes in
+            // this order: link, visited, focus, hover, active, we need to
+            // specify focus after hover to override hover styles. By doing this
+            // we are able to remove the hover outline when the button is
+            // disabled.
+            // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
+            ":hover": {...disabledStatesStyles, outline: "none"},
+            ":active": {...disabledStatesStyles, outline: "none"},
+            // Provide basic, default focus styles on older browsers (e.g.
+            // Safari 14)
+            ":focus": {
+                boxShadow: `0 0 0 ${theme.border.width.default}px ${disabledStrokeColor}`,
+                borderRadius: theme.border.radius.default,
+            },
+            // Remove default focus styles for mouse users ONLY if
+            // :focus-visible is supported on this platform.
+            ":focus:not(:focus-visible)": {
+                boxShadow: "none",
+            },
+            ":focus-visible": disabledStatesStyles,
         },
     } as const;
 

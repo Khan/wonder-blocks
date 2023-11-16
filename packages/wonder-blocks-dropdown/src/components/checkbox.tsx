@@ -3,17 +3,10 @@ import {StyleSheet} from "aphrodite";
 
 import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-
-// NOTE(sophie): This is a smaller check specifically for use in checkboxes.
-// Please don't copy it automatically and check with designers before using.
-// If the intended icon is a check without a checkbox, you should be using
-// icons.check from the Wonder Blocks Icon package.
-const checkboxCheck: IconAsset = {
-    small: "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
-};
 const {blue, white, offBlack16, offBlack32, offBlack50, offWhite} = Color;
 
 /**
@@ -65,11 +58,20 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
             ]}
         >
             {selected && (
-                <Icon
-                    icon={checkboxCheck}
+                <PhosphorIcon
+                    icon={checkIcon}
                     size="small"
                     // color={checkColor}
                     style={[
+                        {
+                            // The check icon is smaller than the checkbox, as
+                            // per design.
+                            width: Spacing.small_12,
+                            height: Spacing.small_12,
+                            // This margin is to center the check icon in the
+                            // checkbox.
+                            margin: Spacing.xxxxSmall_2,
+                        },
                         disabled && selected && styles.disabledCheckFormatting,
                     ]}
                 />

@@ -4,9 +4,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Color from "@khanacademy/wonder-blocks-color";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
 
 export type Labels = {
     /**
@@ -245,12 +246,14 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         return (
             <>
                 <Strut size={Spacing.xxxSmall_4} />
-                <View style={{flexDirection: "row"}} role="alert">
-                    <Icon
+                <View
+                    style={{flexDirection: "row", placeItems: "center"}}
+                    role="alert"
+                >
+                    <PhosphorIcon
                         size="small"
-                        icon={icons.info}
+                        icon={infoIcon}
                         color={Color.red}
-                        style={{marginTop: 3}}
                         aria-hidden="true"
                     />
                     <Strut size={Spacing.xxxSmall_4} />

@@ -162,4 +162,57 @@ describe("IconButton", () => {
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
+
+    test("disallow press/click when disabled is set", () => {
+        // Arrange
+        const onClickMock = jest.fn();
+        render(
+            <IconButton
+                icon={magnifyingGlassIcon}
+                aria-label="search"
+                testId="icon-button"
+                onClick={onClickMock}
+                disabled={true}
+            />,
+        );
+
+        // Act
+        userEvent.click(screen.getByRole("button"));
+
+        // Assert
+        expect(onClickMock).not.toBeCalled();
+    });
+
+    it("sets the 'target' prop on the underlying element", () => {
+        // Arrange
+        render(
+            <IconButton
+                icon={magnifyingGlassIcon}
+                href="https://www.khanacademy.org"
+                target="_blank"
+            />,
+        );
+
+        // Act
+        const link = screen.getByRole("link");
+        userEvent.click(link);
+
+        // Assert
+        expect(link).toHaveAttribute("target", "_blank");
+    });
+
+    it("renders an <a> if the href is '#'", () => {
+        // Arrange
+        render(
+            <MemoryRouter>
+                <IconButton icon={magnifyingGlassIcon} href="#" />,
+            </MemoryRouter>,
+        );
+
+        // Act
+        const link = screen.getByRole("link");
+
+        // Assert
+        expect(link.tagName).toBe("A");
+    });
 });

@@ -1,11 +1,12 @@
 import * as React from "react";
 
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
-const iconsMap: Record<string, React.ReactElement<typeof Icon>> = {};
+const iconsMap: Record<string, React.ReactElement<typeof PhosphorIcon>> = {};
 
-Object.entries(icons).forEach(([iconLabel, iconValue]) => {
-    iconsMap[iconLabel] = <Icon icon={iconValue} />;
+Object.entries(IconMappings).forEach(([iconLabel, iconValue]) => {
+    iconsMap[iconLabel] = <PhosphorIcon icon={iconValue} />;
 });
 
 export default {
@@ -67,7 +68,7 @@ export default {
         mapping: iconsMap,
         table: {
             type: {
-                summary: "Icon",
+                summary: "PhosphorIcon",
             },
         },
     },

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.3.0
+
+### Minor Changes
+
+-   7055ca94: Make useOnMountEffect accept functions with void return types
+
 ## 6.2.0
 
 ### Minor Changes

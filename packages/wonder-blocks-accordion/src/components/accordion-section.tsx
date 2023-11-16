@@ -54,6 +54,11 @@ type Props = AriaProps & {
      */
     cornerKind?: AccordionCornerKindType;
     /**
+     * Whether this section is collapsible. If false, the header will not be
+     * clickable, and the section will stay expanded at all times.
+     */
+    collapsible?: boolean;
+    /**
      * Whether this section is expanded or closed.
      *
      * NOTE: This prop is NOT used when this AccordionSection is rendered
@@ -61,6 +66,15 @@ type Props = AriaProps & {
      * manages the expanded state of the AccordionSection.
      */
     expanded?: boolean;
+    /**
+     * Whether to include animation on the header. This should be false
+     * if the user has `prefers-reduced-motion` opted in. Defaults to false.
+     *
+     * If this prop is specified both here in the AccordionSection and
+     * within a parent Accordion component, the Accordion’s animated
+     * value is prioritized.
+     */
+    animated?: boolean;
     /**
      * Called when the header is clicked.
      * Takes the new expanded state as an argument. This way, the function
@@ -86,12 +100,6 @@ type Props = AriaProps & {
      */
     testId?: string;
     /**
-     * The test ID used to locate this component's clickable header in
-     * automated tests.
-     */
-    headerTestId?: string;
-
-    /**
      * Whether this section is the first section in the accordion.
      * For internal use only.
      * @ignore
@@ -103,12 +111,18 @@ type Props = AriaProps & {
      * @ignore
      */
     isLastSection?: boolean;
+    /**
+     * Called when the header is focused.
+     * For internal use only.
+     * @ignore
+     */
+    onFocus?: () => void;
 };
 
 /**
  * An AccordionSection displays a section of content that can be shown or
  * hidden by clicking its header. This is generally used within the Accordion
- * component, but it can also be used on its own if you need only
+ * component, but it can also be used on its own if you need only one
  * collapsible section.
  *
  * ### Usage
@@ -132,7 +146,7 @@ type Props = AriaProps & {
  *   </AccordionSection>
  * </Accordion>
  *
- * // On its own
+ * // On its own, controlled
  * const [expanded, setExpanded] = React.useState(false);
  * <AccordionSection
  *     header="A standalone section"
@@ -141,25 +155,34 @@ type Props = AriaProps & {
  * >
  *    This is the information present in the standalone section
  * </AccordionSection>
+ *
+ * // On its own, uncontrolled
+ * <AccordionSection header="A standalone section">
+ *   This is the information present in the standalone section
+ * </AccordionSection>
  * ```
  */
 const AccordionSection = React.forwardRef(function AccordionSection(
     props: Props,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    // Using a button ref here beacuse the ref is pointing to the
+    // section header, which is a button.
+    ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
     const {
         children,
         id,
         header,
+        collapsible,
         expanded,
+        animated = false,
         onToggle,
+        onFocus,
         caretPosition = "end",
         cornerKind = "rounded",
         style,
         headerStyle,
         tag,
         testId,
-        headerTestId,
         // Assume it's the first section and last section by default
         // in case this component is being used standalone. If it's part
         // of an accordion, these will be overridden by the Accordion
@@ -200,59 +223,96 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         }
     };
 
-    // If the expanded prop is undefined, we're in uncontrolled mode and
-    // should use the internal state to determine the expanded state.
-    // Otherwise, we're in controlled mode and should use the expanded prop
-    // that's passed in to determine the expanded state.
-    const expandedState = controlledMode ? expanded : internalExpanded;
+    let expandedState;
+    if (collapsible === false) {
+        // If the section is disabled (not collapsible), it should
+        // always be expanded.
+        expandedState = true;
+        // If the expanded prop is undefined, we're in uncontrolled mode and
+        // should use the internal state to determine the expanded state.
+        // Otherwise, we're in controlled mode and should use the expanded prop
+        // that's passed in to determine the expanded state.
+    } else {
+        expandedState = controlledMode ? expanded : internalExpanded;
+    }
 
     return (
         <View
             id={sectionId}
-            style={[styles.wrapper, sectionStyles.wrapper, style]}
+            style={[
+                styles.wrapper,
+                animated && styles.wrapperWithAnimation,
+                sectionStyles.wrapper,
+                expandedState
+                    ? styles.wrapperExpanded
+                    : styles.wrapperCollapsed,
+                style,
+            ]}
             testId={testId}
             {...ariaProps}
-            ref={ref}
         >
             <AccordionSectionHeader
                 header={header}
                 caretPosition={caretPosition}
                 cornerKind={cornerKind}
+                collapsible={collapsible}
                 expanded={expandedState}
+                animated={animated}
                 onClick={handleClick}
+                onFocus={onFocus}
                 sectionContentUniqueId={sectionContentUniqueId}
                 headerStyle={headerStyle}
                 tag={tag}
-                testId={headerTestId}
+                testId={testId}
                 isFirstSection={isFirstSection}
                 isLastSection={isLastSection}
+                ref={ref}
             />
-            {/* The content is the section that expands and closes. */}
-            {expandedState ? (
-                <View
-                    id={sectionContentUniqueId}
-                    style={[
-                        styles.contentWrapper,
-                        sectionStyles.contentWrapper,
-                    ]}
-                >
-                    {typeof children === "string" ? (
-                        <Body style={styles.stringContent}>{children}</Body>
-                    ) : (
-                        children
-                    )}
-                </View>
-            ) : null}
+            <View
+                id={sectionContentUniqueId}
+                style={[
+                    styles.contentWrapper,
+                    expandedState
+                        ? styles.contentWrapperExpanded
+                        : styles.conentWrapperCollapsed,
+                    sectionStyles.contentWrapper,
+                ]}
+            >
+                {typeof children === "string" ? (
+                    <Body style={styles.stringContent}>{children}</Body>
+                ) : (
+                    children
+                )}
+            </View>
         </View>
     );
 });
 
 const styles = StyleSheet.create({
     wrapper: {
-        flexDirection: "column",
+        // Use grid layout for clean animations.
+        display: "grid",
         boxSizing: "border-box",
     },
+    wrapperWithAnimation: {
+        transition: "grid-template-rows 300ms",
+    },
+    wrapperCollapsed: {
+        gridTemplateRows: "min-content 0fr",
+    },
+    wrapperExpanded: {
+        gridTemplateRows: "min-content 1fr",
+    },
     contentWrapper: {
+        overflow: "hidden",
+    },
+    conentWrapperCollapsed: {
+        // Make sure screen readers don't read the content when it's
+        // collapsed.
+        visibility: "hidden",
+    },
+    contentWrapperExpanded: {
+        visibility: "visible",
         // Add a small margin to the top of the content block so that the
         // header outline doesn't overlap with the content (and the content
         // doesn't overlap with the header outline).
@@ -307,7 +367,6 @@ const _generateStyles = (
             // because it cuts off the header's focus outline.
             borderEndEndRadius: tokens.spacing.small_12,
             borderEndStartRadius: tokens.spacing.small_12,
-            overflow: "hidden",
         };
 
         if (isFirstSection) {
@@ -339,7 +398,6 @@ const _generateStyles = (
             // because it cuts off the header's focus outline.
             borderEndEndRadius: tokens.spacing.small_12,
             borderEndStartRadius: tokens.spacing.small_12,
-            overflow: "hidden",
         };
     }
 

@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -15,8 +15,6 @@ import {
     HeadingLarge,
     LabelMedium,
 } from "@khanacademy/wonder-blocks-typography";
-
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import {
     SingleSelect,
     OptionItem,
@@ -28,6 +26,7 @@ import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import singleSelectArgtypes from "./base-select.argtypes";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
@@ -741,10 +740,6 @@ const timeSlotOptions = timeSlots.map((timeSlot) => (
     <OptionItem label={timeSlot} value={timeSlot} />
 ));
 
-const clockIcon: IconAsset = {
-    small: `M0 8C0 3.58 3.58 0 7.99 0C12.42 0 16 3.58 16 8C16 12.42 12.42 16 7.99 16C3.58 16 0 12.42 0 8ZM1.6 8C1.6 11.54 4.46 14.4 8 14.4C11.54 14.4 14.4 11.54 14.4 8C14.4 4.46 11.54 1.6 8 1.6C4.46 1.6 1.6 4.46 1.6 8ZM7.2 4H8.4V8.2L12 10.34L11.4 11.32L7.2 8.8V4Z`,
-};
-
 export const AutoFocusDisabled: StoryComponentType = () => {
     const textFieldRef = React.useRef(null);
     const [value, setValue] = React.useState<any>(null);
@@ -771,9 +766,9 @@ export const AutoFocusDisabled: StoryComponentType = () => {
                             autoComplete="off"
                             style={styles.fullBleed}
                         />
-                        <Icon
+                        <PhosphorIcon
                             color={Color.blue}
-                            icon={clockIcon}
+                            icon={IconMappings.clockBold}
                             size="small"
                             style={styles.icon}
                         />

@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.5
+
+### Patch Changes
+
+-   3f854fe8: Export supported themes list, change WB components to use these new exports
+-   Updated dependencies [3f854fe8]
+    -   @khanacademy/wonder-blocks-theming@1.2.0
+
+## 1.1.4
+
+### Patch Changes
+
+-   45a30427: Add PhosphorIcon support to `Switch`
+-   Updated dependencies [7055ca94]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-icon@2.2.1
+
 ## 1.1.3
 
 ### Patch Changes

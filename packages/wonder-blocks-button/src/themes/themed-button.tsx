@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
     createThemeContext,
+    Themes,
     ThemeSwitcherContext,
 } from "@khanacademy/wonder-blocks-theming";
 
@@ -11,15 +12,15 @@ type Props = {
     children: React.ReactNode;
 };
 
+export type ButtonThemeContract = typeof defaultTheme;
+
 /**
  * The themes available to the Button component.
  */
-const themes = {
+const themes: Themes<ButtonThemeContract> = {
     default: defaultTheme,
     khanmigo: khanmigoTheme,
 };
-
-export type ButtonThemeContract = typeof defaultTheme;
 
 /**
  * The context that provides the theme to the Button component.
@@ -33,7 +34,7 @@ export const ButtonThemeContext = createThemeContext(defaultTheme);
 export default function ThemedButton(props: Props) {
     const currentTheme = React.useContext(ThemeSwitcherContext);
 
-    const theme = themes[currentTheme as keyof typeof themes] || defaultTheme;
+    const theme = themes[currentTheme] || defaultTheme;
     return (
         <ButtonThemeContext.Provider value={theme}>
             {props.children}

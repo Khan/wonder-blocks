@@ -1,5 +1,38 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 3.1.6
+
+### Patch Changes
+
+-   af26c590: Add PhosphorIcon support to Dropdown
+-   Updated dependencies [7b24db93]
+-   Updated dependencies [c8e9ce34]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+    -   @khanacademy/wonder-blocks-search-field@2.1.20
+    -   @khanacademy/wonder-blocks-modal@4.0.33
+
+## 3.1.5
+
+### Patch Changes
+
+-   Updated dependencies [3f854fe8]
+    -   @khanacademy/wonder-blocks-theming@1.2.0
+    -   @khanacademy/wonder-blocks-modal@4.0.32
+    -   @khanacademy/wonder-blocks-search-field@2.1.19
+
+## 3.1.4
+
+### Patch Changes
+
+-   Updated dependencies [7055ca94]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.9
+    -   @khanacademy/wonder-blocks-icon@2.2.1
+    -   @khanacademy/wonder-blocks-layout@2.0.24
+    -   @khanacademy/wonder-blocks-modal@4.0.31
+    -   @khanacademy/wonder-blocks-search-field@2.1.18
+    -   @khanacademy/wonder-blocks-typography@2.1.9
+
 ## 3.1.3
 
 ### Patch Changes

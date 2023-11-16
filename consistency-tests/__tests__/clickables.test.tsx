@@ -38,14 +38,13 @@ const IconButtonWrapper = (props: any) => (
 );
 
 describe.each`
-    Component            | name             | role
-    ${ActionItem}        | ${"ActionItem"}  | ${"menuitem"}
-    ${Button}            | ${"Button"}      | ${"button"}
-    ${ClickableWrapper}  | ${"Clickable"}   | ${"link"}
-    ${CompactCell}       | ${"CompactCell"} | ${"link"}
-    ${DetailCell}        | ${"DetailCell"}  | ${"link"}
-    ${IconButtonWrapper} | ${"IconButton"}  | ${"link"}
-    ${Link}              | ${"Link"}        | ${"link"}
+    Component           | name             | role
+    ${ActionItem}       | ${"ActionItem"}  | ${"menuitem"}
+    ${Button}           | ${"Button"}      | ${"button"}
+    ${ClickableWrapper} | ${"Clickable"}   | ${"link"}
+    ${CompactCell}      | ${"CompactCell"} | ${"link"}
+    ${DetailCell}       | ${"DetailCell"}  | ${"link"}
+    ${Link}             | ${"Link"}        | ${"link"}
 `("$name with an href", ({Component, name, role}: any) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in

@@ -29,6 +29,10 @@ type CommonProps =
          */
         onClick?: (e: React.SyntheticEvent) => unknown;
         /**
+         * An onFocus function which Clickable can execute when focused
+         */
+        onFocus?: (e: React.FocusEvent) => unknown;
+        /**
          * Optional href which Clickable should direct to, uses client-side routing
          * by default if react-router is present
          */
@@ -246,6 +250,11 @@ const Clickable = React.forwardRef(function Clickable(
                     {...commonProps}
                     type={props.role === "button" ? "button" : undefined}
                     aria-disabled={props.disabled}
+                    onFocus={(e) => {
+                        if (props.onFocus) {
+                            props.onFocus(e);
+                        }
+                    }}
                     ref={ref as React.Ref<HTMLButtonElement>}
                 >
                     {props.children(clickableState)}

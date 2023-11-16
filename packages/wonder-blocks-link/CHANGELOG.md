@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-link
 
+## 6.0.1
+
+### Patch Changes
+
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
+## 6.0.0
+
+### Major Changes
+
+-   d65b6000: Add support to PhosphorIcon in Link
+
+## 5.0.10
+
+### Patch Changes
+
+-   Updated dependencies [7055ca94]
+    -   @khanacademy/wonder-blocks-core@6.3.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.9
+    -   @khanacademy/wonder-blocks-icon@2.2.1
+
 ## 5.0.9
 
 ### Patch Changes

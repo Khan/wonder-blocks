@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-accordion",
-  "version": "0.0.5",
+  "version": "1.1.1",
   "design": "v1",
   "description": "Accordion components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -17,11 +17,11 @@
     "access": "restricted"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-clickable": "^4.0.8",
-    "@khanacademy/wonder-blocks-core": "^6.2.0",
-    "@khanacademy/wonder-blocks-icon": "^2.2.0",
-    "@khanacademy/wonder-blocks-theming": "^1.1.1",
-    "@khanacademy/wonder-blocks-typography": "^2.1.8"
+    "@khanacademy/wonder-blocks-clickable": "^4.0.10",
+    "@khanacademy/wonder-blocks-core": "^6.3.0",
+    "@khanacademy/wonder-blocks-icon": "^2.2.1",
+    "@khanacademy/wonder-blocks-theming": "^1.2.0",
+    "@khanacademy/wonder-blocks-typography": "^2.1.9"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",
