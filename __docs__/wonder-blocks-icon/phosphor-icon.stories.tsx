@@ -105,9 +105,9 @@ export const Default: StoryComponentType = {
  * It's up to the consumer to make sure that the icon is legible at the
  * specified size. For example, the `magnifyingGlassRegular` icon is not legible
  * at the `"small"` size.
- * - `small` size icons are recommended to use `bold` or `fill` weights.
- * - `medium` size icons are recommended `regular` or `fill` weights.
- * - `large` and `xlarge` size work well with all weights.
+ * - `small` size icons are recommended for use with `bold` or `fill` weights.
+ * - `medium` size icons are recommended for use with `regular` or `fill` weights.
+ * - `large` and `xlarge` size icons work well with all weights.
  */
 export const Sizes: StoryComponentType = {
     render: () => {
