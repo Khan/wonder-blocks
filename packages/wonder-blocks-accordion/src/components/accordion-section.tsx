@@ -37,7 +37,7 @@ type Props = AriaProps & {
      * Defaults to "end".
      *
      * If this prop is specified both here in the AccordionSection and
-     * within a parent Accordion component, the Accordion’s caretPosition
+     * within a parent Accordion component, the AccordionSection’s caretPosition
      * value is prioritized.
      */
     caretPosition?: "start" | "end";
@@ -71,7 +71,7 @@ type Props = AriaProps & {
      * if the user has `prefers-reduced-motion` opted in. Defaults to false.
      *
      * If this prop is specified both here in the AccordionSection and
-     * within a parent Accordion component, the Accordion’s animated
+     * within a parent Accordion component, the AccordionSection’s animated
      * value is prioritized.
      */
     animated?: boolean;

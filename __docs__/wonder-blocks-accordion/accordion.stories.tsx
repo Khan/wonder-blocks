@@ -148,7 +148,7 @@ AllowMultipleExpanded.parameters = {
  * a left-to-right language (and on the left of a right-to-left language).
  *
  * If the `caretPosition` prop is specified both here in the Accordion and
- * within a child AccordionSection component, the Accordion's
+ * within a child AccordionSection component, the AccordionSection's
  * `caretPosition` value is prioritized.
  */
 export const CaretPositions: StoryComponentType = {
@@ -289,7 +289,7 @@ export const WithInitialExpandedIndex: StoryComponentType = {
  * the Accordion.
  *
  * If `animated` is specified both here in the Accordion
- * and within a child AccordionSection component, the Accordion's
+ * and within a child AccordionSection component, the AccordionSection's
  * `animated` value is prioritized.
  */
 export const WithAnimation: StoryComponentType = {

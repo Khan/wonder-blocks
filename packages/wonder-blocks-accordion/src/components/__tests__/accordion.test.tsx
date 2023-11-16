@@ -322,14 +322,14 @@ describe("Accordion", () => {
         });
     });
 
-    test("prioritizes the parent's caretPosition prop", () => {
+    test("prioritizes the child's caretPosition prop", () => {
         // Arrange
         render(
-            <Accordion caretPosition="start">
+            <Accordion caretPosition="end">
                 {[
                     <AccordionSection
                         header="Title"
-                        caretPosition="end"
+                        caretPosition="start"
                         testId="section-test-id"
                     >
                         Section content
@@ -348,14 +348,14 @@ describe("Accordion", () => {
         });
     });
 
-    test("prioritizes the parent's animated prop", () => {
+    test("prioritizes the child's animated prop", () => {
         // Arrange
         render(
-            <Accordion animated={true}>
+            <Accordion animated={false}>
                 {[
                     <AccordionSection
                         header="Title"
-                        animated={false}
+                        animated={true}
                         testId="section-test-id"
                     >
                         Section content
@@ -369,7 +369,7 @@ describe("Accordion", () => {
         const sectionHeader = screen.getByTestId("section-test-id-header");
 
         // Assert
-        // The parent has animated=true, so the child's animated=false
+        // The child has animated=true, so the parent's animated=false
         // should be overridden.
         expect(sectionHeader).toHaveStyle({
             // The existence of the transition style means that the

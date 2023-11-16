@@ -172,7 +172,7 @@ describe("AccordionSection", () => {
         expect(header).toBeVisible();
     });
 
-    test("uses headerTestId as button's data-test-id", () => {
+    test("uses the header's testId as button's data-test-id", () => {
         // Arrange
         render(
             <AccordionSection header="Title" testId="accordion-section">
