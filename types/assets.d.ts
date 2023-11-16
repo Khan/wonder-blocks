@@ -5,4 +5,25 @@
  */
 declare module "*.jpg";
 declare module "*.png";
+
+// Support specific SVG paths from @phosphor-icons/core.
+declare type PhosphorRegular = string & {weight: "PhosphorRegular"};
+declare module "@phosphor-icons/core/regular/*.svg" {
+    const icon: PhosphorRegular;
+    export default icon;
+}
+
+declare type PhosphorBold = string & {weight: "PhosphorBold"};
+declare module "@phosphor-icons/core/bold/*-bold.svg" {
+    const icon: PhosphorBold;
+    export default icon;
+}
+
+declare type PhosphorFill = string & {weight: "PhosphorFill"};
+declare module "@phosphor-icons/core/fill/*-fill.svg" {
+    const icon: PhosphorFill;
+    export default icon;
+}
+
+// Fall back to generic SVG support.
 declare module "*.svg";

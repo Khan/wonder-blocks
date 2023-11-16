@@ -35,7 +35,7 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
      * The icon to display. This is a reference to the icon asset
      * (imported as a static SVG file).
      */
-    icon: PhosphorIconAsset;
+    icon: PhosphorIconAsset | string;
 };
 
 /**
