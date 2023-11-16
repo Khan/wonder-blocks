@@ -8,6 +8,7 @@ describe("AccordionSectionHeader", () => {
         // Arrange
         render(
             <AccordionSectionHeader
+                id="accordion-section-header"
                 header="Title"
                 caretPosition="end"
                 cornerKind="square"
@@ -31,6 +32,7 @@ describe("AccordionSectionHeader", () => {
         // Arrange
         render(
             <AccordionSectionHeader
+                id="accordion-section-header"
                 header="Title"
                 caretPosition="end"
                 cornerKind="square"
@@ -57,6 +59,7 @@ describe("AccordionSectionHeader", () => {
         // Act
         render(
             <AccordionSectionHeader
+                id="accordion-section-header"
                 header={<div>Section content</div>}
                 caretPosition="end"
                 cornerKind="square"
@@ -80,6 +83,7 @@ describe("AccordionSectionHeader", () => {
         // Act
         render(
             <AccordionSectionHeader
+                id="accordion-section-header"
                 header="Title"
                 caretPosition="end"
                 cornerKind="square"
@@ -101,6 +105,7 @@ describe("AccordionSectionHeader", () => {
         // Arrange
         render(
             <AccordionSectionHeader
+                id="accordion-section-header"
                 header="Title"
                 caretPosition="end"
                 cornerKind="square"
@@ -126,6 +131,7 @@ describe("AccordionSectionHeader", () => {
         // Arrange
         render(
             <AccordionSectionHeader
+                id="accordion-section-header"
                 header="Title"
                 caretPosition="end"
                 cornerKind="square"
@@ -151,6 +157,7 @@ describe("AccordionSectionHeader", () => {
         // Arrange
         render(
             <AccordionSectionHeader
+                id="accordion-section-header"
                 header="Title"
                 caretPosition="end"
                 cornerKind="square"
@@ -178,6 +185,7 @@ describe("AccordionSectionHeader", () => {
         // Arrange
         render(
             <AccordionSectionHeader
+                id="accordion-section-header"
                 header="Title"
                 caretPosition="end"
                 cornerKind="square"

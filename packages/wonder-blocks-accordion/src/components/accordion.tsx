@@ -75,6 +75,8 @@ type Props = AriaProps & {
     style?: StyleType;
 };
 
+const LANDMARK_PROLIFERATION_THRESHOLD = 6;
+
 /**
  * An accordion displays a vertically stacked list of sections, each of which
  * contains content that can be shown or hidden by clicking its header.
@@ -138,6 +140,13 @@ const Accordion = React.forwardRef(function Accordion(
     //  they are there. Screenreaders will read them out as disabled, the
     //  status will still be clear to users.
     const childRefs = Array(children.length).fill(null);
+
+    // If the number of sections is greater than the threshold,
+    // we don't want to use the `region` role on the AccordionSection
+    // components because it will cause too many landmarks to be created.
+    // (See https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
+    const sectionsAreRegions =
+        children.length <= LANDMARK_PROLIFERATION_THRESHOLD;
 
     const handleSectionClick = (
         index: number,
@@ -250,6 +259,7 @@ const Accordion = React.forwardRef(function Accordion(
                             onFocus: () => handleSectionFocus(index),
                             isFirstSection: isFirstChild,
                             isLastSection: isLastChild,
+                            isRegion: sectionsAreRegions,
                             ref: childRef,
                         })}
                     </li>
