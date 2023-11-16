@@ -37,7 +37,7 @@ type Props = AriaProps & {
      * Defaults to "end".
      *
      * If this prop is specified both here in the AccordionSection and
-     * within a parent Accordion component, the Accordion’s caretPosition
+     * within a parent Accordion component, the AccordionSection’s caretPosition
      * value is prioritized.
      */
     caretPosition?: "start" | "end";
@@ -71,7 +71,7 @@ type Props = AriaProps & {
      * if the user has `prefers-reduced-motion` opted in. Defaults to false.
      *
      * If this prop is specified both here in the AccordionSection and
-     * within a parent Accordion component, the Accordion’s animated
+     * within a parent Accordion component, the AccordionSection’s animated
      * value is prioritized.
      */
     animated?: boolean;
@@ -379,26 +379,28 @@ const _generateStyles = (
             borderBottom: "none",
         };
 
-        contentWrapperStyle = {
-            // Give the content wrapper the same border radius as the wrapper
-            // so that the content doesn't overflow out the corners. We
-            // can't put `overflow: "hidden"` on the overall container
-            // because it cuts off the header's focus outline.
-            borderEndEndRadius: tokens.spacing.small_12,
-            borderEndStartRadius: tokens.spacing.small_12,
-        };
-
         if (isFirstSection) {
             firstSectionStyle = {
                 borderStartStartRadius: tokens.spacing.small_12,
                 borderStartEndRadius: tokens.spacing.small_12,
             };
         }
+
         if (isLastSection) {
             lastSectionStyle = {
                 borderBottom: `1px solid ${tokens.color.offBlack16}`,
                 borderEndStartRadius: tokens.spacing.small_12,
                 borderEndEndRadius: tokens.spacing.small_12,
+            };
+
+            contentWrapperStyle = {
+                // Give the last section's content wrapper the same bottom
+                // border radius as the wrapper so that the content doesn't
+                // overflow out the corners. This issue can't be solved by
+                // putting `overflow: "hidden"` on the overall container
+                // because that cuts off the header's focus outline.
+                borderEndEndRadius: tokens.spacing.small_12,
+                borderEndStartRadius: tokens.spacing.small_12,
             };
         }
     }

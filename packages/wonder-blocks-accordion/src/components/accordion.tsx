@@ -44,7 +44,7 @@ type Props = AriaProps & {
      * Defaults to "end".
      *
      * If this prop is specified both here in the Accordion and within
-     * a child AccordionSection component, the Accordion’s caretPosition
+     * a child AccordionSection component, the AccordionSection’s caretPosition
      * value is prioritized.
      */
     caretPosition?: "start" | "end";
@@ -65,7 +65,7 @@ type Props = AriaProps & {
      * if the user has `prefers-reduced-motion` opted in. Defaults to false.
      *
      * If this prop is specified both here in the Accordion and within
-     * a child AccordionSection component, the Accordion’s animated
+     * a child AccordionSection component, the AccordionSection’s animated
      * value is prioritized.
      */
     animated?: boolean;
@@ -228,7 +228,7 @@ const Accordion = React.forwardRef(function Accordion(
                     caretPosition: childCaretPosition,
                     cornerKind: childCornerKind,
                     onToggle: childOnToggle,
-                    animated: childanimated,
+                    animated: childAnimated,
                 } = child.props;
 
                 // Create a ref for each child AccordionSection to
@@ -245,15 +245,15 @@ const Accordion = React.forwardRef(function Accordion(
                     // be list items.
                     <li key={index} id={id}>
                         {React.cloneElement(child, {
-                            // Prioritize the Accordion's caretPosition
-                            caretPosition: caretPosition ?? childCaretPosition,
-                            // Prioritize the AccordionSection's cornerKind
+                            // Prioritize AccordionSection's props when
+                            // they're overloading Accordion's props.
+                            animated: childAnimated ?? animated,
+                            caretPosition: childCaretPosition ?? caretPosition,
                             cornerKind: childCornerKind ?? cornerKind,
-                            // Don't use the AccordionSection's expanded prop
-                            // when it's rendered within Accordion.
+                            // AccordionSection's expanded prop does not get
+                            // used here when it's rendered within Accordion
+                            // since the expanded state is managed by Accordion.
                             expanded: sectionsOpened[index],
-                            // Prioritize the Accordion's animated
-                            animated: animated ?? childanimated,
                             onToggle: () =>
                                 handleSectionClick(index, childOnToggle),
                             onFocus: () => handleSectionFocus(index),

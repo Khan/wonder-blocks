@@ -172,13 +172,13 @@ export const Uncontrolled: StoryComponentType = {
     render: function Render() {
         return (
             <AccordionSection
-                header="Controlled section"
+                header="Uncontrolled section"
                 onToggle={() =>
                     // eslint-disable-next-line no-console
                     console.log("Click! This function is being called!")
                 }
             >
-                This is the information present in this controlled section
+                This is the information present in this uncontrolled section
             </AccordionSection>
         );
     },
@@ -272,7 +272,7 @@ export const ReactElementInChildren: StoryComponentType = {
  *
  * If the `caretPosition` prop is specified both here in the
  * AccordionSection and within the parent Accordion component,
- * the Accordion's `caretPosition` value is prioritized.
+ * the AccordionSection's `caretPosition` value is prioritized.
  */
 export const CaretPositions: StoryComponentType = {
     render: function Render() {
@@ -451,7 +451,7 @@ export const NotCollapsible: StoryComponentType = {
  * the AccordionSection.
  *
  * If `animated` is specified both here in the AccordionSection
- * and within a parent Accordion component, the Accordion's
+ * and within a parent Accordion component, the AccordionSection's
  * `animated` value is prioritized.
  */
 export const WithAnimation: StoryComponentType = {

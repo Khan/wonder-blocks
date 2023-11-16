@@ -148,7 +148,7 @@ AllowMultipleExpanded.parameters = {
  * a left-to-right language (and on the left of a right-to-left language).
  *
  * If the `caretPosition` prop is specified both here in the Accordion and
- * within a child AccordionSection component, the Accordion's
+ * within a child AccordionSection component, the AccordionSection's
  * `caretPosition` value is prioritized.
  */
 export const CaretPositions: StoryComponentType = {
@@ -289,7 +289,7 @@ export const WithInitialExpandedIndex: StoryComponentType = {
  * the Accordion.
  *
  * If `animated` is specified both here in the Accordion
- * and within a child AccordionSection component, the Accordion's
+ * and within a child AccordionSection component, the AccordionSection's
  * `animated` value is prioritized.
  */
 export const WithAnimation: StoryComponentType = {
@@ -414,7 +414,7 @@ WithAnimation.parameters = {
 /**
  * An Accordion with custom styles. The custom styles in this example
  * include a pink border and extra padding.
- * Note that the Accordian's border is different than the AccordionSection
+ * Note that the Accordion's border is different than the AccordionSection
  * border styles. Passing custom styles here will not affect the sections'
  * styles. If you want to change the corner kind of a single section,
  * that can be done using the `cornerKind` prop (as demonstrated here).

@@ -25,6 +25,7 @@ export default {
             AccordionSections will be expanded when the Accordion is first
             rendered.`,
         table: {
+            category: "State",
             type: {summary: "number"},
         },
         type: {name: "number", required: false},
@@ -35,6 +36,7 @@ export default {
             same time. If not specified, multiple AccordionSections can be
             expanded at a time.`,
         table: {
+            category: "State",
             defaultValue: {summary: true},
             type: {summary: "boolean"},
         },
@@ -47,6 +49,7 @@ export default {
             languages) of the header block in this section. Defaults to "end".`,
         defaultValue: "end",
         table: {
+            category: "Visual style",
             defaultValue: {summary: "end"},
             type: {summary: '"start" | "end"'},
         },
@@ -65,6 +68,7 @@ export default {
             there is white space between each section.`,
         defaultValue: "rounded",
         table: {
+            category: "Visual style",
             defaultValue: {summary: "rounded"},
             type: {summary: '"square" | "rounded" | "rounded-per-section"'},
         },
@@ -81,6 +85,7 @@ export default {
             Defaults to false.`,
         defaultValue: false,
         table: {
+            category: "Visual style",
             defaultValue: {summary: false},
             type: {summary: "boolean"},
         },
@@ -90,6 +95,7 @@ export default {
         control: {type: "object"},
         description: "Custom styles for the overall accordion container.",
         table: {
+            category: "Visual style",
             type: {summary: "StyleType"},
         },
         type: {name: "StyleType", required: false},
