@@ -355,7 +355,5 @@ const styles = StyleSheet.create({
     },
     inline: {
         margin: tokens.spacing.xxxxSmall_2,
-        width: 50,
-        height: 50,
     },
 });
