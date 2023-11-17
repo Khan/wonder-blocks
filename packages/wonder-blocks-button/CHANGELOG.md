@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.2.2
+
+### Patch Changes
+
+-   01593e2b: Fix border issue with secondary kind
+
 ## 6.2.1
 
 ### Patch Changes
