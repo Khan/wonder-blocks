@@ -422,12 +422,11 @@ export const _generateStyles = (
                     ? theme.color.bg.secondary.inverse
                     : theme.color.bg.secondary.default,
                 color: light ? theme.color.text.inverse : color,
-                outlineColor: light
+                borderColor: light
                     ? theme.color.border.secondary.inverse
                     : secondaryBorderColor,
-                outlineStyle: "solid",
-                outlineWidth: theme.border.width.secondary,
-                outlineOffset: 1,
+                borderStyle: "solid",
+                borderWidth: theme.border.width.secondary,
                 paddingLeft: padding,
                 paddingRight: padding,
             },
@@ -435,16 +434,20 @@ export const _generateStyles = (
                 background: light
                     ? theme.color.bg.secondary.inverse
                     : theme.color.bg.secondary.focus,
+                borderColor: "transparent",
                 outlineColor: light
                     ? theme.color.border.primary.inverse
                     : color,
+                outlineStyle: "solid",
                 outlineWidth: theme.border.width.focused,
             },
 
             active: {
                 background: light ? activeColor : secondaryActiveColor,
                 color: light ? fadedColor : activeColor,
+                borderColor: "transparent",
                 outlineColor: light ? fadedColor : activeColor,
+                outlineStyle: "solid",
                 outlineWidth: theme.border.width.focused,
             },
             disabled: {
