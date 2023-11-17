@@ -524,6 +524,61 @@ LongSections.parameters = {
     },
 };
 
+// This story can be used to visually check overflow behavior.
+/**
+ * Accordion is transparent by default. If you want it to look white on
+ * a darker background, you can ... (todo)
+ */
+export const OnDarkBackground: StoryComponentType = {
+    render: () => {
+        const accordionSectionStyle = {
+            backgroundColor: tokens.color.white,
+        };
+
+        const sections = [
+            <AccordionSection
+                key="first"
+                header="First section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the first section
+            </AccordionSection>,
+            <AccordionSection
+                key="second"
+                header="Second section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the second section
+            </AccordionSection>,
+            <AccordionSection
+                key="third"
+                header="Third section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the third section
+            </AccordionSection>,
+        ];
+
+        return (
+            <>
+                <Accordion cornerKind="rounded">{sections}</Accordion>
+                <Strut size={tokens.spacing.large_24} />
+                <Accordion cornerKind="square">{sections}</Accordion>
+                <Strut size={tokens.spacing.large_24} />
+                <Accordion cornerKind="rounded-per-section">
+                    {sections}
+                </Accordion>
+            </>
+        );
+    },
+};
+
+OnDarkBackground.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
+};
+
 const mobile = "@media (max-width: 1023px)";
 
 const styles = StyleSheet.create({
