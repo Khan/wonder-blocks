@@ -10,7 +10,7 @@ import {PhosphorIconAsset} from "../types";
 // property.
 const StyledIcon = addStyle("span");
 
-type Props = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
+type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     /**
      * The color of the icon. Will default to `currentColor`, which means that
      * it will take on the CSS `color` value from the parent element.

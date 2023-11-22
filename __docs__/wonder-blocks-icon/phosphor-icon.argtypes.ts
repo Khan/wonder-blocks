@@ -194,4 +194,17 @@ export default {
             },
         },
     },
+    role: {
+        description: "The role of this icon.",
+        defaultValue: "img",
+        control: {
+            type: "text",
+        },
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "string",
+            },
+        },
+    },
 } satisfies Record<string, InputType>;
