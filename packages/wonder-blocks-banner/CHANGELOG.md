@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.0.30
+
+### Patch Changes
+
+-   96f675d2: Modified Banner props to accept any icon weight in its type
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+    -   @khanacademy/wonder-blocks-button@6.2.3
+    -   @khanacademy/wonder-blocks-icon-button@5.1.4
+    -   @khanacademy/wonder-blocks-link@6.0.3
+
 ## 3.0.29
 
 ### Patch Changes

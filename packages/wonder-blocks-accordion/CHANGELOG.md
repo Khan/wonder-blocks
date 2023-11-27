@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.2.2
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+
 ## 1.2.1
 
 ### Patch Changes

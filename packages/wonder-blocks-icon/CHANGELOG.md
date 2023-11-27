@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 3.0.0
+
+### Major Changes
+
+-   96f675d2: Remove size/weight restriction from PhosphorIcon and remove some exported types from the package.
+
 ## 2.2.1
 
 ### Patch Changes
