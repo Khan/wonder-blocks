@@ -6,10 +6,7 @@ import xIcon from "@phosphor-icons/core/regular/x.svg";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    PhosphorIcon,
-    PhosphorIconMedium,
-} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -77,7 +74,7 @@ type BannerLayout =
 
 type BannerValues = {
     color: string;
-    icon: PhosphorIconMedium;
+    icon: PhosphorIconAsset;
     role: "status" | "alert";
     ariaLive?: "assertive" | "polite";
 };

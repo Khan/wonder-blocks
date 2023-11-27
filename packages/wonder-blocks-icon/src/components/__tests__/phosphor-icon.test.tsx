@@ -3,6 +3,8 @@ import {render, screen} from "@testing-library/react";
 
 import Plus from "@phosphor-icons/core/regular/plus.svg";
 import PlusBold from "@phosphor-icons/core/bold/plus-bold.svg";
+// mock out the custom icon
+import customIcon from "./custom-icon-mock.svg";
 
 import {PhosphorIcon} from "../phosphor-icon";
 import * as utils from "../../util/icon-util";
@@ -91,7 +93,7 @@ describe("PhosphorIcon", () => {
     it("applies style prop", async () => {
         // Arrange
         const expectedStyle = {
-            display: "none",
+            width: 30,
         } as const;
 
         // Act
@@ -104,9 +106,7 @@ describe("PhosphorIcon", () => {
         );
 
         // Assert
-        expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
-            "display: none;",
-        );
+        expect(screen.getByTestId("phosphor-icon")).toHaveStyle("width: 30px");
     });
 
     it("includes SVG using the maskImage css attribute", async () => {
@@ -118,6 +118,18 @@ describe("PhosphorIcon", () => {
         // Assert
         expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
             `mask-image: url(${Plus});`,
+        );
+    });
+
+    it("allows importing an arbitrary SVG file (custom icon)", async () => {
+        // Arrange
+
+        // Act
+        render(<PhosphorIcon icon={customIcon} testId="phosphor-icon" />);
+
+        // Assert
+        expect(screen.getByTestId("phosphor-icon")).toHaveStyle(
+            `mask-image: url(${customIcon});`,
         );
     });
 });

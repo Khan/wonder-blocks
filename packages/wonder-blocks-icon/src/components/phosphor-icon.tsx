@@ -4,17 +4,13 @@ import {StyleSheet} from "aphrodite";
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {viewportPixelsForSize} from "../util/icon-util";
-import {
-    PhosphorIconAsset,
-    PhosphorIconMedium,
-    PhosphorIconSmall,
-} from "../types";
+import {PhosphorIconAsset} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
 const StyledIcon = addStyle("span");
 
-type CommonProps = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
+type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     /**
      * The color of the icon. Will default to `currentColor`, which means that
      * it will take on the CSS `color` value from the parent element.
@@ -32,55 +28,19 @@ type CommonProps = Pick<AriaProps, "aria-hidden" | "aria-label"> & {
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
 
-type PropsForSmallIcon = CommonProps & {
+    size?: "small" | "medium" | "large" | "xlarge";
+
     /**
-     * The icon size (16px).
+     * The icon to display. This is a reference to the icon asset (imported as a
+     * static SVG file).
      *
-     * __NOTE:__ small icons only support `bold` and `fill` weights. **Make sure
-     * you are not using a `regular` icon.**
+     * It supports the following types:
+     * - `PhosphorIconAsset`: a reference to a Phosphor SVG asset.
+     * - `string`: an import referencing an arbitrary SVG file.
      */
-    size?: "small";
-    /**
-     * The icon to display. This is a reference to the icon asset
-     * (imported as a static SVG file).
-     * __NOTE:__ small icons only support `bold` and `fill` weights.
-     */
-    icon: PhosphorIconSmall;
+    icon: PhosphorIconAsset | string;
 };
-
-type PropsForMediumIcon = CommonProps & {
-    /**
-     * The icon size (24px). Defaults to `medium`.
-     *
-     * __NOTE:__ medium icons only support `regular` and `fill` weights. **Make
-     * sure you are not using a `bold` icon.**
-     */
-    size?: "medium";
-    /**
-     * The icon to display. This is a reference to the icon asset
-     * (imported as a static SVG file).
-     * __NOTE:__ medium icons only support `regular` and `fill` weights.
-     */
-    icon: PhosphorIconMedium;
-};
-
-type PropsForOtherSizes = CommonProps & {
-    /**
-     * large: The icon size (48px).
-     * xlarge: The icon size (96px).
-     */
-    size?: "large" | "xlarge";
-    /**
-     * The icon to display. This is a reference to the icon asset
-     * (imported as a static SVG file).
-     */
-    icon: PhosphorIconAsset;
-};
-
-// Define icon size by icon weight
-type Props = PropsForSmallIcon | PropsForMediumIcon | PropsForOtherSizes;
 
 /**
  * A `PhosphorIcon` displays a small informational or decorative image as an
@@ -123,6 +83,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
 
     const pixelSize = viewportPixelsForSize(size);
     const classNames = `${className ?? ""}`;
+    const iconStyles = _generateStyles(color, pixelSize);
 
     return (
         <StyledIcon
@@ -130,14 +91,12 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
             className={classNames}
             style={[
                 styles.svg,
+                iconStyles.icon,
                 {
+                    // We still pass inline styles to the icon itself, so we
+                    // prevent the icon from being overridden by the inline
+                    // styles.
                     maskImage: `url(${icon})`,
-                    maskSize: "100%",
-                    maskRepeat: "no-repeat",
-                    maskPosition: "center",
-                    backgroundColor: color,
-                    width: pixelSize,
-                    height: pixelSize,
                 },
                 style,
             ]}
@@ -147,12 +106,39 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     );
 });
 
+const dynamicStyles: Record<string, any> = {};
+
+/**
+ * Generates the visual styles for the icon.
+ */
+const _generateStyles = (color: string, size: number) => {
+    const iconStyle = `${color}-${size}`;
+    // The styles are cached to avoid creating a new object on every render.
+    if (styles[iconStyle]) {
+        return styles[iconStyle];
+    }
+
+    const newStyles: Record<string, any> = {
+        icon: {
+            backgroundColor: color,
+            width: size,
+            height: size,
+        },
+    };
+
+    dynamicStyles[iconStyle] = StyleSheet.create(newStyles);
+    return dynamicStyles[iconStyle];
+};
+
 const styles = StyleSheet.create({
     svg: {
         display: "inline-block",
         verticalAlign: "text-bottom",
         flexShrink: 0,
         flexGrow: 0,
+        maskSize: "100%",
+        maskRepeat: "no-repeat",
+        maskPosition: "center",
     },
 });
 

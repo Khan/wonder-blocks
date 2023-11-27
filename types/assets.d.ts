@@ -24,3 +24,6 @@ declare module "@phosphor-icons/core/fill/*-fill.svg" {
     const icon: PhosphorFill;
     export default icon;
 }
+
+// Fall back to generic SVG support.
+declare module "*.svg";
