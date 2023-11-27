@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-link
 
+## 6.0.3
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+
 ## 6.0.2
 
 ### Patch Changes
