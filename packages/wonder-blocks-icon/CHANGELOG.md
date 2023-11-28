@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 4.0.0
+
+### Major Changes
+
+-   171e3b01: Delete Icon component in favor of PhosphorIcon
+
 ## 3.0.0
 
 ### Major Changes
