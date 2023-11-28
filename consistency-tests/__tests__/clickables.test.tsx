@@ -9,6 +9,7 @@ import {MemoryRouter} from "react-router-dom";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import plus from "@phosphor-icons/core/regular/plus.svg";
 import {ActionItem, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
@@ -18,7 +19,6 @@ import {
     RadioGroup,
 } from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {icons} from "@khanacademy/wonder-blocks-icon";
 import Link from "@khanacademy/wonder-blocks-link";
 import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 
@@ -33,9 +33,7 @@ const ClickableWrapper = (props: any) => {
     );
 };
 
-const IconButtonWrapper = (props: any) => (
-    <IconButton {...props} icon={icons.search} />
-);
+const IconButtonWrapper = (props: any) => <IconButton {...props} icon={plus} />;
 
 describe.each`
     Component           | name             | role

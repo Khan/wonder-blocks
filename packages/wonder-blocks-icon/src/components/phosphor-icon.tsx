@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {viewportPixelsForSize} from "../util/icon-util";
-import {PhosphorIconAsset} from "../types";
+import {IconSize, PhosphorIconAsset} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
@@ -29,7 +29,11 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
      */
     testId?: string;
 
-    size?: "small" | "medium" | "large" | "xlarge";
+    /**
+     * Size of the icon. One of `small` (16), `medium` (24), `large` (48), or
+     * `xlarge` (96). Defaults to `small`.
+     */
+    size?: IconSize;
 
     /**
      * The icon to display. This is a reference to the icon asset (imported as a

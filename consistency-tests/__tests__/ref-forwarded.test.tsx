@@ -5,14 +5,12 @@ import * as ReactDOM from "react-dom";
 
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
-import {icons} from "@khanacademy/wonder-blocks-icon";
-
 import Accordion from "../../packages/wonder-blocks-accordion/src/components/accordion";
 import AccordionSection from "../../packages/wonder-blocks-accordion/src/components/accordion-section";
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
-import Icon from "../../packages/wonder-blocks-icon/src/components/icon";
+import {PhosphorIcon} from "../../packages/wonder-blocks-icon/src/components/phosphor-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Pill from "../../packages/wonder-blocks-pill/src/components/pill";
@@ -421,16 +419,16 @@ describe("Form elements", () => {
     });
 });
 
-describe("Icon", () => {
-    test("forwards ref to an SVGElement", () => {
+describe("PhosphorIcon", () => {
+    test("forwards ref to an HTMLSpanElement", () => {
         // Arrange
-        const ref: React.RefObject<SVGSVGElement> = React.createRef();
+        const ref: React.RefObject<HTMLSpanElement> = React.createRef();
 
         // Act
-        render(<Icon ref={ref} icon={icons.add} />);
+        render(<PhosphorIcon ref={ref} icon={plus} />);
 
         // Assert
-        expect(ref.current).toBeInstanceOf(SVGSVGElement);
+        expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     });
 });
 
