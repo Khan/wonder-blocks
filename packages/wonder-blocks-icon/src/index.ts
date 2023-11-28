@@ -1,2 +1,3 @@
 export {PhosphorIcon} from "./components/phosphor-icon";
-export type {IconSize, PhosphorIconAsset} from "./types";
+export {IconSize} from "./types";
+export type {PhosphorIconAsset} from "./types";
