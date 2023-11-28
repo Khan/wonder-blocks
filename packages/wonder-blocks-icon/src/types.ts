@@ -4,11 +4,6 @@
 export type PhosphorIconAsset = PhosphorRegular | PhosphorBold | PhosphorFill;
 
 /**
- * All the possible icon sizes.
+ * All the possible icon weights.
  */
-export enum IconSize {
-    small = "small",
-    medium = "medium",
-    large = "large",
-    xlarge = "xlarge",
-}
+export type IconSize = "small" | "medium" | "large" | "xlarge";

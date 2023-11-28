@@ -7,10 +7,11 @@ import {IconButtonSize} from "../components/icon-button";
 export const iconSizeForButtonSize = (size: IconButtonSize): IconSize => {
     switch (size) {
         case "xsmall":
-            return IconSize.small;
+            return "small";
         case "small":
+            return "medium";
         case "medium":
-            return IconSize.medium;
+            return "medium";
     }
 };
 
