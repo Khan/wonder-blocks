@@ -317,6 +317,7 @@ const styles = StyleSheet.create({
         // vertically stacked.
         position: "static",
         boxSizing: "border-box",
+        backgroundColor: tokens.color.white,
     },
     wrapperWithAnimation: {
         transition: "grid-template-rows 300ms",
