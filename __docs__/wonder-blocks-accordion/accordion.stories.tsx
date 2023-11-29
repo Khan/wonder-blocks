@@ -524,10 +524,16 @@ LongSections.parameters = {
     },
 };
 
-// This story can be used to visually check overflow behavior.
+// This story can be used to visually check background color overflow behavior.
 /**
  * Accordion is transparent by default. If you want it to look white on
- * a darker background, you can ... (todo)
+ * a darker background, you can pass in a custom style with a white
+ * background color to each individual AccordionSection.
+ *
+ * NOTE: Passing in a background color to the Accordion itself is NOT
+ * recommended, beacuse it will cause the color to overflow into the
+ * corners of a rounded Accordion and between the individual sections
+ * of a rounded-per-section Accordion.
  */
 export const OnDarkBackground: StoryComponentType = {
     render: () => {
