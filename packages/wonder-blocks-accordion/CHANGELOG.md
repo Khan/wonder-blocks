@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.2.4
+
+### Patch Changes
+
+-   138d25c5: Give AccordionSection static position to fix outline overlap issue
+
 ## 1.2.3
 
 ### Patch Changes
