@@ -531,7 +531,7 @@ LongSections.parameters = {
  * the desired background color into each individual AccordionSection.
  *
  * NOTE: Passing in a background color to the Accordion itself is NOT
- * recommended, beacuse it will cause the color to overflow into the
+ * recommended, because it will cause the color to overflow into the
  * corners of a rounded Accordion and between the individual sections
  * of a rounded-per-section Accordion.
  */
