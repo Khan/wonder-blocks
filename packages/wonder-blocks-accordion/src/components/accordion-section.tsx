@@ -311,7 +311,13 @@ const styles = StyleSheet.create({
     wrapper: {
         // Use grid layout for clean animations.
         display: "grid",
+        // Remove the View's default relative position because it creates
+        // overlap issues with the outline. In this case, it's safe to
+        // remove the stacking context beacuse accordion sections are always
+        // vertically stacked.
+        position: "static",
         boxSizing: "border-box",
+        backgroundColor: tokens.color.white,
     },
     wrapperWithAnimation: {
         transition: "grid-template-rows 300ms",

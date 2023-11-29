@@ -524,6 +524,67 @@ LongSections.parameters = {
     },
 };
 
+// This story can be used to visually check background color overflow behavior.
+/**
+ * Accordion has a white background color by default. If you want
+ * to change the background color, you can pass in a custom style with
+ * the desired background color into each individual AccordionSection.
+ *
+ * NOTE: Passing in a background color to the Accordion itself is NOT
+ * recommended, because it will cause the color to overflow into the
+ * corners of a rounded Accordion and between the individual sections
+ * of a rounded-per-section Accordion.
+ */
+export const BackgroundColorExample: StoryComponentType = {
+    render: () => {
+        const accordionSectionStyle = {
+            backgroundColor: tokens.color.fadedBlue,
+        };
+
+        const sections = [
+            <AccordionSection
+                key="first"
+                header="First section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the first section
+            </AccordionSection>,
+            <AccordionSection
+                key="second"
+                header="Second section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the second section
+            </AccordionSection>,
+            <AccordionSection
+                key="third"
+                header="Third section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the third section
+            </AccordionSection>,
+        ];
+
+        return (
+            <>
+                <Accordion cornerKind="rounded">{sections}</Accordion>
+                <Strut size={tokens.spacing.large_24} />
+                <Accordion cornerKind="square">{sections}</Accordion>
+                <Strut size={tokens.spacing.large_24} />
+                <Accordion cornerKind="rounded-per-section">
+                    {sections}
+                </Accordion>
+            </>
+        );
+    },
+};
+
+BackgroundColorExample.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
+};
+
 const mobile = "@media (max-width: 1023px)";
 
 const styles = StyleSheet.create({
