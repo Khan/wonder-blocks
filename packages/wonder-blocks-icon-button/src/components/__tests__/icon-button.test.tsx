@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
@@ -214,5 +214,110 @@ describe("IconButton", () => {
 
         // Assert
         expect(link.tagName).toBe("A");
+    });
+
+    describe("onClick", () => {
+        it("should trigger using the mouse", () => {
+            // Arrange
+            const onClickMock = jest.fn();
+
+            render(
+                <IconButton
+                    icon={magnifyingGlassIcon}
+                    aria-label="search"
+                    onClick={onClickMock}
+                    testId="icon-button"
+                />,
+            );
+
+            // Act
+            // Press the button.
+            userEvent.click(screen.getByRole("button"));
+
+            // Assert
+            expect(onClickMock).toHaveBeenCalledTimes(1);
+        });
+
+        it("should trigger by pressing {Space}", () => {
+            // Arrange
+            const onClickMock = jest.fn();
+
+            render(
+                <IconButton
+                    icon={magnifyingGlassIcon}
+                    aria-label="search"
+                    onClick={onClickMock}
+                    testId="icon-button"
+                />,
+            );
+
+            // Act
+            // Press the button.
+            const button = screen.getByRole("button");
+            // NOTE: we need to use fireEvent here because userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                key: "Space",
+                code: "Space",
+                charCode: 32,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                key: "Space",
+                code: "Space",
+                charCode: 32,
+            });
+
+            // Assert
+            expect(onClickMock).toHaveBeenCalledTimes(1);
+        });
+
+        it("should trigger by pressing {Enter}", () => {
+            // Arrange
+            const onClickMock = jest.fn();
+
+            render(
+                <IconButton
+                    icon={magnifyingGlassIcon}
+                    aria-label="search"
+                    onClick={onClickMock}
+                    testId="icon-button"
+                />,
+            );
+
+            // Act
+            // Press the button.
+            const button = screen.getByRole("button");
+            // NOTE: we need to use fireEvent here because userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                key: "Enter",
+                code: "Enter",
+                charCode: 13,
+            });
+            // NOTE: We need to trigger multiple events to simulate the browser
+            // behavior of pressing Enter on a button. By default, browsers will
+            // trigger a click event on keyDown, but we need to trigger it on
+            // keyUp.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                key: "Enter",
+                code: "Enter",
+                charCode: 13,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                key: "Enter",
+                code: "Enter",
+                charCode: 13,
+            });
+
+            // Assert
+            expect(onClickMock).toHaveBeenCalledTimes(1);
+        });
     });
 });
