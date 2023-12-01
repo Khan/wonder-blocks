@@ -333,15 +333,23 @@ const _generateStyles = (
              *
              * Defined in the following order: hover, focus, active.
              */
+            ":hover": {
+                boxShadow: "none",
+                color: defaultStrokeColor,
+                borderRadius: theme.border.radius.default,
+                outlineWidth: theme.border.width.default,
+                ...kindOverrides[":hover"],
+            },
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
-            ["@media (hover: hover)"]: {
+            ["@media not (hover: hover)"]: {
                 ":hover": {
+                    // reset hover styles on non-touch devices
                     boxShadow: "none",
-                    color: defaultStrokeColor,
+                    color: defaultColor,
                     borderRadius: theme.border.radius.default,
-                    outlineWidth: theme.border.width.default,
-                    ...kindOverrides[":hover"],
+                    outline: "none",
+                    backgroundColor: "transparent",
                 },
             },
             // Provide basic, default focus styles on older browsers (e.g.
