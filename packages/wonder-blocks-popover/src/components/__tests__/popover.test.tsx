@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
+import {fireEvent} from "@storybook/testing-library";
 import Popover from "../popover";
 import PopoverContent from "../popover-content";
 import {PopoverContentCore} from "../../index";
@@ -237,5 +238,53 @@ describe("Popover", () => {
             name: "Anchor element",
         });
         expect(anchorButton).toHaveFocus();
+    });
+
+    it("should close the popover when pressing Enter on the close button", async () => {
+        // Arrange
+        render(
+            <Popover
+                placement="top"
+                onClose={jest.fn()}
+                content={
+                    <PopoverContent
+                        title="Title"
+                        content="content"
+                        closeButtonVisible={true}
+                        closeButtonLabel="Click to close popover"
+                    />
+                }
+            >
+                <Button onClick={jest.fn()}>Open default popover</Button>
+            </Popover>,
+        );
+
+        // open the popover by focusing on the trigger element
+        userEvent.tab();
+        userEvent.keyboard("{enter}");
+
+        // Act
+        // Close the popover by pressing Enter on the close button.
+        // NOTE: we need to use fireEvent here because userEvent doesn't support
+        // keyUp/Down events and we use these handlers to override the default
+        // behavior of the button.
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.keyDown(
+            screen.getByRole("button", {name: "Click to close popover"}),
+            {key: "Enter", code: "Enter", charCode: 13},
+        );
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.keyDown(
+            screen.getByRole("button", {name: "Click to close popover"}),
+            {key: "Enter", code: "Enter", charCode: 13},
+        );
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.keyUp(
+            screen.getByRole("button", {name: "Click to close popover"}),
+            {key: "Enter", code: "Enter", charCode: 13},
+        );
+
+        // Assert
+        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
 });
