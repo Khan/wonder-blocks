@@ -132,9 +132,10 @@ const styles = StyleSheet.create({
      * elements
      */
     closeButton: {
+        margin: 0,
         position: "absolute",
-        right: Spacing.xSmall_8,
-        top: Spacing.xSmall_8,
+        right: Spacing.xxxSmall_4,
+        top: Spacing.xxxSmall_4,
         // Allows the button to be above the title and/or custom content
         zIndex: 1,
     },

@@ -47,6 +47,12 @@ type CommonProps = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Unique ID for the popover. This is used as a prefix to the IDs of the
+     * popover's elements.
+     * @ignore
+     */
+    uniqueId?: string;
 };
 
 type Props =
@@ -209,6 +215,7 @@ export default class PopoverContent extends React.Component<Props> {
             style,
             title,
             testId,
+            uniqueId,
         } = this.props;
 
         return (
@@ -232,10 +239,15 @@ export default class PopoverContent extends React.Component<Props> {
                                 {this.maybeRenderIcon()}
 
                                 <View style={styles.text}>
-                                    <HeadingSmall style={styles.title}>
+                                    <HeadingSmall
+                                        id={`${uniqueId}-title`}
+                                        style={styles.title}
+                                    >
                                         {title}
                                     </HeadingSmall>
-                                    <Body>{content}</Body>
+                                    <Body id={`${uniqueId}-content`}>
+                                        {content}
+                                    </Body>
                                 </View>
                             </View>
 

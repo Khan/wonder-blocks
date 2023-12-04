@@ -287,4 +287,73 @@ describe("Popover", () => {
         // Assert
         expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     });
+
+    describe("a11y", () => {
+        it("should announce a popover correctly by reading the title contents", async () => {
+            // Arrange
+            render(
+                <Popover
+                    onClose={jest.fn()}
+                    content={
+                        <PopoverContent
+                            title="The title is read by the screen reader"
+                            content="content"
+                            closeButtonVisible={true}
+                            closeButtonLabel="Click to close popover"
+                        />
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            // Open the popover
+            userEvent.click(
+                screen.getByRole("button", {name: "Open default popover"}),
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("dialog", {
+                    name: "The title is read by the screen reader",
+                }),
+            ).toBeInTheDocument();
+        });
+
+        it("should announce a custom popover correctly by reading the title contents", async () => {
+            // Arrange
+            render(
+                <Popover
+                    onClose={jest.fn()}
+                    id="custom-popover"
+                    content={
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <h1 id="custom-popover-title">
+                                This is a custom popover title
+                            </h1>
+                            <p id="custom-popover-content">
+                                The custom popover description
+                            </p>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            // Open the popover
+            userEvent.click(
+                screen.getByRole("button", {name: "Open default popover"}),
+            );
+
+            // Assert
+            expect(
+                screen.getByRole("dialog", {
+                    name: "This is a custom popover title",
+                }),
+            ).toBeInTheDocument();
+        });
+    });
 });
