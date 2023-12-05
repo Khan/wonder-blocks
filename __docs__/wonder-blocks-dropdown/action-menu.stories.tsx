@@ -1,3 +1,4 @@
+import {expect} from "@storybook/jest";
 /* eslint-disable no-console */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -5,6 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {useArgs} from "@storybook/preview-api";
 import {action} from "@storybook/addon-actions";
 
+import {userEvent, within} from "@storybook/testing-library";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
@@ -528,5 +530,17 @@ export const CustomActionItems: StoryComponentType = {
                 selectedValues={selectedValues}
             />
         );
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        await userEvent.click(canvas.getByRole("button"));
+
+        // Assert
+        const actionMenu = await canvas.findByRole("menu");
+        expect(actionMenu).toBeInTheDocument();
     },
 };

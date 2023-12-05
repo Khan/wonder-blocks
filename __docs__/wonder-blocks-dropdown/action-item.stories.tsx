@@ -93,6 +93,12 @@ export const WithHref = {
         label: "Action Item",
         href: "https://khanacademy.org",
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
