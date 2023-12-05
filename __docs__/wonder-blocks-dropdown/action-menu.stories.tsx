@@ -105,15 +105,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
     },
 } as Meta<typeof ActionMenu>;
 
@@ -121,6 +112,9 @@ const styles = StyleSheet.create({
     example: {
         background: Color.offWhite,
         padding: Spacing.medium_16,
+    },
+    exampleExtended: {
+        height: 300,
     },
     rowRight: {
         flexDirection: "row",
@@ -531,6 +525,13 @@ export const CustomActionItems: StoryComponentType = {
             />
         );
     },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={[styles.example, styles.exampleExtended]}>
+                <Story />
+            </View>
+        ),
+    ],
     play: async ({canvasElement}) => {
         // Arrange
         // NOTE: Using `body` here to work with React Portals.
