@@ -178,6 +178,7 @@ export default class ActionItem extends React.Component<ActionProps> {
 
 const styles = StyleSheet.create({
     wrapper: {
+        minHeight: DROPDOWN_ITEM_HEIGHT,
         // This removes the 300ms click delay on mobile browsers by indicating
         // that "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
