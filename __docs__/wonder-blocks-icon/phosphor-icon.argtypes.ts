@@ -46,6 +46,7 @@ import play from "@phosphor-icons/core/regular/play.svg";
 import playBold from "@phosphor-icons/core/bold/play-bold.svg";
 import playCircle from "@phosphor-icons/core/regular/play-circle.svg";
 import playCircleBold from "@phosphor-icons/core/bold/play-circle-bold.svg";
+import gear from "@phosphor-icons/core/regular/gear.svg";
 
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 
@@ -99,6 +100,7 @@ export const IconMappings = {
     playBold,
     playCircle,
     playCircleBold,
+    gear,
 } as const;
 
 export default {

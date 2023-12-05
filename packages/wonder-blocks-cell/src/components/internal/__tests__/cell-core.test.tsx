@@ -108,4 +108,34 @@ describe("CellCore", () => {
         // eslint-disable-next-line testing-library/no-node-access
         expect(container.firstChild).toHaveAttribute("aria-current", "true");
     });
+
+    it("should allow passing a role", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CellCore onClick={jest.fn()} role="menuitem">
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        expect(
+            screen.getByRole("menuitem", {name: "cell core content"}),
+        ).toBeInTheDocument();
+    });
+
+    it("should pass an style to the top node", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CellCore onClick={jest.fn()} rootStyle={{color: "blue"}}>
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        expect(screen.getByRole("button")).toHaveStyle("color: blue");
+    });
 });

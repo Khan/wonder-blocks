@@ -1,28 +1,24 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
-import {__RouterContext} from "react-router";
 
+import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {
-    getClickableBehavior,
-    isClientSideUrl,
-} from "@khanacademy/wonder-blocks-clickable";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
 const {blue, white, offBlack, offBlack32} = Color;
 
+type CompactCellProps = PropsFor<typeof CompactCell>;
+
 type ActionProps = {
     /**
      * Display text of the action item.
      */
-    label: string;
+    label: string | CompactCellProps["title"];
     /**
      * Whether this action item is disabled.
      */
@@ -41,22 +37,9 @@ type ActionProps = {
     /**
      * A target destination window for a link to open in.
      *
-     * TODO(WB-1262): only allow this prop when `href` is also set.t
+     * TODO(WB-1262): only allow this prop when `href` is also set.
      */
     target?: "_blank";
-    /**
-     * Whether to avoid using client-side navigation.
-     *
-     * If the URL passed to href is local to the client-side, e.g.
-     * /math/algebra/eval-exprs, then it tries to use react-router-dom's Link
-     * component which handles the client-side navigation. You can set
-     * `skipClientNav` to true avoid using client-side nav entirely.
-     *
-     * NOTE: All URLs containing a protocol are considered external, e.g.
-     * https://khanacademy.org/math/algebra/eval-exprs will trigger a full
-     * page reload.
-     */
-    skipClientNav?: boolean;
     /**
      * Test ID used for e2e testing.
      */
@@ -91,17 +74,34 @@ type ActionProps = {
      * @ignore
      */
     style?: StyleType;
+
+    /**
+     * Inherited from WB Cell.
+     */
+
+    /**
+     * Adds a horizontal rule at the bottom of the cell that can be used to
+     * separate items within ActionMenu instances. Defaults to `none`.
+     */
+    horizontalRule?: CompactCellProps["horizontalRule"];
+
+    /**
+     * Optional left accessory to display in the `ActionItem` element.
+     */
+    leftAccessory?: CompactCellProps["leftAccessory"];
+
+    /**
+     * Optional right accessory to display in the `ActionItem` element.
+     */
+    rightAccessory?: CompactCellProps["rightAccessory"];
 };
 
 type DefaultProps = {
     disabled: ActionProps["disabled"];
+    horizontalRule: ActionProps["horizontalRule"];
     indent: ActionProps["indent"];
     role: ActionProps["role"];
 };
-
-const StyledAnchor = addStyle("a");
-const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
 
 /**
  * The action item trigger actions, such as navigating to a different page or
@@ -115,131 +115,110 @@ export default class ActionItem extends React.Component<ActionProps> {
     }
     static defaultProps: DefaultProps = {
         disabled: false,
+        horizontalRule: "none",
         indent: false,
         role: "menuitem",
     };
     static __IS_ACTION_ITEM__ = true;
 
-    renderClickableBehavior(router: any): React.ReactNode {
+    render(): React.ReactNode {
         const {
-            skipClientNav,
             disabled,
+            horizontalRule,
             href,
             target,
             indent,
             label,
             lang,
+            leftAccessory,
+            rightAccessory,
             onClick,
             role,
             style,
             testId,
         } = this.props;
 
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            router,
-        );
+        const defaultStyle = [
+            styles.wrapper,
+            // pass optional styles from react-window (if applies)
+            style,
+        ];
+
+        const labelComponent =
+            typeof label === "string" ? (
+                <LabelMedium lang={lang} style={styles.label}>
+                    {label}
+                </LabelMedium>
+            ) : (
+                React.cloneElement(label, {
+                    lang,
+                    style: styles.label,
+                    ...label.props,
+                })
+            );
 
         return (
-            <ClickableBehavior
+            <CompactCell
                 disabled={disabled}
-                onClick={onClick}
-                href={href}
+                horizontalRule={horizontalRule}
+                rootStyle={defaultStyle}
+                leftAccessory={leftAccessory}
+                rightAccessory={rightAccessory}
+                style={[styles.shared, indent && styles.indent]}
                 role={role}
+                testId={testId}
+                title={labelComponent}
+                href={href}
                 target={target}
-            >
-                {(state, childrenProps) => {
-                    const {pressed, hovered, focused} = state;
-
-                    const defaultStyle = [
-                        styles.shared,
-                        disabled && styles.disabled,
-                        !disabled &&
-                            (pressed
-                                ? styles.active
-                                : (hovered || focused) && styles.focus),
-                        // pass optional styles from react-window (if applies)
-                        style,
-                    ];
-
-                    const props = {
-                        "data-test-id": testId,
-                        disabled,
-                        role,
-                        style: [defaultStyle],
-                        ...childrenProps,
-                    } as const;
-
-                    const children = (
-                        <React.Fragment>
-                            <LabelMedium
-                                lang={lang}
-                                style={[indent && styles.indent, styles.label]}
-                            >
-                                {label}
-                            </LabelMedium>
-                        </React.Fragment>
-                    );
-
-                    if (href && !disabled) {
-                        return router &&
-                            !skipClientNav &&
-                            isClientSideUrl(href) ? (
-                            <StyledLink {...props} to={href}>
-                                {children}
-                            </StyledLink>
-                        ) : (
-                            <StyledAnchor
-                                {...props}
-                                href={href}
-                                target={target}
-                            >
-                                {children}
-                            </StyledAnchor>
-                        );
-                    } else {
-                        return (
-                            <StyledButton
-                                type="button"
-                                {...props}
-                                disabled={disabled}
-                            >
-                                {children}
-                            </StyledButton>
-                        );
-                    }
-                }}
-            </ClickableBehavior>
-        );
-    }
-
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
+                onClick={onClick}
+            />
         );
     }
 }
 
 const styles = StyleSheet.create({
-    shared: {
-        background: white,
-        color: offBlack,
-        textDecoration: "none",
-        border: "none",
-        outline: "none",
-        flexDirection: "row",
-        alignItems: "center",
-        display: "flex",
-        height: DROPDOWN_ITEM_HEIGHT,
+    wrapper: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
-        paddingLeft: Spacing.medium_16,
-        paddingRight: Spacing.medium_16,
-        // This removes the 300ms click delay on mobile browsers by indicating that
-        // "double-tap to zoom" shouldn't be used on this element.
+        // This removes the 300ms click delay on mobile browsers by indicating
+        // that "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
+
+        /**
+         * States
+         */
+        ":focus": {
+            // Override the default focus state for the cell element, so that it
+            // can be added programmatically to the button element.
+            borderRadius: Spacing.xxxSmall_4,
+            outline: `${Spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            outlineOffset: -Spacing.xxxxSmall_2,
+        },
+
+        // Overrides the default cell state for the button element.
+        [":hover[aria-disabled=false]" as any]: {
+            color: white,
+            background: blue,
+        },
+        // Allow hover styles on non-touch devices only. This prevents an
+        // issue with hover being sticky on touch devices (e.g. mobile).
+        ["@media not (hover: hover)" as any]: {
+            // Revert the hover styles to the default/resting state (mobile
+            // only).
+            [":hover[aria-disabled=false]" as any]: {
+                color: white,
+                background: offBlack,
+            },
+        },
+
+        // active and pressed states
+        [":active[aria-disabled=false]" as any]: {
+            color: mix(fade(blue, 0.32), white),
+            background: mix(offBlack32, blue),
+        },
+    },
+    shared: {
+        minHeight: DROPDOWN_ITEM_HEIGHT,
+        height: DROPDOWN_ITEM_HEIGHT,
     },
 
     label: {
@@ -248,24 +227,7 @@ const styles = StyleSheet.create({
     },
 
     indent: {
-        marginLeft: Spacing.medium_16,
-    },
-
-    // hover and focus states
-    focus: {
-        color: white,
-        background: blue,
-    },
-
-    // active and pressed states
-    active: {
-        color: mix(fade(blue, 0.32), white),
-        background: mix(offBlack32, blue),
-    },
-
-    // disabled state
-    disabled: {
-        color: offBlack32,
-        cursor: "default",
+        // Cell's internal padding + checkbox width + checkbox margin
+        paddingLeft: Spacing.medium_16 * 2,
     },
 });

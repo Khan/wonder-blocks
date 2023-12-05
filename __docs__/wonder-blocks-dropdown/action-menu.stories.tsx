@@ -1,11 +1,17 @@
+import {expect} from "@storybook/jest";
 /* eslint-disable no-console */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
+import {useArgs} from "@storybook/preview-api";
+import {action} from "@storybook/addon-actions";
 
+import {userEvent, within} from "@storybook/testing-library";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import Pill from "@khanacademy/wonder-blocks-pill";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
@@ -15,6 +21,7 @@ import {
     SeparatorItem,
 } from "@khanacademy/wonder-blocks-dropdown";
 
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import actionMenuArgtypes from "./action-menu.argtypes";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
@@ -23,35 +30,41 @@ import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";
 
 const actionItems: Array<Item> = [
     <ActionItem
+        key="1"
         label="Profile"
         href="http://khanacademy.org/profile"
         target="_blank"
         testId="profile"
     />,
     <ActionItem
+        key="2"
         label="Teacher dashboard"
         href="http://khanacademy.org/coach/dashboard"
         testId="dashboard"
     />,
     <ActionItem
+        key="3"
         label="Settings (onClick)"
         onClick={() => console.log("user clicked on settings")}
         testId="settings"
     />,
     <ActionItem
+        key="4"
         label="Help"
         disabled={true}
         onClick={() => console.log("this item is disabled...")}
         testId="help"
     />,
     <ActionItem
+        key="5"
         label="Feedback"
         disabled={true}
         href="/feedback"
         testId="feedback"
     />,
-    <SeparatorItem />,
+    <SeparatorItem key="6" />,
     <ActionItem
+        key="7"
         label="Log out"
         href="http://khanacademy.org/logout"
         testId="logout"
@@ -92,15 +105,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
     },
 } as Meta<typeof ActionMenu>;
 
@@ -108,6 +112,9 @@ const styles = StyleSheet.create({
     example: {
         background: Color.offWhite,
         padding: Spacing.medium_16,
+    },
+    exampleExtended: {
+        height: 300,
     },
     rowRight: {
         flexDirection: "row",
@@ -431,3 +438,110 @@ const locales = [
     {id: "fr", locale: "fr", localName: "français"},
     {id: "it", locale: "it", localName: "italiano"},
 ];
+
+/**
+ * ActionMenu can be used with custom action items. This is useful when you
+ * want to use more rich action items, such as the ones used in context menus.
+ *
+ * ActionItem internally uses the `CompactCell` component, which is a component
+ * that allows you to pass left and right accessories.
+ */
+export const CustomActionItems: StoryComponentType = {
+    args: {
+        menuText: "Custom Action Items",
+        children: [
+            <ActionItem
+                key="1"
+                horizontalRule="full-width"
+                label="Set date"
+                leftAccessory={
+                    <PhosphorIcon icon={IconMappings.calendar} size="medium" />
+                }
+                onClick={action("Set date clicked")}
+            />,
+            <ActionItem
+                key="2"
+                horizontalRule="full-width"
+                label="Edit"
+                disabled
+                lang="es"
+                leftAccessory={
+                    <PhosphorIcon
+                        icon={IconMappings.pencilSimple}
+                        size="medium"
+                    />
+                }
+                onClick={action("Edit clicked!")}
+            />,
+            <ActionItem
+                key="3"
+                label="Preferences"
+                horizontalRule="full-width"
+                leftAccessory={
+                    <PhosphorIcon icon={IconMappings.gear} size="medium" />
+                }
+                onClick={action("preferences clicked!")}
+            />,
+            <ActionItem
+                key="4"
+                label={<LabelLarge>User profile</LabelLarge>}
+                horizontalRule="full-width"
+                leftAccessory={
+                    <PhosphorIcon icon={IconMappings.info} size="medium" />
+                }
+                rightAccessory={
+                    <Pill kind="accent" size="small" testId="new-pill">
+                        New
+                    </Pill>
+                }
+                onClick={action("user profile clicked!")}
+                style={{
+                    [":hover [data-test-id=new-pill]" as any]: {
+                        backgroundColor: Color.white,
+                        color: Color.blue,
+                    },
+                }}
+            />,
+            <OptionItem
+                key="5"
+                label="Show homework assignments"
+                value="homework"
+                onClick={() => console.log(`Show homework assignments toggled`)}
+            />,
+        ],
+    } as Partial<typeof ActionMenu>,
+    render: function Render(args) {
+        const [{selectedValues}, updateArgs] = useArgs();
+        const handleChange = (selectedItems: Array<string>) => {
+            updateArgs({selectedValues: selectedItems});
+        };
+
+        return (
+            <ActionMenu
+                {...args}
+                menuText="Custom Action Items"
+                onChange={handleChange}
+                selectedValues={selectedValues}
+            />
+        );
+    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={[styles.example, styles.exampleExtended]}>
+                <Story />
+            </View>
+        ),
+    ],
+    play: async ({canvasElement}) => {
+        // Arrange
+        // NOTE: Using `body` here to work with React Portals.
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        await userEvent.click(canvas.getByRole("button"));
+
+        // Assert
+        const actionMenu = await canvas.findByRole("menu");
+        expect(actionMenu).toBeInTheDocument();
+    },
+};
