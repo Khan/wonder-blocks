@@ -59,6 +59,7 @@ export const Default: StoryComponentType = {
         content: "The default version only includes text.",
         closeButtonVisible: true,
     },
+    render: (args) => <PopoverContent {...args} />,
 };
 
 Default.storyName = "Default (text)";
@@ -89,6 +90,7 @@ export const Emphasized: StoryComponentType = {
             </>
         ),
     },
+    render: (args) => <PopoverContent {...args} />,
 };
 
 Emphasized.parameters = {
@@ -106,8 +108,9 @@ export const WithIcon: StoryComponentType = {
     args: {
         title: "Popover with Icon",
         content: "Popovers can include images on the left.",
-        icon: <img src="/logo.svg" width="100%" alt="Wonder Blocks logo" />,
+        icon: <img src="./logo.svg" width="100%" alt="Wonder Blocks logo" />,
     },
+    render: (args) => <PopoverContent {...args} />,
 };
 
 WithIcon.parameters = {
@@ -125,7 +128,7 @@ export const WithIllustration: StoryComponentType = {
             "As you can see, this popover includes a full-bleed illustration.",
         image: (
             <img
-                src="/illustration.svg"
+                src="./illustration.svg"
                 alt="An illustration of a person skating on a pencil"
                 width={288}
                 height={200}
@@ -133,6 +136,7 @@ export const WithIllustration: StoryComponentType = {
         ),
         closeButtonVisible: true,
     },
+    render: (args) => <PopoverContent {...args} />,
 };
 
 WithIllustration.parameters = {

@@ -32,9 +32,12 @@ The Popover component should follow these guidelines:
 **Popover Dialog:**
 
 The popover component will populate the
+[aria-labelledby](https://www.w3.org/TR/wai-aria/#aria-labelledby) and
 [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
-attribute automatically, unless the user sets an `id` prop inside the Popover
-instance. Internally, it will be set on the trigger element.
+attributes automatically. Internally, it will be set in the `dialog` element and
+the `PopoverContent` component to reference the `title` and `content`
+elements/props. By doing this, the popover will be announced by screen readers
+as a dialog with a title and content.
 
 ## Keyboard Interaction
 

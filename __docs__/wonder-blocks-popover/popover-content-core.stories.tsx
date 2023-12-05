@@ -34,15 +34,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
     },
     decorators: [
         (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -94,14 +85,17 @@ export const WithIcon: StoryComponentType = {
             <>
                 <PhosphorIcon size="large" icon={IconMappings.article} />
                 <View>
-                    <LabelLarge>This is an article</LabelLarge>
-                    <Body>With the content</Body>
+                    <LabelLarge id="custom-popover-title">
+                        This is an article
+                    </LabelLarge>
+                    <Body id="custom-popover-content">With the content</Body>
                 </View>
             </>
         ),
         closeButtonVisible: true,
         style: styles.popoverWithIcon,
     },
+    render: (args) => <PopoverContentCore {...args} />,
 };
 
 // NOTE: Adding a wrapper to cast the component so Storybook doesn't complain.
@@ -116,6 +110,7 @@ export const WithDetailCell: StoryComponentType = {
         children: <ClickableDetailCellWrapper {...ClickableDetailCell.args} />,
         style: styles.popoverWithCell,
     },
+    render: (args) => <PopoverContentCore {...args} />,
 };
 
 WithDetailCell.parameters = {
@@ -179,6 +174,7 @@ export const Dark: StoryComponentType = {
         color: "darkBlue",
         style: styles.customPopover,
     },
+    render: (args) => <PopoverContentCore {...args} />,
 };
 
 Dark.parameters = {

@@ -13,8 +13,31 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import PopoverArgtypes from "./popover.argtypes";
+import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
 
+/**
+ * Popovers provide additional information that is related to a particular
+ * element and/or content. They can include text, links, icons and
+ * illustrations. The main difference with `Tooltip` is that they must be
+ * dismissed by clicking an element.
+ *
+ * This component uses the `PopoverPopper` component to position the
+ * `PopoverContentCore` component according to the children it is wrapping.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+ *
+ * <Popover
+ *  onClose={() => {}}
+ *  content={
+ *      <PopoverContent title="Title" content="Some content" closeButtonVisible />
+ *  }>
+ *      <Button>Open popover</Button>
+ *  </Popover>
+ * ```
+ */
 export default {
     title: "Popover/Popover",
     component: Popover as unknown as React.ComponentType<any>,
@@ -26,15 +49,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
         // TODO(WB-1170): Reassess this after investigating more about Chromatic
         // flakyness.
         chromatic: {
@@ -43,9 +57,7 @@ export default {
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>
-                <Story />
-            </View>
+            <View style={styles.example}>{Story()}</View>
         ),
     ],
 } as Meta<typeof Popover>;
@@ -78,14 +90,7 @@ type PopoverArgs = Partial<typeof Popover>;
 export const Default: StoryComponentType = {
     args: {
         children: <Button>Open default popover</Button>,
-        content: (
-            <PopoverContent
-                closeButtonVisible
-                title="Title"
-                content="The popover content."
-            />
-        ),
-
+        content: ContentMappings.withTextOnly,
         placement: "top",
         dismissEnabled: true,
         id: "",
@@ -338,6 +343,23 @@ WithInitialFocusId.parameters = {
     },
 };
 
+/**
+ * Popovers can have custom layouts. This is done by using the
+ * `PopoverContentCore` component.
+ *
+ * _NOTE:_ If you choose to use this component, you'll have to set the
+ * `aria-labelledby` and `aria-describedby` attributes manually. Make sure to
+ * pass the `id` prop to the `Popover` component and use it as the value for
+ * these attributes. Also, make sure to assign the `${id}-title` prop to the
+ * `title` element and `${id}-content` prop to the `content` element.
+ */
+export const CustomPopoverContent: StoryComponentType = {
+    args: {
+        children: <Button>Open custom popover</Button>,
+        content: ContentMappings.coreWithIcon,
+        id: "custom-popover",
+    } as PopoverArgs,
+};
 /**
  * Alignment example
  */
