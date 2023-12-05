@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.0.19
+
+### Patch Changes
+
+-   66f233d4: Pass the correct ID to the title and content so screen readers can announce popovers correctly
+-   Updated dependencies [9092363d]
+    -   @khanacademy/wonder-blocks-icon-button@5.1.6
+    -   @khanacademy/wonder-blocks-modal@4.0.38
+    -   @khanacademy/wonder-blocks-tooltip@2.1.21
+
 ## 3.0.18
 
 ### Patch Changes

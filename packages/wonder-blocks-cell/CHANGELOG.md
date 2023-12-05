@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.1.0
+
+### Minor Changes
+
+-   860d9ef9: Add `role` and `rootStyle` props.
+
+    -   `role` is used to set the `role` attribute on the cell's root element.
+    -   `rootStyle` is used to override the `style` attribute on the cell's root
+        element.
+
 ## 3.0.31
 
 ### Patch Changes

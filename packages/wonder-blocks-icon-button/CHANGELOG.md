@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.1.6
+
+### Patch Changes
+
+-   9092363d: Fixes keyboard behavior on IconButton:
+    -   Allows triggering onClick when Enter is pressed. - Fixes the active state from not being sticky on mobile devices.
+
 ## 5.1.5
 
 ### Patch Changes
