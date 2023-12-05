@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 4.0.0
+
+### Major Changes
+
+-   860d9ef9: Allow custom `ActionItem` components by using Cell internally.
+
+    -   Removed `ClickableBehavior` from `ActionItem` and replaced it with
+        `CompactCell` (which internally uses `Clickable`).
+    -   Removed `skipClientNav` from `ActionItem` as it is no longer used/needed.
+
+### Patch Changes
+
+-   Updated dependencies [860d9ef9]
+    -   @khanacademy/wonder-blocks-cell@3.1.0
+    -   @khanacademy/wonder-blocks-modal@4.0.38
+    -   @khanacademy/wonder-blocks-search-field@2.1.25
+
 ## 3.1.10
 
 ### Patch Changes
