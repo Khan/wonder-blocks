@@ -186,6 +186,14 @@ const styles = StyleSheet.create({
         /**
          * States
          */
+        ":focus": {
+            // Override the default focus state for the cell element, so that it
+            // can be added programmatically to the button element.
+            borderRadius: Spacing.xxxSmall_4,
+            outline: `${Spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            outlineOffset: -Spacing.xxxxSmall_2,
+        },
+
         // Overrides the default cell state for the button element.
         [":hover[aria-disabled=false]" as any]: {
             color: white,

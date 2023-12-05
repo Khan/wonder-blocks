@@ -467,6 +467,7 @@ export const CustomActionItems: StoryComponentType = {
                 key="2"
                 horizontalRule="full-width"
                 label="Edit"
+                disabled
                 lang="es"
                 leftAccessory={
                     <PhosphorIcon
@@ -487,7 +488,6 @@ export const CustomActionItems: StoryComponentType = {
             />,
             <ActionItem
                 key="4"
-                disabled
                 label={<LabelLarge>User profile</LabelLarge>}
                 horizontalRule="full-width"
                 leftAccessory={
