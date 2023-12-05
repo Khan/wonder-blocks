@@ -10,7 +10,7 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import plus from "@phosphor-icons/core/regular/plus.svg";
-import {ActionItem, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {
@@ -37,7 +37,6 @@ const IconButtonWrapper = (props: any) => <IconButton {...props} icon={plus} />;
 
 describe.each`
     Component           | name             | role
-    ${ActionItem}       | ${"ActionItem"}  | ${"menuitem"}
     ${Button}           | ${"Button"}      | ${"button"}
     ${ClickableWrapper} | ${"Clickable"}   | ${"link"}
     ${CompactCell}      | ${"CompactCell"} | ${"link"}
@@ -112,7 +111,6 @@ describe.each`
 // NOTE: Link doesn't work without an href so it isn't included in this suite
 describe.each`
     Component            | name             | role
-    ${ActionItem}        | ${"ActionItem"}  | ${"menuitem"}
     ${Button}            | ${"Button"}      | ${"button"}
     ${ClickableWrapper}  | ${"Clickable"}   | ${"button"}
     ${CompactCell}       | ${"CompactCell"} | ${"button"}
@@ -171,7 +169,6 @@ describe.each`
 // have an added tabIndex of 0.
 describe.each`
     Component            | name             | hasTabIndex
-    ${ActionItem}        | ${"ActionItem"}  | ${false}
     ${Button}            | ${"Button"}      | ${false}
     ${ClickableWrapper}  | ${"Clickable"}   | ${false}
     ${CompactCell}       | ${"CompactCell"} | ${false}

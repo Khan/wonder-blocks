@@ -18,7 +18,10 @@ describe("ActionItem", () => {
         render(<ActionItem href="/foo" label="Example" disabled={true} />);
 
         // Assert
-        expect(screen.getByRole("menuitem")).toBeDisabled();
+        expect(screen.getByRole("menuitem")).toHaveAttribute(
+            "aria-disabled",
+            "true",
+        );
     });
 
     it("should render an anchor if there's no router", () => {

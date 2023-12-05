@@ -173,6 +173,8 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         onClick,
         "aria-label": ariaLabel,
         target,
+        role,
+        rootStyle,
     } = props;
 
     // Pressable cell.
@@ -185,10 +187,12 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 href={href}
                 hideDefaultFocusRing={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
+                role={role}
                 target={target}
                 style={[
                     styles.wrapper,
                     styles.clickable,
+                    rootStyle,
                     active && styles.active,
                     disabled && styles.disabled,
                 ]}
@@ -203,8 +207,9 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     // wrapper.
     return (
         <View
-            style={[styles.wrapper, active && styles.active]}
+            style={[styles.wrapper, rootStyle, active && styles.active]}
             aria-current={active ? "true" : undefined}
+            role={role}
         >
             <CellInner {...props} />
         </View>
@@ -216,8 +221,10 @@ const styles = StyleSheet.create({
         background: Color.white,
         color: Color.offBlack,
         display: "flex",
-        minHeight: CellMeasurements.cellMinHeight,
+        // minHeight: CellMeasurements.cellMinHeight,
+        minHeight: 40,
         textAlign: "left",
+        width: "100%",
     },
 
     innerWrapper: {

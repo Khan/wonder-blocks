@@ -111,6 +111,20 @@ export default {
             },
         },
     },
+    rootStyle: {
+        description:
+            `Optional custom styles applied to the top node.\n\n` +
+            `**NOTE:** This is the top node of the cell, not the cell ` +
+            `container. If possible, try to use this prop carefully and use ` +
+            `\`style\` instead.`,
+        control: {type: "object"},
+        table: {
+            category: "Styling",
+            type: {
+                summary: "StyleType",
+            },
+        },
+    },
     style: {
         description: "Optional custom styles.",
         control: {type: "object"},
@@ -192,6 +206,28 @@ export default {
             type: {
                 summary: "string",
                 detail: `aria-label should be specially used when the cell is pressable so screen readers can announce the link when the user is focused on it.`,
+            },
+        },
+    },
+    role: {
+        description:
+            "The role of the Cell component, can be a role of type `ClickableRole`",
+        control: {type: "select"},
+        options: [
+            "button",
+            "checkbox",
+            "link",
+            "listbox",
+            "menu",
+            "menuitem",
+            "radio",
+            "tab",
+        ],
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "ClickableRole",
+                detail: `"button" | "link" | "checkbox" | "radio" | "listbox" | "option" | "menuitem" | "menu" | "tab"`,
             },
         },
     },
