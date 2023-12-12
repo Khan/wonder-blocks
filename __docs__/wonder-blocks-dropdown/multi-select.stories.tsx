@@ -22,6 +22,25 @@ type StoryComponentType = StoryObj<typeof MultiSelect>;
 
 type MultiSelectArgs = Partial<typeof MultiSelect>;
 
+/**
+ * A dropdown that consists of multiple selection items. This select allows
+ * multiple options to be selected. Clients are responsible for keeping track of
+ * the selected items.
+ *
+ * The multi select stays open until closed by the user. The onChange callback
+ * happens every time there is a change in the selection of the items.
+ *
+ * ### Usage
+ *
+ * ```tsx
+ * import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
+ *
+ * <MultiSelect onChange={setSelectedValues} selectedValues={selectedValues}>
+ *  <OptionItem value="pear">Pear</OptionItem>
+ *  <OptionItem value="mango">Mango</OptionItem>
+ * </MultiSelect>
+ * ```
+ */
 export default {
     title: "Dropdown / MultiSelect",
     component: MultiSelect as unknown as React.ComponentType<any>,
@@ -51,15 +70,6 @@ export default {
                 version={packageConfig.version}
             />
         ) as any,
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
     },
 } as Meta<typeof MultiSelect>;
 
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
         maxHeight: 200,
     },
     wrapper: {
-        height: "400px",
+        height: "600px",
         width: "600px",
     },
     centered: {
@@ -140,22 +150,26 @@ const Template = (args: any) => {
     }, [args.opened]);
 
     return (
-        <View style={styles.wrapper}>
-            <MultiSelect
-                {...args}
-                onChange={setSelectedValues}
-                selectedValues={selectedValues}
-                opened={opened}
-                onToggle={setOpened}
-            >
-                {items}
-            </MultiSelect>
-        </View>
+        <MultiSelect
+            {...args}
+            onChange={setSelectedValues}
+            selectedValues={selectedValues}
+            opened={opened}
+            onToggle={setOpened}
+        >
+            {items}
+        </MultiSelect>
     );
 };
 
 export const Default: StoryComponentType = {
     render: Template,
+    parameters: {
+        chromatic: {
+            // We don't need screenshots b/c the dropdown is initially closed.
+            disableSnapshot: true,
+        },
+    },
 };
 
 const ControlledWrapper = (args: any) => {
@@ -185,25 +199,24 @@ const ControlledWrapper = (args: any) => {
     );
 };
 
+/**
+ * Sometimes you'll want to trigger a dropdown programmatically. This can be
+ * done by `MultiSelect` is a controlled component. The parent is responsible
+ * for managing the opening/closing of the dropdown when using this prop.
+ *
+ * This means that you'll also have to update `opened` to the value triggered by
+ * the `onToggle` prop.
+ */
 export const ControlledOpened: StoryComponentType = {
+    name: "Controlled (opened)",
     render: (args) => <ControlledWrapper {...args} />,
     args: {
         opened: true,
     } as MultiSelectArgs,
-};
-
-ControlledOpened.storyName = "Controlled (opened)";
-
-ControlledOpened.parameters = {
-    docs: {
-        description: {
-            story:
-                "Sometimes you'll want to trigger a dropdown programmatically. This can be done by `MultiSelect` is a controlled component. The parent is responsible for managing the opening/closing of the dropdown when using this prop.\n\n" +
-                "This means that you'll also have to update `opened` to the value triggered by the `onToggle` prop.",
-        },
+    parameters: {
+        // Added to ensure that the dropdown menu is rendered using PopperJS.
+        chromatic: {delay: 500},
     },
-    // Added to ensure that the dropdown menu is rendered using PopperJS.
-    chromatic: {delay: 500},
 };
 
 // Custom MultiSelect labels
@@ -213,6 +226,14 @@ const dropdownLabels: Labels = {
     someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
 };
 
+/**
+ * Sometimes, we may want to customize the dropdown style (for example, to limit
+ * the height of the list). For this purpose, we have the `dropdownStyle` prop.
+ *
+ * **NOTE:** We are overriding the max height of the dropdown in this example
+ * but we recommend letting the dropdown calculate its own height, as we already
+ * have a max height set for the dropdown internally.
+ */
 export const CustomStyles: StoryComponentType = {
     render: Template,
     args: {
@@ -220,20 +241,17 @@ export const CustomStyles: StoryComponentType = {
         dropdownStyle: styles.customDropdown,
         style: styles.setWidth,
     } as MultiSelectArgs,
-};
-
-CustomStyles.parameters = {
-    docs: {
-        description: {
-            story: "Sometimes, we may want to customize the dropdown style (for example, to limit the height of the list). For this purpose, we have the `dropdownStyle` prop.",
+    parameters: {
+        chromatic: {
+            // we don't need screenshots because this story only tests behavior.
+            disableSnapshot: true,
         },
     },
-    chromatic: {
-        // we don't need screenshots because this story only tests behavior.
-        disableSnapshot: true,
-    },
 };
 
+/**
+ * Here you can see an example of the previous dropdown opened.
+ */
 export const CustomStylesOpened: StoryComponentType = {
     render: Template,
     args: {
@@ -243,14 +261,13 @@ export const CustomStylesOpened: StoryComponentType = {
         opened: true,
     } as MultiSelectArgs,
     name: "Custom styles (opened)",
-};
-
-CustomStylesOpened.parameters = {
-    docs: {
-        description: {
-            story: "Here you can see an example of the previous dropdown opened",
-        },
-    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>
+                <Story />
+            </View>
+        ),
+    ],
 };
 
 const ErrorWrapper = (args: any) => {
@@ -281,8 +298,8 @@ const ErrorWrapper = (args: any) => {
 };
 
 /**
- * Here is an example of a dropdown that is in an error state.
- * Selecting two or more options will clear the error by setting the `error` prop to `false`.
+ * Here is an example of a dropdown that is in an error state. Selecting two or
+ * more options will clear the error by setting the `error` prop to `false`.
  */
 export const Error: StoryComponentType = {
     render: ErrorWrapper,
@@ -292,7 +309,8 @@ export const Error: StoryComponentType = {
 };
 
 /**
- * With shortcuts
+ * This example starts with one item selected and has selection shortcuts for
+ * select all and select none. This one does not have a predefined placeholder.
  */
 export const Shortcuts: StoryComponentType = {
     render: Template,
@@ -300,14 +318,13 @@ export const Shortcuts: StoryComponentType = {
         shortcuts: true,
         opened: true,
     } as MultiSelectArgs,
-};
-
-Shortcuts.parameters = {
-    docs: {
-        description: {
-            story: "This example starts with one item selected and has selection shortcuts for select all and select none. This one does not have a predefined placeholder.",
-        },
-    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>
+                <Story />
+            </View>
+        ),
+    ],
 };
 
 /**
@@ -353,43 +370,40 @@ const DropdownInModalWrapper = (args: MultiSelectArgs) => {
     );
 };
 
+/**
+ * Sometimes we want to include Dropdowns inside a Modal, and these controls can
+ * be accessed only by scrolling down. This example help us to demonstrate that
+ * `MultiSelect` components can correctly be displayed within the visible
+ * scrolling area.
+ */
 export const DropdownInModal: StoryComponentType = {
     render: (args) => <DropdownInModalWrapper {...args} />,
     name: "Dropdown in a modal",
-};
-
-DropdownInModal.parameters = {
-    docs: {
-        description: {
-            story: "Sometimes we want to include Dropdowns inside a Modal, and these controls can be accessed only by scrolling down. This example help us to demonstrate that `MultiSelect` components can correctly be displayed within the visible scrolling area.",
+    parameters: {
+        chromatic: {
+            // We don't need screenshots because this story can be tested after
+            // the modal is opened.
+            disableSnapshot: true,
         },
     },
-    chromatic: {
-        // We don't need screenshots because this story can be tested after
-        // the modal is opened.
-        disableSnapshot: true,
-    },
 };
 
 /**
- * Disabled
+ * `MultiSelect` can be disabled by passing `disabled={true}`. This can be
+ * useful when you want to disable a control temporarily.
  */
-export const Disabled: StoryComponentType = () => (
-    <MultiSelect disabled={true} onChange={() => {}}>
-        <OptionItem label="Mercury" value="1" />
-        <OptionItem label="Venus" value="2" />
-    </MultiSelect>
-);
-
-Disabled.parameters = {
-    docs: {
-        storyDescription:
-            "`MultiSelect` can be disabled by passing `disabled={true}`. This can be useful when you want to disable a control temporarily.",
-    },
+export const Disabled: StoryComponentType = {
+    render: () => (
+        <MultiSelect disabled={true} onChange={() => {}}>
+            <OptionItem label="Mercury" value="1" />
+            <OptionItem label="Venus" value="2" />
+        </MultiSelect>
+    ),
 };
 
 /**
- * ImplicitAll enabled
+ * When nothing is selected, show the menu text as "All selected". Note that the
+ * actual selection logic doesn't change. (Only the menu text)
  */
 export const ImplicitAllEnabled: StoryComponentType = {
     render: Template,
@@ -402,17 +416,11 @@ export const ImplicitAllEnabled: StoryComponentType = {
             allSelected: "All planets selected",
         },
     } as MultiSelectArgs,
-};
-
-ImplicitAllEnabled.parameters = {
-    docs: {
-        description: {
-            story: `When nothing is selected, show the menu text as "All selected". Note that the actual selection logic doesn't change. (Only the menu text)`,
+    parameters: {
+        chromatic: {
+            // We don't need screenshots b/c the dropdown is initially closed.
+            disableSnapshot: true,
         },
-    },
-    chromatic: {
-        // We don't need screenshots b/c the dropdown is initially closed.
-        disableSnapshot: true,
     },
 };
 
@@ -458,24 +466,27 @@ const VirtualizedMultiSelect = function (props: Props): React.ReactElement {
 };
 
 /**
- * Virtualized MultiSelect
+ * When there are many options, you could use a search filter in the
+ * `MultiSelect`. The search filter will be performed toward the labels of the
+ * option items. Note that this example shows how we can add custom styles to
+ * the dropdown as well.
  */
-export const VirtualizedFilterable: StoryComponentType = () => (
-    <VirtualizedMultiSelect opened={true} />
-);
-
-VirtualizedFilterable.storyName = "Virtualized (isFilterable)";
-
-VirtualizedFilterable.parameters = {
-    docs: {
-        description: {
-            story: "When there are many options, you could use a search filter in the `MultiSelect`. The search filter will be performed toward the labels of the option items. Note that this example shows how we can add custom styles to the dropdown as well.",
-        },
-    },
+export const VirtualizedFilterable: StoryComponentType = {
+    name: "Virtualized (isFilterable)",
+    render: () => <VirtualizedMultiSelect opened={true} />,
 };
 
 /**
- * Custom opener
+ * In case you need to use a custom opener with the `MultiSelect`, you can use
+ * the opener property to achieve this. In this example, the opener prop accepts
+ * a function with the following arguments:
+ *  - `eventState`: lets you customize the style for different states, such as
+ *    pressed, hovered and focused.
+ *  - `text`: Passes the menu label defined in the parent component. This value
+ *  is passed using the placeholder prop set in the `MultiSelect` component.
+ *
+ * **Note:** If you need to use a custom ID for testing the opener, make sure to
+ * pass the testId prop inside the opener component/element.
  */
 export const CustomOpener: StoryComponentType = {
     render: Template,
@@ -501,18 +512,6 @@ export const CustomOpener: StoryComponentType = {
     name: "With custom opener",
 };
 
-CustomOpener.parameters = {
-    docs: {
-        description: {
-            story:
-                "In case you need to use a custom opener with the `MultiSelect`, you can use the opener property to achieve this. In this example, the opener prop accepts a function with the following arguments:\n" +
-                "- `eventState`: lets you customize the style for different states, such as pressed, hovered and focused.\n" +
-                "- `text`: Passes the menu label defined in the parent component. This value is passed using the placeholder prop set in the `MultiSelect` component.\n\n" +
-                "**Note:** If you need to use a custom ID for testing the opener, make sure to pass the testId prop inside the opener component/element.",
-        },
-    },
-};
-
 /**
  * Custom labels
  */
@@ -526,45 +525,43 @@ const translatedItems = new Array(10)
         />
     ));
 
-export const CustomLabels: StoryComponentType = () => {
-    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
-        [],
-    );
-    const [opened, setOpened] = React.useState(true);
+/**
+ * This example illustrates how you can pass custom labels to the MultiSelect
+ * component.
+ */
+export const CustomLabels: StoryComponentType = {
+    render: function Render() {
+        const [selectedValues, setSelectedValues] = React.useState<
+            Array<string>
+        >([]);
+        const [opened, setOpened] = React.useState(true);
 
-    const labels: Labels = {
-        clearSearch: "Limpiar busqueda",
-        filter: "Filtrar",
-        noResults: "Sin resultados",
-        selectAllLabel: (numOptions) => `Seleccionar todas (${numOptions})`,
-        selectNoneLabel: "No seleccionar ninguno",
-        noneSelected: "0 escuelas seleccionadas",
-        allSelected: "Todas las escuelas",
-        someSelected: (numSelectedValues) =>
-            `${numSelectedValues} escuelas seleccionadas`,
-    };
+        const labels: Labels = {
+            clearSearch: "Limpiar busqueda",
+            filter: "Filtrar",
+            noResults: "Sin resultados",
+            selectAllLabel: (numOptions) => `Seleccionar todas (${numOptions})`,
+            selectNoneLabel: "No seleccionar ninguno",
+            noneSelected: "0 escuelas seleccionadas",
+            allSelected: "Todas las escuelas",
+            someSelected: (numSelectedValues) =>
+                `${numSelectedValues} escuelas seleccionadas`,
+        };
 
-    return (
-        <View style={styles.wrapper}>
-            <MultiSelect
-                shortcuts={true}
-                isFilterable={true}
-                onChange={setSelectedValues}
-                selectedValues={selectedValues}
-                labels={labels}
-                opened={opened}
-                onToggle={setOpened}
-            >
-                {translatedItems}
-            </MultiSelect>
-        </View>
-    );
-};
-
-CustomLabels.parameters = {
-    docs: {
-        description: {
-            story: "This example illustrates how you can pass custom labels to the MultiSelect component.",
-        },
+        return (
+            <View style={styles.wrapper}>
+                <MultiSelect
+                    shortcuts={true}
+                    isFilterable={true}
+                    onChange={setSelectedValues}
+                    selectedValues={selectedValues}
+                    labels={labels}
+                    opened={opened}
+                    onToggle={setOpened}
+                >
+                    {translatedItems}
+                </MultiSelect>
+            </View>
+        );
     },
 };

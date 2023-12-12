@@ -955,9 +955,6 @@ class DropdownCore extends React.Component<Props, State> {
                     styles.dropdown,
                     light && styles.light,
                     isReferenceHidden && styles.hidden,
-                    {
-                        maxHeight: "var(--popper-max-height)",
-                    },
                     dropdownStyle,
                 ]}
                 testId="dropdown-core-container"
@@ -1060,6 +1057,10 @@ const styles = StyleSheet.create({
         paddingBottom: Spacing.xxxSmall_4,
         border: `solid 1px ${Color.offBlack16}`,
         boxShadow: `0px 8px 8px 0px ${fade(Color.offBlack, 0.1)}`,
+        // We use a custom property to set the max height of the dropdown.
+        // This comes from the maxHeight custom modifier.
+        // @see ../util/popper-max-height-modifier.ts
+        maxHeight: "var(--popper-max-height)",
     },
 
     light: {
