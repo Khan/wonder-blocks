@@ -663,7 +663,7 @@ describe("SingleSelect", () => {
     });
 
     describe("Custom listbox styles", () => {
-        it("should apply the default maxHeight to the listbox", () => {
+        it("should apply the default maxHeight to the listbox wrapper", () => {
             // Arrange
 
             // Act
@@ -681,11 +681,15 @@ describe("SingleSelect", () => {
             );
 
             // Assert
-            const dropdownMenu = screen.getByRole("listbox");
-            expect(dropdownMenu).toHaveStyle("max-height: 120px");
+            const dropdownMenuWrapper = screen.getByTestId(
+                "dropdown-core-container",
+            );
+            expect(dropdownMenuWrapper).toHaveStyle(
+                "max-height: var(--popper-max-height)",
+            );
         });
 
-        it("should apply the default maxHeight to a virtualized listbox", () => {
+        it("should apply the default maxHeight to a virtualized listbox wrapper", () => {
             // Arrange
             const optionItems = new Array(1000)
                 .fill(null)
@@ -711,9 +715,13 @@ describe("SingleSelect", () => {
             );
 
             // Assert
-            const dropdownMenu = screen.getByRole("listbox");
+            const dropdownMenuWrapper = screen.getByTestId(
+                "dropdown-core-container",
+            );
             // Max allowed height
-            expect(dropdownMenu).toHaveStyle("max-height: 360px");
+            expect(dropdownMenuWrapper).toHaveStyle(
+                "max-height: var(--popper-max-height)",
+            );
         });
 
         it("should override the default maxHeight to the listbox if a custom dropdownStyle is set", () => {

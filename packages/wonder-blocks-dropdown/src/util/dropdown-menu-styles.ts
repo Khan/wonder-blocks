@@ -1,7 +1,3 @@
-import {StyleSheet} from "aphrodite";
-
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
 import {
     DROPDOWN_ITEM_HEIGHT,
     MAX_VISIBLE_ITEMS,
@@ -34,26 +30,4 @@ export function getDropdownMenuHeight(
             return sum + DROPDOWN_ITEM_HEIGHT;
         }
     }, initialHeight);
-}
-
-/**
- * Wraps the dynamic styles in an Aphrodite style sheet so we can properly apply
- * the styles to a merged stylesheet (instead of inlining the styles).
- *
- * @param {StyleType} customStyles - The custom styles to apply to the dropdown
- * menu.
- * @returns The Aphrodite stylesheet for the dropdown menu.
- */
-export function generateDropdownMenuStyles(
-    minWidth: number,
-    maxHeight: number,
-): StyleType {
-    const styles = StyleSheet.create({
-        dropdownMenu: {
-            minWidth,
-            maxHeight,
-        },
-    });
-
-    return styles.dropdownMenu;
 }
