@@ -276,7 +276,7 @@ const ErrorWrapper = (args: any) => {
     const [error, setError] = React.useState(true);
 
     return (
-        <View style={styles.wrapper}>
+        <>
             <LabelMedium style={{marginBottom: Spacing.xSmall_8}}>
                 Select at least 2 options to clear the error!
             </LabelMedium>
@@ -293,7 +293,7 @@ const ErrorWrapper = (args: any) => {
             >
                 {items}
             </MultiSelect>
-        </View>
+        </>
     );
 };
 
