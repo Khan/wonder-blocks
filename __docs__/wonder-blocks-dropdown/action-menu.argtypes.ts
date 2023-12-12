@@ -1,52 +1,30 @@
-import type {InputType} from "@storybook/csf";
+import {ArgTypes} from "@storybook/react";
+import baseSelectArgTypes from "./base-select.argtypes";
 
-export default {
-    alignment: {
+const argTypes: ArgTypes = {
+    ...baseSelectArgTypes,
+    children: {
+        control: {type: null},
+        description: "The items in this dropdown.",
         table: {
-            category: "Layout",
+            type: {
+                summary: `Array<Item> | Item`,
+            },
         },
     },
-
-    disabled: {
+    menuText: {
+        control: {type: "text"},
+        description: "Text for the opener of this menu.",
         table: {
-            category: "States",
+            type: {summary: "string"},
         },
     },
-
-    opened: {
-        control: "boolean",
+    selectedValues: {
+        description: "The values of the items that are currently selected.",
         table: {
-            category: "States",
+            type: {summary: "Array<string>"},
         },
     },
+};
 
-    onToggle: {
-        table: {
-            category: "Events",
-        },
-    },
-
-    onChange: {
-        table: {
-            category: "Events",
-        },
-    },
-
-    dropdownStyle: {
-        table: {
-            category: "Styling",
-        },
-    },
-
-    style: {
-        table: {
-            category: "Styling",
-        },
-    },
-
-    className: {
-        table: {
-            category: "Styling",
-        },
-    },
-} satisfies Record<string, InputType>;
+export default argTypes;

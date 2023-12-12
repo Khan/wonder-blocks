@@ -15,7 +15,7 @@ import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
-import multiSelectArgtypes from "./base-select.argtypes";
+import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
