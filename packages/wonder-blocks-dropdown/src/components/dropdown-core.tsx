@@ -23,10 +23,6 @@ import {defaultLabels, keyCodes} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getStringForKey} from "../util/helpers";
-import {
-    generateDropdownMenuStyles,
-    getDropdownMenuHeight,
-} from "../util/dropdown-menu-styles";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -950,8 +946,6 @@ class DropdownCore extends React.Component<Props, State> {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
-        const maxDropdownHeight = getDropdownMenuHeight(this.props.items);
-
         return (
             <View
                 // Stop propagation to prevent the mouseup listener on the
@@ -970,11 +964,9 @@ class DropdownCore extends React.Component<Props, State> {
                     role={role}
                     style={[
                         styles.listboxOrMenu,
-                        generateDropdownMenuStyles(
-                            // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'string | 0' is not assignable to parameter of type 'number'.
-                            minDropdownWidth,
-                            maxDropdownHeight,
-                        ),
+                        {
+                            minWidth: minDropdownWidth,
+                        },
                     ]}
                     // Only the `listbox` role supports aria-invalid and aria-required because
                     // the `menu` role is not a form control.
@@ -1065,6 +1057,10 @@ const styles = StyleSheet.create({
         paddingBottom: Spacing.xxxSmall_4,
         border: `solid 1px ${Color.offBlack16}`,
         boxShadow: `0px 8px 8px 0px ${fade(Color.offBlack, 0.1)}`,
+        // We use a custom property to set the max height of the dropdown.
+        // This comes from the maxHeight custom modifier.
+        // @see ../util/popper-max-height-modifier.ts
+        maxHeight: "var(--popper-max-height)",
     },
 
     light: {
@@ -1093,6 +1089,7 @@ const styles = StyleSheet.create({
         // Set `minHeight` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
         minHeight: "auto",
+        position: "sticky",
     },
 
     srOnly: {
