@@ -10,7 +10,7 @@ import {VariableSizeList as List} from "react-window";
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -22,8 +22,7 @@ import SeparatorItem from "./separator-item";
 import {defaultLabels, keyCodes} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
-import {debounce, getLabel, getStringForKey} from "../util/helpers";
-import OptionItem from "./option-item";
+import {debounce, getStringForKey} from "../util/helpers";
 
 /**
  * The number of options to apply the virtualized list to.
