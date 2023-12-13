@@ -1,13 +1,14 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
-
+import {useGlobals} from "@storybook/preview-api";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
 
 import {
     ModalLauncher,
@@ -248,6 +249,83 @@ export const WithLauncher: StoryComponentType = {
             disableSnapshot: true,
         },
     },
+};
+
+/**
+ * This example shows how a modal dialog/panel can be created with a dark
+ * background. The `light` prop of the `<ModalPanel>` element is set to `false`
+ * to create a dark background.
+ *
+ * **NOTE:** We are using the `khanmigo` theme for this example for chromatic
+ * tests. But you can use any theme you want by clicking in the `theme` option
+ * in the toolbar.
+ */
+export const WithDarkPanel: StoryComponentType = {
+    render: (args) => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <ModalDialog
+                    aria-labelledby="modal-title-0"
+                    aria-describedby="modal-desc-0"
+                    {...args}
+                >
+                    <ModalPanel
+                        content={
+                            <>
+                                <img
+                                    width="100%"
+                                    src="https://cdn.kastatic.org/images/lohp/laptop_collage@2x.png"
+                                    alt="A modal image"
+                                />
+                                <View
+                                    style={{
+                                        marginTop: tokens.spacing.medium_16,
+                                    }}
+                                >
+                                    <Title id="modal-title-0">
+                                        Modal Title
+                                    </Title>
+                                    <Strut size={Spacing.large_24} />
+                                    <Body id="modal-desc-0">
+                                        Here is some text in the modal.
+                                    </Body>
+                                </View>
+                            </>
+                        }
+                        light={false}
+                        footer={
+                            <Button
+                                kind="secondary"
+                                light={true}
+                                onClick={() => {}}
+                            >
+                                Continue
+                            </Button>
+                        }
+                    />
+                </ModalDialog>
+            </View>
+        </View>
+    ),
+    args: {
+        style: {
+            maxWidth: 300,
+            maxHeight: 500,
+        },
+    },
+    decorators: [
+        (Story) => {
+            const [globals] = useGlobals();
+            // Defaults to khanmigo theme for chromatic tests.
+            const {theme = "khanmigo"} = globals;
+
+            return (
+                <ThemeSwitcherContext.Provider value={theme}>
+                    <Story />
+                </ThemeSwitcherContext.Provider>
+            );
+        },
+    ],
 };
 
 const styles = StyleSheet.create({

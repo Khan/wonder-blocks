@@ -6,6 +6,7 @@ import {
 } from "@khanacademy/wonder-blocks-theming";
 
 import defaultTheme from "./default";
+import khanmigoTheme from "./khanmigo";
 
 type Props = {
     children: React.ReactNode;
@@ -18,7 +19,7 @@ export type ModalDialogThemeContract = typeof defaultTheme;
  */
 const themes: Themes<ModalDialogThemeContract> = {
     default: defaultTheme,
-    // khanmigo: khanmigoTheme,
+    khanmigo: khanmigoTheme,
 };
 
 /**
