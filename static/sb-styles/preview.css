@@ -16,12 +16,13 @@
     font-size: 1em;
 }
 
-:not(.sb-unstyled) h1,
-.sbdocs:not(.sb-unstyled) h2,
-.sbdocs:not(.sb-unstyled) h3,
-.sbdocs:not(.sb-unstyled) h4,
-.sbdocs:not(.sb-unstyled) h5,
-.sbdocs:not(.sb-unstyled) h6 {
+.sbdocs h1,
+.sbdocs title,
+.sbdocs h2,
+.sbdocs h3,
+.sbdocs h4,
+.sbdocs h5,
+.sbdocs h6 {
     color: var(--color-text);
     font-family: 'Source Serif Pro', sans-serif;
     font-weight: 400;
