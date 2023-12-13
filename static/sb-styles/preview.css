@@ -16,21 +16,30 @@
     font-size: 1em;
 }
 
-.sbdocs h1,
-.sbdocs title,
-.sbdocs h2,
-.sbdocs h3,
-.sbdocs h4,
-.sbdocs h5,
-.sbdocs h6 {
+:not(.sb-unstyled) h1,
+.sbdocs:not(.sb-unstyled) h2,
+.sbdocs:not(.sb-unstyled) h3,
+.sbdocs:not(.sb-unstyled) h4,
+.sbdocs:not(.sb-unstyled) h5,
+.sbdocs:not(.sb-unstyled) h6 {
     color: var(--color-text);
     font-family: 'Source Serif Pro', sans-serif;
     font-weight: 400;
     margin-top: 1.5rem;
 }
 
-.sbdocs h1,
-.sbdocs title {
+/* Reset WB typhography colors inside docs pages */
+.sb-unstyled h1,
+.sb-unstyled h2,
+.sb-unstyled h3,
+.sb-unstyled h4,
+.sb-unstyled h5,
+.sb-unstyled h6 {
+    color: unset;
+}
+
+
+.sbdocs h1 {
     font-size: var(--typography-heading-size-xxl);
     line-height: var(--typography-heading-line-height-xxl);
     margin-top: 0;
@@ -49,7 +58,7 @@
 }
 
 /* only include the counter to the stories titles */
-.sbdocs h3:not(#usage)::before {
+.sb-anchor > h3::before {
     counter-increment: story;
     color: var(--color-text-64);
     content: counter(story) ".";

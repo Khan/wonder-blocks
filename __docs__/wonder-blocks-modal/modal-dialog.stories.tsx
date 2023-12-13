@@ -17,6 +17,7 @@ import {
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
+import modalDialogArgtypes from "./modal-dialog.argtypes";
 
 const customViewports = {
     phone: {
@@ -42,6 +43,19 @@ const customViewports = {
     },
 } as const;
 
+/**
+ * `ModalDialog` is a component that contains these elements:
+ * - The visual dialog element itself (`<div role="dialog"/>`)
+ * - The custom contents below and/or above the Dialog itself (e.g. decorative
+ *   graphics).
+ *
+ * **Accessibility notes:**
+ * - By default (e.g. using `OnePaneDialog`), `aria-labelledby` is populated
+ *   automatically using the dialog title `id`.
+ * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the
+ *   dialog element doesn’t have to have the `aria-labelledby` attribute however
+ *   this is recommended. It should match the `id` of the dialog title.
+ */
 export default {
     title: "Modal/Building Blocks/ModalDialog",
     component: ModalDialog,
@@ -60,9 +74,6 @@ export default {
             />
         ),
         docs: {
-            description: {
-                component: null,
-            },
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
@@ -79,32 +90,44 @@ export default {
     // Make the following props null in the control panel
     // because setting an object for a React node is
     // not practical to do manually.
-    argTypes: {
-        children: {
-            control: {type: null},
-        },
-        above: {
-            control: {type: null},
-        },
-        below: {
-            control: {type: null},
-        },
-    },
+    argTypes: modalDialogArgtypes,
 } as Meta<typeof ModalDialog>;
 
 type StoryComponentType = StoryObj<typeof ModalDialog>;
 
+/**
+ *  This is a basic `<ModalDialog>` that wraps a `<ModalPanel>` element. The
+ *  `<ModalDialog>` is just a a wrapper for the visual components of the overall
+ *  modal. It sets the modal's role to `"dialog"`. If it did not have another
+ *  element as a child here (a `<ModalPanel>` in this case), nothing would be
+ *  visible. If the `<ModalDialog>` were not given a `maxHeight` or `maxWidth`
+ *  style, it would take up the entire viewport.
+ *
+ * #### Accessibility
+ *
+ * In this example, the `aria-labelledby` provides the alert dialog an
+ * accessible name by referring to the element that provides the dialog title.
+ * The `aria-describedby` attribute gives the alert dialog an accessible
+ * description by referring to the dialog content that describes the primary
+ * message or purpose of the dialog.
+ */
 export const Default: StoryComponentType = {
     render: (args) => (
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
-                <ModalDialog aria-labelledby="modal-title-0" {...args}>
+                <ModalDialog
+                    aria-labelledby="modal-title-0"
+                    aria-describedby="modal-desc-0"
+                    {...args}
+                >
                     <ModalPanel
                         content={
                             <>
                                 <Title id="modal-title-0">Modal Title</Title>
                                 <Strut size={Spacing.large_24} />
-                                <Body>Here is some text in the modal.</Body>
+                                <Body id="modal-desc-0">
+                                    Here is some text in the modal.
+                                </Body>
                             </>
                         }
                     />
@@ -120,151 +143,109 @@ export const Default: StoryComponentType = {
     },
 };
 
-export const Simple: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
+/**
+ * The `above` and `below` props work the same for `<ModalDialog>` as they do
+ * for `<OnePaneDialog>`. The element passed into the `above` prop is rendered
+ * in front of the modal. The element passed into the `below` prop is rendered
+ * behind the modal. In this example, a `<View>` element with a background image
+ * of a person and an orange blob is passed into the `below` prop. A `<View>`
+ * element with a background image of an arc and a blue semicircle is passed
+ * into the `above` prop. This results in the person's head and the orange blob
+ * peeking out from behind the modal, and the arc and semicircle going over the
+ * front of the modal.
+ */
+export const WithAboveAndBelow: StoryComponentType = {
+    render: () => {
+        const aboveStyle = {
+            background: "url(./modal-above.png)",
+            width: 874,
+            height: 551,
+            position: "absolute",
+            top: 40,
+            left: -140,
+        } as const;
+
+        const belowStyle = {
+            background: "url(./modal-below.png)",
+            width: 868,
+            height: 521,
+            position: "absolute",
+            top: -100,
+            left: -300,
+        } as const;
+
+        return (
+            <View style={styles.previewSizer}>
+                <View style={styles.modalPositioner}>
+                    <ModalDialog
+                        aria-labelledby="modal-title-2"
+                        style={styles.squareDialog}
+                        above={<View style={aboveStyle} />}
+                        below={<View style={belowStyle} />}
+                    >
+                        <ModalPanel
+                            content={
+                                <>
+                                    <Title id="modal-title-2">
+                                        Modal Title
+                                    </Title>
+                                    <Strut size={Spacing.large_24} />
+                                    <Body>Here is some text in the modal.</Body>
+                                </>
+                            }
+                        />
+                    </ModalDialog>
+                </View>
+            </View>
+        );
+    },
+};
+
+/**
+ * A modal can be launched using a launcher. Here, the launcher is a `<Button>`
+ * element whose `onClick` function opens the modal. The modal passed into the
+ * `modal` prop of the `<ModalLauncher>` element is a `<ModalDialog>` element.
+ * To turn an element into a launcher, wrap the element in a `<ModalLauncher>`
+ * element.
+ */
+export const WithLauncher: StoryComponentType = {
+    render: () => {
+        type MyModalProps = {
+            closeModal: () => void;
+        };
+
+        const MyModal = ({closeModal}: MyModalProps): React.ReactElement => (
             <ModalDialog
-                aria-labelledby="modal-title-1"
+                aria-labelledby="modal-title-3"
                 style={styles.squareDialog}
             >
                 <ModalPanel
                     content={
                         <>
-                            <Title id="modal-title-1">Modal Title</Title>
+                            <Title id="modal-title-3">Modal Title</Title>
                             <Strut size={Spacing.large_24} />
                             <Body>Here is some text in the modal.</Body>
                         </>
                     }
                 />
             </ModalDialog>
-        </View>
-    </View>
-);
+        );
 
-Simple.parameters = {
-    docs: {
-        description: {
-            story: `This is a basic \`<ModalDialog>\` that wraps a
-            \`<ModalPanel>\` element. The \`<ModalDialog>\` is just a a wrapper
-            for the visual components of the overall modal. It sets
-            the modal's role to \`"dialog"\`. If it did not have another
-            element as a child here (a \`<ModalPanel>\` in this case),
-            nothing would be visible. If the \`<ModalDialog>\` were not given
-            a \`maxHeight\` or \`maxWidth\` style, it would take up the
-            entire viewport. To demonstrate the difference between
-            the \`<ModalDialog>\` and the \`<ModalPanel>\` elements, the panel
-            has been given a smaller height and width than \`<ModalDialog>\`,
-            and \`<ModalDialog>\` has been given a dark blue background.`,
-        },
+        return (
+            <ModalLauncher modal={MyModal}>
+                {({openModal}) => (
+                    <Button onClick={openModal}>
+                        Click me to open the modal
+                    </Button>
+                )}
+            </ModalLauncher>
+        );
     },
-};
-
-export const WithAboveAndBelow: StoryComponentType = () => {
-    const aboveStyle = {
-        background: "url(./modal-above.png)",
-        width: 874,
-        height: 551,
-        position: "absolute",
-        top: 40,
-        left: -140,
-    } as const;
-
-    const belowStyle = {
-        background: "url(./modal-below.png)",
-        width: 868,
-        height: 521,
-        position: "absolute",
-        top: -100,
-        left: -300,
-    } as const;
-
-    return (
-        <View style={styles.previewSizer}>
-            <View style={styles.modalPositioner}>
-                <ModalDialog
-                    aria-labelledby="modal-title-2"
-                    style={styles.squareDialog}
-                    above={<View style={aboveStyle} />}
-                    below={<View style={belowStyle} />}
-                >
-                    <ModalPanel
-                        content={
-                            <>
-                                <Title id="modal-title-2">Modal Title</Title>
-                                <Strut size={Spacing.large_24} />
-                                <Body>Here is some text in the modal.</Body>
-                            </>
-                        }
-                    />
-                </ModalDialog>
-            </View>
-        </View>
-    );
-};
-
-WithAboveAndBelow.parameters = {
-    docs: {
-        description: {
-            story: `The \`above\` and \`below\` props work the same
-            for \`<ModalDialog>\` as they do for \`<OnePaneDialog>\`.
-            The element passed into the \`above\` prop is rendered in front
-            of the modal. The element passed into the \`below\` prop is
-            rendered behind the modal. In this example, a \`<View>\` element
-            with a background image of a person and an orange blob is passed
-            into the \`below\` prop. A \`<View>\` element with a background
-            image of an arc and a blue semicircle is passed into the \`above\`
-            prop. This results in the person's head and the orange blob
-            peeking out from behind the modal, and the arc and semicircle
-            going over the front of the modal.`,
-        },
-    },
-};
-
-export const WithLauncher: StoryComponentType = () => {
-    type MyModalProps = {
-        closeModal: () => void;
-    };
-
-    const MyModal = ({closeModal}: MyModalProps): React.ReactElement => (
-        <ModalDialog
-            aria-labelledby="modal-title-3"
-            style={styles.squareDialog}
-        >
-            <ModalPanel
-                content={
-                    <>
-                        <Title id="modal-title-3">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
-                        <Body>Here is some text in the modal.</Body>
-                    </>
-                }
-            />
-        </ModalDialog>
-    );
-
-    return (
-        <ModalLauncher modal={MyModal}>
-            {({openModal}) => (
-                <Button onClick={openModal}>Click me to open the modal</Button>
-            )}
-        </ModalLauncher>
-    );
-};
-
-WithLauncher.parameters = {
-    chromatic: {
-        // Don't take screenshots of this story since it would only show a
-        // button and not the actual modal.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
-            story: `A modal can be launched using a launcher. Here,
-            the launcher is a \`<Button>\` element whose \`onClick\` function
-            opens the modal. The modal passed into the \`modal\` prop of
-            the \`<ModalLauncher>\` element is a \`<ModalDialog>\` element.
-            To turn an element into a launcher, wrap the element in a
-            \`<ModalLauncher>\` element.`,
+    parameters: {
+        chromatic: {
+            // Don't take screenshots of this story since it would only show a
+            // button and not the actual modal.
+            disableSnapshot: true,
         },
     },
 };
