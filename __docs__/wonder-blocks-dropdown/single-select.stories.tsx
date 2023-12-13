@@ -789,6 +789,9 @@ export const AutoFocusDisabled: StoryComponentType = {
  * using `leftAccessory` to display a custom icon for each option item,
  * `subtitle1` to optionally display a pill and `subtitle2` to display the
  * email.
+ *
+ * **Note:** As these are custom option items, we strongly recommend to pass the
+ * `labelAsText` prop to display a summarized label in the menu.
  */
 export const CustomOptionItems: StoryComponentType = {
     render: function Render() {

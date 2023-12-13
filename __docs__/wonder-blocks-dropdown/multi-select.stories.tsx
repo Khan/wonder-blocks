@@ -11,6 +11,7 @@ import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import Pill from "@khanacademy/wonder-blocks-pill";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -577,9 +578,13 @@ export const CustomLabels: StoryComponentType = {
  * using `leftAccessory` to display a custom icon for each option item,
  * `subtitle1` to optionally display a pill and `subtitle2` to display the
  * email.
+ *
+ * **Note:** As these are custom option items, we strongly recommend to pass the
+ * `labelAsText` prop to display a summarized label in the menu.
  */
 export const CustomOptionItems: StoryComponentType = {
     render: function Render() {
+        const [opened, setOpened] = React.useState(true);
         const [selectedValues, setSelectedValues] = React.useState<
             Array<string>
         >([]);
@@ -588,22 +593,37 @@ export const CustomOptionItems: StoryComponentType = {
             setSelectedValues(selectedValues);
         };
 
+        const handleToggle = (opened: boolean) => {
+            setOpened(opened);
+        };
+
         return (
             <MultiSelect
                 onChange={handleChange}
                 selectedValues={selectedValues}
+                onToggle={handleToggle}
+                opened={opened}
             >
-                {allProfilesWithPictures.map((user) => (
+                {allProfilesWithPictures.map((user, index) => (
                     <OptionItem
                         key={user.id}
                         value={user.id}
                         label={user.name}
                         leftAccessory={user.picture}
+                        subtitle1={
+                            index === 1 ? (
+                                <Pill kind="accent">New</Pill>
+                            ) : undefined
+                        }
                         subtitle2={user.email}
                     />
                 ))}
             </MultiSelect>
         );
     },
-    args: {},
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>{Story()}</View>
+        ),
+    ],
 };
