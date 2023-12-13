@@ -208,11 +208,19 @@ export default class OptionItem extends React.Component<OptionProps> {
                 }
                 rightAccessory={rightAccessory}
                 subtitle1={
-                    <LabelSmall className="subtitle">{subtitle1}</LabelSmall>
+                    subtitle1 ? (
+                        <LabelSmall className="subtitle">
+                            {subtitle1}
+                        </LabelSmall>
+                    ) : undefined
                 }
                 title={<LabelMedium style={styles.label}>{label}</LabelMedium>}
                 subtitle2={
-                    <LabelSmall className="subtitle">{subtitle2}</LabelSmall>
+                    subtitle2 ? (
+                        <LabelSmall className="subtitle">
+                            {subtitle2}
+                        </LabelSmall>
+                    ) : undefined
                 }
                 onClick={this.handleClick}
                 {...sharedProps}

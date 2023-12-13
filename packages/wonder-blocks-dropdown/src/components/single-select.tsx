@@ -403,7 +403,6 @@ export default class SingleSelect extends React.Component<Props, State> {
         const menuText = selectedItem
             ? getLabel(selectedItem.props) || defaultLabels.someSelected(1)
             : placeholder;
-        // const menuText = selectedItem ? selectedItem.props.label : placeholder;
 
         const dropdownOpener = opener ? (
             <DropdownOpener

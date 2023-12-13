@@ -127,6 +127,9 @@ export type CellProps = {
      * Used to announce the cell's content to screen readers.
      */
     "aria-label"?: string;
+    /**
+     * Used to indicate the current element is selected.
+     */
     "aria-selected"?: AriaProps["aria-selected"];
     /**
      * Optinal href which Cell should direct to, uses client-side routing
