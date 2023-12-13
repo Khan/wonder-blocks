@@ -1,0 +1,6 @@
+.custom-style {
+    border: 1px solid #000;
+    /* NOTE: The color style is not applied to the text because the styles
+    defined via Aphrodite take more precedence */
+    color: red!important;
+}
