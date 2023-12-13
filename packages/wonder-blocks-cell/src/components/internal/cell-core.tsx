@@ -172,6 +172,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         href,
         onClick,
         "aria-label": ariaLabel,
+        "aria-selected": ariaSelected,
         target,
         role,
         rootStyle,
@@ -187,6 +188,7 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
                 href={href}
                 hideDefaultFocusRing={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
+                aria-selected={ariaSelected ? ariaSelected : undefined}
                 role={role}
                 target={target}
                 style={[

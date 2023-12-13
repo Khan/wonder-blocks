@@ -17,6 +17,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
+import {allProfilesWithPictures} from "./option-item-examples";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -564,4 +565,45 @@ export const CustomLabels: StoryComponentType = {
             </View>
         );
     },
+};
+
+/**
+ * Custom option items
+ */
+
+/**
+ * This example illustrates how you can use the `OptionItem` component to
+ * display a list with custom option items. Note that in this example, we are
+ * using `leftAccessory` to display a custom icon for each option item,
+ * `subtitle1` to optionally display a pill and `subtitle2` to display the
+ * email.
+ */
+export const CustomOptionItems: StoryComponentType = {
+    render: function Render() {
+        const [selectedValues, setSelectedValues] = React.useState<
+            Array<string>
+        >([]);
+
+        const handleChange = (selectedValues: Array<string>) => {
+            setSelectedValues(selectedValues);
+        };
+
+        return (
+            <MultiSelect
+                onChange={handleChange}
+                selectedValues={selectedValues}
+            >
+                {allProfilesWithPictures.map((user) => (
+                    <OptionItem
+                        key={user.id}
+                        value={user.id}
+                        label={user.name}
+                        leftAccessory={user.picture}
+                        subtitle2={user.email}
+                    />
+                ))}
+            </MultiSelect>
+        );
+    },
+    args: {},
 };

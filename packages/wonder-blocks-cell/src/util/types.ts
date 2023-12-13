@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
 
@@ -127,6 +127,7 @@ export type CellProps = {
      * Used to announce the cell's content to screen readers.
      */
     "aria-label"?: string;
+    "aria-selected"?: AriaProps["aria-selected"];
     /**
      * Optinal href which Cell should direct to, uses client-side routing
      * by default if react-router is present.
