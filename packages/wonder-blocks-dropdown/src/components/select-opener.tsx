@@ -12,6 +12,7 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
+import {OptionLabel} from "../util/types";
 
 const StyledButton = addStyle("button");
 
@@ -19,7 +20,7 @@ type SelectOpenerProps = AriaProps & {
     /**
      * Display text in the SelectOpener.
      */
-    children: string;
+    children: OptionLabel;
     /**
      * Whether the SelectOpener is disabled. If disabled, disallows interaction.
      * Default false.

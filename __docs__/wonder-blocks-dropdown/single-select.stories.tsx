@@ -1,7 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import planetIcon from "@phosphor-icons/core/regular/planet.svg";
 
 import type {Meta, StoryObj} from "@storybook/react";
+
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -9,6 +11,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import Pill from "@khanacademy/wonder-blocks-pill";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     Body,
@@ -28,6 +31,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import singleSelectArgtypes from "./single-select.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
+import {allCountries, allProfilesWithPictures} from "./option-item-examples";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -773,4 +777,119 @@ export const AutoFocusDisabled: StoryComponentType = {
             disableSnapshot: true,
         },
     },
+};
+
+/**
+ * Custom option items
+ */
+
+/**
+ * This example illustrates how you can use the `OptionItem` component to
+ * display a list with custom option items. Note that in this example, we are
+ * using `leftAccessory` to display a custom icon for each option item,
+ * `subtitle1` to optionally display a pill and `subtitle2` to display the
+ * email.
+ *
+ * **Note:** As these are custom option items, we strongly recommend to pass the
+ * `labelAsText` prop to display a summarized label in the menu.
+ */
+export const CustomOptionItems: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        const [selectedValue, setSelectedValue] = React.useState("");
+
+        const handleChange = (selectedValue: string) => {
+            setSelectedValue(selectedValue);
+        };
+
+        const handleToggle = (opened: boolean) => {
+            setOpened(opened);
+        };
+
+        return (
+            <View style={styles.wrapper}>
+                <SingleSelect
+                    placeholder="Select a profile"
+                    onChange={handleChange}
+                    selectedValue={selectedValue}
+                    onToggle={handleToggle}
+                    opened={opened}
+                >
+                    {allProfilesWithPictures.map((user, index) => (
+                        <OptionItem
+                            key={user.id}
+                            value={user.id}
+                            label={user.name}
+                            leftAccessory={user.picture}
+                            subtitle1={
+                                index === 1 ? (
+                                    <Pill kind="accent">New</Pill>
+                                ) : undefined
+                            }
+                            subtitle2={user.email}
+                        />
+                    ))}
+                </SingleSelect>
+            </View>
+        );
+    },
+};
+
+/**
+ * This example illustrates how you can use the `OptionItem` component to
+ * display a virtualized list with custom option items. Note that in this
+ * example, we are using `leftAccessory` to display a custom icon for each
+ * option item.
+ *
+ * **Note:** The virtualized version doesn't support custom option items with
+ * multiple lines at the moment. This is a known issue and we are working on
+ * fixing it.
+ */
+export const CustomOptionItemsVirtualized: StoryComponentType = {
+    name: "Custom option items (virtualized)",
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        const [selectedValue, setSelectedValue] = React.useState(
+            allCountries[0][0],
+        );
+
+        const handleToggle = (opened: boolean) => {
+            setOpened(opened);
+        };
+
+        const handleChange = (selectedValue: string) => {
+            setSelectedValue(selectedValue);
+        };
+
+        return (
+            <SingleSelect
+                placeholder="Select a country"
+                isFilterable={true}
+                onChange={handleChange}
+                selectedValue={selectedValue}
+                onToggle={handleToggle}
+                opened={opened}
+            >
+                {allCountries.map(([code, translatedName]) => (
+                    <OptionItem
+                        key={code}
+                        value={code}
+                        label={translatedName}
+                        leftAccessory={
+                            <PhosphorIcon
+                                icon={planetIcon}
+                                role="img"
+                                size="medium"
+                            />
+                        }
+                    />
+                ))}
+            </SingleSelect>
+        );
+    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>{Story()}</View>
+        ),
+    ],
 };

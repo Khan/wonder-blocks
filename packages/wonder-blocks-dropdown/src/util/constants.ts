@@ -42,6 +42,6 @@ export const defaultLabels = {
         `Select all (${numOptions})`,
     noneSelected: "0 items",
     someSelected: (numSelectedValues: number): string =>
-        `${numSelectedValues} items`,
+        numSelectedValues === 1 ? "1 item" : `${numSelectedValues} items`,
     allSelected: "All items",
 } as const;

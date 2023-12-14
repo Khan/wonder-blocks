@@ -10,7 +10,7 @@ import {VariableSizeList as List} from "react-window";
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -22,7 +22,8 @@ import SeparatorItem from "./separator-item";
 import {defaultLabels, keyCodes} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
-import {debounce, getStringForKey} from "../util/helpers";
+import {debounce, getLabel, getStringForKey} from "../util/helpers";
+import OptionItem from "./option-item";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -697,11 +698,17 @@ class DropdownCore extends React.Component<Props, State> {
                     return false;
                 }
 
-                // TypeScript doesn't know that the component is an OptionItem
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'label' does not exist on type '{}'.
-                const label = component.props?.label.toLowerCase();
+                if (OptionItem.isClassOf(component)) {
+                    const optionItemProps = component.props as PropsFor<
+                        typeof OptionItem
+                    >;
 
-                return label.startsWith(key.toLowerCase());
+                    return getLabel(optionItemProps)
+                        .toLowerCase()
+                        .startsWith(key.toLowerCase());
+                }
+
+                return false;
             });
 
         if (foundIndex >= 0) {

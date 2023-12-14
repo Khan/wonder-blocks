@@ -1,4 +1,7 @@
-import {debounce, getStringForKey} from "../helpers";
+import * as React from "react";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import OptionItem from "../../components/option-item";
+import {debounce, getLabel, getStringForKey} from "../helpers";
 
 describe("getStringForKey", () => {
     it("should get a valid string", () => {
@@ -68,5 +71,51 @@ describe("debounce", () => {
 
         // Assert
         expect(callbackFnMock).toHaveBeenCalledWith("abc");
+    });
+});
+
+describe("getLabel", () => {
+    it("should return the label if it is a string", () => {
+        // Arrange
+        const props: PropsFor<typeof OptionItem> = {
+            label: "label",
+            value: "foo",
+        };
+
+        // Act
+        const label = getLabel(props);
+
+        // Assert
+        expect(label).toBe("label");
+    });
+
+    it("should return the value of labelAsText if `label` is a Node", () => {
+        // Arrange
+        const props: PropsFor<typeof OptionItem> = {
+            label: <div>a custom node</div>,
+            labelAsText: "plain text",
+            value: "foo",
+        };
+
+        // Act
+        const label = getLabel(props);
+
+        // Assert
+        expect(label).toBe("plain text");
+    });
+
+    it("should return empty if `label` is a Node and `labelAsText` is not defined", () => {
+        // Arrange
+        const props: PropsFor<typeof OptionItem> = {
+            label: <div>a custom node</div>,
+            labelAsText: undefined,
+            value: "foo",
+        };
+
+        // Act
+        const label = getLabel(props);
+
+        // Assert
+        expect(label).toBe("");
     });
 });

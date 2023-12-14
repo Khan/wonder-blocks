@@ -209,6 +209,19 @@ export default {
             },
         },
     },
+    ariaSelected: {
+        name: "aria-selected",
+        control: {
+            type: "string",
+        },
+        description: " Used to indicate the current element is selected",
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "string",
+            },
+        },
+    },
     role: {
         description:
             "The role of the Cell component, can be a role of type `ClickableRole`",
