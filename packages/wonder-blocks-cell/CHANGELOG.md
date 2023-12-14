@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.2.0
+
+### Minor Changes
+
+-   56a896c6: Add `aria-selected` support to Cell so it can be used in dropdown options
+
+### Patch Changes
+
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.12
+    -   @khanacademy/wonder-blocks-layout@2.0.25
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
 ## 3.1.0
 
 ### Minor Changes

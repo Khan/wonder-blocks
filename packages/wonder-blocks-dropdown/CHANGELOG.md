@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.0.0
+
+### Major Changes
+
+-   56a896c6: Allow custom OptionItem elements (internally using cell components)
+
+### Patch Changes
+
+-   70e846cb: Allow changing the popper's height to accomodate for the viewport size
+-   Updated dependencies [56a896c6]
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-cell@3.2.0
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-search-field@2.1.26
+    -   @khanacademy/wonder-blocks-clickable@4.0.12
+    -   @khanacademy/wonder-blocks-layout@2.0.25
+    -   @khanacademy/wonder-blocks-modal@4.0.39
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
 ## 4.0.0
 
 ### Major Changes

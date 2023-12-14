@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.1.7
+
+### Patch Changes
+
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.12
+
 ## 5.1.6
 
 ### Patch Changes
