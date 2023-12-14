@@ -25,20 +25,24 @@ describe("PhosphorIcon", () => {
         expect(ref.current).toBeInstanceOf(HTMLSpanElement);
     });
 
+    it("applies role to icon", async () => {
+        // Arrange
+
+        // Act
+        render(<PhosphorIcon icon={Plus} role="img" />);
+
+        // Assert
+        expect(screen.getByRole("img")).toBeInTheDocument();
+    });
+
     it("applies aria-label to icon", async () => {
         // Arrange
 
         // Act
-        render(
-            <PhosphorIcon
-                icon={Plus}
-                aria-label="something"
-                testId="phosphor-icon"
-            />,
-        );
+        render(<PhosphorIcon icon={Plus} aria-label="something" role="img" />);
 
         // Assert
-        expect(screen.getByTestId("phosphor-icon")).toHaveAttribute(
+        expect(screen.getByRole("img")).toHaveAttribute(
             "aria-label",
             "something",
         );
