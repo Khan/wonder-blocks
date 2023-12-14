@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     item: {
         // Reset the default styles for the cell element so it can grow
         // vertically.
-        minHeight: "auto",
+        minHeight: "unset",
         /**
          * States
          */
@@ -247,6 +247,13 @@ const styles = StyleSheet.create({
             borderRadius: Spacing.xxxSmall_4,
             outline: `${Spacing.xxxxSmall_2}px solid ${Color.blue}`,
             outlineOffset: -Spacing.xxxxSmall_2,
+        },
+
+        ":focus-visible": {
+            // Override the default focus-visible state for the cell element, so
+            // that it allows the button to grow vertically with the popover
+            // height.
+            overflow: "visible",
         },
 
         // Overrides the default cell state for the button element.
@@ -306,7 +313,7 @@ const styles = StyleSheet.create({
         },
     },
     itemContainer: {
-        minHeight: DROPDOWN_ITEM_HEIGHT,
+        minHeight: "unset",
         padding: Spacing.xSmall_8,
         paddingRight: Spacing.medium_16,
         whiteSpace: "nowrap",

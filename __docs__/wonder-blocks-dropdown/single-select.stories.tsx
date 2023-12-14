@@ -848,7 +848,14 @@ export const CustomOptionItems: StoryComponentType = {
 export const CustomOptionItemsVirtualized: StoryComponentType = {
     name: "Custom option items (virtualized)",
     render: function Render() {
-        const [selectedValue, setSelectedValue] = React.useState("");
+        const [opened, setOpened] = React.useState(true);
+        const [selectedValue, setSelectedValue] = React.useState(
+            allCountries[0][0],
+        );
+
+        const handleToggle = (opened: boolean) => {
+            setOpened(opened);
+        };
 
         const handleChange = (selectedValue: string) => {
             setSelectedValue(selectedValue);
@@ -860,6 +867,8 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
                 isFilterable={true}
                 onChange={handleChange}
                 selectedValue={selectedValue}
+                onToggle={handleToggle}
+                opened={opened}
             >
                 {allCountries.map(([code, translatedName]) => (
                     <OptionItem
@@ -867,11 +876,20 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
                         value={code}
                         label={translatedName}
                         leftAccessory={
-                            <PhosphorIcon icon={planetIcon} size="medium" />
+                            <PhosphorIcon
+                                icon={planetIcon}
+                                role="img"
+                                size="medium"
+                            />
                         }
                     />
                 ))}
             </SingleSelect>
         );
     },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>{Story()}</View>
+        ),
+    ],
 };

@@ -254,41 +254,50 @@ export const allCountries = [
     ["ZW", "Zimbabwe"],
 ];
 
+const icon = (
+    <PhosphorIcon
+        icon={userCircleIcon}
+        size="large"
+        role="img"
+        aria-label="User's profile picture"
+    />
+);
+
 export const allProfilesWithPictures = [
     {
         id: "1",
         name: "John Doe 1",
         email: "john.doe@wonder-blocks.com",
-        picture: <PhosphorIcon icon={userCircleIcon} size="large" />,
+        picture: icon,
     },
     {
         id: "2",
         name: "Jane Doe 1",
         email: "jane.doe@wonder-blocks.com",
-        picture: <PhosphorIcon icon={userCircleIcon} size="large" />,
+        picture: icon,
     },
     {
         id: "3",
         name: "John Smith 1",
         email: "john.smith@wonder-blocks.com",
-        picture: <PhosphorIcon icon={userCircleIcon} size="large" />,
+        picture: icon,
     },
     {
         id: "4",
         name: "Jane Smith 1",
         email: "jane.smith@wonder-blocks.com",
-        picture: <PhosphorIcon icon={userCircleIcon} size="large" />,
+        picture: icon,
     },
     {
         id: "5",
         name: "John Doe 2",
         email: "john.doe@wonder-blocks.com",
-        picture: <PhosphorIcon icon={userCircleIcon} size="large" />,
+        picture: icon,
     },
     {
         id: "6",
         name: "Jane Doe 2",
         email: "jane.doe@wonder-blocks.com",
-        picture: <PhosphorIcon icon={userCircleIcon} size="large" />,
+        picture: icon,
     },
 ];
