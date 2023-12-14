@@ -9,7 +9,6 @@ import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import Check from "./check";
 import Checkbox from "./checkbox";
 import {CellProps, OptionLabel} from "../util/types";
