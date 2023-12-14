@@ -357,3 +357,25 @@ const styles = StyleSheet.create({
         margin: tokens.spacing.xxxxSmall_2,
     },
 });
+
+/**
+ * Icons are not announced by default, as they are usually decorative. However,
+ * if you want to announce the icon, you can pass an `aria-label` and
+ * `role="img"` props to the `PhosphorIcon` component.
+ */
+export const DescriptiveIcon: StoryComponentType = {
+    name: "Announcing the icon to assistive technology",
+    args: {
+        icon: IconMappings.magnifyingGlassBold,
+        size: "small",
+        role: "img",
+        "aria-label": "Search",
+    },
+    parameters: {
+        chromatic: {
+            // This story is not meant to be visually tested, so we disable
+            // snapshots.
+            disableSnapshot: true,
+        },
+    },
+};

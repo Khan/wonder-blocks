@@ -197,7 +197,9 @@ export default {
         },
     },
     role: {
-        description: "The role of this icon.",
+        description:
+            "The role of this icon. Make sure to use it when setting `aria-label`\n" +
+            "See: https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24",
         defaultValue: "img",
         control: {
             type: "text",

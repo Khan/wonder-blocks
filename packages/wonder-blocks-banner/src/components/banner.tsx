@@ -259,6 +259,7 @@ const Banner = (props: Props): React.ReactElement => {
                     style={styles.icon}
                     aria-label={kind}
                     testId="banner-kind-icon"
+                    role="img"
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>

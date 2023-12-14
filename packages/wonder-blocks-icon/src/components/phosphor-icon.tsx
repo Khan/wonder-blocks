@@ -24,16 +24,23 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
      * Adds CSS classes to the Icon.
      */
     className?: string;
+
     /**
-     * Test ID used for e2e testing.
+     * The role of the icon.
+     * @see https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24
      */
-    testId?: string;
+    role?: "img";
 
     /**
      * Size of the icon. One of `small` (16), `medium` (24), `large` (48), or
      * `xlarge` (96). Defaults to `small`.
      */
     size?: IconSize;
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string;
 
     /**
      * The icon to display. This is a reference to the icon asset (imported as a
