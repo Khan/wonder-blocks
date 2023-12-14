@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-icon
 
+## 4.0.1
+
+### Patch Changes
+
+-   23ab9f8c: Added `role="img"` docs to PhosphorIcon. Fixed a11y issue to banners by adding the img role to the icons in each banner"
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-core@6.3.1
+
 ## 4.0.0
 
 ### Major Changes
