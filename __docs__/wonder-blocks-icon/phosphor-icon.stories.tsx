@@ -371,4 +371,11 @@ export const DescriptiveIcon: StoryComponentType = {
         role: "img",
         "aria-label": "Search",
     },
+    parameters: {
+        chromatic: {
+            // This story is not meant to be visually tested, so we disable
+            // snapshots.
+            disableSnapshot: true,
+        },
+    },
 };
