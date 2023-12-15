@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -32,6 +33,96 @@ describe("SingleSelect", () => {
                 <OptionItem label="item 3" value="3" />
             </SingleSelect>
         );
+
+        describe("opener", () => {
+            it("should render the placeholder if no selections are made", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                    >
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = screen.getByRole("button");
+
+                // Assert
+                expect(opener).toHaveTextContent("Default placeholder");
+            });
+
+            it("should render empty if the selected option has an empty value", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue=""
+                    >
+                        <OptionItem label="" value="" />
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = screen.getByRole("button");
+
+                // Assert
+                expect(opener).toHaveTextContent("");
+            });
+
+            it("should render the label of the selected option", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                    >
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = screen.getByRole("button");
+
+                // Assert
+                expect(opener).toHaveTextContent("Toggle A");
+            });
+
+            it("should render labelAsText of the selected option", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = screen.getByRole("button");
+
+                // Assert
+                expect(opener).toHaveTextContent("Plain Toggle A");
+            });
+        });
 
         describe("mouse", () => {
             it("should open when clicking on the default opener", () => {

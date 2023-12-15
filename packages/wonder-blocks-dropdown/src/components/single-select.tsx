@@ -401,7 +401,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
         const menuText = selectedItem
-            ? getLabel(selectedItem.props) || defaultLabels.someSelected(1)
+            ? getLabel(selectedItem.props)
             : placeholder;
 
         const dropdownOpener = opener ? (
