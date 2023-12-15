@@ -13,10 +13,10 @@ describe("#getGqlDataFromReponse", () => {
 
         // Assert
         await expect(result).rejects.toThrowErrorMatchingInlineSnapshot(`
-                    "Failed to parse response
-                    	caused by
-                    		SyntaxError: Unexpected token B in JSON at position 0"
-                `);
+            "Failed to parse response
+            	caused by
+            		SyntaxError: Unexpected token 'B', "BAD JSON" is not valid JSON"
+        `);
     });
 
     it("should include status code and body text in parse error metadata", async () => {
