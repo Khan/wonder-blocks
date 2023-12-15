@@ -11,12 +11,14 @@ import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import Pill from "@khanacademy/wonder-blocks-pill";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
+import {allProfilesWithPictures} from "./option-item-examples";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -564,4 +566,64 @@ export const CustomLabels: StoryComponentType = {
             </View>
         );
     },
+};
+
+/**
+ * Custom option items
+ */
+
+/**
+ * This example illustrates how you can use the `OptionItem` component to
+ * display a list with custom option items. Note that in this example, we are
+ * using `leftAccessory` to display a custom icon for each option item,
+ * `subtitle1` to optionally display a pill and `subtitle2` to display the
+ * email.
+ *
+ * **Note:** As these are custom option items, we strongly recommend to pass the
+ * `labelAsText` prop to display a summarized label in the menu.
+ */
+export const CustomOptionItems: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        const [selectedValues, setSelectedValues] = React.useState<
+            Array<string>
+        >([]);
+
+        const handleChange = (selectedValues: Array<string>) => {
+            setSelectedValues(selectedValues);
+        };
+
+        const handleToggle = (opened: boolean) => {
+            setOpened(opened);
+        };
+
+        return (
+            <MultiSelect
+                onChange={handleChange}
+                selectedValues={selectedValues}
+                onToggle={handleToggle}
+                opened={opened}
+            >
+                {allProfilesWithPictures.map((user, index) => (
+                    <OptionItem
+                        key={user.id}
+                        value={user.id}
+                        label={user.name}
+                        leftAccessory={user.picture}
+                        subtitle1={
+                            index === 1 ? (
+                                <Pill kind="accent">New</Pill>
+                            ) : undefined
+                        }
+                        subtitle2={user.email}
+                    />
+                ))}
+            </MultiSelect>
+        );
+    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>{Story()}</View>
+        ),
+    ],
 };

@@ -8,7 +8,7 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 
-import type {OpenerProps} from "../util/types";
+import type {OpenerProps, OptionLabel} from "../util/types";
 
 type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
@@ -34,7 +34,7 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * Text for the opener that can be passed to the child as an argument.
      */
-    text: string;
+    text: OptionLabel;
 };
 
 type DefaultProps = {

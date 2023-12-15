@@ -1,6 +1,8 @@
 import * as React from "react";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import ActionItem from "../components/action-item";
 import OptionItem from "../components/option-item";
 import SeparatorItem from "../components/separator-item";
@@ -28,9 +30,19 @@ export type DropdownItem = {
     role?: string;
 };
 
+/**
+ * Used to extend the option items with some of the DetailCell props.
+ */
+export type CellProps = PropsFor<typeof DetailCell>;
+
+/**
+ * The allowed types for the label of an option item.
+ */
+export type OptionLabel = string | CellProps["title"];
+
 // Custom opener arguments
 export type OpenerProps = ClickableState & {
-    text: string;
+    text: OptionLabel;
 };
 
 export type OptionItemComponentArray = React.ReactElement<

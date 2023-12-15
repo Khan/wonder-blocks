@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.3.1
+
+### Patch Changes
+
+-   6df21f71: Append className if set via props
+
 ## 6.3.0
 
 ### Minor Changes

@@ -16,7 +16,8 @@ const defaultLabels: Labels = {
     ...builtinLabels,
     selectAllLabel: (numOptions: any) => `Sellect all (${numOptions})`,
     noneSelected: "Choose",
-    someSelected: (numSelectedValues: any) => `${numSelectedValues} students`,
+    someSelected: (numSelectedValues: any) =>
+        numSelectedValues > 1 ? `${numSelectedValues} students` : "1 student",
     allSelected: "All students",
 };
 
@@ -106,6 +107,46 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(screen.getByRole("button")).toHaveTextContent("item 1");
+        });
+
+        it("displays correct text for opener when there's one custom item selected", () => {
+            // Arrange
+
+            // Act
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["1"]}
+                    labels={defaultLabels}
+                >
+                    <OptionItem label={<div>custom item 1</div>} value="1" />
+                    <OptionItem label={<div>custom item 2</div>} value="2" />
+                    <OptionItem label={<div>custom item 3</div>} value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).toHaveTextContent("1 student");
+        });
+
+        it("displays correct text for opener when an invalid selection is provided", () => {
+            // Arrange
+
+            // Act
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["not-found"]}
+                    labels={defaultLabels}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).toHaveTextContent("Choose");
         });
 
         it("displays correct text for opener when there's more than one item selected", () => {

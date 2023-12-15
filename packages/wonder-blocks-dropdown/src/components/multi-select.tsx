@@ -20,6 +20,7 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
+import {getLabel} from "../util/helpers";
 
 export type Labels = {
     /**
@@ -312,9 +313,20 @@ export default class MultiSelect extends React.Component<Props, State> {
                 const selectedItem = children.find(
                     (option) => option.props.value === selectedValues[0],
                 );
-                return selectedItem
-                    ? selectedItem.props.label
-                    : noSelectionText;
+
+                if (selectedItem) {
+                    const selectedLabel = getLabel(selectedItem?.props);
+                    if (selectedLabel) {
+                        return selectedLabel;
+                        // If the label is a ReactNode and `labelAsText` is not set,
+                        // we fallback to, the default label for the case where only
+                        // one item is selected.
+                    } else {
+                        return someSelected(1);
+                    }
+                }
+
+                return noSelectionText;
             case children.length:
                 return allSelected;
             default:
@@ -384,7 +396,8 @@ export default class MultiSelect extends React.Component<Props, State> {
         const filteredChildren = children.filter(
             ({props}) =>
                 !searchText ||
-                props.label.toLowerCase().indexOf(lowercasedSearchText) > -1,
+                getLabel(props).toLowerCase().indexOf(lowercasedSearchText) >
+                    -1,
         );
 
         const lastSelectedChildren: React.ReactElement<
