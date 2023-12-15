@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.0.1
+
+### Patch Changes
+
+-   5d34b4b4: Fix issue with empty option items
+-   Updated dependencies [1b21747a]
+    -   @khanacademy/wonder-blocks-modal@4.1.0
+
 ## 5.0.0
 
 ### Major Changes
