@@ -773,9 +773,7 @@ describe("SingleSelect", () => {
                 "dropdown-live-region",
             ).textContent;
 
-            // TODO(WB-1318): Change this assertion to `1 item` after adding the
-            // `labels` prop to the component.
-            expect(liveRegionText).toEqual("1 items");
+            expect(liveRegionText).toEqual("1 item");
         });
     });
 

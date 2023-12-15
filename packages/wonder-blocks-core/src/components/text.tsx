@@ -51,12 +51,17 @@ const Text = React.forwardRef(function Text(
         style,
     ]);
 
+    // Make sure we include the className from the parent component, if any.
+    const classNames = otherProps.className
+        ? [otherProps.className, styleAttributes.className].join(" ")
+        : styleAttributes.className;
+
     return (
         // @ts-expect-error [FEI-5019] - TS2322 - Type '{ children: ReactNode; style: any; className: string; "data-test-id": string | undefined; tabIndex?: number | undefined; id?: string | undefined; "data-modal-launcher-portal"?: boolean | undefined; ... 69 more ...; onBlur?: ((e: FocusEvent<...>) => unknown) | undefined; }' is not assignable to type 'IntrinsicAttributes'.
         <Tag
             {...otherProps}
             style={styleAttributes.style}
-            className={styleAttributes.className}
+            className={classNames}
             data-test-id={testId}
             ref={ref}
         >

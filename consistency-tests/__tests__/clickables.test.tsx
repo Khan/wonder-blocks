@@ -10,7 +10,6 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import plus from "@phosphor-icons/core/regular/plus.svg";
-import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {
@@ -175,7 +174,6 @@ describe.each`
     ${DetailCell}        | ${"DetailCell"}  | ${false}
     ${IconButtonWrapper} | ${"IconButton"}  | ${false}
     ${Link}              | ${"Link"}        | ${false}
-    ${OptionItem}        | ${"OptionItem"}  | ${true}
 `("$name", ({Component, name, hasTabIndex}: any) => {
     test("has expected existence of tabIndex", () => {
         // Arrange
