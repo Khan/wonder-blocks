@@ -62,14 +62,14 @@ jobs:
       testCount: ${{ steps.chromatic_publish.outputs.testCount }}
     steps:
     - name: Checking out latest commit
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         # This makes Actions fetch all Git history so that Chromatic can track
         # baselines with the correct commits.
         # see: https://www.chromatic.com/docs/branching-and-baselines
         fetch-depth: 0
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
 

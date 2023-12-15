@@ -1,7 +1,7 @@
 {
     "editor.renderWhitespace": "boundary",
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     },
     "eslint.enable": true,
     "files.trimTrailingWhitespace": true,

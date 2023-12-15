@@ -23,7 +23,7 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install & cache node_modules
         uses: Khan/actions@shared-node-cache-v0
         with:
@@ -71,9 +71,9 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -140,9 +140,9 @@ jobs:
         node-version: [20.x]
         shard: ["1/2", "2/2"]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -154,7 +154,7 @@ jobs:
       - name: Run jest tests with coverage
         run: yarn coverage:ci --shard ${{ matrix.shard }}
       - name: Upload Coverage
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json
@@ -168,9 +168,9 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
