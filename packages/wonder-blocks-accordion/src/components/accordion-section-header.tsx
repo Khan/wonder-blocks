@@ -168,6 +168,10 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         minWidth: "auto",
         width: "100%",
+        // Always make the header's outline show up in front of
+        // the content panel.
+        position: "relative",
+        zIndex: 1,
 
         ":active": {
             outline: `2px solid ${tokens.color.activeBlue}`,

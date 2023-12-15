@@ -338,10 +338,6 @@ const styles = StyleSheet.create({
     },
     contentWrapperExpanded: {
         visibility: "visible",
-        // Add a small margin to the top of the content block so that the
-        // header outline doesn't overlap with the content (and the content
-        // doesn't overlap with the header outline).
-        marginTop: tokens.spacing.xxxxSmall_2,
     },
     stringContent: {
         padding: tokens.spacing.medium_16,
