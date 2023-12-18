@@ -6,7 +6,7 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color, {mix} from "@khanacademy/wonder-blocks-color";
+import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -126,8 +126,7 @@ const styles = StyleSheet.create({
         padding: Spacing.medium_16,
     },
     focused: {
-        backgroundColor: mix(Color.lightBlue, Color.offWhite),
-        color: Color.offWhite,
+        backgroundColor: fade(Color.lightBlue, 0.8),
     },
     hovered: {
         textDecoration: "underline",
