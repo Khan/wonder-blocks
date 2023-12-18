@@ -82,6 +82,10 @@ class DropdownOpener extends React.Component<Props> {
             <ClickableBehavior
                 onClick={this.props.onClick}
                 disabled={this.props.disabled}
+                // Allows the opener to be focused with the keyboard, which ends
+                // up triggering onFocus/onBlur events needed to re-render the
+                // dropdown opener.
+                tabIndex={0}
             >
                 {(eventState, handlers) =>
                     this.renderAnchorChildren(eventState, handlers)
