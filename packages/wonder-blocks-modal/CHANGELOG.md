@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.1.0
+
+### Minor Changes
+
+-   1b21747a: Added theming support to ModalDialog, removed MediaLayout in favor of media queries
+
 ## 4.0.39
 
 ### Patch Changes
