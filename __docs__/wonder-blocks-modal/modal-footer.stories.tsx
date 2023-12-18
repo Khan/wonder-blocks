@@ -174,8 +174,7 @@ export const Default: StoryComponentType = {
 
 /**
  * This is a `<ModalFooter>` with a `<Button>` as a child. No additional styling
- * is needed, as the footer already has the style `{justifyContent:
- * "flex-end"}`.
+ * is needed, as the footer already has the style `{justifyContent: "flex-end"}`.
  */
 export const WithButton: StoryComponentType = {
     render: () => (
