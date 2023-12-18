@@ -7,6 +7,10 @@ const theme = {
         },
         text: {
             inverse: tokens.color.white,
+            secondary: tokens.color.offBlack64,
+        },
+        shadow: {
+            default: tokens.color.offBlack16,
         },
     },
     border: {
@@ -19,6 +23,12 @@ const theme = {
         panel: {
             closeButton: tokens.spacing.medium_16,
             footer: tokens.spacing.xLarge_32,
+        },
+        header: {
+            xsmall: tokens.spacing.xSmall_8,
+            small: tokens.spacing.medium_16,
+            medium: tokens.spacing.large_24,
+            large: tokens.spacing.xLarge_32,
         },
     },
 };

@@ -92,6 +92,49 @@ est.`}
     </>
 );
 
+/**
+ * This is a helper component that is never rendered by itself. It is always
+ * pinned to the top of the dialog, is responsive using the same behavior as its
+ * parent dialog, and has the following properties:
+ * - title
+ * - breadcrumb OR subtitle, but not both.
+ *
+ * ### Accessibility notes
+ *
+ * - By default (e.g. using [OnePaneDialog](/#onepanedialog)), `titleId` is
+ *   populated automatically by the parent container.
+ * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the
+ *   ModalHeader doesn’t have to have the `titleId` prop however this is
+ *   recommended. It should match the `aria-labelledby` prop of the
+ *   [ModalDialog](/#modaldialog) component. If you want to see an example of
+ *   how to generate this ID, check [IDProvider](/#idprovider).
+ *
+ * ### Implementation notes
+ *
+ * If you are creating a custom Dialog, make sure to follow these guidelines:
+ * - Make sure to include it as part of [ModalPanel](/#modalpanel) by using the
+ *   `header` prop.
+ * - Add a title (required).
+ * - Optionally add a subtitle or breadcrumbs.
+ * - We encourage you to add `titleId` (see Accessibility notes).
+ * - If the `ModalPanel` has a dark background, make sure to set `light` to
+ *   `false`.
+ * - If you need to create e2e tests, make sure to pass a `testId` prop and
+ *   add a sufix to scope the testId to this component: e.g.
+ *   `some-random-id-ModalHeader`. This scope will also be passed to the title
+ *   and subtitle elements: e.g. `some-random-id-ModalHeader-title`.
+ *
+ * ### Usage
+ *
+ * ```tsx
+ * <ModalHeader
+ *      title="This is a modal title."
+ *      subtitle="subtitle"
+ *      titleId="uniqueTitleId"
+ *      light={false}
+ *  />
+ * ```
+ */
 export default {
     title: "Modal/Building Blocks/ModalHeader",
     component: ModalHeader,
@@ -112,9 +155,6 @@ export default {
             />
         ),
         docs: {
-            description: {
-                component: null,
-            },
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
@@ -133,6 +173,10 @@ export default {
 
 type StoryComponentType = StoryObj<typeof ModalHeader>;
 
+/**
+ * This is a basic `<ModalHeader>`. It just has a `content` prop that contains a
+ * title and a body.
+ */
 export const Default: StoryComponentType = {
     render: (args) => (
         <ModalDialog aria-labelledby={args.titleId} style={styles.dialog}>
@@ -145,136 +189,104 @@ export const Default: StoryComponentType = {
     },
 };
 
-export const Simple: StoryComponentType = () => (
-    <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
-        <ModalPanel
-            header={<ModalHeader title="Modal Title" titleId="modal-title-1" />}
-            content={longBody}
-        />
-    </ModalDialog>
-);
-
-Simple.parameters = {
-    docs: {
-        description: {
-            story: `This is a basic \`<ModalHeader>\`. It just has a
-            \`content\` prop that contains a title and a body.`,
-        },
-    },
+/**
+ * This is `<ModalHeader>` when `light` is set to false. This should only be
+ * false if the `light` prop on the encompassing `<ModalPanel>` is also false .
+ * Note that the close button is not visible on the header if the panel is
+ * light.
+ */
+export const Dark: StoryComponentType = {
+    render: () => (
+        <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
+            <ModalPanel
+                header={
+                    <ModalHeader
+                        title="Modal Title"
+                        titleId="modal-title-2"
+                        light={false}
+                    />
+                }
+                content={longBody}
+                light={false}
+            />
+        </ModalDialog>
+    ),
 };
 
-export const Dark: StoryComponentType = () => (
-    <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
-        <ModalPanel
-            header={
-                <ModalHeader
-                    title="Modal Title"
-                    titleId="modal-title-2"
-                    light={false}
-                />
-            }
-            content={longBody}
-            light={false}
-        />
-    </ModalDialog>
-);
-
-Dark.parameters = {
-    docs: {
-        description: {
-            story: `This is \`<ModalHeader>\` when \`light\` is
-            set to false. This should only be false if the \`light\` prop
-            on the encompassing \`<ModalPanel>\` is also false . Note that
-            the close button is not visible on the header if the panel is
-            light.`,
-        },
-    },
+/**
+ * This is `<ModalHeader>` with a subtitle, which can be done by passing a
+ * string into the `subtitle` prop.
+ */
+export const WithSubtitle: StoryComponentType = {
+    render: () => (
+        <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
+            <ModalPanel
+                header={
+                    <ModalHeader
+                        title="Modal Title"
+                        titleId="modal-title-3"
+                        subtitle="This is what a subtitle looks like."
+                    />
+                }
+                content={longBody}
+            />
+        </ModalDialog>
+    ),
 };
 
-export const WithSubtitle: StoryComponentType = () => (
-    <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
-        <ModalPanel
-            header={
-                <ModalHeader
-                    title="Modal Title"
-                    titleId="modal-title-3"
-                    subtitle="This is what a subtitle looks like."
-                />
-            }
-            content={longBody}
-        />
-    </ModalDialog>
-);
-
-WithSubtitle.parameters = {
-    docs: {
-        description: {
-            story: `This is \`<ModalHeader>\` with a subtitle, which
-            can be done by passing a string into the \`subtitle\` prop.`,
-        },
-    },
+/**
+ * This is `<ModalHeader>` with a subtitle when it also has `light` set to
+ * false.
+ */
+export const WithSubtitleDark: StoryComponentType = {
+    render: () => (
+        <ModalDialog aria-labelledby="modal-title-4" style={styles.dialog}>
+            <ModalPanel
+                header={
+                    <ModalHeader
+                        title="Modal Title"
+                        titleId="modal-title-4"
+                        subtitle="This is what a subtitle looks like."
+                        light={false}
+                    />
+                }
+                content={longBody}
+                light={false}
+            />
+        </ModalDialog>
+    ),
 };
 
-export const WithSubtitleDark: StoryComponentType = () => (
-    <ModalDialog aria-labelledby="modal-title-4" style={styles.dialog}>
-        <ModalPanel
-            header={
-                <ModalHeader
-                    title="Modal Title"
-                    titleId="modal-title-4"
-                    subtitle="This is what a subtitle looks like."
-                    light={false}
-                />
-            }
-            content={longBody}
-            light={false}
-        />
-    </ModalDialog>
-);
-
-WithSubtitleDark.parameters = {
-    docs: {
-        description: {
-            story: `This is \`<ModalHeader>\` with a subtitle
-            when it also has \`light\` set to false.`,
-        },
-    },
-};
-
-export const WithBreadcrumbs: StoryComponentType = () => (
-    <ModalDialog aria-labelledby="modal-title-5" style={styles.dialog}>
-        <ModalPanel
-            header={
-                <ModalHeader
-                    title="Modal Title"
-                    titleId="modal-title-5"
-                    breadcrumbs={
-                        <Breadcrumbs>
-                            <BreadcrumbsItem>
-                                <Link href="">Course</Link>
-                            </BreadcrumbsItem>
-                            <BreadcrumbsItem>
-                                <Link href="">Unit</Link>
-                            </BreadcrumbsItem>
-                            <BreadcrumbsItem>Lesson</BreadcrumbsItem>
-                        </Breadcrumbs>
-                    }
-                />
-            }
-            content={longBody}
-        />
-    </ModalDialog>
-);
-
-WithBreadcrumbs.parameters = {
-    docs: {
-        description: {
-            story: `This is \`<ModalHeader>\` with breadcrumbs, which
-            can be done by passing a Wonder Blocks \`<Breadcrumbs>\`
-            element into the \`breadcrumbs\` prop. Note that \`breadcrumbs\`
-            currently do not work when \`light\` is false.`,
-        },
-    },
+/**
+ * This is `<ModalHeader>` with breadcrumbs, which can be done by passing a
+ * Wonder Blocks `<Breadcrumbs>` element into the `breadcrumbs` prop. Note that
+ * `breadcrumbs` currently do not work when `light` is false.
+ */
+export const WithBreadcrumbs: StoryComponentType = {
+    render: () => (
+        <ModalDialog aria-labelledby="modal-title-5" style={styles.dialog}>
+            <ModalPanel
+                header={
+                    <ModalHeader
+                        title="Modal Title"
+                        titleId="modal-title-5"
+                        breadcrumbs={
+                            <Breadcrumbs>
+                                <BreadcrumbsItem>
+                                    <Link href="">Course</Link>
+                                </BreadcrumbsItem>
+                                <BreadcrumbsItem>
+                                    <Link href="">Unit</Link>
+                                </BreadcrumbsItem>
+                                <BreadcrumbsItem>Lesson</BreadcrumbsItem>
+                            </Breadcrumbs>
+                        }
+                    />
+                }
+                content={longBody}
+            />
+        </ModalDialog>
+    ),
 };
 
 const styles = StyleSheet.create({
