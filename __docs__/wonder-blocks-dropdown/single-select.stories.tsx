@@ -2,10 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import planetIcon from "@phosphor-icons/core/regular/planet.svg";
 
+import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
+import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
         padding: Spacing.medium_16,
     },
     focused: {
-        color: Color.offWhite,
+        backgroundColor: fade(Color.lightBlue, 0.8),
     },
     hovered: {
         textDecoration: "underline",
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     pressed: {
-        color: Color.blue,
+        backgroundColor: Color.blue,
     },
 
     fullBleed: {
@@ -628,22 +629,28 @@ export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValue: "",
-        opener: ({focused, hovered, pressed, text}: any) => (
-            <HeadingLarge
-                onClick={() => {
-                    // eslint-disable-next-line no-console
-                    console.log("custom click!!!!!");
-                }}
-                style={[
-                    styles.customOpener,
-                    focused && styles.focused,
-                    hovered && styles.hovered,
-                    pressed && styles.pressed,
-                ]}
-            >
-                {text}
-            </HeadingLarge>
-        ),
+        opener: ({focused, hovered, pressed, text}: any) => {
+            action(JSON.stringify({focused, hovered, pressed}))(
+                "state changed!",
+            );
+
+            return (
+                <HeadingLarge
+                    onClick={() => {
+                        // eslint-disable-next-line no-console
+                        console.log("custom click!!!!!");
+                    }}
+                    style={[
+                        styles.customOpener,
+                        focused && styles.focused,
+                        hovered && styles.hovered,
+                        pressed && styles.pressed,
+                    ]}
+                >
+                    {text}
+                </HeadingLarge>
+            );
+        },
     } as SingleSelectArgs,
     name: "With custom opener",
 };
