@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.2.0
+
+### Minor Changes
+
+-   b7bae8f2: Add theming support to ModalPanel
+-   09c61d25: Add theming support to ModalHeader and ModalFooter
+
 ## 4.1.0
 
 ### Minor Changes

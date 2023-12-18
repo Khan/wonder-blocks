@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.0.2
+
+### Patch Changes
+
+-   0aaf4e6e: Fix focus state on custom openers
+-   Updated dependencies [b7bae8f2]
+-   Updated dependencies [09c61d25]
+    -   @khanacademy/wonder-blocks-modal@4.2.0
+
 ## 5.0.1
 
 ### Patch Changes
