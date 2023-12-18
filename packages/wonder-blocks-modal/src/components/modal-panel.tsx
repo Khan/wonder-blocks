@@ -1,14 +1,20 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {
+    ThemedStylesFn,
+    useScopedTheme,
+    useStyles,
+} from "@khanacademy/wonder-blocks-theming";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
 import CloseButton from "./close-button";
+import {
+    ModalDialogThemeContext,
+    ModalDialogThemeContract,
+} from "../themes/themed-modal-dialog";
 
 type Props = {
     /**
@@ -65,12 +71,6 @@ type Props = {
     testId?: string;
 };
 
-type DefaultProps = {
-    closeButtonVisible: Props["closeButtonVisible"];
-    scrollOverflow: Props["scrollOverflow"];
-    light: Props["light"];
-};
-
 /**
  * ModalPanel is  the content container.
  *
@@ -91,16 +91,21 @@ type DefaultProps = {
  * </ModalDialog>
  * ```
  */
-export default class ModalPanel extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        closeButtonVisible: true,
-        scrollOverflow: true,
-        light: true,
-    };
+export default function ModalPanel({
+    closeButtonVisible = true,
+    scrollOverflow = true,
+    light = true,
+    content,
+    footer,
+    header,
+    onClose,
+    style,
+    testId,
+}: Props) {
+    const {theme} = useScopedTheme(ModalDialogThemeContext);
+    const styles = useStyles(themedStylesFn, theme);
 
-    renderMainContent(): React.ReactNode {
-        const {content, footer, scrollOverflow} = this.props;
-
+    const renderMainContent = (): React.ReactNode => {
         const mainContent = ModalContent.isClassOf(content) ? (
             (content as React.ReactElement<
                 React.ComponentProps<typeof ModalContent>
@@ -122,47 +127,41 @@ export default class ModalPanel extends React.Component<Props> {
             // know about things being positioned around it.
             style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
-    }
+    };
 
-    render(): React.ReactNode {
-        const {
-            closeButtonVisible,
-            footer,
-            header,
-            light,
-            onClose,
-            style,
-            testId,
-        } = this.props;
+    const mainContent = renderMainContent();
 
-        const mainContent = this.renderMainContent();
-
-        return (
-            <View
-                style={[styles.wrapper, !light && styles.dark, style]}
-                testId={testId && `${testId}-panel`}
-            >
-                {closeButtonVisible && (
-                    <CloseButton
-                        light={!light}
-                        onClick={onClose}
-                        style={styles.closeButton}
-                        testId={testId && `${testId}-close`}
-                    />
-                )}
-                {header}
-                {mainContent}
-                {!footer || ModalFooter.isClassOf(footer) ? (
-                    footer
-                ) : (
-                    <ModalFooter>{footer}</ModalFooter>
-                )}
-            </View>
-        );
-    }
+    return (
+        <View
+            style={[styles.wrapper, !light && styles.dark, style]}
+            testId={testId && `${testId}-panel`}
+        >
+            {closeButtonVisible && (
+                <CloseButton
+                    light={!light}
+                    onClick={onClose}
+                    style={styles.closeButton}
+                    testId={testId && `${testId}-close`}
+                />
+            )}
+            {header}
+            {mainContent}
+            {!footer || ModalFooter.isClassOf(footer) ? (
+                footer
+            ) : (
+                <ModalFooter>{footer}</ModalFooter>
+            )}
+        </View>
+    );
 }
 
-const styles = StyleSheet.create({
+ModalPanel.defaultProps = {
+    closeButtonVisible: true,
+    scrollOverflow: true,
+    light: true,
+};
+
+const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     wrapper: {
         flex: "1 1 auto",
         position: "relative",
@@ -177,19 +176,19 @@ const styles = StyleSheet.create({
 
     closeButton: {
         position: "absolute",
-        right: Spacing.medium_16,
-        top: Spacing.medium_16,
+        right: theme.spacing.panel.closeButton,
+        top: theme.spacing.panel.closeButton,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.
         zIndex: 1,
     },
 
     dark: {
-        background: Color.darkBlue,
-        color: Color.white,
+        background: theme.color.bg.inverse,
+        color: theme.color.text.inverse,
     },
 
     hasFooter: {
-        paddingBottom: Spacing.xLarge_32,
+        paddingBottom: theme.spacing.panel.footer,
     },
 });
