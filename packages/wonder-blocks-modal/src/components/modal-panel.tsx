@@ -1,5 +1,5 @@
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {
@@ -22,20 +22,16 @@ type Props = {
      * are positioned around it.
      */
     content:
-        | React.ReactElement<React.ComponentProps<typeof ModalContent>>
+        | React.ReactElement<PropsFor<typeof ModalContent>>
         | React.ReactNode;
     /**
      * The modal header to show at the top of the panel.
      */
-    header?:
-        | React.ReactElement<React.ComponentProps<typeof ModalHeader>>
-        | React.ReactNode;
+    header?: React.ReactElement<PropsFor<typeof ModalHeader>> | React.ReactNode;
     /**
      * A footer to show beneath the contents.
      */
-    footer?:
-        | React.ReactElement<React.ComponentProps<typeof ModalFooter>>
-        | React.ReactNode;
+    footer?: React.ReactElement<PropsFor<typeof ModalFooter>> | React.ReactNode;
     /**
      * When true, the close button is shown; otherwise, the close button is not shown.
      */
@@ -72,7 +68,7 @@ type Props = {
 };
 
 /**
- * ModalPanel is  the content container.
+ * ModalPanel is the content container.
  *
  * **Implementation notes:**
  *
@@ -105,11 +101,9 @@ export default function ModalPanel({
     const {theme} = useScopedTheme(ModalDialogThemeContext);
     const styles = useStyles(themedStylesFn, theme);
 
-    const renderMainContent = (): React.ReactNode => {
-        const mainContent = ModalContent.isClassOf(content) ? (
-            (content as React.ReactElement<
-                React.ComponentProps<typeof ModalContent>
-            >)
+    const renderMainContent = React.useCallback((): React.ReactNode => {
+        const mainContent = ModalContent.isComponentOf(content) ? (
+            (content as React.ReactElement<PropsFor<typeof ModalContent>>)
         ) : (
             <ModalContent>{content}</ModalContent>
         );
@@ -127,7 +121,7 @@ export default function ModalPanel({
             // know about things being positioned around it.
             style: [!!footer && styles.hasFooter, mainContent.props.style],
         });
-    };
+    }, [content, footer, scrollOverflow, styles.hasFooter]);
 
     const mainContent = renderMainContent();
 
@@ -146,7 +140,7 @@ export default function ModalPanel({
             )}
             {header}
             {mainContent}
-            {!footer || ModalFooter.isClassOf(footer) ? (
+            {!footer || ModalFooter.isComponentOf(footer) ? (
                 footer
             ) : (
                 <ModalFooter>{footer}</ModalFooter>

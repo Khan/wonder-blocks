@@ -1,10 +1,17 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    ThemedStylesFn,
+    useScopedTheme,
+    useStyles,
+} from "@khanacademy/wonder-blocks-theming";
+import {
+    ModalDialogThemeContext,
+    ModalDialogThemeContract,
+} from "../themes/themed-modal-dialog";
 
 type Props = {
     /** Should the content scroll on overflow, or just expand. */
@@ -15,68 +22,60 @@ type Props = {
     style?: StyleType;
 };
 
-type DefaultProps = {
-    scrollOverflow: Props["scrollOverflow"];
-};
-
 /**
  * The Modal content included after the header
  */
-export default class ModalContent extends React.Component<Props> {
-    static isClassOf(instance: any): boolean {
-        return instance && instance.type && instance.type.__IS_MODAL_CONTENT__;
-    }
-    static defaultProps: DefaultProps = {
-        scrollOverflow: true,
-    };
+function ModalContent(props: Props) {
+    const {scrollOverflow, style, children} = props;
+    const {theme} = useScopedTheme(ModalDialogThemeContext);
+    const styles = useStyles(themedStylesFn, theme);
 
-    static __IS_MODAL_CONTENT__ = true;
-
-    render(): React.ReactNode {
-        const {scrollOverflow, style, children} = this.props;
-
-        return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => (
-                    <View
-                        style={[
-                            styles.wrapper,
-                            scrollOverflow && styles.scrollOverflow,
-                        ]}
-                    >
-                        <View style={[styles.content, style]}>{children}</View>
-                    </View>
-                )}
-            </MediaLayout>
-        );
-    }
+    return (
+        <View style={[styles.wrapper, scrollOverflow && styles.scrollOverflow]}>
+            <View style={[styles.content, style]}>{children}</View>
+        </View>
+    );
 }
 
-const styleSheets = {
-    all: StyleSheet.create({
-        wrapper: {
-            flex: 1,
+ModalContent.__IS_MODAL_CONTENT__ = true;
 
-            // This helps to ensure that the paddingBottom is preserved when
-            // the contents start to overflow, this goes away on display: flex
-            display: "block",
-        },
+ModalContent.isComponentOf = (instance: any): boolean => {
+    return instance && instance.type && instance.type.__IS_MODAL_CONTENT__;
+};
 
-        scrollOverflow: {
-            overflow: "auto",
-        },
+/**
+ * Media query for small screens.
+ * TODO(WB-1655): Change this to use the theme instead (inside themedStylesFn).
+ * e.g. `[theme.breakpoints.small]: {...}`
+ */
+const small = "@media (max-width: 767px)";
 
-        content: {
-            flex: 1,
-            minHeight: "100%",
-            padding: Spacing.xLarge_32,
-            boxSizing: "border-box",
-        },
-    }),
+const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+    wrapper: {
+        flex: 1,
 
-    small: StyleSheet.create({
-        content: {
+        // This helps to ensure that the paddingBottom is preserved when
+        // the contents start to overflow, this goes away on display: flex
+        display: "block",
+    },
+
+    scrollOverflow: {
+        overflow: "auto",
+    },
+
+    content: {
+        flex: 1,
+        minHeight: "100%",
+        padding: Spacing.xLarge_32,
+        boxSizing: "border-box",
+        [small]: {
             padding: `${Spacing.xLarge_32}px ${Spacing.medium_16}px`,
         },
-    }),
-} as const;
+    },
+});
+
+ModalContent.defaultProps = {
+    scrollOverflow: true,
+};
+
+export default ModalContent;

@@ -25,17 +25,15 @@ type Props = {
  * </ModalFooter>
  * ```
  */
-export default class ModalFooter extends React.Component<Props> {
-    static isClassOf(instance: any): boolean {
-        return instance && instance.type && instance.type.__IS_MODAL_FOOTER__;
-    }
-    static __IS_MODAL_FOOTER__ = true;
-
-    render(): React.ReactNode {
-        const {children} = this.props;
-        return <View style={styles.footer}>{children}</View>;
-    }
+export default function ModalFooter({children}: Props) {
+    return <View style={styles.footer}>{children}</View>;
 }
+
+ModalFooter.__IS_MODAL_FOOTER__ = true;
+
+ModalFooter.isComponentOf = (instance: any): boolean => {
+    return instance && instance.type && instance.type.__IS_MODAL_FOOTER__;
+};
 
 const styles = StyleSheet.create({
     footer: {
