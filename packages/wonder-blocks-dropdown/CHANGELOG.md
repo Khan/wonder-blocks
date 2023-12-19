@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.1.0
+
+### Minor Changes
+
+-   c01f6864: Add `opened` state to OpenerProps on Dropdown custom opener function.
+
 ## 5.0.2
 
 ### Patch Changes
