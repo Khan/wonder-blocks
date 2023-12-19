@@ -35,6 +35,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      * Text for the opener that can be passed to the child as an argument.
      */
     text: OptionLabel;
+    /**
+     * Whether the dropdown is opened.
+     */
+    opened: boolean;
 };
 
 type DefaultProps = {
@@ -54,8 +58,12 @@ class DropdownOpener extends React.Component<Props> {
         eventState: ClickableState,
         clickableChildrenProps: ChildrenProps,
     ): React.ReactElement {
-        const {disabled, testId, text} = this.props;
-        const renderedChildren = this.props.children({...eventState, text});
+        const {disabled, testId, text, opened} = this.props;
+        const renderedChildren = this.props.children({
+            ...eventState,
+            text,
+            opened,
+        });
         const childrenProps = renderedChildren.props;
         const childrenTestId = this.getTestIdFromProps(childrenProps);
 

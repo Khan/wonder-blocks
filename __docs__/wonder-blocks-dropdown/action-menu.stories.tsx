@@ -356,6 +356,7 @@ export const Controlled: StoryComponentType = {
  *    pressed, hovered and focused.
  *  - `text`: Passes the menu label defined in the parent component. This value
  *    is passed using the placeholder prop set in the ActionMenu component.
+ *  - `opened`: Whether the dropdown is opened.
  *
  * **Note:** If you need to use a custom ID for testing the opener, make sure to
  * pass the testId prop inside the opener component/element.

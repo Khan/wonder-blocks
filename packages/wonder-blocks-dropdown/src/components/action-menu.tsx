@@ -231,7 +231,6 @@ export default class ActionMenu extends React.Component<Props, State> {
         numItems: number,
     ): React.ReactElement<React.ComponentProps<typeof DropdownOpener>> {
         const {disabled, menuText, opener, testId} = this.props;
-        const {opened} = this.state;
 
         return (
             <DropdownOpener
@@ -240,6 +239,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                 text={menuText}
                 ref={this.handleOpenerRef}
                 testId={opener ? undefined : testId}
+                opened={this.state.opened}
             >
                 {opener
                     ? opener
@@ -247,6 +247,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                           const {
                               // eslint-disable-next-line @typescript-eslint/no-unused-vars
                               text,
+                              opened,
                               ...eventState
                           } = openerProps;
                           return (
