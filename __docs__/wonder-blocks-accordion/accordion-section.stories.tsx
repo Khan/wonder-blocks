@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import {AccordionSection} from "@khanacademy/wonder-blocks-accordion";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -9,7 +10,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
@@ -194,32 +195,86 @@ Uncontrolled.parameters = {
 /**
  * An AccordionSection can have either a string or a React Element passed
  * in as its header. Passing in a React Element means no built in styling
- * will be applied to the header. In this example, all the header styles are
- * coming from the DetailCell component.
+ * will be applied to the header.
+ *
+ * The first example here shows how a DetailCell can be used as the header.
+ * The second example shows how a custom header can be created - note that
+ * in this example, a smaller window size will cause the header text to
+ * truncate with ellipses.
  */
 export const ReactElementInHeader: StoryComponentType = {
     render: function Render() {
-        const [expanded, setExpanded] = React.useState(false);
-
         return (
-            <AccordionSection
-                header={
-                    <DetailCell
-                        title="Header for article item"
-                        leftAccessory={
-                            <PhosphorIcon
-                                icon={IconMappings.playCircle}
-                                size="medium"
-                            />
-                        }
-                        horizontalRule="none"
-                    />
-                }
-                expanded={expanded}
-                onToggle={setExpanded}
-            >
-                This is the information present in the first section
-            </AccordionSection>
+            <View>
+                <AccordionSection
+                    header={
+                        <DetailCell
+                            title="Header for article item"
+                            leftAccessory={
+                                <PhosphorIcon
+                                    icon={IconMappings.playCircle}
+                                    size="medium"
+                                />
+                            }
+                            horizontalRule="none"
+                        />
+                    }
+                >
+                    This is the information present in the first section
+                </AccordionSection>
+                <Strut size={tokens.spacing.xLarge_32} />
+                {/* The following AccordionSection is implemented
+                the same way as the CourseAccordion in the LearnableNodeSidebar
+                that can be found on Khan Academy. It should truncate the
+                text with ellipses when the window size is small.*/}
+                <AccordionSection
+                    header={
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                margin: tokens.spacing.medium_16,
+                            }}
+                        >
+                            <View
+                                style={{
+                                    backgroundSize: "contain",
+                                    borderRadius: "8px",
+                                    height: 40,
+                                    marginRight: tokens.spacing.small_12,
+                                    minWidth: 40,
+                                    padding: tokens.spacing.xSmall_8,
+                                    width: 40,
+                                }}
+                            >
+                                <PhosphorIcon
+                                    aria-hidden="true"
+                                    icon={magnifyingGlass}
+                                    size="medium"
+                                    style={styles.icon}
+                                />
+                            </View>
+                            <HeadingSmall
+                                // Setting the tag to span here to override
+                                // HeadingSmall's heading level since h2 is already
+                                // set on the AccordionSection's clickable header.
+                                // This way we can avoid redundancy in the a11y tree.
+                                tag="span"
+                                style={{
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    alignSelf: "center",
+                                }}
+                            >
+                                World History Project - Origins to the Present
+                                (Example of a long title)
+                            </HeadingSmall>
+                        </View>
+                    }
+                >
+                    This is the information present in the second section
+                </AccordionSection>
+            </View>
         );
     },
 };
@@ -246,7 +301,7 @@ export const ReactElementInChildren: StoryComponentType = {
                 onToggle={setExpanded}
             >
                 <DetailCell
-                    title="Header for article item"
+                    title="Child article item"
                     leftAccessory={
                         <PhosphorIcon
                             icon={IconMappings.playCircle}
