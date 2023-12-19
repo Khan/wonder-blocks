@@ -43,6 +43,7 @@ export type OptionLabel = string | CellProps["title"];
 // Custom opener arguments
 export type OpenerProps = ClickableState & {
     text: OptionLabel;
+    opened: boolean;
 };
 
 export type OptionItemComponentArray = React.ReactElement<

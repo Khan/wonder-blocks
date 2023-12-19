@@ -513,6 +513,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 disabled={numOptions === 0 || disabled}
                 ref={this.handleOpenerRef}
                 text={menuText}
+                opened={this.state.open}
             >
                 {opener}
             </DropdownOpener>

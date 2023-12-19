@@ -33,6 +33,7 @@ import singleSelectArgtypes from "./single-select.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 import {allCountries, allProfilesWithPictures} from "./option-item-examples";
+import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -621,6 +622,7 @@ export const DropdownInModal: StoryComponentType = {
  *    pressed, hovered and focused.
  *  - `text`: Passes the menu label defined in the parent component. This value
  *   is passed using the placeholder prop set in the `SingleSelect` component.
+ *  - `opened`: Whether the dropdown is opened.
  *
  * **Note:** If you need to use a custom ID for testing the opener, make sure to
  * pass the testId prop inside the opener component/element.
@@ -629,8 +631,8 @@ export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValue: "",
-        opener: ({focused, hovered, pressed, text}: any) => {
-            action(JSON.stringify({focused, hovered, pressed}))(
+        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
+            action(JSON.stringify({focused, hovered, pressed, opened}))(
                 "state changed!",
             );
 
@@ -645,9 +647,11 @@ export const CustomOpener: StoryComponentType = {
                         focused && styles.focused,
                         hovered && styles.hovered,
                         pressed && styles.pressed,
+                        opened && styles.focused,
                     ]}
                 >
                     {text}
+                    {opened ? ": opened" : ""}
                 </HeadingLarge>
             );
         },

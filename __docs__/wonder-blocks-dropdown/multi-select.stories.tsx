@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -19,6 +20,7 @@ import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 import {allProfilesWithPictures} from "./option-item-examples";
+import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -486,6 +488,7 @@ export const VirtualizedFilterable: StoryComponentType = {
  *    pressed, hovered and focused.
  *  - `text`: Passes the menu label defined in the parent component. This value
  *  is passed using the placeholder prop set in the `MultiSelect` component.
+ *  - `opened`: Whether the dropdown is opened.
  *
  * **Note:** If you need to use a custom ID for testing the opener, make sure to
  * pass the testId prop inside the opener component/element.
@@ -494,22 +497,29 @@ export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValues: [],
-        opener: ({focused, hovered, pressed, text}: any) => (
-            <HeadingLarge
-                onClick={() => {
-                    // eslint-disable-next-line no-console
-                    console.log("custom click!!!!!");
-                }}
-                style={[
-                    styles.customOpener,
-                    focused && styles.focused,
-                    hovered && styles.hovered,
-                    pressed && styles.pressed,
-                ]}
-            >
-                {text}
-            </HeadingLarge>
-        ),
+        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
+            action(JSON.stringify({focused, hovered, pressed, opened}))(
+                "state changed!",
+            );
+
+            return (
+                <HeadingLarge
+                    onClick={() => {
+                        // eslint-disable-next-line no-console
+                        console.log("custom click!!!!!");
+                    }}
+                    style={[
+                        styles.customOpener,
+                        focused && styles.focused,
+                        hovered && styles.hovered,
+                        pressed && styles.pressed,
+                    ]}
+                >
+                    {text}
+                    {opened ? ": opened" : ""}
+                </HeadingLarge>
+            );
+        },
     } as MultiSelectArgs,
     name: "With custom opener",
 };
