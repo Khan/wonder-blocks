@@ -33,6 +33,7 @@ import singleSelectArgtypes from "./single-select.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 import {allCountries, allProfilesWithPictures} from "./option-item-examples";
+import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -630,8 +631,8 @@ export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValue: "",
-        opener: ({focused, hovered, pressed, text}: any) => {
-            action(JSON.stringify({focused, hovered, pressed}))(
+        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
+            action(JSON.stringify({focused, hovered, pressed, opened}))(
                 "state changed!",
             );
 
@@ -646,9 +647,11 @@ export const CustomOpener: StoryComponentType = {
                         focused && styles.focused,
                         hovered && styles.hovered,
                         pressed && styles.pressed,
+                        opened && styles.focused,
                     ]}
                 >
                     {text}
+                    {opened ? ": opened" : ""}
                 </HeadingLarge>
             );
         },

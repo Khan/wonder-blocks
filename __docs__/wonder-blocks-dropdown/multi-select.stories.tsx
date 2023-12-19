@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -19,6 +20,7 @@ import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 import {allProfilesWithPictures} from "./option-item-examples";
+import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -495,22 +497,29 @@ export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValues: [],
-        opener: ({focused, hovered, pressed, text}: any) => (
-            <HeadingLarge
-                onClick={() => {
-                    // eslint-disable-next-line no-console
-                    console.log("custom click!!!!!");
-                }}
-                style={[
-                    styles.customOpener,
-                    focused && styles.focused,
-                    hovered && styles.hovered,
-                    pressed && styles.pressed,
-                ]}
-            >
-                {text}
-            </HeadingLarge>
-        ),
+        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
+            action(JSON.stringify({focused, hovered, pressed, opened}))(
+                "state changed!",
+            );
+
+            return (
+                <HeadingLarge
+                    onClick={() => {
+                        // eslint-disable-next-line no-console
+                        console.log("custom click!!!!!");
+                    }}
+                    style={[
+                        styles.customOpener,
+                        focused && styles.focused,
+                        hovered && styles.hovered,
+                        pressed && styles.pressed,
+                    ]}
+                >
+                    {text}
+                    {opened ? ": opened" : ""}
+                </HeadingLarge>
+            );
+        },
     } as MultiSelectArgs,
     name: "With custom opener",
 };
