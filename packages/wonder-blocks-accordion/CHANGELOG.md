@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.2.7
+
+### Patch Changes
+
+-   d0d567a5: Use minWidth: 0 in the header to prevent overflow issues
+
 ## 1.2.6
 
 ### Patch Changes
