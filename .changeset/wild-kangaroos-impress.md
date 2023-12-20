@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-accordion": patch
 ---
 
-Use display: grid in the header to prevent overflow issues
+Use minWidth: 0 in the header to prevent overflow issues
