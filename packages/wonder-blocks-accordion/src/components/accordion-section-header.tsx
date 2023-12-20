@@ -159,10 +159,9 @@ const ANIMATION_LENGTH = "300ms";
 
 const styles = StyleSheet.create({
     heading: {
-        // This also needs to have display: grid (matching its container)
-        // so that the header doesn't overflow when the title text is long
-        // within a custom header.
-        display: "grid",
+        // minWidth 0 is necessary to stop custom headers from overflowing
+        // when their content is too long.
+        minWidth: 0,
         marginTop: 0,
     },
     headerWrapper: {
