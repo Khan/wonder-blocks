@@ -25,6 +25,11 @@ const tokens = {
         // Khanmigo
         white32: fade(Color.white, 0.32),
         eggplant: "#5f1e5c",
+        // Pill
+        pillBlue: fade(Color.blue, 0.24),
+        pillGreen: fade(Color.green, 0.24),
+        pillGold: fade(Color.gold, 0.24),
+        pillRed: fade(Color.red, 0.24),
     },
     spacing: Spacing,
     border: {
