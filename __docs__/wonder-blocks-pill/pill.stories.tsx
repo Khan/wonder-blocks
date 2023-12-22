@@ -96,106 +96,111 @@ Inline.parameters = {
     },
 };
 
-export const Variants: StoryComponentType = () => {
-    const kinds: Array<PillKind> = [
-        "neutral",
-        "accent",
-        "info",
-        "success",
-        "warning",
-        "critical",
-    ];
+/**
+ * There are six kinds of pills: neutral, accent, info, success, warning,
+ * and critical. This can be specified using the `kind` prop.
+ *
+ * The following kinds respond to the following colors:
+ * - `neutral`: gray
+ * - `accent`: blue
+ * - `info`: light blue
+ * - `success`: light green
+ * - `warning`: yellow
+ * - `critical`: light red
+ *
+ * Pills can also be of two different sizes: small and large. By default,
+ * small pills use Wonder Blocks `LabelSmall` typography, and large pills
+ * use Wonder Blocks `Body`.
+ */
+export const Variants: StoryComponentType = {
+    render: () => {
+        const kinds: Array<PillKind> = [
+            "neutral",
+            "accent",
+            "info",
+            "success",
+            "warning",
+            "critical",
+        ];
 
-    return (
-        <View style={{flexDirection: "row"}}>
-            <View>
-                {/* Non-clickable variants, small */}
-                {kinds.map((kind) => (
-                    <View
-                        key={kind}
-                        style={{marginRight: tokens.spacing.small_12}}
-                    >
-                        <Pill
-                            kind={kind}
-                            size="small"
-                            testId={`${kind}-small-test-id`}
+        return (
+            <View style={{flexDirection: "row"}}>
+                <View>
+                    {/* Non-clickable variants, small */}
+                    {kinds.map((kind) => (
+                        <View
+                            key={kind}
+                            style={{marginRight: tokens.spacing.small_12}}
                         >
-                            {`${kind}, small`}
-                        </Pill>
-                        <Strut size={tokens.spacing.small_12} />
-                    </View>
-                ))}
-            </View>
-            <View>
-                {/* Non-clickable variants, large */}
-                {kinds.map((kind) => (
-                    <View
-                        key={kind}
-                        style={{marginRight: tokens.spacing.small_12}}
-                    >
-                        <Pill
-                            kind={kind}
-                            size="large"
-                            testId={`${kind}-large-test-id`}
+                            <Pill
+                                kind={kind}
+                                size="small"
+                                testId={`${kind}-small-test-id`}
+                            >
+                                {`${kind}, small`}
+                            </Pill>
+                            <Strut size={tokens.spacing.small_12} />
+                        </View>
+                    ))}
+                </View>
+                <View>
+                    {/* Non-clickable variants, large */}
+                    {kinds.map((kind) => (
+                        <View
+                            key={kind}
+                            style={{marginRight: tokens.spacing.small_12}}
                         >
-                            {`${kind}, large`}
-                        </Pill>
-                        <Strut size={tokens.spacing.small_12} />
-                    </View>
-                ))}
-            </View>
-            <View>
-                {/* Clickable variants, small */}
-                {kinds.map((kind) => (
-                    <View
-                        key={kind}
-                        style={{marginRight: tokens.spacing.small_12}}
-                    >
-                        <Pill
-                            kind={kind}
-                            size="small"
-                            onClick={() => {}}
-                            testId={`${kind}-small-clickable-test-id`}
+                            <Pill
+                                kind={kind}
+                                size="large"
+                                testId={`${kind}-large-test-id`}
+                            >
+                                {`${kind}, large`}
+                            </Pill>
+                            <Strut size={tokens.spacing.small_12} />
+                        </View>
+                    ))}
+                </View>
+                <View>
+                    {/* Clickable variants, small */}
+                    {kinds.map((kind) => (
+                        <View
+                            key={kind}
+                            style={{marginRight: tokens.spacing.small_12}}
                         >
-                            {`${kind}, small`}
-                        </Pill>
-                        <Strut size={tokens.spacing.small_12} />
-                    </View>
-                ))}
-            </View>
-            <View>
-                {/* Clickable variants, large */}
-                {kinds.map((kind) => (
-                    <View
-                        key={kind}
-                        style={{marginRight: tokens.spacing.small_12}}
-                    >
-                        <Pill
-                            kind={kind}
-                            size="large"
-                            onClick={() => {}}
-                            testId={`${kind}-large-clickable-test-id`}
+                            <Pill
+                                kind={kind}
+                                size="small"
+                                onClick={() => {}}
+                                testId={`${kind}-small-clickable-test-id`}
+                            >
+                                {`${kind}, small`}
+                            </Pill>
+                            <Strut size={tokens.spacing.small_12} />
+                        </View>
+                    ))}
+                </View>
+                <View>
+                    {/* Clickable variants, large */}
+                    {kinds.map((kind) => (
+                        <View
+                            key={kind}
+                            style={{marginRight: tokens.spacing.small_12}}
                         >
-                            {`${kind}, large`}
-                        </Pill>
-                        <Strut size={tokens.spacing.small_12} />
-                    </View>
-                ))}
+                            <Pill
+                                kind={kind}
+                                size="large"
+                                onClick={() => {}}
+                                testId={`${kind}-large-clickable-test-id`}
+                            >
+                                {`${kind}, large`}
+                            </Pill>
+                            <Strut size={tokens.spacing.small_12} />
+                        </View>
+                    ))}
+                </View>
             </View>
-        </View>
-    );
-};
-
-Variants.parameters = {
-    docs: {
-        description: {
-            story: `There are two kinds of pills: neutral and accent.
-                This can be specified using the \`kind\` prop.
-                Neutral pills are gray, accent pills are blue. Pills can
-                also be of two different sizes: small and large. By default,
-                Small pills use Wonder Blocks \`LabelXSmall\` typography,
-                and large pills use Wonder Blocks \`Body\`.`,
-        },
+        );
     },
 };
 

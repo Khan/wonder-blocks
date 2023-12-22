@@ -20,12 +20,22 @@ export default {
         description: "Kind of pill.",
         defaultValue: "neutral",
         table: {
-            type: {summary: `"neutral" | "accent"`},
+            type: {
+                summary: `"neutral" | "accent | "info" | "success" |
+                    "warning" | "critical"`,
+            },
             defaultValue: {summary: "neutral"},
         },
         type: {
             name: "enum",
-            value: ["neutral", "accent"],
+            value: [
+                "neutral",
+                "accent",
+                "info",
+                "success",
+                "warning",
+                "critical",
+            ],
             required: false,
         },
     },
