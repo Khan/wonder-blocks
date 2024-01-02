@@ -320,6 +320,9 @@ const styles = StyleSheet.create({
     wrapperExpanded: {
         gridTemplateRows: "min-content 1fr",
     },
+    contentWrapper: {
+        overflow: "hidden",
+    },
     conentWrapperCollapsed: {
         // Make sure screen readers don't read the content when it's
         // collapsed.
