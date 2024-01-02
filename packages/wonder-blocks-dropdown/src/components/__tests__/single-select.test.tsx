@@ -751,6 +751,56 @@ describe("SingleSelect", () => {
             const dismissBtn = screen.getByLabelText("Clear search");
             expect(dismissBtn).toHaveFocus();
         });
+
+        it("should filter an option", () => {
+            // Arrange
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    isFilterable={true}
+                    opened={true}
+                >
+                    <OptionItem label="Canada" value="ca" />
+                    <OptionItem label="Colombia" value="co" />
+                </SingleSelect>,
+            );
+
+            // Act
+            // NOTE: We search using the lowercased version of the label.
+            userEvent.paste(screen.getByRole("textbox"), "col");
+
+            // Assert
+            const filteredOption = screen.getByRole("option", {
+                name: "Colombia",
+            });
+            expect(filteredOption).toBeInTheDocument();
+        });
+
+        it("should filter out an option if it's not part of the results", () => {
+            // Arrange
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    isFilterable={true}
+                    opened={true}
+                >
+                    <OptionItem label="Canada" value="ca" />
+                    <OptionItem label="Colombia" value="co" />
+                </SingleSelect>,
+            );
+
+            // Act
+            // NOTE: We search using the lowercased version of the label.
+            userEvent.paste(screen.getByRole("textbox"), "col");
+
+            // Assert
+            const filteredOutOption = screen.queryByRole("option", {
+                name: "Canada",
+            });
+            expect(filteredOutOption).not.toBeInTheDocument();
+        });
     });
 
     describe("Custom listbox styles", () => {
@@ -850,13 +900,14 @@ describe("SingleSelect", () => {
                     isFilterable={true}
                     opened={true}
                 >
-                    <OptionItem label="item 0" value="0" />
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="ITEM 0" value="0" />
+                    <OptionItem label="ITEM 1" value="1" />
+                    <OptionItem label="ITEM 2" value="2" />
                 </SingleSelect>,
             );
 
             // Act
+            // NOTE: We search using the lowercased version of the label.
             userEvent.paste(screen.getByRole("textbox"), "item 0");
 
             // Assert

@@ -477,17 +477,9 @@ export const Light: StoryComponentType = {
     },
 };
 
-const fruits = ["banana", "strawberry", "pear", "orange"];
-
-const optionItems = new Array(1000)
-    .fill(null)
-    .map((_, i) => (
-        <OptionItem
-            key={i}
-            value={(i + 1).toString()}
-            label={`Fruit # ${i + 1} ${fruits[i % fruits.length]}`}
-        />
-    ));
+const optionItems = allCountries.map(([code, translatedName]) => (
+    <OptionItem key={code} value={code} label={translatedName} />
+));
 
 type Props = {
     selectedValue?: string | null | undefined;
@@ -507,7 +499,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
                 isFilterable={true}
                 opened={opened}
                 onToggle={setOpened}
-                placeholder="Select a fruit"
+                placeholder="Select a country"
                 selectedValue={selectedValue}
                 dropdownStyle={styles.fullBleed}
                 style={styles.fullBleed}
@@ -582,7 +574,7 @@ export const DropdownInModal: StoryComponentType = {
                         isFilterable={true}
                         opened={opened}
                         onToggle={(opened) => setOpened(opened)}
-                        placeholder="Select a fruit"
+                        placeholder="Select a country"
                         selectedValue={value}
                     >
                         {optionItems}
