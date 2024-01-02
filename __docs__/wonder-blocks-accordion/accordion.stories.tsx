@@ -11,6 +11,11 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {
+    MultiSelect,
+    OptionItem,
+    SingleSelect,
+} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
@@ -513,6 +518,56 @@ export const LongSections: StoryComponentType = {
                     </Accordion>
                 )}
             </View>
+        );
+    },
+};
+
+/**
+ * This is an example of an Accordion with a dropdown within each section.
+ * This demonstrates how the accordion keyboard interactions do not interfere
+ * with the dropdown's keyboard interactions.
+ */
+const items = [
+    <OptionItem label="Banana" value="banana" key={0} />,
+    <OptionItem label="Strawberry" value="strawberry" disabled key={1} />,
+    <OptionItem label="Pear" value="pear" key={2} />,
+];
+export const WithDropdown: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState<any>(null);
+        const [singleOpened, setSingleOpened] = React.useState(false);
+
+        const [values, setValues] = React.useState<any>([]);
+        const [multiOpened, setMultiOpened] = React.useState(false);
+
+        return (
+            <Accordion animated={true}>
+                <AccordionSection header={`Single Select`}>
+                    <View style={singleOpened && {height: 200}}>
+                        <SingleSelect
+                            placeholder="Select an option"
+                            selectedValue={value}
+                            onChange={setValue}
+                            opened={singleOpened}
+                            onToggle={setSingleOpened}
+                        >
+                            {items}
+                        </SingleSelect>
+                    </View>
+                </AccordionSection>
+                <AccordionSection header={`Multi Select`}>
+                    <View>
+                        <MultiSelect
+                            selectedValues={values}
+                            onChange={setValues}
+                            opened={multiOpened}
+                            onToggle={setMultiOpened}
+                        >
+                            {items}
+                        </MultiSelect>
+                    </View>
+                </AccordionSection>
+            </Accordion>
         );
     },
 };
