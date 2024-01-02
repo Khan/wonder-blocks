@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.1.1
+
+### Patch Changes
+
+-   0221ea14: Fix filter functionality (SingleSelect)
+
 ## 5.1.0
 
 ### Minor Changes
