@@ -720,6 +720,70 @@ describe("MultiSelect", () => {
             // Assert
             expect(screen.getByPlaceholderText("Filter")).toHaveValue("");
         });
+
+        it("should find an option after using the search filter", async () => {
+            // Arrange
+            const labels: Labels = {
+                ...builtinLabels,
+                someSelected: (numOptions: number): string =>
+                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+            };
+
+            render(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    labels={labels}
+                    opened={true}
+                >
+                    <OptionItem label="Earth" value="earth" />
+                    <OptionItem label="Venus" value="venus" />
+                    <OptionItem label="Mars" value="mars" />
+                </MultiSelect>,
+            );
+
+            // Act
+            userEvent.paste(screen.getByRole("textbox"), "ear");
+
+            // Assert
+            const filteredOption = screen.getByRole("option", {
+                name: "Earth",
+            });
+            expect(filteredOption).toBeInTheDocument();
+        });
+
+        it("should filter out an option if it's not part of the results", async () => {
+            // Arrange
+            const labels: Labels = {
+                ...builtinLabels,
+                someSelected: (numOptions: number): string =>
+                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+            };
+
+            render(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    labels={labels}
+                    opened={true}
+                >
+                    <OptionItem label="Earth" value="earth" />
+                    <OptionItem label="Venus" value="venus" />
+                    <OptionItem label="Mars" value="mars" />
+                </MultiSelect>,
+            );
+
+            // Act
+            userEvent.paste(screen.getByRole("textbox"), "ear");
+
+            // Assert
+            const filteredOption = screen.queryByRole("option", {
+                name: "Venus",
+            });
+            expect(filteredOption).not.toBeInTheDocument();
+        });
     });
 
     describe("Custom Opener", () => {
@@ -1341,7 +1405,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            userEvent.paste(screen.getByRole("textbox"), "Ear");
+            userEvent.paste(screen.getByRole("textbox"), "ear");
 
             // Assert
             expect(container).toHaveTextContent("1 planet");

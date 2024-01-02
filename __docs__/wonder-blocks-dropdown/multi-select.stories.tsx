@@ -19,7 +19,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
-import {allProfilesWithPictures} from "./option-item-examples";
+import {allCountries, allProfilesWithPictures} from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
@@ -431,17 +431,9 @@ export const ImplicitAllEnabled: StoryComponentType = {
 /**
  * Virtualized with search filter
  */
-const fruits = ["banana", "strawberry", "pear", "orange"];
-
-const optionItems = new Array(1000)
-    .fill(null)
-    .map((_, i) => (
-        <OptionItem
-            key={i}
-            value={(i + 1).toString()}
-            label={`Fruit # ${i + 1} ${fruits[i % fruits.length]}`}
-        />
-    ));
+const optionItems = allCountries.map(([code, translatedName]) => (
+    <OptionItem key={code} value={code} label={translatedName} />
+));
 
 type Props = {
     opened?: boolean;

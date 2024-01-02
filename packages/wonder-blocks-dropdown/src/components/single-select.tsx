@@ -331,7 +331,8 @@ export default class SingleSelect extends React.Component<Props, State> {
         return children.filter(
             ({props}) =>
                 !searchText ||
-                getLabel(props).indexOf(lowercasedSearchText) > -1,
+                getLabel(props).toLowerCase().indexOf(lowercasedSearchText) >
+                    -1,
         );
     }
 
