@@ -571,6 +571,12 @@ export const WithDropdown: StoryComponentType = {
             </Accordion>
         );
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    }
 };
 
 LongSections.parameters = {
