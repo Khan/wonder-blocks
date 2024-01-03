@@ -836,5 +836,38 @@ describe("Accordion", () => {
             expect(button2).not.toHaveFocus();
             expect(button3).toHaveFocus();
         });
+
+        test.each(["{end}", "{home}", "{arrowup}", "{arrowdown}"])(
+            "cannot navigate when header not currently focused",
+            async (key) => {
+                // Arrange
+                render(
+                    <Accordion initialExpandedIndex={0}>
+                        <AccordionSection header="Section 1">
+                            <label>
+                                Focus on this textbox!
+                                <input />
+                            </label>
+                        </AccordionSection>
+                        <AccordionSection header="Section 2">
+                            Section 2 content
+                        </AccordionSection>
+                    </Accordion>,
+                    {wrapper: RenderStateRoot},
+                );
+
+                const button1 = screen.getByRole("button", {name: "Section 1"});
+                const button2 = screen.getByRole("button", {name: "Section 2"});
+
+                // Act
+                const button = screen.getByRole("textbox");
+                button.focus();
+                userEvent.keyboard(key);
+
+                // Assert
+                expect(button1).not.toHaveFocus();
+                expect(button2).not.toHaveFocus();
+            },
+        );
     });
 });
