@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.2.8
+
+### Patch Changes
+
+-   5cf814ce: Fix focus handling for Accordion headers
+
 ## 1.2.7
 
 ### Patch Changes
