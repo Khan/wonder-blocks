@@ -527,11 +527,6 @@ export const LongSections: StoryComponentType = {
  * This demonstrates how the accordion keyboard interactions do not interfere
  * with the dropdown's keyboard interactions.
  */
-const items = [
-    <OptionItem label="Banana" value="banana" key={0} />,
-    <OptionItem label="Strawberry" value="strawberry" disabled key={1} />,
-    <OptionItem label="Pear" value="pear" key={2} />,
-];
 export const WithDropdown: StoryComponentType = {
     render: function Render() {
         const [value, setValue] = React.useState<any>(null);
@@ -539,6 +534,17 @@ export const WithDropdown: StoryComponentType = {
 
         const [values, setValues] = React.useState<any>([]);
         const [multiOpened, setMultiOpened] = React.useState(false);
+
+        const items = [
+            <OptionItem label="Banana" value="banana" key={0} />,
+            <OptionItem
+                label="Strawberry"
+                value="strawberry"
+                disabled
+                key={1}
+            />,
+            <OptionItem label="Pear" value="pear" key={2} />,
+        ];
 
         return (
             <Accordion animated={true}>
@@ -576,7 +582,7 @@ export const WithDropdown: StoryComponentType = {
             // Disabling because this doesn't test anything visual.
             disableSnapshot: true,
         },
-    }
+    },
 };
 
 LongSections.parameters = {
