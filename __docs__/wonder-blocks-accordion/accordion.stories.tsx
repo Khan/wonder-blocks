@@ -543,6 +543,7 @@ export const WithDropdown: StoryComponentType = {
         return (
             <Accordion animated={true}>
                 <AccordionSection header={`Single Select`}>
+                    {/* Adding height because overflow hidden in sections. */}
                     <View style={singleOpened && {height: 200}}>
                         <SingleSelect
                             placeholder="Select an option"
@@ -556,7 +557,7 @@ export const WithDropdown: StoryComponentType = {
                     </View>
                 </AccordionSection>
                 <AccordionSection header={`Multi Select`}>
-                    <View>
+                    <View style={singleOpened && {height: 200}}>
                         <MultiSelect
                             selectedValues={values}
                             onChange={setValues}
