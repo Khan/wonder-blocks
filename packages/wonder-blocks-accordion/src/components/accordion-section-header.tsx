@@ -32,8 +32,6 @@ type Props = {
     animated: boolean;
     // Called on header click.
     onClick?: () => void;
-    // Called on header focus.
-    onFocus?: () => void;
     // The ID for the content that the header's `aria-controls` should
     // point to.
     sectionContentUniqueId: string;
@@ -65,7 +63,6 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
         expanded,
         animated,
         onClick,
-        onFocus,
         sectionContentUniqueId,
         headerStyle,
         tag = "h2",
@@ -90,7 +87,6 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
                 aria-expanded={expanded}
                 aria-controls={sectionContentUniqueId}
                 onClick={onClick}
-                onFocus={onFocus}
                 disabled={!collapsible}
                 testId={testId ? `${testId}-header` : undefined}
                 style={[

@@ -130,16 +130,15 @@ const Accordion = React.forwardRef(function Accordion(
     }
     const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
 
-    // Setting up focus state and refs for keyboard navigation.
-    const [currentlyFocusedSection, setCurrentlyFocusedSection] =
-        React.useState(0);
     //  NOTE: It may seem like we should filter out non-collapsible sections
     //  here as they are effectively disabled. However, we should keep these
     //  disabled sections in the focus order as they'd receive focus anyway
     //  with `aria-disabled` and visually impaired users should still know
     //  they are there. Screenreaders will read them out as disabled, the
     //  status will still be clear to users.
-    const childRefs = Array(children.length).fill(null);
+    const childRefs: Array<React.RefObject<HTMLButtonElement>> = Array(
+        children.length,
+    ).fill(null);
 
     // If the number of sections is greater than the threshold,
     // we don't want to use the `region` role on the AccordionSection
@@ -162,35 +161,40 @@ const Accordion = React.forwardRef(function Accordion(
         newSectionsOpened[index] = newOpenedValueAtIndex;
         setSectionsOpened(newSectionsOpened);
 
-        // Keep track of the currently focused section for keyboard navigation.
-        setCurrentlyFocusedSection(index);
-
         if (childOnToggle) {
             childOnToggle(newOpenedValueAtIndex);
         }
     };
 
-    const handleSectionFocus = (index: number) => {
-        setCurrentlyFocusedSection(index);
-    };
-
-    /** Keyboard navigation for keys: ArrowUp, ArrowDown, Home, and End.
-     *
-     * Note that we don't have to use `setCurrentlyFocusedSection` in this
-     * function because the focus is handled by the browser + the
-     * section's onFocus handler (the `handleSectionFocus` function above).
+    /**
+     * Keyboard navigation for keys: ArrowUp, ArrowDown, Home, and End.
      */
     const handleKeyDown = (event: React.KeyboardEvent) => {
+        // From https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+        // - Down Arrow: If focus is on an accordion header, moves focus to the next accordion header. If focus is on the last accordion header, either does nothing or moves focus to the first accordion header.
+        // - Up Arrow: If focus is on an accordion header, moves focus to the previous accordion header. If focus is on the first accordion header, either does nothing or moves focus to the last accordion header.
+        // - Home: When focus is on an accordion header, moves focus to the first accordion header.
+        // - End: When focus is on an accordion header, moves focus to the last accordion header.
+
+        const currentlyFocusedHeaderIndex = childRefs.findIndex(
+            (ref) => ref.current === document.activeElement,
+        );
+
+        // If the currently focused element is not a header, do nothing.
+        if (currentlyFocusedHeaderIndex === -1) {
+            return;
+        }
+
         switch (event.key) {
             // ArrowUp focuses on the previous section.
             case "ArrowUp":
                 // Get the previous section, or cycle to last section if
                 // the first section is currently focused.
                 const previousSectionIndex =
-                    (currentlyFocusedSection + children.length - 1) %
+                    (currentlyFocusedHeaderIndex + children.length - 1) %
                     children.length;
                 const previousChildRef = childRefs[previousSectionIndex];
-                previousChildRef.current.focus();
+                previousChildRef.current?.focus();
 
                 break;
             // ArrowDown focuses on the next section.
@@ -198,20 +202,22 @@ const Accordion = React.forwardRef(function Accordion(
                 // Get the next section, or cycle to first section if
                 // the last section is currently focused.
                 const nextSectionIndex =
-                    (currentlyFocusedSection + 1) % children.length;
+                    (currentlyFocusedHeaderIndex + 1) % children.length;
                 const nextChildRef = childRefs[nextSectionIndex];
-                nextChildRef.current.focus();
+                nextChildRef.current?.focus();
 
                 break;
             // Home focuses on the first section.
             case "Home":
                 const firstChildRef = childRefs[0];
-                firstChildRef.current.focus();
+                firstChildRef.current?.focus();
+
                 break;
             // End focuses on the last section.
             case "End":
                 const lastChildRef = childRefs[children.length - 1];
-                lastChildRef.current.focus();
+                lastChildRef.current?.focus();
+
                 break;
         }
     };
@@ -256,7 +262,6 @@ const Accordion = React.forwardRef(function Accordion(
                             expanded: sectionsOpened[index],
                             onToggle: () =>
                                 handleSectionClick(index, childOnToggle),
-                            onFocus: () => handleSectionFocus(index),
                             isFirstSection: isFirstChild,
                             isLastSection: isLastChild,
                             isRegion: sectionsAreRegions,

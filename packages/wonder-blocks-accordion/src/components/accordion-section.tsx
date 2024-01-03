@@ -120,12 +120,6 @@ type Props = AriaProps & {
      * @ignore
      */
     isRegion?: boolean;
-    /**
-     * Called when the header is focused.
-     * For internal use only.
-     * @ignore
-     */
-    onFocus?: () => void;
 };
 
 /**
@@ -185,7 +179,6 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         expanded,
         animated = false,
         onToggle,
-        onFocus,
         caretPosition = "end",
         cornerKind = "rounded",
         style,
@@ -275,7 +268,6 @@ const AccordionSection = React.forwardRef(function AccordionSection(
                 expanded={expandedState}
                 animated={animated}
                 onClick={handleClick}
-                onFocus={onFocus}
                 sectionContentUniqueId={sectionContentUniqueId}
                 headerStyle={headerStyle}
                 tag={tag}
