@@ -188,16 +188,16 @@ const _generateColorStyles = (
             backgroundColor = tokens.color.blue;
             break;
         case "info":
-            backgroundColor = tokens.color.pillBlue;
+            backgroundColor = tokens.color.fadedBlue16;
             break;
         case "success":
-            backgroundColor = tokens.color.pillGreen;
+            backgroundColor = tokens.color.fadedGreen16;
             break;
         case "warning":
-            backgroundColor = tokens.color.pillGold;
+            backgroundColor = tokens.color.fadedGold16;
             break;
         case "critical":
-            backgroundColor = tokens.color.pillRed;
+            backgroundColor = tokens.color.fadedRed16;
             break;
         case "neutral":
         default:

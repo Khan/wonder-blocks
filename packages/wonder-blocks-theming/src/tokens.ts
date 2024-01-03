@@ -21,15 +21,12 @@ const tokens = {
         fadedRed: mix(fade(Color.red, 0.32), Color.white),
         fadedRed16: fade(Color.red, 0.16),
         fadedRed8: fade(Color.red, 0.08),
+        fadedGreen16: fade(Color.green, 0.16),
+        fadedGold16: fade(Color.gold, 0.16),
         // Additional colors (e.g. for use in other themes)
         // Khanmigo
         white32: fade(Color.white, 0.32),
         eggplant: "#5f1e5c",
-        // Pill
-        pillBlue: fade(Color.blue, 0.24),
-        pillGreen: fade(Color.green, 0.24),
-        pillGold: fade(Color.gold, 0.24),
-        pillRed: fade(Color.red, 0.24),
     },
     spacing: Spacing,
     border: {

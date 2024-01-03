@@ -274,25 +274,25 @@ Variants.play = async ({canvasElement}) => {
     });
 
     await expect(infoSmall).toHaveStyle({
-        backgroundColor: tokens.color.pillBlue,
+        backgroundColor: tokens.color.fadedBlue16,
         color: tokens.color.offBlack,
         fontSize: 12,
     });
 
     await expect(successSmall).toHaveStyle({
-        backgroundColor: tokens.color.pillGreen,
+        backgroundColor: tokens.color.fadedGreen16,
         color: tokens.color.offBlack,
         fontSize: 12,
     });
 
     await expect(warningSmall).toHaveStyle({
-        backgroundColor: tokens.color.pillGold,
+        backgroundColor: tokens.color.fadedGold16,
         color: tokens.color.offBlack,
         fontSize: 12,
     });
 
     await expect(criticalSmall).toHaveStyle({
-        backgroundColor: tokens.color.pillRed,
+        backgroundColor: tokens.color.fadedRed16,
         color: tokens.color.offBlack,
         fontSize: 12,
     });
@@ -310,25 +310,25 @@ Variants.play = async ({canvasElement}) => {
     });
 
     await expect(infoLarge).toHaveStyle({
-        backgroundColor: tokens.color.pillBlue,
+        backgroundColor: tokens.color.fadedBlue16,
         color: tokens.color.offBlack,
         fontSize: 16,
     });
 
     await expect(successLarge).toHaveStyle({
-        backgroundColor: tokens.color.pillGreen,
+        backgroundColor: tokens.color.fadedGreen16,
         color: tokens.color.offBlack,
         fontSize: 16,
     });
 
     await expect(warningLarge).toHaveStyle({
-        backgroundColor: tokens.color.pillGold,
+        backgroundColor: tokens.color.fadedGold16,
         color: tokens.color.offBlack,
         fontSize: 16,
     });
 
     await expect(criticalLarge).toHaveStyle({
-        backgroundColor: tokens.color.pillRed,
+        backgroundColor: tokens.color.fadedRed16,
         color: tokens.color.offBlack,
         fontSize: 16,
     });
