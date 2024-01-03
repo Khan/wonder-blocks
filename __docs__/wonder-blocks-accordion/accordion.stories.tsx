@@ -563,7 +563,7 @@ export const WithDropdown: StoryComponentType = {
                     </View>
                 </AccordionSection>
                 <AccordionSection header={`Multi Select`}>
-                    <View style={singleOpened && {height: 200}}>
+                    <View style={multiOpened && {height: 200}}>
                         <MultiSelect
                             selectedValues={values}
                             onChange={setValues}
