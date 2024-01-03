@@ -146,10 +146,10 @@ describe("Pill", () => {
         kind          | color
         ${"neutral"}  | ${tokens.color.offBlack8}
         ${"accent"}   | ${tokens.color.blue}
-        ${"info"}     | ${tokens.color.pillBlue}
-        ${"success"}  | ${tokens.color.pillGreen}
-        ${"warning"}  | ${tokens.color.pillGold}
-        ${"critical"} | ${tokens.color.pillRed}
+        ${"info"}     | ${tokens.color.fadedBlue16}
+        ${"success"}  | ${tokens.color.fadedGreen16}
+        ${"warning"}  | ${tokens.color.fadedGold16}
+        ${"critical"} | ${tokens.color.fadedRed16}
     `(
         "renders the correct background color for $kind kind",
         ({kind, color}) => {
