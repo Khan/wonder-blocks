@@ -360,6 +360,58 @@ export const CustomPopoverContent: StoryComponentType = {
         id: "custom-popover",
     } as PopoverArgs,
 };
+
+/**
+ * This example shows how the focus is managed when a popover is opened. If the
+ * popover is closed, the focus flows naturally. However, if the popover is
+ * opened, the focus is managed internally by the `Popover` component.
+ *
+ * The focus is managed in the following way:
+ * - When the popover is opened, the focus is set on the first focusable element
+ *  inside the popover.
+ * - When the popover is closed, the focus is returned to the element that
+ * triggered the popover.
+ * - If the popover is opened and the focus reaches the last focusable element
+ * inside the popover, the next tab will set focus on the next focusable
+ * element that exists after the PopoverAnchor (or trigger element).
+ * - If the focus is set to the first focusable element inside the popover, the
+ * next shift + tab will set focus on the PopoverAnchor element.
+ */
+export const KeyboardNavigation: StoryComponentType = {
+    render: () => {
+        return (
+            <View style={{flexDirection: "row", gap: 16}}>
+                <Button>First button</Button>
+                <Popover
+                    content={({close}) => (
+                        <PopoverContent
+                            closeButtonVisible
+                            title="Keyboard navigation"
+                            content="This example shows how the focus is managed when a popover is opened."
+                            actions={
+                                <View style={[styles.row, styles.actions]}>
+                                    <Button kind="tertiary">An action</Button>
+                                </View>
+                            }
+                        />
+                    )}
+                    placement="top"
+                >
+                    <Button>Open popover</Button>
+                </Popover>
+                <Button>Button after popover</Button>
+                <Button>Last button</Button>
+            </View>
+        );
+    },
+    parameters: {
+        // This example is behavior based, not visual.
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+};
+
 /**
  * Alignment example
  */

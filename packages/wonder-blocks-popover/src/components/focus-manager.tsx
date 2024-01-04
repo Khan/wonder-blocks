@@ -51,15 +51,14 @@ export default class FocusManager extends React.Component<Props> {
         this.addEventListeners();
     }
 
-    componentDidUpdate() {
-        this.addEventListeners();
-    }
-
     /**
      * Remove keydown listeners
      */
     componentWillUnmount() {
         const {anchorElement} = this.props;
+
+        // Reset focusability
+        this.changeFocusabilityInsidePopover(true);
 
         if (anchorElement) {
             // wait for styles to applied, then return the focus to the anchor
@@ -68,7 +67,7 @@ export default class FocusManager extends React.Component<Props> {
             anchorElement.removeEventListener(
                 "keydown",
                 this.handleKeydownPreviousFocusableElement,
-                true,
+                false,
             );
         }
 
@@ -76,7 +75,7 @@ export default class FocusManager extends React.Component<Props> {
             this.nextElementAfterPopover.removeEventListener(
                 "keydown",
                 this.handleKeydownNextFocusableElement,
-                true,
+                false,
             );
         }
     }
@@ -87,6 +86,11 @@ export default class FocusManager extends React.Component<Props> {
     focusableElementsInPopover: Array<HTMLElement> = [];
 
     /**
+     * A reference to the first and last sentinels
+     */
+    firstSentinel = React.createRef<HTMLDivElement>();
+    lastSentinel = React.createRef<HTMLDivElement>();
+    /**
      * Add keydown listeners
      */
     addEventListeners: () => void = () => {
@@ -96,7 +100,7 @@ export default class FocusManager extends React.Component<Props> {
             anchorElement.addEventListener(
                 "keydown",
                 this.handleKeydownPreviousFocusableElement,
-                true,
+                // true,
             );
         }
 
@@ -107,7 +111,7 @@ export default class FocusManager extends React.Component<Props> {
             this.nextElementAfterPopover.addEventListener(
                 "keydown",
                 this.handleKeydownNextFocusableElement,
-                true,
+                // true,
             );
         }
     };
@@ -177,6 +181,25 @@ export default class FocusManager extends React.Component<Props> {
     };
 
     /**
+     * Toggle focusability for all the focusable elements inside the popover.
+     * This is useful to prevent the user from tabbing into the popover when it
+     * reaches to the last focusable element within the document.
+     */
+    changeFocusabilityInsidePopover = (enabled = true) => {
+        const tabIndex = enabled ? "0" : "-1";
+
+        // Enable/disable focusability for all the focusable elements inside the
+        // popover.
+        this.focusableElementsInPopover.forEach((element) => {
+            element.setAttribute("tabIndex", tabIndex);
+        });
+
+        // Also update the sentinels
+        this.lastSentinel.current?.setAttribute("tabIndex", tabIndex);
+        this.firstSentinel.current?.setAttribute("tabIndex", tabIndex);
+    };
+
+    /**
      * Triggered when the focus is set to the last sentinel. This way, the focus
      * will be redirected to next element after the anchor element.
      */
@@ -216,28 +239,41 @@ export default class FocusManager extends React.Component<Props> {
         const {children} = this.props;
 
         return (
-            <React.Fragment>
+            <>
                 {/* First sentinel
                  * We set the sentinels to be position: fixed to make sure
                  * they're always in view, this prevents page scrolling when
                  * tabbing. */}
                 <div
+                    ref={this.firstSentinel}
                     tabIndex={0}
                     onFocus={this.handleFocusPreviousFocusableElement}
                     style={{position: "fixed"}}
                 />
-                <div ref={this.getComponentRootNode}>
+                <div
+                    ref={this.getComponentRootNode}
+                    onClick={() => {
+                        this.changeFocusabilityInsidePopover(true);
+                    }}
+                    onFocus={() => {
+                        this.changeFocusabilityInsidePopover(true);
+                    }}
+                    onBlur={() => {
+                        this.changeFocusabilityInsidePopover(false);
+                    }}
+                >
                     <InitialFocus initialFocusId={this.props.initialFocusId}>
                         {children}
                     </InitialFocus>
                 </div>
                 {/* last sentinel */}
                 <div
+                    ref={this.lastSentinel}
                     tabIndex={0}
                     onFocus={this.handleFocusNextFocusableElement}
                     style={{position: "fixed"}}
                 />
-            </React.Fragment>
+            </>
         );
     }
 }
