@@ -11,6 +11,7 @@
         {"path": "../wonder-blocks-core/tsconfig-build.json"},
         {"path": "../wonder-blocks-link/tsconfig-build.json"},
         {"path": "../wonder-blocks-spacing/tsconfig-build.json"},
+        {"path": "../wonder-blocks-theming/tsconfig-build.json"},
         {"path": "../wonder-blocks-typography/tsconfig-build.json"},
     ]
 }

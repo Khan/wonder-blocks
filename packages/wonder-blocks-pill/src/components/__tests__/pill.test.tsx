@@ -2,6 +2,8 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import {tokens} from "@khanacademy/wonder-blocks-theming";
+
 import Pill from "../pill";
 
 describe("Pill", () => {
@@ -96,4 +98,74 @@ describe("Pill", () => {
         // Assert
         expect(pillButton).not.toBeInTheDocument();
     });
+
+    test("renders the title when a string is passed in (small)", () => {
+        // Arrange, Act
+        render(
+            <Pill size="small" testId="pill-test-id">
+                Hello, world!
+            </Pill>,
+        );
+        const pill = screen.getByTestId("pill-test-id");
+
+        // Assert
+        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        // Font size should be at least 14px for accessibility.
+        expect(pill).toHaveStyle({
+            fontSize: 14,
+        });
+    });
+
+    test("renders the title when a string is passed in (large)", () => {
+        // Arrange, Act
+        render(
+            <Pill size="large" testId="pill-test-id">
+                Hello, world!
+            </Pill>,
+        );
+        const pill = screen.getByTestId("pill-test-id");
+
+        // Assert
+        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        expect(pill).toHaveStyle({fontSize: 16});
+    });
+
+    test("renders the title when a React node is passed in", () => {
+        // Arrange, Act
+        render(
+            <Pill>
+                <span>Hello, world!</span>
+            </Pill>,
+        );
+
+        // Assert
+        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+    });
+
+    test.each`
+        kind          | color
+        ${"neutral"}  | ${tokens.color.offBlack8}
+        ${"accent"}   | ${tokens.color.blue}
+        ${"info"}     | ${tokens.color.fadedBlue16}
+        ${"success"}  | ${tokens.color.fadedGreen16}
+        ${"warning"}  | ${tokens.color.fadedGold16}
+        ${"critical"} | ${tokens.color.fadedRed16}
+    `(
+        "renders the correct background color for $kind kind",
+        ({kind, color}) => {
+            // Arrange, Act
+            render(
+                <Pill kind={kind} testId="pill-test-id">
+                    Hello, world!
+                </Pill>,
+            );
+
+            const pill = screen.getByTestId("pill-test-id");
+
+            // Assert
+            expect(pill).toHaveStyle({
+                backgroundColor: color,
+            });
+        },
+    );
 });
