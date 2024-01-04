@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.10
+
+### Patch Changes
+
+-   Updated dependencies [80592e75]
+    -   @khanacademy/wonder-blocks-theming@1.3.0
+
 ## 1.1.9
 
 ### Patch Changes
