@@ -51,6 +51,10 @@ export default class FocusManager extends React.Component<Props> {
         this.addEventListeners();
     }
 
+    componentDidUpdate() {
+        this.addEventListeners();
+    }
+
     /**
      * Remove keydown listeners
      */
