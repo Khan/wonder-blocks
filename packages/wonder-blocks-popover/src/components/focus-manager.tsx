@@ -67,7 +67,6 @@ export default class FocusManager extends React.Component<Props> {
             anchorElement.removeEventListener(
                 "keydown",
                 this.handleKeydownPreviousFocusableElement,
-                false,
             );
         }
 
@@ -75,7 +74,6 @@ export default class FocusManager extends React.Component<Props> {
             this.nextElementAfterPopover.removeEventListener(
                 "keydown",
                 this.handleKeydownNextFocusableElement,
-                false,
             );
         }
     }
@@ -100,7 +98,6 @@ export default class FocusManager extends React.Component<Props> {
             anchorElement.addEventListener(
                 "keydown",
                 this.handleKeydownPreviousFocusableElement,
-                // true,
             );
         }
 
@@ -111,7 +108,6 @@ export default class FocusManager extends React.Component<Props> {
             this.nextElementAfterPopover.addEventListener(
                 "keydown",
                 this.handleKeydownNextFocusableElement,
-                // true,
             );
         }
     };
