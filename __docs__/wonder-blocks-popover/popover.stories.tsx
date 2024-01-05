@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -79,6 +80,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flex: 1,
         justifyContent: "space-between",
+    },
+    playground: {
+        border: `1px dashed ${Color.lightBlue}`,
+        marginTop: Spacing.large_24,
+        padding: Spacing.large_24,
+        flexDirection: "row",
+        gap: Spacing.medium_16,
     },
 });
 
@@ -360,6 +368,120 @@ export const CustomPopoverContent: StoryComponentType = {
         id: "custom-popover",
     } as PopoverArgs,
 };
+
+/**
+ * This example shows how the focus is managed when a popover is opened. If the
+ * popover is closed, the focus flows naturally. However, if the popover is
+ * opened, the focus is managed internally by the `Popover` component.
+ *
+ * The focus is managed in the following way:
+ * - When the popover is opened, the focus is set on the first focusable element
+ *  inside the popover.
+ * - When the popover is closed, the focus is returned to the element that
+ * triggered the popover.
+ * - If the popover is opened and the focus reaches the last focusable element
+ * inside the popover, the next tab will set focus on the next focusable
+ * element that exists after the PopoverAnchor (or trigger element).
+ * - If the focus is set to the first focusable element inside the popover, the
+ * next shift + tab will set focus on the PopoverAnchor element.
+ *
+ * **NOTE:** You can add/remove buttons after the trigger element by using the
+ * buttons at the top of the example.
+ */
+export const KeyboardNavigation: StoryComponentType = {
+    render: function Render() {
+        const [numButtonsAfter, setNumButtonsAfter] = React.useState(0);
+        const [numButtonsInside, setNumButtonsInside] = React.useState(1);
+
+        return (
+            <View>
+                <View style={[styles.row, {gap: Spacing.medium_16}]}>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsAfter(numButtonsAfter + 1);
+                        }}
+                    >
+                        Add button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsAfter(numButtonsAfter - 1);
+                            }
+                        }}
+                    >
+                        Remove button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsInside(numButtonsInside + 1);
+                        }}
+                    >
+                        Add button inside popover
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsInside(numButtonsInside - 1);
+                            }
+                        }}
+                    >
+                        Remove button inside popover
+                    </Button>
+                </View>
+                <View style={styles.playground}>
+                    <Button>First button</Button>
+                    <Popover
+                        content={({close}) => (
+                            <PopoverContent
+                                closeButtonVisible
+                                title="Keyboard navigation"
+                                content="This example shows how the focus is managed when a popover is opened."
+                                actions={
+                                    <View style={[styles.row, styles.actions]}>
+                                        {Array.from(
+                                            {length: numButtonsInside},
+                                            (_, index) => (
+                                                <Button
+                                                    onClick={() => {}}
+                                                    key={index}
+                                                    kind="tertiary"
+                                                >
+                                                    {`Button ${index + 1}`}
+                                                </Button>
+                                            ),
+                                        )}
+                                    </View>
+                                }
+                            />
+                        )}
+                        placement="top"
+                    >
+                        <Button>Open popover (trigger element)</Button>
+                    </Popover>
+                    {Array.from({length: numButtonsAfter}, (_, index) => (
+                        <Button onClick={() => {}} key={index}>
+                            {`Button ${index + 1}`}
+                        </Button>
+                    ))}
+                </View>
+            </View>
+        );
+    },
+    parameters: {
+        // This example is behavior based, not visual.
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+};
+
 /**
  * Alignment example
  */
