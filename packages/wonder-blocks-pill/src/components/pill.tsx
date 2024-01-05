@@ -5,7 +5,11 @@ import type {StyleDeclaration} from "aphrodite";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Body, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {
+    Body,
+    LabelSmall,
+    LabelXSmall,
+} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
@@ -18,6 +22,8 @@ export type PillKind =
     | "success"
     | "warning"
     | "critical";
+
+type PillSize = "small" | "medium" | "large";
 
 type Props = AriaProps & {
     /**
@@ -39,7 +45,7 @@ type Props = AriaProps & {
      * look and fully fits within a line of body text inline,
      * whereas a large pill contains normal body font size.
      */
-    size?: "small" | "large";
+    size?: PillSize;
     /**
      * The role the pill should have depending on its behavior.
      * By default, it has none. If pill is Clickable, this is automatically
@@ -67,7 +73,7 @@ type Props = AriaProps & {
 
 const PillInner = (props: {
     children: string | React.ReactElement<React.ComponentProps<Typography>>;
-    size: "small" | "large";
+    size: PillSize;
 }) => {
     const {children, size} = props;
 
@@ -76,10 +82,14 @@ const PillInner = (props: {
     }
 
     if (size === "small") {
-        return <LabelSmall>{props.children}</LabelSmall>;
+        return <LabelXSmall>{props.children}</LabelXSmall>;
     }
 
-    return <Body>{children}</Body>;
+    if (size === "large") {
+        return <Body>{children}</Body>;
+    }
+
+    return <LabelSmall>{children}</LabelSmall>;
 };
 
 /**
@@ -102,22 +112,14 @@ const Pill = React.forwardRef(function Pill(
         id,
         children,
         kind = "neutral",
-        size = "small",
+        size = "medium",
         role,
         onClick,
         style,
         testId,
     } = props;
 
-    const wrapperSizeStyle =
-        size === "small" ? pillStyles.wrapperSmall : pillStyles.wrapperLarge;
-    const colorStyles = _generateColorStyles(!!onClick, kind, size);
-
-    const defaultStyles = [
-        pillStyles.wrapper,
-        colorStyles.pill,
-        wrapperSizeStyle,
-    ];
+    const pillStyles = _generateStyles(!!onClick, kind, size);
 
     if (onClick) {
         return (
@@ -125,7 +127,7 @@ const Pill = React.forwardRef(function Pill(
                 id={id}
                 role={role}
                 onClick={onClick}
-                style={[defaultStyles, colorStyles.clickableWrapper, style]}
+                style={[pillStyles.pill, pillStyles.clickableWrapper, style]}
                 testId={testId}
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
             >
@@ -138,7 +140,7 @@ const Pill = React.forwardRef(function Pill(
         <View
             id={id}
             role={role}
-            style={[defaultStyles, style]}
+            style={[pillStyles.pill, style]}
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
         >
@@ -149,32 +151,10 @@ const Pill = React.forwardRef(function Pill(
 
 const styles: Record<string, any> = {};
 
-const pillStyles = StyleSheet.create({
-    wrapper: {
-        display: "inline-flex",
-        width: "fit-content",
-    },
-    wrapperSmall: {
-        paddingLeft: tokens.spacing.xSmall_8,
-        paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.spacing.xxSmall_6,
-        // Minimum tap area recommendation for a11y
-        height: tokens.spacing.large_24,
-    },
-    wrapperLarge: {
-        paddingLeft: tokens.spacing.small_12,
-        paddingRight: tokens.spacing.small_12,
-        paddingTop: tokens.spacing.xxSmall_6,
-        paddingBottom: tokens.spacing.xxSmall_6,
-        borderRadius: tokens.spacing.large_24,
-        height: tokens.spacing.xLarge_32,
-    },
-});
-
-const _generateColorStyles = (
+const _generateStyles = (
     clickable: boolean,
     kind: PillKind,
-    size: "small" | "large",
+    size: PillSize,
 ) => {
     const pillType = `${kind}-${clickable.toString()}-${size.toString()}`;
     if (styles[pillType]) {
@@ -216,12 +196,46 @@ const _generateColorStyles = (
     const activeOutlineColor =
         kind === "critical" ? tokens.color.activeRed : tokens.color.activeBlue;
 
-    const colorStyles: StyleDeclaration = {
+    let wrapperStyles;
+    switch (size) {
+        case "small":
+            wrapperStyles = {
+                paddingLeft: tokens.spacing.xSmall_8,
+                paddingRight: tokens.spacing.xSmall_8,
+                borderRadius: tokens.spacing.xxSmall_6,
+                height: 20,
+            };
+            break;
+        case "large":
+            wrapperStyles = {
+                paddingLeft: tokens.spacing.small_12,
+                paddingRight: tokens.spacing.small_12,
+                paddingTop: tokens.spacing.xxSmall_6,
+                paddingBottom: tokens.spacing.xxSmall_6,
+                borderRadius: tokens.spacing.large_24,
+                height: tokens.spacing.xLarge_32,
+            };
+            break;
+        default:
+            // Medium size
+            wrapperStyles = {
+                paddingLeft: tokens.spacing.xSmall_8,
+                paddingRight: tokens.spacing.xSmall_8,
+                borderRadius: tokens.spacing.xxSmall_6,
+                // Minimum tap area recommendation for a11y
+                height: tokens.spacing.large_24,
+            };
+    }
+
+    const pillStyles: StyleDeclaration = {
         pill: {
             backgroundColor: backgroundColor,
             color: textColor,
             alignItems: "center",
             justifyContent: "center",
+            display: "inline-flex",
+            width: "fit-content",
+            ...wrapperStyles,
         },
         clickableWrapper: {
             outline: "none",
@@ -242,7 +256,7 @@ const _generateColorStyles = (
         },
     };
 
-    styles[pillType] = StyleSheet.create(colorStyles);
+    styles[pillType] = StyleSheet.create(pillStyles);
     return styles[pillType];
 };
 
