@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-pill
 
+## 1.1.0
+
+### Minor Changes
+
+-   80592e75: Added more colors to Pill, small pills are now 24px tall with 14px font size. Tokens (theming) now include pill colors.
+
+### Patch Changes
+
+-   Updated dependencies [80592e75]
+    -   @khanacademy/wonder-blocks-theming@1.3.0
+
 ## 1.0.15
 
 ### Patch Changes
