@@ -52,6 +52,8 @@ export default class FocusManager extends React.Component<Props> {
     }
 
     componentDidUpdate() {
+        // Ensure that the event listeners are not duplicated.
+        this.removeEventListeners();
         this.addEventListeners();
     }
 
@@ -67,31 +69,26 @@ export default class FocusManager extends React.Component<Props> {
         if (anchorElement) {
             // wait for styles to applied, then return the focus to the anchor
             setTimeout(() => anchorElement.focus(), 0);
-
-            anchorElement.removeEventListener(
-                "keydown",
-                this.handleKeydownPreviousFocusableElement,
-            );
         }
 
-        if (this.nextElementAfterPopover) {
-            this.nextElementAfterPopover.removeEventListener(
-                "keydown",
-                this.handleKeydownNextFocusableElement,
-            );
-        }
+        this.removeEventListeners();
     }
 
     /**
      * List of focusable elements within the popover content
      */
-    focusableElementsInPopover: Array<HTMLElement> = [];
+    elementsThatCanBeFocusableInsidePopover: Array<HTMLElement> = [];
 
     /**
-     * A reference to the first and last sentinels
+     * The first focusable element inside the popover (if it exists)
      */
-    firstSentinel = React.createRef<HTMLDivElement>();
-    lastSentinel = React.createRef<HTMLDivElement>();
+    firstFocusableElementInPopover: HTMLElement | null | undefined = null;
+
+    /**
+     * The last focusable element inside the popover (if it exists)
+     */
+    lastFocusableElementInPopover: HTMLElement | null | undefined = null;
+
     /**
      * Add keydown listeners
      */
@@ -108,11 +105,83 @@ export default class FocusManager extends React.Component<Props> {
         // tries to get the next focusable element outside of the popover
         this.nextElementAfterPopover = this.getNextFocusableElement();
 
+        // NOTE: This is only needed when the trigger element is the last
+        // focusable element in the document. It's specially useful for when the
+        // focus is set in the address bar and the user presses `shift+tab` to
+        // focus back on the document.
+        if (!this.nextElementAfterPopover) {
+            window.addEventListener("blur", () => {
+                this.changeFocusabilityInsidePopover(true);
+            });
+        }
+
+        if (this.firstFocusableElementInPopover) {
+            this.firstFocusableElementInPopover.addEventListener(
+                "keydown",
+                this.handleKeydownFirstFocusableElement,
+            );
+        }
+
+        if (this.lastFocusableElementInPopover) {
+            this.lastFocusableElementInPopover.addEventListener(
+                "keydown",
+                this.handleKeydownLastFocusableElement,
+            );
+        }
+
         if (this.nextElementAfterPopover) {
             this.nextElementAfterPopover.addEventListener(
                 "keydown",
                 this.handleKeydownNextFocusableElement,
             );
+        }
+    };
+
+    removeEventListeners() {
+        const {anchorElement} = this.props;
+
+        if (anchorElement) {
+            anchorElement.removeEventListener(
+                "keydown",
+                this.handleKeydownPreviousFocusableElement,
+            );
+        }
+
+        if (this.firstFocusableElementInPopover) {
+            this.firstFocusableElementInPopover.removeEventListener(
+                "keydown",
+                this.handleKeydownFirstFocusableElement,
+            );
+        }
+
+        if (this.lastFocusableElementInPopover) {
+            this.lastFocusableElementInPopover.removeEventListener(
+                "keydown",
+                this.handleKeydownLastFocusableElement,
+            );
+        }
+
+        if (this.nextElementAfterPopover) {
+            this.nextElementAfterPopover.removeEventListener(
+                "keydown",
+                this.handleKeydownNextFocusableElement,
+            );
+        }
+    }
+
+    handleKeydownFirstFocusableElement: (e: KeyboardEvent) => void = (e) => {
+        // It will try focus only if the user is pressing `Shift+tab`
+        if (e.key === "Tab" && e.shiftKey) {
+            e.preventDefault();
+            this.props.anchorElement?.focus();
+        }
+    };
+
+    handleKeydownLastFocusableElement: (e: KeyboardEvent) => void = (e) => {
+        // It will try focus only if the user is pressing `Shift+tab`
+        if (this.nextElementAfterPopover && e.key === "Tab" && !e.shiftKey) {
+            e.preventDefault();
+            this.nextElementAfterPopover?.focus();
         }
     };
 
@@ -129,18 +198,27 @@ export default class FocusManager extends React.Component<Props> {
         // get the total list of focusable elements within the document
         const focusableElements = findFocusableNodes(document);
 
-        // get anchor element index
-        const anchorIndex = focusableElements.indexOf(anchorElement);
+        const focusableElementsOutside = focusableElements.filter((element) => {
+            const index =
+                this.elementsThatCanBeFocusableInsidePopover.indexOf(element);
+            return index < 0;
+        });
 
-        if (anchorIndex >= 0) {
+        // get anchor element index
+        const anchorIndex = focusableElementsOutside.indexOf(anchorElement);
+
+        if (
+            anchorIndex >= 0 &&
+            anchorIndex !== focusableElementsOutside.length - 1
+        ) {
             // guess next focusable element index
             const nextElementIndex =
-                anchorIndex < focusableElements.length - 1
+                anchorIndex < focusableElementsOutside.length - 1
                     ? anchorIndex + 1
                     : 0;
 
             // get next element's DOM reference
-            return focusableElements[nextElementIndex];
+            return focusableElementsOutside[nextElementIndex];
         }
 
         return;
@@ -167,7 +245,17 @@ export default class FocusManager extends React.Component<Props> {
         this.rootNode = rootNode as HTMLElement;
 
         // store the list of possible focusable elements inside the popover
-        this.focusableElementsInPopover = findFocusableNodes(this.rootNode);
+        this.elementsThatCanBeFocusableInsidePopover = findFocusableNodes(
+            this.rootNode,
+        );
+
+        // find the first and last focusable elements inside the popover
+        this.firstFocusableElementInPopover =
+            this.elementsThatCanBeFocusableInsidePopover[0];
+        this.lastFocusableElementInPopover =
+            this.elementsThatCanBeFocusableInsidePopover[
+                this.elementsThatCanBeFocusableInsidePopover.length - 1
+            ];
     };
 
     /**
@@ -190,13 +278,9 @@ export default class FocusManager extends React.Component<Props> {
 
         // Enable/disable focusability for all the focusable elements inside the
         // popover.
-        this.focusableElementsInPopover.forEach((element) => {
+        this.elementsThatCanBeFocusableInsidePopover.forEach((element) => {
             element.setAttribute("tabIndex", tabIndex);
         });
-
-        // Also update the sentinels
-        this.lastSentinel.current?.setAttribute("tabIndex", tabIndex);
-        this.firstSentinel.current?.setAttribute("tabIndex", tabIndex);
     };
 
     /**
@@ -218,7 +302,7 @@ export default class FocusManager extends React.Component<Props> {
         // It will try focus only if the user is pressing `tab`
         if (e.key === "Tab" && !e.shiftKey) {
             e.preventDefault();
-            this.focusableElementsInPopover[0].focus();
+            this.firstFocusableElementInPopover?.focus();
         }
     };
 
@@ -230,8 +314,7 @@ export default class FocusManager extends React.Component<Props> {
         // It will try focus only if the user is pressing `Shift+tab`
         if (e.key === "Tab" && e.shiftKey) {
             e.preventDefault();
-            const lastElementIndex = this.focusableElementsInPopover.length - 1;
-            this.focusableElementsInPopover[lastElementIndex].focus();
+            this.lastFocusableElementInPopover?.focus();
         }
     };
 
@@ -239,41 +322,22 @@ export default class FocusManager extends React.Component<Props> {
         const {children} = this.props;
 
         return (
-            <>
-                {/* First sentinel
-                 * We set the sentinels to be position: fixed to make sure
-                 * they're always in view, this prevents page scrolling when
-                 * tabbing. */}
-                <div
-                    ref={this.firstSentinel}
-                    tabIndex={0}
-                    onFocus={this.handleFocusPreviousFocusableElement}
-                    style={{position: "fixed"}}
-                />
-                <div
-                    ref={this.getComponentRootNode}
-                    onClick={() => {
-                        this.changeFocusabilityInsidePopover(true);
-                    }}
-                    onFocus={() => {
-                        this.changeFocusabilityInsidePopover(true);
-                    }}
-                    onBlur={() => {
-                        this.changeFocusabilityInsidePopover(false);
-                    }}
-                >
-                    <InitialFocus initialFocusId={this.props.initialFocusId}>
-                        {children}
-                    </InitialFocus>
-                </div>
-                {/* last sentinel */}
-                <div
-                    ref={this.lastSentinel}
-                    tabIndex={0}
-                    onFocus={this.handleFocusNextFocusableElement}
-                    style={{position: "fixed"}}
-                />
-            </>
+            <div
+                ref={this.getComponentRootNode}
+                onClick={() => {
+                    this.changeFocusabilityInsidePopover(true);
+                }}
+                onFocus={() => {
+                    this.changeFocusabilityInsidePopover(true);
+                }}
+                onBlur={() => {
+                    this.changeFocusabilityInsidePopover(false);
+                }}
+            >
+                <InitialFocus initialFocusId={this.props.initialFocusId}>
+                    {children}
+                </InitialFocus>
+            </div>
         );
     }
 }

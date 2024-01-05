@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -79,6 +80,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flex: 1,
         justifyContent: "space-between",
+    },
+    playground: {
+        border: `1px dashed ${Color.lightBlue}`,
+        marginTop: Spacing.large_24,
+        padding: Spacing.large_24,
+        flexDirection: "row",
+        gap: Spacing.medium_16,
     },
 });
 
@@ -376,31 +384,64 @@ export const CustomPopoverContent: StoryComponentType = {
  * element that exists after the PopoverAnchor (or trigger element).
  * - If the focus is set to the first focusable element inside the popover, the
  * next shift + tab will set focus on the PopoverAnchor element.
+ *
+ * **NOTE:** You can add/remove buttons after the trigger element by using the
+ * buttons at the top of the example.
  */
 export const KeyboardNavigation: StoryComponentType = {
-    render: () => {
+    render: function Render() {
+        const [numButtons, setNumButtons] = React.useState(0);
+
         return (
-            <View style={{flexDirection: "row", gap: 16}}>
-                <Button>First button</Button>
-                <Popover
-                    content={({close}) => (
-                        <PopoverContent
-                            closeButtonVisible
-                            title="Keyboard navigation"
-                            content="This example shows how the focus is managed when a popover is opened."
-                            actions={
-                                <View style={[styles.row, styles.actions]}>
-                                    <Button kind="tertiary">An action</Button>
-                                </View>
+            <View>
+                <View style={[styles.row, {gap: Spacing.medium_16}]}>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtons(numButtons + 1);
+                        }}
+                    >
+                        Add button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtons > 0) {
+                                setNumButtons(numButtons - 1);
                             }
-                        />
-                    )}
-                    placement="top"
-                >
-                    <Button>Open popover</Button>
-                </Popover>
-                <Button>Button after popover</Button>
-                <Button>Last button</Button>
+                        }}
+                    >
+                        Remove button after trigger element
+                    </Button>
+                </View>
+                <View style={styles.playground}>
+                    <Button>First button</Button>
+                    <Popover
+                        content={({close}) => (
+                            <PopoverContent
+                                closeButtonVisible
+                                title="Keyboard navigation"
+                                content="This example shows how the focus is managed when a popover is opened."
+                                actions={
+                                    <View style={[styles.row, styles.actions]}>
+                                        <Button kind="tertiary">
+                                            An action
+                                        </Button>
+                                    </View>
+                                }
+                            />
+                        )}
+                        placement="top"
+                    >
+                        <Button>Open popover (trigger element)</Button>
+                    </Popover>
+                    {Array.from({length: numButtons}, (_, index) => (
+                        <Button onClick={() => {}} key={index}>
+                            {`Button ${index + 1}`}
+                        </Button>
+                    ))}
+                </View>
             </View>
         );
     },
