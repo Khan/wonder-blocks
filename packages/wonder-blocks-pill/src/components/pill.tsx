@@ -23,7 +23,7 @@ export type PillKind =
     | "warning"
     | "critical";
 
-type PillSize = "small" | "medium" | "large";
+export type PillSize = "small" | "medium" | "large";
 
 type Props = AriaProps & {
     /**
