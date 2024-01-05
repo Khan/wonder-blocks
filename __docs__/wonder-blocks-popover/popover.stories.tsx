@@ -390,7 +390,8 @@ export const CustomPopoverContent: StoryComponentType = {
  */
 export const KeyboardNavigation: StoryComponentType = {
     render: function Render() {
-        const [numButtons, setNumButtons] = React.useState(0);
+        const [numButtonsAfter, setNumButtonsAfter] = React.useState(0);
+        const [numButtonsInside, setNumButtonsInside] = React.useState(0);
 
         return (
             <View>
@@ -398,7 +399,7 @@ export const KeyboardNavigation: StoryComponentType = {
                     <Button
                         kind="secondary"
                         onClick={() => {
-                            setNumButtons(numButtons + 1);
+                            setNumButtonsAfter(numButtonsAfter + 1);
                         }}
                     >
                         Add button after trigger element
@@ -407,12 +408,31 @@ export const KeyboardNavigation: StoryComponentType = {
                         kind="secondary"
                         color="destructive"
                         onClick={() => {
-                            if (numButtons > 0) {
-                                setNumButtons(numButtons - 1);
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsAfter(numButtonsAfter - 1);
                             }
                         }}
                     >
                         Remove button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsInside(numButtonsInside + 1);
+                        }}
+                    >
+                        Add button inside popover
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsInside(numButtonsInside - 1);
+                            }
+                        }}
+                    >
+                        Remove button inside popover
                     </Button>
                 </View>
                 <View style={styles.playground}>
@@ -425,9 +445,18 @@ export const KeyboardNavigation: StoryComponentType = {
                                 content="This example shows how the focus is managed when a popover is opened."
                                 actions={
                                     <View style={[styles.row, styles.actions]}>
-                                        <Button kind="tertiary">
-                                            An action
-                                        </Button>
+                                        {Array.from(
+                                            {length: numButtonsInside},
+                                            (_, index) => (
+                                                <Button
+                                                    onClick={() => {}}
+                                                    key={index}
+                                                    kind="tertiary"
+                                                >
+                                                    {`Button ${index + 1}`}
+                                                </Button>
+                                            ),
+                                        )}
                                     </View>
                                 }
                             />
@@ -436,7 +465,7 @@ export const KeyboardNavigation: StoryComponentType = {
                     >
                         <Button>Open popover (trigger element)</Button>
                     </Popover>
-                    {Array.from({length: numButtons}, (_, index) => (
+                    {Array.from({length: numButtonsAfter}, (_, index) => (
                         <Button onClick={() => {}} key={index}>
                             {`Button ${index + 1}`}
                         </Button>

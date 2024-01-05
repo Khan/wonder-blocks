@@ -369,7 +369,12 @@ describe("Popover", () => {
                             <PopoverContent
                                 title="Popover title"
                                 content="content"
-                                actions={<Button>Button inside popover</Button>}
+                                actions={
+                                    <>
+                                        <Button>Button 1 inside popover</Button>
+                                        <Button>Button 2 inside popover</Button>
+                                    </>
+                                }
                             />
                         }
                     >
@@ -390,10 +395,10 @@ describe("Popover", () => {
             await screen.findByRole("dialog");
 
             // Assert
-            // Focus should move to the button inside the popover
+            // Focus should move to the first button inside the popover
             expect(
                 screen.getByRole("button", {
-                    name: "Button inside popover",
+                    name: "Button 1 inside popover",
                 }),
             ).toHaveFocus();
         });

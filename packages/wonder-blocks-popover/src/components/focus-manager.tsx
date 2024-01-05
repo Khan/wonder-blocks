@@ -102,6 +102,21 @@ export default class FocusManager extends React.Component<Props> {
             );
         }
 
+        if (this.rootNode) {
+            // store the list of possible focusable elements inside the popover
+            this.elementsThatCanBeFocusableInsidePopover = findFocusableNodes(
+                this.rootNode,
+            );
+
+            // find the first and last focusable elements inside the popover
+            this.firstFocusableElementInPopover =
+                this.elementsThatCanBeFocusableInsidePopover[0];
+            this.lastFocusableElementInPopover =
+                this.elementsThatCanBeFocusableInsidePopover[
+                    this.elementsThatCanBeFocusableInsidePopover.length - 1
+                ];
+        }
+
         // tries to get the next focusable element outside of the popover
         this.nextElementAfterPopover = this.getNextFocusableElement();
 
@@ -145,6 +160,12 @@ export default class FocusManager extends React.Component<Props> {
                 "keydown",
                 this.handleKeydownPreviousFocusableElement,
             );
+        }
+
+        if (!this.nextElementAfterPopover) {
+            window.removeEventListener("blur", () => {
+                this.changeFocusabilityInsidePopover(true);
+            });
         }
 
         if (this.firstFocusableElementInPopover) {
@@ -243,19 +264,6 @@ export default class FocusManager extends React.Component<Props> {
         }
 
         this.rootNode = rootNode as HTMLElement;
-
-        // store the list of possible focusable elements inside the popover
-        this.elementsThatCanBeFocusableInsidePopover = findFocusableNodes(
-            this.rootNode,
-        );
-
-        // find the first and last focusable elements inside the popover
-        this.firstFocusableElementInPopover =
-            this.elementsThatCanBeFocusableInsidePopover[0];
-        this.lastFocusableElementInPopover =
-            this.elementsThatCanBeFocusableInsidePopover[
-                this.elementsThatCanBeFocusableInsidePopover.length - 1
-            ];
     };
 
     /**
