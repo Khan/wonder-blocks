@@ -391,7 +391,7 @@ export const CustomPopoverContent: StoryComponentType = {
 export const KeyboardNavigation: StoryComponentType = {
     render: function Render() {
         const [numButtonsAfter, setNumButtonsAfter] = React.useState(0);
-        const [numButtonsInside, setNumButtonsInside] = React.useState(0);
+        const [numButtonsInside, setNumButtonsInside] = React.useState(1);
 
         return (
             <View>
