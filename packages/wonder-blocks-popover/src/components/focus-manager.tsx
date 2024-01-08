@@ -61,15 +61,8 @@ export default class FocusManager extends React.Component<Props> {
      * Remove keydown listeners
      */
     componentWillUnmount() {
-        const {anchorElement} = this.props;
-
         // Reset focusability
         this.changeFocusabilityInsidePopover(true);
-
-        if (anchorElement) {
-            // wait for styles to applied, then return the focus to the anchor
-            setTimeout(() => anchorElement.focus(), 0);
-        }
 
         this.removeEventListeners();
     }

@@ -174,9 +174,16 @@ export default class Popover extends React.Component<Props, State> {
     /**
      * Popover dialog closed
      */
-    handleClose: () => void = () => {
+    handleClose: (shouldReturnFocus?: boolean) => void = (
+        shouldReturnFocus = true,
+    ) => {
+        const {anchorElement} = this.state;
         this.setState({opened: false}, () => {
             this.props.onClose?.();
+
+            if (shouldReturnFocus) {
+                anchorElement?.focus();
+            }
         });
     };
 
@@ -185,7 +192,7 @@ export default class Popover extends React.Component<Props, State> {
      */
     handleOpen: () => void = () => {
         if (this.props.dismissEnabled && this.state.opened) {
-            this.setState({opened: false});
+            this.handleClose(true);
         } else {
             this.setState({opened: true});
         }

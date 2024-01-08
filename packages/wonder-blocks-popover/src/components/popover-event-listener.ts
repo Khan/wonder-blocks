@@ -1,5 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {isFocusable} from "../util/util";
 
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
@@ -8,7 +9,7 @@ type Props = {
     /**
      * Called when `esc` is pressed
      */
-    onClose: () => unknown;
+    onClose: (shouldReturnFocus: boolean) => unknown;
     /**
      * Popover Content ref.
      * Will close the popover when clicking outside this element.
@@ -59,7 +60,9 @@ export default class PopoverEventListener extends React.Component<
             // unexpectedly cancels multiple things.
             e.preventDefault();
             e.stopPropagation();
-            this.props.onClose();
+            // In the case of the Escape key, we should return focus to the
+            // trigger button.
+            this.props.onClose(true);
         }
     };
 
@@ -77,7 +80,13 @@ export default class PopoverEventListener extends React.Component<
             // Only allow click to cancel one thing at a time.
             e.preventDefault();
             e.stopPropagation();
-            this.props.onClose();
+
+            // Determine if the focus must go to a focusable/interactive
+            // element.
+            const shouldReturnFocus = !isFocusable(e.target as any);
+            // If that's the case, we need to prevent the default behavior of
+            // returning the focus to the trigger button.
+            this.props.onClose(shouldReturnFocus);
         }
     };
 
