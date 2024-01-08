@@ -352,6 +352,42 @@ WithInitialFocusId.parameters = {
 };
 
 /**
+ * You can use the `closedFocusId` prop on the `Popover` component to specify
+ * where to set the focus after the popover dialog has been closed. This is
+ * useful for cases when you need to return the focus to a specific element.
+ *
+ * In this example, `closedFocusId` is set to the ID of the button labeled
+ * "Focus here after close.", and it means that the focus will be set on that
+ * button after the popover dialog has been closed/dismissed.
+ */
+export const WithClosedFocusId: StoryComponentType = {
+    name: "With closedFocusId",
+    render: () => (
+        <View style={{gap: 20}}>
+            <Button id="button-to-focus-on">Focus here after close</Button>
+            <Popover
+                dismissEnabled={true}
+                closedFocusId="button-to-focus-on"
+                content={
+                    <PopoverContent
+                        closeButtonVisible={true}
+                        title="Returning focus to a specific element"
+                        content='After dismissing the popover, the focus will be set on the button labeled "Focus here after close."'
+                    />
+                }
+            >
+                <Button>Open popover</Button>
+            </Popover>
+        </View>
+    ),
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
  * Popovers can have custom layouts. This is done by using the
  * `PopoverContentCore` component.
  *
