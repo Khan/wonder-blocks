@@ -1,6 +1,7 @@
 import {Meta, Canvas} from "@storybook/blocks";
 
-import {tokens, useScopedTheme} from "@khanacademy/wonder-blocks-theming";
+import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 import {WithScopedThemeExample} from "./theme-examples";
 
@@ -26,7 +27,8 @@ function withScopedTheme<T>(
 
 ```tsx
 import {StyleSheet} from "aphrodite";
-import {withScopedTheme, ThemedStylesFn, tokens} from "@khanacademy/wonder-blocks-theming";
+import {withScopedTheme, ThemedStylesFn} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 // 👉 1. Define the theme.
 const defaultTheme = {

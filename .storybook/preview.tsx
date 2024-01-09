@@ -2,7 +2,7 @@ import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {configure} from "@storybook/testing-library";
 
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
@@ -55,15 +55,15 @@ const parameters = {
         values: [
             {
                 name: "light",
-                value: tokens.color.white,
+                value: color.white,
             },
             {
                 name: "darkBlue",
-                value: tokens.color.darkBlue,
+                value: color.darkBlue,
             },
             {
                 name: "khanmigo",
-                value: tokens.color.eggplant,
+                value: color.eggplant,
             },
         ],
     },

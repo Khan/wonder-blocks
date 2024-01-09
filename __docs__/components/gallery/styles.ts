@@ -1,6 +1,6 @@
 import {StyleSheet} from "aphrodite";
 
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 export const styles = StyleSheet.create({
     section: {
@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     sectionLabel: {
-        marginTop: tokens.spacing.xLarge_32,
-        marginBottom: tokens.spacing.large_24,
+        marginTop: spacing.xLarge_32,
+        marginBottom: spacing.large_24,
     },
     centerContent: {
         width: "fit-content",

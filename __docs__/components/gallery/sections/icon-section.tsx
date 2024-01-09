@@ -5,7 +5,7 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
@@ -59,6 +59,6 @@ const localStyles = StyleSheet.create({
         alignItems: "end",
     },
     icon: {
-        marginRight: tokens.spacing.medium_16,
+        marginRight: spacing.medium_16,
     },
 });

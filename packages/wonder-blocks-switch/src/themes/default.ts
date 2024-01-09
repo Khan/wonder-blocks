@@ -1,4 +1,4 @@
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
     color: {
