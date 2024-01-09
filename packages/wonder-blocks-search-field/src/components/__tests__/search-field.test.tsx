@@ -51,6 +51,24 @@ describe("SearchField", () => {
         expect(input).toHaveAttribute("aria-label", "some-aria-label");
     });
 
+    test("className is passed down", () => {
+        // Arrange
+
+        // Act
+        render(
+            <SearchField
+                value=""
+                onChange={() => {}}
+                testId="search-field-test"
+                className="some-class-name"
+            />,
+        );
+
+        // Assert
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveClass("some-class-name");
+    });
+
     test("receives focus on click", () => {
         // Arrange
         render(

@@ -52,6 +52,10 @@ type Props = AriaProps & {
      */
     style?: StyleType;
     /**
+     * Optional CSS classes for the input field.
+     */
+    className?: string;
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string;

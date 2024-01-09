@@ -96,6 +96,10 @@ type Props = AriaProps & {
      */
     style?: StyleType;
     /**
+     * Optional CSS classes for the entire dropdown component.
+     */
+    className?: string;
+    /**
      * Optional test ID for e2e testing.
      */
     testId?: string;

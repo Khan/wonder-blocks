@@ -13,11 +13,11 @@ import SearchField from "@khanacademy/wonder-blocks-search-field";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
+import SearchFieldArgtypes from "./search-field.argtypes";
 
 export default {
     component: SearchField,
     title: "SearchField",
-    args: {disabled: false, placeholder: "Placeholder"},
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -26,6 +26,7 @@ export default {
             />
         ),
     },
+    argTypes: SearchFieldArgtypes,
 } as Meta<typeof SearchField>;
 
 type StoryComponentType = StoryObj<typeof SearchField>;
