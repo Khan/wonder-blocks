@@ -34,6 +34,7 @@
         {"path": "./packages/wonder-blocks-testing/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-theming/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-timing/tsconfig-build.json"},
+        {"path": "./packages/wonder-blocks-tokens/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-toolbar/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-tooltip/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-typography/tsconfig-build.json"},
