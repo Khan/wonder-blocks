@@ -30,10 +30,19 @@ type Props = AriaProps & {
      */
     value: string;
     /**
+     * The name for the input control. This is submitted along with
+     * the form data.
+     */
+    name?: string;
+    /**
      * Provide hints or examples of what to enter. This shows up as
      * a grayed out text in the field before a value is entered.
      */
     placeholder?: string;
+    /**
+     * Determines the type of input field to render. Defaults to "text".
+     */
+    type?: "text" | "search";
     /**
      * Whether this field should autofocus on page load.
      */
@@ -117,6 +126,7 @@ const SearchField: React.ForwardRefExoticComponent<
         id,
         value,
         placeholder,
+        type,
         style,
         testId,
         onClick,
@@ -170,7 +180,7 @@ const SearchField: React.ForwardRefExoticComponent<
                     />
                     <TextField
                         id={`${uniqueId}-field`}
-                        type="search"
+                        type={type || "text"}
                         autoFocus={autoFocus}
                         disabled={disabled}
                         light={light}

@@ -105,6 +105,20 @@ describe("TextField", () => {
         expect(input).toHaveAttribute("type", type);
     });
 
+    it("name prop is passed to the input element", () => {
+        // Arrange
+        const name = "some-name";
+
+        // Act
+        render(
+            <TextField id={"tf-1"} name={name} value="" onChange={() => {}} />,
+        );
+
+        // Assert
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("name", name);
+    });
+
     it("value prop is passed to the input element", () => {
         // Arrange
         const value = "Text";

@@ -69,6 +69,42 @@ describe("SearchField", () => {
         expect(input).toHaveClass("some-class-name");
     });
 
+    test("name is passed down", () => {
+        // Arrange
+
+        // Act
+        render(
+            <SearchField
+                value=""
+                onChange={() => {}}
+                testId="search-field-test"
+                name="some-name"
+            />,
+        );
+
+        // Assert
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("name", "some-name");
+    });
+
+    test("type is passed down", () => {
+        // Arrange
+
+        // Act
+        render(
+            <SearchField
+                value=""
+                onChange={() => {}}
+                testId="search-field-test"
+                type="search"
+            />,
+        );
+
+        // Assert
+        const input = screen.getByRole("searchbox");
+        expect(input).toHaveAttribute("type", "search");
+    });
+
     test("receives focus on click", () => {
         // Arrange
         render(

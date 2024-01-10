@@ -34,6 +34,19 @@ export default {
         },
         control: {type: "text"},
     },
+    name: {
+        description: `The name for the input control. This is submitted along
+            with the form data.`,
+        type: {name: "string", required: false},
+        table: {
+            type: {
+                summary: "string",
+            },
+        },
+        control: {
+            type: "text",
+        },
+    },
     placeholder: {
         description: `Provide hints or examples of what to enter.
             This shows up as a grayed out text in the field before
@@ -45,6 +58,21 @@ export default {
         },
         control: {
             type: "text",
+        },
+    },
+    type: {
+        description: `The type of input field to render. Defaults to "text".`,
+        table: {
+            type: {
+                summary: `"text" | "search"`,
+            },
+            defaultValue: {
+                summary: '"text"',
+            },
+        },
+        control: {
+            type: "select",
+            options: ["text", "search"],
         },
     },
     autoFocus: {
