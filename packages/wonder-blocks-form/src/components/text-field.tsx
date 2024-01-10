@@ -8,7 +8,13 @@ import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography"
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
-export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
+export type TextFieldType =
+    | "text"
+    | "password"
+    | "email"
+    | "number"
+    | "search"
+    | "tel";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
