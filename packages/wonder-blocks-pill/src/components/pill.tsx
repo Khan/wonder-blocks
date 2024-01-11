@@ -119,7 +119,26 @@ const Pill = React.forwardRef(function Pill(
         testId,
     } = props;
 
-    const pillStyles = _generateStyles(!!onClick, kind, size);
+    let wrapperSizeStyle;
+
+    switch (size) {
+        case "small":
+            wrapperSizeStyle = pillStyles.wrapperSmall;
+            break;
+        case "large":
+            wrapperSizeStyle = pillStyles.wrapperLarge;
+            break;
+        default:
+            wrapperSizeStyle = pillStyles.wrapperMedium;
+    }
+
+    const colorStyles = _generateColorStyles(!!onClick, kind);
+
+    const defaultStyles = [
+        pillStyles.wrapper,
+        colorStyles.pill,
+        wrapperSizeStyle,
+    ];
 
     if (onClick) {
         return (
@@ -127,7 +146,7 @@ const Pill = React.forwardRef(function Pill(
                 id={id}
                 role={role}
                 onClick={onClick}
-                style={[pillStyles.pill, pillStyles.clickableWrapper, style]}
+                style={[defaultStyles, colorStyles.clickableWrapper, style]}
                 testId={testId}
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
             >
@@ -140,7 +159,7 @@ const Pill = React.forwardRef(function Pill(
         <View
             id={id}
             role={role}
-            style={[pillStyles.pill, style]}
+            style={[defaultStyles, style]}
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
         >
@@ -149,14 +168,38 @@ const Pill = React.forwardRef(function Pill(
     );
 });
 
+const pillStyles = StyleSheet.create({
+    wrapper: {
+        display: "inline-flex",
+        width: "fit-content",
+    },
+    wrapperSmall: {
+        paddingLeft: tokens.spacing.xSmall_8,
+        paddingRight: tokens.spacing.xSmall_8,
+        borderRadius: tokens.spacing.xxSmall_6,
+        height: 20,
+    },
+    wrapperMedium: {
+        paddingLeft: tokens.spacing.xSmall_8,
+        paddingRight: tokens.spacing.xSmall_8,
+        borderRadius: tokens.spacing.xxSmall_6,
+        // Minimum tap area recommendation for a11y
+        height: tokens.spacing.large_24,
+    },
+    wrapperLarge: {
+        paddingLeft: tokens.spacing.small_12,
+        paddingRight: tokens.spacing.small_12,
+        paddingTop: tokens.spacing.xxSmall_6,
+        paddingBottom: tokens.spacing.xxSmall_6,
+        borderRadius: tokens.spacing.large_24,
+        height: tokens.spacing.xLarge_32,
+    },
+});
+
 const styles: Record<string, any> = {};
 
-const _generateStyles = (
-    clickable: boolean,
-    kind: PillKind,
-    size: PillSize,
-) => {
-    const pillType = `${kind}-${clickable.toString()}-${size.toString()}`;
+const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
+    const pillType = `${kind}-${clickable.toString()}`;
     if (styles[pillType]) {
         return styles[pillType];
     }
@@ -196,46 +239,12 @@ const _generateStyles = (
     const activeOutlineColor =
         kind === "critical" ? tokens.color.activeRed : tokens.color.activeBlue;
 
-    let wrapperStyles;
-    switch (size) {
-        case "small":
-            wrapperStyles = {
-                paddingLeft: tokens.spacing.xSmall_8,
-                paddingRight: tokens.spacing.xSmall_8,
-                borderRadius: tokens.spacing.xxSmall_6,
-                height: 20,
-            };
-            break;
-        case "large":
-            wrapperStyles = {
-                paddingLeft: tokens.spacing.small_12,
-                paddingRight: tokens.spacing.small_12,
-                paddingTop: tokens.spacing.xxSmall_6,
-                paddingBottom: tokens.spacing.xxSmall_6,
-                borderRadius: tokens.spacing.large_24,
-                height: tokens.spacing.xLarge_32,
-            };
-            break;
-        default:
-            // Medium size
-            wrapperStyles = {
-                paddingLeft: tokens.spacing.xSmall_8,
-                paddingRight: tokens.spacing.xSmall_8,
-                borderRadius: tokens.spacing.xxSmall_6,
-                // Minimum tap area recommendation for a11y
-                height: tokens.spacing.large_24,
-            };
-    }
-
-    const pillStyles: StyleDeclaration = {
+    const colorStyles: StyleDeclaration = {
         pill: {
             backgroundColor: backgroundColor,
             color: textColor,
             alignItems: "center",
             justifyContent: "center",
-            display: "inline-flex",
-            width: "fit-content",
-            ...wrapperStyles,
         },
         clickableWrapper: {
             outline: "none",
@@ -256,7 +265,7 @@ const _generateStyles = (
         },
     };
 
-    styles[pillType] = StyleSheet.create(pillStyles);
+    styles[pillType] = StyleSheet.create(colorStyles);
     return styles[pillType];
 };
 
