@@ -85,6 +85,15 @@ export default {
             `title will have the ID \`"my-popover-title"\` and the popover ` +
             `content will have the ID \`"my-popover-content"\`.`,
     },
+    closedFocusId: {
+        description:
+            `The selector for the element that will be focused after the ` +
+            `popover dialog closes. When not set, the element that triggered ` +
+            `the popover will be used.`,
+        control: {
+            type: "text",
+        },
+    },
     initialFocusId: {
         description:
             `The selector for the element that will be focused when the ` +

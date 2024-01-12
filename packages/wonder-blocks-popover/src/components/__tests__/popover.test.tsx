@@ -153,39 +153,6 @@ describe("Popover", () => {
         expect(onCloseMock).toBeCalled();
     });
 
-    it("should close the Popover if dismissEnabled is set", async () => {
-        // Arrange
-        render(
-            <Popover
-                dismissEnabled={true}
-                placement="top"
-                content={<PopoverContent title="Title" content="content" />}
-            >
-                {({open}: any) => (
-                    <button data-anchor onClick={open}>
-                        Open default popover
-                    </button>
-                )}
-            </Popover>,
-        );
-
-        // open the popover
-        userEvent.click(
-            screen.getByRole("button", {name: "Open default popover"}),
-        );
-
-        // Act
-        // we try to close it using the same trigger element
-        userEvent.click(
-            screen.getByRole("button", {name: "Open default popover"}),
-        );
-
-        // Assert
-        await waitFor(() => {
-            expect(screen.queryByText("Title")).not.toBeInTheDocument();
-        });
-    });
-
     it("should shift-tab back to the anchor after popover is closed", async () => {
         // Arrange
         const PopoverComponent = () => {
@@ -229,8 +196,16 @@ describe("Popover", () => {
             name: "Click to close the popover",
         });
         closeButton.click();
-        // Shift-tab over to the anchor button
+
+        // At this point, the focus returns to the anchor element
+
+        // Shift-tab over to the document body
         userEvent.tab({shift: true});
+
+        // Shift-tab over to the outside button
+        userEvent.tab({shift: true});
+
+        // Shift-tab over to the anchor element
         userEvent.tab({shift: true});
 
         // Assert
@@ -286,6 +261,226 @@ describe("Popover", () => {
 
         // Assert
         expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    });
+
+    describe("return focus", () => {
+        it("should return focus to the trigger element by default", async () => {
+            // Arrange
+            render(
+                <Popover
+                    dismissEnabled={true}
+                    content={
+                        <PopoverContent
+                            closeButtonVisible={true}
+                            title="Returning focus to a specific element"
+                            content='After dismissing the popover, the focus will be set on the button labeled "Focus here after close."'
+                        />
+                    }
+                >
+                    <Button>Open popover</Button>
+                </Popover>,
+            );
+
+            const anchorButton = screen.getByRole("button", {
+                name: "Open popover",
+            });
+
+            // open the popover
+            userEvent.click(anchorButton);
+            await screen.findByRole("dialog");
+
+            // Act
+            const closeButton = screen.getByRole("button", {
+                name: "Close Popover",
+            });
+            closeButton.click();
+
+            // Assert
+            expect(anchorButton).toHaveFocus();
+        });
+
+        it("should return focus to a specific element if closedFocusId is set", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Button id="button-to-focus-on">
+                        Focus here after close
+                    </Button>
+                    <Popover
+                        closedFocusId="button-to-focus-on"
+                        dismissEnabled={true}
+                        content={
+                            <PopoverContent
+                                closeButtonVisible={true}
+                                title="Returning focus to a specific element"
+                                content='After dismissing the popover, the focus will be set on the button labeled "Focus here after close."'
+                            />
+                        }
+                    >
+                        <Button>Open popover</Button>
+                    </Popover>
+                </View>,
+            );
+
+            const anchorButton = screen.getByRole("button", {
+                name: "Open popover",
+            });
+
+            // open the popover
+            userEvent.click(anchorButton);
+            await screen.findByRole("dialog");
+
+            // Act
+            const closeButton = screen.getByRole("button", {
+                name: "Close Popover",
+            });
+            closeButton.click();
+
+            // Assert
+            const buttonToFocusOn = screen.getByRole("button", {
+                name: "Focus here after close",
+            });
+            expect(buttonToFocusOn).toHaveFocus();
+        });
+    });
+
+    describe("dismissEnabled", () => {
+        it("should close the Popover if dismissEnabled is set", async () => {
+            // Arrange
+            render(
+                <Popover
+                    dismissEnabled={true}
+                    placement="top"
+                    content={<PopoverContent title="Title" content="content" />}
+                >
+                    {({open}: any) => (
+                        <button data-anchor onClick={open}>
+                            Open default popover
+                        </button>
+                    )}
+                </Popover>,
+            );
+
+            // open the popover
+            userEvent.click(
+                screen.getByRole("button", {name: "Open default popover"}),
+            );
+
+            // Act
+            // we try to close it using the same trigger element
+            userEvent.click(
+                screen.getByRole("button", {name: "Open default popover"}),
+            );
+
+            // Assert
+            await waitFor(() => {
+                expect(screen.queryByText("Title")).not.toBeInTheDocument();
+            });
+        });
+
+        it("should return focus to the anchor element when pressing Esc", async () => {
+            // Arrange
+            render(
+                <Popover
+                    dismissEnabled={true}
+                    placement="top"
+                    content={<PopoverContent title="Title" content="content" />}
+                >
+                    {({open}: any) => (
+                        <button data-anchor onClick={open}>
+                            Open default popover
+                        </button>
+                    )}
+                </Popover>,
+            );
+
+            // open the popover
+            userEvent.click(
+                screen.getByRole("button", {name: "Open default popover"}),
+            );
+
+            // Act
+            // we try to close it pressing the Escape key
+            userEvent.keyboard("{esc}");
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Open default popover"}),
+            ).toHaveFocus();
+        });
+
+        it("should return focus to the anchor element when clicking outside", async () => {
+            // Arrange
+            const {container} = render(
+                <Popover
+                    dismissEnabled={true}
+                    placement="top"
+                    content={<PopoverContent title="Title" content="content" />}
+                >
+                    {({open}: any) => (
+                        <button data-anchor onClick={open}>
+                            Open default popover
+                        </button>
+                    )}
+                </Popover>,
+            );
+
+            // open the popover
+            userEvent.click(
+                screen.getByRole("button", {name: "Open default popover"}),
+            );
+
+            // Act
+            // we try to close it clicking outside the popover
+            userEvent.click(container);
+            // NOTE: We need to click twice because the first click is handled
+            // by the trigger element.
+            userEvent.click(container);
+
+            // Assert
+            expect(
+                screen.getByRole("button", {name: "Open default popover"}),
+            ).toHaveFocus();
+        });
+
+        it("should NOT return focus to the anchor element when clicking on an interactive element", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Popover
+                        dismissEnabled={true}
+                        placement="top"
+                        content={
+                            <PopoverContent title="Title" content="content" />
+                        }
+                    >
+                        {({open}: any) => (
+                            <button data-anchor onClick={open}>
+                                Open default popover
+                            </button>
+                        )}
+                    </Popover>
+                    <Button>Next button outside</Button>
+                </View>,
+            );
+
+            // open the popover
+            userEvent.click(
+                screen.getByRole("button", {name: "Open default popover"}),
+            );
+
+            // Act
+            // we try to close it clicking outside the popover
+            userEvent.click(
+                screen.getByRole("button", {name: "Next button outside"}),
+            );
+
+            // Assert
+            // The focus should remain on the button outside the popover
+            expect(
+                screen.getByRole("button", {name: "Next button outside"}),
+            ).toHaveFocus();
+        });
     });
 
     describe("a11y", () => {

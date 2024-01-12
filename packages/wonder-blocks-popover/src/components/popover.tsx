@@ -70,6 +70,12 @@ type Props = AriaProps &
          */
         id?: string;
         /**
+         * The selector for the element that will be focused after the popover
+         * dialog closes. When not set, the element that triggered the popover
+         * will be used.
+         */
+        closedFocusId?: string;
+        /**
          * The selector for the element that will be focused when the popover
          * content shows. When not set, the first focusable element within the
          * popover content will be used.
@@ -172,11 +178,41 @@ export default class Popover extends React.Component<Props, State> {
         React.createRef();
 
     /**
+     * Returns focus to a given element.
+     */
+    maybeReturnFocus = () => {
+        const {anchorElement} = this.state;
+        const {closedFocusId} = this.props;
+
+        // Focus on the specified element after dismissing the popover.
+        if (closedFocusId) {
+            const focusElement = ReactDOM.findDOMNode(
+                document.getElementById(closedFocusId),
+            ) as any;
+
+            focusElement?.focus();
+            return;
+        }
+
+        // If no element is specified, focus on the element that triggered the
+        // popover.
+        if (anchorElement) {
+            anchorElement.focus();
+        }
+    };
+
+    /**
      * Popover dialog closed
      */
-    handleClose: () => void = () => {
+    handleClose: (shouldReturnFocus?: boolean) => void = (
+        shouldReturnFocus = true,
+    ) => {
         this.setState({opened: false}, () => {
             this.props.onClose?.();
+
+            if (shouldReturnFocus) {
+                this.maybeReturnFocus();
+            }
         });
     };
 
@@ -185,7 +221,7 @@ export default class Popover extends React.Component<Props, State> {
      */
     handleOpen: () => void = () => {
         if (this.props.dismissEnabled && this.state.opened) {
-            this.setState({opened: false});
+            this.handleClose(true);
         } else {
             this.setState({opened: true});
         }
