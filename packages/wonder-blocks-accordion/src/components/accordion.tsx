@@ -188,6 +188,8 @@ const Accordion = React.forwardRef(function Accordion(
         switch (event.key) {
             // ArrowUp focuses on the previous section.
             case "ArrowUp":
+                // Stop the page from scrolling when the up arrow is pressed.
+                event.preventDefault();
                 // Get the previous section, or cycle to last section if
                 // the first section is currently focused.
                 const previousSectionIndex =
@@ -199,6 +201,8 @@ const Accordion = React.forwardRef(function Accordion(
                 break;
             // ArrowDown focuses on the next section.
             case "ArrowDown":
+                // Stop the page from scrolling when the down arrow is pressed.
+                event.preventDefault();
                 // Get the next section, or cycle to first section if
                 // the last section is currently focused.
                 const nextSectionIndex =
@@ -209,12 +213,16 @@ const Accordion = React.forwardRef(function Accordion(
                 break;
             // Home focuses on the first section.
             case "Home":
+                // Stop the page from jumping up when the home key is pressed.
+                event.preventDefault();
                 const firstChildRef = childRefs[0];
                 firstChildRef.current?.focus();
 
                 break;
             // End focuses on the last section.
             case "End":
+                // Stop the page from jumping down when the end key is pressed.
+                event.preventDefault();
                 const lastChildRef = childRefs[children.length - 1];
                 lastChildRef.current?.focus();
 

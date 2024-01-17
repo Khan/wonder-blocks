@@ -1,0 +1,24 @@
+{
+    "name": "@khanacademy/wonder-blocks-tokens",
+    "version": "0.1.0",
+    "description": "Core primitive design tokens for Web Wonder Blocks",
+    "main": "dist/index.js",
+    "module": "dist/es/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "restricted"
+    },
+    "private": true,
+    "dependencies": {
+        "@khanacademy/wonder-blocks-color": "^3.0.0",
+        "@khanacademy/wonder-blocks-spacing": "^4.0.1"
+    },
+    "devDependencies": {
+        "@khanacademy/wb-dev-build-settings": "^1.0.0"
+    }
+}

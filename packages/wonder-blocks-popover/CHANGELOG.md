@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.1.0
+
+### Minor Changes
+
+-   7944c7d3: Add `closedFocusId` prop to manually return focus to a specific element
+
+### Patch Changes
+
+-   e5dd6215: Don't return focus to trigger element if the focus has to go to a different interactive element
+-   163cfca3: Fix tab navigation order
+
 ## 3.0.23
 
 ### Patch Changes

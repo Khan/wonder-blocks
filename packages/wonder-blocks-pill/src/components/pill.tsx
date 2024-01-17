@@ -5,7 +5,11 @@ import type {StyleDeclaration} from "aphrodite";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Body, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {
+    Body,
+    LabelSmall,
+    LabelXSmall,
+} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
 import {tokens} from "@khanacademy/wonder-blocks-theming";
@@ -18,6 +22,8 @@ export type PillKind =
     | "success"
     | "warning"
     | "critical";
+
+export type PillSize = "small" | "medium" | "large";
 
 type Props = AriaProps & {
     /**
@@ -39,7 +45,7 @@ type Props = AriaProps & {
      * look and fully fits within a line of body text inline,
      * whereas a large pill contains normal body font size.
      */
-    size?: "small" | "large";
+    size?: PillSize;
     /**
      * The role the pill should have depending on its behavior.
      * By default, it has none. If pill is Clickable, this is automatically
@@ -67,7 +73,7 @@ type Props = AriaProps & {
 
 const PillInner = (props: {
     children: string | React.ReactElement<React.ComponentProps<Typography>>;
-    size: "small" | "large";
+    size: PillSize;
 }) => {
     const {children, size} = props;
 
@@ -76,10 +82,14 @@ const PillInner = (props: {
     }
 
     if (size === "small") {
-        return <LabelSmall>{props.children}</LabelSmall>;
+        return <LabelXSmall>{props.children}</LabelXSmall>;
     }
 
-    return <Body>{children}</Body>;
+    if (size === "large") {
+        return <Body>{children}</Body>;
+    }
+
+    return <LabelSmall>{children}</LabelSmall>;
 };
 
 /**
@@ -102,16 +112,27 @@ const Pill = React.forwardRef(function Pill(
         id,
         children,
         kind = "neutral",
-        size = "small",
+        size = "medium",
         role,
         onClick,
         style,
         testId,
     } = props;
 
-    const wrapperSizeStyle =
-        size === "small" ? pillStyles.wrapperSmall : pillStyles.wrapperLarge;
-    const colorStyles = _generateColorStyles(!!onClick, kind, size);
+    let wrapperSizeStyle;
+
+    switch (size) {
+        case "small":
+            wrapperSizeStyle = pillStyles.wrapperSmall;
+            break;
+        case "large":
+            wrapperSizeStyle = pillStyles.wrapperLarge;
+            break;
+        default:
+            wrapperSizeStyle = pillStyles.wrapperMedium;
+    }
+
+    const colorStyles = _generateColorStyles(!!onClick, kind);
 
     const defaultStyles = [
         pillStyles.wrapper,
@@ -147,14 +168,18 @@ const Pill = React.forwardRef(function Pill(
     );
 });
 
-const styles: Record<string, any> = {};
-
 const pillStyles = StyleSheet.create({
     wrapper: {
         display: "inline-flex",
         width: "fit-content",
     },
     wrapperSmall: {
+        paddingLeft: tokens.spacing.xSmall_8,
+        paddingRight: tokens.spacing.xSmall_8,
+        borderRadius: tokens.spacing.xxSmall_6,
+        height: 20,
+    },
+    wrapperMedium: {
         paddingLeft: tokens.spacing.xSmall_8,
         paddingRight: tokens.spacing.xSmall_8,
         borderRadius: tokens.spacing.xxSmall_6,
@@ -171,12 +196,10 @@ const pillStyles = StyleSheet.create({
     },
 });
 
-const _generateColorStyles = (
-    clickable: boolean,
-    kind: PillKind,
-    size: "small" | "large",
-) => {
-    const pillType = `${kind}-${clickable.toString()}-${size.toString()}`;
+const styles: Record<string, any> = {};
+
+const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
+    const pillType = `${kind}-${clickable.toString()}`;
     if (styles[pillType]) {
         return styles[pillType];
     }

@@ -46,12 +46,12 @@ export default {
             whereas a large pill contains normal body font size.`,
         defaultValue: "small",
         table: {
-            type: {summary: `"small" | "large"`},
-            defaultValue: {summary: "small"},
+            type: {summary: `"small" | "medium" | "large"`},
+            defaultValue: {summary: "medium"},
         },
         type: {
             name: "enum",
-            value: ["small", "large"],
+            value: ["small", "medium", "large"],
             required: false,
         },
     },

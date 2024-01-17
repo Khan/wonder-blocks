@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.2.10
+
+### Patch Changes
+
+-   fafa8a69: Prevent default in home, end, and arrow keys
+
 ## 1.2.9
 
 ### Patch Changes

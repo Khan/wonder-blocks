@@ -296,6 +296,10 @@ export const WithInitialExpandedIndex: StoryComponentType = {
  * If `animated` is specified both here in the Accordion
  * and within a child AccordionSection component, the AccordionSection's
  * `animated` value is prioritized.
+ *
+ * **NOTE: HEIGHT ANIMATIONS ARE INHERENTLY NOT PERFORMANT.** USING ANIMATIONS
+ * *WILL* DECREASE PERFORMANCE. It is recommended that animations be used
+ * sparingly for this reason, and only on lighter accordions.
  */
 export const WithAnimation: StoryComponentType = {
     render: () => {
