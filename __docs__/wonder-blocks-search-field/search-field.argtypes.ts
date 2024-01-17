@@ -1,6 +1,7 @@
 export default {
     clearAriaLabel: {
         description: `ARIA label for the clear button. Defaults to "Clear search".`,
+        type: {name: "string", required: false},
         table: {
             type: {
                 summary: "string",
@@ -14,7 +15,7 @@ export default {
     id: {
         description: `The unique identifier for the input. If one is not
             provided, a unique id will be generated.`,
-        type: {name: "string", required: true},
+        type: {name: "string", required: false},
         table: {
             type: {
                 summary: "string",
@@ -51,6 +52,7 @@ export default {
         description: `Provide hints or examples of what to enter.
             This shows up as a grayed out text in the field before
             a value is entered.`,
+        type: {name: "string", required: false},
         table: {
             type: {
                 summary: "string",
@@ -62,6 +64,7 @@ export default {
     },
     autoFocus: {
         description: "Whether this field should autofocus on page load.",
+        type: {name: "boolean", required: false},
         table: {
             type: {
                 summary: "boolean",
@@ -77,6 +80,7 @@ export default {
     disabled: {
         description: `Makes a read-only input field that cannot be focused.
             Defaults to false.`,
+        type: {name: "boolean", required: false},
         table: {
             type: {
                 summary: "boolean",
@@ -92,6 +96,7 @@ export default {
     light: {
         description:
             "Change the default focus ring color to fit a dark background.",
+        type: {name: "boolean", required: false},
         table: {
             type: {
                 summary: "boolean",
@@ -121,6 +126,7 @@ export default {
     },
     testId: {
         description: "Test ID used for e2e testing.",
+        type: {name: "string", required: false},
         table: {
             type: {
                 summary: "string",
