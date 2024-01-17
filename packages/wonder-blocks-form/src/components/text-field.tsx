@@ -32,6 +32,11 @@ type Props = AriaProps & {
      */
     value: string;
     /**
+     * The name for the input control. This is submitted along with
+     * the form data.
+     */
+    name?: string;
+    /**
      * Makes a read-only input field that cannot be focused. Defaults to false.
      */
     disabled: boolean;
@@ -219,6 +224,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             id,
             type,
             value,
+            name,
             disabled,
             onKeyDown,
             placeholder,
@@ -267,6 +273,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                 type={type}
                 placeholder={placeholder}
                 value={value}
+                name={name}
                 disabled={disabled}
                 onChange={this.handleChange}
                 onKeyDown={onKeyDown}

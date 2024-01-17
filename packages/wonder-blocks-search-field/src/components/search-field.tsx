@@ -30,6 +30,11 @@ type Props = AriaProps & {
      */
     value: string;
     /**
+     * The name for the input control. This is submitted along with
+     * the form data.
+     */
+    name?: string;
+    /**
      * Provide hints or examples of what to enter. This shows up as
      * a grayed out text in the field before a value is entered.
      */
