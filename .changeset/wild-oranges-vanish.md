@@ -3,4 +3,4 @@
 "@khanacademy/wonder-blocks-form": minor
 ---
 
-`className` prop has been added to SearchField and TextField
+`name` prop has been added to SearchField and TextField
