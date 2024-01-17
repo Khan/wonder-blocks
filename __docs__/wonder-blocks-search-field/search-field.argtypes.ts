@@ -60,21 +60,6 @@ export default {
             type: "text",
         },
     },
-    type: {
-        description: `The type of input field to render. Defaults to "text".`,
-        table: {
-            type: {
-                summary: `"text" | "search"`,
-            },
-            defaultValue: {
-                summary: '"text"',
-            },
-        },
-        control: {
-            type: "select",
-            options: ["text", "search"],
-        },
-    },
     autoFocus: {
         description: "Whether this field should autofocus on page load.",
         table: {
@@ -132,17 +117,6 @@ export default {
         control: {
             type: "select",
             options: ["box", "underline"],
-        },
-    },
-    className: {
-        description: "Optional CSS classes for the input field.",
-        table: {
-            type: {
-                summary: "string",
-            },
-        },
-        control: {
-            type: "text",
         },
     },
     testId: {

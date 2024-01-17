@@ -131,25 +131,6 @@ describe("TextField", () => {
         expect(input).toBeInTheDocument();
     });
 
-    it("className prop is passed to the input element", () => {
-        // Arrange
-        const className = "some-class";
-
-        // Act
-        render(
-            <TextField
-                id={"tf-1"}
-                value=""
-                onChange={() => {}}
-                className={className}
-            />,
-        );
-
-        // Assert
-        const input = screen.getByRole("textbox");
-        expect(input).toHaveClass(className);
-    });
-
     it("disabled prop disables the input element", () => {
         // Arrange
         render(

@@ -40,10 +40,6 @@ type Props = AriaProps & {
      */
     placeholder?: string;
     /**
-     * Determines the type of input field to render. Defaults to "text".
-     */
-    type?: "text" | "search";
-    /**
      * Whether this field should autofocus on page load.
      */
     autoFocus?: boolean;
@@ -60,10 +56,6 @@ type Props = AriaProps & {
      * Custom styles for the main wrapper.
      */
     style?: StyleType;
-    /**
-     * Optional CSS classes for the input field.
-     */
-    className?: string;
     /**
      * Test ID used for e2e testing.
      */
@@ -126,7 +118,6 @@ const SearchField: React.ForwardRefExoticComponent<
         id,
         value,
         placeholder,
-        type,
         style,
         testId,
         onClick,
@@ -180,7 +171,6 @@ const SearchField: React.ForwardRefExoticComponent<
                     />
                     <TextField
                         id={`${uniqueId}-field`}
-                        type={type || "text"}
                         autoFocus={autoFocus}
                         disabled={disabled}
                         light={light}

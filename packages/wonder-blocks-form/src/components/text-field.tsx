@@ -8,13 +8,7 @@ import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography"
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
-export type TextFieldType =
-    | "text"
-    | "password"
-    | "email"
-    | "number"
-    | "search"
-    | "tel";
+export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
@@ -106,10 +100,6 @@ type Props = AriaProps & {
      * Custom styles for the input.
      */
     style?: StyleType;
-    /**
-     * Optional CSS classes for the entire dropdown component.
-     */
-    className?: string;
     /**
      * Optional test ID for e2e testing.
      */
@@ -240,7 +230,6 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             placeholder,
             light,
             style,
-            className,
             testId,
             readOnly,
             autoFocus,
@@ -281,7 +270,6 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                     style && style,
                 ]}
                 id={id}
-                className={className}
                 type={type}
                 placeholder={placeholder}
                 value={value}

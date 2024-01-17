@@ -146,18 +146,6 @@ export default {
         },
     },
 
-    className: {
-        description: "Custom class name for the input.",
-        table: {
-            type: {
-                summary: "string",
-            },
-        },
-        control: {
-            type: "text",
-        },
-    },
-
     testId: {
         description: "Optional test ID for e2e testing.",
         table: {
