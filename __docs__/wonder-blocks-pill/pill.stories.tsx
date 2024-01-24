@@ -13,7 +13,11 @@ import {
     BodySerif,
     LabelMedium,
 } from "@khanacademy/wonder-blocks-typography";
-import type {PillKind} from "../../packages/wonder-blocks-pill/src/components/pill";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    PillKind,
+    PillSize,
+} from "../../packages/wonder-blocks-pill/src/components/pill";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
@@ -71,16 +75,26 @@ export const Inline: StoryComponentType = () => (
     <View>
         <Body>
             Hello! This pill is{" "}
+            <Pill kind="neutral" size="medium">
+                inline (medium)
+            </Pill>{" "}
+            , but it can be{" "}
             <Pill kind="neutral" size="small">
-                inline
-            </Pill>
+                small
+            </Pill>{" "}
+            if you need it to be.
         </Body>
         <Strut size={tokens.spacing.small_12} />
         <Body>
             This pill is also{" "}
-            <Pill kind="neutral" size="small" onClick={() => {}}>
-                inline (clickable)
+            <Pill kind="neutral" size="medium" onClick={() => {}}>
+                inline (medium, clickable)
             </Pill>
+            , and this one is{" "}
+            <Pill kind="neutral" size="small" onClick={() => {}}>
+                small (clickable)
+            </Pill>
+            .
         </Body>
     </View>
 );
@@ -88,10 +102,11 @@ export const Inline: StoryComponentType = () => (
 Inline.parameters = {
     docs: {
         description: {
-            story: `Pills can be used inline. Note that while both small and
-                large pills can be used inline, it is recommended to use small
-                pills when inline with body text since they fit within the
-                line height whereas large pills do not.`,
+            story: `Pills can be used inline. In general, it is recommended
+            that inline pills be medium size so that they are big enough to
+            read in terms of accessibility, but not so big that they take up
+            too much line space. However, small pills can also be used inline
+            if necessary.`,
         },
     },
 };
@@ -108,9 +123,10 @@ Inline.parameters = {
  * - `warning`: yellow
  * - `critical`: light red
  *
- * Pills can also be of two different sizes: small and large. By default,
- * small pills use Wonder Blocks `LabelSmall` typography, and large pills
- * use Wonder Blocks `Body`.
+ * Pills can also be of three different sizes: small, medium, and large.
+ * If the size is not specified, it defaults to medium. Small pills use
+ * Wonder Blocks `LabelXSmall` typography, medium pills use Wonder Blocks
+ * `LabelSmall`, and large pills use Wonder Blocks `Body`.
  */
 export const Variants: StoryComponentType = {
     render: () => {
@@ -123,79 +139,62 @@ export const Variants: StoryComponentType = {
             "critical",
         ];
 
+        const sizes: Array<PillSize> = ["small", "medium", "large"];
+
+        const directionStyle: StyleType = {
+            flexDirection: "row",
+
+            "@media (max-width: 1023px)": {
+                flexDirection: "column",
+            },
+        };
+
         return (
-            <View style={{flexDirection: "row"}}>
-                <View>
-                    {/* Non-clickable variants, small */}
-                    {kinds.map((kind) => (
-                        <View
-                            key={kind}
-                            style={{marginRight: tokens.spacing.small_12}}
-                        >
-                            <Pill
-                                kind={kind}
-                                size="small"
-                                testId={`${kind}-small-test-id`}
-                            >
-                                {`${kind}, small`}
-                            </Pill>
-                            <Strut size={tokens.spacing.small_12} />
+            <View style={directionStyle}>
+                <View style={{flexDirection: "row"}}>
+                    {sizes.map((size) => (
+                        <View>
+                            {kinds.map((kind) => (
+                                <View
+                                    key={kind}
+                                    style={{
+                                        marginRight: tokens.spacing.small_12,
+                                    }}
+                                >
+                                    <Pill
+                                        kind={kind}
+                                        size={size}
+                                        testId={`${kind}-${size}-test-id`}
+                                    >
+                                        {`${kind}, ${size}`}
+                                    </Pill>
+                                    <Strut size={tokens.spacing.small_12} />
+                                </View>
+                            ))}
                         </View>
                     ))}
                 </View>
-                <View>
-                    {/* Non-clickable variants, large */}
-                    {kinds.map((kind) => (
-                        <View
-                            key={kind}
-                            style={{marginRight: tokens.spacing.small_12}}
-                        >
-                            <Pill
-                                kind={kind}
-                                size="large"
-                                testId={`${kind}-large-test-id`}
-                            >
-                                {`${kind}, large`}
-                            </Pill>
-                            <Strut size={tokens.spacing.small_12} />
-                        </View>
-                    ))}
-                </View>
-                <View>
-                    {/* Clickable variants, small */}
-                    {kinds.map((kind) => (
-                        <View
-                            key={kind}
-                            style={{marginRight: tokens.spacing.small_12}}
-                        >
-                            <Pill
-                                kind={kind}
-                                size="small"
-                                onClick={() => {}}
-                                testId={`${kind}-small-clickable-test-id`}
-                            >
-                                {`${kind}, small`}
-                            </Pill>
-                            <Strut size={tokens.spacing.small_12} />
-                        </View>
-                    ))}
-                </View>
-                <View>
-                    {/* Clickable variants, large */}
-                    {kinds.map((kind) => (
-                        <View
-                            key={kind}
-                            style={{marginRight: tokens.spacing.small_12}}
-                        >
-                            <Pill
-                                kind={kind}
-                                size="large"
-                                onClick={() => {}}
-                                testId={`${kind}-large-clickable-test-id`}
-                            >
-                                {`${kind}, large`}
-                            </Pill>
-                            <Strut size={tokens.spacing.small_12} />
+                <View style={{flexDirection: "row"}}>
+                    {sizes.map((size) => (
+                        <View>
+                            {kinds.map((kind) => (
+                                <View
+                                    key={kind}
+                                    style={{
+                                        marginRight: tokens.spacing.small_12,
+                                    }}
+                                >
+                                    <Pill
+                                        kind={kind}
+                                        size={size}
+                                        onClick={() => {}}
+                                        testId={`${kind}-${size}-clickable-test-id`}
+                                    >
+                                        {`${kind}, ${size}`}
+                                    </Pill>
+                                    <Strut size={tokens.spacing.small_12} />
+                                </View>
+                            ))}
                         </View>
                     ))}
                 </View>
@@ -215,6 +214,7 @@ Variants.play = async ({canvasElement}) => {
     const successSmall = canvas.getByTestId("success-small-test-id");
     const warningSmall = canvas.getByTestId("warning-small-test-id");
     const criticalSmall = canvas.getByTestId("critical-small-test-id");
+    const neutralMedium = canvas.getByTestId("neutral-medium-test-id");
     const neutralLarge = canvas.getByTestId("neutral-large-test-id");
     const accentLarge = canvas.getByTestId("accent-large-test-id");
     const infoLarge = canvas.getByTestId("info-large-test-id");
@@ -223,41 +223,23 @@ Variants.play = async ({canvasElement}) => {
     const criticalLarge = canvas.getByTestId("critical-large-test-id");
 
     // Define clickable pills
-    const neutralSmallClickable = canvas.getByTestId(
-        "neutral-small-clickable-test-id",
+    const neutralMediumClickable = canvas.getByTestId(
+        "neutral-medium-clickable-test-id",
     );
-    const accentSmallClickable = canvas.getByTestId(
-        "accent-small-clickable-test-id",
+    const accentMediumClickable = canvas.getByTestId(
+        "accent-medium-clickable-test-id",
     );
-    const infoSmallClickable = canvas.getByTestId(
-        "info-small-clickable-test-id",
+    const infoMediumClickable = canvas.getByTestId(
+        "info-medium-clickable-test-id",
     );
-    const successSmallClickable = canvas.getByTestId(
-        "success-small-clickable-test-id",
+    const successMediumClickable = canvas.getByTestId(
+        "success-medium-clickable-test-id",
     );
-    const warningSmallClickable = canvas.getByTestId(
-        "warning-small-clickable-test-id",
+    const warningMediumClickable = canvas.getByTestId(
+        "warning-medium-clickable-test-id",
     );
-    const criticalSmallClickable = canvas.getByTestId(
-        "critical-small-clickable-test-id",
-    );
-    const neutralLargeClickable = canvas.getByTestId(
-        "neutral-large-clickable-test-id",
-    );
-    const accentLargeClickable = canvas.getByTestId(
-        "accent-large-clickable-test-id",
-    );
-    const infoLargeClickable = canvas.getByTestId(
-        "info-large-clickable-test-id",
-    );
-    const successLargeClickable = canvas.getByTestId(
-        "success-large-clickable-test-id",
-    );
-    const warningLargeClickable = canvas.getByTestId(
-        "warning-large-clickable-test-id",
-    );
-    const criticalLargeClickable = canvas.getByTestId(
-        "critical-large-clickable-test-id",
+    const criticalMediumClickable = canvas.getByTestId(
+        "critical-medium-clickable-test-id",
     );
 
     // Test non-clickable pill styles
@@ -297,6 +279,12 @@ Variants.play = async ({canvasElement}) => {
         fontSize: 12,
     });
 
+    await expect(neutralMedium).toHaveStyle({
+        backgroundColor: tokens.color.offBlack8,
+        color: tokens.color.offBlack,
+        fontSize: 14,
+    });
+
     await expect(neutralLarge).toHaveStyle({
         backgroundColor: tokens.color.offBlack8,
         color: tokens.color.offBlack,
@@ -334,52 +322,28 @@ Variants.play = async ({canvasElement}) => {
     });
 
     // Test clickable pill styles
-    await userEvent.tab();
-    let computedStyle = getComputedStyle(neutralSmallClickable, ":hover");
+    await neutralMediumClickable.focus();
+    let computedStyle = getComputedStyle(neutralMediumClickable, ":hover");
     await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(accentSmallClickable, ":hover");
+    computedStyle = getComputedStyle(accentMediumClickable, ":hover");
     await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(infoSmallClickable, ":hover");
+    computedStyle = getComputedStyle(infoMediumClickable, ":hover");
     await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(successSmallClickable, ":hover");
+    computedStyle = getComputedStyle(successMediumClickable, ":hover");
     await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(warningSmallClickable, ":hover");
+    computedStyle = getComputedStyle(warningMediumClickable, ":hover");
     await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(criticalSmallClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(217, 41, 22) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(neutralLargeClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(accentLargeClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(infoLargeClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(successLargeClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(warningLargeClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
-
-    await userEvent.tab();
-    computedStyle = getComputedStyle(criticalLargeClickable, ":hover");
+    computedStyle = getComputedStyle(criticalMediumClickable, ":hover");
     await expect(computedStyle.outline).toBe("rgb(217, 41, 22) solid 2px");
 };
 

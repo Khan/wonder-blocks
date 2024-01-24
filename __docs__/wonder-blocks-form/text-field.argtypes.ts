@@ -42,6 +42,19 @@ export default {
         control: {type: "text"},
     },
 
+    name: {
+        description: `The name for the input control. This is submitted along
+            with the form data.`,
+        table: {
+            type: {
+                summary: "string",
+            },
+        },
+        control: {
+            type: "text",
+        },
+    },
+
     autoComplete: {
         description: "Specifies if the input field allows autocomplete.",
         table: {

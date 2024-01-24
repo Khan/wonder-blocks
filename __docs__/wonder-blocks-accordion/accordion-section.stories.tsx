@@ -508,6 +508,10 @@ export const NotCollapsible: StoryComponentType = {
  * If `animated` is specified both here in the AccordionSection
  * and within a parent Accordion component, the AccordionSection's
  * `animated` value is prioritized.
+ *
+ * **NOTE: HEIGHT ANIMATIONS ARE INHERENTLY NOT PERFORMANT.** USING ANIMATIONS
+ * *WILL* DECREASE PERFORMANCE. It is recommended that animations be used
+ * sparingly for this reason, and only on lighter accordions.
  */
 export const WithAnimation: StoryComponentType = {
     render: () => {
