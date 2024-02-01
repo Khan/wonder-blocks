@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.1.3
+
+### Patch Changes
+
+-   Updated dependencies [0c329565]
+    -   @khanacademy/wonder-blocks-search-field@2.2.0
+
 ## 5.1.2
 
 ### Patch Changes

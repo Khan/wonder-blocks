@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.4.0
+
+### Minor Changes
+
+-   0c329565: `name` prop has been added to SearchField and TextField
+
 ## 4.3.19
 
 ### Patch Changes
