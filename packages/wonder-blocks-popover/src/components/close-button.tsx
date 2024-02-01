@@ -5,6 +5,7 @@ import xIcon from "@phosphor-icons/core/regular/x.svg";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import PopoverContext from "./popover-context";
+import {CloseReason} from "./popover-event-listener";
 
 type Props = AriaProps & {
     /**
@@ -47,7 +48,7 @@ export default class CloseButton extends React.Component<Props> {
                         <IconButton
                             icon={xIcon}
                             aria-label={ariaLabel}
-                            onClick={close}
+                            onClick={() => close?.(CloseReason.DISMISSED)}
                             kind={light ? "primary" : "tertiary"}
                             light={light}
                             style={style}

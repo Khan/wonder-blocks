@@ -5,11 +5,18 @@ import {isFocusable} from "../util/util";
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
 
+// Enum for the reason the modal is closing: either by clicking outside, clicking the X or pressing the esc key, or by interacting.
+export enum CloseReason {
+    BLUR = "blur",
+    DISMISSED = "dismissed",
+    UNKNOWN = "unknown",
+}
+
 type Props = {
     /**
      * Called when `esc` is pressed
      */
-    onClose: (shouldReturnFocus: boolean) => unknown;
+    onClose: (shouldReturnFocus: boolean, reason: CloseReason) => unknown;
     /**
      * Popover Content ref.
      * Will close the popover when clicking outside this element.
@@ -62,7 +69,7 @@ export default class PopoverEventListener extends React.Component<
             e.stopPropagation();
             // In the case of the Escape key, we should return focus to the
             // trigger button.
-            this.props.onClose(true);
+            this.props.onClose(true, CloseReason.DISMISSED);
         }
     };
 
@@ -86,7 +93,7 @@ export default class PopoverEventListener extends React.Component<
             const shouldReturnFocus = !isFocusable(e.target as any);
             // If that's the case, we need to prevent the default behavior of
             // returning the focus to the trigger button.
-            this.props.onClose(shouldReturnFocus);
+            this.props.onClose(shouldReturnFocus, CloseReason.BLUR);
         }
     };
 

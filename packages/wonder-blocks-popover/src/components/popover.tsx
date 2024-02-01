@@ -17,7 +17,7 @@ import PopoverContext from "./popover-context";
 import PopoverAnchor from "./popover-anchor";
 import PopoverDialog from "./popover-dialog";
 import FocusManager from "./focus-manager";
-import PopoverEventListener from "./popover-event-listener";
+import PopoverEventListener, {CloseReason} from "./popover-event-listener";
 
 type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
@@ -92,7 +92,7 @@ type Props = AriaProps &
         /**
          * Called when the popover closes
          */
-        onClose?: () => unknown;
+        onClose?: (reason: CloseReason) => unknown;
         /**
          * Test ID used for e2e testing.
          */
@@ -204,11 +204,12 @@ export default class Popover extends React.Component<Props, State> {
     /**
      * Popover dialog closed
      */
-    handleClose: (shouldReturnFocus?: boolean) => void = (
+    handleClose: (shouldReturnFocus?: boolean, reason?: CloseReason) => void = (
         shouldReturnFocus = true,
+        reason,
     ) => {
         this.setState({opened: false}, () => {
-            this.props.onClose?.();
+            this.props.onClose?.(reason || CloseReason.UNKNOWN);
 
             if (shouldReturnFocus) {
                 this.maybeReturnFocus();
@@ -221,6 +222,7 @@ export default class Popover extends React.Component<Props, State> {
      */
     handleOpen: () => void = () => {
         if (this.props.dismissEnabled && this.state.opened) {
+            // TODO(rjcorwin) Why is this here?
             this.handleClose(true);
         } else {
             this.setState({opened: true});
@@ -303,7 +305,8 @@ export default class Popover extends React.Component<Props, State> {
         return (
             <PopoverContext.Provider
                 value={{
-                    close: this.handleClose,
+                    close: (closeReason) =>
+                        this.handleClose(undefined, closeReason),
                     placement: placement,
                 }}
             >

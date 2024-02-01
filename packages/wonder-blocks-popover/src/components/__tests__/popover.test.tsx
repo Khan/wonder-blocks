@@ -9,6 +9,7 @@ import {fireEvent} from "@storybook/testing-library";
 import Popover from "../popover";
 import PopoverContent from "../popover-content";
 import {PopoverContentCore} from "../../index";
+import {CloseReason} from "../popover-event-listener";
 
 describe("Popover", () => {
     it("should set the anchor as the popover ref", async () => {
@@ -297,6 +298,127 @@ describe("Popover", () => {
 
             // Assert
             expect(anchorButton).toHaveFocus();
+        });
+
+        it("should close with reason of blur", async () => {
+            let closeReason = "";
+            const onClose = (reason: CloseReason) => {
+                closeReason = reason;
+            };
+            // Arrange
+            render(
+                <View>
+                    <Button id="button-to-close">Click here to close</Button>
+                    <Popover
+                        dismissEnabled={true}
+                        onClose={onClose}
+                        content={
+                            <PopoverContent
+                                closeButtonVisible={true}
+                                title="Should close with reason of blur"
+                                content='Clicking outside of the popover, the close reason should be "blur".'
+                            />
+                        }
+                    >
+                        <Button>Open popover</Button>
+                    </Popover>
+                </View>,
+            );
+
+            const anchorButton = screen.getByRole("button", {
+                name: "Open popover",
+            });
+
+            // open the popover
+            userEvent.click(anchorButton);
+            await screen.findByRole("dialog");
+
+            // Act
+            const closeButton = screen.getByRole("button", {
+                name: "Click here to close",
+            });
+            // We have to click twice.
+            closeButton.click();
+            closeButton.click();
+            expect(closeReason).toBe("blur");
+        });
+
+        it("should close with reason of dismissed when clicking close button", async () => {
+            let closeReason = "";
+            const onClose = (reason: CloseReason) => {
+                closeReason = reason;
+            };
+            // Arrange
+            render(
+                <View>
+                    <Popover
+                        dismissEnabled={true}
+                        onClose={onClose}
+                        content={
+                            <PopoverContent
+                                closeButtonVisible={true}
+                                title="Should close with reason of dismissed"
+                                content='After dismissing the popover, reason should be "dismissed".'
+                            />
+                        }
+                    >
+                        <Button>Open popover</Button>
+                    </Popover>
+                </View>,
+            );
+
+            const anchorButton = screen.getByRole("button", {
+                name: "Open popover",
+            });
+
+            // open the popover
+            userEvent.click(anchorButton);
+            await screen.findByRole("dialog");
+
+            // Act
+            const closeButton = screen.getByRole("button", {
+                name: "Close Popover",
+            });
+            closeButton.click();
+            expect(closeReason).toBe("dismissed");
+        });
+
+        it("should close with reason of dismissed when pressing Esc", async () => {
+            let closeReason = "";
+            const onClose = (reason: CloseReason) => {
+                closeReason = reason;
+            };
+            // Arrange
+            render(
+                <View>
+                    <Popover
+                        dismissEnabled={true}
+                        onClose={onClose}
+                        content={
+                            <PopoverContent
+                                closeButtonVisible={true}
+                                title="Should close with reason of dismissed"
+                                content='After dismissing the popover, reason should be "dismissed".'
+                            />
+                        }
+                    >
+                        <Button>Open popover</Button>
+                    </Popover>
+                </View>,
+            );
+
+            const anchorButton = screen.getByRole("button", {
+                name: "Open popover",
+            });
+
+            // open the popover
+            userEvent.click(anchorButton);
+            await screen.findByRole("dialog");
+
+            // Act
+            // we try to close it pressing the Escape key
+            userEvent.keyboard("{esc}");
+            expect(closeReason).toBe("dismissed");
         });
 
         it("should return focus to a specific element if closedFocusId is set", async () => {

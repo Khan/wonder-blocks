@@ -1,13 +1,14 @@
 import * as React from "react";
 
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
+import {CloseReason} from "./popover-event-listener";
 
 export type PopoverContextType = {
     /**
      * Facilitates passing the `onClose` handler from the Popover down to its
      * children.
      */
-    close?: () => unknown;
+    close?: (reason: CloseReason) => unknown;
     /**
      * Facilitates passing this value from Popover (via TooltipPopper) down to
      * PopoverContent. This is needed here to reposition the illustration to the
