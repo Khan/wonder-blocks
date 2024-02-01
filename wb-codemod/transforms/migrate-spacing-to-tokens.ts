@@ -1,4 +1,4 @@
-import {API, FileInfo, Options} from "jscodeshift";
+import {API, FileInfo, ModuleSpecifier, Options} from "jscodeshift";
 
 // From
 const SOURCE_IMPORT_DECLARATION = "@khanacademy/wonder-blocks-spacing";
@@ -44,7 +44,17 @@ export default function transform(file: FileInfo, api: API, options: Options) {
         // If the import is already used, we add a named import to the existing
         // import declaration.
         if (targetImport.size() > 0) {
-            targetImport.get().node.specifiers.push(targetSpecifier);
+            // NOTE: We only add the specifier if it doesn't exist already.
+            const specifierExists = targetImport
+                .get()
+                .node.specifiers.some(
+                    (specifier: ModuleSpecifier) =>
+                        specifier.local?.name === TARGET_SPECIFIER,
+                );
+
+            if (!specifierExists) {
+                targetImport.get().node.specifiers.push(targetSpecifier);
+            }
             // Remove the import declaration
             j(path).remove();
             return;

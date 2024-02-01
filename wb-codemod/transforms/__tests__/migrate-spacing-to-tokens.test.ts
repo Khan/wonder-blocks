@@ -28,4 +28,15 @@ import {color} from "@khanacademy/wonder-blocks-tokens";
         `import {color, spacing} from "@khanacademy/wonder-blocks-tokens";`,
         "should add a named import to the existing import declaration",
     );
+
+    defineInlineTest(
+        transform,
+        transformOptions,
+        `
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+`,
+        `import {spacing} from "@khanacademy/wonder-blocks-tokens";`,
+        "should delete the import declaration if the tokens.spacing named import is already used",
+    );
 });
