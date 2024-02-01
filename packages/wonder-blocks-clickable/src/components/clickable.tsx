@@ -87,6 +87,14 @@ type CommonProps =
          */
         onKeyUp?: (e: React.KeyboardEvent) => unknown;
         /**
+         * Respond to raw "mousedown" event.
+         */
+        onMouseDown?: (e: React.MouseEvent) => unknown;
+        /**
+         * Respond to raw "mouseup" event.
+         */
+        onMouseUp?: (e: React.MouseEvent) => unknown;
+        /**
          * Don't show the default focus ring.  This should be used when implementing
          * a custom focus ring within your own component that uses Clickable.
          */
@@ -273,6 +281,8 @@ const Clickable = React.forwardRef(function Clickable(
             onFocus,
             onKeyDown,
             onKeyUp,
+            onMouseDown,
+            onMouseUp,
             hideDefaultFocusRing,
             light,
             disabled,
@@ -305,6 +315,8 @@ const Clickable = React.forwardRef(function Clickable(
                     onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
+                    onMouseDown={onMouseDown}
+                    onMouseUp={onMouseUp}
                     disabled={disabled}
                     tabIndex={tabIndex}
                 >
@@ -327,6 +339,8 @@ const Clickable = React.forwardRef(function Clickable(
                     onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
+                    onMouseDown={onMouseDown}
+                    onMouseUp={onMouseUp}
                     target={target}
                     disabled={disabled}
                     tabIndex={tabIndex}
