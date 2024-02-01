@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -130,7 +130,7 @@ export const AllStyles: StoryComponentType = () => {
             // use shared styles for all sizes
             test: {
                 color: Color.white,
-                padding: Spacing.medium_16,
+                padding: spacing.medium_16,
             },
         }),
 
@@ -138,7 +138,7 @@ export const AllStyles: StoryComponentType = () => {
             // override the `padding` prop` here
             test: {
                 backgroundColor: Color.darkBlue,
-                padding: Spacing.xxLarge_48,
+                padding: spacing.xxLarge_48,
             },
         }),
 
@@ -188,14 +188,14 @@ export const CustomSpec: StoryComponentType = () => {
                 alignItems: "center",
                 backgroundColor: Color.darkBlue,
                 color: Color.white,
-                padding: Spacing.xxxLarge_64,
+                padding: spacing.xxxLarge_64,
             },
         }),
 
         small: StyleSheet.create({
             example: {
                 backgroundColor: Color.lightBlue,
-                padding: Spacing.small_12,
+                padding: spacing.small_12,
             },
         }),
     } as const;
@@ -205,14 +205,14 @@ export const CustomSpec: StoryComponentType = () => {
         small: {
             query: "(max-width: 767px)",
             totalColumns: 4,
-            gutterWidth: Spacing.medium_16,
-            marginWidth: Spacing.medium_16,
+            gutterWidth: spacing.medium_16,
+            marginWidth: spacing.medium_16,
         },
         large: {
             query: "(min-width: 768px)",
             totalColumns: 12,
-            gutterWidth: Spacing.xLarge_32,
-            marginWidth: Spacing.xxLarge_48,
+            gutterWidth: spacing.xLarge_32,
+            marginWidth: spacing.xxLarge_48,
         },
     };
 

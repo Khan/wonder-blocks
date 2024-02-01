@@ -7,7 +7,7 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
@@ -55,7 +55,7 @@ export const WithLabel: StoryComponentType = (() => {
             <LabelMedium
                 id="label-for-switch-with-label"
                 htmlFor="switch-with-label"
-                style={{marginLeft: Spacing.xSmall_8}}
+                style={{marginLeft: spacing.xSmall_8}}
                 tag="label"
             >
                 Superpowers
@@ -81,7 +81,7 @@ export const WithLabelAndDescription: StoryComponentType = (() => {
                 aria-labelledby="label-for-switch-with-desc"
                 aria-describedby="desc-for-switch-with-desc"
             />
-            <View style={{marginLeft: Spacing.xSmall_8}}>
+            <View style={{marginLeft: spacing.xSmall_8}}>
                 <LabelMedium
                     id="label-for-switch-with-desc"
                     htmlFor="switch-with-desc"
@@ -116,7 +116,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
             <LabelMedium
                 id="label-for-switch-with-on-off"
                 htmlFor="switch-with-on-off"
-                style={{marginRight: Spacing.xSmall_8}}
+                style={{marginRight: spacing.xSmall_8}}
                 tag="label"
             >
                 Gravity
@@ -128,7 +128,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
                 aria-labelledby="label-for-switch-with-on-off"
             />
             <LabelSmall
-                style={{marginLeft: Spacing.xSmall_8, color: Color.offBlack64}}
+                style={{marginLeft: spacing.xSmall_8, color: Color.offBlack64}}
                 aria-hidden={true}
             >
                 {checked ? "ON" : "OFF"}

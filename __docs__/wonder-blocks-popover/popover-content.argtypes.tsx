@@ -3,7 +3,7 @@ import type {InputType} from "@storybook/csf";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 type Mappings = Record<string, React.ReactNode>;
@@ -19,7 +19,7 @@ const ActionsMappings: Mappings = {
     pagination: (
         <>
             <Button kind="tertiary">Previous</Button>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Button kind="primary">Next</Button>
         </>
     ),
@@ -28,7 +28,7 @@ const ActionsMappings: Mappings = {
             <Button kind="tertiary" light={true}>
                 Previous
             </Button>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Button kind="primary" light={true}>
                 Next
             </Button>

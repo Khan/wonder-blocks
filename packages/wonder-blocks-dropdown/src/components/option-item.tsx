@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
@@ -194,7 +194,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                                     disabled={disabled}
                                     selected={selected}
                                 />
-                                <Strut size={Spacing.xSmall_8} />
+                                <Strut size={spacing.xSmall_8} />
                                 {leftAccessory}
                             </View>
                         ) : (
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
         // vertically.
         minHeight: "unset",
         // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: Spacing.xxxxSmall_2,
+        paddingBlock: spacing.xxxxSmall_2,
 
         /**
          * States
@@ -246,9 +246,9 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: Spacing.xxxSmall_4,
-            outline: `${Spacing.xxxxSmall_2}px solid ${Color.blue}`,
-            outlineOffset: -Spacing.xxxxSmall_2,
+            borderRadius: spacing.xxxSmall_4,
+            outline: `${spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            outlineOffset: -spacing.xxxxSmall_2,
         },
 
         ":focus-visible": {
@@ -316,8 +316,8 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         minHeight: "unset",
-        padding: Spacing.xSmall_8,
-        paddingRight: Spacing.medium_16,
+        padding: spacing.xSmall_8,
+        paddingRight: spacing.medium_16,
         whiteSpace: "nowrap",
     },
 

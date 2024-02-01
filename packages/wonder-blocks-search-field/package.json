@@ -21,7 +21,7 @@
     "@khanacademy/wonder-blocks-form": "^4.4.0",
     "@khanacademy/wonder-blocks-icon": "^4.0.1",
     "@khanacademy/wonder-blocks-icon-button": "^5.1.8",
-    "@khanacademy/wonder-blocks-spacing": "^4.0.1",
+    "@khanacademy/wonder-blocks-tokens": "^0.1.0",
     "@khanacademy/wonder-blocks-typography": "^2.1.10"
   },
   "peerDependencies": {

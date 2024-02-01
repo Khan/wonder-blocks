@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -189,9 +189,9 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: Spacing.xxxSmall_4,
-            outline: `${Spacing.xxxxSmall_2}px solid ${Color.blue}`,
-            outlineOffset: -Spacing.xxxxSmall_2,
+            borderRadius: spacing.xxxSmall_4,
+            outline: `${spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            outlineOffset: -spacing.xxxxSmall_2,
         },
 
         // Overrides the default cell state for the button element.
@@ -228,6 +228,6 @@ const styles = StyleSheet.create({
 
     indent: {
         // Cell's internal padding + checkbox width + checkbox margin
-        paddingLeft: Spacing.medium_16 * 2,
+        paddingLeft: spacing.medium_16 * 2,
     },
 });

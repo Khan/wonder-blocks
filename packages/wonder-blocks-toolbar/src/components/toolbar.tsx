@@ -6,7 +6,7 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingSmall,
     LabelLarge,
@@ -151,8 +151,8 @@ const sharedStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         minHeight: 66,
-        paddingLeft: Spacing.medium_16,
-        paddingRight: Spacing.medium_16,
+        paddingLeft: spacing.medium_16,
+        paddingRight: spacing.medium_16,
         width: "100%",
     },
     small: {
@@ -193,6 +193,6 @@ const sharedStyles = StyleSheet.create({
         color: Color.offBlack64,
     },
     titles: {
-        padding: Spacing.small_12,
+        padding: spacing.small_12,
     },
 });

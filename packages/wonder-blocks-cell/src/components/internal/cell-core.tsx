@@ -7,7 +7,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
 
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
-            borderRadius: Spacing.xxxSmall_4,
+            borderRadius: spacing.xxxSmall_4,
             // To hide the internal corners of the cell.
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
@@ -302,10 +302,10 @@ const styles = StyleSheet.create({
             zIndex: 1,
             // We remove the border width from the width/height to ensure
             // that the focus ring is drawn inside the cell.
-            width: `calc(100% - ${Spacing.xxxSmall_4}px)`,
-            height: `calc(100% - ${Spacing.xxxSmall_4}px)`,
-            border: `${Spacing.xxxxSmall_2}px solid ${Color.blue}`,
-            borderRadius: Spacing.xxxSmall_4,
+            width: `calc(100% - ${spacing.xxxSmall_4}px)`,
+            height: `calc(100% - ${spacing.xxxSmall_4}px)`,
+            border: `${spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            borderRadius: spacing.xxxSmall_4,
         },
 
         // hover + enabled

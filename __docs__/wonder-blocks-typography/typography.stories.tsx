@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
     HeadingLarge,
@@ -368,7 +368,7 @@ Paragraph.parameters = {
 export const LineHeight: StoryObj<any> = () => {
     const style = {
         outline: `1px solid ${Color.offBlack}`,
-        marginBottom: Spacing.small_12,
+        marginBottom: spacing.small_12,
     } as const;
 
     return (

@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingMedium,
     LabelMedium,
@@ -55,7 +55,7 @@ export const InlineStyles: StoryComponentType = () => (
                 {
                     background: Color.lightBlue,
                     border: `1px solid ${Color.blue}`,
-                    padding: Spacing.xxxSmall_4,
+                    padding: spacing.xxxSmall_4,
                 },
             ]}
         >
@@ -137,18 +137,18 @@ DefiningLayout.parameters = {
 const styles = StyleSheet.create({
     container: {
         background: Color.offBlack8,
-        gap: Spacing.medium_16,
-        padding: Spacing.xLarge_32,
+        gap: spacing.medium_16,
+        padding: spacing.xLarge_32,
     },
 
     view: {
         border: `1px dashed ${Color.lightBlue}`,
-        gap: Spacing.medium_16,
-        padding: Spacing.medium_16,
+        gap: spacing.medium_16,
+        padding: spacing.medium_16,
     },
 
     item: {
         background: Color.offBlack32,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
 });

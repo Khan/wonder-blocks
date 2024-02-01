@@ -6,7 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
@@ -154,19 +154,19 @@ export const WithAutofocus: StoryComponentType = () => {
                 autoFocus={true}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                style={{flexGrow: 1, marginLeft: Spacing.small_12}}
+                style={{flexGrow: 1, marginLeft: spacing.small_12}}
             />
         </View>
     );
 
     return (
         <View>
-            <LabelLarge style={{marginBottom: Spacing.small_12}}>
+            <LabelLarge style={{marginBottom: spacing.small_12}}>
                 Press the button to view the search field with autofocus.
             </LabelLarge>
             <Button
                 onClick={handleShowDemo}
-                style={{width: 300, marginBottom: Spacing.large_24}}
+                style={{width: 300, marginBottom: spacing.large_24}}
             >
                 Toggle autoFocus demo
             </Button>
@@ -193,6 +193,6 @@ WithAutofocus.parameters = {
 const styles = StyleSheet.create({
     darkBackground: {
         background: Color.darkBlue,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
 });

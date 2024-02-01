@@ -15,7 +15,7 @@ import {fireEvent, userEvent, within} from "@storybook/testing-library";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     LabelMedium,
     LabelLarge,
@@ -138,31 +138,31 @@ export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: Spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
     },
     button: {
-        marginRight: Spacing.xSmall_8,
+        marginRight: spacing.xSmall_8,
     },
     truncatedButton: {
         maxWidth: 200,
-        marginBottom: Spacing.medium_16,
+        marginBottom: spacing.medium_16,
     },
     fillSpace: {
         minWidth: 140,
     },
     example: {
         background: Color.offWhite,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
     label: {
-        marginTop: Spacing.large_24,
-        marginBottom: Spacing.xSmall_8,
+        marginTop: spacing.large_24,
+        marginBottom: spacing.xSmall_8,
     },
 });
 
 export const Variants: StoryComponentType = () => (
-    <View style={{padding: Spacing.medium_16, gap: Spacing.medium_16}}>
-        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+    <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}}>Hello, world!</Button>
             <Button onClick={() => {}} kind="secondary">
                 Hello, world!
@@ -171,7 +171,7 @@ export const Variants: StoryComponentType = () => (
                 Hello, world!
             </Button>
         </View>
-        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}} disabled={true}>
                 Hello, world!
             </Button>
@@ -182,7 +182,7 @@ export const Variants: StoryComponentType = () => (
                 Hello, world!
             </Button>
         </View>
-        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}} color="destructive">
                 Hello, world!
             </Button>
@@ -249,7 +249,7 @@ WithColor.parameters = {
 };
 
 export const Dark: StoryComponentType = () => (
-    <View style={{backgroundColor: Color.darkBlue, padding: Spacing.medium_16}}>
+    <View style={{backgroundColor: Color.darkBlue, padding: spacing.medium_16}}>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}} light={true}>
                 Hello, world!
@@ -561,7 +561,7 @@ export const TruncatingLabels: StoryComponentType = {
             <Button onClick={() => {}} style={styles.truncatedButton}>
                 label too long for the parent container
             </Button>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Button
                 onClick={() => {}}
                 style={styles.truncatedButton}
@@ -569,7 +569,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -577,7 +577,7 @@ export const TruncatingLabels: StoryComponentType = {
             >
                 label too long for the parent container
             </Button>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Button
                 size="small"
                 onClick={() => {}}
@@ -624,15 +624,15 @@ export const CustomStyles = {
         },
     },
     render: (args: any) => (
-        <View style={{gap: Spacing.medium_16}}>
+        <View style={{gap: spacing.medium_16}}>
             <HeadingSmall>Wonder Blocks theme (default)</HeadingSmall>
-            <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
                 <Button {...args} kind="primary" />
                 <Button {...args} kind="secondary" />
                 <Button {...args} kind="tertiary" />
             </View>
             <HeadingSmall>Khanmigo theme</HeadingSmall>
-            <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
                 <ThemeSwitcherContext.Provider value="khanmigo">
                     <Button {...args} kind="primary" />
                     <Button {...args} kind="secondary" />
@@ -760,7 +760,7 @@ export const KhanmigoTheme: StoryComponentType = {
 
         return (
             <ThemeSwitcherContext.Provider value="khanmigo">
-                <View style={{gap: Spacing.medium_16}}>
+                <View style={{gap: spacing.medium_16}}>
                     {stories.map((Story, i) => (
                         <Story key={i} />
                     ))}

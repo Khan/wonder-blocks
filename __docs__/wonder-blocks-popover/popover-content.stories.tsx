@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
@@ -83,7 +83,7 @@ export const Emphasized: StoryComponentType = {
                 <Button light={true} kind="secondary">
                     Previous
                 </Button>
-                <Strut size={Spacing.medium_16} />
+                <Strut size={spacing.medium_16} />
                 <Button light={true} kind="primary">
                     Next
                 </Button>

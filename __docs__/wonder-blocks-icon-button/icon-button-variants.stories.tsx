@@ -5,9 +5,8 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
@@ -46,9 +45,7 @@ const KindVariants = ({
                                     : styles.darkDefault),
                         ]}
                     >
-                        <LabelMedium
-                            style={light && {color: tokens.color.white}}
-                        >
+                        <LabelMedium style={light && {color: color.white}}>
                             {kind}-default
                         </LabelMedium>
                         <IconButton
@@ -68,9 +65,7 @@ const KindVariants = ({
                                     : styles.darkDefault),
                         ]}
                     >
-                        <LabelMedium
-                            style={light && {color: tokens.color.white}}
-                        >
+                        <LabelMedium style={light && {color: color.white}}>
                             {kind}-destructive
                         </LabelMedium>
                         <IconButton
@@ -90,9 +85,7 @@ const KindVariants = ({
                                     : styles.darkDefault),
                         ]}
                     >
-                        <LabelMedium
-                            style={light && {color: tokens.color.white}}
-                        >
+                        <LabelMedium style={light && {color: color.white}}>
                             {kind}-disabled
                         </LabelMedium>
                         <IconButton
@@ -110,7 +103,7 @@ const KindVariants = ({
 };
 
 const VariantsByTheme = ({themeName = "Default"}: {themeName?: string}) => (
-    <View style={{marginBottom: Spacing.large_24}}>
+    <View style={{marginBottom: spacing.large_24}}>
         <HeadingLarge>{themeName} theme</HeadingLarge>
         <View style={styles.grid}>
             <KindVariants kind="primary" light={false} />
@@ -157,21 +150,21 @@ export const Active: StoryComponentType = {
 
 const styles = StyleSheet.create({
     darkDefault: {
-        backgroundColor: tokens.color.darkBlue,
+        backgroundColor: color.darkBlue,
     },
     darkKhanmigo: {
-        backgroundColor: tokens.color.eggplant,
+        backgroundColor: color.eggplant,
     },
     grid: {
         display: "grid",
         gridTemplateColumns: "repeat(3, 250px)",
-        gap: Spacing.large_24,
+        gap: spacing.large_24,
     },
     gridRow: {
         flexDirection: "row",
         alignItems: "center",
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
         justifyContent: "space-between",
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
 });

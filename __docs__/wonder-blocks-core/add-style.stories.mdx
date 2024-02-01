@@ -5,7 +5,7 @@ import {StyleSheet} from "aphrodite";
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 <Meta title="Core / addStyle" />
 
@@ -14,9 +14,9 @@ export const styles = StyleSheet.create({
         // default style for all instances of StyledInput
         background: Color.white,
         border: `1px solid ${Color.offBlack16}`,
-        borderRadius: Spacing.xxxSmall_4,
-        fontSize: Spacing.medium_16,
-        padding: Spacing.xSmall_8,
+        borderRadius: spacing.xxxSmall_4,
+        fontSize: spacing.medium_16,
+        padding: spacing.xSmall_8,
     },
     error: {
         background: fade(Color.red, 0.16),
@@ -86,7 +86,7 @@ component so we don't have to create a new instance on every render.
 ```js
 import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 const StyledInput = addStyle("input", styles.input);
@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
     input: {
         background: Color.white,
         borderColor: Color.offBlack16,
-        borderRadius: Spacing.xxxSmall_4,
-        fontSize: Spacing.medium_16,
-        padding: Spacing.xSmall_8,
+        borderRadius: spacing.xxxSmall_4,
+        fontSize: spacing.medium_16,
+        padding: spacing.xSmall_8,
     },
     error: {
         background: fade(Color.red, 0.16),

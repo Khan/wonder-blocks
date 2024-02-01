@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
@@ -117,12 +117,12 @@ export const CompactCellWithDifferentHeights: StoryComponentType = () => (
             title="Single line with short accessory."
             rightAccessory={AccessoryMappings.withCaret}
         />
-        <Strut size={Spacing.xSmall_8} />
+        <Strut size={spacing.xSmall_8} />
         <CompactCell
             title="Single line with tall accessory."
             rightAccessory={AccessoryMappings.withIconText}
         />
-        <Strut size={Spacing.xSmall_8} />
+        <Strut size={spacing.xSmall_8} />
         <CompactCell
             title="Multi line title with tall accessory. Content should fit within the container and the cell height should be consistent no matter the content length."
             rightAccessory={AccessoryMappings.withIconText}
@@ -177,7 +177,7 @@ export const CompactCellAccessoryStyles: StoryComponentType = {
                 <PhosphorIcon icon={IconMappings.article} size="medium" />
             }
             leftAccessoryStyle={{
-                minWidth: Spacing.xxLarge_48,
+                minWidth: spacing.xxLarge_48,
                 alignSelf: "flex-start",
                 alignItems: "flex-start",
             }}
@@ -185,7 +185,7 @@ export const CompactCellAccessoryStyles: StoryComponentType = {
                 <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
             }
             rightAccessoryStyle={{
-                minWidth: Spacing.large_24,
+                minWidth: spacing.large_24,
                 alignSelf: "flex-end",
                 alignItems: "flex-end",
             }}
@@ -426,7 +426,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
 const styles = StyleSheet.create({
     example: {
         backgroundColor: Color.offWhite,
-        padding: Spacing.large_24,
-        width: 320 + Spacing.xxLarge_48,
+        padding: spacing.large_24,
+        width: 320 + spacing.xxLarge_48,
     },
 });

@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
@@ -309,7 +309,7 @@ Ref.parameters = {
 const styles = StyleSheet.create({
     clickable: {
         borderWidth: 1,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
     hovered: {
         textDecoration: "underline",
@@ -322,25 +322,25 @@ const styles = StyleSheet.create({
         outline: `solid 4px ${Color.lightBlue}`,
     },
     centerText: {
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
         textAlign: "center",
     },
     dark: {
         backgroundColor: Color.darkBlue,
         color: Color.white,
-        padding: Spacing.xSmall_8,
+        padding: spacing.xSmall_8,
     },
     row: {
         flexDirection: "row",
         alignItems: "center",
     },
     heading: {
-        marginRight: Spacing.large_24,
+        marginRight: spacing.large_24,
     },
     navigation: {
         border: `1px dashed ${Color.lightBlue}`,
-        marginTop: Spacing.large_24,
-        padding: Spacing.large_24,
+        marginTop: spacing.large_24,
+        padding: spacing.large_24,
     },
     disabled: {
         color: Color.white,

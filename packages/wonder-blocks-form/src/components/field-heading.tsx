@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
@@ -73,7 +73,7 @@ export default class FieldHeading extends React.Component<Props> {
                     {label}
                     {required && requiredIcon}
                 </LabelMedium>
-                <Strut size={Spacing.xxxSmall_4} />
+                <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
     }
@@ -93,7 +93,7 @@ export default class FieldHeading extends React.Component<Props> {
                 >
                     {description}
                 </LabelSmall>
-                <Strut size={Spacing.xxxSmall_4} />
+                <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
     }
@@ -107,7 +107,7 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                <Strut size={Spacing.small_12} />
+                <Strut size={spacing.small_12} />
                 <LabelSmall
                     style={styles.error}
                     role="alert"
@@ -127,7 +127,7 @@ export default class FieldHeading extends React.Component<Props> {
             <View style={style}>
                 {this.renderLabel()}
                 {this.maybeRenderDescription()}
-                <Strut size={Spacing.xSmall_8} />
+                <Strut size={spacing.xSmall_8} />
                 {field}
                 {this.maybeRenderError()}
             </View>
