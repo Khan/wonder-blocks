@@ -32,12 +32,14 @@ async function run(transformFileName, filePaths, options) {
             babel: true,
             extensions: "js,jsx,ts,tsx",
             parser: "tsx",
-            runInBand: true,
+            runInBand: !!options.dryRun,
             silent: false,
             ignorePattern: ["**/node_modules/**", "**/dist/**"],
             // Allows to format the transformed code.
             printOptions: {
                 objectCurlySpacing: false,
+                quote: "double",
+                trailingComma: true,
             },
         });
 
