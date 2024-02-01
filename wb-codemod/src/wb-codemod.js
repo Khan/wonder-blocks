@@ -1,30 +1,21 @@
 /* eslint-disable no-console */
-import path from "path";
-import chalk from "chalk";
-import jscodeshift from "jscodeshift/src/Runner";
-
-type RunOptions = {
-    /**
-     * Whether to dry run the codemod.
-     *
-     * If true, the codemod will not be applied in the files, but the
-     * transformed code will be printed.
-     */
-    dryRun?: boolean;
-    /**
-     * Whether to print the output of the codemod.
-     */
-    print?: boolean;
-};
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable import/no-commonjs */
+const path = require("path");
+const chalk = require("chalk");
+const jscodeshift = require("jscodeshift/src/Runner");
 
 /**
  * Runs jscodeshift on the given transform file (codemod) and file paths.
+ *
+ * @param {string} transformFileName The name of the transform file to use.
+ * @param {string[]} filePaths The file paths to transform.
+ * @param {object} options The options to pass to jscodeshift.
+ *
+ * @returns {Promise<void>} A promise that resolves when the transformation is
+ * complete.
  */
-export async function run(
-    transformFileName: string,
-    filePaths: Array<string>,
-    options: RunOptions,
-) {
+async function run(transformFileName, filePaths, options) {
     const jsCodemodsDir = path.resolve(__dirname, "../transforms");
     // Transform path
     const transformFile = path.join(jsCodemodsDir, transformFileName + ".ts");
@@ -41,14 +32,12 @@ export async function run(
             babel: true,
             extensions: "js,jsx,ts,tsx",
             parser: "tsx",
-            runInBand: !!options.dryRun,
+            runInBand: true,
             silent: false,
             ignorePattern: ["**/node_modules/**", "**/dist/**"],
             // Allows to format the transformed code.
             printOptions: {
                 objectCurlySpacing: false,
-                quote: "double",
-                trailingComma: true,
             },
         });
 
@@ -58,3 +47,7 @@ export async function run(
         process.exit(1);
     }
 }
+
+module.exports = {
+    run,
+};

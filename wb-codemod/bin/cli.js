@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node -r @swc-node/register
+#!/usr/bin/env node
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-commonjs */
 const {parseArgs} = require("node:util");
@@ -19,14 +19,23 @@ const {
     positionals: [files],
 } = parseArgs({
     options: {
+        /**
+         * The path to the transform file to use.
+         */
         transformFile: {
             type: "string",
             short: "t",
         },
+        /**
+         * Whether to run the codemod without making any changes.
+         */
         dryRun: {
             type: "boolean",
             short: "d",
         },
+        /**
+         * Whether to print the transformed code to stdout.
+         */
         print: {
             type: "boolean",
             short: "p",
