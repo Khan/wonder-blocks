@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-commonjs */
 const {parseArgs} = require("node:util");
-const {run} = require("../src/wb-codemodd");
+const {run} = require("../src/wb-codemod");
 
 const HELP_TEXT = `
 Usage: wb-codemod [options] <files>
