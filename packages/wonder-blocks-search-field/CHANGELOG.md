@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.2.0
+
+### Minor Changes
+
+-   0c329565: `name` prop has been added to SearchField and TextField
+
+### Patch Changes
+
+-   Updated dependencies [0c329565]
+    -   @khanacademy/wonder-blocks-form@4.4.0
+
 ## 2.1.27
 
 ### Patch Changes
