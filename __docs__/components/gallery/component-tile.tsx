@@ -5,7 +5,7 @@ import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.sv
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {Body, HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {

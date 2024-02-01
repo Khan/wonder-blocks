@@ -9,7 +9,7 @@
         {"path": "../wonder-blocks-clickable/tsconfig-build.json"},
         {"path": "../wonder-blocks-core/tsconfig-build.json"},
         {"path": "../wonder-blocks-icon/tsconfig-build.json"},
-        {"path": "../wonder-blocks-theming/tsconfig-build.json"},
+        {"path": "../wonder-blocks-tokens/tsconfig-build.json"},
         {"path": "../wonder-blocks-typography/tsconfig-build.json"},
     ]
 }

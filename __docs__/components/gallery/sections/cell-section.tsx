@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {IconMappings} from "../../../wonder-blocks-icon/phosphor-icon.argtypes";
 

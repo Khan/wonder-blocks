@@ -1,4 +1,5 @@
-import {mergeTheme, tokens} from "@khanacademy/wonder-blocks-theming";
+import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 /**
@@ -7,7 +8,7 @@ import defaultTheme from "./default";
 const theme = mergeTheme(defaultTheme, {
     color: {
         bg: {
-            inverse: tokens.color.eggplant,
+            inverse: color.eggplant,
         },
     },
 });

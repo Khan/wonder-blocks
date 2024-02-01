@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import {useUniqueIdWithMock, View} from "@khanacademy/wonder-blocks-core";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 

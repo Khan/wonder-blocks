@@ -12,7 +12,7 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 export type PillKind =

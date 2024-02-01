@@ -8,7 +8,8 @@ import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
-import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
+import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import Button from "../button";
 
@@ -182,7 +183,7 @@ describe("button with icon", () => {
 
         // Assert
         expect(iconWrapper).toHaveStyle(
-            `backgroundColor: ${tokens.color.fadedBlue16}`,
+            `backgroundColor: ${color.fadedBlue16}`,
         );
     });
 
@@ -268,7 +269,7 @@ describe("button with icon", () => {
 
         // Assert
         expect(iconWrapper).toHaveStyle(
-            `backgroundColor: ${tokens.color.fadedBlue16}`,
+            `backgroundColor: ${color.fadedBlue16}`,
         );
     });
 });

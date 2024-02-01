@@ -2,25 +2,16 @@ import {Meta, Source} from "@storybook/blocks";
 
 import TokenTable from "../../.storybook/components/token-table";
 
-import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
-<Meta title="Theming / Tokens / Color" />
+<Meta title="Tokens / Color" />
 
 # Tokens
 
 ## Color
 
-The color palette containing all the global WB colors.
-
-<Banner
-    kind="warning"
-    layout="full-width"
-    text="Note that this is intended only internal
-    development purposes. We'll let you know as soon as this is ready for public
-    consumption."
-/>
+The color palette containing all the global Wonder Blocks colors.
 
 <TokenTable
     columns={[

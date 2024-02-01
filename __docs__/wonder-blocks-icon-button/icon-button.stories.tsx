@@ -17,7 +17,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -346,7 +346,7 @@ export const WithRouter: StoryComponentType = {
 
 const styles = StyleSheet.create({
     dark: {
-        backgroundColor: tokens.color.darkBlue,
+        backgroundColor: color.darkBlue,
         padding: Spacing.medium_16,
     },
     arrowsWrapper: {

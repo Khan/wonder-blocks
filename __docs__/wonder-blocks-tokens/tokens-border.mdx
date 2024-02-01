@@ -4,9 +4,9 @@ import TokenTable from "../../.storybook/components/token-table";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
-<Meta title="Theming / Tokens / Border" />
+<Meta title="Tokens / Border" />
 
 export const baseColumns = (kind) => [
     {
@@ -27,13 +27,16 @@ export const baseColumns = (kind) => [
 
 ## Border
 
-<Banner
-    kind="warning"
-    layout="full-width"
-    text="Note that this is intended only internal
-    development purposes. We'll let you know as soon as this is ready for public
-    consumption."
-/>
+The `border` tokens are used to define the border properties of an element. The
+border tokens are broken down into two categories: `radius` and `width`.
+
+<View style={{marginBottom: tokens.spacing.medium_16}}>
+    <Banner
+        kind="info"
+        text="We don't define border colors here, and instead we recommend you to rely on the `color` token primitives to build on top of that."
+        layout="floating"
+    />
+</View>
 
 ### Radius
 

@@ -8,7 +8,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
-import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
+import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     ModalLauncher,
@@ -279,7 +280,7 @@ export const WithDarkPanel: StoryComponentType = {
                                 />
                                 <View
                                     style={{
-                                        marginTop: tokens.spacing.medium_16,
+                                        marginTop: spacing.medium_16,
                                     }}
                                 >
                                     <Title id="modal-title-0">

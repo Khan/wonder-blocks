@@ -1,4 +1,4 @@
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 export const keyCodes = {
     tab: 9,
@@ -10,8 +10,8 @@ export const keyCodes = {
 } as const;
 
 export const selectDropdownStyle = {
-    marginTop: tokens.spacing.xSmall_8,
-    marginBottom: tokens.spacing.xSmall_8,
+    marginTop: spacing.xSmall_8,
+    marginBottom: spacing.xSmall_8,
 } as const;
 
 // Filterable dropdown has minimum dimensions requested from Design.

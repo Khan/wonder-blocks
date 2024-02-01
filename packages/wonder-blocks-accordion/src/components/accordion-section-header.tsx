@@ -6,7 +6,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {AccordionCornerKindType} from "./accordion";

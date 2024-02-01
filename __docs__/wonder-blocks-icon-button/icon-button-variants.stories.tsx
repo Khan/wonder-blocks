@@ -6,7 +6,8 @@ import type {Meta, StoryObj} from "@storybook/react";
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
+import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
