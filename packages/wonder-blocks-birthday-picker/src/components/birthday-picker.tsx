@@ -2,10 +2,9 @@ import moment from "moment"; // NOTE: DO NOT use named imports; 'moment' does no
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Color from "@khanacademy/wonder-blocks-color";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import infoIcon from "@phosphor-icons/core/bold/info-bold.svg";
 
@@ -253,11 +252,11 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     <PhosphorIcon
                         size="small"
                         icon={infoIcon}
-                        color={Color.red}
+                        color={color.red}
                         aria-hidden="true"
                     />
                     <Strut size={spacing.xxxSmall_4} />
-                    <Body style={{color: Color.red}}>{error}</Body>
+                    <Body style={{color: color.red}}>{error}</Body>
                 </View>
             </>
         );

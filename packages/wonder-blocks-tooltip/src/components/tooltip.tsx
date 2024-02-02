@@ -27,7 +27,7 @@ import {
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import TooltipAnchor from "./tooltip-anchor";
 import TooltipBubble from "./tooltip-bubble";
@@ -109,7 +109,7 @@ type Props = AriaProps &
         /**
          * Optional background color.
          */
-        backgroundColor?: keyof typeof Color;
+        backgroundColor?: keyof typeof color;
     }>;
 
 type State = Readonly<{

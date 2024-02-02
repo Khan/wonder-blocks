@@ -5,9 +5,9 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color, {fade} from "@khanacademy/wonder-blocks-color";
+import {fade} from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
@@ -220,8 +220,8 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        background: Color.white,
-        color: Color.offBlack,
+        background: color.white,
+        color: color.offBlack,
         display: "flex",
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
 
     /**
@@ -304,36 +304,36 @@ const styles = StyleSheet.create({
             // that the focus ring is drawn inside the cell.
             width: `calc(100% - ${spacing.xxxSmall_4}px)`,
             height: `calc(100% - ${spacing.xxxSmall_4}px)`,
-            border: `${spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            border: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
             borderRadius: spacing.xxxSmall_4,
         },
 
         // hover + enabled
         [":hover[aria-disabled=false]" as any]: {
-            background: Color.offBlack8,
+            background: color.offBlack8,
         },
 
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
-            background: Color.offBlack16,
+            background: color.offBlack16,
         },
     },
 
     active: {
-        background: fade(Color.blue, 0.08),
-        color: Color.blue,
+        background: fade(color.blue, 0.08),
+        color: color.blue,
 
         [":hover[aria-disabled=false]" as any]: {
-            background: fade(Color.blue, 0.16),
+            background: fade(color.blue, 0.16),
         },
 
         [":active[aria-disabled=false]" as any]: {
-            background: fade(Color.blue, 0.24),
+            background: fade(color.blue, 0.24),
         },
     },
 
     disabled: {
-        color: Color.offBlack32,
+        color: color.offBlack32,
         ":focus-visible": {
             // Prevent the focus ring from being displayed when the cell is
             // disabled.
@@ -342,11 +342,11 @@ const styles = StyleSheet.create({
     },
 
     accessoryActive: {
-        color: Color.blue,
+        color: color.blue,
     },
 
     accessoryDisabled: {
-        color: Color.offBlack,
+        color: color.offBlack,
         opacity: 0.32,
     },
 });

@@ -1,9 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
@@ -95,7 +94,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
 
 const styles = StyleSheet.create({
     subtitle: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
 
     // This is to override the default padding of the CellCore innerWrapper.

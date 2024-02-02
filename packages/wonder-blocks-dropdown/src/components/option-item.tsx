@@ -2,8 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
@@ -228,7 +228,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
-const {blue, white, offBlack, offBlack32} = Color;
+const {blue, white, offBlack, offBlack32} = color;
 
 const activeBlue = mix(offBlack32, blue);
 
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
             borderRadius: spacing.xxxSmall_4,
-            outline: `${spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
             outlineOffset: -spacing.xxxxSmall_2,
         },
 
@@ -304,11 +304,11 @@ const styles = StyleSheet.create({
          * Cell states
          */
         [":is([aria-disabled=false]) .subtitle" as any]: {
-            color: Color.offBlack64,
+            color: color.offBlack64,
         },
 
         [":hover[aria-disabled=false] .subtitle" as any]: {
-            color: Color.offWhite,
+            color: color.offWhite,
         },
         [":active[aria-disabled=false] .subtitle" as any]: {
             color: mix(fade(blue, 0.16), white),

@@ -1,9 +1,8 @@
 import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 
-import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -17,7 +16,7 @@ export type Props = {
      * NOTE: Added to support custom popovers
      * @ignore
      */
-    color: keyof typeof Colors;
+    color: keyof typeof color;
     /** The offset of the tail indicating where it should be positioned. */
     offset?: Offset;
     /** The placement of the tail with respect to the tooltip anchor. */
@@ -240,9 +239,9 @@ export default class TooltipTail extends React.Component<Props> {
              */
             <g key="dropshadow" transform={`translate(${offsetShadowX},5.5)`}>
                 <polyline
-                    fill={Colors.offBlack16}
+                    fill={color.offBlack16}
                     points={points.join(" ")}
-                    stroke={Colors.offBlack32}
+                    stroke={color.offBlack32}
                     filter={`url(#${dropShadowFilterId})`}
                 />
             </g>,
@@ -350,7 +349,7 @@ export default class TooltipTail extends React.Component<Props> {
         const {trimlinePoints, points, height, width} =
             this._calculateDimensionsFromPlacement();
 
-        const {color, show} = this.props;
+        const {color: arrowColor, show} = this.props;
 
         if (!show) {
             // If we aren't showing the tail, we still need to take up space
@@ -367,7 +366,6 @@ export default class TooltipTail extends React.Component<Props> {
                 aria-hidden
             >
                 {this._maybeRenderDropshadow(points)}
-
                 {/**
                  * Draw the actual background of the tooltip arrow.
                  *
@@ -375,24 +373,22 @@ export default class TooltipTail extends React.Component<Props> {
                  * outline, it draws over white and not the dropshadow behind.
                  */}
                 <polyline
-                    fill={Colors[color]}
-                    stroke={Colors[color]}
+                    fill={color[arrowColor]}
+                    stroke={color[arrowColor]}
                     points={points.join(" ")}
                 />
-
                 {/* Draw the tooltip outline around the tooltip arrow. */}
                 <polyline
                     // Redraw the stroke on top of the background color,
                     // so that the ends aren't extra dark where they meet
                     // the border of the tooltip.
-                    fill={Colors[color]}
+                    fill={color[arrowColor]}
                     points={points.join(" ")}
-                    stroke={Colors.offBlack16}
+                    stroke={color.offBlack16}
                 />
-
                 {/* Draw a trimline to make the arrow appear flush */}
                 <polyline
-                    stroke={Colors[color]}
+                    stroke={color[arrowColor]}
                     points={trimlinePoints.join(" ")}
                 />
             </svg>

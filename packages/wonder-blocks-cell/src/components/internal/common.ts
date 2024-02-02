@@ -1,7 +1,6 @@
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {HorizontalRuleVariant} from "../../util/types";
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
             // align border to the right of the cell
             right: 0,
             height: spacing.xxxxSmall_2,
-            boxShadow: `inset 0px -1px 0px ${Color.offBlack8}`,
+            boxShadow: `inset 0px -1px 0px ${color.offBlack8}`,
         },
     },
 

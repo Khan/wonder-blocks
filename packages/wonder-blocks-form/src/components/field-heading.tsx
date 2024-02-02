@@ -2,9 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
@@ -137,15 +136,15 @@ export default class FieldHeading extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     label: {
-        color: Color.offBlack,
+        color: color.offBlack,
     },
     description: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
     error: {
-        color: Color.red,
+        color: color.red,
     },
     required: {
-        color: Color.red,
+        color: color.red,
     },
 });

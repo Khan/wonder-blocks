@@ -2,10 +2,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import Color, {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
+import {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
@@ -150,21 +150,21 @@ const sharedStyles = StyleSheet.create({
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (color: string) => {
-    const buttonType = color;
+const _generateStyles = (localColor: string) => {
+    const buttonType = localColor;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
-    const {offBlack32} = Color;
-    const activeColor = mix(offBlack32, color);
+    const {offBlack32} = color;
+    const activeColor = mix(offBlack32, localColor);
 
     let newStyles: Record<string, any> = {};
 
     newStyles = {
         default: {
             background: "none",
-            color: color,
+            color: localColor,
         },
         focus: {
             ":after": {

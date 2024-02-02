@@ -7,9 +7,9 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import Color, {fade} from "@khanacademy/wonder-blocks-color";
+import {fade} from "@khanacademy/wonder-blocks-color";
 
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -1058,12 +1058,12 @@ const styles = StyleSheet.create({
     },
 
     dropdown: {
-        backgroundColor: Color.white,
+        backgroundColor: color.white,
         borderRadius: 4,
         paddingTop: spacing.xxxSmall_4,
         paddingBottom: spacing.xxxSmall_4,
-        border: `solid 1px ${Color.offBlack16}`,
-        boxShadow: `0px 8px 8px 0px ${fade(Color.offBlack, 0.1)}`,
+        border: `solid 1px ${color.offBlack16}`,
+        boxShadow: `0px 8px 8px 0px ${fade(color.offBlack, 0.1)}`,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
@@ -1085,7 +1085,7 @@ const styles = StyleSheet.create({
     },
 
     noResult: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
         alignSelf: "center",
         marginTop: spacing.xxSmall_6,
     },

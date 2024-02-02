@@ -1,10 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
@@ -172,13 +171,13 @@ const styles = StyleSheet.create({
         marginTop: -2,
     },
     disabledLabel: {
-        color: Color.offBlack32,
+        color: color.offBlack32,
     },
     description: {
         // 16 for icon + 8 for spacing strut
         marginLeft: spacing.medium_16 + spacing.xSmall_8,
         marginTop: spacing.xxxSmall_4,
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
 });
 
