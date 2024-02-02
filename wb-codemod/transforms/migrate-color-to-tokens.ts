@@ -1,8 +1,8 @@
 import {
     API,
     FileInfo,
+    ImportSpecifier,
     ModuleSpecifier,
-    ImportDeclaration,
     Options,
 } from "jscodeshift";
 
@@ -14,13 +14,16 @@ const TARGET_IMPORT_DECLARATION = "@khanacademy/wonder-blocks-tokens";
 const TARGET_SPECIFIER = "color";
 
 /**
- * Transforms:
- * import Color from "@khanacademy/wonder-blocks-color"
- * const bgColor = Color.blue;
+ * Transforms: import Color from "@khanacademy/wonder-blocks-color" const
+ * bgColor = Color.blue;
  *
- * to:
- * import {color} from "@khanacademy/wonder-blocks-tokens"
- * const bgColor = color.blue;
+ * to: import {color} from "@khanacademy/wonder-blocks-tokens" const bgColor =
+ * color.blue;
+ *
+ * NOTE: This transform is similar to migrate-spacing-to-tokens.ts, but it
+ * differs in the way it replaces the usage of the default specifier. Spacing
+ * only exports a default specifier, while Color exports both a default and
+ * named specifier(s) like `mix` and `fade`.
  */
 export default function transform(file: FileInfo, api: API, options: Options) {
     const j = api.jscodeshift;
@@ -57,38 +60,71 @@ export default function transform(file: FileInfo, api: API, options: Options) {
             sourceSpecifier = defaultSpecifier.local?.name;
         }
 
+        // Remove the source specifier from the import declaration
+        const hasRemainingSpecifiers = path.value.specifiers?.some(
+            (specifier) => specifier.local?.name !== sourceSpecifier,
+        );
+
         // Replace default import with named import
         const targetSpecifier = j.importSpecifier(
             j.identifier(TARGET_SPECIFIER),
         );
 
-        // If the import is already used, we add a named import to the existing
-        // import declaration.
+        // If the target import is already used, we add a named import to the
+        // existing import declaration.
         if (targetImport.size() > 0) {
             // NOTE: We only add the specifier if it doesn't exist already.
-            const specifierExists = targetImport
+            const specifierExistsInTarget = targetImport
                 .get()
                 .node.specifiers.some(
                     (specifier: ModuleSpecifier) =>
                         specifier.local?.name === TARGET_SPECIFIER,
                 );
 
-            if (!specifierExists) {
+            if (!specifierExistsInTarget) {
                 targetImport.get().node.specifiers.push(targetSpecifier);
+                // sort the specifiers
+                targetImport
+                    .get()
+                    .node.specifiers.sort(
+                        (a: ImportSpecifier, b: ImportSpecifier) =>
+                            a.imported.name.localeCompare(b.imported.name),
+                    );
             }
-            // Remove the import declaration
-            j(path).remove();
+
+            // Remove the "wonder-blocks-color" import declaration
+            if (!hasRemainingSpecifiers) {
+                j(path).remove();
+            } else {
+                // Remove the default specifier from the import declaration
+                path.value.specifiers = path.value.specifiers?.filter(
+                    (specifier) => specifier.local?.name !== sourceSpecifier,
+                );
+            }
             return;
         }
 
-        // Create a new import declaration.
+        // The target import doesn't exist, so we create a new one.
         const newTargetImport = j.importDeclaration(
             [targetSpecifier],
             j.literal(TARGET_IMPORT_DECLARATION),
         );
 
-        // Replace the existing import declaration with the new one.
-        j(path).replaceWith(newTargetImport);
+        // Color was the only specifier in the import declaration.
+        if (!hasRemainingSpecifiers) {
+            // Replace the existing import declaration with the new one.
+            j(path).replaceWith(newTargetImport);
+        } else {
+            // There are other specifiers in the import declaration (e.g. mix,
+            // fade).
+            // We keep the other specifiers and remove the default specifier.
+            path.value.specifiers = path.value.specifiers?.filter(
+                (specifier) => specifier.local?.name !== sourceSpecifier,
+            );
+            // Move the default specifier to a named import in the target import
+            // declaration
+            j(path).insertAfter(newTargetImport);
+        }
     });
 
     // Step 3: Replace the usage

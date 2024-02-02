@@ -39,7 +39,7 @@ const color = color.red;
 import Color from "@khanacademy/wonder-blocks-color";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 `,
-        `import {spacing, color} from "@khanacademy/wonder-blocks-tokens";`,
+        `import {color, spacing} from "@khanacademy/wonder-blocks-tokens";`,
         "should add a named import to the existing import declaration",
     );
 
@@ -52,5 +52,32 @@ import {color} from "@khanacademy/wonder-blocks-tokens";
 `,
         `import {color} from "@khanacademy/wonder-blocks-tokens";`,
         "should delete the import declaration if the tokens.color named import is already used",
+    );
+
+    defineInlineTest(
+        transform,
+        transformOptions,
+        `
+import Color, {fade} from "@khanacademy/wonder-blocks-color";
+`,
+        `
+import {fade} from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
+`,
+        "should keep the color import if there are other named imports in the source import declaration",
+    );
+
+    defineInlineTest(
+        transform,
+        transformOptions,
+        `
+import Color, {fade} from "@khanacademy/wonder-blocks-color";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+`,
+        `
+import {fade} from "@khanacademy/wonder-blocks-color";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+`,
+        "should keep the color import if there are other named imports in the source import declaration and move the default import to the existing target import",
     );
 });
