@@ -3,12 +3,11 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 import {useGlobals} from "@storybook/preview-api";
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     ModalLauncher,
@@ -367,7 +366,7 @@ const styles = StyleSheet.create({
     squareDialog: {
         maxHeight: 500,
         maxWidth: 500,
-        backgroundColor: Color.darkBlue,
+        backgroundColor: color.darkBlue,
     },
     smallSquarePanel: {
         maxHeight: 400,

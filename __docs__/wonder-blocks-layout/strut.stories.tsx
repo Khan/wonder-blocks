@@ -3,9 +3,8 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
 import Button from "@khanacademy/wonder-blocks-button";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
@@ -123,7 +122,7 @@ const styles = StyleSheet.create({
     },
     strut: {
         alignSelf: "center",
-        backgroundColor: Color.darkBlue,
+        backgroundColor: color.darkBlue,
     },
     thin: {
         height: "4px",

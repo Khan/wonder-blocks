@@ -5,7 +5,6 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {fade} from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -320,15 +319,15 @@ const styles = StyleSheet.create({
     },
 
     active: {
-        background: fade(color.blue, 0.08),
+        background: color.fadedBlue8,
         color: color.blue,
 
         [":hover[aria-disabled=false]" as any]: {
-            background: fade(color.blue, 0.16),
+            background: color.fadedBlue16,
         },
 
         [":active[aria-disabled=false]" as any]: {
-            background: fade(color.blue, 0.24),
+            background: color.fadedBlue24,
         },
     },
 

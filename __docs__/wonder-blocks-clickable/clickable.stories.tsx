@@ -4,8 +4,7 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
@@ -313,21 +312,21 @@ const styles = StyleSheet.create({
     },
     hovered: {
         textDecoration: "underline",
-        backgroundColor: Color.teal,
+        backgroundColor: color.teal,
     },
     pressed: {
-        color: Color.blue,
+        color: color.blue,
     },
     focused: {
-        outline: `solid 4px ${Color.lightBlue}`,
+        outline: `solid 4px ${color.lightBlue}`,
     },
     centerText: {
         gap: spacing.medium_16,
         textAlign: "center",
     },
     dark: {
-        backgroundColor: Color.darkBlue,
-        color: Color.white,
+        backgroundColor: color.darkBlue,
+        color: color.white,
         padding: spacing.xSmall_8,
     },
     row: {
@@ -338,13 +337,13 @@ const styles = StyleSheet.create({
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${Color.lightBlue}`,
+        border: `1px dashed ${color.lightBlue}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },
     disabled: {
-        color: Color.white,
-        backgroundColor: Color.offBlack64,
+        color: color.white,
+        backgroundColor: color.offBlack64,
     },
     button: {
         maxWidth: 150,

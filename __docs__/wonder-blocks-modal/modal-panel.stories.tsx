@@ -3,10 +3,9 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -350,8 +349,8 @@ export const TwoPanels: StoryComponentType = {
 export const WithStyle: StoryComponentType = {
     render: () => {
         const modalStyles = {
-            color: Color.blue,
-            border: `2px solid ${Color.darkBlue}`,
+            color: color.blue,
+            border: `2px solid ${color.darkBlue}`,
             borderRadius: 20,
         } as const;
 

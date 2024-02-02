@@ -1,10 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 const StyledTable = addStyle("table");
 const StyledTableRow = addStyle("tr");
@@ -45,7 +44,7 @@ export default function SpacingTable(): React.ReactElement {
                         <StyledTableCell style={styles.cell}>
                             <View
                                 style={{
-                                    backgroundColor: Color.purple,
+                                    backgroundColor: color.purple,
                                     // @ts-expect-error [FEI-5019] - TS7053 - Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ readonly xxxxSmall_2: 2; readonly xxxSmall_4: 4; readonly xxSmall_6: 6; readonly xSmall_8: 8; readonly small_12: 12; readonly medium_16: 16; readonly large_24: 24; readonly xLarge_32: 32; readonly xxLarge_48: 48; readonly xxxLarge_64: 64; }'.
                                     width: spacing[spaceName],
                                     height: spacing.medium_16,
@@ -55,7 +54,7 @@ export default function SpacingTable(): React.ReactElement {
                         <StyledTableCell style={styles.cell}>
                             <View
                                 style={{
-                                    backgroundColor: Color.purple,
+                                    backgroundColor: color.purple,
                                     width: spacing.medium_16,
                                     // @ts-expect-error [FEI-5019] - TS7053 - Element implicitly has an 'any' type because expression of type 'string' can't be used to index type '{ readonly xxxxSmall_2: 2; readonly xxxSmall_4: 4; readonly xxSmall_6: 6; readonly xSmall_8: 8; readonly small_12: 12; readonly medium_16: 16; readonly large_24: 24; readonly xLarge_32: 32; readonly xxLarge_48: 48; readonly xxxLarge_64: 64; }'.
                                     height: spacing[spaceName],
@@ -78,18 +77,18 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     header: {
-        backgroundColor: Color.offWhite,
+        backgroundColor: color.offWhite,
     },
     row: {
-        borderTop: `1px solid ${Color.offBlack8}`,
+        borderTop: `1px solid ${color.offBlack8}`,
     },
     cell: {
         padding: spacing.xSmall_8,
         verticalAlign: "middle",
     },
     tag: {
-        background: Color.offWhite,
-        border: `solid 1px ${Color.offBlack8}`,
+        background: color.offWhite,
+        border: `solid 1px ${color.offBlack8}`,
         borderRadius: spacing.xxxxSmall_2,
         display: "inline-block",
         margin: `${spacing.xxxSmall_4}px 0`,

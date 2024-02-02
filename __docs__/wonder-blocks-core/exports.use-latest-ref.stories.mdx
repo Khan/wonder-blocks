@@ -4,8 +4,7 @@ import {useLatestRef, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import Color from "@khanacademy/wonder-blocks-color";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 <Meta
     title="Core / Exports / useLatestRef()"
@@ -96,7 +95,7 @@ export function Context({children}) {
                 border: "1px solid #ccc",
                 boxShadow: "inset 1px 1px 6px #0001",
                 padding: spacing.medium_16,
-                background: Color.offWhite,
+                background: color.offWhite,
             }}
         >
             {children}

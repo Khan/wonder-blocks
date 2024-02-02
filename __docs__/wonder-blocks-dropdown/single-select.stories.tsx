@@ -6,14 +6,14 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color, {fade} from "@khanacademy/wonder-blocks-color";
+import {fade} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingLarge,
@@ -101,7 +101,7 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        background: Color.offWhite,
+        background: color.offWhite,
         padding: spacing.medium_16,
     },
     rowRight: {
@@ -120,22 +120,22 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${Color.blue}`,
+        borderLeft: `5px solid ${color.blue}`,
         borderRadius: spacing.xxxSmall_4,
-        background: Color.lightBlue,
-        color: Color.white,
+        background: color.lightBlue,
+        color: color.white,
         padding: spacing.medium_16,
     },
     focused: {
-        backgroundColor: fade(Color.lightBlue, 0.8),
+        backgroundColor: fade(color.lightBlue, 0.8),
     },
     hovered: {
         textDecoration: "underline",
-        color: Color.offWhite,
+        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {
-        backgroundColor: Color.blue,
+        backgroundColor: color.blue,
     },
 
     fullBleed: {
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     darkBackgroundWrapper: {
         flexDirection: "row",
         justifyContent: "flex-end",
-        backgroundColor: Color.darkBlue,
+        backgroundColor: color.darkBlue,
         width: "100%",
         height: 200,
         paddingRight: spacing.medium_16,
@@ -760,7 +760,7 @@ export const AutoFocusDisabled: StoryComponentType = {
                                 style={styles.fullBleed}
                             />
                             <PhosphorIcon
-                                color={Color.blue}
+                                color={color.blue}
                                 icon={IconMappings.clockBold}
                                 size="small"
                                 style={styles.icon}

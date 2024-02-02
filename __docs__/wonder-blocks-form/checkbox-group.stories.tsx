@@ -3,8 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
@@ -321,7 +320,7 @@ const styles = StyleSheet.create({
     },
     title: {
         paddingBottom: spacing.xSmall_8,
-        borderBottom: `1px solid ${Color.offBlack64}`,
+        borderBottom: `1px solid ${color.offBlack64}`,
     },
     // Multiple choice styling
     multipleChoice: {
@@ -331,7 +330,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     description: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
     last: {
         borderBottom: "solid 1px #CCC",

@@ -197,11 +197,11 @@ const _generateStyles = (
     // Standard purple
     const linkPurple = mix(fade(offBlack, 0.08), purple);
     // Light blue
-    const fadedBlue = mix(fade(blue, 0.32), white);
+    const fadedBlue = color.fadedBlue;
     // Light pink
     const activeLightVisited = mix(fade(white, 0.32), pink);
     // Dark blue
-    const activeDefaultPrimary = mix(offBlack32, blue);
+    const activeDefaultPrimary = color.activeBlue;
 
     const primaryDefaultTextColor = light ? white : blue;
     const secondaryDefaultTextColor = inline ? offBlack : offBlack64;

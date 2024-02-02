@@ -2,7 +2,7 @@ import * as React from "react";
 import {Meta, Story, Source, Canvas, ArgsTable} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
-import Color, {fade} from "@khanacademy/wonder-blocks-color";
+import {fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -12,15 +12,15 @@ import {spacing} from "@khanacademy/wonder-blocks-tokens";
 export const styles = StyleSheet.create({
     input: {
         // default style for all instances of StyledInput
-        background: Color.white,
-        border: `1px solid ${Color.offBlack16}`,
+        background: color.white,
+        border: `1px solid ${color.offBlack16}`,
         borderRadius: spacing.xxxSmall_4,
         fontSize: spacing.medium_16,
         padding: spacing.xSmall_8,
     },
     error: {
-        background: fade(Color.red, 0.16),
-        borderColor: Color.red,
+        background: fade(color.red, 0.16),
+        borderColor: color.red,
     },
 });
 
@@ -85,8 +85,7 @@ component so we don't have to create a new instance on every render.
 
 ```js
 import {StyleSheet} from "aphrodite";
-import Color from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 const StyledInput = addStyle("input", styles.input);
@@ -94,15 +93,15 @@ const StyledInput = addStyle("input", styles.input);
 const styles = StyleSheet.create({
     // default style for all instances of StyledInput
     input: {
-        background: Color.white,
-        borderColor: Color.offBlack16,
+        background: color.white,
+        borderColor: color.offBlack16,
         borderRadius: spacing.xxxSmall_4,
         fontSize: spacing.medium_16,
         padding: spacing.xSmall_8,
     },
     error: {
-        background: fade(Color.red, 0.16),
-        borderColor: Color.red,
+        background: fade(color.red, 0.16),
+        borderColor: color.red,
     },
 });
 ```

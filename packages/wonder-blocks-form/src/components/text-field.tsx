@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -310,7 +310,7 @@ const styles = StyleSheet.create({
         },
     },
     error: {
-        background: `${mix(fade(color.red, 0.06), color.white)}`,
+        background: `${mix(color.fadedRed8, color.white)}`,
         border: `1px solid ${color.red}`,
         color: color.offBlack,
         "::placeholder": {

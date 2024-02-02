@@ -1,10 +1,9 @@
 import {Meta, Story, Canvas} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -80,12 +79,12 @@ More information about all these points and more can be found in the
                 <PhosphorIcon icon={IconMappings.xCircle} style={styles.incorrect} />
                 <Body>The color contrast for the following text is too low:</Body>
             </View>
-            <Body style={{color: Color.offBlack32}}>The quick brown fox jumps over the lazy dog</Body>
+            <Body style={{color: color.offBlack32}}>The quick brown fox jumps over the lazy dog</Body>
             <View style={styles.explanation}>
                 <PhosphorIcon icon={IconMappings.checkCircle} style={styles.correct} />
                 <Body>The color contrast for the following text is adequate:</Body>
             </View>
-            <Body style={{color: Color.offBlack}}>The quick brown fox jumps over the lazy dog</Body>
+            <Body style={{color: color.offBlack}}>The quick brown fox jumps over the lazy dog</Body>
         </View>
     </Story>
 </Canvas>
@@ -139,12 +138,12 @@ export const styles = StyleSheet.create({
         marginTop: spacing.xSmall_8,
     },
     correct: {
-        color: Color.green,
+        color: color.green,
         marginRight: spacing.xxxSmall_4,
         paddingTop: spacing.xxxxSmall_2,
     },
     incorrect: {
-        color: Color.red,
+        color: color.red,
         marginRight: spacing.xxxSmall_4,
         paddingTop: spacing.xxxxSmall_2,
     },

@@ -2,7 +2,6 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
@@ -10,7 +9,7 @@ import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
-const {blue, white, offBlack, offBlack32} = color;
+const {blue, white, offBlack} = color;
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
 
@@ -212,8 +211,8 @@ const styles = StyleSheet.create({
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: mix(fade(blue, 0.32), white),
-            background: mix(offBlack32, blue),
+            color: color.fadedBlue,
+            background: color.activeBlue,
         },
     },
     shared: {

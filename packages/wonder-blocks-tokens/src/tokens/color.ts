@@ -7,6 +7,7 @@ export const color = {
     // New colors
     activeBlue: mix(Color.offBlack32, Color.blue),
     fadedBlue: mix(fade(Color.blue, 0.32), Color.white),
+    fadedBlue24: fade(Color.blue, 0.24),
     fadedBlue16: fade(Color.blue, 0.16),
     fadedBlue8: fade(Color.blue, 0.08),
     activeRed: mix(Color.offBlack32, Color.red),

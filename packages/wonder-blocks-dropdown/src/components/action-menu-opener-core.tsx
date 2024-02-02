@@ -2,7 +2,6 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -56,7 +55,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             ...restProps
         } = this.props;
 
-        const buttonColor = SemanticColor.controlDefault;
+        const buttonColor = color.blue;
         const buttonStyles = _generateStyles(buttonColor);
         const disabled = disabledProp;
 
@@ -157,7 +156,7 @@ const _generateStyles = (localColor: string) => {
     }
 
     const {offBlack32} = color;
-    const activeColor = mix(offBlack32, localColor);
+    const activeColor = color.activeBlue;
 
     let newStyles: Record<string, any> = {};
 

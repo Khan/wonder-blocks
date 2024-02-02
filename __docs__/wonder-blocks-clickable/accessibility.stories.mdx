@@ -2,10 +2,9 @@ import {Meta, Story, Canvas} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -135,23 +134,23 @@ make sure to use `href` and `skipClientNav={true}.
 
 export const styles = StyleSheet.create({
     resting: {
-        boxShadow: `inset 0px 0px 1px 1px ${Color.lightBlue}`,
+        boxShadow: `inset 0px 0px 1px 1px ${color.lightBlue}`,
         padding: spacing.xSmall_8,
     },
     hovered: {
         textDecoration: "underline",
-        backgroundColor: Color.blue,
-        color: Color.white,
+        backgroundColor: color.blue,
+        color: color.white,
     },
     pressed: {
-        color: Color.darkBlue,
+        color: color.darkBlue,
     },
     focused: {
-        outline: `solid 4px ${Color.lightBlue}`,
+        outline: `solid 4px ${color.lightBlue}`,
     },
     panel: {
         padding: spacing.medium_16,
-        boxShadow: `inset 0px 0px 0 1px ${Color.offBlack8}`,
+        boxShadow: `inset 0px 0px 0 1px ${color.offBlack8}`,
     },
 });
 

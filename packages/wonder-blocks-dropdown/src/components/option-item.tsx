@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-color";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
@@ -228,9 +228,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
-const {blue, white, offBlack, offBlack32} = color;
-
-const activeBlue = mix(offBlack32, blue);
+const {blue, white, offBlack} = color;
 
 const styles = StyleSheet.create({
     item: {
@@ -277,8 +275,8 @@ const styles = StyleSheet.create({
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: mix(fade(blue, 0.32), white),
-            background: activeBlue,
+            color: color.fadedBlue,
+            background: color.activeBlue,
         },
 
         // checkbox states (see checkbox.tsx)
@@ -289,7 +287,7 @@ const styles = StyleSheet.create({
             color: blue,
         },
         [":active[aria-disabled=false] .check" as any]: {
-            color: activeBlue,
+            color: color.activeBlue,
         },
 
         [":is([aria-selected=true]) .checkbox" as any]: {
@@ -311,7 +309,7 @@ const styles = StyleSheet.create({
             color: color.offWhite,
         },
         [":active[aria-disabled=false] .subtitle" as any]: {
-            color: mix(fade(blue, 0.16), white),
+            color: mix(color.fadedBlue16, white),
         },
     },
     itemContainer: {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -153,10 +153,10 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-const fadedBlue = mix(fade(blue, 0.16), white);
-const activeBlue = mix(offBlack32, blue);
-const fadedRed = mix(fade(red, 0.08), white);
-const activeRed = mix(offBlack32, red);
+const fadedBlue = mix(color.fadedBlue16, white);
+const activeBlue = color.activeBlue;
+const fadedRed = mix(color.fadedRed8, white);
+const activeRed = color.activeRed;
 
 const colors = {
     default: {
