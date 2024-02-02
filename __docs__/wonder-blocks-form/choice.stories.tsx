@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     Choice,
@@ -56,7 +56,7 @@ const ChoiceWrapper = (args: any) => {
                 <Choice label="Mushroom" value="mushroom-checkbox" />
                 <Choice {...args} />
             </CheckboxGroup>
-            <Strut size={Spacing.xLarge_32} />
+            <Strut size={spacing.xLarge_32} />
             <RadioGroup
                 label="Pizza order"
                 description="Choose only one topping."

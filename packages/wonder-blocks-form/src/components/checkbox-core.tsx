@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import minusIcon from "@phosphor-icons/core/bold/minus-bold.svg";
 
@@ -29,9 +29,9 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 // The checkbox size
-const size = Spacing.medium_16;
+const size = spacing.medium_16;
 // The check icon size
-const checkSize = Spacing.small_12;
+const checkSize = spacing.small_12;
 
 const StyledInput = addStyle("input");
 

@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge, Title} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -162,7 +162,7 @@ export const Default: StoryComponentType = {
                 content={
                     <>
                         <Title id="modal-id-0">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
+                        <Strut size={spacing.large_24} />
                         {longBody}
                     </>
                 }
@@ -183,7 +183,7 @@ export const WithButton: StoryComponentType = {
                 content={
                     <>
                         <Title id="modal-id-2">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
+                        <Strut size={spacing.large_24} />
                         {longBody}
                     </>
                 }
@@ -208,10 +208,10 @@ export const WithThreeActions: StoryComponentType = {
 
         const buttonStyle = {
             [desktop]: {
-                marginRight: Spacing.medium_16,
+                marginRight: spacing.medium_16,
             },
             [mobile]: {
-                marginBottom: Spacing.medium_16,
+                marginBottom: spacing.medium_16,
             },
         } as const;
 
@@ -232,7 +232,7 @@ export const WithThreeActions: StoryComponentType = {
                     content={
                         <>
                             <Title id="modal-id-3">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
+                            <Strut size={spacing.large_24} />
                             {longBody}
                         </>
                     }
@@ -280,7 +280,7 @@ export const WithMultipleActions: StoryComponentType = {
                     content={
                         <>
                             <Title id="modal-id-4">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
+                            <Strut size={spacing.large_24} />
                             {longBody}
                         </>
                     }

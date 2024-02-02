@@ -12,7 +12,7 @@
         {"path": "../wonder-blocks-icon/tsconfig-build.json"},
         {"path": "../wonder-blocks-icon-button/tsconfig-build.json"},
         {"path": "../wonder-blocks-link/tsconfig-build.json"},
-        {"path": "../wonder-blocks-spacing/tsconfig-build.json"},
+        {"path": "../wonder-blocks-tokens/tsconfig-build.json"},
         {"path": "../wonder-blocks-typography/tsconfig-build.json"},
     ]
 }

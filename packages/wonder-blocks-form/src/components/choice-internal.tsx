@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
@@ -147,7 +147,7 @@ type Props = AriaProps & {
                                 error={error}
                                 ref={ref}
                             />
-                            <Strut size={Spacing.xSmall_8} />
+                            <Strut size={spacing.xSmall_8} />
                             {label && getLabel(uniqueId)}
                         </View>
                         {description && getDescription(descriptionId)}
@@ -176,8 +176,8 @@ const styles = StyleSheet.create({
     },
     description: {
         // 16 for icon + 8 for spacing strut
-        marginLeft: Spacing.medium_16 + Spacing.xSmall_8,
-        marginTop: Spacing.xxxSmall_4,
+        marginLeft: spacing.medium_16 + spacing.xSmall_8,
+        marginTop: spacing.xxxSmall_4,
         color: Color.offBlack64,
     },
 });

@@ -13,7 +13,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingLarge,
@@ -102,7 +102,7 @@ export default {
 const styles = StyleSheet.create({
     example: {
         background: Color.offWhite,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
     rowRight: {
         flexDirection: "row",
@@ -121,10 +121,10 @@ const styles = StyleSheet.create({
      */
     customOpener: {
         borderLeft: `5px solid ${Color.blue}`,
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: spacing.xxxSmall_4,
         background: Color.lightBlue,
         color: Color.white,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
     focused: {
         backgroundColor: fade(Color.lightBlue, 0.8),
@@ -162,13 +162,13 @@ const styles = StyleSheet.create({
         backgroundColor: Color.darkBlue,
         width: "100%",
         height: 200,
-        paddingRight: Spacing.medium_16,
-        paddingTop: Spacing.medium_16,
+        paddingRight: spacing.medium_16,
+        paddingTop: spacing.medium_16,
     },
     // AutoFocus
     icon: {
         position: "absolute",
-        right: Spacing.medium_16,
+        right: spacing.medium_16,
     },
 });
 
@@ -365,7 +365,7 @@ const ErrorWrapper = () => {
 
     return (
         <>
-            <LabelMedium style={{marginBottom: Spacing.xSmall_8}}>
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
                 Select any fruit other than lemon to clear the error!
             </LabelMedium>
             <SingleSelect
@@ -568,7 +568,7 @@ export const DropdownInModal: StoryComponentType = {
                         SingleSelect components can correctly be displayed
                         within the visible scrolling area.
                     </Body>
-                    <Strut size={Spacing.large_24} />
+                    <Strut size={spacing.large_24} />
                     <SingleSelect
                         onChange={(selected) => setValue(selected)}
                         isFilterable={true}

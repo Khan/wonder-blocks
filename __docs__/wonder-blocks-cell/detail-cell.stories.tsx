@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -346,12 +346,12 @@ export const DetailCellsAsListItems: StoryComponentType = {
 const styles = StyleSheet.create({
     example: {
         backgroundColor: Color.offWhite,
-        padding: Spacing.large_24,
+        padding: spacing.large_24,
         width: 376,
     },
     navigation: {
         border: `1px dashed ${Color.lightBlue}`,
-        marginTop: Spacing.large_24,
-        padding: Spacing.large_24,
+        marginTop: spacing.large_24,
+        padding: spacing.large_24,
     },
 });

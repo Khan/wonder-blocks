@@ -4,7 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
@@ -171,13 +171,13 @@ WithStyle.parameters = {
 const styles = StyleSheet.create({
     darkBackground: {
         background: Color.darkBlue,
-        padding: Spacing.xLarge_32,
+        padding: spacing.xLarge_32,
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
     },
     distanced: {
-        margin: Spacing.large_24,
+        margin: spacing.large_24,
     },
     example: {
         alignItems: "center",
@@ -185,6 +185,6 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: "row",
-        marginBottom: Spacing.xLarge_32,
+        marginBottom: spacing.xLarge_32,
     },
 });

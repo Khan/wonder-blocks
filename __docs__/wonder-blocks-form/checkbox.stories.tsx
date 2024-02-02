@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {Checkbox, CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -149,8 +149,8 @@ export const IndeterminateWithGroup: StoryComponentType = () => {
                 label={"Topping(s)"}
                 onChange={handleSelectAll}
             />
-            <Strut size={Spacing.small_12} />
-            <View style={{marginInlineStart: Spacing.large_24}}>
+            <Strut size={spacing.small_12} />
+            <View style={{marginInlineStart: spacing.large_24}}>
                 <CheckboxGroup
                     groupName="toppings"
                     onChange={handleCheckboxGroupSelect}

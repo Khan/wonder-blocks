@@ -6,7 +6,6 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -126,7 +125,7 @@ export const Default: StoryComponentType = {
                         content={
                             <>
                                 <Title id="modal-title-0">Modal Title</Title>
-                                <Strut size={Spacing.large_24} />
+                                <Strut size={spacing.large_24} />
                                 <Body id="modal-desc-0">
                                     Here is some text in the modal.
                                 </Body>
@@ -191,7 +190,7 @@ export const WithAboveAndBelow: StoryComponentType = {
                                     <Title id="modal-title-2">
                                         Modal Title
                                     </Title>
-                                    <Strut size={Spacing.large_24} />
+                                    <Strut size={spacing.large_24} />
                                     <Body>Here is some text in the modal.</Body>
                                 </>
                             }
@@ -225,7 +224,7 @@ export const WithLauncher: StoryComponentType = {
                     content={
                         <>
                             <Title id="modal-title-3">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
+                            <Strut size={spacing.large_24} />
                             <Body>Here is some text in the modal.</Body>
                         </>
                     }
@@ -286,7 +285,7 @@ export const WithDarkPanel: StoryComponentType = {
                                     <Title id="modal-title-0">
                                         Modal Title
                                     </Title>
-                                    <Strut size={Spacing.large_24} />
+                                    <Strut size={spacing.large_24} />
                                     <Body id="modal-desc-0">
                                         Here is some text in the modal.
                                     </Body>

@@ -10,7 +10,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -207,13 +207,13 @@ const styles = StyleSheet.create({
     inputContainer: {
         boxSizing: "border-box",
         flexDirection: "row",
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: spacing.xxxSmall_4,
         alignItems: "center",
         height: 40,
     },
     searchIcon: {
-        marginLeft: Spacing.xSmall_8,
-        marginRight: Spacing.xSmall_8,
+        marginLeft: spacing.xSmall_8,
+        marginRight: spacing.xSmall_8,
         position: "absolute",
     },
     dismissIcon: {
@@ -232,8 +232,8 @@ const styles = StyleSheet.create({
         },
         width: "100%",
         color: "inherit",
-        paddingLeft: Spacing.large_24 + Spacing.medium_16,
-        paddingRight: Spacing.large_24 + Spacing.medium_16,
+        paddingLeft: spacing.large_24 + spacing.medium_16,
+        paddingRight: spacing.large_24 + spacing.medium_16,
     },
 });
 

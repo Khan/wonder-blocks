@@ -5,7 +5,7 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import Color, {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
@@ -90,7 +90,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                 >
                     {label}
                 </View>
-                <Strut size={Spacing.xxxSmall_4} />
+                <Strut size={spacing.xxxSmall_4} />
                 <PhosphorIcon
                     size="small"
                     color="currentColor"
@@ -110,7 +110,7 @@ const sharedStyles = StyleSheet.create({
         justifyContent: "center",
         height: DROPDOWN_ITEM_HEIGHT,
         border: "none",
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: spacing.xxxSmall_4,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -127,7 +127,7 @@ const sharedStyles = StyleSheet.create({
         cursor: "auto",
     },
     small: {
-        height: Spacing.xLarge_32,
+        height: spacing.xLarge_32,
     },
     text: {
         textAlign: "left",

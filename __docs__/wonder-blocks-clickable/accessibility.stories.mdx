@@ -5,7 +5,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -136,7 +136,7 @@ make sure to use `href` and `skipClientNav={true}.
 export const styles = StyleSheet.create({
     resting: {
         boxShadow: `inset 0px 0px 1px 1px ${Color.lightBlue}`,
-        padding: Spacing.xSmall_8,
+        padding: spacing.xSmall_8,
     },
     hovered: {
         textDecoration: "underline",
@@ -150,7 +150,7 @@ export const styles = StyleSheet.create({
         outline: `solid 4px ${Color.lightBlue}`,
     },
     panel: {
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
         boxShadow: `inset 0px 0px 0 1px ${Color.offBlack8}`,
     },
 });

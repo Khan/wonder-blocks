@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
         height: 40,
         borderRadius: 4,
         boxSizing: "border-box",
-        paddingLeft: Spacing.medium_16,
+        paddingLeft: spacing.medium_16,
         margin: 0,
         outline: "none",
         boxShadow: "none",

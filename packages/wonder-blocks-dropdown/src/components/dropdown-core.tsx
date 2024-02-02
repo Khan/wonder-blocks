@@ -9,7 +9,7 @@ import {VariableSizeList as List} from "react-window";
 
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -1060,8 +1060,8 @@ const styles = StyleSheet.create({
     dropdown: {
         backgroundColor: Color.white,
         borderRadius: 4,
-        paddingTop: Spacing.xxxSmall_4,
-        paddingBottom: Spacing.xxxSmall_4,
+        paddingTop: spacing.xxxSmall_4,
+        paddingBottom: spacing.xxxSmall_4,
         border: `solid 1px ${Color.offBlack16}`,
         boxShadow: `0px 8px 8px 0px ${fade(Color.offBlack, 0.1)}`,
         // We use a custom property to set the max height of the dropdown.
@@ -1087,12 +1087,12 @@ const styles = StyleSheet.create({
     noResult: {
         color: Color.offBlack64,
         alignSelf: "center",
-        marginTop: Spacing.xxSmall_6,
+        marginTop: spacing.xxSmall_6,
     },
 
     searchInputStyle: {
-        margin: Spacing.xSmall_8,
-        marginTop: Spacing.xxxSmall_4,
+        margin: spacing.xSmall_8,
+        marginTop: spacing.xxxSmall_4,
         // Set `minHeight` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
         minHeight: "auto",

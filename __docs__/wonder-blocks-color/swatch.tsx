@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Caption,
     LabelLarge,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     container: {
         color: Color.offBlack,
         flexDirection: "row",
-        marginBottom: Spacing.xLarge_32,
+        marginBottom: spacing.xLarge_32,
     },
     info: {
         alignItems: "flex-start",
@@ -141,9 +141,9 @@ const styles = StyleSheet.create({
     tag: {
         background: Color.offWhite,
         border: `solid 1px ${Color.offBlack8}`,
-        borderRadius: Spacing.xxxxSmall_2,
-        margin: `${Spacing.xxxSmall_4}px 0`,
-        padding: `0 ${Spacing.xxxSmall_4}px`,
+        borderRadius: spacing.xxxxSmall_2,
+        margin: `${spacing.xxxSmall_4}px 0`,
+        padding: `0 ${spacing.xxxSmall_4}px`,
     },
     usage: {
         color: Color.offBlack64,
@@ -151,18 +151,18 @@ const styles = StyleSheet.create({
     swatch: {
         flexDirection: "row",
         flexBasis: "70%",
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: spacing.xxxSmall_4,
         background: Color.white,
-        boxShadow: `0 1px ${Spacing.xxxSmall_4}px 0 ${Color.offBlack8}`,
+        boxShadow: `0 1px ${spacing.xxxSmall_4}px 0 ${Color.offBlack8}`,
         border: `1px solid ${Color.offBlack16}`,
         overflow: "hidden",
-        height: Spacing.xxxLarge_64,
+        height: spacing.xxxLarge_64,
     },
     swatchItem: {
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
 });

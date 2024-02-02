@@ -13,7 +13,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -256,7 +256,7 @@ OpensInANewTab.parameters = {
 export const StartAndEndIcons: StoryComponentType = () => (
     <View>
         {/* Default (dark) */}
-        <View style={{padding: Spacing.large_24}}>
+        <View style={{padding: spacing.large_24}}>
             <Link
                 href="#"
                 startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
@@ -329,7 +329,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
         <View
             style={{
                 backgroundColor: Color.darkBlue,
-                padding: Spacing.large_24,
+                padding: spacing.large_24,
             }}
         >
             <Link
@@ -628,7 +628,7 @@ InlineLight.play = async ({canvasElement}) => {
 export const Variants: StoryComponentType = () => (
     <View>
         {/* Default (dark) */}
-        <View style={{padding: Spacing.large_24}}>
+        <View style={{padding: spacing.large_24}}>
             {/* Standalone */}
             <View>
                 <View style={styles.standaloneLinkWrapper}>
@@ -670,7 +670,7 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
             </View>
-            <Strut size={Spacing.xSmall_8} />
+            <Strut size={spacing.xSmall_8} />
             {/* Inline */}
             <Body>
                 This is an{" "}
@@ -718,7 +718,7 @@ export const Variants: StoryComponentType = () => (
         <View
             style={{
                 backgroundColor: Color.darkBlue,
-                padding: Spacing.large_24,
+                padding: spacing.large_24,
             }}
         >
             {/* Standalone */}
@@ -753,7 +753,7 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
             </View>
-            <Strut size={Spacing.xSmall_8} />
+            <Strut size={spacing.xSmall_8} />
             {/* Inline */}
             <Body style={{color: Color.white}}>
                 This is an{" "}
@@ -926,7 +926,7 @@ WithTitle.play = async ({canvasElement}) => {
 };
 
 export const RightToLeftWithIcons: StoryComponentType = () => (
-    <View style={{padding: Spacing.medium_16}}>
+    <View style={{padding: spacing.medium_16}}>
         <View style={styles.rightToLeft}>
             <Link
                 href="/"
@@ -934,14 +934,14 @@ export const RightToLeftWithIcons: StoryComponentType = () => (
             >
                 هذا الرابط مكتوب باللغة العربية
             </Link>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Link
                 href="/"
                 endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
             >
                 هذا الرابط مكتوب باللغة العربية
             </Link>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Link
                 href="/"
                 startIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
@@ -970,12 +970,12 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     heading: {
-        marginRight: Spacing.large_24,
+        marginRight: spacing.large_24,
     },
     navigation: {
         border: `1px dashed ${Color.lightBlue}`,
-        marginTop: Spacing.large_24,
-        padding: Spacing.large_24,
+        marginTop: spacing.large_24,
+        padding: spacing.large_24,
     },
     pinkLink: {
         color: Color.pink,
@@ -989,7 +989,7 @@ const styles = StyleSheet.create({
         // instead of taking the full width of the parent
         // container.
         display: "inline-block",
-        marginBottom: Spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
     },
     rightToLeft: {
         width: "100%",
@@ -997,7 +997,7 @@ const styles = StyleSheet.create({
     },
     multiLine: {
         display: "inline-block",
-        marginBottom: Spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
         maxWidth: "15%",
     },
 });

@@ -2,7 +2,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import TooltipContent from "./tooltip-content";
@@ -141,10 +141,10 @@ const styles = StyleSheet.create({
 
     content: {
         maxWidth: 472,
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: spacing.xxxSmall_4,
         border: `solid 1px ${Colors.offBlack16}`,
         backgroundColor: Colors.white,
-        boxShadow: `0 ${Spacing.xSmall_8}px ${Spacing.xSmall_8}px 0 ${Colors.offBlack8}`,
+        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${Colors.offBlack8}`,
         justifyContent: "center",
     },
 });

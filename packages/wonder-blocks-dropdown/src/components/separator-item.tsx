@@ -5,7 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         boxShadow: `0 -1px ${Color.offBlack16}`,
         height: 1,
         minHeight: 1,
-        marginTop: Spacing.xxxSmall_4,
-        marginBottom: Spacing.xxxSmall_4,
+        marginTop: spacing.xxxSmall_4,
+        marginBottom: spacing.xxxSmall_4,
     },
 });

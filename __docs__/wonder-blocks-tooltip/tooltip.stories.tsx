@@ -13,7 +13,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
@@ -311,7 +311,7 @@ export const WithStyle: StoryComponentType = () => {
             <Tooltip
                 contentStyle={{
                     color: Color.white,
-                    padding: Spacing.xLarge_32,
+                    padding: spacing.xLarge_32,
                 }}
                 content={`This is a styled tooltip.`}
                 backgroundColor="darkBlue"
@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
     storyCanvas: {
         // NOTE: This is needed for Chromatic to include the tooltip bubble.
         minHeight: 280,
-        padding: Spacing.xxxLarge_64,
+        padding: spacing.xxxLarge_64,
         justifyContent: "center",
         textAlign: "center",
     },
@@ -367,14 +367,14 @@ const styles = StyleSheet.create({
     centered: {
         alignItems: "center",
         justifyContent: "center",
-        gap: Spacing.medium_16,
-        padding: Spacing.xxLarge_48,
+        gap: spacing.medium_16,
+        padding: spacing.xxLarge_48,
     },
     scrollbox: {
         height: 100,
         overflow: "auto",
         border: "1px solid black",
-        margin: Spacing.small_12,
+        margin: spacing.small_12,
     },
     hostbox: {
         minHeight: "200vh",
@@ -384,8 +384,8 @@ const styles = StyleSheet.create({
     },
     block: {
         border: `solid 1px ${Color.lightBlue}`,
-        width: Spacing.xLarge_32,
-        height: Spacing.xLarge_32,
+        width: spacing.xLarge_32,
+        height: spacing.xLarge_32,
         alignItems: "center",
         justifyContent: "center",
     },

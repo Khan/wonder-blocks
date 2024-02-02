@@ -4,7 +4,7 @@ import {useLatestRef, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import Color from "@khanacademy/wonder-blocks-color";
 
 <Meta
@@ -73,12 +73,12 @@ export function Example1() {
                 value={message}
                 onChange={setMessage}
             />
-            <Strut size={Spacing.medium_16} />
-            <View style={{flexDirection: "row", gap: Spacing.xSmall_8}}>
+            <Strut size={spacing.medium_16} />
+            <View style={{flexDirection: "row", gap: spacing.xSmall_8}}>
                 {isMounted && <Button onClick={unmount}>Unmount</Button>}
                 {!isMounted && <Button onClick={mount}>Mount</Button>}
             </View>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Context>
                 {isMounted && (
                     <ComponentThatAlertsOnUnmount message={message} />
@@ -95,7 +95,7 @@ export function Context({children}) {
                 borderRadius: 5,
                 border: "1px solid #ccc",
                 boxShadow: "inset 1px 1px 6px #0001",
-                padding: Spacing.medium_16,
+                padding: spacing.medium_16,
                 background: Color.offWhite,
             }}
         >

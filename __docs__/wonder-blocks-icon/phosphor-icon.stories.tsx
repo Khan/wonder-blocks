@@ -40,7 +40,7 @@ import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
  *     icon={magnifyingGlassIcon}
  *     color={Color.blue}
  *     size="medium"
- *     style={{margin: Spacing.xxxxSmall_2}}
+ *     style={{margin: spacing.xxxxSmall_2}}
  * />
  * ```
  *

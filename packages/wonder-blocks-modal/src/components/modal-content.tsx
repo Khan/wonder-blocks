@@ -1,6 +1,6 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {
@@ -66,10 +66,10 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     content: {
         flex: 1,
         minHeight: "100%",
-        padding: Spacing.xLarge_32,
+        padding: spacing.xLarge_32,
         boxSizing: "border-box",
         [small]: {
-            padding: `${Spacing.xLarge_32}px ${Spacing.medium_16}px`,
+            padding: `${spacing.xLarge_32}px ${spacing.medium_16}px`,
         },
     },
 });

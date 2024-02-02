@@ -2,7 +2,7 @@ import moment from "moment"; // NOTE: DO NOT use named imports; 'moment' does no
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -245,7 +245,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <>
-                <Strut size={Spacing.xxxSmall_4} />
+                <Strut size={spacing.xxxSmall_4} />
                 <View
                     style={{flexDirection: "row", placeItems: "center"}}
                     role="alert"
@@ -256,7 +256,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                         color={Color.red}
                         aria-hidden="true"
                     />
-                    <Strut size={Spacing.xxxSmall_4} />
+                    <Strut size={spacing.xxxSmall_4} />
                     <Body style={{color: Color.red}}>{error}</Body>
                 </View>
             </>
@@ -300,7 +300,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <>
-                <Strut size={Spacing.xSmall_8} />
+                <Strut size={spacing.xSmall_8} />
                 <SingleSelect
                     aria-invalid={!!this.state.error}
                     error={!!this.state.error}
@@ -360,7 +360,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
                     {this.maybeRenderDay()}
 
-                    <Strut size={Spacing.xSmall_8} />
+                    <Strut size={spacing.xSmall_8} />
 
                     {this.renderYear()}
                 </View>

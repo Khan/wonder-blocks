@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 const StyledTable = addStyle("table");
 const StyledTableRow = addStyle("tr");
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
         borderSpacing: 0,
-        margin: `${Spacing.xLarge_32}px 0`,
+        margin: `${spacing.xLarge_32}px 0`,
         textAlign: "left",
         width: "100%",
     },
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         backgroundColor: Color.white,
     },
     cell: {
-        padding: Spacing.xSmall_8,
+        padding: spacing.xSmall_8,
         verticalAlign: "middle",
     },
 });

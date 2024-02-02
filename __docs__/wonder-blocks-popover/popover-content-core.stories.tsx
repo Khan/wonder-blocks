@@ -6,7 +6,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -50,28 +50,28 @@ const styles = StyleSheet.create({
     popoverWithIcon: {
         alignItems: "center",
         flexDirection: "row",
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
     },
     popoverWithCell: {
         padding: 0,
     },
     customPopover: {
-        maxWidth: Spacing.medium_16 * 25,
-        width: Spacing.medium_16 * 25,
+        maxWidth: spacing.medium_16 * 25,
+        width: spacing.medium_16 * 25,
         textAlign: "center",
     },
     row: {
         flexDirection: "row",
         justifyContent: "center",
-        padding: `${Spacing.small_12}px 0`,
+        padding: `${spacing.small_12}px 0`,
     },
     action: {
         backgroundColor: "transparent",
         border: "none",
         color: Color.white,
         cursor: "pointer",
-        margin: Spacing.small_12,
-        padding: Spacing.xxSmall_6,
+        margin: spacing.small_12,
+        padding: spacing.xxSmall_6,
         alignItems: "center",
         justifyContent: "center",
     },

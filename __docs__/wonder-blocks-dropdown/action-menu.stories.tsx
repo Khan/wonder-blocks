@@ -12,7 +12,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     ActionItem,
@@ -125,7 +125,7 @@ export default {
 const styles = StyleSheet.create({
     example: {
         background: Color.offWhite,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
     exampleExtended: {
         height: 300,
@@ -147,10 +147,10 @@ const styles = StyleSheet.create({
      */
     customOpener: {
         borderLeft: `5px solid ${Color.blue}`,
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: spacing.xxxSmall_4,
         background: Color.lightBlue,
         color: Color.white,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
     focused: {
         color: Color.offWhite,
