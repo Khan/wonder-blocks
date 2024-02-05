@@ -11,9 +11,8 @@
     "author": "",
     "license": "MIT",
     "publishConfig": {
-        "access": "restricted"
+        "access": "public"
     },
-    "private": true,
     "dependencies": {
         "@khanacademy/wonder-blocks-color": "^3.0.0",
         "@khanacademy/wonder-blocks-spacing": "^4.0.1"
