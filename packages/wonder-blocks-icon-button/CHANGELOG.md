@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.1.9
+
+### Patch Changes
+
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-theming@2.0.0
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.13
+
 ## 5.1.8
 
 ### Patch Changes
