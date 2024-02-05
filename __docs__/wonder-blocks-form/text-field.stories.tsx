@@ -3,9 +3,8 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View, Text as _Text} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
@@ -843,24 +842,24 @@ AutoComplete.parameters = {
 
 const styles = StyleSheet.create({
     errorMessage: {
-        color: Color.red,
+        color: color.red,
         paddingLeft: spacing.xxxSmall_4,
     },
     errorMessageLight: {
-        color: Color.white,
+        color: color.white,
         paddingLeft: spacing.xxxSmall_4,
     },
     darkBackground: {
-        backgroundColor: Color.darkBlue,
+        backgroundColor: color.darkBlue,
         padding: spacing.medium_16,
     },
     customField: {
-        backgroundColor: Color.darkBlue,
-        color: Color.white,
+        backgroundColor: color.darkBlue,
+        color: color.white,
         border: "none",
         maxWidth: 250,
         "::placeholder": {
-            color: Color.white64,
+            color: color.white64,
         },
     },
     button: {

@@ -3,11 +3,10 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Banner from "@khanacademy/wonder-blocks-banner";
 
@@ -127,7 +126,7 @@ export const Kinds: StoryComponentType = {
  * added around the floating banner so that it will not touch its outline.
  */
 export const Layouts: StoryComponentType = () => {
-    const borderStyle = {border: `2px solid ${Color.pink}`} as const;
+    const borderStyle = {border: `2px solid ${color.pink}`} as const;
     const floatingContainerStyle = {padding: spacing.xSmall_8} as const;
 
     return (

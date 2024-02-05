@@ -1,11 +1,10 @@
 import {Meta} from "@storybook/react";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import Color from "@khanacademy/wonder-blocks-color";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
@@ -27,12 +26,12 @@ const defaultArgs = {
 
 const styles = StyleSheet.create({
     example: {
-        background: Color.offWhite,
+        background: color.offWhite,
         padding: spacing.medium_16,
         width: 300,
     },
     items: {
-        background: Color.white,
+        background: color.white,
     },
 });
 

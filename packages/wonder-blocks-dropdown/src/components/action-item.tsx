@@ -2,15 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
-const {blue, white, offBlack, offBlack32} = Color;
+const {blue, white, offBlack} = color;
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
 
@@ -190,7 +189,7 @@ const styles = StyleSheet.create({
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
             borderRadius: spacing.xxxSmall_4,
-            outline: `${spacing.xxxxSmall_2}px solid ${Color.blue}`,
+            outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
             outlineOffset: -spacing.xxxxSmall_2,
         },
 
@@ -212,8 +211,8 @@ const styles = StyleSheet.create({
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: mix(fade(blue, 0.32), white),
-            background: mix(offBlack32, blue),
+            color: color.fadedBlue,
+            background: color.activeBlue,
         },
     },
     shared: {

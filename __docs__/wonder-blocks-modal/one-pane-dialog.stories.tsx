@@ -8,11 +8,10 @@ import {
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
@@ -364,7 +363,7 @@ export const WithStyle: StoryComponentType = () => (
                     </Body>
                 }
                 style={{
-                    color: Color.blue,
+                    color: color.blue,
                     maxWidth: 1000,
                 }}
             />

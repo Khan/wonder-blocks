@@ -2,11 +2,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
-import Color from "@khanacademy/wonder-blocks-color";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
     action: {
         backgroundColor: "transparent",
         border: "none",
-        color: Color.white,
+        color: color.white,
         cursor: "pointer",
         margin: spacing.small_12,
         padding: spacing.xxSmall_6,
@@ -133,7 +132,7 @@ const CustomPopoverContent = (
                     <>
                         <PhosphorIcon
                             icon={IconMappings.pencilSimple}
-                            color={Color.gold}
+                            color={color.gold}
                             size="large"
                         />
                         <LabelLarge>Option 1</LabelLarge>
@@ -145,7 +144,7 @@ const CustomPopoverContent = (
                     <>
                         <PhosphorIcon
                             icon={IconMappings.pencilSimple}
-                            color={Color.green}
+                            color={color.green}
                             size="large"
                         />
                         <LabelLarge>Option 2</LabelLarge>
@@ -157,7 +156,7 @@ const CustomPopoverContent = (
                     <>
                         <PhosphorIcon
                             icon={IconMappings.pencilSimple}
-                            color={Color.blue}
+                            color={color.blue}
                             size="large"
                         />
                         <LabelLarge>Option 3</LabelLarge>

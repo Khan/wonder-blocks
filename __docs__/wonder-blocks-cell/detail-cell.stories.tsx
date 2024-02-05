@@ -4,8 +4,7 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -315,7 +314,7 @@ export const DetailCellsAsListItems: StoryComponentType = {
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: Color.offBlack50}}
+                    style={{background: color.offBlack50}}
                 />
             </View>
             <View role="listitem">
@@ -328,7 +327,7 @@ export const DetailCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: Color.pink}}
+                    style={{background: color.pink}}
                     horizontalRule="full-width"
                 />
             </View>
@@ -345,12 +344,12 @@ export const DetailCellsAsListItems: StoryComponentType = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: Color.offWhite,
+        backgroundColor: color.offWhite,
         padding: spacing.large_24,
         width: 376,
     },
     navigation: {
-        border: `1px dashed ${Color.lightBlue}`,
+        border: `1px dashed ${color.lightBlue}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },

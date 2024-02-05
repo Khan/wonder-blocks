@@ -1,9 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -302,42 +302,42 @@ const styles = StyleSheet.create({
         boxShadow: "none",
     },
     default: {
-        background: Color.white,
-        border: `1px solid ${Color.offBlack16}`,
-        color: Color.offBlack,
+        background: color.white,
+        border: `1px solid ${color.offBlack16}`,
+        color: color.offBlack,
         "::placeholder": {
-            color: Color.offBlack64,
+            color: color.offBlack64,
         },
     },
     error: {
-        background: `${mix(fade(Color.red, 0.06), Color.white)}`,
-        border: `1px solid ${Color.red}`,
-        color: Color.offBlack,
+        background: `${mix(color.fadedRed8, color.white)}`,
+        border: `1px solid ${color.red}`,
+        color: color.offBlack,
         "::placeholder": {
-            color: Color.offBlack64,
+            color: color.offBlack64,
         },
     },
     disabled: {
-        background: Color.offWhite,
-        border: `1px solid ${Color.offBlack16}`,
-        color: Color.offBlack64,
+        background: color.offWhite,
+        border: `1px solid ${color.offBlack16}`,
+        color: color.offBlack64,
         "::placeholder": {
-            color: Color.offBlack32,
+            color: color.offBlack32,
         },
     },
     focused: {
-        background: Color.white,
-        border: `1px solid ${Color.blue}`,
-        color: Color.offBlack,
+        background: color.white,
+        border: `1px solid ${color.blue}`,
+        color: color.offBlack,
         "::placeholder": {
-            color: Color.offBlack64,
+            color: color.offBlack64,
         },
     },
     defaultLight: {
-        boxShadow: `0px 0px 0px 1px ${Color.blue}, 0px 0px 0px 2px ${Color.white}`,
+        boxShadow: `0px 0px 0px 1px ${color.blue}, 0px 0px 0px 2px ${color.white}`,
     },
     errorLight: {
-        boxShadow: `0px 0px 0px 1px ${Color.red}, 0px 0px 0px 2px ${Color.white}`,
+        boxShadow: `0px 0px 0px 1px ${color.red}, 0px 0px 0px 2px ${color.white}`,
     },
 });
 

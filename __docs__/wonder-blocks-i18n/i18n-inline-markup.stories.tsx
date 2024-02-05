@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import type {Meta, StoryObj} from "@storybook/react";
-import Color from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -105,7 +105,7 @@ export const HandlingTranslationErrors: StoryComponentType = {
                     <Tooltip
                         content={
                             <TooltipContent>
-                                <LabelMedium style={{color: Color.red}}>
+                                <LabelMedium style={{color: color.red}}>
                                     {error.message}
                                 </LabelMedium>
                             </TooltipContent>
@@ -114,7 +114,7 @@ export const HandlingTranslationErrors: StoryComponentType = {
                         <PhosphorIcon
                             size="small"
                             icon={IconMappings.xCircleBold}
-                            color={Color.red}
+                            color={color.red}
                         />
                     </Tooltip>
                 )}

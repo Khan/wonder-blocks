@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
     children: React.ReactNode;
@@ -50,6 +49,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-end",
 
-        boxShadow: `0px -1px 0px ${Color.offBlack16}`,
+        boxShadow: `0px -1px 0px ${color.offBlack16}`,
     },
 });

@@ -4,8 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import Color from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -731,14 +730,14 @@ AutoComplete.parameters = {
 
 const styles = StyleSheet.create({
     darkBackground: {
-        background: Color.darkBlue,
+        background: color.darkBlue,
         padding: `${spacing.medium_16}px`,
     },
     whiteColor: {
-        color: Color.white,
+        color: color.white,
     },
     offWhiteColor: {
-        color: Color.white64,
+        color: color.white64,
     },
     button: {
         maxWidth: 150,

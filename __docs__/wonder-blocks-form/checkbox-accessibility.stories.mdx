@@ -2,10 +2,11 @@ import * as React from "react";
 import {Meta, Story, Canvas} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
+
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 <Meta
     title="Form/Checkbox/Accessibility"
@@ -144,6 +145,6 @@ nor the Space key will toggle the Checkbox.
 
 export const styles = StyleSheet.create({
     error: {
-        color: Color.red,
+        color: color.red,
     },
 });

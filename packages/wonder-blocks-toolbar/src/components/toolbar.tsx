@@ -4,9 +4,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingSmall,
     LabelLarge,
@@ -146,7 +145,7 @@ export default class Toolbar extends React.Component<Props> {
 
 const sharedStyles = StyleSheet.create({
     container: {
-        border: `1px solid ${Color.offBlack16}`,
+        border: `1px solid ${color.offBlack16}`,
         flex: 1,
         flexDirection: "row",
         justifyContent: "space-between",
@@ -159,8 +158,8 @@ const sharedStyles = StyleSheet.create({
         minHeight: 50,
     },
     dark: {
-        backgroundColor: Color.darkBlue,
-        boxShadow: `0 1px 0 0 ${Color.white64}`,
+        backgroundColor: color.darkBlue,
+        boxShadow: `0 1px 0 0 ${color.white64}`,
         color: "white",
     },
     column: {
@@ -190,7 +189,7 @@ const sharedStyles = StyleSheet.create({
         textAlign: "center",
     },
     subtitle: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
     titles: {
         padding: spacing.small_12,

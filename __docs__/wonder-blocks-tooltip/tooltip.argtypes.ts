@@ -1,4 +1,4 @@
-import Color from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
     placement: {
@@ -38,6 +38,6 @@ export default {
         control: {
             type: "select",
         },
-        options: Object.keys(Color) as Array<string>,
+        options: Object.keys(color) as Array<string>,
     },
 };

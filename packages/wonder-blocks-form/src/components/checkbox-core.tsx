@@ -1,10 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 import minusIcon from "@phosphor-icons/core/bold/minus-bold.svg";
 
@@ -26,7 +26,7 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
     }
 }
 
-const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
+const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = color;
 
 // The checkbox size
 const size = spacing.medium_16;
@@ -153,10 +153,10 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-const fadedBlue = mix(fade(blue, 0.16), white);
-const activeBlue = mix(offBlack32, blue);
-const fadedRed = mix(fade(red, 0.08), white);
-const activeRed = mix(offBlack32, red);
+const fadedBlue = mix(color.fadedBlue16, white);
+const activeBlue = color.activeBlue;
+const fadedRed = mix(color.fadedRed8, white);
+const activeRed = color.activeRed;
 
 const colors = {
     default: {

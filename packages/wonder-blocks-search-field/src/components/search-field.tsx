@@ -9,8 +9,7 @@ import {View, IDProvider} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Color from "@khanacademy/wonder-blocks-color";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -165,7 +164,7 @@ const SearchField: React.ForwardRefExoticComponent<
                     <PhosphorIcon
                         icon={magnifyingGlassIcon}
                         size="medium"
-                        color={Color.offBlack64}
+                        color={color.offBlack64}
                         style={styles.searchIcon}
                         aria-hidden="true"
                     />
@@ -228,7 +227,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         "::placeholder": {
-            color: Color.offBlack64,
+            color: color.offBlack64,
         },
         width: "100%",
         color: "inherit",

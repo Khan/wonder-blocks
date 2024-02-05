@@ -3,10 +3,9 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
@@ -82,7 +81,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     playground: {
-        border: `1px dashed ${Color.lightBlue}`,
+        border: `1px dashed ${color.lightBlue}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
         flexDirection: "row",

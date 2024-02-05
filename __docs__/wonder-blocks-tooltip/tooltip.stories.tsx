@@ -8,12 +8,11 @@ import {expect} from "@storybook/jest";
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
@@ -310,7 +309,7 @@ export const WithStyle: StoryComponentType = () => {
         <View style={[styles.centered, styles.row]}>
             <Tooltip
                 contentStyle={{
-                    color: Color.white,
+                    color: color.white,
                     padding: spacing.xLarge_32,
                 }}
                 content={`This is a styled tooltip.`}
@@ -383,7 +382,7 @@ const styles = StyleSheet.create({
         height: "200vh",
     },
     block: {
-        border: `solid 1px ${Color.lightBlue}`,
+        border: `solid 1px ${color.lightBlue}`,
         width: spacing.xLarge_32,
         height: spacing.xLarge_32,
         alignItems: "center",

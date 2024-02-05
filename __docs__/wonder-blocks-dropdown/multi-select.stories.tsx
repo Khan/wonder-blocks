@@ -6,10 +6,9 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
@@ -79,7 +78,7 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        background: Color.offWhite,
+        background: color.offWhite,
         padding: spacing.medium_16,
     },
     setWidth: {
@@ -112,22 +111,22 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${Color.blue}`,
+        borderLeft: `5px solid ${color.blue}`,
         borderRadius: spacing.xxxSmall_4,
-        background: Color.lightBlue,
-        color: Color.white,
+        background: color.lightBlue,
+        color: color.white,
         padding: spacing.medium_16,
     },
     focused: {
-        color: Color.offWhite,
+        color: color.offWhite,
     },
     hovered: {
         textDecoration: "underline",
-        color: Color.offWhite,
+        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {
-        color: Color.blue,
+        color: color.blue,
     },
 });
 

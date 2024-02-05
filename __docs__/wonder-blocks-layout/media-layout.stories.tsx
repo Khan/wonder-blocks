@@ -2,9 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -50,20 +49,20 @@ export const Default: StoryComponentType = {
         styleSheets: {
             large: StyleSheet.create({
                 test: {
-                    backgroundColor: Color.darkBlue,
-                    color: Color.white,
+                    backgroundColor: color.darkBlue,
+                    color: color.white,
                 },
             }),
             medium: StyleSheet.create({
                 test: {
-                    backgroundColor: Color.blue,
-                    color: Color.white,
+                    backgroundColor: color.blue,
+                    color: color.white,
                 },
             }),
             small: StyleSheet.create({
                 test: {
-                    backgroundColor: Color.lightBlue,
-                    color: Color.white,
+                    backgroundColor: color.lightBlue,
+                    color: color.white,
                 },
             }),
         },
@@ -81,20 +80,20 @@ export const ScreenSizeStyles: StoryComponentType = () => {
     const styleSheets = {
         large: StyleSheet.create({
             test: {
-                backgroundColor: Color.darkBlue,
-                color: Color.white,
+                backgroundColor: color.darkBlue,
+                color: color.white,
             },
         }),
         medium: StyleSheet.create({
             test: {
-                backgroundColor: Color.blue,
-                color: Color.white,
+                backgroundColor: color.blue,
+                color: color.white,
             },
         }),
         small: StyleSheet.create({
             test: {
-                backgroundColor: Color.lightBlue,
-                color: Color.white,
+                backgroundColor: color.lightBlue,
+                color: color.white,
             },
         }),
     } as const;
@@ -129,7 +128,7 @@ export const AllStyles: StoryComponentType = () => {
         all: StyleSheet.create({
             // use shared styles for all sizes
             test: {
-                color: Color.white,
+                color: color.white,
                 padding: spacing.medium_16,
             },
         }),
@@ -137,20 +136,20 @@ export const AllStyles: StoryComponentType = () => {
         large: StyleSheet.create({
             // override the `padding` prop` here
             test: {
-                backgroundColor: Color.darkBlue,
+                backgroundColor: color.darkBlue,
                 padding: spacing.xxLarge_48,
             },
         }),
 
         medium: StyleSheet.create({
             test: {
-                backgroundColor: Color.blue,
+                backgroundColor: color.blue,
             },
         }),
 
         small: StyleSheet.create({
             test: {
-                backgroundColor: Color.lightBlue,
+                backgroundColor: color.lightBlue,
             },
         }),
     } as const;
@@ -186,15 +185,15 @@ export const CustomSpec: StoryComponentType = () => {
         large: StyleSheet.create({
             example: {
                 alignItems: "center",
-                backgroundColor: Color.darkBlue,
-                color: Color.white,
+                backgroundColor: color.darkBlue,
+                color: color.white,
                 padding: spacing.xxxLarge_64,
             },
         }),
 
         small: StyleSheet.create({
             example: {
-                backgroundColor: Color.lightBlue,
+                backgroundColor: color.lightBlue,
                 padding: spacing.small_12,
             },
         }),

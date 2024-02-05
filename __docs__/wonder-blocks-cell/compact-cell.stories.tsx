@@ -3,9 +3,8 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
@@ -153,7 +152,7 @@ export const CompactCellBoth: StoryComponentType = {
                 <PhosphorIcon
                     icon={IconMappings.calendar}
                     size="medium"
-                    color={Color.blue}
+                    color={color.blue}
                 />
             }
         />
@@ -248,11 +247,11 @@ export const CompactCellWithCustomStyles: StoryComponentType = () => (
             <PhosphorIcon icon={IconMappings.article} size="medium" />
         }
         rightAccessory={
-            <PhosphorIcon icon={IconMappings.calendar} color={Color.white} />
+            <PhosphorIcon icon={IconMappings.calendar} color={color.white} />
         }
         style={{
-            background: Color.darkBlue,
-            color: Color.white,
+            background: color.darkBlue,
+            color: color.white,
         }}
         onClick={() => {}}
     />
@@ -395,7 +394,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: Color.offBlack50}}
+                    style={{background: color.offBlack50}}
                 />
             </View>
             <View role="listitem">
@@ -408,7 +407,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: Color.pink}}
+                    style={{background: color.pink}}
                     horizontalRule="full-width"
                 />
             </View>
@@ -425,7 +424,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: Color.offWhite,
+        backgroundColor: color.offWhite,
         padding: spacing.large_24,
         width: 320 + spacing.xxLarge_48,
     },

@@ -4,12 +4,11 @@ import {StyleSheet} from "aphrodite";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import infoIcon from "@phosphor-icons/core/regular/info.svg";
@@ -122,26 +121,26 @@ const getValuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
         case "success":
             return {
-                color: Color.green,
+                color: color.green,
                 icon: successIcon,
                 role: "status",
             };
         case "warning":
             return {
-                color: Color.gold,
+                color: color.gold,
                 icon: warningIcon,
                 role: "alert",
                 ariaLive: "polite",
             };
         case "critical":
             return {
-                color: Color.red,
+                color: color.red,
                 icon: criticalIcon,
                 role: "alert",
             };
         default:
             return {
-                color: Color.blue,
+                color: color.blue,
                 icon: infoIcon,
                 role: "status",
             };
@@ -303,7 +302,7 @@ const styles = StyleSheet.create({
         // the base color needs to be hard-coded as white for the
         // intended pastel background color to show up correctly
         // on dark backgrounds.
-        backgroundColor: Color.white,
+        backgroundColor: color.white,
     },
     containerInner: {
         flexDirection: "row",
@@ -318,7 +317,7 @@ const styles = StyleSheet.create({
         marginInlineStart: spacing.xxxxSmall_2,
         marginInlineEnd: spacing.xSmall_8,
         alignSelf: "flex-start",
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
     labelAndButtonsContainer: {
         flex: 1,

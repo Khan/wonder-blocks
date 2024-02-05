@@ -12,10 +12,9 @@ import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
 import {fireEvent, userEvent, within} from "@storybook/testing-library";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     LabelMedium,
     LabelLarge,
@@ -110,7 +109,7 @@ export const Tertiary: StoryComponentType = {
         const computedStyleLabel = getComputedStyle(innerLabel, ":after");
 
         // Resting style
-        await expect(button).toHaveStyle(`color: ${Color.blue}`);
+        await expect(button).toHaveStyle(`color: ${color.blue}`);
         await expect(button).toHaveTextContent("Hello, world!");
 
         // Hover style
@@ -151,7 +150,7 @@ export const styles: StyleDeclaration = StyleSheet.create({
         minWidth: 140,
     },
     example: {
-        background: Color.offWhite,
+        background: color.offWhite,
         padding: spacing.medium_16,
     },
     label: {
@@ -249,7 +248,7 @@ WithColor.parameters = {
 };
 
 export const Dark: StoryComponentType = () => (
-    <View style={{backgroundColor: Color.darkBlue, padding: spacing.medium_16}}>
+    <View style={{backgroundColor: color.darkBlue, padding: spacing.medium_16}}>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}} light={true}>
                 Hello, world!

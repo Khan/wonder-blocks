@@ -1,8 +1,7 @@
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import TooltipContent from "./tooltip-content";
@@ -32,7 +31,7 @@ export type Props = {
     children: React.ReactElement<React.ComponentProps<typeof TooltipContent>>;
     onActiveChanged: (active: boolean) => unknown;
     /** Optional background color. */
-    backgroundColor?: keyof typeof Colors;
+    backgroundColor?: keyof typeof color;
 } & PopperElementProps; // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
 
 type State = {
@@ -88,7 +87,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
                     style={[
                         styles.content,
                         backgroundColor && {
-                            backgroundColor: Colors[backgroundColor],
+                            backgroundColor: color[backgroundColor],
                         },
                     ]}
                 >
@@ -142,9 +141,9 @@ const styles = StyleSheet.create({
     content: {
         maxWidth: 472,
         borderRadius: spacing.xxxSmall_4,
-        border: `solid 1px ${Colors.offBlack16}`,
-        backgroundColor: Colors.white,
-        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${Colors.offBlack8}`,
+        border: `solid 1px ${color.offBlack16}`,
+        backgroundColor: color.white,
+        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
         justifyContent: "center",
     },
 });
