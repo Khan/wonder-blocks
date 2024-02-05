@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.11
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-theming@2.0.0
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
 ## 1.1.10
 
 ### Patch Changes

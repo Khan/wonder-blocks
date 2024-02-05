@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-theming
 
+## 2.0.0
+
+### Major Changes
+
+-   7cd7f6cc: Move tokens export to wb-tokens
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+
 ## 1.3.0
 
 ### Minor Changes

@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.1.26
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-modal@4.2.2
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
 ## 2.1.25
 
 ### Patch Changes

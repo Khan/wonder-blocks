@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 0.2.0
+
+### Minor Changes
+
+-   7cd7f6cc: Move tokens from wb-theming to wb-tokens and split token categories into separate objects/files
+-   7c51f377: Add fadedBlue24 color token
+
 ## 0.1.0
 
 ### Minor Changes
