@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 1.0.0
+
+### Major Changes
+
+-   e83f8991: Mark wb-tokens as public (first official release)
+
 ## 0.2.0
 
 ### Minor Changes

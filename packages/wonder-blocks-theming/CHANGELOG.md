@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 2.0.1
+
+### Patch Changes
+
+-   e83f8991: Add "dark" to the list of supported themes
+
 ## 2.0.0
 
 ### Major Changes

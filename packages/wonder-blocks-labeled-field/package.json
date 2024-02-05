@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-labeled-field",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "design": "v1",
   "description": "LabeledField handles accessibility and layout for associating labels with form components.",
   "main": "dist/index.js",
@@ -18,8 +18,8 @@
   "dependencies": {
     "@babel/runtime": "^7.18.6",
     "@khanacademy/wonder-blocks-core": "^6.3.1",
-    "@khanacademy/wonder-blocks-layout": "^2.0.26",
-    "@khanacademy/wonder-blocks-tokens": "^0.2.0",
+    "@khanacademy/wonder-blocks-layout": "^2.0.27",
+    "@khanacademy/wonder-blocks-tokens": "^1.0.0",
     "@khanacademy/wonder-blocks-typography": "^2.1.10"
   },
   "peerDependencies": {
