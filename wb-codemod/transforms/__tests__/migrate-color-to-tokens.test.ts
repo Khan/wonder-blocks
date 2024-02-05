@@ -23,11 +23,11 @@ describe("migrate-color-to-tokens", () => {
         transformOptions,
         `
 import Colors from "@khanacademy/wonder-blocks-color";
-const color = Colors.red;
+const bgColor = Colors.red;
     `,
         `
 import {color} from "@khanacademy/wonder-blocks-tokens";
-const color = color.red;
+const bgColor = color.red;
     `,
         "should replace default import with named import when using a different name",
     );
@@ -79,5 +79,17 @@ import {fade} from "@khanacademy/wonder-blocks-color";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 `,
         "should keep the color import if there are other named imports in the source import declaration and move the default import to the existing target import",
+    );
+
+    defineInlineTest(
+        transform,
+        transformOptions,
+        `
+import {fade, mix} from "@khanacademy/wonder-blocks-color";
+`,
+        `
+import {fade, mix} from "@khanacademy/wonder-blocks-color";
+`,
+        "should do nothing if Color is not imported",
     );
 });
