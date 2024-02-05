@@ -86,10 +86,16 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
         transformOptions,
         `
 import {fade, mix} from "@khanacademy/wonder-blocks-color";
+const Color = {red: "red"};
+// This Color definition comes from a different module.
+const bgColor = Color.red;
 `,
         `
 import {fade, mix} from "@khanacademy/wonder-blocks-color";
+const Color = {red: "red"};
+// This Color definition comes from a different module.
+const bgColor = Color.red;
 `,
-        "should do nothing if Color is not imported",
+        "should do nothing if Color is not imported from @khanacademy/wonder-blocks-color",
     );
 });

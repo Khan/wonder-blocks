@@ -31,6 +31,7 @@ export default function transform(file: FileInfo, api: API, options: Options) {
 
     // Use the default specifier as the source specifier.
     let sourceSpecifier = SOURCE_SPECIFIER;
+    let hasDefaultSpecifier = true;
 
     // Step 1: Verify if the import exists
     const sourceImport = root.find(j.ImportDeclaration, {
@@ -55,6 +56,7 @@ export default function transform(file: FileInfo, api: API, options: Options) {
 
         // If there's no default specifier, we don't need to do anything.
         if (!defaultSpecifier) {
+            hasDefaultSpecifier = false;
             return;
         }
 
@@ -132,10 +134,14 @@ export default function transform(file: FileInfo, api: API, options: Options) {
         }
     });
 
-    // Step 3: Replace the call sites that use the default specifier.
-    root.find(j.Identifier, {name: sourceSpecifier}).forEach((path) => {
-        path.node.name = TARGET_SPECIFIER;
-    });
+    // NOTE: We only need to replace the usage if the source import has a
+    // default specifier. Otherwise, we don't need to do anything.
+    if (hasDefaultSpecifier) {
+        // Step 3: Replace the call sites that use the default specifier.
+        root.find(j.Identifier, {name: sourceSpecifier}).forEach((path) => {
+            path.node.name = TARGET_SPECIFIER;
+        });
+    }
 
     return root.toSource(options.printOptions);
 }
