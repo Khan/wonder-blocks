@@ -53,6 +53,11 @@ export default function transform(file: FileInfo, api: API, options: Options) {
             (specifier) => specifier.type === "ImportDefaultSpecifier",
         );
 
+        // If there's no default specifier, we don't need to do anything.
+        if (!defaultSpecifier) {
+            return;
+        }
+
         // There might be cases where the default specifier uses a different
         // name from the one defined in SOURCE_SPECIFIER, so we need to make
         // sure we use the correct name to complete step 3.
@@ -127,7 +132,7 @@ export default function transform(file: FileInfo, api: API, options: Options) {
         }
     });
 
-    // Step 3: Replace the usage
+    // Step 3: Replace the call sites that use the default specifier.
     root.find(j.Identifier, {name: sourceSpecifier}).forEach((path) => {
         path.node.name = TARGET_SPECIFIER;
     });
