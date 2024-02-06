@@ -1,4 +1,4 @@
-import {Meta, Source} from "@storybook/blocks";
+import {Meta} from "@storybook/blocks";
 
 import TokenTable from "../../.storybook/components/token-table";
 
@@ -23,9 +23,7 @@ export const baseColumns = (kind) => [
     },
 ];
 
-# Tokens
-
-## Border
+# Border
 
 The `border` tokens are used to define the border properties of an element. The
 border tokens are broken down into two categories: `radius` and `width`.
@@ -37,6 +35,21 @@ border tokens are broken down into two categories: `radius` and `width`.
         layout="floating"
     />
 </View>
+
+## Usage
+
+
+```ts
+import {border} from "@khanacademy/wonder-blocks-tokens";
+const styles = {
+    borderedContainer: {
+        borderRadius: border.radius.small,
+        borderWidth: border.width.small,
+    },
+}
+```
+
+## Tokens
 
 ### Radius
 

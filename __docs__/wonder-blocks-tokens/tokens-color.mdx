@@ -5,13 +5,29 @@ import TokenTable from "../../.storybook/components/token-table";
 import {View} from "@khanacademy/wonder-blocks-core";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
+import ComponentInfo from "../../.storybook/components/component-info";
+import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
+
 <Meta title="Tokens / Color" />
 
-# Tokens
 
-## Color
+# Color
+
+<ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
 The color palette containing all the global Wonder Blocks colors.
+
+## Usage
+
+`wonder-blocks-tokens` exports a set of colors that can be used in your
+components. The colors are exported as constants and can be used like so:
+
+```ts
+import {color} from "@khanacademy/wonder-blocks-tokens";
+const styles = {background: color.darkBlue};
+```
+
+## Tokens
 
 <TokenTable
     columns={[
