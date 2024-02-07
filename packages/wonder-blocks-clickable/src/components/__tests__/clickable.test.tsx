@@ -580,6 +580,8 @@ describe("Clickable", () => {
             children: React.ReactNode;
             onKeyDown?: (e: React.KeyboardEvent) => unknown;
             onKeyUp?: (e: React.KeyboardEvent) => unknown;
+            onMouseDown?: (e: React.MouseEvent) => unknown;
+            onMouseUp?: (e: React.MouseEvent) => unknown;
         }) => {
             return <Clickable {...restProps}>{() => children}</Clickable>;
         };
@@ -616,6 +618,40 @@ describe("Clickable", () => {
 
             // Assert
             expect(keyCode).toEqual(32);
+        });
+
+        test("onMouseDown", () => {
+            // Arrange
+            let clientX: any;
+            render(
+                <Clickable onMouseDown={(e) => (clientX = e.clientX)}>
+                    {() => "Click me!"}
+                </Clickable>,
+            );
+
+            // Act
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.mouseDown(screen.getByRole("button"), {clientX: 10});
+
+            // Assert
+            expect(clientX).toEqual(10);
+        });
+
+        test("onMouseUp", () => {
+            // Arrange
+            let clientX: any;
+            render(
+                <Clickable onMouseUp={(e) => (clientX = e.clientX)}>
+                    {() => "Click me!"}
+                </Clickable>,
+            );
+
+            // Act
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.mouseUp(screen.getByRole("button"), {clientX: 10});
+
+            // Assert
+            expect(clientX).toEqual(10);
         });
     });
 });
