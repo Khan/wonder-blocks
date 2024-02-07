@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.1.0
+
+### Minor Changes
+
+-   60fdac1c: Added onMouseDown and onMouseUp props to Clickable
+
 ## 4.0.14
 
 ### Patch Changes

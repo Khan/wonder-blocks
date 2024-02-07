@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "4.2.3",
+  "version": "4.2.4",
   "design": "v2",
   "publishConfig": {
     "access": "public"
@@ -18,7 +18,7 @@
     "@babel/runtime": "^7.18.6",
     "@khanacademy/wonder-blocks-breadcrumbs": "^2.1.12",
     "@khanacademy/wonder-blocks-core": "^6.3.1",
-    "@khanacademy/wonder-blocks-icon-button": "^5.1.10",
+    "@khanacademy/wonder-blocks-icon-button": "^5.1.11",
     "@khanacademy/wonder-blocks-layout": "^2.0.27",
     "@khanacademy/wonder-blocks-theming": "^2.0.1",
     "@khanacademy/wonder-blocks-timing": "^4.0.2",
