@@ -136,6 +136,24 @@ export default {
             },
         },
     },
+    onMouseDown: {
+        description: "Respond to raw `mousedown` event.",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: SyntheticMouseEvent<>) => mixed",
+            },
+        },
+    },
+    onMouseUp: {
+        description: "Respond to raw `mouseup` event.",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: SyntheticMouseEvent<>) => mixed",
+            },
+        },
+    },
     /**
      * Navigation
      */

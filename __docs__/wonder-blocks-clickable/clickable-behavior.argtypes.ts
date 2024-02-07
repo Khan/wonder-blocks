@@ -46,6 +46,8 @@ export default {
     },
     onkeyDown: clickableArgtypes.onkeyDown,
     onKeyUp: clickableArgtypes.onKeyUp,
+    onMouseDown: clickableArgtypes.onMouseDown,
+    onMouseUp: clickableArgtypes.onMouseUp,
     /**
      * Navigation
      */
