@@ -3,10 +3,9 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -165,7 +164,7 @@ export const Default: StoryComponentType = {
                 content={
                     <>
                         <Title id="modal-title-0">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
+                        <Strut size={spacing.large_24} />
                         {longBody}
                     </>
                 }
@@ -184,7 +183,7 @@ export const Dark: StoryComponentType = {
                 content={
                     <>
                         <Title id="modal-title-a">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
+                        <Strut size={spacing.large_24} />
                         {longBody}
                     </>
                 }
@@ -223,7 +222,7 @@ export const WithFooter: StoryComponentType = {
                 content={
                     <>
                         <Title id="modal-title-3">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
+                        <Strut size={spacing.large_24} />
                         {longBody}
                     </>
                 }
@@ -307,7 +306,7 @@ export const TwoPanels: StoryComponentType = {
                         content={
                             <View>
                                 <Title>Sidebar</Title>
-                                <Strut size={Spacing.large_24} />
+                                <Strut size={spacing.large_24} />
                                 <Body>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
@@ -324,13 +323,13 @@ export const TwoPanels: StoryComponentType = {
                         content={
                             <View>
                                 <Title>Contents</Title>
-                                <Strut size={Spacing.large_24} />
+                                <Strut size={spacing.large_24} />
                                 <Body>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor
                                     incididunt ut labore et dolore magna aliqua.
                                 </Body>
-                                <Strut size={Spacing.large_24} />
+                                <Strut size={spacing.large_24} />
                                 <Button>Primary action</Button>
                             </View>
                         }
@@ -350,8 +349,8 @@ export const TwoPanels: StoryComponentType = {
 export const WithStyle: StoryComponentType = {
     render: () => {
         const modalStyles = {
-            color: Color.blue,
-            border: `2px solid ${Color.darkBlue}`,
+            color: color.blue,
+            border: `2px solid ${color.darkBlue}`,
             borderRadius: 20,
         } as const;
 

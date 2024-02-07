@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
@@ -43,6 +43,6 @@ export default function BannerSection() {
 
 const localStyles = StyleSheet.create({
     button: {
-        marginBottom: tokens.spacing.small_12,
+        marginBottom: spacing.small_12,
     },
 });

@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 1.2.12
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.14
+
+## 1.2.11
+
+### Patch Changes
+
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.13
+
 ## 1.2.10
 
 ### Patch Changes

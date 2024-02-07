@@ -1,12 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 import type {ChoiceCoreProps, Checked} from "../util/types";
 
-const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
+const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = color;
 
 const StyledInput = addStyle("input");
 
@@ -90,20 +91,18 @@ const sharedStyles = StyleSheet.create({
         borderWidth: 1,
     },
 });
-const fadedBlue = mix(fade(blue, 0.16), white);
-const activeBlue = mix(offBlack32, blue);
-const fadedRed = mix(fade(red, 0.08), white);
-const activeRed = mix(offBlack32, red);
+const fadedBlue = mix(color.fadedBlue16, white);
+const fadedRed = mix(color.fadedRed8, white);
 const colors = {
     default: {
         faded: fadedBlue,
         base: blue,
-        active: activeBlue,
+        active: color.activeBlue,
     },
     error: {
         faded: fadedRed,
         base: red,
-        active: activeRed,
+        active: color.activeRed,
     },
 } as const;
 const styles: Record<string, any> = {};
@@ -160,7 +159,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
                 ":active": {
                     backgroundColor: palette.faded,
-                    borderColor: error ? activeRed : blue,
+                    borderColor: error ? color.activeRed : blue,
                     borderWidth: 2,
                 },
             },

@@ -6,8 +6,7 @@ import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
@@ -55,7 +54,7 @@ export const WithLabel: StoryComponentType = (() => {
             <LabelMedium
                 id="label-for-switch-with-label"
                 htmlFor="switch-with-label"
-                style={{marginLeft: Spacing.xSmall_8}}
+                style={{marginLeft: spacing.xSmall_8}}
                 tag="label"
             >
                 Superpowers
@@ -81,7 +80,7 @@ export const WithLabelAndDescription: StoryComponentType = (() => {
                 aria-labelledby="label-for-switch-with-desc"
                 aria-describedby="desc-for-switch-with-desc"
             />
-            <View style={{marginLeft: Spacing.xSmall_8}}>
+            <View style={{marginLeft: spacing.xSmall_8}}>
                 <LabelMedium
                     id="label-for-switch-with-desc"
                     htmlFor="switch-with-desc"
@@ -91,7 +90,7 @@ export const WithLabelAndDescription: StoryComponentType = (() => {
                 </LabelMedium>
                 <LabelSmall
                     id="desc-for-switch-with-desc"
-                    style={{color: Color.offBlack64}}
+                    style={{color: color.offBlack64}}
                 >
                     Sleep is important for your health. The benefits of a good
                     night sleep include improved memory, longer life, and
@@ -116,7 +115,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
             <LabelMedium
                 id="label-for-switch-with-on-off"
                 htmlFor="switch-with-on-off"
-                style={{marginRight: Spacing.xSmall_8}}
+                style={{marginRight: spacing.xSmall_8}}
                 tag="label"
             >
                 Gravity
@@ -128,7 +127,7 @@ export const WithLabelAndOnOff: StoryComponentType = (() => {
                 aria-labelledby="label-for-switch-with-on-off"
             />
             <LabelSmall
-                style={{marginLeft: Spacing.xSmall_8, color: Color.offBlack64}}
+                style={{marginLeft: spacing.xSmall_8, color: color.offBlack64}}
                 aria-hidden={true}
             >
                 {checked ? "ON" : "OFF"}
@@ -197,7 +196,7 @@ export const InsideDetailCell: StoryComponentType = (() => {
             subtitle2={
                 <LabelSmall
                     id="desc-for-switch-inside-detail-cell"
-                    style={{color: Color.offBlack64}}
+                    style={{color: color.offBlack64}}
                 >
                     I am a long description that does not change the state of
                     the switch. Click me all you want and nothing will change.

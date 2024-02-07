@@ -1,5 +1,31 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.1.2
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.10
+    -   @khanacademy/wonder-blocks-modal@4.2.3
+    -   @khanacademy/wonder-blocks-tooltip@2.1.27
+
+## 3.1.1
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-tooltip@2.1.26
+    -   @khanacademy/wonder-blocks-modal@4.2.2
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.9
+
 ## 3.1.0
 
 ### Minor Changes

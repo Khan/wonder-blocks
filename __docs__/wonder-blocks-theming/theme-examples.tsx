@@ -6,7 +6,6 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {
     createThemeContext,
     mergeTheme,
-    tokens,
     useScopedTheme,
     useStyles,
     ThemedStylesFn,
@@ -15,6 +14,7 @@ import {
     WithThemeProps,
     SupportedThemes,
 } from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 const defaultTheme = {
     color: {

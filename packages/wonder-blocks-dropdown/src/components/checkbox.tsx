@@ -1,13 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
-const {offBlack16, offBlack50, offWhite} = Color;
+const {offBlack16, offBlack50, offWhite} = color;
 
 /**
  * Props describing the state of the OptionItem, shared by the check
@@ -44,11 +43,11 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
                         {
                             // The check icon is smaller than the checkbox, as
                             // per design.
-                            width: Spacing.small_12,
-                            height: Spacing.small_12,
+                            width: spacing.small_12,
+                            height: spacing.small_12,
                             // This margin is to center the check icon in the
                             // checkbox.
-                            margin: Spacing.xxxxSmall_2,
+                            margin: spacing.xxxxSmall_2,
                         },
                         disabled && selected && styles.disabledCheckFormatting,
                     ]}
@@ -64,9 +63,9 @@ const styles = StyleSheet.create({
     checkbox: {
         alignSelf: "center",
         // Semantically, this are the constants for a small-sized icon
-        minHeight: Spacing.medium_16,
-        minWidth: Spacing.medium_16,
-        height: Spacing.medium_16,
+        minHeight: spacing.medium_16,
+        minWidth: spacing.medium_16,
+        height: spacing.medium_16,
         borderRadius: 3,
         borderWidth: 1,
         borderStyle: "solid",

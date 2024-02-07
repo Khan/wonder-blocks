@@ -11,7 +11,7 @@ import {
     Choice,
 } from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
@@ -367,7 +367,7 @@ export const WithInitialFocusId: StoryComponentType = () => {
                         value={value}
                         onChange={setValue}
                     />
-                    <Strut size={Spacing.large_24} />
+                    <Strut size={spacing.large_24} />
                     <LabeledTextField
                         label="Label 2"
                         value={value2}
@@ -381,7 +381,7 @@ export const WithInitialFocusId: StoryComponentType = () => {
                     <Button kind="tertiary" onClick={closeModal}>
                         Cancel
                     </Button>
-                    <Strut size={Spacing.medium_16} />
+                    <Strut size={spacing.medium_16} />
                     <Button onClick={closeModal}>Submit</Button>
                 </>
             }
@@ -428,7 +428,7 @@ const SubModal = () => (
     <OnePaneDialog
         title="Submodal"
         content={
-            <View style={{gap: Spacing.medium_16}}>
+            <View style={{gap: spacing.medium_16}}>
                 <Body>
                     This modal demonstrates how the focus trap works when a
                     modal is opened from another modal.
@@ -461,7 +461,7 @@ export const FocusTrap: StoryComponentType = () => {
                         how the focus trap is moved to the next modal when it is
                         opened (focus/tap on the `Open another modal` button).
                     </Body>
-                    <Strut size={Spacing.large_24} />
+                    <Strut size={spacing.large_24} />
                     <RadioGroup
                         label="A RadioGroup component inside a modal"
                         description="Some description"
@@ -483,7 +483,7 @@ export const FocusTrap: StoryComponentType = () => {
                             </Button>
                         )}
                     </ModalLauncher>
-                    <Strut size={Spacing.medium_16} />
+                    <Strut size={spacing.medium_16} />
                     <Button onClick={closeModal} disabled={!selectedValue}>
                         Next
                     </Button>

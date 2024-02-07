@@ -1,0 +1,38 @@
+import {Meta, Source} from "@storybook/blocks";
+
+import TokenTable from "../../.storybook/components/token-table";
+
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
+
+<Meta title="Tokens" />
+
+# Wonder Blocks Tokens
+
+Wonder Blocks uses a set of tokens to define the look and feel of our
+components. These tokens are defined in the `@khanacademy/wonder-blocks-tokens`
+package.
+
+Design tokens are a set of key-value pairs that define the visual and behavioral
+design attributes of our components. They are the primitives that define the
+building blocks of our design system.
+
+These represent the design decisions at Khan Academy, such as:
+
+-  <a href="../?path=/docs/tokens-border--docs">Border</a>
+-  <a href="../?path=/docs/tokens-color--docs">Color</a>
+-  <a href="../?path=/docs/tokens-spacing--docs">Spacing</a>
+-  <a href="../?path=/docs/tokens-typography--docs">Typography</a>
+
+## Usage
+
+To use these tokens, you can import them from the
+`@khanacademy/wonder-blocks-tokens` package.
+
+```ts
+// to import all the tokens at once:
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
+// or to import a specific token:
+import {color} from "@khanacademy/wonder-blocks-tokens";
+```

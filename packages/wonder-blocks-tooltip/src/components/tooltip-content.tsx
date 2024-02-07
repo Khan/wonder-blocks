@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
@@ -78,7 +78,7 @@ export default class TooltipContent extends React.Component<Props> {
                 testId={this.props.testId}
             >
                 {title}
-                {title && children && <Strut size={Spacing.xxxSmall_4} />}
+                {title && children && <Strut size={spacing.xxxSmall_4} />}
                 {children}
             </View>
         );
@@ -87,10 +87,10 @@ export default class TooltipContent extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     withoutTitle: {
-        padding: `10px ${Spacing.medium_16}px`,
+        padding: `10px ${spacing.medium_16}px`,
     },
 
     withTitle: {
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
 });

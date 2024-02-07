@@ -5,7 +5,7 @@ import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";
@@ -410,20 +410,20 @@ const styles = StyleSheet.create({
     },
     focused: {
         ":focus": {
-            outline: `solid 2px ${Color.blue}`,
+            outline: `solid 2px ${color.blue}`,
         },
     },
     focusedLight: {
-        outline: `solid 2px ${Color.white}`,
+        outline: `solid 2px ${color.white}`,
     },
     disabled: {
-        color: Color.offBlack32,
+        color: color.offBlack32,
         cursor: "not-allowed",
         ":focus": {
             outline: "none",
         },
         ":focus-visible": {
-            outline: `solid 2px ${Color.blue}`,
+            outline: `solid 2px ${color.blue}`,
         },
     },
 });

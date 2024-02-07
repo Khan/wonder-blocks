@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
     children: React.ReactNode;
@@ -39,17 +38,17 @@ const styles = StyleSheet.create({
     footer: {
         flex: "0 0 auto",
         boxSizing: "border-box",
-        minHeight: Spacing.xxxLarge_64,
-        paddingLeft: Spacing.medium_16,
-        paddingRight: Spacing.medium_16,
-        paddingTop: Spacing.xSmall_8,
-        paddingBottom: Spacing.xSmall_8,
+        minHeight: spacing.xxxLarge_64,
+        paddingLeft: spacing.medium_16,
+        paddingRight: spacing.medium_16,
+        paddingTop: spacing.xSmall_8,
+        paddingBottom: spacing.xSmall_8,
 
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
 
-        boxShadow: `0px -1px 0px ${Color.offBlack16}`,
+        boxShadow: `0px -1px 0px ${color.offBlack16}`,
     },
 });

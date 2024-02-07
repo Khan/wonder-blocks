@@ -16,7 +16,7 @@ import {
     LabelMedium,
 } from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
@@ -40,7 +40,7 @@ import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
  *     icon={magnifyingGlassIcon}
  *     color={Color.blue}
  *     size="medium"
- *     style={{margin: Spacing.xxxxSmall_2}}
+ *     style={{margin: spacing.xxxxSmall_2}}
  * />
  * ```
  *

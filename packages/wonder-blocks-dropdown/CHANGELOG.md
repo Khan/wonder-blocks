@@ -1,5 +1,43 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.1.5
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-cell@3.2.2
+    -   @khanacademy/wonder-blocks-clickable@4.0.14
+    -   @khanacademy/wonder-blocks-layout@2.0.27
+    -   @khanacademy/wonder-blocks-modal@4.2.3
+    -   @khanacademy/wonder-blocks-search-field@2.2.2
+
+## 5.1.4
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-search-field@2.2.1
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-modal@4.2.2
+    -   @khanacademy/wonder-blocks-cell@3.2.1
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.13
+
+## 5.1.3
+
+### Patch Changes
+
+-   Updated dependencies [0c329565]
+    -   @khanacademy/wonder-blocks-search-field@2.2.0
+
 ## 5.1.2
 
 ### Patch Changes

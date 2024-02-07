@@ -1,5 +1,35 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.52
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-dropdown@5.1.5
+    -   @khanacademy/wonder-blocks-layout@2.0.27
+
+## 2.0.51
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-dropdown@5.1.4
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
+## 2.0.50
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.1.3
+
 ## 2.0.49
 
 ### Patch Changes

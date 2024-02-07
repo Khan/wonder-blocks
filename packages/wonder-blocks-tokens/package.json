@@ -1,6 +1,6 @@
 {
     "name": "@khanacademy/wonder-blocks-tokens",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Core primitive design tokens for Web Wonder Blocks",
     "main": "dist/index.js",
     "module": "dist/es/index.js",
@@ -11,9 +11,8 @@
     "author": "",
     "license": "MIT",
     "publishConfig": {
-        "access": "restricted"
+        "access": "public"
     },
-    "private": true,
     "dependencies": {
         "@khanacademy/wonder-blocks-color": "^3.0.0",
         "@khanacademy/wonder-blocks-spacing": "^4.0.1"

@@ -56,8 +56,7 @@ import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Data} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 const myValidHandler = () =>
     new Promise((resolve, reject) =>
@@ -82,7 +81,7 @@ const myInvalidHandler = () =>
             }}
         </Data>
     </View>
-    <Strut size={Spacing.small_12} />
+    <Strut size={spacing.small_12} />
     <View>
         <Body>This request will go boom and give us an error!</Body>
         <Data handler={myInvalidHandler} requestId="INVALID">
@@ -92,7 +91,7 @@ const myInvalidHandler = () =>
                 }
 
                 return (
-                    <BodyMonospace style={{color: Color.red}}>
+                    <BodyMonospace style={{color: color.red}}>
                         ERROR: {result.error}
                     </BodyMonospace>
                 );
@@ -113,8 +112,6 @@ import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Data, initializeHydrationCache} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const myHandler = () => {
     throw new Error(

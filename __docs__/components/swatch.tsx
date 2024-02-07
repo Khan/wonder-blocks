@@ -3,14 +3,13 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Caption,
     LabelLarge,
     LabelSmall,
     LabelXSmall,
 } from "@khanacademy/wonder-blocks-typography";
-import Color from "@khanacademy/wonder-blocks-color";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 type Segments = 1 | 2 | 3;
@@ -29,40 +28,44 @@ const UseType = {
 /**
  * Get the color swatch information for a given color and segment count.
  */
-const getColorSegments = (segments: Segments, color: string, dark: boolean) => {
+const getColorSegments = (
+    segments: Segments,
+    colorSegment: string,
+    dark: boolean,
+) => {
     switch (segments) {
         case 1:
             return [
                 {
-                    foreground: dark ? color : Color.white64,
-                    background: dark ? Color.darkBlue : color,
+                    foreground: dark ? colorSegment : color.white64,
+                    background: dark ? color.darkBlue : colorSegment,
                 },
             ];
         case 2:
             return [
                 {
-                    foreground: color,
-                    background: color,
+                    foreground: colorSegment,
+                    background: colorSegment,
                 },
                 {
-                    foreground: color,
-                    background: Color.darkBlue,
+                    foreground: colorSegment,
+                    background: color.darkBlue,
                 },
             ];
         case 3:
         default:
             return [
                 {
-                    foreground: Color.white,
-                    background: color,
+                    foreground: color.white,
+                    background: colorSegment,
                 },
                 {
-                    foreground: color,
-                    background: Color.offWhite,
+                    foreground: colorSegment,
+                    background: color.offWhite,
                 },
                 {
-                    foreground: color,
-                    background: Color.white,
+                    foreground: colorSegment,
+                    background: color.white,
                 },
             ];
     }
@@ -130,39 +133,39 @@ export const Swatch = ({
 
 const styles = StyleSheet.create({
     container: {
-        color: Color.offBlack,
+        color: color.offBlack,
         flexDirection: "row",
-        marginBottom: Spacing.xLarge_32,
+        marginBottom: spacing.xLarge_32,
     },
     info: {
         alignItems: "flex-start",
         flexBasis: "30%",
     },
     tag: {
-        background: Color.offWhite,
-        border: `solid 1px ${Color.offBlack8}`,
-        borderRadius: Spacing.xxxxSmall_2,
-        margin: `${Spacing.xxxSmall_4}px 0`,
-        padding: `0 ${Spacing.xxxSmall_4}px`,
+        background: color.offWhite,
+        border: `solid 1px ${color.offBlack8}`,
+        borderRadius: spacing.xxxxSmall_2,
+        margin: `${spacing.xxxSmall_4}px 0`,
+        padding: `0 ${spacing.xxxSmall_4}px`,
     },
     usage: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
     swatch: {
         flexDirection: "row",
         flexBasis: "70%",
-        borderRadius: Spacing.xxxSmall_4,
-        background: Color.white,
-        boxShadow: `0 1px ${Spacing.xxxSmall_4}px 0 ${Color.offBlack8}`,
-        border: `1px solid ${Color.offBlack16}`,
+        borderRadius: spacing.xxxSmall_4,
+        background: color.white,
+        boxShadow: `0 1px ${spacing.xxxSmall_4}px 0 ${color.offBlack8}`,
+        border: `1px solid ${color.offBlack16}`,
         overflow: "hidden",
-        height: Spacing.xxxLarge_64,
+        height: spacing.xxxLarge_64,
     },
     swatchItem: {
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
 });

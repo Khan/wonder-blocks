@@ -3,10 +3,9 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
@@ -82,11 +81,11 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     playground: {
-        border: `1px dashed ${Color.lightBlue}`,
-        marginTop: Spacing.large_24,
-        padding: Spacing.large_24,
+        border: `1px dashed ${color.lightBlue}`,
+        marginTop: spacing.large_24,
+        padding: spacing.large_24,
         flexDirection: "row",
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
     },
 });
 
@@ -217,7 +216,7 @@ export const Controlled: StoryComponentType = () => {
                     Anchor element (it does not open the popover)
                 </Button>
             </Popover>
-            <Strut size={Spacing.xLarge_32} />
+            <Strut size={spacing.xLarge_32} />
             <Button onClick={() => setOpened(true)}>
                 Outside button (click here to re-open the popover)
             </Button>
@@ -262,7 +261,7 @@ export const WithActions: StoryComponentType = () => {
                             <LabelLarge>
                                 Step {step} of {totalSteps}
                             </LabelLarge>
-                            <Strut size={Spacing.medium_16} />
+                            <Strut size={spacing.medium_16} />
                             <Button
                                 kind="tertiary"
                                 onClick={() => {
@@ -315,7 +314,7 @@ export const WithInitialFocusId: StoryComponentType = {
                         <Button kind="tertiary" id="popover-button-1">
                             No focus
                         </Button>
-                        <Strut size={Spacing.medium_16} />
+                        <Strut size={spacing.medium_16} />
                         <Button kind="tertiary" id="popover-button-2">
                             It is focused!
                         </Button>
@@ -431,7 +430,7 @@ export const KeyboardNavigation: StoryComponentType = {
 
         return (
             <View>
-                <View style={[styles.row, {gap: Spacing.medium_16}]}>
+                <View style={[styles.row, {gap: spacing.medium_16}]}>
                     <Button
                         kind="secondary"
                         onClick={() => {

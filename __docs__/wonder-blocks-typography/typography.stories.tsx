@@ -2,10 +2,9 @@ import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
     HeadingLarge,
@@ -120,10 +119,10 @@ export const WithStyle: StoryObj<typeof Title> = {
     render: () => {
         const styles = StyleSheet.create({
             blueText: {
-                color: Color.blue,
+                color: color.blue,
             },
             highlighted: {
-                background: Color.offBlack16,
+                background: color.offBlack16,
             },
         });
 
@@ -367,8 +366,8 @@ Paragraph.parameters = {
 
 export const LineHeight: StoryObj<any> = () => {
     const style = {
-        outline: `1px solid ${Color.offBlack}`,
-        marginBottom: Spacing.small_12,
+        outline: `1px solid ${color.offBlack}`,
+        marginBottom: spacing.small_12,
     } as const;
 
     return (

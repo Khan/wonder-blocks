@@ -4,12 +4,11 @@ import {StyleSheet} from "aphrodite";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import infoIcon from "@phosphor-icons/core/regular/info.svg";
@@ -122,26 +121,26 @@ const getValuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
         case "success":
             return {
-                color: Color.green,
+                color: color.green,
                 icon: successIcon,
                 role: "status",
             };
         case "warning":
             return {
-                color: Color.gold,
+                color: color.gold,
                 icon: warningIcon,
                 role: "alert",
                 ariaLive: "polite",
             };
         case "critical":
             return {
-                color: Color.red,
+                color: color.red,
                 icon: criticalIcon,
                 role: "alert",
             };
         default:
             return {
-                color: Color.blue,
+                color: color.blue,
                 icon: infoIcon,
                 role: "status",
             };
@@ -297,28 +296,28 @@ const styles = StyleSheet.create({
         opacity: 0.08,
     },
     containerOuter: {
-        borderInlineStartWidth: Spacing.xxSmall_6,
+        borderInlineStartWidth: spacing.xxSmall_6,
         width: "100%",
         // Because of the background color's opacity value,
         // the base color needs to be hard-coded as white for the
         // intended pastel background color to show up correctly
         // on dark backgrounds.
-        backgroundColor: Color.white,
+        backgroundColor: color.white,
     },
     containerInner: {
         flexDirection: "row",
-        padding: Spacing.xSmall_8,
+        padding: spacing.xSmall_8,
     },
     icon: {
-        marginTop: Spacing.xSmall_8,
-        marginBottom: Spacing.xSmall_8,
+        marginTop: spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
         // The total distance from the icon to the edge is 16px. The
         // vertical identifier is already 6px, and the padding on inner
         // conatiner is 8px. So that leaves 2px.
-        marginInlineStart: Spacing.xxxxSmall_2,
-        marginInlineEnd: Spacing.xSmall_8,
+        marginInlineStart: spacing.xxxxSmall_2,
+        marginInlineEnd: spacing.xSmall_8,
         alignSelf: "flex-start",
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
     labelAndButtonsContainer: {
         flex: 1,
@@ -330,19 +329,19 @@ const styles = StyleSheet.create({
     },
     labelContainer: {
         flexShrink: 1,
-        margin: Spacing.xSmall_8,
+        margin: spacing.xSmall_8,
         textAlign: "start",
         overflowWrap: "break-word",
     },
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
-        marginTop: Spacing.xSmall_8,
-        marginBottom: Spacing.xSmall_8,
+        marginTop: spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
     },
     action: {
-        marginLeft: Spacing.xSmall_8,
-        marginRight: Spacing.xSmall_8,
+        marginLeft: spacing.xSmall_8,
+        marginRight: spacing.xSmall_8,
         justifyContent: "center",
         // Set the height to remove the padding from buttons
         height: 18,
@@ -358,8 +357,8 @@ const styles = StyleSheet.create({
         width: 40,
         justifyContent: "center",
         alignItems: "center",
-        marginLeft: Spacing.xSmall_8,
-        marginRight: Spacing.xSmall_8,
+        marginLeft: spacing.xSmall_8,
+        marginRight: spacing.xSmall_8,
     },
     floatingBorder: {
         borderRadius: 4,

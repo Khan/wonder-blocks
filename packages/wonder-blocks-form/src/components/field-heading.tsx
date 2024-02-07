@@ -2,9 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
@@ -73,7 +72,7 @@ export default class FieldHeading extends React.Component<Props> {
                     {label}
                     {required && requiredIcon}
                 </LabelMedium>
-                <Strut size={Spacing.xxxSmall_4} />
+                <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
     }
@@ -93,7 +92,7 @@ export default class FieldHeading extends React.Component<Props> {
                 >
                     {description}
                 </LabelSmall>
-                <Strut size={Spacing.xxxSmall_4} />
+                <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
     }
@@ -107,7 +106,7 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                <Strut size={Spacing.small_12} />
+                <Strut size={spacing.small_12} />
                 <LabelSmall
                     style={styles.error}
                     role="alert"
@@ -127,7 +126,7 @@ export default class FieldHeading extends React.Component<Props> {
             <View style={style}>
                 {this.renderLabel()}
                 {this.maybeRenderDescription()}
-                <Strut size={Spacing.xSmall_8} />
+                <Strut size={spacing.xSmall_8} />
                 {field}
                 {this.maybeRenderError()}
             </View>
@@ -137,15 +136,15 @@ export default class FieldHeading extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     label: {
-        color: Color.offBlack,
+        color: color.offBlack,
     },
     description: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
     error: {
-        color: Color.red,
+        color: color.red,
     },
     required: {
-        color: Color.red,
+        color: color.red,
     },
 });

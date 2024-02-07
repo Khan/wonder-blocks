@@ -6,10 +6,9 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
@@ -79,8 +78,8 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        background: Color.offWhite,
-        padding: Spacing.medium_16,
+        background: color.offWhite,
+        padding: spacing.medium_16,
     },
     setWidth: {
         minWidth: 170,
@@ -101,9 +100,9 @@ const styles = StyleSheet.create({
         height: 200,
         overflow: "auto",
         border: "1px solid grey",
-        borderRadius: Spacing.xxxSmall_4,
-        margin: Spacing.xSmall_8,
-        padding: Spacing.medium_16,
+        borderRadius: spacing.xxxSmall_4,
+        margin: spacing.xSmall_8,
+        padding: spacing.medium_16,
     },
     scrollableArea: {
         height: "200vh",
@@ -112,22 +111,22 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${Color.blue}`,
-        borderRadius: Spacing.xxxSmall_4,
-        background: Color.lightBlue,
-        color: Color.white,
-        padding: Spacing.medium_16,
+        borderLeft: `5px solid ${color.blue}`,
+        borderRadius: spacing.xxxSmall_4,
+        background: color.lightBlue,
+        color: color.white,
+        padding: spacing.medium_16,
     },
     focused: {
-        color: Color.offWhite,
+        color: color.offWhite,
     },
     hovered: {
         textDecoration: "underline",
-        color: Color.offWhite,
+        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {
-        color: Color.blue,
+        color: color.blue,
     },
 });
 
@@ -281,7 +280,7 @@ const ErrorWrapper = (args: any) => {
 
     return (
         <>
-            <LabelMedium style={{marginBottom: Spacing.xSmall_8}}>
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
                 Select at least 2 options to clear the error!
             </LabelMedium>
             <MultiSelect

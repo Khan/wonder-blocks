@@ -48,7 +48,7 @@ import playCircle from "@phosphor-icons/core/regular/play-circle.svg";
 import playCircleBold from "@phosphor-icons/core/bold/play-circle-bold.svg";
 import gear from "@phosphor-icons/core/regular/gear.svg";
 
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * Some pre-defined icon examples to use in our stories.
@@ -127,8 +127,8 @@ export default {
     color: {
         description:
             "The color of the icon. Will default to `currentColor`, which means that it will take on the CSS `color` value from the parent element.",
-        options: Object.keys(tokens.color),
-        mapping: tokens.color,
+        options: Object.keys(color),
+        mapping: color,
         control: {
             type: "select",
         },

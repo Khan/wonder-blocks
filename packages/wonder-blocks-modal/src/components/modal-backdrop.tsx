@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 
@@ -167,6 +167,6 @@ const styles = StyleSheet.create({
         //     now!
         overflow: "auto",
 
-        background: Color.offBlack64,
+        background: color.offBlack64,
     },
 });

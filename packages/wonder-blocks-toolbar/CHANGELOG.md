@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 3.0.27
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+
+## 3.0.26
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
 ## 3.0.25
 
 ### Patch Changes

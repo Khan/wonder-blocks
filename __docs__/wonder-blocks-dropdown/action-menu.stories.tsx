@@ -7,12 +7,11 @@ import {useArgs} from "@storybook/preview-api";
 import {action} from "@storybook/addon-actions";
 
 import {userEvent, within} from "@storybook/testing-library";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     ActionItem,
@@ -124,8 +123,8 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        background: Color.offWhite,
-        padding: Spacing.medium_16,
+        background: color.offWhite,
+        padding: spacing.medium_16,
     },
     exampleExtended: {
         height: 300,
@@ -146,22 +145,22 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${Color.blue}`,
-        borderRadius: Spacing.xxxSmall_4,
-        background: Color.lightBlue,
-        color: Color.white,
-        padding: Spacing.medium_16,
+        borderLeft: `5px solid ${color.blue}`,
+        borderRadius: spacing.xxxSmall_4,
+        background: color.lightBlue,
+        color: color.white,
+        padding: spacing.medium_16,
     },
     focused: {
-        color: Color.offWhite,
+        color: color.offWhite,
     },
     hovered: {
         textDecoration: "underline",
-        color: Color.offWhite,
+        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {
-        color: Color.blue,
+        color: color.blue,
     },
 });
 
@@ -480,8 +479,8 @@ export const CustomActionItems: StoryComponentType = {
                 onClick={action("user profile clicked!")}
                 style={{
                     [":hover [data-test-id=new-pill]" as any]: {
-                        backgroundColor: Color.white,
-                        color: Color.blue,
+                        backgroundColor: color.white,
+                        color: color.blue,
                     },
                 }}
             />,

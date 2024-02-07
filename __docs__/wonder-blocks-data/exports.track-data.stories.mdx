@@ -76,7 +76,7 @@ additional render cycle to render with that data.
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Server, View} from "@khanacademy/wonder-blocks-core";
 import {
@@ -132,7 +132,7 @@ class Example extends React.Component {
         if (this.state.error) {
             return (
                 <React.Fragment>
-                    <Strut size={Spacing.small_12} />
+                    <Strut size={spacing.small_12} />
                     <Body>
                         We can't show you anything useful in client-side mode
                     </Body>
@@ -146,7 +146,7 @@ class Example extends React.Component {
 
         return (
             <React.Fragment>
-                <Strut size={Spacing.small_12} />
+                <Strut size={spacing.small_12} />
                 <TrackData>
                     <Data
                         handler={myPretendHandler}
@@ -164,7 +164,7 @@ class Example extends React.Component {
                         )}
                     </Data>
                 </TrackData>
-                <Strut size={Spacing.small_12} />
+                <Strut size={spacing.small_12} />
                 <View>
                     <Body>
                         The above components requested data, but we're
@@ -172,14 +172,14 @@ class Example extends React.Component {
                         request. In this example, we've also called
                         `fetchTrackedRequests` to fetch that tracked data.
                     </Body>
-                    <Strut size={Spacing.small_12} />
+                    <Strut size={spacing.small_12} />
                     <Body>
                         In about 3 seconds, it will appear below. Notice that
                         when it does, the above still doesn't update. That's
                         because during SSR, the data is not updated in the
                         rendered tree.
                     </Body>
-                    <Strut size={Spacing.small_12} />
+                    <Strut size={spacing.small_12} />
                     <BodyMonospace>{data}</BodyMonospace>
                 </View>
             </React.Fragment>
@@ -198,7 +198,7 @@ class Example extends React.Component {
                             >
                                 Back to Client-side Mode (reloads page)
                             </Button>
-                            <Strut size={Spacing.small_12} />
+                            <Strut size={spacing.small_12} />
                             <Button
                                 kind={"secondary"}
                                 onClick={() => this.setServerMode()}

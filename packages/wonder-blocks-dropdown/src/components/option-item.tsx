@@ -2,8 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {mix} from "@khanacademy/wonder-blocks-color";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
@@ -194,7 +194,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                                     disabled={disabled}
                                     selected={selected}
                                 />
-                                <Strut size={Spacing.xSmall_8} />
+                                <Strut size={spacing.xSmall_8} />
                                 {leftAccessory}
                             </View>
                         ) : (
@@ -228,9 +228,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
-const {blue, white, offBlack, offBlack32} = Color;
-
-const activeBlue = mix(offBlack32, blue);
+const {blue, white, offBlack} = color;
 
 const styles = StyleSheet.create({
     item: {
@@ -238,7 +236,7 @@ const styles = StyleSheet.create({
         // vertically.
         minHeight: "unset",
         // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: Spacing.xxxxSmall_2,
+        paddingBlock: spacing.xxxxSmall_2,
 
         /**
          * States
@@ -246,9 +244,9 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: Spacing.xxxSmall_4,
-            outline: `${Spacing.xxxxSmall_2}px solid ${Color.blue}`,
-            outlineOffset: -Spacing.xxxxSmall_2,
+            borderRadius: spacing.xxxSmall_4,
+            outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+            outlineOffset: -spacing.xxxxSmall_2,
         },
 
         ":focus-visible": {
@@ -277,8 +275,8 @@ const styles = StyleSheet.create({
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: mix(fade(blue, 0.32), white),
-            background: activeBlue,
+            color: color.fadedBlue,
+            background: color.activeBlue,
         },
 
         // checkbox states (see checkbox.tsx)
@@ -289,7 +287,7 @@ const styles = StyleSheet.create({
             color: blue,
         },
         [":active[aria-disabled=false] .check" as any]: {
-            color: activeBlue,
+            color: color.activeBlue,
         },
 
         [":is([aria-selected=true]) .checkbox" as any]: {
@@ -304,20 +302,20 @@ const styles = StyleSheet.create({
          * Cell states
          */
         [":is([aria-disabled=false]) .subtitle" as any]: {
-            color: Color.offBlack64,
+            color: color.offBlack64,
         },
 
         [":hover[aria-disabled=false] .subtitle" as any]: {
-            color: Color.offWhite,
+            color: color.offWhite,
         },
         [":active[aria-disabled=false] .subtitle" as any]: {
-            color: mix(fade(blue, 0.16), white),
+            color: mix(color.fadedBlue16, white),
         },
     },
     itemContainer: {
         minHeight: "unset",
-        padding: Spacing.xSmall_8,
-        paddingRight: Spacing.medium_16,
+        padding: spacing.xSmall_8,
+        paddingRight: spacing.medium_16,
         whiteSpace: "nowrap",
     },
 

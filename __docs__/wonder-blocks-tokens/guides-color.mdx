@@ -1,15 +1,11 @@
 import {Meta, ColorPalette, ColorItem} from "@storybook/blocks";
-import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
-import ComponentInfo from "../../.storybook/components/component-info";
-import packageConfig from "../../packages/wonder-blocks-color/package.json";
-
-import {Swatch} from "./swatch";
+import {Swatch} from "../components/swatch";
 
 <Meta
-    title="Color / Color"
+    title="Tokens / Guides / Using color"
     parameters={{
         previewTabs: {
             canvas: {hidden: true},
@@ -19,39 +15,37 @@ import {Swatch} from "./swatch";
 />
 
 export const ProductColors = {
-    blue: Color.blue,
-    purple: Color.purple,
-    gold: Color.gold,
-    green: Color.green,
-    red: Color.red,
+    blue: color.blue,
+    purple: color.purple,
+    gold: color.gold,
+    green: color.green,
+    red: color.red,
 };
 
 export const NeutralColors = {
-    offBlack: Color.offBlack,
-    offBlack64: Color.offBlack64,
-    offBlack50: Color.offBlack50,
-    offBlack32: Color.offBlack32,
-    offBlack16: Color.offBlack16,
+    offBlack: color.offBlack,
+    offBlack64: color.offBlack64,
+    offBlack50: color.offBlack50,
+    offBlack32: color.offBlack32,
+    offBlack16: color.offBlack16,
 };
 
 export const WhiteShades = {
-    offBlack8: Color.offBlack8,
-    offWhite: Color.offWhite,
-    offWhite64: Color.offWhite64,
-    offWhite50: Color.offWhite50,
-    white: Color.white,
+    offBlack8: color.offBlack8,
+    offWhite: color.offWhite,
+    offWhite64: color.offWhite64,
+    offWhite50: color.offWhite50,
+    white: color.white,
 };
 
 export const BrandColors = {
-    darkBlue: Color.darkBlue,
-    lightBlue: Color.lightBlue,
-    teal: Color.teal,
-    pink: Color.pink,
+    darkBlue: color.darkBlue,
+    lightBlue: color.lightBlue,
+    teal: color.teal,
+    pink: color.pink,
 };
 
 # Color
-
-<ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
 ## Summary
 
@@ -74,15 +68,7 @@ export const BrandColors = {
     />
 </ColorPalette>
 
-## Usage
-
-`wonder-blocks-color` exports a set of colors that can be used in your
-components. The colors are exported as constants and can be used like so:
-
-```js
-import Color from "@khanacademy/wonder-blocks-color";
-const styles = {background: Color.darkBlue};
-```
+## Categories
 
 ### Product
 
@@ -91,35 +77,35 @@ and other navigational elements.
 
 <Swatch
     name="blue"
-    color={Color.blue}
+    color={color.blue}
     use="text"
     description="Actionable. Used to indicate actionable items like links and buttons."
 />
 
 <Swatch
     name="purple"
-    color={Color.purple}
+    color={color.purple}
     use="icons"
     description="Used to indicate Mastery."
 />
 
 <Swatch
     name="gold"
-    color={Color.gold}
+    color={color.gold}
     description="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
     segments={1}
 />
 
 <Swatch
     name="green"
-    color={Color.green}
+    color={color.green}
     use="icons"
     description="Affirmative. Used to indicate success states and correctness. Do not use for text."
 />
 
 <Swatch
     name="red"
-    color={Color.red}
+    color={color.red}
     use="text"
     description="Negative. Used for errors and destructive actions."
 />
@@ -132,56 +118,56 @@ Use for text and chrome components.
 
 <Swatch
     name="offBlack"
-    color={Color.offBlack}
+    color={color.offBlack}
     use="text"
     description="Primary text color. Can also used for links in lists."
 />
 
 <Swatch
     name="offBlack64"
-    color={Color.offBlack64}
+    color={color.offBlack64}
     use="text"
     description="Secondary text color and modal backdrop color."
 />
 
 <Swatch
     name="offBlack50"
-    color={Color.offBlack50}
+    color={color.offBlack50}
     description="Fieldset borders."
     segments={1}
 />
 
 <Swatch
     name="offBlack32"
-    color={Color.offBlack32}
+    color={color.offBlack32}
     description="Disabled states."
     segments={1}
 />
 
 <Swatch
     name="offBlack16"
-    color={Color.offBlack16}
+    color={color.offBlack16}
     description="Hairline color."
     segments={1}
 />
 
 <Swatch
     name="offBlack8"
-    color={Color.offBlack8}
+    color={color.offBlack8}
     description="Shadow color."
     segments={1}
 />
 
 <Swatch
     name="offWhite"
-    color={Color.offWhite}
+    color={color.offWhite}
     description="Only used as a secondary background color."
     segments={1}
 />
 
 <Swatch
     name="white"
-    color={Color.white}
+    color={color.white}
     use="text"
     description="Primary background color and primary text color on colored backgrounds."
     segments={2}
@@ -189,7 +175,7 @@ Use for text and chrome components.
 
 <Swatch
     name="white64"
-    color={Color.white64}
+    color={color.white64}
     use="text"
     description="Secondary text color on colored backgrounds, and hairline color on colored backgrounds."
     segments={1}
@@ -204,28 +190,28 @@ Use for designing anything centered around Khan Academy as a brand. Secondary br
 
 <Swatch
     name="darkBlue"
-    color={Color.darkBlue}
+    color={color.darkBlue}
     description="Primary brand color. Can be used as a background color in headers and illustrative areas."
     segments={1}
 />
 
 <Swatch
     name="lightBlue"
-    color={Color.lightBlue}
+    color={color.lightBlue}
     description="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
     segments={1}
 />
 
 <Swatch
     name="teal"
-    color={Color.teal}
+    color={color.teal}
     description="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
     segments={1}
 />
 
 <Swatch
     name="pink"
-    color={Color.pink}
+    color={color.pink}
     description="Secondary brand color."
     segments={1}
 />

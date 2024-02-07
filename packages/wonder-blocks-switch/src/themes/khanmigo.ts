@@ -1,4 +1,5 @@
-import {mergeTheme, tokens} from "@khanacademy/wonder-blocks-theming";
+import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 /**

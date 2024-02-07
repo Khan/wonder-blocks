@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
 /**
@@ -35,10 +35,10 @@ export default Check;
 const styles = StyleSheet.create({
     bounds: {
         alignSelf: "center",
-        height: Spacing.medium_16,
+        height: spacing.medium_16,
         // Semantically, this are the constants for a small-sized icon
-        minHeight: Spacing.medium_16,
-        minWidth: Spacing.medium_16,
+        minHeight: spacing.medium_16,
+        minWidth: spacing.medium_16,
     },
 
     hide: {

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -147,7 +147,7 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
                     <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
                 )}
                 {(label || description || errorMessage) && (
-                    <Strut size={Spacing.small_12} />
+                    <Strut size={spacing.small_12} />
                 )}
 
                 {allChildren.map((child, index) => {

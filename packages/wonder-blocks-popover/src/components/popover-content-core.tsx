@@ -2,9 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import CloseButton from "./close-button";
 
@@ -105,13 +104,13 @@ export default class PopoverContentCore extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     content: {
-        borderRadius: Spacing.xxxSmall_4,
-        border: `solid 1px ${Colors.offBlack16}`,
-        backgroundColor: Colors.white,
-        boxShadow: `0 ${Spacing.xSmall_8}px ${Spacing.xSmall_8}px 0 ${Colors.offBlack8}`,
+        borderRadius: spacing.xxxSmall_4,
+        border: `solid 1px ${color.offBlack16}`,
+        backgroundColor: color.white,
+        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
         margin: 0,
-        maxWidth: Spacing.medium_16 * 18, // 288px
-        padding: Spacing.large_24,
+        maxWidth: spacing.medium_16 * 18, // 288px
+        padding: spacing.large_24,
         overflow: "hidden",
         justifyContent: "center",
     },
@@ -119,13 +118,13 @@ const styles = StyleSheet.create({
      * Theming
      */
     blue: {
-        backgroundColor: Colors.blue,
-        color: Colors.white,
+        backgroundColor: color.blue,
+        color: color.white,
     },
 
     darkBlue: {
-        backgroundColor: Colors.darkBlue,
-        color: Colors.white,
+        backgroundColor: color.darkBlue,
+        color: color.white,
     },
 
     /**
@@ -134,8 +133,8 @@ const styles = StyleSheet.create({
     closeButton: {
         margin: 0,
         position: "absolute",
-        right: Spacing.xxxSmall_4,
-        top: Spacing.xxxSmall_4,
+        right: spacing.xxxSmall_4,
+        top: spacing.xxxSmall_4,
         // Allows the button to be above the title and/or custom content
         zIndex: 1,
     },

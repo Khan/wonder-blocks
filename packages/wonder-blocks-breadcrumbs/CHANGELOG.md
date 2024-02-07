@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 2.1.12
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+
+## 2.1.11
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
 ## 2.1.10
 
 ### Patch Changes

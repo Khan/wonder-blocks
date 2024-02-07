@@ -9,11 +9,10 @@ import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -71,7 +70,7 @@ Primary.play = async ({canvasElement}) => {
     const link = canvas.getByRole("link");
 
     // Resting style
-    await expect(link).toHaveStyle(`color: ${Color.blue}`);
+    await expect(link).toHaveStyle(`color: ${color.blue}`);
 
     // Hover style
     await userEvent.hover(link);
@@ -80,7 +79,7 @@ Primary.play = async ({canvasElement}) => {
     //     `text-decoration: underline ${Color.blue} dashed 2px`,
     // );
     await expect(link).toHaveStyle(
-        `text-decoration: underline ${Color.blue} solid`,
+        `text-decoration: underline ${color.blue} solid`,
     );
 
     // Focus style with keyboard navigation
@@ -118,7 +117,7 @@ Secondary.play = async ({canvasElement}) => {
     const link = canvas.getByRole("link");
 
     // Resting style
-    await expect(link).toHaveStyle(`color: ${Color.offBlack64}`);
+    await expect(link).toHaveStyle(`color: ${color.offBlack64}`);
 
     // Hover style
     await userEvent.hover(link);
@@ -127,7 +126,7 @@ Secondary.play = async ({canvasElement}) => {
     //     `text-decoration: underline ${Color.offBlack64} dashed 2px`,
     // );
     await expect(link).toHaveStyle(
-        `text-decoration: underline ${Color.offBlack64} solid`,
+        `text-decoration: underline ${color.offBlack64} solid`,
     );
 
     // Focus style with keyboard navigation
@@ -140,7 +139,7 @@ Secondary.play = async ({canvasElement}) => {
     // Mousedown style
     await fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${Color.offBlack}`,
+        `text-decoration: underline solid ${color.offBlack}`,
     );
 };
 
@@ -186,7 +185,7 @@ LightPrimary.play = async ({canvasElement}) => {
     const link = canvas.getByRole("link");
 
     // Resting style
-    await expect(link).toHaveStyle(`color: ${Color.white}`);
+    await expect(link).toHaveStyle(`color: ${color.white}`);
 
     // Hover style
     await userEvent.hover(link);
@@ -195,7 +194,7 @@ LightPrimary.play = async ({canvasElement}) => {
     //     `text-decoration: underline ${Color.white} dashed 2px`,
     // );
     await expect(link).toHaveStyle(
-        `text-decoration: underline ${Color.white} solid`,
+        `text-decoration: underline ${color.white} solid`,
     );
 
     // Focus style with keyboard navigation
@@ -256,7 +255,7 @@ OpensInANewTab.parameters = {
 export const StartAndEndIcons: StoryComponentType = () => (
     <View>
         {/* Default (dark) */}
-        <View style={{padding: Spacing.large_24}}>
+        <View style={{padding: spacing.large_24}}>
             <Link
                 href="#"
                 startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
@@ -328,8 +327,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
         {/* Light */}
         <View
             style={{
-                backgroundColor: Color.darkBlue,
-                padding: Spacing.large_24,
+                backgroundColor: color.darkBlue,
+                padding: spacing.large_24,
             }}
         >
             <Link
@@ -378,7 +377,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This is a multi-line link with start and end icons
             </Link>
-            <Body style={{color: Color.white}}>
+            <Body style={{color: color.white}}>
                 This is an inline{" "}
                 <Link
                     href="#"
@@ -480,7 +479,7 @@ Inline.play = async ({canvasElement}) => {
     const secondaryLink = canvas.getByRole("link", {name: "Secondary link"});
 
     // Resting style
-    await expect(primaryLink).toHaveStyle(`color: ${Color.blue}`);
+    await expect(primaryLink).toHaveStyle(`color: ${color.blue}`);
 
     // Hover style
     await userEvent.hover(primaryLink);
@@ -489,7 +488,7 @@ Inline.play = async ({canvasElement}) => {
     //     `text-decoration: underline ${Color.blue} dashed 2px`,
     // );
     await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline ${Color.blue} solid`,
+        `text-decoration: underline ${color.blue} solid`,
     );
 
     // Focus style with keyboard navigation
@@ -513,7 +512,7 @@ Inline.play = async ({canvasElement}) => {
     /* *** Secondary link styles***  */
 
     // Resting style
-    await expect(secondaryLink).toHaveStyle(`color: ${Color.offBlack}`);
+    await expect(secondaryLink).toHaveStyle(`color: ${color.offBlack}`);
 
     // Hover style
     await userEvent.hover(secondaryLink);
@@ -522,7 +521,7 @@ Inline.play = async ({canvasElement}) => {
     //     `text-decoration: underline ${Color.offBlack} dashed 2px`,
     // );
     await expect(secondaryLink).toHaveStyle(
-        `text-decoration: underline ${Color.offBlack} solid`,
+        `text-decoration: underline ${color.offBlack} solid`,
     );
 
     // Focus style with keyboard navigation
@@ -546,7 +545,7 @@ Inline.play = async ({canvasElement}) => {
 };
 
 export const InlineLight: StoryComponentType = () => (
-    <Body style={{color: Color.white}}>
+    <Body style={{color: color.white}}>
         This is an inline{" "}
         <Link href="#" inline={true} light={true}>
             Primary link
@@ -599,7 +598,7 @@ InlineLight.play = async ({canvasElement}) => {
     const primaryLink = canvas.getByRole("link", {name: "Primary link"});
 
     // Resting style
-    await expect(primaryLink).toHaveStyle(`color: ${Color.white}`);
+    await expect(primaryLink).toHaveStyle(`color: ${color.white}`);
 
     // Hover style
     await userEvent.hover(primaryLink);
@@ -608,7 +607,7 @@ InlineLight.play = async ({canvasElement}) => {
     //     `text-decoration: underline ${Color.white} dashed 2px`,
     // );
     await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline ${Color.white} solid`,
+        `text-decoration: underline ${color.white} solid`,
     );
 
     // Focus style with keyboard navigation
@@ -628,7 +627,7 @@ InlineLight.play = async ({canvasElement}) => {
 export const Variants: StoryComponentType = () => (
     <View>
         {/* Default (dark) */}
-        <View style={{padding: Spacing.large_24}}>
+        <View style={{padding: spacing.large_24}}>
             {/* Standalone */}
             <View>
                 <View style={styles.standaloneLinkWrapper}>
@@ -670,7 +669,7 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
             </View>
-            <Strut size={Spacing.xSmall_8} />
+            <Strut size={spacing.xSmall_8} />
             {/* Inline */}
             <Body>
                 This is an{" "}
@@ -717,8 +716,8 @@ export const Variants: StoryComponentType = () => (
         {/* Light */}
         <View
             style={{
-                backgroundColor: Color.darkBlue,
-                padding: Spacing.large_24,
+                backgroundColor: color.darkBlue,
+                padding: spacing.large_24,
             }}
         >
             {/* Standalone */}
@@ -753,9 +752,9 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
             </View>
-            <Strut size={Spacing.xSmall_8} />
+            <Strut size={spacing.xSmall_8} />
             {/* Inline */}
-            <Body style={{color: Color.white}}>
+            <Body style={{color: color.white}}>
                 This is an{" "}
                 <Link href="#" inline={true} light={true}>
                     Inline Primary link
@@ -926,7 +925,7 @@ WithTitle.play = async ({canvasElement}) => {
 };
 
 export const RightToLeftWithIcons: StoryComponentType = () => (
-    <View style={{padding: Spacing.medium_16}}>
+    <View style={{padding: spacing.medium_16}}>
         <View style={styles.rightToLeft}>
             <Link
                 href="/"
@@ -934,14 +933,14 @@ export const RightToLeftWithIcons: StoryComponentType = () => (
             >
                 هذا الرابط مكتوب باللغة العربية
             </Link>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Link
                 href="/"
                 endIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
             >
                 هذا الرابط مكتوب باللغة العربية
             </Link>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Link
                 href="/"
                 startIcon={<PhosphorIcon icon={IconMappings.caretRightBold} />}
@@ -965,20 +964,20 @@ RightToLeftWithIcons.parameters = {
 
 const styles = StyleSheet.create({
     darkBackground: {
-        backgroundColor: Color.darkBlue,
-        color: Color.white,
+        backgroundColor: color.darkBlue,
+        color: color.white,
         padding: 10,
     },
     heading: {
-        marginRight: Spacing.large_24,
+        marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${Color.lightBlue}`,
-        marginTop: Spacing.large_24,
-        padding: Spacing.large_24,
+        border: `1px dashed ${color.lightBlue}`,
+        marginTop: spacing.large_24,
+        padding: spacing.large_24,
     },
     pinkLink: {
-        color: Color.pink,
+        color: color.pink,
     },
     row: {
         flexDirection: "row",
@@ -989,7 +988,7 @@ const styles = StyleSheet.create({
         // instead of taking the full width of the parent
         // container.
         display: "inline-block",
-        marginBottom: Spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
     },
     rightToLeft: {
         width: "100%",
@@ -997,7 +996,7 @@ const styles = StyleSheet.create({
     },
     multiLine: {
         display: "inline-block",
-        marginBottom: Spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
         maxWidth: "15%",
     },
 });
