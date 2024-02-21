@@ -283,9 +283,12 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     handleSelectAll: () => void = () => {
         const {children, onChange} = this.props;
-        const selected = React.Children.toArray(children)
-            .filter(Boolean)
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
+        const allChildren = React.Children.toArray(
+            children,
+        ) as Array<React.ReactElement>;
+
+        const selected = allChildren
+            .filter((option) => !!option && !option.props.disabled)
             .map((option) => option.props.value);
         onChange(selected);
     };
@@ -298,6 +301,9 @@ export default class MultiSelect extends React.Component<Props, State> {
     getMenuText(children: OptionItemComponentArray): string {
         const {implicitAllEnabled, selectedValues} = this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
+        const numSelectedAll = children.filter(
+            (option) => !option.props.disabled,
+        ).length;
 
         // When implicit all enabled, use `labels.allSelected` when no selection
         // otherwise, use the `labels.noneSelected` value
@@ -327,7 +333,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 }
 
                 return noSelectionText;
-            case children.length:
+            case numSelectedAll:
                 return allSelected;
             default:
                 return someSelected(selectedValues.length);
@@ -505,7 +511,9 @@ export default class MultiSelect extends React.Component<Props, State> {
         const {noneSelected} = this.state.labels;
 
         const menuText = this.getMenuText(allChildren);
-        const numOptions = allChildren.length;
+        const numOptions = allChildren.filter(
+            (option) => !option.props.disabled,
+        ).length;
 
         const dropdownOpener = opener ? (
             <DropdownOpener
@@ -557,7 +565,9 @@ export default class MultiSelect extends React.Component<Props, State> {
                 React.ReactElement<React.ComponentProps<typeof OptionItem>>
             >
         ).filter(Boolean);
-        const numOptions = allChildren.length;
+        const numEnabledOptions = allChildren.filter(
+            (option) => !option.props.disabled,
+        ).length;
         const filteredItems = this.getMenuItems(allChildren);
         const opener = this.renderOpener(allChildren);
 
@@ -571,7 +581,10 @@ export default class MultiSelect extends React.Component<Props, State> {
                     dropdownStyle,
                 ]}
                 isFilterable={isFilterable}
-                items={[...this.getShortcuts(numOptions), ...filteredItems]}
+                items={[
+                    ...this.getShortcuts(numEnabledOptions),
+                    ...filteredItems,
+                ]}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={open}

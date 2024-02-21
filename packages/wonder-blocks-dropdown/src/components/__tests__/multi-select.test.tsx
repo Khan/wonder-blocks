@@ -14,7 +14,7 @@ import type {Labels} from "../multi-select";
 
 const defaultLabels: Labels = {
     ...builtinLabels,
-    selectAllLabel: (numOptions: any) => `Sellect all (${numOptions})`,
+    selectAllLabel: (numOptions: any) => `Select all (${numOptions})`,
     noneSelected: "Choose",
     someSelected: (numSelectedValues: any) =>
         numSelectedValues > 1 ? `${numSelectedValues} students` : "1 student",
@@ -456,6 +456,47 @@ describe("MultiSelect", () => {
             expect(opener).toHaveTextContent("item 3");
         });
 
+        it("selects all the enabled items when the 'All items' shortcut is selected", () => {
+            // Arrange
+            const ControlledMultiSelect = function (
+                props: Props,
+            ): React.ReactElement {
+                const [selectedValues, setSelectedValues] = React.useState([]);
+                const handleChange = (newValues: any) => {
+                    setSelectedValues(newValues);
+                };
+
+                return (
+                    <MultiSelect
+                        labels={labels}
+                        onChange={handleChange}
+                        opened={props.opened}
+                        onToggle={props.onToggle}
+                        selectedValues={selectedValues}
+                        shortcuts={true}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        {/* The second option item shouldn't be selectable */}
+                        <OptionItem label="item 2" value="2" disabled={true} />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+
+            render(<ControlledMultiSelect />);
+
+            const opener = screen.getByRole("button");
+            userEvent.click(opener);
+
+            // Act
+            // Select all of the items
+            const selectAll = screen.getByRole("option", {name: /Select all/i});
+            userEvent.click(selectAll);
+
+            // Assert
+            expect(opener).toHaveTextContent("All fruits");
+        });
+
         it("selects all the items when the 'All items' shortcut is selected", () => {
             // Arrange
             render(<ControlledComponent shortcuts={true} />);
@@ -556,6 +597,32 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(screen.getAllByRole("option")).toHaveLength(1);
+        });
+
+        it("Allows selecting all the enabled items", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    onChange={() => {}}
+                    selectedValues={[]}
+                    labels={defaultLabels}
+                    shortcuts={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    {/* The second option item shouldn't be selectable */}
+                    <OptionItem label="item 2" value="2" disabled={true} />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
+
+            // Assert
+            expect(
+                screen.getByRole("option", {name: "Select all (2)"}),
+            ).toBeInTheDocument();
         });
 
         it("Hides shortcuts when there are any text in search text input", () => {
