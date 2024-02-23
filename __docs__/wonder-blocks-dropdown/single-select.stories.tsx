@@ -822,6 +822,7 @@ export const CustomOptionItems: StoryComponentType = {
                         <OptionItem
                             key={user.id}
                             value={user.id}
+                            horizontalRule="full-width"
                             label={user.name}
                             leftAccessory={user.picture}
                             subtitle1={

@@ -235,8 +235,6 @@ const styles = StyleSheet.create({
         // Reset the default styles for the cell element so it can grow
         // vertically.
         minHeight: "unset",
-        // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: spacing.xxxxSmall_2,
 
         /**
          * States
@@ -314,7 +312,10 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         minHeight: "unset",
-        padding: spacing.xSmall_8,
+        // Make sure that the item is always at least as tall as 40px.
+        padding: `${spacing.xSmall_8 + spacing.xxxxSmall_2}px ${
+            spacing.xSmall_8
+        }px`,
         paddingRight: spacing.medium_16,
         whiteSpace: "nowrap",
     },
