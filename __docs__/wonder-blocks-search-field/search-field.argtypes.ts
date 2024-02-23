@@ -120,8 +120,7 @@ export default {
             },
         },
         control: {
-            type: "select",
-            options: ["box", "underline"],
+            type: "object",
         },
     },
     testId: {
