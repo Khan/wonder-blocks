@@ -143,13 +143,14 @@ describe("Pill", () => {
     });
 
     test.each`
-        kind          | color
-        ${"neutral"}  | ${tokens.color.offBlack8}
-        ${"accent"}   | ${tokens.color.blue}
-        ${"info"}     | ${tokens.color.fadedBlue16}
-        ${"success"}  | ${tokens.color.fadedGreen16}
-        ${"warning"}  | ${tokens.color.fadedGold16}
-        ${"critical"} | ${tokens.color.fadedRed16}
+        kind             | color
+        ${"neutral"}     | ${tokens.color.offBlack8}
+        ${"accent"}      | ${tokens.color.blue}
+        ${"info"}        | ${tokens.color.fadedBlue16}
+        ${"success"}     | ${tokens.color.fadedGreen16}
+        ${"warning"}     | ${tokens.color.fadedGold16}
+        ${"critical"}    | ${tokens.color.fadedRed16}
+        ${"transparent"} | ${"transparent"}
     `(
         "renders the correct background color for $kind kind",
         ({kind, color}) => {

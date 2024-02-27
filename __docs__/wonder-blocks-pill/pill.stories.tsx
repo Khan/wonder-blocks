@@ -112,8 +112,8 @@ Inline.parameters = {
 };
 
 /**
- * There are six kinds of pills: neutral, accent, info, success, warning,
- * and critical. This can be specified using the `kind` prop.
+ * There are seven kinds of pills: neutral, accent, info, success, warning,
+ * critical and transparent. This can be specified using the `kind` prop.
  *
  * The following kinds respond to the following colors:
  * - `neutral`: gray
@@ -122,11 +122,12 @@ Inline.parameters = {
  * - `success`: light green
  * - `warning`: yellow
  * - `critical`: light red
+ * - `transparent`: transparent
  *
- * Pills can also be of three different sizes: small, medium, and large.
- * If the size is not specified, it defaults to medium. Small pills use
- * Wonder Blocks `LabelXSmall` typography, medium pills use Wonder Blocks
- * `LabelSmall`, and large pills use Wonder Blocks `Body`.
+ * Pills can also be of three different sizes: small, medium, and large. If the
+ * size is not specified, it defaults to medium. Small pills use Wonder Blocks
+ * `LabelXSmall` typography, medium pills use Wonder Blocks `LabelSmall`, and
+ * large pills use Wonder Blocks `Body`.
  */
 export const Variants: StoryComponentType = {
     render: () => {
@@ -137,6 +138,7 @@ export const Variants: StoryComponentType = {
             "success",
             "warning",
             "critical",
+            "transparent",
         ];
 
         const sizes: Array<PillSize> = ["small", "medium", "large"];
