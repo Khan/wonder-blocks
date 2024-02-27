@@ -31,7 +31,6 @@ import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/typ
 import ModalLauncherArgTypes from "./modal-launcher.argtypes";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import PopoverContent from "../../packages/wonder-blocks-popover/src/components/popover-content";
 
 const customViewports = {
     phone: {
