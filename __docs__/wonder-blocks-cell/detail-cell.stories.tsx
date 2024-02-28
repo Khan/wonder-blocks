@@ -113,8 +113,9 @@ DetailCellDisabled.parameters = {
 export const DetailCellWithCustomStyles: StoryComponentType = () => (
     <DetailCell
         title="Title for article item"
-        subtitle1="Subtitle for article item"
-        subtitle2="Subtitle for article item"
+        contentStyle={{
+            alignSelf: "flex-start",
+        }}
         leftAccessory={<Icon icon={icons.caretLeft} size="small" />}
         leftAccessoryStyle={{
             alignSelf: "flex-start",
@@ -125,6 +126,7 @@ export const DetailCellWithCustomStyles: StoryComponentType = () => (
         }}
         style={{
             textAlign: "center",
+            minHeight: 88,
         }}
     />
 );
