@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.0.39
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-button@6.2.10
+-   @khanacademy/wonder-blocks-icon-button@5.1.13
+-   @khanacademy/wonder-blocks-link@6.0.10
+
 ## 3.0.38
 
 ### Patch Changes

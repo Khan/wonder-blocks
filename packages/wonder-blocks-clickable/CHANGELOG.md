@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.1.2
+
+### Patch Changes
+
+-   e6433bee: Fix event bubbling on ClickableBehavior when submit is used.
+
 ## 4.1.1
 
 ### Patch Changes

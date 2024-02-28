@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.4.5
+
+### Patch Changes
+
+-   Updated dependencies [e6433bee]
+    -   @khanacademy/wonder-blocks-clickable@4.1.2
+
 ## 4.4.4
 
 ### Patch Changes
