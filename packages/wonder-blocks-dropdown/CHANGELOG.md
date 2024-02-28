@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.1.7
+
+### Patch Changes
+
+-   aca7ad76: Don't select disabled items using the "Select all" shortcut
+-   f0e82953: Fix an issue where OptionItem is not vertically centered
+-   Updated dependencies [4cfb4977]
+-   Updated dependencies [dbe7c753]
+    -   @khanacademy/wonder-blocks-tokens@1.1.0
+    -   @khanacademy/wonder-blocks-cell@3.3.0
+    -   @khanacademy/wonder-blocks-clickable@4.1.1
+    -   @khanacademy/wonder-blocks-layout@2.0.28
+    -   @khanacademy/wonder-blocks-modal@4.2.5
+    -   @khanacademy/wonder-blocks-search-field@2.2.4
+
 ## 5.1.6
 
 ### Patch Changes

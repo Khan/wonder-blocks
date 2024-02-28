@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.2.9
+
+### Patch Changes
+
+-   Updated dependencies [4cfb4977]
+    -   @khanacademy/wonder-blocks-tokens@1.1.0
+    -   @khanacademy/wonder-blocks-clickable@4.1.1
+    -   @khanacademy/wonder-blocks-progress-spinner@2.0.28
+
 ## 6.2.8
 
 ### Patch Changes

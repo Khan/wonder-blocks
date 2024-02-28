@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 1.1.0
+
+### Minor Changes
+
+-   4cfb4977: Add new shades of existing colors (24%).
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-pill
 
+## 2.1.0
+
+### Minor Changes
+
+-   0c3cbcea: Add transparent variant
+
+### Patch Changes
+
+-   Updated dependencies [4cfb4977]
+    -   @khanacademy/wonder-blocks-tokens@1.1.0
+    -   @khanacademy/wonder-blocks-clickable@4.1.1
+    -   @khanacademy/wonder-blocks-link@6.0.9
+
 ## 2.0.3
 
 ### Patch Changes
