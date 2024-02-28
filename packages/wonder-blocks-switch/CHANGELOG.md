@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.13
+
+### Patch Changes
+
+-   7ed54137: Update khanmigo theme to match design specs
+-   Updated dependencies [4cfb4977]
+    -   @khanacademy/wonder-blocks-tokens@1.1.0
+
 ## 1.1.12
 
 ### Patch Changes
