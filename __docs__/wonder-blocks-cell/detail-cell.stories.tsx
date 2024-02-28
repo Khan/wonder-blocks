@@ -123,8 +123,9 @@ DetailCellDisabled.parameters = {
 export const DetailCellWithCustomStyles: StoryComponentType = () => (
     <DetailCell
         title="Title for article item"
-        subtitle1="Subtitle for article item"
-        subtitle2="Subtitle for article item"
+        contentStyle={{
+            alignSelf: "flex-start",
+        }}
         leftAccessory={
             <PhosphorIcon icon={IconMappings.caretLeftBold} size="small" />
         }
@@ -139,6 +140,7 @@ export const DetailCellWithCustomStyles: StoryComponentType = () => (
         }}
         style={{
             textAlign: "center",
+            minHeight: 88,
         }}
     />
 );
@@ -146,7 +148,7 @@ export const DetailCellWithCustomStyles: StoryComponentType = () => (
 DetailCellWithCustomStyles.parameters = {
     docs: {
         description: {
-            story: "Accessories can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories.",
+            story: "Accessories and the main content container can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories and the content.",
         },
     },
 };

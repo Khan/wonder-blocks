@@ -52,6 +52,16 @@ export default {
             },
         },
     },
+    contentStyle: {
+        description: `Optional custom styles applied to the content wrapper. For example, it can be used to set a custom minWidth or a custom alignment.`,
+        table: {
+            category: "Styling",
+            type: {
+                summary: "AccessoryStyle",
+                detail: '"minWidth" | "alignSelf" | "alignItems"',
+            },
+        },
+    },
     leftAccessory: {
         description: `If provided, this adds a left accessory to the cell. Left Accessories can be defined using WB components such as PhosphorIcon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the "LeftAccessory” area of the Cell.`,
         control: {type: "select"},

@@ -99,6 +99,7 @@ function CellInner(props: CellCoreProps): React.ReactElement {
         children,
         disabled,
         horizontalRule = "inset",
+        contentStyle = undefined,
         leftAccessory = undefined,
         leftAccessoryStyle = undefined,
         rightAccessory = undefined,
@@ -127,7 +128,7 @@ function CellInner(props: CellCoreProps): React.ReactElement {
             />
 
             {/* Cell contents */}
-            <View style={styles.content} testId={testId}>
+            <View style={[styles.content, contentStyle]} testId={testId}>
                 {children}
             </View>
 
