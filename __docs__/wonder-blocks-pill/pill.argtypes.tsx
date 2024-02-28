@@ -22,7 +22,7 @@ export default {
         table: {
             type: {
                 summary: `"neutral" | "accent | "info" | "success" |
-                    "warning" | "critical"`,
+                    "warning" | "critical" | "transparent"`,
             },
             defaultValue: {summary: "neutral"},
         },
@@ -35,6 +35,7 @@ export default {
                 "success",
                 "warning",
                 "critical",
+                "transparent",
             ],
             required: false,
         },

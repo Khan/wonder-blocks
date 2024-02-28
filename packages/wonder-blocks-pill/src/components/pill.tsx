@@ -21,7 +21,8 @@ export type PillKind =
     | "info"
     | "success"
     | "warning"
-    | "critical";
+    | "critical"
+    | "transparent";
 
 export type PillSize = "small" | "medium" | "large";
 
@@ -222,13 +223,16 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
         case "critical":
             backgroundColor = tokens.color.fadedRed16;
             break;
+        case "transparent":
+            backgroundColor = "transparent";
+            break;
         case "neutral":
         default:
             backgroundColor = tokens.color.offBlack8;
     }
 
     const activeColor =
-        kind === "neutral"
+        kind === "neutral" || kind === "transparent"
             ? tokens.color.offBlack16
             : mix(tokens.color.offBlack32, backgroundColor);
 
@@ -239,15 +243,21 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
     const activeOutlineColor =
         kind === "critical" ? tokens.color.activeRed : tokens.color.activeBlue;
 
+    const outline =
+        kind === "transparent"
+            ? `1px solid ${tokens.color.offBlack16}`
+            : "none";
+
     const colorStyles: StyleDeclaration = {
         pill: {
             backgroundColor: backgroundColor,
+            outline,
             color: textColor,
             alignItems: "center",
             justifyContent: "center",
         },
         clickableWrapper: {
-            outline: "none",
+            outline,
 
             ":hover": {
                 outline: `2px solid ${outlineColor}`,
