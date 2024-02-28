@@ -46,7 +46,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        node-version: [16.x]
+        node-version: [20.x]
     steps:
       # Create/update PR comment with Chromatic results
       - name: Find existing comment

@@ -2,13 +2,13 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import Color, {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
+import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
@@ -55,7 +55,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             ...restProps
         } = this.props;
 
-        const buttonColor = SemanticColor.controlDefault;
+        const buttonColor = color.blue;
         const buttonStyles = _generateStyles(buttonColor);
         const disabled = disabledProp;
 
@@ -89,11 +89,12 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                 >
                     {label}
                 </View>
-                <Strut size={Spacing.xxxSmall_4} />
-                <Icon
+                <Strut size={spacing.xxxSmall_4} />
+                <PhosphorIcon
                     size="small"
                     color="currentColor"
-                    icon={icons.caretDown}
+                    icon={caretDownIcon}
+                    aria-hidden="true"
                 />
             </StyledButton>
         );
@@ -108,7 +109,7 @@ const sharedStyles = StyleSheet.create({
         justifyContent: "center",
         height: DROPDOWN_ITEM_HEIGHT,
         border: "none",
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: spacing.xxxSmall_4,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -125,7 +126,7 @@ const sharedStyles = StyleSheet.create({
         cursor: "auto",
     },
     small: {
-        height: Spacing.xLarge_32,
+        height: spacing.xLarge_32,
     },
     text: {
         textAlign: "left",
@@ -148,21 +149,21 @@ const sharedStyles = StyleSheet.create({
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (color: string) => {
-    const buttonType = color;
+const _generateStyles = (localColor: string) => {
+    const buttonType = localColor;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
-    const {offBlack32} = Color;
-    const activeColor = mix(offBlack32, color);
+    const {offBlack32} = color;
+    const activeColor = color.activeBlue;
 
     let newStyles: Record<string, any> = {};
 
     newStyles = {
         default: {
             background: "none",
-            color: color,
+            color: localColor,
         },
         focus: {
             ":after": {

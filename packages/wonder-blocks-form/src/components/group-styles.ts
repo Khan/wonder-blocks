@@ -1,7 +1,6 @@
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleDeclaration} from "aphrodite";
 
@@ -17,17 +16,17 @@ const styles: StyleDeclaration = StyleSheet.create({
     },
 
     description: {
-        marginTop: Spacing.xxxSmall_4,
-        color: Color.offBlack64,
+        marginTop: spacing.xxxSmall_4,
+        color: color.offBlack64,
     },
 
     error: {
-        marginTop: Spacing.xxxSmall_4,
-        color: Color.red,
+        marginTop: spacing.xxxSmall_4,
+        color: color.red,
     },
 
     defaultLineGap: {
-        marginTop: Spacing.xSmall_8,
+        marginTop: spacing.xSmall_8,
     },
 });
 

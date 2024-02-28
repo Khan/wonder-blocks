@@ -1,5 +1,74 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.2.3
+
+### Patch Changes
+
+-   Updated dependencies [60fdac1c]
+    -   @khanacademy/wonder-blocks-clickable@4.1.0
+
+## 3.2.2
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.14
+    -   @khanacademy/wonder-blocks-layout@2.0.27
+
+## 3.2.1
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.13
+
+## 3.2.0
+
+### Minor Changes
+
+-   56a896c6: Add `aria-selected` support to Cell so it can be used in dropdown options
+
+### Patch Changes
+
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.12
+    -   @khanacademy/wonder-blocks-layout@2.0.25
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 3.1.0
+
+### Minor Changes
+
+-   860d9ef9: Add `role` and `rootStyle` props.
+
+    -   `role` is used to set the `role` attribute on the cell's root element.
+    -   `rootStyle` is used to override the `style` attribute on the cell's root
+        element.
+
+## 3.0.31
+
+### Patch Changes
+
+-   Updated dependencies [6b8bf8d5]
+    -   @khanacademy/wonder-blocks-clickable@4.0.11
+
+## 3.0.30
+
+### Patch Changes
+
+-   ddcb198a: Updating code comments to use PhosphorIcon examples
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
 ## 3.0.29
 
 ### Patch Changes

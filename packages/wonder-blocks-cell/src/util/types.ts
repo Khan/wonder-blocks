@@ -1,7 +1,8 @@
 import * as React from "react";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+import {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
 
 /**
  * A set of values that can be used to configure the horizontal rule appearance.
@@ -93,6 +94,18 @@ export type CellProps = {
      * separate cells within groups such as lists. Defaults to `inset`.
      */
     horizontalRule?: HorizontalRuleVariant;
+
+    /**
+     * A custom role for the cell.
+     */
+    role?: ClickableRole;
+    /**
+     * Optional custom styles applied to the top node.
+     *
+     * _NOTE:_ This is the top node of the cell, not the cell container. If
+     * possible, try to use this prop carefully and use `style` instead.
+     */
+    rootStyle?: StyleType;
     /**
      * Optional custom styles applied to the cell container.
      */
@@ -120,6 +133,10 @@ export type CellProps = {
      * Used to announce the cell's content to screen readers.
      */
     "aria-label"?: string;
+    /**
+     * Used to indicate the current element is selected.
+     */
+    "aria-selected"?: AriaProps["aria-selected"];
     /**
      * Optinal href which Cell should direct to, uses client-side routing
      * by default if react-router is present.

@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import packageConfig from "../../packages/wonder-blocks-toolbar/package.json";
@@ -17,7 +17,7 @@ import ToolbarArgtypes, {
 type StoryComponentType = StoryObj<typeof Toolbar>;
 
 export default {
-    title: "Toolbar / Toolbar",
+    title: "Toolbar",
     component: Toolbar,
     argTypes: ToolbarArgtypes,
     parameters: {
@@ -46,7 +46,7 @@ export default {
 
 const styles = StyleSheet.create({
     example: {
-        padding: Spacing.large_24,
+        padding: spacing.large_24,
         alignItems: "center",
         justifyContent: "center",
     },

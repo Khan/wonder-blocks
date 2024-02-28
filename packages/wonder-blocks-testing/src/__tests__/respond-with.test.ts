@@ -190,7 +190,7 @@ describe("RespondWith", () => {
 
             // Assert
             await expect(act).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"invalid json response body at  reason: Unexpected token I in JSON at position 0"`,
+                `"invalid json response body at  reason: Unexpected token 'I', "INVALID JSON" is not valid JSON"`,
             );
         });
 

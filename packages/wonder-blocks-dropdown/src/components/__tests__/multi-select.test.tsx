@@ -14,9 +14,10 @@ import type {Labels} from "../multi-select";
 
 const defaultLabels: Labels = {
     ...builtinLabels,
-    selectAllLabel: (numOptions: any) => `Sellect all (${numOptions})`,
+    selectAllLabel: (numOptions: any) => `Select all (${numOptions})`,
     noneSelected: "Choose",
-    someSelected: (numSelectedValues: any) => `${numSelectedValues} students`,
+    someSelected: (numSelectedValues: any) =>
+        numSelectedValues > 1 ? `${numSelectedValues} students` : "1 student",
     allSelected: "All students",
 };
 
@@ -106,6 +107,46 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(screen.getByRole("button")).toHaveTextContent("item 1");
+        });
+
+        it("displays correct text for opener when there's one custom item selected", () => {
+            // Arrange
+
+            // Act
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["1"]}
+                    labels={defaultLabels}
+                >
+                    <OptionItem label={<div>custom item 1</div>} value="1" />
+                    <OptionItem label={<div>custom item 2</div>} value="2" />
+                    <OptionItem label={<div>custom item 3</div>} value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).toHaveTextContent("1 student");
+        });
+
+        it("displays correct text for opener when an invalid selection is provided", () => {
+            // Arrange
+
+            // Act
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["not-found"]}
+                    labels={defaultLabels}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).toHaveTextContent("Choose");
         });
 
         it("displays correct text for opener when there's more than one item selected", () => {
@@ -415,6 +456,47 @@ describe("MultiSelect", () => {
             expect(opener).toHaveTextContent("item 3");
         });
 
+        it("selects all the enabled items when the 'All items' shortcut is selected", () => {
+            // Arrange
+            const ControlledMultiSelect = function (
+                props: Props,
+            ): React.ReactElement {
+                const [selectedValues, setSelectedValues] = React.useState([]);
+                const handleChange = (newValues: any) => {
+                    setSelectedValues(newValues);
+                };
+
+                return (
+                    <MultiSelect
+                        labels={labels}
+                        onChange={handleChange}
+                        opened={props.opened}
+                        onToggle={props.onToggle}
+                        selectedValues={selectedValues}
+                        shortcuts={true}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        {/* The second option item shouldn't be selectable */}
+                        <OptionItem label="item 2" value="2" disabled={true} />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+
+            render(<ControlledMultiSelect />);
+
+            const opener = screen.getByRole("button");
+            userEvent.click(opener);
+
+            // Act
+            // Select all of the items
+            const selectAll = screen.getByRole("option", {name: /Select all/i});
+            userEvent.click(selectAll);
+
+            // Assert
+            expect(opener).toHaveTextContent("All fruits");
+        });
+
         it("selects all the items when the 'All items' shortcut is selected", () => {
             // Arrange
             render(<ControlledComponent shortcuts={true} />);
@@ -515,6 +597,32 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(screen.getAllByRole("option")).toHaveLength(1);
+        });
+
+        it("Allows selecting all the enabled items", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    onChange={() => {}}
+                    selectedValues={[]}
+                    labels={defaultLabels}
+                    shortcuts={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    {/* The second option item shouldn't be selectable */}
+                    <OptionItem label="item 2" value="2" disabled={true} />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
+
+            // Assert
+            expect(
+                screen.getByRole("option", {name: "Select all (2)"}),
+            ).toBeInTheDocument();
         });
 
         it("Hides shortcuts when there are any text in search text input", () => {
@@ -678,6 +786,70 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(screen.getByPlaceholderText("Filter")).toHaveValue("");
+        });
+
+        it("should find an option after using the search filter", async () => {
+            // Arrange
+            const labels: Labels = {
+                ...builtinLabels,
+                someSelected: (numOptions: number): string =>
+                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+            };
+
+            render(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    labels={labels}
+                    opened={true}
+                >
+                    <OptionItem label="Earth" value="earth" />
+                    <OptionItem label="Venus" value="venus" />
+                    <OptionItem label="Mars" value="mars" />
+                </MultiSelect>,
+            );
+
+            // Act
+            userEvent.paste(screen.getByRole("textbox"), "ear");
+
+            // Assert
+            const filteredOption = screen.getByRole("option", {
+                name: "Earth",
+            });
+            expect(filteredOption).toBeInTheDocument();
+        });
+
+        it("should filter out an option if it's not part of the results", async () => {
+            // Arrange
+            const labels: Labels = {
+                ...builtinLabels,
+                someSelected: (numOptions: number): string =>
+                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+            };
+
+            render(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    labels={labels}
+                    opened={true}
+                >
+                    <OptionItem label="Earth" value="earth" />
+                    <OptionItem label="Venus" value="venus" />
+                    <OptionItem label="Mars" value="mars" />
+                </MultiSelect>,
+            );
+
+            // Act
+            userEvent.paste(screen.getByRole("textbox"), "ear");
+
+            // Assert
+            const filteredOption = screen.queryByRole("option", {
+                name: "Venus",
+            });
+            expect(filteredOption).not.toBeInTheDocument();
         });
     });
 
@@ -1300,7 +1472,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            userEvent.paste(screen.getByRole("textbox"), "Ear");
+            userEvent.paste(screen.getByRole("textbox"), "ear");
 
             // Assert
             expect(container).toHaveTextContent("1 planet");

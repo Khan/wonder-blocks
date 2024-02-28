@@ -1,5 +1,176 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.1.6
+
+### Patch Changes
+
+-   Updated dependencies [60fdac1c]
+    -   @khanacademy/wonder-blocks-clickable@4.1.0
+    -   @khanacademy/wonder-blocks-cell@3.2.3
+    -   @khanacademy/wonder-blocks-search-field@2.2.3
+    -   @khanacademy/wonder-blocks-modal@4.2.4
+
+## 5.1.5
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-cell@3.2.2
+    -   @khanacademy/wonder-blocks-clickable@4.0.14
+    -   @khanacademy/wonder-blocks-layout@2.0.27
+    -   @khanacademy/wonder-blocks-modal@4.2.3
+    -   @khanacademy/wonder-blocks-search-field@2.2.2
+
+## 5.1.4
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-search-field@2.2.1
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-modal@4.2.2
+    -   @khanacademy/wonder-blocks-cell@3.2.1
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.13
+
+## 5.1.3
+
+### Patch Changes
+
+-   Updated dependencies [0c329565]
+    -   @khanacademy/wonder-blocks-search-field@2.2.0
+
+## 5.1.2
+
+### Patch Changes
+
+-   Updated dependencies [80592e75]
+    -   @khanacademy/wonder-blocks-theming@1.3.0
+    -   @khanacademy/wonder-blocks-modal@4.2.1
+    -   @khanacademy/wonder-blocks-search-field@2.1.27
+
+## 5.1.1
+
+### Patch Changes
+
+-   0221ea14: Fix filter functionality (SingleSelect)
+
+## 5.1.0
+
+### Minor Changes
+
+-   c01f6864: Add `opened` state to OpenerProps on Dropdown custom opener function.
+
+## 5.0.2
+
+### Patch Changes
+
+-   0aaf4e6e: Fix focus state on custom openers
+-   Updated dependencies [b7bae8f2]
+-   Updated dependencies [09c61d25]
+    -   @khanacademy/wonder-blocks-modal@4.2.0
+
+## 5.0.1
+
+### Patch Changes
+
+-   5d34b4b4: Fix issue with empty option items
+-   Updated dependencies [1b21747a]
+    -   @khanacademy/wonder-blocks-modal@4.1.0
+
+## 5.0.0
+
+### Major Changes
+
+-   56a896c6: Allow custom OptionItem elements (internally using cell components)
+
+### Patch Changes
+
+-   70e846cb: Allow changing the popper's height to accomodate for the viewport size
+-   Updated dependencies [56a896c6]
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-cell@3.2.0
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-search-field@2.1.26
+    -   @khanacademy/wonder-blocks-clickable@4.0.12
+    -   @khanacademy/wonder-blocks-layout@2.0.25
+    -   @khanacademy/wonder-blocks-modal@4.0.39
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 4.0.0
+
+### Major Changes
+
+-   860d9ef9: Allow custom `ActionItem` components by using Cell internally.
+
+    -   Removed `ClickableBehavior` from `ActionItem` and replaced it with
+        `CompactCell` (which internally uses `Clickable`).
+    -   Removed `skipClientNav` from `ActionItem` as it is no longer used/needed.
+
+### Patch Changes
+
+-   Updated dependencies [860d9ef9]
+    -   @khanacademy/wonder-blocks-cell@3.1.0
+    -   @khanacademy/wonder-blocks-modal@4.0.38
+    -   @khanacademy/wonder-blocks-search-field@2.1.25
+
+## 3.1.10
+
+### Patch Changes
+
+-   Updated dependencies [171e3b01]
+    -   @khanacademy/wonder-blocks-icon@4.0.0
+    -   @khanacademy/wonder-blocks-search-field@2.1.24
+    -   @khanacademy/wonder-blocks-modal@4.0.37
+
+## 3.1.9
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+    -   @khanacademy/wonder-blocks-search-field@2.1.23
+    -   @khanacademy/wonder-blocks-modal@4.0.36
+
+## 3.1.8
+
+### Patch Changes
+
+-   Updated dependencies [edcfbe14]
+    -   @khanacademy/wonder-blocks-theming@1.2.1
+    -   @khanacademy/wonder-blocks-modal@4.0.35
+    -   @khanacademy/wonder-blocks-search-field@2.1.22
+
+## 3.1.7
+
+### Patch Changes
+
+-   Updated dependencies [6b8bf8d5]
+    -   @khanacademy/wonder-blocks-clickable@4.0.11
+    -   @khanacademy/wonder-blocks-search-field@2.1.21
+    -   @khanacademy/wonder-blocks-modal@4.0.34
+
+## 3.1.6
+
+### Patch Changes
+
+-   af26c590: Add PhosphorIcon support to Dropdown
+-   Updated dependencies [7b24db93]
+-   Updated dependencies [c8e9ce34]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+    -   @khanacademy/wonder-blocks-search-field@2.1.20
+    -   @khanacademy/wonder-blocks-modal@4.0.33
+
 ## 3.1.5
 
 ### Patch Changes

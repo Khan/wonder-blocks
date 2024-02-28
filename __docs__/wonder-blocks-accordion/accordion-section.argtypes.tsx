@@ -36,12 +36,10 @@ export default {
             left-to-right language (and on the right of a right-to-left
             language), and "end" means it’s on the right of a left-to-right
             language (and on the left of a right-to-left language).
-            Defaults to "end".
-            If this prop is specified both here in the \`AccordionSection\`
-            and within the \`Accordion\` component, the Accordion’s
-            caretPosition value is prioritized.`,
+            Defaults to "end".`,
         defaultValue: "end",
         table: {
+            category: "Visual style",
             defaultValue: {summary: "end"},
             type: {summary: '"start" | "end"'},
         },
@@ -60,6 +58,7 @@ export default {
             there is white space between each section.`,
         defaultValue: "rounded",
         table: {
+            category: "Visual style",
             defaultValue: {summary: "rounded"},
             type: {summary: '"square" | "rounded" | "rounded-per-section"'},
         },
@@ -69,11 +68,35 @@ export default {
             required: false,
         },
     },
+    collapsible: {
+        control: {type: "boolean"},
+        description: `Whether the section is collapsible or not. If false,
+            the header will not be clickable, and the section will always
+            be expanded. Defaults to true.`,
+        defaultValue: true,
+        table: {
+            category: "State",
+            defaultValue: {summary: "true"},
+            type: {summary: "boolean"},
+        },
+    },
     expanded: {
         control: {type: "boolean"},
         description: `Whether this section should be expanded on initial load.
             Defaults to false.`,
         table: {
+            category: "State",
+            defaultValue: {summary: "false"},
+            type: {summary: "boolean"},
+        },
+    },
+    animated: {
+        control: {type: "boolean"},
+        description: `Whether to include animation on the header. This should
+            be false if the user has \`prefers-reduced-motion\` opted in.
+            Defaults to false.`,
+        table: {
+            category: "Visual style",
             defaultValue: {summary: "false"},
             type: {summary: "boolean"},
         },
@@ -82,6 +105,7 @@ export default {
         control: {type: null},
         description: "Called when the header is clicked.",
         table: {
+            category: "State",
             type: {summary: "(newExpandedState: boolean) => unknown"},
         },
     },
@@ -90,6 +114,7 @@ export default {
         description:
             "Custom styles for the overall accordion section container.",
         table: {
+            category: "Visual style",
             type: {summary: "StyleType"},
         },
         type: {name: "StyleType", required: false},
@@ -98,6 +123,7 @@ export default {
         control: {type: "object"},
         description: "Custom styles for the header.",
         table: {
+            category: "Visual style",
             type: {summary: "StyleType"},
         },
         type: {name: "StyleType", required: false},
@@ -108,6 +134,7 @@ export default {
             "h2", etc.) Please use this to ensure that the header is
             hierarchically correct.`,
         table: {
+            category: "Accessibility",
             type: {summary: "string"},
         },
         type: {name: "string", required: false},
@@ -116,15 +143,6 @@ export default {
         control: {type: "text"},
         description:
             "The test ID used to locate this component in automated tests.",
-        table: {
-            type: {summary: "string"},
-        },
-        type: {name: "string", required: false},
-    },
-    headerTestId: {
-        control: {type: "text"},
-        description: `The test ID used to locate this component's
-            clickable header in automated tests.`,
         table: {
             type: {summary: "string"},
         },

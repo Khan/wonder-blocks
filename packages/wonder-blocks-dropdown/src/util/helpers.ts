@@ -1,3 +1,6 @@
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import OptionItem from "../components/option-item";
+
 /**
  * Checks if a given key is a valid ASCII value.
  *
@@ -42,4 +45,28 @@ export function debounce(
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
+}
+
+/**
+ * Type guard for strings.
+ */
+function isString(x: any): x is string {
+    return typeof x === "string";
+}
+
+type OptionItemProps = PropsFor<typeof OptionItem>;
+
+/**
+ * Returns a valid label for the given props.
+ */
+export function getLabel(props: OptionItemProps): string {
+    if (isString(props.label)) {
+        return props.label;
+    }
+
+    if (isString(props.labelAsText)) {
+        return props.labelAsText;
+    }
+
+    return "";
 }

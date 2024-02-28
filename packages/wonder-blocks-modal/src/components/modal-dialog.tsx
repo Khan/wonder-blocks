@@ -1,14 +1,16 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {
-    MediaLayout,
-    MediaLayoutContext,
-    MEDIA_MODAL_SPEC,
-} from "@khanacademy/wonder-blocks-layout";
 import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {MediaLayoutContextValue} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+
+import {
+    ThemedStylesFn,
+    useScopedTheme,
+    useStyles,
+} from "@khanacademy/wonder-blocks-theming";
+import ThemeModalDialog, {
+    ModalDialogThemeContext,
+    ModalDialogThemeContract,
+} from "../themes/themed-modal-dialog";
 
 type Props = {
     /**
@@ -42,17 +44,13 @@ type Props = {
      */
     testId?: string;
     /**
-     * The ID of the content labelling this dialog, if applicable.
+     * The ID of the title labelling this dialog, if applicable.
      */
     "aria-labelledby"?: string;
     /**
      * The ID of the content describing this dialog, if applicable.
      */
     "aria-describedby"?: string;
-};
-
-type DefaultProps = {
-    role: Props["role"];
 };
 
 /**
@@ -65,102 +63,104 @@ type DefaultProps = {
  * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the dialog element doesn’t have to have
  * the `aria-labelledby` attribute however this is recommended. It should match the `id` of the dialog title.
  */
-export default class ModalDialog extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        role: "dialog",
-    };
+const ModalDialogCore = React.forwardRef(function ModalDialogCore(
+    props: Props,
+    ref: React.ForwardedRef<HTMLDivElement>,
+) {
+    const {
+        above,
+        below,
+        role = "dialog",
+        style,
+        children,
+        testId,
+        /* eslint-disable react/prop-types */
+        // the react/prop-types plugin does not like these
+        "aria-labelledby": ariaLabelledBy,
+        "aria-describedby": ariaDescribedBy,
+        /* eslint-enable react/prop-types */
+    } = props;
 
-    render(): React.ReactNode {
-        const {
-            above,
-            below,
-            role,
-            style,
-            children,
-            testId,
-            /* eslint-disable react/prop-types */
-            // the react/prop-types plugin does not like these
-            "aria-labelledby": ariaLabelledBy,
-            "aria-describedby": ariaDescribedBy,
-            /* eslint-enable react/prop-types */
-        } = this.props;
+    const {theme} = useScopedTheme(ModalDialogThemeContext);
+    const styles = useStyles(themedStylesFn, theme);
 
-        const contextValue: MediaLayoutContextValue = {
-            ssrSize: "large",
-            mediaSpec: MEDIA_MODAL_SPEC,
-        };
+    return (
+        <View style={[styles.wrapper, style]}>
+            {below && <View style={styles.below}>{below}</View>}
+            <View
+                role={role}
+                aria-modal="true"
+                aria-labelledby={ariaLabelledBy}
+                aria-describedby={ariaDescribedBy}
+                ref={ref}
+                style={styles.dialog}
+                testId={testId}
+            >
+                {children}
+            </View>
+            {above && <View style={styles.above}>{above}</View>}
+        </View>
+    );
+});
 
-        return (
-            <MediaLayoutContext.Provider value={contextValue}>
-                <MediaLayout styleSheets={styleSheets}>
-                    {({styles}) => (
-                        <View style={[styles.wrapper, style]}>
-                            {below && <View style={styles.below}>{below}</View>}
-                            <View
-                                role={role}
-                                aria-modal="true"
-                                aria-labelledby={ariaLabelledBy}
-                                aria-describedby={ariaDescribedBy}
-                                style={styles.dialog}
-                                testId={testId}
-                            >
-                                {children}
-                            </View>
-                            {above && <View style={styles.above}>{above}</View>}
-                        </View>
-                    )}
-                </MediaLayout>
-            </MediaLayoutContext.Provider>
-        );
-    }
-}
+const ModalDialog = React.forwardRef(function ModalDialog(
+    props: Props,
+    ref: React.ForwardedRef<HTMLDivElement>,
+) {
+    return (
+        <ThemeModalDialog>
+            <ModalDialogCore {...props} ref={ref} />
+        </ThemeModalDialog>
+    );
+});
 
-const styleSheets = {
-    all: StyleSheet.create({
-        wrapper: {
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "stretch",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-        },
+const small = "@media (max-width: 767px)";
 
-        /**
-         * Ensures the dialog container uses the container size
-         */
-        dialog: {
-            width: "100%",
-            height: "100%",
-            borderRadius: 4,
-            overflow: "hidden",
-        },
-
-        above: {
-            pointerEvents: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            zIndex: 1,
-        },
-
-        below: {
-            pointerEvents: "none",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-            zIndex: -1,
-        },
-    }),
-
-    small: StyleSheet.create({
-        wrapper: {
-            padding: Spacing.medium_16,
+const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+    wrapper: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "stretch",
+        width: "100%",
+        height: "100%",
+        position: "relative",
+        [small]: {
+            padding: theme.spacing.dialog.small,
             flexDirection: "column",
         },
-    }),
-} as const;
+    },
+
+    /**
+     * Ensures the dialog container uses the container size
+     */
+    dialog: {
+        width: "100%",
+        height: "100%",
+        borderRadius: theme.border.radius,
+        overflow: "hidden",
+    },
+
+    above: {
+        pointerEvents: "none",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        zIndex: 1,
+    },
+
+    below: {
+        pointerEvents: "none",
+        position: "absolute",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        zIndex: -1,
+    },
+});
+
+ModalDialog.displayName = "ModalDialog";
+
+export default ModalDialog;

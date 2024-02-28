@@ -8,7 +8,8 @@ import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {ThemeSwitcherContext, tokens} from "@khanacademy/wonder-blocks-theming";
+import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";

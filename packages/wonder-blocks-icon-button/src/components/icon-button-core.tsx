@@ -59,6 +59,16 @@ type Props = SharedProps & {
      * passed in as the `<a>` tag's `href` if present.
      */
     href?: string;
+    /**
+     * Listens for keydown events on the button. This is useful for preventing
+     * default behavior when the user presses the spacebar or enter key.
+     */
+    onKeyDown?: (e: React.KeyboardEvent) => unknown;
+    /**
+     * Listens for keyup events on the button. This is useful for triggering
+     * actions when the user presses the spacebar or enter key.
+     */
+    onKeyUp?: (e: React.KeyboardEvent) => unknown;
 };
 
 const StyledAnchor = addStyle("a");
@@ -329,6 +339,18 @@ const _generateStyles = (
                 borderRadius: theme.border.radius.default,
                 outlineWidth: theme.border.width.default,
                 ...kindOverrides[":hover"],
+            },
+            // Allow hover styles on non-touch devices only. This prevents an
+            // issue with hover being sticky on touch devices (e.g. mobile).
+            ["@media not (hover: hover)"]: {
+                ":hover": {
+                    // reset hover styles on non-touch devices
+                    boxShadow: "none",
+                    color: defaultColor,
+                    borderRadius: theme.border.radius.default,
+                    outline: "none",
+                    backgroundColor: "transparent",
+                },
             },
             // Provide basic, default focus styles on older browsers (e.g.
             // Safari 14)

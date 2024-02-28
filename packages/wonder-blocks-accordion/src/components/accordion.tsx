@@ -44,7 +44,7 @@ type Props = AriaProps & {
      * Defaults to "end".
      *
      * If this prop is specified both here in the Accordion and within
-     * a child AccordionSection component, the Accordion’s caretPosition
+     * a child AccordionSection component, the AccordionSection’s caretPosition
      * value is prioritized.
      */
     caretPosition?: "start" | "end";
@@ -61,10 +61,21 @@ type Props = AriaProps & {
      */
     cornerKind?: AccordionCornerKindType;
     /**
+     * Whether to include animation on the header. This should be false
+     * if the user has `prefers-reduced-motion` opted in. Defaults to false.
+     *
+     * If this prop is specified both here in the Accordion and within
+     * a child AccordionSection component, the AccordionSection’s animated
+     * value is prioritized.
+     */
+    animated?: boolean;
+    /**
      * Custom styles for the overall accordion container.
      */
     style?: StyleType;
 };
+
+const LANDMARK_PROLIFERATION_THRESHOLD = 6;
 
 /**
  * An accordion displays a vertically stacked list of sections, each of which
@@ -106,16 +117,35 @@ const Accordion = React.forwardRef(function Accordion(
         allowMultipleExpanded = true,
         caretPosition,
         cornerKind = "rounded",
+        animated,
         style,
         ...ariaProps
     } = props;
 
+    // Starting array for the initial expanded state of each section.
     const startingArray = Array(children.length).fill(false);
+    // If initialExpandedIndex is specified, we want to open that section.
     if (initialExpandedIndex !== undefined) {
         startingArray[initialExpandedIndex] = true;
     }
-
     const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
+
+    //  NOTE: It may seem like we should filter out non-collapsible sections
+    //  here as they are effectively disabled. However, we should keep these
+    //  disabled sections in the focus order as they'd receive focus anyway
+    //  with `aria-disabled` and visually impaired users should still know
+    //  they are there. Screenreaders will read them out as disabled, the
+    //  status will still be clear to users.
+    const childRefs: Array<React.RefObject<HTMLButtonElement>> = Array(
+        children.length,
+    ).fill(null);
+
+    // If the number of sections is greater than the threshold,
+    // we don't want to use the `region` role on the AccordionSection
+    // components because it will cause too many landmarks to be created.
+    // (See https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
+    const sectionsAreRegions =
+        children.length <= LANDMARK_PROLIFERATION_THRESHOLD;
 
     const handleSectionClick = (
         index: number,
@@ -136,9 +166,74 @@ const Accordion = React.forwardRef(function Accordion(
         }
     };
 
+    /**
+     * Keyboard navigation for keys: ArrowUp, ArrowDown, Home, and End.
+     */
+    const handleKeyDown = (event: React.KeyboardEvent) => {
+        // From https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
+        // - Down Arrow: If focus is on an accordion header, moves focus to the next accordion header. If focus is on the last accordion header, either does nothing or moves focus to the first accordion header.
+        // - Up Arrow: If focus is on an accordion header, moves focus to the previous accordion header. If focus is on the first accordion header, either does nothing or moves focus to the last accordion header.
+        // - Home: When focus is on an accordion header, moves focus to the first accordion header.
+        // - End: When focus is on an accordion header, moves focus to the last accordion header.
+
+        const currentlyFocusedHeaderIndex = childRefs.findIndex(
+            (ref) => ref.current === document.activeElement,
+        );
+
+        // If the currently focused element is not a header, do nothing.
+        if (currentlyFocusedHeaderIndex === -1) {
+            return;
+        }
+
+        switch (event.key) {
+            // ArrowUp focuses on the previous section.
+            case "ArrowUp":
+                // Stop the page from scrolling when the up arrow is pressed.
+                event.preventDefault();
+                // Get the previous section, or cycle to last section if
+                // the first section is currently focused.
+                const previousSectionIndex =
+                    (currentlyFocusedHeaderIndex + children.length - 1) %
+                    children.length;
+                const previousChildRef = childRefs[previousSectionIndex];
+                previousChildRef.current?.focus();
+
+                break;
+            // ArrowDown focuses on the next section.
+            case "ArrowDown":
+                // Stop the page from scrolling when the down arrow is pressed.
+                event.preventDefault();
+                // Get the next section, or cycle to first section if
+                // the last section is currently focused.
+                const nextSectionIndex =
+                    (currentlyFocusedHeaderIndex + 1) % children.length;
+                const nextChildRef = childRefs[nextSectionIndex];
+                nextChildRef.current?.focus();
+
+                break;
+            // Home focuses on the first section.
+            case "Home":
+                // Stop the page from jumping up when the home key is pressed.
+                event.preventDefault();
+                const firstChildRef = childRefs[0];
+                firstChildRef.current?.focus();
+
+                break;
+            // End focuses on the last section.
+            case "End":
+                // Stop the page from jumping down when the end key is pressed.
+                event.preventDefault();
+                const lastChildRef = childRefs[children.length - 1];
+                lastChildRef.current?.focus();
+
+                break;
+        }
+    };
+
     return (
         <StyledUnorderedList
             style={[styles.wrapper, style]}
+            onKeyDown={handleKeyDown}
             {...ariaProps}
             ref={ref}
         >
@@ -147,7 +242,13 @@ const Accordion = React.forwardRef(function Accordion(
                     caretPosition: childCaretPosition,
                     cornerKind: childCornerKind,
                     onToggle: childOnToggle,
+                    animated: childAnimated,
                 } = child.props;
+
+                // Create a ref for each child AccordionSection to
+                // be able to focus on them with keyboard navigation.
+                const childRef = React.createRef<HTMLButtonElement>();
+                childRefs[index] = childRef;
 
                 const isFirstChild = index === 0;
                 const isLastChild = index === children.length - 1;
@@ -158,17 +259,21 @@ const Accordion = React.forwardRef(function Accordion(
                     // be list items.
                     <li key={index} id={id}>
                         {React.cloneElement(child, {
-                            // Prioritize the Accordion's caretPosition
-                            caretPosition: caretPosition ?? childCaretPosition,
-                            // Prioritize the AccordionSection's cornerKind
+                            // Prioritize AccordionSection's props when
+                            // they're overloading Accordion's props.
+                            animated: childAnimated ?? animated,
+                            caretPosition: childCaretPosition ?? caretPosition,
                             cornerKind: childCornerKind ?? cornerKind,
-                            // Don't use the AccordionSection's expanded prop
-                            // when it's rendered within Accordion.
+                            // AccordionSection's expanded prop does not get
+                            // used here when it's rendered within Accordion
+                            // since the expanded state is managed by Accordion.
                             expanded: sectionsOpened[index],
                             onToggle: () =>
                                 handleSectionClick(index, childOnToggle),
                             isFirstSection: isFirstChild,
                             isLastSection: isLastChild,
+                            isRegion: sectionsAreRegions,
+                            ref: childRef,
                         })}
                     </li>
                 );

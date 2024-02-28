@@ -1,5 +1,64 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.12
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-theming@2.0.1
+
+## 1.1.11
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-theming@2.0.0
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
+## 1.1.10
+
+### Patch Changes
+
+-   Updated dependencies [80592e75]
+    -   @khanacademy/wonder-blocks-theming@1.3.0
+
+## 1.1.9
+
+### Patch Changes
+
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+
+## 1.1.8
+
+### Patch Changes
+
+-   Updated dependencies [171e3b01]
+    -   @khanacademy/wonder-blocks-icon@4.0.0
+
+## 1.1.7
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+
+## 1.1.6
+
+### Patch Changes
+
+-   Updated dependencies [edcfbe14]
+    -   @khanacademy/wonder-blocks-theming@1.2.1
+
 ## 1.1.5
 
 ### Patch Changes

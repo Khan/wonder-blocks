@@ -1,5 +1,119 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.0.37
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-button@6.2.8
+-   @khanacademy/wonder-blocks-icon-button@5.1.11
+-   @khanacademy/wonder-blocks-link@6.0.8
+
+## 3.0.36
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-button@6.2.7
+    -   @khanacademy/wonder-blocks-icon-button@5.1.10
+    -   @khanacademy/wonder-blocks-link@6.0.7
+
+## 3.0.35
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-button@6.2.6
+    -   @khanacademy/wonder-blocks-link@6.0.6
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.9
+
+## 3.0.34
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.8
+
+## 3.0.33
+
+### Patch Changes
+
+-   23ab9f8c: Added `role="img"` docs to PhosphorIcon. Fixed a11y issue to banners by adding the img role to the icons in each banner"
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-button@6.2.5
+    -   @khanacademy/wonder-blocks-icon-button@5.1.7
+    -   @khanacademy/wonder-blocks-link@6.0.5
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 3.0.32
+
+### Patch Changes
+
+-   Updated dependencies [9092363d]
+    -   @khanacademy/wonder-blocks-icon-button@5.1.6
+
+## 3.0.31
+
+### Patch Changes
+
+-   Updated dependencies [171e3b01]
+    -   @khanacademy/wonder-blocks-icon@4.0.0
+    -   @khanacademy/wonder-blocks-button@6.2.4
+    -   @khanacademy/wonder-blocks-icon-button@5.1.5
+    -   @khanacademy/wonder-blocks-link@6.0.4
+
+## 3.0.30
+
+### Patch Changes
+
+-   96f675d2: Modified Banner props to accept any icon weight in its type
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+    -   @khanacademy/wonder-blocks-button@6.2.3
+    -   @khanacademy/wonder-blocks-icon-button@5.1.4
+    -   @khanacademy/wonder-blocks-link@6.0.3
+
+## 3.0.29
+
+### Patch Changes
+
+-   Updated dependencies [01593e2b]
+    -   @khanacademy/wonder-blocks-button@6.2.2
+    -   @khanacademy/wonder-blocks-icon-button@5.1.3
+
+## 3.0.28
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-button@6.2.1
+-   @khanacademy/wonder-blocks-icon-button@5.1.2
+-   @khanacademy/wonder-blocks-link@6.0.2
+
+## 3.0.27
+
+### Patch Changes
+
+-   Updated dependencies [a70a929b]
+    -   @khanacademy/wonder-blocks-button@6.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.1
+    -   @khanacademy/wonder-blocks-link@6.0.1
+
+## 3.0.26
+
+### Patch Changes
+
+-   Updated dependencies [d73f6988]
+    -   @khanacademy/wonder-blocks-button@6.1.0
+
 ## 3.0.25
 
 ### Patch Changes

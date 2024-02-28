@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {
     LabeledTextField,
@@ -11,10 +11,20 @@ import {
     Choice,
 } from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    Body,
+    HeadingSmall,
+    LabelLarge,
+    Title,
+} from "@khanacademy/wonder-blocks-typography";
 
-import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {
+    ModalDialog,
+    ModalLauncher,
+    ModalPanel,
+    OnePaneDialog,
+} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
@@ -367,7 +377,7 @@ export const WithInitialFocusId: StoryComponentType = () => {
                         value={value}
                         onChange={setValue}
                     />
-                    <Strut size={Spacing.large_24} />
+                    <Strut size={spacing.large_24} />
                     <LabeledTextField
                         label="Label 2"
                         value={value2}
@@ -381,7 +391,7 @@ export const WithInitialFocusId: StoryComponentType = () => {
                     <Button kind="tertiary" onClick={closeModal}>
                         Cancel
                     </Button>
-                    <Strut size={Spacing.medium_16} />
+                    <Strut size={spacing.medium_16} />
                     <Button onClick={closeModal}>Submit</Button>
                 </>
             }
@@ -428,7 +438,7 @@ const SubModal = () => (
     <OnePaneDialog
         title="Submodal"
         content={
-            <View style={{gap: Spacing.medium_16}}>
+            <View style={{gap: spacing.medium_16}}>
                 <Body>
                     This modal demonstrates how the focus trap works when a
                     modal is opened from another modal.
@@ -461,7 +471,7 @@ export const FocusTrap: StoryComponentType = () => {
                         how the focus trap is moved to the next modal when it is
                         opened (focus/tap on the `Open another modal` button).
                     </Body>
-                    <Strut size={Spacing.large_24} />
+                    <Strut size={spacing.large_24} />
                     <RadioGroup
                         label="A RadioGroup component inside a modal"
                         description="Some description"
@@ -483,7 +493,7 @@ export const FocusTrap: StoryComponentType = () => {
                             </Button>
                         )}
                     </ModalLauncher>
-                    <Strut size={Spacing.medium_16} />
+                    <Strut size={spacing.medium_16} />
                     <Button onClick={closeModal} disabled={!selectedValue}>
                         Next
                     </Button>
@@ -535,3 +545,104 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
 });
+
+/**
+ * This example demonstrates how to use `ModalLauncher` to launch a modal that
+ * looks like our own `PopoverContent` component. This is useful when you want
+ * to create a modal with a custom layout that includes illustrations.
+ *
+ * You can find more details about how to build custom modals in our
+ * `Modal>Building Blocks` section.
+ *
+ * #### Implementation details
+ * - Make sure to wrap `ModalPanel` with `ModalDialog` to ensure that the modal
+ *   is displayed correctly and includes all the proper a11y atrributes.
+ * - Due to some constrains with `ModalDialog`, you'll likely need to override
+ *   its width and height to ensure that the `PopoverContent` is displayed with
+ *   the correct dimensions (see `ModalDialog.style` in the code snippet below).
+ *
+ * #### Accessibility notes
+ * - Try to include the `aria-labelledby` attribute on the modal dialog, which
+ *   is used to announce the title of the dialog to screen readers when it is
+ *   opened.
+ * - Make sure to include `alt` text for any images used in the `PopoverContent`
+ *   component.
+ */
+export const CreatingACustomModal: StoryComponentType = {
+    name: "Creating a custom modal with ModalLauncher",
+    render: () => {
+        const StyledImg = addStyle("img");
+        const popoverModal = ({closeModal}: {closeModal: () => void}) => (
+            <ModalDialog
+                aria-labelledby="ready-dialog-title"
+                style={{
+                    width: "auto",
+                    height: "auto",
+                }}
+            >
+                <ModalPanel
+                    style={{maxWidth: 423}}
+                    closeButtonVisible={true}
+                    content={
+                        <>
+                            <StyledImg
+                                src="./km-ready.svg"
+                                alt="An illustration a bubble with Khanmigo inside."
+                                width={423}
+                                height={230}
+                                style={{
+                                    // This is to ensure that the image is
+                                    // aligned to the top left corner of the
+                                    // dialog.
+                                    marginLeft: -spacing.xLarge_32,
+                                    marginTop: -spacing.xLarge_32,
+                                }}
+                            />
+                            <Strut size={spacing.large_24} />
+                            <HeadingSmall id="ready-dialog-title">
+                                Hi, I’m Khanmigo!
+                            </HeadingSmall>
+                            <Strut size={spacing.xSmall_8} />
+                            <Body>
+                                I’m your new AI-powered assistant, tutor, and
+                                all around cheerleader to help you power up your
+                                learning journey. Let’s take a look around
+                                together!
+                            </Body>
+                            <Strut size={spacing.large_24} />
+                            {/* Footer */}
+                            <View
+                                style={{
+                                    flexDirection: "row",
+                                    justifyContent: "space-between",
+                                    width: "100%",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <LabelLarge>Step 1 of 4</LabelLarge>
+                                <Button kind="primary" onClick={closeModal}>
+                                    Next
+                                </Button>
+                            </View>
+                        </>
+                    }
+                />
+            </ModalDialog>
+        );
+
+        return (
+            <ModalLauncher modal={popoverModal}>
+                {({openModal}) => (
+                    <Button onClick={openModal}>Open custom modal</Button>
+                )}
+            </ModalLauncher>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // All the examples for ModalLauncher are behavior based, not
+            // visual.
+            disableSnapshot: true,
+        },
+    },
+};

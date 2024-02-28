@@ -8,7 +8,7 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 
-import type {OpenerProps} from "../util/types";
+import type {OpenerProps, OptionLabel} from "../util/types";
 
 type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
@@ -34,7 +34,11 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * Text for the opener that can be passed to the child as an argument.
      */
-    text: string;
+    text: OptionLabel;
+    /**
+     * Whether the dropdown is opened.
+     */
+    opened: boolean;
 };
 
 type DefaultProps = {
@@ -54,8 +58,12 @@ class DropdownOpener extends React.Component<Props> {
         eventState: ClickableState,
         clickableChildrenProps: ChildrenProps,
     ): React.ReactElement {
-        const {disabled, testId, text} = this.props;
-        const renderedChildren = this.props.children({...eventState, text});
+        const {disabled, testId, text, opened} = this.props;
+        const renderedChildren = this.props.children({
+            ...eventState,
+            text,
+            opened,
+        });
         const childrenProps = renderedChildren.props;
         const childrenTestId = this.getTestIdFromProps(childrenProps);
 
@@ -82,6 +90,10 @@ class DropdownOpener extends React.Component<Props> {
             <ClickableBehavior
                 onClick={this.props.onClick}
                 disabled={this.props.disabled}
+                // Allows the opener to be focused with the keyboard, which ends
+                // up triggering onFocus/onBlur events needed to re-render the
+                // dropdown opener.
+                tabIndex={0}
             >
                 {(eventState, handlers) =>
                     this.renderAnchorChildren(eventState, handlers)

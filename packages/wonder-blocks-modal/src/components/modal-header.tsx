@@ -1,11 +1,16 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {
+    ThemedStylesFn,
+    useScopedTheme,
+    useStyles,
+} from "@khanacademy/wonder-blocks-theming";
+import {
+    ModalDialogThemeContext,
+    ModalDialogThemeContract,
+} from "../themes/themed-modal-dialog";
 
 type Common = {
     /**
@@ -51,10 +56,6 @@ type WithBreadcrumbs = Common & {
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;
 
-type DefaultProps = {
-    light: Props["light"];
-};
-
 /**
  * This is a helper component that is never rendered by itself. It is always
  * pinned to the top of the dialog, is responsive using the same behavior as its
@@ -98,104 +99,96 @@ type DefaultProps = {
  *  />
  * ```
  */
-export default class ModalHeader extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        light: true,
-    };
+export default function ModalHeader(props: Props) {
+    const {
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
+        breadcrumbs = undefined,
+        light,
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
+        subtitle = undefined,
+        testId,
+        title,
+        titleId,
+    } = props;
 
-    render(): React.ReactNode {
-        const {
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
-            breadcrumbs = undefined,
-            light,
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
-            subtitle = undefined,
-            testId,
-            title,
-            titleId,
-        } = this.props;
-
-        if (subtitle && breadcrumbs) {
-            throw new Error(
-                "'subtitle' and 'breadcrumbs' can't be used together",
-            );
-        }
-
-        return (
-            <MediaLayout styleSheets={styleSheets}>
-                {({styles}) => (
-                    <View
-                        style={[styles.header, !light && styles.dark]}
-                        testId={testId}
-                    >
-                        {breadcrumbs && (
-                            <View style={styles.breadcrumbs}>
-                                {breadcrumbs}
-                            </View>
-                        )}
-                        <HeadingMedium
-                            style={styles.title}
-                            id={titleId}
-                            testId={testId && `${testId}-title`}
-                        >
-                            {title}
-                        </HeadingMedium>
-                        {subtitle && (
-                            <LabelSmall
-                                style={light && styles.subtitle}
-                                testId={testId && `${testId}-subtitle`}
-                            >
-                                {subtitle}
-                            </LabelSmall>
-                        )}
-                    </View>
-                )}
-            </MediaLayout>
-        );
+    if (subtitle && breadcrumbs) {
+        throw new Error("'subtitle' and 'breadcrumbs' can't be used together");
     }
+
+    const {theme} = useScopedTheme(ModalDialogThemeContext);
+    const styles = useStyles(themedStylesFn, theme);
+
+    return (
+        <View style={[styles.header, !light && styles.dark]} testId={testId}>
+            {breadcrumbs && (
+                <View style={styles.breadcrumbs}>{breadcrumbs}</View>
+            )}
+            <HeadingMedium
+                style={styles.title}
+                id={titleId}
+                testId={testId && `${testId}-title`}
+            >
+                {title}
+            </HeadingMedium>
+            {subtitle && (
+                <LabelSmall
+                    style={light && styles.subtitle}
+                    testId={testId && `${testId}-subtitle`}
+                >
+                    {subtitle}
+                </LabelSmall>
+            )}
+        </View>
+    );
 }
 
-const styleSheets = {
-    all: StyleSheet.create({
-        header: {
-            boxShadow: `0px 1px 0px ${Color.offBlack16}`,
-            display: "flex",
-            flexDirection: "column",
-            minHeight: 66,
-            padding: `${Spacing.large_24}px ${Spacing.xLarge_32}px`,
-            position: "relative",
-            width: "100%",
-        },
+/**
+ * Media query for small screens.
+ * TODO(WB-1655): Change this to use the theme instead (inside themedStylesFn).
+ * e.g. `[theme.breakpoints.small]: {...}`
+ */
+const small = "@media (max-width: 767px)";
 
-        dark: {
-            background: Color.darkBlue,
-            color: Color.white,
-        },
+const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
+    header: {
+        boxShadow: `0px 1px 0px ${theme.color.shadow.default}`,
+        display: "flex",
+        flexDirection: "column",
+        minHeight: 66,
+        padding: `${theme.spacing.header.medium}px ${theme.spacing.header.large}px`,
+        position: "relative",
+        width: "100%",
 
-        breadcrumbs: {
-            color: Color.offBlack64,
-            marginBottom: Spacing.xSmall_8,
+        [small]: {
+            paddingLeft: theme.spacing.header.small,
+            paddingRight: theme.spacing.header.small,
         },
+    },
 
-        title: {
-            // Prevent title from overlapping the close button
-            paddingRight: Spacing.medium_16,
-        },
+    dark: {
+        background: theme.color.bg.inverse,
+        color: theme.color.text.inverse,
+    },
 
-        subtitle: {
-            color: Color.offBlack64,
-            marginTop: Spacing.xSmall_8,
-        },
-    }),
+    breadcrumbs: {
+        color: theme.color.text.secondary,
+        marginBottom: theme.spacing.header.xsmall,
+    },
 
-    small: StyleSheet.create({
-        header: {
-            paddingLeft: Spacing.medium_16,
-            paddingRight: Spacing.medium_16,
+    title: {
+        // Prevent title from overlapping the close button
+        paddingRight: theme.spacing.header.small,
+        [small]: {
+            paddingRight: theme.spacing.header.large,
         },
+    },
 
-        title: {
-            paddingRight: Spacing.xLarge_32,
-        },
-    }),
-} as const;
+    subtitle: {
+        color: theme.color.text.secondary,
+        marginTop: theme.spacing.header.xsmall,
+    },
+});
+
+ModalHeader.defaultProps = {
+    light: true,
+};

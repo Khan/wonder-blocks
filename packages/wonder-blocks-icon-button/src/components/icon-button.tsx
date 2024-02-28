@@ -178,6 +178,25 @@ export const IconButton: React.ForwardRefExoticComponent<
         ...sharedProps
     } = props;
 
+    function handleKeyDown(e: React.KeyboardEvent) {
+        const keyCode = e.key;
+        // Prevent default behavior for space and enter keys on
+        // buttons. We let the browser handle the default behavior
+        // for links, which is to activate the link on `Enter`.
+        if (!href && (keyCode === "Enter" || keyCode === "Space")) {
+            e.preventDefault();
+        }
+    }
+
+    function handleKeyUp(e: React.KeyboardEvent) {
+        const keyCode = e.key;
+        if (!href && (keyCode === "Enter" || keyCode === "Space")) {
+            if (sharedProps.onClick) {
+                sharedProps.onClick(e);
+            }
+        }
+    }
+
     return (
         <ThemedIconButton>
             <IconButtonCore
@@ -192,6 +211,8 @@ export const IconButton: React.ForwardRefExoticComponent<
                 size={size}
                 target={target}
                 tabIndex={tabIndex}
+                onKeyDown={handleKeyDown}
+                onKeyUp={handleKeyUp}
             />
         </ThemedIconButton>
     );

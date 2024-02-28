@@ -1,6 +1,7 @@
 import {Meta, Canvas} from "@storybook/blocks";
 
-import {tokens, useScopedTheme} from "@khanacademy/wonder-blocks-theming";
+import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 import {ViewWithTheme} from "./theme-examples";
 
@@ -31,9 +32,9 @@ The `useScopedTheme` hook returns a `ScopedTheme` object with the following prop
 ```tsx
 import {
     createThemeContext,
-    tokens,
     useScopedTheme,
 } from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 // 👉 1. Define the theme.
 const defaultTheme = {

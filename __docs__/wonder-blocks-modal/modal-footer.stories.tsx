@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge, Title} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -89,6 +89,23 @@ est.`}
     </>
 );
 
+/**
+ * Modal footer included after the content.
+ *
+ * ### Implementation notes
+ *
+ * If you are creating a custom Dialog, make sure to follow these guidelines:
+ * - Make sure to include it as part of [ModalPanel](/#modalpanel) by using the `footer` prop.
+ * - The footer is completely flexible. Meaning the developer needs to add its own custom layout to match design specs.
+ *
+ * ### Usage
+ *
+ * ```tsx
+ * <ModalFooter>
+ *     <Button onClick={() => {}}>Submit</Button>
+ * </ModalFooter>
+ * ```
+ */
 export default {
     title: "Modal/Building Blocks/ModalFooter",
     component: ModalFooter,
@@ -109,9 +126,6 @@ export default {
             />
         ),
         docs: {
-            description: {
-                component: null,
-            },
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
@@ -134,14 +148,21 @@ export default {
 
 type StoryComponentType = StoryObj<typeof ModalFooter>;
 
+/**
+ * This is a basic footer. It contains an empty `<View>`, so it is completely
+ * blank.
+ */
 export const Default: StoryComponentType = {
+    args: {
+        children: <View />,
+    },
     render: (args) => (
         <ModalDialog aria-labelledby={"modal-id-0"} style={styles.dialog}>
             <ModalPanel
                 content={
                     <>
                         <Title id="modal-id-0">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
+                        <Strut size={spacing.large_24} />
                         {longBody}
                     </>
                 }
@@ -151,171 +172,133 @@ export const Default: StoryComponentType = {
     ),
 };
 
-export const Simple: StoryComponentType = () => (
-    <ModalDialog aria-labelledby={"modal-id-1"} style={styles.dialog}>
-        <ModalPanel
-            content={
-                <>
-                    <Title id="modal-id-1">Modal Title</Title>
-                    <Strut size={Spacing.large_24} />
-                    {longBody}
-                </>
-            }
-            footer={
-                <ModalFooter>
-                    <View />
-                </ModalFooter>
-            }
-        />
-    </ModalDialog>
-);
+/**
+ * This is a `<ModalFooter>` with a `<Button>` as a child. No additional styling
+ * is needed, as the footer already has the style `{justifyContent: "flex-end"}`.
+ */
+export const WithButton: StoryComponentType = {
+    render: () => (
+        <ModalDialog aria-labelledby={"modal-id-2"} style={styles.dialog}>
+            <ModalPanel
+                content={
+                    <>
+                        <Title id="modal-id-2">Modal Title</Title>
+                        <Strut size={spacing.large_24} />
+                        {longBody}
+                    </>
+                }
+                footer={
+                    <ModalFooter>
+                        <Button onClick={() => {}}>Submit</Button>
+                    </ModalFooter>
+                }
+            />
+        </ModalDialog>
+    ),
+};
 
-Simple.parameters = {
-    docs: {
-        description: {
-            story: `This is a basic footer. It contains an empty
-            \`<View>\`, so it is completely blank.`,
-        },
+/**
+ * This is an example of a footer with multiple actions. It's fully responsive,
+ * so the buttons are in a column layout when the window is small.
+ */
+export const WithThreeActions: StoryComponentType = {
+    render: () => {
+        const mobile = "@media (max-width: 1023px)";
+        const desktop = "@media (min-width: 1024px)";
+
+        const buttonStyle = {
+            [desktop]: {
+                marginRight: spacing.medium_16,
+            },
+            [mobile]: {
+                marginBottom: spacing.medium_16,
+            },
+        } as const;
+
+        const containerStyle = {
+            [desktop]: {
+                flexDirection: "row",
+                justifyContent: "flex-end",
+            },
+            [mobile]: {
+                flexDirection: "column-reverse",
+                width: "100%",
+            },
+        } as const;
+
+        return (
+            <ModalDialog aria-labelledby={"modal-id-3"} style={styles.dialog}>
+                <ModalPanel
+                    content={
+                        <>
+                            <Title id="modal-id-3">Modal Title</Title>
+                            <Strut size={spacing.large_24} />
+                            {longBody}
+                        </>
+                    }
+                    footer={
+                        <ModalFooter>
+                            <View style={containerStyle}>
+                                <Button style={buttonStyle} kind="tertiary">
+                                    Tertiary action
+                                </Button>
+                                <Button style={buttonStyle} kind="tertiary">
+                                    Secondary action
+                                </Button>
+                                <Button style={buttonStyle}>
+                                    Primary action
+                                </Button>
+                            </View>
+                        </ModalFooter>
+                    }
+                />
+            </ModalDialog>
+        );
     },
 };
 
-export const WithButton: StoryComponentType = () => (
-    <ModalDialog aria-labelledby={"modal-id-2"} style={styles.dialog}>
-        <ModalPanel
-            content={
-                <>
-                    <Title id="modal-id-2">Modal Title</Title>
-                    <Strut size={Spacing.large_24} />
-                    {longBody}
-                </>
-            }
-            footer={
-                <ModalFooter>
-                    <Button onClick={() => {}}>Submit</Button>
-                </ModalFooter>
-            }
-        />
-    </ModalDialog>
-);
+/**
+ * This is an example of a footer that indicates multiple steps in a flow.
+ */
+export const WithMultipleActions: StoryComponentType = {
+    render: () => {
+        const footerStyle = {
+            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "100%",
+        } as const;
 
-WithButton.parameters = {
-    docs: {
-        description: {
-            story: `This is a \`<ModalFooter>\` with a \`<Button>\`
-            as a child. No additional styling is needed, as the footer
-            already has the style \`{justifyContent: "flex-end"}\`.`,
-        },
-    },
-};
-
-export const WithThreeActions: StoryComponentType = () => {
-    const mobile = "@media (max-width: 1023px)";
-    const desktop = "@media (min-width: 1024px)";
-
-    const buttonStyle = {
-        [desktop]: {
-            marginRight: Spacing.medium_16,
-        },
-        [mobile]: {
-            marginBottom: Spacing.medium_16,
-        },
-    } as const;
-
-    const containerStyle = {
-        [desktop]: {
+        const rowStyle = {
             flexDirection: "row",
             justifyContent: "flex-end",
-        },
-        [mobile]: {
-            flexDirection: "column-reverse",
-            width: "100%",
-        },
-    } as const;
+        } as const;
 
-    return (
-        <ModalDialog aria-labelledby={"modal-id-3"} style={styles.dialog}>
-            <ModalPanel
-                content={
-                    <>
-                        <Title id="modal-id-3">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
-                        {longBody}
-                    </>
-                }
-                footer={
-                    <ModalFooter>
-                        <View style={containerStyle}>
-                            <Button style={buttonStyle} kind="tertiary">
-                                Tertiary action
-                            </Button>
-                            <Button style={buttonStyle} kind="tertiary">
-                                Secondary action
-                            </Button>
-                            <Button style={buttonStyle}>Primary action</Button>
-                        </View>
-                    </ModalFooter>
-                }
-            />
-        </ModalDialog>
-    );
-};
-
-WithThreeActions.parameters = {
-    docs: {
-        description: {
-            story: `This is an example of a footer with multiple
-            actions. It's fully responsive, so the buttons are in a
-            column layout when the window is small.`,
-        },
-    },
-};
-
-export const WithMultipleActions: StoryComponentType = () => {
-    const footerStyle = {
-        alignItems: "center",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        width: "100%",
-    } as const;
-
-    const rowStyle = {
-        flexDirection: "row",
-        justifyContent: "flex-end",
-    } as const;
-
-    return (
-        <ModalDialog aria-labelledby={"modal-id-4"} style={styles.dialog}>
-            <ModalPanel
-                content={
-                    <>
-                        <Title id="modal-id-4">Modal Title</Title>
-                        <Strut size={Spacing.large_24} />
-                        {longBody}
-                    </>
-                }
-                footer={
-                    <ModalFooter>
-                        <View style={footerStyle}>
-                            <LabelLarge>Step 1 of 4</LabelLarge>
-                            <View style={rowStyle}>
-                                <Button kind="tertiary">Previous</Button>
-                                <Strut size={16} />
-                                <Button kind="primary">Next</Button>
+        return (
+            <ModalDialog aria-labelledby={"modal-id-4"} style={styles.dialog}>
+                <ModalPanel
+                    content={
+                        <>
+                            <Title id="modal-id-4">Modal Title</Title>
+                            <Strut size={spacing.large_24} />
+                            {longBody}
+                        </>
+                    }
+                    footer={
+                        <ModalFooter>
+                            <View style={footerStyle}>
+                                <LabelLarge>Step 1 of 4</LabelLarge>
+                                <View style={rowStyle}>
+                                    <Button kind="tertiary">Previous</Button>
+                                    <Strut size={16} />
+                                    <Button kind="primary">Next</Button>
+                                </View>
                             </View>
-                        </View>
-                    </ModalFooter>
-                }
-            />
-        </ModalDialog>
-    );
-};
-
-WithMultipleActions.parameters = {
-    docs: {
-        description: {
-            story: `This is an example of a footer that indicates
-            multiple steps in a flow.`,
-        },
+                        </ModalFooter>
+                    }
+                />
+            </ModalDialog>
+        );
     },
 };
 

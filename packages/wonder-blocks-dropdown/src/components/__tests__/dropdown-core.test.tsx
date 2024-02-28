@@ -702,7 +702,7 @@ describe("DropdownCore", () => {
             await screen.findByRole("listbox");
 
             // Act
-            const item = await screen.findByTestId("item-1");
+            const item = await screen.findByRole("option", {name: "Fruit # 2"});
             userEvent.click(item);
 
             // Assert

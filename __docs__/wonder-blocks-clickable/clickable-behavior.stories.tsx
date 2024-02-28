@@ -3,8 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import packageConfig from "../../packages/wonder-blocks-clickable/package.json";
@@ -160,23 +159,23 @@ WithTabIndex.parameters = {
 const styles = StyleSheet.create({
     clickable: {
         cursor: "pointer",
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
         textAlign: "center",
     },
     newButton: {
         border: "none",
-        backgroundColor: Color.white,
+        backgroundColor: color.white,
         width: "100%",
     },
     hovered: {
         textDecoration: "underline",
-        backgroundColor: Color.blue,
-        color: Color.white,
+        backgroundColor: color.blue,
+        color: color.white,
     },
     pressed: {
-        backgroundColor: Color.darkBlue,
+        backgroundColor: color.darkBlue,
     },
     focused: {
-        outline: `solid 4px ${Color.lightBlue}`,
+        outline: `solid 4px ${color.lightBlue}`,
     },
 });

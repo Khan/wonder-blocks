@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {PopoverContextType} from "./popover-context";
@@ -47,6 +47,12 @@ type CommonProps = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Unique ID for the popover. This is used as a prefix to the IDs of the
+     * popover's elements.
+     * @ignore
+     */
+    uniqueId?: string;
 };
 
 type Props =
@@ -209,6 +215,7 @@ export default class PopoverContent extends React.Component<Props> {
             style,
             title,
             testId,
+            uniqueId,
         } = this.props;
 
         return (
@@ -232,10 +239,15 @@ export default class PopoverContent extends React.Component<Props> {
                                 {this.maybeRenderIcon()}
 
                                 <View style={styles.text}>
-                                    <HeadingSmall style={styles.title}>
+                                    <HeadingSmall
+                                        id={`${uniqueId}-title`}
+                                        style={styles.title}
+                                    >
                                         {title}
                                     </HeadingSmall>
-                                    <Body>{content}</Body>
+                                    <Body id={`${uniqueId}-content`}>
+                                        {content}
+                                    </Body>
                                 </View>
                             </View>
 
@@ -253,7 +265,7 @@ const styles = StyleSheet.create({
      * Shared styles
      */
     actions: {
-        marginTop: Spacing.large_24,
+        marginTop: spacing.large_24,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
@@ -264,7 +276,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        marginBottom: Spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
     },
 
     /**
@@ -273,10 +285,10 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: "center",
         justifyContent: "center",
-        height: Spacing.xxxLarge_64,
-        width: Spacing.xxxLarge_64,
-        minWidth: Spacing.xxxLarge_64,
-        marginRight: Spacing.medium_16,
+        height: spacing.xxxLarge_64,
+        width: spacing.xxxLarge_64,
+        minWidth: spacing.xxxLarge_64,
+        marginRight: spacing.medium_16,
         overflow: "hidden",
     },
 
@@ -292,16 +304,16 @@ const styles = StyleSheet.create({
      * Illustration styles
      */
     image: {
-        marginBottom: Spacing.large_24,
-        marginLeft: -Spacing.large_24,
-        marginRight: -Spacing.large_24,
-        marginTop: -Spacing.large_24,
-        width: `calc(100% + ${Spacing.large_24 * 2}px)`,
+        marginBottom: spacing.large_24,
+        marginLeft: -spacing.large_24,
+        marginRight: -spacing.large_24,
+        marginTop: -spacing.large_24,
+        width: `calc(100% + ${spacing.large_24 * 2}px)`,
     },
 
     imageToBottom: {
-        marginBottom: -Spacing.large_24,
-        marginTop: Spacing.large_24,
+        marginBottom: -spacing.large_24,
+        marginTop: spacing.large_24,
         order: 1,
     },
 });

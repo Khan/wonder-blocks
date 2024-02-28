@@ -1,11 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {css, StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
     HeadingLarge,
@@ -28,6 +27,10 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
+
+// NOTE: Only for testing purposes.
+// eslint-disable-next-line import/no-unassigned-import
+import "./styles.css";
 
 const typographyDescription = `Typography. \`wonder-blocks-typography\`
 provides a set of standardized components for displaying text in a consistent
@@ -101,21 +104,36 @@ TypographyElements.parameters = {
     },
 };
 
-export const WithStyle: StoryObj<typeof Title> = () => {
-    const styles = StyleSheet.create({
-        blueText: {
-            color: Color.blue,
-        },
-    });
+/**
+ * You can change the color of text using the following patterns:
+ *
+ * 1. Via the `style` prop. This is our recommended approach.
+ * 2. Via the `className` prop. This is not recommended, but it is supported.
+ *  - You can use the `css` function from `aphrodite` to create a class name
+ *    that you can pass to the `className` prop.
+ *  - You can pass a string to the `className` prop. This is not recommended
+ *    and should only be used as a last resort if the other options don't cover
+ *   your use case.
+ */
+export const WithStyle: StoryObj<typeof Title> = {
+    render: () => {
+        const styles = StyleSheet.create({
+            blueText: {
+                color: color.blue,
+            },
+            highlighted: {
+                background: color.offBlack16,
+            },
+        });
 
-    return <Title style={styles.blueText}>Blue Title</Title>;
-};
-
-WithStyle.parameters = {
-    docs: {
-        description: {
-            story: "You can change the color of text with the `style` prop.",
-        },
+        return (
+            <Title
+                className={`${css(styles.highlighted)} custom-style`}
+                style={styles.blueText}
+            >
+                Blue Title
+            </Title>
+        );
     },
 };
 
@@ -348,8 +366,8 @@ Paragraph.parameters = {
 
 export const LineHeight: StoryObj<any> = () => {
     const style = {
-        outline: `1px solid ${Color.offBlack}`,
-        marginBottom: Spacing.small_12,
+        outline: `1px solid ${color.offBlack}`,
+        marginBottom: spacing.small_12,
     } as const;
 
     return (

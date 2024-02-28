@@ -1,5 +1,112 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.2.3
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-form@4.4.3
+-   @khanacademy/wonder-blocks-icon-button@5.1.11
+
+## 2.2.2
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-form@4.4.2
+    -   @khanacademy/wonder-blocks-icon-button@5.1.10
+
+## 2.2.1
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-form@4.4.1
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.9
+
+## 2.2.0
+
+### Minor Changes
+
+-   0c329565: `name` prop has been added to SearchField and TextField
+
+### Patch Changes
+
+-   Updated dependencies [0c329565]
+    -   @khanacademy/wonder-blocks-form@4.4.0
+
+## 2.1.27
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.8
+
+## 2.1.26
+
+### Patch Changes
+
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-form@4.3.19
+    -   @khanacademy/wonder-blocks-icon-button@5.1.7
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 2.1.25
+
+### Patch Changes
+
+-   Updated dependencies [9092363d]
+    -   @khanacademy/wonder-blocks-icon-button@5.1.6
+
+## 2.1.24
+
+### Patch Changes
+
+-   Updated dependencies [171e3b01]
+    -   @khanacademy/wonder-blocks-icon@4.0.0
+    -   @khanacademy/wonder-blocks-form@4.3.18
+    -   @khanacademy/wonder-blocks-icon-button@5.1.5
+
+## 2.1.23
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+    -   @khanacademy/wonder-blocks-form@4.3.17
+    -   @khanacademy/wonder-blocks-icon-button@5.1.4
+
+## 2.1.22
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.3
+
+## 2.1.21
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-form@4.3.16
+-   @khanacademy/wonder-blocks-icon-button@5.1.2
+
+## 2.1.20
+
+### Patch Changes
+
+-   c8e9ce34: Add PhosphorIcon support (replace Icon)
+-   Updated dependencies [c8e9ce34]
+    -   @khanacademy/wonder-blocks-form@4.3.15
+    -   @khanacademy/wonder-blocks-icon-button@5.1.1
+
 ## 2.1.19
 
 ### Patch Changes

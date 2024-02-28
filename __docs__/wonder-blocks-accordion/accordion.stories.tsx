@@ -6,16 +6,51 @@ import {
     Accordion,
     AccordionSection,
 } from "@khanacademy/wonder-blocks-accordion";
+import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {
+    MultiSelect,
+    OptionItem,
+    SingleSelect,
+} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import packageConfig from "../../packages/wonder-blocks-icon/package.json";
+import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionArgtypes from "./accordion.argtypes";
 
+/**
+ * An accordion displays a vertically stacked list of sections, each of which
+ * contains content that can be shown or hidden by clicking its header.
+ *
+ * The Wonder Blocks Accordion component is a styled wrapper for a list of
+ * AccordionSection components. It also wraps the AccordionSection
+ * components in list items.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {
+ *      Accordion,
+ *      AccordionSection
+ * } from "@khanacademy/wonder-blocks-accordion";
+ *
+ * <Accordion>
+ *   <AccordionSection header="First section">
+ *       This is the information present in the first section
+ *   </AccordionSection>
+ *   <AccordionSection header="Second section">
+ *       This is the information present in the second section
+ *   </AccordionSection>
+ *   <AccordionSection header="Third section">
+ *       This is the information present in the third section
+ *   </AccordionSection>
+ * </Accordion>
+ * ```
+ */
 export default {
     title: "Accordion / Accordion",
     component: Accordion,
@@ -33,13 +68,13 @@ export default {
 type StoryComponentType = StoryObj<typeof Accordion>;
 
 const exampleSections = [
-    <AccordionSection header="First section">
+    <AccordionSection key="first" header="First section">
         This is the information present in the first section
     </AccordionSection>,
-    <AccordionSection header="Second section">
+    <AccordionSection key="second" header="Second section">
         This is the information present in the second section
     </AccordionSection>,
-    <AccordionSection header="Third section">
+    <AccordionSection key="third" header="Third section">
         This is the information present in the third section
     </AccordionSection>,
 ];
@@ -64,16 +99,41 @@ export const Default: StoryComponentType = {
  */
 export const AllowMultipleExpanded: StoryComponentType = {
     render: () => (
-        <View style={styles.sideBySide}>
-            <View style={[styles.fullWidth, styles.space]}>
-                <LabelLarge>Allow multiple expanded</LabelLarge>
+        <View>
+            <View
+                style={{maxWidth: 500, marginBottom: tokens.spacing.large_24}}
+            >
+                <LabelLarge>Allow multiple expanded (default)</LabelLarge>
                 <Accordion allowMultipleExpanded>{exampleSections}</Accordion>
             </View>
-            <View style={[styles.fullWidth, styles.space]}>
-                <LabelLarge>Allow only one expanded</LabelLarge>
-                <Accordion allowMultipleExpanded={false}>
-                    {exampleSections}
-                </Accordion>
+            <View style={styles.sideBySide}>
+                <View style={[styles.fullWidth, styles.space]}>
+                    <LabelLarge>Allow only one expanded</LabelLarge>
+                    <Accordion
+                        allowMultipleExpanded={false}
+                        cornerKind="square"
+                    >
+                        {exampleSections}
+                    </Accordion>
+                </View>
+                <View style={[styles.fullWidth, styles.space]}>
+                    <LabelLarge>Allow only one expanded</LabelLarge>
+                    <Accordion
+                        allowMultipleExpanded={false}
+                        cornerKind="rounded"
+                    >
+                        {exampleSections}
+                    </Accordion>
+                </View>
+                <View style={[styles.fullWidth, styles.space]}>
+                    <LabelLarge>Allow only one expanded</LabelLarge>
+                    <Accordion
+                        allowMultipleExpanded={false}
+                        cornerKind="rounded-per-section"
+                    >
+                        {exampleSections}
+                    </Accordion>
+                </View>
             </View>
         </View>
     ),
@@ -93,7 +153,7 @@ AllowMultipleExpanded.parameters = {
  * a left-to-right language (and on the left of a right-to-left language).
  *
  * If the `caretPosition` prop is specified both here in the Accordion and
- * within a child AccordionSection component, the Accordion's
+ * within a child AccordionSection component, the AccordionSection's
  * `caretPosition` value is prioritized.
  */
 export const CaretPositions: StoryComponentType = {
@@ -222,9 +282,148 @@ export const WithInitialExpandedIndex: StoryComponentType = {
 };
 
 /**
+ * An Accordion can be animated using the `animated` prop. This
+ * animation includes the caret, the expansion/collapse, and the last
+ * section's border radius. In this example, animated accordions with
+ * different corner kinds are shown to demonstrate the border radius transition,
+ * as well as accordions with `allowMultipleExpanded` set to `false`, and
+ * an accordion with sections of different heights.
+ *
+ * If the user has `prefers-reduced-motion` opted in, this animation should
+ * be disabled. This can be done by passing `animated={false}` to
+ * the Accordion.
+ *
+ * If `animated` is specified both here in the Accordion
+ * and within a child AccordionSection component, the AccordionSection's
+ * `animated` value is prioritized.
+ *
+ * **NOTE: HEIGHT ANIMATIONS ARE INHERENTLY NOT PERFORMANT.** USING ANIMATIONS
+ * *WILL* DECREASE PERFORMANCE. It is recommended that animations be used
+ * sparingly for this reason, and only on lighter accordions.
+ */
+export const WithAnimation: StoryComponentType = {
+    render: () => {
+        return (
+            <View>
+                <View style={styles.sideBySide}>
+                    <View style={[styles.fullWidth, styles.space]}>
+                        <LabelLarge>cornerKind: square</LabelLarge>
+                        <Accordion cornerKind="square" animated={true}>
+                            {exampleSections}
+                        </Accordion>
+                    </View>
+                    <View style={[styles.fullWidth, styles.space]}>
+                        <LabelLarge>cornerKind: rounded</LabelLarge>
+                        <Accordion cornerKind="rounded" animated={true}>
+                            {exampleSections}
+                        </Accordion>
+                    </View>
+                    <View style={[styles.fullWidth, styles.space]}>
+                        <LabelLarge>cornerKind: rounded-per-section</LabelLarge>
+                        <Accordion
+                            cornerKind="rounded-per-section"
+                            animated={true}
+                        >
+                            {exampleSections}
+                        </Accordion>
+                    </View>
+                </View>
+                <View style={styles.sideBySide}>
+                    <View style={[styles.fullWidth, styles.space]}>
+                        <LabelLarge>
+                            cornerKind: square, allowMultipleExpanded: false
+                        </LabelLarge>
+                        <Accordion
+                            cornerKind="square"
+                            animated={true}
+                            allowMultipleExpanded={false}
+                        >
+                            {exampleSections}
+                        </Accordion>
+                    </View>
+                    <View style={[styles.fullWidth, styles.space]}>
+                        <LabelLarge>
+                            cornerKind: rounded, allowMultipleExpanded: false
+                        </LabelLarge>
+                        <Accordion
+                            cornerKind="rounded"
+                            animated={true}
+                            allowMultipleExpanded={false}
+                        >
+                            {exampleSections}
+                        </Accordion>
+                    </View>
+                    <View style={[styles.fullWidth, styles.space]}>
+                        <LabelLarge>
+                            cornerKind: rounded-per-section,
+                            allowMultipleExpanded: false
+                        </LabelLarge>
+                        <Accordion
+                            cornerKind="rounded-per-section"
+                            animated={true}
+                            allowMultipleExpanded={false}
+                        >
+                            {exampleSections}
+                        </Accordion>
+                    </View>
+                </View>
+                <View style={{maxWidth: 500}}>
+                    <LabelLarge>
+                        With unevenly sided sections, allowMultipleExpanded:
+                        false
+                    </LabelLarge>
+                    <Accordion animated={true} allowMultipleExpanded={false}>
+                        <AccordionSection header="First section">
+                            <View
+                                style={{
+                                    height: 500,
+                                    padding: tokens.spacing.large_24,
+                                }}
+                            >
+                                This is the information present in the first
+                                section
+                            </View>
+                        </AccordionSection>
+                        <AccordionSection header="Second section">
+                            <View
+                                style={{
+                                    height: 100,
+                                    padding: tokens.spacing.large_24,
+                                }}
+                            >
+                                This is the information present in the second
+                                section
+                            </View>
+                        </AccordionSection>
+                        <AccordionSection header="Second section">
+                            <View
+                                style={{
+                                    height: 300,
+                                    padding: tokens.spacing.large_24,
+                                }}
+                            >
+                                This is the information present in the third
+                                section
+                            </View>
+                        </AccordionSection>
+                    </Accordion>
+                </View>
+            </View>
+        );
+    },
+};
+
+WithAnimation.parameters = {
+    chromatic: {
+        // Disabling because we cannot visually test this in chromatic.
+        disableSnapshot: true,
+    },
+};
+
+/**
  * An Accordion with custom styles. The custom styles in this example
  * include a pink border and extra padding.
- * Note that the Accordian's border is different than the AccordionSection
+ * Note that the Accordion's border is different than the AccordionSection
  * border styles. Passing custom styles here will not affect the sections'
  * styles. If you want to change the corner kind of a single section,
  * that can be done using the `cornerKind` prop (as demonstrated here).
@@ -282,9 +481,191 @@ SingleSection.parameters = {
     },
 };
 
+/**
+ * This is an example of an Accordion with many sections, as well as
+ * a lot of content within each section.
+ */
+export const LongSections: StoryComponentType = {
+    name: "Long sections (performance check)",
+    render: function Render() {
+        const [shown, setShown] = React.useState(false);
+
+        return (
+            <View>
+                <Button onClick={() => setShown(!shown)} style={styles.button}>
+                    {shown ? "Hide giant Accordion" : "Show giant Accordion"}
+                </Button>
+                {shown && (
+                    <Accordion animated={true}>
+                        {Array(20).fill(
+                            <AccordionSection
+                                header={`This is a section with a really, really, really,
+                    really, really, really, really, really, really, really,
+                    really, really, really, really, really, really, really,
+                    really, really, really, really, really long header`}
+                            >
+                                <View>
+                                    <img
+                                        src="/logo.svg"
+                                        width="100%"
+                                        alt="Wonder Blocks logo"
+                                    />
+                                    <Strut size={tokens.spacing.xLarge_32} />
+                                    <img
+                                        src="/logo.svg"
+                                        width="100%"
+                                        alt="Wonder Blocks logo"
+                                    />
+                                </View>
+                            </AccordionSection>,
+                        )}
+                    </Accordion>
+                )}
+            </View>
+        );
+    },
+};
+
+/**
+ * This is an example of an Accordion with a dropdown within each section.
+ * This demonstrates how the accordion keyboard interactions do not interfere
+ * with the dropdown's keyboard interactions.
+ */
+export const WithDropdown: StoryComponentType = {
+    render: function Render() {
+        const [value, setValue] = React.useState<any>(null);
+        const [singleOpened, setSingleOpened] = React.useState(false);
+
+        const [values, setValues] = React.useState<any>([]);
+        const [multiOpened, setMultiOpened] = React.useState(false);
+
+        const items = [
+            <OptionItem label="Banana" value="banana" key={0} />,
+            <OptionItem
+                label="Strawberry"
+                value="strawberry"
+                disabled
+                key={1}
+            />,
+            <OptionItem label="Pear" value="pear" key={2} />,
+        ];
+
+        return (
+            <Accordion animated={true}>
+                <AccordionSection header={`Single Select`}>
+                    {/* Adding height because overflow hidden in sections. */}
+                    <View style={singleOpened && {height: 200}}>
+                        <SingleSelect
+                            placeholder="Select an option"
+                            selectedValue={value}
+                            onChange={setValue}
+                            opened={singleOpened}
+                            onToggle={setSingleOpened}
+                        >
+                            {items}
+                        </SingleSelect>
+                    </View>
+                </AccordionSection>
+                <AccordionSection header={`Multi Select`}>
+                    <View style={multiOpened && {height: 200}}>
+                        <MultiSelect
+                            selectedValues={values}
+                            onChange={setValues}
+                            opened={multiOpened}
+                            onToggle={setMultiOpened}
+                        >
+                            {items}
+                        </MultiSelect>
+                    </View>
+                </AccordionSection>
+            </Accordion>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+LongSections.parameters = {
+    chromatic: {
+        // Disabling because we cannot visually test this in chromatic.
+        disableSnapshot: true,
+    },
+};
+
+// This story can be used to visually check background color overflow behavior.
+/**
+ * Accordion has a white background color by default. If you want
+ * to change the background color, you can pass in a custom style with
+ * the desired background color into each individual AccordionSection.
+ *
+ * NOTE: Passing in a background color to the Accordion itself is NOT
+ * recommended, because it will cause the color to overflow into the
+ * corners of a rounded Accordion and between the individual sections
+ * of a rounded-per-section Accordion.
+ */
+export const BackgroundColorExample: StoryComponentType = {
+    render: () => {
+        const accordionSectionStyle = {
+            backgroundColor: tokens.color.fadedBlue,
+        };
+
+        const sections = [
+            <AccordionSection
+                key="first"
+                header="First section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the first section
+            </AccordionSection>,
+            <AccordionSection
+                key="second"
+                header="Second section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the second section
+            </AccordionSection>,
+            <AccordionSection
+                key="third"
+                header="Third section"
+                style={accordionSectionStyle}
+            >
+                This is the information present in the third section
+            </AccordionSection>,
+        ];
+
+        return (
+            <>
+                <Accordion cornerKind="rounded">{sections}</Accordion>
+                <Strut size={tokens.spacing.large_24} />
+                <Accordion cornerKind="square">{sections}</Accordion>
+                <Strut size={tokens.spacing.large_24} />
+                <Accordion cornerKind="rounded-per-section">
+                    {sections}
+                </Accordion>
+            </>
+        );
+    },
+};
+
+BackgroundColorExample.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
+};
+
+const mobile = "@media (max-width: 1023px)";
+
 const styles = StyleSheet.create({
     sideBySide: {
         flexDirection: "row",
+
+        [mobile]: {
+            flexDirection: "column",
+        },
     },
     fullWidth: {
         width: "100%",
@@ -294,5 +675,9 @@ const styles = StyleSheet.create({
     },
     space: {
         margin: tokens.spacing.xSmall_8,
+    },
+    button: {
+        width: "fit-content",
+        marginBottom: tokens.spacing.medium_16,
     },
 });

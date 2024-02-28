@@ -1,34 +1,33 @@
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {HorizontalRuleVariant} from "../../util/types";
 
 export const CellMeasurements = {
-    cellMinHeight: Spacing.xxLarge_48,
+    cellMinHeight: spacing.xxLarge_48,
 
     /**
      * The cell wrapper's gap.
      */
     cellPadding: {
-        paddingVertical: Spacing.small_12,
-        paddingHorizontal: Spacing.medium_16,
+        paddingVertical: spacing.small_12,
+        paddingHorizontal: spacing.medium_16,
     },
 
     /**
      * The DetailCell wrapper's gap.
      */
     detailCellPadding: {
-        paddingVertical: Spacing.medium_16,
-        paddingHorizontal: Spacing.medium_16,
+        paddingVertical: spacing.medium_16,
+        paddingHorizontal: spacing.medium_16,
     },
 
     /**
      * The horizontal spacing between the left and right accessory.
      */
-    accessoryHorizontalSpacing: Spacing.medium_16,
+    accessoryHorizontalSpacing: spacing.medium_16,
 } as const;
 
 /**
@@ -61,8 +60,8 @@ const styles = StyleSheet.create({
             bottom: 0,
             // align border to the right of the cell
             right: 0,
-            height: Spacing.xxxxSmall_2,
-            boxShadow: `inset 0px -1px 0px ${Color.offBlack8}`,
+            height: spacing.xxxxSmall_2,
+            boxShadow: `inset 0px -1px 0px ${color.offBlack8}`,
         },
     },
 

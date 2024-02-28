@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
-import Color from "@khanacademy/wonder-blocks-color";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {
@@ -77,12 +77,13 @@ export default class PopoverDialog extends React.Component<Props> {
             style,
             showTail,
             "aria-describedby": ariaDescribedby,
+            "aria-labelledby": ariaLabelledBy,
         } = this.props;
 
         const contentProps = children.props as any;
 
         // extract the background color from the popover content
-        const color: keyof typeof Color = contentProps.emphasized
+        const color: keyof typeof tokens.color = contentProps.emphasized
             ? "blue"
             : contentProps.color;
 
@@ -90,6 +91,7 @@ export default class PopoverDialog extends React.Component<Props> {
             <React.Fragment>
                 <View
                     aria-describedby={ariaDescribedby}
+                    aria-labelledby={ariaLabelledBy}
                     id={id}
                     role="dialog"
                     ref={updateBubbleRef}

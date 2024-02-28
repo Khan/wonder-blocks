@@ -1,14 +1,15 @@
 import * as React from "react";
 
 import type {Meta, StoryObj} from "@storybook/react";
-import Color from "@khanacademy/wonder-blocks-color";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {color} from "@khanacademy/wonder-blocks-tokens";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import * as i18n from "@khanacademy/wonder-blocks-i18n";
 
 import {I18nInlineMarkup} from "../../packages/wonder-blocks-i18n/src/components/i18n-inline-markup";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Translations/I18nInlineMarkup",
@@ -104,16 +105,16 @@ export const HandlingTranslationErrors: StoryComponentType = {
                     <Tooltip
                         content={
                             <TooltipContent>
-                                <LabelMedium style={{color: Color.red}}>
+                                <LabelMedium style={{color: color.red}}>
                                     {error.message}
                                 </LabelMedium>
                             </TooltipContent>
                         }
                     >
-                        <Icon
+                        <PhosphorIcon
                             size="small"
-                            icon={icons.incorrect}
-                            color={Color.red}
+                            icon={IconMappings.xCircleBold}
+                            color={color.red}
                         />
                     </Tooltip>
                 )}

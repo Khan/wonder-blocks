@@ -39,7 +39,7 @@ jobs:
       - name: Install & cache node_modules
         uses: Khan/actions@shared-node-cache-v0
         with:
-          node-version: 16.x
+          node-version: 20.x
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

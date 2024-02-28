@@ -1,5 +1,82 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.4.3
+
+### Patch Changes
+
+-   Updated dependencies [60fdac1c]
+    -   @khanacademy/wonder-blocks-clickable@4.1.0
+
+## 4.4.2
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.14
+    -   @khanacademy/wonder-blocks-layout@2.0.27
+
+## 4.4.1
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.13
+
+## 4.4.0
+
+### Minor Changes
+
+-   0c329565: `name` prop has been added to SearchField and TextField
+
+## 4.3.19
+
+### Patch Changes
+
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.12
+    -   @khanacademy/wonder-blocks-layout@2.0.25
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 4.3.18
+
+### Patch Changes
+
+-   Updated dependencies [171e3b01]
+    -   @khanacademy/wonder-blocks-icon@4.0.0
+
+## 4.3.17
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+
+## 4.3.16
+
+### Patch Changes
+
+-   Updated dependencies [6b8bf8d5]
+    -   @khanacademy/wonder-blocks-clickable@4.0.11
+
+## 4.3.15
+
+### Patch Changes
+
+-   c8e9ce34: Add PhosphorIcon support (replace Icon)
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
 ## 4.3.14
 
 ### Patch Changes

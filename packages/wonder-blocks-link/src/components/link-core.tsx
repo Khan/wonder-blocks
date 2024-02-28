@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.svg";
 
 import type {
@@ -153,10 +153,10 @@ const styles: Record<string, any> = {};
 
 const linkContentStyles = StyleSheet.create({
     startIcon: {
-        marginInlineEnd: Spacing.xxxSmall_4,
+        marginInlineEnd: spacing.xxxSmall_4,
     },
     endIcon: {
-        marginInlineStart: Spacing.xxxSmall_4,
+        marginInlineStart: spacing.xxxSmall_4,
     },
     centered: {
         // Manually align the bottom of start/end icons with the text baseline.
@@ -192,16 +192,16 @@ const _generateStyles = (
         throw new Error("Only primary link is visitable");
     }
 
-    const {blue, pink, purple, white, offBlack, offBlack32, offBlack64} = Color;
+    const {blue, pink, purple, white, offBlack, offBlack32, offBlack64} = color;
 
     // Standard purple
     const linkPurple = mix(fade(offBlack, 0.08), purple);
     // Light blue
-    const fadedBlue = mix(fade(blue, 0.32), white);
+    const fadedBlue = color.fadedBlue;
     // Light pink
     const activeLightVisited = mix(fade(white, 0.32), pink);
     // Dark blue
-    const activeDefaultPrimary = mix(offBlack32, blue);
+    const activeDefaultPrimary = color.activeBlue;
 
     const primaryDefaultTextColor = light ? white : blue;
     const secondaryDefaultTextColor = inline ? offBlack : offBlack64;

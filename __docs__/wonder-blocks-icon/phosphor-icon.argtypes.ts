@@ -2,6 +2,10 @@ import type {InputType} from "@storybook/csf";
 
 import plusCircle from "@phosphor-icons/core/regular/plus-circle.svg";
 import plusCircleBold from "@phosphor-icons/core/bold/plus-circle-bold.svg";
+import calendar from "@phosphor-icons/core/regular/calendar.svg";
+import calendarBold from "@phosphor-icons/core/bold/calendar-bold.svg";
+import clock from "@phosphor-icons/core/regular/clock.svg";
+import clockBold from "@phosphor-icons/core/bold/clock-bold.svg";
 import xCircle from "@phosphor-icons/core/regular/x-circle.svg";
 import xCircleBold from "@phosphor-icons/core/bold/x-circle-bold.svg";
 import x from "@phosphor-icons/core/regular/x.svg";
@@ -40,8 +44,11 @@ import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import play from "@phosphor-icons/core/regular/play.svg";
 import playBold from "@phosphor-icons/core/bold/play-bold.svg";
+import playCircle from "@phosphor-icons/core/regular/play-circle.svg";
+import playCircleBold from "@phosphor-icons/core/bold/play-circle-bold.svg";
+import gear from "@phosphor-icons/core/regular/gear.svg";
 
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * Some pre-defined icon examples to use in our stories.
@@ -49,6 +56,10 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
 export const IconMappings = {
     plusCircle,
     plusCircleBold,
+    calendar,
+    calendarBold,
+    clock,
+    clockBold,
     caretDown,
     caretDownBold,
     caretUp,
@@ -87,12 +98,19 @@ export const IconMappings = {
     pencilSimpleBold,
     play,
     playBold,
+    playCircle,
+    playCircleBold,
+    gear,
 } as const;
 
 export default {
     icon: {
         description:
-            "The icon to display. This is a reference to the icon asset (imported as a static SVG file). `small` size should use a `bold` icon, and `medium` size should use a `regular` icon.",
+            `The icon to display. This is a reference to the icon asset ` +
+            `(imported as a static SVG file).\n\n` +
+            `It supports the following types:\n` +
+            `- \`PhosphorIconAsset\`: a reference to a Phosphor SVG asset.\n` +
+            `- \`string\`: an import referencing an arbitrary SVG file.`,
         options: Object.keys(IconMappings),
         mapping: IconMappings,
         type: {
@@ -102,15 +120,15 @@ export default {
         },
         table: {
             type: {
-                summary: "string",
+                summary: "PhosphorIconAsset | string",
             },
         },
     },
     color: {
         description:
             "The color of the icon. Will default to `currentColor`, which means that it will take on the CSS `color` value from the parent element.",
-        options: Object.keys(tokens.color),
-        mapping: tokens.color,
+        options: Object.keys(color),
+        mapping: color,
         control: {
             type: "select",
         },
@@ -168,6 +186,21 @@ export default {
     "aria-label": {
         description:
             "The description of this component for the screenreader to read.",
+        control: {
+            type: "text",
+        },
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "string",
+            },
+        },
+    },
+    role: {
+        description:
+            "The role of this icon. Make sure to use it when setting `aria-label`\n" +
+            "See: https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24",
+        defaultValue: "img",
         control: {
             type: "text",
         },

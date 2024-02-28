@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
@@ -13,8 +13,31 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import PopoverArgtypes from "./popover.argtypes";
+import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
 
+/**
+ * Popovers provide additional information that is related to a particular
+ * element and/or content. They can include text, links, icons and
+ * illustrations. The main difference with `Tooltip` is that they must be
+ * dismissed by clicking an element.
+ *
+ * This component uses the `PopoverPopper` component to position the
+ * `PopoverContentCore` component according to the children it is wrapping.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+ *
+ * <Popover
+ *  onClose={() => {}}
+ *  content={
+ *      <PopoverContent title="Title" content="Some content" closeButtonVisible />
+ *  }>
+ *      <Button>Open popover</Button>
+ *  </Popover>
+ * ```
+ */
 export default {
     title: "Popover/Popover",
     component: Popover as unknown as React.ComponentType<any>,
@@ -26,15 +49,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
         // TODO(WB-1170): Reassess this after investigating more about Chromatic
         // flakyness.
         chromatic: {
@@ -43,9 +57,7 @@ export default {
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>
-                <Story />
-            </View>
+            <View style={styles.example}>{Story()}</View>
         ),
     ],
 } as Meta<typeof Popover>;
@@ -68,6 +80,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-between",
     },
+    playground: {
+        border: `1px dashed ${color.lightBlue}`,
+        marginTop: spacing.large_24,
+        padding: spacing.large_24,
+        flexDirection: "row",
+        gap: spacing.medium_16,
+    },
 });
 
 type StoryComponentType = StoryObj<typeof Popover>;
@@ -78,14 +97,7 @@ type PopoverArgs = Partial<typeof Popover>;
 export const Default: StoryComponentType = {
     args: {
         children: <Button>Open default popover</Button>,
-        content: (
-            <PopoverContent
-                closeButtonVisible
-                title="Title"
-                content="The popover content."
-            />
-        ),
-
+        content: ContentMappings.withTextOnly,
         placement: "top",
         dismissEnabled: true,
         id: "",
@@ -204,7 +216,7 @@ export const Controlled: StoryComponentType = () => {
                     Anchor element (it does not open the popover)
                 </Button>
             </Popover>
-            <Strut size={Spacing.xLarge_32} />
+            <Strut size={spacing.xLarge_32} />
             <Button onClick={() => setOpened(true)}>
                 Outside button (click here to re-open the popover)
             </Button>
@@ -249,7 +261,7 @@ export const WithActions: StoryComponentType = () => {
                             <LabelLarge>
                                 Step {step} of {totalSteps}
                             </LabelLarge>
-                            <Strut size={Spacing.medium_16} />
+                            <Strut size={spacing.medium_16} />
                             <Button
                                 kind="tertiary"
                                 onClick={() => {
@@ -302,7 +314,7 @@ export const WithInitialFocusId: StoryComponentType = {
                         <Button kind="tertiary" id="popover-button-1">
                             No focus
                         </Button>
-                        <Strut size={Spacing.medium_16} />
+                        <Strut size={spacing.medium_16} />
                         <Button kind="tertiary" id="popover-button-2">
                             It is focused!
                         </Button>
@@ -334,6 +346,173 @@ WithInitialFocusId.parameters = {
             In this example, the first button would have received the focus
             by default, but the second button receives focus instead
             since its ID is passed into the \`initialFocusId\` prop.`,
+        },
+    },
+};
+
+/**
+ * You can use the `closedFocusId` prop on the `Popover` component to specify
+ * where to set the focus after the popover dialog has been closed. This is
+ * useful for cases when you need to return the focus to a specific element.
+ *
+ * In this example, `closedFocusId` is set to the ID of the button labeled
+ * "Focus here after close.", and it means that the focus will be set on that
+ * button after the popover dialog has been closed/dismissed.
+ */
+export const WithClosedFocusId: StoryComponentType = {
+    name: "With closedFocusId",
+    render: () => (
+        <View style={{gap: 20}}>
+            <Button id="button-to-focus-on">Focus here after close</Button>
+            <Popover
+                dismissEnabled={true}
+                closedFocusId="button-to-focus-on"
+                content={
+                    <PopoverContent
+                        closeButtonVisible={true}
+                        title="Returning focus to a specific element"
+                        content='After dismissing the popover, the focus will be set on the button labeled "Focus here after close."'
+                    />
+                }
+            >
+                <Button>Open popover</Button>
+            </Popover>
+        </View>
+    ),
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * Popovers can have custom layouts. This is done by using the
+ * `PopoverContentCore` component.
+ *
+ * _NOTE:_ If you choose to use this component, you'll have to set the
+ * `aria-labelledby` and `aria-describedby` attributes manually. Make sure to
+ * pass the `id` prop to the `Popover` component and use it as the value for
+ * these attributes. Also, make sure to assign the `${id}-title` prop to the
+ * `title` element and `${id}-content` prop to the `content` element.
+ */
+export const CustomPopoverContent: StoryComponentType = {
+    args: {
+        children: <Button>Open custom popover</Button>,
+        content: ContentMappings.coreWithIcon,
+        id: "custom-popover",
+    } as PopoverArgs,
+};
+
+/**
+ * This example shows how the focus is managed when a popover is opened. If the
+ * popover is closed, the focus flows naturally. However, if the popover is
+ * opened, the focus is managed internally by the `Popover` component.
+ *
+ * The focus is managed in the following way:
+ * - When the popover is opened, the focus is set on the first focusable element
+ *  inside the popover.
+ * - When the popover is closed, the focus is returned to the element that
+ * triggered the popover.
+ * - If the popover is opened and the focus reaches the last focusable element
+ * inside the popover, the next tab will set focus on the next focusable
+ * element that exists after the PopoverAnchor (or trigger element).
+ * - If the focus is set to the first focusable element inside the popover, the
+ * next shift + tab will set focus on the PopoverAnchor element.
+ *
+ * **NOTE:** You can add/remove buttons after the trigger element by using the
+ * buttons at the top of the example.
+ */
+export const KeyboardNavigation: StoryComponentType = {
+    render: function Render() {
+        const [numButtonsAfter, setNumButtonsAfter] = React.useState(0);
+        const [numButtonsInside, setNumButtonsInside] = React.useState(1);
+
+        return (
+            <View>
+                <View style={[styles.row, {gap: spacing.medium_16}]}>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsAfter(numButtonsAfter + 1);
+                        }}
+                    >
+                        Add button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsAfter(numButtonsAfter - 1);
+                            }
+                        }}
+                    >
+                        Remove button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsInside(numButtonsInside + 1);
+                        }}
+                    >
+                        Add button inside popover
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsInside(numButtonsInside - 1);
+                            }
+                        }}
+                    >
+                        Remove button inside popover
+                    </Button>
+                </View>
+                <View style={styles.playground}>
+                    <Button>First button</Button>
+                    <Popover
+                        content={({close}) => (
+                            <PopoverContent
+                                closeButtonVisible
+                                title="Keyboard navigation"
+                                content="This example shows how the focus is managed when a popover is opened."
+                                actions={
+                                    <View style={[styles.row, styles.actions]}>
+                                        {Array.from(
+                                            {length: numButtonsInside},
+                                            (_, index) => (
+                                                <Button
+                                                    onClick={() => {}}
+                                                    key={index}
+                                                    kind="tertiary"
+                                                >
+                                                    {`Button ${index + 1}`}
+                                                </Button>
+                                            ),
+                                        )}
+                                    </View>
+                                }
+                            />
+                        )}
+                        placement="top"
+                    >
+                        <Button>Open popover (trigger element)</Button>
+                    </Popover>
+                    {Array.from({length: numButtonsAfter}, (_, index) => (
+                        <Button onClick={() => {}} key={index}>
+                            {`Button ${index + 1}`}
+                        </Button>
+                    ))}
+                </View>
+            </View>
+        );
+    },
+    parameters: {
+        // This example is behavior based, not visual.
+        chromatic: {
+            disableSnapshot: true,
         },
     },
 };

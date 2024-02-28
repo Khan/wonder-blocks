@@ -1,5 +1,102 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.1.28
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.2.4
+
+## 2.1.27
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-layout@2.0.27
+    -   @khanacademy/wonder-blocks-modal@4.2.3
+
+## 2.1.26
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-modal@4.2.2
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
+## 2.1.25
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.2.1
+
+## 2.1.24
+
+### Patch Changes
+
+-   Updated dependencies [b7bae8f2]
+-   Updated dependencies [09c61d25]
+    -   @khanacademy/wonder-blocks-modal@4.2.0
+
+## 2.1.23
+
+### Patch Changes
+
+-   Updated dependencies [1b21747a]
+    -   @khanacademy/wonder-blocks-modal@4.1.0
+
+## 2.1.22
+
+### Patch Changes
+
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-layout@2.0.25
+    -   @khanacademy/wonder-blocks-modal@4.0.39
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 2.1.21
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.38
+
+## 2.1.20
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.37
+
+## 2.1.19
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.36
+
+## 2.1.18
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.35
+
+## 2.1.17
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.34
+
+## 2.1.16
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.0.33
+
 ## 2.1.15
 
 ### Patch Changes

@@ -1,9 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
@@ -63,13 +62,14 @@ type DetailCellProps = CellProps & {
  *
  * ```jsx
  * import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+ * import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
  *
  * <DetailCell
- *  leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
+ *  leftAccessory={<PhosphorIcon icon={contentVideo} size="medium" />}
  *  subtitle1="Subtitle 1"
  *  title="Detail cell"
  *  subtitle1="Subtitle 2"
- *  rightAccessory={<Icon icon={icons.caretRight} size="medium" />}
+ *  rightAccessory={<PhosphorIcon icon={caretRight} size="medium" />}
  * />
  * ```
  */
@@ -79,14 +79,14 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
     return (
         <CellCore {...coreProps} innerStyle={styles.innerWrapper}>
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
-            {subtitle1 && <Strut size={Spacing.xxxxSmall_2} />}
+            {subtitle1 && <Strut size={spacing.xxxxSmall_2} />}
             {typeof title === "string" ? (
                 <LabelMedium>{title}</LabelMedium>
             ) : (
                 title
             )}
             {/* Add a vertical spacing between the title and the subtitle */}
-            {subtitle2 && <Strut size={Spacing.xxxxSmall_2} />}
+            {subtitle2 && <Strut size={spacing.xxxxSmall_2} />}
             <Subtitle subtitle={subtitle2} disabled={coreProps.disabled} />
         </CellCore>
     );
@@ -94,7 +94,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
 
 const styles = StyleSheet.create({
     subtitle: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
     },
 
     // This is to override the default padding of the CellCore innerWrapper.

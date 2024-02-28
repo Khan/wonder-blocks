@@ -12,11 +12,14 @@ import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
 import {fireEvent, userEvent, within} from "@storybook/testing-library";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    LabelMedium,
+    LabelLarge,
+    HeadingSmall,
+} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import packageConfig from "../../packages/wonder-blocks-button/package.json";
@@ -71,6 +74,7 @@ export const Default: StoryComponentType = {
         light: false,
         disabled: false,
         style: {maxWidth: 200},
+        labelStyle: {},
         onClick: () => {
             // eslint-disable-next-line no-alert
             alert("Click!");
@@ -100,12 +104,12 @@ export const Tertiary: StoryComponentType = {
 
         // Get HTML elements
         const button = canvas.getByRole("button");
-        const computedStyleButton = getComputedStyle(button, ":after");
+        const computedStyleButton = getComputedStyle(button);
         const innerLabel = canvas.getByTestId("test-button-inner-label");
         const computedStyleLabel = getComputedStyle(innerLabel, ":after");
 
         // Resting style
-        await expect(button).toHaveStyle(`color: ${Color.blue}`);
+        await expect(button).toHaveStyle(`color: ${color.blue}`);
         await expect(button).toHaveTextContent("Hello, world!");
 
         // Hover style
@@ -115,8 +119,10 @@ export const Tertiary: StoryComponentType = {
 
         // Focus style
         await fireEvent.focus(button);
-        await expect(computedStyleButton.borderColor).toBe("rgb(24, 101, 242)");
-        await expect(computedStyleButton.borderWidth).toBe("2px");
+        await expect(computedStyleButton.outlineColor).toBe(
+            "rgb(24, 101, 242)",
+        );
+        await expect(computedStyleButton.outlineWidth).toBe("2px");
 
         // Active (mouse down) style
         // eslint-disable-next-line testing-library/prefer-user-event
@@ -131,27 +137,31 @@ export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: Spacing.xSmall_8,
+        marginBottom: spacing.xSmall_8,
     },
     button: {
-        marginRight: Spacing.xSmall_8,
+        marginRight: spacing.xSmall_8,
+    },
+    truncatedButton: {
+        maxWidth: 200,
+        marginBottom: spacing.medium_16,
     },
     fillSpace: {
         minWidth: 140,
     },
     example: {
-        background: Color.offWhite,
-        padding: Spacing.medium_16,
+        background: color.offWhite,
+        padding: spacing.medium_16,
     },
     label: {
-        marginTop: Spacing.large_24,
-        marginBottom: Spacing.xSmall_8,
+        marginTop: spacing.large_24,
+        marginBottom: spacing.xSmall_8,
     },
 });
 
 export const Variants: StoryComponentType = () => (
-    <View style={{padding: Spacing.medium_16, gap: Spacing.medium_16}}>
-        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+    <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}}>Hello, world!</Button>
             <Button onClick={() => {}} kind="secondary">
                 Hello, world!
@@ -160,7 +170,7 @@ export const Variants: StoryComponentType = () => (
                 Hello, world!
             </Button>
         </View>
-        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}} disabled={true}>
                 Hello, world!
             </Button>
@@ -171,7 +181,7 @@ export const Variants: StoryComponentType = () => (
                 Hello, world!
             </Button>
         </View>
-        <View style={{flexDirection: "row", gap: Spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}} color="destructive">
                 Hello, world!
             </Button>
@@ -238,7 +248,7 @@ WithColor.parameters = {
 };
 
 export const Dark: StoryComponentType = () => (
-    <View style={{backgroundColor: Color.darkBlue, padding: Spacing.medium_16}}>
+    <View style={{backgroundColor: color.darkBlue, padding: spacing.medium_16}}>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}} light={true}>
                 Hello, world!
@@ -546,12 +556,33 @@ Spinner.parameters = {
 export const TruncatingLabels: StoryComponentType = {
     name: "Truncating labels",
     render: () => (
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}} style={{maxWidth: 200}}>
+        <View style={{flexDirection: "row", flexWrap: "wrap"}}>
+            <Button onClick={() => {}} style={styles.truncatedButton}>
                 label too long for the parent container
             </Button>
-            <Strut size={16} />
-            <Button onClick={() => {}} style={{maxWidth: 200}} startIcon={plus}>
+            <Strut size={spacing.medium_16} />
+            <Button
+                onClick={() => {}}
+                style={styles.truncatedButton}
+                startIcon={plus}
+            >
+                label too long for the parent container
+            </Button>
+            <Strut size={spacing.medium_16} />
+            <Button
+                size="small"
+                onClick={() => {}}
+                style={styles.truncatedButton}
+            >
+                label too long for the parent container
+            </Button>
+            <Strut size={spacing.medium_16} />
+            <Button
+                size="small"
+                onClick={() => {}}
+                style={styles.truncatedButton}
+                startIcon={plus}
+            >
                 label too long for the parent container
             </Button>
         </View>
@@ -564,6 +595,51 @@ TruncatingLabels.parameters = {
             story: "If the label is too long for the button width, the text will be truncated.",
         },
     },
+};
+
+/**
+ * Buttons can be styled with custom styles. This story shows a button with a
+ * custom width and height (using the `style` prop), and also a custom label
+ * style that prevents the label from being truncated (`labelStyle`).
+ *
+ * __NOTE:__ Please use this feature sparingly. This could be useful for simple
+ * cases like the one shown below, but it could cause some issues if used in
+ * more complex cases.
+ */
+export const CustomStyles = {
+    args: {
+        children: `This button does not truncate its label and can appear in multiple lines`,
+        disabled: false,
+        kind: "secondary",
+        onClick: () => {},
+        style: {
+            maxWidth: 200,
+            minHeight: 32,
+            height: "auto",
+        },
+        labelStyle: {
+            textOverflow: "initial",
+            whiteSpace: "normal",
+        },
+    },
+    render: (args: any) => (
+        <View style={{gap: spacing.medium_16}}>
+            <HeadingSmall>Wonder Blocks theme (default)</HeadingSmall>
+            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+                <Button {...args} kind="primary" />
+                <Button {...args} kind="secondary" />
+                <Button {...args} kind="tertiary" />
+            </View>
+            <HeadingSmall>Khanmigo theme</HeadingSmall>
+            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+                <ThemeSwitcherContext.Provider value="khanmigo">
+                    <Button {...args} kind="primary" />
+                    <Button {...args} kind="secondary" />
+                    <Button {...args} kind="tertiary" />
+                </ThemeSwitcherContext.Provider>
+            </View>
+        </View>
+    ),
 };
 
 export const SubmittingForms: StoryComponentType = {
@@ -683,7 +759,7 @@ export const KhanmigoTheme: StoryComponentType = {
 
         return (
             <ThemeSwitcherContext.Provider value="khanmigo">
-                <View style={{gap: Spacing.medium_16}}>
+                <View style={{gap: spacing.medium_16}}>
                     {stories.map((Story, i) => (
                         <Story key={i} />
                     ))}

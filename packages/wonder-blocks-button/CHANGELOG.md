@@ -1,5 +1,96 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.2.8
+
+### Patch Changes
+
+-   Updated dependencies [60fdac1c]
+    -   @khanacademy/wonder-blocks-clickable@4.1.0
+
+## 6.2.7
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-theming@2.0.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.14
+    -   @khanacademy/wonder-blocks-progress-spinner@2.0.27
+
+## 6.2.6
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-theming@2.0.0
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-progress-spinner@2.0.26
+    -   @khanacademy/wonder-blocks-clickable@4.0.13
+
+## 6.2.5
+
+### Patch Changes
+
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.12
+    -   @khanacademy/wonder-blocks-progress-spinner@2.0.25
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 6.2.4
+
+### Patch Changes
+
+-   Updated dependencies [171e3b01]
+    -   @khanacademy/wonder-blocks-icon@4.0.0
+
+## 6.2.3
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+
+## 6.2.2
+
+### Patch Changes
+
+-   01593e2b: Fix border issue with secondary kind
+
+## 6.2.1
+
+### Patch Changes
+
+-   Updated dependencies [6b8bf8d5]
+    -   @khanacademy/wonder-blocks-clickable@4.0.11
+
+## 6.2.0
+
+### Minor Changes
+
+-   a70a929b: Add `labelStyle` to override the styles of the internal label
+
+### Patch Changes
+
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
+## 6.1.0
+
+### Minor Changes
+
+-   d73f6988: Add Khanmigo theming support to buttons with icons
+
 ## 6.0.1
 
 ### Patch Changes

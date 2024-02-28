@@ -2,11 +2,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
-import Color from "@khanacademy/wonder-blocks-color";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -15,8 +14,8 @@ import {
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
-
 import ComponentInfo from "../../.storybook/components/component-info";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 // NOTE: We are reusing an existing Cell SB Story to test how Popovers can be
 // composed by Cells.
@@ -34,15 +33,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        docs: {
-            description: {
-                component: null,
-            },
-            source: {
-                // See https://github.com/storybookjs/storybook/issues/12596
-                excludeDecorators: true,
-            },
-        },
     },
     decorators: [
         (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -59,28 +49,28 @@ const styles = StyleSheet.create({
     popoverWithIcon: {
         alignItems: "center",
         flexDirection: "row",
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
     },
     popoverWithCell: {
         padding: 0,
     },
     customPopover: {
-        maxWidth: Spacing.medium_16 * 25,
-        width: Spacing.medium_16 * 25,
+        maxWidth: spacing.medium_16 * 25,
+        width: spacing.medium_16 * 25,
         textAlign: "center",
     },
     row: {
         flexDirection: "row",
         justifyContent: "center",
-        padding: `${Spacing.small_12}px 0`,
+        padding: `${spacing.small_12}px 0`,
     },
     action: {
         backgroundColor: "transparent",
         border: "none",
-        color: Color.white,
+        color: color.white,
         cursor: "pointer",
-        margin: Spacing.small_12,
-        padding: Spacing.xxSmall_6,
+        margin: spacing.small_12,
+        padding: spacing.xxSmall_6,
         alignItems: "center",
         justifyContent: "center",
     },
@@ -92,16 +82,19 @@ export const WithIcon: StoryComponentType = {
     args: {
         children: (
             <>
-                <Icon size="large" icon={icons.contentArticle} />
+                <PhosphorIcon size="large" icon={IconMappings.article} />
                 <View>
-                    <LabelLarge>This is an article</LabelLarge>
-                    <Body>With the content</Body>
+                    <LabelLarge id="custom-popover-title">
+                        This is an article
+                    </LabelLarge>
+                    <Body id="custom-popover-content">With the content</Body>
                 </View>
             </>
         ),
         closeButtonVisible: true,
         style: styles.popoverWithIcon,
     },
+    render: (args) => <PopoverContentCore {...args} />,
 };
 
 // NOTE: Adding a wrapper to cast the component so Storybook doesn't complain.
@@ -116,6 +109,7 @@ export const WithDetailCell: StoryComponentType = {
         children: <ClickableDetailCellWrapper {...ClickableDetailCell.args} />,
         style: styles.popoverWithCell,
     },
+    render: (args) => <PopoverContentCore {...args} />,
 };
 
 WithDetailCell.parameters = {
@@ -129,10 +123,6 @@ WithDetailCell.parameters = {
 /**
  * Dark custom popover
  */
-const customIcon = {
-    small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
-} as const;
-
 const CustomPopoverContent = (
     <>
         <HeadingSmall>Custom popover title</HeadingSmall>
@@ -140,9 +130,9 @@ const CustomPopoverContent = (
             <Clickable style={styles.action} onClick={close} id="btn-1">
                 {() => (
                     <>
-                        <Icon
-                            icon={customIcon}
-                            color={Color.gold}
+                        <PhosphorIcon
+                            icon={IconMappings.pencilSimple}
+                            color={color.gold}
                             size="large"
                         />
                         <LabelLarge>Option 1</LabelLarge>
@@ -152,9 +142,9 @@ const CustomPopoverContent = (
             <Clickable style={styles.action} onClick={close} id="btn-2">
                 {() => (
                     <>
-                        <Icon
-                            icon={customIcon}
-                            color={Color.green}
+                        <PhosphorIcon
+                            icon={IconMappings.pencilSimple}
+                            color={color.green}
                             size="large"
                         />
                         <LabelLarge>Option 2</LabelLarge>
@@ -164,9 +154,9 @@ const CustomPopoverContent = (
             <Clickable style={styles.action} onClick={close} id="btn-3">
                 {() => (
                     <>
-                        <Icon
-                            icon={customIcon}
-                            color={Color.blue}
+                        <PhosphorIcon
+                            icon={IconMappings.pencilSimple}
+                            color={color.blue}
                             size="large"
                         />
                         <LabelLarge>Option 3</LabelLarge>
@@ -183,6 +173,7 @@ export const Dark: StoryComponentType = {
         color: "darkBlue",
         style: styles.customPopover,
     },
+    render: (args) => <PopoverContentCore {...args} />,
 };
 
 Dark.parameters = {

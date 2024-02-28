@@ -1,11 +1,12 @@
 import {Meta} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Caption} from "@khanacademy/wonder-blocks-typography";
+
+import ComponentGallery from "./components/gallery/component-gallery";
 
 <Meta title="Overview" />
 
@@ -23,17 +24,17 @@ export const styles = StyleSheet.create({
     heroWrapper: {
         flexDirection: "row",
         minHeight: "50vh",
-        marginBottom: Spacing.large_24,
+        marginBottom: spacing.large_24,
         [mobile]: {
             flexDirection: "column",
             minHeight: "auto",
-            marginTop: Spacing.large_24,
+            marginTop: spacing.large_24,
         },
     },
     heroBody: {
         alignSelf: "center",
-        gap: Spacing.medium_16,
-        padding: `0 ${Spacing.xxxLarge_64}px 0 0`,
+        gap: spacing.medium_16,
+        padding: `0 ${spacing.xxxLarge_64}px 0 0`,
         [mobile]: {
             padding: 0,
         },
@@ -47,7 +48,7 @@ export const styles = StyleSheet.create({
             height: "200px",
         },
     },
-    heroCaption: {fontSize: 16, color: Color.offBlack64},
+    heroCaption: {fontSize: 16, color: color.offBlack64},
 });
 
 <View style={styles.heroWrapper}>
@@ -61,7 +62,7 @@ export const styles = StyleSheet.create({
             <strong>Note:</strong> These components are only available for use
             on the web (including mobile web).
         </Caption>
-        <Strut size={Spacing.large_24} />
+        <Strut size={spacing.large_24} />
     </View>
     <StyledImage
         alt="A illustration that shows multiple components."
@@ -99,3 +100,7 @@ from design to development:
 Have a question? Contact the team in the
 [#wonder-blocks](https://khanacademy.slack.com/archives/C8Z9DSKC7) Slack
 channel.
+
+## Components
+
+<ComponentGallery />

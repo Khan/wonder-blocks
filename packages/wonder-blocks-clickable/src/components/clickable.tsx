@@ -5,7 +5,7 @@ import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";
@@ -28,6 +28,10 @@ type CommonProps =
          * An onClick function which Clickable can execute when clicked
          */
         onClick?: (e: React.SyntheticEvent) => unknown;
+        /**
+         * An onFocus function which Clickable can execute when focused
+         */
+        onFocus?: (e: React.FocusEvent) => unknown;
         /**
          * Optional href which Clickable should direct to, uses client-side routing
          * by default if react-router is present
@@ -82,6 +86,14 @@ type CommonProps =
          * Respond to raw "keyup" event.
          */
         onKeyUp?: (e: React.KeyboardEvent) => unknown;
+        /**
+         * Respond to raw "mousedown" event.
+         */
+        onMouseDown?: (e: React.MouseEvent) => unknown;
+        /**
+         * Respond to raw "mouseup" event.
+         */
+        onMouseUp?: (e: React.MouseEvent) => unknown;
         /**
          * Don't show the default focus ring.  This should be used when implementing
          * a custom focus ring within your own component that uses Clickable.
@@ -266,8 +278,11 @@ const Clickable = React.forwardRef(function Clickable(
             style,
             target = undefined,
             testId,
+            onFocus,
             onKeyDown,
             onKeyUp,
+            onMouseDown,
+            onMouseUp,
             hideDefaultFocusRing,
             light,
             disabled,
@@ -297,8 +312,11 @@ const Clickable = React.forwardRef(function Clickable(
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
+                    onMouseDown={onMouseDown}
+                    onMouseUp={onMouseUp}
                     disabled={disabled}
                     tabIndex={tabIndex}
                 >
@@ -318,8 +336,11 @@ const Clickable = React.forwardRef(function Clickable(
                     href={href}
                     onClick={onClick}
                     safeWithNav={safeWithNav}
+                    onFocus={onFocus}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
+                    onMouseDown={onMouseDown}
+                    onMouseUp={onMouseUp}
                     target={target}
                     disabled={disabled}
                     tabIndex={tabIndex}
@@ -389,20 +410,20 @@ const styles = StyleSheet.create({
     },
     focused: {
         ":focus": {
-            outline: `solid 2px ${Color.blue}`,
+            outline: `solid 2px ${color.blue}`,
         },
     },
     focusedLight: {
-        outline: `solid 2px ${Color.white}`,
+        outline: `solid 2px ${color.white}`,
     },
     disabled: {
-        color: Color.offBlack32,
+        color: color.offBlack32,
         cursor: "not-allowed",
         ":focus": {
             outline: "none",
         },
         ":focus-visible": {
-            outline: `solid 2px ${Color.blue}`,
+            outline: `solid 2px ${color.blue}`,
         },
     },
 });

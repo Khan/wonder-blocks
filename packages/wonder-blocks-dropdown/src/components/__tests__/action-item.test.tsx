@@ -2,6 +2,10 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import * as ReactRouterDOM from "react-router-dom";
 
+import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+
+import plusIcon from "@phosphor-icons/core/regular/plus.svg";
 import ActionItem from "../action-item";
 
 jest.mock("react-router-dom", () => ({
@@ -18,7 +22,10 @@ describe("ActionItem", () => {
         render(<ActionItem href="/foo" label="Example" disabled={true} />);
 
         // Assert
-        expect(screen.getByRole("menuitem")).toBeDisabled();
+        expect(screen.getByRole("menuitem")).toHaveAttribute(
+            "aria-disabled",
+            "true",
+        );
     });
 
     it("should render an anchor if there's no router", () => {
@@ -55,5 +62,34 @@ describe("ActionItem", () => {
 
         // Assert
         expect(screen.getByText("Español")).toHaveAttribute("lang", "es");
+    });
+
+    it("should allow passing an accessory", () => {
+        // Arrange
+
+        // Act
+        render(
+            <ActionItem
+                label="ActionItem"
+                leftAccessory={<PhosphorIcon icon={plusIcon} role="img" />}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("img")).toBeInTheDocument();
+    });
+
+    it("should allow passing a custom label", () => {
+        // Arrange
+
+        // Act
+        render(
+            <ActionItem
+                label={<HeadingSmall>A heading as an item</HeadingSmall>}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("heading")).toBeInTheDocument();
     });
 });

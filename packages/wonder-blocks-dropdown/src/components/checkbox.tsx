@@ -1,20 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-
-// NOTE(sophie): This is a smaller check specifically for use in checkboxes.
-// Please don't copy it automatically and check with designers before using.
-// If the intended icon is a check without a checkbox, you should be using
-// icons.check from the Wonder Blocks Icon package.
-const checkboxCheck: IconAsset = {
-    small: "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
-};
-const {blue, white, offBlack16, offBlack32, offBlack50, offWhite} = Color;
+const {offBlack16, offBlack50, offWhite} = color;
 
 /**
  * Props describing the state of the OptionItem, shared by the check
@@ -25,51 +17,38 @@ type CheckProps = {
     disabled: boolean;
     /** Whether option item is selected. */
     selected: boolean;
-    /** Whether option item is pressed. */
-    pressed: boolean;
-    /** Whether option item is hovered. */
-    hovered: boolean;
-    /** Whether option item is focused. */
-    focused: boolean;
 };
 
 /**
  * The checkbox component used by OptionItem.
  */
 const Checkbox = function (props: CheckProps): React.ReactElement {
-    const {disabled, selected, pressed, hovered, focused} = props;
-    const activeBlue = mix(offBlack32, blue);
-    const clickInteraction = pressed || hovered || focused;
-
-    const bgColor = disabled
-        ? offWhite
-        : selected && !clickInteraction
-        ? blue
-        : white;
-    const checkColor = disabled
-        ? offBlack32
-        : clickInteraction
-        ? pressed
-            ? activeBlue
-            : blue
-        : white;
+    const {disabled, selected} = props;
 
     return (
         <View
+            className="checkbox"
             style={[
                 styles.checkbox,
-                (clickInteraction || (selected && !disabled)) &&
-                    styles.noBorder,
+                selected && !disabled && styles.noBorder,
                 disabled && styles.disabledCheckbox,
-                {backgroundColor: bgColor},
             ]}
         >
             {selected && (
-                <Icon
-                    icon={checkboxCheck}
+                <PhosphorIcon
+                    icon={checkIcon}
                     size="small"
-                    color={checkColor}
+                    className="check"
                     style={[
+                        {
+                            // The check icon is smaller than the checkbox, as
+                            // per design.
+                            width: spacing.small_12,
+                            height: spacing.small_12,
+                            // This margin is to center the check icon in the
+                            // checkbox.
+                            margin: spacing.xxxxSmall_2,
+                        },
                         disabled && selected && styles.disabledCheckFormatting,
                     ]}
                 />
@@ -82,9 +61,11 @@ export default Checkbox;
 
 const styles = StyleSheet.create({
     checkbox: {
+        alignSelf: "center",
         // Semantically, this are the constants for a small-sized icon
-        minHeight: 16,
-        minWidth: 16,
+        minHeight: spacing.medium_16,
+        minWidth: spacing.medium_16,
+        height: spacing.medium_16,
         borderRadius: 3,
         borderWidth: 1,
         borderStyle: "solid",

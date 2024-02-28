@@ -1,4 +1,4 @@
-import tokens from "../../tokens";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {mergeTheme} from "../merge-theme";
 
 describe("mergeTheme", () => {

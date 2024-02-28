@@ -3,13 +3,28 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import Color, {mix} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {Body, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
+import {
+    Body,
+    LabelSmall,
+    LabelXSmall,
+} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+
+export type PillKind =
+    | "neutral"
+    | "accent"
+    | "info"
+    | "success"
+    | "warning"
+    | "critical"
+    | "transparent";
+
+export type PillSize = "small" | "medium" | "large";
 
 type Props = AriaProps & {
     /**
@@ -24,14 +39,14 @@ type Props = AriaProps & {
      * Determines the color of the pill. Defaults to "neutral".
      * Neutral pills are gray, accent pills are blue.
      */
-    kind?: "neutral" | "accent";
+    kind?: PillKind;
     /**
      * The size of the pill. Defaults to "small".
      * Size of pill. A small pill has more of a classic “badge”
      * look and fully fits within a line of body text inline,
      * whereas a large pill contains normal body font size.
      */
-    size?: "small" | "large";
+    size?: PillSize;
     /**
      * The role the pill should have depending on its behavior.
      * By default, it has none. If pill is Clickable, this is automatically
@@ -59,7 +74,7 @@ type Props = AriaProps & {
 
 const PillInner = (props: {
     children: string | React.ReactElement<React.ComponentProps<Typography>>;
-    size: "small" | "large";
+    size: PillSize;
 }) => {
     const {children, size} = props;
 
@@ -71,7 +86,11 @@ const PillInner = (props: {
         return <LabelXSmall>{props.children}</LabelXSmall>;
     }
 
-    return <Body>{children}</Body>;
+    if (size === "large") {
+        return <Body>{children}</Body>;
+    }
+
+    return <LabelSmall>{children}</LabelSmall>;
 };
 
 /**
@@ -94,16 +113,27 @@ const Pill = React.forwardRef(function Pill(
         id,
         children,
         kind = "neutral",
-        size = "small",
+        size = "medium",
         role,
         onClick,
         style,
         testId,
     } = props;
 
-    const wrapperSizeStyle =
-        size === "small" ? pillStyles.wrapperSmall : pillStyles.wrapperLarge;
-    const colorStyles = _generateColorStyles(!!onClick, kind, size);
+    let wrapperSizeStyle;
+
+    switch (size) {
+        case "small":
+            wrapperSizeStyle = pillStyles.wrapperSmall;
+            break;
+        case "large":
+            wrapperSizeStyle = pillStyles.wrapperLarge;
+            break;
+        default:
+            wrapperSizeStyle = pillStyles.wrapperMedium;
+    }
+
+    const colorStyles = _generateColorStyles(!!onClick, kind);
 
     const defaultStyles = [
         pillStyles.wrapper,
@@ -139,65 +169,108 @@ const Pill = React.forwardRef(function Pill(
     );
 });
 
-const styles: Record<string, any> = {};
-
 const pillStyles = StyleSheet.create({
     wrapper: {
         display: "inline-flex",
         width: "fit-content",
     },
     wrapperSmall: {
-        paddingLeft: Spacing.xSmall_8,
-        paddingRight: Spacing.xSmall_8,
-        borderRadius: Spacing.xxSmall_6,
+        paddingLeft: tokens.spacing.xSmall_8,
+        paddingRight: tokens.spacing.xSmall_8,
+        borderRadius: tokens.spacing.xxSmall_6,
+        height: 20,
+    },
+    wrapperMedium: {
+        paddingLeft: tokens.spacing.xSmall_8,
+        paddingRight: tokens.spacing.xSmall_8,
+        borderRadius: tokens.spacing.xxSmall_6,
+        // Minimum tap area recommendation for a11y
+        height: tokens.spacing.large_24,
     },
     wrapperLarge: {
-        paddingLeft: Spacing.small_12,
-        paddingRight: Spacing.small_12,
-        paddingTop: Spacing.xxSmall_6,
-        paddingBottom: Spacing.xxSmall_6,
-        borderRadius: Spacing.large_24,
+        paddingLeft: tokens.spacing.small_12,
+        paddingRight: tokens.spacing.small_12,
+        paddingTop: tokens.spacing.xxSmall_6,
+        paddingBottom: tokens.spacing.xxSmall_6,
+        borderRadius: tokens.spacing.large_24,
+        height: tokens.spacing.xLarge_32,
     },
 });
 
-const _generateColorStyles = (
-    clickable: boolean,
-    kind: "neutral" | "accent",
-    size: "small" | "large",
-) => {
-    const pillType = `${kind}-${clickable.toString()}-${size.toString()}`;
+const styles: Record<string, any> = {};
+
+const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
+    const pillType = `${kind}-${clickable.toString()}`;
     if (styles[pillType]) {
         return styles[pillType];
     }
 
-    const activeAccentColor = mix(Color.offBlack32, Color.blue);
+    let backgroundColor;
 
-    const currentBackgroundColor =
-        kind === "accent" ? Color.blue : Color.offBlack8;
-    const currentTextColor = kind === "accent" ? Color.white : Color.offBlack;
-    const currentActiveColor =
-        kind === "accent" ? activeAccentColor : Color.offBlack16;
+    switch (kind) {
+        case "accent":
+            backgroundColor = tokens.color.blue;
+            break;
+        case "info":
+            backgroundColor = tokens.color.fadedBlue16;
+            break;
+        case "success":
+            backgroundColor = tokens.color.fadedGreen16;
+            break;
+        case "warning":
+            backgroundColor = tokens.color.fadedGold16;
+            break;
+        case "critical":
+            backgroundColor = tokens.color.fadedRed16;
+            break;
+        case "transparent":
+            backgroundColor = "transparent";
+            break;
+        case "neutral":
+        default:
+            backgroundColor = tokens.color.offBlack8;
+    }
+
+    const activeColor =
+        kind === "neutral" || kind === "transparent"
+            ? tokens.color.offBlack16
+            : mix(tokens.color.offBlack32, backgroundColor);
+
+    const textColor =
+        kind === "accent" ? tokens.color.white : tokens.color.offBlack;
+    const outlineColor =
+        kind === "critical" ? tokens.color.red : tokens.color.blue;
+    const activeOutlineColor =
+        kind === "critical" ? tokens.color.activeRed : tokens.color.activeBlue;
+
+    const outline =
+        kind === "transparent"
+            ? `1px solid ${tokens.color.offBlack16}`
+            : "none";
 
     const colorStyles: StyleDeclaration = {
         pill: {
-            backgroundColor: currentBackgroundColor,
-            color: currentTextColor,
+            backgroundColor: backgroundColor,
+            outline,
+            color: textColor,
+            alignItems: "center",
+            justifyContent: "center",
         },
         clickableWrapper: {
-            outline: "none",
+            outline,
 
             ":hover": {
-                outline: `2px solid ${Color.blue}`,
-                outlineOffset: Spacing.xxxxSmall_2,
+                outline: `2px solid ${outlineColor}`,
+                outlineOffset: tokens.spacing.xxxxSmall_2,
             },
             ":active": {
-                backgroundColor: currentActiveColor,
-                outline: `2px solid ${activeAccentColor}`,
-                outlineOffset: Spacing.xxxxSmall_2,
+                backgroundColor: activeColor,
+                outline: `2px solid ${activeOutlineColor}`,
+                outlineOffset: tokens.spacing.xxxxSmall_2,
             },
             ":focus-visible": {
-                outline: `2px solid ${Color.blue}`,
-                outlineOffset: Spacing.xxxxSmall_2,
+                outline: `2px solid ${outlineColor}`,
+                outlineOffset: tokens.spacing.xxxxSmall_2,
             },
         },
     };

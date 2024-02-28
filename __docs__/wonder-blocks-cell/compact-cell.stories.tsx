@@ -3,17 +3,16 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import CompactCellArgTypes, {AccessoryMappings} from "./compact-cell.argtypes";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 type StoryComponentType = StoryObj<typeof CompactCell>;
 
@@ -56,7 +55,7 @@ export default {
 export const DefaultCompactCell: StoryComponentType = {
     args: {
         title: "Basic Cell",
-        rightAccessory: <Icon icon={icons.caretRight} />,
+        rightAccessory: <PhosphorIcon icon={IconMappings.caretRight} />,
     },
     parameters: {
         chromatic: {
@@ -72,14 +71,16 @@ export const DefaultCompactCell: StoryComponentType = {
 export const CompactCellLeft: StoryComponentType = () => (
     <CompactCell
         title="Intro to rational & irrational numbers"
-        leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
+        leftAccessory={
+            <PhosphorIcon icon={IconMappings.article} size="medium" />
+        }
     />
 );
 
 CompactCellLeft.parameters = {
     docs: {
         description: {
-            story: "You can create a minimal cell that only uses a title and an Icon that can be placed on the left or right (or both). In this case, we will place the icon on the left to show you how cell is flexible. Note that you can pass any of the existing WB components such as `Icon`, `IconButton`, `Tooltip`, etc.",
+            story: "You can create a minimal cell that only uses a title and an PhosphorIcon that can be placed on the left or right (or both). In this case, we will place the icon on the left to show you how cell is flexible. Note that you can pass any of the existing WB components such as `PhosphorIcon`, `IconButton`, `Tooltip`, etc.",
         },
     },
 };
@@ -91,7 +92,9 @@ export const CompactCellRight: StoryComponentType = {
     render: () => (
         <CompactCell
             title="Intro to rational & irrational numbers"
-            rightAccessory={<Icon icon={icons.caretRight} size="medium" />}
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
+            }
         />
     ),
 };
@@ -99,7 +102,7 @@ export const CompactCellRight: StoryComponentType = {
 CompactCellRight.parameters = {
     docs: {
         description: {
-            story: "You can also create a cell with an accessory placed on the right. Note that you can pass any of the existing WB components such as `Icon`.",
+            story: "You can also create a cell with an accessory placed on the right. Note that you can pass any of the existing WB components such as `PhosphorIcon`.",
         },
     },
 };
@@ -113,12 +116,12 @@ export const CompactCellWithDifferentHeights: StoryComponentType = () => (
             title="Single line with short accessory."
             rightAccessory={AccessoryMappings.withCaret}
         />
-        <Strut size={Spacing.xSmall_8} />
+        <Strut size={spacing.xSmall_8} />
         <CompactCell
             title="Single line with tall accessory."
             rightAccessory={AccessoryMappings.withIconText}
         />
-        <Strut size={Spacing.xSmall_8} />
+        <Strut size={spacing.xSmall_8} />
         <CompactCell
             title="Multi line title with tall accessory. Content should fit within the container and the cell height should be consistent no matter the content length."
             rightAccessory={AccessoryMappings.withIconText}
@@ -137,18 +140,20 @@ CompactCellWithDifferentHeights.parameters = {
 /**
  * A CompactCell example adding both accessories (left and right)
  */
-const calendarIcon: IconAsset = {
-    small: `M14.22 1.6H13.33V0H11.56V1.6H4.44V0H2.67V1.6H1.78C0.79 1.6 0.01 2.32 0.01 3.2L0 14.4C0 15.28 0.79 16 1.78 16H14.22C15.2 16 16 15.28 16 14.4V3.2C16 2.32 15.2 1.6 14.22 1.6ZM14.22 14.4H1.78V5.6H14.22V14.4ZM3.56 7.2H8V11.2H3.56V7.2Z`,
-};
-
 export const CompactCellBoth: StoryComponentType = {
     name: "CompactCell with both accessories",
     render: () => (
         <CompactCell
             title="Intro to rational & irrational numbers"
-            leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.article} size="medium" />
+            }
             rightAccessory={
-                <Icon icon={calendarIcon} size="medium" color={Color.blue} />
+                <PhosphorIcon
+                    icon={IconMappings.calendar}
+                    size="medium"
+                    color={color.blue}
+                />
             }
         />
     ),
@@ -157,7 +162,7 @@ export const CompactCellBoth: StoryComponentType = {
 CompactCellBoth.parameters = {
     docs: {
         description: {
-            story: "You can also create a more complex cell with accessories placed on both sides. Note that you can extend the Icon component with custom paths such as the following example.",
+            story: "You can also create a more complex cell with accessories placed on both sides. Note that you can extend the PhosphorIcon component with custom paths such as the following example.",
         },
     },
 };
@@ -167,15 +172,19 @@ export const CompactCellAccessoryStyles: StoryComponentType = {
     render: () => (
         <CompactCell
             title="CompactCell with custom accessory styles"
-            leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
+            leftAccessory={
+                <PhosphorIcon icon={IconMappings.article} size="medium" />
+            }
             leftAccessoryStyle={{
-                minWidth: Spacing.xxLarge_48,
+                minWidth: spacing.xxLarge_48,
                 alignSelf: "flex-start",
                 alignItems: "flex-start",
             }}
-            rightAccessory={<Icon icon={icons.caretRight} size="small" />}
+            rightAccessory={
+                <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+            }
             rightAccessoryStyle={{
-                minWidth: Spacing.large_24,
+                minWidth: spacing.large_24,
                 alignSelf: "flex-end",
                 alignItems: "flex-end",
             }}
@@ -201,21 +210,21 @@ export const CompactCellHorizontalRules: StoryComponentType = {
             <CompactCell
                 title="This is a basic cell with an 'inset' horizontal rule"
                 leftAccessory={
-                    <Icon icon={icons.contentArticle} size="medium" />
+                    <PhosphorIcon icon={IconMappings.article} size="medium" />
                 }
                 horizontalRule="inset"
             />
             <CompactCell
                 title="This is a basic cell with a 'full-width' horizontal rule"
                 leftAccessory={
-                    <Icon icon={icons.contentArticle} size="medium" />
+                    <PhosphorIcon icon={IconMappings.article} size="medium" />
                 }
                 horizontalRule="full-width"
             />
             <CompactCell
                 title="This is a basic cell without a horizontal rule"
                 leftAccessory={
-                    <Icon icon={icons.contentArticle} size="medium" />
+                    <PhosphorIcon icon={IconMappings.article} size="medium" />
                 }
                 horizontalRule="none"
             />
@@ -234,11 +243,15 @@ CompactCellHorizontalRules.parameters = {
 export const CompactCellWithCustomStyles: StoryComponentType = () => (
     <CompactCell
         title="CompactCell with a darkBlue background"
-        leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
-        rightAccessory={<Icon icon={calendarIcon} color={Color.white} />}
+        leftAccessory={
+            <PhosphorIcon icon={IconMappings.article} size="medium" />
+        }
+        rightAccessory={
+            <PhosphorIcon icon={IconMappings.calendar} color={color.white} />
+        }
         style={{
-            background: Color.darkBlue,
-            color: Color.white,
+            background: color.darkBlue,
+            color: color.white,
         }}
         onClick={() => {}}
     />
@@ -260,7 +273,7 @@ CompactCellWithCustomStyles.parameters = {
 export const ClickableCompactCell: StoryComponentType = () => (
     <CompactCell
         title="Intro to rational & irrational numbers"
-        rightAccessory={<Icon icon={icons.caretRight} />}
+        rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
         onClick={() => {}}
         aria-label="Press to navigate to the article"
     />
@@ -283,9 +296,15 @@ export const CompactCellActive: StoryComponentType = () => (
     <CompactCell
         title="Title for article item"
         leftAccessory={
-            <Icon icon={icons.contentVideo} size="medium" color="black" />
+            <PhosphorIcon
+                icon={IconMappings.playCircle}
+                size="medium"
+                color="black"
+            />
         }
-        rightAccessory={<Icon icon={calendarIcon} size="small" />}
+        rightAccessory={
+            <PhosphorIcon icon={IconMappings.calendarBold} size="small" />
+        }
         active={true}
         onClick={() => {}}
     />
@@ -303,7 +322,9 @@ export const CompactCellDisabled: StoryComponentType = () => (
     <CompactCell
         title="Title for article item"
         leftAccessory={AccessoryMappings.withImage}
-        rightAccessory={<Icon icon={calendarIcon} size="small" />}
+        rightAccessory={
+            <PhosphorIcon icon={IconMappings.calendarBold} size="small" />
+        }
         disabled={true}
         onClick={() => {}}
     />
@@ -339,7 +360,10 @@ export const CompactCellsAsListItems: StoryComponentType = {
                 <CompactCell
                     title="Active Cell"
                     leftAccessory={
-                        <Icon icon={icons.contentArticle} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.article}
+                            size="medium"
+                        />
                     }
                     active={true}
                     href="https://khanacademy.org"
@@ -350,7 +374,10 @@ export const CompactCellsAsListItems: StoryComponentType = {
                 <CompactCell
                     title="Cell with default bg color"
                     leftAccessory={
-                        <Icon icon={icons.contentArticle} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.article}
+                            size="medium"
+                        />
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
@@ -360,21 +387,27 @@ export const CompactCellsAsListItems: StoryComponentType = {
                 <CompactCell
                     title="Cell with a faded background color"
                     leftAccessory={
-                        <Icon icon={icons.contentArticle} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.article}
+                            size="medium"
+                        />
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: Color.offBlack50}}
+                    style={{background: color.offBlack50}}
                 />
             </View>
             <View role="listitem">
                 <CompactCell
                     title="Cell with a solid background color"
                     leftAccessory={
-                        <Icon icon={icons.contentArticle} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.article}
+                            size="medium"
+                        />
                     }
                     onClick={() => {}}
-                    style={{background: Color.pink}}
+                    style={{background: color.pink}}
                     horizontalRule="full-width"
                 />
             </View>
@@ -391,8 +424,8 @@ export const CompactCellsAsListItems: StoryComponentType = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: Color.offWhite,
-        padding: Spacing.large_24,
-        width: 320 + Spacing.xxLarge_48,
+        backgroundColor: color.offWhite,
+        padding: spacing.large_24,
+        width: 320 + spacing.xxLarge_48,
     },
 });

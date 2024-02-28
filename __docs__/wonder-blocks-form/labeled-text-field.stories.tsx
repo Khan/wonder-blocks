@@ -4,8 +4,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -541,7 +540,7 @@ export const CustomStyle: StoryComponentType = () => {
                 style={styles.grow}
                 onKeyDown={handleKeyDown}
             />
-            <Strut size={Spacing.xLarge_32} />
+            <Strut size={spacing.xLarge_32} />
             <LabeledTextField
                 label="Last name"
                 description="Please enter your last name"
@@ -620,7 +619,7 @@ export const Ref: StoryComponentType = () => {
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
             />
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Button style={styles.button} onClick={handleSubmit}>
                 Focus Input
             </Button>
@@ -731,14 +730,14 @@ AutoComplete.parameters = {
 
 const styles = StyleSheet.create({
     darkBackground: {
-        background: Color.darkBlue,
-        padding: `${Spacing.medium_16}px`,
+        background: color.darkBlue,
+        padding: `${spacing.medium_16}px`,
     },
     whiteColor: {
-        color: Color.white,
+        color: color.white,
     },
     offWhiteColor: {
-        color: Color.white64,
+        color: color.white64,
     },
     button: {
         maxWidth: 150,
@@ -750,6 +749,6 @@ const styles = StyleSheet.create({
         flexGrow: 1,
     },
     fieldWithButton: {
-        marginBottom: Spacing.medium_16,
+        marginBottom: spacing.medium_16,
     },
 });

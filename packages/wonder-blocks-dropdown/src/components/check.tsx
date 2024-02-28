@@ -1,10 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-
-const {offBlack, offBlack32, white} = Color;
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
 /**
  * Props describing the state of the OptionItem, shared by the checkbox
@@ -15,30 +14,17 @@ type CheckProps = {
     disabled: boolean;
     /** Whether option item is selected. */
     selected: boolean;
-    /** Whether option item is pressed. */
-    pressed: boolean;
-    /** Whether option item is hovered. */
-    hovered: boolean;
-    /** Whether option item is focused. */
-    focused: boolean;
 };
 
 /**
  * The check component used by OptionItem.
  */
 const Check = function (props: CheckProps): React.ReactElement {
-    const {disabled, selected, pressed, hovered, focused} = props;
+    const {selected} = props;
     return (
-        <Icon
-            icon={icons.check}
+        <PhosphorIcon
+            icon={checkIcon}
             size="small"
-            color={
-                disabled
-                    ? offBlack32
-                    : pressed || hovered || focused
-                    ? white
-                    : offBlack
-            }
             style={[styles.bounds, !selected && styles.hide]}
         />
     );
@@ -48,9 +34,11 @@ export default Check;
 
 const styles = StyleSheet.create({
     bounds: {
+        alignSelf: "center",
+        height: spacing.medium_16,
         // Semantically, this are the constants for a small-sized icon
-        minHeight: 16,
-        minWidth: 16,
+        minHeight: spacing.medium_16,
+        minWidth: spacing.medium_16,
     },
 
     hide: {

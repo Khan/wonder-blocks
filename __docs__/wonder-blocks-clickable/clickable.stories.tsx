@@ -4,8 +4,7 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
@@ -55,19 +54,18 @@ type StoryComponentType = StoryObj<typeof Clickable>;
 
 export const Default: StoryComponentType = (args: any) => (
     <Clickable {...args}>
-        {({hovered, pressed}) => {
-            return (
-                <View
-                    style={[
-                        styles.clickable,
-                        hovered && styles.hovered,
-                        pressed && styles.pressed,
-                    ]}
-                >
-                    <Body>This text is clickable!</Body>
-                </View>
-            );
-        }}
+        {({hovered, pressed, focused}) => (
+            <View
+                style={[
+                    styles.clickable,
+                    hovered && styles.hovered,
+                    pressed && styles.pressed,
+                    focused && styles.focused,
+                ]}
+            >
+                <Body>This text is clickable!</Body>
+            </View>
+        )}
     </Clickable>
 );
 
@@ -310,42 +308,42 @@ Ref.parameters = {
 const styles = StyleSheet.create({
     clickable: {
         borderWidth: 1,
-        padding: Spacing.medium_16,
+        padding: spacing.medium_16,
     },
     hovered: {
         textDecoration: "underline",
-        backgroundColor: Color.teal,
+        backgroundColor: color.teal,
     },
     pressed: {
-        color: Color.blue,
+        color: color.blue,
     },
     focused: {
-        outline: `solid 4px ${Color.lightBlue}`,
+        outline: `solid 4px ${color.lightBlue}`,
     },
     centerText: {
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
         textAlign: "center",
     },
     dark: {
-        backgroundColor: Color.darkBlue,
-        color: Color.white,
-        padding: Spacing.xSmall_8,
+        backgroundColor: color.darkBlue,
+        color: color.white,
+        padding: spacing.xSmall_8,
     },
     row: {
         flexDirection: "row",
         alignItems: "center",
     },
     heading: {
-        marginRight: Spacing.large_24,
+        marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${Color.lightBlue}`,
-        marginTop: Spacing.large_24,
-        padding: Spacing.large_24,
+        border: `1px dashed ${color.lightBlue}`,
+        marginTop: spacing.large_24,
+        padding: spacing.large_24,
     },
     disabled: {
-        color: Color.white,
-        backgroundColor: Color.offBlack64,
+        color: color.white,
+        backgroundColor: color.offBlack64,
     },
     button: {
         maxWidth: 150,

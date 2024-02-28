@@ -1,5 +1,132 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.53
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.1.6
+
+## 2.0.52
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-dropdown@5.1.5
+    -   @khanacademy/wonder-blocks-layout@2.0.27
+
+## 2.0.51
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-dropdown@5.1.4
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
+## 2.0.50
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.1.3
+
+## 2.0.49
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.1.2
+
+## 2.0.48
+
+### Patch Changes
+
+-   Updated dependencies [0221ea14]
+    -   @khanacademy/wonder-blocks-dropdown@5.1.1
+
+## 2.0.47
+
+### Patch Changes
+
+-   Updated dependencies [c01f6864]
+    -   @khanacademy/wonder-blocks-dropdown@5.1.0
+
+## 2.0.46
+
+### Patch Changes
+
+-   Updated dependencies [0aaf4e6e]
+    -   @khanacademy/wonder-blocks-dropdown@5.0.2
+
+## 2.0.45
+
+### Patch Changes
+
+-   Updated dependencies [5d34b4b4]
+    -   @khanacademy/wonder-blocks-dropdown@5.0.1
+
+## 2.0.44
+
+### Patch Changes
+
+-   Updated dependencies [70e846cb]
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [56a896c6]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-dropdown@5.0.0
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-layout@2.0.25
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 2.0.43
+
+### Patch Changes
+
+-   Updated dependencies [860d9ef9]
+    -   @khanacademy/wonder-blocks-dropdown@4.0.0
+
+## 2.0.42
+
+### Patch Changes
+
+-   Updated dependencies [171e3b01]
+    -   @khanacademy/wonder-blocks-icon@4.0.0
+    -   @khanacademy/wonder-blocks-dropdown@3.1.10
+
+## 2.0.41
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+    -   @khanacademy/wonder-blocks-dropdown@3.1.9
+
+## 2.0.40
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@3.1.8
+
+## 2.0.39
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@3.1.7
+
+## 2.0.38
+
+### Patch Changes
+
+-   c8e9ce34: Add PhosphorIcon support (replace Icon)
+-   Updated dependencies [af26c590]
+    -   @khanacademy/wonder-blocks-dropdown@3.1.6
+
 ## 2.0.37
 
 ### Patch Changes

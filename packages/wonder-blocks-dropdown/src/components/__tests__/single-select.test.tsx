@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -32,6 +33,96 @@ describe("SingleSelect", () => {
                 <OptionItem label="item 3" value="3" />
             </SingleSelect>
         );
+
+        describe("opener", () => {
+            it("should render the placeholder if no selections are made", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                    >
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = screen.getByRole("button");
+
+                // Assert
+                expect(opener).toHaveTextContent("Default placeholder");
+            });
+
+            it("should render empty if the selected option has an empty value", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue=""
+                    >
+                        <OptionItem label="" value="" />
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = screen.getByRole("button");
+
+                // Assert
+                expect(opener).toHaveTextContent("");
+            });
+
+            it("should render the label of the selected option", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                    >
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = screen.getByRole("button");
+
+                // Assert
+                expect(opener).toHaveTextContent("Toggle A");
+            });
+
+            it("should render labelAsText of the selected option", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = screen.getByRole("button");
+
+                // Assert
+                expect(opener).toHaveTextContent("Plain Toggle A");
+            });
+        });
 
         describe("mouse", () => {
             it("should open when clicking on the default opener", () => {
@@ -660,10 +751,60 @@ describe("SingleSelect", () => {
             const dismissBtn = screen.getByLabelText("Clear search");
             expect(dismissBtn).toHaveFocus();
         });
+
+        it("should filter an option", () => {
+            // Arrange
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    isFilterable={true}
+                    opened={true}
+                >
+                    <OptionItem label="Canada" value="ca" />
+                    <OptionItem label="Colombia" value="co" />
+                </SingleSelect>,
+            );
+
+            // Act
+            // NOTE: We search using the lowercased version of the label.
+            userEvent.paste(screen.getByRole("textbox"), "col");
+
+            // Assert
+            const filteredOption = screen.getByRole("option", {
+                name: "Colombia",
+            });
+            expect(filteredOption).toBeInTheDocument();
+        });
+
+        it("should filter out an option if it's not part of the results", () => {
+            // Arrange
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    isFilterable={true}
+                    opened={true}
+                >
+                    <OptionItem label="Canada" value="ca" />
+                    <OptionItem label="Colombia" value="co" />
+                </SingleSelect>,
+            );
+
+            // Act
+            // NOTE: We search using the lowercased version of the label.
+            userEvent.paste(screen.getByRole("textbox"), "col");
+
+            // Assert
+            const filteredOutOption = screen.queryByRole("option", {
+                name: "Canada",
+            });
+            expect(filteredOutOption).not.toBeInTheDocument();
+        });
     });
 
     describe("Custom listbox styles", () => {
-        it("should apply the default maxHeight to the listbox", () => {
+        it("should apply the default maxHeight to the listbox wrapper", () => {
             // Arrange
 
             // Act
@@ -681,11 +822,15 @@ describe("SingleSelect", () => {
             );
 
             // Assert
-            const dropdownMenu = screen.getByRole("listbox");
-            expect(dropdownMenu).toHaveStyle("max-height: 120px");
+            const dropdownMenuWrapper = screen.getByTestId(
+                "dropdown-core-container",
+            );
+            expect(dropdownMenuWrapper).toHaveStyle(
+                "max-height: var(--popper-max-height)",
+            );
         });
 
-        it("should apply the default maxHeight to a virtualized listbox", () => {
+        it("should apply the default maxHeight to a virtualized listbox wrapper", () => {
             // Arrange
             const optionItems = new Array(1000)
                 .fill(null)
@@ -711,9 +856,13 @@ describe("SingleSelect", () => {
             );
 
             // Assert
-            const dropdownMenu = screen.getByRole("listbox");
+            const dropdownMenuWrapper = screen.getByTestId(
+                "dropdown-core-container",
+            );
             // Max allowed height
-            expect(dropdownMenu).toHaveStyle("max-height: 360px");
+            expect(dropdownMenuWrapper).toHaveStyle(
+                "max-height: var(--popper-max-height)",
+            );
         });
 
         it("should override the default maxHeight to the listbox if a custom dropdownStyle is set", () => {
@@ -751,13 +900,14 @@ describe("SingleSelect", () => {
                     isFilterable={true}
                     opened={true}
                 >
-                    <OptionItem label="item 0" value="0" />
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="ITEM 0" value="0" />
+                    <OptionItem label="ITEM 1" value="1" />
+                    <OptionItem label="ITEM 2" value="2" />
                 </SingleSelect>,
             );
 
             // Act
+            // NOTE: We search using the lowercased version of the label.
             userEvent.paste(screen.getByRole("textbox"), "item 0");
 
             // Assert
@@ -765,9 +915,7 @@ describe("SingleSelect", () => {
                 "dropdown-live-region",
             ).textContent;
 
-            // TODO(WB-1318): Change this assertion to `1 item` after adding the
-            // `labels` prop to the component.
-            expect(liveRegionText).toEqual("1 items");
+            expect(liveRegionText).toEqual("1 item");
         });
     });
 

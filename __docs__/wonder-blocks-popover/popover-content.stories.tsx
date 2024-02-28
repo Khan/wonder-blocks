@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
@@ -59,6 +59,7 @@ export const Default: StoryComponentType = {
         content: "The default version only includes text.",
         closeButtonVisible: true,
     },
+    render: (args) => <PopoverContent {...args} />,
 };
 
 Default.storyName = "Default (text)";
@@ -82,13 +83,14 @@ export const Emphasized: StoryComponentType = {
                 <Button light={true} kind="secondary">
                     Previous
                 </Button>
-                <Strut size={Spacing.medium_16} />
+                <Strut size={spacing.medium_16} />
                 <Button light={true} kind="primary">
                     Next
                 </Button>
             </>
         ),
     },
+    render: (args) => <PopoverContent {...args} />,
 };
 
 Emphasized.parameters = {
@@ -106,8 +108,9 @@ export const WithIcon: StoryComponentType = {
     args: {
         title: "Popover with Icon",
         content: "Popovers can include images on the left.",
-        icon: <img src="/logo.svg" width="100%" alt="Wonder Blocks logo" />,
+        icon: <img src="./logo.svg" width="100%" alt="Wonder Blocks logo" />,
     },
+    render: (args) => <PopoverContent {...args} />,
 };
 
 WithIcon.parameters = {
@@ -125,7 +128,7 @@ export const WithIllustration: StoryComponentType = {
             "As you can see, this popover includes a full-bleed illustration.",
         image: (
             <img
-                src="/illustration.svg"
+                src="./illustration.svg"
                 alt="An illustration of a person skating on a pencil"
                 width={288}
                 height={200}
@@ -133,6 +136,7 @@ export const WithIllustration: StoryComponentType = {
         ),
         closeButtonVisible: true,
     },
+    render: (args) => <PopoverContent {...args} />,
 };
 
 WithIllustration.parameters = {

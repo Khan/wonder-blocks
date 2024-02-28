@@ -1,5 +1,95 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.1.11
+
+### Patch Changes
+
+-   Updated dependencies [60fdac1c]
+    -   @khanacademy/wonder-blocks-clickable@4.1.0
+
+## 5.1.10
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-theming@2.0.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.14
+
+## 5.1.9
+
+### Patch Changes
+
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-theming@2.0.0
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.0.13
+
+## 5.1.8
+
+### Patch Changes
+
+-   Updated dependencies [80592e75]
+    -   @khanacademy/wonder-blocks-theming@1.3.0
+
+## 5.1.7
+
+### Patch Changes
+
+-   Updated dependencies [23ab9f8c]
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-icon@4.0.1
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-clickable@4.0.12
+
+## 5.1.6
+
+### Patch Changes
+
+-   9092363d: Fixes keyboard behavior on IconButton:
+    -   Allows triggering onClick when Enter is pressed. - Fixes the active state from not being sticky on mobile devices.
+
+## 5.1.5
+
+### Patch Changes
+
+-   Updated dependencies [171e3b01]
+    -   @khanacademy/wonder-blocks-icon@4.0.0
+
+## 5.1.4
+
+### Patch Changes
+
+-   Updated dependencies [96f675d2]
+    -   @khanacademy/wonder-blocks-icon@3.0.0
+
+## 5.1.3
+
+### Patch Changes
+
+-   Updated dependencies [edcfbe14]
+    -   @khanacademy/wonder-blocks-theming@1.2.1
+
+## 5.1.2
+
+### Patch Changes
+
+-   Updated dependencies [6b8bf8d5]
+    -   @khanacademy/wonder-blocks-clickable@4.0.11
+
+## 5.1.1
+
+### Patch Changes
+
+-   Updated dependencies [7b24db93]
+    -   @khanacademy/wonder-blocks-clickable@4.0.10
+
 ## 5.1.0
 
 ### Minor Changes

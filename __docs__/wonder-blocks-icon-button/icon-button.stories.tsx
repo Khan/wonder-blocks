@@ -15,9 +15,8 @@ import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 import {MemoryRouter, Route, Switch} from "react-router";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -123,7 +122,7 @@ export const Sizes: StoryComponentType = {
         icon: magnifyingGlass,
     },
     render: (args) => (
-        <View style={{gap: Spacing.medium_16}}>
+        <View style={{gap: spacing.medium_16}}>
             <View style={styles.row}>
                 <LabelMedium style={styles.label}>xsmall</LabelMedium>
                 <IconButton
@@ -346,20 +345,20 @@ export const WithRouter: StoryComponentType = {
 
 const styles = StyleSheet.create({
     dark: {
-        backgroundColor: tokens.color.darkBlue,
-        padding: Spacing.medium_16,
+        backgroundColor: color.darkBlue,
+        padding: spacing.medium_16,
     },
     arrowsWrapper: {
         flexDirection: "row",
         justifyContent: "space-between",
-        width: Spacing.xxxLarge_64,
+        width: spacing.xxxLarge_64,
     },
     row: {
         flexDirection: "row",
-        gap: Spacing.medium_16,
+        gap: spacing.medium_16,
         alignItems: "center",
     },
     label: {
-        width: Spacing.xxxLarge_64,
+        width: spacing.xxxLarge_64,
     },
 });

@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.1.0
+
+### Minor Changes
+
+-   60fdac1c: Added onMouseDown and onMouseUp props to Clickable
+
+## 4.0.14
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+
+## 4.0.13
+
+### Patch Changes
+
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+
+## 4.0.12
+
+### Patch Changes
+
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-core@6.3.1
+
+## 4.0.11
+
+### Patch Changes
+
+-   6b8bf8d5: Fix onFocus handler on Clickable
+
+## 4.0.10
+
+### Patch Changes
+
+-   7b24db93: Get onFocus to work for buttons
+
 ## 4.0.9
 
 ### Patch Changes

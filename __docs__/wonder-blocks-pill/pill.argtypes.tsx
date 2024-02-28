@@ -20,12 +20,23 @@ export default {
         description: "Kind of pill.",
         defaultValue: "neutral",
         table: {
-            type: {summary: `"neutral" | "accent"`},
+            type: {
+                summary: `"neutral" | "accent | "info" | "success" |
+                    "warning" | "critical" | "transparent"`,
+            },
             defaultValue: {summary: "neutral"},
         },
         type: {
             name: "enum",
-            value: ["neutral", "accent"],
+            value: [
+                "neutral",
+                "accent",
+                "info",
+                "success",
+                "warning",
+                "critical",
+                "transparent",
+            ],
             required: false,
         },
     },
@@ -36,12 +47,12 @@ export default {
             whereas a large pill contains normal body font size.`,
         defaultValue: "small",
         table: {
-            type: {summary: `"small" | "large"`},
-            defaultValue: {summary: "small"},
+            type: {summary: `"small" | "medium" | "large"`},
+            defaultValue: {summary: "medium"},
         },
         type: {
             name: "enum",
-            value: ["small", "large"],
+            value: ["small", "medium", "large"],
             required: false,
         },
     },

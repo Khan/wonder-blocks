@@ -10,14 +10,14 @@ import Button from "@khanacademy/wonder-blocks-button";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 const mobile = "@media (max-width: 1023px)";
 
 const styles = StyleSheet.create({
     fillContent: {
-        marginLeft: Spacing.small_12,
+        marginLeft: spacing.small_12,
         [mobile]: {
             width: "100vw",
         },
@@ -41,7 +41,7 @@ export const leftContentMappings: Mappings = {
     multipleContent: (
         <>
             <IconButton icon={magnifyingGlassMinus} kind="primary" />
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <IconButton icon={magnifyingGlassPlus} kind="primary" />
         </>
     ),
@@ -67,11 +67,11 @@ export const rightContentMappings: Mappings = {
     multipleContent: (
         <>
             <LabelLarge>7 questions</LabelLarge>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Button style={buttonStyle} kind="secondary">
                 Try again
             </Button>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={spacing.medium_16} />
             <Button style={buttonStyle}>Next exercise</Button>
         </>
     ),

@@ -4,15 +4,15 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import DetailCellArgTypes from "./detail-cell.argtypes";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Cell / DetailCell",
@@ -58,8 +58,10 @@ export const DefaultDetailCell: StoryComponentType = {
         title: "Title for article item",
         subtitle1: "Subtitle 1 for article item",
         subtitle2: "Subtitle 2 for article item",
-        leftAccessory: <Icon icon={icons.contentVideo} size="medium" />,
-        rightAccessory: <Icon icon={icons.caretRight} />,
+        leftAccessory: (
+            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+        ),
+        rightAccessory: <PhosphorIcon icon={IconMappings.caretRight} />,
     },
 };
 
@@ -71,8 +73,12 @@ export const DetailCellActive: StoryComponentType = () => (
         title="Title for article item"
         subtitle1="Subtitle for article item"
         subtitle2="Subtitle for article item"
-        leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
-        rightAccessory={<Icon icon={icons.caretRight} size="small" />}
+        leftAccessory={
+            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+        }
+        rightAccessory={
+            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+        }
         active={true}
     />
 );
@@ -93,8 +99,12 @@ export const DetailCellDisabled: StoryComponentType = () => (
         title="Title for article item"
         subtitle1="Subtitle for article item"
         subtitle2="Subtitle for article item"
-        leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
-        rightAccessory={<Icon icon={icons.caretRight} size="small" />}
+        leftAccessory={
+            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+        }
+        rightAccessory={
+            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+        }
         disabled={true}
     />
 );
@@ -116,11 +126,15 @@ export const DetailCellWithCustomStyles: StoryComponentType = () => (
         contentStyle={{
             alignSelf: "flex-start",
         }}
-        leftAccessory={<Icon icon={icons.caretLeft} size="small" />}
+        leftAccessory={
+            <PhosphorIcon icon={IconMappings.caretLeftBold} size="small" />
+        }
         leftAccessoryStyle={{
             alignSelf: "flex-start",
         }}
-        rightAccessory={<Icon icon={icons.caretRight} size="small" />}
+        rightAccessory={
+            <PhosphorIcon icon={IconMappings.caretRightBold} size="small" />
+        }
         rightAccessoryStyle={{
             alignSelf: "flex-start",
         }}
@@ -144,8 +158,10 @@ export const ClickableDetailCell: StoryComponentType = () => (
         title="Title for article item"
         subtitle1="Subtitle for article item"
         subtitle2="Subtitle for article item"
-        leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
-        rightAccessory={<Icon icon={icons.caretRight} />}
+        leftAccessory={
+            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+        }
+        rightAccessory={<PhosphorIcon icon={IconMappings.caretRight} />}
         onClick={() => {}}
         aria-label="Press to navigate to the article"
     />
@@ -173,9 +189,14 @@ export const DetailCellNavigation: StoryComponentType = {
                     title="Data"
                     subtitle2="Subtitle for article item"
                     leftAccessory={
-                        <Icon icon={icons.contentVideo} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.playCircle}
+                            size="medium"
+                        />
                     }
-                    rightAccessory={<Icon icon={icons.caretRight} />}
+                    rightAccessory={
+                        <PhosphorIcon icon={IconMappings.caretRight} />
+                    }
                     href="/math/algebra"
                     aria-label="Press to navigate to the article"
                 />
@@ -183,9 +204,14 @@ export const DetailCellNavigation: StoryComponentType = {
                     title="Geometry"
                     subtitle2="Subtitle for article item"
                     leftAccessory={
-                        <Icon icon={icons.contentVideo} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.playCircle}
+                            size="medium"
+                        />
                     }
-                    rightAccessory={<Icon icon={icons.caretRight} />}
+                    rightAccessory={
+                        <PhosphorIcon icon={IconMappings.caretRight} />
+                    }
                     href="/math/geometry"
                     aria-label="Press to navigate to the article"
                     horizontalRule="none"
@@ -242,7 +268,10 @@ export const DetailCellsAsListItems: StoryComponentType = {
                 <DetailCell
                     title="Active Cell"
                     rightAccessory={
-                        <Icon icon={icons.caretRight} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.caretRight}
+                            size="medium"
+                        />
                     }
                     active={true}
                     href="https://khanacademy.org"
@@ -253,7 +282,10 @@ export const DetailCellsAsListItems: StoryComponentType = {
                 <DetailCell
                     title="Cell with default bg color"
                     rightAccessory={
-                        <Icon icon={icons.caretRight} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.caretRight}
+                            size="medium"
+                        />
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
@@ -263,7 +295,10 @@ export const DetailCellsAsListItems: StoryComponentType = {
                 <DetailCell
                     title="Disabled Cell"
                     rightAccessory={
-                        <Icon icon={icons.caretRight} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.caretRight}
+                            size="medium"
+                        />
                     }
                     disabled={true}
                     href="https://khanacademy.org"
@@ -274,21 +309,27 @@ export const DetailCellsAsListItems: StoryComponentType = {
                 <DetailCell
                     title="Cell with a faded background color"
                     rightAccessory={
-                        <Icon icon={icons.caretRight} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.caretRight}
+                            size="medium"
+                        />
                     }
                     href="https://khanacademy.org"
                     horizontalRule="full-width"
-                    style={{background: Color.offBlack50}}
+                    style={{background: color.offBlack50}}
                 />
             </View>
             <View role="listitem">
                 <DetailCell
                     title="Cell with a solid background color"
                     rightAccessory={
-                        <Icon icon={icons.caretRight} size="medium" />
+                        <PhosphorIcon
+                            icon={IconMappings.caretRight}
+                            size="medium"
+                        />
                     }
                     onClick={() => {}}
-                    style={{background: Color.pink}}
+                    style={{background: color.pink}}
                     horizontalRule="full-width"
                 />
             </View>
@@ -305,13 +346,13 @@ export const DetailCellsAsListItems: StoryComponentType = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: Color.offWhite,
-        padding: Spacing.large_24,
+        backgroundColor: color.offWhite,
+        padding: spacing.large_24,
         width: 376,
     },
     navigation: {
-        border: `1px dashed ${Color.lightBlue}`,
-        marginTop: Spacing.large_24,
-        padding: Spacing.large_24,
+        border: `1px dashed ${color.lightBlue}`,
+        marginTop: spacing.large_24,
+        padding: spacing.large_24,
     },
 });

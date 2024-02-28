@@ -57,22 +57,24 @@ type Props = AriaProps &
          */
         dismissEnabled?: boolean;
         /**
-         * The unique identifier to give to the popover. Provide this in cases where
-         * you want to override the default accessibility solution. This identifier
-         * will be applied to the popover content.
+         * The unique identifier to give to the popover. Provide this in cases
+         * where you want to override the default accessibility solution. This
+         * identifier will be applied to the popover title and content.
          *
-         * By providing this identifier, the children that this popover anchors to
-         * will not be automatically given the
-         * [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
-         * attribute. Instead, the accessibility solution is the responsibility of
-         * the caller.
+         * This is also used as a prefix to the IDs of the popover's elements.
          *
-         * If this is not provided, the
-         * [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
-         * attribute will be added to the children with a unique identifier pointing
-         * to the popover dialog.
+         * For example, if you pass `"my-popover"` as the ID, the popover title
+         * will have the ID `"my-popover-title"` and the popover content will
+         * have the ID `"my-popover-content"`.
+         *
          */
         id?: string;
+        /**
+         * The selector for the element that will be focused after the popover
+         * dialog closes. When not set, the element that triggered the popover
+         * will be used.
+         */
+        closedFocusId?: string;
         /**
          * The selector for the element that will be focused when the popover
          * content shows. When not set, the first focusable element within the
@@ -176,11 +178,41 @@ export default class Popover extends React.Component<Props, State> {
         React.createRef();
 
     /**
+     * Returns focus to a given element.
+     */
+    maybeReturnFocus = () => {
+        const {anchorElement} = this.state;
+        const {closedFocusId} = this.props;
+
+        // Focus on the specified element after dismissing the popover.
+        if (closedFocusId) {
+            const focusElement = ReactDOM.findDOMNode(
+                document.getElementById(closedFocusId),
+            ) as any;
+
+            focusElement?.focus();
+            return;
+        }
+
+        // If no element is specified, focus on the element that triggered the
+        // popover.
+        if (anchorElement) {
+            anchorElement.focus();
+        }
+    };
+
+    /**
      * Popover dialog closed
      */
-    handleClose: () => void = () => {
+    handleClose: (shouldReturnFocus?: boolean) => void = (
+        shouldReturnFocus = true,
+    ) => {
         this.setState({opened: false}, () => {
             this.props.onClose?.();
+
+            if (shouldReturnFocus) {
+                this.maybeReturnFocus();
+            }
         });
     };
 
@@ -189,7 +221,7 @@ export default class Popover extends React.Component<Props, State> {
      */
     handleOpen: () => void = () => {
         if (this.props.dismissEnabled && this.state.opened) {
-            this.setState({opened: false});
+            this.handleClose(true);
         } else {
             this.setState({opened: true});
         }
@@ -203,7 +235,7 @@ export default class Popover extends React.Component<Props, State> {
         }
     };
 
-    renderContent(): PopoverContents {
+    renderContent(uniqueId: string): PopoverContents {
         const {content} = this.props;
 
         const popoverContents: PopoverContents =
@@ -214,7 +246,12 @@ export default class Popover extends React.Component<Props, State> {
                 : content;
 
         // @ts-expect-error: TS2769 - No overload matches this call.
-        return React.cloneElement(popoverContents, {ref: this.contentRef});
+        return React.cloneElement(popoverContents, {
+            ref: this.contentRef,
+            // internal prop: only injected by Popover
+            // This allows us to announce the popover content when it is opened.
+            uniqueId,
+        });
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
@@ -233,12 +270,13 @@ export default class Popover extends React.Component<Props, State> {
                     {(props: PopperElementProps) => (
                         <PopoverDialog
                             {...props}
-                            aria-describedby={`${uniqueId}-anchor`}
+                            aria-describedby={`${uniqueId}-content`}
+                            aria-labelledby={`${uniqueId}-title`}
                             id={uniqueId}
                             onUpdate={(placement) => this.setState({placement})}
                             showTail={showTail}
                         >
-                            {this.renderContent()}
+                            {this.renderContent(uniqueId)}
                         </PopoverDialog>
                     )}
                 </TooltipPopper>

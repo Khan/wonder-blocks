@@ -112,6 +112,10 @@ type CommonProps = Readonly<{
      */
     role?: ClickableRole;
     /**
+     * Respond to raw "onfocus" event.
+     */
+    onFocus?: (e: React.FocusEvent) => unknown;
+    /**
      * Respond to raw "keydown" event.
      */
     onKeyDown?: (e: React.KeyboardEvent) => unknown;
@@ -119,6 +123,14 @@ type CommonProps = Readonly<{
      * Respond to raw "keyup" event.
      */
     onKeyUp?: (e: React.KeyboardEvent) => unknown;
+    /**
+     * Respond to a raw "mousedown" event.
+     */
+    onMouseDown?: (e: React.MouseEvent) => unknown;
+    /**
+     * Respond to a raw "mouseup" event.
+     */
+    onMouseUp?: (e: React.MouseEvent) => unknown;
 }>;
 
 type Props =
@@ -190,7 +202,7 @@ export type ChildrenProps = Readonly<{
     onClick: (e: React.SyntheticEvent) => unknown;
     onMouseEnter: (e: React.MouseEvent) => unknown;
     onMouseLeave: () => unknown;
-    onMouseDown: () => unknown;
+    onMouseDown: (e: React.MouseEvent) => unknown;
     onMouseUp: (e: React.MouseEvent) => unknown;
     onTouchStart: () => unknown;
     onTouchEnd: () => unknown;
@@ -510,11 +522,17 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleMouseDown: () => void = () => {
+    handleMouseDown: (e: React.MouseEvent) => void = (e) => {
+        if (this.props.onMouseDown) {
+            this.props.onMouseDown(e);
+        }
         this.setState({pressed: true});
     };
 
     handleMouseUp: (e: React.MouseEvent) => void = (e) => {
+        if (this.props.onMouseUp) {
+            this.props.onMouseUp(e);
+        }
         this.setState({pressed: false, focused: false});
     };
 
@@ -580,7 +598,12 @@ export default class ClickableBehavior extends React.Component<
     };
 
     handleFocus: (e: React.FocusEvent) => void = (e) => {
-        this.setState({focused: true});
+        const {onFocus} = this.props;
+        this.setState({focused: true}, () => {
+            if (onFocus) {
+                onFocus(e);
+            }
+        });
     };
 
     handleBlur: (e: React.FocusEvent) => void = (e) => {

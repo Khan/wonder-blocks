@@ -2,14 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import xIcon from "@phosphor-icons/core/regular/x.svg";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {View, IDProvider} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-import Color from "@khanacademy/wonder-blocks-color";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -28,6 +28,11 @@ type Props = AriaProps & {
      * The text input value.
      */
     value: string;
+    /**
+     * The name for the input control. This is submitted along with
+     * the form data.
+     */
+    name?: string;
     /**
      * Provide hints or examples of what to enter. This shows up as
      * a grayed out text in the field before a value is entered.
@@ -156,10 +161,10 @@ const SearchField: React.ForwardRefExoticComponent<
         <IDProvider id={id} scope="search-field">
             {(uniqueId) => (
                 <View onClick={onClick} style={[styles.inputContainer, style]}>
-                    <Icon
-                        icon={icons.search}
+                    <PhosphorIcon
+                        icon={magnifyingGlassIcon}
                         size="medium"
-                        color={Color.offBlack64}
+                        color={color.offBlack64}
                         style={styles.searchIcon}
                         aria-hidden="true"
                     />
@@ -201,13 +206,13 @@ const styles = StyleSheet.create({
     inputContainer: {
         boxSizing: "border-box",
         flexDirection: "row",
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: spacing.xxxSmall_4,
         alignItems: "center",
         height: 40,
     },
     searchIcon: {
-        marginLeft: Spacing.xSmall_8,
-        marginRight: Spacing.xSmall_8,
+        marginLeft: spacing.xSmall_8,
+        marginRight: spacing.xSmall_8,
         position: "absolute",
     },
     dismissIcon: {
@@ -222,12 +227,12 @@ const styles = StyleSheet.create({
         display: "flex",
         flex: 1,
         "::placeholder": {
-            color: Color.offBlack64,
+            color: color.offBlack64,
         },
         width: "100%",
         color: "inherit",
-        paddingLeft: Spacing.large_24 + Spacing.medium_16,
-        paddingRight: Spacing.large_24 + Spacing.medium_16,
+        paddingLeft: spacing.large_24 + spacing.medium_16,
+        paddingRight: spacing.large_24 + spacing.medium_16,
     },
 });
 

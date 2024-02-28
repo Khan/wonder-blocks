@@ -1,5 +1,33 @@
 # @khanacademy/wonder-blocks-theming
 
+## 2.0.1
+
+### Patch Changes
+
+-   e83f8991: Add "dark" to the list of supported themes
+
+## 2.0.0
+
+### Major Changes
+
+-   7cd7f6cc: Move tokens export to wb-tokens
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+
+## 1.3.0
+
+### Minor Changes
+
+-   80592e75: Added more colors to Pill, small pills are now 24px tall with 14px font size. Tokens (theming) now include pill colors.
+
+## 1.2.1
+
+### Patch Changes
+
+-   edcfbe14: fix font.family.sans value
+
 ## 1.2.0
 
 ### Minor Changes

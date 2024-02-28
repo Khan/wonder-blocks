@@ -17,10 +17,12 @@ import type {CellProps} from "../util/types";
  *
  * ```jsx
  * import {CompactCell} from "@khanacademy/wonder-blocks-cell";
+ * import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+ * import caretRightIcon from "@phosphor-icons/core/regular/caret-right.svg";
  *
  * <CompactCell
  *  title="Compact cell"
- *  rightAccessory={<Icon icon={icons.caretRight} size="medium" />}
+ *  rightAccessory={<PhosphorIcon icon={caretRightIcon} size="medium" />}
  * />
  * ```
  */

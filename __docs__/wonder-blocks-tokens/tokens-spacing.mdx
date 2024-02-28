@@ -1,0 +1,60 @@
+import {Meta, Source} from "@storybook/blocks";
+
+import TokenTable from "../../.storybook/components/token-table";
+
+import {View} from "@khanacademy/wonder-blocks-core";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
+
+import ComponentInfo from "../../.storybook/components/component-info";
+import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
+
+<Meta title="Tokens / Spacing" />
+
+
+
+# Spacing
+
+<ComponentInfo name={packageConfig.name} version={packageConfig.version} />
+
+All the available spacing values that can be used for margin, padding, width,
+height, border-width, etc.
+
+## Usage
+
+You can use these sizes directly by importing `spacing` from the
+`wonder-blocks-tokens` package and accessing the named property like so:
+`spacing.xxSmall_6`.
+
+```js
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {padding: spacing.xxSmall_6};
+```
+
+## Tokens
+
+<TokenTable
+    columns={[
+        {
+            label: "Token",
+            cell: (row) => <code>spacing.{row.label}</code>,
+        },
+        {
+            label: "Value",
+            cell: "value",
+        },
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        backgroundColor: tokens.color.purple,
+                        height: row.value,
+                    }}
+                >
+                    &nbsp;
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.spacing}
+/>

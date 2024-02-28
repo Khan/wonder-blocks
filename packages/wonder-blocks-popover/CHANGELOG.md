@@ -1,5 +1,136 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.1.3
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.11
+-   @khanacademy/wonder-blocks-modal@4.2.4
+-   @khanacademy/wonder-blocks-tooltip@2.1.28
+
+## 3.1.2
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.10
+    -   @khanacademy/wonder-blocks-modal@4.2.3
+    -   @khanacademy/wonder-blocks-tooltip@2.1.27
+
+## 3.1.1
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+    -   @khanacademy/wonder-blocks-tooltip@2.1.26
+    -   @khanacademy/wonder-blocks-modal@4.2.2
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.9
+
+## 3.1.0
+
+### Minor Changes
+
+-   7944c7d3: Add `closedFocusId` prop to manually return focus to a specific element
+
+### Patch Changes
+
+-   e5dd6215: Don't return focus to trigger element if the focus has to go to a different interactive element
+-   163cfca3: Fix tab navigation order
+
+## 3.0.23
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.8
+-   @khanacademy/wonder-blocks-modal@4.2.1
+-   @khanacademy/wonder-blocks-tooltip@2.1.25
+
+## 3.0.22
+
+### Patch Changes
+
+-   Updated dependencies [b7bae8f2]
+-   Updated dependencies [09c61d25]
+    -   @khanacademy/wonder-blocks-modal@4.2.0
+    -   @khanacademy/wonder-blocks-tooltip@2.1.24
+
+## 3.0.21
+
+### Patch Changes
+
+-   Updated dependencies [1b21747a]
+    -   @khanacademy/wonder-blocks-modal@4.1.0
+    -   @khanacademy/wonder-blocks-tooltip@2.1.23
+
+## 3.0.20
+
+### Patch Changes
+
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-icon-button@5.1.7
+    -   @khanacademy/wonder-blocks-modal@4.0.39
+    -   @khanacademy/wonder-blocks-tooltip@2.1.22
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 3.0.19
+
+### Patch Changes
+
+-   66f233d4: Pass the correct ID to the title and content so screen readers can announce popovers correctly
+-   Updated dependencies [9092363d]
+    -   @khanacademy/wonder-blocks-icon-button@5.1.6
+    -   @khanacademy/wonder-blocks-modal@4.0.38
+    -   @khanacademy/wonder-blocks-tooltip@2.1.21
+
+## 3.0.18
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.5
+-   @khanacademy/wonder-blocks-modal@4.0.37
+-   @khanacademy/wonder-blocks-tooltip@2.1.20
+
+## 3.0.17
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.4
+-   @khanacademy/wonder-blocks-modal@4.0.36
+-   @khanacademy/wonder-blocks-tooltip@2.1.19
+
+## 3.0.16
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.3
+-   @khanacademy/wonder-blocks-modal@4.0.35
+-   @khanacademy/wonder-blocks-tooltip@2.1.18
+
+## 3.0.15
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.2
+-   @khanacademy/wonder-blocks-modal@4.0.34
+-   @khanacademy/wonder-blocks-tooltip@2.1.17
+
+## 3.0.14
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.1
+-   @khanacademy/wonder-blocks-modal@4.0.33
+-   @khanacademy/wonder-blocks-tooltip@2.1.16
+
 ## 3.0.13
 
 ### Patch Changes

@@ -1,0 +1,161 @@
+import {Meta} from "@storybook/blocks";
+
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
+
+import TokenTable from "../../.storybook/components/token-table";
+
+<Meta title="Tokens / Typography" />
+
+export const sampleTextUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+export const sampleTextLower = "abcdefghijklmnopqrstuvwxyz";
+
+export const baseColumns = (property) => [
+    {
+        label: "Token",
+        cell: (row) => (
+            <code>
+                font.{property}.{row.label}
+            </code>
+        ),
+    },
+    {
+        label: "Value",
+        cell: "value",
+    },
+];
+
+# Typography
+
+Text sizes, weights and font families used across Wonder Blocks.
+
+<View style={{marginBottom: tokens.spacing.medium_16}}>
+    <Banner
+        kind="info"
+        text="We recommend using the WB Typography components to ensure consistent typography across your app. These tokens are provided for advanced use cases and should be used with caution."
+        layout="floating"
+        actions={[
+            {
+                type: "link",
+                title: "See Typography documentation",
+                href: "../?path=/docs/typography--docs",
+            },
+        ]}
+    />
+</View>
+
+## Usage
+
+The typography tokens are used to define the font family, size, line height and
+weight of text elements in our components.
+
+```tsx
+import {font} from "@khanacademy/wonder-blocks-tokens";
+const styles = {
+    fontSize: font.size.large,
+    lineHeight: font.lineHeight.large,
+    fontWeight: font.weight.regular,
+    fontFamily: font.family.serif
+};
+```
+
+## Tokens
+
+### Family
+
+The available font families in our system.
+
+<TokenTable
+    columns={[
+        ...baseColumns("family"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontFamily: row.value,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.family}
+/>
+
+### Size
+
+The list of possible font sizes that can be used with our components.
+
+<TokenTable
+    columns={[
+        ...baseColumns("size"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontSize: row.value,
+                        lineHeight: 1,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.size}
+/>
+
+### LineHeight
+
+The vertical space associated to a given font size.
+
+<TokenTable
+    columns={[
+        ...baseColumns("lineHeight"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        backgroundColor: tokens.color.offBlack8,
+                        lineHeight: `${row.value}px`,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.lineHeight}
+/>
+
+### Weight
+
+Font weight options include `light`, `regular` and `bold`.
+
+<TokenTable
+    columns={[
+        ...baseColumns("weight"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontWeight: row.value,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.weight}
+/>

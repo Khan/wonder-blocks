@@ -5,6 +5,7 @@ import {Popper} from "react-popper";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import {maxHeightModifier} from "../util/popper-max-height-modifier";
 
 const modifiers = [
     {
@@ -19,6 +20,7 @@ const modifiers = [
             tether: false,
         },
     },
+    maxHeightModifier,
 ];
 
 type Props = {

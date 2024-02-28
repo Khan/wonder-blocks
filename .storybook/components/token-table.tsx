@@ -1,10 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 const StyledTable = addStyle("table");
 const StyledTableRow = addStyle("tr");
@@ -76,19 +75,19 @@ const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
         borderSpacing: 0,
-        margin: `${Spacing.xLarge_32}px 0`,
+        margin: `${spacing.xLarge_32}px 0`,
         textAlign: "left",
         width: "100%",
     },
     header: {
-        backgroundColor: Color.offWhite,
+        backgroundColor: color.offWhite,
     },
     row: {
-        borderTop: `1px solid ${Color.offBlack8}`,
-        backgroundColor: Color.white,
+        borderTop: `1px solid ${color.offBlack8}`,
+        backgroundColor: color.white,
     },
     cell: {
-        padding: Spacing.xSmall_8,
+        padding: spacing.xSmall_8,
         verticalAlign: "middle",
     },
 });

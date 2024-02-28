@@ -1,5 +1,110 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.2.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.11
+
+## 4.2.3
+
+### Patch Changes
+
+-   Updated dependencies [e83f8991]
+-   Updated dependencies [e83f8991]
+    -   @khanacademy/wonder-blocks-tokens@1.0.0
+    -   @khanacademy/wonder-blocks-theming@2.0.1
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.1.12
+    -   @khanacademy/wonder-blocks-icon-button@5.1.10
+    -   @khanacademy/wonder-blocks-layout@2.0.27
+
+## 4.2.2
+
+### Patch Changes
+
+-   60aba5b8: Update internal spacing references (from wb-spacing to wb-tokens)
+-   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+-   7c51f377: Migrate wb-color imports to use tokens.color
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [60aba5b8]
+-   Updated dependencies [7cd7f6cc]
+-   Updated dependencies [7c51f377]
+-   Updated dependencies [7cd7f6cc]
+    -   @khanacademy/wonder-blocks-theming@2.0.0
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.1.11
+    -   @khanacademy/wonder-blocks-layout@2.0.26
+    -   @khanacademy/wonder-blocks-tokens@0.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.9
+
+## 4.2.1
+
+### Patch Changes
+
+-   Updated dependencies [80592e75]
+    -   @khanacademy/wonder-blocks-theming@1.3.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.8
+
+## 4.2.0
+
+### Minor Changes
+
+-   b7bae8f2: Add theming support to ModalPanel
+-   09c61d25: Add theming support to ModalHeader and ModalFooter
+
+## 4.1.0
+
+### Minor Changes
+
+-   1b21747a: Added theming support to ModalDialog, removed MediaLayout in favor of media queries
+
+## 4.0.39
+
+### Patch Changes
+
+-   Updated dependencies [6df21f71]
+    -   @khanacademy/wonder-blocks-core@6.3.1
+    -   @khanacademy/wonder-blocks-icon-button@5.1.7
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.1.10
+    -   @khanacademy/wonder-blocks-layout@2.0.25
+    -   @khanacademy/wonder-blocks-typography@2.1.10
+
+## 4.0.38
+
+### Patch Changes
+
+-   Updated dependencies [9092363d]
+    -   @khanacademy/wonder-blocks-icon-button@5.1.6
+
+## 4.0.37
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.5
+
+## 4.0.36
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.4
+
+## 4.0.35
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.3
+
+## 4.0.34
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.2
+
+## 4.0.33
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.1.1
+
 ## 4.0.32
 
 ### Patch Changes

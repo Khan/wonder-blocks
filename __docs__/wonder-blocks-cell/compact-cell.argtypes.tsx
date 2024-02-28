@@ -1,28 +1,30 @@
 import * as React from "react";
 import type {InputType} from "@storybook/csf";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelSmall, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
+
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 /**
  * Some pre-defined accessory examples to use in our stories.
  */
 export const AccessoryMappings = {
     withContentArticle: (
-        <Icon icon={icons.contentArticle} size="medium" />
-    ) as React.ReactElement<React.ComponentProps<typeof Icon>>,
+        <PhosphorIcon icon={IconMappings.article} size="medium" />
+    ) as React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>,
     withContentVideo: (
-        <Icon icon={icons.contentVideo} size="medium" />
-    ) as React.ReactElement<React.ComponentProps<typeof Icon>>,
+        <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+    ) as React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>,
     withCaret: (
-        <Icon icon={icons.caretRight} size="medium" />
-    ) as React.ReactElement<React.ComponentProps<typeof Icon>>,
+        <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
+    ) as React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>,
     withText: (<LabelSmall>26.3 GB</LabelSmall>) as React.ReactElement<
         React.ComponentProps<typeof LabelSmall>
     >,
     withIconText: (
         <View style={{alignItems: "center"}}>
-            <Icon icon={icons.info} size="small" />
+            <PhosphorIcon icon={IconMappings.infoBold} size="small" />
             <LabelXSmall>Info</LabelXSmall>
         </View>
     ) as React.ReactElement<React.ComponentProps<typeof View>>,
@@ -51,7 +53,7 @@ export default {
         },
     },
     leftAccessory: {
-        description: `If provided, this adds a left accessory to the cell. Left Accessories can be defined using WB components such as Icon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the "LeftAccessory” area of the Cell.`,
+        description: `If provided, this adds a left accessory to the cell. Left Accessories can be defined using WB components such as PhosphorIcon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the "LeftAccessory” area of the Cell.`,
         control: {type: "select"},
         options: Object.keys(AccessoryMappings) as Array<React.ReactNode>,
         mapping: AccessoryMappings,
@@ -74,7 +76,7 @@ export default {
         },
     },
     rightAccessory: {
-        description: `If provided, this adds a right accessory to the cell. Right Accessories can be defined using WB components such as Icon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the “RightAccessory” area of the Cell.`,
+        description: `If provided, this adds a right accessory to the cell. Right Accessories can be defined using WB components such as PhosphorIcon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the “RightAccessory” area of the Cell.`,
         control: {type: "select"},
         options: Object.keys(AccessoryMappings) as Array<React.ReactNode>,
         mapping: AccessoryMappings,
@@ -106,6 +108,20 @@ export default {
             category: "Layout",
             type: {
                 summary: "inset | full-width | none",
+            },
+        },
+    },
+    rootStyle: {
+        description:
+            `Optional custom styles applied to the top node.\n\n` +
+            `**NOTE:** This is the top node of the cell, not the cell ` +
+            `container. If possible, try to use this prop carefully and use ` +
+            `\`style\` instead.`,
+        control: {type: "object"},
+        table: {
+            category: "Styling",
+            type: {
+                summary: "StyleType",
             },
         },
     },
@@ -190,6 +206,41 @@ export default {
             type: {
                 summary: "string",
                 detail: `aria-label should be specially used when the cell is pressable so screen readers can announce the link when the user is focused on it.`,
+            },
+        },
+    },
+    ariaSelected: {
+        name: "aria-selected",
+        control: {
+            type: "string",
+        },
+        description: " Used to indicate the current element is selected",
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "string",
+            },
+        },
+    },
+    role: {
+        description:
+            "The role of the Cell component, can be a role of type `ClickableRole`",
+        control: {type: "select"},
+        options: [
+            "button",
+            "checkbox",
+            "link",
+            "listbox",
+            "menu",
+            "menuitem",
+            "radio",
+            "tab",
+        ],
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "ClickableRole",
+                detail: `"button" | "link" | "checkbox" | "radio" | "listbox" | "option" | "menuitem" | "menu" | "tab"`,
             },
         },
     },

@@ -7,10 +7,10 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import Color, {fade} from "@khanacademy/wonder-blocks-color";
+import {fade} from "@khanacademy/wonder-blocks-color";
 
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -22,11 +22,8 @@ import SeparatorItem from "./separator-item";
 import {defaultLabels, keyCodes} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
-import {debounce, getStringForKey} from "../util/helpers";
-import {
-    generateDropdownMenuStyles,
-    getDropdownMenuHeight,
-} from "../util/dropdown-menu-styles";
+import {debounce, getLabel, getStringForKey} from "../util/helpers";
+import OptionItem from "./option-item";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -701,11 +698,17 @@ class DropdownCore extends React.Component<Props, State> {
                     return false;
                 }
 
-                // TypeScript doesn't know that the component is an OptionItem
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'label' does not exist on type '{}'.
-                const label = component.props?.label.toLowerCase();
+                if (OptionItem.isClassOf(component)) {
+                    const optionItemProps = component.props as PropsFor<
+                        typeof OptionItem
+                    >;
 
-                return label.startsWith(key.toLowerCase());
+                    return getLabel(optionItemProps)
+                        .toLowerCase()
+                        .startsWith(key.toLowerCase());
+                }
+
+                return false;
             });
 
         if (foundIndex >= 0) {
@@ -950,8 +953,6 @@ class DropdownCore extends React.Component<Props, State> {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
-        const maxDropdownHeight = getDropdownMenuHeight(this.props.items);
-
         return (
             <View
                 // Stop propagation to prevent the mouseup listener on the
@@ -970,11 +971,9 @@ class DropdownCore extends React.Component<Props, State> {
                     role={role}
                     style={[
                         styles.listboxOrMenu,
-                        generateDropdownMenuStyles(
-                            // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'string | 0' is not assignable to parameter of type 'number'.
-                            minDropdownWidth,
-                            maxDropdownHeight,
-                        ),
+                        {
+                            minWidth: minDropdownWidth,
+                        },
                     ]}
                     // Only the `listbox` role supports aria-invalid and aria-required because
                     // the `menu` role is not a form control.
@@ -1059,12 +1058,16 @@ const styles = StyleSheet.create({
     },
 
     dropdown: {
-        backgroundColor: Color.white,
+        backgroundColor: color.white,
         borderRadius: 4,
-        paddingTop: Spacing.xxxSmall_4,
-        paddingBottom: Spacing.xxxSmall_4,
-        border: `solid 1px ${Color.offBlack16}`,
-        boxShadow: `0px 8px 8px 0px ${fade(Color.offBlack, 0.1)}`,
+        paddingTop: spacing.xxxSmall_4,
+        paddingBottom: spacing.xxxSmall_4,
+        border: `solid 1px ${color.offBlack16}`,
+        boxShadow: `0px 8px 8px 0px ${fade(color.offBlack, 0.1)}`,
+        // We use a custom property to set the max height of the dropdown.
+        // This comes from the maxHeight custom modifier.
+        // @see ../util/popper-max-height-modifier.ts
+        maxHeight: "var(--popper-max-height)",
     },
 
     light: {
@@ -1082,17 +1085,18 @@ const styles = StyleSheet.create({
     },
 
     noResult: {
-        color: Color.offBlack64,
+        color: color.offBlack64,
         alignSelf: "center",
-        marginTop: Spacing.xxSmall_6,
+        marginTop: spacing.xxSmall_6,
     },
 
     searchInputStyle: {
-        margin: Spacing.xSmall_8,
-        marginTop: Spacing.xxxSmall_4,
+        margin: spacing.xSmall_8,
+        marginTop: spacing.xxxSmall_4,
         // Set `minHeight` to "auto" to stop the search field from having
         // a height of 0 and being cut off.
         minHeight: "auto",
+        position: "sticky",
     },
 
     srOnly: {

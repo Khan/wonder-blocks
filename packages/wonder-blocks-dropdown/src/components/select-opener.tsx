@@ -7,10 +7,12 @@ import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {mix} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
+import {OptionLabel} from "../util/types";
 
 const StyledButton = addStyle("button");
 
@@ -18,7 +20,7 @@ type SelectOpenerProps = AriaProps & {
     /**
      * Display text in the SelectOpener.
      */
-    children: string;
+    children: OptionLabel;
     /**
      * Whether the SelectOpener is disabled. If disabled, disallows interaction.
      * Default false.
@@ -144,8 +146,8 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                                 shift for empty selection */}
                                 {children || "\u00A0"}
                             </LabelMedium>
-                            <Icon
-                                icon={icons.caretDown}
+                            <PhosphorIcon
+                                icon={caretDownIcon}
                                 color={iconColor}
                                 size="small"
                                 style={styles.caret}

@@ -2,11 +2,12 @@ import {Meta, Story, Canvas} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
+
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 <Meta
     title="Clickable / Clickable / Accessibility"
@@ -66,7 +67,7 @@ This is an example of a component with an accessible label:
                 onClick={() => {}}
                 aria-label="More information about this subject"
             >
-                {({hovered, focused, pressed}) => <Icon icon={icons.info} />}
+                {({hovered, focused, pressed}) => <PhosphorIcon icon={IconMappings.info} />}
             </Clickable>
         </View>
     </Story>
@@ -133,23 +134,23 @@ make sure to use `href` and `skipClientNav={true}.
 
 export const styles = StyleSheet.create({
     resting: {
-        boxShadow: `inset 0px 0px 1px 1px ${Color.lightBlue}`,
-        padding: Spacing.xSmall_8,
+        boxShadow: `inset 0px 0px 1px 1px ${color.lightBlue}`,
+        padding: spacing.xSmall_8,
     },
     hovered: {
         textDecoration: "underline",
-        backgroundColor: Color.blue,
-        color: Color.white,
+        backgroundColor: color.blue,
+        color: color.white,
     },
     pressed: {
-        color: Color.darkBlue,
+        color: color.darkBlue,
     },
     focused: {
-        outline: `solid 4px ${Color.lightBlue}`,
+        outline: `solid 4px ${color.lightBlue}`,
     },
     panel: {
-        padding: Spacing.medium_16,
-        boxShadow: `inset 0px 0px 0 1px ${Color.offBlack8}`,
+        padding: spacing.medium_16,
+        boxShadow: `inset 0px 0px 0 1px ${color.offBlack8}`,
     },
 });
 

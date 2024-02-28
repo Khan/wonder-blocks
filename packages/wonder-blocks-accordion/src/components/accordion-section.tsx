@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import {useUniqueIdWithMock, View} from "@khanacademy/wonder-blocks-core";
-import {tokens} from "@khanacademy/wonder-blocks-theming";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -37,7 +37,7 @@ type Props = AriaProps & {
      * Defaults to "end".
      *
      * If this prop is specified both here in the AccordionSection and
-     * within a parent Accordion component, the Accordion’s caretPosition
+     * within a parent Accordion component, the AccordionSection’s caretPosition
      * value is prioritized.
      */
     caretPosition?: "start" | "end";
@@ -54,6 +54,11 @@ type Props = AriaProps & {
      */
     cornerKind?: AccordionCornerKindType;
     /**
+     * Whether this section is collapsible. If false, the header will not be
+     * clickable, and the section will stay expanded at all times.
+     */
+    collapsible?: boolean;
+    /**
      * Whether this section is expanded or closed.
      *
      * NOTE: This prop is NOT used when this AccordionSection is rendered
@@ -61,6 +66,15 @@ type Props = AriaProps & {
      * manages the expanded state of the AccordionSection.
      */
     expanded?: boolean;
+    /**
+     * Whether to include animation on the header. This should be false
+     * if the user has `prefers-reduced-motion` opted in. Defaults to false.
+     *
+     * If this prop is specified both here in the AccordionSection and
+     * within a parent Accordion component, the AccordionSection’s animated
+     * value is prioritized.
+     */
+    animated?: boolean;
     /**
      * Called when the header is clicked.
      * Takes the new expanded state as an argument. This way, the function
@@ -86,12 +100,6 @@ type Props = AriaProps & {
      */
     testId?: string;
     /**
-     * The test ID used to locate this component's clickable header in
-     * automated tests.
-     */
-    headerTestId?: string;
-
-    /**
      * Whether this section is the first section in the accordion.
      * For internal use only.
      * @ignore
@@ -103,12 +111,21 @@ type Props = AriaProps & {
      * @ignore
      */
     isLastSection?: boolean;
+    /**
+     * Whether this section should have role="region". True by default.
+     * According to W3, the panel container should have role region except
+     * when there are more than six panels in an accordion, in which case
+     * we should set this prop to false.
+     * For internal use only.
+     * @ignore
+     */
+    isRegion?: boolean;
 };
 
 /**
  * An AccordionSection displays a section of content that can be shown or
  * hidden by clicking its header. This is generally used within the Accordion
- * component, but it can also be used on its own if you need only
+ * component, but it can also be used on its own if you need only one
  * collapsible section.
  *
  * ### Usage
@@ -132,7 +149,7 @@ type Props = AriaProps & {
  *   </AccordionSection>
  * </Accordion>
  *
- * // On its own
+ * // On its own, controlled
  * const [expanded, setExpanded] = React.useState(false);
  * <AccordionSection
  *     header="A standalone section"
@@ -141,17 +158,26 @@ type Props = AriaProps & {
  * >
  *    This is the information present in the standalone section
  * </AccordionSection>
+ *
+ * // On its own, uncontrolled
+ * <AccordionSection header="A standalone section">
+ *   This is the information present in the standalone section
+ * </AccordionSection>
  * ```
  */
 const AccordionSection = React.forwardRef(function AccordionSection(
     props: Props,
-    ref: React.ForwardedRef<HTMLDivElement>,
+    // Using a button ref here beacuse the ref is pointing to the
+    // section header, which is a button.
+    ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
     const {
         children,
         id,
         header,
+        collapsible,
         expanded,
+        animated = false,
         onToggle,
         caretPosition = "end",
         cornerKind = "rounded",
@@ -159,13 +185,15 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         headerStyle,
         tag,
         testId,
-        headerTestId,
         // Assume it's the first section and last section by default
         // in case this component is being used standalone. If it's part
         // of an accordion, these will be overridden by the Accordion
         // parent component.
         isFirstSection = true,
         isLastSection = true,
+        // Assume it's a region by default. Override this to be false
+        // if we know there are more than six panels in an accordion.
+        isRegion = true,
         ...ariaProps
     } = props;
 
@@ -177,6 +205,9 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
     const ids = useUniqueIdWithMock();
     const sectionId = id ?? ids.get("accordion-section");
+    // We need an ID for the header so that the content section's
+    // aria-labelledby attribute can point to it.
+    const headerId = id ? `${id}-header` : ids.get("accordion-section-header");
     // We need an ID for the content section so that the opener's
     // aria-controls attribute can point to it.
     const sectionContentUniqueId = ids.get("accordion-section-content");
@@ -200,63 +231,105 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         }
     };
 
-    // If the expanded prop is undefined, we're in uncontrolled mode and
-    // should use the internal state to determine the expanded state.
-    // Otherwise, we're in controlled mode and should use the expanded prop
-    // that's passed in to determine the expanded state.
-    const expandedState = controlledMode ? expanded : internalExpanded;
+    let expandedState;
+    if (collapsible === false) {
+        // If the section is disabled (not collapsible), it should
+        // always be expanded.
+        expandedState = true;
+        // If the expanded prop is undefined, we're in uncontrolled mode and
+        // should use the internal state to determine the expanded state.
+        // Otherwise, we're in controlled mode and should use the expanded prop
+        // that's passed in to determine the expanded state.
+    } else {
+        expandedState = controlledMode ? expanded : internalExpanded;
+    }
 
     return (
         <View
             id={sectionId}
-            style={[styles.wrapper, sectionStyles.wrapper, style]}
+            style={[
+                styles.wrapper,
+                animated && styles.wrapperWithAnimation,
+                sectionStyles.wrapper,
+                expandedState
+                    ? styles.wrapperExpanded
+                    : styles.wrapperCollapsed,
+                style,
+            ]}
             testId={testId}
             {...ariaProps}
-            ref={ref}
         >
             <AccordionSectionHeader
+                id={headerId}
                 header={header}
                 caretPosition={caretPosition}
                 cornerKind={cornerKind}
+                collapsible={collapsible}
                 expanded={expandedState}
+                animated={animated}
                 onClick={handleClick}
                 sectionContentUniqueId={sectionContentUniqueId}
                 headerStyle={headerStyle}
                 tag={tag}
-                testId={headerTestId}
+                testId={testId}
                 isFirstSection={isFirstSection}
                 isLastSection={isLastSection}
+                ref={ref}
             />
-            {/* The content is the section that expands and closes. */}
-            {expandedState ? (
-                <View
-                    id={sectionContentUniqueId}
-                    style={[
-                        styles.contentWrapper,
-                        sectionStyles.contentWrapper,
-                    ]}
-                >
-                    {typeof children === "string" ? (
-                        <Body style={styles.stringContent}>{children}</Body>
-                    ) : (
-                        children
-                    )}
-                </View>
-            ) : null}
+            <View
+                id={sectionContentUniqueId}
+                role={isRegion ? "region" : undefined}
+                aria-labelledby={headerId}
+                style={[
+                    styles.contentWrapper,
+                    expandedState
+                        ? styles.contentWrapperExpanded
+                        : styles.conentWrapperCollapsed,
+                    sectionStyles.contentWrapper,
+                ]}
+                testId={testId ? `${testId}-content-panel` : undefined}
+            >
+                {typeof children === "string" ? (
+                    <Body style={styles.stringContent}>{children}</Body>
+                ) : (
+                    children
+                )}
+            </View>
         </View>
     );
 });
 
 const styles = StyleSheet.create({
     wrapper: {
-        flexDirection: "column",
+        // Use grid layout for clean animations.
+        display: "grid",
+        // Remove the View's default relative position because it creates
+        // overlap issues with the outline. In this case, it's safe to
+        // remove the stacking context beacuse accordion sections are always
+        // vertically stacked.
+        position: "static",
         boxSizing: "border-box",
+        backgroundColor: tokens.color.white,
+    },
+    wrapperWithAnimation: {
+        transition: "grid-template-rows 300ms",
+    },
+    wrapperCollapsed: {
+        gridTemplateRows: "min-content 0fr",
+    },
+    wrapperExpanded: {
+        gridTemplateRows: "min-content 1fr",
     },
     contentWrapper: {
-        // Add a small margin to the top of the content block so that the
-        // header outline doesn't overlap with the content (and the content
-        // doesn't overlap with the header outline).
-        marginTop: tokens.spacing.xxxxSmall_2,
+        overflow: "hidden",
+    },
+    conentWrapperCollapsed: {
+        // Make sure screen readers don't read the content when it's
+        // collapsed.
+        visibility: "hidden",
+    },
+    contentWrapperExpanded: {
+        visibility: "visible",
     },
     stringContent: {
         padding: tokens.spacing.medium_16,
@@ -300,27 +373,28 @@ const _generateStyles = (
             borderBottom: "none",
         };
 
-        contentWrapperStyle = {
-            // Give the content wrapper the same border radius as the wrapper
-            // so that the content doesn't overflow out the corners. We
-            // can't put `overflow: "hidden"` on the overall container
-            // because it cuts off the header's focus outline.
-            borderEndEndRadius: tokens.spacing.small_12,
-            borderEndStartRadius: tokens.spacing.small_12,
-            overflow: "hidden",
-        };
-
         if (isFirstSection) {
             firstSectionStyle = {
                 borderStartStartRadius: tokens.spacing.small_12,
                 borderStartEndRadius: tokens.spacing.small_12,
             };
         }
+
         if (isLastSection) {
             lastSectionStyle = {
                 borderBottom: `1px solid ${tokens.color.offBlack16}`,
                 borderEndStartRadius: tokens.spacing.small_12,
                 borderEndEndRadius: tokens.spacing.small_12,
+            };
+
+            contentWrapperStyle = {
+                // Give the last section's content wrapper the same bottom
+                // border radius as the wrapper so that the content doesn't
+                // overflow out the corners. This issue can't be solved by
+                // putting `overflow: "hidden"` on the overall container
+                // because that cuts off the header's focus outline.
+                borderEndEndRadius: tokens.spacing.small_12,
+                borderEndStartRadius: tokens.spacing.small_12,
             };
         }
     }
@@ -339,7 +413,6 @@ const _generateStyles = (
             // because it cuts off the header's focus outline.
             borderEndEndRadius: tokens.spacing.small_12,
             borderEndStartRadius: tokens.spacing.small_12,
-            overflow: "hidden",
         };
     }
 
