@@ -148,7 +148,7 @@ export const DetailCellWithCustomStyles: StoryComponentType = () => (
 DetailCellWithCustomStyles.parameters = {
     docs: {
         description: {
-            story: "Accessories can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories.",
+            story: "Accessories and the main content container can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories and the content.",
         },
     },
 };
