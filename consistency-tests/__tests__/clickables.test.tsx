@@ -7,7 +7,7 @@
 import * as React from "react";
 import {MemoryRouter} from "react-router-dom";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import plus from "@phosphor-icons/core/regular/plus.svg";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -57,7 +57,7 @@ describe.each`
         window.open.mockClear();
     });
 
-    it("opens a new tab when target='_blank'", () => {
+    it("opens a new tab when target='_blank'", async () => {
         // Arrange
         render(
             <Component href="https://www.khanacademy.org" target="_blank">
@@ -66,7 +66,7 @@ describe.each`
         );
 
         // Act
-        userEvent.click(screen.getByRole(role));
+        await userEvent.click(await screen.findByRole(role));
 
         // Assert
         expect(window.open).toHaveBeenCalledWith(
@@ -75,7 +75,7 @@ describe.each`
         );
     });
 
-    it("sets the 'target' prop on the underlying element", () => {
+    it("sets the 'target' prop on the underlying element", async () => {
         // Arrange
         render(
             <Component href="https://www.khanacademy.org" target="_blank">
@@ -84,14 +84,14 @@ describe.each`
         );
 
         // Act
-        const link = screen.getByRole(role);
-        userEvent.click(link);
+        const link = await screen.findByRole(role);
+        await userEvent.click(link);
 
         // Assert
         expect(link).toHaveAttribute("target", "_blank");
     });
 
-    it("renders an <a> if the href is '#'", () => {
+    it("renders an <a> if the href is '#'", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -100,7 +100,7 @@ describe.each`
         );
 
         // Act
-        const link = screen.getByRole(role);
+        const link = await screen.findByRole(role);
 
         // Assert
         expect(link.tagName).toBe("A");
@@ -129,7 +129,7 @@ describe.each`
         window.open.mockClear();
     });
 
-    it("renders a button", () => {
+    it("renders a button", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -138,13 +138,13 @@ describe.each`
         );
 
         // Act
-        const button = screen.getByRole(role);
+        const button = await screen.findByRole(role);
 
         // Assert
         expect(button).toBeInTheDocument();
     });
 
-    it("responds to click events", () => {
+    it("responds to click events", async () => {
         // Arrange
         const clickHandler = jest.fn();
         render(
@@ -154,7 +154,7 @@ describe.each`
         );
 
         // Act
-        userEvent.click(screen.getByRole(role));
+        await userEvent.click(await screen.findByRole(role));
 
         // Assert
         expect(clickHandler).toHaveBeenCalled();
@@ -175,7 +175,7 @@ describe.each`
     ${IconButtonWrapper} | ${"IconButton"}  | ${false}
     ${Link}              | ${"Link"}        | ${false}
 `("$name", ({Component, name, hasTabIndex}: any) => {
-    test("has expected existence of tabIndex", () => {
+    test("has expected existence of tabIndex", async () => {
         // Arrange
 
         // Act
@@ -186,7 +186,9 @@ describe.each`
         );
 
         // Assert
-        const component = screen.getByTestId("clickable-component-test-id");
+        const component = await screen.findByTestId(
+            "clickable-component-test-id",
+        );
         if (hasTabIndex) {
             // These components should all wrap buttons or links, so they
             // should inherently be clickable and keyboard navigable. They
@@ -205,7 +207,7 @@ describe.each`
 // a default tabIndex.
 
 describe("Choice", () => {
-    test("doesn't have a redunant tabIndex of 0 (checkbox)", () => {
+    test("doesn't have a redunant tabIndex of 0 (checkbox)", async () => {
         // Arrange
 
         // Act
@@ -226,13 +228,13 @@ describe("Choice", () => {
         );
 
         // Assert
-        const checkbox = screen.getByTestId(
+        const checkbox = await screen.findByTestId(
             "checkbox-choice-clickable-test-id",
         );
         expect(checkbox).not.toHaveAttribute("tabIndex");
     });
 
-    test("doesn't have a redunant tabIndex of 0 (radio)", () => {
+    test("doesn't have a redunant tabIndex of 0 (radio)", async () => {
         // Arrange
 
         // Act
@@ -253,7 +255,9 @@ describe("Choice", () => {
         );
 
         // Assert
-        const checkbox = screen.getByTestId("radio-choice-clickable-test-id");
+        const checkbox = await screen.findByTestId(
+            "radio-choice-clickable-test-id",
+        );
         expect(checkbox).not.toHaveAttribute("tabIndex");
     });
 });

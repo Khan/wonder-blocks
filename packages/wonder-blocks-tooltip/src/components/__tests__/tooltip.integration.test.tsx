@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import {render, screen, fireEvent} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import Tooltip from "../tooltip";
 
@@ -10,13 +10,16 @@ describe("tooltip integration tests", () => {
         jest.useFakeTimers();
     });
 
-    it("should set timeoutId be null when TooltipBubble is active", () => {
+    it("should set timeoutId be null when TooltipBubble is active", async () => {
         // Arrange
+        const ue = userEvent.setup({
+            advanceTimers: jest.advanceTimersByTime,
+        });
         render(<Tooltip content="hello, world">an anchor</Tooltip>);
-        const anchor = screen.getByText("an anchor");
+        const anchor = await screen.findByText("an anchor");
 
         // Act
-        userEvent.hover(anchor);
+        await ue.hover(anchor);
         // There's a 100ms delay before TooltipAnchor calls _setActiveState with
         // instant set to true.  This second call is what actually triggers the
         // call to this.props.onActiveChanged() which updates Tooltip's active
@@ -24,18 +27,21 @@ describe("tooltip integration tests", () => {
         jest.runAllTimers();
 
         // Assert
-        expect(screen.getByRole("tooltip")).toBeInTheDocument();
+        expect(await screen.findByRole("tooltip")).toBeInTheDocument();
     });
 
-    it("should hide the bubble on mouseleave on TooltipAnchor", () => {
+    it("should hide the bubble on mouseleave on TooltipAnchor", async () => {
         // Arrange
+        const ue = userEvent.setup({
+            advanceTimers: jest.advanceTimersByTime,
+        });
         render(<Tooltip content="hello, world">an anchor</Tooltip>);
 
-        const anchor = screen.getByText("an anchor");
-        userEvent.hover(anchor);
+        const anchor = await screen.findByText("an anchor");
+        await ue.hover(anchor);
 
         // Act
-        userEvent.unhover(anchor);
+        await ue.unhover(anchor);
         // There's a 100ms delay before TooltipAnchor calls _setActiveState with
         // instant set to true.  This second call is what actually triggers the
         // call to this.props.onActiveChanged() which updates Tooltip's active
@@ -48,15 +54,18 @@ describe("tooltip integration tests", () => {
 
     it("should close TooltipBubble on mouseleave on TooltipBubble", async () => {
         // Arrange
+        const ue = userEvent.setup({
+            advanceTimers: jest.advanceTimersByTime,
+        });
         render(<Tooltip content="hello, world">an anchor</Tooltip>);
 
-        const anchor = screen.getByText("an anchor");
-        userEvent.hover(anchor);
+        const anchor = await screen.findByText("an anchor");
+        await ue.hover(anchor);
         // hover on bubble to keep it active
         // Need to run the timers or we won't get the bubble wrapper to show.
         jest.runAllTimers();
         const bubbleWrapper = await screen.findByRole("tooltip");
-        userEvent.unhover(anchor);
+        await ue.unhover(anchor);
 
         // Used because RTL complains about the bubble containing a child
         // element with pointerEvents: none

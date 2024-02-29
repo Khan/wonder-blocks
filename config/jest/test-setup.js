@@ -1,5 +1,5 @@
 const {StyleSheetTestUtils} = require("aphrodite");
-const {configure} = require("@testing-library/dom");
+const {configure} = require("@testing-library/react");
 
 const {
     mockRequestAnimationFrame,

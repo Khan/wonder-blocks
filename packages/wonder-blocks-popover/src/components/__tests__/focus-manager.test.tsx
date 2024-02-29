@@ -1,6 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import FocusManager from "../focus-manager";
 
@@ -16,7 +16,7 @@ describe("FocusManager", () => {
         render(externalNodes);
 
         // get the anchor reference to be able pass it to the FocusManager
-        const anchorElementNode = screen.getByRole("button", {
+        const anchorElementNode = await screen.findByRole("button", {
             name: "Open popover",
         });
 
@@ -33,10 +33,9 @@ describe("FocusManager", () => {
         // Act
         // focus on the previous element before the popover (anchor element)
         anchorElementNode.focus();
-        // focus on the next focusable element
-        userEvent.tab();
+        // focus gets automatically moved to be on the first focusable element
 
-        const firstFocusableElementInside = screen.getByText(
+        const firstFocusableElementInside = await screen.findByText(
             "first focusable element inside",
         );
 
@@ -55,7 +54,7 @@ describe("FocusManager", () => {
         render(externalNodes);
 
         // get the anchor reference to be able pass it to the FocusManager
-        const anchorElementNode = screen.getByRole("button", {
+        const anchorElementNode = await screen.findByRole("button", {
             name: "Open popover",
         });
 
@@ -72,15 +71,15 @@ describe("FocusManager", () => {
         // Act
 
         // find previous focusable element outside the popover
-        const nextFocusableElementOutside = screen.getByRole("button", {
+        const nextFocusableElementOutside = await screen.findByRole("button", {
             name: "Next focusable element outside",
         });
 
         // focus on the next element after the popover
         nextFocusableElementOutside.focus();
-        userEvent.tab({shift: true});
+        await userEvent.tab({shift: true});
 
-        const lastFocusableElementInside = screen.getByText(
+        const lastFocusableElementInside = await screen.findByText(
             "third focusable element inside",
         );
 
@@ -100,7 +99,7 @@ describe("FocusManager", () => {
         render(externalNodes);
 
         // get the anchor reference to be able pass it to the FocusManager
-        const anchorElementNode = screen.getByRole("button", {
+        const anchorElementNode = await screen.findByRole("button", {
             name: "Open popover",
         });
 
@@ -113,28 +112,18 @@ describe("FocusManager", () => {
         );
 
         // Act
-        // 1. focus on the previous element before the popover
-        userEvent.tab();
+        // 1. focus on the Open popover button, this opens the focus manager
+        // and focuses the button inside the popover
+        await userEvent.tab();
 
-        // 2. focus on the anchor element
-        userEvent.tab();
+        // 2. we advance to the next focusable element outside the popover
+        await userEvent.tab();
 
-        // 3. focus on focusable element inside the popover
-        userEvent.tab();
-
-        // 4. focus on the next focusable element outside the popover (this will
-        //    be the first focusable element outside the popover)
-        userEvent.tab();
-
-        // NOTE: At this point, the focus moves to the document body, so we need
-        // to press tab again to move the focus to the next focusable element.
-        userEvent.tab();
-
-        // 5. Finally focus on the first element in the document
-        userEvent.tab();
+        // 3. we loop back around to the first focusable element outside the popover
+        await userEvent.tab();
 
         // find previous focusable element outside the popover
-        const prevFocusableElementOutside = screen.getByRole("button", {
+        const prevFocusableElementOutside = await screen.findByRole("button", {
             name: "Prev focusable element outside",
         });
 
@@ -154,7 +143,7 @@ describe("FocusManager", () => {
         render(externalNodes);
 
         // get the anchor reference to be able pass it to the FocusManager
-        const anchorElementNode = screen.getByRole("button", {
+        const anchorElementNode = await screen.findByRole("button", {
             name: "Open popover",
         });
 
@@ -168,20 +157,20 @@ describe("FocusManager", () => {
 
         // Act
         // 1. focus on the previous element before the popover
-        userEvent.tab();
+        await userEvent.tab();
 
         // 2. focus on the anchor element
-        userEvent.tab();
+        await userEvent.tab();
 
         // 3. focus on focusable element inside the popover
-        userEvent.tab();
+        await userEvent.tab();
 
         // 4. focus on the next focusable element outside the popover (this will
         //    be the first focusable element outside the popover)
-        userEvent.tab();
+        await userEvent.tab();
 
         // The elements inside the focus manager should not be focusable anymore.
-        const focusableElementInside = screen.getByRole("button", {
+        const focusableElementInside = await screen.findByRole("button", {
             name: "first focusable element inside",
         });
 

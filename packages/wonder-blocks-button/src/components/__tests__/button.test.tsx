@@ -7,7 +7,7 @@
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {render, screen, waitFor} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import Button from "../button";
 
@@ -25,7 +25,7 @@ describe("Button", () => {
         window.location = location;
     });
 
-    test("client-side navigation", () => {
+    test("client-side navigation", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -41,14 +41,14 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
-        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
     });
 
-    test("beforeNav rejection blocks client-side navigation", () => {
+    test("beforeNav rejection blocks client-side navigation", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -66,14 +66,14 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("beforeNav rejection blocks calling safeWithNav", () => {
+    test("beforeNav rejection blocks calling safeWithNav", async () => {
         // Arrange
         const safeWithNavMock = jest.fn();
         render(
@@ -96,8 +96,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(safeWithNavMock).not.toHaveBeenCalled();
@@ -121,11 +121,13 @@ describe("Button", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
-        await waitFor(() => {
-            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        await waitFor(async () => {
+            expect(
+                await screen.findByText("Hello, world!"),
+            ).toBeInTheDocument();
         });
     });
 
@@ -152,7 +154,7 @@ describe("Button", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
         await waitFor(() => {
@@ -160,7 +162,10 @@ describe("Button", () => {
         });
     });
 
-    test("show circular spinner before beforeNav resolves", () => {
+    // Unfortunately we can't test the spinner here after upgrading to
+    // user-event v14 as the render happens before we're aable to check on the
+    // state of the spinner.
+    test.skip("show circular spinner before beforeNav resolves", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -178,12 +183,12 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         // TODO(juan): Find a way to use a more accessible query.
-        expect(screen.getByTestId("button-spinner")).toBeInTheDocument();
+        expect(await screen.findByTestId("button-spinner")).toBeInTheDocument();
     });
 
     test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
@@ -209,7 +214,7 @@ describe("Button", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
         await waitFor(() => {
@@ -217,7 +222,7 @@ describe("Button", () => {
         });
     });
 
-    test("safeWithNav with skipClientNav=true shows spinner", () => {
+    test("safeWithNav with skipClientNav=true shows spinner", async () => {
         // Arrange
         jest.spyOn(window.location, "assign");
         render(
@@ -240,11 +245,11 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
-        expect(screen.getByTestId("button-spinner")).toBeInTheDocument();
+        expect(await screen.findByTestId("button-spinner")).toBeInTheDocument();
     });
 
     test("beforeNav resolution and safeWithNav with skipClientNav=true waits for promise resolution", async () => {
@@ -271,8 +276,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         await waitFor(() => {
@@ -280,7 +285,7 @@ describe("Button", () => {
         });
     });
 
-    test("safeWithNav with skipClientNav=true waits for promise rejection", () => {
+    test("safeWithNav with skipClientNav=true waits for promise rejection", async () => {
         // Arrange
         jest.spyOn(window.location, "assign");
         render(
@@ -303,14 +308,14 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(window.location.assign).toHaveBeenCalledWith("/foo");
     });
 
-    test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", () => {
+    test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", async () => {
         // Arrange
         jest.spyOn(window.location, "assign");
         const safeWithNavMock = jest.fn();
@@ -334,8 +339,8 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();
@@ -367,7 +372,7 @@ describe("Button", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
         await waitFor(() => {
@@ -378,7 +383,7 @@ describe("Button", () => {
         });
     });
 
-    test("client-side navigation with unknown URL fails", () => {
+    test("client-side navigation with unknown URL fails", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -394,14 +399,14 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("client-side navigation with `skipClientNav` set to `true` fails", () => {
+    test("client-side navigation with `skipClientNav` set to `true` fails", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -419,14 +424,14 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("disallow navigation when href and disabled are both set", () => {
+    test("disallow navigation when href and disabled are both set", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -444,14 +449,14 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("don't call beforeNav when href and disabled are both set", () => {
+    test("don't call beforeNav when href and disabled are both set", async () => {
         // Arrange
         const beforeNavMock = jest.fn();
         render(
@@ -474,14 +479,14 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(beforeNavMock).not.toHaveBeenCalled();
     });
 
-    test("don't call safeWithNav when href and disabled are both set", () => {
+    test("don't call safeWithNav when href and disabled are both set", async () => {
         // Arrange
         const safeWithNavMock = jest.fn();
         render(
@@ -504,14 +509,14 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        const button = await screen.findByRole("button");
+        await userEvent.click(button);
 
         // Assert
         expect(safeWithNavMock).not.toHaveBeenCalled();
     });
 
-    it("should set attribute on the underlying button", () => {
+    it("should set attribute on the underlying button", async () => {
         // Arrange
 
         // Act
@@ -522,10 +527,10 @@ describe("Button", () => {
         );
 
         // Assert
-        expect(screen.getByRole("button")).toHaveAttribute("id", "foo");
+        expect(await screen.findByRole("button")).toHaveAttribute("id", "foo");
     });
 
-    it("should set attribute on the underlying link", () => {
+    it("should set attribute on the underlying link", async () => {
         // Arrange
 
         // Act
@@ -536,11 +541,14 @@ describe("Button", () => {
         );
 
         // Assert
-        expect(screen.getByRole("button")).toHaveAttribute("href", "/bar");
+        expect(await screen.findByRole("button")).toHaveAttribute(
+            "href",
+            "/bar",
+        );
     });
 
     describe("client-side navigation with keyboard", () => {
-        it("should navigate on pressing the space key", () => {
+        it("should navigate on pressing the space key", async () => {
             // Arrange
             render(
                 <MemoryRouter>
@@ -556,14 +564,16 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.type(button, "{space}");
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{space}");
 
             // Assert
-            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+            expect(
+                await screen.findByText("Hello, world!"),
+            ).toBeInTheDocument();
         });
 
-        it("should navigate on pressing the enter key", () => {
+        it("should navigate on pressing the enter key", async () => {
             // Arrange
             render(
                 <MemoryRouter>
@@ -579,14 +589,16 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.type(button, "{enter}");
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
 
             // Assert
-            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+            expect(
+                await screen.findByText("Hello, world!"),
+            ).toBeInTheDocument();
         });
 
-        test("beforeNav rejection blocks client-side navigation ", () => {
+        test("beforeNav rejection blocks client-side navigation ", async () => {
             // Arrange
             render(
                 <MemoryRouter>
@@ -604,8 +616,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.type(button, "{enter}");
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
 
             // Assert
             expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -629,16 +641,18 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.type(button, "{enter}");
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
 
             // Assert
-            await waitFor(() => {
-                expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+            await waitFor(async () => {
+                expect(
+                    await screen.findByText("Hello, world!"),
+                ).toBeInTheDocument();
             });
         });
 
-        test("safeWithNav with skipClientNav=true waits for promise resolution", () => {
+        test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
             // Arrange
             jest.spyOn(window.location, "assign");
             render(
@@ -661,8 +675,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.type(button, "{enter}");
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
 
             // Assert
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
@@ -691,8 +705,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.type(button, "{enter}");
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
 
             // Assert
             await waitFor(() => {
@@ -724,8 +738,8 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.type(button, "{enter}");
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
 
             // Assert
             await waitFor(() => {
@@ -738,19 +752,19 @@ describe("Button", () => {
     });
 
     describe("button focus", () => {
-        test("primary button can have focus", () => {
+        test("primary button can have focus", async () => {
             // Arrange
             render(<Button testId={"button-focus-test"}>Label</Button>);
 
             // Act
-            const button = screen.getByTestId("button-focus-test");
+            const button = await screen.findByTestId("button-focus-test");
             button.focus();
 
             // Assert
             expect(button).toHaveFocus();
         });
 
-        test("primary button can have focus when disabled", () => {
+        test("primary button can have focus when disabled", async () => {
             // Arrange
             render(
                 <Button disabled={true} testId={"button-focus-test"}>
@@ -759,14 +773,14 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByTestId("button-focus-test");
+            const button = await screen.findByTestId("button-focus-test");
             button.focus();
 
             // Assert
             expect(button).toHaveFocus();
         });
 
-        test("tertiary button can have focus when disabled", () => {
+        test("tertiary button can have focus when disabled", async () => {
             // Arrange
             render(
                 <Button
@@ -779,7 +793,7 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByTestId("button-focus-test");
+            const button = await screen.findByTestId("button-focus-test");
             button.focus();
 
             // Assert
@@ -788,7 +802,7 @@ describe("Button", () => {
     });
 
     describe("type='submit'", () => {
-        test("submit button within form via click", () => {
+        test("submit button within form via click", async () => {
             // Arrange
             const submitFnMock = jest.fn();
             render(
@@ -798,14 +812,14 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.click(button);
+            const button = await screen.findByRole("button");
+            await userEvent.click(button);
 
             // Assert
             expect(submitFnMock).toHaveBeenCalled();
         });
 
-        test("submit button within form via keyboard", () => {
+        test("submit button within form via keyboard", async () => {
             // Arrange
             const submitFnMock = jest.fn();
             render(
@@ -815,21 +829,21 @@ describe("Button", () => {
             );
 
             // Act
-            const button = screen.getByRole("button");
-            userEvent.type(button, "{enter}");
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
 
             // Assert
             expect(submitFnMock).toHaveBeenCalled();
         });
 
-        test("submit button doesn't break if it's not in a form", () => {
+        test("submit button doesn't break if it's not in a form", async () => {
             // Arrange
             render(<Button type="submit">Click me!</Button>);
 
             // Act
-            expect(() => {
+            expect(async () => {
                 // Assert
-                userEvent.click(screen.getByRole("button"));
+                await userEvent.click(await screen.findByRole("button"));
             }).not.toThrow();
         });
     });

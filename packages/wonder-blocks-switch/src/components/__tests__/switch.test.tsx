@@ -1,7 +1,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
@@ -9,7 +9,7 @@ import Switch from "../switch";
 
 describe("Switch", () => {
     describe("trigger switch callback", () => {
-        test("clicking the switch should call onChange", () => {
+        test("clicking the switch should call onChange", async () => {
             // Arrange
             const onChangeSpy = jest.fn();
             render(
@@ -19,14 +19,14 @@ describe("Switch", () => {
             );
 
             // Act
-            const switchComponent = screen.getByRole("switch");
+            const switchComponent = await screen.findByRole("switch");
             switchComponent.click();
 
             // Assert
             expect(onChangeSpy).toHaveBeenCalled();
         });
 
-        test("clicking a disabled switch should not call onChange", () => {
+        test("clicking a disabled switch should not call onChange", async () => {
             // Arrange
             const onChangeSpy = jest.fn();
             render(
@@ -40,14 +40,14 @@ describe("Switch", () => {
             );
 
             // Act
-            const switchComponent = screen.getByRole("switch");
+            const switchComponent = await screen.findByRole("switch");
             switchComponent.click();
 
             // Assert
             expect(onChangeSpy).not.toHaveBeenCalled();
         });
 
-        test("pressing the space key should call onChange", () => {
+        test("pressing the space key should call onChange", async () => {
             // Arrange
             const onChangeSpy = jest.fn();
             render(
@@ -57,15 +57,15 @@ describe("Switch", () => {
             );
 
             // Act
-            const switchComponent = screen.getByRole("switch");
-            userEvent.tab();
-            userEvent.type(switchComponent, " ");
+            const switchComponent = await screen.findByRole("switch");
+            await userEvent.tab();
+            await userEvent.type(switchComponent, " ");
 
             // Assert
             expect(onChangeSpy).toHaveBeenCalled();
         });
 
-        test("clicking a label for the switch should call onChange", () => {
+        test("clicking a label for the switch should call onChange", async () => {
             // Arrange
             const onChangeSpy = jest.fn();
             render(
@@ -80,7 +80,7 @@ describe("Switch", () => {
             );
 
             // Act
-            const label = screen.getByText("Switch");
+            const label = await screen.findByText("Switch");
             label.click();
 
             // Assert
@@ -89,7 +89,7 @@ describe("Switch", () => {
     });
 
     describe("setting attributes", () => {
-        it("should set the accessibility attributes accordingly", () => {
+        it("should set the accessibility attributes accordingly", async () => {
             // Arrange
             render(
                 <RenderStateRoot>
@@ -102,14 +102,14 @@ describe("Switch", () => {
             );
 
             // Act
-            const switchComponent = screen.getByRole("switch");
+            const switchComponent = await screen.findByRole("switch");
 
             // Assert
             expect(switchComponent).toHaveAttribute("aria-label", "Gravity");
             expect(switchComponent).toHaveProperty("checked", true);
         });
 
-        it("should render an icon if one is provided", () => {
+        it("should render an icon if one is provided", async () => {
             // Arrange
             render(
                 <RenderStateRoot>
@@ -126,13 +126,13 @@ describe("Switch", () => {
             );
 
             // Act
-            const icon = screen.getByTestId("test-icon");
+            const icon = await screen.findByTestId("test-icon");
 
             // Assert
             expect(icon).toBeInTheDocument();
         });
 
-        it("should have set aria-disabled if disabled is set", () => {
+        it("should have set aria-disabled if disabled is set", async () => {
             // Arrange
             render(
                 <RenderStateRoot>
@@ -145,13 +145,13 @@ describe("Switch", () => {
             );
 
             // Act
-            const switchComponent = screen.getByRole("switch");
+            const switchComponent = await screen.findByRole("switch");
 
             // Assert
             expect(switchComponent).toHaveAttribute("aria-disabled", "true");
         });
 
-        it("should receive focus even if disabled is set", () => {
+        it("should receive focus even if disabled is set", async () => {
             // Arrange
             render(
                 <RenderStateRoot>
@@ -164,10 +164,10 @@ describe("Switch", () => {
             );
 
             // Act
-            userEvent.tab();
+            await userEvent.tab();
 
             // Assert
-            const switchComponent = screen.getByRole("switch");
+            const switchComponent = await screen.findByRole("switch");
             expect(switchComponent).toHaveFocus();
         });
     });

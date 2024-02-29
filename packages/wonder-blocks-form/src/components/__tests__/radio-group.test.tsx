@@ -1,6 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import RadioGroup from "../radio-group";
 import Choice from "../choice";
@@ -35,7 +35,7 @@ describe("RadioGroup", () => {
     };
 
     describe("behavior", () => {
-        it("selects only one item at a time", () => {
+        it("selects only one item at a time", async () => {
             // Arrange, Act
             render(<TestComponent />);
 
@@ -48,14 +48,14 @@ describe("RadioGroup", () => {
             expect(radios[2]).not.toBeChecked();
         });
 
-        it("changes selection when selectedValue changes", () => {
+        it("changes selection when selectedValue changes", async () => {
             // Arrange
             render(<TestComponent />);
 
             const radios = screen.getAllByRole("radio");
 
             // Act
-            userEvent.click(radios[1]);
+            await userEvent.click(radios[1]);
 
             // Assert
             // a starts off checked
@@ -64,7 +64,7 @@ describe("RadioGroup", () => {
             expect(radios[2]).not.toBeChecked();
         });
 
-        it("should set aria-invalid on choices when there's an error message", () => {
+        it("should set aria-invalid on choices when there's an error message", async () => {
             // Arrange, Act
             render(<TestComponent errorMessage="there's an error" />);
 
@@ -76,7 +76,7 @@ describe("RadioGroup", () => {
             expect(radios[2]).toHaveAttribute("aria-invalid", "true");
         });
 
-        it("doesn't change when an already selected item is reselected", () => {
+        it("doesn't change when an already selected item is reselected", async () => {
             // Arrange
             const handleChange = jest.fn();
             render(<TestComponent onChange={handleChange} />);
@@ -85,13 +85,13 @@ describe("RadioGroup", () => {
 
             // Act
             // a is already selected, onChange shouldn't be called
-            userEvent.click(radios[0]);
+            await userEvent.click(radios[0]);
 
             // Assert
             expect(handleChange).toHaveBeenCalledTimes(0);
         });
 
-        it("checks that aria attributes have been added correctly", () => {
+        it("checks that aria attributes have been added correctly", async () => {
             // Arrange, Act
             render(<TestComponent />);
 
@@ -105,7 +105,7 @@ describe("RadioGroup", () => {
     });
 
     describe("flexible props", () => {
-        it("should render with a React.Node label", () => {
+        it("should render with a React.Node label", async () => {
             // Arrange, Act
             render(
                 <RadioGroup
@@ -125,10 +125,10 @@ describe("RadioGroup", () => {
             );
 
             // Assert
-            expect(screen.getByText("strong")).toBeInTheDocument();
+            expect(await screen.findByText("strong")).toBeInTheDocument();
         });
 
-        it("should render with a React.Node description", () => {
+        it("should render with a React.Node description", async () => {
             // Arrange, Act
             render(
                 <RadioGroup
@@ -149,10 +149,10 @@ describe("RadioGroup", () => {
             );
 
             // Assert
-            expect(screen.getByText("strong")).toBeInTheDocument();
+            expect(await screen.findByText("strong")).toBeInTheDocument();
         });
 
-        it("should filter out false-y children when rendering", () => {
+        it("should filter out false-y children when rendering", async () => {
             // Arrange, Act
             render(
                 <RadioGroup

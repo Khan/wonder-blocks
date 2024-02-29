@@ -1,6 +1,6 @@
 import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -8,18 +8,18 @@ import Button from "@khanacademy/wonder-blocks-button";
 import TextField from "../text-field";
 
 describe("TextField", () => {
-    it("textfield is focused", () => {
+    it("textfield is focused", async () => {
         // Arrange
         render(<TextField id="tf-1" value="" onChange={() => {}} />);
 
         // Act
-        userEvent.tab();
+        await userEvent.tab();
 
         // Assert
-        expect(screen.getByRole("textbox")).toHaveFocus();
+        expect(await screen.findByRole("textbox")).toHaveFocus();
     });
 
-    it("onFocus is called after textfield is focused", () => {
+    it("onFocus is called after textfield is focused", async () => {
         // Arrange
         const handleOnFocus = jest.fn(() => {});
 
@@ -33,7 +33,7 @@ describe("TextField", () => {
         );
 
         // Act
-        userEvent.tab();
+        await userEvent.tab();
 
         // Assert
         expect(handleOnFocus).toHaveBeenCalled();
@@ -44,14 +44,14 @@ describe("TextField", () => {
         render(<TextField id="tf-1" value="" onChange={() => {}} />);
 
         // focus
-        userEvent.tab();
+        await userEvent.tab();
 
         // Act
         // blur
-        userEvent.tab();
+        await userEvent.tab();
 
         // Assert
-        expect(screen.getByRole("textbox")).not.toHaveFocus();
+        expect(await screen.findByRole("textbox")).not.toHaveFocus();
     });
 
     it("onBlur is called after textfield is blurred", async () => {
@@ -68,17 +68,17 @@ describe("TextField", () => {
         );
 
         // focus
-        userEvent.tab();
+        await userEvent.tab();
 
         // Act
         // blur
-        userEvent.tab();
+        await userEvent.tab();
 
         // Assert
         expect(handleOnBlur).toHaveBeenCalled();
     });
 
-    it("id prop is passed to the input element", () => {
+    it("id prop is passed to the input element", async () => {
         // Arrange
         const id = "tf-1";
 
@@ -86,11 +86,11 @@ describe("TextField", () => {
         render(<TextField id={id} value="" onChange={() => {}} />);
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("id", id);
     });
 
-    it("type prop is passed to the input element", () => {
+    it("type prop is passed to the input element", async () => {
         // Arrange
         const type = "number";
 
@@ -101,11 +101,11 @@ describe("TextField", () => {
 
         // Assert
         // NOTE: The implicit role for input[type=number] is "spinbutton".
-        const input = screen.getByRole("spinbutton");
+        const input = await screen.findByRole("spinbutton");
         expect(input).toHaveAttribute("type", type);
     });
 
-    it("name prop is passed to the input element", () => {
+    it("name prop is passed to the input element", async () => {
         // Arrange
         const name = "some-name";
 
@@ -115,11 +115,11 @@ describe("TextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("name", name);
     });
 
-    it("value prop is passed to the input element", () => {
+    it("value prop is passed to the input element", async () => {
         // Arrange
         const value = "Text";
 
@@ -127,11 +127,11 @@ describe("TextField", () => {
         render(<TextField id={"tf-1"} value={value} onChange={() => {}} />);
 
         // Assert
-        const input = screen.getByDisplayValue(value);
+        const input = await screen.findByDisplayValue(value);
         expect(input).toBeInTheDocument();
     });
 
-    it("disabled prop disables the input element", () => {
+    it("disabled prop disables the input element", async () => {
         // Arrange
         render(
             <TextField
@@ -141,7 +141,7 @@ describe("TextField", () => {
                 disabled={true}
             />,
         );
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
 
         // Act
 
@@ -149,7 +149,7 @@ describe("TextField", () => {
         expect(input).toBeDisabled();
     });
 
-    it("onChange is called when value changes", () => {
+    it("onChange is called when value changes", async () => {
         // Arrange
         const handleOnChange = jest.fn();
 
@@ -159,7 +159,7 @@ describe("TextField", () => {
 
         // Act
         const newValue = "Test2";
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         // @see https://testing-library.com/docs/react-testing-library/faq
         // How do I test input onChange handlers?
         // eslint-disable-next-line testing-library/prefer-user-event
@@ -169,7 +169,7 @@ describe("TextField", () => {
         expect(handleOnChange).toHaveBeenCalledWith(newValue);
     });
 
-    it("validate is called when value changes", () => {
+    it("validate is called when value changes", async () => {
         // Arrange
         const handleValidate = jest.fn((value: string) => {});
 
@@ -185,13 +185,16 @@ describe("TextField", () => {
         // Act
         const newValue = "Text2";
         // Select all text and replace it with the new value.
-        userEvent.type(screen.getByRole("textbox"), `{selectall}${newValue}`);
+        await userEvent.type(
+            await screen.findByRole("textbox"),
+            `{selectall}${newValue}`,
+        );
 
         // Assert
         expect(handleValidate).toHaveBeenCalledWith(newValue);
     });
 
-    it("validate is given a valid input", () => {
+    it("validate is given a valid input", async () => {
         // Arrange
         const handleValidate = jest.fn(
             (value: string): string | null | undefined => {
@@ -213,13 +216,16 @@ describe("TextField", () => {
         // Act
         const newValue = "TextIsLongerThan8";
         // Select all text and replace it with the new value.
-        userEvent.type(screen.getByRole("textbox"), `{selectall}${newValue}`);
+        await userEvent.type(
+            await screen.findByRole("textbox"),
+            `{selectall}${newValue}`,
+        );
 
         // Assert
         expect(handleValidate).toHaveReturnedWith(undefined);
     });
 
-    it("validate is given an invalid input", () => {
+    it("validate is given an invalid input", async () => {
         // Arrange
         const errorMessage = "Value is too short";
         const handleValidate = jest.fn(
@@ -242,13 +248,16 @@ describe("TextField", () => {
         // Act
         const newValue = "Text";
         // Select all text and replace it with the new value.
-        userEvent.type(screen.getByRole("textbox"), `{selectall}${newValue}`);
+        const textbox = await screen.findByRole("textbox");
+        await userEvent.click(textbox);
+        await userEvent.clear(textbox);
+        await userEvent.paste(newValue);
 
         // Assert
         expect(handleValidate).toHaveReturnedWith(errorMessage);
     });
 
-    it("onValidate is called after input validate", () => {
+    it("onValidate is called after input validate", async () => {
         // Arrange
         const errorMessage = "Value is too short";
         const handleValidate = jest.fn((errorMessage?: string | null) => {});
@@ -271,13 +280,16 @@ describe("TextField", () => {
         // Act
         const newValue = "Text";
         // Select all text and replace it with the new value.
-        userEvent.type(screen.getByRole("textbox"), `{selectall}${newValue}`);
+        const textbox = await screen.findByRole("textbox");
+        await userEvent.click(textbox);
+        await userEvent.clear(textbox);
+        await userEvent.paste(newValue);
 
         // Assert
         expect(handleValidate).toHaveBeenCalledWith(errorMessage);
     });
 
-    it("onValidate is called on input's initial value", () => {
+    it("onValidate is called on input's initial value", async () => {
         // Arrange
         const errorMessage = "Value is too short";
         const handleValidate = jest.fn((errorMessage?: string | null) => {});
@@ -302,7 +314,7 @@ describe("TextField", () => {
         expect(handleValidate).toHaveBeenCalledWith(errorMessage);
     });
 
-    it("onKeyDown is called after keyboard key press", () => {
+    it("onKeyDown is called after keyboard key press", async () => {
         // Arrange
         const handleOnKeyDown = jest.fn(
             (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -320,13 +332,13 @@ describe("TextField", () => {
         );
 
         // Act
-        userEvent.type(screen.getByRole("textbox"), "{enter}");
+        await userEvent.type(await screen.findByRole("textbox"), "{enter}");
 
         // Assert
         expect(handleOnKeyDown).toHaveReturnedWith("Enter");
     });
 
-    it("placeholder prop is passed to the input element", () => {
+    it("placeholder prop is passed to the input element", async () => {
         // Arrange
         const placeholder = "Placeholder";
 
@@ -341,11 +353,11 @@ describe("TextField", () => {
         );
 
         // Assert
-        const input = screen.getByPlaceholderText(placeholder);
+        const input = await screen.findByPlaceholderText(placeholder);
         expect(input).toBeInTheDocument();
     });
 
-    it("testId is passed to the input element", () => {
+    it("testId is passed to the input element", async () => {
         // Arrange
         const testId = "some-test-id";
         render(
@@ -360,11 +372,11 @@ describe("TextField", () => {
         // Act
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("data-test-id", testId);
     });
 
-    it("aria props are passed to the input element", () => {
+    it("aria props are passed to the input element", async () => {
         // Arrange
         const ariaLabel = "example-text-field";
         render(
@@ -379,7 +391,7 @@ describe("TextField", () => {
         // Act
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("aria-label", ariaLabel);
     });
 
@@ -397,7 +409,7 @@ describe("TextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("readOnly");
     });
 
@@ -416,11 +428,11 @@ describe("TextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("autoComplete", autoComplete);
     });
 
-    test("has focus if autoFocus is true", () => {
+    test("has focus if autoFocus is true", async () => {
         // Arrange
         render(
             <View>
@@ -439,13 +451,13 @@ describe("TextField", () => {
         );
 
         // Act
-        const searchField = screen.getByTestId("search-field-test");
+        const searchField = await screen.findByTestId("search-field-test");
 
         // Assert
         expect(searchField).toHaveFocus();
     });
 
-    test("does not have focus if autoFocus is undefined", () => {
+    test("does not have focus if autoFocus is undefined", async () => {
         // Arrange
         render(
             <View>
@@ -463,7 +475,7 @@ describe("TextField", () => {
         );
 
         // Act
-        const searchField = screen.getByTestId("search-field-test");
+        const searchField = await screen.findByTestId("search-field-test");
 
         // Assert
         expect(searchField).not.toHaveFocus();

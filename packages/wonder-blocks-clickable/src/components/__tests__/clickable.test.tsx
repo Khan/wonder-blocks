@@ -1,7 +1,7 @@
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Clickable from "../clickable";
@@ -14,7 +14,7 @@ describe("Clickable", () => {
         window.location = {assign: jest.fn()};
     });
 
-    test("client-side navigation", () => {
+    test("client-side navigation", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -32,13 +32,13 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
-        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
     });
 
-    test("client-side navigation with unknown URL fails", () => {
+    test("client-side navigation with unknown URL fails", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -56,13 +56,13 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("client-side navigation with `skipClientNav` set to `true` fails", () => {
+    test("client-side navigation with `skipClientNav` set to `true` fails", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -80,13 +80,13 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("disallow navigation when href and disabled are both set", () => {
+    test("disallow navigation when href and disabled are both set", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -104,13 +104,13 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("a link is rendered with the given href", () => {
+    test("a link is rendered with the given href", async () => {
         // Arrange, Act
         render(
             <Clickable testId="button" href="/foo" skipClientNav={true}>
@@ -119,12 +119,12 @@ describe("Clickable", () => {
         );
 
         // Assert
-        const link = screen.getByRole("link");
+        const link = await screen.findByRole("link");
         expect(link).toBeInTheDocument();
         expect(link).toHaveAttribute("href", "/foo");
     });
 
-    test("should navigate to a specific link using the keyboard", () => {
+    test("should navigate to a specific link using the keyboard", async () => {
         // Arrange
         render(
             <Clickable testId="button" href="/foo" skipClientNav={true}>
@@ -133,7 +133,7 @@ describe("Clickable", () => {
         );
 
         // Act
-        const button = screen.getByTestId("button");
+        const button = await screen.findByTestId("button");
         // simulate Enter
         // eslint-disable-next-line testing-library/prefer-user-event
         fireEvent.keyUp(button, {keyCode: 13});
@@ -164,7 +164,7 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -194,7 +194,7 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         expect(safeWithNavMock).not.toHaveBeenCalled();
@@ -222,11 +222,13 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
-        await waitFor(() => {
-            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        await waitFor(async () => {
+            expect(
+                await screen.findByText("Hello, world!"),
+            ).toBeInTheDocument();
         });
     });
 
@@ -254,7 +256,7 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         await waitFor(() => {
@@ -285,7 +287,7 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         await waitFor(() => {
@@ -317,7 +319,7 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         await waitFor(() => {
@@ -348,7 +350,7 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         await waitFor(() => {
@@ -356,7 +358,7 @@ describe("Clickable", () => {
         });
     });
 
-    test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", () => {
+    test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", async () => {
         // Arrange
         const safeWithNavMock = jest.fn();
         render(
@@ -380,12 +382,12 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();
         // client side nav to /foo
-        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
         // not a full page nav
         expect(window.location.assign).not.toHaveBeenCalledWith("/foo");
     });
@@ -415,19 +417,19 @@ describe("Clickable", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("button"));
+        await userEvent.click(await screen.findByTestId("button"));
 
         // Assert
         await waitFor(() => {
             expect(safeWithNavMock).toHaveBeenCalled();
         });
         // client side nav to /foo
-        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
         // not a full page nav
         expect(window.location.assign).not.toHaveBeenCalledWith("/foo");
     });
 
-    test("should add aria-disabled if disabled is set", () => {
+    test("should add aria-disabled if disabled is set", async () => {
         // Arrange
 
         // Act
@@ -437,13 +439,13 @@ describe("Clickable", () => {
             </Clickable>,
         );
 
-        const button = screen.getByTestId("clickable-button");
+        const button = await screen.findByTestId("clickable-button");
 
         // Assert
         expect(button).toHaveAttribute("aria-disabled", "true");
     });
 
-    test("should add aria-label if one is passed in", () => {
+    test("should add aria-label if one is passed in", async () => {
         // Arrange
 
         // Act
@@ -456,7 +458,7 @@ describe("Clickable", () => {
             </Clickable>,
         );
 
-        const button = screen.getByTestId("clickable-button");
+        const button = await screen.findByTestId("clickable-button");
 
         // Assert
         expect(button).toHaveAttribute(
@@ -465,7 +467,7 @@ describe("Clickable", () => {
         );
     });
 
-    test("should not have an aria-label if one is not passed in", () => {
+    test("should not have an aria-label if one is not passed in", async () => {
         // Arrange
 
         // Act
@@ -475,13 +477,13 @@ describe("Clickable", () => {
             </Clickable>,
         );
 
-        const button = screen.getByTestId("clickable-button");
+        const button = await screen.findByTestId("clickable-button");
 
         // Assert
         expect(button).not.toHaveAttribute("aria-label");
     });
 
-    test("allow keyboard navigation when disabled is set", () => {
+    test("allow keyboard navigation when disabled is set", async () => {
         // Arrange
         render(
             <div>
@@ -495,18 +497,18 @@ describe("Clickable", () => {
         // Act
         // RTL's focuses on `document.body` by default, so we need to focus on
         // the first button
-        userEvent.tab();
+        await userEvent.tab();
 
         // Then we focus on our Clickable button.
-        userEvent.tab();
+        await userEvent.tab();
 
-        const button = screen.getByTestId("clickable-button");
+        const button = await screen.findByTestId("clickable-button");
 
         // Assert
         expect(button).toHaveFocus();
     });
 
-    test("should not have a tabIndex if one is not set", () => {
+    test("should not have a tabIndex if one is not set", async () => {
         // Arrange
 
         // Act
@@ -516,13 +518,13 @@ describe("Clickable", () => {
             </Clickable>,
         );
 
-        const button = screen.getByTestId("clickable-button");
+        const button = await screen.findByTestId("clickable-button");
 
         // Assert
         expect(button).not.toHaveAttribute("tabIndex");
     });
 
-    test("should have the tabIndex that is passed in", () => {
+    test("should have the tabIndex that is passed in", async () => {
         // Arrange
 
         // Act
@@ -532,13 +534,13 @@ describe("Clickable", () => {
             </Clickable>,
         );
 
-        const button = screen.getByTestId("clickable-button");
+        const button = await screen.findByTestId("clickable-button");
 
         // Assert
         expect(button).toHaveAttribute("tabIndex", "1");
     });
 
-    test("forwards the ref to the clickable button element", () => {
+    test("forwards the ref to the clickable button element", async () => {
         // Arrange
         const ref: React.RefObject<HTMLButtonElement> = React.createRef();
 
@@ -553,7 +555,7 @@ describe("Clickable", () => {
         expect(ref.current).toBeInstanceOf(HTMLButtonElement);
     });
 
-    test("forwards the ref to the clickable anchor element ", () => {
+    test("forwards the ref to the clickable anchor element ", async () => {
         // Arrange
         const ref: React.RefObject<HTMLAnchorElement> = React.createRef();
 
@@ -586,7 +588,7 @@ describe("Clickable", () => {
             return <Clickable {...restProps}>{() => children}</Clickable>;
         };
 
-        test("onKeyDown", () => {
+        test("onKeyDown", async () => {
             // Arrange
             let keyCode: any;
             render(
@@ -597,13 +599,13 @@ describe("Clickable", () => {
 
             // Act
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyDown(screen.getByRole("button"), {keyCode: 32});
+            fireEvent.keyDown(await screen.findByRole("button"), {keyCode: 32});
 
             // Assert
             expect(keyCode).toEqual(32);
         });
 
-        test("onKeyUp", () => {
+        test("onKeyUp", async () => {
             // Arrange
             let keyCode: any;
             render(
@@ -614,13 +616,13 @@ describe("Clickable", () => {
 
             // Act
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyUp(screen.getByRole("button"), {keyCode: 32});
+            fireEvent.keyUp(await screen.findByRole("button"), {keyCode: 32});
 
             // Assert
             expect(keyCode).toEqual(32);
         });
 
-        test("onMouseDown", () => {
+        test("onMouseDown", async () => {
             // Arrange
             let clientX: any;
             render(
@@ -631,13 +633,15 @@ describe("Clickable", () => {
 
             // Act
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.mouseDown(screen.getByRole("button"), {clientX: 10});
+            fireEvent.mouseDown(await screen.findByRole("button"), {
+                clientX: 10,
+            });
 
             // Assert
             expect(clientX).toEqual(10);
         });
 
-        test("onMouseUp", () => {
+        test("onMouseUp", async () => {
             // Arrange
             let clientX: any;
             render(
@@ -648,7 +652,7 @@ describe("Clickable", () => {
 
             // Act
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.mouseUp(screen.getByRole("button"), {clientX: 10});
+            fireEvent.mouseUp(await screen.findByRole("button"), {clientX: 10});
 
             // Assert
             expect(clientX).toEqual(10);

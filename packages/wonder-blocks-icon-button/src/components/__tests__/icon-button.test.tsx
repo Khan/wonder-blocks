@@ -1,6 +1,6 @@
 import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
@@ -22,7 +22,7 @@ describe("IconButton", () => {
         window.location = location;
     });
 
-    test("render a span containing the reference to the icon", () => {
+    test("render a span containing the reference to the icon", async () => {
         // Arrange
 
         // Act
@@ -35,13 +35,13 @@ describe("IconButton", () => {
             />,
         );
 
-        const icon = screen.getByLabelText("search");
+        const icon = await screen.findByLabelText("search");
 
         // Assert
         expect(icon.innerHTML).toEqual(expect.stringContaining("mask-image"));
     });
 
-    test("throw an error for if light and not primary", () => {
+    test("throw an error for if light and not primary", async () => {
         expectRenderError(
             <IconButton
                 icon={magnifyingGlassIcon}
@@ -54,7 +54,7 @@ describe("IconButton", () => {
         );
     });
 
-    test("client-side navigation", () => {
+    test("client-side navigation", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -75,13 +75,13 @@ describe("IconButton", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("link"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
-        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
     });
 
-    test("client-side navigation with unknown URL fails", () => {
+    test("client-side navigation with unknown URL fails", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -102,13 +102,13 @@ describe("IconButton", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("link"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("client-side navigation with `skipClientNav` set to `true` fails", () => {
+    test("client-side navigation with `skipClientNav` set to `true` fails", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -130,13 +130,13 @@ describe("IconButton", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("link"));
+        await userEvent.click(await screen.findByRole("link"));
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("disallow navigation when href and disabled are both set", () => {
+    test("disallow navigation when href and disabled are both set", async () => {
         render(
             <MemoryRouter>
                 <div>
@@ -157,13 +157,13 @@ describe("IconButton", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("disallow press/click when disabled is set", () => {
+    test("disallow press/click when disabled is set", async () => {
         // Arrange
         const onClickMock = jest.fn();
         render(
@@ -177,13 +177,13 @@ describe("IconButton", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
         expect(onClickMock).not.toBeCalled();
     });
 
-    it("sets the 'target' prop on the underlying element", () => {
+    it("sets the 'target' prop on the underlying element", async () => {
         // Arrange
         render(
             <IconButton
@@ -194,14 +194,14 @@ describe("IconButton", () => {
         );
 
         // Act
-        const link = screen.getByRole("link");
-        userEvent.click(link);
+        const link = await screen.findByRole("link");
+        await userEvent.click(link);
 
         // Assert
         expect(link).toHaveAttribute("target", "_blank");
     });
 
-    it("renders an <a> if the href is '#'", () => {
+    it("renders an <a> if the href is '#'", async () => {
         // Arrange
         render(
             <MemoryRouter>
@@ -210,14 +210,14 @@ describe("IconButton", () => {
         );
 
         // Act
-        const link = screen.getByRole("link");
+        const link = await screen.findByRole("link");
 
         // Assert
         expect(link.tagName).toBe("A");
     });
 
     describe("onClick", () => {
-        it("should trigger using the mouse", () => {
+        it("should trigger using the mouse", async () => {
             // Arrange
             const onClickMock = jest.fn();
 
@@ -232,13 +232,13 @@ describe("IconButton", () => {
 
             // Act
             // Press the button.
-            userEvent.click(screen.getByRole("button"));
+            await userEvent.click(await screen.findByRole("button"));
 
             // Assert
             expect(onClickMock).toHaveBeenCalledTimes(1);
         });
 
-        it("should trigger by pressing {Space}", () => {
+        it("should trigger by pressing {Space}", async () => {
             // Arrange
             const onClickMock = jest.fn();
 
@@ -253,8 +253,8 @@ describe("IconButton", () => {
 
             // Act
             // Press the button.
-            const button = screen.getByRole("button");
-            // NOTE: we need to use fireEvent here because userEvent doesn't
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
             // eslint-disable-next-line testing-library/prefer-user-event
@@ -274,7 +274,7 @@ describe("IconButton", () => {
             expect(onClickMock).toHaveBeenCalledTimes(1);
         });
 
-        it("should trigger by pressing {Enter}", () => {
+        it("should trigger by pressing {Enter}", async () => {
             // Arrange
             const onClickMock = jest.fn();
 
@@ -289,8 +289,8 @@ describe("IconButton", () => {
 
             // Act
             // Press the button.
-            const button = screen.getByRole("button");
-            // NOTE: we need to use fireEvent here because userEvent doesn't
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
             // eslint-disable-next-line testing-library/prefer-user-event
