@@ -139,9 +139,11 @@
     "wb-codemod"
   ],
   "resolutions": {
+    "@testing-library/dom": "^8.0.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/user-event": "^14.5.1",
     "@types/react": "16",
     "@types/react-dom": "16",
-    "aria-query": "5.3.0",
     "strip-ansi": "6.0.1",
     "strip-ansi-explanation": "There's an issue with strip-ansi v7 which causes conflicts with the Khan/changeset-per-package action"
   }
