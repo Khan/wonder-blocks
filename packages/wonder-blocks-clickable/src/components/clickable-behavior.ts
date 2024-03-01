@@ -457,6 +457,10 @@ export default class ClickableBehavior extends React.Component<
                     // Chrome and Safari allow calling e.preventDefault() on
                     // non-cancelable events, but really they shouldn't.
                     const event = new window.Event("submit", {
+                        // This is required as event propagation changed in
+                        // React 17.
+                        // @see https://legacy.reactjs.org/blog/2020/10/20/react-v17.html#changes-to-event-delegation
+                        bubbles: true,
                         cancelable: true,
                     });
                     target.dispatchEvent(event);
