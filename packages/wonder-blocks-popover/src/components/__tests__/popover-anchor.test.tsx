@@ -1,11 +1,11 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import PopoverAnchor from "../popover-anchor";
 
 describe("PopoverAnchor", () => {
-    it("should set child node as ref", () => {
+    it("should set child node as ref", async () => {
         // Arrange
         const updateRef = jest.fn();
 
@@ -16,13 +16,13 @@ describe("PopoverAnchor", () => {
         );
 
         // Act
-        const triggerElement = screen.getByRole("button");
+        const triggerElement = await screen.findByRole("button");
 
         // Assert
         expect(updateRef).toBeCalledWith(triggerElement);
     });
 
-    it("should add onClick handler if child is a function", () => {
+    it("should add onClick handler if child is a function", async () => {
         // Arrange
         const onClickMock = jest.fn();
 
@@ -33,13 +33,13 @@ describe("PopoverAnchor", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
         expect(onClickMock).toBeCalled();
     });
 
-    it("should add onClick handler if child is a Node", () => {
+    it("should add onClick handler if child is a Node", async () => {
         // Arrange
         const onClickMock = jest.fn();
         const onClickInnerMock = jest.fn();
@@ -51,7 +51,7 @@ describe("PopoverAnchor", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
         // both custom and internal click should be called

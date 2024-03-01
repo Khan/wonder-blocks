@@ -1,6 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import CheckboxGroup from "../checkbox-group";
 import Choice from "../choice";
@@ -31,7 +31,7 @@ describe("CheckboxGroup", () => {
             );
         };
 
-        it("has the correct items checked", () => {
+        it("has the correct items checked", async () => {
             // Arrange, Act
             render(<TestComponent />);
 
@@ -44,14 +44,14 @@ describe("CheckboxGroup", () => {
             expect(checkboxes[2]).not.toBeChecked();
         });
 
-        it("clicking a selected choice deselects it", () => {
+        it("clicking a selected choice deselects it", async () => {
             // Arrange
             render(<TestComponent />);
 
             const checkboxes = screen.getAllByRole("checkbox");
 
             // Act
-            userEvent.click(checkboxes[0]);
+            await userEvent.click(checkboxes[0]);
 
             // Assert
             expect(checkboxes[0]).not.toBeChecked();
@@ -59,7 +59,7 @@ describe("CheckboxGroup", () => {
             expect(checkboxes[2]).not.toBeChecked();
         });
 
-        it("should set aria-invalid on choices when there's an error message", () => {
+        it("should set aria-invalid on choices when there's an error message", async () => {
             // Arrange, Act
             render(<TestComponent errorMessage="there's an error" />);
 
@@ -71,7 +71,7 @@ describe("CheckboxGroup", () => {
             expect(checkboxes[2]).toHaveAttribute("aria-invalid", "true");
         });
 
-        it("checks that aria attributes have been added correctly", () => {
+        it("checks that aria attributes have been added correctly", async () => {
             // Arrange, Act
             render(<TestComponent />);
 
@@ -85,7 +85,7 @@ describe("CheckboxGroup", () => {
     });
 
     describe("flexible props", () => {
-        it("should render with a React.Node label", () => {
+        it("should render with a React.Node label", async () => {
             // Arrange, Act
             render(
                 <CheckboxGroup
@@ -105,10 +105,10 @@ describe("CheckboxGroup", () => {
             );
 
             // Assert
-            expect(screen.getByText("strong")).toBeInTheDocument();
+            expect(await screen.findByText("strong")).toBeInTheDocument();
         });
 
-        it("should render with a React.Node description", () => {
+        it("should render with a React.Node description", async () => {
             // Arrange, Act
             render(
                 <CheckboxGroup
@@ -129,10 +129,10 @@ describe("CheckboxGroup", () => {
             );
 
             // Assert
-            expect(screen.getByText("strong")).toBeInTheDocument();
+            expect(await screen.findByText("strong")).toBeInTheDocument();
         });
 
-        it("should filter out false-y children when rendering", () => {
+        it("should filter out false-y children when rendering", async () => {
             // Arrange, Act
             render(
                 <CheckboxGroup

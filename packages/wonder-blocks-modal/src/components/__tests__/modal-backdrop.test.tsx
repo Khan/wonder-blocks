@@ -1,6 +1,6 @@
 import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import ModalBackdrop from "../modal-backdrop";
 import OnePaneDialog from "../one-pane-dialog";
@@ -29,7 +29,7 @@ const exampleModalWithButtons = (
 );
 
 describe("ModalBackdrop", () => {
-    test("Clicking the backdrop triggers `onCloseModal`", () => {
+    test("Clicking the backdrop triggers `onCloseModal`", async () => {
         // Arrange
         const onCloseModal = jest.fn();
 
@@ -42,16 +42,16 @@ describe("ModalBackdrop", () => {
             </ModalBackdrop>,
         );
 
-        const backdrop = screen.getByTestId("modal-backdrop-test-id");
+        const backdrop = await screen.findByTestId("modal-backdrop-test-id");
 
         //Act
-        userEvent.click(backdrop);
+        await userEvent.click(backdrop);
 
         // Assert
         expect(onCloseModal).toHaveBeenCalled();
     });
 
-    test("Clicking the modal content does not trigger `onCloseModal`", () => {
+    test("Clicking the modal content does not trigger `onCloseModal`", async () => {
         // Arrange
         const onCloseModal = jest.fn();
 
@@ -62,13 +62,15 @@ describe("ModalBackdrop", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("example-modal-content"));
+        await userEvent.click(
+            await screen.findByTestId("example-modal-content"),
+        );
 
         // Assert
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
-    test("Clicking and dragging into the backdrop does not close modal", () => {
+    test("Clicking and dragging into the backdrop does not close modal", async () => {
         // Arrange
         const onCloseModal = jest.fn();
 
@@ -81,8 +83,8 @@ describe("ModalBackdrop", () => {
             </ModalBackdrop>,
         );
 
-        const panel = screen.getByTestId("example-modal-test-id");
-        const backdrop = screen.getByTestId("modal-backdrop-test-id");
+        const panel = await screen.findByTestId("example-modal-test-id");
+        const backdrop = await screen.findByTestId("modal-backdrop-test-id");
 
         // Act
 
@@ -96,7 +98,7 @@ describe("ModalBackdrop", () => {
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
-    test("Clicking and dragging in from the backdrop does not close modal", () => {
+    test("Clicking and dragging in from the backdrop does not close modal", async () => {
         // Arrange
         const onCloseModal = jest.fn();
 
@@ -109,8 +111,8 @@ describe("ModalBackdrop", () => {
             </ModalBackdrop>,
         );
 
-        const panel = screen.getByTestId("example-modal-test-id");
-        const backdrop = screen.getByTestId("modal-backdrop-test-id");
+        const panel = await screen.findByTestId("example-modal-test-id");
+        const backdrop = await screen.findByTestId("modal-backdrop-test-id");
 
         // Act
 
@@ -124,7 +126,7 @@ describe("ModalBackdrop", () => {
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
-    test("Clicking the modal footer does not trigger `onCloseModal`", () => {
+    test("Clicking the modal footer does not trigger `onCloseModal`", async () => {
         // Arrange
         const onCloseModal = jest.fn();
 
@@ -135,7 +137,9 @@ describe("ModalBackdrop", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("example-modal-footer"));
+        await userEvent.click(
+            await screen.findByTestId("example-modal-footer"),
+        );
 
         // Assert
         expect(onCloseModal).not.toHaveBeenCalled();
@@ -164,7 +168,7 @@ describe("ModalBackdrop", () => {
         );
 
         // Act
-        const initialFocusElement = screen.getByRole("button", {
+        const initialFocusElement = await screen.findByRole("button", {
             name: "Initial focus",
         });
 
@@ -192,7 +196,7 @@ describe("ModalBackdrop", () => {
             `#${initialFocusId}`,
         );
 
-        const firstFocusableElement = screen.getByRole("button", {
+        const firstFocusableElement = await screen.findByRole("button", {
             name: "first focusable button",
         });
 
@@ -212,7 +216,7 @@ describe("ModalBackdrop", () => {
         );
 
         // Act
-        const firstFocusableElement = screen.getByRole("button", {
+        const firstFocusableElement = await screen.findByRole("button", {
             name: "first focusable button",
         });
 
@@ -229,7 +233,7 @@ describe("ModalBackdrop", () => {
         );
 
         // Act
-        const firstFocusableElement = screen.getByRole("dialog");
+        const firstFocusableElement = await screen.findByRole("dialog");
 
         // Assert
         await waitFor(() => expect(firstFocusableElement).toHaveFocus());

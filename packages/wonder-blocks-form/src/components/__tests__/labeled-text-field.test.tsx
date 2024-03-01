@@ -1,19 +1,19 @@
 import * as React from "react";
 import {render, screen, fireEvent} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 import LabeledTextField from "../labeled-text-field";
 
 describe("LabeledTextField", () => {
-    it("labeledtextfield becomes focused", () => {
+    it("labeledtextfield becomes focused", async () => {
         // Arrange
         render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
-        const field = screen.getByRole("textbox");
+        const field = await screen.findByRole("textbox");
 
         // Act
-        userEvent.tab();
+        await userEvent.tab();
 
         // Assert
         expect(field).toHaveFocus();
@@ -24,17 +24,17 @@ describe("LabeledTextField", () => {
         render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
 
         // focus
-        userEvent.tab();
+        await userEvent.tab();
 
         // Act
         // blur
-        userEvent.tab();
+        await userEvent.tab();
 
         // Assert
-        expect(screen.getByRole("textbox")).not.toHaveFocus();
+        expect(await screen.findByRole("textbox")).not.toHaveFocus();
     });
 
-    it("id prop is passed to input", () => {
+    it("id prop is passed to input", async () => {
         // Arrange
         const id = "exampleid";
 
@@ -50,11 +50,11 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("id", `${id}-field`);
     });
 
-    it("auto-generated id is passed to input when id prop is not set", () => {
+    it("auto-generated id is passed to input when id prop is not set", async () => {
         // Arrange
 
         // Act
@@ -63,11 +63,11 @@ describe("LabeledTextField", () => {
         // Assert
         // Since the generated id is unique, we cannot know what it will be.
         // We only test if the id attribute starts with "uid-" and ends with "-field".
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input.getAttribute("id")).toMatch(/uid-.*-field/);
     });
 
-    it("type prop is passed to input", () => {
+    it("type prop is passed to input", async () => {
         // Arrange
         const type = "email";
 
@@ -82,11 +82,11 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("type", type);
     });
 
-    it("label prop is rendered", () => {
+    it("label prop is rendered", async () => {
         // Arrange
         const label = "Label";
 
@@ -94,10 +94,10 @@ describe("LabeledTextField", () => {
         render(<LabeledTextField label={label} value="" onChange={() => {}} />);
 
         // Assert
-        expect(screen.getByText(label)).toBeInTheDocument();
+        expect(await screen.findByText(label)).toBeInTheDocument();
     });
 
-    it("description prop is rendered", () => {
+    it("description prop is rendered", async () => {
         // Arrange
         const description = "Description";
 
@@ -112,10 +112,10 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        expect(screen.getByText(description)).toBeInTheDocument();
+        expect(await screen.findByText(description)).toBeInTheDocument();
     });
 
-    it("value prop is set on mount", () => {
+    it("value prop is set on mount", async () => {
         // Arrange
         const value = "Value";
 
@@ -129,7 +129,7 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("value", value);
     });
 
@@ -152,11 +152,11 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("value", newValue);
     });
 
-    it("disabled prop disables the input", () => {
+    it("disabled prop disables the input", async () => {
         // Arrange
 
         // Act
@@ -170,11 +170,11 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toBeDisabled();
     });
 
-    it("ariaDescribedby prop sets aria-describedby", () => {
+    it("ariaDescribedby prop sets aria-describedby", async () => {
         // Arrange
         const ariaDescription = "aria description";
 
@@ -189,11 +189,11 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input.getAttribute("aria-describedby")).toEqual(ariaDescription);
     });
 
-    it("auto-generates a unique error when ariaDescribedby is not passed in", () => {
+    it("auto-generates a unique error when ariaDescribedby is not passed in", async () => {
         // Arrange
 
         // Act
@@ -211,13 +211,13 @@ describe("LabeledTextField", () => {
         // we cannot know what it will be.
         // We only test if the aria-describedby attribute starts with
         // "uid-" and ends with "-error".
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input.getAttribute("aria-describedby")).toMatch(
             /^uid-.*-error$/,
         );
     });
 
-    it("validate prop is called when input changes", () => {
+    it("validate prop is called when input changes", async () => {
         // Arrange
         const validate = jest.fn((value: string): any => {});
         render(
@@ -231,7 +231,7 @@ describe("LabeledTextField", () => {
 
         // Act
         const newValue = "New Value";
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         // @see https://testing-library.com/docs/react-testing-library/faq
         // How do I test input onChange handlers?
         // eslint-disable-next-line testing-library/prefer-user-event
@@ -241,7 +241,7 @@ describe("LabeledTextField", () => {
         expect(validate).toHaveBeenCalledWith(newValue);
     });
 
-    it("onValidate prop is called on new validated input", () => {
+    it("onValidate prop is called on new validated input", async () => {
         // Arrange
         const handleValidate = jest.fn((errorMessage?: string | null) => {});
         const errorMessage = "Password must be at least 8 characters long";
@@ -264,13 +264,16 @@ describe("LabeledTextField", () => {
 
         // Act
         // Select all text and replace it with the new value.
-        userEvent.type(screen.getByRole("textbox"), `{selectall}Short`);
+        const textbox = await screen.findByRole("textbox");
+        await userEvent.click(textbox);
+        await userEvent.clear(textbox);
+        await userEvent.paste("Short");
 
         // Assert
         expect(handleValidate).toHaveBeenCalledWith(errorMessage);
     });
 
-    it("onChange prop is called on input change", () => {
+    it("onChange prop is called on input change", async () => {
         // Arrange
         const handleChange = jest.fn((newValue: string) => {});
 
@@ -280,7 +283,7 @@ describe("LabeledTextField", () => {
 
         // Act
         const newValue = "new value";
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         // @see https://testing-library.com/docs/react-testing-library/faq
         // How do I test input onChange handlers?
         // eslint-disable-next-line testing-library/prefer-user-event
@@ -290,7 +293,7 @@ describe("LabeledTextField", () => {
         expect(handleChange).toHaveBeenCalledWith(newValue);
     });
 
-    it("onKeyDown prop is called on keyboard keypress", () => {
+    it("onKeyDown prop is called on keyboard keypress", async () => {
         // Arrange
         const handleKeyDown = jest.fn(
             (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -308,13 +311,13 @@ describe("LabeledTextField", () => {
         );
 
         // Act
-        userEvent.type(screen.getByRole("textbox"), "{enter}");
+        await userEvent.type(await screen.findByRole("textbox"), "{enter}");
 
         // Assert
         expect(handleKeyDown).toHaveReturnedWith("Enter");
     });
 
-    it("onFocus prop is called when field is focused", () => {
+    it("onFocus prop is called when field is focused", async () => {
         // Arrange
         const handleFocus = jest.fn(() => {});
         render(
@@ -327,7 +330,7 @@ describe("LabeledTextField", () => {
         );
 
         // Act
-        const field = screen.getByRole("textbox");
+        const field = await screen.findByRole("textbox");
         field.focus();
 
         // Assert
@@ -347,11 +350,11 @@ describe("LabeledTextField", () => {
         );
 
         // focus
-        userEvent.tab();
+        await userEvent.tab();
 
         // Act
         // blur
-        userEvent.tab();
+        await userEvent.tab();
 
         // Assert
         expect(handleBlur).toHaveBeenCalled();
@@ -372,7 +375,7 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByPlaceholderText(placeholder);
+        const input = await screen.findByPlaceholderText(placeholder);
         expect(input).toBeInTheDocument();
     });
 
@@ -389,7 +392,7 @@ describe("LabeledTextField", () => {
             />,
         );
 
-        const textField = screen.getByRole("textbox");
+        const textField = await screen.findByRole("textbox");
         textField.focus();
 
         // Assert
@@ -437,7 +440,7 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("data-test-id", `${testId}-field`);
     });
 
@@ -455,7 +458,7 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("readOnly");
     });
 
@@ -474,13 +477,13 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = screen.getByRole("textbox");
+        const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("autoComplete", autoComplete);
     });
 });
 
 describe("Required LabeledTextField", () => {
-    test("has * when `required` prop is true", () => {
+    test("has * when `required` prop is true", async () => {
         // Arrange
 
         // Act
@@ -494,10 +497,10 @@ describe("Required LabeledTextField", () => {
         );
 
         // Assert
-        expect(screen.getByText("*")).toBeInTheDocument();
+        expect(await screen.findByText("*")).toBeInTheDocument();
     });
 
-    test("does not have * when `required` prop is false", () => {
+    test("does not have * when `required` prop is false", async () => {
         // Arrange
 
         // Act
@@ -514,7 +517,7 @@ describe("Required LabeledTextField", () => {
         expect(screen.queryByText("*")).not.toBeInTheDocument();
     });
 
-    test("aria-required is true when `required` prop is true", () => {
+    test("aria-required is true when `required` prop is true", async () => {
         // Arrange
 
         // Act
@@ -528,13 +531,15 @@ describe("Required LabeledTextField", () => {
             />,
         );
 
-        const textField = screen.getByTestId("foo-labeled-text-field-field");
+        const textField = await screen.findByTestId(
+            "foo-labeled-text-field-field",
+        );
 
         // Assert
         expect(textField).toHaveAttribute("aria-required", "true");
     });
 
-    test("aria-required is false when `required` prop is false", () => {
+    test("aria-required is false when `required` prop is false", async () => {
         // Arrange
 
         // Act
@@ -548,13 +553,15 @@ describe("Required LabeledTextField", () => {
             />,
         );
 
-        const textField = screen.getByTestId("foo-labeled-text-field-field");
+        const textField = await screen.findByTestId(
+            "foo-labeled-text-field-field",
+        );
 
         // Assert
         expect(textField).toHaveAttribute("aria-required", "false");
     });
 
-    test("displays the default message when the `required` prop is `true`", () => {
+    test("displays the default message when the `required` prop is `true`", async () => {
         // Arrange
         const TextFieldWrapper = () => {
             const [value, setValue] = React.useState("");
@@ -571,21 +578,23 @@ describe("Required LabeledTextField", () => {
 
         render(<TextFieldWrapper />);
 
-        const textField = screen.getByTestId("test-labeled-text-field-field");
+        const textField = await screen.findByTestId(
+            "test-labeled-text-field-field",
+        );
         textField.focus();
-        userEvent.paste(textField, "a");
-        userEvent.clear(textField);
+        await userEvent.type(textField, "a");
+        await userEvent.clear(textField);
 
         // Act
         textField.blur();
 
         // Assert
-        expect(screen.getByRole("alert")).toHaveTextContent(
+        expect(await screen.findByRole("alert")).toHaveTextContent(
             "This field is required.",
         );
     });
 
-    test("displays the string passed into `required`", () => {
+    test("displays the string passed into `required`", async () => {
         // Arrange
         const errorMessage = "This is an example error message.";
 
@@ -604,15 +613,19 @@ describe("Required LabeledTextField", () => {
 
         render(<TextFieldWrapper />);
 
-        const textField = screen.getByTestId("test-labeled-text-field-field");
+        const textField = await screen.findByTestId(
+            "test-labeled-text-field-field",
+        );
         textField.focus();
-        userEvent.paste(textField, "a");
-        userEvent.clear(textField);
+        await userEvent.type(textField, "a");
+        await userEvent.clear(textField);
 
         // Act
         textField.blur();
 
         // Assert
-        expect(screen.getByRole("alert")).toHaveTextContent(errorMessage);
+        expect(await screen.findByRole("alert")).toHaveTextContent(
+            errorMessage,
+        );
     });
 });

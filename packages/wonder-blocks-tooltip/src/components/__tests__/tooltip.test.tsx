@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -32,7 +32,7 @@ describe("Tooltip", () => {
     });
 
     describe("basic operations", () => {
-        it("should not show the tooltip to being with", () => {
+        it("should not show the tooltip to being with", async () => {
             // Arrange
             render(
                 <View>
@@ -51,6 +51,9 @@ describe("Tooltip", () => {
 
         it("should show the tooltip on hover", async () => {
             // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
             render(
                 <View>
                     <Tooltip title="Title" content="Content">
@@ -59,12 +62,12 @@ describe("Tooltip", () => {
                 </View>,
             );
 
-            const node = screen.getByText("Anchor");
-            userEvent.hover(node);
+            const node = await screen.findByText("Anchor");
+            await ue.hover(node);
             jest.runOnlyPendingTimers();
 
             // Act
-            const tooltip = screen.getByRole("tooltip");
+            const tooltip = await screen.findByRole("tooltip");
 
             // Assert
             expect(tooltip).toBeInTheDocument();
@@ -72,6 +75,9 @@ describe("Tooltip", () => {
 
         it("should hide the tooltip on unhover", async () => {
             // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
             render(
                 <View>
                     <Tooltip title="Title" content="Content">
@@ -80,10 +86,10 @@ describe("Tooltip", () => {
                 </View>,
             );
 
-            const node = screen.getByText("Anchor");
-            userEvent.hover(node);
+            const node = await screen.findByText("Anchor");
+            await ue.hover(node);
             jest.runOnlyPendingTimers();
-            userEvent.unhover(node);
+            await ue.unhover(node);
             jest.runOnlyPendingTimers();
 
             // Act
@@ -95,6 +101,9 @@ describe("Tooltip", () => {
 
         it("should work when the anchor is text", async () => {
             // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
             render(
                 <View>
                     <Tooltip title="Title" content="Content">
@@ -103,18 +112,18 @@ describe("Tooltip", () => {
                 </View>,
             );
 
-            const node = screen.getByText("Anchor");
-            userEvent.hover(node);
+            const node = await screen.findByText("Anchor");
+            await ue.hover(node);
             jest.runOnlyPendingTimers();
 
             // Act
-            const tooltip = screen.getByRole("tooltip");
+            const tooltip = await screen.findByRole("tooltip");
 
             // Assert
             expect(tooltip).toBeInTheDocument();
         });
 
-        it("should have a background color if one is set", () => {
+        it("should have a background color if one is set", async () => {
             // Arrange
             render(
                 <View>
@@ -130,7 +139,7 @@ describe("Tooltip", () => {
             );
 
             // Act
-            const tooltipContent = screen.getByRole("tooltip");
+            const tooltipContent = await screen.findByRole("tooltip");
             // eslint-disable-next-line testing-library/no-node-access
             const innerTooltipContentView = tooltipContent.firstChild;
             expect(innerTooltipContentView).toBeInTheDocument();
@@ -145,6 +154,9 @@ describe("Tooltip", () => {
     describe("accessibility", () => {
         test("no id, sets identifier of TooltipBubble with UniqueIDProvider", async () => {
             // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
             render(
                 <View>
                     <Tooltip title="Title" content="Content">
@@ -152,8 +164,8 @@ describe("Tooltip", () => {
                     </Tooltip>
                 </View>,
             );
-            const node = screen.getByText("Anchor");
-            userEvent.hover(node);
+            const node = await screen.findByText("Anchor");
+            await ue.hover(node);
             jest.runOnlyPendingTimers();
 
             // Act
@@ -166,6 +178,9 @@ describe("Tooltip", () => {
 
         test("custom id, sets identifier of TooltipBubble", async () => {
             // Arrange
+            const ue = userEvent.setup({
+                advanceTimers: jest.advanceTimersByTime,
+            });
             render(
                 <View>
                     <Tooltip id="tooltip-1" title="Title" content="Content">
@@ -173,8 +188,8 @@ describe("Tooltip", () => {
                     </Tooltip>
                 </View>,
             );
-            const node = screen.getByText("Anchor");
-            userEvent.hover(node);
+            const node = await screen.findByText("Anchor");
+            await ue.hover(node);
             jest.runOnlyPendingTimers();
 
             // Act
@@ -195,7 +210,7 @@ describe("Tooltip", () => {
                 );
 
                 // Act
-                const result = screen.getByText("Anchor");
+                const result = await screen.findByText("Anchor");
 
                 // Assert
                 expect(result).toBeInstanceOf(HTMLSpanElement);
@@ -211,7 +226,7 @@ describe("Tooltip", () => {
                         </Tooltip>
                     </View>,
                 );
-                const node = screen.getByText("Anchor");
+                const node = await screen.findByText("Anchor");
 
                 // Act
                 const result = node.getAttribute("aria-describedby");
@@ -227,7 +242,7 @@ describe("Tooltip", () => {
                         <Tooltip content="Content">Anchor</Tooltip>
                     </View>,
                 );
-                const node = screen.getByText("Anchor");
+                const node = await screen.findByText("Anchor");
 
                 // Act
 
@@ -341,7 +356,7 @@ describe("Tooltip", () => {
             jest.runOnlyPendingTimers();
 
             // Assert
-            expect(screen.getByText("Content")).toBeInTheDocument();
+            expect(await screen.findByText("Content")).toBeInTheDocument();
         });
 
         test("can be closed programmatically", async () => {

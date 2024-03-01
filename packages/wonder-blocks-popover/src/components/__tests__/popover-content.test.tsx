@@ -1,12 +1,12 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {userEvent} from "@testing-library/user-event";
 
 import PopoverContent from "../popover-content";
 import PopoverContext from "../popover-context";
 
 describe("PopoverContent", () => {
-    it("should close the popover from the actions", () => {
+    it("should close the popover from the actions", async () => {
         // Arrange
         const onCloseMock = jest.fn();
 
@@ -25,13 +25,13 @@ describe("PopoverContent", () => {
         );
 
         // Act
-        userEvent.click(screen.getByRole("button"));
+        await userEvent.click(await screen.findByRole("button"));
 
         // Assert
         expect(onCloseMock).toBeCalled();
     });
 
-    it("should warn when setting a image and icon at the same time", () => {
+    it("should warn when setting a image and icon at the same time", async () => {
         // Arrange
         const nodes = (
             <PopoverContent
@@ -51,7 +51,7 @@ describe("PopoverContent", () => {
         );
     });
 
-    it("should warn when setting a horizontal placement with an Illustration popover", () => {
+    it("should warn when setting a horizontal placement with an Illustration popover", async () => {
         // Arrange
         const nodes = (
             <PopoverContext.Provider
