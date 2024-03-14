@@ -2,8 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {within, userEvent} from "@storybook/test";
-import {expect} from "@storybook/test";
+import {expect, within, userEvent} from "@storybook/test";
 
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 

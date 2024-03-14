@@ -1,7 +1,7 @@
 import * as React from "react";
-import {expect} from "@storybook/test";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
+import {expect, fireEvent, userEvent, within} from "@storybook/test";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
@@ -11,7 +11,6 @@ import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
-import {fireEvent, userEvent, within} from "@storybook/test";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
