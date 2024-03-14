@@ -1,0 +1,18 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+  title="Testing / Mocking / Types / FetchMockOperation"
+  parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FetchMockOperation
+
+```ts
+type FetchMockOperation = RegExp | string;
+```
+
+This defines the operation that a fetch mock will respond to. See [`mockFetch()`](/docs/testing-mocking-exports-mockfetch--page) for more details.

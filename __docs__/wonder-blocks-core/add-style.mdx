@@ -1,0 +1,115 @@
+import * as React from "react";
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as AddStyleStories from './add-style.stories';
+
+<Meta of={AddStyleStories} />
+
+
+# addStyle
+
+The `addStyle` function is a HOC that accepts a **React Component** or a **DOM**
+**intrinsic** ("div", "span", etc.) as its first argument and optional default
+styles as its second argument. This HOC returns a **React Component** with a
+`style` prop included ready to be rendered.
+
+*Note: this differs from using a bare **DOM** **intrinsic** with a `style`
+prop. The bare **DOM** **intrinsic** will generate inline styles whereas a
+component that has been wrapped with `addStyle` will process the styles with
+[Aphrodite](https://github.com/Khan/aphrodite). As a result, always use
+`addStyle` if you need to style the component/element.*
+
+## Usage
+
+```js
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+
+addStyle(
+    Component: React.Element | "string",
+    defaultStyle?: StyleType
+): React.Element;
+```
+
+## API
+
+| Argument       | TypeScript Type           | Default    | Description                           |
+| -------------- | ------------------------------ | ---------- | ------------------------------------- |
+| `Component`    | `React.ReactElement`, `string` | *Required* | The component that will be decorated. |
+| `defaultStyle` | `StyleType`                    | null       | The initial styles to be applied.     |
+
+## Types
+
+### StyleType
+
+```ts
+type NestedArray<T> = $ReadOnlyArray<T | NestedArray<T>>;
+type Falsy = false | 0 | null | void;
+
+export type StyleType =
+    | CSSProperties
+    | Falsy
+    | NestedArray<CSSProperties | Falsy>;
+```
+
+**Note:** `StyleType` can contain a combination of style rules from an Aphrodite
+StyleSheet as well inline style objects (see example 3).
+
+### CSSProperties
+
+[See source file](https://github.com/Khan/wonder-blocks/blob/main/flow-typed/aphrodite.flow.js#L13)
+
+## Examples
+
+It's recommended to create your styled component using `addStyle` outside of the
+component so we don't have to create a new instance on every render.
+
+```js
+import {StyleSheet} from "aphrodite";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+
+const StyledInput = addStyle("input", styles.input);
+
+const styles = StyleSheet.create({
+    // default style for all instances of StyledInput
+    input: {
+        background: color.white,
+        borderColor: color.offBlack16,
+        borderRadius: spacing.xxxSmall_4,
+        fontSize: spacing.medium_16,
+        padding: spacing.xSmall_8,
+    },
+    error: {
+        background: fade(color.red, 0.16),
+        borderColor: color.red,
+    },
+});
+```
+
+### 1. Adding default styles
+
+You can create a new styled component by using the `addStyle` function. Note
+here that you can also define default styles for this component by passing an
+initial style object to this function.
+
+<Canvas withSource="open">
+  <Story of={AddStyleStories.WithDefaultStyle} />
+</Canvas>
+
+### 2. Overriding a default style
+
+After defining default styles, you can also customize the instance by adding
+and/or merging styles using the `style` prop in your newly created styled
+component.
+
+<Canvas withSource="open">
+  <Story of={AddStyleStories.OverrideStyles} />
+</Canvas>
+
+### 3. Adding styles dynamically
+
+This example shows that you can dynamically create styles by adding them to the
+`style` prop only when you need them.
+
+<Canvas withSource="open">
+  <Story of={AddStyleStories.AddingStylesDynamically} />
+</Canvas>

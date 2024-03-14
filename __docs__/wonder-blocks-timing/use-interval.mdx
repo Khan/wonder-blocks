@@ -1,0 +1,48 @@
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as UseIntervalStories from './use-interval.stories';
+
+<Meta of={UseIntervalStories} />
+
+# `useInterval`
+
+`useInterval` is a hook that provides a simple API for using intervals safely.
+It is defined as follows:
+
+```ts
+function useInterval(
+    action: () => mixed,
+    intervalMs: number,
+    active: boolean,
+): void;
+```
+
+Notes:
+
+* Setting `active` to `true` will start the interval and setting it to `false`
+  will stop it
+* Changing the value of `timeoutMs` will reset the interval, changing `action`
+  will not.
+
+<Canvas>
+  <Story of={UseIntervalStories.BasicUsage} />
+</Canvas>
+
+```tsx
+export const BasicUsage = () => {
+    const [callCount, setCallCount] = React.useState(0);
+    const [active, setActive] = React.useState(false);
+    const callback = React.useCallback(() => {
+        setCallCount((callCount) => callCount + 1);
+    }, []);
+    useInterval(callback, 1000, active);
+    return (
+        <View>
+            <View>callCount = {callCount}</View>
+            <View>active = {active.toString()}</View>
+            <Button onClick={() => setActive(!active)} style={{width: 200}}>
+                Toggle active
+            </Button>
+        </View>
+    );
+};
+```

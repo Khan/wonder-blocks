@@ -1,0 +1,40 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+  title="Testing / Mocking / Exports / mockFetch()"
+  parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# mockFetch()
+
+```ts
+mockFetch(): FetchMockFn;
+```
+
+The `mockFetch` function provides an API to easily mock `fetch()` responses. It follows the similar patterns of `jest.fn()` and jest mocks whereby the returned value is both a proxy for the fetch function as well as an API for modifying the behavior of that function.
+
+# API
+
+Besides being a function that fits the `fetch()` signature, the return value of `mockFetch()` has an API to customize the behavior of that function. Used in conjunction with the [`RespondWith`](/docs/testing-mocking-exports-respondwith--page) API, this can create a variety of responses for tests and stories.
+
+| Function            | Purpose                                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `mockOperation`     | When called, any request that matches the defined mock will respond with the given response.                                   |
+| `mockOperationOnce` | When called, the first request that matches the defined mock will respond with the given response. The mock is only used once. |
+
+Both of these functions have the same signature:
+
+```ts
+type FetchMockOperationFn = (
+    operation: FetchMockOperation,
+    response: MockResponse<any>,
+) => FetchMockFn;
+```
+
+# Operation Matching
+
+The `FetchMockOperation` type is either of type `string` or `RegExp`. When specified as a string, the URL of the request must match the string exactly. When specified as a regular expression, the URL of the request must match the regular expression.

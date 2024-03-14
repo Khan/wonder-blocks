@@ -2,9 +2,9 @@
 // We need to use fireEvent for mouseDown in these tests, none of the userEvent
 // alternatives work. Click includes mouseUp, which removes the pressed style.
 /* eslint-disable testing-library/prefer-user-event */
-import {expect} from "@storybook/jest";
+import {expect} from "@storybook/test";
 import * as React from "react";
-import {within, userEvent, fireEvent} from "@storybook/testing-library";
+import {within, userEvent, fireEvent} from "@storybook/test";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";

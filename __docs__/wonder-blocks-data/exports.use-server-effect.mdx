@@ -1,0 +1,50 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+  title="Data / Exports / useServerEffect()"
+  parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useServerEffect()
+
+```ts
+function useServerEffect<TData: ValidCacheData>(
+    requestId: string,
+    handler: () => Promise<TData>,
+    options?: ServerEffectOptions,
+): ?Result<TData>;
+```
+
+The `useServerEffect` hook is an integral part of server-side rendering. It has different behavior depending on whether it is running on the server (and in what context) or the client.
+
+```ts
+type ServerEffectOptions = {|
+    skip?: boolean,
+    hydrate?: boolean,
+|};
+```
+
+| Option    | Default | Description                                                                                                                                                                                                        |
+| --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `hydrate` | `true`  | When `true`, the result of the effect when fulfilled using Wonder Blocks Data will be stored in the hydration cache for hydrating client-side; otherwise, the result will be stored in the server-side-only cache. |
+| `skip`    | `false` | When `true`, the effect will not be tracked for fulfillment; otherwise, the effect will be tracked for fulfillment.                                                                                                |
+
+## Server-side behavior
+
+First, this hook checks the server-side rendering cache for the request identifier; if it finds a cached value, it will return that.
+
+If there is no cached value, it will return a "loading" state. In addition, if the current rendering component has a [`TrackData`](/docs/data-exports-trackdata--page) ancestor, `useServerEffect` will register the request for fulfillment.
+
+This then allows that pending request to be fulfilled with [`fetchTrackedRequests`](/docs/data-exports-fetchtrackddatarequests--page), the response to be placed into the cache, and the render to be reexecuted, at which point, this hook will be able to provide that result instead of "loading.
+
+More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).
+
+## Client-side behavior
+
+On initial render in the client, this hook will look for a corresponding value in the Wonder Blocks Data hydration cache. If there is one, it will delete it from the hydration cache and return that value.
+
+Otherwise, it will return `null`.

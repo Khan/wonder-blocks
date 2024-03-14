@@ -1,0 +1,46 @@
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import {StyleSheet} from "aphrodite";
+import * as BestPracticesStories from './best-practices.stories';
+
+<Meta of={BestPracticesStories} />
+
+## Best Practices
+
+### Layout
+
+In vertical layouts, buttons will stretch horizontally to fill the available
+space. This is probably not what you want unless you're on a very narrow
+screen.
+
+<Canvas>
+  <Story of={BestPracticesStories.FullBleedButton} />
+</Canvas>
+
+This can be corrected by applying appropriate flex styles to the container.
+
+<Canvas>
+  <Story of={BestPracticesStories.ButtonsInRows} />
+</Canvas>
+
+### Usign minWidth for internationalization
+
+Layouts often specify a specific width of button. When implementing such designs
+use `minWidth` instead of `width`. `minWidth` allows the button to resize to fit
+the content whereas `width` does not. This is important for international sites
+since sometimes strings for UI elements can be much longer in other languages.
+Both of the buttons below have a "natural" width of `144px`. The one on the
+right is wider but it accommodates the full string instead of wrapping it.
+
+<Canvas>
+  <Story of={BestPracticesStories.UsingMinWidth} />
+</Canvas>
+
+### Truncating text
+
+If the parent container of the button doesn't have enough room to accommodate
+the width of the button, the text will truncate. This should ideally never
+happen, but it's sometimes a necessary fallback.
+
+<Canvas>
+  <Story of={BestPracticesStories.TruncatingText} />
+</Canvas>

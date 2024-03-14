@@ -1,4 +1,4 @@
-import {expect} from "@storybook/jest";
+import {expect} from "@storybook/test";
 /* eslint-disable no-console */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
@@ -6,7 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {useArgs} from "@storybook/preview-api";
 import {action} from "@storybook/addon-actions";
 
-import {userEvent, within} from "@storybook/testing-library";
+import {userEvent, within} from "@storybook/test";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
