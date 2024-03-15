@@ -1,0 +1,22 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+  title="Testing / Test Harness / Exports / hookHarness()"
+  parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# hookHarness()
+
+```ts
+hookHarness(
+    configs?: $Shape<TestHarnessConfigs<typeof DefaultAdapters>>,
+): React.AbstractComponent<any, any>;
+```
+
+This method can be used to create a test harness for use with the `wrapper` option of calls like `renderHook()` from `@testing-library/react-hooks` when writing tests for React hooks.
+
+This method is created by using [`makeHookHarness`](/docs/testing-test-harness-exports-makehookharness--page) with [`harnessAdapters.DefaultAdapters` and `harnessAdapters.DefaultConfigs`](/docs/testing-test-harness-exports-harnessadapters--page).

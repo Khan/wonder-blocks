@@ -1,0 +1,20 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+  title="Testing / Fixtures / Types / FixtureProps"
+  parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FixtureProps
+
+```ts
+type FixtureProps<TProps: {...}> =
+    | $ReadOnly<TProps>
+    | ((options: $ReadOnly<GetPropsOptions>) => $ReadOnly<TProps>);
+```
+
+This type describes how props can be provided to a fixture as either a plain object, or a function that returns a plain object. The function will be called with an API to assist in generating the props (see [`GetPropsOptions`](/docs/testing-fixtures-types-getpropsoptions--page)).

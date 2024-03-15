@@ -1,0 +1,81 @@
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as CheckboxAccessibilityStories from './checkbox-accessibility.stories';
+
+<Meta of={CheckboxAccessibilityStories} />
+
+## Accessibility
+
+### ARIA
+
+`Checkbox` can take in all ARIA props defined in Wonder Blocks Core types.
+
+Elements with role `"checkbox"` can have an `aria-checked` property that
+exposes the checked state to assistive technology. The dev does not have
+to worry about this because the Wonder Blocks Checkbox component is an
+`input` element with type `"checkbox"`, as this has built-in semantics and
+does not require ARIA.
+
+The current implementation of `Checkbox` uses `aria-describedby` with the
+label and description that may be passed in as props.
+
+See the Error section for information about `aria-invalid` and
+`aria-required`.
+
+### Error state
+
+The Wonder Blocks `Checkbox` component takes an `error` boolean prop. Setting
+this prop to true will set `aria-invalid` to true, and the color of the
+checkbox to red.
+
+When a form input is invalid, the user should provide a reason for why
+this is.
+
+Generally, it is also suggested this is the validation error message is
+passed to the checkbox's `aria-describedby` prop so assistive tech can
+read it. However, this is not possible with the current implementation of
+the Wonder Blocks Form Checkbox component.
+
+The error state can be used to signal that a required checkbox has not been
+checked. In cases where a checkbox is required, the checkbox component should
+set the `aria-required` prop to true for assistive tech.
+There should also be some sort of visual indication that checking
+the box is required, such as a "Required" label or an asterisk.
+
+<Canvas>
+  <Story of={CheckboxAccessibilityStories.ErrorState} />
+</Canvas>
+
+### Disabled state
+
+The Wonder Blocks `Checkbox` compoenent takes a `disabled` boolean prop.
+This sets the underlying `input` element's `disabled` prop to `true`.
+This makes is so that the checkbox is not interactable. Also, assistive
+tech will indicated that the checkbox is dimmed.
+
+A user will not be able to navigate to the checkbox with a keyboard.
+Screen reader users will be able to navigate to the checkbox with
+screen reader controls.
+
+It is suggested that if an element is disabled, an explanation as to why
+should to provided somewhere.
+
+<Canvas>
+  <Story of={CheckboxAccessibilityStories.DisabledState} />
+</Canvas>
+
+### Keyboard Interaction
+
+If a checkbox is not disabled, a user can tab to it using standard
+keyboard navigation. The Space key toggles the checked state of the checkbox.
+
+Note the the Space key triggers the `onChange` function of the
+Wonder Blocks Checkbox component. If the user does not specify an `onChange`
+funciton prop that in turn updates the value of `checked`, neither clicking
+nor the Space key will toggle the Checkbox.
+
+### References
+
+* [Accessible validation of checkbox and radiobutton groups](https://blog.tenon.io/accessible-validation-of-checkbox-and-radiobutton-groups/)
+* [HTML: Validating a checkbox with HTML5](https://www.the-art-of-web.com/html/html5-checkbox-required/#example1)
+* [aria-checked MDN Docs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked)
+* [ARIA: checkbox role MDN Docs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/checkbox_role)

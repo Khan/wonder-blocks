@@ -5,7 +5,7 @@ import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import {fireEvent} from "@storybook/testing-library";
+import {fireEvent} from "@storybook/test";
 import Popover from "../popover";
 import PopoverContent from "../popover-content";
 import {PopoverContentCore} from "../../index";

@@ -1,0 +1,68 @@
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as AccessibilityStories from './accessibility.stories';
+
+<Meta of={AccessibilityStories} />
+
+# Accessibility
+
+## Keyboard interactions
+
+| Key            | Action                          |
+| -------------- | ------------------------------- |
+| Enter or Space | Activates the clickable element |
+
+## Roles
+
+| Component                                         | Role   | Usage                                                    |
+| ------------------------------------------------- | ------ | -------------------------------------------------------- |
+| `<Clickable onClick={} />`                        | button | A clickable button element                               |
+| `<Clickable href="/math" skipClientNav={true} />` | link   | A clickable anchor element                               |
+| `<Clickable href="/math" />`                      | link   | A clickable anchor element (using `react-router`'s Link) |
+
+## Attributes
+
+| Attribute            | Usage                                                                                                                                                    |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| tabindex="0"         | Includes the clickable element in the tab sequence.                                                                                                      |
+| aria-disabled="true" | Indicates that the element is perceivable but disabled.                                                                                                  |
+| aria-label="value"   | Defines a string value that labels the clickable element. Use it in case the clickable element doesn't include any descriptive text (e.g. Icons, images) |
+
+## Examples
+
+### Labeling
+
+`Clickable` has an `ariaLabel` prop that sets the component's accessible name.
+ariaLabel should be passed when using graphical elements to let screen reader
+users know the purpose of the clickable element.
+
+*NOTE:* If the clickable element is not graphical, it's best to avoid using `ariaLabel` as the text content of the element itself, which is read by default, should ideally be descriptive enough to not need to manually pass in the label.
+
+This is an example of a component with an accessible label:
+
+<Canvas>
+  <Story of={AccessibilityStories.Labeling} />
+</Canvas>
+
+### Disabled state
+
+Clickable does not need an `aria-disabled` attribute, if it also has a
+`disabled` component prop. We internally take care of defining the behavior so
+users can use these type of controls (including Screen Readers). By defining the
+internal behavior we can ensure that the component is accessible via Keyboard
+but not interactable/operatable.
+
+<Canvas>
+  <Story of={AccessibilityStories.DisabledState} />
+</Canvas>
+
+### Keyboard navigation
+
+Clickable adds support to keyboard navigation and setting ARIA attributes. This
+way, your components are accessible and emulate better the browser's behavior.
+
+**NOTE:** If you want to navigate to an external URL and/or reload the window,
+make sure to use `href` and \`skipClientNav={true}.
+
+<Canvas>
+  <Story of={AccessibilityStories.KeyboardNavigation} />
+</Canvas>

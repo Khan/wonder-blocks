@@ -1,0 +1,25 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+  title="Testing / Test Harness / Exports / makeHookHarness()"
+  parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# makeHookHarness()
+
+```ts
+makeHookHarness<TAdapters: TestHarnessAdapters>(
+    adapters: TAdapters,
+    defaultConfigs: TestHarnessConfigs<TAdapters>,
+): ((
+    configs?: $Shape<TestHarnessConfigs<TAdapters>>,
+) => React.AbstractComponent<any, any>);
+```
+
+This method takes a set of adapters (such as [`harnessAdapters.DefaultAdapters`](/docs/testing-test-harness-exports-harnessadapters--page)) and a set of default configurations for those adapters (such as [`harnessAdapters.DefaultConfigs`](/docs/testing-test-harness-exports-harnessadapters--page)), and returns a function that can be called to create a component that applys those adapters with those default configs, or overrides to those configs.
+
+This returned method can then be used for the `wrapper` option of calls like `renderHook()` from `@testing-library/react-hooks` when writing tests for React hooks.

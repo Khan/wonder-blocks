@@ -1,0 +1,20 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+  title="Core / Exports / useOnline()"
+  parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useOnline()
+
+```ts
+function useOnline(): boolean;
+```
+
+The `useOnline` hook returns the value of `navigator.onLine`. It also listens
+to the `online` and `offline` events and triggers a render of the component on
+those events.

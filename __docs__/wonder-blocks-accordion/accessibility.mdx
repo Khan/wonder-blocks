@@ -1,0 +1,69 @@
+import {Meta, Story, Canvas} from "@storybook/blocks";
+
+import {Accordion, AccordionSection} from "@khanacademy/wonder-blocks-accordion";
+
+<Meta
+  title="Accordion / Accessibility"
+  component={Accordion}
+  parameters={{
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+        chromatic: {
+            // Disables chromatic testing for these stories.
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+## Accordion Accessibility
+
+### Built in Accessibility Features
+
+Wonder Blocks Accordion already has some built in accessibility features
+as [advised by W3](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/).
+
+* The headers of each section are button components. The user can click on
+  the header to expand the section. The user can also use the enter or
+  space keys when focused on the header to expand the section.
+* The headers are keyboard navigable:
+  * The "tab" key and "arrow down" keys will focus on the next header
+    in the sequence. ("Arrow down" only works if the focus is already
+    within the accordion, and will cycle to the top if the focus is
+    currently on the last element.)
+  * The "shift + tab" and "arrow up" keys will focus on the previous
+    header in the sequence. ("Arrow up" only works if the focus is
+    already within the accordion, and will cycle to the bottom if
+    the focus is currently on the first element.)
+  * The "home" key will focus on the first header in the accordion.
+  * The "end" key will focus on the last header in the accordion.
+* The roles and structures are set as advised:
+  * The title of each header is contained within a button.
+  * The title button is wrapped in a heading.
+    * It is currently `<h2>` by default, but the user is advised to
+      set it to the appropriate heading level via the `tag` prop on
+      each accordion section.
+  * The header button has the `aria-expanded` attribute, which is
+    true when the accordion section is expanded and false when not.
+  * The header button has the `aria-controls` attribute pointing to
+    the ID of that section's content panel container.
+  * If the section is not collapsible, the header button has the
+    `aria-disabled` attribute set to true.
+  * Each section's content panel has its `aria-labelledby` pointing To
+    its header button.
+  * If there are six or fewer sections, each section's content panel
+    has the `role` attribute set to "region".
+
+### Considerations for the User
+
+* The accordion can be animated using the `animated` prop. However,
+  PLEASE set this according to the users' "prefers reduced motion"
+  setting (this can be in the application or in their operating system).
+* PLEASE use AccordionSection's `tag` prop to appropriately set the
+  section's heading level! It defaults to `<h2>`, but it needs to be
+  set appropriately based on the page's heading structure.
+
+### References
+
+[W3 Accordion Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)

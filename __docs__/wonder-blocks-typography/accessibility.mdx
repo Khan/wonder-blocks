@@ -1,0 +1,54 @@
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as AccessibilityStories from './accessibility.stories';
+
+<Meta of={AccessibilityStories} />
+
+## Typography Accessibility
+
+### Rules of Thumb
+
+* The font size should be large enough for the text to be readable. The
+  font size for the Wonder Blocks Typography `Body` element is currently
+  set to be 16px. Headings are even larger.
+  * Each Wonder Blocks Typography component has its own predetermined
+    font size - this cannot be updated by the user via the `styles` prop.
+* The color contrast should pass WCAG.
+  * "WCAG 2.0 level AA requires a contrast ratio of at least 4.5:1 for
+    normal text and 3:1 for large text." [(Contrast Checker, WebAIM)](https://webaim.org/resources/contrastchecker/).
+* It is best to use a familiar font that is easy to read. By default,
+  most Wonder Blocks Typography elements use Lato (a sans-serif font) for
+  Latin-based languages, and Noto for Non-Latin languages such as Arabic,
+  Armenian, Greek, and Hebrew. The `BodySerif` and `BodySerifBlock`
+  components use the Noto Serif font.
+  * Note that sans-serif fonts are generally recommended for use on web,
+    but serif fonts may be preferable for some users, such as users with
+    dyslexia.
+* There should be adequate line spacing in order to make text easier to read.
+  Each Wonder Blocks Typography component has its own predetermined
+  line height - this cannot be updated by the user via the `styles` prop.
+
+More information about all these points and more can be found in the
+[References](#references) below.
+
+### Demo: Font size
+
+<Canvas>
+  <Story of={AccessibilityStories.FontSize} />
+</Canvas>
+
+### Demo: Color contrast
+
+<Canvas>
+  <Story of={AccessibilityStories.ColorContrast} />
+</Canvas>
+
+### Demo: Line spacing
+
+<Canvas>
+  <Story of={AccessibilityStories.LineSpacing} />
+</Canvas>
+
+### References
+
+* [Typefaces and Fonts - WebAIM](https://webaim.org/techniques/fonts/)
+* [Contrast Checker - WebAIM](https://webaim.org/resources/contrastchecker)

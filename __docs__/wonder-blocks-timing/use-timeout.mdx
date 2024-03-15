@@ -1,0 +1,49 @@
+import * as UseTimeoutStories from './use-timeout.stories';
+
+import {Meta, Story, Canvas} from "@storybook/blocks";
+
+<Meta of={UseTimeoutStories} />
+
+# `useTimeout`
+
+`useTimeout` is a hook that provides a simple API for using timers safely.
+It is defined as follows:
+
+```ts
+function useTimeout(
+    action: () => mixed,
+    timeoutMs: number,
+    active: boolean,
+): void;
+```
+
+Notes:
+
+* Setting `active` to `true` will start the timeout and setting it to `false`
+  will stop it
+* Changing the value of `timeoutMs` will reset the timeout, changing `action`
+  will not.
+
+<Canvas>
+  <Story of={UseTimeoutStories.BasicUsage} />
+</Canvas>
+
+```jsx
+export const BasicUsage = () => {
+    const [callCount, setCallCount] = React.useState(0);
+    const [active, setActive] = React.useState(false);
+    const callback = React.useCallback(() => {
+        setCallCount((callCount) => callCount + 1);
+    }, []);
+    useTimeout(callback, 1000, active);
+    return (
+        <View>
+            <View>callCount = {callCount}</View>
+            <View>active = {active.toString()}</View>
+            <Button onClick={() => setActive(!active)} style={{width: 200}}>
+                Toggle active
+            </Button>
+        </View>
+    );
+};
+```

@@ -1,7 +1,7 @@
 /**
  * Configuration of storybook addons.
  */
-import {addons} from "@storybook/addons";
+import {addons} from "@storybook/manager-api";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 
 /**

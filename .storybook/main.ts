@@ -1,10 +1,13 @@
-import { resolve, dirname, join } from "path";
+import {resolve, dirname, join} from "path";
 import {mergeConfig} from "vite";
 import turbosnap from "vite-plugin-turbosnap";
 import type {StorybookConfig} from "@storybook/react-vite";
 
 const config: StorybookConfig = {
-    stories: ["../__docs__/**/*.stories.@(ts|tsx|mdx)", "../__docs__/**/*.mdx"],
+    stories: [
+        "../__docs__/**/*.@(mdx|stories.@(ts|tsx))",
+        "../__docs__/**/*.mdx",
+    ],
     addons: [
         getAbsolutePath("@storybook/addon-essentials"),
         getAbsolutePath("@storybook/addon-a11y"),
