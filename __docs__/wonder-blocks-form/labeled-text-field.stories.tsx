@@ -15,6 +15,10 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
 
+/**
+ * A LabeledTextField is an element used to accept a single line of text from
+ * the user paired with a label, description, and error field elements.
+ */
 export default {
     title: "Form / LabeledTextField",
     component: LabeledTextField,
