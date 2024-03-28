@@ -5,6 +5,7 @@ import * as React from "react";
 
 import FakeTranslate from "./i18n-faketranslate";
 import {allPluralForms} from "./plural-forms";
+import {getLocale} from "./locale";
 
 type InterpolationOptions<T> = {
     [key: string]: T;
@@ -260,10 +261,21 @@ export const ngettext: ngettextOverloads = (
 
     // Get the options to substitute into the string.
     // We automatically add in the 'magic' option-variable 'num'.
-    actualOptions.num = actualOptions.num || actualNum;
+    actualOptions.num = formatNumber(actualNum);
 
     // Then pass into i18n._ for the actual substitution
     return _(translation, actualOptions);
+};
+
+/**
+ * Format a number to a string using the current locale.
+ * This is a thin wrapper around Intl.NumberFormat.
+ *
+ * @param num the number to format to a string
+ * @returns a formatted number string
+ */
+const formatNumber = (num: number): string => {
+    return Intl.NumberFormat(getLocale()).format(num);
 };
 
 /*
