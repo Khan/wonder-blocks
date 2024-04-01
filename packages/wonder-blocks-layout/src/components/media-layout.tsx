@@ -2,6 +2,7 @@ import * as React from "react";
 import type {StyleDeclaration} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {Server} from "@khanacademy/wonder-blocks-core";
 import MediaLayoutContext from "./media-layout-context";
 import type {MediaSize, MediaSpec} from "../util/types";
 import type {Context} from "./media-layout-context";
@@ -141,7 +142,11 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
     // environment) if there is no window object or matchMedia function
     // available.
     isServerSide() {
-        return typeof window === "undefined" || !window.matchMedia;
+        return (
+            Server.isServerSide() ||
+            typeof window === "undefined" ||
+            !window.matchMedia
+        );
     }
 
     // Generate a mock Aphrodite StyleSheet based upon the current mediaSize
