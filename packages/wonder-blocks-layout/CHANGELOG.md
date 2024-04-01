@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-layout
 
+## 2.0.29
+
+### Patch Changes
+
+-   c39bfd29: Updates the MediaLayout component to respect the value of Server.isServerSide()
+
 ## 2.0.28
 
 ### Patch Changes
