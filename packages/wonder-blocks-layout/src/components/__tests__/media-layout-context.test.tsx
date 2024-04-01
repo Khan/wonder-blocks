@@ -1,5 +1,5 @@
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {render} from "@testing-library/react";
 
 import MediaLayout from "../media-layout";
@@ -14,8 +14,8 @@ import {
 
 describe("MediaLayoutContext", () => {
     beforeEach(() => {
-        // @ts-expect-error [FEI-5019] - TS2322 - Type '(query: "(max-width: 767px)" | "(min-width: 768px) and (max-width: 1023px)" | "(min-width: 1024px)") => MatchMedia' is not assignable to type '((query: string) => MediaQueryList) & ((query: string) => MediaQueryList)'.
-        window.matchMedia = matchMedia;
+        jest.restoreAllMocks();
+        window.matchMedia = matchMedia as any;
     });
 
     describe("overrideSize", () => {
@@ -24,7 +24,7 @@ describe("MediaLayoutContext", () => {
             resizeWindow("large");
 
             // Act
-            const args = await new Promise((resolve: any, reject: any) => {
+            const args: any = await new Promise((resolve: any, reject: any) => {
                 render(
                     <MediaLayoutContext.Provider
                         value={{
@@ -44,16 +44,17 @@ describe("MediaLayoutContext", () => {
             });
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
             expect(args.mediaSize).toEqual("small");
         });
     });
 
     describe("ssrSize", () => {
+        beforeEach(() => {
+            jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+        });
+
         it("should use the default ssrSize on the server", async () => {
             // Arrange
-            // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
-            delete window.matchMedia;
             const promise = new Promise((resolve: any, reject: any) => {
                 render(
                     <MediaLayout styleSheets={{}}>
@@ -66,20 +67,17 @@ describe("MediaLayoutContext", () => {
             });
 
             // Act
-            const args = await promise;
+            const args: any = await promise;
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
             expect(args.mediaSize).toEqual("large");
         });
 
         it("should use the provided ssrSize on the server", async () => {
             // Arrange
-            // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
-            delete window.matchMedia;
 
             // Act
-            const args = await new Promise((resolve: any, reject: any) => {
+            const args: any = await new Promise((resolve: any, reject: any) => {
                 render(
                     <MediaLayoutContext.Provider
                         value={{
@@ -99,7 +97,6 @@ describe("MediaLayoutContext", () => {
             });
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
             expect(args.mediaSize).toEqual("small");
         });
     });
@@ -110,7 +107,7 @@ describe("MediaLayoutContext", () => {
             resizeWindow("small");
 
             // Act
-            const args = await new Promise((resolve: any, reject: any) => {
+            const args: any = await new Promise((resolve: any, reject: any) => {
                 render(
                     <MediaLayoutContext.Provider
                         value={{
@@ -130,7 +127,6 @@ describe("MediaLayoutContext", () => {
             });
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
             expect(args.mediaSize).toEqual("large");
         });
 
@@ -139,7 +135,7 @@ describe("MediaLayoutContext", () => {
             resizeWindow("medium");
 
             // Act
-            const args = await new Promise((resolve: any, reject: any) => {
+            const args: any = await new Promise((resolve: any, reject: any) => {
                 render(
                     <MediaLayoutContext.Provider
                         value={{
@@ -159,7 +155,6 @@ describe("MediaLayoutContext", () => {
             });
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
             expect(args.mediaSize).toEqual("large");
         });
     });
