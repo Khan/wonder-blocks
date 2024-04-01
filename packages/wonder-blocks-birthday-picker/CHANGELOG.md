@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.56
+
+### Patch Changes
+
+-   1002cf17: Changing the default export name to fix an issue with StoryBook v8
+-   Updated dependencies [c39bfd29]
+    -   @khanacademy/wonder-blocks-layout@2.0.29
+    -   @khanacademy/wonder-blocks-dropdown@5.1.9
+
 ## 2.0.55
 
 ### Patch Changes
