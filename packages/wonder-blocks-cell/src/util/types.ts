@@ -149,4 +149,9 @@ export type CellProps = {
      * TODO(WB-1262): only allow this prop when `href` is also set.t
      */
     target?: "_blank";
+
+    /**
+     * Includes the cell in the page tab sequence.
+     */
+    tabIndex?: number;
 };

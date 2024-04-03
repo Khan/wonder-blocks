@@ -52,6 +52,18 @@ type OptionProps = AriaProps & {
      */
     selected: boolean;
     /**
+     * Whether this item is focused. Auto-populated by listbox in combination of
+     * aria-activedescendant.
+     * @ignore
+     */
+    focused: boolean;
+    /**
+     * Tab index of the item. Auto-populated by listbox.
+     * @ignore
+     */
+    tabIndex?: number;
+
+    /**
      * Aria role to use, defaults to "option".
      */
     role: "menuitem" | "option";
@@ -71,6 +83,21 @@ type OptionProps = AriaProps & {
      * @ignore
      */
     style?: StyleType;
+    /**
+     * Injected by the parent component to determine how we are going to handle
+     * the component states (hovered, focused, selected, etc.)
+     * Defaults to "dropdown".
+     * @ignore
+     */
+    parentComponent?: "dropdown" | "listbox";
+
+    /**
+     * The unique identifier of the option item.
+     *
+     * This is used to identify the option item in the listbox so that it can be
+     * focused programmatically (e.g. when the user presses the arrow keys).
+     */
+    id?: string;
 
     /**
      * Inherited from WB Cell.
@@ -105,6 +132,7 @@ type OptionProps = AriaProps & {
 
 type DefaultProps = {
     disabled: OptionProps["disabled"];
+    focused: OptionProps["focused"];
     horizontalRule: OptionProps["horizontalRule"];
     onToggle: OptionProps["onToggle"];
     role: OptionProps["role"];
@@ -123,6 +151,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
     static defaultProps: DefaultProps = {
         disabled: false,
+        focused: false,
         horizontalRule: "none",
         onToggle: () => void 0,
         role: "option",
@@ -149,6 +178,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     render(): React.ReactNode {
         const {
             disabled,
+            focused,
             label,
             role,
             selected,
@@ -156,6 +186,7 @@ export default class OptionItem extends React.Component<OptionProps> {
             style,
             leftAccessory,
             horizontalRule,
+            parentComponent,
             rightAccessory,
             subtitle1,
             subtitle2,
@@ -173,6 +204,8 @@ export default class OptionItem extends React.Component<OptionProps> {
 
         const defaultStyle = [
             styles.item,
+            focused && styles.itemFocused,
+            disabled && styles.itemDisabled,
             // pass optional styles from react-window (if applies)
             style,
         ];
@@ -184,6 +217,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                 rootStyle={defaultStyle}
                 style={styles.itemContainer}
                 aria-selected={selected ? "true" : "false"}
+                tabIndex={-1}
                 role={role}
                 testId={testId}
                 leftAccessory={
@@ -221,7 +255,8 @@ export default class OptionItem extends React.Component<OptionProps> {
                         </LabelSmall>
                     ) : undefined
                 }
-                onClick={this.handleClick}
+                onClick={parentComponent ? this.handleClick : onClick}
+                // onClick={this.handleClick}
                 {...sharedProps}
             />
         );
@@ -229,6 +264,14 @@ export default class OptionItem extends React.Component<OptionProps> {
 }
 
 const {blue, white, offBlack} = color;
+
+const focusedStyle = {
+    // Override the default focus state for the cell element, so that it
+    // can be added programmatically to the button element.
+    borderRadius: spacing.xxxSmall_4,
+    outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+    outlineOffset: -spacing.xxxxSmall_2,
+};
 
 const styles = StyleSheet.create({
     item: {
@@ -239,13 +282,7 @@ const styles = StyleSheet.create({
         /**
          * States
          */
-        ":focus": {
-            // Override the default focus state for the cell element, so that it
-            // can be added programmatically to the button element.
-            borderRadius: spacing.xxxSmall_4,
-            outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
-            outlineOffset: -spacing.xxxxSmall_2,
-        },
+        ":focus": focusedStyle,
 
         ":focus-visible": {
             // Override the default focus-visible state for the cell element, so
@@ -259,6 +296,8 @@ const styles = StyleSheet.create({
             color: white,
             background: blue,
         },
+
+        [":active[aria-selected=false]" as any]: {},
 
         // Allow hover styles on non-touch devices only. This prevents an
         // issue with hover being sticky on touch devices (e.g. mobile).
@@ -309,6 +348,10 @@ const styles = StyleSheet.create({
         [":active[aria-disabled=false] .subtitle" as any]: {
             color: mix(color.fadedBlue16, white),
         },
+    },
+    itemFocused: focusedStyle,
+    itemDisabled: {
+        outlineColor: color.offBlack32,
     },
     itemContainer: {
         minHeight: "unset",
