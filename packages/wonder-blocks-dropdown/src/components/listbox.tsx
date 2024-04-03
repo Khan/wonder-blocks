@@ -100,7 +100,7 @@ export default function Listbox({
     }, [children, value]);
 
     const [selected, setSelected] = React.useState<string | Array<string>>(
-        value,
+        value || "",
     );
     const [focusedIndex, setFocusedIndex] = React.useState(
         selectedValueIndex || 0,
