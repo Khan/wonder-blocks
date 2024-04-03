@@ -94,17 +94,20 @@ export default function Listbox({
     value,
     tabIndex = 0,
 }: Props) {
-    // find the index of the first selected Item
-    const selectedValueIndex = React.useMemo(() => {
-        return children.findIndex((item) => item.props.value === value);
-    }, [children, value]);
-
     const [selected, setSelected] = React.useState<string | Array<string>>(
         value || "",
     );
-    const [focusedIndex, setFocusedIndex] = React.useState(
-        selectedValueIndex || 0,
-    );
+    // find the index of the first selected Item
+    const selectedValueIndex = React.useMemo(() => {
+        const firstValue = Array.isArray(value) ? value[0] : value;
+        if (firstValue === "" || firstValue === undefined) {
+            // Focus on the first item if no value is selected
+            return 0;
+        }
+        return children.findIndex((item) => item.props.value === firstValue);
+    }, [children, value]);
+
+    const [focusedIndex, setFocusedIndex] = React.useState(selectedValueIndex);
     const [isFocused, setIsFocused] = React.useState(false);
 
     const renderList = React.useMemo(() => {
