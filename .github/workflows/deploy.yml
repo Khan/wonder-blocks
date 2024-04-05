@@ -13,13 +13,13 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           fetch-depth: 0
 
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: 20.x
 
@@ -32,7 +32,7 @@ jobs:
         run: yarn build:storybook
 
       - name: Upload Storybook artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           # Upload the generated static files
           path: "./storybook-static"
@@ -52,10 +52,10 @@ jobs:
 
     steps:
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
 
       - run: echo ${{ steps.deployment.outputs.page_url }}
