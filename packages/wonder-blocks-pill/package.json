@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "^4.1.2",
-    "@khanacademy/wonder-blocks-color": "^3.0.0",
     "@khanacademy/wonder-blocks-core": "^6.3.1",
     "@khanacademy/wonder-blocks-link": "^6.0.10",
     "@khanacademy/wonder-blocks-tokens": "^1.1.0",

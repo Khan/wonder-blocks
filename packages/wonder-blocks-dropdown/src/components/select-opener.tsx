@@ -4,7 +4,7 @@ import {__RouterContext} from "react-router";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {mix} from "@khanacademy/wonder-blocks-color";
+import {mix} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";

@@ -1,9 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {mix} from "@khanacademy/wonder-blocks-color";
+import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
