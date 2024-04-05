@@ -7,9 +7,5 @@
         "outDir": "./dist",
         "rootDir": "src"
     },
-    "references": [
-        {
-            "path": "../wonder-blocks-spacing/tsconfig-build.json"
-        }
-    ]
+    "references": []
 }

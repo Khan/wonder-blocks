@@ -28,7 +28,6 @@
         {"path": "./packages/wonder-blocks-popover/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-progress-spinner/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-search-field/tsconfig-build.json"},
-        {"path": "./packages/wonder-blocks-spacing/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-switch/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-testing/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-theming/tsconfig-build.json"},

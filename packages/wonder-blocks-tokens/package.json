@@ -13,9 +13,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "dependencies": {
-        "@khanacademy/wonder-blocks-spacing": "^4.0.1"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@khanacademy/wb-dev-build-settings": "^1.0.0"
     }
