@@ -23,9 +23,9 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -44,11 +44,11 @@ jobs:
           fetch-depth: 0
 
       - name: Get changed files
-        uses: Khan/actions@get-changed-files-v1
+        uses: Khan/actions@get-changed-files-v2
         id: changed
 
       - name: Filter out files that don't need a changeset
-        uses: Khan/actions@filter-files-v0
+        uses: Khan/actions@filter-files-v1
         id: match
         with:
             changed-files: ${{ steps.changed.outputs.files }}
@@ -71,37 +71,37 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Get All Changed Files
-        uses: Khan/actions@get-changed-files-v1
+        uses: Khan/actions@get-changed-files-v2
         id: changed
 
       - id: js-ts-files
         name: Find .js, .ts changed files
-        uses: Khan/actions@filter-files-v0
+        uses: Khan/actions@filter-files-v1
         with:
           changed-files: ${{ steps.changed.outputs.files }}
           extensions: '.js,.jsx,.ts,.tsx'
 
       - id: eslint-reset
-        uses: Khan/actions@filter-files-v0
+        uses: Khan/actions@filter-files-v1
         name: Files that would trigger a full eslint run
         with:
           changed-files: ${{ steps.changed.outputs.files }}
           files: '.eslintrc.js,yarn.lock,.eslintignore'
 
       - id: typecheck-reset
-        uses: Khan/actions@filter-files-v0
+        uses: Khan/actions@filter-files-v1
         name: Files that would trigger a typecheck run
         with:
           changed-files: ${{ steps.changed.outputs.files }}
@@ -140,21 +140,21 @@ jobs:
         node-version: [20.x]
         shard: ["1/2", "2/2"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: ${{ matrix.node-version }}
       # Testing and coverage
       - name: Run jest tests with coverage
         run: yarn coverage:ci --shard ${{ matrix.shard }}
       - name: Upload Coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json
@@ -168,14 +168,14 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -216,7 +216,7 @@ jobs:
           git checkout main
           git checkout $REF
       - name: Use Node.js ${{ matrix.node-version }} & Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -233,7 +233,7 @@ jobs:
       # Note: these two actions are locked to the latest version that were
       # published when @jeremy (Jeremy Wiebe) created the original job in Perseus.
       - name: Find existing comment
-        uses: peter-evans/find-comment@034abe94d3191f9c89d870519735beae326f2bdb
+        uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -242,7 +242,7 @@ jobs:
 
       - name: Create or update npm snapshot comment - Success
         if: steps.publish-snapshot.outputs.npm_snapshot_tag != ''
-        uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
@@ -265,7 +265,7 @@ jobs:
             ```
       - name: Create or update npm snapshot comment - Failure
         if: steps.publish-snapshot.outputs.npm_snapshot_tag == ''
-        uses: peter-evans/create-or-update-comment@67dcc547d311b736a8e6c5c236542148a47adc3d
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
