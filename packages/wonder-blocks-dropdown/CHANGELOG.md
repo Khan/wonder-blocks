@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.1.10
+
+### Patch Changes
+
+-   874081aa: Remove wonder-blocks-color dependency in favor of wonder-blocks-tokens
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-modal@4.2.8
+    -   @khanacademy/wonder-blocks-cell@3.3.3
+    -   @khanacademy/wonder-blocks-clickable@4.1.3
+    -   @khanacademy/wonder-blocks-layout@2.0.30
+    -   @khanacademy/wonder-blocks-search-field@2.2.7
+
 ## 5.1.9
 
 ### Patch Changes

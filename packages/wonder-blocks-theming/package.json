@@ -1,6 +1,6 @@
 {
     "name": "@khanacademy/wonder-blocks-theming",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "publishConfig": {
         "access": "public"
     },
