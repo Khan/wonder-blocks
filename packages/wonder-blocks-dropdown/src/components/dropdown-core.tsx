@@ -7,9 +7,8 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import {fade} from "@khanacademy/wonder-blocks-color";
+import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
