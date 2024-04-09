@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-pill
 
+## 2.1.2
+
+### Patch Changes
+
+-   874081aa: Remove wonder-blocks-color dependency in favor of wonder-blocks-tokens
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-link@6.0.11
+    -   @khanacademy/wonder-blocks-clickable@4.1.3
+
 ## 2.1.1
 
 ### Patch Changes
