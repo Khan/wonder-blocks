@@ -31,13 +31,13 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           fetch-depth: 0
 
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: 20.x
 
