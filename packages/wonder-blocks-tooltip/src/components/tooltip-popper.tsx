@@ -6,9 +6,13 @@ import * as React from "react";
 import {Popper} from "react-popper";
 import type {PopperChildrenProps} from "react-popper";
 
+import {useIsMounted} from "@khanacademy/wonder-blocks-core";
 import RefTracker from "../util/ref-tracker";
-import type {Placement} from "../util/types";
-import type {PopperElementProps} from "./tooltip-bubble";
+import type {
+    Placement,
+    PopperElementProps,
+    PopperUpdateFn,
+} from "../util/types";
 
 type Props = {
     /**
@@ -25,26 +29,91 @@ type Props = {
     anchorElement?: HTMLElement;
     /** Where should the bubble try to go with respect to its anchor. */
     placement: Placement;
+    /**
+     * Whether the tooltip should automatically update its position when the
+     * anchor element changes.
+     */
+    autoUpdate?: boolean;
 };
 
-export default class TooltipPopper extends React.Component<Props> {
-    _bubbleRefTracker: RefTracker = new RefTracker();
-    _tailRefTracker: RefTracker = new RefTracker();
+/**
+ * A ref tracker for the bubble element.
+ */
+const _bubbleRefTracker: RefTracker = new RefTracker();
+/**
+ * A ref tracker for the tail element.
+ */
+const _tailRefTracker: RefTracker = new RefTracker();
+/**
+ * A MutationObserver that watches for changes to the anchor element.
+ */
+let _observer: MutationObserver | null = null;
+/**
+ * A function that can be called to update the popper.
+ * @see https://popper.js.org/docs/v2/lifecycle/#manual-update
+ */
+let _popperUpdate: PopperUpdateFn | null = null;
 
-    _renderPositionedContent(
+/**
+ * A component that wraps react-popper's Popper component to provide a
+ * consistent interface for positioning floating elements.
+ */
+export default function TooltipPopper(props: Props): React.ReactElement {
+    const isMounted = useIsMounted();
+    const {anchorElement, autoUpdate, placement} = props;
+
+    /**
+     * Automatically updates the position of the floating element when necessary
+     * to ensure it stays anchored.
+     *
+     * NOTE: This is a temporary solution that checks for changes in the anchor
+     * element's DOM. This is not a perfect solution and may not work in all
+     * cases. It is recommended to use the autoUpdate prop only when necessary.
+     *
+     * TODO(WB-1680): Replace this with floating-ui's autoUpdate feature.
+     * @see https://floating-ui.com/docs/autoupdate
+     */
+    React.useEffect(() => {
+        if (!anchorElement || !autoUpdate) {
+            return;
+        }
+
+        if (isMounted()) {
+            _observer = new MutationObserver(async () => {
+                // Update the popper when the anchor element changes.
+                await _popperUpdate?.();
+            });
+
+            // Check for DOM changes to the anchor element.
+            _observer.observe(anchorElement, {
+                attributes: true,
+                childList: true,
+                subtree: true,
+            });
+        }
+
+        return function cleanup() {
+            _observer?.disconnect();
+        };
+    }, [isMounted, anchorElement, autoUpdate]);
+
+    const _renderPositionedContent = (
         popperProps: PopperChildrenProps,
-    ): React.ReactNode {
-        const {children} = this.props;
+    ): React.ReactNode => {
+        const {children} = props;
 
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
-        const placement: Placement =
-            popperProps.placement || this.props.placement;
+        const placement: Placement = popperProps.placement || props.placement;
 
         // Just in case the callbacks have changed, let's update our reference
         // trackers.
-        this._bubbleRefTracker.setCallback(popperProps.ref);
-        this._tailRefTracker.setCallback(popperProps.arrowProps.ref);
+        _bubbleRefTracker.setCallback(popperProps.ref);
+        _tailRefTracker.setCallback(popperProps.arrowProps.ref);
+
+        // Store a reference to the update function so that we can call it
+        // later if needed.
+        _popperUpdate = popperProps.update;
 
         // Here we translate from the react-popper's PropperChildrenProps
         // to our own TooltipBubbleProps.
@@ -62,7 +131,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 position: popperProps.style.position,
                 transform: popperProps.style.transform,
             },
-            updateBubbleRef: this._bubbleRefTracker.updateRef,
+            updateBubbleRef: _bubbleRefTracker.updateRef,
             tailOffset: {
                 bottom: popperProps.arrowProps.style.bottom,
                 right: popperProps.arrowProps.style.right,
@@ -70,30 +139,27 @@ export default class TooltipPopper extends React.Component<Props> {
                 left: popperProps.arrowProps.style.left,
                 transform: popperProps.arrowProps.style.transform,
             },
-            updateTailRef: this._tailRefTracker.updateRef,
+            updateTailRef: _tailRefTracker.updateRef,
             isReferenceHidden: popperProps.isReferenceHidden,
         } as const;
         return children(bubbleProps);
-    }
+    };
 
-    render(): React.ReactNode {
-        const {anchorElement, placement} = this.props;
-        return (
-            <Popper
-                referenceElement={anchorElement}
-                strategy="fixed"
-                placement={placement}
-                modifiers={[
-                    {
-                        name: "preventOverflow",
-                        options: {
-                            rootBoundary: "viewport",
-                        },
+    return (
+        <Popper
+            referenceElement={anchorElement}
+            strategy="fixed"
+            placement={placement}
+            modifiers={[
+                {
+                    name: "preventOverflow",
+                    options: {
+                        rootBoundary: "viewport",
                     },
-                ]}
-            >
-                {(props) => this._renderPositionedContent(props)}
-            </Popper>
-        );
-    }
+                },
+            ]}
+        >
+            {_renderPositionedContent}
+        </Popper>
+    );
 }

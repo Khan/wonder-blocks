@@ -351,6 +351,79 @@ WithStyle.play = async ({canvasElement}) => {
     });
 };
 
+/**
+ * Tooltip by default (and for performance reasons) only updates its position
+ * under the following conditions:
+ *
+ * 1. When the window is resized.
+ * 2. When the scroll position changes.
+ *
+ * However, there are cases where you might want the tooltip to update its
+ * position when the trigger element changes. This can be done by setting the
+ * `autoUpdate` prop to `true`.
+ */
+export const AutoUpdate: StoryComponentType = {
+    render: function Render() {
+        const [position, setPosition] = React.useState<{
+            x: number;
+            y: number;
+        } | null>(null);
+        return (
+            <View style={[styles.centered, styles.row, {position: "relative"}]}>
+                <Tooltip
+                    content="This is a tooltip that auto-updates its position when the trigger element changes."
+                    opened={true}
+                    autoUpdate={true}
+                >
+                    <View
+                        style={[
+                            position && {
+                                position: "absolute",
+                                top: position.y,
+                                left: position.x,
+                            },
+                        ]}
+                    >
+                        Trigger element
+                    </View>
+                </Tooltip>
+                <Button
+                    onClick={() => {
+                        setPosition({
+                            x: Math.floor(Math.random() * 200),
+                            y: Math.floor(Math.random() * 200),
+                        });
+                    }}
+                >
+                    Click to update trigger position
+                </Button>
+            </View>
+        );
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Get HTML elements
+        const tooltip = await canvas.findByRole("tooltip");
+        const initialLeft = tooltip.getBoundingClientRect().left;
+        const initialTop = tooltip.getBoundingClientRect().top;
+
+        // Act
+        await userEvent.click(canvas.getByRole("button"));
+
+        // Wait for the tooltip to update its position
+        const newTooltip = await canvas.findByRole("tooltip");
+        const newLeft = newTooltip.getBoundingClientRect().left;
+        const newTop = newTooltip.getBoundingClientRect().top;
+
+        // Assert
+        // The tooltip should have updated its position
+        await expect(initialLeft).not.toEqual(newLeft);
+        await expect(initialTop).not.toEqual(newTop);
+    },
+};
+
 const styles = StyleSheet.create({
     storyCanvas: {
         // NOTE: This is needed for Chromatic to include the tooltip bubble.

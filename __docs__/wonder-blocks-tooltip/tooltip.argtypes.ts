@@ -40,4 +40,31 @@ export default {
         },
         options: Object.keys(color) as Array<string>,
     },
+    autoUpdate: {
+        description:
+            "Whether the tooltip should automatically update its position when the anchor element changes size or position.",
+        control: {
+            type: "boolean",
+        },
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+    },
+    opened: {
+        description:
+            `Whether the tooltip is currently open.\n\n` +
+            `Using this prop makes the component behave as a controlled
+            component. The parent is responsible for managing the
+            opening/closing of the tooltip when using this prop.`,
+        control: {
+            type: "boolean",
+        },
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+    },
 };

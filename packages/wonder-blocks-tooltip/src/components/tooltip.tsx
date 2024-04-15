@@ -46,6 +46,12 @@ type Props = AriaProps &
          * Optional title for the tooltip content.
          */
         title?: string | React.ReactElement<React.ComponentProps<Typography>>;
+
+        /**
+         * Whether the tooltip should update its position when the anchor
+         * element changes size or position. Defaults to false.
+         */
+        autoUpdate?: boolean;
         /**
          * The content to render in the tooltip.
          */
@@ -221,6 +227,7 @@ export default class Tooltip extends React.Component<Props, State> {
             <TooltipPopper
                 anchorElement={this.state.anchorElement}
                 placement={placement}
+                autoUpdate={this.props.autoUpdate}
             >
                 {(props) => (
                     <TooltipBubble
@@ -258,6 +265,9 @@ export default class Tooltip extends React.Component<Props, State> {
 
         const popperHost = this._getHost();
 
+        const shouldBeVisible =
+            popperHost && (active || activeBubble) && this.state.anchorElement;
+
         // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
         return (
             <React.Fragment>
@@ -269,8 +279,7 @@ export default class Tooltip extends React.Component<Props, State> {
                 >
                     {children}
                 </TooltipAnchor>
-                {popperHost &&
-                    (active || activeBubble) &&
+                {shouldBeVisible &&
                     ReactDOM.createPortal(this._renderPopper(ids), popperHost)}
             </React.Fragment>
         );
