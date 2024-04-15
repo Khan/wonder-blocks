@@ -260,13 +260,17 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderTooltipAnchor(ids?: IIdentifierFactory): React.ReactNode {
-        const {children, forceAnchorFocusivity} = this.props;
+        const {autoUpdate, children, forceAnchorFocusivity} = this.props;
         const {active, activeBubble} = this.state;
 
         const popperHost = this._getHost();
 
+        // Only render the popper if the anchor element is available so that we
+        // can position the popper correctly. If autoUpdate is false, we don't
+        // need to wait for the anchor element to render the popper.
+        const shouldAnchorExist = autoUpdate ? this.state.anchorElement : true;
         const shouldBeVisible =
-            popperHost && (active || activeBubble) && this.state.anchorElement;
+            popperHost && (active || activeBubble) && shouldAnchorExist;
 
         // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
         return (
