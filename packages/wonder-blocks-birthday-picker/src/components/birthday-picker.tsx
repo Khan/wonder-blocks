@@ -338,6 +338,9 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 onChange={this.handleYearChange}
                 selectedValue={year}
                 style={{minWidth}}
+                // Allows displaying the dropdown options without truncating
+                // them when the user zooms in the browser.
+                dropdownStyle={{minWidth: 150}}
                 testId="birthday-picker-year"
             >
                 {Array.from(Array(120)).map((_, yearOffset) => (
