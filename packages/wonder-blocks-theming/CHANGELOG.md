@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 2.0.2
+
+### Patch Changes
+
+-   874081aa: Remove wonder-blocks-color dependency in favor of wonder-blocks-tokens
+
 ## 2.0.1
 
 ### Patch Changes

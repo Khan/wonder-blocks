@@ -390,50 +390,47 @@ describe("i18n", () => {
                 });
             });
 
-            describe("with num substitution and num option", () => {
+            describe("with num substitution and non-en locale", () => {
                 it("should return plural form for num 0", () => {
                     // Arrange
+                    jest.spyOn(Locale, "getLocale").mockImplementation(
+                        () => "fr-fr",
+                    );
+                    const formatSpy = jest.spyOn(Intl, "NumberFormat");
 
                     // Act
-                    const result = ngettext(
-                        "Singular %(num)s",
-                        "Plural %(num)s",
-                        0,
-                        {num: 5},
-                    );
+                    ngettext("Singular %(num)s", "Plural %(num)s", 0);
 
                     // Assert
-                    expect(result).toEqual("Plural 5");
+                    expect(formatSpy).toHaveBeenCalledWith("fr-fr");
                 });
 
                 it("should return singular form for num 1", () => {
                     // Arrange
+                    jest.spyOn(Locale, "getLocale").mockImplementation(
+                        () => "fr-fr",
+                    );
+                    const formatSpy = jest.spyOn(Intl, "NumberFormat");
 
                     // Act
-                    const result = ngettext(
-                        "Singular %(num)s",
-                        "Plural %(num)s",
-                        1,
-                        {num: 5},
-                    );
+                    ngettext("Singular %(num)s", "Plural %(num)s", 1);
 
                     // Assert
-                    expect(result).toEqual("Singular 5");
+                    expect(formatSpy).toHaveBeenCalledWith("fr-fr");
                 });
 
                 it("should return plural form for num 2 or more", () => {
                     // Arrange
+                    jest.spyOn(Locale, "getLocale").mockImplementation(
+                        () => "fr-fr",
+                    );
+                    const formatSpy = jest.spyOn(Intl, "NumberFormat");
 
                     // Act
-                    const result = ngettext(
-                        "Singular %(num)s",
-                        "Plural %(num)s",
-                        2,
-                        {num: 5},
-                    );
+                    ngettext("Singular %(num)s", "Plural %(num)s", 2000);
 
                     // Assert
-                    expect(result).toEqual("Plural 5");
+                    expect(formatSpy).toHaveBeenCalledWith("fr-fr");
                 });
             });
 

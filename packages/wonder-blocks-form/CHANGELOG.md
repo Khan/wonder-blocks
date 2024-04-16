@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.4.7
+
+### Patch Changes
+
+-   874081aa: Remove wonder-blocks-color dependency in favor of wonder-blocks-tokens
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.1.3
+    -   @khanacademy/wonder-blocks-layout@2.0.30
+
 ## 4.4.6
 
 ### Patch Changes

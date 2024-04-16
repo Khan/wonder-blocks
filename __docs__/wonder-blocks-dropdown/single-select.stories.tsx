@@ -6,14 +6,13 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {fade} from "@khanacademy/wonder-blocks-color";
+import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingLarge,
