@@ -230,9 +230,6 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                         ? ariaDescribedby
                                         : `${uniqueId}-error`
                                 }
-                                aria-invalid={
-                                    this.state.error ? "true" : "false"
-                                }
                                 aria-required={required ? "true" : "false"}
                                 required={required}
                                 testId={testId && `${testId}-field`}

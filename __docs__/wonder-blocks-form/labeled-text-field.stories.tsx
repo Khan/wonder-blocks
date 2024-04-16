@@ -267,7 +267,7 @@ Email.parameters = {
         description: {
             story: `An input field with type \`email\` will automatically
         validate an input on submit to ensure it's either formatted properly
-        or blank. \`TextField\` will run validation on blur if the
+        or blank. \`TextField\` will run validation on change if the
         \`validate\` prop is passed in, as in this example.`,
         },
     },
@@ -360,7 +360,7 @@ Telephone.parameters = {
     },
 };
 
-export const Error: StoryComponentType = () => {
+function ErrorRender() {
     const [value, setValue] = React.useState("khan");
 
     const validate = (value: string) => {
@@ -388,15 +388,19 @@ export const Error: StoryComponentType = () => {
             onKeyDown={handleKeyDown}
         />
     );
-};
+}
 
-Error.parameters = {
-    docs: {
-        description: {
-            story: `If an input value fails validation,
-        \`TextField\` will have error styling.`,
-        },
-    },
+/**
+ * If an input value fails validation, `LabeledTextField` will have error
+ * styling.
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * `input` element:
+ * - aria-invalid="true" if there is an error message.
+ * - aria-invalid="false" if there is no error message.
+ */
+export const Error: StoryComponentType = {
+    render: ErrorRender,
 };
 
 export const Light: StoryComponentType = (args: any) => {

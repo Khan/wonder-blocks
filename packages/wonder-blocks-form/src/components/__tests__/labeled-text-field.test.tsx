@@ -480,6 +480,81 @@ describe("LabeledTextField", () => {
         const input = await screen.findByRole("textbox");
         expect(input).toHaveAttribute("autoComplete", autoComplete);
     });
+
+    it("aria-invalid is set true if given an invalid input", async () => {
+        // Arrange
+        const handleValidate = jest.fn((errorMessage?: string | null) => {});
+
+        const validate = (value: string): string | null | undefined => {
+            if (value.length < 8) {
+                return "Password must be at least 8 characters long";
+            }
+        };
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("LongerThan8Chars");
+
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    validate={validate}
+                    onValidate={handleValidate}
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        // Act
+        // Select all text and replace it with the new value.
+        const textbox = await screen.findByRole("textbox");
+        await userEvent.click(textbox);
+        await userEvent.clear(textbox);
+        await userEvent.paste("Short");
+
+        // Assert
+        expect(textbox).toHaveAttribute("aria-invalid", "true");
+    });
+
+    it("aria-invalid is set false if given a valid input", async () => {
+        // Arrange
+        const handleValidate = jest.fn((errorMessage?: string | null) => {});
+
+        const validate = (value: string): string | null | undefined => {
+            if (value.length < 8) {
+                return "Password must be at least 8 characters long";
+            }
+        };
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("Short");
+
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    validate={validate}
+                    onValidate={handleValidate}
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        // Act
+        // Select all text and replace it with the new value.
+        const textbox = await screen.findByRole("textbox");
+        await userEvent.click(textbox);
+        await userEvent.clear(textbox);
+        await userEvent.paste("LongerThan8Chars");
+        const shortTextbox = await screen.findByRole("textbox");
+
+        // Assert
+        expect(shortTextbox).toHaveAttribute("aria-invalid", "false");
+    });
 });
 
 describe("Required LabeledTextField", () => {

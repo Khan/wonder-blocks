@@ -257,6 +257,58 @@ describe("TextField", () => {
         expect(handleValidate).toHaveReturnedWith(errorMessage);
     });
 
+    it("aria-invalid is set true if given an invalid input", async () => {
+        // Arrange
+        const handleValidate = jest.fn(
+            (value: string): string | null | undefined => {
+                if (value.length < 8) {
+                    return "Value is too short";
+                }
+            },
+        );
+
+        render(
+            <TextField
+                id={"tf-1"}
+                value="short"
+                validate={handleValidate}
+                onChange={() => {}}
+            />,
+        );
+
+        // Act
+        const textbox = await screen.findByRole("textbox");
+
+        // Assert
+        expect(textbox).toHaveAttribute("aria-invalid", "true");
+    });
+
+    it("aria-invalid is set false if given a valid input", async () => {
+        // Arrange
+        const handleValidate = jest.fn(
+            (value: string): string | null | undefined => {
+                if (value.length < 8) {
+                    return "Value is too short";
+                }
+            },
+        );
+
+        render(
+            <TextField
+                id={"tf-1"}
+                value="long enough"
+                validate={handleValidate}
+                onChange={() => {}}
+            />,
+        );
+
+        // Act
+        const textbox = await screen.findByRole("textbox");
+
+        // Assert
+        expect(textbox).toHaveAttribute("aria-invalid", "false");
+    });
+
     it("onValidate is called after input validate", async () => {
         // Arrange
         const errorMessage = "Value is too short";
