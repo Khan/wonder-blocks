@@ -284,6 +284,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                 autoComplete={autoComplete}
                 ref={forwardedRef}
                 {...otherProps}
+                aria-invalid={this.state.error ? "true" : "false"}
             />
         );
     }
