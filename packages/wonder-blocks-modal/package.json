@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "4.2.8",
+  "version": "5.0.0",
   "design": "v2",
   "publishConfig": {
     "access": "public"

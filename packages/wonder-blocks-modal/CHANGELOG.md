@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 5.0.0
+
+### Major Changes
+
+-   1b741a83: Makes optional `aria-labelledby` prop required
+
 ## 4.2.8
 
 ### Patch Changes

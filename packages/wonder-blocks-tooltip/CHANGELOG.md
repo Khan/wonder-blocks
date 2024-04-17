@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.2.0
+
+### Minor Changes
+
+-   98ab6820: Add autoUpdate prop to update the tooltip position when the trigger element changes
+
+### Patch Changes
+
+-   Updated dependencies [1b741a83]
+    -   @khanacademy/wonder-blocks-modal@5.0.0
+
 ## 2.1.32
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.58
+
+### Patch Changes
+
+-   0b7f791f: Fix year dropdown width to avoid truncating the text when the user zooms in
+    -   @khanacademy/wonder-blocks-dropdown@5.1.11
+
 ## 2.0.57
 
 ### Patch Changes
