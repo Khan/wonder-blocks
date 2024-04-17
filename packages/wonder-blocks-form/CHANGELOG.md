@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.4.8
+
+### Patch Changes
+
+-   41aa4074: Set aria-invalid directly in `TextField` to inform the user when the validation fails and there's an error in the input field.
+
 ## 4.4.7
 
 ### Patch Changes
