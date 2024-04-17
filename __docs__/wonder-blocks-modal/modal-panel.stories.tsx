@@ -300,12 +300,15 @@ export const TwoPanels: StoryComponentType = {
         } as const;
 
         return (
-            <ModalDialog style={twoPaneDialogStyle}>
+            <ModalDialog
+                style={twoPaneDialogStyle}
+                aria-labelledby="sidebar-title-id"
+            >
                 <View style={panelGroupStyle}>
                     <ModalPanel
                         content={
                             <View>
-                                <Title>Sidebar</Title>
+                                <Title id="sidebar-title-id">Sidebar</Title>
                                 <Strut size={spacing.large_24} />
                                 <Body>
                                     Lorem ipsum dolor sit amet, consectetur
