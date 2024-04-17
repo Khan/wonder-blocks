@@ -75,11 +75,8 @@ const ModalDialogCore = React.forwardRef(function ModalDialogCore(
         style,
         children,
         testId,
-        /* eslint-disable react/prop-types */
-        // the react/prop-types plugin does not like these
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
-        /* eslint-enable react/prop-types */
     } = props;
 
     const {theme} = useScopedTheme(ModalDialogThemeContext);
