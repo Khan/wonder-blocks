@@ -44,9 +44,10 @@ type Props = {
      */
     testId?: string;
     /**
-     * The ID of the title labelling this dialog, if applicable.
+     * The ID of the title labelling this dialog. Required.
+     * See WCAG 2.1: 4.1.2 Name, Role, Value
      */
-    "aria-labelledby"?: string;
+    "aria-labelledby": string;
     /**
      * The ID of the content describing this dialog, if applicable.
      */
