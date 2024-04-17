@@ -80,7 +80,7 @@ export default class CircularSpinner extends React.Component<Props> {
                 width={height}
                 height={height}
                 viewBox={`0 0 ${height} ${height}`}
-                data-test-id={testId}
+                data-testid={testId}
             >
                 <StyledPath
                     style={[styles.loadingSpinner, {fill: color}]}

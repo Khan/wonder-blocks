@@ -1,16 +1,11 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
-import {configure} from "@storybook/test";
 
 import {color} from "@khanacademy/wonder-blocks-tokens";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
 import {Preview} from "@storybook/react";
-
-configure({
-    testIdAttribute: "data-test-id",
-});
 
 /**
  * WB Official breakpoints

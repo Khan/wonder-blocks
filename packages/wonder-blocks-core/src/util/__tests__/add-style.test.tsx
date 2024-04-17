@@ -29,7 +29,7 @@ describe("addStyle", () => {
 
     it("should set the className if no style is provided", () => {
         // Arrange
-        render(<StyledDiv className="foo" data-test-id="styled-div" />);
+        render(<StyledDiv className="foo" data-testid="styled-div" />);
 
         // Act
         const div = screen.getByTestId("styled-div");
@@ -44,7 +44,7 @@ describe("addStyle", () => {
             <StyledDiv
                 className="foo"
                 style={{width: "100%"}}
-                data-test-id="styled-div"
+                data-testid="styled-div"
             />,
         );
 
@@ -60,7 +60,7 @@ describe("addStyle", () => {
 
     it("should set the class if an stylesheet style is provided", () => {
         // Arrange
-        render(<StyledDiv style={styles.foo} data-test-id="styled-div" />);
+        render(<StyledDiv style={styles.foo} data-testid="styled-div" />);
 
         // Act
         const div = screen.getByTestId("styled-div");
@@ -75,7 +75,7 @@ describe("addStyle", () => {
             <StyledDiv
                 className="foo"
                 style={styles.foo}
-                data-test-id="styled-div"
+                data-testid="styled-div"
             />,
         );
 
@@ -97,7 +97,7 @@ describe("addStyle", () => {
             <StyledDiv
                 className="foo"
                 style={styles.foo}
-                data-test-id="styled-div"
+                data-testid="styled-div"
                 ref={ref}
             />,
         );

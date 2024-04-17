@@ -92,7 +92,7 @@ const DropdownPopper = function ({
                     <div
                         ref={ref}
                         style={style}
-                        data-test-id="dropdown-popper"
+                        data-testid="dropdown-popper"
                         data-placement={placement}
                     >
                         {children(shouldHidePopper)}

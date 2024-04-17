@@ -262,7 +262,7 @@ describe("MultiSelect", () => {
             const opener = await screen.findByRole("button");
 
             // Assert
-            expect(opener).toHaveAttribute("data-test-id", "some-test-id");
+            expect(opener).toHaveAttribute("data-testid", "some-test-id");
         });
     });
 
@@ -312,7 +312,7 @@ describe("MultiSelect", () => {
                         <OptionItem label="item 3" value="3" />
                     </MultiSelect>
                     <button
-                        data-test-id="parent-button"
+                        data-testid="parent-button"
                         onClick={() => handleToggleMenu(true)}
                     />
                 </React.Fragment>
@@ -958,7 +958,7 @@ describe("MultiSelect", () => {
                     onChange={onChange}
                     opener={() => (
                         <button
-                            data-test-id="custom-opener"
+                            data-testid="custom-opener"
                             aria-label="Custom opener"
                         />
                     )}
@@ -972,7 +972,7 @@ describe("MultiSelect", () => {
             const opener = await screen.findByLabelText("Custom opener");
 
             // Assert
-            expect(opener).toHaveAttribute("data-test-id", "custom-opener");
+            expect(opener).toHaveAttribute("data-testid", "custom-opener");
         });
 
         it("verifies testId is not passed from the parent element", async () => {
@@ -994,7 +994,7 @@ describe("MultiSelect", () => {
             const opener = await screen.findByLabelText("Custom opener");
 
             // Assert
-            expect(opener).not.toHaveAttribute("data-test-id", "custom-opener");
+            expect(opener).not.toHaveAttribute("data-testid", "custom-opener");
         });
 
         it("passes the current label to the custom opener (no items selected)", async () => {
@@ -1010,10 +1010,7 @@ describe("MultiSelect", () => {
                     testId="openTest"
                     onChange={jest.fn()}
                     opener={({text}: any) => (
-                        <button
-                            onClick={jest.fn()}
-                            data-test-id="custom-opener"
-                        >
+                        <button onClick={jest.fn()} data-testid="custom-opener">
                             {text}
                         </button>
                     )}
@@ -1045,7 +1042,7 @@ describe("MultiSelect", () => {
                         opener={({text}: any) => (
                             <button
                                 onClick={jest.fn()}
-                                data-test-id="custom-opener"
+                                data-testid="custom-opener"
                             >
                                 {text}
                             </button>
@@ -1086,7 +1083,7 @@ describe("MultiSelect", () => {
                         opener={({text}: any) => (
                             <button
                                 onClick={jest.fn()}
-                                data-test-id="custom-opener"
+                                data-testid="custom-opener"
                             >
                                 {text}
                             </button>
@@ -1127,7 +1124,7 @@ describe("MultiSelect", () => {
                         opener={({text}: any) => (
                             <button
                                 onClick={jest.fn()}
-                                data-test-id="custom-opener"
+                                data-testid="custom-opener"
                             >
                                 {text}
                             </button>

@@ -51,7 +51,7 @@ class DropdownOpener extends React.Component<Props> {
     };
 
     getTestIdFromProps: (childrenProps?: any) => string = (childrenProps) => {
-        return childrenProps.testId || childrenProps["data-test-id"];
+        return childrenProps.testId || childrenProps["data-testid"];
     };
 
     renderAnchorChildren(
@@ -81,7 +81,7 @@ class DropdownOpener extends React.Component<Props> {
                 : clickableChildrenProps.onClick,
             // try to get the testId from the child element
             // If it's not set, try to fallback to the parent's testId
-            "data-test-id": childrenTestId || testId,
+            "data-testid": childrenTestId || testId,
         });
     }
 

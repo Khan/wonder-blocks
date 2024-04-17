@@ -1026,7 +1026,7 @@ class DropdownCore extends React.Component<Props, State> {
                 aria-atomic="true"
                 aria-relevant="additions text"
                 style={styles.srOnly}
-                data-test-id="dropdown-live-region"
+                data-testid="dropdown-live-region"
             >
                 {open && labels.someResults(totalItems)}
             </StyledSpan>

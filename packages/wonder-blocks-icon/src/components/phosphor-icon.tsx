@@ -111,7 +111,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
                 },
                 style,
             ]}
-            data-test-id={testId}
+            data-testid={testId}
             ref={ref}
         />
     );

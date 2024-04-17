@@ -109,7 +109,7 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
                 // component, but we handle the click via ClickableBehavior
                 onChange={handleChange}
                 style={defaultStyle}
-                data-test-id={testId}
+                data-testid={testId}
             />
             {checked || checked == null ? checkboxIcon : <></>}
         </React.Fragment>

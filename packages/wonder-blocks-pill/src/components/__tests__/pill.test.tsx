@@ -27,7 +27,7 @@ describe("Pill", () => {
         // Assert
         expect(pillRef.current).toHaveAttribute("id", "pill-id");
         expect(pillRef.current).toHaveAttribute("role", "radio");
-        expect(pillRef.current).toHaveAttribute("data-test-id", "pill-test-id");
+        expect(pillRef.current).toHaveAttribute("data-testid", "pill-test-id");
     });
 
     test("should set attributes correctly (with onClick)", async () => {
@@ -48,7 +48,7 @@ describe("Pill", () => {
         // Assert
         expect(pillRef.current).toHaveAttribute("id", "pill-id");
         expect(pillRef.current).toHaveAttribute("role", "radio");
-        expect(pillRef.current).toHaveAttribute("data-test-id", "pill-test-id");
+        expect(pillRef.current).toHaveAttribute("data-testid", "pill-test-id");
     });
 
     test("is Clickable if onClick is passed in (mouse click)", async () => {

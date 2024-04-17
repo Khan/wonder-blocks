@@ -130,7 +130,7 @@ const CheckboxGroup = React.forwardRef(function CheckboxGroup(
     const allChildren = React.Children.toArray(children).filter(Boolean);
 
     return (
-        <StyledFieldset data-test-id={testId} style={styles.fieldset} ref={ref}>
+        <StyledFieldset data-testid={testId} style={styles.fieldset} ref={ref}>
             {/* We have a View here because fieldset cannot be used with flexbox*/}
             <View style={style}>
                 {label && (

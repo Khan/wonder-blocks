@@ -323,7 +323,7 @@ const Clickable = React.forwardRef(function Clickable(
                     {(state, childrenProps) =>
                         getCorrectTag(state, router, {
                             ...restProps,
-                            "data-test-id": testId,
+                            "data-testid": testId,
                             style: getStyle(state),
                             ...childrenProps,
                         })
@@ -348,7 +348,7 @@ const Clickable = React.forwardRef(function Clickable(
                     {(state, childrenProps) =>
                         getCorrectTag(state, router, {
                             ...restProps,
-                            "data-test-id": testId,
+                            "data-testid": testId,
                             style: getStyle(state),
                             ...childrenProps,
                         })
