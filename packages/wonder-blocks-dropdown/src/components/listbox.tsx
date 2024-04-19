@@ -109,7 +109,6 @@ export default function Listbox({
 
     const [focusedIndex, setFocusedIndex] = React.useState(selectedValueIndex);
     const [isFocused, setIsFocused] = React.useState(false);
-    console.log("listbox.render!!!", selected, focusedIndex, isFocused);
 
     const handleClick = React.useCallback(
         (value: string) => {
@@ -139,13 +138,6 @@ export default function Listbox({
             const component = item as OptionItemComponent;
 
             const isSelected = selected.includes(component.props.value);
-            console.log(
-                "focused!!!",
-                isFocused,
-                focusedIndex,
-                index,
-                isSelected,
-            );
             // Render OptionItem and/or ActionItem elements.
             return React.cloneElement(component, {
                 key: index,
