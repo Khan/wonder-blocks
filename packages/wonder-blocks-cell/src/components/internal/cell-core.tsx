@@ -176,7 +176,6 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         target,
         role,
         rootStyle,
-        tabIndex,
     } = props;
 
     // Pressable cell.
@@ -184,7 +183,6 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
         return (
             // @ts-expect-error - TypeScript doesn't know that `target` can only be defined when `href` is.
             <Clickable
-                tabIndex={tabIndex}
                 disabled={disabled}
                 onClick={onClick}
                 href={href}

@@ -109,6 +109,25 @@ export default function Listbox({
 
     const [focusedIndex, setFocusedIndex] = React.useState(selectedValueIndex);
     const [isFocused, setIsFocused] = React.useState(false);
+    console.log("listbox.render!!!", selected, focusedIndex, isFocused);
+
+    const handleClick = React.useCallback(
+        (value: string) => {
+            const index = children.findIndex(
+                (item) => item.props.value === value,
+            );
+
+            const component = children[index] as OptionItemComponent;
+
+            if (component.props.disabled) {
+                return;
+            }
+
+            setFocusedIndex(index);
+            setSelected(component.props.value);
+        },
+        [children],
+    );
 
     const renderList = React.useMemo(() => {
         const childrenList = React.Children.toArray(children);
@@ -120,7 +139,13 @@ export default function Listbox({
             const component = item as OptionItemComponent;
 
             const isSelected = selected.includes(component.props.value);
-
+            console.log(
+                "focused!!!",
+                isFocused,
+                focusedIndex,
+                index,
+                isSelected,
+            );
             // Render OptionItem and/or ActionItem elements.
             return React.cloneElement(component, {
                 key: index,
@@ -128,18 +153,15 @@ export default function Listbox({
                 disabled: component.props.disabled || disabled || false,
                 selected: isSelected,
                 variant: "check",
+                parentComponent: "listbox",
                 id: `option-` + index.toString(),
                 onClick: () => {
-                    if (component.props.disabled) {
-                        return;
-                    }
-                    setFocusedIndex(index);
-                    setSelected(component.props.value);
+                    handleClick(component.props.value);
                 },
                 role: "option",
             });
         });
-    }, [children, disabled, focusedIndex, isFocused, selected]);
+    }, [children, disabled, focusedIndex, isFocused, selected, handleClick]);
 
     const focusPreviousItem = () => {
         if (focusedIndex === 0) {
@@ -203,6 +225,7 @@ export default function Listbox({
     const handleKeyUp = (event: React.KeyboardEvent) => {
         switch (event.key) {
             case " ":
+            case "Enter":
                 // Prevent space from scrolling down the page
                 event.preventDefault();
                 return;

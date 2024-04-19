@@ -5,7 +5,12 @@ import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    AriaProps,
+    StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Check from "./check";
@@ -56,11 +61,6 @@ type OptionProps = AriaProps & {
      * @ignore
      */
     focused: boolean;
-    /**
-     * Tab index of the item. Auto-populated by listbox.
-     * @ignore
-     */
-    tabIndex?: number;
 
     /**
      * Aria role to use, defaults to "option".
@@ -138,6 +138,8 @@ type DefaultProps = {
     selected: OptionProps["selected"];
 };
 
+const StyledListItem = addStyle("li");
+
 /**
  * For option items that can be selected in a dropdown, selection denoted either
  * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
@@ -174,15 +176,12 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     };
 
-    render(): React.ReactNode {
+    renderCell(defaultStyle: Array<StyleType>): React.ReactNode {
         const {
             disabled,
-            focused,
             label,
-            role,
             selected,
             testId,
-            style,
             leftAccessory,
             horizontalRule,
             parentComponent,
@@ -201,23 +200,16 @@ export default class OptionItem extends React.Component<OptionProps> {
 
         const CheckComponent = this.getCheckComponent();
 
-        const defaultStyle = [
-            styles.item,
-            focused && styles.itemFocused,
-            disabled && styles.itemDisabled,
-            // pass optional styles from react-window (if applies)
-            style,
-        ];
-
         return (
             <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={defaultStyle}
+                rootStyle={
+                    parentComponent === "listbox"
+                        ? styles.listboxItem
+                        : defaultStyle
+                }
                 style={styles.itemContainer}
-                aria-selected={selected ? "true" : "false"}
-                tabIndex={-1}
-                role={role}
                 testId={testId}
                 leftAccessory={
                     <>
@@ -254,11 +246,41 @@ export default class OptionItem extends React.Component<OptionProps> {
                         </LabelSmall>
                     ) : undefined
                 }
-                onClick={parentComponent ? this.handleClick : onClick}
-                // onClick={this.handleClick}
+                onClick={
+                    parentComponent !== "listbox" ? this.handleClick : undefined
+                }
                 {...sharedProps}
             />
         );
+    }
+
+    render(): React.ReactNode {
+        const {disabled, focused, parentComponent, role, selected, style} =
+            this.props;
+
+        const defaultStyle = [
+            styles.item,
+            focused && styles.itemFocused,
+            disabled && styles.itemDisabled,
+            // pass optional styles from react-window (if applies)
+            style,
+        ];
+
+        if (parentComponent === "listbox") {
+            return (
+                <StyledListItem
+                    onClick={this.handleClick}
+                    style={[styles.reset, defaultStyle]}
+                    role={role}
+                    aria-selected={selected ? "true" : "false"}
+                    aria-disabled={disabled ? "true" : "false"}
+                >
+                    {this.renderCell(defaultStyle)}
+                </StyledListItem>
+            );
+        }
+
+        return this.renderCell(defaultStyle);
     }
 }
 
@@ -273,7 +295,25 @@ const focusedStyle = {
 };
 
 const styles = StyleSheet.create({
+    reset: {
+        margin: 0,
+        padding: 0,
+        border: 0,
+        background: "none",
+        outline: "none",
+        fontSize: "100%",
+        verticalAlign: "baseline",
+        textAlign: "left",
+        textDecoration: "none",
+        listStyle: "none",
+        cursor: "pointer",
+    },
+    listboxItem: {
+        backgroundColor: "transparent",
+        color: "inherit",
+    },
     item: {
+        backgroundColor: color.white,
         // Reset the default styles for the cell element so it can grow
         // vertically.
         minHeight: "unset",
@@ -297,6 +337,20 @@ const styles = StyleSheet.create({
         },
 
         [":active[aria-selected=false]" as any]: {},
+
+        // disabled
+        [":hover[aria-disabled=true]" as any]: {
+            cursor: "not-allowed",
+        },
+
+        [":is([aria-disabled=true])" as any]: {
+            color: color.offBlack32,
+            ":focus-visible": {
+                // Prevent the focus ring from being displayed when the cell is
+                // disabled.
+                outline: "none",
+            },
+        },
 
         // Allow hover styles on non-touch devices only. This prevents an
         // issue with hover being sticky on touch devices (e.g. mobile).
