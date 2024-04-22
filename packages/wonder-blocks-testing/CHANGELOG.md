@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-testing
 
+## 10.1.0
+
+### Minor Changes
+
+-   58075352: Change testId to render the default Testing Library HTML attribute: data-testid (was data-test-id)
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-data@13.0.7
+
 ## 10.0.1
 
 ### Patch Changes
