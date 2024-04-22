@@ -3,6 +3,7 @@ import {PropsFor, StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 import OptionItem from "./option-item";
+import useListboxState from "./use-listbox-state";
 
 type OptionItemComponent = React.ReactElement<PropsFor<typeof OptionItem>>;
 type ChildrenAsOptionItem = Array<OptionItemComponent>;
@@ -86,167 +87,61 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
+
+    /**
+     * The id of the listbox element.
+     */
+    id?: string;
 };
 
 export default function Listbox({
     children,
     disabled,
+    id,
     value,
     tabIndex = 0,
 }: Props) {
-    const [selected, setSelected] = React.useState<string | Array<string>>(
-        value || "",
-    );
-    // find the index of the first selected Item
-    const selectedValueIndex = React.useMemo(() => {
-        const firstValue = Array.isArray(value) ? value[0] : value;
-        if (firstValue === "" || firstValue === undefined) {
-            // Focus on the first item if no value is selected
-            return 0;
+    const {
+        focusedIndex,
+        isFocused,
+        renderList,
+        handleKeyDown,
+        handleKeyUp,
+        handleFocus,
+        handleBlur,
+    } = useListboxState(children, disabled, value);
+
+    let childrenOutput = children;
+
+    const getExtraProps = () => {
+        const attributes: Record<string, any> = {};
+
+        // Add event handlers when the listbox is used directly (not as a combobox)
+        if (tabIndex === 0) {
+            attributes.onKeyDown = handleKeyDown;
+            attributes.onKeyUp = handleKeyUp;
+            attributes.onFocus = handleFocus;
+            attributes.onBlur = handleBlur;
+            // TODO(juan): Use unique id
+            const focusedItem = renderList[focusedIndex] as OptionItemComponent;
+            attributes["aria-activedescendant"] = isFocused
+                ? focusedItem.props.id
+                : undefined;
+            childrenOutput = renderList;
         }
-        return children.findIndex((item) => item.props.value === firstValue);
-    }, [children, value]);
-
-    const [focusedIndex, setFocusedIndex] = React.useState(selectedValueIndex);
-    const [isFocused, setIsFocused] = React.useState(false);
-
-    const handleClick = React.useCallback(
-        (value: string) => {
-            const index = children.findIndex(
-                (item) => item.props.value === value,
-            );
-
-            const component = children[index] as OptionItemComponent;
-
-            if (component.props.disabled) {
-                return;
-            }
-
-            setFocusedIndex(index);
-            setSelected(component.props.value);
-        },
-        [children],
-    );
-
-    const renderList = React.useMemo(() => {
-        const childrenList = React.Children.toArray(children);
-        // if we don't need to virtualize, we can render the list directly
-        return childrenList.map((item, index) => {
-            // if (SeparatorItem.isClassOf(item.component)) {
-            //     return item.component;
-            // }
-            const component = item as OptionItemComponent;
-
-            const isSelected = selected.includes(component.props.value);
-            // Render OptionItem and/or ActionItem elements.
-            return React.cloneElement(component, {
-                key: index,
-                focused: isFocused && index === focusedIndex,
-                disabled: component.props.disabled || disabled || false,
-                selected: isSelected,
-                variant: "check",
-                parentComponent: "listbox",
-                id: `option-` + index.toString(),
-                onClick: () => {
-                    handleClick(component.props.value);
-                },
-                role: "option",
-            });
-        });
-    }, [children, disabled, focusedIndex, isFocused, selected, handleClick]);
-
-    const focusPreviousItem = () => {
-        if (focusedIndex === 0) {
-            setFocusedIndex(children.length - 1);
-        } else {
-            setFocusedIndex(focusedIndex - 1);
-        }
-    };
-
-    const focusNextItem = () => {
-        if (focusedIndex === children.length - 1) {
-            setFocusedIndex(0);
-        } else {
-            setFocusedIndex(focusedIndex + 1);
-        }
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent) => {
-        const {key} = event;
-        switch (key) {
-            case "ArrowUp":
-                event.preventDefault();
-                focusPreviousItem();
-                return;
-            case "ArrowDown":
-                event.preventDefault();
-                focusNextItem();
-                return;
-            case "Home":
-                event.preventDefault();
-                setFocusedIndex(0);
-                return;
-            case "End":
-                event.preventDefault();
-                setFocusedIndex(children.length - 1);
-                return;
-            case "Enter":
-            case " ":
-                // Only handle space if the listbox is focused
-                if (key === " " && tabIndex !== 0) {
-                    return;
-                }
-                // Prevent form submission
-                event.preventDefault();
-
-                const optionItem = children[
-                    focusedIndex
-                ] as OptionItemComponent;
-
-                if (optionItem.props.disabled) {
-                    return;
-                }
-
-                setSelected(optionItem.props.value);
-                // this.handleItemClick(focusedIndex, children[focusedIndex]);
-                return;
-        }
-    };
-
-    // Some keys should be handled during the keyup event instead.
-    const handleKeyUp = (event: React.KeyboardEvent) => {
-        switch (event.key) {
-            case " ":
-            case "Enter":
-                // Prevent space from scrolling down the page
-                event.preventDefault();
-                return;
-            case "Escape":
-                // Close only the dropdown, not other elements that are
-                // listening for an escape press
-                // if (open) {
-                // event.stopPropagation();
-                // this.restoreTabOrder();
-                // onOpenChanged(false);
-                // }
-                return;
-        }
+        return attributes;
     };
 
     return (
         <View
             role="listbox"
             aria-disabled={disabled}
-            // TODO(juan): Use unique id
-            aria-activedescendant={focusedIndex.toString()}
-            onKeyDown={handleKeyDown}
-            onKeyUp={handleKeyUp}
-            onFocus={() => !disabled && setIsFocused(true)}
-            onBlur={() => !disabled && setIsFocused(false)}
+            id={id}
             style={[styles.listbox, disabled && styles.disabled]}
             tabIndex={tabIndex}
+            {...getExtraProps()}
         >
-            {renderList}
+            {childrenOutput}
         </View>
     );
 }

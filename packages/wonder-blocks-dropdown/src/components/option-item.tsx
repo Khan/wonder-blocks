@@ -194,6 +194,7 @@ export default class OptionItem extends React.Component<OptionProps> {
             onClick,
             onToggle,
             variant,
+            role,
             /* eslint-enable @typescript-eslint/no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -274,6 +275,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                     role={role}
                     aria-selected={selected ? "true" : "false"}
                     aria-disabled={disabled ? "true" : "false"}
+                    id={this.props.id}
                 >
                     {this.renderCell(defaultStyle)}
                 </StyledListItem>
