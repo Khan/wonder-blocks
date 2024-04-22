@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-layout",
-  "version": "2.0.30",
+  "version": "2.0.31",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-core": "^6.3.1",
+    "@khanacademy/wonder-blocks-core": "^6.4.0",
     "@khanacademy/wonder-blocks-tokens": "^1.2.0"
   },
   "devDependencies": {
