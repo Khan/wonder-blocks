@@ -477,7 +477,7 @@ export const CustomActionItems: StoryComponentType = {
                 }
                 onClick={action("user profile clicked!")}
                 style={{
-                    [":hover [data-test-id=new-pill]" as any]: {
+                    [":hover [data-testid=new-pill]" as any]: {
                         backgroundColor: color.white,
                         color: color.blue,
                     },

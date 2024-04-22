@@ -80,7 +80,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                 style={defaultStyle}
                 type="button"
                 {...restProps}
-                data-test-id={testId}
+                data-testid={testId}
             >
                 <View
                     style={

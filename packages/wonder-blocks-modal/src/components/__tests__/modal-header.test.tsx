@@ -69,7 +69,7 @@ describe("ModalHeader", () => {
 
         // Assert
         expect(title).toHaveAttribute(
-            "data-test-id",
+            "data-testid",
             "test-example-header-title",
         );
     });
@@ -90,7 +90,7 @@ describe("ModalHeader", () => {
 
         // Assert
         expect(subtitle).toHaveAttribute(
-            "data-test-id",
+            "data-testid",
             "test-example-header-subtitle",
         );
     });

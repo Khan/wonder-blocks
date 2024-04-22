@@ -396,7 +396,7 @@ describe("SingleSelect", () => {
                         <OptionItem label="item 3" value="3" />
                     </SingleSelect>
                     <button
-                        data-test-id="parent-button"
+                        data-testid="parent-button"
                         onClick={() => handleToggleMenu(true)}
                     />
                 </React.Fragment>
@@ -561,7 +561,7 @@ describe("SingleSelect", () => {
             const opener = await screen.findByLabelText("Custom opener");
 
             // Assert
-            expect(opener).not.toHaveAttribute("data-test-id");
+            expect(opener).not.toHaveAttribute("data-testid");
         });
 
         it("passes the placeholder text to the custom opener", async () => {

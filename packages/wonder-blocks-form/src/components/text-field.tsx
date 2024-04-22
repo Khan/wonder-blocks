@@ -278,7 +278,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                 onKeyDown={onKeyDown}
                 onFocus={this.handleFocus}
                 onBlur={this.handleBlur}
-                data-test-id={testId}
+                data-testid={testId}
                 readOnly={readOnly}
                 autoFocus={autoFocus}
                 autoComplete={autoComplete}

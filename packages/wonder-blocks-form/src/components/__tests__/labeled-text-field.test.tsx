@@ -441,7 +441,7 @@ describe("LabeledTextField", () => {
 
         // Assert
         const input = await screen.findByRole("textbox");
-        expect(input).toHaveAttribute("data-test-id", `${testId}-field`);
+        expect(input).toHaveAttribute("data-testid", `${testId}-field`);
     });
 
     it("readOnly prop is passed to textfield", async () => {

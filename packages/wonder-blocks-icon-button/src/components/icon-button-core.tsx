@@ -116,7 +116,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         const child = <IconChooser size={size} icon={icon} />;
 
         const commonProps = {
-            "data-test-id": testId,
+            "data-testid": testId,
             style: [defaultStyle, style],
             ...restProps,
         } as const;

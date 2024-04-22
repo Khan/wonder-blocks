@@ -56,7 +56,7 @@ export const adapter: TestHarnessAdapter<Config> = (
     const {classes, style} = normalizeConfig(config);
     return (
         <div
-            data-test-id="css-adapter-container"
+            data-testid="css-adapter-container"
             className={classes.join(" ")}
             style={style}
         >

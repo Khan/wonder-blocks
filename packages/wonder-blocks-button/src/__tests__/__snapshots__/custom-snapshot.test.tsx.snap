@@ -3952,7 +3952,7 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
     }
   >
     <svg
-      data-test-id="button-spinner"
+      data-testid="button-spinner"
       height={24}
       viewBox="0 0 24 24"
       width={24}
@@ -4082,7 +4082,7 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
     }
   >
     <svg
-      data-test-id="button-spinner"
+      data-testid="button-spinner"
       height={16}
       viewBox="0 0 16 16"
       width={16}
@@ -8093,7 +8093,7 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
     }
   >
     <svg
-      data-test-id="button-spinner"
+      data-testid="button-spinner"
       height={24}
       viewBox="0 0 24 24"
       width={24}
@@ -8228,7 +8228,7 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
     }
   >
     <svg
-      data-test-id="button-spinner"
+      data-testid="button-spinner"
       height={16}
       viewBox="0 0 16 16"
       width={16}
@@ -12223,7 +12223,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
     }
   >
     <svg
-      data-test-id="button-spinner"
+      data-testid="button-spinner"
       height={24}
       viewBox="0 0 24 24"
       width={24}
@@ -12354,7 +12354,7 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
     }
   >
     <svg
-      data-test-id="button-spinner"
+      data-testid="button-spinner"
       height={16}
       viewBox="0 0 16 16"
       width={16}

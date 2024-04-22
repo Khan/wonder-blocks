@@ -425,7 +425,7 @@ describe("TextField", () => {
 
         // Assert
         const input = await screen.findByRole("textbox");
-        expect(input).toHaveAttribute("data-test-id", testId);
+        expect(input).toHaveAttribute("data-testid", testId);
     });
 
     it("aria props are passed to the input element", async () => {

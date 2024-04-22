@@ -33,7 +33,7 @@ describe("DropdownCore", () => {
         const underTest = () =>
             render(
                 <div>
-                    <button data-test-id="external-button" />
+                    <button data-testid="external-button" />
                     <DropdownCore
                         initialFocusedIndex={0}
                         // mock the items
@@ -237,7 +237,7 @@ describe("DropdownCore", () => {
 
         const {container} = render(
             <div>
-                <button data-test-id="external-button" />
+                <button data-testid="external-button" />
                 <DropdownCore
                     initialFocusedIndex={0}
                     // mock the items
@@ -289,7 +289,7 @@ describe("DropdownCore", () => {
     it.skip("opens on down key as expected", async () => {
         // Arrange
         const handleOpenChangedMock = jest.fn();
-        const opener = <button data-test-id="opener" />;
+        const opener = <button data-testid="opener" />;
 
         render(
             <DropdownCore
@@ -470,7 +470,7 @@ describe("DropdownCore", () => {
                 role="listbox"
                 open={true}
                 // mock the opener elements
-                opener={<button data-test-id="opener" />}
+                opener={<button data-testid="opener" />}
                 onOpenChanged={jest.fn()}
             />,
         );

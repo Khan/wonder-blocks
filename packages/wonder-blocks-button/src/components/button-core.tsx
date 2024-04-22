@@ -97,7 +97,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
         ];
 
         const commonProps = {
-            "data-test-id": testId,
+            "data-testid": testId,
             id: id,
             role: "button",
             style: [defaultStyle, style],

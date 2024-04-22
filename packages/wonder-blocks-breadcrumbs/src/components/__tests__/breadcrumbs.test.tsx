@@ -20,7 +20,7 @@ describe("Breadcrumbs", () => {
         expect(lastItem).toHaveAttribute("aria-current", "page");
     });
 
-    it("should add data-test-id if testId is set", () => {
+    it("should add data-testid if testId is set", () => {
         // Arrange, Act
         render(
             <Breadcrumbs testId="test">
@@ -31,7 +31,7 @@ describe("Breadcrumbs", () => {
 
         // Assert
         expect(screen.getByRole("navigation")).toHaveAttribute(
-            "data-test-id",
+            "data-testid",
             "test",
         );
     });

@@ -19,7 +19,7 @@ export const adapter: TestHarnessAdapter<Config> = (
     config: Config,
 ): React.ReactElement<any> => (
     <>
-        <div id={config} data-test-id={config} />
+        <div id={config} data-testid={config} />
         {children}
     </>
 );

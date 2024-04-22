@@ -46,7 +46,7 @@ const StyledInput = addStyle("input");
                 // component, but we handle the click via ClickableBehavior
                 onChange={handleChange}
                 style={defaultStyle}
-                data-test-id={testId}
+                data-testid={testId}
                 ref={ref}
             />
             {disabled && checked && <span style={disabledChecked} />}
