@@ -93,7 +93,4 @@ export const color = {
     fadedOffBlack32: fadedColorWithWhite(offBlack, 0.32),
     fadedOffBlack16: fadedColorWithWhite(offBlack, 0.16),
     fadedOffBlack8: fadedColorWithWhite(offBlack, 0.08),
-    // Faded versions of white
-    fadedWhite64: fadedColorWithWhite(white, 0.64),
-    fadedWhite50: fadedColorWithWhite(white, 0.5),
 };

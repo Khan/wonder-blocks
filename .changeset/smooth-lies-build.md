@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-tokens": minor
 ---
 
-Add faded versions of offBlack and white
+Add faded versions of offBlack
