@@ -5,7 +5,6 @@ import * as React from "react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Listbox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-// import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -13,7 +12,6 @@ import {allProfilesWithPictures} from "./option-item-examples";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
-// import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 const items = [
     <OptionItem label="Banana" value="banana" key={0} />,
