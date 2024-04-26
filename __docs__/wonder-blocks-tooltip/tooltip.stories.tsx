@@ -23,7 +23,7 @@ import TooltipArgTypes from "./tooltip.argtypes";
 type StoryComponentType = StoryObj<typeof Tooltip>;
 
 export default {
-    title: "Tooltip / Tooltip",
+    title: "Packages / Tooltip / Tooltip",
     component: Tooltip as unknown as React.ComponentType<any>,
     argTypes: TooltipArgTypes,
     args: {

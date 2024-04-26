@@ -15,7 +15,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import viewArgTypes from "./view.argtypes";
 
 export default {
-    title: "Core / View",
+    title: "Packages / Core / View",
     component: View,
     argTypes: viewArgTypes,
     parameters: {

@@ -14,7 +14,7 @@ import argTypes from "./clickable-behavior.argtypes";
 const ClickableBehavior = getClickableBehavior();
 
 export default {
-    title: "Clickable / ClickableBehavior",
+    title: "Packages / Clickable / ClickableBehavior",
     component: ClickableBehavior,
     argTypes: argTypes,
     args: {

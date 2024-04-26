@@ -115,7 +115,7 @@ est.`}
  * ```
  */
 export default {
-    title: "Modal/Building Blocks/ModalPanel",
+    title: "Packages / Modal / Building Blocks / ModalPanel",
     component: ModalPanel,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (

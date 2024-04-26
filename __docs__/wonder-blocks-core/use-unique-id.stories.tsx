@@ -11,7 +11,7 @@ import {
 import Button from "@khanacademy/wonder-blocks-button";
 
 export default {
-    title: "Core/useUniqueId*",
+    title: "Packages / Core / useUniqueId*",
 
     // Disable global decorator for this story since we are testing this component
     parameters: {

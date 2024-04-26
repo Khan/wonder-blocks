@@ -7,7 +7,7 @@ import packageConfig from "../../packages/wonder-blocks-core/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 
 export default {
-    title: "Core / IDProvider",
+    title: "Packages / Core / IDProvider",
     component: IDProvider,
     args: {
         scope: "field",

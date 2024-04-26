@@ -17,7 +17,7 @@ import ToolbarArgtypes, {
 type StoryComponentType = StoryObj<typeof Toolbar>;
 
 export default {
-    title: "Toolbar",
+    title: "Packages / Toolbar",
     component: Toolbar,
     argTypes: ToolbarArgtypes,
     parameters: {

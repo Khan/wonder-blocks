@@ -1,8 +1,8 @@
 import {Meta} from "@storybook/blocks";
 
 <Meta
-  title="Testing / Test Harness / Exports / harnessAdapters"
-  parameters={{
+    title="Packages / Testing / Test Harness / Exports / harnessAdapters"
+    parameters={{
         chromatic: {
             disableSnapshot: true,
         },
@@ -41,11 +41,11 @@ If you want to make your own test harness or hook harness using some of these de
 
 There are four build-in adapters:
 
-* [`css`](#css)
-* [`data`](#data)
-* [`portal`](#portal)
-* [`router`](#router)
-* [`ssr`](#ssr)
+-   [`css`](#css)
+-   [`data`](#data)
+-   [`portal`](#portal)
+-   [`router`](#router)
+-   [`ssr`](#ssr)
 
 ## css
 
@@ -195,7 +195,7 @@ By default, the router adapter is configured with `{location: "/"}`.
 The `ssr` adapter ensures that the render state is being managed by rendering a `RenderStateRoot` component around the harnessed component.
 
 ```ts
-type Config =  true | null;
+type Config = true | null;
 ```
 
 By default, this adapter is off since state changes occur when `RenderStateRoot` is used that may require tests to make accommodations, such as adding appropriate `act` or `waitFor` calls when using Testing Library.

@@ -14,7 +14,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import PopoverContentArgtypes from "./popover-content.argtypes";
 
 export default {
-    title: "Popover/PopoverContent",
+    title: "Packages / Popover / PopoverContent",
     component: PopoverContent as unknown as React.ComponentType<any>,
     argTypes: PopoverContentArgtypes,
     parameters: {

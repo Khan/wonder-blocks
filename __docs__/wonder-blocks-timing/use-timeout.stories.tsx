@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {useTimeout} from "@khanacademy/wonder-blocks-timing";
 
 export default {
-    title: "Timing/useTimeout",
+    title: "Packages / Timing / useTimeout",
 
     parameters: {
         chromatic: {

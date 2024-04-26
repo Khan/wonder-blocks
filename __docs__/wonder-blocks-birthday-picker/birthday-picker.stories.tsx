@@ -13,7 +13,7 @@ import ArgTypes from "./birthday-picker.argtypes";
 type StoryComponentType = StoryObj<typeof BirthdayPicker>;
 
 const meta: Meta<typeof BirthdayPicker> = {
-    title: "BirthdayPicker",
+    title: "Packages / BirthdayPicker",
     component: BirthdayPicker,
     argTypes: ArgTypes,
     parameters: {

@@ -97,7 +97,7 @@ const defaultArgs = {
  * ```
  */
 export default {
-    title: "Dropdown / ActionMenu",
+    title: "Packages / Dropdown / ActionMenu",
     // TODO(FEI-5000): Fix this type.
     component: ActionMenu as unknown as React.ComponentType<any>,
     subcomponents: {ActionItem},

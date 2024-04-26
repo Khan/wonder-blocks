@@ -25,7 +25,7 @@ import PillArgtypes from "./pill.argtypes";
 
 export default {
     component: Pill,
-    title: "Pill",
+    title: "Packages / Pill",
     parameters: {
         componentSubtitle: (
             <ComponentInfo

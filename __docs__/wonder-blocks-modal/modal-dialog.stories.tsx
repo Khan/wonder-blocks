@@ -57,7 +57,7 @@ const customViewports = {
  *   this is recommended. It should match the `id` of the dialog title.
  */
 export default {
-    title: "Modal/Building Blocks/ModalDialog",
+    title: "Packages / Modal / Building Blocks / ModalDialog",
     component: ModalDialog,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (

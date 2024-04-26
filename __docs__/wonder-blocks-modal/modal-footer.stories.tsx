@@ -107,7 +107,7 @@ est.`}
  * ```
  */
 export default {
-    title: "Modal/Building Blocks/ModalFooter",
+    title: "Packages / Modal / Building Blocks / ModalFooter",
     component: ModalFooter,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (

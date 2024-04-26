@@ -48,7 +48,7 @@ import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
  * respectively.
  */
 export default {
-    title: "Icon / PhosphorIcon",
+    title: "Packages / Icon / PhosphorIcon",
     component: PhosphorIcon,
     parameters: {
         componentSubtitle: (

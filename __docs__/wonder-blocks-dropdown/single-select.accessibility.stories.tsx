@@ -4,7 +4,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Dropdown / SingleSelect / Accessibility",
+    title: "Packages / Dropdown / SingleSelect / Accessibility",
     component: SingleSelect,
 
     // Disables chromatic testing for these stories.

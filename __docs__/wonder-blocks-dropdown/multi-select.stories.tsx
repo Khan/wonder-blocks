@@ -45,7 +45,7 @@ type MultiSelectArgs = Partial<typeof MultiSelect>;
  * ```
  */
 export default {
-    title: "Dropdown / MultiSelect",
+    title: "Packages / Dropdown / MultiSelect",
     component: MultiSelect as unknown as React.ComponentType<any>,
     argTypes: multiSelectArgtypes,
     args: {

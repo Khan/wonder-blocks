@@ -79,7 +79,7 @@ const DefaultModal = (): ModalElement => (
 );
 
 export default {
-    title: "Modal/ModalLauncher",
+    title: "Packages / Modal / ModalLauncher",
     component: ModalLauncher,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (

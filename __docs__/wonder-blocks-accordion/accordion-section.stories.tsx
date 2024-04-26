@@ -62,7 +62,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
  * ```
  */
 export default {
-    title: "Accordion / AccordionSection",
+    title: "Packages / Accordion / AccordionSection",
     component: AccordionSection,
     parameters: {
         componentSubtitle: (

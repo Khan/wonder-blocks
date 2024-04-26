@@ -65,7 +65,7 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  * ```
  */
 export default {
-    title: "Dropdown / SingleSelect",
+    title: "Packages / Dropdown / SingleSelect",
     component: SingleSelect as unknown as React.ComponentType<any>,
     subcomponents: {OptionItem, SeparatorItem},
     argTypes: {
