@@ -30,7 +30,7 @@ export default function BannerSection() {
             <View style={styles.section}>
                 <ComponentTile
                     name="Checkbox"
-                    href="/?path=/docs/form-checkbox--docs"
+                    href="/?path=/docs/packages-form-checkbox--docs"
                     description="A selection that can be checked or unchecked."
                 >
                     <Checkbox
@@ -43,7 +43,7 @@ export default function BannerSection() {
 
                 <ComponentTile
                     name="CheckboxGroup"
-                    href="/?path=/docs/form-checkboxgroup--docs"
+                    href="/?path=/docs/packages-form-checkboxgroup--docs"
                     description="Allows multiple selections."
                 >
                     <CheckboxGroup
@@ -65,7 +65,7 @@ export default function BannerSection() {
 
                 <ComponentTile
                     name="RadioGroup"
-                    href="/?path=/docs/form-radiogroup--docs"
+                    href="/?path=/docs/packages-form-radiogroup--docs"
                     description="Allows only a single selection."
                 >
                     <RadioGroup
@@ -87,7 +87,7 @@ export default function BannerSection() {
 
                 <ComponentTile
                     name="TextField"
-                    href="/?path=/docs/form-textfield--docs"
+                    href="/?path=/docs/packages-form-textfield--docs"
                     description={`Standard text input field. This is
                         used to accept a single line of text from
                         the user.`}
@@ -103,7 +103,7 @@ export default function BannerSection() {
 
                 <ComponentTile
                     name="LabeledTextField"
-                    href="/?path=/docs/form-labeledtextfield--docs"
+                    href="/?path=/docs/packages-form-labeledtextfield--docs"
                     description={`Used to accept a single line of text
                         from the user paired with a label, description,
                         and error field elements.`}

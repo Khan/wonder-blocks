@@ -19,7 +19,7 @@ export default function BannerSection() {
             </HeadingLarge>
             <ComponentTile
                 name="Breadcrumbs"
-                href="/?path=/docs/breadcrumbs--docs"
+                href="/?path=/docs/packages-breadcrumbs--docs"
                 description={`A breadcrumb trail consists of a list of
                     links to the parent pages of the current page in
                     hierarchical order. It helps users find their place

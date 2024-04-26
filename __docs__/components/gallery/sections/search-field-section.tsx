@@ -20,7 +20,7 @@ export default function SearchFieldSection() {
 
             <ComponentTile
                 name="SearchField"
-                href="/?path=/docs/searchfield--docs"
+                href="/?path=/docs/packages-searchfield--docs"
                 description={`A text field with a search icon at its start
                     and an X icon at its end (when containing text).`}
             >

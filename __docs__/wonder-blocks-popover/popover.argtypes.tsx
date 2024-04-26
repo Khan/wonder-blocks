@@ -64,10 +64,10 @@ export default {
     content: {
         description:
             `The content of the popover. You can either use ` +
-            `[PopoverContent](../?path=/docs/popover-popovercontent--docs) ` +
+            `[PopoverContent](../?path=/docs/packages-popover-popovercontent--docs) ` +
             `with one of the pre-defined variants, or include your own ` +
             `custom content using ` +
-            `[PopoverContentCore](../?path=/docs/popover-popovercontentcore--docs) ` +
+            `[PopoverContentCore](../?path=/docs/packages-popover-popovercontentcore--docs) ` +
             `directly.`,
         control: {type: "select"},
         defaultValue: ContentMappings.withTextOnly,

@@ -19,7 +19,7 @@ export default function ProgressSpinnerSection() {
             </HeadingLarge>
             <ComponentTile
                 name="CircularSpinner"
-                href="/?path=/docs/progressspinner-circularspinner--docs"
+                href="/?path=/docs/packages-progressspinner-circularspinner--docs"
                 description={`A circular spinner that can be used to
                     indicate that a page or part of page is loading.`}
             >

@@ -1,5 +1,7 @@
 import {Meta, ColorPalette, ColorItem} from "@storybook/blocks";
 
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import {Swatch} from "./components/swatch";
@@ -46,6 +48,33 @@ export const BrandColors = {
 };
 
 # Color
+
+Colors are a key part of our design system. They help us communicate information
+and create visual hierarchy. This document outlines the colors we use in our
+products and brand.
+
+<View style={{marginBottom: 32}}>
+    <Banner
+        kind="info"
+        layout="full-width"
+        text="To use these colors in your project, check out the Color tokens page."
+        actions={[
+            {
+                type: "custom",
+                // NOTE: This is a hack to bypass a Storybook bug where the
+                // link doesn't work correctly with iframes.
+                node: (
+                    <a
+                        href="../?path=/docs/packages-tokens-color--docs"
+                        target="_blank"
+                    >
+                        See Color tokens
+                    </a>
+                ),
+            },
+        ]}
+    />
+</View>
 
 ## Summary
 
@@ -215,4 +244,3 @@ Use for designing anything centered around Khan Academy as a brand. Secondary br
     description="Secondary brand color."
     segments={1}
 />
-./components/swatch
