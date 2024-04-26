@@ -6,6 +6,7 @@ import * as React from "react";
 import {Popper} from "react-popper";
 import type {PopperChildrenProps} from "react-popper";
 
+import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
 import RefTracker from "../util/ref-tracker";
 import type {
     Placement,
@@ -33,6 +34,34 @@ type Props = {
      * anchor element changes.
      */
     autoUpdate?: boolean;
+};
+
+const filterPopperPlacement = (
+    placement: PopperChildrenProps["placement"],
+): Placement => {
+    switch (placement) {
+        case "auto":
+        case "auto-start":
+        case "auto-end":
+        case "top":
+        case "top-start":
+        case "top-end":
+            return "top";
+        case "bottom":
+        case "bottom-start":
+        case "bottom-end":
+            return "bottom";
+        case "right":
+        case "right-start":
+        case "right-end":
+            return "right";
+        case "left":
+        case "left-start":
+        case "left-end":
+            return "left";
+        default:
+            throw new UnreachableCaseError(placement);
+    }
 };
 
 /**
@@ -100,7 +129,8 @@ export default class TooltipPopper extends React.Component<Props> {
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
         const placement: Placement =
-            popperProps.placement || this.props.placement;
+            filterPopperPlacement(popperProps.placement) ||
+            this.props.placement;
 
         // Just in case the callbacks have changed, let's update our reference
         // trackers.
