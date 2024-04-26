@@ -267,8 +267,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 
     render(): React.ReactNode {
-        const {disabled, focused, parentComponent, role, selected, style} =
-            this.props;
+        const {disabled, focused, parentComponent, role, selected} = this.props;
 
         if (parentComponent === "listbox") {
             return (
