@@ -176,7 +176,7 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     };
 
-    renderCell(defaultStyle: Array<StyleType>): React.ReactNode {
+    renderCell(): React.ReactNode {
         const {
             disabled,
             label,
@@ -186,6 +186,7 @@ export default class OptionItem extends React.Component<OptionProps> {
             horizontalRule,
             parentComponent,
             rightAccessory,
+            style,
             subtitle1,
             subtitle2,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -200,6 +201,12 @@ export default class OptionItem extends React.Component<OptionProps> {
         } = this.props;
 
         const CheckComponent = this.getCheckComponent();
+
+        const defaultStyle = [
+            styles.item,
+            // pass optional styles from react-window (if applies)
+            style,
+        ];
 
         return (
             <DetailCell
@@ -262,13 +269,6 @@ export default class OptionItem extends React.Component<OptionProps> {
     render(): React.ReactNode {
         const {disabled, focused, parentComponent, role, selected, style} =
             this.props;
-        const defaultStyle = [
-            styles.item,
-            focused && styles.itemFocused,
-            disabled && styles.itemDisabled,
-            // pass optional styles from react-window (if applies)
-            style,
-        ];
 
         if (parentComponent === "listbox") {
             return (
@@ -279,19 +279,24 @@ export default class OptionItem extends React.Component<OptionProps> {
                         e.preventDefault();
                     }}
                     onClick={this.handleClick}
-                    style={[styles.reset, defaultStyle]}
+                    style={[
+                        styles.reset,
+                        styles.item,
+                        focused && styles.itemFocused,
+                        disabled && styles.itemDisabled,
+                    ]}
                     role={role}
                     aria-selected={selected ? "true" : "false"}
                     aria-disabled={disabled ? "true" : "false"}
                     id={this.props.id}
                     tabIndex={-1}
                 >
-                    {this.renderCell(defaultStyle)}
+                    {this.renderCell()}
                 </StyledListItem>
             );
         }
 
-        return this.renderCell(defaultStyle);
+        return this.renderCell();
     }
 }
 
