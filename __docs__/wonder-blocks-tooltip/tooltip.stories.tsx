@@ -395,7 +395,18 @@ export const AutoUpdate: StoryComponentType = {
                         });
                     }}
                 >
-                    Click to update trigger position
+                    Click to update trigger position (randomly)
+                </Button>
+
+                <Button
+                    onClick={() => {
+                        setPosition({
+                            x: 0,
+                            y: 0,
+                        });
+                    }}
+                >
+                    Click to update trigger position (fixed)
                 </Button>
             </View>
         );
@@ -410,7 +421,11 @@ export const AutoUpdate: StoryComponentType = {
         const initialTop = tooltip.getBoundingClientRect().top;
 
         // Act
-        await userEvent.click(canvas.getByRole("button"));
+        await userEvent.click(
+            canvas.getByRole("button", {
+                name: /fixed/,
+            }),
+        );
 
         // Wait for the tooltip to update its position
         const newTooltip = await canvas.findByRole("tooltip");
