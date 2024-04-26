@@ -87,4 +87,10 @@ export const color = {
     fadedPurple16: fadedColorWithWhite(baseColors.purple, 0.16),
     // Khanmigo
     eggplant: "#5f1e5c",
+    // Faded versions of offBlack
+    fadedOffBlack64: fadedColorWithWhite(offBlack, 0.64),
+    fadedOffBlack50: fadedColorWithWhite(offBlack, 0.5),
+    fadedOffBlack32: fadedColorWithWhite(offBlack, 0.32),
+    fadedOffBlack16: fadedColorWithWhite(offBlack, 0.16),
+    fadedOffBlack8: fadedColorWithWhite(offBlack, 0.08),
 };
