@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.3.0
+
+### Minor Changes
+
+-   d2d84ca2: Removing unusable strings from union in Popover's `placement` prop
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-layout@2.0.32
+    -   @khanacademy/wonder-blocks-modal@5.1.1
+
 ## 2.2.1
 
 ### Patch Changes

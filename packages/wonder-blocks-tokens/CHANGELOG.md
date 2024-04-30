@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 1.3.0
+
+### Minor Changes
+
+-   9bfeead9: Add faded versions of offBlack
+
 ## 1.2.0
 
 ### Minor Changes
