@@ -16,22 +16,7 @@ export type Offset = {
     transform: CSSProperties["transform"];
 };
 
-export type Placement =
-    | "auto"
-    | "auto-start"
-    | "auto-end"
-    | "top"
-    | "top-start"
-    | "top-end"
-    | "bottom"
-    | "bottom-start"
-    | "bottom-end"
-    | "right"
-    | "right-start"
-    | "right-end"
-    | "left"
-    | "left-start"
-    | "left-end";
+export type Placement = "top" | "bottom" | "right" | "left";
 
 /**
  * Subset of CSS properties to allow overriding some of the default styles
