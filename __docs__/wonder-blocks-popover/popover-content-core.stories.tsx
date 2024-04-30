@@ -23,7 +23,7 @@ import {ClickableDetailCell} from "../wonder-blocks-cell/detail-cell.stories";
 import popoverContentCoreArgtypes from "./popover-content-core.argtypes";
 
 export default {
-    title: "Popover/PopoverContentCore",
+    title: "Packages / Popover / PopoverContentCore",
     component: PopoverContentCore,
     argTypes: popoverContentCoreArgtypes,
     parameters: {

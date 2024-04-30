@@ -17,7 +17,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 type StoryComponentType = StoryObj<typeof CompactCell>;
 
 export default {
-    title: "Cell / CompactCell",
+    title: "Packages / Cell / CompactCell",
     component: CompactCell,
     argTypes: CompactCellArgTypes,
     parameters: {

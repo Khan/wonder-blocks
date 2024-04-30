@@ -19,7 +19,7 @@ export default function BirthdayPickerSection() {
             </HeadingLarge>
             <ComponentTile
                 name="BirthdayPicker"
-                href="/?path=/docs/birthdaypicker--docs"
+                href="/?path=/docs/packages-birthdaypicker--docs"
                 description={`Similar to a datepicker, but specifically
                     for birthdates. It consists of a set of dropdowns
                     to choose the date.`}

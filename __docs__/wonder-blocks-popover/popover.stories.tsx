@@ -39,7 +39,7 @@ import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
  * ```
  */
 export default {
-    title: "Popover/Popover",
+    title: "Packages / Popover / Popover",
     component: Popover as unknown as React.ComponentType<any>,
     argTypes: PopoverArgtypes,
     parameters: {

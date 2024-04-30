@@ -1,8 +1,8 @@
 import {Meta} from "@storybook/blocks";
 
 <Meta
-  title="Data / Types / GqlOperation<>"
-  parameters={{
+    title="Packages / Data / Types / GqlOperation<>"
+    parameters={{
         chromatic: {
             disableSnapshot: true,
         },
@@ -25,8 +25,8 @@ type GqlOperation<
 
 The `GqlOperation<>` type provides the Wonder Blocks Data definition of a GraphQL query or mutation. It has two required fields:
 
-* `type`: The type of operation. It can be either `"query"` or `"mutation"`.
-* `id`: The unique identifier of the operation.
+-   `type`: The type of operation. It can be either `"query"` or `"mutation"`.
+-   `id`: The unique identifier of the operation.
 
 Unlike some GraphQL clients, the definition of the operation (the document node, for example) is not required by the Wonder Blocks Data implementation. If a specific use requires that information, the calling code is able to provide it.
 

@@ -46,7 +46,7 @@ import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 `;
 
 export default {
-    title: "Typography",
+    title: "Packages / Typography",
     parameters: {
         componentSubtitle: (
             <ComponentInfo

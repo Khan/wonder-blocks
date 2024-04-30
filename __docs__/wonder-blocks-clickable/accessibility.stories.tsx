@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: "Clickable / Clickable / Accessibility",
+    title: "Packages / Clickable / Clickable / Accessibility",
     component: Clickable,
 
     // Disables chromatic testing for these stories.

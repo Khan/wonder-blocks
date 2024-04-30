@@ -16,7 +16,7 @@ export default function BannerSection() {
             </HeadingLarge>
             <ComponentTile
                 name="Button"
-                href="/?path=/docs/button--docs"
+                href="/?path=/docs/packages-button--docs"
                 description="Standard button. Triggers an action."
             >
                 <Button

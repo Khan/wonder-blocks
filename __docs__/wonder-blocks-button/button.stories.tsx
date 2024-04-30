@@ -48,7 +48,7 @@ import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
  * ```
  */
 export default {
-    title: "Button",
+    title: "Packages / Button",
     component: Button,
     parameters: {
         componentSubtitle: (

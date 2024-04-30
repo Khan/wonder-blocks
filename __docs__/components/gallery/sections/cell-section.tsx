@@ -20,7 +20,7 @@ export default function CellSection() {
             <View style={styles.section}>
                 <ComponentTile
                     name="CompactCell"
-                    href="/?path=/docs/cell-compactcell--docs"
+                    href="/?path=/docs/packages-cell-compactcell--docs"
                     description={`A compacted-height cell with limited
                         subviews and accessories. Typically they represent
                         additional info or selection lists.`}
@@ -40,7 +40,7 @@ export default function CellSection() {
 
                 <ComponentTile
                     name="DetailCell"
-                    href="/?path=/docs/cell-detailcell--docs"
+                    href="/?path=/docs/packages-cell-detailcell--docs"
                     description={`A compact cell that allows adding
                         subtitles before and after the cell title. They
                         typically represent an item that can be

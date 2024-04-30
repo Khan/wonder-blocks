@@ -17,7 +17,7 @@ export default function BannerSection() {
 
             <ComponentTile
                 name="Switch"
-                href="/?path=/docs/switch--docs"
+                href="/?path=/docs/packages-switch--docs"
                 description={`An input that allows users to toggle
                     between two states (typically "on" and "off").`}
             >

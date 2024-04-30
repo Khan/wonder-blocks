@@ -17,7 +17,7 @@ export default function IconButtonSection() {
             <View style={styles.section}>
                 <ComponentTile
                     name="IconButton"
-                    href="/?path=/docs/iconbutton--docs"
+                    href="/?path=/docs/packages-iconbutton--docs"
                     description="A button whose contents are an SVG image."
                 >
                     <View style={styles.centerContent}>

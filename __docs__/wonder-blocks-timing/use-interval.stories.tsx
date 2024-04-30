@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {useInterval} from "@khanacademy/wonder-blocks-timing";
 
 export default {
-    title: "Timing/useInterval",
+    title: "Packages / Timing / useInterval",
 
     parameters: {
         chromatic: {

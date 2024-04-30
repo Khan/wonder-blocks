@@ -18,7 +18,7 @@ export default function PillSection() {
 
             <ComponentTile
                 name="Pill"
-                href="/?path=/docs/pill--docs"
+                href="/?path=/docs/packages-pill--docs"
                 description={`Used to display a small amount of
                     information, such as a tag or a status.`}
             >

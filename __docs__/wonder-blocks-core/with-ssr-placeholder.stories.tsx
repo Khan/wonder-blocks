@@ -10,7 +10,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 type StoryComponentType = StoryObj<typeof WithSSRPlaceholder>;
 
 export default {
-    title: "Core / WithSSRPlaceholder",
+    title: "Packages / Core / WithSSRPlaceholder",
     component: WithSSRPlaceholder,
     parameters: {
         componentSubtitle: (

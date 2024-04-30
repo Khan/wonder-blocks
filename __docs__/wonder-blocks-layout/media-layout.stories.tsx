@@ -23,7 +23,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
 export default {
-    title: "Layout / MediaLayout (Deprecated)",
+    title: "Packages / Layout / MediaLayout (Deprecated)",
     component: MediaLayout,
     parameters: {
         componentSubtitle: (

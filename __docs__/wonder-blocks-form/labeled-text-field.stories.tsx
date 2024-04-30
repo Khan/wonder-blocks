@@ -16,7 +16,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
 
 export default {
-    title: "Form / LabeledTextField",
+    title: "Packages / Form / LabeledTextField",
     component: LabeledTextField,
     parameters: {
         componentSubtitle: (

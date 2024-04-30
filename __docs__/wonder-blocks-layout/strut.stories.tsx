@@ -12,7 +12,7 @@ import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 
 export default {
-    title: "Layout / Strut",
+    title: "Packages / Layout / Strut",
     component: Strut,
     parameters: {
         componentSubtitle: (

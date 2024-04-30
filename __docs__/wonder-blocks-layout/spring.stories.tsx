@@ -14,7 +14,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 type StoryComponentType = StoryObj<typeof Spring>;
 
 export default {
-    title: "Layout / Spring",
+    title: "Packages / Layout / Spring",
     component: Spring,
     parameters: {
         componentSubtitle: (

@@ -14,7 +14,7 @@ export default function BannerSection() {
             </HeadingLarge>
             <ComponentTile
                 name="Banner"
-                href="/?path=/docs/banner--docs"
+                href="/?path=/docs/packages-banner--docs"
                 description={`Displays a prominent message and
                     related optional actions. It can be used as a way
                     of informing the user of important changes.`}

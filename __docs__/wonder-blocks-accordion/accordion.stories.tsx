@@ -52,7 +52,7 @@ import AccordionArgtypes from "./accordion.argtypes";
  * ```
  */
 export default {
-    title: "Accordion / Accordion",
+    title: "Packages / Accordion / Accordion",
     component: Accordion,
     parameters: {
         componentSubtitle: (

@@ -34,7 +34,7 @@ type StoryComponentType = StoryObj<typeof Switch>;
  *```
  */
 export default {
-    title: "Switch",
+    title: "Packages / Switch",
     component: Switch,
     parameters: {
         componentSubtitle: (
