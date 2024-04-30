@@ -62,7 +62,7 @@ import IconButtonArgtypes from "./icon-button.argtypes";
  * ```
  */
 export default {
-    title: "IconButton",
+    title: "Packages / IconButton",
     component: IconButton,
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
     parameters: {

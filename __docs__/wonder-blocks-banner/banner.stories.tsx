@@ -43,7 +43,7 @@ type StoryComponentType = StoryObj<typeof Banner>;
  * ```
  */
 export default {
-    title: "Banner",
+    title: "Packages / Banner",
     component: Banner,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (

@@ -26,7 +26,7 @@ export default function BannerSection() {
             <View style={styles.section}>
                 <ComponentTile
                     name="ActionMenu"
-                    href="/?path=/docs/dropdown-actionmenu--docs"
+                    href="/?path=/docs/packages-dropdown-actionmenu--docs"
                     description={`A dropdown menu that consists of
                         various types of items.`}
                 >
@@ -72,7 +72,7 @@ export default function BannerSection() {
 
                 <ComponentTile
                     name="MultiSelect"
-                    href="/?path=/docs/dropdown-multiselect--docs"
+                    href="/?path=/docs/packages-dropdown-multiselect--docs"
                     description={`A dropdown menu that allows multiple
                         options to be selected.`}
                 >
@@ -103,7 +103,7 @@ export default function BannerSection() {
 
                 <ComponentTile
                     name="SingleSelect"
-                    href="/?path=/docs/dropdown-singleselect--docs"
+                    href="/?path=/docs/packages-dropdown-singleselect--docs"
                     description={`A dropdown menu that allows the
                         selection of one item.`}
                 >

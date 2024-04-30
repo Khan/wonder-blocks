@@ -15,7 +15,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import TextFieldArgTypes from "./text-field.argtypes";
 
 export default {
-    title: "Form / TextField",
+    title: "Packages / Form / TextField",
     component: TextField,
     parameters: {
         componentSubtitle: (

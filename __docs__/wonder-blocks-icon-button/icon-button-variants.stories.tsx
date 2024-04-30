@@ -15,7 +15,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
  * IconButton component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "IconButton / All Variants",
+    title: "Packages / IconButton / All Variants",
     parameters: {
         docs: {
             autodocs: false,

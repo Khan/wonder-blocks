@@ -10,7 +10,7 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 
 export default {
-    title: "Form / RadioGroup",
+    title: "Packages / Form / RadioGroup",
     component: RadioGroup,
     parameters: {
         componentSubtitle: (

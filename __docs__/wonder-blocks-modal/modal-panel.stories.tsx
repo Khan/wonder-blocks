@@ -97,11 +97,11 @@ est.`}
  *
  * If you are creating a custom Dialog, make sure to follow these guidelines:
  * - Make sure to add this component inside the
- *   [ModalDialog](../?path=/docs/modal-building-blocks-modaldialog--docs).
+ *   [ModalDialog](../?path=/docs/packages-modal-building-blocks-modaldialog--docs).
  * - If needed, you can also add a
- *   [ModalHeader](../?path=/docs/modal-building-blocks-modalheader--docs) using
+ *   [ModalHeader](../?path=/docs/packages-modal-building-blocks-modalheader--docs) using
  *   the `header` prop. Same goes for
- *   [ModalFooter](../?path=/docs/modal-building-blocks-modalfooter--docs).
+ *   [ModalFooter](../?path=/docs/packages-modal-building-blocks-modalfooter--docs).
  * - If you need to create e2e tests, make sure to pass a `testId` prop. This
  *   will be passed down to this component using a sufix: e.g.
  *   `some-random-id-ModalPanel`. This scope will be propagated to the
@@ -115,7 +115,7 @@ est.`}
  * ```
  */
 export default {
-    title: "Modal/Building Blocks/ModalPanel",
+    title: "Packages / Modal / Building Blocks / ModalPanel",
     component: ModalPanel,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (

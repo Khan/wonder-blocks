@@ -12,7 +12,7 @@ import {I18nInlineMarkup} from "../../packages/wonder-blocks-i18n/src/components
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Translations/I18nInlineMarkup",
+    title: "Packages / Translations / I18nInlineMarkup",
     component: I18nInlineMarkup,
     parameters: {
         // We don't really care what the output looks for these stories.

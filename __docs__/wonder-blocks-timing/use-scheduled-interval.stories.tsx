@@ -10,7 +10,7 @@ import {
 } from "@khanacademy/wonder-blocks-timing";
 
 export default {
-    title: "Timing/useScheduledInterval",
+    title: "Packages / Timing / useScheduledInterval",
 
     parameters: {
         chromatic: {

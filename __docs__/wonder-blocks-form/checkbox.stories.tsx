@@ -12,7 +12,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
 export default {
-    title: "Form / Checkbox",
+    title: "Packages / Form / Checkbox",
     component: Checkbox,
     parameters: {
         componentSubtitle: (

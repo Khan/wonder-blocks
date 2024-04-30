@@ -41,7 +41,7 @@ const DynamicStyledInput = () => {
 };
 
 export default {
-    title: "Core / addStyle",
+    title: "Packages / Core / addStyle",
 };
 
 export const WithDefaultStyle = {

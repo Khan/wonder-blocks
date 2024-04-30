@@ -1,8 +1,8 @@
 import {Meta} from "@storybook/blocks";
 
 <Meta
-  title="Data / Exports / initializeHydrationCache()"
-  parameters={{
+    title="Packages / Data / Exports / initializeHydrationCache()"
+    parameters={{
         chromatic: {
             disableSnapshot: true,
         },
@@ -16,8 +16,8 @@ initializeHydrationCache(sourceCache: ResponseCache): void;
 ```
 
 | Argument     | TypeScript Type | Default    | Description                                                          |
-| ------------ | -------------------- | ---------- | -------------------------------------------------------------------- |
-| `sourceData` | `ResponseCache`      | *Required* | The source cache that will be used to initialize the response cache. |
+| ------------ | --------------- | ---------- | -------------------------------------------------------------------- |
+| `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
 
 Wonder Blocks Data caches data in its response cache for hydration. This cache can be initialized with data using the `initializeHydrationCache` method.
 The `initializeHydrationCache` method can only be called when the hydration cache is empty.

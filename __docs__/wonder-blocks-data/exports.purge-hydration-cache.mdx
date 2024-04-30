@@ -1,8 +1,8 @@
 import {Meta} from "@storybook/blocks";
 
 <Meta
-  title="Data / Exports / purgeHydrationCache()"
-  parameters={{
+    title="Packages / Data / Exports / purgeHydrationCache()"
+    parameters={{
         chromatic: {
             disableSnapshot: true,
         },
@@ -15,9 +15,9 @@ import {Meta} from "@storybook/blocks";
 purgeHydrationCache(predicate?: (key: string, cacheEntry: $ReadOnly<CachedResponse<ValidCacheData>>) => boolean): void;
 ```
 
-| Argument    | TypeScript Type                                                 | Default    | Description                                                                                                                                                       |
+| Argument    | TypeScript Type                                                      | Default    | Description                                                                                                                                                       |
 | ----------- | -------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `predicate` | `(key: string, entry: $ReadOnly<CachedResponse<TData>>) => boolean)` | *Optional* | A predicate to identify which entries to remove. If absent, all data is removed; if present, any entries for which the predicate returns `true` will be returned. |
+| `predicate` | `(key: string, entry: $ReadOnly<CachedResponse<TData>>) => boolean)` | _Optional_ | A predicate to identify which entries to remove. If absent, all data is removed; if present, any entries for which the predicate returns `true` will be returned. |
 
 Removes all entries that match a given predicate from the cache. If no predicate is given, all cached entries.
 
