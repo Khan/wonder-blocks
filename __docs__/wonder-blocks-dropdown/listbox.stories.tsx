@@ -44,7 +44,7 @@ const defaultArgs = {
 };
 
 export default {
-    title: "Dropdown/Listbox",
+    title: "Packages / Dropdown / Listbox",
     component: Listbox,
     args: defaultArgs,
     decorators: [
