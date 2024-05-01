@@ -18,6 +18,7 @@ import OptionItem from "./option-item";
 import type {
     DropdownItem,
     OpenerProps,
+    OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
 import {getLabel} from "../util/helpers";
@@ -406,12 +407,8 @@ export default class MultiSelect extends React.Component<Props, State> {
                     -1,
         );
 
-        const lastSelectedChildren: React.ReactElement<
-            React.ComponentProps<typeof OptionItem>
-        >[] = [];
-        const restOfTheChildren: React.ReactElement<
-            React.ComponentProps<typeof OptionItem>
-        >[] = [];
+        const lastSelectedChildren: OptionItemComponentArray = [];
+        const restOfTheChildren: OptionItemComponentArray = [];
         for (const child of filteredChildren) {
             if (lastSelectedValues.includes(child.props.value)) {
                 lastSelectedChildren.push(child);
@@ -440,23 +437,20 @@ export default class MultiSelect extends React.Component<Props, State> {
         ];
     }
 
-    mapOptionItemToDropdownItem: (
-        option: React.ReactElement<React.ComponentProps<typeof OptionItem>>,
-    ) => DropdownItem = (
-        option: React.ReactElement<React.ComponentProps<typeof OptionItem>>,
-    ): DropdownItem => {
-        const {selectedValues} = this.props;
-        const {disabled, value} = option.props;
-        return {
-            component: option,
-            focusable: !disabled,
-            populatedProps: {
-                onToggle: this.handleToggle,
-                selected: selectedValues.includes(value),
-                variant: "checkbox",
-            },
+    mapOptionItemToDropdownItem: (option: OptionItemComponent) => DropdownItem =
+        (option: OptionItemComponent): DropdownItem => {
+            const {selectedValues} = this.props;
+            const {disabled, value} = option.props;
+            return {
+                component: option,
+                focusable: !disabled,
+                populatedProps: {
+                    onToggle: this.handleToggle,
+                    selected: selectedValues.includes(value),
+                    variant: "checkbox",
+                },
+            };
         };
-    };
 
     handleOpenerRef: (node?: any) => void = (node: any) => {
         const openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
