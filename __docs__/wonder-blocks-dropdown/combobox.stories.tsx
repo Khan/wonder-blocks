@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
         padding: spacing.medium_16,
         width: 300,
     },
-    items: {
-        background: color.white,
+    wrapper: {
+        height: "500px",
+        width: "600px",
     },
 });
 
@@ -110,6 +111,12 @@ export const SingleSelection: Story = {
         children: items,
         value: "pear",
     },
+    parameters: {
+        chromatic: {
+            // we don't need screenshots because this story only tests behavior.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -122,6 +129,7 @@ export const SingleSelection: Story = {
  * the `onToggle` prop.
  */
 export const ControlledCombobox: Story = {
+    name: "Controlled Combobox (opened state)",
     render: function Render(args: PropsFor<typeof Combobox>) {
         const [opened, setOpened] = React.useState(args.opened);
         const [value, setValue] = React.useState(args.value);
@@ -146,6 +154,11 @@ export const ControlledCombobox: Story = {
         children: items,
         opened: true,
     },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>{Story()}</View>
+        ),
+    ],
 };
 
 /**
