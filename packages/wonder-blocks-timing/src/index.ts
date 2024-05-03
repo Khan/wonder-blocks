@@ -23,5 +23,5 @@ export {default as ActionSchedulerProvider} from "./components/action-scheduler-
 export {default as withActionScheduler} from "./components/with-action-scheduler";
 export {useInterval} from "./hooks/use-interval";
 export {useTimeout} from "./hooks/use-timeout";
-export {useScheduledInterval} from "./hooks/use-scheduled-interval";
-export {useScheduledTimeout} from "./hooks/use-scheduled-timeout";
+export {useInterval as useScheduledInterval} from "./hooks/use-interval";
+export {useTimeout as useScheduledTimeout} from "./hooks/use-timeout";

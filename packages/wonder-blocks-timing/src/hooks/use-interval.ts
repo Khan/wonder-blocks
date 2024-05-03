@@ -1,36 +1,101 @@
-import {useEffect} from "react";
+import {useEffect, useMemo, useRef} from "react";
+import {ClearPolicy, ActionPolicy} from "../util/policies";
 
-import {useUpdatingRef} from "./internal/use-updating-ref";
+import type {IInterval, HookOptions} from "../util/types";
+
+import Interval from "../util/interval";
 
 /**
- * A simple hook for using `setInterval`.
+ * Hook providing access to a scheduled interval.
  *
- * @param action called every `intervalMs` when `active` is true
- * @param intervalMs the duration between calls to `action`
- * @param active whether or not the interval is active
+ * @param action The action to be invoked each time the interval period has
+ * passed. By default, this will not cause the interval to restart. This makes
+ * it easier to use with inline lambda functions rather than requiring
+ * consumers to wrap their action in a `useCallback`. To change this behavior,
+ * see the `actionPolicy` option.
+ * @param intervalMs The interval period. If this changes, the interval will
+ * be reset.
+ * @param options Options for the hook.
+ * @param options.actionPolicy Determines how the action is handled when it
+ * changes. By default, the action is replaced but the interval is not reset,
+ * and the updated action will be invoked when the interval next fires.
+ * If you want to reset the interval when the action changes, use
+ * "replace-and-reset".
+ * @param options.clearPolicy Determines how the interval is cleared when the
+ * component is unmounted or the interval is recreated. By default, the
+ * interval is cleared immediately. If you want to let the interval run to
+ * completion, use "resolve-on-clear". This is NOT applied if the interval
+ * is cleared manually via the `clear()` method on the returned API.
+ * @param options.schedulePolicy Determines when the interval is scheduled.
+ * By default, the interval is scheduled immediately. If you want to delay
+ * scheduling the interval, use "schedule-on-demand".
+ * @returns An `IInterval` API for interacting with the given interval. This
+ * API is a no-op if called when not mounted. This means that any calls prior
+ * to mounting or after unmounting will not have any effect.
  */
 export function useInterval(
     action: () => unknown,
     intervalMs: number,
-    active: boolean,
-) {
-    // We using a ref instead of a callback for `action` to avoid resetting
-    // the interval whenever the `action` changes.
-    const actionRef = useUpdatingRef(action);
+    options: HookOptions = {},
+): IInterval {
+    const {actionPolicy, clearPolicy, schedulePolicy} = options;
+    const actionProxyRef = useRef<() => unknown>(action);
+    const intervalRef = useRef<IInterval | null>(null);
 
-    useEffect(() => {
-        if (active) {
-            const intervalId = setInterval(() => {
-                actionRef.current();
-            }, intervalMs);
+    // Since we are passing our proxy function to the interval instance,
+    // it's check that the action is a function will never fail. So, we have to
+    // do that check ourselves, and we do it here.
+    if (typeof action !== "function") {
+        throw new Error("Action must be a function");
+    }
 
-            return () => {
-                clearInterval(intervalId);
-            };
+    // If we're rendered with an updated action, we want to update the ref
+    // so the existing interval gets the new action, and then reset the
+    // interval if our action policy calls for it.
+    if (action !== actionProxyRef.current) {
+        actionProxyRef.current = action;
+        if (actionPolicy === ActionPolicy.Reset) {
+            intervalRef.current?.set();
         }
-        // actionRef isn't actually required, but react-hooks/exhaustive-deps
-        // doesn't recognize it as a ref and thus complains if it isn't in the
-        // deps list.  It isn't a big deal though since the value ofactionRef
-        // never changes (only its contents do).
-    }, [intervalMs, active, actionRef]);
+    }
+
+    // This effect updates the interval when the intervalMs, clearPolicy,
+    // or schedulePolicy changes.
+    useEffect(() => {
+        // Make a new interval.
+        intervalRef.current = new Interval(
+            () => {
+                actionProxyRef.current?.();
+            },
+            intervalMs,
+            schedulePolicy,
+        );
+
+        // Clear the interval when the effect is cleaned up, if necessary,
+        // making sure to use the clear policy.
+        return () => {
+            intervalRef.current?.clear(clearPolicy);
+            intervalRef.current = null;
+        };
+    }, [intervalMs, clearPolicy, schedulePolicy]);
+
+    // This is the API we expose to the consumer. We expose this rather than
+    // the interval instance itself so that the API we give back is stable
+    // even if the underlying interval instance changes.
+    const externalApi = useMemo(
+        () => ({
+            set: () => {
+                intervalRef.current?.set();
+            },
+            clear: (policy?: ClearPolicy) => {
+                intervalRef.current?.clear(policy);
+            },
+            get isSet() {
+                return intervalRef.current?.isSet ?? false;
+            },
+        }),
+        [],
+    );
+
+    return externalApi;
 }
