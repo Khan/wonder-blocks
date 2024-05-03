@@ -1,5 +1,5 @@
 import {renderHook, act} from "@testing-library/react-hooks";
-import {SchedulePolicy, ClearPolicy} from "../../util/policies";
+import {SchedulePolicy, ClearPolicy, ActionPolicy} from "../../util/policies";
 
 import {useInterval} from "../use-interval";
 
@@ -43,7 +43,7 @@ describe("useInterval", () => {
         expect(intervalSpy).toHaveBeenCalledTimes(1);
     });
 
-    it("should call the action before unmounting", () => {
+    it("should call the action before unmounting when clear policy is Resolve", () => {
         const action = jest.fn();
         const {unmount} = renderHook(() =>
             useInterval(action, 1000, {
@@ -96,7 +96,50 @@ describe("useInterval", () => {
         expect(intervalSpy).toHaveBeenCalledTimes(1);
     });
 
-    it("should use the new interval after changing it", () => {
+    it("should not reset the interval if the action changes", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}: any) => useInterval(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
+
+        // Act
+        jest.advanceTimersByTime(250);
+        rerender({action: action2});
+        jest.advanceTimersByTime(751);
+
+        // Assert
+        expect(action1).not.toHaveBeenCalled();
+        expect(action2).toHaveBeenCalledTimes(2);
+    });
+
+    it("should reset the interval if the action changes and the action policy is Reset", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}: any) =>
+                useInterval(action, 500, {actionPolicy: ActionPolicy.Reset}),
+            {
+                initialProps: {action: action1},
+            },
+        );
+
+        // Act
+        jest.advanceTimersByTime(250);
+        rerender({action: action2});
+        jest.advanceTimersByTime(751);
+
+        // Assert
+        expect(action1).not.toHaveBeenCalled();
+        expect(action2).toHaveBeenCalledTimes(1);
+    });
+
+    it("should use the new interval period after changing it", () => {
         // Arrange
         const action = jest.fn();
         const {rerender} = renderHook(

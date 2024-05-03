@@ -1,5 +1,5 @@
 import {renderHook, act} from "@testing-library/react-hooks";
-import {SchedulePolicy, ClearPolicy} from "../../util/policies";
+import {SchedulePolicy, ClearPolicy, ActionPolicy} from "../../util/policies";
 
 import {useTimeout} from "../use-timeout";
 
@@ -113,6 +113,49 @@ describe("useTimeout", () => {
 
         // Assert
         expect(timeoutSpy).toHaveBeenCalledTimes(callCount);
+    });
+
+    it("should not reset the timeout if the action changes", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}: any) => useTimeout(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
+
+        // Act
+        jest.advanceTimersByTime(250);
+        rerender({action: action2});
+        jest.advanceTimersByTime(251);
+
+        // Assert
+        expect(action1).not.toHaveBeenCalled();
+        expect(action2).toHaveBeenCalledTimes(1);
+    });
+
+    it("should reset the timeout if the action changes and the action policy is Reset", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}: any) =>
+                useTimeout(action, 500, {actionPolicy: ActionPolicy.Reset}),
+            {
+                initialProps: {action: action1},
+            },
+        );
+
+        // Act
+        jest.advanceTimersByTime(250);
+        rerender({action: action2});
+        jest.advanceTimersByTime(251);
+
+        // Assert
+        expect(action1).not.toHaveBeenCalled();
+        expect(action2).not.toHaveBeenCalled();
     });
 
     it("should use the new timeout duration after changing it", () => {
