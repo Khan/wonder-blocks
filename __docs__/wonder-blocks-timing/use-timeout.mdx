@@ -41,9 +41,7 @@ Notes:
 * Calling `set` after the timeout is set but before it expires means that the timeout will be
   reset and will call `action`, `timeoutMs` after the most recent call to `set` was made.
 
-<Canvas>
-  <Story of={UseTimeoutStories.Immediately} />
-</Canvas>
+<Canvas of={UseTimeoutStories.Immediately} />
 
 ```jsx
 const Immediately = () => {
@@ -65,9 +63,7 @@ const Immediately = () => {
 };
 ```
 
-<Canvas>
-  <Story of={UseTimeoutStories.OnDemandAndResolveOnClear} />
-</Canvas>
+<Canvas of={UseTimeoutStories.OnDemandAndResolveOnClear} />
 
 ```jsx
 const OnDemandAndResolveOnClear = () => {

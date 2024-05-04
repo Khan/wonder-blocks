@@ -15,9 +15,7 @@ of `<RenderStateRoot>`. It's customary to place `<RenderStateRoot>` near
 the base of the render tree since only one instance is allow in any given
 render tree.
 
-<Canvas>
-  <Story of={UseUniqueIdStories.WithoutMockExample} />
-</Canvas>
+<Canvas of={UseUniqueIdStories.WithoutMockExample} />
 
 # `useUniqueIdWithMock`
 
@@ -32,9 +30,7 @@ of `<RenderStateRoot>`. It's customary to place `<RenderStateRoot>` near
 the base of the render tree since only one instance is allow in any given
 render tree.
 
-<Canvas>
-  <Story of={UseUniqueIdStories.WithMockExample} />
-</Canvas>
+<Canvas of={UseUniqueIdStories.WithMockExample} />
 
 # Scoped
 
@@ -45,6 +41,4 @@ can provide a `scope` param that adds some text to each identifier provided.
 This can be useful for providing some quick at-a-glance component identification
 to identifiers when there are multiple hooks being used.
 
-<Canvas>
-  <Story of={UseUniqueIdStories.ScopedExample} />
-</Canvas>
+<Canvas of={UseUniqueIdStories.ScopedExample} />
