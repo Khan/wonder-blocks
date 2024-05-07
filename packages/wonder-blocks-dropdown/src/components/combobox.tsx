@@ -272,14 +272,6 @@ export default function Combobox({
         }
     };
 
-    // The listbox width is at least the width of the combobox.
-    const listboxWidthRef = React.useRef(0);
-    React.useEffect(() => {
-        if (listboxWidthRef?.current === 0) {
-            listboxWidthRef.current = comboboxRef?.current?.offsetWidth ?? 0;
-        }
-    }, [comboboxRef?.current?.offsetWidth]);
-
     return (
         <>
             <View
@@ -361,7 +353,9 @@ export default function Combobox({
                             style={[
                                 styles.listbox,
                                 isReferenceHidden && styles.hidden,
-                                {minWidth: listboxWidthRef.current},
+                                // The listbox width is at least the width of
+                                // the combobox.
+                                {minWidth: comboboxRef?.current?.offsetWidth},
                             ]}
                         >
                             {renderList}
