@@ -67,6 +67,10 @@ type Props = AriaProps & {
      */
     style?: StyleType;
     /**
+     * The tab index of the pill (if clickable).
+     */
+    tabIndex?: number;
+    /**
      * Optional test ID for e2e testing.
      */
     testId?: string;
@@ -117,7 +121,9 @@ const Pill = React.forwardRef(function Pill(
         role,
         onClick,
         style,
+        tabIndex,
         testId,
+        ...restProps
     } = props;
 
     let wrapperSizeStyle;
@@ -150,6 +156,8 @@ const Pill = React.forwardRef(function Pill(
                 style={[defaultStyles, colorStyles.clickableWrapper, style]}
                 testId={testId}
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
+                tabIndex={tabIndex}
+                {...restProps}
             >
                 {() => <PillInner size={size}>{children}</PillInner>}
             </Clickable>
@@ -163,6 +171,7 @@ const Pill = React.forwardRef(function Pill(
             style={[defaultStyles, style]}
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
+            {...restProps}
         >
             <PillInner size={size}>{children}</PillInner>
         </View>

@@ -234,6 +234,7 @@ export function useListbox({
         // list of options
         renderList,
         // selected value(s)
+        setSelected,
         selected,
         // handlers
         handleKeyDown,

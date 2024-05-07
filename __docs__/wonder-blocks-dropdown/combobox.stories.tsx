@@ -170,3 +170,31 @@ export const Disabled = {
         value: "pear",
     },
 };
+
+/**
+ * Combobox supports multiple selection. This means that more than one element
+ * can be selected from the listbox at a time. In this example, we show how this
+ * is done by using an array of strings as the value and setting the
+ * `selectionType` prop to "multiple".
+ */
+export const MultipleSelection = {
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        const [value, setValue] = React.useState(args.value);
+
+        return (
+            <Combobox
+                {...args}
+                value={value}
+                onChange={(newValue) => {
+                    setValue(newValue);
+                    action("onChange")(newValue);
+                }}
+            />
+        );
+    },
+    args: {
+        children: items,
+        value: ["pear", "grape"],
+        selectionType: "multiple",
+    },
+};
