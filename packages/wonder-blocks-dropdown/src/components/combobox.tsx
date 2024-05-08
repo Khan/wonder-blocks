@@ -13,7 +13,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, font, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
@@ -140,6 +140,7 @@ export default function Combobox({
     opened,
     placeholder,
     selectionType = "single",
+    testId,
     value = "",
 }: Props) {
     // NOTE: Clear input value if we are in multi-select mode. The selected
@@ -312,6 +313,7 @@ export default function Combobox({
                     return newValues;
                 }
             });
+            setFocusedPillIndex(-1);
             return;
         }
 
@@ -353,71 +355,68 @@ export default function Combobox({
         handleKeyDown(event);
     };
 
+    function maybeRenderPills(): JSX.Element[] | null {
+        if (
+            selectionType === "single" ||
+            !selected ||
+            (!Array.isArray(selected) && selected.length === 0)
+        ) {
+            return null;
+        }
+
+        const selectedItems = selected as Array<string>;
+
+        return selectedItems.map((item, index) => {
+            const labelFromSelected = children.find(
+                (i) => i.props.value === item,
+            )?.props.label as string;
+
+            return (
+                <Pill
+                    id={ids.get("pill") + index}
+                    testId={testId ? `${testId}-pill-${index}` : undefined}
+                    size="small"
+                    key={item}
+                    style={[
+                        styles.pill,
+                        index === focusedPillIndex && styles.pillFocused,
+                    ]}
+                    kind={index === focusedPillIndex ? "info" : "neutral"}
+                    aria-label={`Remove ${labelFromSelected}`}
+                    tabIndex={-1}
+                    onClick={() => {
+                        const newValues = selectedItems.filter(
+                            (value) => value !== item,
+                        );
+
+                        setSelected(newValues);
+                    }}
+                >
+                    <>
+                        {labelFromSelected}
+                        <PhosphorIcon icon={xIcon} size="small" />
+                    </>
+                </Pill>
+            );
+        });
+    }
+
     return (
         <>
             <View
                 onClick={() => {
-                    if (!openState) {
-                        updateOpenState(true);
-                    }
+                    updateOpenState(true);
                 }}
                 ref={rootNodeRef}
-                role="group"
+                role="presentation"
                 style={[styles.wrapper, isListboxFocused && styles.focused]}
             >
-                {selectionType === "multiple" && Array.isArray(selected) && (
-                    <View
-                        style={{display: "inline-block"}}
-                        id={ids.get("pill-group")}
-                    >
-                        {selected.map((item, index) => {
-                            const labelFromSelected = children.find(
-                                (i) => i.props.value === item,
-                            )?.props.label as string;
-
-                            return (
-                                <Pill
-                                    id={ids.get("pill") + index}
-                                    size="small"
-                                    key={item}
-                                    style={[
-                                        styles.pill,
-                                        index === focusedPillIndex && {
-                                            outline: `1px solid ${color.blue}`,
-                                        },
-                                    ]}
-                                    kind={
-                                        index === focusedPillIndex
-                                            ? "info"
-                                            : "neutral"
-                                    }
-                                    aria-label={`${labelFromSelected} is selected. Press it to unselect`}
-                                    tabIndex={-1}
-                                    onClick={() => {
-                                        const newValues = selected.filter(
-                                            (value) => value !== item,
-                                        );
-
-                                        setSelected(newValues);
-                                    }}
-                                >
-                                    <>
-                                        {labelFromSelected}{" "}
-                                        <PhosphorIcon
-                                            icon={xIcon}
-                                            size="small"
-                                        />
-                                    </>
-                                </Pill>
-                            );
-                        })}
-                    </View>
-                )}
-
-                {/* <View style={{display: "inline-grid"}}> */}
+                {/* Multi-select pills display before the input (if options are selected) */}
+                {maybeRenderPills()}
                 <TextField
                     id={ids.get("input")}
-                    style={[styles.combobox, {display: "inline-flex"}]}
+                    testId={testId}
+                    style={[styles.combobox, {display: "inline-grid"}]}
                     value={inputValue}
                     onChange={(value: string) => {
                         setInputValue(value);
@@ -425,30 +424,18 @@ export default function Combobox({
                     }}
                     disabled={disabled}
                     onFocus={() => {
-                        if (!openState) {
-                            updateOpenState(true);
-                        }
+                        updateOpenState(true);
                         handleFocus();
                     }}
                     placeholder={placeholder}
                     onBlur={() => {
-                        if (openState) {
-                            updateOpenState(false);
-                        }
+                        updateOpenState(false);
                         handleBlur();
                     }}
-                    aria-controls={
-                        focusedPillIndex >= 0
-                            ? ids.get("pill-group")
-                            : openState
-                            ? uniqueId
-                            : undefined
-                    }
+                    aria-controls={openState ? uniqueId : undefined}
                     onKeyDown={onKeyDown}
                     aria-activedescendant={
-                        focusedPillIndex >= 0
-                            ? ids.get("pill") + focusedPillIndex
-                            : openState
+                        openState
                             ? renderList[focusedIndex]?.props?.id
                             : undefined
                     }
@@ -459,7 +446,7 @@ export default function Combobox({
                     role="combobox"
                     ref={comboboxRef}
                 />
-                {/* </View> */}
+
                 <IconButton
                     disabled={disabled}
                     icon={caretDownIcon}
@@ -500,6 +487,7 @@ export default function Combobox({
                                 // the combobox.
                                 {minWidth: rootNodeRef?.current?.offsetWidth},
                             ]}
+                            testId={testId ? `${testId}-listbox` : undefined}
                         >
                             {renderList}
                         </Listbox>
@@ -528,9 +516,15 @@ const styles = StyleSheet.create({
         border: `1px solid ${color.blue}`,
     },
     pill: {
-        placeItems: "center",
+        fontSize: font.size.small,
+        justifyContent: "space-between",
+        alignItems: "center",
         marginBlockStart: spacing.xxxSmall_4,
         marginInlineEnd: spacing.xxxSmall_4,
+        paddingInlineEnd: spacing.xxxSmall_4,
+    },
+    pillFocused: {
+        outline: `1px solid ${color.blue}`,
     },
     combobox: {
         // reset input styles
@@ -539,7 +533,9 @@ const styles = StyleSheet.create({
         border: "none",
         outline: "none",
         padding: 0,
+        minWidth: spacing.xxxSmall_4,
         width: "auto",
+        gridArea: "1 / 2",
     },
     listbox: {
         backgroundColor: color.white,
