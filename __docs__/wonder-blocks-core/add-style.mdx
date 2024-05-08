@@ -91,9 +91,7 @@ You can create a new styled component by using the `addStyle` function. Note
 here that you can also define default styles for this component by passing an
 initial style object to this function.
 
-<Canvas withSource="open">
-  <Story of={AddStyleStories.WithDefaultStyle} />
-</Canvas>
+<Canvas withSource="open" of={AddStyleStories.WithDefaultStyle} />
 
 ### 2. Overriding a default style
 
@@ -101,15 +99,11 @@ After defining default styles, you can also customize the instance by adding
 and/or merging styles using the `style` prop in your newly created styled
 component.
 
-<Canvas withSource="open">
-  <Story of={AddStyleStories.OverrideStyles} />
-</Canvas>
+<Canvas sourceState="shown" of={AddStyleStories.OverrideStyles} />
 
 ### 3. Adding styles dynamically
 
 This example shows that you can dynamically create styles by adding them to the
 `style` prop only when you need them.
 
-<Canvas withSource="open">
-  <Story of={AddStyleStories.AddingStylesDynamically} />
-</Canvas>
+<Canvas sourceState="shown" of={AddStyleStories.AddingStylesDynamically} />

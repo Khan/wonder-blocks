@@ -39,9 +39,7 @@ users know the purpose of the clickable element.
 
 This is an example of a component with an accessible label:
 
-<Canvas>
-  <Story of={AccessibilityStories.Labeling} />
-</Canvas>
+<Canvas of={AccessibilityStories.Labeling} />
 
 ### Disabled state
 
@@ -51,9 +49,7 @@ users can use these type of controls (including Screen Readers). By defining the
 internal behavior we can ensure that the component is accessible via Keyboard
 but not interactable/operatable.
 
-<Canvas>
-  <Story of={AccessibilityStories.DisabledState} />
-</Canvas>
+<Canvas of={AccessibilityStories.DisabledState} />
 
 ### Keyboard navigation
 
@@ -63,6 +59,4 @@ way, your components are accessible and emulate better the browser's behavior.
 **NOTE:** If you want to navigate to an external URL and/or reload the window,
 make sure to use `href` and \`skipClientNav={true}.
 
-<Canvas>
-  <Story of={AccessibilityStories.KeyboardNavigation} />
-</Canvas>
+<Canvas of={AccessibilityStories.KeyboardNavigation} />

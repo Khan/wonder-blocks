@@ -102,6 +102,13 @@ Clears all timeouts, intervals, and animation frame requests that were made with
 | `Cancel`  | `"cancel-on-clear"`  | The action, if set at the time of applying the policy, will be cancelled without being invoked.               |
 | `Resolve` | `"resolve-on-clear"` | The action, if set at the time of applying the policy, will be invoked as if the scheduled time had occurred. |
 
+###### ActionPolicy
+
+| Policy    | Value                | Description                                                                                                                                 |
+| --------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Reset`   | `"reset"`            | When the action of timing hook changes, the associated timer will be restarted.                                                             |
+| `Passive` | `"passive"`          | When the action of timing hook changes, the associated timer will not be restarted. The new action will be fired when the timer next fires. |
+
 ##### ITimeout
 
 ```js static

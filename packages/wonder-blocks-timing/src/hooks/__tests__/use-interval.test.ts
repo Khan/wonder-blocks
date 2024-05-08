@@ -1,123 +1,520 @@
-import {renderHook} from "@testing-library/react-hooks";
+import {renderHook, act} from "@testing-library/react-hooks";
+import {SchedulePolicy, ClearPolicy, ActionPolicy} from "../../util/policies";
 
 import {useInterval} from "../use-interval";
 
-describe("useTimeout", () => {
+describe("useInterval", () => {
     beforeEach(() => {
         jest.useFakeTimers();
     });
 
-    it("should not fire if 'active' is false", () => {
-        // Arrange
-        const action = jest.fn();
-
-        // Act
-        renderHook(() => useInterval(action, 500, false));
-        jest.advanceTimersByTime(501);
-
-        // Assert
-        expect(action).not.toHaveBeenCalled();
+    afterEach(() => {
+        jest.restoreAllMocks();
     });
 
-    it("should fire the action multiple times based on 'intervalMs'", () => {
+    it("throws if the action is not a function", () => {
         // Arrange
-        const action = jest.fn();
 
         // Act
-        renderHook(() => useInterval(action, 500, true));
-        jest.advanceTimersByTime(1001);
+        const {result} = renderHook(() => useInterval(null as any, 1000));
 
         // Assert
-        expect(action).toHaveBeenCalledTimes(2);
+        expect(result.error).toEqual(Error("Action must be a function"));
     });
 
-    it("should fire after time after 'active' changes to true", () => {
+    it("throws if the period is less than 1", () => {
         // Arrange
-        const action = jest.fn();
 
         // Act
-        const {rerender} = renderHook(
-            ({active}: any) => useInterval(action, 500, active),
-            {initialProps: {active: false}},
+        const {result} = renderHook(() => useInterval(() => {}, 0));
+
+        // Assert
+        expect(result.error).toEqual(Error("Interval period must be >= 1"));
+    });
+
+    it("sets an interval when schedule policy is SchedulePolicy.Immediately", () => {
+        // Arrange
+        const intervalSpy = jest.spyOn(global, "setInterval");
+
+        // Act
+        renderHook(() => useInterval(() => {}, 1000));
+
+        // Assert
+        expect(intervalSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call the action before unmounting when clear policy is Resolve", () => {
+        const action = jest.fn();
+        const {unmount} = renderHook(() =>
+            useInterval(action, 1000, {
+                clearPolicy: ClearPolicy.Resolve,
+            }),
         );
-        rerender({active: true});
-        jest.advanceTimersByTime(501);
 
-        // Assert
+        act(() => {
+            unmount();
+        });
+
         expect(action).toHaveBeenCalled();
     });
 
-    it("should not fire after 'intervalMs' if 'active' changes to false", () => {
-        // Arrange
-        const action = jest.fn();
-        const {rerender} = renderHook(
-            ({active}: any) => useInterval(action, 500, active),
-            {initialProps: {active: true}},
-        );
-
-        // Act
-        rerender({active: false});
-        jest.advanceTimersByTime(501);
-
-        // Assert
-        expect(action).not.toHaveBeenCalled();
-    });
-
-    it("should reset the interval if 'intervalMs' is changes", () => {
-        // Arrange
-        const action = jest.fn();
-
-        // Act
-        const {rerender} = renderHook(
-            ({timeoutMs}: any) => useInterval(action, timeoutMs, true),
-            {initialProps: {timeoutMs: 500}},
-        );
-        rerender({timeoutMs: 1000});
-        jest.advanceTimersByTime(501);
-
-        // Assert
-        expect(action).not.toHaveBeenCalled();
-        jest.advanceTimersByTime(1001);
-        expect(action).toHaveBeenCalled();
-    });
-
-    it("should not reset the interval if 'action' changes", () => {
+    it("should call the current action", () => {
         // Arrange
         const action1 = jest.fn();
         const action2 = jest.fn();
-        const timeoutSpy = jest.spyOn(window, "setTimeout");
+        const {rerender} = renderHook(
+            ({action}: any) => useInterval(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
 
         // Act
-        const {rerender} = renderHook(
-            ({action}: any) => useInterval(action, 500, true),
-            {initialProps: {action: action1}},
-        );
-        // NOTE: For some reason setTimeout is called twice by the time we get
-        // here.  I've verified that it only gets called once inside the hook
-        // so something else must be calling it.
-        const callCount = timeoutSpy.mock.calls.length;
         rerender({action: action2});
         jest.advanceTimersByTime(501);
 
         // Assert
-        expect(timeoutSpy).toHaveBeenCalledTimes(callCount);
+        expect(action2).toHaveBeenCalledTimes(1);
     });
 
-    it("should fire the current action if 'action' changes", () => {
+    it("should only call setInterval once even if action changes", () => {
+        // Arrange
+        const intervalSpy = jest.spyOn(global, "setInterval");
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}: any) => useInterval(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
+
+        // Act
+        rerender({action: action2});
+
+        // Assert
+        expect(intervalSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it("should not reset the interval if the action changes", () => {
         // Arrange
         const action1 = jest.fn();
         const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}: any) => useInterval(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
 
         // Act
-        const {rerender} = renderHook(
-            ({action}: any) => useInterval(action, 500, true),
-            {initialProps: {action: action1}},
-        );
+        jest.advanceTimersByTime(250);
         rerender({action: action2});
-        jest.advanceTimersByTime(501);
+        jest.advanceTimersByTime(751);
 
         // Assert
-        expect(action1).not.toHaveBeenCalledWith();
-        expect(action2).toHaveBeenCalledWith();
+        expect(action1).not.toHaveBeenCalled();
+        expect(action2).toHaveBeenCalledTimes(2);
+    });
+
+    it("should reset the interval if the action changes and the action policy is Reset", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}: any) =>
+                useInterval(action, 500, {actionPolicy: ActionPolicy.Reset}),
+            {
+                initialProps: {action: action1},
+            },
+        );
+
+        // Act
+        jest.advanceTimersByTime(250);
+        rerender({action: action2});
+        jest.advanceTimersByTime(751);
+
+        // Assert
+        expect(action1).not.toHaveBeenCalled();
+        expect(action2).toHaveBeenCalledTimes(1);
+    });
+
+    it("should use the new interval period after changing it", () => {
+        // Arrange
+        const action = jest.fn();
+        const {rerender} = renderHook(
+            ({intervalMs}: any) => useInterval(action, intervalMs),
+            {
+                initialProps: {intervalMs: 500},
+            },
+        );
+        rerender({intervalMs: 1000});
+
+        // Act
+        jest.advanceTimersByTime(1501);
+
+        // Assert
+        expect(action).toHaveBeenCalledTimes(1);
+    });
+
+    it("should restart the interval if intervalMs changes", () => {
+        // Arrange
+        const intervalSpy = jest.spyOn(global, "setInterval");
+        const {rerender} = renderHook(
+            ({intervalMs}: any) => useInterval(() => {}, intervalMs),
+            {
+                initialProps: {intervalMs: 500},
+            },
+        );
+
+        // Act
+        rerender({intervalMs: 1000});
+
+        // Assert
+        expect(intervalSpy).toHaveBeenCalledWith(expect.any(Function), 500);
+        expect(intervalSpy).toHaveBeenCalledWith(expect.any(Function), 1000);
+    });
+
+    describe("isSet", () => {
+        it("is false when the interval has not been set [SchedulePolicy.OnDemand]", () => {
+            // Arrange
+            const {result} = renderHook(() =>
+                useInterval(() => {}, 1000, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+
+            // Act
+            const isSet = result.current.isSet;
+
+            // Assert
+            expect(isSet).toBeFalsy();
+        });
+
+        it("is true when the interval is active", () => {
+            // Arrange
+            const {result} = renderHook(() => useInterval(() => {}, 1000));
+            act(() => {
+                result.current.set();
+            });
+
+            // Act
+            const isSet = result.current.isSet;
+
+            // Assert
+            expect(isSet).toBeTruthy();
+        });
+
+        it("is false when the interval is cleared", () => {
+            // Arrange
+            const {result} = renderHook(() => useInterval(() => {}, 1000));
+            act(() => {
+                result.current.set();
+                result.current.clear();
+            });
+
+            // Act
+            const isSet = result.current.isSet;
+
+            // Assert
+            expect(isSet).toBeFalsy();
+        });
+    });
+
+    describe("#set", () => {
+        it("should call setInterval", () => {
+            // Arrange
+            const intervalSpy = jest.spyOn(global, "setInterval");
+            const {result} = renderHook(() =>
+                useInterval(() => {}, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+
+            // Act
+            act(() => {
+                result.current.set();
+            });
+
+            // Assert
+            expect(intervalSpy).toHaveBeenNthCalledWith(
+                1,
+                expect.any(Function),
+                500,
+            );
+        });
+
+        it("should invoke setInterval to call the given action", () => {
+            // Arrange
+            const intervalSpy = jest.spyOn(global, "setInterval");
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+
+            act(() => {
+                result.current.set();
+            });
+            const scheduledAction = intervalSpy.mock.calls[0][0];
+
+            // Act
+            scheduledAction();
+
+            // Assert
+            expect(action).toHaveBeenCalledTimes(1);
+        });
+
+        it("should clear the active interval", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+            act(() => {
+                result.current.set();
+            });
+
+            // Act
+            act(() => {
+                result.current.set();
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).toHaveBeenCalledTimes(1);
+        });
+
+        it("should set an interval that stays active while not cleared", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+            act(() => {
+                result.current.set();
+            });
+
+            // Act
+            act(() => {
+                jest.advanceTimersByTime(1501);
+            });
+
+            // Assert
+            expect(action).toHaveBeenCalledTimes(3);
+        });
+
+        it("should continue to be set after calling it multiple times", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+            act(() => {
+                result.current.set();
+            });
+
+            // Act
+            act(() => {
+                result.current.set();
+            });
+            act(() => {
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).toHaveBeenCalled();
+        });
+
+        it("should set the interval after clearing it", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+            act(() => {
+                result.current.clear();
+            });
+
+            // Act
+            act(() => {
+                result.current.set();
+            });
+            act(() => {
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).toHaveBeenCalled();
+        });
+
+        it("should reset the inteval after calling set() again", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 750, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+
+            // Act
+            act(() => {
+                result.current.set();
+                jest.advanceTimersByTime(501);
+                result.current.set();
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).not.toHaveBeenCalled();
+        });
+
+        it("shouldn't throw an error if called after the component unmounted", () => {
+            const action = jest.fn();
+            const {result, unmount} = renderHook(() =>
+                useInterval(action, 500),
+            );
+            act(() => {
+                unmount();
+            });
+
+            // Act
+            const underTest = () => result.current.set();
+
+            // Assert
+            expect(underTest).not.toThrow();
+        });
+    });
+
+    describe("#clear", () => {
+        it("should clear an active interval", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() => useInterval(action, 500));
+            act(() => {
+                result.current.set();
+            });
+
+            // Act
+            act(() => {
+                result.current.clear();
+            });
+            act(() => {
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).not.toHaveBeenCalled();
+        });
+
+        it("should invoke the action if clear policy is ClearPolicy.Resolve", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() => useInterval(action, 500));
+            act(() => {
+                result.current.set();
+            });
+
+            // Act
+            act(() => {
+                result.current.clear(ClearPolicy.Resolve);
+            });
+            act(() => {
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).toHaveBeenCalledTimes(1);
+        });
+
+        it("should not invoke the action if clear policy is ClearPolicy.Cancel", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.Immediately,
+                }),
+            );
+            act(() => {
+                result.current.set();
+            });
+
+            // Act
+            act(() => {
+                result.current.clear(ClearPolicy.Cancel);
+            });
+            act(() => {
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).not.toHaveBeenCalled();
+        });
+
+        it("should not invoke the action if interval is inactive and clear policy is ClearPolicy.Resolve", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+
+            // Act
+            act(() => {
+                result.current.clear(ClearPolicy.Resolve);
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).not.toHaveBeenCalled();
+        });
+
+        it("should not call the action on unmount if the interval is not running when the clearPolicy is ClearPolicy.Resolve", async () => {
+            // Arrange
+            const action = jest.fn();
+            const {result, unmount} = renderHook(() =>
+                useInterval(action, 500, {
+                    clearPolicy: ClearPolicy.Resolve,
+                }),
+            );
+
+            // Act
+            act(() => {
+                result.current.clear();
+            });
+            act(() => {
+                unmount();
+            });
+
+            // Assert
+            expect(action).not.toHaveBeenCalled();
+        });
+
+        it("should not error if calling clear() after unmounting", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result, unmount} = renderHook(() =>
+                useInterval(action, 500),
+            );
+            act(() => {
+                unmount();
+            });
+
+            // Act
+            const underTest = () => result.current.clear();
+
+            // Assert
+            expect(underTest).not.toThrow();
+        });
     });
 });
