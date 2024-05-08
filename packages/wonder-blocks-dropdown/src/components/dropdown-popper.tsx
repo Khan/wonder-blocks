@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {Popper} from "react-popper";
-import type {State as PopperState} from "@popperjs/core";
 
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
@@ -28,10 +27,7 @@ type Props = {
     /**
      * The children that will be wrapped by PopperJS.
      */
-    children: (
-        isReferenceHidden: boolean,
-        update?: () => Promise<null | Partial<PopperState>>,
-    ) => React.ReactNode;
+    children: (isReferenceHidden: boolean) => React.ReactNode;
     /**
      * The reference element used to position the popper.
      */
@@ -87,14 +83,7 @@ const DropdownPopper = function ({
             placement={alignment === "left" ? "bottom-start" : "bottom-end"}
             modifiers={modifiers}
         >
-            {({
-                placement,
-                ref,
-                style,
-                hasPopperEscaped,
-                isReferenceHidden,
-                update,
-            }) => {
+            {({placement, ref, style, hasPopperEscaped, isReferenceHidden}) => {
                 const shouldHidePopper = !!(
                     hasPopperEscaped || isReferenceHidden
                 );
@@ -106,7 +95,7 @@ const DropdownPopper = function ({
                         data-testid="dropdown-popper"
                         data-placement={placement}
                     >
-                        {children(shouldHidePopper, update)}
+                        {children(shouldHidePopper)}
                     </div>
                 );
             }}
