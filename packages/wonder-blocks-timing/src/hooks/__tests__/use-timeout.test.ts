@@ -192,7 +192,7 @@ describe("useTimeout", () => {
         expect(timeoutSpy).toHaveBeenCalledWith(expect.any(Function), 1000);
     });
 
-    describe("SchedulePolicies.Immediately", () => {
+    describe("SchedulePolicy.Immediately", () => {
         it("should call the action after the timeout expires", () => {
             // Arrange
             const action = jest.fn();
@@ -345,7 +345,7 @@ describe("useTimeout", () => {
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should call the action when the timeout is cleared when passing ClearPolicies.Resolve to clear()", () => {
+        it("should call the action when the timeout is cleared when passing ClearPolicy.Resolve to clear()", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() => useTimeout(action, 1000));
@@ -359,7 +359,7 @@ describe("useTimeout", () => {
             expect(action).toHaveBeenCalled();
         });
 
-        it("should call the action on unmount when using ClearPolicies.Resolve in options", () => {
+        it("should call the action on unmount when using ClearPolicy.Resolve in options", () => {
             // Arrange
             const action = jest.fn();
             const {unmount} = renderHook(() =>
@@ -388,7 +388,7 @@ describe("useTimeout", () => {
         });
     });
 
-    describe("SchedulePolicies.OnDemand", () => {
+    describe("SchedulePolicy.OnDemand", () => {
         it("should not set the timer on creation", () => {
             // Arrange
             const {result} = renderHook(() =>
