@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.3.0
+
+### Minor Changes
+
+-   7030948a: Add `Listbox` component with Single and Multiple selection support
+
+### Patch Changes
+
+-   Updated dependencies [f72f7dd4]
+    -   @khanacademy/wonder-blocks-timing@5.0.0
+    -   @khanacademy/wonder-blocks-modal@5.1.2
+
 ## 5.2.1
 
 ### Patch Changes
