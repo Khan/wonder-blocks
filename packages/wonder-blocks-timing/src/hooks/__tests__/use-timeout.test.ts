@@ -59,6 +59,7 @@ describe("useTimeout", () => {
     });
 
     it("should call the action before unmounting", () => {
+        // Arrange
         const action = jest.fn();
         const {unmount} = renderHook(() =>
             useTimeout(action, 1000, {
@@ -66,10 +67,12 @@ describe("useTimeout", () => {
             }),
         );
 
+        // Act
         act(() => {
             unmount();
         });
 
+        // Assert
         expect(action).toHaveBeenCalled();
     });
 

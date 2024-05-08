@@ -40,8 +40,6 @@ export const Immediately = () => {
 export const OnDemandAndResolveOnClear = () => {
     const [callCount, setCallCount] = React.useState(0);
     const callback = React.useCallback(() => {
-        // eslint-disable-next-line no-console
-        console.log("action called");
         setCallCount((callCount) => callCount + 1);
     }, []);
     const interval = useInterval(callback, 1000, {
