@@ -106,16 +106,11 @@ describe("useTimeout", () => {
                 initialProps: {action: action1},
             },
         );
-        // NOTE: For some reason setTimeout is called twice by the time we get
-        // here.  I've verified that it only gets called once inside the hook
-        // so something else must be calling it.
-        const callCount = timeoutSpy.mock.calls.length;
-
         // Act
         rerender({action: action2});
 
         // Assert
-        expect(timeoutSpy).toHaveBeenCalledTimes(callCount);
+        expect(timeoutSpy).toHaveBeenCalledOnce();
     });
 
     it("should not reset the timeout if the action changes", () => {
