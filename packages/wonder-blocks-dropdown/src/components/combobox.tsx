@@ -1,8 +1,7 @@
-import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import * as React from "react";
 
 import caretDownIcon from "@phosphor-icons/core/regular/caret-down.svg";
-import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import {
     StyleType,
@@ -10,15 +9,15 @@ import {
     View,
 } from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import Pill from "@khanacademy/wonder-blocks-pill";
-import {border, color, font, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
+import {useListbox} from "../hooks/use-listbox";
+import {useMultipleSelection} from "../hooks/use-multiple-selection";
+import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
+import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
-import {useListbox} from "../hooks/use-listbox";
-import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
 
 type Props = {
     /**
@@ -242,6 +241,15 @@ export default function Combobox({
         valueState,
     ]);
 
+    const {
+        focusedMultiSelectIndex,
+        handleKeyDown: handleMultipleSelectionKeyDown,
+    } = useMultipleSelection({
+        inputValue,
+        selected,
+        setSelected,
+    });
+
     const focusOnFilteredItem = React.useCallback(
         (value: string) => {
             const lowercasedSearchText = value.normalize("NFC").toLowerCase();
@@ -264,90 +272,43 @@ export default function Combobox({
         [children, setFocusedIndex],
     );
 
-    const [focusedPillIndex, setFocusedPillIndex] = React.useState<number>(-1);
-
+    /**
+     * Handles specific keyboard events for the combobox.
+     */
     const onKeyDown = (event: React.KeyboardEvent) => {
+        const {key} = event;
+
         // Open the listbox under the following conditions:
         const conditionsToOpen =
             // The user presses specific keys
-            event.key === "ArrowDown" ||
-            event.key === "ArrowUp" ||
-            event.key === "Backspace" ||
+            key === "ArrowDown" ||
+            key === "ArrowUp" ||
+            key === "Backspace" ||
             // The user starts typing
-            event.key.length === 1;
+            key.length === 1;
 
         if (!openState && conditionsToOpen) {
             updateOpenState(true);
         }
 
-        // Handle keyboard navigation for multi-select combobox
-        if (event.key === "ArrowLeft" && selected) {
+        /**
+         * Handle keyboard navigation for multi-select combobox
+         */
+        if (key === "ArrowLeft" || key === "ArrowRight") {
             setFocusedIndex(-1);
-            setFocusedPillIndex((prev) => {
-                const newIndex = prev - 1;
-                return newIndex < 0 ? selected?.length - 1 : newIndex;
-            });
         }
+        // Propagate the event to useMultipleSelection to handle keyboard
+        // navigation
+        handleMultipleSelectionKeyDown(event);
 
-        if (event.key === "ArrowRight" && selected) {
-            setFocusedIndex(-1);
-            setFocusedPillIndex((prev) => {
-                const newIndex = prev + 1;
-                return newIndex >= selected?.length ? 0 : newIndex;
-            });
-        }
+        /**
+         * Shared keyboard navigation for single and multi-select combobox
+         */
 
-        if (selected && inputValue === "" && event.key === "Backspace") {
-            setSelected((prev) => {
-                // At this point, prev is an array
-                const prevSelected = prev as Array<string>;
-                if (focusedPillIndex < 0) {
-                    // remove last selected option (if there's any)
-                    return prevSelected?.slice(0, -1);
-                } else {
-                    // remove focused pill
-                    const newValues = prevSelected.filter(
-                        (_, index) => index !== focusedPillIndex,
-                    );
-
-                    return newValues;
-                }
-            });
-            setFocusedPillIndex(-1);
-            return;
-        }
-
-        if (event.key === "ArrowDown" || event.key === "ArrowUp") {
-            setFocusedPillIndex(-1);
-        }
-
-        if (
-            focusedIndex < 0 &&
-            event.key === "Enter" &&
-            selected &&
-            selected?.length > 0
-        ) {
-            // remove current selected option
-            setSelected((prev) => {
-                // At this point, prev is an array
-                const prevSelected = prev as Array<string>;
-
-                const newValues = prevSelected?.filter(
-                    (_, index) => index !== focusedPillIndex,
-                );
-
-                return newValues;
-            });
-            return;
-        }
-
-        // Shared keyboard navigation for single and multi-select combobox
-
-        // Close only the dropdown, not other elements that are
-        // listening for an escape press
-        if (event.key === "Escape" && openState) {
+        // Close only the dropdown, not other elements that are listening for an
+        // escape press
+        if (key === "Escape" && openState) {
             event.stopPropagation();
-            setFocusedPillIndex(-1);
             updateOpenState(false);
         }
 
@@ -355,51 +316,13 @@ export default function Combobox({
         handleKeyDown(event);
     };
 
-    function maybeRenderPills(): JSX.Element[] | null {
-        if (
-            selectionType === "single" ||
-            !selected ||
-            (!Array.isArray(selected) && selected.length === 0)
-        ) {
-            return null;
-        }
-
-        const selectedItems = selected as Array<string>;
-
-        return selectedItems.map((item, index) => {
-            const labelFromSelected = children.find(
-                (i) => i.props.value === item,
-            )?.props.label as string;
-
-            return (
-                <Pill
-                    id={ids.get("pill") + index}
-                    testId={testId ? `${testId}-pill-${index}` : undefined}
-                    size="small"
-                    key={item}
-                    style={[
-                        styles.pill,
-                        index === focusedPillIndex && styles.pillFocused,
-                    ]}
-                    kind={index === focusedPillIndex ? "info" : "neutral"}
-                    aria-label={`Remove ${labelFromSelected}`}
-                    tabIndex={-1}
-                    onClick={() => {
-                        const newValues = selectedItems.filter(
-                            (value) => value !== item,
-                        );
-
-                        setSelected(newValues);
-                    }}
-                >
-                    <>
-                        {labelFromSelected}
-                        <PhosphorIcon icon={xIcon} size="small" />
-                    </>
-                </Pill>
-            );
-        });
-    }
+    const selectedLabels = React.useMemo(
+        () =>
+            children
+                .filter((item) => selected?.includes(item.props.value))
+                .map((item) => item.props.label as string),
+        [children, selected],
+    );
 
     return (
         <>
@@ -408,11 +331,22 @@ export default function Combobox({
                     updateOpenState(true);
                 }}
                 ref={rootNodeRef}
-                role="presentation"
                 style={[styles.wrapper, isListboxFocused && styles.focused]}
             >
+                {/* TODO(WB-1676.2): Add aria-live region to announce combobox states */}
+
                 {/* Multi-select pills display before the input (if options are selected) */}
-                {maybeRenderPills()}
+                {selectionType === "multiple" && Array.isArray(selected) && (
+                    <MultipleSelection
+                        labels={selectedLabels}
+                        focusedMultiSelectIndex={focusedMultiSelectIndex}
+                        id={ids.get("pill")}
+                        selected={selected as Array<string>}
+                        setSelected={setSelected}
+                        disabled={disabled}
+                        testId={testId}
+                    />
+                )}
                 <TextField
                     id={ids.get("input")}
                     testId={testId}
@@ -440,8 +374,8 @@ export default function Combobox({
                             : undefined
                     }
                     aria-expanded={openState}
-                    // We don't want the browser to suggest autocompletions as the
-                    // combobox is already providing suggestions.
+                    // We don't want the browser to suggest autocompletions as
+                    // the combobox is already providing suggestions.
                     autoComplete="off"
                     role="combobox"
                     ref={comboboxRef}
@@ -464,6 +398,7 @@ export default function Combobox({
                     tabIndex={-1}
                     aria-controls={uniqueId}
                     aria-expanded={openState}
+                    // TODO(WB-1676.2): Use the `labels` prop.
                     aria-label="Toggle listbox"
                 />
             </View>
@@ -488,6 +423,8 @@ export default function Combobox({
                                 {minWidth: rootNodeRef?.current?.offsetWidth},
                             ]}
                             testId={testId ? `${testId}-listbox` : undefined}
+                            // TODO(WB-1676.2): Use the `labels` prop.
+                            aria-label=""
                         >
                             {renderList}
                         </Listbox>
@@ -505,7 +442,7 @@ const styles = StyleSheet.create({
         width: "100%",
         maxWidth: "100%",
         flexWrap: "wrap",
-        // emulate input styles
+        // The following styles are to emulate the input styles
         background: color.white,
         borderRadius: border.radius.medium_4,
         border: `solid 1px ${color.offBlack16}`,
@@ -515,17 +452,9 @@ const styles = StyleSheet.create({
         background: color.white,
         border: `1px solid ${color.blue}`,
     },
-    pill: {
-        fontSize: font.size.small,
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBlockStart: spacing.xxxSmall_4,
-        marginInlineEnd: spacing.xxxSmall_4,
-        paddingInlineEnd: spacing.xxxSmall_4,
-    },
-    pillFocused: {
-        outline: `1px solid ${color.blue}`,
-    },
+    /**
+     * Combobox input styles
+     */
     combobox: {
         // reset input styles
         appearance: "none",
@@ -537,6 +466,9 @@ const styles = StyleSheet.create({
         width: "auto",
         gridArea: "1 / 2",
     },
+    /**
+     * Listbo custom styles
+     */
     listbox: {
         backgroundColor: color.white,
         borderRadius: border.radius.medium_4,
@@ -551,6 +483,9 @@ const styles = StyleSheet.create({
         pointerEvents: "none",
         visibility: "hidden",
     },
+    /**
+     * Arrow button styles
+     */
     button: {
         position: "absolute",
         right: spacing.xxxSmall_4,
