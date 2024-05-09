@@ -123,6 +123,8 @@ const Pill = React.forwardRef(function Pill(
         style,
         tabIndex,
         testId,
+        // The rest of the props are being passed to the underlying element.
+        // It contains `aria-*` attributes.
         ...restProps
     } = props;
 

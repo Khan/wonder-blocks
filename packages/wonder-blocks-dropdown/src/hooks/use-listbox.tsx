@@ -132,13 +132,17 @@ export function useListbox({
                     return;
                 case "Enter":
                 case " ":
-                    // Only handle space if the listbox is focused
-                    if (key === " " && disableSpaceSelection) {
+                    if (
+                        // No item is focused
+                        !focusedIndex ||
+                        focusedIndex < 0 ||
+                        // Only handle space if the listbox is focused
+                        (key === " " && disableSpaceSelection)
+                    ) {
                         return;
                     }
                     // Prevent form submission
                     event.preventDefault();
-
                     selectOption(focusedIndex);
                     return;
             }

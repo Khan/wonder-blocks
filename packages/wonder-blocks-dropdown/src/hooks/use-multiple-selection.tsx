@@ -20,11 +20,8 @@ type Props = {
 /**
  * Hook for managing the state of the multi-select values in the combobox.
  *
- * It manages how the options are rendered and how the listbox behaves.
- *
- * This includes:
- * - Keyboard navigation.
- * - Selection management.
+ * It manages keyboard navigation and selection management for the multi-select
+ * selected values.
  */
 export function useMultipleSelection({
     inputValue,
@@ -76,7 +73,6 @@ export function useMultipleSelection({
 
                 setSelected(newSelected);
                 setFocusedMultiSelectIndex(-1);
-                return;
             }
 
             if (focusedMultiSelectIndex >= 0 && key === "Enter") {
@@ -87,7 +83,6 @@ export function useMultipleSelection({
                 // remove current selected option
                 setSelected(newSelected);
                 setFocusedMultiSelectIndex(-1);
-                return;
             }
 
             // Clear the focused pill index when navigating through the listbox, so

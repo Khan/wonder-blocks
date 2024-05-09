@@ -6,6 +6,38 @@ import Pill from "@khanacademy/wonder-blocks-pill";
 import {color, font, spacing} from "@khanacademy/wonder-blocks-tokens";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 
+type Props = {
+    /**
+     * Whether the combobox is disabled.
+     */
+    disabled?: boolean;
+    /**
+     * The index of the focused item in the pills group.
+     */
+    focusedMultiSelectIndex: number;
+    /**
+     * The unique identifier for the selected items.
+     */
+    id: string;
+    /**
+     * The list of labels for the selected items.
+     */
+    labels: Array<string>;
+    /**
+     * Function to remove a selected item.
+     */
+    onRemove: (value: string) => void;
+    /**
+     * The list of selected items, where each item represents the value of the
+     * selected option.
+     */
+    selected: Array<string>;
+    /**
+     * The testId prefix used for the pills.
+     */
+    testId?: string;
+};
+
 /**
  * Renders the selected items as pills that are horizontally stacked before
  * the input element.
@@ -15,61 +47,41 @@ export const MultipleSelection = React.memo(function SelectedPills({
     focusedMultiSelectIndex,
     id,
     labels,
+    onRemove,
     selected,
     testId,
-    setSelected,
-}: {
-    disabled?: boolean;
-    focusedMultiSelectIndex: number;
-    id: string;
-    labels: Array<string>;
-    selected: Array<string>;
-    setSelected: (value: Array<string>) => void;
-    testId?: string;
-}) {
-    /**
-     * Handles the click event on a pill to remove it from the list of selected
-     * items.
-     */
-    const handlePillClick = React.useCallback(
-        (value: string) => {
-            // Remove the selected item from the list of selected items.
-            const newValues = selected.filter(
-                (selectedValue) => selectedValue !== value,
-            );
+}: Props) {
+    return (
+        <>
+            {selected.map((value, index) => {
+                const label = labels[index] as string;
+                const focused = index === focusedMultiSelectIndex;
+                const uniqueId = id + index;
 
-            setSelected(newValues);
-        },
-        [selected, setSelected],
+                return (
+                    <Pill
+                        id={uniqueId}
+                        key={uniqueId}
+                        testId={testId ? `${testId}-pill-${index}` : undefined}
+                        size="small"
+                        style={[styles.pill, focused && styles.pillFocused]}
+                        kind={focused ? "info" : "neutral"}
+                        // TODO(WB-1676.2): Use the `labels` prop.
+                        aria-label={`Remove ${label}`}
+                        tabIndex={-1}
+                        onClick={() => onRemove(value)}
+                    >
+                        <>
+                            {label}
+                            {!disabled && (
+                                <PhosphorIcon icon={xIcon} size="small" />
+                            )}
+                        </>
+                    </Pill>
+                );
+            })}
+        </>
     );
-
-    const selectedPills = selected.map((value, index) => {
-        const label = labels[index] as string;
-        const focused = index === focusedMultiSelectIndex;
-        const uniqueId = id + index;
-
-        return (
-            <Pill
-                id={uniqueId}
-                key={uniqueId}
-                testId={testId}
-                size="small"
-                style={[styles.pill, focused && styles.pillFocused]}
-                kind={focused ? "info" : "neutral"}
-                // TODO(WB-1676.2): Use the `labels` prop.
-                aria-label={`Remove ${label}`}
-                tabIndex={-1}
-                onClick={() => handlePillClick(value)}
-            >
-                <>
-                    {label}
-                    {!disabled && <PhosphorIcon icon={xIcon} size="small" />}
-                </>
-            </Pill>
-        );
-    });
-
-    return <>{selectedPills}</>;
 });
 
 const styles = StyleSheet.create({

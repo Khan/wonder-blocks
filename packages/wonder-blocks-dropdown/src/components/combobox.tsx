@@ -316,12 +316,30 @@ export default function Combobox({
         handleKeyDown(event);
     };
 
+    // The labels of the selected values.
     const selectedLabels = React.useMemo(
         () =>
             children
                 .filter((item) => selected?.includes(item.props.value))
                 .map((item) => item.props.label as string),
         [children, selected],
+    );
+
+    /**
+     * Handles the click event on a pill to remove it from the list of selected
+     * items.
+     */
+    const handleOnRemove = React.useCallback(
+        (value: string) => {
+            const selectedValues = selected as Array<string>;
+            // Remove the selected item from the list of selected items.
+            const newValues = selectedValues.filter(
+                (selectedValue) => selectedValue !== value,
+            );
+
+            setSelected(newValues);
+        },
+        [selected, setSelected],
     );
 
     return (
@@ -342,7 +360,7 @@ export default function Combobox({
                         focusedMultiSelectIndex={focusedMultiSelectIndex}
                         id={ids.get("pill")}
                         selected={selected as Array<string>}
-                        setSelected={setSelected}
+                        onRemove={handleOnRemove}
                         disabled={disabled}
                         testId={testId}
                     />
@@ -374,11 +392,11 @@ export default function Combobox({
                             : undefined
                     }
                     aria-expanded={openState}
+                    ref={comboboxRef}
                     // We don't want the browser to suggest autocompletions as
                     // the combobox is already providing suggestions.
                     autoComplete="off"
                     role="combobox"
-                    ref={comboboxRef}
                 />
 
                 <IconButton
