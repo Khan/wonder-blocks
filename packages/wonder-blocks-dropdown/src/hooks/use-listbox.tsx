@@ -134,7 +134,6 @@ export function useListbox({
                 case " ":
                     if (
                         // No item is focused
-                        !focusedIndex ||
                         focusedIndex < 0 ||
                         // Only handle space if the listbox is focused
                         (key === " " && disableSpaceSelection)
