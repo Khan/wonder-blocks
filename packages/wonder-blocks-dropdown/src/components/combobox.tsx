@@ -46,22 +46,6 @@ type Props = {
     onChange?: (value: MaybeValueOrValues) => void;
 
     /**
-     * A reference to the element that describes the listbox.
-     */
-    "aria-labelledby"?: string;
-
-    /**
-     * Takes as its value the id of the currently focused element within the
-     * option items collection.
-     *
-     * Instead of the screen reader moving focus between owned elements,
-     * aria-activedescendant is used to refer to the currently active element,
-     * informing assistive technology users of the currently active element when
-     * focused.
-     */
-    "aria-activedescendant"?: string;
-
-    /**
      * Whether the combobox is disabled.
      *
      * A disabled combobox does not support interaction, but it supports focus
