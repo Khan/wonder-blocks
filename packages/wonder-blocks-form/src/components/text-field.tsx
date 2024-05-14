@@ -17,105 +17,123 @@ const defaultErrorMessage = "This field is required.";
 
 const StyledInput = addStyle("input");
 
-type Props = AriaProps & {
+// Props that are only available for inputs of type "number".
+type NumericProps = {
     /**
-     * The unique identifier for the input.
+     * The minimum numeric value for the input.
      */
-    id: string;
+    min?: number;
     /**
-     * Determines the type of input. Defaults to text.
+     * The maximum numeric value for the input.
      */
-    type: TextFieldType;
+    max?: number;
     /**
-     * The input value.
+     * The numeric value to increment or decrement by.
+     * Requires the input to be multiples of this value.
      */
-    value: string;
-    /**
-     * The name for the input control. This is submitted along with
-     * the form data.
-     */
-    name?: string;
-    /**
-     * Makes a read-only input field that cannot be focused. Defaults to false.
-     */
-    disabled: boolean;
-    /**
-     * Provide a validation for the input value.
-     * Return a string error message or null | void for a valid input.
-     */
-    validate?: (value: string) => string | null | void;
-    /**
-     * Called right after the TextField input is validated.
-     */
-    onValidate?: (errorMessage?: string | null | undefined) => unknown;
-    /**
-     * Called when the value has changed.
-     */
-    onChange: (newValue: string) => unknown;
-    /**
-     * Called when a key is pressed.
-     */
-    onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => unknown;
-    /**
-     * Called when the element has been focused.
-     */
-    onFocus?: (event: React.FocusEvent<HTMLInputElement>) => unknown;
-    /**
-     * Called when the element has been blurred.
-     */
-    onBlur?: (event: React.FocusEvent<HTMLInputElement>) => unknown;
-    /**
-     * Provide hints or examples of what to enter.
-     */
-    placeholder?: string;
-    /**
-     * Whether this field is required to to continue, or the error message to
-     * render if this field is left blank.
-     *
-     * This can be a boolean or a string.
-     *
-     * String:
-     * Please pass in a translated string to use as the error message that will
-     * render if the user leaves this field blank. If this field is required,
-     * and a string is not passed in, a default untranslated string will render
-     * upon error.
-     * Note: The string will not be used if a `validate` prop is passed in.
-     *
-     * Example message: i18n._("A password is required to log in.")
-     *
-     * Boolean:
-     * True/false indicating whether this field is required. Please do not pass
-     * in `true` if possible - pass in the error string instead.
-     * If `true` is passed, and a `validate` prop is not passed, that means
-     * there is no corresponding message and the default untranlsated message
-     * will be used.
-     */
-    required?: boolean | string;
-    /**
-     * Change the default focus ring color to fit a dark background.
-     */
-    light: boolean;
-    /**
-     * Custom styles for the input.
-     */
-    style?: StyleType;
-    /**
-     * Optional test ID for e2e testing.
-     */
-    testId?: string;
-    /**
-     * Specifies if the input field is read-only.
-     */
-    readOnly?: boolean;
-    /**
-     * Whether this field should autofocus on page load.
-     */
-    autoFocus?: boolean;
-    /**
-     * Specifies if the input field allows autocomplete.
-     */
-    autoComplete?: string;
+    step?: number;
 };
+
+type Props = AriaProps &
+    NumericProps & {
+        /**
+         * The unique identifier for the input.
+         */
+        id: string;
+        /**
+         * Determines the type of input. Defaults to text.
+         */
+        type: TextFieldType;
+        /**
+         * The input value.
+         */
+        value: string;
+        /**
+         * The name for the input control. This is submitted along with
+         * the form data.
+         */
+        name?: string;
+        /**
+         * Makes a read-only input field that cannot be focused. Defaults to false.
+         */
+        disabled: boolean;
+        /**
+         * Provide a validation for the input value.
+         * Return a string error message or null | void for a valid input.
+         */
+        validate?: (value: string) => string | null | void;
+        /**
+         * Called right after the TextField input is validated.
+         */
+        onValidate?: (errorMessage?: string | null | undefined) => unknown;
+        /**
+         * Called when the value has changed.
+         */
+        onChange: (newValue: string) => unknown;
+        /**
+         * Called when a key is pressed.
+         */
+        onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => unknown;
+        /**
+         * Called when the element has been focused.
+         */
+        onFocus?: (event: React.FocusEvent<HTMLInputElement>) => unknown;
+        /**
+         * Called when the element has been blurred.
+         */
+        onBlur?: (event: React.FocusEvent<HTMLInputElement>) => unknown;
+        /**
+         * Provide hints or examples of what to enter.
+         */
+        placeholder?: string;
+        /**
+         * Whether this field is required to to continue, or the error message to
+         * render if this field is left blank.
+         *
+         * This can be a boolean or a string.
+         *
+         * String:
+         * Please pass in a translated string to use as the error message that will
+         * render if the user leaves this field blank. If this field is required,
+         * and a string is not passed in, a default untranslated string will render
+         * upon error.
+         * Note: The string will not be used if a `validate` prop is passed in.
+         *
+         * Example message: i18n._("A password is required to log in.")
+         *
+         * Boolean:
+         * True/false indicating whether this field is required. Please do not pass
+         * in `true` if possible - pass in the error string instead.
+         * If `true` is passed, and a `validate` prop is not passed, that means
+         * there is no corresponding message and the default untranlsated message
+         * will be used.
+         */
+        required?: boolean | string;
+        /**
+         * Change the default focus ring color to fit a dark background.
+         */
+        light: boolean;
+        /**
+         * Custom styles for the input.
+         */
+        style?: StyleType;
+        /**
+         * Optional test ID for e2e testing.
+         */
+        testId?: string;
+        /**
+         * Specifies if the input field is read-only.
+         */
+        readOnly?: boolean;
+        /**
+         * Whether this field should autofocus on page load.
+         */
+        autoFocus?: boolean;
+        /**
+         * Specifies if the input field allows autocomplete.
+         */
+        autoComplete?: string;
+    };
 
 type PropsWithForwardRef = Props & WithForwardRef;
 
@@ -234,6 +252,9 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             autoFocus,
             autoComplete,
             forwardedRef,
+            min,
+            max,
+            step,
             // The following props are being included here to avoid
             // passing them down to the otherProps spread
             /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -247,6 +268,12 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             // Should only include Aria related props
             ...otherProps
         } = this.props;
+
+        if ((min || max || step) && type !== "number") {
+            throw new Error(
+                'The props `min`, `max`, and `step` can only be used with `type="number"`.',
+            );
+        }
 
         return (
             <StyledInput
@@ -283,6 +310,9 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                 autoFocus={autoFocus}
                 autoComplete={autoComplete}
                 ref={forwardedRef}
+                min={min}
+                max={max}
+                step={step}
                 {...otherProps}
                 aria-invalid={this.state.error ? "true" : "false"}
             />
