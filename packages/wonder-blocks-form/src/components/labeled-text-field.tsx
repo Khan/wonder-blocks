@@ -4,12 +4,13 @@ import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FieldHeading from "./field-heading";
 import TextField, {TextFieldType} from "./text-field";
+import type {NumericProps} from "./text-field";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
 };
 
-type Props = {
+type Props = NumericProps & {
     /**
      * An optional unique identifier for the TextField.
      * If no id is specified, a unique id will be auto-generated.
@@ -213,6 +214,9 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
             autoComplete,
             forwardedRef,
             ariaDescribedby,
+            min,
+            max,
+            step,
         } = this.props;
 
         return (
@@ -247,6 +251,9 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                 readOnly={readOnly}
                                 autoComplete={autoComplete}
                                 ref={forwardedRef}
+                                min={min}
+                                max={max}
+                                step={step}
                             />
                         }
                         label={label}

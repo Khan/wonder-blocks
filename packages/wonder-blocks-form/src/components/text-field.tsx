@@ -18,7 +18,7 @@ const defaultErrorMessage = "This field is required.";
 const StyledInput = addStyle("input");
 
 // Props that are only available for inputs of type "number".
-type NumericProps = {
+export type NumericProps = {
     /**
      * The minimum numeric value for the input.
      */
