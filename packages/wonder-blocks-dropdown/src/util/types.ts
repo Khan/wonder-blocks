@@ -58,3 +58,47 @@ export type OptionItemComponentArray = OptionItemComponent[];
 export type MaybeString = string | null | undefined;
 
 export type MaybeValueOrValues = MaybeString | Array<MaybeString>;
+
+/**
+ * The labels for the combobox component.
+ */
+export type ComboboxLabels = {
+    /**
+     * Label for when the listbox changes to the closed state.
+     */
+    closedState: string;
+    /**
+     * Label for the button that toggles the listbox.
+     */
+    comboboxButton: string;
+    /**
+     * Descriptive label for the listbox element.
+     */
+    listbox: string;
+    /**
+     * Label for the "Remove" item button (pill).
+     */
+    removeSelected: (label: string) => string;
+    /**
+     * Label for when the user visually focuses on a specific item in the
+     * combobox.
+     */
+    liveRegionCurrentItem: (options: {
+        current: string;
+        index: number;
+        total: number;
+        disabled?: boolean;
+        focused?: boolean;
+        selected?: boolean;
+    }) => string;
+    /**
+     * Label for when the user visually focuses on multi-select mode (selected
+     * pills group). This is used to announce the total number of selected
+     * items.
+     */
+    liveRegionMultipleSelectionTotal: (total: number) => string;
+    /**
+     * Label for the total number of items in the listbox.
+     */
+    liveRegionListboxTotal: (total: number) => string;
+};

@@ -14,7 +14,12 @@ import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
-import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
+import {
+    ComboboxLabels,
+    MaybeValueOrValues,
+    OptionItemComponent,
+} from "../util/types";
+import {ComboboxLiveRegion} from "./combobox-live-region";
 import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
@@ -58,6 +63,11 @@ type Props = {
      * The unique identifier of the combobox element.
      */
     id?: string;
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels?: ComboboxLabels;
 
     /**
      * Whether to display the light version of this component.
@@ -118,6 +128,27 @@ export default function Combobox({
     children,
     disabled,
     id,
+    labels = {
+        closedState: "Combobox is closed",
+        comboboxButton: "Toggle listbox",
+        listbox: "Options list",
+        removeSelected: (label: string) => `Remove ${label}`,
+        // Live region labels
+        liveRegionCurrentItem: ({
+            current,
+            index,
+            total,
+            disabled,
+            focused,
+            selected,
+        }) =>
+            `${current} ${focused ? "focused" : ""} ${
+                disabled ? "disabled" : ""
+            } ${selected ? ", selected" : ""}, ${index + 1} of ${total}.`,
+        liveRegionMultipleSelectionTotal: (total) =>
+            `${total} selected options.`,
+        liveRegionListboxTotal: (total) => `${total} results available.`,
+    },
     onChange,
     onToggle,
     opened,
@@ -335,7 +366,16 @@ export default function Combobox({
                 ref={rootNodeRef}
                 style={[styles.wrapper, isListboxFocused && styles.focused]}
             >
-                {/* TODO(WB-1676.2): Add aria-live region to announce combobox states */}
+                <ComboboxLiveRegion
+                    focusedIndex={focusedIndex}
+                    focusedMultiSelectIndex={focusedMultiSelectIndex}
+                    labels={labels}
+                    options={renderList}
+                    multiSelectLabels={selectedLabels}
+                    testId={testId}
+                    opened={openState}
+                    selected={selected}
+                />
 
                 {/* Multi-select pills display before the input (if options are selected) */}
                 {selectionType === "multiple" && Array.isArray(selected) && (
@@ -347,6 +387,7 @@ export default function Combobox({
                         onRemove={handleOnRemove}
                         disabled={disabled}
                         testId={testId}
+                        removeSelectedLabel={labels.removeSelected}
                     />
                 )}
                 <TextField
@@ -370,6 +411,7 @@ export default function Combobox({
                     }}
                     aria-controls={openState ? uniqueId : undefined}
                     onKeyDown={onKeyDown}
+                    // STOPSHIP(juan): Figure out how to handle SR in iOS
                     aria-activedescendant={
                         openState
                             ? renderList[focusedIndex]?.props?.id
@@ -400,8 +442,7 @@ export default function Combobox({
                     tabIndex={-1}
                     aria-controls={uniqueId}
                     aria-expanded={openState}
-                    // TODO(WB-1676.2): Use the `labels` prop.
-                    aria-label="Toggle listbox"
+                    aria-label={labels.comboboxButton}
                 />
             </View>
 
@@ -425,8 +466,8 @@ export default function Combobox({
                                 {minWidth: rootNodeRef?.current?.offsetWidth},
                             ]}
                             testId={testId ? `${testId}-listbox` : undefined}
-                            // TODO(WB-1676.2): Use the `labels` prop.
-                            aria-label=""
+                            aria-label={labels.listbox}
+                            aria-labelledby={ids.get("input")}
                         >
                             {renderList}
                         </Listbox>

@@ -28,6 +28,10 @@ type Props = {
      */
     onRemove: (value: string) => void;
     /**
+     * Accessible label for the remove button.
+     */
+    removeSelectedLabel: (value: string) => string;
+    /**
      * The list of selected items, where each item represents the value of the
      * selected option.
      */
@@ -48,6 +52,7 @@ export const MultipleSelection = React.memo(function SelectedPills({
     id,
     labels,
     onRemove,
+    removeSelectedLabel,
     selected,
     testId,
 }: Props) {
@@ -66,8 +71,7 @@ export const MultipleSelection = React.memo(function SelectedPills({
                         size="small"
                         style={[styles.pill, focused && styles.pillFocused]}
                         kind={focused ? "info" : "neutral"}
-                        // TODO(WB-1676.2): Use the `labels` prop.
-                        aria-label={`Remove ${label}`}
+                        aria-label={removeSelectedLabel(label)}
                         tabIndex={-1}
                         onClick={() => onRemove(value)}
                     >
