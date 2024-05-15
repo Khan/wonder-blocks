@@ -5,6 +5,7 @@ import path from "path";
 import autoExternal from "rollup-plugin-auto-external";
 import babel from "rollup-plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
+import postcss from "rollup-plugin-postcss";
 
 const {presets, plugins} = require("./babel.config")({env: () => false});
 
@@ -49,6 +50,10 @@ const createConfig = (pkgName) => {
             }),
             autoExternal({
                 packagePath: `packages/${pkgName}/package.json`,
+            }),
+            postcss({
+                modules: true,
+                extract: false,
             }),
         ],
     };

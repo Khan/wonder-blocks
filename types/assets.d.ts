@@ -27,3 +27,9 @@ declare module "@phosphor-icons/core/fill/*-fill.svg" {
 
 // Fall back to generic SVG support.
 declare module "*.svg";
+
+// Support CSS modules.
+declare module "*.module.css" {
+    const classes: {[key: string]: string};
+    export default classes;
+}

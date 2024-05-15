@@ -9,7 +9,8 @@ type Falsy = false | 0 | null | undefined;
 export type StyleType =
     | CSSProperties
     | Falsy
-    | NestedArray<CSSProperties | Falsy>;
+    | NestedArray<CSSProperties | Falsy | string>
+    | string;
 
 export type AriaProps = Readonly<AriaAttributes> &
     Readonly<{
@@ -75,7 +76,7 @@ export type TextViewSharedProps = {
     /**
      * Optional custom styles.
      */
-    style?: StyleType;
+    style?: StyleType | string;
     /**
      * Test ID used for e2e testing.
      */
