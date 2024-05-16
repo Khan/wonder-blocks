@@ -1,12 +1,12 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+// import {StyleSheet} from "aphrodite";
 
 // import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 // import {addStyle} from "@khanacademy/wonder-blocks-core";
 // import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import styles from "./text-field.module.css";
 
-import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 

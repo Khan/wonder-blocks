@@ -11,6 +11,7 @@ module.exports = {
         // Compile .svg files using a custom transformer that returns the
         // basename of the file being transformed.
         "^.+.svg$": "<rootDir>/config/jest/svg.transform.js",
+        "\\.css$": "<rootDir>/config/jest/svg.transform.js",
     },
     // Allow transforming files imported from @phosphor-icons/core.
     // This is required by the .svg transform above.
