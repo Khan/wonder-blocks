@@ -251,25 +251,6 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             ...otherProps
         } = this.props;
 
-        // const sharedStyles = [
-        //     styles.input,
-        //     typographyStyles.LabelMedium,
-        //     styles.default,
-        //     // Prioritizes disabled, then focused, then error (if any)
-        //     disabled
-        //         ? styles.disabled
-        //         : this.state.focused
-        //         ? [styles.focused, light && styles.defaultLight]
-        //         : !!this.state.error && [
-        //               styles.error,
-        //               light && styles.errorLight,
-        //           ],
-        //     // Cast `this.state.error` into boolean since it's being
-        //     // used as a conditional
-        //     !!this.state.error && styles.error,
-        //     style && style,
-        // ];
-
         const sharedStyles = [
             styles.input,
             styles.typography,
@@ -277,21 +258,24 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             // Prioritizes disabled, then focused, then error (if any)
             disabled
                 ? styles.disabled
-                : this.state.focused
-                ? [styles.focused, light ? styles.defaultLight : undefined]
-                : !!this.state.error
-                ? [styles.error, light && styles.errorLight]
-                : undefined,
+                : this.state.focused && [
+                      styles.focused,
+                      light && styles.defaultLight,
+                  ],
+            // : !!this.state.error && [
+            //       styles.error,
+            //       light && styles.errorLight,
+            //   ],
             // Cast `this.state.error` into boolean since it's being
             // used as a conditional
-            !!this.state.error ? styles.error : undefined,
-            style ? style : undefined,
-        ].flat();
+            !!this.state.error && styles.error,
+            style && style,
+        ];
 
         return (
             <StyledInput
                 // style={sharedStyles}
-                className={sharedStyles.join(" ")}
+                className={sharedStyles.flat().filter(Boolean).join(" ")}
                 id={id}
                 type={type}
                 placeholder={placeholder}
@@ -324,6 +308,9 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
 //         margin: 0,
 //         outline: "none",
 //         boxShadow: "none",
+//     },
+//     typography: {
+//         ...typographyStyles.LabelMedium,
 //     },
 //     default: {
 //         background: color.white,

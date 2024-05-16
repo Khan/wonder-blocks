@@ -28,6 +28,14 @@
     color: var(--wb-color-offBlack64);
 }
 
+/**
+ * ISSUE(juan): Order of precedence.
+ *
+ * `.error` will be overriden by `.focused` and `.disabled` because they are
+ * defined after `.error` in the file. In the case the input is both focused
+ * and with error, the `.focused` styles will be applied. The expected behavior
+ * is that the error styles should be applied.
+*/
 .error {
     background: var(--wb-color-fadedRed8);
     border: 1px solid var(--wb-color-red);
