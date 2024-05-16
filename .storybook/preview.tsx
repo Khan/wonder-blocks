@@ -7,6 +7,8 @@ import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
 import {Preview} from "@storybook/react";
 
+import "@khanacademy/wonder-blocks-tokens/css/tokens.css";
+
 /**
  * WB Official breakpoints
  * @see https://khanacademy.atlassian.net/wiki/spaces/WB/pages/2099970518/Layout+Breakpoints
