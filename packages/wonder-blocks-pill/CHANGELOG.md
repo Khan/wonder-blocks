@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-pill
 
+## 2.3.0
+
+### Minor Changes
+
+-   e8d25c90: Aria props are now properly applied to pill component.
+
 ## 2.2.1
 
 ### Patch Changes
