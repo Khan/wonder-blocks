@@ -15,7 +15,7 @@ type CommonProps = AriaProps & {
     /**
      * The content to render inside the popover.
      */
-    content: string;
+    content: React.ReactNode;
     /**
      * The popover title
      */
