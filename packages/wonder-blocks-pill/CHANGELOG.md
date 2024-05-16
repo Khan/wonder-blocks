@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-pill
 
+## 2.4.0
+
+### Minor Changes
+
+-   bf1e3d87: Add tabindex to pill props
+
 ## 2.3.0
 
 ### Minor Changes
