@@ -118,6 +118,7 @@ const Pill = React.forwardRef(function Pill(
         onClick,
         style,
         testId,
+        ...ariaProps
     } = props;
 
     let wrapperSizeStyle;
@@ -150,6 +151,7 @@ const Pill = React.forwardRef(function Pill(
                 style={[defaultStyles, colorStyles.clickableWrapper, style]}
                 testId={testId}
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
+                {...ariaProps}
             >
                 {() => <PillInner size={size}>{children}</PillInner>}
             </Clickable>
@@ -163,6 +165,7 @@ const Pill = React.forwardRef(function Pill(
             style={[defaultStyles, style]}
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
+            {...ariaProps}
         >
             <PillInner size={size}>{children}</PillInner>
         </View>
