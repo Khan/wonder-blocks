@@ -83,6 +83,7 @@
     "babel-loader": "^8.2.3",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "chromatic": "^6.0.4",
+    "class-variance-authority": "^0.7.0",
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-import-resolver-typescript": "^3.5.5",

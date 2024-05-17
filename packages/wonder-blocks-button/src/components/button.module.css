@@ -1,0 +1,535 @@
+.shared {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: var(--button-padding-large);
+    padding-right: var(--button-padding-large);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    /* This removes the 300ms click delay on mobile browsers by indicating that */
+    /* double-tap to zoom shouldn't be used on this element. */
+    touch-action: manipulation;
+    user-select: none;
+
+    &:focus {
+        /* // Mobile: Removes a blue highlight style shown when the user clicks a button */
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+}
+
+.disabled {
+    cursor: auto;
+}
+
+/**
+ * sizes
+ */
+.medium {
+    border-radius: var(--button-border-radius-default);
+    height: var(--button-size-height-medium);
+}
+
+.small {
+    border-radius: var(--button-border-radius-small);
+    height: var(--button-size-height-small);
+}
+
+.large {
+    border-radius: var(--button-border-radius-large);
+    height: var(--button-size-height-large);
+}
+
+.text {
+    align-items: center;
+    font-weight: var(--button-font-weight-default);
+    white-space: nowrap;
+    overflow: hidden;
+    /* allows the button text to truncate */
+    display: inline-block;
+    /* fix Safari bug where the browser was eating mouse events */
+    pointer-events: none;
+}
+
+.largeText {
+    font-size: var(--button-font-size-large);
+    line-height: var(--button-line-height-large);
+}
+
+.textWithFocus {
+    /* allows the tertiary button border to use the label width */
+    position: relative;
+}
+
+.hiddenText {
+    visibility: hidden;
+}
+
+.spinner {
+    position: absolute;
+}
+
+.startIcon {
+    margin-right: var(--button-padding-small);
+    margin-left: var(--button-icon-offset);
+}
+
+.tertiaryStartIcon {
+    /* // Undo the negative padding from startIcon since tertiary
+    // buttons don't have extra padding. */
+    margin-left: 0;
+}
+
+.endIcon {
+    margin-left: var(--button-padding-small);
+}
+
+.iconWrapper {
+    border-radius: var(--button-border-radius-icon);
+    padding: var(--button-padding-small);
+    /* // View has a default minWidth of 0; which causes the label text
+    // to encroach on the icon when it needs to truncate. We can fix
+    // this by setting the minWidth to auto. */
+    min-width: auto;
+}
+
+.iconWrapperSecondaryHovered {
+    background-color: var(--button-color-bg-icon-secondaryHover);
+    color: var(--button-color-text-icon-secondaryHover);
+}
+
+.endIconWrapper {
+    margin-left: var(--button-padding-small);
+    margin-right: var(--button-margin-icon-offset);
+}
+
+.endIconWrapperTertiary {
+    margin-right: 0;
+}
+
+/**
+ * ------------------------------------------------------------
+ * _generateStyles
+ * ------------------------------------------------------------
+ */
+.default {
+    /* const color... */
+    --button-internal-color-default: var(--button-color-bg-action-default);
+    --button-internal-color-destructive: var(--button-color-bg-critical-default);
+    /* const fadedColor */
+    --button-internal-faded-color-default: var(--button-color-bg-action-inverse);
+    --button-internal-faded-color-destructive: var(--button-color-critical-inverse);
+    /* const activeColor */
+    --button-internal-active-color-default: var(--button-color-bg-action-active);
+    --button-internal-active-color-destructive: var(--button-color-critical-active);
+    /* const padding */
+    --button-internal-size-padding-default: var(--button-padding-large);
+    --button-internal-size-padding-large: var(--button-padding-xLarge);
+}
+
+/**
+ * ------------------------------------------------------------
+ * kind=primary
+ */
+.primary {
+    /* const boxShadowInnerColor */
+    --button-internal-box-shadow-inner-color: var(--button-color-bg-primary-default);
+    --button-internal-box-shadow-inner-color-inverse: var(--button-color-bg-primary-inverse);
+}
+
+/* kind=primary, color=default, light=false, state=resting */
+.primaryDefault {
+    background: var(--button-internal-color-default);
+    color: var(--button-color-text-inverse);
+    padding-left: var(--button-internal-size-padding-default);
+    padding-right: var(--button-internal-size-padding-default);
+}
+
+.primarySizeLarge {
+    padding-left: var(--button-internal-size-padding-large);
+    padding-right: var(--button-internal-size-padding-large);
+}
+
+/* kind=primary, color=default, light=true, state=resting */
+.primaryDefaultLight {
+    background: var(--button-color-bg-primary-default);
+    color: var(--button-internal-color-default);
+}
+
+/* kind=primary, color=destructive, state=resting, light=false */
+.primaryDestructive {
+    background: var(--button-internal-color-destructive);
+}
+
+/* kind=primary, color=destructive, state=resting, light=true */
+.primaryDestructiveLight {
+    /* duplicate */
+    background: var(--button-color-bg-primary-default);
+    color: var(--button-internal-color-destructive);
+}
+
+/* kind=primary, color=default, light=false, state=focus */
+.primaryDefaultFocus {
+    box-shadow: 0 0 0 1px var(--button-internal-box-shadow-inner-color), 0 0 0 3px var(--button-internal-color-default);
+}
+
+/* kind=primary, color=default, light=true, state=focus */
+.primaryDefaultLightFocus {
+    box-shadow: 0 0 0 1px var(--button-internal-box-shadow-inner-color-inverse), 0 0 0 3px var(--button-internal-color-default);
+}
+
+/* kind=primary, color=destructive, light=false, state=focus */
+.primaryDestructiveFocus {
+    box-shadow: 0 0 0 1px var(--button-internal-box-shadow-inner-color), 0 0 0 3px var(--button-internal-color-destructive);
+
+}
+
+/* kind=primary, color=destructive, light=true, state=focus */
+.primaryDestructiveLightFocus {
+    /* NOTE(juan): same as default (aka primary-focus-light)... MIGHT DELETE */
+    box-shadow: 0 0 0 1px var(--button-internal-box-shadow-inner-color-inverse), 0 0 0 3px var(--button-internal-color-destructive);
+}
+
+/* kind=primary, color=default, light=false, state=active */
+.primaryDefaultActive {
+    box-shadow: 0 0 0 1px var(--button-internal-box-shadow-inner-color), 0 0 0 3px var(--button-internal-active-color-default);
+    background: var(--button-internal-active-color-default);
+    color: var(--button-internal-faded-color-default);
+}
+
+/* kind=primary, color=default, light=true, state=active */
+.primaryDefaultLightActive {
+    box-shadow: 0 0 0 1px var(--button-internal-box-shadow-inner-color-inverse), 0 0 0 3px var(--button-internal-faded-color-default);
+    background: var(--button-color-bg-action-inverse);
+    color: var(--button-color-bg-action-active);
+}
+
+/* kind=primary, color=destructive, light=false, state=active */
+.primaryDestructiveActive {
+    box-shadow: 0 0 0 1px var(--button-internal-box-shadow-inner-color), 0 0 0 3px var(--button-internal-active-color-destructive);
+    background: var(--button-internal-active-color-destructive);
+    color: var(--button-internal-faded-color-destructive);
+}
+
+/* kind=primary, color=destructive, light=true, state=active */
+.primaryDestructiveLightActive {
+    box-shadow: 0 0 0 1px var(--button-internal-box-shadow-inner-color-inverse), 0 0 0 3px var(--button-internal-faded-color-destructive);
+    background: var(--button-color-bg-critical-inverse);
+    color: var(--button-color-bg-critical-active);
+}
+
+/* kind=primary, color=default, light=false, state=disabled */
+.primaryDefaultDisabled {
+    background: var(--button-color-bg-primary-disabled);
+    color: var(--button-color-text-primary-disabled);
+    cursor: default;
+}
+
+.primaryDefaultDisabled:focus {
+    box-shadow: 0 0 0 1px var(--button-color-bg-primary-default), 0 0 0 3px var(--button-color-bg-primary-disabled);
+}
+
+/* kind=primary, color=default, light=true, state=disabled */
+.primaryDefaultLightDisabled {
+    background: var(--button-color-bg-action-inverse);
+    color: var(--button-internal-color-default);
+}
+
+.primaryDefaultLightDisabled:focus {
+    box-shadow: 0 0 0 1px var(--button-color-bg-primary-disabled), 0 0 0 3px var(--button-internal-faded-color-default);
+}
+
+/* kind=primary, color=destructive, light=false, state=disabled */
+.primaryDestructiveDisabled {
+    /* NOTE(juan): same as default color... MIGHT DELETE */
+    background: var(--button-color-bg-primary-disabled);
+    color: var(--button-internal-color-destructive);
+    cursor: default;
+}
+
+.primaryDestructiveDisabled:focus {
+    /* NOTE(juan): same as default color... MIGHT DELETE */
+    box-shadow: 0 0 0 1px var(--button-color-bg-primary-default), 0 0 0 3px var(--button-color-bg-primary-disabled);
+}
+
+/* kind=primary, color=destructive, light=true, state=disabled */
+.primaryDestructiveLightDisabled {
+    background: var(--button-internal-faded-color-destructive);
+    color: var(--button-internal-color-destructive);
+}
+
+.primaryDestructiveLightDisabled:focus {
+    box-shadow: 0 0 0 1px var(--button-color-bg-primary-disabled), 0 0 0 3px var(--button-internal-faded-color-destructive);
+}
+
+/**
+ * ------------------------------------------------------------
+ * kind=secondary
+ */
+
+/* secondary:resting */
+.secondary {
+    /* custom css variables */
+    --secondary-border-color-default: var(--button-color-border-secondary-action);
+    --secondary-border-color-destructive: var(--button-color-border-secondary-critical);
+    --secondary-active-color-default: var(--button-color-bg-secondary-active-action);
+    --secondary-active-color-destructive: var(--button-color-bg-secondary-active-critical);
+
+    /* base styles */
+    background: var(--button-color-bg-secondary-default);
+    border-style: solid;
+    border-width: var(--button-border-width-secondary);
+    padding-left: var(--button-internal-size-padding-default);
+    padding-right: var(--button-internal-size-padding-default);
+}
+
+/* kind=secondary, color=default, light=false, state=resting */
+.secondaryDefault {
+    color: var(--button-internal-color-default);
+    border-color: var(--secondary-border-color-default);
+}
+
+/* kind=secondary, color=destructive, light=false, state=resting */
+.secondaryDestructive {
+    color: var(--button-internal-color-destructive);
+    border-color: var(--secondary-border-color-destructive);
+}
+
+/* kind=secondary, color=default&destructive, light=true, state=resting */
+.secondaryLight {
+    background: var(--button-color-bg-secondary-inverse);
+    color: var(--button-color-text-inverse);
+    border-color: var(--button-color-border-secondary-inverse);
+}
+
+/* secondary:focus */
+.secondaryFocus {
+    background: var(--button-color-bg-secondary-focus);
+    border-color: transparent;
+    outline-style: solid;
+    outline-width: var(--button-border-width-focused);
+}
+
+/* kind=secondary, color=default, light=false, state=focus */
+.secondaryDefaultFocus {
+    outline-color: var(--button-internal-color-default);
+}
+
+/* kind=secondary, color=destructive, light=false, state=focus */
+.secondaryDestructiveFocus {
+    outline-color: var(--button-internal-color-destructive);
+}
+
+/* kind=secondary, color=default&destructive, light=true, state=focus */
+.secondaryLightFocus {
+    background: var(--button-color-bg-secondary-inverse);
+    outline-color: var(--button-color-border-primary-inverse);
+}
+
+/* secondary:active */
+.secondaryActive {
+    border-color: transparent;
+    outline-style: solid;
+    outline-width: var(--button-border-width-focused);
+}
+
+/* kind=secondary, color=default, light=false, state=active */
+.secondaryDefaultActive {
+    background: var(--secondary-active-color-default);
+    color: var(--button-internal-active-color-default);
+    outline-color: var(--button-internal-active-color-default);
+}
+
+/* kind=secondary, color=destructive, light=false, state=active */
+.secondaryDestructiveActive {
+    background: var(--secondary-active-color-destructive);
+    color: var(--button-internal-active-color-destructive);
+    outline-color: var(--button-internal-active-color-destructive);
+}
+
+/* kind=secondary, color=default, light=true, state=active */
+.secondaryDefaultLightActive {
+    background: var(--button-internal-active-color-default);
+    color: var(--button-internal-faded-color-default);
+    outline-color: var(--button-internal-faded-color-default);
+}
+
+/* kind=secondary, color=destructive, light=true, state=active */
+.secondaryDestructiveLightActive {
+    background: var(--button-internal-active-color-destructive);
+    color: var(--button-internal-faded-color-destructive);
+    outline-color: var(--button-internal-faded-color-destructive);
+}
+
+/* secondary:disabled */
+.secondaryDisabled {
+    color: var(--button-color-text-disabled);
+    outline-color: var(--button-color-border-disabled);
+    cursor: default;
+}
+
+.secondaryDisabled:focus {
+    outline-color: var(--button-color-border-disabled);
+    outline-width: var(--button-border-width-disabled);
+}
+
+/* kind=secondary, color=default, light=true, state=disabled */
+.secondaryDefaultLightDisabled {
+    color: var(--button-color-text-secondary-inverse);
+    outline-color: var(--button-internal-faded-color-default);
+}
+
+.secondaryDestructiveLightDisabled {
+    color: var(--button-color-text-secondary-inverse);
+    outline-color: var(--button-internal-faded-color-destructive);
+}
+
+.secondaryLightDisabled:focus {
+    outline-color: var(--button-color-border-secondary-inverse);
+}
+
+/**
+ * ------------------------------------------------------------
+ * kind=tertiary
+ */
+
+/* tertiary:resting */
+.tertiary {
+    background: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* kind=tertiary, color=default, light=false, state=resting */
+.tertiaryDefault {
+    color: var(--button-internal-color-default);
+}
+
+/* kind=tertiary, color=destructive, light=false, state=resting */
+.tertiaryDestructive {
+    color: var(--button-internal-color-destructive);
+}
+
+/* kind=tertiary, color=default&destructive, light=true, state=resting */
+.tertiaryLight {
+    color: var(--button-color-text-inverse);
+}
+
+/* tertiary:hover */
+.tertiaryHover:after {
+    content: '';
+    position: absolute;
+    height: var(--button-size-height-tertiaryHover);
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--button-border-radius-tertiary);
+}
+
+/* kind=tertiary, color=default, light=false, state=hover */
+.tertiaryDefaultHover:after {
+    background: var(--button-internal-color-default);
+}
+
+/* kind=tertiary, color=destructive, light=false, state=hover */
+.tertiaryDestructiveHover:after {
+    background: var(--button-internal-color-destructive);
+}
+
+/* kind=tertiary, color=default&destructive, light=true, state=hover */
+.tertiaryLightHover:after {
+    background: var(--button-color-bg-tertiary-hover);
+}
+
+/* tertiary:focus */
+.tertiaryFocus {
+    outline-style: solid;
+    outline-width: var(--button-border-width-focused);
+    border-radius: var(--button-border-radius-default);
+}
+
+/* kind=tertiary, color=default, light=false, state=focus */
+.tertiaryDefaultFocus {
+    outline-color: var(--button-internal-color-default);
+}
+
+/* kind=tertiary, color=destructive, light=false, state=focus */
+.tertiaryDestructiveFocus {
+    outline-color: var(--button-internal-color-destructive);
+}
+
+/* kind=tertiary, color=default&destructive, light=true, state=focus */
+.tertiaryLightFocus {
+    outline-color: var(--button-color-border-tertiary-inverse);
+}
+
+/* tertiary:active */
+.tertiaryActive:after {
+    height: 1;
+}
+
+/* kind=tertiary, color=default, light=false, state=active */
+.tertiaryDefaultActive {
+    color: var(--button-internal-active-color-default);
+}
+
+.tertiaryDefaultActive:after {
+    background: var(--button-internal-active-color-default);
+}
+
+/* kind=tertiary, color=destructive, light=false, state=active */
+.tertiaryDestructiveActive {
+    color: var(--button-internal-active-color-destructive);
+}
+
+.tertiaryDestructiveActive:after {
+    background: var(--button-internal-active-color-destructive);
+}
+
+/* kind=tertiary, color=default, light=true, state=active */
+.tertiaryDefaultLightActive {
+    color: var(--button-internal-faded-color-default);
+}
+
+.tertiaryDefaultLightActive:after {
+    background: var(--button-internal-faded-color-default);
+}
+
+/* kind=tertiary, color=destructive, light=true, state=active */
+.tertiaryDestructiveLightActive {
+    color: var(--button-internal-faded-color-destructive);
+}
+
+.tertiaryDestructiveLightActive:after {
+    background: var(--button-internal-faded-color-destructive);
+}
+
+/* tertiary:disabled */
+.tertiaryDisabled {
+    color: var(--button-color-text-disabled);
+    cursor: default;
+}
+
+/* kind=tertiary, color=default, light=true, state=disabled */
+.tertiaryDefaultLightDisabled {
+    color: var(--button-internal-faded-color-default);
+}
+
+/* kind=tertiary, color=destructive, light=true, state=disabled */
+.tertiaryDestructiveLightDisabled {
+    color: var(--button-internal-faded-color-destructive);
+}
+
+/* tertiary:disabled+focus */
+.tertiaryDisabledFocus {
+    outline-color: var(--button-color-border-disabled);
+}
+
+.tertiaryLightDisabledFocus {
+    outline-color: var(--button-color-border-tertiary-inverse);
+}

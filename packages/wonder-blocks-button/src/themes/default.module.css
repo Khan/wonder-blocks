@@ -1,0 +1,105 @@
+.theme {
+    /**
+    * Background
+    */
+    /* color="default" */
+    --button-color-bg-action-default: var(--wb-color-blue);
+    --button-color-bg-action-active: var(--wb-color-activeBlue);
+    --button-color-bg-action-inverse: var(--wb-color-fadedBlue);
+    /* color="destructive */
+    --button-color-bg-critical-default: var(--wb-color-red);
+    --button-color-bg-critical-active: var(--wb-color-activeRed);
+    --button-color-bg-critical-inverse: var(--wb-color-fadedRed);
+
+    /* kind="primary" */
+    --button-color-bg-primary-default: var(--wb-color-white);
+    --button-color-bg-primary-disabled: var(--wb-color-offBlack32);
+    --button-color-bg-primary-inverse: var(--wb-color-darkBlue);
+
+    /* kind="secondary" */
+    --button-color-bg-secondary-default: none;
+    --button-color-bg-secondary-inverse: none;
+    --button-color-bg-secondary-focus: var(--wb-color-white);
+    --button-color-bg-secondary-active-action: var(--wb-color-fadedBlue);
+    --button-color-bg-secondary-active-critical: var(--wb-color-fadedRed);
+
+    /* kind="tertiary" */
+    --button-color-bg-tertiary-hover: var(--wb-color-white);
+
+    /* icons */
+    --button-color-bg-icon-secondaryHover: transparent;
+
+    /**
+     * Text color
+     */
+    /* color="default" */
+    --button-color-text-disabled: var(--wb-color-offBlack32);
+    --button-color-text-inverse: var(--wb-color-white);
+
+    /* kind */
+    --button-color-text-primary-disabled: var(--wb-color-white64);
+    --button-color-text-secondary-inverse: var(--wb-color-white50);
+
+    /* icons */
+    --button-color-text-icon-secondaryHover: var(--wb-color-blue);
+
+    /**
+     * Border color
+     */
+    /* color="default" */
+    --button-color-border-disabled: var(--wb-color-offBlack32);
+
+    /* kind */
+    --button-color-border-primary-inverse: var(--wb-color-white);
+    --button-color-border-secondary-action: var(--wb-color-offBlack50);
+    --button-color-border-secondary-critical: var(--wb-color-offBlack50);
+    --button-color-border-secondary-inverse: var(--wb-color-white50);
+    --button-color-border-tertiary-inverse: var(--wb-color-white50);
+
+    /**
+     * Border
+     */
+    /* width */
+    --button-border-width-secondary: var(--wb-border-width-hairline);
+    --button-border-width-focused: var(--wb-border-width-thin);
+    --button-border-width-disabled: var(--wb-border-width-thin);
+
+    /* radius */
+    --button-border-radius-default: var(--wb-border-radius-medium_4);
+    --button-border-radius-tertiary: var(--wb-border-radius-xSmall_2);
+    --button-border-radius-small: var(--wb-border-radius-medium_4);
+    --button-border-radius-large: var(--wb-border-radius-large_6);
+    --button-border-radius-icon: var(--wb-border-radius-full);
+
+    /**
+     * Size
+     */
+    --button-size-height-tertiaryHover: var(--wb-spacing-xxxxSmall_2);
+    --button-size-height-small: var(--wb-spacing-xLarge_32);
+    /* NOTE: These height tokens are specific to this component. */
+    --button-size-height-medium: 40px;
+    --button-size-height-large: 56px;
+
+    /**
+     * Margin
+     */
+    --button-margin-icon-offset: calc(var(--wb-spacing-xxxxSmall_2)*-1);
+
+    /**
+     * Padding
+     */
+    --button-padding-xsmall: var(--wb-spacing-xxxxSmall_2);
+    --button-padding-small: var(--wb-spacing-xxSmall6);
+    --button-padding-medium: var(--wb-spacing-small_12);
+    --button-padding-large: var(--wb-spacing-medium_16);
+    --button-padding-xlarge: var(--wb-spacing-xLarge_32);
+
+    /**
+     * Font
+     */
+
+    /* NOTE: This token is specific to this button size. */
+    --button-font-size-large: 18;
+    --button-font-lineHeight-large: var(--wb-lineHeight-medium);
+    --button-font-weight-default: var(--wb-font-weight-bold);
+}

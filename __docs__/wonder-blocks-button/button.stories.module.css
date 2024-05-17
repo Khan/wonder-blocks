@@ -1,0 +1,28 @@
+.row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: var(--wb-spacing-xSmall_8);
+}
+
+.button {
+    margin-right: var(--wb-spacing-xSmall_8);
+}
+
+.truncatedButton {
+    max-width: 200px;
+    margin-bottom: var(--wb-spacing-medium_16);
+}
+
+.fillSpace {
+    min-width: 140px;
+}
+
+.example {
+    background: var(--wb-color-offWhite);
+    padding: var(--wb-spacing-medium_16);
+}
+
+.label {
+    margin-top: var(--wb-spacing-large_24);
+    margin-bottom: var(--wb-spacing-xSmall_8);
+}
