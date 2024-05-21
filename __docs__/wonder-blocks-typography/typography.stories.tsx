@@ -1,10 +1,9 @@
 import * as React from "react";
-import {css, StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+// import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
     HeadingLarge,
@@ -31,6 +30,8 @@ import TypographyArgTypes from "./typography.argtypes";
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
 import "./styles.css";
+
+import styles from "./typography.stories.module.css";
 
 const typographyDescription = `Typography. \`wonder-blocks-typography\`
 provides a set of standardized components for displaying text in a consistent
@@ -117,18 +118,9 @@ TypographyElements.parameters = {
  */
 export const WithStyle: StoryObj<typeof Title> = {
     render: () => {
-        const styles = StyleSheet.create({
-            blueText: {
-                color: color.blue,
-            },
-            highlighted: {
-                background: color.offBlack16,
-            },
-        });
-
         return (
             <Title
-                className={`${css(styles.highlighted)} custom-style`}
+                className={`${styles.highlighted} custom-style`}
                 style={styles.blueText}
             >
                 Blue Title
@@ -365,10 +357,7 @@ Paragraph.parameters = {
 };
 
 export const LineHeight: StoryObj<any> = () => {
-    const style = {
-        outline: `1px solid ${color.offBlack}`,
-        marginBottom: spacing.small_12,
-    } as const;
+    const style = styles.lineHeightStyle;
 
     return (
         <View>

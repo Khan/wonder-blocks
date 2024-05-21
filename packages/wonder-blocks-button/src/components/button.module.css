@@ -50,6 +50,7 @@
     font-weight: var(--button-font-weight-default);
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
     /* allows the button text to truncate */
     display: inline-block;
     /* fix Safari bug where the browser was eating mouse events */
@@ -58,7 +59,7 @@
 
 .largeText {
     font-size: var(--button-font-size-large);
-    line-height: var(--button-line-height-large);
+    line-height: var(--button-font-lineHeight-large);
 }
 
 .textWithFocus {
@@ -129,7 +130,7 @@
     --button-internal-active-color-destructive: var(--button-color-critical-active);
     /* const padding */
     --button-internal-size-padding-default: var(--button-padding-large);
-    --button-internal-size-padding-large: var(--button-padding-xLarge);
+    --button-internal-size-padding-large: var(--button-padding-xlarge);
 }
 
 /**

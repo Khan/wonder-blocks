@@ -99,7 +99,7 @@
      */
 
     /* NOTE: This token is specific to this button size. */
-    --button-font-size-large: 18;
+    --button-font-size-large: 18px;
     --button-font-lineHeight-large: var(--wb-lineHeight-medium);
     --button-font-weight-default: var(--wb-font-weight-bold);
 }

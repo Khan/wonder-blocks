@@ -1,0 +1,12 @@
+.blueText {
+    color: var(--wb-color-blue);
+}
+
+.highlighted {
+    background-color: var(--wb-color-offBlack16);
+}
+
+.lineHeightStyle {
+    outline: 1px solid var(--wb-color-offBlack);
+    margin-bottom: var(--wb-spacing-small_12);
+}

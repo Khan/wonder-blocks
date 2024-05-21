@@ -1,7 +1,7 @@
 import * as React from "react";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 
-import styles from "../util/styles";
+import styles from "./styles.module.css";
 
 type Props = PropsFor<typeof Text>;
 

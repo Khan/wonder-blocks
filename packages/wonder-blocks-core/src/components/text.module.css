@@ -1,0 +1,9 @@
+.text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.header {
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -1,10 +1,9 @@
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
+import styles from "./button.stories.module.css";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-
-import {styles} from "./button.stories";
 
 const BeforeNavCallbacks = () => (
     <MemoryRouter>

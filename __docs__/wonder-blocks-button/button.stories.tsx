@@ -11,6 +11,7 @@ import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
+import {cx} from "class-variance-authority";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -438,7 +439,7 @@ export const Size: StoryComponentType = () => (
     <View>
         <View style={styles.row}>
             <LabelMedium style={styles.fillSpace}>small</LabelMedium>
-            <View style={[styles.row, styles.example]}>
+            <View style={cx([styles.row, styles.example])}>
                 <Button style={styles.button} onClick={() => {}} size="small">
                     Label
                 </Button>
@@ -463,7 +464,7 @@ export const Size: StoryComponentType = () => (
         <View style={styles.row}>
             <LabelMedium style={styles.fillSpace}>medium (default)</LabelMedium>
 
-            <View style={[styles.row, styles.example]}>
+            <View style={cx([styles.row, styles.example])}>
                 <Button style={styles.button} onClick={() => {}} size="medium">
                     Label
                 </Button>
@@ -487,7 +488,7 @@ export const Size: StoryComponentType = () => (
         </View>
         <View style={styles.row}>
             <LabelMedium style={styles.fillSpace}>large</LabelMedium>
-            <View style={[styles.row, styles.example]}>
+            <View style={cx([styles.row, styles.example])}>
                 <Button style={styles.button} onClick={() => {}} size="large">
                     Label
                 </Button>

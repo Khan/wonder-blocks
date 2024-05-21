@@ -1,0 +1,36 @@
+.common {
+    display: block;
+}
+
+.Title {
+    font-family: var(--wb-font-family-sans);
+    font-weight: 900;
+    font-size: var(--wb-font-size-xxxLarge);
+    line-height: var(--wb-font-lineHeight-xxxLarge);
+
+    @media (max-width: 1023px) {
+        font-size: var(--wb-font-size-xxLarge);
+        line-height: var(--wb-font-lineHeight-xxLarge);
+    }
+}
+
+.LabelLarge {
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-bold);
+    font-size: var(--wb-font-size-medium);
+    line-height: var(--wb-font-lineHeight-medium);
+}
+
+.LabelMedium {
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-regular);
+    font-size: var(--wb-font-size-regular);
+    line-height: var(--wb-font-lineHeight-regular);
+}
+
+.LabelSmall {
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-regular);
+    font-size: var(--wb-font-size-small);
+    line-height: var(--wb-font-lineHeight-small);
+}

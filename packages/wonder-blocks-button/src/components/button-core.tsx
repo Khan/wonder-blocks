@@ -30,7 +30,7 @@ type Props = SharedProps & ChildrenProps & ClickableState;
 // const StyledLink = addStyle(Link);
 const StyledAnchor = "a";
 const StyledButton = "button";
-// const StyledLink = Link;
+const StyledLink = Link;
 
 const buttonStyles = cva(sharedStyles.default, {
     variants: {
@@ -633,14 +633,14 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
         if (href && !disabled) {
             return router && !skipClientNav && isClientSideUrl(href) ? (
-                <Link
+                <StyledLink
                     {...commonProps}
                     to={href}
                     // TODO(juan): fix this
-                    ref={ref as React.Ref<typeof Link>}
+                    // ref={ref as React.Ref<typeof StyledLink>}
                 >
                     {contents}
-                </Link>
+                </StyledLink>
             ) : (
                 <StyledAnchor
                     {...commonProps}
