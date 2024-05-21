@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UniqueIDFactory #constructor special characters in scope, throws 1`] = `"Invalid factory scope: invalid$%^&*("`;
-
 exports[`UniqueIDFactory #constructor whitespace in scope, throws 1`] = `"Invalid factory scope: not valid scope"`;
 
 exports[`UniqueIDFactory #constructor whitespace only scope, throws 1`] = `"Invalid factory scope:      "`;
