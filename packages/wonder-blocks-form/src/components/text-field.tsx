@@ -269,6 +269,10 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             ...otherProps
         } = this.props;
 
+        // TODO: Remove this check once we update to React 19 and make this
+        // a function component. As is, adding type restrictions alone won't
+        // prevent these props from being used with the wrong type, because
+        // the ref forwarding causes weird type issues involving unions.
         if ((min || max || step) && type !== "number") {
             throw new Error(
                 'The props `min`, `max`, and `step` can only be used with `type="number"`.',
