@@ -53,7 +53,7 @@ const createConfig = (pkgName) => {
             }),
             postcss({
                 modules: true,
-                extract: false,
+                extract: true,
             }),
         ],
     };
