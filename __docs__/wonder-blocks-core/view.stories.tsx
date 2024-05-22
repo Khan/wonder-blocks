@@ -1,5 +1,5 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {StyleSheet, css} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -75,7 +75,7 @@ InlineStyles.parameters = {
 export const OtherProps: StoryComponentType = {
     name: "Using other props",
     render: () => (
-        <View style={styles.container}>
+        <View className={css(styles.container)}>
             <View
                 onClick={() => {
                     // eslint-disable-next-line no-console

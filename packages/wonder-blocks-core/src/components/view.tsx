@@ -1,5 +1,6 @@
 // WARNING: If you modify this file you must update view.js.flow.
 import {StyleSheet} from "aphrodite";
+import {cx} from "class-variance-authority";
 import * as React from "react";
 
 // import addStyle from "../util/add-style";
@@ -88,13 +89,19 @@ const View: React.ForwardRefExoticComponent<
         aphroditeStyle = processStyleList([stylesOld.default, style]);
     }
 
+    const finalStyles = isStyleString(style)
+        ? className
+        : aphroditeStyle?.className;
+
     const commonProps = {
         ...restProps,
         // Note: this matches the default test id that Testing Library uses!
         "data-testid": testId,
-        className: isStyleString(style) ? className : aphroditeStyle?.className,
         style: aphroditeStyle?.style,
+        className: cx(props.className, finalStyles),
     } as const;
+
+    console.log("common: cn", commonProps.className, commonProps.style);
 
     switch (tag) {
         case "article":

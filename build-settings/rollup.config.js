@@ -7,7 +7,7 @@ import babel from "rollup-plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import postcss from "rollup-plugin-postcss";
 
-const {presets, plugins} = require("./babel.config")({env: () => false});
+const { presets, plugins } = require("./babel.config")({ env: () => false });
 
 const createConfig = (pkgName) => {
     const packageJsonPath = path.join("packages", pkgName, "package.json");

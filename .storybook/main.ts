@@ -30,7 +30,7 @@ const config: StorybookConfig = {
                 // the tokens.css import.
                 alias: [
                     {
-                        find: /^@khanacademy\/wonder-blocks(-.*).(ts|tsx)$/,
+                        find: /^@khanacademy\/wonder-blocks(-[a-z]*)$/,
                         replacement: resolve(
                             __dirname,
                             "../packages/wonder-blocks$1/src",
