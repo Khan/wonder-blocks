@@ -106,7 +106,6 @@
     "jest-extended": "^3.2.4",
     "jscodeshift": "^0.15.1",
     "npm-package-json-lint": "^6.4.0",
-    "postcss-modules": "^6.0.0",
     "postcss-variable-compress": "^3.0.0",
     "prettier": "^2.8.1",
     "react-refresh": "^0.14.0",
