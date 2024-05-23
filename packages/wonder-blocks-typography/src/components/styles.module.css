@@ -1,8 +1,5 @@
-.common {
-    display: block;
-}
-
 .Title {
+    display: block;
     font-family: var(--wb-font-family-sans);
     font-weight: 900;
     font-size: var(--wb-font-size-xxxLarge);
@@ -14,7 +11,70 @@
     }
 }
 
+.Tagline {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-regular);
+    font-size: var(--wb-font-size-large);
+    line-height: var(--wb-font-lineHeight-large);
+}
+
+.HeadingLarge {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-bold);
+    font-size: var(--wb-font-size-xxLarge);
+    line-height: var(--wb-font-lineHeight-xxLarge);
+
+    @media (max-width: 1023px) {
+        font-size: var(--wb-font-size-xLarge);
+        line-height: var(--wb-font-lineHeight-xLarge);
+    }
+
+}
+
+.HeadingMedium {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-bold);
+    font-size: var(--wb-font-size-xLarge);
+    line-height: var(--wb-font-lineHeight-xLarge);
+
+    @media (max-width: 1023px) {
+        font-size: 22px;
+        line-height: 26px;
+    }
+}
+
+.HeadingSmall {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-bold);
+    font-size: var(--wb-font-size-large);
+    line-height: var(--wb-font-lineHeight-large);
+}
+
+.HeadingXSmall {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-bold);
+    font-size: var(--wb-font-size-xSmall);
+    line-height: var(--wb-font-lineHeight-xSmall);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.Body {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-regular);
+    font-size: var(--wb-font-size-medium);
+    line-height: 22px;
+
+}
+
 .LabelLarge {
+    display: block;
     font-family: var(--wb-font-family-sans);
     font-weight: var(--wb-font-weight-bold);
     font-size: var(--wb-font-size-medium);
@@ -22,6 +82,7 @@
 }
 
 .LabelMedium {
+    display: block;
     font-family: var(--wb-font-family-sans);
     font-weight: var(--wb-font-weight-regular);
     font-size: var(--wb-font-size-regular);
@@ -29,8 +90,33 @@
 }
 
 .LabelSmall {
+    display: block;
     font-family: var(--wb-font-family-sans);
     font-weight: var(--wb-font-weight-regular);
     font-size: var(--wb-font-size-small);
+    line-height: var(--wb-font-lineHeight-small);
+}
+
+.LabelXSmall {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-regular);
+    font-size: var(--wb-font-size-xSmall);
+    line-height: var(--wb-font-lineHeight-xSmall);
+}
+
+.Caption {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-regular);
+    font-size: var(--wb-font-size-small);
+    line-height: var(--wb-font-lineHeight-medium);
+}
+
+.Footnote {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-weight: var(--wb-font-weight-regular);
+    font-size: var(--wb-font-size-xSmall);
     line-height: var(--wb-font-lineHeight-small);
 }

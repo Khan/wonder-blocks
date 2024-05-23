@@ -1,7 +1,8 @@
 import * as React from "react";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 
-import styles from "../util/styles";
+import {cx} from "class-variance-authority";
+import styles from "./styles.module.css";
 
 type Props = PropsFor<typeof Text>;
 
@@ -13,7 +14,7 @@ const HeadingXSmall = React.forwardRef(function HeadingXSmall(
         <Text
             {...otherProps}
             tag={tag}
-            style={[styles.HeadingXSmall, style]}
+            style={cx([styles.HeadingXSmall, style])}
             ref={ref}
         >
             {children}

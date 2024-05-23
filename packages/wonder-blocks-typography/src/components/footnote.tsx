@@ -1,7 +1,8 @@
 import * as React from "react";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 
-import styles from "../util/styles";
+import {cx} from "class-variance-authority";
+import styles from "./styles.module.css";
 
 type Props = PropsFor<typeof Text>;
 
@@ -13,7 +14,7 @@ const Footnote = React.forwardRef(function Footnote(
         <Text
             {...otherProps}
             tag={tag}
-            style={[styles.Footnote, style]}
+            style={cx([styles.Footnote, style])}
             ref={ref}
         >
             {children}

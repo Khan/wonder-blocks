@@ -20,6 +20,7 @@
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
+    "class-variance-authority": "^0.7.0",
     "react": "16.14.0"
   },
   "devDependencies": {
