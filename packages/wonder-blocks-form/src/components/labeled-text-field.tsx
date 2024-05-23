@@ -3,23 +3,19 @@ import * as React from "react";
 import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FieldHeading from "./field-heading";
-import TextField, {TextFieldType} from "./text-field";
-import type {NumericProps} from "./text-field";
+import TextField from "./text-field";
+import type {NumericInputProps} from "./text-field";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
 };
 
-type Props = NumericProps & {
+type CommonProps = {
     /**
      * An optional unique identifier for the TextField.
      * If no id is specified, a unique id will be auto-generated.
      */
     id?: string;
-    /**
-     * Determines the type of input. Defaults to text.
-     */
-    type: TextFieldType;
     /**
      * Provide a label for the TextField.
      */
@@ -123,6 +119,15 @@ type Props = NumericProps & {
     autoComplete?: string;
 };
 
+type OtherInputProps = CommonProps & {
+    /**
+     * Determines the type of input. Defaults to text.
+     */
+    type?: "text" | "password" | "email" | "tel";
+};
+
+type FullNumericInputProps = NumericInputProps & CommonProps;
+type Props = OtherInputProps | FullNumericInputProps;
 type PropsWithForwardRef = Props & WithForwardRef;
 
 type DefaultProps = {
@@ -214,9 +219,8 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
             autoComplete,
             forwardedRef,
             ariaDescribedby,
-            min,
-            max,
-            step,
+            // numeric input props
+            ...otherProps
         } = this.props;
 
         return (
@@ -251,9 +255,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                 readOnly={readOnly}
                                 autoComplete={autoComplete}
                                 ref={forwardedRef}
-                                min={min}
-                                max={max}
-                                step={step}
+                                {...otherProps}
                             />
                         }
                         label={label}
