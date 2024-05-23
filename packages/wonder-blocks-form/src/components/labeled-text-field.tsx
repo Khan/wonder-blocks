@@ -5,6 +5,7 @@ import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
 import FieldHeading from "./field-heading";
 import TextField from "./text-field";
 import type {NumericInputProps} from "./text-field";
+import {OmitConstrained} from "../util/types";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
@@ -269,7 +270,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
     }
 }
 
-type ExportProps = Omit<
+type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<
         typeof LabeledTextField,
         React.ComponentProps<typeof LabeledTextField>

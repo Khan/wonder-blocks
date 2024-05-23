@@ -6,6 +6,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {OmitConstrained} from "../util/types";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
@@ -361,7 +362,7 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = Omit<
+type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<
         typeof TextField,
         React.ComponentProps<typeof TextField>
