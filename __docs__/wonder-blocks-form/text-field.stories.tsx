@@ -138,7 +138,7 @@ export const Number: StoryComponentType = () => {
     };
 
     return (
-        <View style={styles.column}>
+        <View>
             <TextField
                 id="tf-3"
                 type="number"
@@ -149,7 +149,7 @@ export const Number: StoryComponentType = () => {
             />
             <Strut size={spacing.small_12} />
             <Body>
-                The following text field has a min of 0, a max of 15, and a snap
+                The following text field has a min of 0, a max of 15, and a step
                 of 3
             </Body>
             <TextField
@@ -177,7 +177,7 @@ Number.parameters = {
                 restrictions, while the second number input has a minimum
                 value of 0, a maximum value of 15, and a step of 3. Observe
                 that using the arrow keys will automatically snap to the
-                snap step, and stop at the min and max values.`,
+                step, and stop at the min and max values.`,
         },
     },
 };
@@ -896,8 +896,5 @@ const styles = StyleSheet.create({
     },
     fieldWithButton: {
         marginBottom: spacing.medium_16,
-    },
-    column: {
-        flexDirection: "column",
     },
 });

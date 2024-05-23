@@ -124,7 +124,7 @@ type OtherInputProps = CommonProps & {
     /**
      * Determines the type of input. Defaults to text.
      */
-    type?: "text" | "password" | "email" | "tel";
+    type: "text" | "password" | "email" | "tel";
 };
 
 type FullNumericInputProps = NumericInputProps & CommonProps;

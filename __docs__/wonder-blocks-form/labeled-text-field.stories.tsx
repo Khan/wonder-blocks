@@ -189,7 +189,7 @@ export const Number: StoryComponentType = () => {
             <LabeledTextField
                 id="tf-3a"
                 label={`The following text field has a min of 0, a max of 15,
-                    and a snap of 3`}
+                    and a step of 3`}
                 type="number"
                 value={value2}
                 placeholder="Number"
@@ -213,7 +213,7 @@ Number.parameters = {
                 restrictions, while the second number input has a minimum
                 value of 0, a maximum value of 15, and a step of 3. Observe
                 that using the arrow keys will automatically snap to the
-                snap step, and stop at the min and max values.`,
+                step, and stop at the min and max values.`,
         },
     },
 };

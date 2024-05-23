@@ -115,12 +115,12 @@ type CommonProps = AriaProps & {
 };
 
 type OtherInputProps = CommonProps & {
-    type?: "text" | "password" | "email" | "tel";
+    type: "text" | "password" | "email" | "tel";
 };
 
 // Props that are only available for inputs of type "number".
 export type NumericInputProps = {
-    type?: "number";
+    type: "number";
     /**
      * The minimum numeric value for the input.
      */
