@@ -6,7 +6,7 @@ import autoExternal from "rollup-plugin-auto-external";
 import babel from "rollup-plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import postcss from "rollup-plugin-postcss";
-import postcssVariableCompress from "postcss-variable-compress";
+// import postcssVariableCompress from "postcss-variable-compress";
 
 const {presets, plugins} = require("./babel.config")({env: () => false});
 
@@ -57,11 +57,11 @@ const createConfig = (pkgName) => {
                     generateScopedName: "[hash:base64:5]",
                     getJSON() {},
                 },
-                extract: "styles.css",
-                inject: false,
+                // extract: "styles.css",
+                // inject: false,
                 minimize: true,
                 sourceMap: true,
-                plugins: [postcssVariableCompress()],
+                // plugins: [postcssVariableCompress()],
             }),
         ],
     };
