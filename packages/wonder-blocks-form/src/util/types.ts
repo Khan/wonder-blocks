@@ -77,3 +77,9 @@ export type RadioGroupProps = {
     /** Value of the selected radio item. */
     selectedValue: string;
 };
+
+// For more information, see:
+// https://github.com/microsoft/TypeScript/wiki/FAQ#add-a-key-constraint-to-omit
+export type OmitConstrained<T, K> = {
+    [P in keyof T as Exclude<P, K & keyof any>]: T[P];
+};
