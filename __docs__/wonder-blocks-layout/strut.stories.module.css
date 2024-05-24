@@ -1,0 +1,20 @@
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.strut {
+    align-self: center;
+    background-color: var(--wb-color-darkBlue);
+}
+
+.thin {
+    height: 4px;
+}
+
+.thick {
+    height: 8px;
+}

@@ -101,8 +101,6 @@ const View: React.ForwardRefExoticComponent<
         className: cx(props.className, finalStyles),
     } as const;
 
-    console.log("common: cn", commonProps.className, commonProps.style);
-
     switch (tag) {
         case "article":
             return <article {...commonProps} ref={ref} />;
