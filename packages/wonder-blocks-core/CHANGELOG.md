@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.4.1
+
+### Patch Changes
+
+-   5dfac06e: Allow all special characters in IDs, except whitespace.
+
 ## 6.4.0
 
 ### Minor Changes

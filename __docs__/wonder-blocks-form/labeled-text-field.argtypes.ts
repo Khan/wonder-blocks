@@ -203,6 +203,46 @@ export default {
     },
 
     /**
+     * Number-specific props
+     */
+    min: {
+        description: "The minimum value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
+        },
+    },
+    max: {
+        description: "The maximum value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
+        },
+    },
+    step: {
+        description: "The step value for a number input.",
+        table: {
+            category: "Number",
+            type: {
+                summary: "number",
+            },
+        },
+        control: {
+            type: "number",
+        },
+    },
+
+    /**
      * Events
      */
     onValidate: {
