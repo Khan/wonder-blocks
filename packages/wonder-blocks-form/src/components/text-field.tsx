@@ -4,7 +4,7 @@ import * as React from "react";
 // import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 // import {addStyle} from "@khanacademy/wonder-blocks-core";
 // import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {OmitConstrained} from "../util/types";
 
 import styles from "./text-field.module.css";
