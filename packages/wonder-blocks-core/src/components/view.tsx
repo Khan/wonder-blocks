@@ -71,8 +71,8 @@ type Props = TextViewSharedProps & {
  * ```
  */
 
-const isStyleString = (style: string | StyleType) =>
-    style && typeof style === "string";
+const isAphroditeStyle = (style: string | StyleType) =>
+    style && typeof style === "object";
 
 const View: React.ForwardRefExoticComponent<
     Props & React.RefAttributes<HTMLElement>
@@ -82,16 +82,16 @@ const View: React.ForwardRefExoticComponent<
     let className = styles.default;
     let aphroditeStyle = null;
 
-    if (isStyleString(style)) {
-        className += ` ${style}`;
-        // StyleType
-    } else {
+    // StyleType
+    if (isAphroditeStyle(style)) {
         aphroditeStyle = processStyleList([stylesOld.default, style]);
+    } else {
+        className += ` ${style}`;
     }
 
-    const finalStyles = isStyleString(style)
-        ? className
-        : aphroditeStyle?.className;
+    const finalStyles = isAphroditeStyle(style)
+        ? aphroditeStyle?.className
+        : className;
 
     const commonProps = {
         ...restProps,

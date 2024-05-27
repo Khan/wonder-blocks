@@ -1,0 +1,23 @@
+.container {
+    background: var(--wb-color-offBlack8);
+    gap: var(--wb-spacing-medium_16);
+    padding: var(--wb-spacing-xLarge_32);
+}
+
+.view {
+    border: 1px dashed var(--wb-color-lightBlue);
+    gap: var(--wb-spacing-medium_16);
+    padding: var(--wb-spacing-medium_16);
+
+}
+
+.item {
+    background: var(--wb-color-offBlack32);
+    padding: var(--wb-spacing-medium_16);
+}
+
+.inlineStyles {
+    background: var(--wb-color-lightBlue);
+    border: 1px solid var(--wb-color-blue);
+    padding: var(--wb-spacing-xxxSmall_4);
+}

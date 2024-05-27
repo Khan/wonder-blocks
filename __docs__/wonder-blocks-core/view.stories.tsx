@@ -1,7 +1,8 @@
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+// import {css} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
+import {cx} from "class-variance-authority";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingMedium,
@@ -13,6 +14,8 @@ import packageConfig from "../../packages/wonder-blocks-core/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import viewArgTypes from "./view.argtypes";
+
+import styles from "./view.stories.module.css";
 
 export default {
     title: "Packages / Core / View",
@@ -46,20 +49,13 @@ export const Default: StoryComponentType = {
 };
 
 export const InlineStyles: StoryComponentType = () => (
-    <View style={styles.container}>
-        <HeadingMedium>Hello, world!</HeadingMedium>
-        <View
-            style={[
-                styles.container,
-                {
-                    background: color.lightBlue,
-                    border: `1px solid ${color.blue}`,
-                    padding: spacing.xxxSmall_4,
-                },
-            ]}
-        >
-            The style prop can accept a (nested) array of Aphrodite styles and
-            inline styles.
+    <View>
+        <View style={styles.container}>
+            <HeadingMedium>Hello, world!</HeadingMedium>
+            <View style={cx([styles.container, styles.inlineStyles])}>
+                The style prop can accept a (nested) array of Aphrodite styles
+                and inline styles.
+            </View>
         </View>
     </View>
 );
@@ -75,7 +71,7 @@ InlineStyles.parameters = {
 export const OtherProps: StoryComponentType = {
     name: "Using other props",
     render: () => (
-        <View className={css(styles.container)}>
+        <View className={styles.container}>
             <View
                 onClick={() => {
                     // eslint-disable-next-line no-console
@@ -132,22 +128,3 @@ DefiningLayout.parameters = {
         },
     },
 };
-
-const styles = StyleSheet.create({
-    container: {
-        background: color.offBlack8,
-        gap: spacing.medium_16,
-        padding: spacing.xLarge_32,
-    },
-
-    view: {
-        border: `1px dashed ${color.lightBlue}`,
-        gap: spacing.medium_16,
-        padding: spacing.medium_16,
-    },
-
-    item: {
-        background: color.offBlack32,
-        padding: spacing.medium_16,
-    },
-});
