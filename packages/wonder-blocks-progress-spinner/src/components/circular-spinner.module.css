@@ -1,0 +1,25 @@
+.spinnerContainer {
+    justify-content: center;
+}
+
+.loadingSpinner {
+    transform-origin: 50% 50%;
+    animation-name: rotateKeyFrames;
+    animation-duration: 1.1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotateKeyFrames {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
