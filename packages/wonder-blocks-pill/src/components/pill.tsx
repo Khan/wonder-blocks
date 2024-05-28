@@ -67,17 +67,13 @@ type Props = AriaProps & {
      */
     style?: StyleType;
     /**
-     * The tab index of the pill (if clickable).
+     * The tab index of the pill (clickable only).
      */
     tabIndex?: number;
     /**
      * Optional test ID for e2e testing.
      */
     testId?: string;
-    /**
-     * The tab index of the pill (clickable only).
-     */
-    tabIndex?: number;
 };
 
 const PillInner = (props: {
