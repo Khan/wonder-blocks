@@ -14,9 +14,7 @@ will take some time to complete.
 
 This is an example of a component with an accessible label:
 
-<Canvas>
-  <Story of={AccessibilityStories.Labeling} />
-</Canvas>
+<Canvas of={AccessibilityStories.Labeling} />
 
 ### Disabled state
 
@@ -24,9 +22,7 @@ Buttons do not need an `aria-disabled` attribute, if it also has a `disabled`
 attribute. Users operating the web page through a screen reader may not be able
 to fully evaluate the implied behaviors of the button element itself.
 
-<Canvas>
-  <Story of={AccessibilityStories.DisabledState} />
-</Canvas>
+<Canvas of={AccessibilityStories.DisabledState} />
 
 ### References
 
