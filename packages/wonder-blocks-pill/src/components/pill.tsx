@@ -74,6 +74,10 @@ type Props = AriaProps & {
      * Optional test ID for e2e testing.
      */
     testId?: string;
+    /**
+     * The tab index of the pill (clickable only).
+     */
+    tabIndex?: number;
 };
 
 const PillInner = (props: {
@@ -123,9 +127,7 @@ const Pill = React.forwardRef(function Pill(
         style,
         tabIndex,
         testId,
-        // The rest of the props are being passed to the underlying element.
-        // It contains `aria-*` attributes.
-        ...restProps
+        ...ariaProps
     } = props;
 
     let wrapperSizeStyle;
@@ -159,7 +161,7 @@ const Pill = React.forwardRef(function Pill(
                 testId={testId}
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
                 tabIndex={tabIndex}
-                {...restProps}
+                {...ariaProps}
             >
                 {() => <PillInner size={size}>{children}</PillInner>}
             </Clickable>
@@ -173,7 +175,7 @@ const Pill = React.forwardRef(function Pill(
             style={[defaultStyles, style]}
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
-            {...restProps}
+            {...ariaProps}
         >
             <PillInner size={size}>{children}</PillInner>
         </View>

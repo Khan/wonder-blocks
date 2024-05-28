@@ -1,48 +1,45 @@
-import {Meta, Story, Canvas} from "@storybook/blocks";
 import * as UseIntervalStories from './use-interval.stories';
+
+import {Meta, Story, Canvas} from "@storybook/blocks";
 
 <Meta of={UseIntervalStories} />
 
 # `useInterval`
 
-`useInterval` is a hook that provides a simple API for using intervals safely.
-It is defined as follows:
+`useInterval` is a hook that provides a convenient API for setting and clearing
+an interval. It is defined as follows:
 
 ```ts
 function useInterval(
     action: () => mixed,
-    intervalMs: number,
-    active: boolean,
-): void;
+    timeoutMs: number,
+    options?: {|
+        schedulePolicy?: SchedulePolicy,
+        clearPolicy?: ClearPolicy,
+        actionPolicy?: ActionPolicy,
+    |},
+): IInterval;
+
+interface IInterval {
+    get isSet(): boolean;
+    set(): void;
+    clear(policy?: ClearPolicy): void;
+}
 ```
+
+By default the interval will be set immediately upon creation. The `options` parameter can
+be used to control when the interval is scheduled and whether or not `action` should be
+called when the interval is cleared.
 
 Notes:
 
-* Setting `active` to `true` will start the interval and setting it to `false`
-  will stop it
-* Changing the value of `timeoutMs` will reset the interval, changing `action`
-  will not.
+* Because `clear` takes a param, it's important that you don't pass it directly to an event handler,
+  e.g. `<Button onClick={clear} />` will not work as expected.
+* Calling `set` after the interval has been cleared will restart the interval.
+* Updating the second paramter, `timeoutMs`, will also restart the interval.
+* When the component using this hook is unmounted, the interval will automatically be cleared.
+* Calling `set` after the interval is already set will restart the interval.
 
-<Canvas>
-  <Story of={UseIntervalStories.BasicUsage} />
-</Canvas>
+<Canvas sourceState="shown" of={UseIntervalStories.Immediately} />
 
-```tsx
-export const BasicUsage = () => {
-    const [callCount, setCallCount] = React.useState(0);
-    const [active, setActive] = React.useState(false);
-    const callback = React.useCallback(() => {
-        setCallCount((callCount) => callCount + 1);
-    }, []);
-    useInterval(callback, 1000, active);
-    return (
-        <View>
-            <View>callCount = {callCount}</View>
-            <View>active = {active.toString()}</View>
-            <Button onClick={() => setActive(!active)} style={{width: 200}}>
-                Toggle active
-            </Button>
-        </View>
-    );
-};
-```
+<Canvas sourceState="shown" of={UseIntervalStories.OnDemandAndResolveOnClear} />

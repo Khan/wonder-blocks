@@ -6,6 +6,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {OmitConstrained} from "../util/types";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
@@ -17,15 +18,11 @@ const defaultErrorMessage = "This field is required.";
 
 const StyledInput = addStyle("input");
 
-type Props = AriaProps & {
+type CommonProps = AriaProps & {
     /**
      * The unique identifier for the input.
      */
     id: string;
-    /**
-     * Determines the type of input. Defaults to text.
-     */
-    type: TextFieldType;
     /**
      * The input value.
      */
@@ -117,6 +114,30 @@ type Props = AriaProps & {
     autoComplete?: string;
 };
 
+type OtherInputProps = CommonProps & {
+    type: "text" | "password" | "email" | "tel";
+};
+
+// Props that are only available for inputs of type "number".
+export type NumericInputProps = {
+    type: "number";
+    /**
+     * The minimum numeric value for the input.
+     */
+    min?: number;
+    /**
+     * The maximum numeric value for the input.
+     */
+    max?: number;
+    /**
+     * The numeric value to increment or decrement by.
+     * Requires the input to be multiples of this value.
+     */
+    step?: number;
+};
+
+type FullNumericInputProps = CommonProps & NumericInputProps;
+type Props = OtherInputProps | FullNumericInputProps;
 type PropsWithForwardRef = Props & WithForwardRef;
 
 type DefaultProps = {
@@ -341,7 +362,7 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = Omit<
+type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<
         typeof TextField,
         React.ComponentProps<typeof TextField>

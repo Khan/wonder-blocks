@@ -60,9 +60,7 @@ export const IncorrectUsage = () => (
     </IDProvider>
 );
 
-<Canvas>
-  <Story of={WithActionSchedulerStories.IncorrectUsage_} />
-</Canvas>
+<Canvas of={WithActionSchedulerStories.IncorrectUsage} />
 
 ```jsx
 function Unmounter(props: {|children: React.Node|}): React.Node {
@@ -140,9 +138,7 @@ export const CorrectUsage = () => (
     </IDProvider>
 );
 
-<Canvas>
-  <Story of={WithActionSchedulerStories.CorrectUsage_} />
-</Canvas>
+<Canvas of={WithActionSchedulerStories.CorrectUsage} />
 
 ```jsx
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";

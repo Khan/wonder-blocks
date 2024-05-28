@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.6.0
+
+### Minor Changes
+
+-   96515513: TextField number inputs can now use `min`, `max`, and `snap` props
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-clickable@4.2.2
+    -   @khanacademy/wonder-blocks-icon@4.1.1
+    -   @khanacademy/wonder-blocks-layout@2.0.33
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
 ## 4.5.1
 
 ### Patch Changes

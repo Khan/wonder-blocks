@@ -33,14 +33,13 @@ export default class UniqueIDFactory implements IIdentifierFactory {
      * identifier. It does not assert that a string IS a valid identifier (for
      * example, that it doesn't start with numbers). We don't need to do that
      * here because all identifiers are prefixed to avoid needing that check.
+     *
+     * According to this post:
+     * https://stackoverflow.com/questions/70579/html-valid-id-attribute-values/31773673#31773673
+     * The only characters that are not allowed in an id are whitespace characters.
      */
     _hasValidIdChars(value?: string | null): boolean {
-        if (typeof value !== "string") {
-            return false;
-        }
-
-        const invalidCharsReplaced = value.replace(/[^\d\w-]/g, "-");
-        return value === invalidCharsReplaced;
+        return typeof value === "string" ? !/\s/.test(value) : false;
     }
 
     /**
