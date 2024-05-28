@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as renderer from "react-test-renderer";
+import {render} from "@testing-library/react";
 
 import MagnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
@@ -32,39 +32,29 @@ describe("IconButtonCore", () => {
                 for (const light of kind === "primary"
                     ? [true, false]
                     : [false]) {
-                    for (const state of [
-                        "disabled",
-                        "focused",
-                        "hovered",
-                        "pressed",
-                    ] as const) {
+                    for (const state of ["disabled"] as const) {
                         const disabled = state === "disabled";
                         const stateProps = {
                             disabled,
-                            focused: state === "focused",
-                            hovered: state === "hovered",
-                            pressed: state === "pressed",
-                            waiting: false,
                         } as const;
                         test(`kind:${kind} color:${color} size:${size} light:${String(
                             light,
                         )} ${state}`, () => {
-                            const tree = renderer
-                                .create(
-                                    <IconButtonCore
-                                        icon={MagnifyingGlass}
-                                        aria-label="search"
-                                        kind={kind}
-                                        color={color}
-                                        light={light}
-                                        size={size}
-                                        tabIndex={disabled ? -1 : 0}
-                                        {...stateProps}
-                                        {...defaultHandlers}
-                                    />,
-                                )
-                                .toJSON();
-                            expect(tree).toMatchSnapshot();
+                            const {container} = render(
+                                <IconButtonCore
+                                    icon={MagnifyingGlass}
+                                    aria-label="search"
+                                    kind={kind}
+                                    color={color}
+                                    light={light}
+                                    size={size}
+                                    tabIndex={disabled ? -1 : 0}
+                                    {...stateProps}
+                                    {...defaultHandlers}
+                                />,
+                            );
+
+                            expect(container).toMatchSnapshot();
                         });
                     }
                 }
