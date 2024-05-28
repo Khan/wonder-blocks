@@ -45,7 +45,7 @@ describe("UniqueIDFactory", () => {
             expect(underTest).toThrowErrorMatchingSnapshot();
         });
 
-        test("special characters in scope, throws", () => {
+        test("special characters in scope, should not throw", () => {
             // Arrange
             const scope = "invalid$%^&*(";
 
@@ -53,7 +53,7 @@ describe("UniqueIDFactory", () => {
             const underTest = () => new UniqueIDFactory(scope);
 
             // Assert
-            expect(underTest).toThrowErrorMatchingSnapshot();
+            expect(underTest).not.toThrow();
         });
     });
 
