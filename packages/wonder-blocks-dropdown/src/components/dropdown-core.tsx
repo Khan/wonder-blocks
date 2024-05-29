@@ -571,10 +571,9 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusPreviousItem(): void {
-        if (this.isSearchFieldFocused() && !this.props.enableTypeAhead){
+        if (this.isSearchFieldFocused() && !this.props.enableTypeAhead) {
             this.focusedIndex = this.state.itemRefs.length - 1;
-        }
-        else if (this.focusedIndex === 0) {
+        } else if (this.focusedIndex === 0) {
             // Move the focus to the search field if it is the first item.
             if (this.hasSearchField() && !this.isSearchFieldFocused()) {
                 return this.focusSearchField();
@@ -588,10 +587,9 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusNextItem(): void {
-        if (this.isSearchFieldFocused() && !this.props.enableTypeAhead){
+        if (this.isSearchFieldFocused() && !this.props.enableTypeAhead) {
             this.focusedIndex = 0;
-        }
-        else if (this.focusedIndex === this.state.itemRefs.length - 1) {
+        } else if (this.focusedIndex === this.state.itemRefs.length - 1) {
             // Move the focus to the search field if it is the last item.
             if (this.hasSearchField() && !this.isSearchFieldFocused()) {
                 return this.focusSearchField();
