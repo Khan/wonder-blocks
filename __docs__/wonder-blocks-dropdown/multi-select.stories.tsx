@@ -59,13 +59,6 @@ export default {
         id: "",
         testId: "",
     },
-    decorators: [
-        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>
-                <Story />
-            </View>
-        ),
-    ],
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -73,14 +66,13 @@ export default {
                 version={packageConfig.version}
             />
         ) as any,
+        backgrounds: {
+            default: "offWhite",
+        },
     },
 } as Meta<typeof MultiSelect>;
 
 const styles = StyleSheet.create({
-    example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
-    },
     setWidth: {
         minWidth: 170,
         width: "100%",
