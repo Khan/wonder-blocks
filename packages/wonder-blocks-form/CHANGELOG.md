@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.6.1
+
+### Patch Changes
+
+-   29563c0d: Fix onValidate prop so it gets properly called when it is defined in the call site
+
 ## 4.6.0
 
 ### Minor Changes
