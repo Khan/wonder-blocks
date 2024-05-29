@@ -1,6 +1,7 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
+import {defaultComboboxLabels} from "../util/constants";
 import {getLabel} from "../util/helpers";
 import {
     ComboboxLabels,
@@ -22,7 +23,7 @@ type Props = {
     /**
      * The labels associated with the live region.
      */
-    labels: Pick<
+    labels?: Pick<
         ComboboxLabels,
         | "closedState"
         | "liveRegionCurrentItem"
@@ -33,7 +34,7 @@ type Props = {
     /**
      * Whether the listbox is open/expanded.
      */
-    opened: boolean;
+    opened?: boolean;
     /**
      * The list of items in the listbox.
      */
@@ -55,7 +56,13 @@ type Props = {
 export function ComboboxLiveRegion({
     focusedIndex,
     focusedMultiSelectIndex,
-    labels,
+    labels = {
+        closedState: defaultComboboxLabels.closedState,
+        liveRegionCurrentItem: defaultComboboxLabels.liveRegionCurrentItem,
+        liveRegionListboxTotal: defaultComboboxLabels.liveRegionListboxTotal,
+        liveRegionMultipleSelectionTotal:
+            defaultComboboxLabels.liveRegionMultipleSelectionTotal,
+    },
     multiSelectLabels,
     selected,
     opened,
@@ -68,22 +75,33 @@ export function ComboboxLiveRegion({
     // Announce when an item is selected.
     React.useEffect(() => {
         if (selected !== lastSelectedValue.current) {
-            setMessage(`${selected}, selected`);
+            // ✅ TODO(juan): Fix lowercase of the current selected values
+            // (multi).
+            let message = "";
+            if (
+                // (typeof selected === "string" && selected !== "") ||
+                Array.isArray(selected) &&
+                selected.length > 0
+            ) {
+                message = `${multiSelectLabels.join(", ")}, selected`;
+            }
+            setMessage(message);
         }
 
         lastSelectedValue.current = selected;
-    }, [selected]);
+    }, [multiSelectLabels, selected]);
 
     const focusedElementDescription = React.useMemo(() => {
         // If there are focused items in the multi-select combobox, announce the
         // focused item.
         if (focusedMultiSelectIndex >= 0) {
+            // Announces the pill group.
             const label = multiSelectLabels[focusedMultiSelectIndex];
             return (
                 labels.liveRegionCurrentItem({
                     current: label,
                     focused: true,
-                    index: focusedMultiSelectIndex + 1,
+                    index: focusedMultiSelectIndex,
                     total: multiSelectLabels.length,
                 }) +
                 " " +
@@ -107,7 +125,7 @@ export function ComboboxLiveRegion({
                 current: label,
                 disabled: currentItemProps.disabled,
                 focused: false,
-                index: focusedIndex + 1,
+                index: focusedIndex,
                 selected: currentItemProps.selected,
                 total: totalResults,
             }) +

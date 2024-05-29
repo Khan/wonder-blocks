@@ -19,6 +19,7 @@ import {
     MaybeValueOrValues,
     OptionItemComponent,
 } from "../util/types";
+import {defaultComboboxLabels} from "../util/constants";
 import {ComboboxLiveRegion} from "./combobox-live-region";
 import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
@@ -128,27 +129,7 @@ export default function Combobox({
     children,
     disabled,
     id,
-    labels = {
-        closedState: "Combobox is closed",
-        comboboxButton: "Toggle listbox",
-        listbox: "Options list",
-        removeSelected: (label: string) => `Remove ${label}`,
-        // Live region labels
-        liveRegionCurrentItem: ({
-            current,
-            index,
-            total,
-            disabled,
-            focused,
-            selected,
-        }) =>
-            `${current} ${focused ? "focused" : ""} ${
-                disabled ? "disabled" : ""
-            } ${selected ? ", selected" : ""}, ${index + 1} of ${total}.`,
-        liveRegionMultipleSelectionTotal: (total) =>
-            `${total} selected options.`,
-        liveRegionListboxTotal: (total) => `${total} results available.`,
-    },
+    labels = defaultComboboxLabels,
     onChange,
     onToggle,
     opened,

@@ -537,5 +537,33 @@ describe("Combobox", () => {
                 screen.getByRole("button", {name: "Remove option 2"}),
             ).toBeInTheDocument();
         });
+
+        describe("LiveRegion", () => {
+            it("should announce when an item is selected", async () => {
+                // Arrange
+                doRender(
+                    <Combobox selectionType="multiple" value={["option1"]}>
+                        <OptionItem label="Option 1" value="option1" />
+                        <OptionItem label="Option 2" value="option2" />
+                        <OptionItem label="Option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // focus on the combobox (input)
+                await userEvent.tab();
+
+                // Move to second option item
+                await userEvent.keyboard("{ArrowDown}");
+
+                // Act
+                // Select the second option item
+                await userEvent.keyboard("{Enter}");
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(
+                    "Option 2, selected, 2 of 3. 3 results available.",
+                );
+            });
+        });
     });
 });

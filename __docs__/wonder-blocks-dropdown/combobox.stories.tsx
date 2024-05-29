@@ -2,6 +2,7 @@ import {action} from "@storybook/addon-actions";
 import {Meta, StoryObj} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
+import {expect, userEvent, within} from "@storybook/test";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
@@ -182,7 +183,7 @@ export const Disabled = {
  * - `Enter` to select an item.
  * - Arrow keys (`left`, `right`) to navigate through the selected items.
  */
-export const MultipleSelection = {
+export const MultipleSelection: Story = {
     render: function Render(args: PropsFor<typeof Combobox>) {
         const [value, setValue] = React.useState(args.value);
 
@@ -207,6 +208,23 @@ export const MultipleSelection = {
             // we don't need screenshots because this story only tests behavior.
             disableSnapshot: true,
         },
+    },
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+        // focus on the combobox (input)
+        await userEvent.tab();
+
+        // Move to second option item
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Act
+        // Select the second option item
+        await userEvent.keyboard("{Enter}");
+
+        // Assert
+        expect(canvas.getByRole("log")).toHaveTextContent(
+            "Orange, selected, 4 of 9. 9 results available.",
+        );
     },
 };
 
