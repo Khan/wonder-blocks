@@ -1,6 +1,5 @@
 import * as React from "react";
-import * as renderer from "react-test-renderer";
-
+import {render} from "@testing-library/react";
 import ButtonCore from "../components/button-core";
 import Button from "../components/button";
 
@@ -26,10 +25,10 @@ describe("Button", () => {
         ${0}
         ${1}
     `("<Link tabIndex={$tabIndex}>", ({tabIndex}: any) => {
-        const tree = renderer
-            .create(<Button tabIndex={tabIndex}>Click me</Button>)
-            .toJSON();
-        expect(tree).toMatchSnapshot();
+        const {container} = render(
+            <Button tabIndex={tabIndex}>Click me</Button>,
+        );
+        expect(container).toMatchSnapshot();
     });
 });
 
@@ -55,24 +54,22 @@ describe("ButtonCore", () => {
                         test(`kind:${kind} color:${color} size:${size} light:${String(
                             light,
                         )} ${state}`, () => {
-                            const tree = renderer
-                                .create(
-                                    <ButtonCore
-                                        kind={kind}
-                                        size={size}
-                                        color={color}
-                                        light={light}
-                                        tabIndex={disabled ? -1 : 0}
-                                        spinner={false}
-                                        aria-label={""}
-                                        {...stateProps}
-                                        {...defaultHandlers}
-                                    >
-                                        Click me
-                                    </ButtonCore>,
-                                )
-                                .toJSON();
-                            expect(tree).toMatchSnapshot();
+                            const {container} = render(
+                                <ButtonCore
+                                    kind={kind}
+                                    size={size}
+                                    color={color}
+                                    light={light}
+                                    tabIndex={disabled ? -1 : 0}
+                                    spinner={false}
+                                    aria-label={""}
+                                    {...stateProps}
+                                    {...defaultHandlers}
+                                >
+                                    Click me
+                                </ButtonCore>,
+                            );
+                            expect(container).toMatchSnapshot();
                         });
                     }
                 }
@@ -91,24 +88,22 @@ describe("ButtonCore", () => {
                     pressed: false,
                     waiting: false,
                 } as const;
-                const tree = renderer
-                    .create(
-                        <ButtonCore
-                            kind={kind}
-                            size={size}
-                            color="default"
-                            light={false}
-                            tabIndex={disabled ? -1 : 0}
-                            spinner={spinner}
-                            aria-label={"loading"}
-                            {...stateProps}
-                            {...defaultHandlers}
-                        >
-                            Click me
-                        </ButtonCore>,
-                    )
-                    .toJSON();
-                expect(tree).toMatchSnapshot();
+                const {container} = render(
+                    <ButtonCore
+                        kind={kind}
+                        size={size}
+                        color="default"
+                        light={false}
+                        tabIndex={disabled ? -1 : 0}
+                        spinner={spinner}
+                        aria-label={"loading"}
+                        {...stateProps}
+                        {...defaultHandlers}
+                    >
+                        Click me
+                    </ButtonCore>,
+                );
+                expect(container).toMatchSnapshot();
             });
         }
     }
