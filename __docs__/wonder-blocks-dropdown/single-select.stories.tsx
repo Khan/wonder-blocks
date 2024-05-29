@@ -519,7 +519,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
  */
 export const VirtualizedFilterableWithoutEnableTypeAhead: StoryComponentType = {
     name: "Virtualized (isFilterable:true, enableTypeAhead:false)",
-    render: () => <VirtualizedSingleSelect enableTypeAhead={false} />,
+    render: () => <VirtualizedSingleSelect enableTypeAhead={false} selectedValue={"ZW"}/>,
     parameters: {
         chromatic: {
             // we don't need screenshots because this story only tests behavior.
@@ -538,7 +538,7 @@ export const VirtualizedFilterableWithoutEnableTypeAhead: StoryComponentType = {
  */
 export const VirtualizedFilterable: StoryComponentType = {
     name: "Virtualized (isFilterable:true, enableTypeAhead:true)",
-    render: () => <VirtualizedSingleSelect />,
+    render: () => <VirtualizedSingleSelect enableTypeAhead={true} />,
     parameters: {
         chromatic: {
             // we don't need screenshots because this story only tests behavior.
