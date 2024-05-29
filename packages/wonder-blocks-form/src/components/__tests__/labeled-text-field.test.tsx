@@ -703,4 +703,45 @@ describe("Required LabeledTextField", () => {
             errorMessage,
         );
     });
+
+    test("displays an error even when onValidate is set", async () => {
+        // Arrange
+        const errorMessage = "Empty string!";
+
+        const validate = (value: string): string | null | undefined => {
+            if (value === "") {
+                return errorMessage;
+            }
+        };
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("initial");
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    validate={validate}
+                    onValidate={jest.fn()}
+                    testId="test-labeled-text-field"
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        const textField = await screen.findByTestId(
+            "test-labeled-text-field-field",
+        );
+        textField.focus();
+        await userEvent.clear(textField);
+
+        // Act
+        textField.blur();
+
+        // Assert
+        expect(await screen.findByRole("alert")).toHaveTextContent(
+            errorMessage,
+        );
+    });
 });
