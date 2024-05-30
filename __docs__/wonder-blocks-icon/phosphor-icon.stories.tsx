@@ -81,6 +81,7 @@ export const Default: StoryComponentType = {
         icon: IconMappings.magnifyingGlassBold,
         size: "small",
         "aria-label": "Search",
+        role: "img",
     },
     parameters: {
         docs: {
