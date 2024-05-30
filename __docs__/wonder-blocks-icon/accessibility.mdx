@@ -13,9 +13,9 @@ import * as AccessibilityStories from './accessibility.stories';
 * The color contrast should pass WCAG.
   * At least 3:1 contrast ratio for icons.
 * Ideally, an icon should be accompanied by text. However, if an icon
-  is not accompanied by text, provide alt text.
-  * Do not provide alt text for decorative icons. Set the alt text
-    to an empty string (`""`).
+  is not accompanied by text, provide an `aria-label`.
+  * If the icon is decorative, set `aria-hidden` to `true` and do not provide an
+   `aria-label`. This will hide the icon from screen readers.
   * The `title` attribute is often used to display a description on mouse
     hover, but please note that use of the `title` attribute is discouraged
     as titles are not available to keyboard-only or touch-only users.
