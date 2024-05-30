@@ -14,6 +14,9 @@ import * as AccessibilityStories from './accessibility.stories';
   * At least 3:1 contrast ratio for icons.
 * Ideally, an icon should be accompanied by text. However, if an icon
   is not accompanied by text, provide an `aria-label`.
+  * If you are using `aria-label`, make sure to also use `role="img"` so that
+    screen readers know that the element is an image and not just decorative
+    text.
   * If the icon is decorative, set `aria-hidden` to `true` and do not provide an
    `aria-label`. This will hide the icon from screen readers.
   * The `title` attribute is often used to display a description on mouse
@@ -23,9 +26,6 @@ import * as AccessibilityStories from './accessibility.stories';
 * Icons should go on the opposite side as left-to-right languages
   for right-to-left languages.
   * The icon may also need to be mirrored.
-* If you are using `aria-label`, make sure to also use `role="img"` so that
-  screen readers know that the element is an image and not just decorative
-  text.
 
 More information about all these points can be found in the
 [References](#references) below.
