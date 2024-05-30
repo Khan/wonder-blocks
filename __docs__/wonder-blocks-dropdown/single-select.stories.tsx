@@ -445,6 +445,7 @@ export const Light: StoryComponentType = {
             <View style={styles.row}>
                 <View style={styles.darkBackgroundWrapper}>
                     <SingleSelect
+                        {...args}
                         alignment="right"
                         light={true}
                         onChange={setSelectedValue}
