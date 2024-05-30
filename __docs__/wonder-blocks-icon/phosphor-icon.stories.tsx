@@ -380,3 +380,22 @@ export const DescriptiveIcon: StoryComponentType = {
         },
     },
 };
+
+/**
+ * A decorative icon with `aria-hidden` set to `true` and no `aria-label` set.
+ * This hides the icon from screen readers since it is decorative.
+ */
+export const DecorativeIcon: StoryComponentType = {
+    args: {
+        icon: IconMappings.magnifyingGlassBold,
+        size: "small",
+        "aria-hidden": true,
+    },
+    parameters: {
+        chromatic: {
+            // This story is not meant to be visually tested, so we disable
+            // snapshots.
+            disableSnapshot: true,
+        },
+    },
+};
