@@ -481,6 +481,7 @@ const optionItems = allCountries.map(([code, translatedName]) => (
 ));
 
 type Props = {
+    enableTypeAhead?: boolean;
     selectedValue?: string | null | undefined;
     opened?: boolean;
 };
@@ -502,6 +503,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
                 selectedValue={selectedValue}
                 dropdownStyle={styles.fullBleed}
                 style={styles.fullBleed}
+                enableTypeAhead={props.enableTypeAhead}
             >
                 {optionItems}
             </SingleSelect>
@@ -515,9 +517,30 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
  * option items. Note that this example shows how we can add custom styles to
  * the dropdown as well.
  */
+export const VirtualizedFilterableWithoutEnableTypeAhead: StoryComponentType = {
+    name: "Virtualized (isFilterable:true, enableTypeAhead:false)",
+    render: () => (
+        <VirtualizedSingleSelect enableTypeAhead={false} selectedValue={"ZW"} />
+    ),
+    parameters: {
+        chromatic: {
+            // we don't need screenshots because this story only tests behavior.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * When there are many options, you could use a search filter in the
+ * SingleSelect. The search filter will be performed toward the labels of the
+ * option items. The enableTypeAhead will focus on the first dropdown item
+ * whose label starts with the search filter.
+ * Note that this example shows how we can add custom styles to the dropdown
+ * as well.
+ */
 export const VirtualizedFilterable: StoryComponentType = {
-    name: "Virtualized (isFilterable)",
-    render: () => <VirtualizedSingleSelect />,
+    name: "Virtualized (isFilterable:true, enableTypeAhead:true)",
+    render: () => <VirtualizedSingleSelect enableTypeAhead={true} />,
     parameters: {
         chromatic: {
             // we don't need screenshots because this story only tests behavior.
