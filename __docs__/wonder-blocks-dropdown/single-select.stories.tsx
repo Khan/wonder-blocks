@@ -83,11 +83,6 @@ export default {
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
-    decorators: [
-        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>{Story()}</View>
-        ),
-    ],
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -95,14 +90,13 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        backgrounds: {
+            default: "offWhite",
+        },
     },
 } as Meta<typeof SingleSelect>;
 
 const styles = StyleSheet.create({
-    example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
-    },
     rowRight: {
         flexDirection: "row",
         justifyContent: "flex-end",
@@ -451,6 +445,7 @@ export const Light: StoryComponentType = {
             <View style={styles.row}>
                 <View style={styles.darkBackgroundWrapper}>
                     <SingleSelect
+                        {...args}
                         alignment="right"
                         light={true}
                         onChange={setSelectedValue}
