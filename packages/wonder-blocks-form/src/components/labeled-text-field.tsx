@@ -225,7 +225,11 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
             // call. We use `otherProps` due to a limitation in TypeScript where
             // we can't easily extract the props when using a discriminated
             // union.
-            onValidate: _,
+            /* eslint-disable @typescript-eslint/no-unused-vars */
+            onValidate,
+            onFocus,
+            onBlur,
+            /* eslint-enable @typescript-eslint/no-unused-vars */
             // numeric input props
             ...otherProps
         } = this.props;
