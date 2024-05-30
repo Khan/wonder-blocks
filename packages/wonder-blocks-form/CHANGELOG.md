@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.6.2
+
+### Patch Changes
+
+-   8fda4a73: Fix onBlur and onFocus props so it gets properly called when it is defined in the call site
+
 ## 4.6.1
 
 ### Patch Changes
