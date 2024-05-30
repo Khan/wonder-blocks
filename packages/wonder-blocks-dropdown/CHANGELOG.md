@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.3.3
+
+### Patch Changes
+
+-   c3a8fa80: Prevent dropdown item focus when enableTypeAhead is false
+
 ## 5.3.2
 
 ### Patch Changes
