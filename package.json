@@ -10,9 +10,9 @@
   "scripts": {
     "prepare": "panda codegen",
     "alex": "alex packages/",
-    "build": "rollup -c ./build-settings/rollup.config.js",
+    "build": "yarn prepare && rollup -c ./build-settings/rollup.config.js",
     "build:types": "yarn tsc --build tsconfig-build.json && node -r @swc-node/register build-settings/remove-test-types-from-dist.ts",
-    "build:storybook": "storybook build --stats-json",
+    "build:storybook": "yarn prepare && storybook build --stats-json",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f packages/*/*.tsbuildinfo && rm -f utils/tsconfig.tsbuildinfo",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
     "coveragefor": "bash -c 'yarn --silent jest --coverage --collectCoverageFrom=**/$0 $(node ./utils/test-file-for.js \"$0\")'",
