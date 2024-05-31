@@ -2,11 +2,12 @@ import * as React from "react";
 // import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {css, cx} from "@/styled-system/css";
+import {css} from "@/styled-system/css";
 // ISSUE(juan): Panda CSS does not support external files.
 // This is due to the fact that static analysis is not possible with external
 // references.
 // https://panda-css.com/docs/guides/dynamic-styling#what-you-cant-do
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingMedium,

@@ -1,8 +1,7 @@
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {css, cx} from "@/styled-system/css";
-import type {SystemStyleObject} from "@/styled-system/types";
-// import {css, cx} from "../../../../styled-system/css";
+// import type {SystemStyleObject} from "@/styled-system/types";
 
 import type {StyleType, TextViewSharedProps} from "../util/types";
 
@@ -10,9 +9,7 @@ import {processStyleList} from "../util/util";
 
 // import addStyle from "../util/add-style";
 
-function isAphroditeStyle(
-    style: SystemStyleObject | StyleType,
-): style is StyleType {
+function isAphroditeStyle(style: StyleType): style is StyleType {
     return (
         (typeof style === "object" &&
             Object.prototype.hasOwnProperty.call(style, "_definition")) ||
@@ -45,7 +42,7 @@ const defaultStyle = {
 };
 
 const styles = StyleSheet.create({
-    default: defaultStyle,
+    default: defaultStyle as React.CSSProperties,
 });
 
 type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
