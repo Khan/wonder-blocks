@@ -1,28 +1,51 @@
-// WARNING: If you modify this file you must update view.js.flow.
-import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import * as React from "react";
+import {css, cx} from "@/styled-system/css";
+import type {SystemStyleObject} from "@/styled-system/types";
+// import {css, cx} from "../../../../styled-system/css";
 
-import addStyle from "../util/add-style";
+import type {StyleType, TextViewSharedProps} from "../util/types";
 
-import type {TextViewSharedProps} from "../util/types";
+import {processStyleList} from "../util/util";
+
+// import addStyle from "../util/add-style";
+
+function isAphroditeStyle(
+    style: SystemStyleObject | StyleType,
+): style is StyleType {
+    return (
+        (typeof style === "object" &&
+            Object.prototype.hasOwnProperty.call(style, "_definition")) ||
+        (Array.isArray(style) &&
+            style.length > 0 &&
+            style.some(
+                (s) =>
+                    s &&
+                    typeof s === "object" &&
+                    Object.prototype.hasOwnProperty.call(s, "_definition"),
+            ))
+    );
+}
+
+// https://github.com/facebook/css-layout#default-values
+const defaultStyle = {
+    alignItems: "stretch",
+    borderWidth: 0,
+    borderStyle: "solid",
+    boxSizing: "border-box",
+    display: "flex",
+    flexDirection: "column",
+    margin: 0,
+    padding: 0,
+    position: "relative",
+    zIndex: 0,
+    // fix flexbox bugs
+    minHeight: 0,
+    minWidth: 0,
+};
 
 const styles = StyleSheet.create({
-    // https://github.com/facebook/css-layout#default-values
-    default: {
-        alignItems: "stretch",
-        borderWidth: 0,
-        borderStyle: "solid",
-        boxSizing: "border-box",
-        display: "flex",
-        flexDirection: "column",
-        margin: 0,
-        padding: 0,
-        position: "relative",
-        zIndex: 0,
-        // fix flexbox bugs
-        minHeight: 0,
-        minWidth: 0,
-    },
+    default: defaultStyle,
 });
 
 type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
@@ -33,11 +56,11 @@ type Props = TextViewSharedProps & {
     tag?: ValidViewTags;
 };
 
-const StyledDiv = addStyle("div", styles.default);
-const StyledArticle = addStyle("article", styles.default);
-const StyledAside = addStyle("aside", styles.default);
-const StyledNav = addStyle("nav", styles.default);
-const StyledSection = addStyle("section", styles.default);
+const StyledDiv = "div"; //addStyle("div", styles.default);
+const StyledArticle = "article"; // addStyle("article", styles.default);
+const StyledAside = "aside"; // addStyle("aside", styles.default);
+const StyledNav = "nav"; // addStyle("nav", styles.default);
+const StyledSection = "section"; // addStyle("section", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly
@@ -69,9 +92,27 @@ const StyledSection = addStyle("section", styles.default);
 const View: React.ForwardRefExoticComponent<
     Props & React.RefAttributes<HTMLElement>
 > = React.forwardRef<HTMLElement, Props>(function View(props, ref) {
-    const {testId, tag = "div", ...restProps} = props;
+    const {style, testId, tag = "div", ...restProps} = props;
+
+    let className = null;
+    let aphroditeStyle = null;
+
+    // StyleType
+    if (isAphroditeStyle(style)) {
+        aphroditeStyle = processStyleList([styles.default, style]);
+    } else {
+        const extraStyles = Array.isArray(style) ? [...style] : style;
+        className = css(defaultStyle, extraStyles);
+    }
+
+    const finalStyles = isAphroditeStyle(style)
+        ? aphroditeStyle?.className
+        : className;
+
     const commonProps = {
         ...restProps,
+        className: cx(props.className, finalStyles),
+        style: aphroditeStyle?.style,
         // Note: this matches the default test id that Testing Library uses!
         "data-testid": testId,
     } as const;
