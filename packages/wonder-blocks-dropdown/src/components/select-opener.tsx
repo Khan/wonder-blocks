@@ -132,10 +132,10 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                     return (
                         <StyledButton
                             {...sharedProps}
+                            aria-disabled={disabled}
                             aria-expanded={open ? "true" : "false"}
                             aria-haspopup="listbox"
                             data-testid={testId}
-                            disabled={disabled}
                             id={id}
                             style={style}
                             type="button"
