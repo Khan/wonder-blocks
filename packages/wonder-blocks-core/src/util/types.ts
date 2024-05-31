@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import type {CSSProperties} from "aphrodite";
+import {SystemStyleObject} from "../../../../styled-system/types/index.d";
 
 import type {AriaAttributes, AriaRole} from "./aria-types";
 
@@ -75,7 +76,7 @@ export type TextViewSharedProps = {
     /**
      * Optional custom styles.
      */
-    style?: StyleType;
+    style?: StyleType | SystemStyleObject;
     /**
      * Test ID used for e2e testing.
      */

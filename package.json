@@ -8,6 +8,7 @@
     "node": ">=16"
   },
   "scripts": {
+    "prepare": "panda codegen",
     "alex": "alex packages/",
     "build": "rollup -c ./build-settings/rollup.config.js",
     "build:types": "yarn tsc --build tsconfig-build.json && node -r @swc-node/register build-settings/remove-test-types-from-dist.ts",
@@ -50,6 +51,7 @@
     "@khanacademy/eslint-config": "^2.0.0",
     "@khanacademy/eslint-plugin": "^2.0.0",
     "@khanacademy/wonder-stuff-testing": "^3.0.1",
+    "@pandacss/dev": "^0.40.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@storybook/addon-a11y": "^8.0.0",
     "@storybook/addon-designs": "^7.0.5",
@@ -104,6 +106,7 @@
     "jest-extended": "^3.2.4",
     "jscodeshift": "^0.15.1",
     "npm-package-json-lint": "^6.4.0",
+    "postcss": "^8.4.38",
     "prettier": "^2.8.1",
     "react-refresh": "^0.14.0",
     "rollup": "^2.79.1",
@@ -111,7 +114,7 @@
     "rollup-plugin-babel": "^4.0.0-beta.2",
     "storybook": "^8.0.0",
     "storybook-addon-pseudo-states": "^2.1.2",
-    "typescript": "^4.9.5",
+    "typescript": "5.1.6",
     "typescript-coverage-report": "^0.7.0",
     "vite": "^4.4.8",
     "vite-plugin-turbosnap": "^1.0.2"

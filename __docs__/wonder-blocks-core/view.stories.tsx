@@ -1,7 +1,12 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+// import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
+import {css, cx} from "@/styled-system/css";
+// ISSUE(juan): Panda CSS does not support external files.
+// This is due to the fact that static analysis is not possible with external
+// references.
+// https://panda-css.com/docs/guides/dynamic-styling#what-you-cant-do
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingMedium,
@@ -51,11 +56,15 @@ export const InlineStyles: StoryComponentType = () => (
         <View
             style={[
                 styles.container,
-                {
-                    background: color.lightBlue,
-                    border: `1px solid ${color.blue}`,
-                    padding: spacing.xxxSmall_4,
-                },
+                css.raw({
+                    background: "{colors.lightBlue}",
+                    // ISSUE(juan): shorthand property defined in view.tsx
+                    // will take precedence over the longhand property.
+                    // This means that the border will be 0px (instead of 1px).
+                    // https://panda-css.com/docs/concepts/writing-styles#property-conflicts
+                    border: "1px solid {colors.gold}",
+                    padding: 4,
+                }),
             ]}
         >
             The style prop can accept a (nested) array of Aphrodite styles and
@@ -133,21 +142,28 @@ DefiningLayout.parameters = {
     },
 };
 
-const styles = StyleSheet.create({
-    container: {
-        background: color.offBlack8,
-        gap: spacing.medium_16,
-        padding: spacing.xLarge_32,
-    },
+const styles = {
+    // HACK(juan): css.raw needs to be used so that the compiler can identify
+    // that the tokens are being used and extract them via static analysis.
+    // https://panda-css.com/docs/guides/dynamic-styling#alternative
+    container: css.raw({
+        background: "offBlack8",
+        gap: "medium_16",
+        padding: "xLarge_32",
+    }),
 
-    view: {
-        border: `1px dashed ${color.lightBlue}`,
-        gap: spacing.medium_16,
-        padding: spacing.medium_16,
-    },
+    view: css.raw({
+        // ISSUE(juan): shorthand property defined in view.tsx will take
+        // precedence over the longhand property. This means that the border
+        // will be 0px (instead of 1px).
+        // https://panda-css.com/docs/concepts/writing-styles#property-conflicts
+        border: `1px dashed {colors.lightBlue}`,
+        gap: "medium_16",
+        padding: "medium_16",
+    }),
 
-    item: {
-        background: color.offBlack32,
-        padding: spacing.medium_16,
-    },
-});
+    item: css.raw({
+        background: "offBlack32",
+        padding: "medium_16",
+    }),
+};
