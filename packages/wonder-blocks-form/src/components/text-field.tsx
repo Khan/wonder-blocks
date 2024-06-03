@@ -3,7 +3,7 @@ import * as React from "react";
 
 // import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 // import {addStyle} from "@khanacademy/wonder-blocks-core";
-// import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {SystemStyleObject} from "@/styled-system/types";
@@ -275,9 +275,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             <StyledInput
                 className={css(
                     styles.input,
-                    // TODO(juan): Convert typography styles to
-                    // SystemStyleObject
-                    // typographyStyles.LabelMedium,
+                    typographyStyles.LabelMedium,
                     styles.default,
                     // Prioritizes disabled, then focused, then error (if any)
                     disabled

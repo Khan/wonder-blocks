@@ -64,5 +64,5 @@ export default defineConfig({
     strictTokens: false,
     // optimizations
     minify: true,
-    hash: true,
+    // hash: true,
 });

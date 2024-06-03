@@ -1,5 +1,5 @@
 import * as React from "react";
-import {css, StyleSheet} from "aphrodite";
+// import {css, StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -31,6 +31,8 @@ import TypographyArgTypes from "./typography.argtypes";
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
 import "./styles.css";
+import {SystemStyleObject} from "@/styled-system/types";
+import {css} from "@/styled-system/css";
 
 const typographyDescription = `Typography. \`wonder-blocks-typography\`
 provides a set of standardized components for displaying text in a consistent
@@ -117,14 +119,14 @@ TypographyElements.parameters = {
  */
 export const WithStyle: StoryObj<typeof Title> = {
     render: () => {
-        const styles = StyleSheet.create({
+        const styles: Record<string, SystemStyleObject> = {
             blueText: {
                 color: color.blue,
             },
             highlighted: {
                 background: color.offBlack16,
             },
-        });
+        };
 
         return (
             <Title

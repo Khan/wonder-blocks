@@ -1,5 +1,7 @@
-import {StyleSheet} from "aphrodite";
-import type {StyleDeclaration} from "aphrodite";
+import {css} from "@/styled-system/css";
+import {SystemStyleObject} from "@/styled-system/types";
+// import {StyleSheet} from "aphrodite";
+// import type {StyleDeclaration} from "aphrodite";
 
 const Regular = 400;
 const Bold = 700;
@@ -17,8 +19,8 @@ const SansFamily = 'Lato, "Noto Sans", sans-serif';
 const SerifFamily = '"Noto Serif", serif';
 const InconsolataFamily = "Inconsolata, monospace";
 
-const styles: StyleDeclaration = StyleSheet.create({
-    Title: {
+const styles: Record<string, SystemStyleObject> = {
+    Title: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Black,
@@ -30,15 +32,15 @@ const styles: StyleDeclaration = StyleSheet.create({
             fontSize: 28,
             lineHeight: "32px",
         },
-    },
-    Tagline: {
+    }),
+    Tagline: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 20,
         lineHeight: "24px",
-    },
-    HeadingLarge: {
+    }),
+    HeadingLarge: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Bold,
@@ -50,8 +52,8 @@ const styles: StyleDeclaration = StyleSheet.create({
             fontSize: 24,
             lineHeight: "28px",
         },
-    },
-    HeadingMedium: {
+    }),
+    HeadingMedium: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Bold,
@@ -63,15 +65,15 @@ const styles: StyleDeclaration = StyleSheet.create({
             fontSize: 22,
             lineHeight: "26px",
         },
-    },
-    HeadingSmall: {
+    }),
+    HeadingSmall: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Bold,
         fontSize: 20,
         lineHeight: "24px",
-    },
-    HeadingXSmall: {
+    }),
+    HeadingXSmall: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Bold,
@@ -79,77 +81,77 @@ const styles: StyleDeclaration = StyleSheet.create({
         lineHeight: "16px",
         letterSpacing: 0.6,
         textTransform: "uppercase",
-    },
-    BodySerifBlock: {
+    }),
+    BodySerifBlock: css.raw({
         ...common,
         fontFamily: SerifFamily,
         fontWeight: Regular,
         fontSize: 22,
         lineHeight: "28px",
-    },
-    BodySerif: {
+    }),
+    BodySerif: css.raw({
         ...common,
         fontFamily: SerifFamily,
         fontWeight: Regular,
         fontSize: 18,
         lineHeight: "22px",
-    },
-    BodyMonospace: {
+    }),
+    BodyMonospace: css.raw({
         ...common,
         fontFamily: InconsolataFamily,
         fontWeight: Regular,
         fontSize: 17,
         lineHeight: "22px",
-    },
-    Body: {
+    }),
+    Body: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 16,
         lineHeight: "22px",
-    },
-    LabelLarge: {
+    }),
+    LabelLarge: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Bold,
         fontSize: 16,
         lineHeight: "20px",
-    },
-    LabelMedium: {
+    }),
+    LabelMedium: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 16,
         lineHeight: "20px",
-    },
-    LabelSmall: {
+    }),
+    LabelSmall: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 14,
         lineHeight: "18px",
-    },
-    LabelXSmall: {
+    }),
+    LabelXSmall: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 12,
         lineHeight: "16px",
-    },
-    Caption: {
+    }),
+    Caption: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 14,
         lineHeight: "20px",
-    },
-    Footnote: {
+    }),
+    Footnote: css.raw({
         ...common,
         fontFamily: SansFamily,
         fontWeight: Regular,
         fontSize: 12,
         lineHeight: "18px",
-    },
-});
+    }),
+};
 
 export {styles as default};

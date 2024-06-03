@@ -1,5 +1,6 @@
 ---
 "@khanacademy/wonder-blocks-form": major
+"@khanacademy/wonder-blocks-typography": major
 ---
 
-Migrate TextField to PandaCSS
+Migrate TextField and Typography to PandaCSS

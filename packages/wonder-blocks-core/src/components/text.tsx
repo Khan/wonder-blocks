@@ -2,15 +2,42 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {css, cx} from "@/styled-system/css";
+import {SystemStyleObject} from "@/styled-system/types";
 import {processStyleList} from "../util/util";
 
-import type {TextViewSharedProps} from "../util/types";
+import type {StyleType, TextViewSharedProps} from "../util/types";
 
 type Props = TextViewSharedProps & {
     tag?: string;
 };
 
 const isHeaderRegex = /^h[1-6]$/;
+
+function isAphroditeStyle(style: StyleType): style is StyleType {
+    return (
+        (typeof style === "object" &&
+            Object.prototype.hasOwnProperty.call(style, "_definition")) ||
+        (Array.isArray(style) &&
+            style.length > 0 &&
+            style.some(
+                (s) =>
+                    s &&
+                    typeof s === "object" &&
+                    Object.prototype.hasOwnProperty.call(s, "_definition"),
+            ))
+    );
+}
+
+const rawStyles: Record<string, SystemStyleObject> = {
+    text: {
+        fontSmoothing: "antialiased",
+    },
+    header: {
+        marginTop: 0,
+        marginBottom: 0,
+    },
+};
 
 const styles = StyleSheet.create({
     text: {
@@ -45,23 +72,41 @@ const Text = React.forwardRef(function Text(
     ref,
 ) {
     const isHeader = isHeaderRegex.test(Tag);
-    const styleAttributes = processStyleList([
-        styles.text,
-        isHeader && styles.header,
-        style,
-    ]);
 
-    // Make sure we include the className from the parent component, if any.
-    const classNames = otherProps.className
-        ? [otherProps.className, styleAttributes.className].join(" ")
-        : styleAttributes.className;
+    if (isAphroditeStyle(style)) {
+        const styleAttributes = processStyleList([
+            styles.text,
+            isHeader && styles.header,
+            style,
+        ]);
+
+        // Make sure we include the className from the parent component, if any.
+        const classNames = otherProps.className
+            ? [otherProps.className, styleAttributes.className].join(" ")
+            : styleAttributes.className;
+
+        return (
+            // @ts-expect-error [FEI-5019] - TS2322 - Type '{ children: ReactNode; style: any; className: string; "data-testid": string | undefined; tabIndex?: number | undefined; id?: string | undefined; "data-modal-launcher-portal"?: boolean | undefined; ... 69 more ...; onBlur?: ((e: FocusEvent<...>) => unknown) | undefined; }' is not assignable to type 'IntrinsicAttributes'.
+            <Tag
+                {...otherProps}
+                style={styleAttributes.style}
+                className={classNames}
+                data-testid={testId}
+                ref={ref}
+            >
+                {children}
+            </Tag>
+        );
+    }
 
     return (
         // @ts-expect-error [FEI-5019] - TS2322 - Type '{ children: ReactNode; style: any; className: string; "data-testid": string | undefined; tabIndex?: number | undefined; id?: string | undefined; "data-modal-launcher-portal"?: boolean | undefined; ... 69 more ...; onBlur?: ((e: FocusEvent<...>) => unknown) | undefined; }' is not assignable to type 'IntrinsicAttributes'.
         <Tag
             {...otherProps}
-            style={styleAttributes.style}
-            className={classNames}
+            className={cx(
+                css(rawStyles.text, isHeader && rawStyles.header, style),
+                otherProps.className,
+            )}
             data-testid={testId}
             ref={ref}
         >
