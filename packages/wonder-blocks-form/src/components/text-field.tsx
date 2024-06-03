@@ -1,11 +1,13 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+// import {StyleSheet} from "aphrodite";
 
-import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+// import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+// import {addStyle} from "@khanacademy/wonder-blocks-core";
+// import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {SystemStyleObject} from "@/styled-system/types";
+import {css} from "@/styled-system/css";
 import {OmitConstrained} from "../util/types";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
@@ -16,7 +18,7 @@ type WithForwardRef = {
 
 const defaultErrorMessage = "This field is required.";
 
-const StyledInput = addStyle("input");
+const StyledInput = "input";
 
 type CommonProps = AriaProps & {
     /**
@@ -271,9 +273,11 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
 
         return (
             <StyledInput
-                style={[
+                className={css(
                     styles.input,
-                    typographyStyles.LabelMedium,
+                    // TODO(juan): Convert typography styles to
+                    // SystemStyleObject
+                    // typographyStyles.LabelMedium,
                     styles.default,
                     // Prioritizes disabled, then focused, then error (if any)
                     disabled
@@ -287,8 +291,8 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                     // Cast `this.state.error` into boolean since it's being
                     // used as a conditional
                     !!this.state.error && styles.error,
-                    style && style,
-                ]}
+                    style ? (style as SystemStyleObject) : undefined,
+                )}
                 id={id}
                 type={type}
                 placeholder={placeholder}
@@ -311,56 +315,56 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
     }
 }
 
-const styles = StyleSheet.create({
+const styles: Record<string, SystemStyleObject> = {
     input: {
         width: "100%",
         height: 40,
         borderRadius: 4,
         boxSizing: "border-box",
-        paddingLeft: spacing.medium_16,
+        paddingLeft: "medium_16",
         margin: 0,
         outline: "none",
         boxShadow: "none",
     },
     default: {
-        background: color.white,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
+        background: "white",
+        border: `1px solid {colors.offBlack16}`,
+        color: "offBlack",
+        "&::placeholder": {
+            color: "offBlack64",
         },
     },
     error: {
-        background: `${mix(color.fadedRed8, color.white)}`,
-        border: `1px solid ${color.red}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
+        background: "fadedRed8",
+        border: `1px solid {colors.red}`,
+        color: "black",
+        "&::placeholder": {
+            color: "offBlack64",
         },
     },
     disabled: {
-        background: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack64,
-        "::placeholder": {
-            color: color.offBlack32,
+        background: "offWhite",
+        border: `1px solid {colors.offBlack16}`,
+        color: "offBlack64",
+        "&::placeholder": {
+            color: "offBlack32",
         },
     },
     focused: {
-        background: color.white,
-        border: `1px solid ${color.blue}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
+        background: "white",
+        border: `1px solid {colors.blue}`,
+        color: "offBlack",
+        "&::placeholder": {
+            color: "offBlack64",
         },
     },
     defaultLight: {
-        boxShadow: `0px 0px 0px 1px ${color.blue}, 0px 0px 0px 2px ${color.white}`,
+        boxShadow: `0px 0px 0px 1px {colors.blue}, 0px 0px 0px 2px {colors.white}`,
     },
     errorLight: {
-        boxShadow: `0px 0px 0px 1px ${color.red}, 0px 0px 0px 2px ${color.white}`,
+        boxShadow: `0px 0px 0px 1px {colors.red}, 0px 0px 0px 2px {colors.white}`,
     },
-});
+};
 
 type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<

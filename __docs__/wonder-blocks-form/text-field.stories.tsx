@@ -1,10 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+// import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View, Text as _Text} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
 
@@ -13,6 +13,7 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import TextFieldArgTypes from "./text-field.argtypes";
+import {SystemStyleObject} from "@/styled-system/types";
 
 export default {
     title: "Packages / Form / TextField",
@@ -785,7 +786,7 @@ export const WithAutofocus: StoryComponentType = () => {
                 autoFocus={true}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                style={{flexGrow: 1, marginLeft: spacing.small_12}}
+                style={{flexGrow: 1, marginLeft: "small_12"}}
             />
         </View>
     );
@@ -869,32 +870,32 @@ AutoComplete.parameters = {
     },
 };
 
-const styles = StyleSheet.create({
+const styles: Record<string, SystemStyleObject> = {
     errorMessage: {
-        color: color.red,
-        paddingLeft: spacing.xxxSmall_4,
+        color: "red",
+        paddingLeft: "xxxSmall_4",
     },
     errorMessageLight: {
-        color: color.white,
-        paddingLeft: spacing.xxxSmall_4,
+        color: "white",
+        paddingLeft: "xxxSmall_4",
     },
     darkBackground: {
-        backgroundColor: color.darkBlue,
-        padding: spacing.medium_16,
+        backgroundColor: "darkBlue",
+        padding: "medium_16",
     },
     customField: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
+        backgroundColor: "darkBlue",
+        color: "white",
         border: "none",
         maxWidth: 250,
-        "::placeholder": {
-            color: color.white64,
+        "&::placeholder": {
+            color: "white64",
         },
     },
     button: {
         maxWidth: 150,
     },
     fieldWithButton: {
-        marginBottom: spacing.medium_16,
+        marginBottom: "medium_16",
     },
-});
+};

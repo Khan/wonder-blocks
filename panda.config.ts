@@ -61,4 +61,8 @@ export default defineConfig({
     },
 
     importMap: "@/styled-system",
+    strictTokens: false,
+    // optimizations
+    minify: true,
+    hash: true,
 });
