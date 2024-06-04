@@ -264,7 +264,7 @@ const _generateStyles = (
                 background: "transparent",
                 borderColor: mix(tokens.color.white32, tokens.color.blue),
                 color: mix(tokens.color.white32, tokens.color.blue),
-                cursor: "auto",
+                cursor: "not-allowed",
                 ":focus-visible": {
                     boxShadow: `0 0 0 1px ${tokens.color.offBlack32}, 0 0 0 3px ${tokens.color.fadedBlue}`,
                 },
@@ -303,7 +303,7 @@ const _generateStyles = (
                 background: tokens.color.offWhite,
                 borderColor: tokens.color.offBlack16,
                 color: tokens.color.offBlack64,
-                cursor: "auto",
+                cursor: "not-allowed",
                 ":focus-visible": {
                     boxShadow: `0 0 0 1px ${tokens.color.white}, 0 0 0 3px ${tokens.color.offBlack32}`,
                 },
