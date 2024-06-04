@@ -107,7 +107,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                         isPlaceholder,
                         error,
                     );
-                    const {hovered, focused, pressed} = state;
+                    const {pressed} = state;
 
                     // The icon colors are kind of fickle. This is just logic
                     // based on the zeplin design.
@@ -123,10 +123,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                         styles.shared,
                         stateStyles.default,
                         disabled && stateStyles.disabled,
-                        !disabled &&
-                            (pressed
-                                ? stateStyles.active
-                                : (hovered || focused) && stateStyles.focus),
                     ];
 
                     return (
@@ -229,6 +225,12 @@ const _generateStyles = (
 
     let newStyles: Record<string, any> = {};
     if (light) {
+        const focusHoverStyling = {
+            borderColor: error ? tokens.color.fadedRed8 : tokens.color.white,
+            borderWidth: tokens.spacing.xxxxSmall_2,
+            paddingLeft: adjustedPaddingLeft,
+            paddingRight: adjustedPaddingRight,
+        };
         newStyles = {
             default: {
                 background: error ? tokens.color.fadedRed8 : "transparent",
@@ -239,26 +241,22 @@ const _generateStyles = (
                     : tokens.color.white,
                 borderColor: error ? tokens.color.red : tokens.color.white50,
                 borderWidth: tokens.border.width.hairline,
-            },
-            focus: {
-                borderColor: error
-                    ? tokens.color.fadedRed8
-                    : tokens.color.white,
-                borderWidth: tokens.spacing.xxxxSmall_2,
-                paddingLeft: adjustedPaddingLeft,
-                paddingRight: adjustedPaddingRight,
-            },
-            active: {
-                paddingLeft: adjustedPaddingLeft,
-                paddingRight: adjustedPaddingRight,
-                borderColor: error ? tokens.color.red : tokens.color.fadedBlue,
-                borderWidth: tokens.border.width.thin,
-                color: placeholder
-                    ? mix(tokens.color.white32, tokens.color.blue)
-                    : tokens.color.fadedBlue,
-                backgroundColor: error
-                    ? tokens.color.fadedRed
-                    : tokens.color.activeBlue,
+                ":hover:not([aria-disabled=true])": focusHoverStyling,
+                ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
+                ":active:not([aria-disabled=true])": {
+                    paddingLeft: adjustedPaddingLeft,
+                    paddingRight: adjustedPaddingRight,
+                    borderColor: error
+                        ? tokens.color.red
+                        : tokens.color.fadedBlue,
+                    borderWidth: tokens.border.width.thin,
+                    color: placeholder
+                        ? mix(tokens.color.white32, tokens.color.blue)
+                        : tokens.color.fadedBlue,
+                    backgroundColor: error
+                        ? tokens.color.fadedRed
+                        : tokens.color.activeBlue,
+                },
             },
             disabled: {
                 background: "transparent",
@@ -271,6 +269,12 @@ const _generateStyles = (
             },
         };
     } else {
+        const focusHoverStyling = {
+            borderColor: error ? tokens.color.red : tokens.color.blue,
+            borderWidth: tokens.border.width.thin,
+            paddingLeft: adjustedPaddingLeft,
+            paddingRight: adjustedPaddingRight,
+        };
         newStyles = {
             default: {
                 background: error ? tokens.color.fadedRed8 : tokens.color.white,
@@ -279,21 +283,19 @@ const _generateStyles = (
                 color: placeholder
                     ? tokens.color.offBlack64
                     : tokens.color.offBlack,
-            },
-            focus: {
-                borderColor: error ? tokens.color.red : tokens.color.blue,
-                borderWidth: tokens.border.width.thin,
-                paddingLeft: adjustedPaddingLeft,
-                paddingRight: adjustedPaddingRight,
-            },
-            active: {
-                background: error
-                    ? tokens.color.fadedRed
-                    : tokens.color.fadedBlue,
-                borderColor: error ? tokens.color.red : tokens.color.activeBlue,
-                borderWidth: tokens.border.width.thin,
-                paddingLeft: adjustedPaddingLeft,
-                paddingRight: adjustedPaddingRight,
+                ":hover:not([aria-disabled=true])": focusHoverStyling,
+                ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
+                ":active:not([aria-disabled=true])": {
+                    background: error
+                        ? tokens.color.fadedRed
+                        : tokens.color.fadedBlue,
+                    borderColor: error
+                        ? tokens.color.red
+                        : tokens.color.activeBlue,
+                    borderWidth: tokens.border.width.thin,
+                    paddingLeft: adjustedPaddingLeft,
+                    paddingRight: adjustedPaddingRight,
+                },
             },
             disabled: {
                 background: tokens.color.offWhite,
