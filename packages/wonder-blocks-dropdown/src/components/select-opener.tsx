@@ -250,7 +250,9 @@ const _generateStyles = (
                         ? tokens.color.red
                         : tokens.color.fadedBlue,
                     borderWidth: tokens.border.width.thin,
-                    color: placeholder
+                    color: error
+                        ? tokens.color.offBlack64
+                        : placeholder
                         ? mix(tokens.color.white32, tokens.color.blue)
                         : tokens.color.fadedBlue,
                     backgroundColor: error
