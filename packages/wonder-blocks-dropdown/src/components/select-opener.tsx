@@ -226,7 +226,7 @@ const _generateStyles = (
     let newStyles: Record<string, any> = {};
     if (light) {
         const focusHoverStyling = {
-            borderColor: error ? tokens.color.fadedRed8 : tokens.color.white,
+            borderColor: error ? tokens.color.red : tokens.color.white,
             borderWidth: tokens.spacing.xxxxSmall_2,
             paddingLeft: adjustedPaddingLeft,
             paddingRight: adjustedPaddingRight,
