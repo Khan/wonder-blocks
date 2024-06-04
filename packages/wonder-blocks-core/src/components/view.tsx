@@ -1,12 +1,17 @@
 // WARNING: If you modify this file you must update view.js.flow.
-import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {cx} from "class-variance-authority";
+import * as React from "react";
 
-import addStyle from "../util/add-style";
+// import addStyle from "../util/add-style";
 
-import type {TextViewSharedProps} from "../util/types";
+import type {StyleType, TextViewSharedProps} from "../util/types";
 
-const styles = StyleSheet.create({
+import {processStyleList} from "../util/util";
+
+import styles from "./view.module.css";
+
+const stylesOld = StyleSheet.create({
     // https://github.com/facebook/css-layout#default-values
     default: {
         alignItems: "stretch",
@@ -33,11 +38,11 @@ type Props = TextViewSharedProps & {
     tag?: ValidViewTags;
 };
 
-const StyledDiv = addStyle("div", styles.default);
-const StyledArticle = addStyle("article", styles.default);
-const StyledAside = addStyle("aside", styles.default);
-const StyledNav = addStyle("nav", styles.default);
-const StyledSection = addStyle("section", styles.default);
+// const StyledDiv = addStyle("div", styles.default);
+// const StyledArticle = addStyle("article", styles.default);
+// const StyledAside = addStyle("aside", styles.default);
+// const StyledNav = addStyle("nav", styles.default);
+// const StyledSection = addStyle("section", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly
@@ -66,31 +71,48 @@ const StyledSection = addStyle("section", styles.default);
  * ```
  */
 
+const isAphroditeStyle = (style: string | StyleType) =>
+    style && typeof style === "object";
+
 const View: React.ForwardRefExoticComponent<
     Props & React.RefAttributes<HTMLElement>
 > = React.forwardRef<HTMLElement, Props>(function View(props, ref) {
-    const {testId, tag = "div", ...restProps} = props;
+    const {style, testId, tag = "div", ...restProps} = props;
+
+    let className = styles.default;
+    let aphroditeStyle = null;
+
+    // StyleType
+    if (isAphroditeStyle(style)) {
+        aphroditeStyle = processStyleList([stylesOld.default, style]);
+    } else {
+        className += ` ${style}`;
+    }
+
+    const finalStyles = isAphroditeStyle(style)
+        ? aphroditeStyle?.className
+        : className;
+
     const commonProps = {
         ...restProps,
         // Note: this matches the default test id that Testing Library uses!
         "data-testid": testId,
+        style: aphroditeStyle?.style,
+        className: cx(props.className, finalStyles),
     } as const;
 
     switch (tag) {
         case "article":
-            return <StyledArticle {...commonProps} ref={ref} />;
+            return <article {...commonProps} ref={ref} />;
         case "aside":
-            return <StyledAside {...commonProps} ref={ref} />;
+            return <aside {...commonProps} ref={ref} />;
         case "nav":
-            return <StyledNav {...commonProps} ref={ref} />;
+            return <nav {...commonProps} ref={ref} />;
         case "section":
-            return <StyledSection {...commonProps} ref={ref} />;
+            return <section {...commonProps} ref={ref} />;
         case "div":
             return (
-                <StyledDiv
-                    {...commonProps}
-                    ref={ref as React.Ref<HTMLDivElement>}
-                />
+                <div {...commonProps} ref={ref as React.Ref<HTMLDivElement>} />
             );
         default:
             // eslint-disable-next-line no-unused-expressions

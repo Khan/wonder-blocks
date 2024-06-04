@@ -1,9 +1,12 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+// import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+
+import {cx} from "class-variance-authority";
+import styles from "./circular-spinner.module.css";
 
 const heights = {
     xsmall: 16,
@@ -24,7 +27,8 @@ const colors = {
     dark: color.offBlack16,
 } as const;
 
-const StyledPath = addStyle("path");
+// const StyledPath = addStyle("path");
+const StyledPath = "path";
 
 type Props = AriaProps & {
     /**
@@ -37,7 +41,7 @@ type Props = AriaProps & {
      */
     light: boolean;
     /** Any (optional) styling to apply to the spinner container. */
-    style?: StyleType;
+    style?: StyleType | string;
     /**
      * Test ID used for e2e testing.
      */
@@ -83,39 +87,50 @@ export default class CircularSpinner extends React.Component<Props> {
                 data-testid={testId}
             >
                 <StyledPath
-                    style={[styles.loadingSpinner, {fill: color}]}
+                    className={styles.loadingSpinner}
+                    fill={color}
                     fillRule="nonzero"
                     d={path}
                 />
             </svg>
         );
 
-        return <View style={[styles.spinnerContainer, style]}>{svg}</View>;
+        const sharedStyles = [styles.spinnerContainer, style];
+
+        return (
+            <View
+                style={
+                    typeof style === "object" ? sharedStyles : cx(sharedStyles)
+                }
+            >
+                {svg}
+            </View>
+        );
     }
 }
 
-const rotateKeyFrames = {
-    "0%": {
-        transform: "rotate(0deg)",
-    },
-    "50%": {
-        transform: "rotate(180deg)",
-    },
-    "100%": {
-        transform: "rotate(360deg)",
-    },
-} as const;
+// const rotateKeyFrames = {
+//     "0%": {
+//         transform: "rotate(0deg)",
+//     },
+//     "50%": {
+//         transform: "rotate(180deg)",
+//     },
+//     "100%": {
+//         transform: "rotate(360deg)",
+//     },
+// } as const;
 
-const styles = StyleSheet.create({
-    spinnerContainer: {
-        justifyContent: "center",
-    },
-    loadingSpinner: {
-        transformOrigin: "50% 50%",
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: rotateKeyFrames,
-        animationDuration: "1.1s",
-        animationIterationCount: "infinite",
-        animationTimingFunction: "linear",
-    },
-});
+// const styles = StyleSheet.create({
+//     spinnerContainer: {
+//         justifyContent: "center",
+//     },
+//     loadingSpinner: {
+//         transformOrigin: "50% 50%",
+//         // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
+//         animationName: rotateKeyFrames,
+//         animationDuration: "1.1s",
+//         animationIterationCount: "infinite",
+//         animationTimingFunction: "linear",
+//     },
+// });

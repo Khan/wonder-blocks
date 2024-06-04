@@ -59,7 +59,7 @@
 }
 
 /* only include the counter to the stories titles */
-.sb-anchor > h3::before {
+.sb-anchor>h3::before {
     counter-increment: story;
     color: var(--color-text-64);
     content: counter(story) ".";

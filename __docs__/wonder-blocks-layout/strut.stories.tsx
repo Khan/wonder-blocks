@@ -1,15 +1,16 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
+
+import styles from "./strut.stories.module.css";
 
 export default {
     title: "Packages / Layout / Strut",
@@ -112,22 +113,3 @@ WithStyle.parameters = {
         disableSnapshot: true,
     },
 };
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-    },
-    column: {
-        flexDirection: "column",
-    },
-    strut: {
-        alignSelf: "center",
-        backgroundColor: color.darkBlue,
-    },
-    thin: {
-        height: "4px",
-    },
-    thick: {
-        height: "8px",
-    },
-});

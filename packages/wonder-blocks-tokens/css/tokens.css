@@ -1,0 +1,91 @@
+:root {
+    /* border */
+    --wb-border-radius-xSmall_2: 2px;
+    --wb-border-radius-small_3: 3px;
+    --wb-border-radius-medium_4: 4px;
+    --wb-border-radius-large_6: 6px;
+    --wb-border-radius-xLarge_12: 12px;
+    --wb-border-radius-full: 50%;
+    --wb-border-width-none: 0;
+    --wb-border-width-hairline: 1px;
+    --wb-border-width-thin: 2px;
+    --wb-border-width-thick: 4px;
+
+    /* color */
+    --wb-color-blue: #1865f2;
+    --wb-color-purple: #9059ff;
+    --wb-color-green: #00a60e;
+    --wb-color-gold: #ffb100;
+    --wb-color-red: #d92916;
+    --wb-color-offBlack: #21242c;
+    --wb-color-offBlack64: rgba(33, 36, 44, 0.64);
+    --wb-color-offBlack50: rgba(33, 36, 44, 0.50);
+    --wb-color-offBlack32: rgba(33, 36, 44, 0.32);
+    --wb-color-offBlack16: rgba(33, 36, 44, 0.16);
+    --wb-color-offBlack8: rgba(33, 36, 44, 0.08);
+    --wb-color-offWhite: #f7f8fa;
+    --wb-color-white: #ffffff;
+    --wb-color-white64: rgba(255, 255, 255, 0.64);
+    --wb-color-white50: rgba(255, 255, 255, 0.50);
+    --wb-color-darkBlue: #0b2149;
+    --wb-color-teal: #14bf96;
+    --wb-color-lightBlue: #37c5fd;
+    --wb-color-pink: #fa50ae;
+    --wb-color-white32: rgba(255, 255, 255, 0.32);
+    --wb-color-activeBlue: #1b50b3;
+    --wb-color-fadedBlue: #b5cefb;
+    --wb-color-fadedBlue24: #c8dafc;
+    --wb-color-fadedBlue16: #dae6fd;
+    --wb-color-fadedBlue8: #edf3fe;
+    --wb-color-activeRed: #9e271d;
+    --wb-color-fadedRed: #f3bbb4;
+    --wb-color-fadedRed24: #f6ccc7;
+    --wb-color-fadedRed16: #f9ddda;
+    --wb-color-fadedRed8: #fceeec;
+    --wb-color-fadedGreen24: #c2eac5;
+    --wb-color-fadedGreen16: #d6f1d8;
+    --wb-color-fadedGold24: #ffecc2;
+    --wb-color-fadedGold16: #fff3d6;
+    --wb-color-fadedPurple24: #e4d7ff;
+    --wb-color-fadedPurple16: #ede4ff;
+    --wb-color-eggplant: #5f1e5c;
+    --wb-color-fadedOffBlack64: #717378;
+    --wb-color-fadedOffBlack50: #909296;
+    --wb-color-fadedOffBlack32: #b8b9bb;
+    --wb-color-fadedOffBlack16: #dbdcdd;
+    --wb-color-fadedOffBlack8: #ededee;
+
+    /* spacing */
+    --wb-spacing-xxxxSmall_2: 2px;
+    --wb-spacing-xxxSmall_4: 4px;
+    --wb-spacing-xxSmall_6: 6px;
+    --wb-spacing-xSmall_8: 8px;
+    --wb-spacing-small_12: 12px;
+    --wb-spacing-medium_16: 16px;
+    --wb-spacing-large_24: 24px;
+    --wb-spacing-xLarge_32: 32px;
+    --wb-spacing-xxLarge_48: 48px;
+    --wb-spacing-xxxLarge_64: 64px;
+
+    /* font */
+    --wb-font-family-sans: Lato, "Noto Sans", sans-serif;
+    --wb-font-family-serif: "Noto Serif", serif;
+    --wb-font-family-mono: Inconsolata, monospace;
+    --wb-font-size-xxxLarge: 36px;
+    --wb-font-size-xxLarge: 28px;
+    --wb-font-size-xLarge: 24px;
+    --wb-font-size-large: 20px;
+    --wb-font-size-medium: 16px;
+    --wb-font-size-small: 14px;
+    --wb-font-size-xSmall: 12px;
+    --wb-font-lineHeight-xxxLarge: 40px;
+    --wb-font-lineHeight-xxLarge: 32px;
+    --wb-font-lineHeight-xLarge: 28px;
+    --wb-font-lineHeight-large: 24px;
+    --wb-font-lineHeight-medium: 20px;
+    --wb-font-lineHeight-small: 18px;
+    --wb-font-lineHeight-xSmall: 16px;
+    --wb-font-weight-light: 300;
+    --wb-font-weight-regular: 400;
+    --wb-font-weight-bold: 700;
+}

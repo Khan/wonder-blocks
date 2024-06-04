@@ -1,0 +1,76 @@
+.input {
+    width: 100%;
+    height: 40px;
+    border-radius: var(--wb-border-radius-medium_4);
+    box-sizing: border-box;
+    padding-left: var(--wb-spacing-medium_16);
+    margin: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.typography {
+    display: block;
+    font-family: var(--wb-font-family-sans);
+    font-size: var(--wb-font-size-medium);
+    line-height: var(--wb-line-height-large);
+    font-weight: var(--wb-font-weight-regular);
+
+}
+
+.default {
+    background: var(--wb-color-white);
+    border: 1px solid var(--wb-color-offBlack16);
+    color: var(--wb-color-offBlack);
+}
+
+.default::placeholder {
+    color: var(--wb-color-offBlack64);
+}
+
+/**
+ * ISSUE(juan): Order of precedence.
+ *
+ * `.error` will be overriden by `.focused` and `.disabled` because they are
+ * defined after `.error` in the file. In the case the input is both focused
+ * and with error, the `.focused` styles will be applied. The expected behavior
+ * is that the error styles should be applied.
+*/
+.error {
+    background: var(--wb-color-fadedRed8);
+    border: 1px solid var(--wb-color-red);
+    color: var(--wb-color-offBlack);
+}
+
+.error::placeholder {
+    color: var(--wb-color-offBlack64);
+}
+
+.disabled {
+    background: var(--wb-color-offWhite);
+    border: 1px solid var(--wb-color-offBlack16);
+    color: var(--wb-color-offBlack64);
+}
+
+.disabled::placeholder {
+    color: var(--wb-color-offBlack32);
+}
+
+
+.focused {
+    background: var(--wb-color-white);
+    border: 1px solid var(--wb-color-blue);
+    color: var(--wb-color-offBlack);
+}
+
+.focused::placeholder {
+    color: var(--wb-color-offBlack64);
+}
+
+.defaultLight {
+    box-shadow: 0px 0px 0px 1px var(--wb-color-blue), 0px 0px 0px 2px var(--wb-color-white);
+}
+
+.errorLight {
+    box-shadow: 0px 0px 0px 1px var(--wb-color-red), 0px 0px 0px 2px var(--wb-color-white);
+}

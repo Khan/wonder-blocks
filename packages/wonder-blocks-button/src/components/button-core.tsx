@@ -1,31 +1,472 @@
 import * as React from "react";
-import {CSSProperties, StyleSheet} from "aphrodite";
+// import {CSSProperties, StyleSheet} from "aphrodite";
+import {cva} from "class-variance-authority";
 import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
-    ThemedStylesFn,
+    // ThemedStylesFn,
     useScopedTheme,
-    useStyles,
+    // useStyles,
 } from "@khanacademy/wonder-blocks-theming";
 
 import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
+import sharedStyles from "./button.module.css";
 import type {SharedProps} from "./button";
-import {ButtonThemeContext, ButtonThemeContract} from "../themes/themed-button";
+import {ButtonThemeContext} from "../themes/themed-button";
 import {ButtonIcon} from "./button-icon";
 
 type Props = SharedProps & ChildrenProps & ClickableState;
 
-const StyledAnchor = addStyle("a");
-const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
+// const StyledAnchor = addStyle("a");
+// const StyledButton = addStyle("button");
+// const StyledLink = addStyle(Link);
+const StyledAnchor = "a";
+const StyledButton = "button";
+const StyledLink = Link;
+
+const buttonStyles = cva(sharedStyles.default, {
+    variants: {
+        kind: {
+            primary: [sharedStyles.primary, sharedStyles.primaryDefault],
+            secondary: [sharedStyles.secondary, sharedStyles.secondaryDefault],
+            tertiary: [sharedStyles.tertiary, sharedStyles.tertiaryDefault],
+        },
+        size: {
+            small: sharedStyles.small,
+            medium: sharedStyles.medium,
+            large: sharedStyles.large,
+        },
+        color: {
+            default: {},
+            destructive: {},
+        },
+        light: {
+            true: {},
+            false: {},
+        },
+        state: {
+            default: {},
+            hover: {},
+            focus: {},
+            active: {},
+        },
+        disabled: {
+            true: sharedStyles.disabled,
+            false: {},
+        },
+    },
+    compoundVariants: [
+        // primary
+        {
+            kind: "primary",
+            color: "default",
+            light: false,
+            className: sharedStyles.primaryDefault,
+        },
+        {
+            kind: "primary",
+            color: "destructive",
+            light: false,
+            className: sharedStyles.primaryDestructive,
+        },
+        {
+            kind: "primary",
+            color: "default",
+            light: true,
+            className: sharedStyles.primaryDefaultLight,
+        },
+        {
+            kind: "primary",
+            color: "destructive",
+            light: true,
+            className: sharedStyles.primaryDestructiveLight,
+        },
+        {
+            kind: "primary",
+            size: "large",
+            className: sharedStyles.primarySizeLarge,
+        },
+        // Focus
+        {
+            kind: "primary",
+            color: "default",
+            light: false,
+            state: "focus",
+            className: sharedStyles.primaryDefaultFocus,
+        },
+        {
+            kind: "primary",
+            color: "default",
+            light: true,
+            state: "focus",
+            className: sharedStyles.primaryDefaultLightFocus,
+        },
+        {
+            kind: "primary",
+            color: "destructive",
+            light: false,
+            state: "focus",
+            className: sharedStyles.primaryDestructiveFocus,
+        },
+        {
+            kind: "primary",
+            color: "destructive",
+            light: true,
+            state: "focus",
+            className: sharedStyles.primaryDestructiveLightFocus,
+        },
+        // primary:active
+        {
+            kind: "primary",
+            color: "default",
+            light: false,
+            state: "active",
+            className: sharedStyles.primaryDefaultActive,
+        },
+        {
+            kind: "primary",
+            color: "default",
+            light: true,
+            state: "active",
+            className: sharedStyles.primaryDefaultLightActive,
+        },
+        {
+            kind: "primary",
+            color: "destructive",
+            light: false,
+            state: "active",
+            className: sharedStyles.primaryDestructiveActive,
+        },
+        {
+            kind: "primary",
+            color: "destructive",
+            light: true,
+            state: "active",
+            className: sharedStyles.primaryDestructiveLightActive,
+        },
+        // primary:disabled
+        {
+            kind: "primary",
+            color: "default",
+            light: false,
+            disabled: true,
+            className: sharedStyles.primaryDefaultDisabled,
+        },
+        {
+            kind: "primary",
+            color: "default",
+            light: true,
+            disabled: true,
+            className: sharedStyles.primaryDefaultLightDisabled,
+        },
+        {
+            kind: "primary",
+            color: "destructive",
+            light: false,
+            disabled: true,
+            className: sharedStyles.primaryDestructiveDisabled,
+        },
+        {
+            kind: "primary",
+            color: "destructive",
+            light: true,
+            disabled: true,
+            className: sharedStyles.primaryDestructiveLightDisabled,
+        },
+        // secondary
+        {
+            kind: "secondary",
+            color: "default",
+            light: false,
+            state: "default",
+            className: sharedStyles.secondaryDefault,
+        },
+        {
+            kind: "secondary",
+            color: "destructive",
+            light: false,
+            state: "default",
+            className: sharedStyles.secondaryDestructive,
+        },
+        {
+            kind: "secondary",
+            color: ["default", "destructive"],
+            light: true,
+            state: "default",
+            className: sharedStyles.secondaryLight,
+        },
+        // secondary:focus
+        {
+            kind: "secondary",
+            color: ["default", "destructive"],
+            light: false,
+            state: "focus",
+            className: sharedStyles.secondaryFocus,
+        },
+        {
+            kind: "secondary",
+            color: "default",
+            light: false,
+            state: "focus",
+            className: [
+                sharedStyles.secondaryDefault,
+                sharedStyles.secondaryDefaultFocus,
+            ],
+        },
+        {
+            kind: "secondary",
+            color: "destructive",
+            light: false,
+            state: "focus",
+            className: [
+                sharedStyles.secondaryDestructive,
+                sharedStyles.secondaryDestructiveFocus,
+            ],
+        },
+        {
+            kind: "secondary",
+            color: ["default", "destructive"],
+            light: true,
+            state: "focus",
+            className: sharedStyles.secondaryLightFocus,
+        },
+        // secondary:active
+        {
+            kind: "secondary",
+            color: ["default", "destructive"],
+            light: false,
+            state: "active",
+            className: sharedStyles.secondaryActive,
+        },
+        {
+            kind: "secondary",
+            color: "default",
+            light: false,
+            state: "active",
+            className: sharedStyles.secondaryDefaultActive,
+        },
+        {
+            kind: "secondary",
+            color: "destructive",
+            light: false,
+            state: "active",
+            className: sharedStyles.secondaryDestructiveActive,
+        },
+        {
+            kind: "secondary",
+            color: "default",
+            light: true,
+            state: "active",
+            className: sharedStyles.secondaryDefaultLightActive,
+        },
+        {
+            kind: "secondary",
+            color: "destructive",
+            light: true,
+            state: "active",
+            className: sharedStyles.secondaryDestructiveLightActive,
+        },
+        // secondary:disabled
+        {
+            kind: "secondary",
+            color: ["default", "destructive"],
+            light: false,
+            disabled: true,
+            className: sharedStyles.secondaryDisabled,
+        },
+        {
+            kind: "secondary",
+            color: "default",
+            light: true,
+            disabled: true,
+            className: sharedStyles.secondaryDefaultLightDisabled,
+        },
+        {
+            kind: "secondary",
+            color: "destructive",
+            light: true,
+            disabled: true,
+            className: sharedStyles.secondaryDestructiveLightDisabled,
+        },
+        {
+            kind: "secondary",
+            color: ["default", "destructive"],
+            light: true,
+            disabled: true,
+            className: sharedStyles.secondaryLightDisabled,
+        },
+        // tertiary
+        {
+            kind: "tertiary",
+            color: "default",
+            light: false,
+            state: "default",
+            className: sharedStyles.tertiaryDefault,
+        },
+        {
+            kind: "tertiary",
+            color: "destructive",
+            light: false,
+            state: "default",
+            className: sharedStyles.tertiaryDestructive,
+        },
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: true,
+            state: "default",
+            className: sharedStyles.tertiaryLight,
+        },
+        // tertiary:hover
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: false,
+            state: "hover",
+            className: sharedStyles.tertiaryHover,
+        },
+        {
+            kind: "tertiary",
+            color: "default",
+            light: false,
+            state: "hover",
+            className: sharedStyles.tertiaryDefaultHover,
+        },
+        {
+            kind: "tertiary",
+            color: "destructive",
+            light: false,
+            state: "hover",
+            className: sharedStyles.tertiaryDestructiveHover,
+        },
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: true,
+            state: "hover",
+            className: sharedStyles.tertiaryLightHover,
+        },
+        // tertiary:focus
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: false,
+            state: "focus",
+            className: sharedStyles.tertiaryFocus,
+        },
+        {
+            kind: "tertiary",
+            color: "default",
+            light: false,
+            state: "focus",
+            className: sharedStyles.tertiaryDefaultFocus,
+        },
+        {
+            kind: "tertiary",
+            color: "destructive",
+            light: false,
+            state: "focus",
+            className: sharedStyles.tertiaryDestructiveFocus,
+        },
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: true,
+            state: "focus",
+            className: sharedStyles.tertiaryLightFocus,
+        },
+        // tertiary:active
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: false,
+            state: "active",
+            className: sharedStyles.tertiaryActive,
+        },
+        {
+            kind: "tertiary",
+            color: "default",
+            light: false,
+            state: "active",
+            className: sharedStyles.tertiaryDefaultActive,
+        },
+        {
+            kind: "tertiary",
+            color: "destructive",
+            light: false,
+            state: "active",
+            className: sharedStyles.tertiaryDestructiveActive,
+        },
+        {
+            kind: "tertiary",
+            color: "default",
+            light: true,
+            state: "active",
+            className: sharedStyles.tertiaryDefaultLightActive,
+        },
+        {
+            kind: "tertiary",
+            color: "destructive",
+            light: true,
+            state: "active",
+            className: sharedStyles.tertiaryDestructiveLightActive,
+        },
+        // tertiary:disabled
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: false,
+            disabled: true,
+            className: sharedStyles.tertiaryDisabled,
+        },
+        {
+            kind: "tertiary",
+            color: "default",
+            light: true,
+            disabled: true,
+            className: sharedStyles.tertiaryDefaultLightDisabled,
+        },
+        {
+            kind: "tertiary",
+            color: "destructive",
+            light: true,
+            disabled: true,
+            className: sharedStyles.tertiaryDestructiveLightDisabled,
+        },
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: false,
+            disabled: true,
+            state: "focus",
+            className: sharedStyles.tertiaryDisabledFocus,
+        },
+        {
+            kind: "tertiary",
+            color: ["default", "destructive"],
+            light: true,
+            disabled: true,
+            state: "focus",
+            className: sharedStyles.tertiaryLightDisabledFocus,
+        },
+    ],
+    defaultVariants: {
+        kind: "primary",
+        size: "medium",
+        color: "default",
+        light: false,
+        state: "default",
+        disabled: false,
+    },
+});
 
 const ButtonCore: React.ForwardRefExoticComponent<
     Props &
@@ -34,8 +475,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
     typeof Link | HTMLButtonElement | HTMLAnchorElement,
     Props
 >(function ButtonCore(props: Props, ref) {
-    const {theme, themeName} = useScopedTheme(ButtonThemeContext);
-    const sharedStyles = useStyles(themedSharedStyles, theme);
+    const {theme} = useScopedTheme(ButtonThemeContext);
 
     const renderInner = (router: any): React.ReactNode => {
         const {
@@ -62,45 +502,37 @@ const ButtonCore: React.ForwardRefExoticComponent<
             ...restProps
         } = props;
 
-        const buttonStyles = _generateStyles(
-            color,
-            kind,
-            light,
-            size,
-            theme,
-            themeName,
-        );
-
         const disabled = spinner || disabledProp;
 
-        const defaultStyle = [
-            sharedStyles.shared,
-            disabled && sharedStyles.disabled,
-            startIcon && sharedStyles.withStartIcon,
-            endIcon && sharedStyles.withEndIcon,
-            buttonStyles.default,
-            disabled && buttonStyles.disabled,
-            // apply focus effect only to default and secondary buttons
-            kind !== "tertiary" &&
-                !disabled &&
-                (pressed
-                    ? buttonStyles.active
-                    : (hovered || focused) && buttonStyles.focus),
-            kind === "tertiary" &&
-                !pressed &&
-                focused && [
-                    buttonStyles.focus,
-                    disabled && buttonStyles.disabledFocus,
-                ],
-            size === "small" && sharedStyles.small,
-            size === "large" && sharedStyles.large,
-        ];
+        const buttonState = pressed
+            ? "active"
+            : hovered || focused
+            ? "focus"
+            : "default";
+
+        const defaultStyle = buttonStyles({
+            kind,
+            size,
+            color,
+            light,
+            state: buttonState,
+            disabled,
+            // extra styles
+            className: [
+                theme,
+                sharedStyles.shared,
+                startIcon && sharedStyles.withStartIcon,
+                endIcon && sharedStyles.withEndIcon,
+                style,
+            ],
+        });
 
         const commonProps = {
             "data-testid": testId,
             id: id,
             role: "button",
-            style: [defaultStyle, style],
+            // style: [defaultStyle, style],
+            className: defaultStyle,
             ...restProps,
         } as const;
 
@@ -115,11 +547,15 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     spinner && sharedStyles.hiddenText,
                     kind === "tertiary" && sharedStyles.textWithFocus,
                     // apply press/hover effects on the label
+                    // TODO(juan): figure out this part
                     kind === "tertiary" &&
                         !disabled &&
                         (pressed
-                            ? [buttonStyles.hover, buttonStyles.active]
-                            : hovered && buttonStyles.hover),
+                            ? [
+                                  sharedStyles.tertiaryHover,
+                                  sharedStyles.tertiaryActive,
+                              ]
+                            : hovered && sharedStyles.tertiaryHover),
                 ]}
                 testId={testId ? `${testId}-inner-label` : undefined}
             >
@@ -174,7 +610,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
                             testId ? `${testId}-end-icon-wrapper` : undefined
                         }
                         style={[
-                            styles.endIcon,
+                            // styles.endIcon,
+                            sharedStyles.endIcon,
                             sharedStyles.iconWrapper,
                             sharedStyles.endIconWrapper,
                             kind === "tertiary" &&
@@ -199,7 +636,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 <StyledLink
                     {...commonProps}
                     to={href}
-                    ref={ref as React.Ref<typeof Link>}
+                    // TODO(juan): fix this
+                    // ref={ref as React.Ref<typeof StyledLink>}
                 >
                     {contents}
                 </StyledLink>
@@ -234,285 +672,3 @@ const ButtonCore: React.ForwardRefExoticComponent<
 });
 
 export default ButtonCore;
-
-const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
-    shared: {
-        position: "relative",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: theme.size.height.medium,
-        paddingTop: 0,
-        paddingBottom: 0,
-        paddingLeft: theme.padding.large,
-        paddingRight: theme.padding.large,
-        border: "none",
-        borderRadius: theme.border.radius.default,
-        cursor: "pointer",
-        outline: "none",
-        textDecoration: "none",
-        boxSizing: "border-box",
-        // This removes the 300ms click delay on mobile browsers by indicating that
-        // "double-tap to zoom" shouldn't be used on this element.
-        touchAction: "manipulation",
-        userSelect: "none",
-        ":focus": {
-            // Mobile: Removes a blue highlight style shown when the user clicks a button
-            WebkitTapHighlightColor: "rgba(0,0,0,0)",
-        },
-    },
-    disabled: {
-        cursor: "auto",
-    },
-    small: {
-        borderRadius: theme.border.radius.small,
-        height: theme.size.height.small,
-    },
-    large: {
-        borderRadius: theme.border.radius.large,
-        height: theme.size.height.large,
-    },
-    text: {
-        alignItems: "center",
-        fontWeight: theme.font.weight.default,
-        whiteSpace: "nowrap",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        display: "inline-block", // allows the button text to truncate
-        pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
-    },
-    largeText: {
-        fontSize: theme.font.size.large,
-        lineHeight: `${theme.font.lineHeight.large}px`,
-    },
-    textWithFocus: {
-        position: "relative", // allows the tertiary button border to use the label width
-    },
-    hiddenText: {
-        visibility: "hidden",
-    },
-    spinner: {
-        position: "absolute",
-    },
-    startIcon: {
-        marginRight: theme.padding.small,
-        marginLeft: theme.margin.icon.offset,
-    },
-    tertiaryStartIcon: {
-        // Undo the negative padding from startIcon since tertiary
-        // buttons don't have extra padding.
-        marginLeft: 0,
-    },
-    endIcon: {
-        marginLeft: theme.padding.small,
-    },
-    iconWrapper: {
-        borderRadius: theme.border.radius.icon,
-        padding: theme.padding.xsmall,
-        // View has a default minWidth of 0, which causes the label text
-        // to encroach on the icon when it needs to truncate. We can fix
-        // this by setting the minWidth to auto.
-        minWidth: "auto",
-    },
-    iconWrapperSecondaryHovered: {
-        backgroundColor: theme.color.bg.icon.secondaryHover,
-        color: theme.color.text.icon.secondaryHover,
-    },
-    endIconWrapper: {
-        marginLeft: theme.padding.small,
-        marginRight: theme.margin.icon.offset,
-    },
-    endIconWrapperTertiary: {
-        marginRight: 0,
-    },
-});
-
-const styles: Record<string, any> = {};
-
-// export for testing only
-export const _generateStyles = (
-    buttonColor = "default",
-    kind: "primary" | "secondary" | "tertiary",
-    light: boolean,
-    size: "large" | "medium" | "small",
-    theme: ButtonThemeContract,
-    themeName: string,
-) => {
-    const color: string =
-        buttonColor === "destructive"
-            ? theme.color.bg.critical.default
-            : theme.color.bg.action.default;
-
-    const buttonType = `${color}-${kind}-${light}-${size}-${themeName}`;
-
-    if (styles[buttonType]) {
-        return styles[buttonType];
-    }
-
-    const fadedColor =
-        buttonColor === "destructive"
-            ? theme.color.bg.critical.inverse
-            : theme.color.bg.action.inverse;
-    const activeColor =
-        buttonColor === "destructive"
-            ? theme.color.bg.critical.active
-            : theme.color.bg.action.active;
-    const padding =
-        size === "large" ? theme.padding.xLarge : theme.padding.large;
-
-    let newStyles: Record<string, CSSProperties> = {};
-    if (kind === "primary") {
-        const boxShadowInnerColor: string = light
-            ? theme.color.bg.primary.inverse
-            : theme.color.bg.primary.default;
-
-        newStyles = {
-            default: {
-                background: light ? theme.color.bg.primary.default : color,
-                color: light ? color : theme.color.text.inverse,
-                paddingLeft: padding,
-                paddingRight: padding,
-            },
-            focus: {
-                // This assumes a background of white for the regular button and
-                // a background of darkBlue for the light version. The inner
-                // box shadow/ring is also small enough for a slight variation
-                // in the background color not to matter too much.
-                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
-                    light ? theme.color.bg.primary.default : color
-                }`,
-            },
-            active: {
-                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
-                    light ? fadedColor : activeColor
-                }`,
-                background: light ? fadedColor : activeColor,
-                color: light ? activeColor : fadedColor,
-            },
-            disabled: {
-                background: light
-                    ? fadedColor
-                    : theme.color.bg.primary.disabled,
-                color: light ? color : theme.color.text.primary.disabled,
-                cursor: "default",
-                ":focus": {
-                    boxShadow: `0 0 0 1px ${
-                        light
-                            ? theme.color.bg.primary.disabled
-                            : theme.color.bg.primary.default
-                    }, 0 0 0 3px ${
-                        light ? fadedColor : theme.color.bg.primary.disabled
-                    }`,
-                },
-            },
-        };
-    } else if (kind === "secondary") {
-        const secondaryBorderColor =
-            buttonColor === "destructive"
-                ? theme.color.border.secondary.critical
-                : theme.color.border.secondary.action;
-        const secondaryActiveColor =
-            buttonColor === "destructive"
-                ? theme.color.bg.secondary.active.critical
-                : theme.color.bg.secondary.active.action;
-
-        newStyles = {
-            default: {
-                background: light
-                    ? theme.color.bg.secondary.inverse
-                    : theme.color.bg.secondary.default,
-                color: light ? theme.color.text.inverse : color,
-                borderColor: light
-                    ? theme.color.border.secondary.inverse
-                    : secondaryBorderColor,
-                borderStyle: "solid",
-                borderWidth: theme.border.width.secondary,
-                paddingLeft: padding,
-                paddingRight: padding,
-            },
-            focus: {
-                background: light
-                    ? theme.color.bg.secondary.inverse
-                    : theme.color.bg.secondary.focus,
-                borderColor: "transparent",
-                outlineColor: light
-                    ? theme.color.border.primary.inverse
-                    : color,
-                outlineStyle: "solid",
-                outlineWidth: theme.border.width.focused,
-            },
-
-            active: {
-                background: light ? activeColor : secondaryActiveColor,
-                color: light ? fadedColor : activeColor,
-                borderColor: "transparent",
-                outlineColor: light ? fadedColor : activeColor,
-                outlineStyle: "solid",
-                outlineWidth: theme.border.width.focused,
-            },
-            disabled: {
-                color: light
-                    ? theme.color.text.secondary.inverse
-                    : theme.color.text.disabled,
-                outlineColor: light ? fadedColor : theme.color.border.disabled,
-                cursor: "default",
-                ":focus": {
-                    outlineColor: light
-                        ? theme.color.border.secondary.inverse
-                        : theme.color.border.disabled,
-                    outlineWidth: theme.border.width.disabled,
-                },
-            },
-        };
-    } else if (kind === "tertiary") {
-        newStyles = {
-            default: {
-                background: "none",
-                color: light ? theme.color.text.inverse : color,
-                paddingLeft: 0,
-                paddingRight: 0,
-            },
-            hover: {
-                ":after": {
-                    content: "''",
-                    position: "absolute",
-                    height: theme.size.height.tertiaryHover,
-                    width: "100%",
-                    right: 0,
-                    bottom: 0,
-                    background: light ? theme.color.bg.tertiary.hover : color,
-                    borderRadius: theme.border.radius.tertiary,
-                },
-            },
-            focus: {
-                outlineStyle: "solid",
-                outlineColor: light
-                    ? theme.color.border.tertiary.inverse
-                    : color,
-                outlineWidth: theme.border.width.focused,
-                borderRadius: theme.border.radius.default,
-            },
-            active: {
-                color: light ? fadedColor : activeColor,
-                ":after": {
-                    height: 1,
-                    background: light ? fadedColor : activeColor,
-                },
-            },
-            disabled: {
-                color: light ? fadedColor : theme.color.text.disabled,
-                cursor: "default",
-            },
-            disabledFocus: {
-                outlineColor: light
-                    ? theme.color.border.tertiary.inverse
-                    : theme.color.border.disabled,
-            },
-        };
-    } else {
-        throw new Error("Button kind not recognized");
-    }
-
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
-};

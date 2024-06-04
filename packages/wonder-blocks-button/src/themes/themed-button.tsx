@@ -5,21 +5,21 @@ import {
     ThemeSwitcherContext,
 } from "@khanacademy/wonder-blocks-theming";
 
-import defaultTheme from "./default";
-import khanmigoTheme from "./khanmigo";
+import defaultTheme from "./default.module.css";
+import khanmigoTheme from "./khanmigo.module.css";
 
 type Props = {
     children: React.ReactNode;
 };
 
-export type ButtonThemeContract = typeof defaultTheme;
+// export type ButtonThemeContract = typeof defaultTheme;
 
 /**
  * The themes available to the Button component.
  */
-const themes: Themes<ButtonThemeContract> = {
-    default: defaultTheme,
-    khanmigo: khanmigoTheme,
+const themes: Themes<any> = {
+    default: defaultTheme.theme,
+    khanmigo: khanmigoTheme.theme,
 };
 
 /**
@@ -34,7 +34,15 @@ export const ButtonThemeContext = createThemeContext(defaultTheme);
 export default function ThemedButton(props: Props) {
     const currentTheme = React.useContext(ThemeSwitcherContext);
 
-    const theme = themes[currentTheme] || defaultTheme;
+    const theme =
+        currentTheme !== "default"
+            ? // HACK(juan): There's no way to merge themes, so we're just
+              // concatenating the class names. This case is for when the button
+              // is using a different theme than the default one (like
+              // `khanmigo`).
+              themes.default + " " + themes[currentTheme]
+            : themes.default;
+
     return (
         <ButtonThemeContext.Provider value={theme}>
             {props.children}

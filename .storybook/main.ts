@@ -26,9 +26,11 @@ const config: StorybookConfig = {
         const mergedConfig = mergeConfig(config, {
             resolve: {
                 // Allow us to detect changes from local wonder-blocks packages.
+                // NOTE: Only applies to ts(x) files to avoid conflicts with
+                // the tokens.css import.
                 alias: [
                     {
-                        find: /^@khanacademy\/wonder-blocks(-.*)$/,
+                        find: /^@khanacademy\/wonder-blocks(-[a-z]*)$/,
                         replacement: resolve(
                             __dirname,
                             "../packages/wonder-blocks$1/src",

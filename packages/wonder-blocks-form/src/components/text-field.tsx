@@ -1,12 +1,13 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+// import {StyleSheet} from "aphrodite";
 
-import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-
-import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+// import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+// import {addStyle} from "@khanacademy/wonder-blocks-core";
+// import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {OmitConstrained} from "../util/types";
+
+import styles from "./text-field.module.css";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
@@ -16,7 +17,9 @@ type WithForwardRef = {
 
 const defaultErrorMessage = "This field is required.";
 
-const StyledInput = addStyle("input");
+// const StyledInput = addStyle("input");
+
+const StyledInput = "input";
 
 type CommonProps = AriaProps & {
     /**
@@ -269,26 +272,31 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             ...otherProps
         } = this.props;
 
+        const sharedStyles = [
+            styles.input,
+            styles.typography,
+            styles.default,
+            // Prioritizes disabled, then focused, then error (if any)
+            disabled
+                ? styles.disabled
+                : this.state.focused && [
+                      styles.focused,
+                      light && styles.defaultLight,
+                  ],
+            // : !!this.state.error && [
+            //       styles.error,
+            //       light && styles.errorLight,
+            //   ],
+            // Cast `this.state.error` into boolean since it's being
+            // used as a conditional
+            !!this.state.error && styles.error,
+            style && style,
+        ];
+
         return (
             <StyledInput
-                style={[
-                    styles.input,
-                    typographyStyles.LabelMedium,
-                    styles.default,
-                    // Prioritizes disabled, then focused, then error (if any)
-                    disabled
-                        ? styles.disabled
-                        : this.state.focused
-                        ? [styles.focused, light && styles.defaultLight]
-                        : !!this.state.error && [
-                              styles.error,
-                              light && styles.errorLight,
-                          ],
-                    // Cast `this.state.error` into boolean since it's being
-                    // used as a conditional
-                    !!this.state.error && styles.error,
-                    style && style,
-                ]}
+                // style={sharedStyles}
+                className={sharedStyles.flat().filter(Boolean).join(" ")}
                 id={id}
                 type={type}
                 placeholder={placeholder}
@@ -311,56 +319,59 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
     }
 }
 
-const styles = StyleSheet.create({
-    input: {
-        width: "100%",
-        height: 40,
-        borderRadius: 4,
-        boxSizing: "border-box",
-        paddingLeft: spacing.medium_16,
-        margin: 0,
-        outline: "none",
-        boxShadow: "none",
-    },
-    default: {
-        background: color.white,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-    },
-    error: {
-        background: `${mix(color.fadedRed8, color.white)}`,
-        border: `1px solid ${color.red}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-    },
-    disabled: {
-        background: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack64,
-        "::placeholder": {
-            color: color.offBlack32,
-        },
-    },
-    focused: {
-        background: color.white,
-        border: `1px solid ${color.blue}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-    },
-    defaultLight: {
-        boxShadow: `0px 0px 0px 1px ${color.blue}, 0px 0px 0px 2px ${color.white}`,
-    },
-    errorLight: {
-        boxShadow: `0px 0px 0px 1px ${color.red}, 0px 0px 0px 2px ${color.white}`,
-    },
-});
+// const styles = StyleSheet.create({
+//     input: {
+//         width: "100%",
+//         height: 40,
+//         borderRadius: 4,
+//         boxSizing: "border-box",
+//         paddingLeft: spacing.medium_16,
+//         margin: 0,
+//         outline: "none",
+//         boxShadow: "none",
+//     },
+//     typography: {
+//         ...typographyStyles.LabelMedium,
+//     },
+//     default: {
+//         background: color.white,
+//         border: `1px solid ${color.offBlack16}`,
+//         color: color.offBlack,
+//         "::placeholder": {
+//             color: color.offBlack64,
+//         },
+//     },
+//     error: {
+//         background: `${mix(color.fadedRed8, color.white)}`,
+//         border: `1px solid ${color.red}`,
+//         color: color.offBlack,
+//         "::placeholder": {
+//             color: color.offBlack64,
+//         },
+//     },
+//     disabled: {
+//         background: color.offWhite,
+//         border: `1px solid ${color.offBlack16}`,
+//         color: color.offBlack64,
+//         "::placeholder": {
+//             color: color.offBlack32,
+//         },
+//     },
+//     focused: {
+//         background: color.white,
+//         border: `1px solid ${color.blue}`,
+//         color: color.offBlack,
+//         "::placeholder": {
+//             color: color.offBlack64,
+//         },
+//     },
+//     defaultLight: {
+//         boxShadow: `0px 0px 0px 1px ${color.blue}, 0px 0px 0px 2px ${color.white}`,
+//     },
+//     errorLight: {
+//         boxShadow: `0px 0px 0px 1px ${color.red}, 0px 0px 0px 2px ${color.white}`,
+//     },
+// });
 
 type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<

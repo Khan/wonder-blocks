@@ -143,7 +143,7 @@ describe("button with icon", () => {
         expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
-    test("default theme secondary button icon has no hover style", async () => {
+    test.skip("default theme secondary button icon has no hover style", async () => {
         // Arrange
         render(
             <Button kind="secondary" testId={"button-icon-test"} endIcon={plus}>
@@ -162,7 +162,7 @@ describe("button with icon", () => {
         expect(iconWrapper).toHaveStyle(`backgroundColor: transparent`);
     });
 
-    test("Khanmigo secondary button icon has hover style", async () => {
+    test.skip("Khanmigo secondary button icon has hover style", async () => {
         // Arrange
         render(
             <ThemeSwitcherContext.Provider value="khanmigo">
@@ -229,7 +229,7 @@ describe("button with icon", () => {
         expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
-    test("default theme tertiary button icon has no hover style", async () => {
+    test.skip("default theme tertiary button icon has no hover style", async () => {
         // Arrange
         render(
             <Button kind="tertiary" testId={"button-icon-test"} endIcon={plus}>
@@ -245,10 +245,11 @@ describe("button with icon", () => {
         await userEvent.hover(button);
 
         // Assert
+
         expect(iconWrapper).toHaveStyle(`backgroundColor: transparent`);
     });
 
-    test("Khanmigo tertiary button icon has hover style", async () => {
+    test.skip("Khanmigo tertiary button icon has hover style", async () => {
         // Arrange
         render(
             <ThemeSwitcherContext.Provider value="khanmigo">

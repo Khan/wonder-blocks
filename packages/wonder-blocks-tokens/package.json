@@ -2,6 +2,13 @@
     "name": "@khanacademy/wonder-blocks-tokens",
     "version": "1.3.0",
     "description": "Core primitive design tokens for Web Wonder Blocks",
+    "exports": {
+        ".": {
+            "import": "./dist/es/index.js",
+            "require": "./dist/index.js"
+        },
+        "./css/*": "./css/*"
+    },
     "main": "dist/index.js",
     "module": "dist/es/index.js",
     "types": "dist/index.d.ts",

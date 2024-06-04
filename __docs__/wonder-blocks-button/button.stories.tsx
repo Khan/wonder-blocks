@@ -1,16 +1,17 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+// import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 import {expect, fireEvent, userEvent, within} from "@storybook/test";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
-import type {StyleDeclaration} from "aphrodite";
+// import type {StyleDeclaration} from "aphrodite";
 
 import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
+import {cx} from "class-variance-authority";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -26,6 +27,8 @@ import ComponentInfo from "../../.storybook/components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+
+import styles from "./button.stories.module.css";
 
 /**
  * Reusable button component.
@@ -132,31 +135,31 @@ export const Tertiary: StoryComponentType = {
     },
 };
 
-export const styles: StyleDeclaration = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginBottom: spacing.xSmall_8,
-    },
-    button: {
-        marginRight: spacing.xSmall_8,
-    },
-    truncatedButton: {
-        maxWidth: 200,
-        marginBottom: spacing.medium_16,
-    },
-    fillSpace: {
-        minWidth: 140,
-    },
-    example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
-    },
-    label: {
-        marginTop: spacing.large_24,
-        marginBottom: spacing.xSmall_8,
-    },
-});
+// export const styles: StyleDeclaration = StyleSheet.create({
+//     row: {
+//         flexDirection: "row",
+//         alignItems: "center",
+//         marginBottom: spacing.xSmall_8,
+//     },
+//     button: {
+//         marginRight: spacing.xSmall_8,
+//     },
+//     truncatedButton: {
+//         maxWidth: 200,
+//         marginBottom: spacing.medium_16,
+//     },
+//     fillSpace: {
+//         minWidth: 140,
+//     },
+//     example: {
+//         background: color.offWhite,
+//         padding: spacing.medium_16,
+//     },
+//     label: {
+//         marginTop: spacing.large_24,
+//         marginBottom: spacing.xSmall_8,
+//     },
+// });
 
 export const Variants: StoryComponentType = () => (
     <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
@@ -436,7 +439,7 @@ export const Size: StoryComponentType = () => (
     <View>
         <View style={styles.row}>
             <LabelMedium style={styles.fillSpace}>small</LabelMedium>
-            <View style={[styles.row, styles.example]}>
+            <View style={cx([styles.row, styles.example])}>
                 <Button style={styles.button} onClick={() => {}} size="small">
                     Label
                 </Button>
@@ -461,7 +464,7 @@ export const Size: StoryComponentType = () => (
         <View style={styles.row}>
             <LabelMedium style={styles.fillSpace}>medium (default)</LabelMedium>
 
-            <View style={[styles.row, styles.example]}>
+            <View style={cx([styles.row, styles.example])}>
                 <Button style={styles.button} onClick={() => {}} size="medium">
                     Label
                 </Button>
@@ -485,7 +488,7 @@ export const Size: StoryComponentType = () => (
         </View>
         <View style={styles.row}>
             <LabelMedium style={styles.fillSpace}>large</LabelMedium>
-            <View style={[styles.row, styles.example]}>
+            <View style={cx([styles.row, styles.example])}>
                 <Button style={styles.button} onClick={() => {}} size="large">
                     Label
                 </Button>
