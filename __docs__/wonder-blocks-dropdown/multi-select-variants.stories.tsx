@@ -123,6 +123,27 @@ export const Default: StoryComponentType = {
     render: AllVariants,
 };
 
+export const Hover: StoryComponentType = {
+    render: AllVariants,
+    parameters: {pseudo: {hover: true}},
+};
+
+export const Focus: StoryComponentType = {
+    render: AllVariants,
+    parameters: {pseudo: {focusVisible: true}},
+};
+
+export const HoverFocus: StoryComponentType = {
+    name: "Hover + Focus",
+    render: AllVariants,
+    parameters: {pseudo: {hover: true, focusVisible: true}},
+};
+
+export const Active: StoryComponentType = {
+    render: AllVariants,
+    parameters: {pseudo: {active: true}},
+};
+
 const styles = StyleSheet.create({
     darkDefault: {
         backgroundColor: color.darkBlue,
