@@ -112,7 +112,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                     // The icon colors are kind of fickle. This is just logic
                     // based on the zeplin design.
                     const iconColor = light
-                        ? disabled || pressed
+                        ? disabled || pressed || error
                             ? "currentColor"
                             : tokens.color.white
                         : disabled
@@ -232,7 +232,11 @@ const _generateStyles = (
         newStyles = {
             default: {
                 background: error ? tokens.color.fadedRed8 : "transparent",
-                color: placeholder ? tokens.color.white50 : tokens.color.white,
+                color: error
+                    ? tokens.color.offBlack64
+                    : placeholder
+                    ? tokens.color.white50
+                    : tokens.color.white,
                 borderColor: error ? tokens.color.red : tokens.color.white50,
                 borderWidth: tokens.border.width.hairline,
             },
