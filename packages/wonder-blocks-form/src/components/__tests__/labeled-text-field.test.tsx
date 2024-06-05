@@ -61,10 +61,13 @@ describe("LabeledTextField", () => {
         render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
 
         // Assert
-        // Since the generated id is unique, we cannot know what it will be.
-        // We only test if the id attribute starts with "uid-" and ends with "-field".
+        // Since the generated id is unique, we cannot know what it will be. We
+        // only test if the id attribute starts with "uid-", then followed by
+        // "text-field-" as the scope assigned to IDProvider.
         const input = await screen.findByRole("textbox");
-        expect(input.getAttribute("id")).toMatch(/uid-.*-field/);
+        expect(input.getAttribute("id")).toMatch(
+            /uid-labeled-text-field.*-field/,
+        );
     });
 
     it("type prop is passed to input", async () => {
