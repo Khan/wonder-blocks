@@ -23,7 +23,9 @@ export default function ThemedButton(props: Props) {
     const currentTheme = React.useContext(ThemeSwitcherContext);
     const theme =
         // NOTE: This maps to the themes defined in panda.config.ts
-        currentTheme === "default" ? "buttonDefault" : "buttonKhanmigo";
+        typeof currentTheme === "undefined" || currentTheme === "default"
+            ? "buttonDefault"
+            : "buttonKhanmigo";
 
     return (
         <ButtonThemeContext.Provider value={{theme}}>

@@ -10,6 +10,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
+import {css} from "@/styled-system/css";
 
 export default {
     title: "Packages / Layout / Strut",
@@ -113,21 +114,21 @@ WithStyle.parameters = {
     },
 };
 
-const styles = StyleSheet.create({
-    row: {
+const styles = {
+    row: css.raw({
         flexDirection: "row",
-    },
-    column: {
+    }),
+    column: css.raw({
         flexDirection: "column",
-    },
-    strut: {
+    }),
+    strut: css.raw({
         alignSelf: "center",
-        backgroundColor: color.darkBlue,
-    },
-    thin: {
+        backgroundColor: "darkBlue",
+    }),
+    thin: css.raw({
         height: "4px",
-    },
-    thick: {
+    }),
+    thick: css.raw({
         height: "8px",
-    },
-});
+    }),
+};
