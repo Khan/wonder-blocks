@@ -113,9 +113,6 @@ const VariantsByTheme = ({themeName = "Default"}: {themeName?: string}) => (
 const AllVariants = () => (
     <>
         <VariantsByTheme />
-        <ThemeSwitcherContext.Provider value="khanmigo">
-            <VariantsByTheme themeName="Khanmigo" />
-        </ThemeSwitcherContext.Provider>
     </>
 );
 
