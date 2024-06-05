@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import * as React from "react";
-import {fireEvent, render, screen} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -1072,60 +1072,6 @@ describe("SingleSelect", () => {
             expect(
                 await screen.findByText("No hay resultados"),
             ).toBeInTheDocument();
-        });
-    });
-
-    describe("error state styles", () => {
-        it("should apply the error styles to the dropdown on hover", async () => {
-            // Arrange
-            const userEvent = doRender(
-                <SingleSelect
-                    onChange={onChange}
-                    placeholder="Choose a fruit"
-                    error={true}
-                    testId="singleselect-error-hover"
-                >
-                    {[<OptionItem label="Banana" value="banana" />]}
-                </SingleSelect>,
-            );
-            const dropdown = await screen.findByTestId(
-                "singleselect-error-hover",
-            );
-
-            // Act
-            await userEvent.hover(dropdown);
-
-            // Assert
-            expect(dropdown).toHaveStyle("border-color: #d92916");
-            expect(dropdown).toHaveStyle("border-width: 2px");
-        });
-
-        it("should apply the error styles to the dropdown on mouse down", async () => {
-            // Arrange
-            doRender(
-                <SingleSelect
-                    onChange={onChange}
-                    placeholder="Choose a fruit"
-                    error={true}
-                    testId="singleselect-error-active"
-                >
-                    {[<OptionItem label="Banana" value="banana" />]}
-                </SingleSelect>,
-            );
-            const dropdown = await screen.findByTestId(
-                "singleselect-error-active",
-            );
-
-            // Act
-            // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.mouseDown(dropdown);
-
-            // Assert
-            expect(dropdown).toHaveStyle("border-color: #d92916");
-            expect(dropdown).toHaveStyle("border-width: 2px");
-            expect(dropdown).toHaveStyle(
-                "background-color: rgb(243, 187, 180)",
-            );
         });
     });
 

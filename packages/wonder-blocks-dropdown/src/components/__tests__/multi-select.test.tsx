@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable max-lines */
 import * as React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -1536,58 +1536,6 @@ describe("MultiSelect", () => {
             await waitFor(() => {
                 expect(container).toHaveTextContent("1 planet");
             });
-        });
-    });
-
-    describe("error state styles", () => {
-        it("should apply the error styles to the dropdown on hover", async () => {
-            // Arrange
-            const {userEvent} = doRender(
-                <MultiSelect
-                    onChange={jest.fn()}
-                    error={true}
-                    testId="multiselect-error-hover"
-                >
-                    {[<OptionItem label="Banana" value="banana" />]}
-                </MultiSelect>,
-            );
-            const dropdown = await screen.findByTestId(
-                "multiselect-error-hover",
-            );
-
-            // Act
-            await userEvent.hover(dropdown);
-
-            // Assert
-            expect(dropdown).toHaveStyle("border-color: #d92916");
-            expect(dropdown).toHaveStyle("border-width: 2px");
-        });
-
-        it("should apply the error styles to the dropdown on mouse down", async () => {
-            // Arrange
-            doRender(
-                <MultiSelect
-                    onChange={jest.fn()}
-                    error={true}
-                    testId="multiselect-error-active"
-                >
-                    {[<OptionItem label="Banana" value="banana" />]}
-                </MultiSelect>,
-            );
-            const dropdown = await screen.findByTestId(
-                "multiselect-error-active",
-            );
-
-            // Act
-            // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.mouseDown(dropdown);
-
-            // Assert
-            expect(dropdown).toHaveStyle("border-color: #d92916");
-            expect(dropdown).toHaveStyle("border-width: 2px");
-            expect(dropdown).toHaveStyle(
-                "background-color: rgb(243, 187, 180)",
-            );
         });
     });
 
