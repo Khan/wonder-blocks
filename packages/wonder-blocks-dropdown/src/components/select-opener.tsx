@@ -242,6 +242,16 @@ const _generateStyles = (
                 borderColor: error ? tokens.color.red : tokens.color.white50,
                 borderWidth: tokens.border.width.hairline,
                 ":hover:not([aria-disabled=true])": focusHoverStyling,
+                ["@media not (hover: hover)"]: {
+                    ":hover:not([aria-disabled=true])": {
+                        borderColor: error
+                            ? tokens.color.red
+                            : tokens.color.white50,
+                        borderWidth: tokens.border.width.hairline,
+                        paddingLeft: tokens.spacing.medium_16,
+                        paddingRight: tokens.spacing.small_12,
+                    },
+                },
                 ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
                 ":active:not([aria-disabled=true])": {
                     paddingLeft: adjustedPaddingLeft,
@@ -286,6 +296,16 @@ const _generateStyles = (
                     ? tokens.color.offBlack64
                     : tokens.color.offBlack,
                 ":hover:not([aria-disabled=true])": focusHoverStyling,
+                ["@media not (hover: hover)"]: {
+                    ":hover:not([aria-disabled=true])": {
+                        borderColor: error
+                            ? tokens.color.red
+                            : tokens.color.offBlack16,
+                        borderWidth: tokens.border.width.hairline,
+                        paddingLeft: tokens.spacing.medium_16,
+                        paddingRight: tokens.spacing.small_12,
+                    },
+                },
                 ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
                 ":active:not([aria-disabled=true])": {
                     background: error
