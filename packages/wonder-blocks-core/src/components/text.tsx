@@ -99,12 +99,29 @@ const Text = React.forwardRef(function Text(
         );
     }
 
+    const pandaStyle = style as StyleType;
+
+    const flattenStyles = Array.isArray(pandaStyle)
+        ? pandaStyle.flatMap((s: StyleType) => {
+              if (Array.isArray(s)) {
+                  return s.flat();
+              }
+
+              return s;
+          })
+        : pandaStyle;
+
+    // NOTE(juan): To make panda's css function happy!
+    const extraStyles = Array.isArray(flattenStyles)
+        ? [...flattenStyles]
+        : style;
+
     return (
         // @ts-expect-error [FEI-5019] - TS2322 - Type '{ children: ReactNode; style: any; className: string; "data-testid": string | undefined; tabIndex?: number | undefined; id?: string | undefined; "data-modal-launcher-portal"?: boolean | undefined; ... 69 more ...; onBlur?: ((e: FocusEvent<...>) => unknown) | undefined; }' is not assignable to type 'IntrinsicAttributes'.
         <Tag
             {...otherProps}
             className={cx(
-                css(rawStyles.text, isHeader && rawStyles.header, style),
+                css(rawStyles.text, isHeader && rawStyles.header, extraStyles),
                 otherProps.className,
             )}
             data-testid={testId}

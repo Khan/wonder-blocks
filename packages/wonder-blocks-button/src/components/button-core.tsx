@@ -1,31 +1,33 @@
 import * as React from "react";
-import {CSSProperties, StyleSheet} from "aphrodite";
+// import {CSSProperties, StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
-    ThemedStylesFn,
+    // ThemedStylesFn,
     useScopedTheme,
-    useStyles,
+    // useStyles,
 } from "@khanacademy/wonder-blocks-theming";
 
 import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
+import {SystemStyleObject} from "@/styled-system/types";
+import {css} from "@/styled-system/css";
 import type {SharedProps} from "./button";
 import {ButtonThemeContext, ButtonThemeContract} from "../themes/themed-button";
 import {ButtonIcon} from "./button-icon";
 
 type Props = SharedProps & ChildrenProps & ClickableState;
 
-const StyledAnchor = addStyle("a");
-const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
+const StyledAnchor = "a"; //addStyle("a");
+const StyledButton = "button"; //addStyle("button");
+const StyledLink = Link; //addStyle(Link);
 
 const ButtonCore: React.ForwardRefExoticComponent<
     Props &
@@ -35,7 +37,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
     Props
 >(function ButtonCore(props: Props, ref) {
     const {theme, themeName} = useScopedTheme(ButtonThemeContext);
-    const sharedStyles = useStyles(themedSharedStyles, theme);
+    // const sharedStyles = useStyles(themedSharedStyles, theme);
+    const sharedStyles = themedSharedStyles;
 
     const renderInner = (router: any): React.ReactNode => {
         const {
@@ -73,7 +76,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
         const disabled = spinner || disabledProp;
 
-        const defaultStyle = [
+        const defaultStyle = css(
             sharedStyles.shared,
             disabled && sharedStyles.disabled,
             startIcon && sharedStyles.withStartIcon,
@@ -94,13 +97,14 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 ],
             size === "small" && sharedStyles.small,
             size === "large" && sharedStyles.large,
-        ];
+            style ? (style as SystemStyleObject) : undefined,
+        );
 
         const commonProps = {
             "data-testid": testId,
             id: id,
             role: "button",
-            style: [defaultStyle, style],
+            className: defaultStyle,
             ...restProps,
         } as const;
 
@@ -199,7 +203,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 <StyledLink
                     {...commonProps}
                     to={href}
-                    ref={ref as React.Ref<typeof Link>}
+                    // TODO(juan): fix this
+                    // ref={ref as React.Ref<typeof Link>}
                 >
                     {contents}
                 </StyledLink>
@@ -219,6 +224,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     {...commonProps}
                     aria-disabled={disabled}
                     ref={ref as React.Ref<HTMLButtonElement>}
+                    data-panda-theme={theme.theme}
                 >
                     {contents}
                 </StyledButton>
@@ -235,99 +241,100 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
 export default ButtonCore;
 
-const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
-    shared: {
+const themedSharedStyles: Record<string, SystemStyleObject> = {
+    shared: css.raw({
         position: "relative",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        height: theme.size.height.medium,
+        height: "height.medium",
         paddingTop: 0,
         paddingBottom: 0,
-        paddingLeft: theme.padding.large,
-        paddingRight: theme.padding.large,
+        paddingLeft: "padding.large",
+        paddingRight: "padding.large",
         border: "none",
-        borderRadius: theme.border.radius.default,
+        borderRadius: "default",
         cursor: "pointer",
         outline: "none",
+        outlineOffset: 0,
         textDecoration: "none",
         boxSizing: "border-box",
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
         userSelect: "none",
-        ":focus": {
+        "&:focus": {
             // Mobile: Removes a blue highlight style shown when the user clicks a button
             WebkitTapHighlightColor: "rgba(0,0,0,0)",
         },
-    },
-    disabled: {
+    }),
+    disabled: css.raw({
         cursor: "auto",
-    },
-    small: {
-        borderRadius: theme.border.radius.small,
-        height: theme.size.height.small,
-    },
-    large: {
-        borderRadius: theme.border.radius.large,
-        height: theme.size.height.large,
-    },
-    text: {
+    }),
+    small: css.raw({
+        borderRadius: "small",
+        height: "height.small",
+    }),
+    large: css.raw({
+        borderRadius: "large",
+        height: "height.large",
+    }),
+    text: css.raw({
         alignItems: "center",
-        fontWeight: theme.font.weight.default,
+        fontWeight: "default",
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
-    },
-    largeText: {
-        fontSize: theme.font.size.large,
-        lineHeight: `${theme.font.lineHeight.large}px`,
-    },
-    textWithFocus: {
+    }),
+    largeText: css.raw({
+        fontSize: "large",
+        lineHeight: "large",
+    }),
+    textWithFocus: css.raw({
         position: "relative", // allows the tertiary button border to use the label width
-    },
-    hiddenText: {
+    }),
+    hiddenText: css.raw({
         visibility: "hidden",
-    },
-    spinner: {
+    }),
+    spinner: css.raw({
         position: "absolute",
-    },
-    startIcon: {
-        marginRight: theme.padding.small,
-        marginLeft: theme.margin.icon.offset,
-    },
-    tertiaryStartIcon: {
+    }),
+    startIcon: css.raw({
+        marginRight: "padding.small",
+        marginLeft: "margin.icon.offset",
+    }),
+    tertiaryStartIcon: css.raw({
         // Undo the negative padding from startIcon since tertiary
         // buttons don't have extra padding.
         marginLeft: 0,
-    },
-    endIcon: {
-        marginLeft: theme.padding.small,
-    },
-    iconWrapper: {
-        borderRadius: theme.border.radius.icon,
-        padding: theme.padding.xsmall,
+    }),
+    endIcon: css.raw({
+        marginLeft: "padding.small",
+    }),
+    iconWrapper: css.raw({
+        borderRadius: "icon",
+        padding: "padding.xsmall",
         // View has a default minWidth of 0, which causes the label text
         // to encroach on the icon when it needs to truncate. We can fix
         // this by setting the minWidth to auto.
         minWidth: "auto",
-    },
-    iconWrapperSecondaryHovered: {
-        backgroundColor: theme.color.bg.icon.secondaryHover,
-        color: theme.color.text.icon.secondaryHover,
-    },
-    endIconWrapper: {
-        marginLeft: theme.padding.small,
-        marginRight: theme.margin.icon.offset,
-    },
-    endIconWrapperTertiary: {
+    }),
+    iconWrapperSecondaryHovered: css.raw({
+        backgroundColor: "bg.icon.secondaryHover",
+        color: "text.icon.secondaryHover",
+    }),
+    endIconWrapper: css.raw({
+        marginLeft: "padding.small",
+        marginRight: "margin.icon.offset",
+    }),
+    endIconWrapperTertiary: css.raw({
         marginRight: 0,
-    },
-});
+    }),
+};
 
-const styles: Record<string, any> = {};
+const styles: {[key: string]: Record<string, SystemStyleObject>} = {};
 
 // export for testing only
 export const _generateStyles = (
@@ -340,8 +347,8 @@ export const _generateStyles = (
 ) => {
     const color: string =
         buttonColor === "destructive"
-            ? theme.color.bg.critical.default
-            : theme.color.bg.action.default;
+            ? "bg.critical.default"
+            : "bg.action.default";
 
     const buttonType = `${color}-${kind}-${light}-${size}-${themeName}`;
 
@@ -351,168 +358,145 @@ export const _generateStyles = (
 
     const fadedColor =
         buttonColor === "destructive"
-            ? theme.color.bg.critical.inverse
-            : theme.color.bg.action.inverse;
+            ? "bg.critical.inverse"
+            : "bg.action.inverse";
     const activeColor =
         buttonColor === "destructive"
-            ? theme.color.bg.critical.active
-            : theme.color.bg.action.active;
-    const padding =
-        size === "large" ? theme.padding.xLarge : theme.padding.large;
+            ? "bg.critical.active"
+            : "bg.action.active";
+    const padding = size === "large" ? "padding.xLarge" : "padding.large";
 
-    let newStyles: Record<string, CSSProperties> = {};
+    let newStyles: Record<string, SystemStyleObject> = {};
     if (kind === "primary") {
-        const boxShadowInnerColor: string = light
-            ? theme.color.bg.primary.inverse
-            : theme.color.bg.primary.default;
-
         newStyles = {
-            default: {
-                background: light ? theme.color.bg.primary.default : color,
-                color: light ? color : theme.color.text.inverse,
+            default: css.raw({
+                background: light ? "bg.primary.default" : color,
+                color: light ? color : "text.inverse",
                 paddingLeft: padding,
                 paddingRight: padding,
-            },
-            focus: {
-                // This assumes a background of white for the regular button and
-                // a background of darkBlue for the light version. The inner
-                // box shadow/ring is also small enough for a slight variation
-                // in the background color not to matter too much.
-                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
-                    light ? theme.color.bg.primary.default : color
-                }`,
-            },
-            active: {
-                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
-                    light ? fadedColor : activeColor
-                }`,
+                outlineStyle: "solid",
+                outlineWidth: "focused",
+                outlineOffset: 1,
+            }),
+            focus: css.raw({
+                outlineColor: light ? "bg.primary.default" : color,
+            }),
+            active: css.raw({
+                outlineColor: light ? fadedColor : activeColor,
                 background: light ? fadedColor : activeColor,
                 color: light ? activeColor : fadedColor,
-            },
-            disabled: {
-                background: light
-                    ? fadedColor
-                    : theme.color.bg.primary.disabled,
-                color: light ? color : theme.color.text.primary.disabled,
+            }),
+            disabled: css.raw({
+                background: light ? fadedColor : "bg.primary.disabled",
+                color: light ? color : "text.primary.disabled",
                 cursor: "default",
-                ":focus": {
-                    boxShadow: `0 0 0 1px ${
-                        light
-                            ? theme.color.bg.primary.disabled
-                            : theme.color.bg.primary.default
-                    }, 0 0 0 3px ${
-                        light ? fadedColor : theme.color.bg.primary.disabled
-                    }`,
+                "&:focus": {
+                    outlineColor: light ? fadedColor : "bg.primary.disabled",
                 },
-            },
+            }),
         };
     } else if (kind === "secondary") {
         const secondaryBorderColor =
             buttonColor === "destructive"
-                ? theme.color.border.secondary.critical
-                : theme.color.border.secondary.action;
+                ? "border.secondary.critical"
+                : "border.secondary.action";
         const secondaryActiveColor =
             buttonColor === "destructive"
-                ? theme.color.bg.secondary.active.critical
-                : theme.color.bg.secondary.active.action;
+                ? "bg.secondary.active.critical"
+                : "bg.secondary.active.action";
 
         newStyles = {
-            default: {
+            default: css.raw({
                 background: light
-                    ? theme.color.bg.secondary.inverse
-                    : theme.color.bg.secondary.default,
-                color: light ? theme.color.text.inverse : color,
+                    ? "bg.secondary.inverse"
+                    : "bg.secondary.default",
+                color: light ? "text.inverse" : color,
                 borderColor: light
-                    ? theme.color.border.secondary.inverse
+                    ? "border.secondary.inverse"
                     : secondaryBorderColor,
                 borderStyle: "solid",
-                borderWidth: theme.border.width.secondary,
+                borderWidth: "secondary",
                 paddingLeft: padding,
                 paddingRight: padding,
-            },
-            focus: {
+            }),
+            focus: css.raw({
                 background: light
-                    ? theme.color.bg.secondary.inverse
-                    : theme.color.bg.secondary.focus,
+                    ? "bg.secondary.inverse"
+                    : "bg.secondary.focus",
                 borderColor: "transparent",
-                outlineColor: light
-                    ? theme.color.border.primary.inverse
-                    : color,
+                outlineColor: light ? "border.primary.inverse" : color,
                 outlineStyle: "solid",
-                outlineWidth: theme.border.width.focused,
-            },
+                outlineWidth: "focused",
+            }),
 
-            active: {
+            active: css.raw({
                 background: light ? activeColor : secondaryActiveColor,
                 color: light ? fadedColor : activeColor,
                 borderColor: "transparent",
                 outlineColor: light ? fadedColor : activeColor,
                 outlineStyle: "solid",
-                outlineWidth: theme.border.width.focused,
-            },
-            disabled: {
-                color: light
-                    ? theme.color.text.secondary.inverse
-                    : theme.color.text.disabled,
-                outlineColor: light ? fadedColor : theme.color.border.disabled,
+                outlineWidth: "focused",
+            }),
+            disabled: css.raw({
+                color: light ? "text.secondary.inverse" : "text.disabled",
+                outlineColor: light ? fadedColor : "disabled",
+                outlineWidth: 0,
                 cursor: "default",
-                ":focus": {
+                "&:focus": {
                     outlineColor: light
-                        ? theme.color.border.secondary.inverse
-                        : theme.color.border.disabled,
-                    outlineWidth: theme.border.width.disabled,
+                        ? "border.secondary.inverse"
+                        : "border.disabled",
+                    outlineWidth: "disabled",
                 },
-            },
+            }),
         };
     } else if (kind === "tertiary") {
         newStyles = {
-            default: {
+            default: css.raw({
                 background: "none",
-                color: light ? theme.color.text.inverse : color,
+                color: light ? "text.inverse" : color,
                 paddingLeft: 0,
                 paddingRight: 0,
-            },
-            hover: {
-                ":after": {
+            }),
+            hover: css.raw({
+                "&:after": {
                     content: "''",
                     position: "absolute",
-                    height: theme.size.height.tertiaryHover,
+                    height: "height.tertiaryHover",
                     width: "100%",
                     right: 0,
                     bottom: 0,
-                    background: light ? theme.color.bg.tertiary.hover : color,
-                    borderRadius: theme.border.radius.tertiary,
+                    background: light ? "bg.tertiary.hover" : color,
+                    borderRadius: "tertiary",
                 },
-            },
-            focus: {
+            }),
+            focus: css.raw({
                 outlineStyle: "solid",
-                outlineColor: light
-                    ? theme.color.border.tertiary.inverse
-                    : color,
-                outlineWidth: theme.border.width.focused,
-                borderRadius: theme.border.radius.default,
-            },
-            active: {
+                outlineColor: light ? "border.tertiary.inverse" : color,
+                outlineWidth: "focused",
+                borderRadius: "default",
+            }),
+            active: css.raw({
                 color: light ? fadedColor : activeColor,
-                ":after": {
+                "&:after": {
                     height: 1,
                     background: light ? fadedColor : activeColor,
                 },
-            },
-            disabled: {
-                color: light ? fadedColor : theme.color.text.disabled,
+            }),
+            disabled: css.raw({
+                color: light ? fadedColor : "text.disabled",
                 cursor: "default",
-            },
-            disabledFocus: {
+            }),
+            disabledFocus: css.raw({
                 outlineColor: light
-                    ? theme.color.border.tertiary.inverse
-                    : theme.color.border.disabled,
-            },
+                    ? "border.tertiary.inverse"
+                    : "border.disabled",
+            }),
         };
     } else {
         throw new Error("Button kind not recognized");
     }
 
-    styles[buttonType] = StyleSheet.create(newStyles);
+    styles[buttonType] = newStyles;
     return styles[buttonType];
 };

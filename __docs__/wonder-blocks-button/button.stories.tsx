@@ -1,11 +1,11 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+// import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 import {expect, fireEvent, userEvent, within} from "@storybook/test";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
-import type {StyleDeclaration} from "aphrodite";
+// import type {StyleDeclaration} from "aphrodite";
 
 import pencilSimple from "@phosphor-icons/core/regular/pencil-simple.svg";
 import pencilSimpleBold from "@phosphor-icons/core/bold/pencil-simple-bold.svg";
@@ -26,6 +26,8 @@ import ComponentInfo from "../../.storybook/components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {SystemStyleObject} from "@/styled-system/types";
+import {css} from "@/styled-system/css";
 
 /**
  * Reusable button component.
@@ -132,35 +134,35 @@ export const Tertiary: StoryComponentType = {
     },
 };
 
-export const styles: StyleDeclaration = StyleSheet.create({
-    row: {
+export const styles: Record<string, SystemStyleObject> = {
+    row: css.raw({
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: spacing.xSmall_8,
-    },
-    button: {
-        marginRight: spacing.xSmall_8,
-    },
-    truncatedButton: {
+        marginBottom: "xSmall_8",
+    }),
+    button: css.raw({
+        marginRight: "xSmall_8",
+    }),
+    truncatedButton: css.raw({
         maxWidth: 200,
-        marginBottom: spacing.medium_16,
-    },
-    fillSpace: {
+        marginBottom: "medium_16",
+    }),
+    fillSpace: css.raw({
         minWidth: 140,
-    },
-    example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
-    },
-    label: {
-        marginTop: spacing.large_24,
-        marginBottom: spacing.xSmall_8,
-    },
-});
+    }),
+    example: css.raw({
+        background: "offWhite",
+        padding: "medium_16",
+    }),
+    label: css.raw({
+        marginTop: "large_24",
+        marginBottom: "xSmall_8",
+    }),
+};
 
 export const Variants: StoryComponentType = () => (
-    <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+    <View style={{padding: "medium_16", gap: "medium_16"}}>
+        <View style={{flexDirection: "row", gap: "medium_16"}}>
             <Button onClick={() => {}}>Hello, world!</Button>
             <Button onClick={() => {}} kind="secondary">
                 Hello, world!
@@ -169,7 +171,7 @@ export const Variants: StoryComponentType = () => (
                 Hello, world!
             </Button>
         </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: "medium_16"}}>
             <Button onClick={() => {}} disabled={true}>
                 Hello, world!
             </Button>
@@ -180,7 +182,7 @@ export const Variants: StoryComponentType = () => (
                 Hello, world!
             </Button>
         </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+        <View style={{flexDirection: "row", gap: "medium_16"}}>
             <Button onClick={() => {}} color="destructive">
                 Hello, world!
             </Button>
@@ -247,26 +249,28 @@ WithColor.parameters = {
 };
 
 export const Dark: StoryComponentType = () => (
-    <View style={{backgroundColor: color.darkBlue, padding: spacing.medium_16}}>
-        <View style={{flexDirection: "row"}}>
+    <View
+        style={{
+            backgroundColor: "darkBlue",
+            padding: "medium_16",
+            gap: "medium_16",
+        }}
+    >
+        <View style={{flexDirection: "row", gap: "medium_16"}}>
             <Button onClick={() => {}} light={true}>
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} light={true} kind="secondary">
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} light={true} kind="tertiary">
                 Hello, world!
             </Button>
         </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
+        <View style={{flexDirection: "row", gap: "medium_16"}}>
             <Button onClick={() => {}} light={true} disabled={true}>
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 light={true}
@@ -275,7 +279,6 @@ export const Dark: StoryComponentType = () => (
             >
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 light={true}
@@ -285,12 +288,10 @@ export const Dark: StoryComponentType = () => (
                 Hello, world!
             </Button>
         </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
+        <View style={{flexDirection: "row", gap: "medium_16"}}>
             <Button onClick={() => {}} light={true} color="destructive">
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 light={true}
@@ -299,7 +300,6 @@ export const Dark: StoryComponentType = () => (
             >
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 light={true}
@@ -622,15 +622,15 @@ export const CustomStyles = {
         },
     },
     render: (args: any) => (
-        <View style={{gap: spacing.medium_16}}>
+        <View style={{gap: "medium_16"}}>
             <HeadingSmall>Wonder Blocks theme (default)</HeadingSmall>
-            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+            <View style={{flexDirection: "row", gap: "medium_16"}}>
                 <Button {...args} kind="primary" />
                 <Button {...args} kind="secondary" />
                 <Button {...args} kind="tertiary" />
             </View>
             <HeadingSmall>Khanmigo theme</HeadingSmall>
-            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+            <View style={{flexDirection: "row", gap: "medium_16"}}>
                 <ThemeSwitcherContext.Provider value="khanmigo">
                     <Button {...args} kind="primary" />
                     <Button {...args} kind="secondary" />
@@ -758,7 +758,7 @@ export const KhanmigoTheme: StoryComponentType = {
 
         return (
             <ThemeSwitcherContext.Provider value="khanmigo">
-                <View style={{gap: spacing.medium_16}}>
+                <View style={{gap: "medium_16"}}>
                     {stories.map((Story, i) => (
                         <Story key={i} />
                     ))}

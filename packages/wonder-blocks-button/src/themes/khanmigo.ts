@@ -1,58 +1,61 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
+import {defineTheme} from "./theme";
 
 /**
  * The overrides for the Khanmigo theme.
  */
-const theme = mergeTheme(defaultTheme, {
-    color: {
-        bg: {
-            secondary: {
-                default: tokens.color.offWhite,
-                active: {
-                    action: tokens.color.fadedBlue8,
-                    critical: tokens.color.fadedRed8,
+const theme = defineTheme(
+    mergeTheme(defaultTheme, {
+        semanticTokens: {
+            colors: {
+                bg: {
+                    secondary: {
+                        default: {value: tokens.color.offWhite},
+                        active: {
+                            action: {value: tokens.color.fadedBlue8},
+                            critical: {value: tokens.color.fadedRed8},
+                        },
+                        focus: {value: tokens.color.offWhite},
+                    },
+                    icon: {
+                        secondaryHover: {value: tokens.color.fadedBlue16},
+                    },
                 },
-                focus: tokens.color.offWhite,
+                border: {
+                    secondary: {
+                        action: {value: tokens.color.fadedBlue},
+                        critical: {value: tokens.color.fadedRed},
+                    },
+                },
+                text: {
+                    icon: {
+                        secondaryHover: {value: tokens.color.blue},
+                    },
+                },
             },
-            icon: {
-                secondaryHover: tokens.color.fadedBlue16,
+            radii: {
+                default: {value: tokens.border.radius.xLarge_12 + "px"},
+                small: {value: tokens.border.radius.large_6 + "px"},
+                large: {value: tokens.border.radius.xLarge_12 + "px"},
+            },
+            borderWidths: {
+                disabled: {value: tokens.border.width.hairline + "px"},
+                focused: {value: tokens.border.width.hairline + "px"},
+            },
+            spacing: {
+                margin: {
+                    icon: {
+                        offset: {value: -tokens.spacing.xSmall_8 + "px"},
+                    },
+                },
+            },
+            fontWeights: {
+                default: {value: tokens.font.weight.regular},
             },
         },
-        border: {
-            secondary: {
-                action: tokens.color.fadedBlue,
-                critical: tokens.color.fadedRed,
-            },
-        },
-        text: {
-            icon: {
-                secondaryHover: tokens.color.blue,
-            },
-        },
-    },
-    border: {
-        radius: {
-            default: tokens.border.radius.xLarge_12,
-            small: tokens.border.radius.large_6,
-            large: tokens.border.radius.xLarge_12,
-        },
-        width: {
-            focused: tokens.border.width.hairline,
-        },
-    },
-    margin: {
-        icon: {
-            // Bring the icons closer to the edges of the button.
-            offset: -tokens.spacing.xSmall_8,
-        },
-    },
-    font: {
-        weight: {
-            default: tokens.font.weight.regular,
-        },
-    },
-});
+    }),
+);
 
 export default theme;

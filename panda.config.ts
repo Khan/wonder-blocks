@@ -1,5 +1,7 @@
 import {defineConfig, defineTokens} from "@pandacss/dev";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import buttonDefaultTheme from "./packages/wonder-blocks-button/src/themes/default";
+import buttonKhanmigoTheme from "./packages/wonder-blocks-button/src/themes/khanmigo";
 
 const wbTokenToPandaToken = (token: Record<string, string | number>) =>
     Object.entries(token)
@@ -46,6 +48,15 @@ export default defineConfig({
     theme: {
         tokens: tokens,
     },
+    themes: {
+        /**
+         * The themes available to the Button component.
+         */
+        // NOTE: This generates css variables at build time for each theme, so
+        // we don't have to dynamically load the theme at runtime.
+        buttonDefault: buttonDefaultTheme,
+        buttonKhanmigo: buttonKhanmigoTheme,
+    },
 
     // The output directory for your css system
     outdir: "styled-system",
@@ -58,6 +69,7 @@ export default defineConfig({
                 },
             },
         ],
+        themes: ["buttonDefault", "buttonKhanmigo"],
     },
 
     importMap: "@/styled-system",

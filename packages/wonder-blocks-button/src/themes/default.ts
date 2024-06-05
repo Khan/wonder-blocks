@@ -1,53 +1,51 @@
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {defineTheme} from "./theme";
 
 const theme = {
-    color: {
+    colors: {
         bg: {
             /**
              * Color
              */
             // color="default"
             action: {
-                default: tokens.color.blue,
-                active: tokens.color.activeBlue,
-                inverse: tokens.color.fadedBlue,
+                default: {value: tokens.color.blue},
+                active: {value: tokens.color.activeBlue},
+                inverse: {value: tokens.color.fadedBlue},
             },
             // color="destructive"
             critical: {
-                default: tokens.color.red,
-                active: tokens.color.activeRed,
-                inverse: tokens.color.fadedRed,
+                default: {value: tokens.color.red},
+                active: {value: tokens.color.activeRed},
+                inverse: {value: tokens.color.fadedRed},
             },
 
             /**
              * Kind
              */
             primary: {
-                default: tokens.color.white,
-                disabled: tokens.color.offBlack32,
-                // used in boxShadow
-                inverse: tokens.color.darkBlue,
+                default: {value: tokens.color.white},
+                disabled: {value: tokens.color.offBlack32},
+                inverse: {value: tokens.color.darkBlue},
             },
-
             secondary: {
-                default: "none",
-                inverse: "none",
-                focus: tokens.color.white,
+                default: {value: "none"},
+                inverse: {value: "none"},
+                focus: {value: tokens.color.white},
                 active: {
-                    action: tokens.color.fadedBlue,
-                    critical: tokens.color.fadedRed,
+                    action: {value: tokens.color.fadedBlue},
+                    critical: {value: tokens.color.fadedRed},
                 },
             },
-
             tertiary: {
-                hover: tokens.color.white,
+                hover: {value: tokens.color.white},
             },
 
             /**
              * Icons
              */
             icon: {
-                secondaryHover: "transparent",
+                secondaryHover: {value: "transparent"},
             },
         },
         text: {
@@ -55,25 +53,25 @@ const theme = {
              * Default
              */
             // kind="secondary, tertiary", disabled=true, light=false
-            disabled: tokens.color.offBlack32,
+            disabled: {value: tokens.color.offBlack32},
             // kind="primary", light=false | kind="secondary, tertiary", light=true
-            inverse: tokens.color.white,
+            inverse: {value: tokens.color.white},
 
             /**
              * Kind
              */
             primary: {
-                disabled: tokens.color.white64,
+                disabled: {value: tokens.color.white64},
             },
             secondary: {
-                inverse: tokens.color.white50,
+                inverse: {value: tokens.color.white50},
             },
 
             /**
              * Icons
              */
             icon: {
-                secondaryHover: tokens.color.blue,
+                secondaryHover: {value: tokens.color.blue},
             },
         },
         border: {
@@ -81,81 +79,81 @@ const theme = {
              * Default
              */
             // kind="secondary", light=false | kind="tertiary", light=false
-            disabled: tokens.color.offBlack32,
+            disabled: {value: tokens.color.offBlack32},
             /**
              * Kind
              */
             primary: {
-                inverse: tokens.color.white,
+                inverse: {value: tokens.color.white},
             },
             secondary: {
-                action: tokens.color.offBlack50,
-                critical: tokens.color.offBlack50,
-                inverse: tokens.color.white50,
+                action: {value: tokens.color.offBlack50},
+                critical: {value: tokens.color.offBlack50},
+                inverse: {value: tokens.color.white50},
             },
             tertiary: {
-                inverse: tokens.color.white,
+                inverse: {value: tokens.color.white},
             },
         },
     },
-    border: {
-        width: {
-            // secondary (resting)
-            secondary: tokens.border.width.hairline,
-            // secondary (resting, focus, active), tertiary (focus)
-            focused: tokens.border.width.thin,
-            // secondary (disabled)
-            disabled: tokens.border.width.thin,
-        },
-        radius: {
-            // default
-            default: tokens.border.radius.medium_4,
-            // tertiary
-            tertiary: tokens.border.radius.xSmall_2,
-            // small button
-            small: tokens.border.radius.medium_4,
-            // large button
-            large: tokens.border.radius.large_6,
+    borderWidths: {
+        // secondary (resting)
+        secondary: {value: tokens.border.width.hairline + "px"},
+        // secondary (resting, focus, active), tertiary (focus)
+        focused: {value: tokens.border.width.thin + "px"},
+        // secondary (disabled)
+        disabled: {value: tokens.border.width.thin + "px"},
+    },
+    radii: {
+        // default
+        default: {value: tokens.border.radius.medium_4 + "px"},
+        // tertiary
+        tertiary: {value: tokens.border.radius.xSmall_2 + "px"},
+        // small button
+        small: {value: tokens.border.radius.medium_4 + "px"},
+        // large button
+        large: {value: tokens.border.radius.large_6 + "px"},
 
-            /**
-             * Icons
-             */
-            icon: tokens.border.radius.full,
-        },
+        /**
+         * Icons
+         */
+        icon: {value: tokens.border.radius.full},
     },
-    size: {
+    sizes: {
         height: {
-            tertiaryHover: tokens.spacing.xxxxSmall_2,
-            small: tokens.spacing.xLarge_32,
-            // NOTE: These height tokens are specific to this component.
-            medium: 40,
-            large: 56,
+            tertiaryHover: {value: tokens.spacing.xxxxSmall_2 + "px"},
+            small: {value: tokens.spacing.xLarge_32 + "px"},
+            // NOTE: These tokens are specific to this component.
+            medium: {value: "40px"},
+            large: {value: "56px"},
         },
     },
-    margin: {
-        icon: {
-            offset: -tokens.spacing.xxxxSmall_2,
+    spacing: {
+        margin: {
+            icon: {
+                offset: {value: `-${tokens.spacing.xxxxSmall_2}px`},
+            },
+        },
+        padding: {
+            xsmall: {value: tokens.spacing.xxxxSmall_2 + "px"},
+            small: {value: tokens.spacing.xxSmall_6 + "px"},
+            medium: {value: tokens.spacing.small_12 + "px"},
+            large: {value: tokens.spacing.medium_16 + "px"},
+            xLarge: {value: tokens.spacing.xLarge_32 + "px"},
         },
     },
-    padding: {
-        xsmall: tokens.spacing.xxxxSmall_2,
-        small: tokens.spacing.xxSmall_6,
-        medium: tokens.spacing.small_12,
-        large: tokens.spacing.medium_16,
-        xLarge: tokens.spacing.xLarge_32,
+    fontSizes: {
+        // NOTE: This token is specific to this button size.
+        large: {value: "18px"},
     },
-    font: {
-        size: {
-            // NOTE: This token is specific to this button size.
-            large: 18,
-        },
-        lineHeight: {
-            large: tokens.font.lineHeight.medium,
-        },
-        weight: {
-            default: tokens.font.weight.bold,
-        },
+    lineHeights: {
+        large: {value: tokens.font.lineHeight.medium + "px"},
+    },
+    fontWeights: {
+        default: {value: tokens.font.weight.regular.toString()},
     },
 };
 
-export default theme;
+export default defineTheme({
+    semanticTokens: theme,
+});
