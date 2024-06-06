@@ -1,14 +1,15 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {css, cx} from "@/styled-system/css";
+import {SystemStyleObject} from "@/styled-system/types";
 import {viewportPixelsForSize} from "../util/icon-util";
 import {IconSize, PhosphorIconAsset} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
-const StyledIcon = addStyle("span");
+const StyledIcon = "span"; //addStyle("span");
 
 type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     /**
@@ -93,56 +94,32 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     } = props;
 
     const pixelSize = viewportPixelsForSize(size);
-    const classNames = `${className ?? ""}`;
-    const iconStyles = _generateStyles(color, pixelSize);
+
+    const rawStyle = Array.isArray(style)
+        ? css(...style)
+        : typeof style === "object"
+        ? css(style as SystemStyleObject)
+        : undefined;
 
     return (
         <StyledIcon
             {...sharedProps}
-            className={classNames}
-            style={[
-                styles.svg,
-                iconStyles.icon,
+            className={cx(styles.svg, styles.icon, rawStyle, className)}
+            style={
                 {
-                    // We still pass inline styles to the icon itself, so we
-                    // prevent the icon from being overridden by the inline
-                    // styles.
-                    maskImage: `url(${icon})`,
-                },
-                style,
-            ]}
+                    "--icon-color": color,
+                    "--icon-size": `${pixelSize}px`,
+                    "--icon-path": `url(${icon})`,
+                } as React.CSSProperties
+            }
             data-testid={testId}
             ref={ref}
         />
     );
 });
 
-const dynamicStyles: Record<string, any> = {};
-
-/**
- * Generates the visual styles for the icon.
- */
-const _generateStyles = (color: string, size: number) => {
-    const iconStyle = `${color}-${size}`;
-    // The styles are cached to avoid creating a new object on every render.
-    if (styles[iconStyle]) {
-        return styles[iconStyle];
-    }
-
-    const newStyles: Record<string, any> = {
-        icon: {
-            backgroundColor: color,
-            width: size,
-            height: size,
-        },
-    };
-
-    dynamicStyles[iconStyle] = StyleSheet.create(newStyles);
-    return dynamicStyles[iconStyle];
-};
-
-const styles = StyleSheet.create({
-    svg: {
+const styles = {
+    svg: css({
         display: "inline-block",
         verticalAlign: "text-bottom",
         flexShrink: 0,
@@ -150,7 +127,16 @@ const styles = StyleSheet.create({
         maskSize: "100%",
         maskRepeat: "no-repeat",
         maskPosition: "center",
-    },
-});
+    }),
+    icon: css({
+        backgroundColor: "var(--icon-color)",
+        width: "var(--icon-size)",
+        height: "var(--icon-size)",
+        // We still pass inline styles to the icon itself, so we
+        // prevent the icon from being overridden by the inline
+        // styles.
+        maskImage: "var(--icon-path)",
+    }),
+};
 
 PhosphorIcon.displayName = "PhosphorIcon";
