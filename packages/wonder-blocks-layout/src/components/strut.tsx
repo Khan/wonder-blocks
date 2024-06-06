@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+// import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {css, cx} from "@/styled-system/css";
 import {SystemStyleObject} from "@/styled-system/types";

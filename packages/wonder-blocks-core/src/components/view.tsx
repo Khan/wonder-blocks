@@ -27,8 +27,7 @@ function isAphroditeStyle(style: StyleType): style is StyleType {
 // https://github.com/facebook/css-layout#default-values
 const defaultStyle = {
     alignItems: "stretch",
-    borderWidth: 0,
-    borderStyle: "solid",
+    border: "transparent solid 0px",
     boxSizing: "border-box",
     display: "flex",
     flexDirection: "column",

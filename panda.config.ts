@@ -1,4 +1,4 @@
-import {defineConfig, defineTokens} from "@pandacss/dev";
+import {defineConfig, defineKeyframes, defineTokens} from "@pandacss/dev";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import buttonDefaultTheme from "./packages/wonder-blocks-button/src/themes/default";
 import buttonKhanmigoTheme from "./packages/wonder-blocks-button/src/themes/khanmigo";
@@ -27,6 +27,21 @@ const tokens = defineTokens({
     spacing: wbTokenToPandaToken(spacing),
 });
 
+// Supported keyframes
+const keyframes = defineKeyframes({
+    spin: {
+        "0%": {
+            transform: "rotate(0deg)",
+        },
+        "50%": {
+            transform: "rotate(180deg)",
+        },
+        "100%": {
+            transform: "rotate(360deg)",
+        },
+    },
+});
+
 export default defineConfig({
     // Whether to use css reset
     preflight: false,
@@ -47,6 +62,7 @@ export default defineConfig({
     // Useful for theme customization
     theme: {
         tokens: tokens,
+        keyframes,
     },
     themes: {
         /**

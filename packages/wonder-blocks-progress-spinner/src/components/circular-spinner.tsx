@@ -1,9 +1,11 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+// import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {css} from "@/styled-system/css";
+import {SystemStyleObject} from "@/styled-system/types";
 
 const heights = {
     xsmall: 16,
@@ -24,7 +26,7 @@ const colors = {
     dark: color.offBlack16,
 } as const;
 
-const StyledPath = addStyle("path");
+const StyledPath = "path"; // addStyle("path");
 
 type Props = AriaProps & {
     /**
@@ -83,7 +85,8 @@ export default class CircularSpinner extends React.Component<Props> {
                 data-testid={testId}
             >
                 <StyledPath
-                    style={[styles.loadingSpinner, {fill: color}]}
+                    fill={color}
+                    className={styles.loadingSpinner}
                     fillRule="nonzero"
                     d={path}
                 />
@@ -94,28 +97,16 @@ export default class CircularSpinner extends React.Component<Props> {
     }
 }
 
-const rotateKeyFrames = {
-    "0%": {
-        transform: "rotate(0deg)",
-    },
-    "50%": {
-        transform: "rotate(180deg)",
-    },
-    "100%": {
-        transform: "rotate(360deg)",
-    },
-} as const;
-
-const styles = StyleSheet.create({
-    spinnerContainer: {
+const styles = {
+    spinnerContainer: css.raw({
         justifyContent: "center",
-    },
-    loadingSpinner: {
+    }),
+    loadingSpinner: css({
         transformOrigin: "50% 50%",
-        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
-        animationName: rotateKeyFrames,
+        // See keyframes in panda.config.ts
+        animationName: "spin",
         animationDuration: "1.1s",
         animationIterationCount: "infinite",
         animationTimingFunction: "linear",
-    },
-});
+    }),
+};
