@@ -240,6 +240,8 @@ const _generateStyles = (
                 borderColor: error ? tokens.color.red : tokens.color.white50,
                 borderWidth: tokens.border.width.hairline,
                 ":hover:not([aria-disabled=true])": focusHoverStyling,
+                // Allow hover styles on non-touch devices only. This prevents an
+                // issue with hover being sticky on touch devices (e.g. mobile).
                 ["@media not (hover: hover)"]: {
                     ":hover:not([aria-disabled=true])": {
                         borderColor: error
@@ -294,6 +296,8 @@ const _generateStyles = (
                     ? tokens.color.offBlack64
                     : tokens.color.offBlack,
                 ":hover:not([aria-disabled=true])": focusHoverStyling,
+                // Allow hover styles on non-touch devices only. This prevents an
+                // issue with hover being sticky on touch devices (e.g. mobile).
                 ["@media not (hover: hover)"]: {
                     ":hover:not([aria-disabled=true])": {
                         borderColor: error
