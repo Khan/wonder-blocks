@@ -33,7 +33,6 @@ type StoryComponentType = StoryObj<typeof TextField>;
 
 export const Default: StoryComponentType = {
     args: {
-        id: "some-id",
         type: "text",
         value: "",
         disabled: false,
