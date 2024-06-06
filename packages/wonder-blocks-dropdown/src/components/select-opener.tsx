@@ -1,12 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {__RouterContext} from "react-router";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {mix} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
@@ -82,7 +80,26 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         this.props.onOpenChanged(!open);
     };
 
-    renderClickableBehavior(router: any): React.ReactNode {
+    handleKeyDown: (e: React.KeyboardEvent) => void = (e) => {
+        const keyCode = e.key;
+        // Prevent default behavior for Enter key. Without this, the select
+        // is only open while the Enter key is pressed.
+        // Prevent default behavior for Space key. Without this, Safari stays in
+        // active state visually
+        if (keyCode === "Enter" || keyCode === " ") {
+            e.preventDefault();
+        }
+    };
+
+    handleKeyUp: (e: React.KeyboardEvent) => void = (e) => {
+        const keyCode = e.key;
+        // On key up for Enter and Space, trigger the click handler
+        if (keyCode === "Enter" || keyCode === " ") {
+            this.handleClick(e);
+        }
+    };
+
+    render(): React.ReactNode {
         const {
             children,
             disabled,
@@ -97,70 +114,51 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
             ...sharedProps
         } = this.props;
 
-        const ClickableBehavior = getClickableBehavior(router);
+        const stateStyles = _generateStyles(light, isPlaceholder, error);
+
+        // The icon colors are kind of fickle. This is just logic
+        // based on the zeplin design.
+        const iconColor = light
+            ? disabled || error
+                ? "currentColor"
+                : tokens.color.white
+            : disabled
+            ? tokens.color.offBlack32
+            : tokens.color.offBlack64;
+
+        const style = [
+            styles.shared,
+            stateStyles.default,
+            disabled && stateStyles.disabled,
+        ];
 
         return (
-            <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
-                {(state, childrenProps) => {
-                    const stateStyles = _generateStyles(
-                        light,
-                        isPlaceholder,
-                        error,
-                    );
-                    const {pressed} = state;
-
-                    // The icon colors are kind of fickle. This is just logic
-                    // based on the zeplin design.
-                    const iconColor = light
-                        ? disabled || pressed || error
-                            ? "currentColor"
-                            : tokens.color.white
-                        : disabled
-                        ? tokens.color.offBlack32
-                        : tokens.color.offBlack64;
-
-                    const style = [
-                        styles.shared,
-                        stateStyles.default,
-                        disabled && stateStyles.disabled,
-                    ];
-
-                    return (
-                        <StyledButton
-                            {...sharedProps}
-                            aria-disabled={disabled}
-                            aria-expanded={open ? "true" : "false"}
-                            aria-haspopup="listbox"
-                            data-testid={testId}
-                            id={id}
-                            style={style}
-                            type="button"
-                            {...childrenProps}
-                        >
-                            <LabelMedium style={styles.text}>
-                                {/* Note(tamarab): Prevents unwanted vertical
+            <StyledButton
+                {...sharedProps}
+                aria-disabled={disabled}
+                aria-expanded={open ? "true" : "false"}
+                aria-haspopup="listbox"
+                data-testid={testId}
+                id={id}
+                style={style}
+                type="button"
+                onClick={this.handleClick}
+                onKeyDown={this.handleKeyDown}
+                onKeyUp={this.handleKeyUp}
+            >
+                <LabelMedium style={styles.text}>
+                    {/* Note(tamarab): Prevents unwanted vertical
                                 shift for empty selection */}
-                                {children || "\u00A0"}
-                            </LabelMedium>
-                            <PhosphorIcon
-                                icon={caretDownIcon}
-                                color={iconColor}
-                                size="small"
-                                style={styles.caret}
-                                aria-hidden="true"
-                            />
-                        </StyledButton>
-                    );
-                }}
-            </ClickableBehavior>
-        );
-    }
-
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
+                    {children || "\u00A0"}
+                </LabelMedium>
+                <PhosphorIcon
+                    icon={caretDownIcon}
+                    color={iconColor}
+                    size="small"
+                    style={styles.caret}
+                    aria-hidden="true"
+                />
+            </StyledButton>
         );
     }
 }
