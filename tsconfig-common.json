@@ -24,6 +24,6 @@
         // "noImplicitAny": true,
         /* Completeness */
         "skipDefaultLibCheck": true, // it's safe to assume that built-in .d.ts files are correct
-        "skipLibCheck": false
+        "skipLibCheck": true // Have to skip node_modules or we'll get errors from third party libs
     }
 }

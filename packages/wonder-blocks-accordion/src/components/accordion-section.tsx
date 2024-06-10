@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {StyleDeclaration} from "aphrodite";
+// import type {StyleDeclaration} from "aphrodite";
 
 import {useUniqueIdWithMock, View} from "@khanacademy/wonder-blocks-core";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
@@ -416,7 +416,7 @@ const _generateStyles = (
         };
     }
 
-    const newStyles: StyleDeclaration = {
+    const newStyles: any = {
         wrapper: {
             ...wrapperStyle,
             ...firstSectionStyle,

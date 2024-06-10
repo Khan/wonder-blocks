@@ -52,6 +52,7 @@ export default defineConfig({
         "./__docs__/**/*.{ts,tsx,mdx}",
         "./.storybook/**/*.{ts,tsx}",
     ],
+    jsxFramework: "react",
 
     // Files to exclude
     exclude: [],
