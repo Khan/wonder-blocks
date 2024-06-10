@@ -147,7 +147,7 @@ export default class SelectOpener extends React.Component<
             styles.shared,
             stateStyles.default,
             disabled && stateStyles.disabled,
-            this.state.pressed && stateStyles.pressed,
+            !disabled && this.state.pressed && stateStyles.pressed,
         ];
 
         return (
@@ -160,9 +160,9 @@ export default class SelectOpener extends React.Component<
                 id={id}
                 style={style}
                 type="button"
-                onClick={this.handleClick}
-                onKeyDown={this.handleKeyDown}
-                onKeyUp={this.handleKeyUp}
+                onClick={!disabled ? this.handleClick : undefined}
+                onKeyDown={!disabled ? this.handleKeyDown : undefined}
+                onKeyUp={!disabled ? this.handleKeyUp : undefined}
             >
                 <LabelMedium style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
