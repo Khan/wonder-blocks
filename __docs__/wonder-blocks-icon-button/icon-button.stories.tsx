@@ -115,6 +115,7 @@ export const Default: StoryComponentType = {
  * - `xsmall` (16px icon with a 24px touch target).
  * - `small` (24px icon with a 32px touch target).
  * - `medium` (24px icon with a 40px touch target).
+ * - `large` (24px icon with a 48px touch target).
  */
 export const Sizes: StoryComponentType = {
     ...Default,
@@ -138,6 +139,10 @@ export const Sizes: StoryComponentType = {
             <View style={styles.row}>
                 <LabelMedium style={styles.label}>medium</LabelMedium>
                 <IconButton {...args} size="medium" />
+            </View>
+            <View style={styles.row}>
+                <LabelMedium style={styles.label}>large</LabelMedium>
+                <IconButton {...args} size="large" />
             </View>
         </View>
     ),
