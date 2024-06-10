@@ -65,6 +65,13 @@ type DefaultProps = {
 };
 
 type SelectOpenerState = {
+    /**
+     * We only keep track of the pressed state to apply styling for when the select
+     * opener is pressed using Enter/Space. Other states (active, hover, focus)
+     * are not tracked because we use css pseudo-classes to handle those styles
+     * instead. Note: `:active` styling is only applied on clicks across browsers,
+     * and not on keyboard interaction.
+     */
     pressed: boolean;
 };
 
