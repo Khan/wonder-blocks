@@ -84,6 +84,9 @@ export default {
         },
     },
     argTypes: IconButtonArgtypes,
+    args: {
+        "aria-label": "Search",
+    },
 } as Meta<typeof IconButton>;
 
 type StoryComponentType = StoryObj<typeof IconButton>;
@@ -190,26 +193,30 @@ export const Variants: StoryComponentType = {
  */
 export const WithColor: StoryComponentType = {
     name: "Color",
-    render: () => (
+    render: (args) => (
         <View style={styles.row}>
             <IconButton
+                {...args}
                 icon={minusCircle}
                 onClick={() => {}}
                 color="destructive"
             />
             <IconButton
+                {...args}
                 icon={minusCircle}
                 onClick={() => {}}
                 kind="secondary"
                 color="destructive"
             />
             <IconButton
+                {...args}
                 icon={minusCircle}
                 onClick={() => {}}
                 kind="tertiary"
                 color="destructive"
             />
             <IconButton
+                {...args}
                 disabled={true}
                 icon={minusCircle}
                 aria-label="search"

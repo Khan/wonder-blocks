@@ -49,6 +49,7 @@ const KindVariants = ({
                             {kind}-default
                         </LabelMedium>
                         <IconButton
+                            aria-label="Send"
                             icon={paperPlaneIcon}
                             onClick={action("clicked")}
                             kind={kind}
@@ -69,6 +70,7 @@ const KindVariants = ({
                             {kind}-destructive
                         </LabelMedium>
                         <IconButton
+                            aria-label="Send"
                             icon={paperPlaneIcon}
                             onClick={action("clicked")}
                             kind={kind}
@@ -89,6 +91,7 @@ const KindVariants = ({
                             {kind}-disabled
                         </LabelMedium>
                         <IconButton
+                            aria-label="Send"
                             icon={paperPlaneIcon}
                             onClick={action("clicked")}
                             kind={kind}

@@ -59,4 +59,17 @@ export default {
             },
         },
     },
+    "aria-label": {
+        description:
+            "The description of this component for the screenreader to read.",
+        control: {
+            type: "text",
+        },
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "string",
+            },
+        },
+    },
 };
