@@ -64,16 +64,31 @@ type DefaultProps = {
     isPlaceholder: SelectOpenerProps["isPlaceholder"];
 };
 
+type SelectOpenerState = {
+    pressed: boolean;
+};
+
 /**
  * An opener that opens select boxes.
  */
-export default class SelectOpener extends React.Component<SelectOpenerProps> {
+export default class SelectOpener extends React.Component<
+    SelectOpenerProps,
+    SelectOpenerState
+> {
     static defaultProps: DefaultProps = {
         disabled: false,
         error: false,
         light: false,
         isPlaceholder: false,
     };
+
+    constructor(props: SelectOpenerProps) {
+        super(props);
+
+        this.state = {
+            pressed: false,
+        };
+    }
 
     handleClick: (e: React.SyntheticEvent) => void = (e) => {
         const {open} = this.props;
@@ -87,6 +102,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         // Prevent default behavior for Space key. Without this, Safari stays in
         // active state visually
         if (keyCode === "Enter" || keyCode === " ") {
+            this.setState({pressed: true});
             e.preventDefault();
         }
     };
@@ -95,6 +111,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         const keyCode = e.key;
         // On key up for Enter and Space, trigger the click handler
         if (keyCode === "Enter" || keyCode === " ") {
+            this.setState({pressed: false});
             this.handleClick(e);
         }
     };
@@ -130,6 +147,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
             styles.shared,
             stateStyles.default,
             disabled && stateStyles.disabled,
+            this.state.pressed && stateStyles.pressed,
         ];
 
         return (
@@ -229,6 +247,20 @@ const _generateStyles = (
             paddingLeft: adjustedPaddingLeft,
             paddingRight: adjustedPaddingRight,
         };
+        const activePressedStyling = {
+            paddingLeft: adjustedPaddingLeft,
+            paddingRight: adjustedPaddingRight,
+            borderColor: error ? tokens.color.red : tokens.color.fadedBlue,
+            borderWidth: tokens.border.width.thin,
+            color: error
+                ? tokens.color.offBlack64
+                : placeholder
+                ? mix(tokens.color.white32, tokens.color.blue)
+                : tokens.color.fadedBlue,
+            backgroundColor: error
+                ? tokens.color.fadedRed
+                : tokens.color.activeBlue,
+        };
         newStyles = {
             default: {
                 background: error ? tokens.color.fadedRed8 : "transparent",
@@ -253,22 +285,7 @@ const _generateStyles = (
                     },
                 },
                 ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
-                ":active:not([aria-disabled=true])": {
-                    paddingLeft: adjustedPaddingLeft,
-                    paddingRight: adjustedPaddingRight,
-                    borderColor: error
-                        ? tokens.color.red
-                        : tokens.color.fadedBlue,
-                    borderWidth: tokens.border.width.thin,
-                    color: error
-                        ? tokens.color.offBlack64
-                        : placeholder
-                        ? mix(tokens.color.white32, tokens.color.blue)
-                        : tokens.color.fadedBlue,
-                    backgroundColor: error
-                        ? tokens.color.fadedRed
-                        : tokens.color.activeBlue,
-                },
+                ":active:not([aria-disabled=true])": activePressedStyling,
             },
             disabled: {
                 background: "transparent",
@@ -279,10 +296,18 @@ const _generateStyles = (
                     boxShadow: `0 0 0 1px ${tokens.color.offBlack32}, 0 0 0 3px ${tokens.color.fadedBlue}`,
                 },
             },
+            pressed: activePressedStyling,
         };
     } else {
         const focusHoverStyling = {
             borderColor: error ? tokens.color.red : tokens.color.blue,
+            borderWidth: tokens.border.width.thin,
+            paddingLeft: adjustedPaddingLeft,
+            paddingRight: adjustedPaddingRight,
+        };
+        const activePressedStyling = {
+            background: error ? tokens.color.fadedRed : tokens.color.fadedBlue,
+            borderColor: error ? tokens.color.red : tokens.color.activeBlue,
             borderWidth: tokens.border.width.thin,
             paddingLeft: adjustedPaddingLeft,
             paddingRight: adjustedPaddingRight,
@@ -309,17 +334,7 @@ const _generateStyles = (
                     },
                 },
                 ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
-                ":active:not([aria-disabled=true])": {
-                    background: error
-                        ? tokens.color.fadedRed
-                        : tokens.color.fadedBlue,
-                    borderColor: error
-                        ? tokens.color.red
-                        : tokens.color.activeBlue,
-                    borderWidth: tokens.border.width.thin,
-                    paddingLeft: adjustedPaddingLeft,
-                    paddingRight: adjustedPaddingRight,
-                },
+                ":active:not([aria-disabled=true])": activePressedStyling,
             },
             disabled: {
                 background: tokens.color.offWhite,
@@ -330,6 +345,7 @@ const _generateStyles = (
                     boxShadow: `0 0 0 1px ${tokens.color.white}, 0 0 0 3px ${tokens.color.offBlack32}`,
                 },
             },
+            pressed: activePressedStyling,
         };
     }
 
