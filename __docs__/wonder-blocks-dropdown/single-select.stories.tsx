@@ -343,9 +343,8 @@ export const LongOptionLabels: StoryComponentType = {
  * remains focusable while communicating to screen readers that it is disabled.
  */
 export const Disabled: StoryComponentType = {
-    render: (args) => (
+    render: () => (
         <SingleSelect
-            {...args}
             placeholder="Choose a fruit"
             onChange={() => {}}
             selectedValue=""
