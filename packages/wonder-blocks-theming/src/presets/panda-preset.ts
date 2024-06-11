@@ -1,7 +1,7 @@
 import {definePreset, defineKeyframes, defineTokens} from "@pandacss/dev";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import buttonDefaultTheme from "../../../wonder-blocks-button/src/themes/default";
-import buttonKhanmigoTheme from "../../../wonder-blocks-button/src/themes/khanmigo";
+import buttonDefaultTheme from "./default";
+import buttonKhanmigoTheme from "./khanmigo";
 
 const wbTokenToPandaToken = (token: Record<string, string | number>) =>
     Object.entries(token)
