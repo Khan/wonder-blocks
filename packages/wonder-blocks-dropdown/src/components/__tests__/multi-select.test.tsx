@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable max-lines */
 import * as React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -1539,55 +1539,89 @@ describe("MultiSelect", () => {
         });
     });
 
-    describe("error state styles", () => {
-        it("should apply the error styles to the dropdown on hover", async () => {
+    describe("a11y > Focusable", () => {
+        it("should be focusable", () => {
             // Arrange
-            const {userEvent} = doRender(
-                <MultiSelect
-                    onChange={jest.fn()}
-                    error={true}
-                    testId="multiselect-error-hover"
-                >
-                    {[<OptionItem label="Banana" value="banana" />]}
+            doRender(
+                <MultiSelect onChange={jest.fn()} testId="select-focus-test">
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
                 </MultiSelect>,
-            );
-            const dropdown = await screen.findByTestId(
-                "multiselect-error-hover",
             );
 
             // Act
-            await userEvent.hover(dropdown);
+            const multiSelect = screen.getByTestId("select-focus-test");
+            multiSelect.focus();
 
             // Assert
-            expect(dropdown).toHaveStyle("border-color: #d92916");
-            expect(dropdown).toHaveStyle("border-width: 2px");
+            expect(multiSelect).toHaveFocus();
         });
 
-        it("should apply the error styles to the dropdown on mouse down", async () => {
+        it("should be focusable when disabled", () => {
             // Arrange
             doRender(
                 <MultiSelect
                     onChange={jest.fn()}
-                    error={true}
-                    testId="multiselect-error-active"
+                    testId="select-focus-test"
+                    disabled={true}
                 >
-                    {[<OptionItem label="Banana" value="banana" />]}
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
                 </MultiSelect>,
-            );
-            const dropdown = await screen.findByTestId(
-                "multiselect-error-active",
             );
 
             // Act
-            // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.mouseDown(dropdown);
+            const multiSelect = screen.getByTestId("select-focus-test");
+            multiSelect.focus();
 
             // Assert
-            expect(dropdown).toHaveStyle("border-color: #d92916");
-            expect(dropdown).toHaveStyle("border-width: 2px");
-            expect(dropdown).toHaveStyle(
-                "background-color: rgb(243, 187, 180)",
+            expect(multiSelect).toHaveFocus();
+        });
+    });
+
+    describe("Disabled state", () => {
+        it("should set the `aria-disabled` attribute to `true` if `disabled` prop is `true`", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
             );
+            const multiSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(multiSelect).toHaveAttribute("aria-disabled", "true");
+        });
+
+        it("should not set the `disabled` attribute if `disabled` prop is `true` since `aria-disabled` is used instead", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+            const multiSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(multiSelect).not.toHaveAttribute("disabled");
         });
     });
 

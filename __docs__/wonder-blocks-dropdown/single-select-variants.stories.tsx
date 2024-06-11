@@ -114,14 +114,32 @@ const VariantsByTheme = ({themeName = "Default"}: {themeName?: string}) => (
 const AllVariants = () => (
     <>
         <VariantsByTheme />
-        <ThemeSwitcherContext.Provider value="khanmigo">
-            <VariantsByTheme themeName="Khanmigo" />
-        </ThemeSwitcherContext.Provider>
     </>
 );
 
 export const Default: StoryComponentType = {
     render: AllVariants,
+};
+
+export const Hover: StoryComponentType = {
+    render: AllVariants,
+    parameters: {pseudo: {hover: true}},
+};
+
+export const Focus: StoryComponentType = {
+    render: AllVariants,
+    parameters: {pseudo: {focusVisible: true}},
+};
+
+export const HoverFocus: StoryComponentType = {
+    name: "Hover + Focus",
+    render: AllVariants,
+    parameters: {pseudo: {hover: true, focusVisible: true}},
+};
+
+export const Active: StoryComponentType = {
+    render: AllVariants,
+    parameters: {pseudo: {active: true}},
 };
 
 const styles = StyleSheet.create({
