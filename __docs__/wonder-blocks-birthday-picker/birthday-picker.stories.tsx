@@ -105,17 +105,18 @@ export const BirthdayPickerWithCustomLabels: StoryComponentType = {
     },
 };
 
+/**
+ * A BirthdayPicker can be disabled by passing the `disabled` prop. This will
+ * disable all the dropdown controls and prevent them from being interacted with.
+ *
+ * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+ * instead of setting the `disabled` attribute. This is so that the component
+ * remains focusable while communicating to screen readers that it is disabled.
+ */
 export const DisabledBirthdayPicker: StoryComponentType = {
     args: {
         onChange: () => {},
         disabled: true,
-    },
-    parameters: {
-        docs: {
-            description: {
-                story: "A BirthdayPicker can be disabled by passing the `disabled` prop. This will disable all the dropdown controls and prevent them from being interacted with.",
-            },
-        },
     },
 };
 

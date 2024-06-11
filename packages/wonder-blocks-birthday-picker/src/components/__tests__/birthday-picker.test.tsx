@@ -162,9 +162,9 @@ describe("BirthdayPicker", () => {
             );
 
             // Assert
-            expect(monthPicker).toBeDisabled();
-            expect(dayPicker).toBeDisabled();
-            expect(yearPicker).toBeDisabled();
+            expect(monthPicker).toHaveAttribute("aria-disabled", "true");
+            expect(dayPicker).toHaveAttribute("aria-disabled", "true");
+            expect(yearPicker).toHaveAttribute("aria-disabled", "true");
         });
 
         it("renders an error with an invalid default value", async () => {

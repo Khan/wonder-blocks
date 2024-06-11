@@ -132,10 +132,10 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                     return (
                         <StyledButton
                             {...sharedProps}
+                            aria-disabled={disabled}
                             aria-expanded={open ? "true" : "false"}
                             aria-haspopup="listbox"
                             data-testid={testId}
-                            disabled={disabled}
                             id={id}
                             style={style}
                             type="button"
@@ -261,6 +261,9 @@ const _generateStyles = (
                 borderColor: mix(tokens.color.white32, tokens.color.blue),
                 color: mix(tokens.color.white32, tokens.color.blue),
                 cursor: "auto",
+                ":focus": {
+                    boxShadow: `0 0 0 1px ${tokens.color.offBlack32}, 0 0 0 3px ${tokens.color.fadedBlue}`,
+                },
             },
         };
     } else {
@@ -293,6 +296,9 @@ const _generateStyles = (
                 borderColor: tokens.color.offBlack16,
                 color: tokens.color.offBlack64,
                 cursor: "auto",
+                ":focus": {
+                    boxShadow: `0 0 0 1px ${tokens.color.white}, 0 0 0 3px ${tokens.color.offBlack32}`,
+                },
             },
         };
     }

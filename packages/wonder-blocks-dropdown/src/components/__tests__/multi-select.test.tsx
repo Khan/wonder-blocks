@@ -1590,4 +1590,90 @@ describe("MultiSelect", () => {
             );
         });
     });
+
+    describe("a11y > Focusable", () => {
+        it("should be focusable", () => {
+            // Arrange
+            doRender(
+                <MultiSelect onChange={jest.fn()} testId="select-focus-test">
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const multiSelect = screen.getByTestId("select-focus-test");
+            multiSelect.focus();
+
+            // Assert
+            expect(multiSelect).toHaveFocus();
+        });
+
+        it("should be focusable when disabled", () => {
+            // Arrange
+            doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const multiSelect = screen.getByTestId("select-focus-test");
+            multiSelect.focus();
+
+            // Assert
+            expect(multiSelect).toHaveFocus();
+        });
+    });
+
+    describe("Disabled state", () => {
+        it("should set the `aria-disabled` attribute to `true` if `disabled` prop is `true`", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+            const multiSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(multiSelect).toHaveAttribute("aria-disabled", "true");
+        });
+
+        it("should not set the `disabled` attribute if `disabled` prop is `true` since `aria-disabled` is used instead", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+            const multiSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(multiSelect).not.toHaveAttribute("disabled");
+        });
+    });
 });

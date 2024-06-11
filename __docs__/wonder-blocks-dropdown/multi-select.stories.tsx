@@ -386,6 +386,10 @@ export const DropdownInModal: StoryComponentType = {
 /**
  * `MultiSelect` can be disabled by passing `disabled={true}`. This can be
  * useful when you want to disable a control temporarily.
+ *
+ * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+ * instead of setting the `disabled` attribute. This is so that the component
+ * remains focusable while communicating to screen readers that it is disabled.
  */
 export const Disabled: StoryComponentType = {
     render: () => (
