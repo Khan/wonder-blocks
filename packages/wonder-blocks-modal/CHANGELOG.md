@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-modal
 
+## 5.1.4
+
+### Patch Changes
+
+-   Updated dependencies [47a758b6]
+    -   @khanacademy/wonder-blocks-layout@2.1.0
+
 ## 5.1.3
 
 ### Patch Changes
