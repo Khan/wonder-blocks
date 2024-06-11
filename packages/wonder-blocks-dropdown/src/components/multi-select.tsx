@@ -549,6 +549,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             isFilterable,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
+            disabled,
         } = this.props;
         const {open, searchText} = this.state;
         const {clearSearch, filter, noResults, someSelected} =
@@ -599,6 +600,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 }}
                 aria-invalid={ariaInvalid}
                 aria-required={ariaRequired}
+                disabled={disabled}
             />
         );
     }

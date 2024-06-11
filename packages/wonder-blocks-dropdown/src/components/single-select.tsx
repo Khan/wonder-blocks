@@ -448,6 +448,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             style,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
+            disabled,
         } = this.props;
         const {searchText} = this.state;
         const allChildren = React.Children.toArray(children).filter(Boolean);
@@ -484,6 +485,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 labels={labels}
                 aria-invalid={ariaInvalid}
                 aria-required={ariaRequired}
+                disabled={disabled}
             />
         );
     }
