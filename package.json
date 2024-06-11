@@ -52,7 +52,7 @@
     "@khanacademy/eslint-config": "^2.0.0",
     "@khanacademy/eslint-plugin": "^2.0.0",
     "@khanacademy/wonder-stuff-testing": "^3.0.1",
-    "@pandacss/dev": "^0.40.1",
+    "@pandacss/dev": "^0.40.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@storybook/addon-a11y": "^8.0.0",
     "@storybook/addon-designs": "^7.0.5",

@@ -3519,7 +3519,7 @@
     postcss-selector-parser "6.0.16"
     ts-pattern "5.0.8"
 
-"@pandacss/dev@^0.40.1":
+"@pandacss/dev@^0.40.0":
   version "0.40.1"
   resolved "https://registry.yarnpkg.com/@pandacss/dev/-/dev-0.40.1.tgz#aa21bb77bf8f39eaf2e66ac63e65272b0db5068e"
   integrity sha512-61vy1KjwfVdWTaQtwY4ghmvwPhcRRVnfwpAG5S/kogw0p1rIp7a8vDHi31CjbPxO4qccjhNNzVVGDzaqnzHf+w==

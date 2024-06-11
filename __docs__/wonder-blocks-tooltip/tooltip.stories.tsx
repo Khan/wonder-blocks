@@ -163,7 +163,7 @@ export const TooltipInModal: StoryComponentType = () => {
     const scrollyContent = (
         <View style={styles.scrollbox}>
             <View style={styles.hostbox}>
-                <Tooltip content="I'm on the left!" placement="left">
+                <Tooltip content="Im on the left" placement="left">
                     tooltip
                 </Tooltip>
             </View>

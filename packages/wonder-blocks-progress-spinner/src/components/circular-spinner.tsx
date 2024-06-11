@@ -5,7 +5,6 @@ import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {css} from "@/styled-system/css";
-import {SystemStyleObject} from "@/styled-system/types";
 
 const heights = {
     xsmall: 16,

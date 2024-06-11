@@ -9,3 +9,6 @@ export {
 export {type ThemedStylesFn, type SupportedThemes, type Themes} from "./types";
 export {default as useStyles} from "./hooks/use-styles";
 export {ThemeSwitcherContext} from "./utils/theme-switcher-context";
+
+// Panda
+export {default as pandaPreset} from "./presets/panda-preset";
