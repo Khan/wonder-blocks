@@ -1167,4 +1167,97 @@ describe("SingleSelect", () => {
             expect(singleSelect).not.toHaveAttribute("disabled");
         });
     });
+
+    describe("a11y > Focusable", () => {
+        it("should be focusable", () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const singleSelect = screen.getByTestId("select-focus-test");
+            singleSelect.focus();
+
+            // Assert
+            expect(singleSelect).toHaveFocus();
+        });
+
+        it("should be focusable when disabled", () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const singleSelect = screen.getByTestId("select-focus-test");
+            singleSelect.focus();
+
+            // Assert
+            expect(singleSelect).toHaveFocus();
+        });
+    });
+
+    describe("Disabled state", () => {
+        it("should set the `aria-disabled` attribute to `true` if `disabled` prop is `true`", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+            const singleSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(singleSelect).toHaveAttribute("aria-disabled", "true");
+        });
+
+        it("should not set the `disabled` attribute if `disabled` prop is `true` since `aria-disabled` is used instead", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+            const singleSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(singleSelect).not.toHaveAttribute("disabled");
+        });
+    });
 });

@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.2.14
+
+### Patch Changes
+
+-   01fce89e: Make `id` prop optional in `TextField`.
+-   Updated dependencies [01fce89e]
+    -   @khanacademy/wonder-blocks-form@4.7.0
+
 ## 2.2.13
 
 ### Patch Changes

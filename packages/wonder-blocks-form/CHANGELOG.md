@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.7.0
+
+### Minor Changes
+
+-   01fce89e: Make `id` prop optional in `TextField`.
+
 ## 4.6.2
 
 ### Patch Changes

@@ -8,6 +8,33 @@ import Button from "@khanacademy/wonder-blocks-button";
 import TextField from "../text-field";
 
 describe("TextField", () => {
+    it("id prop is passed to input", async () => {
+        // Arrange
+
+        // Act
+        render(<TextField id="custom-id" value="" onChange={() => {}} />);
+
+        // Assert
+        expect(await screen.findByRole("textbox")).toHaveAttribute(
+            "id",
+            "custom-id",
+        );
+    });
+
+    it("auto-generated id is passed to input when id prop is not set", async () => {
+        // Arrange
+
+        // Act
+        render(<TextField value="" onChange={() => {}} />);
+
+        // Assert
+        // Since the generated id is unique, we cannot know what it will be. We
+        // only test if the id attribute starts with "uid-", then followed by
+        // "text-field-" as the scope assigned to IDProvider.
+        const input = await screen.findByRole("textbox");
+        expect(input.getAttribute("id")).toMatch(/uid-text-field-.*$/);
+    });
+
     it("textfield is focused", async () => {
         // Arrange
         render(<TextField id="tf-1" value="" onChange={() => {}} />);
