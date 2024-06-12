@@ -252,7 +252,12 @@ export default class SingleSelect extends React.Component<Props, State> {
         state: State,
     ): Partial<State> | null {
         return {
-            open: typeof props.opened === "boolean" ? props.opened : state.open,
+            // open should always be false if select is disabled
+            open: props.disabled
+                ? false
+                : typeof props.opened === "boolean"
+                ? props.opened
+                : state.open,
         };
     }
 
@@ -448,6 +453,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             style,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
+            disabled,
         } = this.props;
         const {searchText} = this.state;
         const allChildren = React.Children.toArray(children).filter(Boolean);
@@ -484,6 +490,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 labels={labels}
                 aria-invalid={ariaInvalid}
                 aria-required={ariaRequired}
+                disabled={disabled}
             />
         );
     }

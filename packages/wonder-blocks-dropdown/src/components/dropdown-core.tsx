@@ -169,6 +169,10 @@ type ExportProps = Readonly<{
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean;
+    /**
+     * Whether the dropdown and it's interactions should be disabled.
+     */
+    disabled?: boolean;
 
     // Optional props with defaults
     /**
@@ -1040,12 +1044,12 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     render(): React.ReactNode {
-        const {open, opener, style, className} = this.props;
+        const {open, opener, style, className, disabled} = this.props;
 
         return (
             <View
-                onKeyDown={this.handleKeyDown}
-                onKeyUp={this.handleKeyUp}
+                onKeyDown={!disabled ? this.handleKeyDown : undefined}
+                onKeyUp={!disabled ? this.handleKeyUp : undefined}
                 style={[styles.menuWrapper, style]}
                 className={className}
             >
