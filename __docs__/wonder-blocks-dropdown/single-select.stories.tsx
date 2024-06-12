@@ -336,7 +336,9 @@ export const LongOptionLabels: StoryComponentType = {
 
 /**
  * `SingleSelect` can be disabled by passing `disabled={true}`. This can be
- * useful when you want to disable a control temporarily.
+ * useful when you want to disable a control temporarily. It is also disabled
+ * when:
+ * - there are no items
  *
  * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
  * instead of setting the `disabled` attribute. This is so that the component
@@ -344,14 +346,32 @@ export const LongOptionLabels: StoryComponentType = {
  */
 export const Disabled: StoryComponentType = {
     render: () => (
-        <SingleSelect
-            placeholder="Choose a fruit"
-            onChange={() => {}}
-            selectedValue=""
-            disabled={true}
-        >
-            {items}
-        </SingleSelect>
+        <View>
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                Disabled prop is set to true
+            </LabelMedium>
+            <SingleSelect
+                placeholder="Choose a fruit"
+                onChange={() => {}}
+                selectedValue=""
+                disabled={true}
+            >
+                {items}
+            </SingleSelect>
+            <Strut size={spacing.xLarge_32} />
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                No items
+            </LabelMedium>
+            <SingleSelect placeholder="Choose a Fruit" onChange={() => {}} />
+            <Strut size={spacing.xLarge_32} />
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                If all items are disabled, select is still enabled
+            </LabelMedium>
+            <SingleSelect placeholder="Choose a Fruit" onChange={() => {}}>
+                <OptionItem label="Apple" value="1" disabled={true} />
+                <OptionItem label="Orange" value="2" disabled={true} />
+            </SingleSelect>
+        </View>
     ),
 };
 

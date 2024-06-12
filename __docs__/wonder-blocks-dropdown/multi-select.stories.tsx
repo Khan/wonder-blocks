@@ -20,6 +20,7 @@ import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 import {allCountries, allProfilesWithPictures} from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -385,7 +386,11 @@ export const DropdownInModal: StoryComponentType = {
 
 /**
  * `MultiSelect` can be disabled by passing `disabled={true}`. This can be
- * useful when you want to disable a control temporarily.
+ * useful when you want to disable a control temporarily. It is also disabled
+ * when:
+ * - there are no items
+ * - there are items and they are all disabled
+ *
  *
  * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
  * instead of setting the `disabled` attribute. This is so that the component
@@ -393,10 +398,28 @@ export const DropdownInModal: StoryComponentType = {
  */
 export const Disabled: StoryComponentType = {
     render: () => (
-        <MultiSelect disabled={true} onChange={() => {}}>
-            <OptionItem label="Mercury" value="1" />
-            <OptionItem label="Venus" value="2" />
-        </MultiSelect>
+        <View>
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                Disabled prop is set to true
+            </LabelMedium>
+            <MultiSelect disabled={true} onChange={() => {}}>
+                <OptionItem label="Mercury" value="1" />
+                <OptionItem label="Venus" value="2" />
+            </MultiSelect>
+            <Strut size={spacing.xLarge_32} />
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                No items
+            </LabelMedium>
+            <MultiSelect onChange={() => {}} />
+            <Strut size={spacing.xLarge_32} />
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                All items are disabled
+            </LabelMedium>
+            <MultiSelect onChange={() => {}}>
+                <OptionItem label="Mercury" value="1" disabled={true} />
+                <OptionItem label="Venus" value="2" disabled={true} />
+            </MultiSelect>
+        </View>
     ),
 };
 

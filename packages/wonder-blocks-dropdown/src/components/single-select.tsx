@@ -365,13 +365,12 @@ export default class SingleSelect extends React.Component<Props, State> {
     };
 
     renderOpener(
-        numItems: number,
+        isDisabled: boolean,
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> {
         const {
             children,
-            disabled,
             error,
             id,
             light,
@@ -413,7 +412,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         const dropdownOpener = opener ? (
             <DropdownOpener
                 onClick={this.handleClick}
-                disabled={numItems === 0 || disabled}
+                disabled={isDisabled}
                 ref={this.handleOpenerRef}
                 text={menuText}
                 opened={this.state.open}
@@ -423,7 +422,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         ) : (
             <SelectOpener
                 {...sharedProps}
-                disabled={numItems === 0 || disabled}
+                disabled={isDisabled}
                 id={id}
                 error={error}
                 isPlaceholder={!selectedItem}
@@ -459,7 +458,8 @@ export default class SingleSelect extends React.Component<Props, State> {
         const allChildren = React.Children.toArray(children).filter(Boolean);
         // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(ReactChild | ReactFragment | ReactPortal)[]' is not assignable to parameter of type 'ReactElement<{}, string | JSXElementConstructor<any>>[]'.
         const items = this.getMenuItems(allChildren);
-        const opener = this.renderOpener(allChildren.length);
+        const isDisabled = allChildren.length === 0 || disabled;
+        const opener = this.renderOpener(isDisabled);
 
         return (
             <DropdownCore
@@ -490,7 +490,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 labels={labels}
                 aria-invalid={ariaInvalid}
                 aria-required={ariaRequired}
-                disabled={disabled}
+                disabled={isDisabled}
             />
         );
     }
