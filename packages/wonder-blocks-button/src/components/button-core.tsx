@@ -105,6 +105,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             id: id,
             role: "button",
             className: defaultStyle,
+            "data-panda-theme": theme.theme,
             ...restProps,
         } as const;
 
@@ -224,7 +225,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     {...commonProps}
                     aria-disabled={disabled}
                     ref={ref as React.Ref<HTMLButtonElement>}
-                    data-panda-theme={theme.theme}
                 >
                     {contents}
                 </StyledButton>
