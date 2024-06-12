@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.3.7
+
+### Patch Changes
+
+-   f7ff9a77: SingleSelect and MultiSelect: Disable keyboard interactions to open the select if the `disabled` prop is set to `true`. Prevent select from being in an open state if
+    `disabled` prop is `true`.
+
 ## 5.3.6
 
 ### Patch Changes
