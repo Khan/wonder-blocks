@@ -241,7 +241,12 @@ export default class MultiSelect extends React.Component<Props, State> {
         state: State,
     ): Partial<State> | null {
         return {
-            open: typeof props.opened === "boolean" ? props.opened : state.open,
+            // open should always be false if select is disabled
+            open: props.disabled
+                ? false
+                : typeof props.opened === "boolean"
+                ? props.opened
+                : state.open,
         };
     }
 

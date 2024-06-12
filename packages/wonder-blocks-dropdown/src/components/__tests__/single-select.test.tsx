@@ -1166,6 +1166,27 @@ describe("SingleSelect", () => {
             // Assert
             expect(singleSelect).not.toHaveAttribute("disabled");
         });
+
+        it("should not be opened if it is disabled and `open` prop is set to true", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    disabled={true}
+                    opened={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Assert
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+        });
     });
 
     describe("a11y > Focusable", () => {
