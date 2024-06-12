@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.3.7
+
+### Patch Changes
+
+-   Updated dependencies [47a758b6]
+    -   @khanacademy/wonder-blocks-layout@2.1.0
+
 ## 3.3.6
 
 ### Patch Changes
