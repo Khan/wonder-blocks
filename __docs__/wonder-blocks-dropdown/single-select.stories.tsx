@@ -363,12 +363,12 @@ export const Disabled: StoryComponentType = {
             <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
                 No items
             </LabelMedium>
-            <SingleSelect placeholder="Choose a Fruit" onChange={() => {}} />
+            <SingleSelect placeholder="Choose a fruit" onChange={() => {}} />
             <Strut size={spacing.xLarge_32} />
             <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
                 All items are disabled
             </LabelMedium>
-            <SingleSelect placeholder="Choose a Fruit" onChange={() => {}}>
+            <SingleSelect placeholder="Choose a fruit" onChange={() => {}}>
                 <OptionItem label="Apple" value="1" disabled={true} />
                 <OptionItem label="Orange" value="2" disabled={true} />
             </SingleSelect>
