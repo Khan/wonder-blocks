@@ -25,6 +25,13 @@ export default {
 
 type StoryComponentType = StoryObj<typeof IconButton>;
 
+const sizes: ("xsmall" | "small" | "medium" | "large")[] = [
+    "xsmall",
+    "small",
+    "medium",
+    "large",
+];
+
 const KindVariants = ({
     kind,
     light,
@@ -38,7 +45,7 @@ const KindVariants = ({
                 <>
                     <View
                         style={[
-                            styles.gridRow,
+                            styles.gridCol,
                             light &&
                                 (theme === "khanmigo"
                                     ? styles.darkKhanmigo
@@ -48,18 +55,24 @@ const KindVariants = ({
                         <LabelMedium style={light && {color: color.white}}>
                             {kind}-default
                         </LabelMedium>
-                        <IconButton
-                            aria-label="Send"
-                            icon={paperPlaneIcon}
-                            onClick={action("clicked")}
-                            kind={kind}
-                            light={light}
-                            color="default"
-                        />
+                        <View style={[styles.iconButtons]}>
+                            {sizes.map((size) => (
+                                <IconButton
+                                    aria-label="Send"
+                                    icon={paperPlaneIcon}
+                                    onClick={action("clicked")}
+                                    kind={kind}
+                                    light={light}
+                                    color="default"
+                                    size={size}
+                                    key={size}
+                                />
+                            ))}
+                        </View>
                     </View>
                     <View
                         style={[
-                            styles.gridRow,
+                            styles.gridCol,
                             light &&
                                 (theme === "khanmigo"
                                     ? styles.darkKhanmigo
@@ -69,18 +82,24 @@ const KindVariants = ({
                         <LabelMedium style={light && {color: color.white}}>
                             {kind}-destructive
                         </LabelMedium>
-                        <IconButton
-                            aria-label="Send"
-                            icon={paperPlaneIcon}
-                            onClick={action("clicked")}
-                            kind={kind}
-                            light={light}
-                            color="destructive"
-                        />
+                        <View style={[styles.iconButtons]}>
+                            {sizes.map((size) => (
+                                <IconButton
+                                    aria-label="Send"
+                                    icon={paperPlaneIcon}
+                                    onClick={action("clicked")}
+                                    kind={kind}
+                                    light={light}
+                                    color="destructive"
+                                    size={size}
+                                    key={size}
+                                />
+                            ))}
+                        </View>
                     </View>
                     <View
                         style={[
-                            styles.gridRow,
+                            styles.gridCol,
                             light &&
                                 (theme === "khanmigo"
                                     ? styles.darkKhanmigo
@@ -90,14 +109,20 @@ const KindVariants = ({
                         <LabelMedium style={light && {color: color.white}}>
                             {kind}-disabled
                         </LabelMedium>
-                        <IconButton
-                            aria-label="Send"
-                            icon={paperPlaneIcon}
-                            onClick={action("clicked")}
-                            kind={kind}
-                            light={light}
-                            disabled={true}
-                        />
+                        <View style={[styles.iconButtons]}>
+                            {sizes.map((size) => (
+                                <IconButton
+                                    aria-label="Send"
+                                    icon={paperPlaneIcon}
+                                    onClick={action("clicked")}
+                                    kind={kind}
+                                    light={light}
+                                    disabled={true}
+                                    size={size}
+                                    key={size}
+                                />
+                            ))}
+                        </View>
                     </View>
                 </>
             )}
@@ -163,11 +188,17 @@ const styles = StyleSheet.create({
         gridTemplateColumns: "repeat(3, 250px)",
         gap: spacing.large_24,
     },
-    gridRow: {
-        flexDirection: "row",
+    gridCol: {
+        flexDirection: "column",
         alignItems: "center",
-        gap: spacing.medium_16,
+        gap: spacing.large_24,
         justifyContent: "space-between",
         padding: spacing.medium_16,
+    },
+    iconButtons: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: spacing.xLarge_32,
     },
 });
