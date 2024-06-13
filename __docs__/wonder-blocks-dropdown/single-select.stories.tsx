@@ -339,6 +339,7 @@ export const LongOptionLabels: StoryComponentType = {
  * useful when you want to disable a control temporarily. It is also disabled
  * when:
  * - there are no items
+ * - there are items and they are all disabled
  *
  * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
  * instead of setting the `disabled` attribute. This is so that the component
@@ -365,7 +366,7 @@ export const Disabled: StoryComponentType = {
             <SingleSelect placeholder="Choose a Fruit" onChange={() => {}} />
             <Strut size={spacing.xLarge_32} />
             <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                If all items are disabled, select is still enabled
+                All items are disabled
             </LabelMedium>
             <SingleSelect placeholder="Choose a Fruit" onChange={() => {}}>
                 <OptionItem label="Apple" value="1" disabled={true} />

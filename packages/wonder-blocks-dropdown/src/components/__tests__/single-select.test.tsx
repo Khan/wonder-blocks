@@ -1216,7 +1216,7 @@ describe("SingleSelect", () => {
             expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
         });
 
-        it("should be able to open the select using the keyboard if there all items are disabled", async () => {
+        it("should not be able to open the select using the keyboard if all items are disabled", async () => {
             // Arrange
             doRender(
                 <SingleSelect
@@ -1244,7 +1244,7 @@ describe("SingleSelect", () => {
             });
 
             // Assert
-            expect(screen.getByRole("listbox")).toBeInTheDocument();
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
         });
     });
 

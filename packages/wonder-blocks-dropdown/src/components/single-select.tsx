@@ -455,10 +455,16 @@ export default class SingleSelect extends React.Component<Props, State> {
             disabled,
         } = this.props;
         const {searchText} = this.state;
-        const allChildren = React.Children.toArray(children).filter(Boolean);
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(ReactChild | ReactFragment | ReactPortal)[]' is not assignable to parameter of type 'ReactElement<{}, string | JSXElementConstructor<any>>[]'.
+        const allChildren = (
+            React.Children.toArray(children) as Array<
+                React.ReactElement<React.ComponentProps<typeof OptionItem>>
+            >
+        ).filter(Boolean);
+        const numEnabledOptions = allChildren.filter(
+            (option) => !option.props.disabled,
+        ).length;
         const items = this.getMenuItems(allChildren);
-        const isDisabled = allChildren.length === 0 || disabled;
+        const isDisabled = numEnabledOptions === 0 || disabled;
         const opener = this.renderOpener(isDisabled);
 
         return (
