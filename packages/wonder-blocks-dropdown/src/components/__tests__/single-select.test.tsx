@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -1183,6 +1183,65 @@ describe("SingleSelect", () => {
                     <OptionItem label="item 3" value="3" />
                 </SingleSelect>,
             );
+
+            // Assert
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+        });
+
+        it("should not be able to open the select using the keyboard if there are no items", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Act
+            // Press the button
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                keyCode: 40,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                keyCode: 40,
+            });
+
+            // Assert
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+        });
+
+        it("should not be able to open the select using the keyboard if all items are disabled", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                >
+                    <OptionItem label="item 1" value="1" disabled={true} />
+                    <OptionItem label="item 2" value="2" disabled={true} />
+                </SingleSelect>,
+            );
+
+            // Act
+            // Press the button
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                keyCode: 40,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                keyCode: 40,
+            });
 
             // Assert
             expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
