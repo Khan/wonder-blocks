@@ -34,6 +34,13 @@ const config: StorybookConfig = {
                             "../packages/wonder-blocks$1/src",
                         ),
                     },
+                    {
+                        find: /^\@\/styled-system\/([\w]+)/,
+                        replacement: resolve(
+                            __dirname,
+                            "../styled-system/$1",
+                        ),
+                    },
                 ],
             },
         });

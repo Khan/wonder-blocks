@@ -1,9 +1,9 @@
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
+import {css} from "@/styled-system/css";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
@@ -146,11 +146,11 @@ Inline.parameters = {
 };
 
 export const WithStyle: StoryComponentType = () => {
-    const spinnerStyle = {
-        border: `solid 5px ${color.teal}`,
+    const spinnerStyle = css.raw({
+        border: "teal solid 5px",
         borderRadius: "50%",
-        backgroundColor: color.offWhite,
-    } as const;
+        backgroundColor: "offWhite",
+    });
 
     return <CircularSpinner style={spinnerStyle} />;
 };
@@ -167,23 +167,23 @@ WithStyle.parameters = {
     },
 };
 
-const styles = StyleSheet.create({
-    darkBackground: {
-        background: color.darkBlue,
-        padding: spacing.xLarge_32,
+const styles = {
+    darkBackground: css.raw({
+        background: "darkBlue",
+        padding: "xLarge_32",
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
-    },
-    distanced: {
-        margin: spacing.large_24,
-    },
-    example: {
+    }),
+    distanced: css.raw({
+        margin: "large_24",
+    }),
+    example: css.raw({
         alignItems: "center",
         justifyContent: "center",
-    },
-    row: {
+    }),
+    row: css.raw({
         flexDirection: "row",
-        marginBottom: spacing.xLarge_32,
-    },
-});
+        marginBottom: "xLarge_32",
+    }),
+};

@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import type {CSSProperties} from "aphrodite";
+import {SystemStyleObject} from "@/styled-system/types";
 
 import type {AriaAttributes, AriaRole} from "./aria-types";
 
@@ -8,8 +9,9 @@ type NestedArray<T> = ReadonlyArray<T | NestedArray<T>>;
 type Falsy = false | 0 | null | undefined;
 export type StyleType =
     | CSSProperties
+    | SystemStyleObject
     | Falsy
-    | NestedArray<CSSProperties | Falsy>;
+    | NestedArray<CSSProperties | SystemStyleObject | Falsy>;
 
 export type AriaProps = Readonly<AriaAttributes> &
     Readonly<{

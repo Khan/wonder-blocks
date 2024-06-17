@@ -14,7 +14,8 @@
         "paths": {
             "@khanacademy/*": [
                 "./*/src"
-            ]
+            ],
+            "@/styled-system/*": ["../styled-system/*"]
         },
     },
 }
