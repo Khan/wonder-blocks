@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.3.0
+
+### Minor Changes
+
+-   16e1635a: IconButton: Add option for `large` value for `size` prop (24x24 icon size with target area of 48x48)
+
 ## 5.2.2
 
 ### Patch Changes
