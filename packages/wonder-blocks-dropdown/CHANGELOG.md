@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.3.8
+
+### Patch Changes
+
+-   cb95286d: - SingleSelect and MultiSelect: Fixing bug where the components can be opened via keyboard when it is disabled because it has 0 items
+    -   SingleSelect: If all option items are disabled, the SingleSelect is disabled, similar to the behaviour of the MultiSelect
+    -   @khanacademy/wonder-blocks-modal@5.1.5
+    -   @khanacademy/wonder-blocks-search-field@2.2.16
+
 ## 5.3.7
 
 ### Patch Changes
