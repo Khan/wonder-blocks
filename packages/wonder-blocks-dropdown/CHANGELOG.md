@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.3.9
+
+### Patch Changes
+
+-   c8b273f0: Update default/resting border color to fix a color contrast issue
+    -   @khanacademy/wonder-blocks-search-field@2.2.17
+
 ## 5.3.8
 
 ### Patch Changes
