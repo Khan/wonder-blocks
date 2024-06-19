@@ -322,7 +322,7 @@ const _generateStyles = (
         newStyles = {
             default: {
                 background: error ? tokens.color.fadedRed8 : tokens.color.white,
-                borderColor: error ? tokens.color.red : tokens.color.offBlack16,
+                borderColor: error ? tokens.color.red : tokens.color.offBlack50,
                 borderWidth: tokens.border.width.hairline,
                 color: placeholder
                     ? tokens.color.offBlack64
@@ -334,7 +334,7 @@ const _generateStyles = (
                     ":hover:not([aria-disabled=true])": {
                         borderColor: error
                             ? tokens.color.red
-                            : tokens.color.offBlack16,
+                            : tokens.color.offBlack50,
                         borderWidth: tokens.border.width.hairline,
                         paddingLeft: tokens.spacing.medium_16,
                         paddingRight: tokens.spacing.small_12,
