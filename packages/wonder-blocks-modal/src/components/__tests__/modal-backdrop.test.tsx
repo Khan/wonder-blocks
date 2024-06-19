@@ -7,9 +7,9 @@ import OnePaneDialog from "../one-pane-dialog";
 
 const exampleModal = (
     <OnePaneDialog
-        content={<div data-test-id="example-modal-content" />}
+        content={<div data-testid="example-modal-content" />}
         title="Title"
-        footer={<div data-test-id="example-modal-footer" />}
+        footer={<div data-testid="example-modal-footer" />}
         testId="example-modal-test-id"
     />
 );

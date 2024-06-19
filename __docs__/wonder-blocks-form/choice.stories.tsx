@@ -16,7 +16,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 export default {
-    title: "Form / Choice",
+    title: "Packages / Form / Choice",
     component: Choice,
     parameters: {
         componentSubtitle: (

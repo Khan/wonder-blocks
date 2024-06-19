@@ -20,7 +20,7 @@ import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
  * the user paired with a label, description, and error field elements.
  */
 export default {
-    title: "Form / LabeledTextField",
+    title: "Packages / Form / LabeledTextField",
     component: LabeledTextField,
     parameters: {
         componentSubtitle: (
@@ -164,7 +164,12 @@ RequiredWithSpecifiedText.parameters = {
 };
 
 export const Number: StoryComponentType = () => {
-    const [value, setValue] = React.useState("18");
+    const [value, setValue] = React.useState("1234");
+    const [value2, setValue2] = React.useState("12");
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
@@ -173,22 +178,46 @@ export const Number: StoryComponentType = () => {
     };
 
     return (
-        <LabeledTextField
-            label="Age"
-            type="number"
-            description="Please enter your age"
-            value={value}
-            onChange={setValue}
-            placeholder="Age"
-            onKeyDown={handleKeyDown}
-        />
+        <View style={styles.column}>
+            <LabeledTextField
+                label="Age"
+                id="tf-3"
+                description="Please enter your age"
+                type="number"
+                value={value}
+                placeholder="Number"
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+            />
+            <Strut size={spacing.small_12} />
+            <LabeledTextField
+                id="tf-3a"
+                label={`The following text field has a min of 0, a max of 15,
+                    and a step of 3`}
+                type="number"
+                value={value2}
+                placeholder="Number"
+                onChange={setValue2}
+                onKeyDown={handleKeyDown}
+                min={0}
+                max={15}
+                step={3}
+            />
+        </View>
     );
 };
 
 Number.parameters = {
     docs: {
         description: {
-            story: "An input field with type `number` will only take numeric characters as input.",
+            story: `An input field with type \`number\` will only take
+                numeric characters as input.\n\nNumber inputs have a few props
+                that other input types don't have - \`min\`, \`max\`, and
+                \`step\`. In this example, the first number input has no
+                restrictions, while the second number input has a minimum
+                value of 0, a maximum value of 15, and a step of 3. Observe
+                that using the arrow keys will automatically snap to the
+                step, and stop at the min and max values.`,
         },
     },
 };
@@ -271,7 +300,7 @@ Email.parameters = {
         description: {
             story: `An input field with type \`email\` will automatically
         validate an input on submit to ensure it's either formatted properly
-        or blank. \`TextField\` will run validation on blur if the
+        or blank. \`TextField\` will run validation on change if the
         \`validate\` prop is passed in, as in this example.`,
         },
     },
@@ -364,7 +393,7 @@ Telephone.parameters = {
     },
 };
 
-export const Error: StoryComponentType = () => {
+function ErrorRender() {
     const [value, setValue] = React.useState("khan");
 
     const validate = (value: string) => {
@@ -392,15 +421,19 @@ export const Error: StoryComponentType = () => {
             onKeyDown={handleKeyDown}
         />
     );
-};
+}
 
-Error.parameters = {
-    docs: {
-        description: {
-            story: `If an input value fails validation,
-        \`TextField\` will have error styling.`,
-        },
-    },
+/**
+ * If an input value fails validation, `LabeledTextField` will have error
+ * styling.
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * `input` element:
+ * - aria-invalid="true" if there is an error message.
+ * - aria-invalid="false" if there is no error message.
+ */
+export const Error: StoryComponentType = {
+    render: ErrorRender,
 };
 
 export const Light: StoryComponentType = (args: any) => {

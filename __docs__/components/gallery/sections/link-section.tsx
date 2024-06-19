@@ -16,7 +16,7 @@ export default function LinkSection() {
 
             <ComponentTile
                 name="Link"
-                href="/?path=/docs/link--docs"
+                href="/?path=/docs/packages-link--docs"
                 description={`Standard link. Used to redirect to a new
                     page or a section within the same page.`}
             >

@@ -363,7 +363,7 @@ describe("ActionMenu", () => {
         const opener = await screen.findByRole("button");
 
         // Assert
-        expect(opener).toHaveAttribute("data-test-id", "some-test-id");
+        expect(opener).toHaveAttribute("data-testid", "some-test-id");
     });
 
     describe("Controlled component", () => {
@@ -393,7 +393,7 @@ describe("ActionMenu", () => {
                         <ActionItem label="Delete" />
                     </ActionMenu>
                     <button
-                        data-test-id="parent-button"
+                        data-testid="parent-button"
                         onClick={() => handleToggleMenu(true)}
                     />
                 </React.Fragment>
@@ -508,7 +508,7 @@ describe("ActionMenu", () => {
                     menuText="Action menu!"
                     opener={() => (
                         <button
-                            data-test-id="custom-opener"
+                            data-testid="custom-opener"
                             aria-label="Custom opener"
                         />
                     )}
@@ -522,7 +522,7 @@ describe("ActionMenu", () => {
             const opener = await screen.findByLabelText("Custom opener");
 
             // Assert
-            expect(opener).toHaveAttribute("data-test-id", "custom-opener");
+            expect(opener).toHaveAttribute("data-testid", "custom-opener");
         });
 
         it("verifies testId is not passed from the parent element", async () => {
@@ -543,7 +543,7 @@ describe("ActionMenu", () => {
             const opener = await screen.findByLabelText("Custom opener");
 
             // Assert
-            expect(opener).not.toHaveAttribute("data-test-id");
+            expect(opener).not.toHaveAttribute("data-testid");
         });
 
         it("passes the menu text to the custom opener", async () => {
@@ -555,10 +555,7 @@ describe("ActionMenu", () => {
                     onChange={onChange}
                     selectedValues={[]}
                     opener={({text}: any) => (
-                        <button
-                            onClick={jest.fn()}
-                            data-test-id="custom-opener"
-                        >
+                        <button onClick={jest.fn()} data-testid="custom-opener">
                             {text}
                         </button>
                     )}

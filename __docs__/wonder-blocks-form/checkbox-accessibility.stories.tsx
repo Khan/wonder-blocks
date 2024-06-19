@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: "Form/Checkbox/Accessibility",
+    title: "Packages / Form / Checkbox / Accessibility",
     component: Checkbox,
 
     // Disables chromatic testing for these stories.

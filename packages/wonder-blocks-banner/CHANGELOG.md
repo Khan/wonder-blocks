@@ -1,5 +1,64 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.1.1
+
+### Patch Changes
+
+-   Updated dependencies [16e1635a]
+    -   @khanacademy/wonder-blocks-icon-button@5.3.0
+
+## 3.1.0
+
+### Minor Changes
+
+-   9eecfc56: Adds optional `icon` prop for the `Banner` component. An icon asset (either imported from Phosphor or a imported custom icon) can be used. If not provided, default icons are used to represent the `kind` prop.
+
+## 3.0.43
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-button@6.3.2
+    -   @khanacademy/wonder-blocks-icon@4.1.1
+    -   @khanacademy/wonder-blocks-icon-button@5.2.2
+    -   @khanacademy/wonder-blocks-link@6.1.2
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
+## 3.0.42
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-button@6.3.1
+    -   @khanacademy/wonder-blocks-icon-button@5.2.1
+    -   @khanacademy/wonder-blocks-link@6.1.1
+
+## 3.0.41
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-icon-button@5.2.0
+    -   @khanacademy/wonder-blocks-button@6.3.0
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-icon@4.1.0
+    -   @khanacademy/wonder-blocks-link@6.1.0
+    -   @khanacademy/wonder-blocks-typography@2.1.11
+
+## 3.0.40
+
+### Patch Changes
+
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-link@6.0.11
+    -   @khanacademy/wonder-blocks-button@6.2.11
+    -   @khanacademy/wonder-blocks-icon-button@5.1.14
+
 ## 3.0.39
 
 ### Patch Changes

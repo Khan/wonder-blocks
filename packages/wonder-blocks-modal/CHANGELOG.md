@@ -1,5 +1,88 @@
 # @khanacademy/wonder-blocks-modal
 
+## 5.1.5
+
+### Patch Changes
+
+-   Updated dependencies [16e1635a]
+    -   @khanacademy/wonder-blocks-icon-button@5.3.0
+
+## 5.1.4
+
+### Patch Changes
+
+-   Updated dependencies [47a758b6]
+    -   @khanacademy/wonder-blocks-layout@2.1.0
+
+## 5.1.3
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.2.2
+    -   @khanacademy/wonder-blocks-icon-button@5.2.2
+    -   @khanacademy/wonder-blocks-layout@2.0.33
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
+## 5.1.2
+
+### Patch Changes
+
+-   Updated dependencies [f72f7dd4]
+    -   @khanacademy/wonder-blocks-timing@5.0.0
+
+## 5.1.1
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.2.1
+    -   @khanacademy/wonder-blocks-icon-button@5.2.1
+    -   @khanacademy/wonder-blocks-layout@2.0.32
+
+## 5.1.0
+
+### Minor Changes
+
+-   58075352: Change testId to render the default Testing Library HTML attribute: data-testid (was data-test-id)
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.2.0
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-layout@2.0.31
+    -   @khanacademy/wonder-blocks-typography@2.1.11
+
+## 5.0.0
+
+### Major Changes
+
+-   1b741a83: Makes optional `aria-labelledby` prop required
+
+## 4.2.8
+
+### Patch Changes
+
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-theming@2.0.2
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.14
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.1.14
+    -   @khanacademy/wonder-blocks-layout@2.0.30
+
+## 4.2.7
+
+### Patch Changes
+
+-   Updated dependencies [c39bfd29]
+    -   @khanacademy/wonder-blocks-layout@2.0.29
+
 ## 4.2.6
 
 ### Patch Changes

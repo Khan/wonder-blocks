@@ -158,14 +158,10 @@ export const SafeWithNavCallbacks = () => (
 These buttons always wait until the async callback code completes before
 starting navigation.
 
-<Canvas>
-  <Story of={NavigationCallbacksStories.BeforeNavCallbacks_} />
-</Canvas>
+<Canvas of={NavigationCallbacksStories.BeforeNavCallbacks_} />
 
 ### safeWithNav Callbacks
 
 If the `onClick` callback calls `preventDefault()`, then navigation will not occur.
 
-<Canvas>
-  <Story of={NavigationCallbacksStories.SafeWithNavCallbacks_} />
-</Canvas>
+<Canvas of={NavigationCallbacksStories.SafeWithNavCallbacks_} />

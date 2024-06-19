@@ -1,5 +1,5 @@
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {render} from "@testing-library/react";
 
 import MediaLayout from "../media-layout";
@@ -14,93 +14,94 @@ import {
 
 describe("MediaLayoutContext", () => {
     beforeEach(() => {
-        // @ts-expect-error [FEI-5019] - TS2322 - Type '(query: "(max-width: 767px)" | "(min-width: 768px) and (max-width: 1023px)" | "(min-width: 1024px)") => MatchMedia' is not assignable to type '((query: string) => MediaQueryList) & ((query: string) => MediaQueryList)'.
-        window.matchMedia = matchMedia;
+        jest.restoreAllMocks();
+        window.matchMedia = matchMedia as any;
     });
 
     describe("overrideSize", () => {
-        it("should override the currentSize", async () => {
+        it("should override the currentSize", () => {
             // Arrange
             resizeWindow("large");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayoutContext.Provider
-                        value={{
-                            overrideSize: "small",
-                            ssrSize: "large",
-                            mediaSpec: MEDIA_DEFAULT_SPEC,
+            render(
+                <MediaLayoutContext.Provider
+                    value={{
+                        overrideSize: "small",
+                        ssrSize: "large",
+                        mediaSpec: MEDIA_DEFAULT_SPEC,
+                    }}
+                >
+                    <MediaLayout styleSheets={{}}>
+                        {({mediaSize, mediaSpec, styles}: any) => {
+                            capturePropsFn({mediaSize, mediaSpec, styles});
+                            return <View>Hello, world!</View>;
                         }}
-                    >
-                        <MediaLayout styleSheets={{}}>
-                            {({mediaSize, mediaSpec, styles}: any) => {
-                                resolve({mediaSize, mediaSpec, styles});
-                                return <View>Hello, world!</View>;
-                            }}
-                        </MediaLayout>
-                    </MediaLayoutContext.Provider>,
-                );
-            });
+                    </MediaLayout>
+                </MediaLayoutContext.Provider>,
+            );
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
-            expect(args.mediaSize).toEqual("small");
+            expect(capturePropsFn).toHaveBeenCalledWith(
+                expect.objectContaining({mediaSize: "small"}),
+            );
         });
     });
 
     describe("ssrSize", () => {
-        it("should use the default ssrSize on the server", async () => {
-            // Arrange
-            // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
-            delete window.matchMedia;
-            const promise = new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayout styleSheets={{}}>
-                        {({mediaSize, mediaSpec, styles}: any) => {
-                            resolve({mediaSize, mediaSpec, styles});
-                            return <View>Hello, world!</View>;
-                        }}
-                    </MediaLayout>,
-                );
-            });
-
-            // Act
-            const args = await promise;
-
-            // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
-            expect(args.mediaSize).toEqual("large");
+        beforeEach(() => {
+            jest.spyOn(Server, "isServerSide").mockReturnValue(true);
         });
 
-        it("should use the provided ssrSize on the server", async () => {
+        it("should use the default ssrSize on initial render", () => {
             // Arrange
-            // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
-            delete window.matchMedia;
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayoutContext.Provider
-                        value={{
-                            overrideSize: undefined,
-                            ssrSize: "small",
-                            mediaSpec: MEDIA_DEFAULT_SPEC,
-                        }}
-                    >
-                        <MediaLayout styleSheets={{}}>
-                            {({mediaSize, mediaSpec, styles}: any) => {
-                                resolve({mediaSize, mediaSpec, styles});
-                                return <View>Hello, world!</View>;
-                            }}
-                        </MediaLayout>
-                    </MediaLayoutContext.Provider>,
-                );
-            });
+            render(
+                <MediaLayout styleSheets={{}}>
+                    {({mediaSize, mediaSpec, styles}: any) => {
+                        capturePropsFn({mediaSize, mediaSpec, styles});
+                        return <View>Hello, world!</View>;
+                    }}
+                </MediaLayout>,
+            );
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
-            expect(args.mediaSize).toEqual("small");
+            expect(capturePropsFn).toHaveBeenNthCalledWith(
+                1,
+                expect.objectContaining({mediaSize: "large"}),
+            );
+        });
+
+        it("should use the provided ssrSize on initial render", () => {
+            // Arrange
+            const capturePropsFn = jest.fn();
+
+            // Act
+            render(
+                <MediaLayoutContext.Provider
+                    value={{
+                        overrideSize: undefined,
+                        ssrSize: "small",
+                        mediaSpec: MEDIA_DEFAULT_SPEC,
+                    }}
+                >
+                    <MediaLayout styleSheets={{}}>
+                        {({mediaSize, mediaSpec, styles}: any) => {
+                            capturePropsFn({mediaSize, mediaSpec, styles});
+                            return <View>Hello, world!</View>;
+                        }}
+                    </MediaLayout>
+                </MediaLayoutContext.Provider>,
+            );
+
+            // Assert
+            expect(capturePropsFn).toHaveBeenNthCalledWith(
+                1,
+                expect.objectContaining({mediaSize: "small"}),
+            );
         });
     });
 
@@ -108,59 +109,59 @@ describe("MediaLayoutContext", () => {
         it("MEDIA_INTERNAL_SPEC is always large", async () => {
             // Arrange
             resizeWindow("small");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayoutContext.Provider
-                        value={{
-                            overrideSize: undefined,
-                            ssrSize: "small",
-                            mediaSpec: MEDIA_INTERNAL_SPEC,
+            render(
+                <MediaLayoutContext.Provider
+                    value={{
+                        overrideSize: undefined,
+                        ssrSize: "small",
+                        mediaSpec: MEDIA_INTERNAL_SPEC,
+                    }}
+                >
+                    <MediaLayout styleSheets={{}}>
+                        {({mediaSize, mediaSpec, styles}: any) => {
+                            capturePropsFn({mediaSize, mediaSpec, styles});
+                            return <View>Hello, world!</View>;
                         }}
-                    >
-                        <MediaLayout styleSheets={{}}>
-                            {({mediaSize, mediaSpec, styles}: any) => {
-                                resolve({mediaSize, mediaSpec, styles});
-                                return <View>Hello, world!</View>;
-                            }}
-                        </MediaLayout>
-                    </MediaLayoutContext.Provider>,
-                );
-            });
+                    </MediaLayout>
+                </MediaLayoutContext.Provider>,
+            );
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
-            expect(args.mediaSize).toEqual("large");
+            expect(capturePropsFn).toHaveBeenLastCalledWith(
+                expect.objectContaining({mediaSize: "large"}),
+            );
         });
 
         it("MEDIA_MODAL_SPEC is not medium", async () => {
             // Arrange
             resizeWindow("medium");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayoutContext.Provider
-                        value={{
-                            overrideSize: undefined,
-                            ssrSize: "small",
-                            mediaSpec: MEDIA_MODAL_SPEC,
+            render(
+                <MediaLayoutContext.Provider
+                    value={{
+                        overrideSize: undefined,
+                        ssrSize: "small",
+                        mediaSpec: MEDIA_MODAL_SPEC,
+                    }}
+                >
+                    <MediaLayout styleSheets={{}}>
+                        {({mediaSize, mediaSpec, styles}: any) => {
+                            capturePropsFn({mediaSize, mediaSpec, styles});
+                            return <View>Hello, world!</View>;
                         }}
-                    >
-                        <MediaLayout styleSheets={{}}>
-                            {({mediaSize, mediaSpec, styles}: any) => {
-                                resolve({mediaSize, mediaSpec, styles});
-                                return <View>Hello, world!</View>;
-                            }}
-                        </MediaLayout>
-                    </MediaLayoutContext.Provider>,
-                );
-            });
+                    </MediaLayout>
+                </MediaLayoutContext.Provider>,
+            );
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
-            expect(args.mediaSize).toEqual("large");
+            expect(capturePropsFn).toHaveBeenLastCalledWith(
+                expect.objectContaining({mediaSize: "large"}),
+            );
         });
     });
 });

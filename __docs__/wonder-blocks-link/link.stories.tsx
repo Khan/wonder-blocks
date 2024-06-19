@@ -25,7 +25,7 @@ import LinkArgTypes from "./link.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Link",
+    title: "Packages / Link",
     component: Link,
     parameters: {
         componentSubtitle: (

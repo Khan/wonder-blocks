@@ -37,6 +37,6 @@ describe("ModalPanel", () => {
         const closeButton = screen.getByLabelText("Close modal");
 
         // Assert
-        expect(closeButton).toHaveAttribute("data-test-id", "test-id-close");
+        expect(closeButton).toHaveAttribute("data-testid", "test-id-close");
     });
 });

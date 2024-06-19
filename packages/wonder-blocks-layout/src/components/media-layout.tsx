@@ -2,6 +2,7 @@ import * as React from "react";
 import type {StyleDeclaration} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
 import MediaLayoutContext from "./media-layout-context";
 import type {MediaSize, MediaSpec} from "../util/types";
 import type {Context} from "./media-layout-context";
@@ -137,10 +138,9 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         return DEFAULT_SIZE;
     }
 
-    // We assume that we're running on the server (or, at least, an unsupported
-    // environment) if there is no window object or matchMedia function
-    // available.
-    isServerSide() {
+    // We assume that we're running on an unsupported environment) if there is
+    // no window object or matchMedia function available.
+    isUnsupportedEnvironment() {
         return typeof window === "undefined" || !window.matchMedia;
     }
 
@@ -204,7 +204,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         return mockStyleSheet;
     }
 
-    render(): React.ReactNode {
+    renderContent(initialRender: boolean): React.ReactNode {
         const {children, mediaSpec, ssrSize, overrideSize} = this.props;
 
         const queries = [
@@ -218,7 +218,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 
         // We need to create the MediaQueryLists during the first render in order
         // to query whether any of them match.
-        if (!this.isServerSide()) {
+        if (!initialRender) {
             for (const query of queries.filter(
                 (query) => !mediaQueryLists[query],
             )) {
@@ -234,13 +234,21 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         // the current MediaSpec.
         const mediaSize =
             overrideSize ||
-            (this.isServerSide() && ssrSize) ||
+            (initialRender && ssrSize) ||
             this.getCurrentSize(mediaSpec);
 
         // Generate a mock stylesheet
         const styles = this.getMockStyleSheet(mediaSize);
 
         return children({mediaSize, mediaSpec, styles});
+    }
+
+    render() {
+        return (
+            <WithSSRPlaceholder placeholder={() => this.renderContent(true)}>
+                {() => this.renderContent(this.isUnsupportedEnvironment())}
+            </WithSSRPlaceholder>
+        );
     }
 }
 

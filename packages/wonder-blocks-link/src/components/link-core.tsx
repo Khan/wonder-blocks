@@ -4,10 +4,9 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {mix, fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.svg";
 
 import type {
@@ -70,7 +69,7 @@ const LinkCore = React.forwardRef(function LinkCore(
         ];
 
         const commonProps = {
-            "data-test-id": testId,
+            "data-testid": testId,
             style: [defaultStyles, style],
             target,
             ...restProps,

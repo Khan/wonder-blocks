@@ -15,7 +15,7 @@ import DetailCellArgTypes from "./detail-cell.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
-    title: "Cell / DetailCell",
+    title: "Packages / Cell / DetailCell",
     component: DetailCell,
     // TODO(FEI-5000):
     argTypes: DetailCellArgTypes as any,

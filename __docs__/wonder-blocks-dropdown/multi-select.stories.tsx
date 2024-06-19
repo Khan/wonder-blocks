@@ -20,6 +20,7 @@ import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 import {allCountries, allProfilesWithPictures} from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -45,7 +46,7 @@ type MultiSelectArgs = Partial<typeof MultiSelect>;
  * ```
  */
 export default {
-    title: "Dropdown / MultiSelect",
+    title: "Packages / Dropdown / MultiSelect",
     component: MultiSelect as unknown as React.ComponentType<any>,
     argTypes: multiSelectArgtypes,
     args: {
@@ -59,13 +60,6 @@ export default {
         id: "",
         testId: "",
     },
-    decorators: [
-        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>
-                <Story />
-            </View>
-        ),
-    ],
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -73,14 +67,13 @@ export default {
                 version={packageConfig.version}
             />
         ) as any,
+        backgrounds: {
+            default: "offWhite",
+        },
     },
 } as Meta<typeof MultiSelect>;
 
 const styles = StyleSheet.create({
-    example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
-    },
     setWidth: {
         minWidth: 170,
         width: "100%",
@@ -393,14 +386,40 @@ export const DropdownInModal: StoryComponentType = {
 
 /**
  * `MultiSelect` can be disabled by passing `disabled={true}`. This can be
- * useful when you want to disable a control temporarily.
+ * useful when you want to disable a control temporarily. It is also disabled
+ * when:
+ * - there are no items
+ * - there are items and they are all disabled
+ *
+ *
+ * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+ * instead of setting the `disabled` attribute. This is so that the component
+ * remains focusable while communicating to screen readers that it is disabled.
  */
 export const Disabled: StoryComponentType = {
     render: () => (
-        <MultiSelect disabled={true} onChange={() => {}}>
-            <OptionItem label="Mercury" value="1" />
-            <OptionItem label="Venus" value="2" />
-        </MultiSelect>
+        <View>
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                Disabled prop is set to true
+            </LabelMedium>
+            <MultiSelect disabled={true} onChange={() => {}}>
+                <OptionItem label="Mercury" value="1" />
+                <OptionItem label="Venus" value="2" />
+            </MultiSelect>
+            <Strut size={spacing.xLarge_32} />
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                No items
+            </LabelMedium>
+            <MultiSelect onChange={() => {}} />
+            <Strut size={spacing.xLarge_32} />
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                All items are disabled
+            </LabelMedium>
+            <MultiSelect onChange={() => {}}>
+                <OptionItem label="Mercury" value="1" disabled={true} />
+                <OptionItem label="Venus" value="2" disabled={true} />
+            </MultiSelect>
+        </View>
     ),
 };
 

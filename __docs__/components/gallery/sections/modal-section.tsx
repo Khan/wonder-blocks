@@ -19,7 +19,7 @@ export default function ModalSection() {
             <View style={styles.section}>
                 <ComponentTile
                     name="OnePaneDialog"
-                    href="/?path=/docs/modal-onepanedialog--docs"
+                    href="/?path=/docs/packages-modal-onepanedialog--docs"
                     description={`Standard layout for most straightforward
                         modal experiences. Modals display in front of the
                         current view and prevent interaction background until

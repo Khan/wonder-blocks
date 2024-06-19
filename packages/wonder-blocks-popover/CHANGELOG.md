@@ -1,5 +1,93 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.2.5
+
+### Patch Changes
+
+-   Updated dependencies [16e1635a]
+    -   @khanacademy/wonder-blocks-icon-button@5.3.0
+    -   @khanacademy/wonder-blocks-modal@5.1.5
+    -   @khanacademy/wonder-blocks-tooltip@2.3.4
+
+## 3.2.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@5.1.4
+-   @khanacademy/wonder-blocks-tooltip@2.3.3
+
+## 3.2.3
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-icon-button@5.2.2
+    -   @khanacademy/wonder-blocks-modal@5.1.3
+    -   @khanacademy/wonder-blocks-tooltip@2.3.2
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
+## 3.2.2
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@5.1.2
+-   @khanacademy/wonder-blocks-tooltip@2.3.1
+
+## 3.2.1
+
+### Patch Changes
+
+-   Updated dependencies [d2d84ca2]
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tooltip@2.3.0
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-icon-button@5.2.1
+    -   @khanacademy/wonder-blocks-modal@5.1.1
+
+## 3.2.0
+
+### Minor Changes
+
+-   58075352: Change testId to render the default Testing Library HTML attribute: data-testid (was data-test-id)
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-icon-button@5.2.0
+    -   @khanacademy/wonder-blocks-modal@5.1.0
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-tooltip@2.2.1
+    -   @khanacademy/wonder-blocks-typography@2.1.11
+
+## 3.1.8
+
+### Patch Changes
+
+-   Updated dependencies [98ab6820]
+-   Updated dependencies [1b741a83]
+    -   @khanacademy/wonder-blocks-tooltip@2.2.0
+    -   @khanacademy/wonder-blocks-modal@5.0.0
+
+## 3.1.7
+
+### Patch Changes
+
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-icon-button@5.1.14
+    -   @khanacademy/wonder-blocks-modal@4.2.8
+    -   @khanacademy/wonder-blocks-tooltip@2.1.32
+
+## 3.1.6
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@4.2.7
+-   @khanacademy/wonder-blocks-tooltip@2.1.31
+
 ## 3.1.5
 
 ### Patch Changes

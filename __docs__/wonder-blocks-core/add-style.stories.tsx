@@ -1,10 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {fade} from "@khanacademy/wonder-blocks-color";
+import {fade, spacing, color} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
-import {spacing, color} from "@khanacademy/wonder-blocks-tokens";
 
 const styles = StyleSheet.create({
     input: {
@@ -42,7 +41,7 @@ const DynamicStyledInput = () => {
 };
 
 export default {
-    title: "Core / addStyle",
+    title: "Packages / Core / addStyle",
 };
 
 export const WithDefaultStyle = {

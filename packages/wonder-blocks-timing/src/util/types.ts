@@ -1,6 +1,4 @@
-export type SchedulePolicy = "schedule-immediately" | "schedule-on-demand";
-
-export type ClearPolicy = "resolve-on-clear" | "cancel-on-clear";
+import * as Policies from "./policies";
 
 /**
  * Encapsulates everything associated with calling setTimeout/clearTimeout, and
@@ -35,14 +33,14 @@ export interface ITimeout {
      * If the timeout is pending, this cancels that pending timeout. If no
      * timeout is pending, this does nothing.
      *
-     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * @param [policy] When ClearPolicy.Resolve, if the request
      * was set when called, the request action is invoked after cancelling
      * the request; otherwise, the pending action is cancelled.
      * Defaults to `ClearPolicy.Cancel`.
      *
      * @memberof ITimeout
      */
-    clear(policy?: ClearPolicy): void;
+    clear(policy?: Policies.ClearPolicy): void;
 }
 
 /**
@@ -76,14 +74,14 @@ export interface IInterval {
      * If the interval is active, this cancels that interval. If the interval
      * is not active, this does nothing.
      *
-     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * @param [policy] When ClearPolicy.Resolve, if the request
      * was set when called, the request action is invoked after cancelling
      * the request; otherwise, the pending action is cancelled.
      * Defaults to `ClearPolicy.Cancel`.
      *
      * @memberof IInterval
      */
-    clear(policy?: ClearPolicy): void;
+    clear(policy?: Policies.ClearPolicy): void;
 }
 
 /**
@@ -119,19 +117,29 @@ export interface IAnimationFrame {
      * If the request is pending, this cancels that pending request. If no
      * request is pending, this does nothing.
      *
-     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * @param [policy] When ClearPolicy.Resolve, if the request
      * was set when called, the request action is invoked after cancelling
      * the request; otherwise, the pending action is cancelled.
      * Defaults to `ClearPolicy.Cancel`.
      *
      * @memberof IAnimationFrame
      */
-    clear(policy?: ClearPolicy): void;
+    clear(policy?: Policies.ClearPolicy): void;
 }
 
+/**
+ * Options for the scheduling APIs.
+ */
 export type Options = {
-    schedulePolicy?: SchedulePolicy;
-    clearPolicy?: ClearPolicy;
+    schedulePolicy?: Policies.SchedulePolicy;
+    clearPolicy?: Policies.ClearPolicy;
+};
+
+/**
+ * Options for the hook variants of our scheduling APIs.
+ */
+export type HookOptions = Options & {
+    actionPolicy?: Policies.ActionPolicy;
 };
 
 /**

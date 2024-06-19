@@ -3,26 +3,9 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import TooltipContent from "./tooltip-content";
 import TooltipTail from "./tooltip-tail";
-
-import type {getRefFn, Offset, Placement} from "../util/types";
-
-export type PopperElementProps = {
-    /** The placement of the bubble with respect to the anchor. */
-    placement: Placement;
-    /** Whether the bubble is out of bounds or not. */
-    isReferenceHidden?: boolean | null | undefined;
-    /** A callback for updating the ref of the bubble itself. */
-    updateBubbleRef?: getRefFn;
-    /** A callback for updating the ref of the bubble's tail. */
-    updateTailRef?: getRefFn;
-    /** Where the tail is to be rendered. */
-    tailOffset?: Offset;
-    /** Additional styles to be applied by the bubble. */
-    style?: StyleType;
-};
+import {PopperElementProps} from "../util/types";
 
 export type Props = {
     /** The unique identifier for this component. */

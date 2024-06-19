@@ -11,7 +11,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-progress-spinner/package.json";
 
 export default {
-    title: "ProgressSpinner/CircularSpinner",
+    title: "Packages / ProgressSpinner / CircularSpinner",
     component: CircularSpinner,
     parameters: {
         componentSubtitle: (

@@ -1,5 +1,39 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.17
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-icon@4.1.1
+
+## 1.1.16
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+
+## 1.1.15
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-icon@4.1.0
+
+## 1.1.14
+
+### Patch Changes
+
+-   874081aa: Remove wonder-blocks-color dependency in favor of wonder-blocks-tokens
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-theming@2.0.2
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+
 ## 1.1.13
 
 ### Patch Changes

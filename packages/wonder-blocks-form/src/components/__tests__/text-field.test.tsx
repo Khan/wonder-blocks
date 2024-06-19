@@ -8,6 +8,33 @@ import Button from "@khanacademy/wonder-blocks-button";
 import TextField from "../text-field";
 
 describe("TextField", () => {
+    it("id prop is passed to input", async () => {
+        // Arrange
+
+        // Act
+        render(<TextField id="custom-id" value="" onChange={() => {}} />);
+
+        // Assert
+        expect(await screen.findByRole("textbox")).toHaveAttribute(
+            "id",
+            "custom-id",
+        );
+    });
+
+    it("auto-generated id is passed to input when id prop is not set", async () => {
+        // Arrange
+
+        // Act
+        render(<TextField value="" onChange={() => {}} />);
+
+        // Assert
+        // Since the generated id is unique, we cannot know what it will be. We
+        // only test if the id attribute starts with "uid-", then followed by
+        // "text-field-" as the scope assigned to IDProvider.
+        const input = await screen.findByRole("textbox");
+        expect(input.getAttribute("id")).toMatch(/uid-text-field-.*$/);
+    });
+
     it("textfield is focused", async () => {
         // Arrange
         render(<TextField id="tf-1" value="" onChange={() => {}} />);
@@ -257,6 +284,58 @@ describe("TextField", () => {
         expect(handleValidate).toHaveReturnedWith(errorMessage);
     });
 
+    it("aria-invalid is set true if given an invalid input", async () => {
+        // Arrange
+        const handleValidate = jest.fn(
+            (value: string): string | null | undefined => {
+                if (value.length < 8) {
+                    return "Value is too short";
+                }
+            },
+        );
+
+        render(
+            <TextField
+                id={"tf-1"}
+                value="short"
+                validate={handleValidate}
+                onChange={() => {}}
+            />,
+        );
+
+        // Act
+        const textbox = await screen.findByRole("textbox");
+
+        // Assert
+        expect(textbox).toHaveAttribute("aria-invalid", "true");
+    });
+
+    it("aria-invalid is set false if given a valid input", async () => {
+        // Arrange
+        const handleValidate = jest.fn(
+            (value: string): string | null | undefined => {
+                if (value.length < 8) {
+                    return "Value is too short";
+                }
+            },
+        );
+
+        render(
+            <TextField
+                id={"tf-1"}
+                value="long enough"
+                validate={handleValidate}
+                onChange={() => {}}
+            />,
+        );
+
+        // Act
+        const textbox = await screen.findByRole("textbox");
+
+        // Assert
+        expect(textbox).toHaveAttribute("aria-invalid", "false");
+    });
+
     it("onValidate is called after input validate", async () => {
         // Arrange
         const errorMessage = "Value is too short";
@@ -373,7 +452,7 @@ describe("TextField", () => {
 
         // Assert
         const input = await screen.findByRole("textbox");
-        expect(input).toHaveAttribute("data-test-id", testId);
+        expect(input).toHaveAttribute("data-testid", testId);
     });
 
     it("aria props are passed to the input element", async () => {

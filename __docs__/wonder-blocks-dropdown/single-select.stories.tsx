@@ -6,14 +6,13 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {fade} from "@khanacademy/wonder-blocks-color";
+import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingLarge,
@@ -66,7 +65,7 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  * ```
  */
 export default {
-    title: "Dropdown / SingleSelect",
+    title: "Packages / Dropdown / SingleSelect",
     component: SingleSelect as unknown as React.ComponentType<any>,
     subcomponents: {OptionItem, SeparatorItem},
     argTypes: {
@@ -84,11 +83,6 @@ export default {
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
-    decorators: [
-        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.example}>{Story()}</View>
-        ),
-    ],
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -96,14 +90,13 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        backgrounds: {
+            default: "offWhite",
+        },
     },
 } as Meta<typeof SingleSelect>;
 
 const styles = StyleSheet.create({
-    example: {
-        background: color.offWhite,
-        padding: spacing.medium_16,
-    },
     rowRight: {
         flexDirection: "row",
         justifyContent: "flex-end",
@@ -342,19 +335,44 @@ export const LongOptionLabels: StoryComponentType = {
 };
 
 /**
- * This select is disabled and cannot be interacted with.
+ * `SingleSelect` can be disabled by passing `disabled={true}`. This can be
+ * useful when you want to disable a control temporarily. It is also disabled
+ * when:
+ * - there are no items
+ * - there are items and they are all disabled
+ *
+ * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+ * instead of setting the `disabled` attribute. This is so that the component
+ * remains focusable while communicating to screen readers that it is disabled.
  */
 export const Disabled: StoryComponentType = {
-    render: (args) => (
-        <SingleSelect
-            {...args}
-            placeholder="Choose a fruit"
-            onChange={() => {}}
-            selectedValue=""
-            disabled={true}
-        >
-            {items}
-        </SingleSelect>
+    render: () => (
+        <View>
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                Disabled prop is set to true
+            </LabelMedium>
+            <SingleSelect
+                placeholder="Choose a fruit"
+                onChange={() => {}}
+                selectedValue=""
+                disabled={true}
+            >
+                {items}
+            </SingleSelect>
+            <Strut size={spacing.xLarge_32} />
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                No items
+            </LabelMedium>
+            <SingleSelect placeholder="Choose a fruit" onChange={() => {}} />
+            <Strut size={spacing.xLarge_32} />
+            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
+                All items are disabled
+            </LabelMedium>
+            <SingleSelect placeholder="Choose a fruit" onChange={() => {}}>
+                <OptionItem label="Apple" value="1" disabled={true} />
+                <OptionItem label="Orange" value="2" disabled={true} />
+            </SingleSelect>
+        </View>
     ),
 };
 
@@ -452,6 +470,7 @@ export const Light: StoryComponentType = {
             <View style={styles.row}>
                 <View style={styles.darkBackgroundWrapper}>
                     <SingleSelect
+                        {...args}
                         alignment="right"
                         light={true}
                         onChange={setSelectedValue}
@@ -482,6 +501,7 @@ const optionItems = allCountries.map(([code, translatedName]) => (
 ));
 
 type Props = {
+    enableTypeAhead?: boolean;
     selectedValue?: string | null | undefined;
     opened?: boolean;
 };
@@ -503,6 +523,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
                 selectedValue={selectedValue}
                 dropdownStyle={styles.fullBleed}
                 style={styles.fullBleed}
+                enableTypeAhead={props.enableTypeAhead}
             >
                 {optionItems}
             </SingleSelect>
@@ -516,9 +537,30 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
  * option items. Note that this example shows how we can add custom styles to
  * the dropdown as well.
  */
+export const VirtualizedFilterableWithoutEnableTypeAhead: StoryComponentType = {
+    name: "Virtualized (isFilterable:true, enableTypeAhead:false)",
+    render: () => (
+        <VirtualizedSingleSelect enableTypeAhead={false} selectedValue={"ZW"} />
+    ),
+    parameters: {
+        chromatic: {
+            // we don't need screenshots because this story only tests behavior.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * When there are many options, you could use a search filter in the
+ * SingleSelect. The search filter will be performed toward the labels of the
+ * option items. The enableTypeAhead will focus on the first dropdown item
+ * whose label starts with the search filter.
+ * Note that this example shows how we can add custom styles to the dropdown
+ * as well.
+ */
 export const VirtualizedFilterable: StoryComponentType = {
-    name: "Virtualized (isFilterable)",
-    render: () => <VirtualizedSingleSelect />,
+    name: "Virtualized (isFilterable:true, enableTypeAhead:true)",
+    render: () => <VirtualizedSingleSelect enableTypeAhead={true} />,
     parameters: {
         chromatic: {
             // we don't need screenshots because this story only tests behavior.

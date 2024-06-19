@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 1.3.0
+
+### Minor Changes
+
+-   9bfeead9: Add faded versions of offBlack
+
+## 1.2.0
+
+### Minor Changes
+
+-   874081aa: Add fade and mix functions
+
+### Patch Changes
+
+-   874081aa: Remove wonder-blocks-color dependency in favor of wonder-blocks-tokens
+-   a9bf603a: Move spacing tokens to wb-tokens
+
 ## 1.1.0
 
 ### Minor Changes

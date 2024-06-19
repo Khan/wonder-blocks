@@ -46,6 +46,15 @@ export type OpenerProps = ClickableState & {
     opened: boolean;
 };
 
-export type OptionItemComponentArray = React.ReactElement<
-    React.ComponentProps<typeof OptionItem>
->[];
+export type OptionItemComponent = React.ReactElement<
+    PropsFor<typeof OptionItem>
+>;
+
+export type OptionItemComponentArray = OptionItemComponent[];
+
+/**
+ * Allows optional values to be passed to the listbox.
+ */
+export type MaybeString = string | null | undefined;
+
+export type MaybeValueOrValues = MaybeString | Array<MaybeString>;

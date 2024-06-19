@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 3.0.0
+
+### Major Changes
+
+-   215f9b8b: Custom num formatting for ngettext no longer supported.
+
 ## 2.0.2
 
 ### Patch Changes

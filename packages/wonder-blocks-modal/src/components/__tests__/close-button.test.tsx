@@ -30,7 +30,7 @@ describe("CloseButton", () => {
 
         // Assert
         expect(closeButton).toHaveAttribute(
-            "data-test-id",
+            "data-testid",
             "modal-example-close",
         );
     });

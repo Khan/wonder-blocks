@@ -23,7 +23,7 @@ describe("OnePaneDialog", () => {
 
         // Assert
         expect(dialog).toHaveAttribute(
-            "data-test-id",
+            "data-testid",
             "one-pane-dialog-example",
         );
     });

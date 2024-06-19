@@ -1,5 +1,88 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.3.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@5.1.5
+
+## 2.3.3
+
+### Patch Changes
+
+-   Updated dependencies [47a758b6]
+    -   @khanacademy/wonder-blocks-layout@2.1.0
+    -   @khanacademy/wonder-blocks-modal@5.1.4
+
+## 2.3.2
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-layout@2.0.33
+    -   @khanacademy/wonder-blocks-modal@5.1.3
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
+## 2.3.1
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@5.1.2
+
+## 2.3.0
+
+### Minor Changes
+
+-   d2d84ca2: Removing unusable strings from union in Popover's `placement` prop
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-layout@2.0.32
+    -   @khanacademy/wonder-blocks-modal@5.1.1
+
+## 2.2.1
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-modal@5.1.0
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-layout@2.0.31
+    -   @khanacademy/wonder-blocks-typography@2.1.11
+
+## 2.2.0
+
+### Minor Changes
+
+-   98ab6820: Add autoUpdate prop to update the tooltip position when the trigger element changes
+
+### Patch Changes
+
+-   Updated dependencies [1b741a83]
+    -   @khanacademy/wonder-blocks-modal@5.0.0
+
+## 2.1.32
+
+### Patch Changes
+
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-modal@4.2.8
+    -   @khanacademy/wonder-blocks-layout@2.0.30
+
+## 2.1.31
+
+### Patch Changes
+
+-   Updated dependencies [c39bfd29]
+    -   @khanacademy/wonder-blocks-layout@2.0.29
+    -   @khanacademy/wonder-blocks-modal@4.2.7
+
 ## 2.1.30
 
 ### Patch Changes

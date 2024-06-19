@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -13,6 +14,7 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 import BannerArgTypes from "./banner.argtypes";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-banner/package.json";
+import crownIcon from "../wonder-blocks-icon/icons/crown.svg";
 
 type StoryComponentType = StoryObj<typeof Banner>;
 
@@ -43,7 +45,7 @@ type StoryComponentType = StoryObj<typeof Banner>;
  * ```
  */
 export default {
-    title: "Banner",
+    title: "Packages / Banner",
     component: Banner,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -464,6 +466,68 @@ export const WithMixedActions: StoryComponentType = {
                     ),
                 },
             ]}
+        />
+    ),
+};
+
+/**
+ * Use the `icon` prop to show a specific Phosphor icon in the banner instead. If the
+ * `icon` prop is not set, a default icon will be used in the banner depending
+ * on the `kind` prop.
+ *
+ * __NOTE:__ Icons are available from the [Phosphor
+ * Icons](https://phosphoricons.com/) library.
+ *
+ * To use a Phosphor icon, you can use the following syntax:
+ *
+ * ```jsx
+ * import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+ * <Banner icon={magnifyingGlass} layout="floating" text="text" />
+ * ```
+ *
+ * __Accessibility__: The icon chosen for the banner is decorative and
+ * will always have an `aria-label` that communicates the kind of banner
+ * (e.g. "info").
+ */
+export const WithPhosphorIcon: StoryComponentType = {
+    render: (args) => (
+        <Banner
+            icon={magnifyingGlass}
+            {...args}
+            layout="floating"
+            text="Here is an example with a Phosphor Icon"
+        />
+    ),
+};
+
+/**
+ * Use the `icon` prop to show a custom icon in the banner instead. If the
+ * `icon` prop is not set, a default icon will be used in the banner depending
+ * on the `kind` prop.
+ *
+ * To use a custom icon, you can use the following syntax:
+ *
+ * ```jsx
+ * // This SVG should have the following attributes:
+ * // - viewBox="0 0 256 256"
+ * // - fill="currentColor"
+ * // - A path (or paths) scaled up to fit in the 256x256 viewport.
+ *
+ * import crownIcon from "./icons/crown.svg";
+ * <Banner icon={crownIcon} layout="floating" text="text" />
+ * ```
+ *
+ * __Accessibility__: The icon chosen for the banner is decorative and
+ * will always have an `aria-label` that communicates the kind of banner
+ * (e.g. "info").
+ */
+export const WithCustomIcon: StoryComponentType = {
+    render: (args) => (
+        <Banner
+            icon={crownIcon}
+            {...args}
+            layout="floating"
+            text="Here is an example with a custom icon"
         />
     ),
 };

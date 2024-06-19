@@ -29,9 +29,9 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
+        uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -49,22 +49,22 @@ jobs:
         os: [ubuntu-latest]
         node-version: [20.x]
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
 
     # Cache and install dependencies
     - name: Install & cache node_modules
-      uses: Khan/actions@shared-node-cache-v0
+      uses: Khan/actions@shared-node-cache-v2
       with:
         node-version: ${{ matrix.node-version }}
 
     - name: Run Jest with coverage
       run: yarn coverage:ci
     - name: Upload Coverage
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         files: ./coverage/coverage-final.json

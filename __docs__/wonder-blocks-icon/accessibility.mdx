@@ -13,9 +13,12 @@ import * as AccessibilityStories from './accessibility.stories';
 * The color contrast should pass WCAG.
   * At least 3:1 contrast ratio for icons.
 * Ideally, an icon should be accompanied by text. However, if an icon
-  is not accompanied by text, provide alt text.
-  * Do not provide alt text for decorative icons. Set the alt text
-    to an empty string (`""`).
+  is not accompanied by text, provide an `aria-label` attribute.
+  * If you are using `aria-label`, make sure to also use `role="img"` so that
+    screen readers know that the element is an image and not just decorative
+    text.
+  * If the icon is decorative, set `aria-hidden` to `true` and do not provide an
+   `aria-label`. This will hide the icon from screen readers.
   * The `title` attribute is often used to display a description on mouse
     hover, but please note that use of the `title` attribute is discouraged
     as titles are not available to keyboard-only or touch-only users.
@@ -23,24 +26,17 @@ import * as AccessibilityStories from './accessibility.stories';
 * Icons should go on the opposite side as left-to-right languages
   for right-to-left languages.
   * The icon may also need to be mirrored.
-* If you are using `aria-label`, make sure to also use `role="img"` so that
-  screen readers know that the element is an image and not just decorative
-  text.
 
 More information about all these points can be found in the
 [References](#references) below.
 
 ### Demo: Contrast
 
-<Canvas>
-  <Story of={AccessibilityStories.IconContrast} />
-</Canvas>
+<Canvas of={AccessibilityStories.IconContrast} />
 
 ### Demo: Right-to-left icons
 
-<Canvas>
-  <Story of={AccessibilityStories.RightToLeftIcons} />
-</Canvas>
+<Canvas of={AccessibilityStories.RightToLeftIcons} />
 
 ### References
 

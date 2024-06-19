@@ -1,8 +1,8 @@
 import {Meta} from "@storybook/blocks";
 
 <Meta
-  title="Core / Exports / useRenderState()"
-  parameters={{
+    title="Packages / Core / Exports / useRenderState()"
+    parameters={{
         chromatic: {
             disableSnapshot: true,
         },
@@ -17,10 +17,10 @@ function useRenderState(): RenderState;
 
 The `useRenderState` hook will return either:
 
-* `RenderState.Initial` if the component is being rendered on the server **or** it's
-  the initial rehydration render on the client.
-* `RenderState.Standard` if the component renders on the client after the initial
-  rehydration.
+-   `RenderState.Initial` if the component is being rendered on the server **or** it's
+    the initial rehydration render on the client.
+-   `RenderState.Standard` if the component renders on the client after the initial
+    rehydration.
 
 NOTE: Although the `RenderState` enum has a third state `Root`, this value is never
 returned by `useRenderState`.

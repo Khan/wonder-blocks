@@ -13,7 +13,7 @@ import Radio from "../../packages/wonder-blocks-form/src/components/radio";
 type StoryComponentType = StoryObj<typeof Radio>;
 
 export default {
-    title: "Form / Radio (internal)",
+    title: "Packages / Form / Radio (internal)",
     component: Radio,
     parameters: {
         componentSubtitle: (

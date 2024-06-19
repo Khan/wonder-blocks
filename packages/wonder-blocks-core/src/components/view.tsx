@@ -72,7 +72,8 @@ const View: React.ForwardRefExoticComponent<
     const {testId, tag = "div", ...restProps} = props;
     const commonProps = {
         ...restProps,
-        "data-test-id": testId,
+        // Note: this matches the default test id that Testing Library uses!
+        "data-testid": testId,
     } as const;
 
     switch (tag) {

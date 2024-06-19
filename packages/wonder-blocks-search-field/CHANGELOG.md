@@ -1,5 +1,96 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.2.16
+
+### Patch Changes
+
+-   Updated dependencies [16e1635a]
+    -   @khanacademy/wonder-blocks-icon-button@5.3.0
+
+## 2.2.15
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-form@4.7.1
+
+## 2.2.14
+
+### Patch Changes
+
+-   01fce89e: Make `id` prop optional in `TextField`.
+-   Updated dependencies [01fce89e]
+    -   @khanacademy/wonder-blocks-form@4.7.0
+
+## 2.2.13
+
+### Patch Changes
+
+-   Updated dependencies [8fda4a73]
+    -   @khanacademy/wonder-blocks-form@4.6.2
+
+## 2.2.12
+
+### Patch Changes
+
+-   Updated dependencies [29563c0d]
+    -   @khanacademy/wonder-blocks-form@4.6.1
+
+## 2.2.11
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+-   Updated dependencies [96515513]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-form@4.6.0
+    -   @khanacademy/wonder-blocks-icon@4.1.1
+    -   @khanacademy/wonder-blocks-icon-button@5.2.2
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
+## 2.2.10
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-form@4.5.1
+    -   @khanacademy/wonder-blocks-icon-button@5.2.1
+
+## 2.2.9
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-icon-button@5.2.0
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-form@4.5.0
+    -   @khanacademy/wonder-blocks-icon@4.1.0
+    -   @khanacademy/wonder-blocks-typography@2.1.11
+
+## 2.2.8
+
+### Patch Changes
+
+-   Updated dependencies [41aa4074]
+    -   @khanacademy/wonder-blocks-form@4.4.8
+
+## 2.2.7
+
+### Patch Changes
+
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-form@4.4.7
+    -   @khanacademy/wonder-blocks-icon-button@5.1.14
+
+## 2.2.6
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-form@4.4.6
+
 ## 2.2.5
 
 ### Patch Changes

@@ -335,7 +335,7 @@ describe("ClickableBehavior", () => {
             <ClickableBehavior disabled={false} onClick={(e: any) => {}}>
                 {(state: any, childrenProps: any) => {
                     return (
-                        <button data-test-id="test-button-1" {...childrenProps}>
+                        <button data-testid="test-button-1" {...childrenProps}>
                             Label
                         </button>
                     );
@@ -359,7 +359,7 @@ describe("ClickableBehavior", () => {
             >
                 {(state: any, childrenProps: any) => {
                     return (
-                        <button data-test-id="test-button-2" {...childrenProps}>
+                        <button data-testid="test-button-2" {...childrenProps}>
                             Label
                         </button>
                     );
@@ -383,7 +383,7 @@ describe("ClickableBehavior", () => {
             >
                 {(state: any, childrenProps: any) => {
                     return (
-                        <button data-test-id="test-button-3" {...childrenProps}>
+                        <button data-testid="test-button-3" {...childrenProps}>
                             Label
                         </button>
                     );
@@ -406,7 +406,7 @@ describe("ClickableBehavior", () => {
             >
                 {(state: any, childrenProps: any) => {
                     return (
-                        <div data-test-id="test-div-1" {...childrenProps}>
+                        <div data-testid="test-div-1" {...childrenProps}>
                             Label
                         </div>
                     );

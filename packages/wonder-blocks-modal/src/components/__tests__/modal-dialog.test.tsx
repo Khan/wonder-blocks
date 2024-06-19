@@ -9,8 +9,8 @@ describe("ModalDialog", () => {
 
         // Act
         render(
-            <ModalDialog>
-                <h1>A modal</h1>
+            <ModalDialog aria-labelledby="123">
+                <h1 id="123">A modal</h1>
                 <p>The contents</p>
             </ModalDialog>,
         );
@@ -41,11 +41,12 @@ describe("ModalDialog", () => {
 
         // Act
         render(
-            <ModalDialog aria-describedby="dialog-body">
-                <>
-                    <h1>A modal</h1>
-                    <p id="dialog-body">The contents</p>
-                </>
+            <ModalDialog
+                aria-labelledby="dialog-title"
+                aria-describedby="dialog-body"
+            >
+                <h1 id="dialog-title">A modal</h1>
+                <p id="dialog-body">The contents</p>
             </ModalDialog>,
         );
 
@@ -59,7 +60,11 @@ describe("ModalDialog", () => {
         // Arrange
 
         // Act
-        render(<ModalDialog testId="test-id">A modal</ModalDialog>);
+        render(
+            <ModalDialog aria-labelledby="dialog-title" testId="test-id">
+                <h1 id="dialog-title">A modal</h1>
+            </ModalDialog>,
+        );
 
         // Assert
         expect(screen.getByTestId("test-id")).toBeInTheDocument();
@@ -70,7 +75,11 @@ describe("ModalDialog", () => {
         const ref: React.RefObject<HTMLDivElement> = React.createRef();
 
         // Act
-        render(<ModalDialog ref={ref}>A modal</ModalDialog>);
+        render(
+            <ModalDialog ref={ref} aria-labelledby="dialog-title">
+                <h1 id="dialog-title">A modal</h1>
+            </ModalDialog>,
+        );
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLDivElement);

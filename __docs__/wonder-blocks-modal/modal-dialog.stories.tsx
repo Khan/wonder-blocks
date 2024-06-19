@@ -57,7 +57,7 @@ const customViewports = {
  *   this is recommended. It should match the `id` of the dialog title.
  */
 export default {
-    title: "Modal/Building Blocks/ModalDialog",
+    title: "Packages / Modal / Building Blocks / ModalDialog",
     component: ModalDialog,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -116,9 +116,9 @@ export const Default: StoryComponentType = {
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
                 <ModalDialog
+                    {...args}
                     aria-labelledby="modal-title-0"
                     aria-describedby="modal-desc-0"
-                    {...args}
                 >
                     <ModalPanel
                         content={
@@ -264,9 +264,9 @@ export const WithDarkPanel: StoryComponentType = {
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
                 <ModalDialog
+                    {...args}
                     aria-labelledby="modal-title-0"
                     aria-describedby="modal-desc-0"
-                    {...args}
                 >
                     <ModalPanel
                         content={

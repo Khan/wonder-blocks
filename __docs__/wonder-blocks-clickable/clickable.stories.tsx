@@ -15,7 +15,7 @@ import argTypes from "./clickable.argtypes";
 import Button from "@khanacademy/wonder-blocks-button";
 
 export default {
-    title: "Clickable / Clickable",
+    title: "Packages / Clickable / Clickable",
     component: Clickable,
     argTypes: argTypes,
     args: {

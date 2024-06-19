@@ -19,7 +19,7 @@ export default function PopoverSection() {
 
             <ComponentTile
                 name="Popover"
-                href="/?path=/docs/popover-popover--docs"
+                href="/?path=/docs/packages-popover-popover--docs"
                 description={`Provides additional information that is
                     related to a particular element and/or content.
                     Must be dismissed by clicking an element.`}

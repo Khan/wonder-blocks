@@ -1,5 +1,4 @@
-import type {Placement} from "./util/types";
-import type {PopperElementProps} from "./components/tooltip-bubble";
+import type {Placement, PopperElementProps} from "./util/types";
 
 import Tooltip from "./components/tooltip";
 import TooltipContent from "./components/tooltip-content";

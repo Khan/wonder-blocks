@@ -13,7 +13,7 @@ import type {IIdentifierFactory} from "../../packages/wonder-blocks-core/src/uti
 import ComponentInfo from "../../.storybook/components/component-info";
 
 export default {
-    title: "Core / UniqueIDProvider",
+    title: "Packages / Core / UniqueIDProvider",
     component: UniqueIDProvider,
     args: {
         scope: "field",

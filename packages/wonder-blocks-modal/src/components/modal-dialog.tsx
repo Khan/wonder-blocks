@@ -44,9 +44,10 @@ type Props = {
      */
     testId?: string;
     /**
-     * The ID of the title labelling this dialog, if applicable.
+     * The ID of the title labelling this dialog. Required.
+     * See WCAG 2.1: 4.1.2 Name, Role, Value
      */
-    "aria-labelledby"?: string;
+    "aria-labelledby": string;
     /**
      * The ID of the content describing this dialog, if applicable.
      */
@@ -74,11 +75,8 @@ const ModalDialogCore = React.forwardRef(function ModalDialogCore(
         style,
         children,
         testId,
-        /* eslint-disable react/prop-types */
-        // the react/prop-types plugin does not like these
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
-        /* eslint-enable react/prop-types */
     } = props;
 
     const {theme} = useScopedTheme(ModalDialogThemeContext);

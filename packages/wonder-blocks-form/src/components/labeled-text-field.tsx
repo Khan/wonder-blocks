@@ -3,22 +3,20 @@ import * as React from "react";
 import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FieldHeading from "./field-heading";
-import TextField, {TextFieldType} from "./text-field";
+import TextField from "./text-field";
+import type {NumericInputProps} from "./text-field";
+import {OmitConstrained} from "../util/types";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
 };
 
-type Props = {
+type CommonProps = {
     /**
      * An optional unique identifier for the TextField.
      * If no id is specified, a unique id will be auto-generated.
      */
     id?: string;
-    /**
-     * Determines the type of input. Defaults to text.
-     */
-    type: TextFieldType;
     /**
      * Provide a label for the TextField.
      */
@@ -122,6 +120,15 @@ type Props = {
     autoComplete?: string;
 };
 
+type OtherInputProps = CommonProps & {
+    /**
+     * Determines the type of input. Defaults to text.
+     */
+    type: "text" | "password" | "email" | "tel";
+};
+
+type FullNumericInputProps = NumericInputProps & CommonProps;
+type Props = OtherInputProps | FullNumericInputProps;
 type PropsWithForwardRef = Props & WithForwardRef;
 
 type DefaultProps = {
@@ -213,6 +220,18 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
             autoComplete,
             forwardedRef,
             ariaDescribedby,
+            // NOTE: We are not using this prop, but we need to remove it from
+            // `otherProps` so it doesn't override the `handleValidate` function
+            // call. We use `otherProps` due to a limitation in TypeScript where
+            // we can't easily extract the props when using a discriminated
+            // union.
+            /* eslint-disable @typescript-eslint/no-unused-vars */
+            onValidate,
+            onFocus,
+            onBlur,
+            /* eslint-enable @typescript-eslint/no-unused-vars */
+            // numeric input props
+            ...otherProps
         } = this.props;
 
         return (
@@ -229,9 +248,6 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                     ariaDescribedby
                                         ? ariaDescribedby
                                         : `${uniqueId}-error`
-                                }
-                                aria-invalid={
-                                    this.state.error ? "true" : "false"
                                 }
                                 aria-required={required ? "true" : "false"}
                                 required={required}
@@ -250,6 +266,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                 readOnly={readOnly}
                                 autoComplete={autoComplete}
                                 ref={forwardedRef}
+                                {...otherProps}
                             />
                         }
                         label={label}
@@ -263,7 +280,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
     }
 }
 
-type ExportProps = Omit<
+type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<
         typeof LabeledTextField,
         React.ComponentProps<typeof LabeledTextField>

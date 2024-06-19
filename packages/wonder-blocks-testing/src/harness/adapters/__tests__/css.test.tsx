@@ -19,7 +19,7 @@ describe("Css.adapter", () => {
 
     it("should render the children", () => {
         // Arrange
-        const children = <div data-test-id="children">CHILDREN!</div>;
+        const children = <div data-testid="children">CHILDREN!</div>;
 
         // Act
         render(Css.adapter(children, "test"));
@@ -31,7 +31,7 @@ describe("Css.adapter", () => {
 
     it("should render a container element", () => {
         // Arrange
-        const children = <div data-test-id="children">CHILDREN!</div>;
+        const children = <div data-testid="children">CHILDREN!</div>;
 
         // Act
         render(Css.adapter(children, "test"));
@@ -43,7 +43,7 @@ describe("Css.adapter", () => {
 
     it("should render children as a child of the container element", () => {
         // Arrange
-        const children = <div data-test-id="children">CHILDREN!</div>;
+        const children = <div data-testid="children">CHILDREN!</div>;
 
         // Act
         render(Css.adapter(children, "test"));
@@ -63,7 +63,7 @@ describe("Css.adapter", () => {
         "should apply the given class names from $config to the container element",
         ({config, expectation}: any) => {
             // Arrange
-            const children = <div data-test-id="children">CHILDREN!</div>;
+            const children = <div data-testid="children">CHILDREN!</div>;
 
             // Act
             render(Css.adapter(children, config));
@@ -82,7 +82,7 @@ describe("Css.adapter", () => {
         "should apply the given styles from $config to the container element",
         ({config, expectation}: any) => {
             // Arrange
-            const children = <div data-test-id="children">CHILDREN!</div>;
+            const children = <div data-testid="children">CHILDREN!</div>;
 
             // Act
             render(Css.adapter(children, config));

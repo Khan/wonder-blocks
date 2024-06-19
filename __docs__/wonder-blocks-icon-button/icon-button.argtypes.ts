@@ -49,13 +49,26 @@ export default {
             type: "select",
         },
         description: "The size of the icon button.",
-        options: ["xsmall", "small", "medium"],
+        options: ["xsmall", "small", "medium", "large"],
         table: {
             type: {
-                summary: `"xsmall" | "small" | "medium"`,
+                summary: `"xsmall" | "small" | "medium" | "large"`,
             },
             defaultValue: {
                 summary: `"medium"`,
+            },
+        },
+    },
+    "aria-label": {
+        description:
+            "The description of this component for the screenreader to read.",
+        control: {
+            type: "text",
+        },
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "string",
             },
         },
     },

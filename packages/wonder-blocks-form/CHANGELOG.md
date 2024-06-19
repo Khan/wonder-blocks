@@ -1,5 +1,94 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.7.1
+
+### Patch Changes
+
+-   Updated dependencies [47a758b6]
+    -   @khanacademy/wonder-blocks-layout@2.1.0
+
+## 4.7.0
+
+### Minor Changes
+
+-   01fce89e: Make `id` prop optional in `TextField`.
+
+## 4.6.2
+
+### Patch Changes
+
+-   8fda4a73: Fix onBlur and onFocus props so it gets properly called when it is defined in the call site
+
+## 4.6.1
+
+### Patch Changes
+
+-   29563c0d: Fix onValidate prop so it gets properly called when it is defined in the call site
+
+## 4.6.0
+
+### Minor Changes
+
+-   96515513: TextField number inputs can now use `min`, `max`, and `snap` props
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-clickable@4.2.2
+    -   @khanacademy/wonder-blocks-icon@4.1.1
+    -   @khanacademy/wonder-blocks-layout@2.0.33
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
+## 4.5.1
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.1
+    -   @khanacademy/wonder-blocks-layout@2.0.32
+
+## 4.5.0
+
+### Minor Changes
+
+-   58075352: Change testId to render the default Testing Library HTML attribute: data-testid (was data-test-id)
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-clickable@4.2.0
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-icon@4.1.0
+    -   @khanacademy/wonder-blocks-layout@2.0.31
+    -   @khanacademy/wonder-blocks-typography@2.1.11
+
+## 4.4.8
+
+### Patch Changes
+
+-   41aa4074: Set aria-invalid directly in `TextField` to inform the user when the validation fails and there's an error in the input field.
+
+## 4.4.7
+
+### Patch Changes
+
+-   874081aa: Remove wonder-blocks-color dependency in favor of wonder-blocks-tokens
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.1.3
+    -   @khanacademy/wonder-blocks-layout@2.0.30
+
+## 4.4.6
+
+### Patch Changes
+
+-   Updated dependencies [c39bfd29]
+    -   @khanacademy/wonder-blocks-layout@2.0.29
+
 ## 4.4.5
 
 ### Patch Changes

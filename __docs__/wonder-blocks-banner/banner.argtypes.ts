@@ -2,6 +2,8 @@ import type {InputType} from "@storybook/csf";
 
 import * as React from "react";
 
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+
 const actionsMappings = {
     none: null,
     buttons: [
@@ -110,5 +112,15 @@ export default {
             type: {summary: "string"},
         },
         type: {name: "string", required: false},
+    },
+    icon: {
+        control: {type: "select"},
+        options: Object.keys(IconMappings),
+        mapping: IconMappings,
+        table: {
+            type: {
+                summary: "PhosphorIconAsset | string",
+            },
+        },
     },
 } satisfies Record<string, InputType>;

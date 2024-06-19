@@ -18,7 +18,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 type StoryComponentType = StoryObj<typeof Switch>;
 
 export default {
-    title: "Switch / Best Practices",
+    title: "Packages / Switch / Best Practices",
     component: Switch,
     parameters: {
         componentSubtitle: (

@@ -38,7 +38,7 @@ import SearchFieldArgtypes from "./search-field.argtypes";
  */
 export default {
     component: SearchField,
-    title: "SearchField",
+    title: "Packages / SearchField",
     parameters: {
         componentSubtitle: (
             <ComponentInfo

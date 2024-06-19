@@ -1,5 +1,62 @@
 # @khanacademy/wonder-blocks-pill
 
+## 2.4.1
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-clickable@4.2.2
+    -   @khanacademy/wonder-blocks-link@6.1.2
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
+## 2.4.0
+
+### Minor Changes
+
+-   bf1e3d87: Add tabindex to pill props
+
+## 2.3.0
+
+### Minor Changes
+
+-   e8d25c90: Aria props are now properly applied to pill component.
+
+## 2.2.1
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.1
+    -   @khanacademy/wonder-blocks-link@6.1.1
+
+## 2.2.0
+
+### Minor Changes
+
+-   58075352: Change testId to render the default Testing Library HTML attribute: data-testid (was data-test-id)
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-clickable@4.2.0
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-link@6.1.0
+    -   @khanacademy/wonder-blocks-typography@2.1.11
+
+## 2.1.2
+
+### Patch Changes
+
+-   874081aa: Remove wonder-blocks-color dependency in favor of wonder-blocks-tokens
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-link@6.0.11
+    -   @khanacademy/wonder-blocks-clickable@4.1.3
+
 ## 2.1.1
 
 ### Patch Changes

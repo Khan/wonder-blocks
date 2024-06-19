@@ -1,5 +1,47 @@
 # @khanacademy/wonder-blocks-layout
 
+## 2.1.0
+
+### Minor Changes
+
+-   47a758b6: Fix hydration issue in MediaLayout component
+
+## 2.0.33
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+
+## 2.0.32
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+
+## 2.0.31
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-core@6.4.0
+
+## 2.0.30
+
+### Patch Changes
+
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+
+## 2.0.29
+
+### Patch Changes
+
+-   c39bfd29: Updates the MediaLayout component to respect the value of Server.isServerSide()
+
 ## 2.0.28
 
 ### Patch Changes

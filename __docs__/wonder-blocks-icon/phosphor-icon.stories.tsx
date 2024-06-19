@@ -48,7 +48,7 @@ import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
  * respectively.
  */
 export default {
-    title: "Icon / PhosphorIcon",
+    title: "Packages / Icon / PhosphorIcon",
     component: PhosphorIcon,
     parameters: {
         componentSubtitle: (
@@ -81,6 +81,7 @@ export const Default: StoryComponentType = {
         icon: IconMappings.magnifyingGlassBold,
         size: "small",
         "aria-label": "Search",
+        role: "img",
     },
     parameters: {
         docs: {
@@ -370,6 +371,25 @@ export const DescriptiveIcon: StoryComponentType = {
         size: "small",
         role: "img",
         "aria-label": "Search",
+    },
+    parameters: {
+        chromatic: {
+            // This story is not meant to be visually tested, so we disable
+            // snapshots.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * A decorative icon with `aria-hidden` set to `true` and no `aria-label` set.
+ * This hides the icon from screen readers since it is decorative.
+ */
+export const DecorativeIcon: StoryComponentType = {
+    args: {
+        icon: IconMappings.magnifyingGlassBold,
+        size: "small",
+        "aria-hidden": true,
     },
     parameters: {
         chromatic: {

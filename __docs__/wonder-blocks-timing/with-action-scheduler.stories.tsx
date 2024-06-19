@@ -9,7 +9,7 @@ import {
 } from "./with-action-scheduler-examples";
 
 export default {
-    title: "Timing / withActionScheduler",
+    title: "Packages / Timing / withActionScheduler",
 
     parameters: {
         previewTabs: {

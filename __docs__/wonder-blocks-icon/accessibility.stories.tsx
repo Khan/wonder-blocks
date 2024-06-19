@@ -7,7 +7,7 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {IconMappings} from "./phosphor-icon.argtypes";
 
 export default {
-    title: "Icon / Accessibility",
+    title: "Packages / Icon / Accessibility",
     component: PhosphorIcon,
 
     // Disables chromatic testing for these stories.

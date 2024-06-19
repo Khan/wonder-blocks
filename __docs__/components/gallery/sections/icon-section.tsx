@@ -20,7 +20,7 @@ export default function IconSection() {
             <View style={styles.section}>
                 <ComponentTile
                     name="PhosphorIcon"
-                    href="/?path=/docs/icon-phosphoricon--docs"
+                    href="/?path=/docs/packages-icon-phosphoricon--docs"
                     description={`Displays a small informational or
                         decorative image available from the
                         @phosphor-icons/core package.`}

@@ -62,7 +62,7 @@ import IconButtonArgtypes from "./icon-button.argtypes";
  * ```
  */
 export default {
-    title: "IconButton",
+    title: "Packages / IconButton",
     component: IconButton,
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
     parameters: {
@@ -84,6 +84,9 @@ export default {
         },
     },
     argTypes: IconButtonArgtypes,
+    args: {
+        "aria-label": "Search",
+    },
 } as Meta<typeof IconButton>;
 
 type StoryComponentType = StoryObj<typeof IconButton>;
@@ -115,6 +118,7 @@ export const Default: StoryComponentType = {
  * - `xsmall` (16px icon with a 24px touch target).
  * - `small` (24px icon with a 32px touch target).
  * - `medium` (24px icon with a 40px touch target).
+ * - `large` (24px icon with a 48px touch target).
  */
 export const Sizes: StoryComponentType = {
     ...Default,
@@ -138,6 +142,10 @@ export const Sizes: StoryComponentType = {
             <View style={styles.row}>
                 <LabelMedium style={styles.label}>medium</LabelMedium>
                 <IconButton {...args} size="medium" />
+            </View>
+            <View style={styles.row}>
+                <LabelMedium style={styles.label}>large</LabelMedium>
+                <IconButton {...args} size="large" />
             </View>
         </View>
     ),
@@ -185,26 +193,30 @@ export const Variants: StoryComponentType = {
  */
 export const WithColor: StoryComponentType = {
     name: "Color",
-    render: () => (
+    render: (args) => (
         <View style={styles.row}>
             <IconButton
+                {...args}
                 icon={minusCircle}
                 onClick={() => {}}
                 color="destructive"
             />
             <IconButton
+                {...args}
                 icon={minusCircle}
                 onClick={() => {}}
                 kind="secondary"
                 color="destructive"
             />
             <IconButton
+                {...args}
                 icon={minusCircle}
                 onClick={() => {}}
                 kind="tertiary"
                 color="destructive"
             />
             <IconButton
+                {...args}
                 disabled={true}
                 icon={minusCircle}
                 aria-label="search"

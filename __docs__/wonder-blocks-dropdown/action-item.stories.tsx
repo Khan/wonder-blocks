@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
  * ```
  */
 export default {
-    title: "Dropdown/ActionItem",
+    title: "Packages / Dropdown / ActionItem",
     component: ActionItem,
     argTypes: actionItemArgtypes,
     args: defaultArgs,

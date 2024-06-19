@@ -16,7 +16,7 @@ export default function TooltipSection() {
 
             <ComponentTile
                 name="Tooltip"
-                href="/?path=/docs/tooltip-tooltip--docs"
+                href="/?path=/docs/packages-tooltip-tooltip--docs"
                 description={`A text label that appears when a user hovers
                     over or focuses on an element.`}
             >

@@ -1,5 +1,119 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.69
+
+### Patch Changes
+
+-   Updated dependencies [cb95286d]
+    -   @khanacademy/wonder-blocks-dropdown@5.3.8
+
+## 2.0.68
+
+### Patch Changes
+
+-   Updated dependencies [f7ff9a77]
+    -   @khanacademy/wonder-blocks-dropdown@5.3.7
+
+## 2.0.67
+
+### Patch Changes
+
+-   Updated dependencies [47a758b6]
+-   Updated dependencies [cc2d8e86]
+-   Updated dependencies [13f49f85]
+    -   @khanacademy/wonder-blocks-layout@2.1.0
+    -   @khanacademy/wonder-blocks-dropdown@5.3.6
+
+## 2.0.66
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.3.5
+
+## 2.0.65
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.3.4
+
+## 2.0.64
+
+### Patch Changes
+
+-   Updated dependencies [c3a8fa80]
+    -   @khanacademy/wonder-blocks-dropdown@5.3.3
+
+## 2.0.63
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.3.2
+
+## 2.0.62
+
+### Patch Changes
+
+-   Updated dependencies [5dfac06e]
+    -   @khanacademy/wonder-blocks-core@6.4.1
+    -   @khanacademy/wonder-blocks-dropdown@5.3.1
+    -   @khanacademy/wonder-blocks-icon@4.1.1
+    -   @khanacademy/wonder-blocks-layout@2.0.33
+    -   @khanacademy/wonder-blocks-typography@2.1.12
+
+## 2.0.61
+
+### Patch Changes
+
+-   Updated dependencies [7030948a]
+    -   @khanacademy/wonder-blocks-dropdown@5.3.0
+
+## 2.0.60
+
+### Patch Changes
+
+-   Updated dependencies [9bfeead9]
+    -   @khanacademy/wonder-blocks-tokens@1.3.0
+    -   @khanacademy/wonder-blocks-dropdown@5.2.1
+    -   @khanacademy/wonder-blocks-layout@2.0.32
+
+## 2.0.59
+
+### Patch Changes
+
+-   Updated dependencies [58075352]
+    -   @khanacademy/wonder-blocks-dropdown@5.2.0
+    -   @khanacademy/wonder-blocks-core@6.4.0
+    -   @khanacademy/wonder-blocks-icon@4.1.0
+    -   @khanacademy/wonder-blocks-layout@2.0.31
+    -   @khanacademy/wonder-blocks-typography@2.1.11
+
+## 2.0.58
+
+### Patch Changes
+
+-   0b7f791f: Fix year dropdown width to avoid truncating the text when the user zooms in
+    -   @khanacademy/wonder-blocks-dropdown@5.1.11
+
+## 2.0.57
+
+### Patch Changes
+
+-   Updated dependencies [874081aa]
+-   Updated dependencies [874081aa]
+-   Updated dependencies [a9bf603a]
+    -   @khanacademy/wonder-blocks-dropdown@5.1.10
+    -   @khanacademy/wonder-blocks-tokens@1.2.0
+    -   @khanacademy/wonder-blocks-layout@2.0.30
+
+## 2.0.56
+
+### Patch Changes
+
+-   1002cf17: Changing the default export name to fix an issue with StoryBook v8
+-   Updated dependencies [c39bfd29]
+    -   @khanacademy/wonder-blocks-layout@2.0.29
+    -   @khanacademy/wonder-blocks-dropdown@5.1.9
+
 ## 2.0.55
 
 ### Patch Changes

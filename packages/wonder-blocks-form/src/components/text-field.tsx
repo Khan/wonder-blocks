@@ -1,11 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {IDProvider, addStyle} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {OmitConstrained} from "../util/types";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
@@ -17,15 +18,12 @@ const defaultErrorMessage = "This field is required.";
 
 const StyledInput = addStyle("input");
 
-type Props = AriaProps & {
+type CommonProps = AriaProps & {
     /**
-     * The unique identifier for the input.
+     * An optional unique identifier for the TextField.
+     * If no id is specified, a unique id will be auto-generated.
      */
-    id: string;
-    /**
-     * Determines the type of input. Defaults to text.
-     */
-    type: TextFieldType;
+    id?: string;
     /**
      * The input value.
      */
@@ -117,6 +115,30 @@ type Props = AriaProps & {
     autoComplete?: string;
 };
 
+type OtherInputProps = CommonProps & {
+    type: "text" | "password" | "email" | "tel";
+};
+
+// Props that are only available for inputs of type "number".
+export type NumericInputProps = {
+    type: "number";
+    /**
+     * The minimum numeric value for the input.
+     */
+    min?: number;
+    /**
+     * The maximum numeric value for the input.
+     */
+    max?: number;
+    /**
+     * The numeric value to increment or decrement by.
+     * Requires the input to be multiples of this value.
+     */
+    step?: number;
+};
+
+type FullNumericInputProps = CommonProps & NumericInputProps;
+type Props = OtherInputProps | FullNumericInputProps;
 type PropsWithForwardRef = Props & WithForwardRef;
 
 type DefaultProps = {
@@ -249,42 +271,47 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         } = this.props;
 
         return (
-            <StyledInput
-                style={[
-                    styles.input,
-                    typographyStyles.LabelMedium,
-                    styles.default,
-                    // Prioritizes disabled, then focused, then error (if any)
-                    disabled
-                        ? styles.disabled
-                        : this.state.focused
-                        ? [styles.focused, light && styles.defaultLight]
-                        : !!this.state.error && [
-                              styles.error,
-                              light && styles.errorLight,
-                          ],
-                    // Cast `this.state.error` into boolean since it's being
-                    // used as a conditional
-                    !!this.state.error && styles.error,
-                    style && style,
-                ]}
-                id={id}
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                name={name}
-                disabled={disabled}
-                onChange={this.handleChange}
-                onKeyDown={onKeyDown}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                data-test-id={testId}
-                readOnly={readOnly}
-                autoFocus={autoFocus}
-                autoComplete={autoComplete}
-                ref={forwardedRef}
-                {...otherProps}
-            />
+            <IDProvider id={id} scope="text-field">
+                {(uniqueId) => (
+                    <StyledInput
+                        style={[
+                            styles.input,
+                            typographyStyles.LabelMedium,
+                            styles.default,
+                            // Prioritizes disabled, then focused, then error (if any)
+                            disabled
+                                ? styles.disabled
+                                : this.state.focused
+                                ? [styles.focused, light && styles.defaultLight]
+                                : !!this.state.error && [
+                                      styles.error,
+                                      light && styles.errorLight,
+                                  ],
+                            // Cast `this.state.error` into boolean since it's being
+                            // used as a conditional
+                            !!this.state.error && styles.error,
+                            style && style,
+                        ]}
+                        id={uniqueId}
+                        type={type}
+                        placeholder={placeholder}
+                        value={value}
+                        name={name}
+                        disabled={disabled}
+                        onChange={this.handleChange}
+                        onKeyDown={onKeyDown}
+                        onFocus={this.handleFocus}
+                        onBlur={this.handleBlur}
+                        data-testid={testId}
+                        readOnly={readOnly}
+                        autoFocus={autoFocus}
+                        autoComplete={autoComplete}
+                        ref={forwardedRef}
+                        {...otherProps}
+                        aria-invalid={this.state.error ? "true" : "false"}
+                    />
+                )}
+            </IDProvider>
         );
     }
 }
@@ -340,7 +367,7 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = Omit<
+type ExportProps = OmitConstrained<
     JSX.LibraryManagedAttributes<
         typeof TextField,
         React.ComponentProps<typeof TextField>

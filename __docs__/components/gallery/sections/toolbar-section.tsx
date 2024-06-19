@@ -19,7 +19,7 @@ export default function ToolbarSection() {
 
             <ComponentTile
                 name="Toolbar"
-                href="/?path=/docs/toolbar--docs"
+                href="/?path=/docs/packages-toolbar--docs"
                 description={`A generic toolbar wrapper that exposes
                     customization options, including a title and left/right
                     content.`}

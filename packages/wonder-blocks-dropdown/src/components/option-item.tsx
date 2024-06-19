@@ -2,11 +2,15 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {mix} from "@khanacademy/wonder-blocks-color";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import {AriaProps, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    AriaProps,
+    StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Check from "./check";
@@ -52,6 +56,13 @@ type OptionProps = AriaProps & {
      */
     selected: boolean;
     /**
+     * Whether this item is focused. Auto-populated by listbox in combination of
+     * aria-activedescendant.
+     * @ignore
+     */
+    focused: boolean;
+
+    /**
      * Aria role to use, defaults to "option".
      */
     role: "menuitem" | "option";
@@ -71,6 +82,21 @@ type OptionProps = AriaProps & {
      * @ignore
      */
     style?: StyleType;
+    /**
+     * Injected by the parent component to determine how we are going to handle
+     * the component states (hovered, focused, selected, etc.)
+     * Defaults to "dropdown".
+     * @ignore
+     */
+    parentComponent?: "dropdown" | "listbox";
+
+    /**
+     * The unique identifier of the option item.
+     *
+     * This is used to identify the option item in the listbox so that it can be
+     * focused programmatically (e.g. when the user presses the arrow keys).
+     */
+    id?: string;
 
     /**
      * Inherited from WB Cell.
@@ -105,11 +131,14 @@ type OptionProps = AriaProps & {
 
 type DefaultProps = {
     disabled: OptionProps["disabled"];
+    focused: OptionProps["focused"];
     horizontalRule: OptionProps["horizontalRule"];
     onToggle: OptionProps["onToggle"];
     role: OptionProps["role"];
     selected: OptionProps["selected"];
 };
+
+const StyledListItem = addStyle("li");
 
 /**
  * For option items that can be selected in a dropdown, selection denoted either
@@ -123,6 +152,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
     static defaultProps: DefaultProps = {
         disabled: false,
+        focused: false,
         horizontalRule: "none",
         onToggle: () => void 0,
         role: "option",
@@ -146,17 +176,17 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     };
 
-    render(): React.ReactNode {
+    renderCell(): React.ReactNode {
         const {
             disabled,
             label,
-            role,
             selected,
             testId,
-            style,
             leftAccessory,
             horizontalRule,
+            parentComponent,
             rightAccessory,
+            style,
             subtitle1,
             subtitle2,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -165,6 +195,7 @@ export default class OptionItem extends React.Component<OptionProps> {
             onClick,
             onToggle,
             variant,
+            role,
             /* eslint-enable @typescript-eslint/no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -181,10 +212,16 @@ export default class OptionItem extends React.Component<OptionProps> {
             <DetailCell
                 disabled={disabled}
                 horizontalRule={horizontalRule}
-                rootStyle={defaultStyle}
+                rootStyle={
+                    parentComponent === "listbox"
+                        ? styles.listboxItem
+                        : defaultStyle
+                }
                 style={styles.itemContainer}
-                aria-selected={selected ? "true" : "false"}
-                role={role}
+                aria-selected={
+                    parentComponent !== "listbox" && selected ? "true" : "false"
+                }
+                role={parentComponent !== "listbox" ? role : undefined}
                 testId={testId}
                 leftAccessory={
                     <>
@@ -221,17 +258,77 @@ export default class OptionItem extends React.Component<OptionProps> {
                         </LabelSmall>
                     ) : undefined
                 }
-                onClick={this.handleClick}
+                onClick={
+                    parentComponent !== "listbox" ? this.handleClick : undefined
+                }
                 {...sharedProps}
             />
         );
+    }
+
+    render(): React.ReactNode {
+        const {disabled, focused, parentComponent, role, selected} = this.props;
+
+        if (parentComponent === "listbox") {
+            return (
+                <StyledListItem
+                    onMouseDown={(e) => {
+                        // Prevents the combobox from losing focus when clicking
+                        // on the option item.
+                        e.preventDefault();
+                    }}
+                    onClick={this.handleClick}
+                    style={[
+                        styles.reset,
+                        styles.item,
+                        focused && styles.itemFocused,
+                        disabled && styles.itemDisabled,
+                    ]}
+                    role={role}
+                    aria-selected={selected ? "true" : "false"}
+                    aria-disabled={disabled ? "true" : "false"}
+                    id={this.props.id}
+                    tabIndex={-1}
+                >
+                    {this.renderCell()}
+                </StyledListItem>
+            );
+        }
+
+        return this.renderCell();
     }
 }
 
 const {blue, white, offBlack} = color;
 
+const focusedStyle = {
+    // Override the default focus state for the cell element, so that it
+    // can be added programmatically to the button element.
+    borderRadius: spacing.xxxSmall_4,
+    outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+    outlineOffset: -spacing.xxxxSmall_2,
+};
+
 const styles = StyleSheet.create({
+    reset: {
+        margin: 0,
+        padding: 0,
+        border: 0,
+        background: "none",
+        outline: "none",
+        fontSize: "100%",
+        verticalAlign: "baseline",
+        textAlign: "left",
+        textDecoration: "none",
+        listStyle: "none",
+        cursor: "pointer",
+    },
+    listboxItem: {
+        backgroundColor: "transparent",
+        color: "inherit",
+    },
     item: {
+        backgroundColor: color.white,
         // Reset the default styles for the cell element so it can grow
         // vertically.
         minHeight: "unset",
@@ -239,13 +336,7 @@ const styles = StyleSheet.create({
         /**
          * States
          */
-        ":focus": {
-            // Override the default focus state for the cell element, so that it
-            // can be added programmatically to the button element.
-            borderRadius: spacing.xxxSmall_4,
-            outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
-            outlineOffset: -spacing.xxxxSmall_2,
-        },
+        ":focus": focusedStyle,
 
         ":focus-visible": {
             // Override the default focus-visible state for the cell element, so
@@ -258,6 +349,22 @@ const styles = StyleSheet.create({
         [":hover[aria-disabled=false]" as any]: {
             color: white,
             background: blue,
+        },
+
+        [":active[aria-selected=false]" as any]: {},
+
+        // disabled
+        [":hover[aria-disabled=true]" as any]: {
+            cursor: "not-allowed",
+        },
+
+        [":is([aria-disabled=true])" as any]: {
+            color: color.offBlack32,
+            ":focus-visible": {
+                // Prevent the focus ring from being displayed when the cell is
+                // disabled.
+                outline: "none",
+            },
         },
 
         // Allow hover styles on non-touch devices only. This prevents an
@@ -309,6 +416,10 @@ const styles = StyleSheet.create({
         [":active[aria-disabled=false] .subtitle" as any]: {
             color: mix(color.fadedBlue16, white),
         },
+    },
+    itemFocused: focusedStyle,
+    itemDisabled: {
+        outlineColor: color.offBlack32,
     },
     itemContainer: {
         minHeight: "unset",

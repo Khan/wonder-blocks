@@ -22,7 +22,7 @@ describe("#mockGqlFetch", () => {
                     });
                 }, [gqlFetch]);
 
-                return <div data-test-id="result">{result}</div>;
+                return <div data-testid="result">{result}</div>;
             };
 
             // Act
@@ -60,7 +60,7 @@ describe("#mockGqlFetch", () => {
                     });
                 }, [gqlFetch]);
 
-                return <div data-test-id="result">{result}</div>;
+                return <div data-testid="result">{result}</div>;
             };
 
             // Act
@@ -99,7 +99,7 @@ describe("#mockGqlFetch", () => {
                     });
                 }, [gqlFetch]);
 
-                return <div data-test-id="result">{result}</div>;
+                return <div data-testid="result">{result}</div>;
             };
 
             // Act
@@ -135,7 +135,7 @@ describe("#mockGqlFetch", () => {
                     });
                 }, [gqlFetch]);
 
-                return <div data-test-id="result">{result}</div>;
+                return <div data-testid="result">{result}</div>;
             };
 
             // Act

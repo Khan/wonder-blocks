@@ -45,7 +45,7 @@ const customViewports = {
 } as const;
 
 export default {
-    title: "Modal/OnePaneDialog",
+    title: "Packages / Modal / OnePaneDialog",
     component: OnePaneDialog,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (

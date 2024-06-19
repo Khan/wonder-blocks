@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {mix} from "@khanacademy/wonder-blocks-color";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {mix, color} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 import type {ChoiceCoreProps, Checked} from "../util/types";
@@ -47,7 +46,7 @@ const StyledInput = addStyle("input");
                 // component, but we handle the click via ClickableBehavior
                 onChange={handleChange}
                 style={defaultStyle}
-                data-test-id={testId}
+                data-testid={testId}
                 ref={ref}
             />
             {disabled && checked && <span style={disabledChecked} />}

@@ -13,7 +13,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import BreadcrumbsArgTypes from "./breadcrumbs.argtypes";
 
 const meta: Meta<typeof Breadcrumbs> = {
-    title: "Breadcrumbs",
+    title: "Packages / Breadcrumbs",
     component: Breadcrumbs,
     argTypes: BreadcrumbsArgTypes,
     parameters: {

@@ -21,7 +21,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -59,7 +59,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -98,7 +98,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -134,7 +134,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -172,7 +172,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -210,7 +210,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act
@@ -248,7 +248,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
                 });
             }, [gqlFetch]);
 
-            return <div data-test-id="result">{result}</div>;
+            return <div data-testid="result">{result}</div>;
         };
 
         // Act

@@ -20,7 +20,7 @@ export default function AccordionGallerySection() {
             <View style={styles.section}>
                 <ComponentTile
                     name="Accordion"
-                    href="/?path=/docs/accordion-accordion--docs"
+                    href="/?path=/docs/packages-accordion-accordion--docs"
                     description={`A vertically stacked list of sections,
                         each of which contains content that can be expanded
                         or collapsed by clicking its header.`}
@@ -41,7 +41,7 @@ export default function AccordionGallerySection() {
 
                 <ComponentTile
                     name="AccordionSection"
-                    href="/?path=/docs/accordion-accordionsection--docs"
+                    href="/?path=/docs/packages-accordion-accordionsection--docs"
                     description={`A single collapsible section within
                         an accordion. It can be used by itself or within
                         an accordion.`}

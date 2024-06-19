@@ -6,7 +6,7 @@ import {View, Text as _Text} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -18,7 +18,7 @@ import TextFieldArgTypes from "./text-field.argtypes";
  * A TextField is an element used to accept a single line of text from the user.
  */
 export default {
-    title: "Form / TextField",
+    title: "Packages / Form / TextField",
     component: TextField,
     parameters: {
         componentSubtitle: (
@@ -35,7 +35,6 @@ type StoryComponentType = StoryObj<typeof TextField>;
 
 export const Default: StoryComponentType = {
     args: {
-        id: "some-id",
         type: "text",
         value: "",
         disabled: false,
@@ -127,7 +126,8 @@ Required.parameters = {
 };
 
 export const Number: StoryComponentType = () => {
-    const [value, setValue] = React.useState("12345");
+    const [value, setValue] = React.useState("1234");
+    const [value2, setValue2] = React.useState("12");
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
@@ -140,21 +140,46 @@ export const Number: StoryComponentType = () => {
     };
 
     return (
-        <TextField
-            id="tf-3"
-            type="number"
-            value={value}
-            placeholder="Number"
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-        />
+        <View>
+            <TextField
+                id="tf-3"
+                type="number"
+                value={value}
+                placeholder="Number"
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+            />
+            <Strut size={spacing.small_12} />
+            <Body>
+                The following text field has a min of 0, a max of 15, and a step
+                of 3
+            </Body>
+            <TextField
+                id="tf-3a"
+                type="number"
+                value={value2}
+                placeholder="Number"
+                onChange={setValue2}
+                onKeyDown={handleKeyDown}
+                min={0}
+                max={15}
+                step={3}
+            />
+        </View>
     );
 };
 
 Number.parameters = {
     docs: {
         description: {
-            story: "An input field with type `number` will only take numeric characters as input.",
+            story: `An input field with type \`number\` will only take
+                numeric characters as input.\n\nNumber inputs have a few props
+                that other input types don't have - \`min\`, \`max\`, and
+                \`step\`. In this example, the first number input has no
+                restrictions, while the second number input has a minimum
+                value of 0, a maximum value of 15, and a step of 3. Observe
+                that using the arrow keys will automatically snap to the
+                step, and stop at the min and max values.`,
         },
     },
 };
@@ -293,7 +318,7 @@ Email.parameters = {
         description: {
             story: `An input field with type \`email\` will automatically
         validate an input on submit to ensure it's either formatted properly
-        or blank. \`TextField\` will run validation on blur if the
+        or blank. \`TextField\` will run validation on change if the
         \`validate\` prop is passed in, as in this example.`,
         },
     },
@@ -368,7 +393,7 @@ Telephone.parameters = {
     },
 };
 
-export const Error: StoryComponentType = () => {
+function ErrorRender() {
     const [value, setValue] = React.useState("khan");
     const [errorMessage, setErrorMessage] = React.useState<any>();
     const [focused, setFocused] = React.useState(false);
@@ -424,15 +449,18 @@ export const Error: StoryComponentType = () => {
             )}
         </View>
     );
-};
+}
 
-Error.parameters = {
-    docs: {
-        description: {
-            story: `If an input value fails validation,
-        \`TextField\` will have error styling.`,
-        },
-    },
+/**
+ * If an input value fails validation, `TextField` will have error styling.
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * `input` element:
+ * - aria-invalid="true" if there is an error message.
+ * - aria-invalid="false" if there is no error message.
+ */
+export const Error: StoryComponentType = {
+    render: ErrorRender,
 };
 
 export const Light: StoryComponentType = () => {

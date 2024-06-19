@@ -10,7 +10,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 type StoryComponentType = StoryObj<typeof TooltipContent>;
 
 export default {
-    title: "Tooltip / TooltipContent",
+    title: "Packages / Tooltip / TooltipContent",
     component: TooltipContent,
     parameters: {
         componentSubtitle: (
