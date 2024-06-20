@@ -634,20 +634,20 @@ describe("ActionMenu", () => {
             await userEvent.click(opener);
 
             // Assert
-            expect(
-                (
-                    await screen.findAllByRole("menuitemcheckbox", {
-                        hidden: true,
-                    })
-                ).at(0),
-            ).toHaveAttribute("aria-checked", "false");
-            expect(
-                (
-                    await screen.findAllByRole("menuitemcheckbox", {
-                        hidden: true,
-                    })
-                ).at(1),
-            ).toHaveAttribute("aria-checked", "false");
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                "aria-checked",
+                "false",
+            );
+            expect(menuItemCheckboxes.at(1)).toHaveAttribute(
+                "aria-checked",
+                "false",
+            );
         });
 
         it("Should render selected option items with `aria-checked` set to `true`", async () => {
@@ -678,13 +678,16 @@ describe("ActionMenu", () => {
             await userEvent.click(opener);
 
             // Assert
-            expect(
-                (
-                    await screen.findAllByRole("menuitemcheckbox", {
-                        hidden: true,
-                    })
-                ).at(0),
-            ).toHaveAttribute("aria-checked", "true");
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                "aria-checked",
+                "true",
+            );
         });
 
         it("Should not use `aria-selected` attribute on selected and non-selected options", async () => {
@@ -715,20 +718,18 @@ describe("ActionMenu", () => {
             await userEvent.click(opener);
 
             // Assert
-            expect(
-                (
-                    await screen.findAllByRole("menuitemcheckbox", {
-                        hidden: true,
-                    })
-                ).at(0),
-            ).not.toHaveAttribute("aria-selected");
-            expect(
-                (
-                    await screen.findAllByRole("menuitemcheckbox", {
-                        hidden: true,
-                    })
-                ).at(1),
-            ).not.toHaveAttribute("aria-selected");
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).not.toHaveAttribute(
+                "aria-selected",
+            );
+            expect(menuItemCheckboxes.at(1)).not.toHaveAttribute(
+                "aria-selected",
+            );
         });
 
         it("Should render action items with `role=menuitem` and option items with `role=menuitemcheckbox`", async () => {
@@ -826,13 +827,16 @@ describe("ActionMenu", () => {
                 await userEvent.click(opener);
 
                 // Assert
-                expect(
-                    (
-                        await screen.findAllByRole("menuitemcheckbox", {
-                            hidden: true,
-                        })
-                    ).at(0),
-                ).toHaveAttribute("aria-checked", "true");
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                    "aria-checked",
+                    "true",
+                );
             });
 
             it("Should render non-selected option items with `aria-checked=false` when there are many options", async () => {
@@ -860,13 +864,16 @@ describe("ActionMenu", () => {
                 await userEvent.click(opener);
 
                 // Assert
-                expect(
-                    (
-                        await screen.findAllByRole("menuitemcheckbox", {
-                            hidden: true,
-                        })
-                    ).at(0),
-                ).toHaveAttribute("aria-checked", "false");
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                    "aria-checked",
+                    "false",
+                );
             });
 
             it("Should not use `aria-selected` attribute on selected and non-selected options", async () => {
@@ -894,20 +901,18 @@ describe("ActionMenu", () => {
                 await userEvent.click(opener);
 
                 // Assert
-                expect(
-                    (
-                        await screen.findAllByRole("menuitemcheckbox", {
-                            hidden: true,
-                        })
-                    ).at(0),
-                ).not.toHaveAttribute("aria-selected");
-                expect(
-                    (
-                        await screen.findAllByRole("menuitemcheckbox", {
-                            hidden: true,
-                        })
-                    ).at(1),
-                ).not.toHaveAttribute("aria-selected");
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).not.toHaveAttribute(
+                    "aria-selected",
+                );
+                expect(menuItemCheckboxes.at(1)).not.toHaveAttribute(
+                    "aria-selected",
+                );
             });
         });
     });
