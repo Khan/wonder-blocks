@@ -1,7 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    IDProvider,
+    type AriaProps,
+    type StyleType,
+} from "@khanacademy/wonder-blocks-core";
 import DropdownOpener from "./dropdown-opener";
 import ActionItem from "./action-item";
 import OptionItem from "./option-item";
@@ -72,6 +76,19 @@ type Props = AriaProps &
          * element to access pointer event state.
          */
         opener?: (openerProps: OpenerProps) => React.ReactElement<any>;
+        /**
+         * Unique identifier attached to the menu dropdown. If used, we need to
+         * guarantee that the ID is unique within everything rendered on a page.
+         * If one is not provided, one is auto-generated. It is used for the
+         * opener's `aria-controls` attribute for screenreaders.
+         */
+        dropdownId?: string;
+        /**
+         * Unique identifier attached to the field control. If used, we need to
+         * guarantee that the ID is unique within everything rendered on a page.
+         * If one is not provided, one is auto-generated.
+         */
+        id?: string;
     }>;
 
 type State = Readonly<{
@@ -229,61 +246,76 @@ export default class ActionMenu extends React.Component<Props, State> {
 
     renderOpener(
         numItems: number,
+        dropdownId: string,
     ): React.ReactElement<React.ComponentProps<typeof DropdownOpener>> {
-        const {disabled, menuText, opener, testId} = this.props;
+        const {disabled, menuText, opener, testId, id} = this.props;
 
         return (
-            <DropdownOpener
-                onClick={this.handleClick}
-                disabled={numItems === 0 || disabled}
-                text={menuText}
-                ref={this.handleOpenerRef}
-                testId={opener ? undefined : testId}
-                opened={this.state.opened}
-            >
-                {opener
-                    ? opener
-                    : (openerProps) => {
-                          const {
-                              // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                              text,
-                              opened,
-                              ...eventState
-                          } = openerProps;
-                          return (
-                              <ActionMenuOpenerCore
-                                  {...eventState}
-                                  disabled={disabled}
-                                  opened={!!opened}
-                                  testId={testId}
-                              >
-                                  {menuText}
-                              </ActionMenuOpenerCore>
-                          );
-                      }}
-            </DropdownOpener>
+            <IDProvider id={id} scope="action-menu-opener">
+                {(uniqueOpenerId) => (
+                    <DropdownOpener
+                        id={uniqueOpenerId}
+                        aria-controls={dropdownId}
+                        onClick={this.handleClick}
+                        disabled={numItems === 0 || disabled}
+                        text={menuText}
+                        ref={this.handleOpenerRef}
+                        testId={opener ? undefined : testId}
+                        opened={this.state.opened}
+                    >
+                        {opener
+                            ? opener
+                            : (openerProps) => {
+                                  const {
+                                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                                      text,
+                                      opened,
+                                      ...eventState
+                                  } = openerProps;
+                                  return (
+                                      <ActionMenuOpenerCore
+                                          {...eventState}
+                                          disabled={disabled}
+                                          opened={!!opened}
+                                          testId={testId}
+                                      >
+                                          {menuText}
+                                      </ActionMenuOpenerCore>
+                                  );
+                              }}
+                    </DropdownOpener>
+                )}
+            </IDProvider>
         );
     }
 
     render(): React.ReactNode {
-        const {alignment, dropdownStyle, style, className} = this.props;
+        const {alignment, dropdownStyle, style, className, dropdownId} =
+            this.props;
 
         const items = this.getMenuItems();
-        const dropdownOpener = this.renderOpener(items.length);
 
         return (
-            <DropdownCore
-                role="menu"
-                style={style}
-                className={className}
-                opener={dropdownOpener}
-                alignment={alignment}
-                open={this.state.opened}
-                items={items}
-                openerElement={this.openerElement}
-                onOpenChanged={this.handleOpenChanged}
-                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
-            />
+            <IDProvider id={dropdownId} scope="action-menu-dropdown">
+                {(uniqueDropdownId) => (
+                    <DropdownCore
+                        id={uniqueDropdownId}
+                        role="menu"
+                        style={style}
+                        className={className}
+                        opener={this.renderOpener(
+                            items.length,
+                            uniqueDropdownId,
+                        )}
+                        alignment={alignment}
+                        open={this.state.opened}
+                        items={items}
+                        openerElement={this.openerElement}
+                        onOpenChanged={this.handleOpenChanged}
+                        dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
+                    />
+                )}
+            </IDProvider>
         );
     }
 }
