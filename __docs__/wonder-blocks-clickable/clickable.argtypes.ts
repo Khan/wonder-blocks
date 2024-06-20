@@ -255,6 +255,7 @@ export default {
             "listbox",
             "menu",
             "menuitem",
+            "menuitemcheckbox",
             "radio",
             "tab",
         ],
@@ -262,7 +263,7 @@ export default {
             category: "Accessibility",
             type: {
                 summary: "ClickableRole",
-                detail: `"button" | "link" | "checkbox" | "radio" | "listbox" | "option" | "menuitem" | "menu" | "tab"`,
+                detail: `"button" | "link" | "checkbox" | "radio" | "listbox" | "option" | "menuitem" | "menuitemcheckbox" | "menu" | "tab"`,
             },
         },
     },
