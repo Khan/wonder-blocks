@@ -241,7 +241,12 @@ export default class MultiSelect extends React.Component<Props, State> {
         state: State,
     ): Partial<State> | null {
         return {
-            open: typeof props.opened === "boolean" ? props.opened : state.open,
+            // open should always be false if select is disabled
+            open: props.disabled
+                ? false
+                : typeof props.opened === "boolean"
+                ? props.opened
+                : state.open,
         };
     }
 
@@ -473,11 +478,11 @@ export default class MultiSelect extends React.Component<Props, State> {
         allChildren: React.ReactElement<
             React.ComponentProps<typeof OptionItem>
         >[],
+        isDisabled: boolean,
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> {
         const {
-            disabled,
             id,
             light,
             opener,
@@ -505,14 +510,11 @@ export default class MultiSelect extends React.Component<Props, State> {
         const {noneSelected} = this.state.labels;
 
         const menuText = this.getMenuText(allChildren);
-        const numOptions = allChildren.filter(
-            (option) => !option.props.disabled,
-        ).length;
 
         const dropdownOpener = opener ? (
             <DropdownOpener
                 onClick={this.handleClick}
-                disabled={numOptions === 0 || disabled}
+                disabled={isDisabled}
                 ref={this.handleOpenerRef}
                 text={menuText}
                 opened={this.state.open}
@@ -522,7 +524,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         ) : (
             <SelectOpener
                 {...sharedProps}
-                disabled={numOptions === 0 || disabled}
+                disabled={isDisabled}
                 id={id}
                 isPlaceholder={menuText === noneSelected}
                 light={light}
@@ -549,6 +551,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             isFilterable,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
+            disabled,
         } = this.props;
         const {open, searchText} = this.state;
         const {clearSearch, filter, noResults, someSelected} =
@@ -563,7 +566,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             (option) => !option.props.disabled,
         ).length;
         const filteredItems = this.getMenuItems(allChildren);
-        const opener = this.renderOpener(allChildren);
+        const isDisabled = numEnabledOptions === 0 || disabled;
+        const opener = this.renderOpener(allChildren, isDisabled);
 
         return (
             <DropdownCore
@@ -599,6 +603,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 }}
                 aria-invalid={ariaInvalid}
                 aria-required={ariaRequired}
+                disabled={isDisabled}
             />
         );
     }

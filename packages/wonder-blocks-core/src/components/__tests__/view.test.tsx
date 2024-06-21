@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as renderer from "react-test-renderer";
+import {render} from "@testing-library/react";
 
 import View from "../view";
 
@@ -7,54 +7,54 @@ describe("View", () => {
     it("Should set the tag to be section", () => {
         // Arrage, Act
         const view = <View tag="section" />;
-        const tree = renderer.create(view).toJSON();
+        const {container} = render(view);
 
         // Assert
-        expect(tree).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
     });
 
     it("Should set the tag to be section", () => {
         // Arrage, Act
         const view = <View tag="section" />;
-        const tree = renderer.create(view).toJSON();
+        const {container} = render(view);
 
         // Assert
-        expect(tree).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
     });
 
     it("Should set the tag to be article", () => {
         // Arrage, Act
         const view = <View tag="article" />;
-        const tree = renderer.create(view).toJSON();
+        const {container} = render(view);
 
         // Assert
-        expect(tree).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
     });
 
     it("Should set the tag to be aside", () => {
         // Arrage, Act
         const view = <View tag="aside" />;
-        const tree = renderer.create(view).toJSON();
+        const {container} = render(view);
 
         // Assert
-        expect(tree).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
     });
 
     it("Should set the tag to be nav", () => {
         // Arrage, Act
         const view = <View tag="nav" />;
-        const tree = renderer.create(view).toJSON();
+        const {container} = render(view);
 
         // Assert
-        expect(tree).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
     });
 
     it("Should set the tag to be div", () => {
         // Arrage, Act
         const view = <View />;
-        const tree = renderer.create(view).toJSON();
+        const {container} = render(view);
 
         // Assert
-        expect(tree).toMatchSnapshot();
+        expect(container).toMatchSnapshot();
     });
 });

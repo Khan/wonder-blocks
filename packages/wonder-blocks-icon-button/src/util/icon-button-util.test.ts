@@ -6,6 +6,7 @@ describe("iconSizeForButtonSize", () => {
         ${"xsmall"} | ${"small"}
         ${"small"}  | ${"medium"}
         ${"medium"} | ${"medium"}
+        ${"large"}  | ${"medium"}
     `(
         "should return $expectedIconSize icon for $buttonSize icon button",
         ({buttonSize, expectedIconSize}) => {
@@ -20,6 +21,7 @@ describe("targetPixelsForSize", () => {
         ${"xsmall"} | ${24}
         ${"small"}  | ${32}
         ${"medium"} | ${40}
+        ${"large"}  | ${48}
     `(
         "should return $expectedTargetPixels for $size icon button",
         ({size, expectedTargetPixels}) => {

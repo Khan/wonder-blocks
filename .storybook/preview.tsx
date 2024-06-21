@@ -60,6 +60,10 @@ const parameters = {
                 name: "khanmigo",
                 value: color.eggplant,
             },
+            {
+                name: "offWhite",
+                value: color.offWhite,
+            },
         ],
     },
     // https://storybook.js.org/docs/react/configure/story-layout

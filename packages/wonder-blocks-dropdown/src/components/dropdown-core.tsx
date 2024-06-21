@@ -169,6 +169,10 @@ type ExportProps = Readonly<{
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean;
+    /**
+     * Whether the dropdown and it's interactions should be disabled.
+     */
+    disabled?: boolean;
 
     // Optional props with defaults
     /**
@@ -381,7 +385,7 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     componentDidUpdate(prevProps: Props) {
-        const {open} = this.props;
+        const {open, searchText} = this.props;
 
         if (prevProps.open !== open) {
             this.updateEventListeners();
@@ -396,7 +400,7 @@ class DropdownCore extends React.Component<Props, State> {
             // Very rarely do the set of focusable items change if the menu
             // hasn't been re-opened. This is for cases like a {Select all}
             // option that becomes disabled iff all the options are selected.
-            if (sameItemsFocusable) {
+            if (sameItemsFocusable || prevProps.searchText !== searchText) {
                 return;
             } else {
                 // If the set of items that was focusabled changed, it's very
@@ -411,7 +415,7 @@ class DropdownCore extends React.Component<Props, State> {
                     // Can't find the originally focused item, return focus to
                     // the first item that IS focusable
                     this.focusedIndex = 0;
-                    // Reset the knowlege that things had been clicked
+                    // Reset the knowledge that things had been clicked
                     this.itemsClicked = false;
                     this.scheduleToFocusCurrentItem();
                 } else {
@@ -571,7 +575,10 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusPreviousItem(): void {
-        if (this.focusedIndex === 0) {
+        if (
+            this.focusedIndex === 0 ||
+            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
+        ) {
             // Move the focus to the search field if it is the first item.
             if (this.hasSearchField() && !this.isSearchFieldFocused()) {
                 return this.focusSearchField();
@@ -585,7 +592,10 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusNextItem(): void {
-        if (this.focusedIndex === this.state.itemRefs.length - 1) {
+        if (
+            this.focusedIndex === this.state.itemRefs.length - 1 ||
+            (this.isSearchFieldFocused() && !this.props.enableTypeAhead)
+        ) {
             // Move the focus to the search field if it is the last item.
             if (this.hasSearchField() && !this.isSearchFieldFocused()) {
                 return this.focusSearchField();
@@ -1034,12 +1044,12 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     render(): React.ReactNode {
-        const {open, opener, style, className} = this.props;
+        const {open, opener, style, className, disabled} = this.props;
 
         return (
             <View
-                onKeyDown={this.handleKeyDown}
-                onKeyUp={this.handleKeyUp}
+                onKeyDown={!disabled ? this.handleKeyDown : undefined}
+                onKeyUp={!disabled ? this.handleKeyUp : undefined}
                 style={[styles.menuWrapper, style]}
                 className={className}
             >

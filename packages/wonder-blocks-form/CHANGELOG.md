@@ -1,5 +1,36 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.7.2
+
+### Patch Changes
+
+-   c8b273f0: Update default/resting border color to fix a color contrast issue
+
+## 4.7.1
+
+### Patch Changes
+
+-   Updated dependencies [47a758b6]
+    -   @khanacademy/wonder-blocks-layout@2.1.0
+
+## 4.7.0
+
+### Minor Changes
+
+-   01fce89e: Make `id` prop optional in `TextField`.
+
+## 4.6.2
+
+### Patch Changes
+
+-   8fda4a73: Fix onBlur and onFocus props so it gets properly called when it is defined in the call site
+
+## 4.6.1
+
+### Patch Changes
+
+-   29563c0d: Fix onValidate prop so it gets properly called when it is defined in the call site
+
 ## 4.6.0
 
 ### Minor Changes

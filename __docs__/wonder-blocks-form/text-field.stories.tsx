@@ -14,6 +14,9 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 import TextFieldArgTypes from "./text-field.argtypes";
 
+/**
+ * A TextField is an element used to accept a single line of text from the user.
+ */
 export default {
     title: "Packages / Form / TextField",
     component: TextField,
@@ -32,7 +35,6 @@ type StoryComponentType = StoryObj<typeof TextField>;
 
 export const Default: StoryComponentType = {
     args: {
-        id: "some-id",
         type: "text",
         value: "",
         disabled: false,

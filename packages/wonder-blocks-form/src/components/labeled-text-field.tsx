@@ -220,6 +220,16 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
             autoComplete,
             forwardedRef,
             ariaDescribedby,
+            // NOTE: We are not using this prop, but we need to remove it from
+            // `otherProps` so it doesn't override the `handleValidate` function
+            // call. We use `otherProps` due to a limitation in TypeScript where
+            // we can't easily extract the props when using a discriminated
+            // union.
+            /* eslint-disable @typescript-eslint/no-unused-vars */
+            onValidate,
+            onFocus,
+            onBlur,
+            /* eslint-enable @typescript-eslint/no-unused-vars */
             // numeric input props
             ...otherProps
         } = this.props;
