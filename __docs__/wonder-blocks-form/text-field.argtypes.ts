@@ -2,8 +2,9 @@ import type {InputType} from "@storybook/csf";
 
 export default {
     id: {
-        description: "The unique identifier for the input.",
-        type: {name: "string", required: true},
+        description:
+            "An optional unique identifier for the TextField. If no id is specified, a unique id will be auto-generated.",
+        type: {name: "string"},
         table: {
             type: {
                 summary: "string",

@@ -1,8 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {IDProvider, addStyle} from "@khanacademy/wonder-blocks-core";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -20,9 +20,10 @@ const StyledInput = addStyle("input");
 
 type CommonProps = AriaProps & {
     /**
-     * The unique identifier for the input.
+     * An optional unique identifier for the TextField.
+     * If no id is specified, a unique id will be auto-generated.
      */
-    id: string;
+    id?: string;
     /**
      * The input value.
      */
@@ -270,43 +271,47 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         } = this.props;
 
         return (
-            <StyledInput
-                style={[
-                    styles.input,
-                    typographyStyles.LabelMedium,
-                    styles.default,
-                    // Prioritizes disabled, then focused, then error (if any)
-                    disabled
-                        ? styles.disabled
-                        : this.state.focused
-                        ? [styles.focused, light && styles.defaultLight]
-                        : !!this.state.error && [
-                              styles.error,
-                              light && styles.errorLight,
-                          ],
-                    // Cast `this.state.error` into boolean since it's being
-                    // used as a conditional
-                    !!this.state.error && styles.error,
-                    style && style,
-                ]}
-                id={id}
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                name={name}
-                disabled={disabled}
-                onChange={this.handleChange}
-                onKeyDown={onKeyDown}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                data-testid={testId}
-                readOnly={readOnly}
-                autoFocus={autoFocus}
-                autoComplete={autoComplete}
-                ref={forwardedRef}
-                {...otherProps}
-                aria-invalid={this.state.error ? "true" : "false"}
-            />
+            <IDProvider id={id} scope="text-field">
+                {(uniqueId) => (
+                    <StyledInput
+                        style={[
+                            styles.input,
+                            typographyStyles.LabelMedium,
+                            styles.default,
+                            // Prioritizes disabled, then focused, then error (if any)
+                            disabled
+                                ? styles.disabled
+                                : this.state.focused
+                                ? [styles.focused, light && styles.defaultLight]
+                                : !!this.state.error && [
+                                      styles.error,
+                                      light && styles.errorLight,
+                                  ],
+                            // Cast `this.state.error` into boolean since it's being
+                            // used as a conditional
+                            !!this.state.error && styles.error,
+                            style && style,
+                        ]}
+                        id={uniqueId}
+                        type={type}
+                        placeholder={placeholder}
+                        value={value}
+                        name={name}
+                        disabled={disabled}
+                        onChange={this.handleChange}
+                        onKeyDown={onKeyDown}
+                        onFocus={this.handleFocus}
+                        onBlur={this.handleBlur}
+                        data-testid={testId}
+                        readOnly={readOnly}
+                        autoFocus={autoFocus}
+                        autoComplete={autoComplete}
+                        ref={forwardedRef}
+                        {...otherProps}
+                        aria-invalid={this.state.error ? "true" : "false"}
+                    />
+                )}
+            </IDProvider>
         );
     }
 }
@@ -324,14 +329,14 @@ const styles = StyleSheet.create({
     },
     default: {
         background: color.white,
-        border: `1px solid ${color.offBlack16}`,
+        border: `1px solid ${color.offBlack50}`,
         color: color.offBlack,
         "::placeholder": {
             color: color.offBlack64,
         },
     },
     error: {
-        background: `${mix(color.fadedRed8, color.white)}`,
+        background: color.fadedRed8,
         border: `1px solid ${color.red}`,
         color: color.offBlack,
         "::placeholder": {

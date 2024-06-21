@@ -115,6 +115,16 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * An optional icon to display. This is a reference to the icon asset (imported as a
+     * static SVG file). If not provided, a default icon will be used based on
+     * the "kind" prop.
+     *
+     * It supports the following types:
+     * - `PhosphorIconAsset`: a reference to a Phosphor SVG asset.
+     * - `string`: an import referencing an arbitrary SVG file.
+     */
+    icon?: PhosphorIconAsset | string;
 };
 
 const getValuesForKind = (kind: BannerKind): BannerValues => {
@@ -186,6 +196,7 @@ const Banner = (props: Props): React.ReactElement => {
         layout,
         text,
         testId,
+        icon,
     } = props;
 
     const renderActions = () => {
@@ -253,7 +264,7 @@ const Banner = (props: Props): React.ReactElement => {
             />
             <View style={styles.containerInner}>
                 <PhosphorIcon
-                    icon={valuesForKind.icon}
+                    icon={icon || valuesForKind.icon}
                     size="medium"
                     style={styles.icon}
                     aria-label={kind}

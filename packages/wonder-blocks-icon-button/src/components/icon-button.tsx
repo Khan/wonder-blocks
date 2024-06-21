@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import IconButtonCore from "./icon-button-core";
 import ThemedIconButton from "../themes/themed-icon-button";
 
-export type IconButtonSize = "xsmall" | "small" | "medium";
+export type IconButtonSize = "xsmall" | "small" | "medium" | "large";
 
 export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
@@ -42,7 +42,8 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     testId?: string;
     /**
      * Size of the icon button.
-     * One of `xsmall` (16 icon, 20 target), `small` (24, 32), or `medium (24, 40).
+     * One of `xsmall` (16 icon, 20 target), `small` (24, 32), `medium` (24, 40),
+     * or `large` (24, 48).
      * Defaults to `medium`.
      */
     size?: IconButtonSize;

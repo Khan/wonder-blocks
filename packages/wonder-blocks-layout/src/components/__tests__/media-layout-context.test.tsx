@@ -19,32 +19,33 @@ describe("MediaLayoutContext", () => {
     });
 
     describe("overrideSize", () => {
-        it("should override the currentSize", async () => {
+        it("should override the currentSize", () => {
             // Arrange
             resizeWindow("large");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args: any = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayoutContext.Provider
-                        value={{
-                            overrideSize: "small",
-                            ssrSize: "large",
-                            mediaSpec: MEDIA_DEFAULT_SPEC,
+            render(
+                <MediaLayoutContext.Provider
+                    value={{
+                        overrideSize: "small",
+                        ssrSize: "large",
+                        mediaSpec: MEDIA_DEFAULT_SPEC,
+                    }}
+                >
+                    <MediaLayout styleSheets={{}}>
+                        {({mediaSize, mediaSpec, styles}: any) => {
+                            capturePropsFn({mediaSize, mediaSpec, styles});
+                            return <View>Hello, world!</View>;
                         }}
-                    >
-                        <MediaLayout styleSheets={{}}>
-                            {({mediaSize, mediaSpec, styles}: any) => {
-                                resolve({mediaSize, mediaSpec, styles});
-                                return <View>Hello, world!</View>;
-                            }}
-                        </MediaLayout>
-                    </MediaLayoutContext.Provider>,
-                );
-            });
+                    </MediaLayout>
+                </MediaLayoutContext.Provider>,
+            );
 
             // Assert
-            expect(args.mediaSize).toEqual("small");
+            expect(capturePropsFn).toHaveBeenCalledWith(
+                expect.objectContaining({mediaSize: "small"}),
+            );
         });
     });
 
@@ -53,51 +54,54 @@ describe("MediaLayoutContext", () => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(true);
         });
 
-        it("should use the default ssrSize on the server", async () => {
+        it("should use the default ssrSize on initial render", () => {
             // Arrange
-            const promise = new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayout styleSheets={{}}>
-                        {({mediaSize, mediaSpec, styles}: any) => {
-                            resolve({mediaSize, mediaSpec, styles});
-                            return <View>Hello, world!</View>;
-                        }}
-                    </MediaLayout>,
-                );
-            });
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args: any = await promise;
+            render(
+                <MediaLayout styleSheets={{}}>
+                    {({mediaSize, mediaSpec, styles}: any) => {
+                        capturePropsFn({mediaSize, mediaSpec, styles});
+                        return <View>Hello, world!</View>;
+                    }}
+                </MediaLayout>,
+            );
 
             // Assert
-            expect(args.mediaSize).toEqual("large");
+            expect(capturePropsFn).toHaveBeenNthCalledWith(
+                1,
+                expect.objectContaining({mediaSize: "large"}),
+            );
         });
 
-        it("should use the provided ssrSize on the server", async () => {
+        it("should use the provided ssrSize on initial render", () => {
             // Arrange
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args: any = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayoutContext.Provider
-                        value={{
-                            overrideSize: undefined,
-                            ssrSize: "small",
-                            mediaSpec: MEDIA_DEFAULT_SPEC,
+            render(
+                <MediaLayoutContext.Provider
+                    value={{
+                        overrideSize: undefined,
+                        ssrSize: "small",
+                        mediaSpec: MEDIA_DEFAULT_SPEC,
+                    }}
+                >
+                    <MediaLayout styleSheets={{}}>
+                        {({mediaSize, mediaSpec, styles}: any) => {
+                            capturePropsFn({mediaSize, mediaSpec, styles});
+                            return <View>Hello, world!</View>;
                         }}
-                    >
-                        <MediaLayout styleSheets={{}}>
-                            {({mediaSize, mediaSpec, styles}: any) => {
-                                resolve({mediaSize, mediaSpec, styles});
-                                return <View>Hello, world!</View>;
-                            }}
-                        </MediaLayout>
-                    </MediaLayoutContext.Provider>,
-                );
-            });
+                    </MediaLayout>
+                </MediaLayoutContext.Provider>,
+            );
 
             // Assert
-            expect(args.mediaSize).toEqual("small");
+            expect(capturePropsFn).toHaveBeenNthCalledWith(
+                1,
+                expect.objectContaining({mediaSize: "small"}),
+            );
         });
     });
 
@@ -105,57 +109,59 @@ describe("MediaLayoutContext", () => {
         it("MEDIA_INTERNAL_SPEC is always large", async () => {
             // Arrange
             resizeWindow("small");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args: any = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayoutContext.Provider
-                        value={{
-                            overrideSize: undefined,
-                            ssrSize: "small",
-                            mediaSpec: MEDIA_INTERNAL_SPEC,
+            render(
+                <MediaLayoutContext.Provider
+                    value={{
+                        overrideSize: undefined,
+                        ssrSize: "small",
+                        mediaSpec: MEDIA_INTERNAL_SPEC,
+                    }}
+                >
+                    <MediaLayout styleSheets={{}}>
+                        {({mediaSize, mediaSpec, styles}: any) => {
+                            capturePropsFn({mediaSize, mediaSpec, styles});
+                            return <View>Hello, world!</View>;
                         }}
-                    >
-                        <MediaLayout styleSheets={{}}>
-                            {({mediaSize, mediaSpec, styles}: any) => {
-                                resolve({mediaSize, mediaSpec, styles});
-                                return <View>Hello, world!</View>;
-                            }}
-                        </MediaLayout>
-                    </MediaLayoutContext.Provider>,
-                );
-            });
+                    </MediaLayout>
+                </MediaLayoutContext.Provider>,
+            );
 
             // Assert
-            expect(args.mediaSize).toEqual("large");
+            expect(capturePropsFn).toHaveBeenLastCalledWith(
+                expect.objectContaining({mediaSize: "large"}),
+            );
         });
 
         it("MEDIA_MODAL_SPEC is not medium", async () => {
             // Arrange
             resizeWindow("medium");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args: any = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayoutContext.Provider
-                        value={{
-                            overrideSize: undefined,
-                            ssrSize: "small",
-                            mediaSpec: MEDIA_MODAL_SPEC,
+            render(
+                <MediaLayoutContext.Provider
+                    value={{
+                        overrideSize: undefined,
+                        ssrSize: "small",
+                        mediaSpec: MEDIA_MODAL_SPEC,
+                    }}
+                >
+                    <MediaLayout styleSheets={{}}>
+                        {({mediaSize, mediaSpec, styles}: any) => {
+                            capturePropsFn({mediaSize, mediaSpec, styles});
+                            return <View>Hello, world!</View>;
                         }}
-                    >
-                        <MediaLayout styleSheets={{}}>
-                            {({mediaSize, mediaSpec, styles}: any) => {
-                                resolve({mediaSize, mediaSpec, styles});
-                                return <View>Hello, world!</View>;
-                            }}
-                        </MediaLayout>
-                    </MediaLayoutContext.Provider>,
-                );
-            });
+                    </MediaLayout>
+                </MediaLayoutContext.Provider>,
+            );
 
             // Assert
-            expect(args.mediaSize).toEqual("large");
+            expect(capturePropsFn).toHaveBeenLastCalledWith(
+                expect.objectContaining({mediaSize: "large"}),
+            );
         });
     });
 });

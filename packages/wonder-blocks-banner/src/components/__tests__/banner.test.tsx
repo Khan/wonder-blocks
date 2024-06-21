@@ -1,7 +1,9 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import customIcon from "./custom-icon-mock.svg";
 
 import Banner from "../banner";
 
@@ -448,5 +450,91 @@ describe("Banner", () => {
             "aria-label",
             "This is a banner aria label.",
         );
+    });
+
+    describe("Icon prop", () => {
+        test("uses icon prop when a Phosphor icon is provided", () => {
+            // Arrange
+
+            // Act
+            render(
+                <Banner
+                    text="test text"
+                    layout="full-width"
+                    testId="wonder-blocks-banner-test-id"
+                    aria-label="This is a banner aria label."
+                    kind="warning"
+                    icon={magnifyingGlass}
+                />,
+            );
+
+            // Assert
+            expect(screen.getByTestId("banner-kind-icon")).toHaveStyle(
+                `mask-image: url(${magnifyingGlass});`,
+            );
+        });
+
+        test("uses icon prop when a custom icon is provided", () => {
+            // Arrange
+
+            // Act
+            render(
+                <Banner
+                    text="test text"
+                    layout="full-width"
+                    testId="wonder-blocks-banner-test-id"
+                    aria-label="This is a banner aria label."
+                    kind="warning"
+                    icon={customIcon}
+                />,
+            );
+
+            // Assert
+            expect(screen.getByTestId("banner-kind-icon")).toHaveStyle(
+                `mask-image: url(${customIcon});`,
+            );
+        });
+        test("uses `kind` as aria-label for provided Phosphor icon", () => {
+            // Arrange
+
+            // Act
+            render(
+                <Banner
+                    text="test text"
+                    layout="full-width"
+                    testId="wonder-blocks-banner-test-id"
+                    aria-label="This is a banner aria label."
+                    kind="warning"
+                    icon={magnifyingGlass}
+                />,
+            );
+
+            // Assert
+            expect(screen.getByTestId("banner-kind-icon")).toHaveAttribute(
+                "aria-label",
+                "warning",
+            );
+        });
+        test("uses `kind` as aria-label for provided custom icon", () => {
+            // Arrange
+
+            // Act
+            render(
+                <Banner
+                    text="test text"
+                    layout="full-width"
+                    testId="wonder-blocks-banner-test-id"
+                    aria-label="This is a banner aria label."
+                    kind="warning"
+                    icon={customIcon}
+                />,
+            );
+
+            // Assert
+            expect(screen.getByTestId("banner-kind-icon")).toHaveAttribute(
+                "aria-label",
+                "warning",
+            );
+        });
     });
 });

@@ -772,4 +772,80 @@ describe("DropdownCore", () => {
             expect(container).toHaveTextContent("3 items");
         });
     });
+
+    describe("onOpenChanged", () => {
+        it("Should be triggered when the down key is pressed and the menu is closed", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+
+            render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    // mock the items (3 options)
+                    items={items}
+                    role="listbox"
+                    open={false}
+                    // mock the opener elements
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                />,
+            );
+            // Act
+            // Press the button
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                keyCode: 40,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                keyCode: 40,
+            });
+
+            // Assert
+            expect(onOpenMock).toHaveBeenCalledTimes(1);
+            expect(onOpenMock).toHaveBeenCalledWith(true);
+        });
+
+        it("Should not be triggered when the dropdown is disabled and the down key is pressed and the menu is closed", async () => {
+            // Arrange
+            const onOpenMock = jest.fn();
+
+            render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    // mock the items (3 options)
+                    items={items}
+                    role="listbox"
+                    open={false}
+                    // mock the opener elements
+                    opener={<button />}
+                    onOpenChanged={onOpenMock}
+                    disabled={true}
+                />,
+            );
+            // Act
+            // Press the button
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                keyCode: 40,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                keyCode: 40,
+            });
+
+            // Assert
+            expect(onOpenMock).toHaveBeenCalledTimes(0);
+        });
+    });
 });
