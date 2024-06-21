@@ -1,6 +1,6 @@
 import * as React from "react";
-import * as renderer from "react-test-renderer";
 
+import {render} from "@testing-library/react";
 import LinkCore from "../components/link-core";
 import Link from "../components/link";
 
@@ -27,14 +27,12 @@ describe("Link", () => {
         ${0}
         ${1}
     `("<Link tabIndex={$tabIndex}>", ({tabIndex}: any) => {
-        const tree = renderer
-            .create(
-                <Link href="#" tabIndex={tabIndex}>
-                    Click me
-                </Link>,
-            )
-            .toJSON();
-        expect(tree).toMatchSnapshot();
+        const {container} = render(
+            <Link href="#" tabIndex={tabIndex}>
+                Click me
+            </Link>,
+        );
+        expect(container).toMatchSnapshot();
     });
 });
 
@@ -56,22 +54,21 @@ describe("LinkCore", () => {
                             test(`kind:${kind} href:${href} light:${String(
                                 light,
                             )} visitable:${String(visitable)} ${state}`, () => {
-                                const tree = renderer
-                                    .create(
-                                        <LinkCore
-                                            href="#"
-                                            inline={inline}
-                                            kind={kind}
-                                            light={light}
-                                            visitable={visitable}
-                                            {...stateProps}
-                                            {...defaultHandlers}
-                                        >
-                                            Click me
-                                        </LinkCore>,
-                                    )
-                                    .toJSON();
-                                expect(tree).toMatchSnapshot();
+                                const {container} = render(
+                                    <LinkCore
+                                        href="#"
+                                        inline={inline}
+                                        kind={kind}
+                                        light={light}
+                                        visitable={visitable}
+                                        {...stateProps}
+                                        {...defaultHandlers}
+                                    >
+                                        Click me
+                                    </LinkCore>,
+                                );
+
+                                expect(container).toMatchSnapshot();
                             });
                         }
                     }

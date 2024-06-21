@@ -1075,57 +1075,269 @@ describe("SingleSelect", () => {
         });
     });
 
-    describe("error state styles", () => {
-        it("should apply the error styles to the dropdown on hover", async () => {
-            // Arrange
-            const userEvent = doRender(
-                <SingleSelect
-                    onChange={onChange}
-                    placeholder="Choose a fruit"
-                    error={true}
-                    testId="singleselect-error-hover"
-                >
-                    {[<OptionItem label="Banana" value="banana" />]}
-                </SingleSelect>,
-            );
-            const dropdown = await screen.findByTestId(
-                "singleselect-error-hover",
-            );
-
-            // Act
-            await userEvent.hover(dropdown);
-
-            // Assert
-            expect(dropdown).toHaveStyle("border-color: #d92916");
-            expect(dropdown).toHaveStyle("border-width: 2px");
-        });
-
-        it("should apply the error styles to the dropdown on mouse down", async () => {
+    describe("a11y > Focusable", () => {
+        it("should be focusable", () => {
             // Arrange
             doRender(
                 <SingleSelect
-                    onChange={onChange}
-                    placeholder="Choose a fruit"
-                    error={true}
-                    testId="singleselect-error-active"
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
                 >
-                    {[<OptionItem label="Banana" value="banana" />]}
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
                 </SingleSelect>,
-            );
-            const dropdown = await screen.findByTestId(
-                "singleselect-error-active",
             );
 
             // Act
-            // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.mouseDown(dropdown);
+            const singleSelect = screen.getByTestId("select-focus-test");
+            singleSelect.focus();
 
             // Assert
-            expect(dropdown).toHaveStyle("border-color: #d92916");
-            expect(dropdown).toHaveStyle("border-width: 2px");
-            expect(dropdown).toHaveStyle(
-                "background-color: rgb(243, 187, 180)",
+            expect(singleSelect).toHaveFocus();
+        });
+
+        it("should be focusable when disabled", () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
             );
+
+            // Act
+            const singleSelect = screen.getByTestId("select-focus-test");
+            singleSelect.focus();
+
+            // Assert
+            expect(singleSelect).toHaveFocus();
+        });
+    });
+
+    describe("Disabled state", () => {
+        it("should set the `aria-disabled` attribute to `true` if `disabled` prop is `true`", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+            const singleSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(singleSelect).toHaveAttribute("aria-disabled", "true");
+        });
+
+        it("should not set the `disabled` attribute if `disabled` prop is `true` since `aria-disabled` is used instead", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+            const singleSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(singleSelect).not.toHaveAttribute("disabled");
+        });
+
+        it("should not be opened if it is disabled and `open` prop is set to true", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    disabled={true}
+                    opened={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Assert
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+        });
+
+        it("should not be able to open the select using the keyboard if there are no items", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                />,
+            );
+
+            // Act
+            // Press the button
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                keyCode: 40,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                keyCode: 40,
+            });
+
+            // Assert
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+        });
+
+        it("should not be able to open the select using the keyboard if all items are disabled", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                >
+                    <OptionItem label="item 1" value="1" disabled={true} />
+                    <OptionItem label="item 2" value="2" disabled={true} />
+                </SingleSelect>,
+            );
+
+            // Act
+            // Press the button
+            const button = await screen.findByRole("button");
+            // NOTE: we need to use fireEvent here because await userEvent doesn't
+            // support keyUp/Down events and we use these handlers to override
+            // the default behavior of the button.
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(button, {
+                keyCode: 40,
+            });
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(button, {
+                keyCode: 40,
+            });
+
+            // Assert
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+        });
+    });
+
+    describe("a11y > Focusable", () => {
+        it("should be focusable", () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const singleSelect = screen.getByTestId("select-focus-test");
+            singleSelect.focus();
+
+            // Assert
+            expect(singleSelect).toHaveFocus();
+        });
+
+        it("should be focusable when disabled", () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const singleSelect = screen.getByTestId("select-focus-test");
+            singleSelect.focus();
+
+            // Assert
+            expect(singleSelect).toHaveFocus();
+        });
+    });
+
+    describe("Disabled state", () => {
+        it("should set the `aria-disabled` attribute to `true` if `disabled` prop is `true`", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+            const singleSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(singleSelect).toHaveAttribute("aria-disabled", "true");
+        });
+
+        it("should not set the `disabled` attribute if `disabled` prop is `true` since `aria-disabled` is used instead", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <SingleSelect
+                    placeholder="Default placeholder"
+                    onChange={jest.fn()}
+                    testId="select-focus-test"
+                    disabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+            const singleSelect = screen.getByTestId("select-focus-test");
+
+            // Assert
+            expect(singleSelect).not.toHaveAttribute("disabled");
         });
     });
 });

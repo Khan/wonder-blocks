@@ -13,70 +13,67 @@ describe("MediaLayout", () => {
     });
 
     describe("mediaSize", () => {
-        it("should be small when viewport width < 768", async () => {
+        it("should be small when viewport width < 768", () => {
             // Arrange
             resizeWindow("small");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args: any = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayout>
-                        {({mediaSize, mediaSpec, styles}: any) => {
-                            resolve({mediaSize, mediaSpec, styles});
-                            return (
-                                <View style={styles.test}>Hello, world!</View>
-                            );
-                        }}
-                    </MediaLayout>,
-                );
-            });
+            render(
+                <MediaLayout>
+                    {({mediaSize, mediaSpec, styles}: any) => {
+                        capturePropsFn({mediaSize, mediaSpec, styles});
+                        return <View style={styles.test}>Hello, world!</View>;
+                    }}
+                </MediaLayout>,
+            );
 
             // Assert
-            expect(args.mediaSize).toEqual("small");
+            expect(capturePropsFn).toHaveBeenCalledWith(
+                expect.objectContaining({mediaSize: "small"}),
+            );
         });
 
-        it("should be medium when viewport 768 < width < 1024", async () => {
+        it("should be medium when viewport 768 < width < 1024", () => {
             // Arrange
             resizeWindow("medium");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args: any = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayout>
-                        {({mediaSize, mediaSpec, styles}: any) => {
-                            resolve({mediaSize, mediaSpec, styles});
-                            return (
-                                <View style={styles.test}>Hello, world!</View>
-                            );
-                        }}
-                    </MediaLayout>,
-                );
-            });
+            render(
+                <MediaLayout>
+                    {({mediaSize, mediaSpec, styles}: any) => {
+                        capturePropsFn({mediaSize, mediaSpec, styles});
+                        return <View style={styles.test}>Hello, world!</View>;
+                    }}
+                </MediaLayout>,
+            );
 
             // Assert
-            expect(args.mediaSize).toEqual("medium");
+            expect(capturePropsFn).toHaveBeenCalledWith(
+                expect.objectContaining({mediaSize: "medium"}),
+            );
         });
 
-        it("should be medium when viewport width > 1024", async () => {
+        it("should be medium when viewport width > 1024", () => {
             // Arrange
             resizeWindow("large");
+            const capturePropsFn = jest.fn();
 
             // Act
-            const args: any = await new Promise((resolve: any, reject: any) => {
-                render(
-                    <MediaLayout>
-                        {({mediaSize, mediaSpec, styles}: any) => {
-                            resolve({mediaSize, mediaSpec, styles});
-                            return (
-                                <View style={styles.test}>Hello, world!</View>
-                            );
-                        }}
-                    </MediaLayout>,
-                );
-            });
+            render(
+                <MediaLayout>
+                    {({mediaSize, mediaSpec, styles}: any) => {
+                        capturePropsFn({mediaSize, mediaSpec, styles});
+                        return <View style={styles.test}>Hello, world!</View>;
+                    }}
+                </MediaLayout>,
+            );
 
             // Assert
-            expect(args.mediaSize).toEqual("large");
+            expect(capturePropsFn).toHaveBeenCalledWith(
+                expect.objectContaining({mediaSize: "large"}),
+            );
         });
     });
 
@@ -86,7 +83,7 @@ describe("MediaLayout", () => {
         ${"medium"}
         ${"large"}
     `("styleSheets - $size", ({size}: {size: MediaSize}) => {
-        it(`should always provide styles from all`, async () => {
+        it(`should always provide styles from all`, () => {
             // Arrange
             const styleSheets = {
                 all: StyleSheet.create({
@@ -117,7 +114,7 @@ describe("MediaLayout", () => {
 
         it(`"mdOrSmaller" should match ${
             size === "large" ? "not" : ""
-        } "${size}"`, async () => {
+        } "${size}"`, () => {
             // Arrange
             const styleSheets = {
                 mdOrSmaller: StyleSheet.create({
@@ -158,7 +155,7 @@ describe("MediaLayout", () => {
 
         it(`"mdOrLarger" should match ${
             size === "small" ? "not" : ""
-        } "${size}"`, async () => {
+        } "${size}"`, () => {
             // Arrange
             const styleSheets = {
                 mdOrLarger: StyleSheet.create({
@@ -197,7 +194,7 @@ describe("MediaLayout", () => {
             expect(style.color).toBe(expectedColor);
         });
 
-        it(`styles should win over "all" styles`, async () => {
+        it(`styles should win over "all" styles`, () => {
             // Arrange
             const styleSheets = {
                 all: StyleSheet.create({
@@ -247,7 +244,7 @@ describe("MediaLayout", () => {
         });
 
         if (size !== "large") {
-            it(`"${size}" styles should win over "mdOrSmaller" styles`, async () => {
+            it(`"${size}" styles should win over "mdOrSmaller" styles`, () => {
                 // Arrange
                 const styleSheets = {
                     mdOrSmaller: StyleSheet.create({
@@ -292,7 +289,7 @@ describe("MediaLayout", () => {
         }
 
         if (size !== "small") {
-            it(`"${size}" styles should win over "mdOrLarger" styles`, async () => {
+            it(`"${size}" styles should win over "mdOrLarger" styles`, () => {
                 // Arrange
                 const styleSheets = {
                     mdOrLarger: StyleSheet.create({
@@ -338,7 +335,7 @@ describe("MediaLayout", () => {
     });
 
     describe("window resizing", () => {
-        it("should update the style when the window gets smaller", async () => {
+        it("should update the style when the window gets smaller", () => {
             // Arrange
             const styleSheets = {
                 large: StyleSheet.create({
@@ -378,7 +375,7 @@ describe("MediaLayout", () => {
             expect(style.color).toBe("orange");
         });
 
-        it("should update the style when the window gets larger", async () => {
+        it("should update the style when the window gets larger", () => {
             // Arrange
             const styleSheets = {
                 large: StyleSheet.create({

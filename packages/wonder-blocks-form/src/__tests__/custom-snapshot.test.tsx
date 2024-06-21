@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as renderer from "react-test-renderer";
+import {render} from "@testing-library/react";
 
 import CheckboxCore from "../components/checkbox-core";
 import RadioCore from "../components/radio-core";
@@ -12,17 +12,16 @@ describe("CheckboxCore", () => {
         checkedStates.forEach((checked: any) => {
             test(`type:${state} checked:${String(checked)}`, () => {
                 const disabled = state === "disabled";
-                const tree = renderer
-                    .create(
-                        <CheckboxCore
-                            checked={checked}
-                            disabled={disabled}
-                            error={state === "error"}
-                            onClick={() => {}}
-                        />,
-                    )
-                    .toJSON();
-                expect(tree).toMatchSnapshot();
+                const {container} = render(
+                    <CheckboxCore
+                        checked={checked}
+                        disabled={disabled}
+                        error={state === "error"}
+                        onClick={() => {}}
+                    />,
+                );
+
+                expect(container).toMatchSnapshot();
             });
         });
     });
@@ -33,17 +32,16 @@ describe("RadioCore", () => {
         checkedStates.forEach((checked: any) => {
             test(`type:${state} checked:${String(checked)}`, () => {
                 const disabled = state === "disabled";
-                const tree = renderer
-                    .create(
-                        <RadioCore
-                            checked={checked}
-                            disabled={disabled}
-                            error={state === "error"}
-                            onClick={() => {}}
-                        />,
-                    )
-                    .toJSON();
-                expect(tree).toMatchSnapshot();
+                const {container} = render(
+                    <RadioCore
+                        checked={checked}
+                        disabled={disabled}
+                        error={state === "error"}
+                        onClick={() => {}}
+                    />,
+                );
+
+                expect(container).toMatchSnapshot();
             });
         });
     });

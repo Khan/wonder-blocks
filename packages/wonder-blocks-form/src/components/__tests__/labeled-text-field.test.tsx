@@ -61,10 +61,13 @@ describe("LabeledTextField", () => {
         render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
 
         // Assert
-        // Since the generated id is unique, we cannot know what it will be.
-        // We only test if the id attribute starts with "uid-" and ends with "-field".
+        // Since the generated id is unique, we cannot know what it will be. We
+        // only test if the id attribute starts with "uid-", then followed by
+        // "text-field-" as the scope assigned to IDProvider.
         const input = await screen.findByRole("textbox");
-        expect(input.getAttribute("id")).toMatch(/uid-.*-field/);
+        expect(input.getAttribute("id")).toMatch(
+            /uid-labeled-text-field.*-field/,
+        );
     });
 
     it("type prop is passed to input", async () => {
@@ -693,6 +696,47 @@ describe("Required LabeledTextField", () => {
         );
         textField.focus();
         await userEvent.type(textField, "a");
+        await userEvent.clear(textField);
+
+        // Act
+        textField.blur();
+
+        // Assert
+        expect(await screen.findByRole("alert")).toHaveTextContent(
+            errorMessage,
+        );
+    });
+
+    test("displays an error even when onValidate is set", async () => {
+        // Arrange
+        const errorMessage = "Empty string!";
+
+        const validate = (value: string): string | null | undefined => {
+            if (value === "") {
+                return errorMessage;
+            }
+        };
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("initial");
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    validate={validate}
+                    onValidate={jest.fn()}
+                    testId="test-labeled-text-field"
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        const textField = await screen.findByTestId(
+            "test-labeled-text-field-field",
+        );
+        textField.focus();
         await userEvent.clear(textField);
 
         // Act

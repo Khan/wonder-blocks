@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-layout
 
+## 2.1.0
+
+### Minor Changes
+
+-   47a758b6: Fix hydration issue in MediaLayout component
+
 ## 2.0.33
 
 ### Patch Changes

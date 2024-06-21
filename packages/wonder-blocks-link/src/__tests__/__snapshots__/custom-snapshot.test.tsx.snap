@@ -1,2180 +1,820 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Link <Link tabIndex={-1}> 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={-1}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="-1"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`Link <Link tabIndex={0}> 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`Link <Link tabIndex={1}> 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={1}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="1"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#1865f2",
-        "outline": "1px solid #1865f2",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#1865f2",
-        "outline": "1px solid #1865f2",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:false hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:false pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        ":visited": {
-          "color": "#8755ee",
-        },
-        "borderRadius": 3,
-        "color": "#1865f2",
-        "outline": "1px solid #1865f2",
-      },
-      ":visited": {
-        "color": "#8755ee",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        ":visited": {
-          "color": "#8755ee",
-        },
-        "borderRadius": 3,
-        "color": "#1865f2",
-        "outline": "1px solid #1865f2",
-      },
-      ":visited": {
-        "color": "#8755ee",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#8755ee",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:true hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#8755ee",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#6645b0",
-      },
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:true pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#6645b0",
-      },
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#ffffff",
-        "outline": "1px solid #ffffff",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#ffffff",
-        "outline": "1px solid #ffffff",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:false hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#b5cefb",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(181, 206, 251);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:false pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#b5cefb",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(181, 206, 251);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        ":visited": {
-          "color": "#fa50ae",
-        },
-        "borderRadius": 3,
-        "color": "#ffffff",
-        "outline": "1px solid #ffffff",
-      },
-      ":visited": {
-        "color": "#fa50ae",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        ":visited": {
-          "color": "#fa50ae",
-        },
-        "borderRadius": 3,
-        "color": "#ffffff",
-        "outline": "1px solid #ffffff",
-      },
-      ":visited": {
-        "color": "#fa50ae",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#fa50ae",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:true hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#fa50ae",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#fc88c8",
-      },
-      "alignItems": "center",
-      "color": "#b5cefb",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(181, 206, 251);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:true pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#fc88c8",
-      },
-      "alignItems": "center",
-      "color": "#b5cefb",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(181, 206, 251);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#1865f2",
-        "outline": "1px solid #1865f2",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#1865f2",
-        "outline": "1px solid #1865f2",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        ":visited": {
-          "color": "#8755ee",
-        },
-        "borderRadius": 3,
-        "color": "#1865f2",
-        "outline": "1px solid #1865f2",
-      },
-      ":visited": {
-        "color": "#8755ee",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        ":visited": {
-          "color": "#8755ee",
-        },
-        "borderRadius": 3,
-        "color": "#1865f2",
-        "outline": "1px solid #1865f2",
-      },
-      ":visited": {
-        "color": "#8755ee",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#8755ee",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#8755ee",
-      },
-      "alignItems": "center",
-      "color": "#1865f2",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(24, 101, 242);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#6645b0",
-      },
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#6645b0",
-      },
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#ffffff",
-        "outline": "1px solid #ffffff",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#ffffff",
-        "outline": "1px solid #ffffff",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#b5cefb",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(181, 206, 251);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#b5cefb",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(181, 206, 251);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        ":visited": {
-          "color": "#fa50ae",
-        },
-        "borderRadius": 3,
-        "color": "#ffffff",
-        "outline": "1px solid #ffffff",
-      },
-      ":visited": {
-        "color": "#fa50ae",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        ":visited": {
-          "color": "#fa50ae",
-        },
-        "borderRadius": 3,
-        "color": "#ffffff",
-        "outline": "1px solid #ffffff",
-      },
-      ":visited": {
-        "color": "#fa50ae",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#fa50ae",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#fa50ae",
-      },
-      "alignItems": "center",
-      "color": "#ffffff",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(255, 255, 255);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#fc88c8",
-      },
-      "alignItems": "center",
-      "color": "#b5cefb",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(181, 206, 251);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":visited": {
-        "color": "#fc88c8",
-      },
-      "alignItems": "center",
-      "color": "#b5cefb",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(181, 206, 251);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#21242c",
-        "outline": "1px solid #1865f2",
-      },
-      "alignItems": "center",
-      "color": "#21242c",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(33, 36, 44);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "rgba(33,36,44,0.64)",
-        "outline": "1px solid #1865f2",
-      },
-      "alignItems": "center",
-      "color": "rgba(33,36,44,0.64)",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgba(33, 36, 44, 0.64);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#21242c",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(33, 36, 44);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "rgba(33,36,44,0.64)",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgba(33, 36, 44, 0.64);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#21242c",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(33, 36, 44);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false focused 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "#21242c",
-        "outline": "1px solid #1865f2",
-      },
-      "alignItems": "center",
-      "color": "#21242c",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(33, 36, 44);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false focused 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      ":focusVisible": {
-        "borderRadius": 3,
-        "color": "rgba(33,36,44,0.64)",
-        "outline": "1px solid #1865f2",
-      },
-      "alignItems": "center",
-      "color": "rgba(33,36,44,0.64)",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "none",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: none; outline: none; align-items: center; color: rgba(33, 36, 44, 0.64);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false hovered 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#21242c",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(33, 36, 44);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false hovered 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "rgba(33,36,44,0.64)",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgba(33, 36, 44, 0.64);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false pressed 1`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#1b50b3",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 2,
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(27, 80, 179);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;
 
 exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false pressed 2`] = `
-<a
-  className=""
-  href="#"
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseEnter={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchCancel={[Function]}
-  onTouchEnd={[Function]}
-  onTouchStart={[Function]}
-  style={
-    {
-      "alignItems": "center",
-      "color": "#21242c",
-      "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
-    }
-  }
-  tabIndex={0}
->
-  Click me
-</a>
+<div>
+  <a
+    class=""
+    href="#"
+    style="cursor: pointer; text-decoration: underline currentcolor solid; outline: none; align-items: center; color: rgb(33, 36, 44);"
+    tabindex="0"
+  >
+    Click me
+  </a>
+</div>
 `;

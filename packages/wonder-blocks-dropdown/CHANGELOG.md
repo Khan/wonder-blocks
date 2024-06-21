@@ -1,5 +1,67 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.3.9
+
+### Patch Changes
+
+-   c8b273f0: Update default/resting border color to fix a color contrast issue
+    -   @khanacademy/wonder-blocks-search-field@2.2.17
+
+## 5.3.8
+
+### Patch Changes
+
+-   cb95286d: - SingleSelect and MultiSelect: Fixing bug where the components can be opened via keyboard when it is disabled because it has 0 items
+    -   SingleSelect: If all option items are disabled, the SingleSelect is disabled, similar to the behaviour of the MultiSelect
+    -   @khanacademy/wonder-blocks-modal@5.1.5
+    -   @khanacademy/wonder-blocks-search-field@2.2.16
+
+## 5.3.7
+
+### Patch Changes
+
+-   f7ff9a77: SingleSelect and MultiSelect: Disable keyboard interactions to open the select if the `disabled` prop is set to `true`. Prevent select from being in an open state if
+    `disabled` prop is `true`.
+
+## 5.3.6
+
+### Patch Changes
+
+-   cc2d8e86: - Update styling for variants of `SingleSelect` and `MultiSelect`. This addresses some styling edge cases around error/disabled states, focus/hover/active states, and light mode. The `not-allowed` cursor is also applied to the disabled state.
+    -   Styling in the `SelectOpener` (`SingleSelect` and `MultiSelect`) is now applied using css pseudo-classes (`:focus-visible`, `:hover`, `:active`) instead of applying styles using js.
+    -   Replaced internal use of `ClickableBehaviour` in `SelectOpener` for normalized keyboard interaction behaviour across browsers.
+-   13f49f85: Allow `SingleSelect` and `MultiSelect` to be focusable when disabled. These components now have `aria-disabled` when the `disabled` prop is `true`. This makes it so screenreaders will continue to communicate that the component is disabled, while allowing focus on the disabled component. Focus styling is also added to the disabled state.
+-   Updated dependencies [47a758b6]
+    -   @khanacademy/wonder-blocks-layout@2.1.0
+    -   @khanacademy/wonder-blocks-cell@3.3.7
+    -   @khanacademy/wonder-blocks-modal@5.1.4
+    -   @khanacademy/wonder-blocks-search-field@2.2.15
+
+## 5.3.5
+
+### Patch Changes
+
+-   Updated dependencies [01fce89e]
+    -   @khanacademy/wonder-blocks-search-field@2.2.14
+
+## 5.3.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-search-field@2.2.13
+
+## 5.3.3
+
+### Patch Changes
+
+-   c3a8fa80: Prevent dropdown item focus when enableTypeAhead is false
+
+## 5.3.2
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-search-field@2.2.12
+
 ## 5.3.1
 
 ### Patch Changes
