@@ -67,13 +67,13 @@ type Props = AriaProps & {
      */
     style?: StyleType;
     /**
-     * Optional test ID for e2e testing.
-     */
-    testId?: string;
-    /**
      * The tab index of the pill (clickable only).
      */
     tabIndex?: number;
+    /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string;
 };
 
 const PillInner = (props: {
@@ -121,8 +121,8 @@ const Pill = React.forwardRef(function Pill(
         role,
         onClick,
         style,
-        testId,
         tabIndex,
+        testId,
         ...ariaProps
     } = props;
 
