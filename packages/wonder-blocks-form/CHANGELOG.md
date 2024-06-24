@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.7.2
+
+### Patch Changes
+
+-   c8b273f0: Update default/resting border color to fix a color contrast issue
+
 ## 4.7.1
 
 ### Patch Changes
