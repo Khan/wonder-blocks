@@ -495,7 +495,7 @@ export const _generateStyles = (
             active: {
                 color: light ? fadedColor : activeColor,
                 ":after": {
-                    height: 1,
+                    height: theme.size.height.tertiaryHover,
                     background: light ? fadedColor : activeColor,
                 },
             },
