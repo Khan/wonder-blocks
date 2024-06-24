@@ -1777,4 +1777,180 @@ describe("MultiSelect", () => {
             expect(multiSelect).not.toHaveAttribute("disabled");
         });
     });
+
+    describe("Ids", () => {
+        it("Should auto-generate an id for the opener if `id` prop is not provided", async () => {
+            // Arrange
+            doRender(
+                <MultiSelect onChange={jest.fn()}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute(
+                "id",
+                expect.stringMatching(/^uid-multi-select-opener-\d+-wb-id$/),
+            );
+        });
+        it("Should use the `id` prop if provided", async () => {
+            // Arrange
+            const id = "test-id";
+            doRender(
+                <MultiSelect onChange={jest.fn()} id={id}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("id", id);
+        });
+        it("Should auto-generate an id for the dropdown if `dropdownId` prop is not provided", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <MultiSelect onChange={jest.fn()}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // Open the dropdown
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(
+                await screen.findByRole("listbox", {hidden: true}),
+            ).toHaveAttribute(
+                "id",
+                expect.stringMatching(/^uid-multi-select-dropdown-\d+-wb-id$/),
+            );
+        });
+        it("Should use the `dropdownId` prop if provided", async () => {
+            // Arrange
+            const dropdownId = "test-id";
+            const {userEvent} = doRender(
+                <MultiSelect onChange={jest.fn()} dropdownId={dropdownId}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // Open the dropdown
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(
+                await screen.findByRole("listbox", {hidden: true}),
+            ).toHaveAttribute("id", dropdownId);
+        });
+    });
+
+    describe("a11y > aria-controls", () => {
+        it("Should set the `aria-controls` attribute on the default opener to the provided dropdownId prop", async () => {
+            // Arrange
+            const dropdownId = "test-id";
+            const {userEvent} = doRender(
+                <MultiSelect onChange={jest.fn()} dropdownId={dropdownId}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+            const dropdown = await screen.findByRole("listbox", {hidden: true});
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-controls", dropdown.id);
+            expect(opener).toHaveAttribute("aria-controls", dropdownId);
+        });
+
+        it("Should set the `aria-controls` attribute on the default opener to the auto-generated dropdownId", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <MultiSelect onChange={jest.fn()}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+            const dropdown = await screen.findByRole("listbox", {hidden: true});
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-controls", dropdown.id);
+            expect(opener).toHaveAttribute(
+                "aria-controls",
+                expect.stringMatching(/^uid-multi-select-dropdown-\d+-wb-id$/),
+            );
+        });
+
+        it("Should set the `aria-controls` attribute on the custom opener to the provided dropdownId prop", async () => {
+            // Arrange
+            const dropdownId = "test-id";
+            const {userEvent} = doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    dropdownId={dropdownId}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+            await userEvent.click(opener);
+            const dropdown = await screen.findByRole("listbox", {hidden: true});
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-controls", dropdown.id);
+            expect(opener).toHaveAttribute("aria-controls", dropdownId);
+        });
+
+        it("Should set the `aria-controls` attribute on the custom opener to the auto-generated dropdownId", async () => {
+            // Arrange
+            const {userEvent} = doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+            await userEvent.click(opener);
+            const dropdown = await screen.findByRole("listbox", {hidden: true});
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-controls", dropdown.id);
+            expect(opener).toHaveAttribute(
+                "aria-controls",
+                expect.stringMatching(/^uid-multi-select-dropdown-\d+-wb-id$/),
+            );
+        });
+    });
 });
