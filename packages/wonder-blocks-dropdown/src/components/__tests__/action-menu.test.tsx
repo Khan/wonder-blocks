@@ -145,29 +145,6 @@ describe("ActionMenu", () => {
         expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
 
-    it("updates the aria-expanded value when opening", async () => {
-        // Arrange
-        render(
-            <ActionMenu
-                menuText={"Action menu!"}
-                testId="openTest"
-                onChange={onChange}
-                selectedValues={[]}
-            >
-                <ActionItem label="Action" onClick={onClick} />
-                <SeparatorItem />
-                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
-            </ActionMenu>,
-        );
-
-        // Act
-        const opener = await screen.findByRole("button");
-        await userEvent.click(opener);
-
-        // Assert
-        expect(opener).toHaveAttribute("aria-expanded", "true");
-    });
-
     it("triggers actions", async () => {
         // Arrange
         const onChange = jest.fn();
@@ -740,6 +717,120 @@ describe("ActionMenu", () => {
                 "aria-controls",
                 expect.stringMatching(/^uid-action-menu-dropdown-\d+-wb-id$/),
             );
+        });
+    });
+
+    describe("a11y > aria-haspopup", () => {
+        it("should have aria-haspopup set on the opener", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"} onChange={onChange}>
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-haspopup", "menu");
+        });
+
+        it("should have aria-haspopup set on the custom opener", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    onChange={onChange}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-haspopup", "menu");
+        });
+    });
+
+    describe("a11y > aria-expanded", () => {
+        it("should have aria-expanded=false when closed", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"} onChange={onChange}>
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "false");
+        });
+
+        it("updates the aria-expanded value when opening", async () => {
+            // Arrange
+            render(
+                <ActionMenu menuText={"Action menu!"} onChange={onChange}>
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "true");
+        });
+
+        it("should have aria-expanded=false when closed and using a custom opener", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    onChange={onChange}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "false");
+        });
+
+        it("updates the aria-expanded value when opening and using a custom opener", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    onChange={onChange}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "true");
         });
     });
 });

@@ -256,6 +256,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                     <DropdownOpener
                         id={uniqueOpenerId}
                         aria-controls={dropdownId}
+                        aria-haspopup="menu"
                         onClick={this.handleClick}
                         disabled={numItems === 0 || disabled}
                         text={menuText}

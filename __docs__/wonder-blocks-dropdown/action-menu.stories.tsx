@@ -375,6 +375,7 @@ export const CustomOpener: StoryComponentType = {
                     hovered && styles.hovered,
                     pressed && styles.pressed,
                 ]}
+                role="button"
             >
                 {text}
             </LabelLarge>

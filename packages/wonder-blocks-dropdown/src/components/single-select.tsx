@@ -428,6 +428,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                         <DropdownOpener
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
+                            aria-haspopup="listbox"
                             onClick={this.handleClick}
                             disabled={isDisabled}
                             ref={this.handleOpenerRef}

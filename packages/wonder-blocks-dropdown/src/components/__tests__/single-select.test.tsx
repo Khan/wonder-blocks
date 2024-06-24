@@ -1526,4 +1526,124 @@ describe("SingleSelect", () => {
             );
         });
     });
+
+    describe("a11y > aria-haspopup", () => {
+        it("should have aria-haspopup set on the opener", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect placeholder="Choose" onChange={jest.fn()}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-haspopup", "listbox");
+        });
+
+        it("should have aria-haspopup set on the custom opener", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Choose"
+                    onChange={jest.fn()}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-haspopup", "listbox");
+        });
+    });
+
+    describe("a11y > aria-expanded", () => {
+        it("should have aria-expanded=false when closed", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect placeholder="Choose" onChange={jest.fn()}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "false");
+        });
+
+        it("updates the aria-expanded value when opening", async () => {
+            // Arrange
+            const userEvent = doRender(
+                <SingleSelect placeholder="Choose" onChange={jest.fn()}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "true");
+        });
+
+        it("should have aria-expanded=false when closed and using a custom opener", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    placeholder="Choose"
+                    onChange={jest.fn()}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "false");
+        });
+
+        it("updates the aria-expanded value when opening and using a custom opener", async () => {
+            // Arrange
+            const userEvent = doRender(
+                <SingleSelect
+                    placeholder="Choose"
+                    onChange={jest.fn()}
+                    opener={() => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByLabelText("Search");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(opener).toHaveAttribute("aria-expanded", "true");
+        });
+    });
 });
