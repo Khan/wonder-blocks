@@ -157,4 +157,60 @@ describe("CellCore", () => {
         // eslint-disable-next-line testing-library/no-node-access
         expect(elem.parentElement).toHaveStyle("align-self: flex-start");
     });
+
+    describe("aria-checked", () => {
+        it("should add aria-checked if aria-checked is set and it is a link", () => {
+            // Arrange
+
+            // Act
+            const {container} = render(
+                <CellCore aria-checked={true} href="#">
+                    <div>cell core content</div>
+                </CellCore>,
+            );
+
+            // Assert
+            // Verify that the root element has the aria-current attribute
+            // eslint-disable-next-line testing-library/no-node-access
+            expect(container.firstChild).toHaveAttribute(
+                "aria-checked",
+                "true",
+            );
+        });
+
+        it("should add aria-checked if aria-checked is set and it has an onClick handler", () => {
+            // Arrange
+
+            // Act
+            const {container} = render(
+                <CellCore aria-checked={true} onClick={jest.fn()}>
+                    <div>cell core content</div>
+                </CellCore>,
+            );
+
+            // Assert
+            // Verify that the root element has the aria-current attribute
+            // eslint-disable-next-line testing-library/no-node-access
+            expect(container.firstChild).toHaveAttribute(
+                "aria-checked",
+                "true",
+            );
+        });
+
+        it("should not add aria-checked if it is not clickable", () => {
+            // Arrange
+
+            // Act
+            const {container} = render(
+                <CellCore aria-checked={true}>
+                    <div>cell core content</div>
+                </CellCore>,
+            );
+
+            // Assert
+            // Verify that the root element has the aria-current attribute
+            // eslint-disable-next-line testing-library/no-node-access
+            expect(container.firstChild).not.toHaveAttribute("aria-checked");
+        });
+    });
 });

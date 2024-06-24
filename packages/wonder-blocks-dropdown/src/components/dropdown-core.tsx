@@ -861,7 +861,7 @@ class DropdownCore extends React.Component<Props, State> {
                 },
                 // Only pass the ref if the item is focusable.
                 ref: focusable ? currentRef : null,
-                role: itemRole,
+                role: populatedProps.role || itemRole,
             });
         });
     }
@@ -879,6 +879,7 @@ class DropdownCore extends React.Component<Props, State> {
         const itemRole = this.getItemRole();
 
         return this.props.items.map((item, index) => {
+            const {populatedProps} = item;
             if (!SeparatorItem.isClassOf(item.component) && item.focusable) {
                 focusCounter += 1;
             }
@@ -887,7 +888,7 @@ class DropdownCore extends React.Component<Props, State> {
 
             return {
                 ...item,
-                role: itemRole,
+                role: populatedProps.role || itemRole,
                 ref: item.focusable
                     ? this.state.itemRefs[focusIndex]
                         ? this.state.itemRefs[focusIndex].ref
