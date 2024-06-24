@@ -8,6 +8,7 @@ export type ClickableRole =
     | "listbox"
     | "menu"
     | "menuitem"
+    | "menuitemcheckbox"
     | "option"
     | "radio"
     | "switch"

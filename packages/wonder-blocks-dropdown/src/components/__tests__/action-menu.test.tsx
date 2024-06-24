@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
@@ -549,6 +550,351 @@ describe("ActionMenu", () => {
             expect(opener).toHaveTextContent("Action menu!");
         });
     });
+
+    describe("With OptionItems", () => {
+        it("Should render option items with `role=menuitemcheckbox`", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                >
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                    <OptionItem
+                        label="Toggle B"
+                        value="toggle-b"
+                        testId="toggle-b"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(
+                await screen.findAllByRole("menuitemcheckbox", {hidden: true}),
+            ).toHaveLength(2);
+        });
+
+        it("Should render non-selected option items with `aria-checked` set to `false`", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={[]}
+                >
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                    <OptionItem
+                        label="Toggle B"
+                        value="toggle-b"
+                        testId="toggle-b"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                "aria-checked",
+                "false",
+            );
+            expect(menuItemCheckboxes.at(1)).toHaveAttribute(
+                "aria-checked",
+                "false",
+            );
+        });
+
+        it("Should render selected option items with `aria-checked` set to `true`", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={["toggle-a"]}
+                >
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                    <OptionItem
+                        label="Toggle B"
+                        value="toggle-b"
+                        testId="toggle-b"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                "aria-checked",
+                "true",
+            );
+        });
+
+        it("Should not use `aria-selected` attribute on selected and non-selected options", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={["toggle-a"]}
+                >
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                    <OptionItem
+                        label="Toggle B"
+                        value="toggle-b"
+                        testId="toggle-b"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            const menuItemCheckboxes = await screen.findAllByRole(
+                "menuitemcheckbox",
+                {
+                    hidden: true,
+                },
+            );
+            expect(menuItemCheckboxes.at(0)).not.toHaveAttribute(
+                "aria-selected",
+            );
+            expect(menuItemCheckboxes.at(1)).not.toHaveAttribute(
+                "aria-selected",
+            );
+        });
+
+        it("Should render action items with `role=menuitem` and option items with `role=menuitemcheckbox`", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                >
+                    <ActionItem label="Action" />
+                    <OptionItem
+                        label="Toggle A"
+                        value="toggle-a"
+                        testId="toggle-a"
+                    />
+                </ActionMenu>,
+            );
+
+            // Act
+            // open the menu
+            const opener = await screen.findByRole("button");
+            await userEvent.click(opener);
+
+            // Assert
+            expect(
+                await screen.findAllByRole("menuitem", {hidden: true}),
+            ).toHaveLength(1);
+            expect(
+                await screen.findAllByRole("menuitemcheckbox", {hidden: true}),
+            ).toHaveLength(1);
+        });
+
+        describe("With Virtualization", () => {
+            it("Should render option items with `role=menuitemcheckbox` when there are many options", async () => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText="Action menu!"
+                        testId="openTest"
+                        onChange={onChange}
+                    >
+                        {[...new Array(126)].map((_, i) => (
+                            <OptionItem
+                                label={`Toggle ${i}`}
+                                key={i}
+                                value={`toggle-${i}`}
+                            />
+                        ))}
+                    </ActionMenu>,
+                );
+
+                // Act
+                // open the menu
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Assert
+                // Note there are less than the option items amount because they are
+                // virtualized
+                expect(
+                    await screen.findAllByRole("menuitemcheckbox", {
+                        hidden: true,
+                    }),
+                ).toHaveLength(14);
+                expect(
+                    screen.queryAllByRole("menuitem", {
+                        hidden: true,
+                    }),
+                ).toHaveLength(0);
+            });
+
+            it("Should render selected option items with `aria-checked=true` when there are many options", async () => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText="Action menu!"
+                        testId="openTest"
+                        onChange={onChange}
+                        selectedValues={["toggle-0"]}
+                    >
+                        {[...new Array(126)].map((_, i) => (
+                            <OptionItem
+                                label={`Toggle ${i}`}
+                                key={i}
+                                value={`toggle-${i}`}
+                            />
+                        ))}
+                    </ActionMenu>,
+                );
+
+                // Act
+                // open the menu
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Assert
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                    "aria-checked",
+                    "true",
+                );
+            });
+
+            it("Should render non-selected option items with `aria-checked=false` when there are many options", async () => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText="Action menu!"
+                        testId="openTest"
+                        onChange={onChange}
+                        selectedValues={[]}
+                    >
+                        {[...new Array(126)].map((_, i) => (
+                            <OptionItem
+                                label={`Toggle ${i}`}
+                                key={i}
+                                value={`toggle-${i}`}
+                            />
+                        ))}
+                    </ActionMenu>,
+                );
+
+                // Act
+                // open the menu
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Assert
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).toHaveAttribute(
+                    "aria-checked",
+                    "false",
+                );
+            });
+
+            it("Should not use `aria-selected` attribute on selected and non-selected options", async () => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText="Action menu!"
+                        testId="openTest"
+                        onChange={onChange}
+                        selectedValues={["toggle-0"]}
+                    >
+                        {[...new Array(126)].map((_, i) => (
+                            <OptionItem
+                                label={`Toggle ${i}`}
+                                key={i}
+                                value={`toggle-${i}`}
+                            />
+                        ))}
+                    </ActionMenu>,
+                );
+
+                // Act
+                // open the menu
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Assert
+                const menuItemCheckboxes = await screen.findAllByRole(
+                    "menuitemcheckbox",
+                    {
+                        hidden: true,
+                    },
+                );
+                expect(menuItemCheckboxes.at(0)).not.toHaveAttribute(
+                    "aria-selected",
+                );
+                expect(menuItemCheckboxes.at(1)).not.toHaveAttribute(
+                    "aria-selected",
+                );
+            });
+        });
+    });
+
     describe("Ids", () => {
         it("Should auto-generate an id for the opener if `id` prop is not provided", async () => {
             // Arrange

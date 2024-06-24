@@ -220,14 +220,18 @@ export default class ActionMenu extends React.Component<Props, State> {
                 };
                 // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'ReactChild | ReactFragment | ReactPortal' is not assignable to parameter of type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             } else if (OptionItem.isClassOf(item)) {
+                const selected = selectedValues
+                    ? selectedValues.includes(value)
+                    : false;
                 return {
                     ...itemObject,
                     populatedProps: {
                         onToggle: this.handleOptionSelected,
-                        selected: selectedValues
-                            ? selectedValues.includes(value)
-                            : false,
+                        selected,
                         variant: "check",
+                        role: "menuitemcheckbox",
+                        "aria-checked": selected,
+                        "aria-selected": undefined,
                     },
                 };
             } else {
