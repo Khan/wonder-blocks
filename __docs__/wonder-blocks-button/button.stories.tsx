@@ -127,7 +127,7 @@ export const Tertiary: StoryComponentType = {
         // eslint-disable-next-line testing-library/prefer-user-event
         await fireEvent.mouseDown(button);
         await expect(innerLabel).toHaveStyle("color: rgb(27, 80, 179)");
-        await expect(computedStyleLabel.height).toBe("1px");
+        await expect(computedStyleLabel.height).toBe("2px");
         await expect(computedStyleLabel.color).toBe("rgb(27, 80, 179)");
     },
 };
