@@ -660,6 +660,9 @@ export const DropdownInModal: StoryComponentType = {
  *
  * **Note:** If you need to use a custom ID for testing the opener, make sure to
  * pass the testId prop inside the opener component/element.
+ *
+ * **Accessibility:** When a custom opener is used, the following attributes are
+ * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
  */
 export const CustomOpener: StoryComponentType = {
     render: Template,

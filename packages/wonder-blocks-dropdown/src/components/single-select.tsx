@@ -1,7 +1,11 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    IDProvider,
+    type AriaProps,
+    type StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
@@ -150,6 +154,13 @@ type Props = AriaProps &
          * top. The items will be filtered by the input.
          */
         isFilterable?: boolean;
+        /**
+         * Unique identifier attached to the listbox dropdown. If used, we need to
+         * guarantee that the ID is unique within everything rendered on a page.
+         * If one is not provided, one is auto-generated. It is used for the
+         * opener's `aria-controls` attribute for screenreaders.
+         */
+        dropdownId?: string;
     }>;
 
 type State = Readonly<{
@@ -366,6 +377,7 @@ export default class SingleSelect extends React.Component<Props, State> {
 
     renderOpener(
         isDisabled: boolean,
+        dropdownId: string,
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> {
@@ -409,32 +421,43 @@ export default class SingleSelect extends React.Component<Props, State> {
             ? getLabel(selectedItem.props)
             : placeholder;
 
-        const dropdownOpener = opener ? (
-            <DropdownOpener
-                onClick={this.handleClick}
-                disabled={isDisabled}
-                ref={this.handleOpenerRef}
-                text={menuText}
-                opened={this.state.open}
-            >
-                {opener}
-            </DropdownOpener>
-        ) : (
-            <SelectOpener
-                {...sharedProps}
-                disabled={isDisabled}
-                id={id}
-                error={error}
-                isPlaceholder={!selectedItem}
-                light={light}
-                onOpenChanged={this.handleOpenChanged}
-                open={this.state.open}
-                ref={this.handleOpenerRef}
-                testId={testId}
-            >
-                {menuText}
-            </SelectOpener>
+        const dropdownOpener = (
+            <IDProvider id={id} scope="single-select-opener">
+                {(uniqueOpenerId) => {
+                    return opener ? (
+                        <DropdownOpener
+                            id={uniqueOpenerId}
+                            aria-controls={dropdownId}
+                            aria-haspopup="listbox"
+                            onClick={this.handleClick}
+                            disabled={isDisabled}
+                            ref={this.handleOpenerRef}
+                            text={menuText}
+                            opened={this.state.open}
+                        >
+                            {opener}
+                        </DropdownOpener>
+                    ) : (
+                        <SelectOpener
+                            {...sharedProps}
+                            aria-controls={dropdownId}
+                            disabled={isDisabled}
+                            id={uniqueOpenerId}
+                            error={error}
+                            isPlaceholder={!selectedItem}
+                            light={light}
+                            onOpenChanged={this.handleOpenChanged}
+                            open={this.state.open}
+                            ref={this.handleOpenerRef}
+                            testId={testId}
+                        >
+                            {menuText}
+                        </SelectOpener>
+                    );
+                }}
+            </IDProvider>
         );
+
         return dropdownOpener;
     }
 
@@ -453,6 +476,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
             disabled,
+            dropdownId,
         } = this.props;
         const {searchText} = this.state;
         const allChildren = (
@@ -465,39 +489,45 @@ export default class SingleSelect extends React.Component<Props, State> {
         ).length;
         const items = this.getMenuItems(allChildren);
         const isDisabled = numEnabledOptions === 0 || disabled;
-        const opener = this.renderOpener(isDisabled);
 
         return (
-            <DropdownCore
-                role="listbox"
-                selectionType="single"
-                alignment={alignment}
-                autoFocus={autoFocus}
-                enableTypeAhead={enableTypeAhead}
-                dropdownStyle={[
-                    isFilterable && filterableDropdownStyle,
-                    selectDropdownStyle,
-                    dropdownStyle,
-                ]}
-                initialFocusedIndex={this.selectedIndex}
-                items={items}
-                light={light}
-                onOpenChanged={this.handleOpenChanged}
-                open={this.state.open}
-                opener={opener}
-                openerElement={this.state.openerElement}
-                style={style}
-                className={className}
-                isFilterable={isFilterable}
-                onSearchTextChanged={
-                    isFilterable ? this.handleSearchTextChanged : undefined
-                }
-                searchText={isFilterable ? searchText : ""}
-                labels={labels}
-                aria-invalid={ariaInvalid}
-                aria-required={ariaRequired}
-                disabled={isDisabled}
-            />
+            <IDProvider id={dropdownId} scope="single-select-dropdown">
+                {(uniqueDropdownId) => (
+                    <DropdownCore
+                        id={uniqueDropdownId}
+                        role="listbox"
+                        selectionType="single"
+                        alignment={alignment}
+                        autoFocus={autoFocus}
+                        enableTypeAhead={enableTypeAhead}
+                        dropdownStyle={[
+                            isFilterable && filterableDropdownStyle,
+                            selectDropdownStyle,
+                            dropdownStyle,
+                        ]}
+                        initialFocusedIndex={this.selectedIndex}
+                        items={items}
+                        light={light}
+                        onOpenChanged={this.handleOpenChanged}
+                        open={this.state.open}
+                        opener={this.renderOpener(isDisabled, uniqueDropdownId)}
+                        openerElement={this.state.openerElement}
+                        style={style}
+                        className={className}
+                        isFilterable={isFilterable}
+                        onSearchTextChanged={
+                            isFilterable
+                                ? this.handleSearchTextChanged
+                                : undefined
+                        }
+                        searchText={isFilterable ? searchText : ""}
+                        labels={labels}
+                        aria-invalid={ariaInvalid}
+                        aria-required={ariaRequired}
+                        disabled={isDisabled}
+                    />
+                )}
+            </IDProvider>
         );
     }
 }

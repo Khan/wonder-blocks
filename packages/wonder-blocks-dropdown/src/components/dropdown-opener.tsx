@@ -39,6 +39,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      * Whether the dropdown is opened.
      */
     opened: boolean;
+    /**
+     * The unique identifier for the opener.
+     */
+    id?: string;
 };
 
 type DefaultProps = {
@@ -58,7 +62,15 @@ class DropdownOpener extends React.Component<Props> {
         eventState: ClickableState,
         clickableChildrenProps: ChildrenProps,
     ): React.ReactElement {
-        const {disabled, testId, text, opened} = this.props;
+        const {
+            disabled,
+            testId,
+            text,
+            opened,
+            "aria-controls": ariaControls,
+            "aria-haspopup": ariaHasPopUp,
+            id,
+        } = this.props;
         const renderedChildren = this.props.children({
             ...eventState,
             text,
@@ -70,6 +82,10 @@ class DropdownOpener extends React.Component<Props> {
         return React.cloneElement(renderedChildren, {
             ...clickableChildrenProps,
             disabled,
+            "aria-controls": ariaControls,
+            id,
+            "aria-expanded": opened ? "true" : "false",
+            "aria-haspopup": ariaHasPopUp,
             onClick: childrenProps.onClick
                 ? (e: React.MouseEvent) => {
                       // This is done to avoid overriding a

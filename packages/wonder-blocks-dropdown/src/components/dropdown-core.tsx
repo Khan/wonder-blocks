@@ -173,6 +173,10 @@ type ExportProps = Readonly<{
      * Whether the dropdown and it's interactions should be disabled.
      */
     disabled?: boolean;
+    /**
+     * Unique identifier attached to the dropdown.
+     */
+    id?: string;
 
     // Optional props with defaults
     /**
@@ -953,6 +957,7 @@ class DropdownCore extends React.Component<Props, State> {
             light,
             openerElement,
             role,
+            id,
         } = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -978,6 +983,7 @@ class DropdownCore extends React.Component<Props, State> {
             >
                 {isFilterable && this.renderSearchField()}
                 <View
+                    id={id}
                     role={role}
                     style={[
                         styles.listboxOrMenu,
