@@ -431,6 +431,31 @@ export const WithCustomAction: StoryComponentType = {
 };
 
 /**
+ * **NOTE: Custom actions are discouraged and should only be used as a last resort!**.
+ *
+ * Another example with a custom action using a primary button.
+ * See **With Custom Action** story for more details.
+ */
+export const WithCustomActionPrimary: StoryComponentType = {
+    render: () => (
+        <Banner
+            text="some text"
+            layout="floating"
+            actions={[
+                {
+                    type: "custom",
+                    node: (
+                        <Button size="small" onClick={() => {}}>
+                            Custom Action
+                        </Button>
+                    ),
+                },
+            ]}
+        />
+    ),
+};
+
+/**
  * Here is an example that includes both a normal action and a custom action.
  */
 export const WithMixedActions: StoryComponentType = {
@@ -449,6 +474,14 @@ export const WithMixedActions: StoryComponentType = {
                     node: (
                         <Button kind="tertiary" size="small" onClick={() => {}}>
                             Custom button
+                        </Button>
+                    ),
+                },
+                {
+                    type: "custom",
+                    node: (
+                        <Button size="small" onClick={() => {}}>
+                            Custom button 2
                         </Button>
                     ),
                 },
