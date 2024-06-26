@@ -204,7 +204,7 @@ const Banner = (props: Props): React.ReactElement => {
             if (action.type === "custom") {
                 return (
                     <View style={styles.action} key={`custom-action-${i}`}>
-                        <View style={styles.customAction}>{action.node}</View>
+                        {action.node}
                     </View>
                 );
             }
@@ -349,16 +349,14 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         marginTop: spacing.xSmall_8,
         marginBottom: spacing.xSmall_8,
+        // Set the height to remove the padding from buttons
+        height: 18,
+        alignItems: "center",
     },
     action: {
         marginLeft: spacing.xSmall_8,
         marginRight: spacing.xSmall_8,
         justifyContent: "center",
-        // Set the height to remove the padding from buttons
-        height: 18,
-    },
-    customAction: {
-        flexShrink: 0,
     },
     link: {
         fontSize: 14,
