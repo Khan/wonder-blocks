@@ -29,6 +29,7 @@ module.exports = {
         "@testing-library/jest-dom/extend-expect",
         "<rootDir>/config/jest/test-setup.js",
         "jest-extended/all",
+        "<rootDir>/config/jest/matchers/to-have-no-a11y-violations.ts",
     ],
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
