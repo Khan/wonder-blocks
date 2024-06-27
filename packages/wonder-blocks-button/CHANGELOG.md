@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.3.4
+
+### Patch Changes
+
+-   04a25ff7: Fix inconsistent underline height in the active state of the tertiary button.
+
 ## 6.3.3
 
 ### Patch Changes

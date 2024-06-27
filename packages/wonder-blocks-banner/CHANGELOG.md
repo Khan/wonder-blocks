@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.1.3
+
+### Patch Changes
+
+-   a44e87b6: Banner: Fix styling issue where buttons are cropped when used as a custom action
+-   Updated dependencies [04a25ff7]
+    -   @khanacademy/wonder-blocks-button@6.3.4
+
 ## 3.1.2
 
 ### Patch Changes
