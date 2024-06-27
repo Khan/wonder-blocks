@@ -70,6 +70,7 @@ export default class PopoverContentCore extends React.Component<Props> {
 
     render(): React.ReactNode {
         const {
+            "aria-label": ariaLabel,
             children,
             closeButtonLight,
             closeButtonLabel,
@@ -87,6 +88,7 @@ export default class PopoverContentCore extends React.Component<Props> {
                     color !== "white" && styles[color],
                     style,
                 ]}
+                aria-label={ariaLabel}
             >
                 {closeButtonVisible && (
                     <CloseButton
