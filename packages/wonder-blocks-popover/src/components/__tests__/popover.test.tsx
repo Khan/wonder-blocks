@@ -583,7 +583,7 @@ describe("Popover", () => {
             ).toBeInTheDocument();
         });
 
-        it("should correctly describe the popover content core's arial label", async () => {
+        it("should correctly describe the popover content core's aria label", async () => {
             // Arrange
             render(
                 <Popover
