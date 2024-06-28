@@ -582,6 +582,41 @@ describe("Popover", () => {
                 }),
             ).toBeInTheDocument();
         });
+
+        it("should correctly describe the popover content core's arial label", async () => {
+            // Arrange
+            render(
+                <Popover
+                    onClose={jest.fn()}
+                    content={
+                        <PopoverContentCore
+                            aria-label="Popover Content Core"
+                        >
+                            <button data-close-button onClick={close}>
+                                Close Popover
+                            </button>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            // Open the popover
+            const openButton = await screen.findByRole("button", {
+                name: "Open default popover",
+            });
+
+            await userEvent.click(openButton);
+            const popover = await screen.findByRole("dialog");
+            const popoverContentCore = popover.children[0];
+
+            // Assert
+            expect(
+                popoverContentCore.getAttribute("aria-label")
+            ).toBe("Popover Content Core");
+        });
     });
 
     describe("keyboard navigation", () => {
