@@ -589,9 +589,7 @@ describe("Popover", () => {
                 <Popover
                     onClose={jest.fn()}
                     content={
-                        <PopoverContentCore
-                            aria-label="Popover Content Core"
-                        >
+                        <PopoverContentCore aria-label="Popover Content Core">
                             <button data-close-button onClick={close}>
                                 Close Popover
                             </button>
@@ -610,12 +608,16 @@ describe("Popover", () => {
 
             await userEvent.click(openButton);
             const popover = await screen.findByRole("dialog");
-            const popoverContentCore = popover.children[0];
+
+            // disabling this check because we need to access the popover content core
+            // in order to verify the aria-label is getting passed correctly
+            // eslint-disable-next-line testing-library/no-node-access
+            const popoverContentCore = popover.firstChild as HTMLElement;
 
             // Assert
-            expect(
-                popoverContentCore.getAttribute("aria-label")
-            ).toBe("Popover Content Core");
+            expect(popoverContentCore.getAttribute("aria-label")).toBe(
+                "Popover Content Core",
+            );
         });
     });
 
