@@ -259,7 +259,7 @@ describe("RespondWith", () => {
             const act = Promise.race([settleableResponse, otherResponse]);
 
             // Assert
-            await expect(act).resolves;
+            await expect(act).toResolve();
         });
 
         it("should settle if the signal is raised", async () => {
@@ -305,7 +305,7 @@ describe("RespondWith", () => {
             const act = Promise.race([settleableResponse, otherResponse]);
 
             // Assert
-            await expect(act).resolves;
+            await expect(act).toResolve();
         });
 
         it("should settle if the signal is raised", async () => {

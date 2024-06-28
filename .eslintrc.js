@@ -198,6 +198,14 @@ module.exports = {
         "testing-library/await-async-utils": "off",
         "testing-library/await-async-query": "off",
 
+        // @khanacademy
+        "@khanacademy/jest-await-async-matchers": [
+            "error",
+            {
+                matchers: ["toHaveNoA11yViolations"],
+            },
+        ],
+
         /**
          * TypeScript rules
          */
