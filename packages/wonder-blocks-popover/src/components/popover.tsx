@@ -255,7 +255,12 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {initialFocusId, placement, showTail, "aria-label": ariaLabel} = this.props;
+        const {
+            initialFocusId,
+            placement,
+            showTail,
+            "aria-label": ariaLabel,
+        } = this.props;
         const {anchorElement} = this.state;
 
         const ariaDescribedby = ariaLabel ? undefined : `${uniqueId}-content`;

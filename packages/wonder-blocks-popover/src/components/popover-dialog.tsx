@@ -78,7 +78,7 @@ export default class PopoverDialog extends React.Component<Props> {
             showTail,
             "aria-describedby": ariaDescribedby,
             "aria-labelledby": ariaLabelledBy,
-            "aria-label": ariaLabel
+            "aria-label": ariaLabel,
         } = this.props;
 
         const contentProps = children.props as any;
