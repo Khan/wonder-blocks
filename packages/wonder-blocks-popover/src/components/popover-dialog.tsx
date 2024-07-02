@@ -78,6 +78,7 @@ export default class PopoverDialog extends React.Component<Props> {
             showTail,
             "aria-describedby": ariaDescribedby,
             "aria-labelledby": ariaLabelledBy,
+            "aria-label": ariaLabel
         } = this.props;
 
         const contentProps = children.props as any;
@@ -90,6 +91,7 @@ export default class PopoverDialog extends React.Component<Props> {
         return (
             <React.Fragment>
                 <View
+                    aria-label={ariaLabel}
                     aria-describedby={ariaDescribedby}
                     aria-labelledby={ariaLabelledBy}
                     id={id}

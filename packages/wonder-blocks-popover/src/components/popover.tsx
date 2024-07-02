@@ -255,8 +255,11 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {initialFocusId, placement, showTail} = this.props;
+        const {initialFocusId, placement, showTail, "aria-label": ariaLabel} = this.props;
         const {anchorElement} = this.state;
+
+        const ariaDescribedby = ariaLabel ? undefined : `${uniqueId}-content`;
+        const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
         return (
             <FocusManager
@@ -270,8 +273,9 @@ export default class Popover extends React.Component<Props, State> {
                     {(props: PopperElementProps) => (
                         <PopoverDialog
                             {...props}
-                            aria-describedby={`${uniqueId}-content`}
-                            aria-labelledby={`${uniqueId}-title`}
+                            aria-label={ariaLabel}
+                            aria-describedby={ariaDescribedby}
+                            aria-labelledby={ariaLabelledBy}
                             id={uniqueId}
                             onUpdate={(placement) => this.setState({placement})}
                             showTail={showTail}
