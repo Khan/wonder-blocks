@@ -611,9 +611,10 @@ describe("Popover", () => {
             const popover = await screen.findByRole("dialog");
 
             // Assert
-            expect(popover.getAttribute("aria-label")).toBe(
-                "Popover Aria Label",
-            );
+
+            expect(popover).toHaveAttribute("aria-label", "Popover Aria Label");
+            expect(popover).not.toHaveAttribute("aria-labelledby");
+            expect(popover).not.toHaveAttribute("aria-describedby");
         });
 
         it("should correctly describe the popover content core's aria label", async () => {
