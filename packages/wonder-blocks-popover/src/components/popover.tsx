@@ -81,6 +81,8 @@ type Props = AriaProps &
          * popover content will be used.
          */
         initialFocusId?: string;
+
+        disableFocus?: boolean;
         /**
          * Renders the popover when true, renders nothing when false.
          *
@@ -262,6 +264,7 @@ export default class Popover extends React.Component<Props, State> {
             <FocusManager
                 anchorElement={anchorElement}
                 initialFocusId={initialFocusId}
+                disableFocus={true}
             >
                 <TooltipPopper
                     anchorElement={anchorElement}

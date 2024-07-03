@@ -17,6 +17,7 @@ type Props = {
      * When not set, the first tabbable element within the dialog will be used.
      */
     initialFocusId?: string;
+    disableFocus?: boolean;
 };
 
 /**
@@ -48,7 +49,7 @@ export default class FocusManager extends React.Component<Props> {
     rootNode: HTMLElement | null | undefined;
 
     componentDidMount() {
-        this.addEventListeners();
+        if(!this.props.disableFocus) this.addEventListeners();
     }
 
     componentDidUpdate() {
