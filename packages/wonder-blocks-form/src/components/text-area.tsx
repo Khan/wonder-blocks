@@ -32,18 +32,20 @@ export default function TextArea(props: TextAreaProps) {
         onChange(event.target.value);
     };
     return (
-        <StyledTextArea
-            style={[
-                styles.textarea,
-                styles.default,
-                typographyStyles.LabelMedium,
-                disabled && styles.disabled,
-            ]}
-            value={value}
-            onChange={handleChange}
-            placeholder={placeholder}
-            disabled={disabled}
-        />
+        <div>
+            <StyledTextArea
+                style={[
+                    styles.textarea,
+                    styles.default,
+                    typographyStyles.LabelMedium,
+                    disabled && styles.disabled,
+                ]}
+                value={value}
+                onChange={handleChange}
+                placeholder={placeholder}
+                disabled={disabled}
+            />
+        </div>
     );
 }
 
