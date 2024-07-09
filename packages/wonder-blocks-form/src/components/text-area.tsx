@@ -20,6 +20,10 @@ type TextAreaProps = {
      */
     id?: string;
     /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string;
+    /**
      * Provide hints or examples of what to enter.
      */
     placeholder?: string;
@@ -32,7 +36,7 @@ type TextAreaProps = {
 const StyledTextArea = addStyle("textarea");
 
 export default function TextArea(props: TextAreaProps) {
-    const {onChange, value, placeholder, disabled, id} = props;
+    const {onChange, value, placeholder, disabled, id, testId} = props;
 
     const ids = useUniqueIdWithMock("text-area");
     const uniqueId = id ?? ids.get("id");
@@ -44,6 +48,7 @@ export default function TextArea(props: TextAreaProps) {
         <div>
             <StyledTextArea
                 id={uniqueId}
+                data-testid={testId}
                 style={[
                     styles.textarea,
                     styles.default,
