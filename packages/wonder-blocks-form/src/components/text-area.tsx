@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, useUniqueIdWithMock} from "@khanacademy/wonder-blocks-core";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
@@ -15,6 +15,11 @@ type TextAreaProps = {
      */
     onChange: (newValue: string) => unknown;
     /**
+     * An optional unique identifier for the TextArea.
+     * If no id is specified, a unique id will be auto-generated.
+     */
+    id?: string;
+    /**
      * Provide hints or examples of what to enter.
      */
     placeholder?: string;
@@ -27,13 +32,18 @@ type TextAreaProps = {
 const StyledTextArea = addStyle("textarea");
 
 export default function TextArea(props: TextAreaProps) {
-    const {onChange, value, placeholder, disabled} = props;
+    const {onChange, value, placeholder, disabled, id} = props;
+
+    const ids = useUniqueIdWithMock("text-area");
+    const uniqueId = id ?? ids.get("id");
+
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         onChange(event.target.value);
     };
     return (
         <div>
             <StyledTextArea
+                id={uniqueId}
                 style={[
                     styles.textarea,
                     styles.default,
