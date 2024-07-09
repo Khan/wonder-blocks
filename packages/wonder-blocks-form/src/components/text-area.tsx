@@ -1,7 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {addStyle, useUniqueIdWithMock} from "@khanacademy/wonder-blocks-core";
+import {
+    StyleType,
+    addStyle,
+    useUniqueIdWithMock,
+} from "@khanacademy/wonder-blocks-core";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
@@ -24,6 +28,10 @@ type TextAreaProps = {
      */
     testId?: string;
     /**
+     * Custom styles for the text area.
+     */
+    style?: StyleType;
+    /**
      * Provide hints or examples of what to enter.
      */
     placeholder?: string;
@@ -36,7 +44,7 @@ type TextAreaProps = {
 const StyledTextArea = addStyle("textarea");
 
 export default function TextArea(props: TextAreaProps) {
-    const {onChange, value, placeholder, disabled, id, testId} = props;
+    const {onChange, value, placeholder, disabled, id, testId, style} = props;
 
     const ids = useUniqueIdWithMock("text-area");
     const uniqueId = id ?? ids.get("id");
@@ -54,6 +62,7 @@ export default function TextArea(props: TextAreaProps) {
                     styles.default,
                     typographyStyles.LabelMedium,
                     disabled && styles.disabled,
+                    style,
                 ]}
                 value={value}
                 onChange={handleChange}
