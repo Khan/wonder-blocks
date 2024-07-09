@@ -1,6 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 type TextAreaProps = {
     /**
@@ -26,7 +29,11 @@ export default function TextArea(props: TextAreaProps) {
     };
     return (
         <StyledTextArea
-            style={[styles.textarea]}
+            style={[
+                styles.textarea,
+                styles.default,
+                typographyStyles.LabelMedium,
+            ]}
             value={value}
             onChange={handleChange}
             placeholder={placeholder}
@@ -35,5 +42,19 @@ export default function TextArea(props: TextAreaProps) {
 }
 
 const styles = StyleSheet.create({
-    textarea: {},
+    textarea: {
+        width: "100%",
+        borderRadius: border.radius.medium_4,
+        boxSizing: "border-box",
+        padding: `10px ${spacing.medium_16}px`, // TODO(bea): token for 10px?
+        minHeight: "1em",
+    },
+    default: {
+        background: color.white,
+        border: `1px solid ${color.offBlack50}`,
+        color: color.offBlack,
+        "::placeholder": {
+            color: color.offBlack64,
+        },
+    },
 });
