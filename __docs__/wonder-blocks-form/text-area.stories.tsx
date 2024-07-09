@@ -36,3 +36,23 @@ export const Placeholder: StoryComponentType = {
         placeholder: "Placeholder text",
     },
 };
+
+export const Disabled: StoryComponentType = {
+    args: {
+        disabled: true,
+    },
+};
+
+export const DisabledWithPlaceholder: StoryComponentType = {
+    args: {
+        placeholder: "Placeholder",
+        disabled: true,
+    },
+};
+
+export const DisabledWithValue: StoryComponentType = {
+    args: {
+        value: "Text",
+        disabled: true,
+    },
+};

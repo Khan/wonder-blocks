@@ -18,12 +18,16 @@ type TextAreaProps = {
      * Provide hints or examples of what to enter.
      */
     placeholder?: string;
+    /**
+     * Whether the text area should be disabled.
+     */
+    disabled?: boolean;
 };
 
 const StyledTextArea = addStyle("textarea");
 
 export default function TextArea(props: TextAreaProps) {
-    const {onChange, value, placeholder} = props;
+    const {onChange, value, placeholder, disabled} = props;
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         onChange(event.target.value);
     };
@@ -33,10 +37,12 @@ export default function TextArea(props: TextAreaProps) {
                 styles.textarea,
                 styles.default,
                 typographyStyles.LabelMedium,
+                disabled && styles.disabled,
             ]}
             value={value}
             onChange={handleChange}
             placeholder={placeholder}
+            disabled={disabled}
         />
     );
 }
@@ -56,5 +62,14 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: color.offBlack64,
         },
+    },
+    disabled: {
+        background: color.offWhite,
+        border: `1px solid ${color.offBlack16}`,
+        color: color.offBlack64,
+        "::placeholder": {
+            color: color.offBlack64,
+        },
+        cursor: "not-allowed",
     },
 });
