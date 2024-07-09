@@ -30,3 +30,9 @@ export const Default: StoryComponentType = {
         onChange: () => {},
     },
 };
+
+export const Placeholder: StoryComponentType = {
+    args: {
+        placeholder: "Placeholder text",
+    },
+};

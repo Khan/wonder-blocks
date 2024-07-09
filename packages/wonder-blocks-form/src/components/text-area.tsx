@@ -11,12 +11,16 @@ type TextAreaProps = {
      * Called when the value has changed.
      */
     onChange: (newValue: string) => unknown;
+    /**
+     * Provide hints or examples of what to enter.
+     */
+    placeholder?: string;
 };
 
 const StyledTextArea = addStyle("textarea");
 
 export default function TextArea(props: TextAreaProps) {
-    const {onChange, value} = props;
+    const {onChange, value, placeholder} = props;
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         onChange(event.target.value);
     };
@@ -25,6 +29,7 @@ export default function TextArea(props: TextAreaProps) {
             style={[styles.textarea]}
             value={value}
             onChange={handleChange}
+            placeholder={placeholder}
         />
     );
 }
