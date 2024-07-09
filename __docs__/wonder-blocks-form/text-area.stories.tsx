@@ -31,6 +31,13 @@ export const Default: StoryComponentType = {
     },
 };
 
+export const WithValue: StoryComponentType = {
+    args: {
+        value: "Text",
+        onChange: () => {},
+    },
+};
+
 export const Placeholder: StoryComponentType = {
     args: {
         placeholder: "Placeholder text",
