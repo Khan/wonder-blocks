@@ -52,6 +52,10 @@ type TextAreaProps = {
      * the form data.
      */
     name?: string;
+    /**
+     * CSS classes for the textarea element. It is recommended that the style prop is used instead where possible
+     */
+    className?: string;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -68,6 +72,7 @@ export default function TextArea(props: TextAreaProps) {
         readOnly,
         autoComplete,
         name,
+        className,
     } = props;
 
     const ids = useUniqueIdWithMock("text-area");
@@ -81,6 +86,7 @@ export default function TextArea(props: TextAreaProps) {
             <StyledTextArea
                 id={uniqueId}
                 data-testid={testId}
+                className={className}
                 style={[
                     styles.textarea,
                     styles.default,

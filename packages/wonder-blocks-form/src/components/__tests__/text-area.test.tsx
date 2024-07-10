@@ -132,6 +132,25 @@ describe("TextArea", () => {
             const textArea = await screen.findByRole("textbox");
             expect(textArea).toHaveAttribute("name", name);
         });
+
+        it("should set the class when the className prop is provided", async () => {
+            // Arrange
+            const className = "Test class name";
+            render(
+                <TextArea
+                    value="Text"
+                    onChange={() => {}}
+                    className={className}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("class", className);
+        });
     });
 
     it("should use the value prop", async () => {
