@@ -1,5 +1,6 @@
 import * as css from "./css";
 import * as data from "./data";
+import * as errorBoundary from "./error-boundary";
 import * as portal from "./portal";
 import * as router from "./router";
 import * as ssr from "./ssr";
@@ -16,6 +17,10 @@ import type {TestHarnessConfigs} from "../types";
  * The default adapters provided by Wonder Blocks.
  */
 export const DefaultAdapters = {
+    // The error boundary is as close to the component under test as possible,
+    // so that other adapters don't soil it with their own errors, if that
+    // should happen.
+    boundary: errorBoundary.adapter,
     css: css.adapter,
     data: data.adapter,
     portal: portal.adapter,
@@ -27,6 +32,7 @@ export const DefaultAdapters = {
  * The default configurations to use with the `DefaultAdapters`.
  */
 export const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {
+    boundary: errorBoundary.defaultConfig,
     css: css.defaultConfig,
     data: data.defaultConfig,
     portal: portal.defaultConfig,
