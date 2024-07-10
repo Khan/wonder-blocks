@@ -33,14 +33,14 @@ type RenderHookStaticResult<Result> = {
  * client-side render.
  */
 export const renderHookStatic = <Result, Props>(
-    render: (initialProps: Props) => Result,
+    render: (initialProps?: Props) => Result,
     {wrapper, initialProps}: Options<Props> = {},
 ): RenderHookStaticResult<Result> => {
     let result: Result;
     function TestComponent({
         renderCallbackProps,
     }: {
-        renderCallbackProps: Props;
+        renderCallbackProps?: Props;
     }) {
         result = render(renderCallbackProps);
         return null;
@@ -55,5 +55,6 @@ export const renderHookStatic = <Result, Props>(
 
     ReactDOMServer.renderToString(componentWithWrapper);
 
+    // @ts-expect-error Variable 'result' is used before being assigned.ts(2454)
     return {result: {current: result}};
 };
