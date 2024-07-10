@@ -99,6 +99,24 @@ describe("TextArea", () => {
             const textArea = await screen.findByRole("textbox");
             expect(textArea).toHaveAttribute("readonly");
         });
+
+        it("should set the autocomplete attribute when the autoComplete prop is provided", async () => {
+            // Arrange
+            render(
+                <TextArea
+                    value="Text"
+                    onChange={() => {}}
+                    autoComplete="name"
+                />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("autocomplete", "name");
+        });
     });
 
     it("should use the value prop", async () => {

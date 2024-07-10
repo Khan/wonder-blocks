@@ -108,6 +108,12 @@ export const ReadOnly: StoryComponentType = {
     },
 };
 
+export const AutoComplete: StoryComponentType = {
+    args: {
+        autoComplete: "email",
+    },
+};
+
 export const CustomStyle: StoryComponentType = {
     args: {
         style: styles.customField,
