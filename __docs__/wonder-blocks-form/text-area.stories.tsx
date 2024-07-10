@@ -126,6 +126,22 @@ export const AutoFocus: StoryComponentType = {
     },
 };
 
+export const SpellCheckEnabled: StoryComponentType = {
+    args: {
+        spellCheck: true,
+        value: "This exampull will be checkd fur spellung when you try to edit it.",
+        autoFocus: true, // enable autoFocus so we see spell check errors right away
+    },
+};
+
+export const SpellCheckDisabled: StoryComponentType = {
+    args: {
+        spellCheck: false,
+        value: "This exampull will nut be checkd fur spellung when you try to edit it.",
+        autoFocus: true, // enable autoFocus so we see spell check errors right away
+    },
+};
+
 export const CustomStyle: StoryComponentType = {
     args: {
         style: styles.customField,

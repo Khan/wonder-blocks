@@ -67,6 +67,15 @@ type TextAreaProps = {
      * The number of rows can change if the resize control is used by the user.
      */
     rows?: number;
+    /**
+     * Determines if the textarea should be checked for spelling by the browser/OS.
+     * By default, it is enabled. It will be checked for spelling when you try
+     * to edit it (ie. once the textarea is focused). For more details, see the
+     * [spellcheck attribute MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#spellcheck).
+     * **Note**: Consider disabling `spellCheck` for
+     *  sensitive information (see [Security and Privacy concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck#security_and_privacy_concerns) for more details)
+     */
+    spellCheck?: boolean;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -86,6 +95,7 @@ export default function TextArea(props: TextAreaProps) {
         className,
         autoFocus,
         rows,
+        spellCheck,
     } = props;
 
     const ids = useUniqueIdWithMock("text-area");
@@ -116,6 +126,7 @@ export default function TextArea(props: TextAreaProps) {
                 name={name}
                 autoFocus={autoFocus}
                 rows={rows}
+                spellCheck={spellCheck}
             />
         </div>
     );

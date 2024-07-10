@@ -166,6 +166,38 @@ describe("TextArea", () => {
             const textArea = await screen.findByRole("textbox");
             expect(textArea).toHaveAttribute("rows", `${rows}`);
         });
+
+        it("should set the spellcheck attribute when spellCheck prop is set to true", async () => {
+            // Arrange
+            render(
+                <TextArea value="Text" onChange={() => {}} spellCheck={true} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("spellcheck", "true");
+        });
+
+        it("should set the spellcheck attribute when spellCheck prop is set to false", async () => {
+            // Arrange
+            render(
+                <TextArea
+                    value="Text"
+                    onChange={() => {}}
+                    spellCheck={false}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("spellcheck", "false");
+        });
     });
 
     it("should use the value prop", async () => {
