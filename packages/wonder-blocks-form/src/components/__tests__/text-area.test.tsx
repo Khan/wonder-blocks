@@ -85,6 +85,20 @@ describe("TextArea", () => {
             const textArea = await screen.findByRole("textbox");
             expect(textArea).toBeDisabled();
         });
+
+        it("should set the readonly attribute when the readOnly prop is provided", async () => {
+            // Arrange
+            render(
+                <TextArea value="Text" onChange={() => {}} readOnly={true} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("readonly");
+        });
     });
 
     it("should use the value prop", async () => {

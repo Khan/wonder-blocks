@@ -85,6 +85,13 @@ export const DisabledWithValue: StoryComponentType = {
     },
 };
 
+export const ReadOnly: StoryComponentType = {
+    args: {
+        value: "Text",
+        readOnly: true,
+    },
+};
+
 export const CustomStyle: StoryComponentType = {
     args: {
         style: styles.customField,

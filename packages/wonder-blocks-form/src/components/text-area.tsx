@@ -39,12 +39,25 @@ type TextAreaProps = {
      * Whether the text area should be disabled.
      */
     disabled?: boolean;
+    /**
+     * Specifies if the text area is read-only.
+     */
+    readOnly?: boolean;
 };
 
 const StyledTextArea = addStyle("textarea");
 
 export default function TextArea(props: TextAreaProps) {
-    const {onChange, value, placeholder, disabled, id, testId, style} = props;
+    const {
+        onChange,
+        value,
+        placeholder,
+        disabled,
+        id,
+        testId,
+        style,
+        readOnly,
+    } = props;
 
     const ids = useUniqueIdWithMock("text-area");
     const uniqueId = id ?? ids.get("id");
@@ -68,6 +81,7 @@ export default function TextArea(props: TextAreaProps) {
                 onChange={handleChange}
                 placeholder={placeholder}
                 disabled={disabled}
+                readOnly={readOnly}
             />
         </div>
     );
