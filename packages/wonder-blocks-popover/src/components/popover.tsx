@@ -81,7 +81,11 @@ type Props = AriaProps &
          * popover content will be used.
          */
         initialFocusId?: string;
-
+        /**
+         * Disables focus when true
+         * Used when the learner should be able to interact
+         * with the entire page including popover content simultaneously
+         */
         disableFocus?: boolean;
         /**
          * Renders the popover when true, renders nothing when false.
