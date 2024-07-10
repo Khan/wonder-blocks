@@ -3,7 +3,7 @@ import {
     renderHook as clientRenderHook,
     act,
 } from "@testing-library/react-hooks";
-import {renderHook as serverRenderHook} from "@testing-library/react-hooks/server";
+import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {Status} from "../../util/status";
@@ -65,7 +65,7 @@ describe("#useHydratableEffect", () => {
             const fakeHandler = jest.fn();
 
             // Act
-            serverRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            renderHookStatic(() => useHydratableEffect("ID", fakeHandler));
 
             // Assert
             expect(useRequestInterceptSpy).toHaveBeenCalledWith(
@@ -91,7 +91,7 @@ describe("#useHydratableEffect", () => {
                 const fakeHandler = jest.fn();
 
                 // Act
-                serverRenderHook(() =>
+                renderHookStatic(() =>
                     useHydratableEffect("ID", fakeHandler, {
                         clientBehavior,
                     }),
@@ -123,7 +123,7 @@ describe("#useHydratableEffect", () => {
                 );
 
                 // Act
-                serverRenderHook(() =>
+                renderHookStatic(() =>
                     useHydratableEffect("ID", fakeHandler, {scope}),
                 );
 
@@ -141,7 +141,7 @@ describe("#useHydratableEffect", () => {
             const fakeHandler = jest.fn().mockResolvedValue("data");
 
             // Act
-            serverRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            renderHookStatic(() => useHydratableEffect("ID", fakeHandler));
 
             // Assert
             expect(fakeHandler).not.toHaveBeenCalled();
@@ -155,7 +155,7 @@ describe("#useHydratableEffect", () => {
                 // Act
                 const {
                     result: {current: result},
-                } = serverRenderHook(() =>
+                } = renderHookStatic(() =>
                     useHydratableEffect("ID", fakeHandler),
                 );
 
@@ -176,7 +176,7 @@ describe("#useHydratableEffect", () => {
                 // Act
                 const {
                     result: {current: result},
-                } = serverRenderHook(() =>
+                } = renderHookStatic(() =>
                     useHydratableEffect("ID", fakeHandler),
                 );
 

@@ -3,7 +3,7 @@ import {
     renderHook as clientRenderHook,
     act,
 } from "@testing-library/react-hooks";
-import {renderHook as serverRenderHook} from "@testing-library/react-hooks/server";
+import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 import {render, act as reactAct} from "@testing-library/react";
 import {values} from "@khanacademy/wonder-stuff-core";
 
@@ -66,7 +66,7 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn();
 
             // Act
-            serverRenderHook(() => useCachedEffect("ID", fakeHandler));
+            renderHookStatic(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
             expect(useRequestInterceptSpy).toHaveBeenCalledWith(
@@ -89,7 +89,7 @@ describe("#useCachedEffect", () => {
                 );
 
                 // Act
-                serverRenderHook(() =>
+                renderHookStatic(() =>
                     useCachedEffect("ID", fakeHandler, {scope}),
                 );
 
@@ -108,7 +108,7 @@ describe("#useCachedEffect", () => {
                 const fakeHandler = jest.fn().mockResolvedValue("data");
 
                 // Act
-                serverRenderHook(() =>
+                renderHookStatic(() =>
                     useCachedEffect("ID", fakeHandler, {fetchPolicy}),
                 );
 
@@ -129,7 +129,7 @@ describe("#useCachedEffect", () => {
                         result: {
                             current: [result],
                         },
-                    } = serverRenderHook(() =>
+                    } = renderHookStatic(() =>
                         useCachedEffect("ID", fakeHandler, {fetchPolicy}),
                     );
 
@@ -149,7 +149,7 @@ describe("#useCachedEffect", () => {
                     result: {
                         current: [result],
                     },
-                } = serverRenderHook(() =>
+                } = renderHookStatic(() =>
                     useCachedEffect("ID", fakeHandler, {
                         fetchPolicy: FetchPolicy.CacheOnly,
                     }),
@@ -177,7 +177,7 @@ describe("#useCachedEffect", () => {
                         result: {
                             current: [result],
                         },
-                    } = serverRenderHook(() =>
+                    } = renderHookStatic(() =>
                         useCachedEffect("ID", fakeHandler, {fetchPolicy}),
                     );
 
@@ -201,7 +201,7 @@ describe("#useCachedEffect", () => {
                     result: {
                         current: [result],
                     },
-                } = serverRenderHook(() =>
+                } = renderHookStatic(() =>
                     useCachedEffect("ID", fakeHandler, {
                         fetchPolicy: FetchPolicy.NetworkOnly,
                     }),
