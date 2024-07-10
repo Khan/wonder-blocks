@@ -38,6 +38,16 @@ const styles = StyleSheet.create({
     },
 });
 
+const ControlledTextArea = (args: any) => {
+    const [value, setValue] = React.useState(args.value || "");
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    return <TextArea {...args} value={value} onChange={handleChange} />;
+};
+
 export const Default: StoryComponentType = {
     args: {
         value: "",
@@ -45,11 +55,16 @@ export const Default: StoryComponentType = {
     },
 };
 
+export const Controlled: StoryComponentType = {
+    render: ControlledTextArea,
+};
+
 export const WithValue: StoryComponentType = {
     args: {
         value: "Text",
         onChange: () => {},
     },
+    render: ControlledTextArea,
 };
 
 export const WithLongValue: StoryComponentType = {
@@ -57,6 +72,7 @@ export const WithLongValue: StoryComponentType = {
         value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         onChange: () => {},
     },
+    render: ControlledTextArea,
 };
 
 export const Placeholder: StoryComponentType = {
