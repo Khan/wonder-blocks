@@ -314,5 +314,109 @@ describe("TextArea", () => {
                 expect(textArea).toHaveFocus();
             });
         });
+
+        describe("ARIA", () => {
+            it("should set the aria-label attribute when provided", async () => {
+                // Arrange
+                const ariaLabel = "Test Aria Label";
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        aria-label={ariaLabel}
+                    />,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-label", ariaLabel);
+            });
+
+            it("should set the aria-labelledby attribute when provided", async () => {
+                // Arrange
+                const ariaLabelledBy = "test-label-id";
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        aria-labelledby={ariaLabelledBy}
+                    />,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute(
+                    "aria-labelledby",
+                    ariaLabelledBy,
+                );
+            });
+
+            it("should set the aria-describedby attribute when provided", async () => {
+                // Arrange
+                const ariaDescribedBy = "test-label-id";
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        aria-describedby={ariaDescribedBy}
+                    />,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute(
+                    "aria-describedby",
+                    ariaDescribedBy,
+                );
+            });
+
+            it("should set the aria-invalid attribute when provided", async () => {
+                // Arrange
+                const ariaInvalid = true;
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        aria-invalid={ariaInvalid}
+                    />,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute(
+                    "aria-invalid",
+                    `${ariaInvalid}`,
+                );
+            });
+
+            it("should set the aria-details attribute when provided", async () => {
+                // Arrange
+                const ariaDetails = "details-id";
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        aria-details={ariaDetails}
+                    />,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute(
+                    "aria-details",
+                    `${ariaDetails}`,
+                );
+            });
+        });
     });
 });

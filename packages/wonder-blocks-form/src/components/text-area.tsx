@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {
+    AriaProps,
     StyleType,
     addStyle,
     useUniqueIdWithMock,
@@ -9,7 +10,7 @@ import {
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
-type TextAreaProps = {
+type TextAreaProps = AriaProps & {
     /**
      * The text area value.
      */
@@ -113,6 +114,8 @@ export default function TextArea(props: TextAreaProps) {
         wrap,
         minLength,
         maxLength,
+        // Should only include aria related props
+        ...otherProps
     } = props;
 
     const ids = useUniqueIdWithMock("text-area");
@@ -147,6 +150,7 @@ export default function TextArea(props: TextAreaProps) {
                 wrap={wrap}
                 minLength={minLength}
                 maxLength={maxLength}
+                {...otherProps}
             />
         </div>
     );
