@@ -259,28 +259,20 @@ export default class Popover extends React.Component<Props, State> {
         const {anchorElement} = this.state;
 
         return (
-            <FocusManager
-                anchorElement={anchorElement}
-                initialFocusId={initialFocusId}
-            >
-                <TooltipPopper
-                    anchorElement={anchorElement}
-                    placement={placement}
-                >
-                    {(props: PopperElementProps) => (
-                        <PopoverDialog
-                            {...props}
-                            aria-describedby={`${uniqueId}-content`}
-                            aria-labelledby={`${uniqueId}-title`}
-                            id={uniqueId}
-                            onUpdate={(placement) => this.setState({placement})}
-                            showTail={showTail}
-                        >
-                            {this.renderContent(uniqueId)}
-                        </PopoverDialog>
-                    )}
-                </TooltipPopper>
-            </FocusManager>
+            <TooltipPopper anchorElement={anchorElement} placement={placement}>
+                {(props: PopperElementProps) => (
+                    <PopoverDialog
+                        {...props}
+                        aria-describedby={`${uniqueId}-content`}
+                        aria-labelledby={`${uniqueId}-title`}
+                        id={uniqueId}
+                        onUpdate={(placement) => this.setState({placement})}
+                        showTail={showTail}
+                    >
+                        {this.renderContent(uniqueId)}
+                    </PopoverDialog>
+                )}
+            </TooltipPopper>
         );
     }
 
@@ -298,7 +290,7 @@ export default class Popover extends React.Component<Props, State> {
     render(): React.ReactNode {
         const {children, dismissEnabled, id} = this.props;
         const {opened, placement} = this.state;
-        const popperHost = this.getHost();
+        //const popperHost = this.getHost();
 
         return (
             <PopoverContext.Provider
@@ -319,12 +311,7 @@ export default class Popover extends React.Component<Props, State> {
                             >
                                 {children}
                             </PopoverAnchor>
-                            {popperHost &&
-                                opened &&
-                                ReactDOM.createPortal(
-                                    this.renderPopper(uniqueId),
-                                    popperHost,
-                                )}
+                            {opened && this.renderPopper(uniqueId)}
                         </React.Fragment>
                     )}
                 </IDProvider>
