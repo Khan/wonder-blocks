@@ -82,6 +82,14 @@ type TextAreaProps = {
      * [wrap attribute MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#wrap)
      */
     wrap?: "hard" | "soft" | "off";
+    /**
+     * The minimum number of characters allowed in the textarea.
+     */
+    minLength?: number;
+    /**
+     * The maximum number of characters allowed in the textarea.
+     */
+    maxLength?: number;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -103,6 +111,8 @@ export default function TextArea(props: TextAreaProps) {
         rows,
         spellCheck,
         wrap,
+        minLength,
+        maxLength,
     } = props;
 
     const ids = useUniqueIdWithMock("text-area");
@@ -135,6 +145,8 @@ export default function TextArea(props: TextAreaProps) {
                 rows={rows}
                 spellCheck={spellCheck}
                 wrap={wrap}
+                minLength={minLength}
+                maxLength={maxLength}
             />
         </div>
     );

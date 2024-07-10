@@ -214,3 +214,21 @@ export const CustomStyle: StoryComponentType = {
         value: "Text",
     },
 };
+
+/**
+ * The `minlength` and `maxlength` textarea attributes can be set using the
+ * `minLength` and `maxLength` props.
+ *
+ * Note: At this time, character length requirements are not displayed as part of
+ * the Text Area component. These props are only setting the underlying HTML
+ * attributes ([minlength](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/minlength)
+ * and [maxlength](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/maxlength)).
+ */
+export const MinMaxLength: StoryComponentType = {
+    args: {
+        minLength: 2,
+        maxLength: 4,
+        value: "Text",
+    },
+    render: ControlledTextArea,
+};

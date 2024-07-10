@@ -217,6 +217,44 @@ describe("TextArea", () => {
                 expect(textArea).toHaveAttribute("wrap", wrap);
             },
         );
+
+        it("should set the minlength attribute when the minLength prop is used", async () => {
+            // Arrange
+            const minLength = 3;
+            render(
+                <TextArea
+                    value="Text"
+                    onChange={() => {}}
+                    minLength={minLength}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("minlength", `${minLength}`);
+        });
+
+        it("should set the maxlength attribute when the maxLength prop is used", async () => {
+            // Arrange
+            const maxLength = 3;
+            render(
+                <TextArea
+                    value="Text"
+                    onChange={() => {}}
+                    maxLength={maxLength}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("maxlength", `${maxLength}`);
+        });
     });
 
     it("should use the value prop", async () => {
