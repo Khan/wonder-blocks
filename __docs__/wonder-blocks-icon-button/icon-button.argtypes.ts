@@ -1,3 +1,4 @@
+import type {ArgTypes} from "@storybook/react";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
@@ -27,7 +28,7 @@ export default {
             type: "select",
         },
         description: "A Phosphor icon asset (imported as a static SVG file).",
-        options: IconMappings,
+        options: IconMappings as any,
     },
     kind: {
         control: {
@@ -72,4 +73,4 @@ export default {
             },
         },
     },
-};
+} satisfies ArgTypes;

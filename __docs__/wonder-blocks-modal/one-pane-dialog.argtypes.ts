@@ -2,7 +2,7 @@ import type {InputType} from "@storybook/csf";
 
 export default {
     content: {
-        control: {type: null},
+        control: {type: undefined},
         description: `The content of the modal, appearing between the
             titlebar and footer.`,
         table: {type: {summary: "React.Node"}},
@@ -17,7 +17,7 @@ export default {
     },
 
     footer: {
-        control: {type: null},
+        control: {type: undefined},
         description: `The content of the modal's footer.
             A great place for buttons! Content is right-aligned by default.
             To control alignment yourself, provide a container element
@@ -26,7 +26,7 @@ export default {
     },
 
     breadcrumbs: {
-        control: {type: null},
+        control: {type: undefined},
         description: `Adds a breadcrumb-trail, appearing in the ModalHeader,
             above the title.`,
         table: {type: {summary: "React.Element<Breadcrumbs>"}},
@@ -60,7 +60,7 @@ export default {
     },
 
     above: {
-        control: {type: null},
+        control: {type: undefined},
         description: `When set, provides a component that can render
             content above the top of the modal; when not set, no additional
             content is shown above the modal. This prop is passed down to
@@ -69,7 +69,7 @@ export default {
     },
 
     below: {
-        control: {type: null},
+        control: {type: undefined},
         description: `When set, provides a component that will render
             content below the bottom of the modal; when not set, no additional
             content is shown below the modal. This prop is passed down to
