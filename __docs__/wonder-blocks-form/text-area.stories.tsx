@@ -7,6 +7,7 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import {color} from "../../packages/wonder-blocks-tokens/src/tokens/color";
+import Button from "../../packages/wonder-blocks-button/src/components/button";
 
 /**
  * A TextArea is an element used to accept text from the user.
@@ -142,6 +143,71 @@ export const SpellCheckDisabled: StoryComponentType = {
     },
 };
 
+export const Wrap: StoryComponentType = {
+    args: {
+        value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    render(args) {
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            const formData = new FormData(event.currentTarget);
+            /* eslint-disable no-console */
+            console.log("Soft Wrap:");
+            console.log(formData.get("soft-wrap"));
+            console.log("Hard Wrap:");
+            console.log(formData.get("hard-wrap"));
+            console.log("Off Wrap:");
+            console.log(formData.get("off-wrap"));
+            console.log("Default Wrap:");
+            console.log(formData.get("default-wrap"));
+            /* eslint-enable no-console */
+        };
+        return (
+            <div>
+                <p>
+                    Once submitted, check the console to observe the wrapping
+                    behaviour in the form data
+                </p>
+                <form
+                    method="POST"
+                    action="/submit"
+                    id="wrapForm"
+                    onSubmit={handleSubmit}
+                    style={{width: "300px"}}
+                >
+                    <label htmlFor="soft-wrap">Wrap: soft</label>
+                    <TextArea
+                        {...args}
+                        wrap="soft"
+                        id="soft-wrap"
+                        name="soft-wrap"
+                    />
+                    <br />
+                    <label htmlFor="hard-wrap">Wrap: hard</label>
+                    <TextArea
+                        {...args}
+                        wrap="hard"
+                        id="hard-wrap"
+                        name="hard-wrap"
+                    />
+                    <br />
+                    <label htmlFor="off-wrap">Wrap: off</label>
+                    <TextArea
+                        {...args}
+                        wrap="off"
+                        id="off-wrap"
+                        name="off-wrap"
+                    />
+                    <br />
+                    <label htmlFor="default-wrap">Wrap: default (soft)</label>
+                    <TextArea {...args} id="default-wrap" name="default-wrap" />
+                    <br />
+                    <Button type="submit">Submit</Button>
+                </form>
+            </div>
+        );
+    },
+};
 export const CustomStyle: StoryComponentType = {
     args: {
         style: styles.customField,

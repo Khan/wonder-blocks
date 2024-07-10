@@ -8,6 +8,9 @@ import TextArea from "../text-area";
 const defaultOptions = {
     wrapper: RenderStateRoot,
 };
+
+const wrapOptions: Array<"soft" | "hard" | "off"> = ["soft", "hard", "off"];
+
 describe("TextArea", () => {
     describe("Attributes", () => {
         it("should use the id prop for the textarea", async () => {
@@ -198,6 +201,22 @@ describe("TextArea", () => {
             const textArea = await screen.findByRole("textbox");
             expect(textArea).toHaveAttribute("spellcheck", "false");
         });
+
+        it.each(wrapOptions)(
+            "should set the wrap attribute when the spellCheck prop is set to '%s' ",
+            async (wrap) => {
+                // Arrange
+                render(
+                    <TextArea value="Text" onChange={() => {}} wrap={wrap} />,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("wrap", wrap);
+            },
+        );
     });
 
     it("should use the value prop", async () => {

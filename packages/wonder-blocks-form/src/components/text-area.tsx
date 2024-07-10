@@ -76,6 +76,12 @@ type TextAreaProps = {
      *  sensitive information (see [Security and Privacy concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck#security_and_privacy_concerns) for more details)
      */
     spellCheck?: boolean;
+    /**
+     * How the control should wrap the value for form submission. If not provided,
+     * `soft` is the default behaviour. For more details, see the
+     * [wrap attribute MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#wrap)
+     */
+    wrap?: "hard" | "soft" | "off";
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -96,6 +102,7 @@ export default function TextArea(props: TextAreaProps) {
         autoFocus,
         rows,
         spellCheck,
+        wrap,
     } = props;
 
     const ids = useUniqueIdWithMock("text-area");
@@ -127,6 +134,7 @@ export default function TextArea(props: TextAreaProps) {
                 autoFocus={autoFocus}
                 rows={rows}
                 spellCheck={spellCheck}
+                wrap={wrap}
             />
         </div>
     );
