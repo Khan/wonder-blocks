@@ -2,7 +2,7 @@ import * as React from "react";
 import {KindError, Errors} from "@khanacademy/wonder-stuff-core";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 
-import type {TestHarnessAdapter} from "../types";
+import type {TestHarnessAdapter} from "@khanacademy/wonder-blocks-testing-core";
 
 //
 type Config = true;

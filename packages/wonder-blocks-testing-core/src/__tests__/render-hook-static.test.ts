@@ -1,7 +1,7 @@
 import {useLocation} from "react-router-dom";
 
-import {hookHarness} from "../hook-harness";
-import {renderHookStatic} from "../../render-hook-static";
+import {hookHarness} from "../harness/hook-harness";
+import {renderHookStatic} from "../render-hook-static";
 
 describe("renderHookStatic", () => {
     it("should return the result of rendering the hook", () => {

@@ -1,11 +1,7 @@
-import * as css from "./css";
+import {harnessAdapters} from "@khanacademy/wonder-blocks-testing-core";
+import type {TestHarnessConfigs} from "@khanacademy/wonder-blocks-testing-core";
 import * as data from "./data";
-import * as errorBoundary from "./error-boundary";
-import * as portal from "./portal";
-import * as router from "./router";
 import * as ssr from "./ssr";
-
-import type {TestHarnessConfigs} from "../types";
 
 /**
  * NOTE: We do not type `DefaultAdapters` with `Adapters` here because we want
@@ -20,11 +16,11 @@ export const DefaultAdapters = {
     // The error boundary is as close to the component under test as possible,
     // so that other adapters don't soil it with their own errors, if that
     // should happen.
-    boundary: errorBoundary.adapter,
-    css: css.adapter,
+    boundary: harnessAdapters.DefaultAdapters.boundary,
+    css: harnessAdapters.DefaultAdapters.css,
     data: data.adapter,
-    portal: portal.adapter,
-    router: router.adapter,
+    portal: harnessAdapters.DefaultAdapters.portal,
+    router: harnessAdapters.DefaultAdapters.router,
     ssr: ssr.adapter,
 } as const;
 
@@ -32,10 +28,7 @@ export const DefaultAdapters = {
  * The default configurations to use with the `DefaultAdapters`.
  */
 export const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {
-    boundary: errorBoundary.defaultConfig,
-    css: css.defaultConfig,
+    ...harnessAdapters.DefaultConfigs,
     data: data.defaultConfig,
-    portal: portal.defaultConfig,
-    router: router.defaultConfig,
     ssr: ssr.defaultConfig,
 } as const;
