@@ -56,6 +56,10 @@ type TextAreaProps = {
      * CSS classes for the textarea element. It is recommended that the style prop is used instead where possible
      */
     className?: string;
+    /**
+     * Whether this field should autofocus on page load.
+     */
+    autoFocus?: boolean;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -73,6 +77,7 @@ export default function TextArea(props: TextAreaProps) {
         autoComplete,
         name,
         className,
+        autoFocus,
     } = props;
 
     const ids = useUniqueIdWithMock("text-area");
@@ -101,6 +106,7 @@ export default function TextArea(props: TextAreaProps) {
                 readOnly={readOnly}
                 autoComplete={autoComplete}
                 name={name}
+                autoFocus={autoFocus}
             />
         </div>
     );

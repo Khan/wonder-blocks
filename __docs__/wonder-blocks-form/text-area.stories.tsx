@@ -114,6 +114,12 @@ export const AutoComplete: StoryComponentType = {
     },
 };
 
+export const AutoFocus: StoryComponentType = {
+    args: {
+        autoFocus: true,
+    },
+};
+
 export const CustomStyle: StoryComponentType = {
     args: {
         style: styles.customField,

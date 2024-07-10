@@ -189,4 +189,26 @@ describe("TextArea", () => {
             expect(onChangeMock).toHaveBeenCalledOnceWith(letterToType);
         });
     });
+
+    describe("Accessibility", () => {
+        describe("Focus", () => {
+            it("should focus on the textarea by default when the autoFocus prop is provided", async () => {
+                // Arrange
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        autoFocus={true}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveFocus();
+            });
+        });
+    });
 });
