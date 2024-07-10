@@ -313,13 +313,11 @@ export default function Combobox({
     };
 
     // The labels of the selected values.
-    const selectedLabels = React.useMemo(
-        () =>
-            children
-                .filter((item) => selected?.includes(item.props.value))
-                .map((item) => item.props.label as string),
-        [children, selected],
-    );
+    const selectedLabels = React.useMemo(() => {
+        return children
+            .filter((item) => selected?.includes(item.props.value))
+            .map((item) => item.props.label as string);
+    }, [children, selected]);
 
     /**
      * Handles the click event on a pill to remove it from the list of selected
@@ -337,6 +335,22 @@ export default function Combobox({
         },
         [selected, setSelected],
     );
+
+    const pillIdPrefix = id ? `${id}-pill-` : ids.get("pill");
+
+    const currentActiveDescendant = !openState
+        ? undefined
+        : focusedIndex >= 0
+        ? // listbox is focused
+          renderList[focusedIndex]?.props?.id
+        : // pills group are focused
+          pillIdPrefix + focusedMultiSelectIndex;
+
+    const controlledWidget = !openState
+        ? undefined
+        : focusedIndex >= 0
+        ? uniqueId
+        : pillIdPrefix;
 
     return (
         <>
@@ -363,7 +377,7 @@ export default function Combobox({
                     <MultipleSelection
                         labels={selectedLabels}
                         focusedMultiSelectIndex={focusedMultiSelectIndex}
-                        id={ids.get("pill")}
+                        id={pillIdPrefix}
                         selected={selected as Array<string>}
                         onRemove={handleOnRemove}
                         disabled={disabled}
@@ -390,14 +404,10 @@ export default function Combobox({
                         updateOpenState(false);
                         handleBlur();
                     }}
-                    aria-controls={openState ? uniqueId : undefined}
+                    aria-controls={controlledWidget}
                     onKeyDown={onKeyDown}
                     // STOPSHIP(juan): Figure out how to handle SR in iOS
-                    aria-activedescendant={
-                        openState
-                            ? renderList[focusedIndex]?.props?.id
-                            : undefined
-                    }
+                    aria-activedescendant={currentActiveDescendant}
                     aria-expanded={openState}
                     ref={comboboxRef}
                     // We don't want the browser to suggest autocompletions as

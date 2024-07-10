@@ -366,11 +366,12 @@ describe("Combobox", () => {
             expect(onChange).toHaveBeenCalledWith(["option2", "option3"]);
         });
 
-        it("should remove visual focus from the listbox when navigating to the selected pills", async () => {
+        it("should move visual focus to the selected pill", async () => {
             // Arrange
             const userEvent = doRender(
                 <Combobox
                     testId="combobox"
+                    id="combobox"
                     selectionType="multiple"
                     value={["option1", "option2"]}
                 >
@@ -388,8 +389,9 @@ describe("Combobox", () => {
             await userEvent.keyboard("{ArrowLeft}");
 
             // Assert
-            expect(screen.getByRole("combobox")).not.toHaveAttribute(
+            expect(screen.getByRole("combobox")).toHaveAttribute(
                 "aria-activedescendant",
+                "combobox-pill-1",
             );
         });
 
@@ -561,7 +563,7 @@ describe("Combobox", () => {
 
                 // Assert
                 expect(screen.getByRole("log")).toHaveTextContent(
-                    "Option 2, selected, 2 of 3. 3 results available.",
+                    "Option 2 selected, 2 of 3. 3 results available.",
                 );
             });
         });

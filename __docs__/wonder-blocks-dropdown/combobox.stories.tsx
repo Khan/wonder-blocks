@@ -223,7 +223,7 @@ export const MultipleSelection: Story = {
 
         // Assert
         expect(canvas.getByRole("log")).toHaveTextContent(
-            "Orange, selected, 4 of 9. 9 results available.",
+            "Orange selected, 4 of 9. 9 results available.",
         );
     },
 };

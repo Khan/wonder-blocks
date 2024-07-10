@@ -74,22 +74,26 @@ export function ComboboxLiveRegion({
 
     // Announce when an item is selected.
     React.useEffect(() => {
-        if (selected !== lastSelectedValue.current) {
-            // ✅ TODO(juan): Fix lowercase of the current selected values
-            // (multi).
-            let message = "";
-            if (
-                // (typeof selected === "string" && selected !== "") ||
-                Array.isArray(selected) &&
-                selected.length > 0
-            ) {
-                message = `${multiSelectLabels.join(", ")}, selected`;
+        if (selected !== lastSelectedValue?.current) {
+            let newMessage = "";
+            const lastSelectedLength = lastSelectedValue?.current?.length ?? 0;
+            const selectedLength = selected?.length ?? 0;
+            const selectedState =
+                selectedLength > lastSelectedLength
+                    ? "selected"
+                    : "not selected";
+            if (Array.isArray(selected) && selected.length > 0) {
+                newMessage = `${multiSelectLabels.join(", ")} ${selectedState}`;
             }
-            setMessage(message);
+            setMessage(newMessage);
         }
 
         lastSelectedValue.current = selected;
-    }, [multiSelectLabels, selected]);
+
+        if (!opened) {
+            setMessage(labels.closedState);
+        }
+    }, [labels.closedState, multiSelectLabels, opened, selected]);
 
     const focusedElementDescription = React.useMemo(() => {
         // If there are focused items in the multi-select combobox, announce the
@@ -116,6 +120,8 @@ export function ComboboxLiveRegion({
             return "";
         }
 
+        // Announces the focused item in the listbox. This happens when the user
+        // navigates the listbox using the arrow keys.
         const currentItemProps = options[focusedIndex].props;
         const label = getLabel(currentItemProps);
         const totalResults = options.length;
@@ -143,7 +149,7 @@ export function ComboboxLiveRegion({
     return (
         <StyledSpan
             role="log"
-            aria-live="polite"
+            aria-live="assertive"
             aria-atomic="false"
             aria-relevant="additions text"
             style={styles.srOnly}

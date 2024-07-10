@@ -62,7 +62,7 @@ export const defaultComboboxLabels: ComboboxLabels = {
         selected,
     }) =>
         `${current}${focused ? " focused" : ""}${disabled ? " disabled" : ""}${
-            selected ? ", selected" : ""
+            selected ? " selected" : ""
         }, ${index + 1} of ${total}.`,
     liveRegionMultipleSelectionTotal: (total) => `${total} selected options.`,
     liveRegionListboxTotal: (total) => `${total} results available.`,

@@ -18,13 +18,13 @@ describe("ComboboxLiveRegion", () => {
                 focusedIndex={-1}
                 focusedMultiSelectIndex={-1}
                 options={options}
-                selected={null}
                 multiSelectLabels={[]}
+                selected={null}
                 opened={false}
             />,
         );
         // Assert
-        expect(screen.getByRole("log")).toHaveTextContent("");
+        expect(screen.getByRole("log")).toHaveTextContent("Combobox is closed");
     });
 
     describe("multi-select", () => {
@@ -58,7 +58,7 @@ describe("ComboboxLiveRegion", () => {
                     options={options}
                     selected={["option2"]}
                     multiSelectLabels={["Option 2"]}
-                    opened={false}
+                    opened={true}
                 />,
             );
 
@@ -70,44 +70,12 @@ describe("ComboboxLiveRegion", () => {
                     options={options}
                     selected={null}
                     multiSelectLabels={[]}
-                    opened={false}
+                    opened={true}
                 />,
             );
 
             // Assert
             expect(screen.getByRole("log")).toHaveTextContent("");
-        });
-
-        it("announces when a pill is removed", () => {
-            // Arrange
-            // Focus on the first pill
-            const {rerender} = render(
-                <ComboboxLiveRegion
-                    focusedIndex={-1}
-                    focusedMultiSelectIndex={1}
-                    options={options}
-                    selected={["option1", "option2"]}
-                    multiSelectLabels={["Option 1", "Option 2"]}
-                    opened={true}
-                />,
-            );
-
-            // Act
-            rerender(
-                <ComboboxLiveRegion
-                    focusedIndex={-1}
-                    focusedMultiSelectIndex={0}
-                    options={options}
-                    selected={["option1"]}
-                    multiSelectLabels={["Option 1"]}
-                    opened={true}
-                />,
-            );
-
-            // Assert
-            expect(screen.getByRole("log")).toHaveTextContent(
-                "Option 1 focused, 1 of 1. 1 selected options.",
-            );
         });
 
         // it.todo("announces when we move the focus to the next pill");
@@ -138,10 +106,41 @@ describe("ComboboxLiveRegion", () => {
 
             // Assert
             expect(screen.getByRole("log")).toHaveTextContent(
-                "Option 1, selected, 1 of 2. 2 results available.",
+                "Option 1 selected, 1 of 2. 2 results available.",
             );
         });
 
-        it.todo("announces when item is unselected");
+        it("announces when an item is unselected", () => {
+            // Arrange
+            // Focus on the first pill
+            const {rerender} = render(
+                <ComboboxLiveRegion
+                    focusedIndex={-1}
+                    focusedMultiSelectIndex={1}
+                    options={options}
+                    selected={["option1", "option2"]}
+                    multiSelectLabels={["Option 1", "Option 2"]}
+                    opened={true}
+                />,
+            );
+
+            // Act
+            rerender(
+                <ComboboxLiveRegion
+                    focusedIndex={-1}
+                    focusedMultiSelectIndex={0}
+                    options={options}
+                    selected={["option1"]}
+                    // Option 2 is removed
+                    multiSelectLabels={["Option 1"]}
+                    opened={true}
+                />,
+            );
+
+            // Assert
+            expect(screen.getByRole("log")).toHaveTextContent(
+                "Option 1 focused, 1 of 1. 1 selected options.",
+            );
+        });
     });
 });
