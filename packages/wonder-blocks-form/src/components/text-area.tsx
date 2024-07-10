@@ -60,6 +60,13 @@ type TextAreaProps = {
      * Whether this field should autofocus on page load.
      */
     autoFocus?: boolean;
+    /**
+     * The number of visible lines of text for the textarea.
+     * By default, 2 rows are shown.
+     * `rows` is ignored if a height is applied to the textarea using CSS.
+     * The number of rows can change if the resize control is used by the user.
+     */
+    rows?: number;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -78,6 +85,7 @@ export default function TextArea(props: TextAreaProps) {
         name,
         className,
         autoFocus,
+        rows,
     } = props;
 
     const ids = useUniqueIdWithMock("text-area");
@@ -107,6 +115,7 @@ export default function TextArea(props: TextAreaProps) {
                 autoComplete={autoComplete}
                 name={name}
                 autoFocus={autoFocus}
+                rows={rows}
             />
         </div>
     );

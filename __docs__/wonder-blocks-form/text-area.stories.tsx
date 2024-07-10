@@ -101,6 +101,12 @@ export const DisabledWithValue: StoryComponentType = {
     },
 };
 
+export const Rows: StoryComponentType = {
+    args: {
+        rows: 10,
+    },
+};
+
 export const ReadOnly: StoryComponentType = {
     args: {
         value: "Text",

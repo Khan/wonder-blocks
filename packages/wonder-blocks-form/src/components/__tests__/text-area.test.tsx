@@ -151,6 +151,21 @@ describe("TextArea", () => {
             const textArea = await screen.findByRole("textbox");
             expect(textArea).toHaveAttribute("class", className);
         });
+
+        it("should set the rows attribute when the rows prop is provided", async () => {
+            // Arrange
+            const rows = 10;
+            render(
+                <TextArea value="Text" onChange={() => {}} rows={rows} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("rows", `${rows}`);
+        });
     });
 
     it("should use the value prop", async () => {
