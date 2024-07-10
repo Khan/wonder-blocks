@@ -117,6 +117,21 @@ describe("TextArea", () => {
             const textArea = await screen.findByRole("textbox");
             expect(textArea).toHaveAttribute("autocomplete", "name");
         });
+
+        it("should set the name attribute when the name prop is provided", async () => {
+            // Arrange
+            const name = "Test name";
+            render(
+                <TextArea value="Text" onChange={() => {}} name={name} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("name", name);
+        });
     });
 
     it("should use the value prop", async () => {

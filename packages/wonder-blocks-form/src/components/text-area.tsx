@@ -47,6 +47,11 @@ type TextAreaProps = {
      * Specifies if the text area allows autocomplete.
      */
     autoComplete?: string;
+    /**
+     * The name for the text area control. This is submitted along with
+     * the form data.
+     */
+    name?: string;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -62,6 +67,7 @@ export default function TextArea(props: TextAreaProps) {
         style,
         readOnly,
         autoComplete,
+        name,
     } = props;
 
     const ids = useUniqueIdWithMock("text-area");
@@ -88,6 +94,7 @@ export default function TextArea(props: TextAreaProps) {
                 disabled={disabled}
                 readOnly={readOnly}
                 autoComplete={autoComplete}
+                name={name}
             />
         </div>
     );
