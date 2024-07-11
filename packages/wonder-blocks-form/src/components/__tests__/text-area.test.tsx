@@ -292,6 +292,21 @@ describe("TextArea", () => {
             // Assert
             expect(onChangeMock).toHaveBeenCalledOnceWith(letterToType);
         });
+
+        it("should call the onClick prop when the textArea is clicked", async () => {
+            // Arrange
+            const onClickMock = jest.fn();
+            render(
+                <TextArea value="" onChange={() => {}} onClick={onClickMock} />,
+                defaultOptions,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("textbox"));
+
+            // Assert
+            expect(onClickMock).toHaveBeenCalledOnce();
+        });
     });
 
     describe("Accessibility", () => {

@@ -91,6 +91,11 @@ type TextAreaProps = AriaProps & {
      * The maximum number of characters allowed in the textarea.
      */
     maxLength?: number;
+    /**
+     * Called when the textarea is clicked.
+     * @param event The event from the click
+     */
+    onClick?: React.MouseEventHandler<HTMLTextAreaElement>;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -114,6 +119,7 @@ export default function TextArea(props: TextAreaProps) {
         wrap,
         minLength,
         maxLength,
+        onClick,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -150,6 +156,7 @@ export default function TextArea(props: TextAreaProps) {
                 wrap={wrap}
                 minLength={minLength}
                 maxLength={maxLength}
+                onClick={onClick}
                 {...otherProps}
             />
         </div>
