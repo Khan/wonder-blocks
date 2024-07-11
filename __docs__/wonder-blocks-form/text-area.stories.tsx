@@ -232,3 +232,16 @@ export const MinMaxLength: StoryComponentType = {
     },
     render: ControlledTextArea,
 };
+
+export const Error: StoryComponentType = {
+    args: {
+        value: "khan",
+        validate(value: string) {
+            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+            if (!emailRegex.test(value)) {
+                return "Please enter a valid email";
+            }
+        },
+    },
+    render: ControlledTextArea,
+};

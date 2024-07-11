@@ -116,6 +116,11 @@ type TextAreaProps = AriaProps & {
      * @param event The blur event
      */
     onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;
+    /**
+     * Provide a validation for the textarea value.
+     * Return a string error message or null | void for a valid input.
+     */
+    validate?: (value: string) => string | null | void;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -144,9 +149,12 @@ export default function TextArea(props: TextAreaProps) {
         onKeyUp,
         onFocus,
         onBlur,
+        validate,
         // Should only include aria related props
         ...otherProps
     } = props;
+
+    const [error, setError] = React.useState<string | null>(null);
 
     const ids = useUniqueIdWithMock("text-area");
     const uniqueId = id ?? ids.get("id");
@@ -154,6 +162,13 @@ export default function TextArea(props: TextAreaProps) {
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         onChange(event.target.value);
     };
+
+    React.useEffect(() => {
+        if (validate && value !== "") {
+            setError(validate(value) || null);
+        }
+    }, [validate, value]);
+
     return (
         <div>
             <StyledTextArea
@@ -165,6 +180,7 @@ export default function TextArea(props: TextAreaProps) {
                     styles.default,
                     typographyStyles.LabelMedium,
                     disabled && styles.disabled,
+                    !!error && styles.error,
                     style,
                 ]}
                 value={value}
@@ -186,6 +202,7 @@ export default function TextArea(props: TextAreaProps) {
                 onFocus={onFocus}
                 onBlur={onBlur}
                 {...otherProps}
+                aria-invalid={!!error}
             />
         </div>
     );
@@ -215,5 +232,13 @@ const styles = StyleSheet.create({
             color: color.offBlack64,
         },
         cursor: "not-allowed",
+    },
+    error: {
+        background: color.fadedRed8,
+        border: `1px solid ${color.red}`,
+        color: color.offBlack,
+        "::placeholder": {
+            color: color.offBlack64,
+        },
     },
 });

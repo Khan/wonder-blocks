@@ -478,27 +478,6 @@ describe("TextArea", () => {
                 );
             });
 
-            it("should set the aria-invalid attribute when provided", async () => {
-                // Arrange
-                const ariaInvalid = true;
-                render(
-                    <TextArea
-                        value="Text"
-                        onChange={() => {}}
-                        aria-invalid={ariaInvalid}
-                    />,
-                    defaultOptions,
-                );
-                // Act
-
-                // Assert
-                const textArea = await screen.findByRole("textbox");
-                expect(textArea).toHaveAttribute(
-                    "aria-invalid",
-                    `${ariaInvalid}`,
-                );
-            });
-
             it("should set the aria-details attribute when provided", async () => {
                 // Arrange
                 const ariaDetails = "details-id";
@@ -519,6 +498,246 @@ describe("TextArea", () => {
                     `${ariaDetails}`,
                 );
             });
+
+            it("should set aria-invalid to true if the validate prop returns an error message", async () => {
+                // Arrange
+                render(
+                    <TextArea
+                        value="text"
+                        onChange={() => {}}
+                        validate={() => "Error"}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "true");
+            });
+            it("should set aria-invalid to true if the validate prop returns an error message", async () => {
+                // Arrange
+                render(
+                    <TextArea
+                        value="text"
+                        onChange={() => {}}
+                        validate={() => null}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
+        });
+    });
+
+    describe("Validation", () => {
+        it("should be in an error state if the initial value is not empty and not valid", async () => {
+            // Arrange
+            render(
+                <TextArea
+                    value="tooShort"
+                    onChange={() => {}}
+                    validate={(value) => {
+                        if (value.length < 10) {
+                            return "Error: value should be >= 10";
+                        }
+                    }}
+                />,
+                defaultOptions,
+            );
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("aria-invalid", "true");
+        });
+
+        it("should not be in an error state if the initial value is empty and not valid", async () => {
+            // Arrange
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    validate={(value) => {
+                        if (value.length < 10) {
+                            return "Error: value should be >= 10";
+                        }
+                    }}
+                />,
+                defaultOptions,
+            );
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("aria-invalid", "false");
+        });
+
+        it("should not be in an error state if the initial value is valid", async () => {
+            // Arrange
+            render(
+                <TextArea
+                    value="LongerThan10"
+                    onChange={() => {}}
+                    validate={(value) => {
+                        if (value.length < 10) {
+                            return "Error: value should be >= 10";
+                        }
+                    }}
+                />,
+                defaultOptions,
+            );
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("aria-invalid", "false");
+        });
+
+        it("should be able to change from a valid state to an error state", async () => {
+            // Arrange
+            const Controlled = () => {
+                const [value, setValue] = React.useState("text");
+                return (
+                    <TextArea
+                        value={value}
+                        onChange={setValue}
+                        validate={(value) => {
+                            if (value.length > 4) {
+                                return "Error";
+                            }
+                        }}
+                    />
+                );
+            };
+            render(<Controlled />, defaultOptions);
+
+            // Act
+            // Add a character to make it longer than the validation limit
+            await userEvent.type(await screen.findByRole("textbox"), "s");
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("aria-invalid", "true");
+        });
+
+        it("should be able to change from an error state to a valid state", async () => {
+            // Arrange
+            const Controlled = () => {
+                const [value, setValue] = React.useState("texts");
+                return (
+                    <TextArea
+                        value={value}
+                        onChange={setValue}
+                        validate={(value) => {
+                            if (value.length > 4) {
+                                return "Error";
+                            }
+                        }}
+                    />
+                );
+            };
+            render(<Controlled />, defaultOptions);
+
+            // Act
+            // Remove a character to make it within the validation limit
+            await userEvent.type(
+                await screen.findByRole("textbox"),
+                "{backspace}",
+            );
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("aria-invalid", "false");
+        });
+
+        it("should call the validate function when it is first rendered", async () => {
+            // Arrange
+            const validate = jest.fn();
+            render(
+                <TextArea
+                    value="text"
+                    onChange={() => {}}
+                    validate={validate}
+                />,
+                defaultOptions,
+            );
+            // Act
+
+            // Assert
+            expect(validate).toHaveBeenCalledOnceWith("text");
+        });
+
+        it("should not call the validate function when it is first rendered if the value is empty", async () => {
+            // Arrange
+            const validate = jest.fn();
+            render(
+                <TextArea value="" onChange={() => {}} validate={validate} />,
+                defaultOptions,
+            );
+            // Act
+
+            // Assert
+            expect(validate).not.toHaveBeenCalled();
+        });
+
+        it("should call the validate function when the value is updated", async () => {
+            // Arrange
+            const validate = jest.fn();
+            const Controlled = () => {
+                const [value, setValue] = React.useState("text");
+                return (
+                    <TextArea
+                        value={value}
+                        onChange={setValue}
+                        validate={validate}
+                    />
+                );
+            };
+            render(<Controlled />, defaultOptions);
+            // Reset mock after initial render
+            validate.mockReset();
+
+            // Act
+            // Update value
+            await userEvent.type(await screen.findByRole("textbox"), "s");
+
+            // Assert
+            expect(validate).toHaveBeenCalledOnceWith("texts");
+        });
+
+        it("should not call the validate function when the value is updated to an empty string", async () => {
+            // Arrange
+            const validate = jest.fn();
+            const Controlled = () => {
+                const [value, setValue] = React.useState("t");
+                return (
+                    <TextArea
+                        value={value}
+                        onChange={setValue}
+                        validate={validate}
+                    />
+                );
+            };
+            render(<Controlled />, defaultOptions);
+            // Reset mock after initial render
+            validate.mockReset();
+
+            // Act
+            // Update value
+            await userEvent.type(
+                await screen.findByRole("textbox"),
+                "{backspace}",
+            );
+
+            // Assert
+            expect(validate).not.toHaveBeenCalled();
         });
     });
 });
