@@ -96,6 +96,16 @@ type TextAreaProps = AriaProps & {
      * @param event The event from the click
      */
     onClick?: React.MouseEventHandler<HTMLTextAreaElement>;
+    /**
+     * Called when a key is pressed.
+     * @param event The keyboard event
+     */
+    onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement>;
+    /**
+     * Called when a key is released.
+     * @param event The keyboard event
+     */
+    onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement>;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -120,6 +130,8 @@ export default function TextArea(props: TextAreaProps) {
         minLength,
         maxLength,
         onClick,
+        onKeyDown,
+        onKeyUp,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -157,6 +169,8 @@ export default function TextArea(props: TextAreaProps) {
                 minLength={minLength}
                 maxLength={maxLength}
                 onClick={onClick}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
                 {...otherProps}
             />
         </div>

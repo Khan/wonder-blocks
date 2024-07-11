@@ -273,7 +273,7 @@ describe("TextArea", () => {
     });
 
     describe("Event Handlers", () => {
-        it("should call the onChange prop when the textArea value changes", async () => {
+        it("should call the onChange prop when the textarea value changes", async () => {
             // Arrange
             const onChangeMock = jest.fn();
             render(
@@ -293,7 +293,7 @@ describe("TextArea", () => {
             expect(onChangeMock).toHaveBeenCalledOnceWith(letterToType);
         });
 
-        it("should call the onClick prop when the textArea is clicked", async () => {
+        it("should call the onClick prop when the textarea is clicked", async () => {
             // Arrange
             const onClickMock = jest.fn();
             render(
@@ -306,6 +306,54 @@ describe("TextArea", () => {
 
             // Assert
             expect(onClickMock).toHaveBeenCalledOnce();
+        });
+
+        it("should call the onKeyDown prop when a key is typed in the textarea", async () => {
+            // Arrange
+            const handleOnKeyDown = jest.fn(
+                (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+                    return event.key;
+                },
+            );
+
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onKeyDown={handleOnKeyDown}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            await userEvent.type(await screen.findByRole("textbox"), "{enter}");
+
+            // Assert
+            expect(handleOnKeyDown).toHaveReturnedWith("Enter");
+        });
+
+        it("should call the onKeyUp prop when a key is typed in the textarea", async () => {
+            // Arrange
+            const handleOnKeyUp = jest.fn(
+                (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+                    return event.key;
+                },
+            );
+
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onKeyUp={handleOnKeyUp}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            await userEvent.type(await screen.findByRole("textbox"), "{enter}");
+
+            // Assert
+            expect(handleOnKeyUp).toHaveReturnedWith("Enter");
         });
     });
 
