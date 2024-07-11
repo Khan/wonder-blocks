@@ -16,7 +16,6 @@ import PopoverContentCore from "./popover-content-core";
 import PopoverContext from "./popover-context";
 import PopoverAnchor from "./popover-anchor";
 import PopoverDialog from "./popover-dialog";
-import FocusManager from "./focus-manager";
 import PopoverEventListener from "./popover-event-listener";
 
 type PopoverContents =
@@ -255,7 +254,7 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {initialFocusId, placement, showTail} = this.props;
+        const {placement, showTail} = this.props;
         const {anchorElement} = this.state;
 
         return (

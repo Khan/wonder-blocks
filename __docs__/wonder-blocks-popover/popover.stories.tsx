@@ -14,7 +14,6 @@ import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
-import {useEffect, useRef, useState} from "react";
 
 /**
  * Popovers provide additional information that is related to a particular
@@ -431,7 +430,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
         const [numButtonsAfter, setNumButtonsAfter] = React.useState(0);
         const [numButtonsInside, setNumButtonsInside] = React.useState(1);
 
-        const [focus, setFocus] = useState(0);
+        const [focus, setFocus] = React.useState(0);
 
         /**
          * Custom function to create arrow key navigation to highlight how
@@ -547,9 +546,9 @@ type ArrowButtonProps = {
 
 function ArrowButton(props: ArrowButtonProps): React.ReactElement {
     const {onClick, focus, index} = props;
-    const tabRef = useRef(null);
+    const tabRef = React.useRef(null);
 
-    useEffect(() => {
+    React.useEffect(() => {
         if (focus) {
             /**
              * When tabs are within a WonderBlocks Popover component, the
