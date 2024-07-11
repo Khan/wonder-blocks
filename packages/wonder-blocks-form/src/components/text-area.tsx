@@ -121,6 +121,10 @@ type TextAreaProps = AriaProps & {
      * Return a string error message or null | void for a valid input.
      */
     validate?: (value: string) => string | null | void;
+    /**
+     * Called right after the textarea is validated.
+     */
+    onValidate?: (errorMessage?: string | null | undefined) => unknown;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -150,6 +154,7 @@ export default function TextArea(props: TextAreaProps) {
         onFocus,
         onBlur,
         validate,
+        onValidate,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -165,9 +170,13 @@ export default function TextArea(props: TextAreaProps) {
 
     React.useEffect(() => {
         if (validate && value !== "") {
-            setError(validate(value) || null);
+            const error = validate(value) || null;
+            setError(error);
+            if (onValidate) {
+                onValidate(error);
+            }
         }
-    }, [validate, value]);
+    }, [validate, value, onValidate]);
 
     return (
         <div>
