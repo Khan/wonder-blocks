@@ -14,6 +14,7 @@ import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
+import {useEffect, useRef, useState} from "react";
 
 /**
  * Popovers provide additional information that is related to a particular
@@ -419,14 +420,34 @@ export const CustomPopoverContent: StoryComponentType = {
  * element that exists after the PopoverAnchor (or trigger element).
  * - If the focus is set to the first focusable element inside the popover, the
  * next shift + tab will set focus on the PopoverAnchor element.
+ * - If you have custom keyboard navigation (like with left and right arrow keys)
+ * popover won't override them
  *
  * **NOTE:** You can add/remove buttons after the trigger element by using the
  * buttons at the top of the example.
  */
-export const KeyboardNavigation: StoryComponentType = {
+export const CustomKeyboardNavigation: StoryComponentType = {
     render: function Render() {
         const [numButtonsAfter, setNumButtonsAfter] = React.useState(0);
         const [numButtonsInside, setNumButtonsInside] = React.useState(1);
+
+        const [focus, setFocus] = useState(0);
+
+        /**
+         * Custom function to create arrow key navigation to highlight how
+         * popover won't override internal custom navigation but still ensure
+         * users will focus in and out of the popover correctly.
+         * @param e - onKeyDown event data.
+         */
+        const onArrowKeyFocus = (e: any) => {
+            if (e.keyCode === 39) {
+                // Right arrow
+                setFocus(focus === numButtonsInside - 1 ? 0 : focus + 1);
+            } else if (e.keyCode === 37) {
+                // Left arrow
+                setFocus(focus === 0 ? numButtonsInside - 1 : focus - 1);
+            }
+        };
 
         return (
             <View>
@@ -479,17 +500,18 @@ export const KeyboardNavigation: StoryComponentType = {
                                 title="Keyboard navigation"
                                 content="This example shows how the focus is managed when a popover is opened."
                                 actions={
-                                    <View style={[styles.row, styles.actions]}>
+                                    <View
+                                        style={[styles.row, styles.actions]}
+                                        onKeyDown={onArrowKeyFocus}
+                                    >
                                         {Array.from(
                                             {length: numButtonsInside},
                                             (_, index) => (
-                                                <Button
+                                                <ArrowButton
                                                     onClick={() => {}}
-                                                    key={index}
-                                                    kind="tertiary"
-                                                >
-                                                    {`Button ${index + 1}`}
-                                                </Button>
+                                                    index={index}
+                                                    focus={index === focus}
+                                                />
                                             ),
                                         )}
                                     </View>
@@ -516,6 +538,47 @@ export const KeyboardNavigation: StoryComponentType = {
         },
     },
 };
+
+type ArrowButtonProps = {
+    onClick: () => void;
+    focus?: boolean;
+    index: number;
+};
+
+function ArrowButton(props: ArrowButtonProps): React.ReactElement {
+    const {onClick, focus, index} = props;
+    const tabRef = useRef(null);
+
+    useEffect(() => {
+        if (focus) {
+            /**
+             * When tabs are within a WonderBlocks Popover component, the
+             * manner in which the component is rendered and moved causes
+             * focus to snap to the bottom of the page on first focus.
+             *
+             * This timeout moves around that by delaying the focus enough
+             * to wait for the WonderBlock Popover to move to the correct
+             * location and scroll the user to the correct location.
+             * */
+            if (tabRef?.current) {
+                // Move element into view when it is focused
+                tabRef?.current.focus();
+            }
+        }
+    }, [focus, tabRef]);
+
+    return (
+        <Button
+            onClick={onClick}
+            ref={tabRef}
+            key={index}
+            kind="tertiary"
+            tabIndex={focus ? 0 : -1}
+        >
+            {`Arrow Button ${index + 1}`}
+        </Button>
+    );
+}
 
 /**
  * Alignment example
