@@ -106,6 +106,16 @@ type TextAreaProps = AriaProps & {
      * @param event The keyboard event
      */
     onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement>;
+    /**
+     * Called when the element has been focused.
+     * @param event The focus event
+     */
+    onFocus?: React.FocusEventHandler<HTMLTextAreaElement>;
+    /**
+     * Called when the element has been focused.
+     * @param event The blur event
+     */
+    onBlur?: React.FocusEventHandler<HTMLTextAreaElement>;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -132,6 +142,8 @@ export default function TextArea(props: TextAreaProps) {
         onClick,
         onKeyDown,
         onKeyUp,
+        onFocus,
+        onBlur,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -171,6 +183,8 @@ export default function TextArea(props: TextAreaProps) {
                 onClick={onClick}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
+                onFocus={onFocus}
+                onBlur={onBlur}
                 {...otherProps}
             />
         </div>

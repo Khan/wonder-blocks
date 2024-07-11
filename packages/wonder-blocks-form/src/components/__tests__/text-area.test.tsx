@@ -355,6 +355,45 @@ describe("TextArea", () => {
             // Assert
             expect(handleOnKeyUp).toHaveReturnedWith("Enter");
         });
+
+        it("should call the onFocus prop when the textarea is focused", async () => {
+            // Arrange
+            const handleOnFocus = jest.fn();
+
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onFocus={handleOnFocus}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            await userEvent.tab();
+
+            // Assert
+            expect(handleOnFocus).toHaveBeenCalledOnce();
+        });
+
+        it("should call the onBlur prop when the textarea is blurred", async () => {
+            // Arrange
+            const handleOnBlur = jest.fn();
+
+            render(
+                <TextArea value="" onChange={() => {}} onBlur={handleOnBlur} />,
+                defaultOptions,
+            );
+            // Tab to focus on textarea
+            await userEvent.tab();
+
+            // Act
+            // Tab to move focus away
+            await userEvent.tab();
+
+            // Assert
+            expect(handleOnBlur).toHaveBeenCalledOnce();
+        });
     });
 
     describe("Accessibility", () => {
