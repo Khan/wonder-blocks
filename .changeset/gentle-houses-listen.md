@@ -1,5 +1,4 @@
 ---
-"@khanacademy/wb-dev-build-settings": patch
 "@khanacademy/wonder-blocks-testing-core": patch
 ---
 
