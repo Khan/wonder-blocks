@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.3.7
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-layout@2.1.2
+    -   @khanacademy/wonder-blocks-modal@5.1.8
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
 ## 2.3.6
 
 ### Patch Changes

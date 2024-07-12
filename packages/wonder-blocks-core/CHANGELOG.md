@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.4.3
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+
 ## 6.4.2
 
 ### Patch Changes

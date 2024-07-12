@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-modal
 
+## 5.1.8
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.2.4
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-icon-button@5.3.3
+    -   @khanacademy/wonder-blocks-layout@2.1.2
+    -   @khanacademy/wonder-blocks-theming@2.0.3
+    -   @khanacademy/wonder-blocks-timing@5.0.1
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
 ## 5.1.7
 
 ### Patch Changes
