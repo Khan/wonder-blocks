@@ -192,12 +192,6 @@ export default class TooltipPopper extends React.Component<Props> {
                             rootBoundary: "document",
                         },
                     },
-                    // {
-                    //     name: "preventOverflow",
-                    //     options: {
-                    //         rootBoundary: "viewport",
-                    //     },
-                    // },
                 ]}
             >
                 {(props) => this._renderPositionedContent(props)}
