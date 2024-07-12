@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.2.7
+
+### Patch Changes
+
+-   78ee53c9: Adding aria label attr to View component
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-icon-button@5.3.2
+    -   @khanacademy/wonder-blocks-modal@5.1.7
+    -   @khanacademy/wonder-blocks-tooltip@2.3.6
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
 ## 3.2.6
 
 ### Patch Changes
