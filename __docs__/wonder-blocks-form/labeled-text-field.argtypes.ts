@@ -181,7 +181,7 @@ export default {
             },
         },
         control: {
-            type: "null",
+            type: undefined,
         },
     },
 

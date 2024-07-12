@@ -1,3 +1,5 @@
+import type {ArgTypes} from "@storybook/react";
+
 export default {
     id: {
         control: {type: "text"},
@@ -8,15 +10,20 @@ export default {
         type: {name: "string", required: false},
     },
     children: {
-        control: {type: null},
+        control: {type: undefined},
         description: `The AccordionSection components to
             display within this Accordion.`,
         table: {
             type: {
-                summary: `Array<React.ReactElement<React.ComponentProps<typeof AccordionSection>>>`,
+                summary:
+                    "Array<React.ReactElement<React.ComponentProps<typeof AccordionSection>>>",
             },
         },
-        type: {name: "ReactElement | string", required: true},
+        type: {
+            name: "other",
+            required: true,
+            value: "React.ReactElement | string",
+        },
     },
     initialExpandedIndex: {
         control: {type: "number"},
@@ -37,7 +44,7 @@ export default {
             expanded at a time.`,
         table: {
             category: "State",
-            defaultValue: {summary: true},
+            defaultValue: {summary: "true"},
             type: {summary: "boolean"},
         },
         type: {name: "boolean", required: false},
@@ -86,7 +93,7 @@ export default {
         defaultValue: false,
         table: {
             category: "Visual style",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
             type: {summary: "boolean"},
         },
         type: {name: "boolean", required: false},
@@ -98,6 +105,6 @@ export default {
             category: "Visual style",
             type: {summary: "StyleType"},
         },
-        type: {name: "StyleType", required: false},
+        type: {name: "other", required: false, value: "StyleType"},
     },
-};
+} satisfies ArgTypes;
