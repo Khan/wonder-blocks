@@ -166,7 +166,13 @@ export default class TooltipPopper extends React.Component<Props> {
                 transform: popperProps.arrowProps.style.transform,
             },
             updateTailRef: this._tailRefTracker.updateRef,
-            isReferenceHidden: popperProps.isReferenceHidden,
+            // This is set to false to ensure the popover doesn't disappear
+            // when the reference element is outside the viewport for customers
+            // this is to solve edge cases where customers are in small
+            // screens or zoomed in and might need to scroll down to see the
+            // whole popover (which if it disappears when the reference is out
+            // of view, it makes that impossible for some customers).
+            isReferenceHidden: false,
         } as const;
         return children(bubbleProps);
     }
@@ -181,11 +187,17 @@ export default class TooltipPopper extends React.Component<Props> {
                 placement={placement}
                 modifiers={[
                     {
-                        name: "preventOverflow",
+                        name: "flip",
                         options: {
-                            rootBoundary: "viewport",
+                            rootBoundary: "document",
                         },
                     },
+                    // {
+                    //     name: "preventOverflow",
+                    //     options: {
+                    //         rootBoundary: "viewport",
+                    //     },
+                    // },
                 ]}
             >
                 {(props) => this._renderPositionedContent(props)}
