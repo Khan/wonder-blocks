@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-testing
 
+## 11.0.1
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [c954464a]
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-testing-core@1.0.1
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-data@13.0.10
+
 ## 11.0.0
 
 ### Major Changes

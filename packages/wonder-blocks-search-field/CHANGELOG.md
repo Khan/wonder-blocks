@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.2.20
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-form@4.7.5
+    -   @khanacademy/wonder-blocks-icon@4.1.3
+    -   @khanacademy/wonder-blocks-icon-button@5.3.3
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
 ## 2.2.19
 
 ### Patch Changes

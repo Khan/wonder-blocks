@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.1.19
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-icon@4.1.3
+    -   @khanacademy/wonder-blocks-theming@2.0.3
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+
 ## 1.1.18
 
 ### Patch Changes

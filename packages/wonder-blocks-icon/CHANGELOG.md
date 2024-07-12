@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-icon
 
+## 4.1.3
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+
 ## 4.1.2
 
 ### Patch Changes

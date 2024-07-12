@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 3.0.1
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+
 ## 3.0.0
 
 ### Major Changes
