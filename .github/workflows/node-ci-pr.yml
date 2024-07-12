@@ -53,7 +53,7 @@ jobs:
         with:
             changed-files: ${{ steps.changed.outputs.files }}
             files: packages/ # Only look for changes in packages
-            globs: "!(**/__tests__/**), !(**/dist/*), !(**/*.test.ts)" # Ignore test files
+            globs: "!(**/__tests__/**), !(**/dist/*), !(**/*.test.{ts,tsx})" # Ignore test files
             matchAllGlobs: true # All globs must match (disjunction is the default)
             conjunctive: true # Only return files that match all of the above
 
