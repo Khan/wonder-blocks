@@ -1,12 +1,12 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {StyleSheet, css} from "aphrodite";
 
 import {
     AriaProps,
     StyleType,
-    addStyle,
     useOnMountEffect,
     useUniqueIdWithMock,
+    processStyleList,
 } from "@khanacademy/wonder-blocks-core";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -158,8 +158,6 @@ type TextAreaProps = AriaProps & {
 
 const defaultErrorMessage = "This field is required.";
 
-const StyledTextArea = addStyle("textarea");
-
 export default function TextArea(props: TextAreaProps) {
     const {
         onChange,
@@ -229,21 +227,29 @@ export default function TextArea(props: TextAreaProps) {
         }
     });
 
+    // Processing style prop so we can apply aphrodite styles to the textarea
+    // element. The textarea element is used directly so that we can apply inline
+    // styles for width
+    const processedStyle = processStyleList(style);
     return (
         <div>
-            <StyledTextArea
+            <textarea
                 id={uniqueId}
                 data-testid={testId}
-                className={className}
-                style={[
+                className={`${css(
                     styles.textarea,
                     styles.default,
                     typographyStyles.LabelMedium,
                     disabled && styles.disabled,
                     !!error && styles.error,
                     resizeType && resizeStyles[resizeType],
-                    style,
-                ]}
+                    Object.keys(processedStyle.style).length > 0 &&
+                        processedStyle.style,
+                )} ${className} ${processedStyle.className}`}
+                // Using inline styles for width so that it doesn't have `!important`.
+                // When width has `!important`, it overrides the default browser
+                // behaviour for resizing the textarea
+                style={{width: "100%"}}
                 value={value}
                 onChange={handleChange}
                 placeholder={placeholder}

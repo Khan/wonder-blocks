@@ -153,7 +153,7 @@ describe("TextArea", () => {
 
             // Assert
             const textArea = await screen.findByRole("textbox");
-            expect(textArea).toHaveAttribute("class", className);
+            expect(textArea).toHaveClass(className);
         });
 
         it("should set the rows attribute when the rows prop is provided", async () => {
