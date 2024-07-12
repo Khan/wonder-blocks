@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-data
 
+## 13.0.9
+
+### Patch Changes
+
+-   eab37b8b: Test file changes only. No external changes at all.
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+
 ## 13.0.8
 
 ### Patch Changes

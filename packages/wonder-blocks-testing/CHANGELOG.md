@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-testing
 
+## 11.0.0
+
+### Major Changes
+
+-   2a6c85df: New package containing core Testing functionality without dependencies on other WB packages
+-   2a6c85df: - Minimum version for Storybook actions addon increased to 7
+    -   Added new `renderHookStatic` utility to replace deprecated `renderHookServer` from `@testing-library/react-hooks`; ready for React 18 updates
+    -   Added new `boundary` error boundary adapter for the test harness to capture errors during tests; ready for React 18 updates
+
+### Patch Changes
+
+-   Updated dependencies [2a6c85df]
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-testing-core@1.0.0
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-data@13.0.9
+
 ## 10.1.1
 
 ### Patch Changes

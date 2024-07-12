@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-typography
 
+## 2.1.13
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+
 ## 2.1.12
 
 ### Patch Changes

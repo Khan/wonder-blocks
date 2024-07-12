@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-layout
 
+## 2.1.1
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+
 ## 2.1.0
 
 ### Minor Changes
