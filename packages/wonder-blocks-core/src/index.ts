@@ -16,6 +16,7 @@ export {
     useUniqueIdWithMock,
     useUniqueIdWithoutMock,
 } from "./hooks/use-unique-id";
+export {processStyleList} from "./util/util";
 export {useForceUpdate} from "./hooks/use-force-update";
 export {useIsMounted} from "./hooks/use-is-mounted";
 export {useLatestRef} from "./hooks/use-latest-ref";
