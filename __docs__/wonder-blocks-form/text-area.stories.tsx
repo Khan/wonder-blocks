@@ -272,3 +272,35 @@ export const Required: StoryComponentType = {
     },
     render: ControlledTextArea,
 };
+
+export const ResizeType: StoryComponentType = {
+    args: {},
+    render(args) {
+        return (
+            <div>
+                <label htmlFor="resize-both">Resize: both</label>
+                <TextArea {...args} resizeType="both" id="resize-both" />
+                <br />
+                <label htmlFor="resize-vertical">Resize: vertical</label>
+                <TextArea
+                    {...args}
+                    resizeType="vertical"
+                    id="resize-vertical"
+                />
+                <br />
+                <label htmlFor="resize-horizontal">Resize: horizontal</label>
+                <TextArea
+                    {...args}
+                    resizeType="horizontal"
+                    id="resize-horizontal"
+                />
+                <br />
+                <label htmlFor="resize-none">Resize: both</label>
+                <TextArea {...args} resizeType="none" id="resize-none" />
+                <br />
+                <label htmlFor="resize-default">Resize: default (both)</label>
+                <TextArea {...args} id="resize-default" />
+            </div>
+        );
+    },
+};

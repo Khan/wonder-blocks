@@ -149,6 +149,11 @@ type TextAreaProps = AriaProps & {
      * will be used.
      */
     required?: boolean | string;
+    /**
+     * Specifies the resizing behaviour for the textarea. Defaults to both
+     * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
+     */
+    resizeType?: "horizontal" | "vertical" | "both" | "none";
 };
 
 const defaultErrorMessage = "This field is required.";
@@ -182,6 +187,7 @@ export default function TextArea(props: TextAreaProps) {
         validate,
         onValidate,
         required,
+        resizeType,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -235,6 +241,7 @@ export default function TextArea(props: TextAreaProps) {
                     typographyStyles.LabelMedium,
                     disabled && styles.disabled,
                     !!error && styles.error,
+                    resizeType && resizeStyles[resizeType],
                     style,
                 ]}
                 value={value}
@@ -265,7 +272,6 @@ export default function TextArea(props: TextAreaProps) {
 
 const styles = StyleSheet.create({
     textarea: {
-        width: "100%",
         borderRadius: border.radius.medium_4,
         boxSizing: "border-box",
         padding: `10px ${spacing.medium_16}px`, // TODO(bea): token for 10px?
@@ -295,5 +301,20 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: color.offBlack64,
         },
+    },
+});
+
+const resizeStyles = StyleSheet.create({
+    both: {
+        resize: "both",
+    },
+    none: {
+        resize: "none",
+    },
+    horizontal: {
+        resize: "horizontal",
+    },
+    vertical: {
+        resize: "vertical",
     },
 });
