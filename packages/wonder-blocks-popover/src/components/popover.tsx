@@ -289,7 +289,6 @@ export default class Popover extends React.Component<Props, State> {
     render(): React.ReactNode {
         const {children, dismissEnabled, id} = this.props;
         const {opened, placement} = this.state;
-        //const popperHost = this.getHost();
 
         return (
             <PopoverContext.Provider
