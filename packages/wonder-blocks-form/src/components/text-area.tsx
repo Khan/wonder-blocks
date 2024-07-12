@@ -5,6 +5,7 @@ import {
     AriaProps,
     StyleType,
     addStyle,
+    useOnMountEffect,
     useUniqueIdWithMock,
 } from "@khanacademy/wonder-blocks-core";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -58,7 +59,7 @@ type TextAreaProps = AriaProps & {
      */
     className?: string;
     /**
-     * Whether this field should autofocus on page load.
+     * Whether this textarea should autofocus on page load.
      */
     autoFocus?: boolean;
     /**
@@ -125,7 +126,32 @@ type TextAreaProps = AriaProps & {
      * Called right after the textarea is validated.
      */
     onValidate?: (errorMessage?: string | null | undefined) => unknown;
+    /**
+     * Whether this textarea is required to continue, or the error message to
+     * render if this textarea is left blank.
+     *
+     * This can be a boolean or a string.
+     *
+     * String:
+     * Please pass in a translated string to use as the error message that will
+     * render if the user leaves this textarea blank. If this textarea is required,
+     * and a string is not passed in, a default untranslated string will render
+     * upon error.
+     * Note: The string will not be used if a `validate` prop is passed in.
+     *
+     * Example message: i18n._("A password is required to log in.")
+     *
+     * Boolean:
+     * True/false indicating whether this textarea is required. Please do not pass
+     * in `true` if possible - pass in the error string instead.
+     * If `true` is passed, and a `validate` prop is not passed, that means
+     * there is no corresponding message and the default untranlsated message
+     * will be used.
+     */
+    required?: boolean | string;
 };
+
+const defaultErrorMessage = "This field is required.";
 
 const StyledTextArea = addStyle("textarea");
 
@@ -155,6 +181,7 @@ export default function TextArea(props: TextAreaProps) {
         onBlur,
         validate,
         onValidate,
+        required,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -165,18 +192,36 @@ export default function TextArea(props: TextAreaProps) {
     const uniqueId = id ?? ids.get("id");
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        onChange(event.target.value);
+        const newValue = event.target.value;
+        onChange(newValue);
+        handleValidation(newValue);
     };
 
-    React.useEffect(() => {
-        if (validate && value !== "") {
-            const error = validate(value) || null;
+    const handleValidation = (newValue: string) => {
+        if (validate) {
+            const error = validate(newValue) || null;
+            setError(error);
+            if (onValidate) {
+                onValidate(error);
+            }
+        } else if (required) {
+            const requiredString =
+                typeof required === "string" ? required : defaultErrorMessage;
+            const error = newValue ? null : requiredString;
             setError(error);
             if (onValidate) {
                 onValidate(error);
             }
         }
-    }, [validate, value, onValidate]);
+    };
+
+    useOnMountEffect(() => {
+        // Only validate on mount if the value is not empty. This is so that fields
+        // don't render an error when they are initially empty
+        if (value !== "") {
+            handleValidation(value);
+        }
+    });
 
     return (
         <div>
@@ -210,6 +255,7 @@ export default function TextArea(props: TextAreaProps) {
                 onKeyUp={onKeyUp}
                 onFocus={onFocus}
                 onBlur={onBlur}
+                required={!!required}
                 {...otherProps}
                 aria-invalid={!!error}
             />

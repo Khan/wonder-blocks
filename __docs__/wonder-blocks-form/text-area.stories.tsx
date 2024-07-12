@@ -8,6 +8,10 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 import {color} from "../../packages/wonder-blocks-tokens/src/tokens/color";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
+import LabelSmall from "../../packages/wonder-blocks-typography/src/components/label-small";
+import {spacing} from "../../packages/wonder-blocks-tokens/src/tokens/spacing";
+import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
+import View from "../../packages/wonder-blocks-core/src/components/view";
 
 /**
  * A TextArea is an element used to accept text from the user.
@@ -37,16 +41,31 @@ const styles = StyleSheet.create({
             color: color.white64,
         },
     },
+    error: {
+        color: color.red,
+    },
 });
 
 const ControlledTextArea = (args: any) => {
     const [value, setValue] = React.useState(args.value || "");
+    const [error, setError] = React.useState<string | null>(null);
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    return <TextArea {...args} value={value} onChange={handleChange} />;
+    return (
+        <View>
+            <TextArea
+                {...args}
+                value={value}
+                onChange={handleChange}
+                onValidate={setError}
+            />
+            <Strut size={spacing.xxSmall_6} />
+            {error && <LabelSmall style={styles.error}>{error}</LabelSmall>}
+        </View>
+    );
 };
 
 export const Default: StoryComponentType = {
@@ -242,6 +261,14 @@ export const Error: StoryComponentType = {
                 return "Please enter a valid email";
             }
         },
+    },
+    render: ControlledTextArea,
+};
+
+export const Required: StoryComponentType = {
+    args: {
+        value: "khan",
+        required: true,
     },
     render: ControlledTextArea,
 };

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
@@ -254,6 +255,20 @@ describe("TextArea", () => {
             // Assert
             const textArea = await screen.findByRole("textbox");
             expect(textArea).toHaveAttribute("maxlength", `${maxLength}`);
+        });
+
+        it("should set the required attribute when the required prop is used", async () => {
+            // Arrange
+            render(
+                <TextArea value="Text" onChange={() => {}} required={true} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("required");
         });
     });
 
@@ -717,7 +732,7 @@ describe("TextArea", () => {
                 expect(validate).toHaveBeenCalledOnceWith("texts");
             });
 
-            it("should not call the validate function when the value is updated to an empty string", async () => {
+            it("should call the validate function when the value is updated to an empty string", async () => {
                 // Arrange
                 const validate = jest.fn();
                 const Controlled = () => {
@@ -735,14 +750,14 @@ describe("TextArea", () => {
                 validate.mockReset();
 
                 // Act
-                // Update value
+                // Erase value
                 await userEvent.type(
                     await screen.findByRole("textbox"),
                     "{backspace}",
                 );
 
                 // Assert
-                expect(validate).not.toHaveBeenCalled();
+                expect(validate).toHaveBeenCalledOnceWith("");
             });
         });
         describe("onValidate prop", () => {
@@ -799,6 +814,213 @@ describe("TextArea", () => {
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledOnceWith(null);
+            });
+        });
+
+        describe("required prop", () => {
+            it("should initially render with no error if it is required and the value is empty", async () => {
+                // Arrange
+                render(
+                    <TextArea
+                        value=""
+                        onChange={() => {}}
+                        required="Required"
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
+
+            it("should initially render with no error if it is required and the value is not empty", async () => {
+                // Arrange
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        required="Required"
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
+
+            it("shound update with error if it is required and the value changes to an empty string", async () => {
+                // Arrange
+                render(
+                    <TextArea
+                        value="T"
+                        onChange={() => {}}
+                        required="Required"
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                await userEvent.type(
+                    await screen.findByRole("textbox"),
+                    "{backspace}",
+                );
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "true");
+            });
+
+            it("should not call onValidate on first render if the value is empty and required prop is used", async () => {
+                // Arrange
+                const handleValidate = jest.fn();
+                render(
+                    <TextArea
+                        value=""
+                        onChange={() => {}}
+                        required="Required"
+                        onValidate={handleValidate}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                expect(handleValidate).not.toHaveBeenCalled();
+            });
+
+            it("should call onValidate with no error message on first render if the value is not empty and required prop is used", async () => {
+                // Arrange
+                const handleValidate = jest.fn();
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        required="Required"
+                        onValidate={handleValidate}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                expect(handleValidate).toHaveBeenCalledOnceWith(null);
+            });
+
+            it("should call onValidate when the value is cleared", async () => {
+                // Arrange
+                const handleValidate = jest.fn();
+                render(
+                    <TextArea
+                        value="T"
+                        onChange={() => {}}
+                        required="Required"
+                        onValidate={handleValidate}
+                    />,
+                    defaultOptions,
+                );
+                // Reset mock after initial render
+                handleValidate.mockReset();
+
+                // Act
+                await userEvent.type(
+                    await screen.findByRole("textbox"),
+                    "{backspace}",
+                );
+
+                // Assert
+                expect(handleValidate).toHaveBeenCalledOnce();
+            });
+
+            it("should call onValidate with the custom error message from the required prop when it is a string", async () => {
+                // Arrange
+                const requiredErrorMsg = "Custom required error message";
+                const handleValidate = jest.fn();
+                render(
+                    <TextArea
+                        value="T"
+                        onChange={() => {}}
+                        required={requiredErrorMsg}
+                        onValidate={handleValidate}
+                    />,
+                    defaultOptions,
+                );
+                // Reset mock after initial render
+                handleValidate.mockReset();
+
+                // Act
+                await userEvent.type(
+                    await screen.findByRole("textbox"),
+                    "{backspace}",
+                );
+
+                // Assert
+                expect(handleValidate).toHaveBeenCalledOnceWith(
+                    requiredErrorMsg,
+                );
+            });
+
+            it("should call onValidate with a default error message if required is not a string", async () => {
+                // Arrange
+                const handleValidate = jest.fn();
+                render(
+                    <TextArea
+                        value="T"
+                        onChange={() => {}}
+                        required={true}
+                        onValidate={handleValidate}
+                    />,
+                    defaultOptions,
+                );
+                // Reset mock after initial render
+                handleValidate.mockReset();
+
+                // Act
+                await userEvent.type(
+                    await screen.findByRole("textbox"),
+                    "{backspace}",
+                );
+
+                // Assert
+                expect(handleValidate).toHaveBeenCalledOnceWith(
+                    "This field is required.",
+                );
+            });
+
+            it("should prioritize validate prop over required prop if both are provided", async () => {
+                // Arrange
+                const handleValidate = jest.fn();
+                const requiredErrorMessage = "Error because it is required";
+                const validateErrorMessage = "Error because of validation";
+                render(
+                    <TextArea
+                        value="T"
+                        onChange={() => {}}
+                        required={requiredErrorMessage}
+                        onValidate={handleValidate}
+                        validate={() => validateErrorMessage}
+                    />,
+                    defaultOptions,
+                );
+                // Reset mock after initial render
+                handleValidate.mockReset();
+
+                // Act
+                await userEvent.type(
+                    await screen.findByRole("textbox"),
+                    "{backspace}",
+                );
+
+                // Assert
+                expect(handleValidate).toHaveBeenCalledOnceWith(
+                    validateErrorMessage,
+                );
             });
         });
     });
