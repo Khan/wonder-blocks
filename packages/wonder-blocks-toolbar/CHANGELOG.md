@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 3.0.34
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 3.0.33
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
 ## 3.0.32
 
 ### Patch Changes

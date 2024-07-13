@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 2.0.3
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+
 ## 2.0.2
 
 ### Patch Changes

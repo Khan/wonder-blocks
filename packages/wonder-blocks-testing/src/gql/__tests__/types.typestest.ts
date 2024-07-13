@@ -1,6 +1,6 @@
 import {GqlOperation} from "@khanacademy/wonder-blocks-data";
+import {RespondWith} from "@khanacademy/wonder-blocks-testing-core";
 import type {GqlFetchMockFn} from "../types";
-import {RespondWith} from "../../respond-with";
 
 type SomeGqlData = {
     a: string;

@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 1.0.1
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+
 ## 1.0.0
 
 ### Major Changes

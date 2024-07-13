@@ -1,6 +1,6 @@
 import * as React from "react";
 import {InterceptRequests} from "@khanacademy/wonder-blocks-data";
-import type {TestHarnessAdapter} from "../types";
+import type {TestHarnessAdapter} from "@khanacademy/wonder-blocks-testing-core";
 
 type Interceptor = JSX.LibraryManagedAttributes<
     typeof InterceptRequests,

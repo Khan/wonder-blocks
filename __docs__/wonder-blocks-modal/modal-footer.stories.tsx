@@ -141,7 +141,7 @@ export default {
     },
     argTypes: {
         children: {
-            control: {type: null},
+            control: {type: undefined},
         },
     },
 } as Meta<typeof ModalFooter>;

@@ -99,7 +99,7 @@ export default {
         control: {type: "number"},
         description: "Set the tabindex attribute on the rendered element.",
         table: {
-            defaultValue: {summary: 0},
+            defaultValue: {summary: "0"},
             type: {summary: "number"},
         },
     },

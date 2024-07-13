@@ -1,10 +1,10 @@
 import {ArgTypes} from "@storybook/react";
 import baseSelectArgTypes from "./base-select.argtypes";
 
-const argTypes: ArgTypes = {
+export default {
     ...baseSelectArgTypes,
     children: {
-        control: {type: null},
+        control: {type: undefined},
         description: "The items in this dropdown.",
         table: {
             type: {
@@ -25,6 +25,4 @@ const argTypes: ArgTypes = {
             type: {summary: "Array<string>"},
         },
     },
-};
-
-export default argTypes;
+} satisfies ArgTypes;
