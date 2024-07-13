@@ -17,6 +17,7 @@ import PopoverContext from "./popover-context";
 import PopoverAnchor from "./popover-anchor";
 import PopoverDialog from "./popover-dialog";
 import PopoverEventListener from "./popover-event-listener";
+import InitialFocus from "./initial-focus";
 
 type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
@@ -254,24 +255,31 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {placement, showTail} = this.props;
+        const {initialFocusId, placement, showTail} = this.props;
         const {anchorElement} = this.state;
 
         return (
-            <TooltipPopper anchorElement={anchorElement} placement={placement}>
-                {(props: PopperElementProps) => (
-                    <PopoverDialog
-                        {...props}
-                        aria-describedby={`${uniqueId}-content`}
-                        aria-labelledby={`${uniqueId}-title`}
-                        id={uniqueId}
-                        onUpdate={(placement) => this.setState({placement})}
-                        showTail={showTail}
-                    >
-                        {this.renderContent(uniqueId)}
-                    </PopoverDialog>
-                )}
-            </TooltipPopper>
+            // Ensures the user is focused on the first available element
+            // when popover is rendered
+            <InitialFocus initialFocusId={initialFocusId}>
+                <TooltipPopper
+                    anchorElement={anchorElement}
+                    placement={placement}
+                >
+                    {(props: PopperElementProps) => (
+                        <PopoverDialog
+                            {...props}
+                            aria-describedby={`${uniqueId}-content`}
+                            aria-labelledby={`${uniqueId}-title`}
+                            id={uniqueId}
+                            onUpdate={(placement) => this.setState({placement})}
+                            showTail={showTail}
+                        >
+                            {this.renderContent(uniqueId)}
+                        </PopoverDialog>
+                    )}
+                </TooltipPopper>
+            </InitialFocus>
         );
     }
 
