@@ -25,7 +25,7 @@ const argTypes: ArgTypes = {
             not be opened and does not support interaction.`,
         table: {
             category: "States",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
         },
     },
 
@@ -33,7 +33,7 @@ const argTypes: ArgTypes = {
         description: "Whether this component is in an error state.",
         table: {
             category: "States",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
         },
     },
 
@@ -51,7 +51,7 @@ const argTypes: ArgTypes = {
             instead, for use when the component is used on a dark background.`,
         table: {
             category: "States",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
         },
     },
 

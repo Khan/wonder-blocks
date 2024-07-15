@@ -1,5 +1,5 @@
 import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
-import {renderHook as serverRenderHook} from "@testing-library/react-hooks/server";
+import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 
@@ -43,7 +43,7 @@ describe("#useServerEffect", () => {
         const fakeHandler = jest.fn();
 
         // Act
-        serverRenderHook(() => useServerEffect("ID", fakeHandler));
+        renderHookStatic(() => useServerEffect("ID", fakeHandler));
 
         // Assert
         expect(useRequestInterceptSpy).toHaveBeenCalledWith("ID", fakeHandler);
@@ -61,7 +61,7 @@ describe("#useServerEffect", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useServerEffect("ID", fakeHandler));
+            } = renderHookStatic(() => useServerEffect("ID", fakeHandler));
 
             // Assert
             expect(result).toBeNull();
@@ -76,7 +76,7 @@ describe("#useServerEffect", () => {
             );
 
             // Act
-            serverRenderHook(() => useServerEffect("ID", fakeHandler));
+            renderHookStatic(() => useServerEffect("ID", fakeHandler));
 
             // Assert
             expect(fulfillRequestSpy).not.toHaveBeenCalled();
@@ -96,7 +96,7 @@ describe("#useServerEffect", () => {
             );
 
             // Act
-            serverRenderHook(() => useServerEffect("ID", fakeHandler), {
+            renderHookStatic(() => useServerEffect("ID", fakeHandler), {
                 wrapper: TrackData,
             });
 
@@ -122,7 +122,7 @@ describe("#useServerEffect", () => {
             );
 
             // Act
-            serverRenderHook(
+            renderHookStatic(
                 () => useServerEffect("ID", fakeHandler, {skip: true}),
                 {
                     wrapper: TrackData,
@@ -151,7 +151,7 @@ describe("#useServerEffect", () => {
             );
 
             // Act
-            serverRenderHook(() => useServerEffect("ID", fakeHandler), {
+            renderHookStatic(() => useServerEffect("ID", fakeHandler), {
                 wrapper: TrackData,
             });
 
@@ -170,7 +170,7 @@ describe("#useServerEffect", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useServerEffect("ID", fakeHandler));
+            } = renderHookStatic(() => useServerEffect("ID", fakeHandler));
 
             // Assert
             expect(result).toEqual({status: "success", data: "DATA"});
@@ -186,7 +186,7 @@ describe("#useServerEffect", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useServerEffect("ID", fakeHandler));
+            } = renderHookStatic(() => useServerEffect("ID", fakeHandler));
 
             // Assert
             expect(result).toEqual({

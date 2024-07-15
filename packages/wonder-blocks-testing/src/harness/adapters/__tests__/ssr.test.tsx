@@ -1,7 +1,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import * as WBCore from "@khanacademy/wonder-blocks-core";
-import {makeTestHarness} from "../../make-test-harness";
+import {makeTestHarness} from "@khanacademy/wonder-blocks-testing-core";
 
 import * as SSR from "../ssr";
 

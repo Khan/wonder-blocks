@@ -2,11 +2,13 @@
 /* eslint-disable import/no-commonjs */
 import fs from "fs";
 import path from "path";
-import autoExternal from "rollup-plugin-auto-external";
+import {nodeExternals} from "rollup-plugin-node-externals";
 import babel from "rollup-plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
+// eslint-disable-next-line import/extensions
+import makeBabelConfig from "./babel.config.js";
 
-const {presets, plugins} = require("./babel.config")({env: () => false});
+const {presets, plugins} = makeBabelConfig({env: () => false});
 
 const createConfig = (pkgName) => {
     const packageJsonPath = path.join("packages", pkgName, "package.json");
@@ -47,7 +49,7 @@ const createConfig = (pkgName) => {
                 browser: true,
                 extensions,
             }),
-            autoExternal({
+            nodeExternals({
                 packagePath: `packages/${pkgName}/package.json`,
             }),
         ],
