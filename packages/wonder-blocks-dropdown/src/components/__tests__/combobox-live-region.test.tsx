@@ -9,7 +9,7 @@ const options = [
 ];
 
 describe("ComboboxLiveRegion", () => {
-    it("renders a closed state", () => {
+    it("doesn't announce anything by default", () => {
         // Arrange
 
         // Act
@@ -23,8 +23,9 @@ describe("ComboboxLiveRegion", () => {
                 opened={false}
             />,
         );
+
         // Assert
-        expect(screen.getByRole("log")).toHaveTextContent("Combobox is closed");
+        expect(screen.getByRole("log")).toHaveTextContent("");
     });
 
     describe("multi-select", () => {
@@ -140,6 +141,39 @@ describe("ComboboxLiveRegion", () => {
             // Assert
             expect(screen.getByRole("log")).toHaveTextContent(
                 "Option 1 focused, 1 of 1. 1 selected options.",
+            );
+        });
+
+        it("announces when it is closed", () => {
+            // Arrange
+            const {rerender} = render(
+                <ComboboxLiveRegion
+                    focusedIndex={-1}
+                    focusedMultiSelectIndex={-1}
+                    options={options}
+                    multiSelectLabels={[]}
+                    selected={null}
+                    selectionType="multiple"
+                    opened={true}
+                />,
+            );
+
+            // Act
+            rerender(
+                <ComboboxLiveRegion
+                    focusedIndex={-1}
+                    focusedMultiSelectIndex={-1}
+                    options={options}
+                    multiSelectLabels={[]}
+                    selected={null}
+                    selectionType="multiple"
+                    opened={false}
+                />,
+            );
+
+            // Assert
+            expect(screen.getByRole("log")).toHaveTextContent(
+                "Combobox is closed",
             );
         });
     });
