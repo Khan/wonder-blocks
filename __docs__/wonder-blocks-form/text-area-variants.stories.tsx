@@ -22,6 +22,11 @@ export default {
 
 type StoryComponentType = StoryObj<typeof TextArea>;
 
+const longText =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+const longTextWithNoWordBreak =
+    "Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliqua";
+
 const states = [
     {
         label: "Default",
@@ -76,8 +81,28 @@ const AllVariants = () => (
                     <States light={light} label="With Value" value="Text" />
                     <States
                         light={light}
+                        label="With Value (long)"
+                        value={longText}
+                    />
+                    <States
+                        light={light}
+                        label="With Value (long, no word breaks)"
+                        value={longTextWithNoWordBreak}
+                    />
+                    <States
+                        light={light}
                         label="With Placeholder"
                         placeholder="Placeholder text"
+                    />
+                    <States
+                        light={light}
+                        label="With Placeholder (long)"
+                        placeholder={longText}
+                    />
+                    <States
+                        light={light}
+                        label="With Placeholder (long, no word breaks)"
+                        placeholder={longTextWithNoWordBreak}
                     />
                 </React.Fragment>
             );
