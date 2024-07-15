@@ -319,6 +319,7 @@ const styles = StyleSheet.create({
         ":focus-visible": {
             borderColor: color.blue,
             outline: `1px solid ${color.blue}`,
+            outlineOffset: 0, // Explicitly set outline offset to 0 because Safari sets a default offset
         },
     },
     disabled: {
@@ -353,6 +354,7 @@ const styles = StyleSheet.create({
     lightFocus: {
         ":focus-visible": {
             outline: `1px solid ${color.blue}`,
+            outlineOffset: 0, // Explicitly set outline offset to 0 because Safari sets a default offset
             borderColor: color.blue,
             boxShadow: `0px 0px 0px 2px ${color.blue}, 0px 0px 0px 3px ${color.white}`,
         },
