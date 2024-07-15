@@ -6,12 +6,11 @@ import {TextArea} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {color} from "../../packages/wonder-blocks-tokens/src/tokens/color";
-import Button from "../../packages/wonder-blocks-button/src/components/button";
-import LabelSmall from "../../packages/wonder-blocks-typography/src/components/label-small";
-import {spacing} from "../../packages/wonder-blocks-tokens/src/tokens/spacing";
-import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
-import View from "../../packages/wonder-blocks-core/src/components/view";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import Button from "@khanacademy/wonder-blocks-button";
+import {LabelSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 /**
  * A TextArea is an element used to accept text from the user.
@@ -87,26 +86,37 @@ export const WithValue: StoryComponentType = {
     render: ControlledTextArea,
 };
 
-export const WithLongValue: StoryComponentType = {
-    args: {
-        value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        onChange: () => {},
-    },
-    render: ControlledTextArea,
-};
-
+/**
+ * Use the `placeholder` prop to provide hints or examples of what to enter.
+ *
+ * - Placeholder text is not a replacement for labels. Assistive
+ * technologies, such as screen readers, do not treat placeholder text as
+ * labels.
+ * - Placeholder text is not displayed when there is a value. Critical details
+ * should not be in the placeholder text as they can be missed if the TextArea
+ * is fille already.
+ */
 export const Placeholder: StoryComponentType = {
     args: {
         placeholder: "Placeholder text",
     },
 };
 
+/**
+ * If the disabled prop is set to `true`, TextArea will have disabled styling
+ * and will not be interactable.
+ */
 export const Disabled: StoryComponentType = {
     args: {
         disabled: true,
     },
 };
 
+/**
+ * A textarea with the prop `readOnly` set to `true` is not interactable. It
+ * looks the same as if it were not read only, and it can still receive focus,
+ * but the interaction point will not appear and the textarea will not change.
+ */
 export const ReadOnly: StoryComponentType = {
     args: {
         value: "Readonly text",
@@ -114,6 +124,13 @@ export const ReadOnly: StoryComponentType = {
     },
 };
 
+/**
+ * If the textarea fails validation, `TextArea` will have error styling.
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * `textarea` element:
+ * - `aria-invalid="true"` if there is an error message.
+ * - `aria-invalid="false"` if there is no error message.
+ */
 export const Error: StoryComponentType = {
     args: {
         value: "khan",
@@ -127,37 +144,108 @@ export const Error: StoryComponentType = {
     render: ControlledTextArea,
 };
 
+/**
+ * A required field will have error styling if the field is left blank. To
+ * observe this, type something into the field, backspace all the way,
+ * and then shift focus out of the field.
+ */
 export const Required: StoryComponentType = {
     args: {
-        value: "khan",
+        value: "",
         required: true,
     },
     render: ControlledTextArea,
 };
 
+/**
+ * The number of rows to use by default can be specified using the `rows` prop.
+ * This will be ignored if:
+ * - the height is set on the textarea using CSS
+ * - the user resizes the textarea using the built-in resize control
+ *
+ * It is often helpful to set the initial number of rows based on how much
+ * content we expect from the user.
+ */
 export const Rows: StoryComponentType = {
     args: {
         rows: 10,
     },
 };
 
+/**
+ * If the `autoComplete` prop is set, the browser can predict values for the
+ * textarea. For more details, see the
+ * [MDN docs for the textarea attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes).
+ */
 export const AutoComplete: StoryComponentType = {
     args: {
-        autoComplete: "email",
+        autoComplete: "on",
     },
 };
 
-export const AutoFocus: StoryComponentType = {
-    args: {
-        autoFocus: true,
-    },
+/**
+ * When the `autoFocus` prop is set, the TextArea will be focused on page load.
+ * Try to avoid using this if possible as it is bad for accessibility.
+ */
+export const AutoFocus: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+    const [showDemo, setShowDemo] = React.useState(false);
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    const handleShowDemo = () => {
+        setShowDemo(!showDemo);
+    };
+
+    const AutoFocusDemo = () => (
+        <View style={{flexDirection: "row"}}>
+            <Button onClick={() => {}}>Some other focusable element</Button>
+            <TextArea
+                value={value}
+                placeholder="Placeholder"
+                autoFocus={true}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                style={{flexGrow: 1, marginLeft: spacing.small_12}}
+            />
+        </View>
+    );
+
+    return (
+        <View>
+            <LabelLarge style={{marginBottom: spacing.small_12}}>
+                Press the button to view the textarea with autofocus.
+            </LabelLarge>
+            <Button
+                onClick={handleShowDemo}
+                style={{width: 300, marginBottom: spacing.large_24}}
+            >
+                Toggle autoFocus demo
+            </Button>
+            {showDemo && <AutoFocusDemo />}
+        </View>
+    );
 };
 
+/**
+ * Spell check can be enabled for the TextArea. It will be checked for spelling
+ * when you try to edit it (ie. once the textarea is focused).
+ *
+ * **Note**: Consider disabling `spellCheck` for
+ *  sensitive information (see [Security and Privacy concerns](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/spellcheck#security_and_privacy_concerns) for more details)
+ */
 export const SpellCheckEnabled: StoryComponentType = {
     args: {
         spellCheck: true,
         value: "This exampull will be checkd fur spellung when you try to edit it.",
-        autoFocus: true, // enable autoFocus so we see spell check errors right away
     },
 };
 
@@ -165,10 +253,13 @@ export const SpellCheckDisabled: StoryComponentType = {
     args: {
         spellCheck: false,
         value: "This exampull will nut be checkd fur spellung when you try to edit it.",
-        autoFocus: true, // enable autoFocus so we see spell check errors right away
     },
 };
 
+/**
+ * The `wrap` prop configures the wrapping behaviour of the value for form
+ * submission.
+ */
 export const Wrap: StoryComponentType = {
     args: {
         value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -253,32 +344,44 @@ export const MinMaxLength: StoryComponentType = {
     render: ControlledTextArea,
 };
 
+/**
+ * The behaviour of the built-in resize control can be configured using the
+ * `resizeType` prop. Here are some tips:
+ * - The initial size of the TextArea can be configured using the `rows` prop.
+ * This size should be large enough for the expected user input.
+ * - Avoid having too small of a TextArea and having `resizeType=none`. This
+ * makes it difficult for users to scroll through their input.
+ */
 export const ResizeType: StoryComponentType = {
     args: {},
     render(args) {
         return (
             <div>
-                <label htmlFor="resize-both">Resize: both</label>
+                <label htmlFor="resize-both">Resize Type: both</label>
                 <TextArea {...args} resizeType="both" id="resize-both" />
                 <br />
-                <label htmlFor="resize-vertical">Resize: vertical</label>
+                <label htmlFor="resize-vertical">Resize Type: vertical</label>
                 <TextArea
                     {...args}
                     resizeType="vertical"
                     id="resize-vertical"
                 />
                 <br />
-                <label htmlFor="resize-horizontal">Resize: horizontal</label>
+                <label htmlFor="resize-horizontal">
+                    Resize Type: horizontal
+                </label>
                 <TextArea
                     {...args}
                     resizeType="horizontal"
                     id="resize-horizontal"
                 />
                 <br />
-                <label htmlFor="resize-none">Resize: none</label>
+                <label htmlFor="resize-none">Resize Type: none</label>
                 <TextArea {...args} resizeType="none" id="resize-none" />
                 <br />
-                <label htmlFor="resize-default">Resize: default (both)</label>
+                <label htmlFor="resize-default">
+                    Resize Type: default (both)
+                </label>
                 <TextArea {...args} id="resize-default" />
             </div>
         );

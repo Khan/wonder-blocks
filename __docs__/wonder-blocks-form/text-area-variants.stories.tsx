@@ -114,6 +114,9 @@ export const Default: StoryComponentType = {
     render: AllVariants,
 };
 
+/**
+ * Similar to TextField, there are currently no hover styles.
+ */
 export const Hover: StoryComponentType = {
     render: AllVariants,
     parameters: {pseudo: {hover: true}},
@@ -130,6 +133,9 @@ export const HoverFocus: StoryComponentType = {
     parameters: {pseudo: {hover: true, focusVisible: true}},
 };
 
+/**
+ * Similar to TextField, there are currently no active styles.
+ */
 export const Active: StoryComponentType = {
     render: AllVariants,
     parameters: {pseudo: {active: true}},
