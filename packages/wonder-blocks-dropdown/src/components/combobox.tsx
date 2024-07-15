@@ -343,9 +343,11 @@ export default function Combobox({
         : focusedIndex >= 0
         ? // listbox is focused
           renderList[focusedIndex]?.props?.id
-        : // pills group are focused
+        : // pills are focused (multiple values selected)
           pillIdPrefix + focusedMultiSelectIndex;
 
+    // Determine which widget will be controlled by the combobox (listbox or
+    // pills group).
     const controlledWidget = !openState
         ? undefined
         : focusedIndex >= 0
@@ -370,6 +372,7 @@ export default function Combobox({
                     testId={testId}
                     opened={openState}
                     selected={selected}
+                    selectionType={selectionType}
                 />
 
                 {/* Multi-select pills display before the input (if options are selected) */}
@@ -406,7 +409,6 @@ export default function Combobox({
                     }}
                     aria-controls={controlledWidget}
                     onKeyDown={onKeyDown}
-                    // STOPSHIP(juan): Figure out how to handle SR in iOS
                     aria-activedescendant={currentActiveDescendant}
                     aria-expanded={openState}
                     ref={comboboxRef}

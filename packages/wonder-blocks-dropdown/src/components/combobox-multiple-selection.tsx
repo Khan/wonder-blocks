@@ -5,6 +5,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {color, font, spacing} from "@khanacademy/wonder-blocks-tokens";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     /**
@@ -57,7 +58,7 @@ export const MultipleSelection = React.memo(function SelectedPills({
     testId,
 }: Props) {
     return (
-        <>
+        <View role="group" style={styles.pillsWrapper} id={id}>
             {selected.map((value, index) => {
                 const label = labels[index] as string;
                 const focused = index === focusedMultiSelectIndex;
@@ -84,11 +85,15 @@ export const MultipleSelection = React.memo(function SelectedPills({
                     </Pill>
                 );
             })}
-        </>
+        </View>
     );
 });
 
 const styles = StyleSheet.create({
+    pillsWrapper: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
     pill: {
         fontSize: font.size.small,
         justifyContent: "space-between",

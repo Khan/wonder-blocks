@@ -48,11 +48,25 @@ type Props = {
      */
     selected: MaybeValueOrValues;
     /**
+     * Whether the use can select more than one option item. Defaults to
+     * `single`.
+     */
+    selectionType?: "single" | "multiple";
+    /**
      * The testId used for the live region.
      */
     testId?: string;
 };
 
+/**
+ * A component that announces focus changes to Screen Readers.
+ *
+ * This is useful as there are lots of issues with `role="combobox"` + Safari
+ * when the browser is not capable of announcing correctly the status of the
+ * currently focused option item.
+ *
+ * @see https://bugs.webkit.org/show_bug.cgi?id=167671
+ */
 export function ComboboxLiveRegion({
     focusedIndex,
     focusedMultiSelectIndex,
@@ -64,9 +78,10 @@ export function ComboboxLiveRegion({
             defaultComboboxLabels.liveRegionMultipleSelectionTotal,
     },
     multiSelectLabels,
-    selected,
     opened,
     options,
+    selected,
+    selectionType = "single",
     testId,
 }: Props) {
     const lastSelectedValue = React.useRef<MaybeValueOrValues>(null);
@@ -82,18 +97,28 @@ export function ComboboxLiveRegion({
                 selectedLength > lastSelectedLength
                     ? "selected"
                     : "not selected";
+            // Multi-select combobox.
             if (Array.isArray(selected) && selected.length > 0) {
                 newMessage = `${multiSelectLabels.join(", ")} ${selectedState}`;
+            } else {
+                // Announces the selected item for single select combobox.
+                newMessage = multiSelectLabels[0] + " selected";
             }
             setMessage(newMessage);
         }
 
         lastSelectedValue.current = selected;
 
-        if (!opened) {
+        if (selectionType === "multiple" && !opened) {
             setMessage(labels.closedState);
         }
-    }, [labels.closedState, multiSelectLabels, opened, selected]);
+    }, [
+        labels.closedState,
+        multiSelectLabels,
+        opened,
+        selected,
+        selectionType,
+    ]);
 
     const focusedElementDescription = React.useMemo(() => {
         // If there are focused items in the multi-select combobox, announce the
