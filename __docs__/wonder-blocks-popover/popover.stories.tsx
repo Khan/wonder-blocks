@@ -661,7 +661,7 @@ type ArrowButtonProps = {
 
 function ArrowButton(props: ArrowButtonProps): React.ReactElement {
     const {onClick, focus, index} = props;
-    const tabRef = React.useRef(null);
+    const tabRef = React.useRef<{focus: () => void}>(null);
 
     React.useEffect(() => {
         if (focus) {
