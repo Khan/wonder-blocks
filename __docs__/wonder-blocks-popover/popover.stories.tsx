@@ -661,7 +661,7 @@ type ArrowButtonProps = {
 
 function ArrowButton(props: ArrowButtonProps): React.ReactElement {
     const {onClick, focus, index} = props;
-    const tabRef = React.useRef<{focus: () => void}>(null);
+    const tabRef = React.useRef(null);
 
     React.useEffect(() => {
         if (focus) {
@@ -676,6 +676,7 @@ function ArrowButton(props: ArrowButtonProps): React.ReactElement {
              * */
             if (tabRef?.current) {
                 // Move element into view when it is focused
+                // @ts-expect-error - TS2339 - Property 'focus' does not exist on type 'ReactInstance'.
                 tabRef?.current.focus();
             }
         }
