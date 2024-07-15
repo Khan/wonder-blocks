@@ -273,6 +273,19 @@ export const Required: StoryComponentType = {
     render: ControlledTextArea,
 };
 
+export const Light: StoryComponentType = {
+    args: {
+        light: true,
+        value: "Text",
+    },
+    render: ControlledTextArea,
+    parameters: {
+        backgrounds: {
+            default: "darkBlue",
+        },
+    },
+};
+
 export const ResizeType: StoryComponentType = {
     args: {},
     render(args) {

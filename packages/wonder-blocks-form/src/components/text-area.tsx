@@ -154,6 +154,10 @@ type TextAreaProps = AriaProps & {
      * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
      */
     resizeType?: "horizontal" | "vertical" | "both" | "none";
+    /**
+     * Change the default focus ring color to fit a dark background.
+     */
+    light?: boolean;
 };
 
 const defaultErrorMessage = "This field is required.";
@@ -186,6 +190,7 @@ export default function TextArea(props: TextAreaProps) {
         onValidate,
         required,
         resizeType,
+        light,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -231,21 +236,40 @@ export default function TextArea(props: TextAreaProps) {
     // element. The textarea element is used directly so that we can apply inline
     // styles for width
     const processedStyle = processStyleList(style);
+
+    const getStyles = () => {
+        // Base styles are the styles that apply regardless of light mode
+        const baseStyles = [
+            styles.textarea,
+            typographyStyles.LabelMedium,
+            resizeType && resizeStyles[resizeType],
+            Object.keys(processedStyle.style).length > 0 &&
+                processedStyle.style,
+        ];
+        const defaultStyles = [
+            styles.default,
+            !disabled && styles.defaultFocus,
+            disabled && styles.disabled,
+            !!error && styles.error,
+        ];
+        const lightStyles = [
+            styles.light,
+            !disabled && styles.lightFocus,
+            disabled && styles.lightDisabled,
+            !!error && styles.lightError,
+        ];
+        return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
+    };
     return (
         <div>
             <textarea
                 id={uniqueId}
                 data-testid={testId}
-                className={`${css(
-                    styles.textarea,
-                    styles.default,
-                    typographyStyles.LabelMedium,
-                    disabled && styles.disabled,
-                    !!error && styles.error,
-                    resizeType && resizeStyles[resizeType],
-                    Object.keys(processedStyle.style).length > 0 &&
-                        processedStyle.style,
-                )} ${className} ${processedStyle.className}`}
+                className={[
+                    css(...getStyles()),
+                    className,
+                    processedStyle.className,
+                ].join(" ")}
                 // Using inline styles for width so that it doesn't have `!important`.
                 // When width has `!important`, it overrides the default browser
                 // behaviour for resizing the textarea
@@ -280,7 +304,7 @@ const styles = StyleSheet.create({
     textarea: {
         borderRadius: border.radius.medium_4,
         boxSizing: "border-box",
-        padding: `10px ${spacing.medium_16}px`, // TODO(bea): token for 10px?
+        padding: `10px ${spacing.medium_16}px`,
         minHeight: "1em",
     },
     default: {
@@ -289,6 +313,12 @@ const styles = StyleSheet.create({
         color: color.offBlack,
         "::placeholder": {
             color: color.offBlack64,
+        },
+    },
+    defaultFocus: {
+        ":focus-visible": {
+            borderColor: color.blue,
+            outline: `1px solid ${color.blue}`,
         },
     },
     disabled: {
@@ -306,6 +336,48 @@ const styles = StyleSheet.create({
         color: color.offBlack,
         "::placeholder": {
             color: color.offBlack64,
+        },
+        ":focus-visible": {
+            outlineColor: color.red,
+            borderColor: color.red,
+        },
+    },
+    light: {
+        background: color.white,
+        border: `1px solid ${color.offBlack16}`,
+        color: color.offBlack,
+        "::placeholder": {
+            color: color.offBlack64,
+        },
+    },
+    lightFocus: {
+        ":focus-visible": {
+            outline: `1px solid ${color.blue}`,
+            borderColor: color.blue,
+            boxShadow: `0px 0px 0px 2px ${color.blue}, 0px 0px 0px 3px ${color.white}`,
+        },
+    },
+    lightDisabled: {
+        backgroundColor: "transparent",
+        border: `1px solid ${color.white32}`,
+        color: color.white64,
+        "::placeholder": {
+            color: color.white64,
+        },
+        cursor: "not-allowed",
+    },
+    lightError: {
+        background: color.fadedRed8,
+        border: `1px solid ${color.red}`,
+        boxShadow: `0px 0px 0px 1px ${color.red}, 0px 0px 0px 2px ${color.white}`,
+        color: color.offBlack,
+        "::placeholder": {
+            color: color.offBlack64,
+        },
+        ":focus-visible": {
+            outlineColor: color.red,
+            borderColor: color.red,
+            boxShadow: `0px 0px 0px 2px ${color.red}, 0px 0px 0px 3px ${color.white}`,
         },
     },
 });
