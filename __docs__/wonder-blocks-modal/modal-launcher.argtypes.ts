@@ -1,8 +1,8 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 export default {
     modal: {
-        control: {type: null},
+        control: {type: undefined},
         description: `The modal to render. The modal will be rendered inside
             of a container whose parent is document.body. This allows us to
             use ModalLauncher within menus and other components that clip
@@ -85,4 +85,4 @@ export default {
             type: {summary: "() => mixed"},
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

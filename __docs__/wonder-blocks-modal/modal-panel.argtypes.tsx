@@ -2,7 +2,7 @@ import {ArgTypes} from "@storybook/react";
 
 const argTypes: ArgTypes = {
     content: {
-        control: {type: null},
+        control: {type: undefined},
         description: `The main contents of the ModalPanel. All other parts of
             the panel are positioned around it.`,
         table: {
@@ -16,7 +16,7 @@ const argTypes: ArgTypes = {
         },
     },
     header: {
-        control: {type: null},
+        control: {type: undefined},
         description: "The modal header to show at the top of the panel.",
         table: {
             category: "Layout",
@@ -24,7 +24,7 @@ const argTypes: ArgTypes = {
         },
     },
     footer: {
-        control: {type: null},
+        control: {type: undefined},
         description: "A footer to show beneath the contents.",
         table: {
             category: "Layout",
@@ -37,7 +37,7 @@ const argTypes: ArgTypes = {
             close button is not shown.`,
         table: {
             category: "Layout",
-            defaultValue: true,
+            defaultValue: {summary: "true"},
             type: {summary: "boolean"},
         },
     },
@@ -47,7 +47,7 @@ const argTypes: ArgTypes = {
             instead, for  use when the item is used on a dark background.`,
         table: {
             category: "Styling",
-            defaultValue: true,
+            defaultValue: {summary: "true"},
             type: {summary: "boolean"},
         },
     },
@@ -57,7 +57,7 @@ const argTypes: ArgTypes = {
             they become too tall?`,
         table: {
             category: "Styling",
-            defaultValue: true,
+            defaultValue: {summary: "true"},
             type: {summary: "boolean"},
         },
     },
@@ -81,7 +81,7 @@ const argTypes: ArgTypes = {
         },
     },
     onClose: {
-        control: {type: null},
+        control: {type: undefined},
         description:
             `Called when the close button is clicked.\n\n` +
             `If you're using \`ModalLauncher\`, you should not use this prop!
