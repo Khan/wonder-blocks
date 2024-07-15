@@ -48,7 +48,7 @@ type TextAreaProps = AriaProps & {
     /**
      * Specifies if the text area allows autocomplete.
      */
-    autoComplete?: string;
+    autoComplete?: "on" | "off";
     /**
      * The name for the text area control. This is submitted along with
      * the form data.

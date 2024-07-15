@@ -107,11 +107,7 @@ describe("TextArea", () => {
         it("should set the autocomplete attribute when the autoComplete prop is provided", async () => {
             // Arrange
             render(
-                <TextArea
-                    value="Text"
-                    onChange={() => {}}
-                    autoComplete="name"
-                />,
+                <TextArea value="Text" onChange={() => {}} autoComplete="on" />,
                 defaultOptions,
             );
 
@@ -119,7 +115,7 @@ describe("TextArea", () => {
 
             // Assert
             const textArea = await screen.findByRole("textbox");
-            expect(textArea).toHaveAttribute("autocomplete", "name");
+            expect(textArea).toHaveAttribute("autocomplete", "on");
         });
 
         it("should set the name attribute when the name prop is provided", async () => {
