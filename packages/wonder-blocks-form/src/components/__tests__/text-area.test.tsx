@@ -412,6 +412,28 @@ describe("TextArea", () => {
     });
 
     describe("Accessibility", () => {
+        describe("Axe", () => {
+            test("has no accessibility violations", async () => {
+                // Arrange
+                // Use with label to demonstrate how it should be used with the
+                // TextArea component
+                const {container} = render(
+                    <>
+                        <label htmlFor="text-area">Test label</label>
+                        <TextArea
+                            value="Text"
+                            onChange={() => {}}
+                            id="text-area"
+                        />
+                    </>,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+        });
         describe("Focus", () => {
             it("should focus on the textarea by default when the autoFocus prop is provided", async () => {
                 // Arrange
