@@ -107,30 +107,37 @@ export const Disabled: StoryComponentType = {
     },
 };
 
-export const DisabledWithPlaceholder: StoryComponentType = {
+export const ReadOnly: StoryComponentType = {
     args: {
-        placeholder: "Placeholder",
-        disabled: true,
+        value: "Readonly text",
+        readOnly: true,
     },
 };
 
-export const DisabledWithValue: StoryComponentType = {
+export const Error: StoryComponentType = {
     args: {
-        value: "Text",
-        disabled: true,
+        value: "khan",
+        validate(value: string) {
+            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+            if (!emailRegex.test(value)) {
+                return "Please enter a valid email";
+            }
+        },
     },
+    render: ControlledTextArea,
+};
+
+export const Required: StoryComponentType = {
+    args: {
+        value: "khan",
+        required: true,
+    },
+    render: ControlledTextArea,
 };
 
 export const Rows: StoryComponentType = {
     args: {
         rows: 10,
-    },
-};
-
-export const ReadOnly: StoryComponentType = {
-    args: {
-        value: "Text",
-        readOnly: true,
     },
 };
 
@@ -227,12 +234,6 @@ export const Wrap: StoryComponentType = {
         );
     },
 };
-export const CustomStyle: StoryComponentType = {
-    args: {
-        style: styles.customField,
-        value: "Text",
-    },
-};
 
 /**
  * The `minlength` and `maxlength` textarea attributes can be set using the
@@ -250,40 +251,6 @@ export const MinMaxLength: StoryComponentType = {
         value: "Text",
     },
     render: ControlledTextArea,
-};
-
-export const Error: StoryComponentType = {
-    args: {
-        value: "khan",
-        validate(value: string) {
-            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-            if (!emailRegex.test(value)) {
-                return "Please enter a valid email";
-            }
-        },
-    },
-    render: ControlledTextArea,
-};
-
-export const Required: StoryComponentType = {
-    args: {
-        value: "khan",
-        required: true,
-    },
-    render: ControlledTextArea,
-};
-
-export const Light: StoryComponentType = {
-    args: {
-        light: true,
-        value: "Text",
-    },
-    render: ControlledTextArea,
-    parameters: {
-        backgrounds: {
-            default: "darkBlue",
-        },
-    },
 };
 
 export const ResizeType: StoryComponentType = {
@@ -308,12 +275,32 @@ export const ResizeType: StoryComponentType = {
                     id="resize-horizontal"
                 />
                 <br />
-                <label htmlFor="resize-none">Resize: both</label>
+                <label htmlFor="resize-none">Resize: none</label>
                 <TextArea {...args} resizeType="none" id="resize-none" />
                 <br />
                 <label htmlFor="resize-default">Resize: default (both)</label>
                 <TextArea {...args} id="resize-default" />
             </div>
         );
+    },
+};
+
+export const Light: StoryComponentType = {
+    args: {
+        light: true,
+        value: "Text",
+    },
+    render: ControlledTextArea,
+    parameters: {
+        backgrounds: {
+            default: "darkBlue",
+        },
+    },
+};
+
+export const CustomStyle: StoryComponentType = {
+    args: {
+        style: styles.customField,
+        value: "Text",
     },
 };
