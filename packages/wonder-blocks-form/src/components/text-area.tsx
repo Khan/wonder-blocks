@@ -269,7 +269,9 @@ export default function TextArea(props: TextAreaProps) {
                     css(...getStyles()),
                     className,
                     processedStyle.className,
-                ].join(" ")}
+                ]
+                    .filter(Boolean)
+                    .join(" ")}
                 // Using inline styles for width so that it doesn't have `!important`.
                 // When width has `!important`, it overrides the default browser
                 // behaviour for resizing the textarea
