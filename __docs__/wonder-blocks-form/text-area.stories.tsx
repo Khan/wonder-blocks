@@ -202,7 +202,7 @@ export const AutoComplete: StoryComponentType = {
  * When the `autoFocus` prop is set, the TextArea will be focused on page load.
  * Try to avoid using this if possible as it is bad for accessibility.
  */
-export const AutoFocus: StoryComponentType = () => {
+export const AutoFocus = () => {
     const [value, setValue] = React.useState("");
     const [showDemo, setShowDemo] = React.useState(false);
 

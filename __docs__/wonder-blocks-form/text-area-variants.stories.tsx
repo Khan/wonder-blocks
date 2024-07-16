@@ -63,7 +63,12 @@ const States = (props: {
                             >
                                 {scenario.label}
                             </LabelMedium>
-                            <TextArea {...props} {...scenario.props} />
+                            <TextArea
+                                value=""
+                                onChange={() => {}}
+                                {...props}
+                                {...scenario.props}
+                            />
                         </View>
                     );
                 })}
