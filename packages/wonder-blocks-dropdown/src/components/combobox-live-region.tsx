@@ -42,13 +42,13 @@ type Props = {
      */
     options: Array<OptionItemComponent>;
     /**
-     * The labels of the selected items (multi-select only).
-     */
-    multiSelectLabels: Array<string>;
-    /**
      * The value of the selected item(s).
      */
     selected: MaybeValueOrValues;
+    /**
+     * The label(s) of the selected item(s).
+     */
+    selectedLabels: Array<string>;
     /**
      * Whether the use can select more than one option item. Defaults to
      * `single`.
@@ -81,7 +81,7 @@ export function ComboboxLiveRegion({
         selected: defaultComboboxLabels.selected,
         unselected: defaultComboboxLabels.unselected,
     },
-    multiSelectLabels,
+    selectedLabels,
     opened,
     options,
     selected,
@@ -100,7 +100,7 @@ export function ComboboxLiveRegion({
 
             // Multi-select combobox.
             if (Array.isArray(selected) && selected.length > 0) {
-                const currentLabels = multiSelectLabels.join(", ");
+                const currentLabels = selectedLabels.join(", ");
                 const selectedState =
                     selectedLength > lastSelectedLength
                         ? labels.selected(currentLabels)
@@ -109,7 +109,7 @@ export function ComboboxLiveRegion({
                 newMessage = selectedState;
             } else {
                 // Announces the selected item for single select combobox.
-                newMessage = labels.selected(multiSelectLabels[0]);
+                newMessage = labels.selected(selectedLabels[0]);
             }
             setMessage(newMessage);
         }
@@ -122,7 +122,7 @@ export function ComboboxLiveRegion({
     }, [
         labels,
         labels.closedState,
-        multiSelectLabels,
+        selectedLabels,
         opened,
         selected,
         selectionType,
@@ -133,18 +133,16 @@ export function ComboboxLiveRegion({
         // focused item.
         if (focusedMultiSelectIndex >= 0) {
             // Announces the pill group.
-            const label = multiSelectLabels[focusedMultiSelectIndex];
+            const label = selectedLabels[focusedMultiSelectIndex];
             return (
                 labels.liveRegionCurrentItem({
                     current: label,
                     focused: true,
                     index: focusedMultiSelectIndex,
-                    total: multiSelectLabels.length,
+                    total: selectedLabels.length,
                 }) +
                 " " +
-                labels.liveRegionMultipleSelectionTotal(
-                    multiSelectLabels.length,
-                )
+                labels.liveRegionMultipleSelectionTotal(selectedLabels.length)
             );
         }
 
@@ -176,7 +174,7 @@ export function ComboboxLiveRegion({
         focusedMultiSelectIndex,
         labels,
         options,
-        multiSelectLabels,
+        selectedLabels,
     ]);
 
     return (

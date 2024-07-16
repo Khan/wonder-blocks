@@ -18,7 +18,7 @@ describe("ComboboxLiveRegion", () => {
                 focusedIndex={-1}
                 focusedMultiSelectIndex={-1}
                 options={options}
-                multiSelectLabels={[]}
+                selectedLabels={[]}
                 selected={null}
                 opened={false}
             />,
@@ -39,7 +39,7 @@ describe("ComboboxLiveRegion", () => {
                     focusedMultiSelectIndex={0}
                     options={options}
                     selected={["option2"]}
-                    multiSelectLabels={["Option 2"]}
+                    selectedLabels={["Option 2"]}
                     opened={true}
                 />,
             );
@@ -58,7 +58,7 @@ describe("ComboboxLiveRegion", () => {
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selected={["option2"]}
-                    multiSelectLabels={["Option 2"]}
+                    selectedLabels={["Option 2"]}
                     opened={true}
                 />,
             );
@@ -70,7 +70,7 @@ describe("ComboboxLiveRegion", () => {
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selected={null}
-                    multiSelectLabels={[]}
+                    selectedLabels={[]}
                     opened={true}
                 />,
             );
@@ -99,7 +99,7 @@ describe("ComboboxLiveRegion", () => {
                     focusedMultiSelectIndex={-1}
                     options={options}
                     selected={["option1"]}
-                    multiSelectLabels={["Option 1"]}
+                    selectedLabels={["Option 1"]}
                     opened={true}
                 />,
             );
@@ -119,7 +119,7 @@ describe("ComboboxLiveRegion", () => {
                     focusedMultiSelectIndex={1}
                     options={options}
                     selected={["option1", "option2"]}
-                    multiSelectLabels={["Option 1", "Option 2"]}
+                    selectedLabels={["Option 1", "Option 2"]}
                     opened={true}
                 />,
             );
@@ -132,7 +132,7 @@ describe("ComboboxLiveRegion", () => {
                     options={options}
                     selected={["option1"]}
                     // Option 2 is removed
-                    multiSelectLabels={["Option 1"]}
+                    selectedLabels={["Option 1"]}
                     opened={true}
                 />,
             );
@@ -150,7 +150,7 @@ describe("ComboboxLiveRegion", () => {
                     focusedIndex={-1}
                     focusedMultiSelectIndex={-1}
                     options={options}
-                    multiSelectLabels={[]}
+                    selectedLabels={[]}
                     selected={null}
                     selectionType="multiple"
                     opened={true}
@@ -163,7 +163,7 @@ describe("ComboboxLiveRegion", () => {
                     focusedIndex={-1}
                     focusedMultiSelectIndex={-1}
                     options={options}
-                    multiSelectLabels={[]}
+                    selectedLabels={[]}
                     selected={null}
                     selectionType="multiple"
                     opened={false}

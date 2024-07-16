@@ -368,7 +368,7 @@ export default function Combobox({
                     focusedMultiSelectIndex={focusedMultiSelectIndex}
                     labels={labels}
                     options={renderList}
-                    multiSelectLabels={selectedLabels}
+                    selectedLabels={selectedLabels}
                     testId={testId}
                     opened={openState}
                     selected={selected}
