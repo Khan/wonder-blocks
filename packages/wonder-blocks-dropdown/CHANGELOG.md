@@ -1,5 +1,36 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.4.2
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-cell@3.4.2
+    -   @khanacademy/wonder-blocks-clickable@4.2.5
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-icon@4.1.3
+    -   @khanacademy/wonder-blocks-layout@2.1.2
+    -   @khanacademy/wonder-blocks-modal@5.1.8
+    -   @khanacademy/wonder-blocks-search-field@2.2.20
+    -   @khanacademy/wonder-blocks-timing@5.0.1
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 5.4.1
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-cell@3.4.1
+    -   @khanacademy/wonder-blocks-clickable@4.2.4
+    -   @khanacademy/wonder-blocks-icon@4.1.2
+    -   @khanacademy/wonder-blocks-layout@2.1.1
+    -   @khanacademy/wonder-blocks-modal@5.1.7
+    -   @khanacademy/wonder-blocks-search-field@2.2.19
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
 ## 5.4.0
 
 ### Minor Changes

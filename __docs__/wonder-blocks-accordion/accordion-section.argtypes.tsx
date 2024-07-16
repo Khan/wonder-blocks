@@ -1,3 +1,5 @@
+import type {ArgTypes} from "@storybook/react";
+
 export default {
     id: {
         control: {type: "text"},
@@ -17,7 +19,7 @@ export default {
                 summary: `ReactElement | string`,
             },
         },
-        type: {name: "ReactElement | string", required: true},
+        type: {name: "string", required: true},
     },
     header: {
         control: {type: "text"},
@@ -27,7 +29,7 @@ export default {
         table: {
             type: {summary: "string"},
         },
-        type: {name: "ReactElement | string", required: true},
+        type: {name: "string", required: true},
     },
     caretPosition: {
         control: {type: "select"},
@@ -102,7 +104,7 @@ export default {
         },
     },
     onToggle: {
-        control: {type: null},
+        control: {type: undefined},
         description: "Called when the header is clicked.",
         table: {
             category: "State",
@@ -117,7 +119,7 @@ export default {
             category: "Visual style",
             type: {summary: "StyleType"},
         },
-        type: {name: "StyleType", required: false},
+        type: {name: "other", required: false, value: "StyleType"},
     },
     headerStyle: {
         control: {type: "object"},
@@ -126,7 +128,7 @@ export default {
             category: "Visual style",
             type: {summary: "StyleType"},
         },
-        type: {name: "StyleType", required: false},
+        type: {name: "other", required: false, value: "StyleType"},
     },
     tag: {
         control: {type: "text"},
@@ -148,4 +150,4 @@ export default {
         },
         type: {name: "string", required: false},
     },
-};
+} satisfies ArgTypes;

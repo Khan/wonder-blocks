@@ -582,6 +582,43 @@ describe("Popover", () => {
                 }),
             ).toBeInTheDocument();
         });
+
+        it("should correctly describe the popover content core's aria label", async () => {
+            // Arrange
+            render(
+                <Popover
+                    onClose={jest.fn()}
+                    content={
+                        <PopoverContentCore aria-label="Popover Content Core">
+                            <button data-close-button onClick={close}>
+                                Close Popover
+                            </button>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            // Open the popover
+            const openButton = await screen.findByRole("button", {
+                name: "Open default popover",
+            });
+
+            await userEvent.click(openButton);
+            const popover = await screen.findByRole("dialog");
+
+            // disabling this check because we need to access the popover content core
+            // in order to verify the aria-label is getting passed correctly
+            // eslint-disable-next-line testing-library/no-node-access
+            const popoverContentCore = popover.firstChild as HTMLElement;
+
+            // Assert
+            expect(popoverContentCore.getAttribute("aria-label")).toBe(
+                "Popover Content Core",
+            );
+        });
     });
 
     describe("keyboard navigation", () => {
