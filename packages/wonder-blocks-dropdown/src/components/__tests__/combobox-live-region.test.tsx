@@ -79,7 +79,6 @@ describe("ComboboxLiveRegion", () => {
             expect(screen.getByRole("log")).toHaveTextContent("");
         });
 
-        // it.todo("announces when we move the focus to the next pill");
         it("announces when an item is selected", () => {
             // Arrange
             const options = [

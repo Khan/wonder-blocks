@@ -101,4 +101,14 @@ export type ComboboxLabels = {
      * Label for the total number of items in the listbox.
      */
     liveRegionListboxTotal: (total: number) => string;
+
+    /**
+     * Label for the selected item(s) in the listbox.
+     */
+    selected: (labels: string) => string;
+
+    /**
+     * Label for when item(s) is/are unselected.
+     */
+    unselected: (labels: string) => string;
 };

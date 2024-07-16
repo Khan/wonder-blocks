@@ -29,6 +29,8 @@ type Props = {
         | "liveRegionCurrentItem"
         | "liveRegionListboxTotal"
         | "liveRegionMultipleSelectionTotal"
+        | "selected"
+        | "unselected"
     >;
 
     /**
@@ -76,6 +78,8 @@ export function ComboboxLiveRegion({
         liveRegionListboxTotal: defaultComboboxLabels.liveRegionListboxTotal,
         liveRegionMultipleSelectionTotal:
             defaultComboboxLabels.liveRegionMultipleSelectionTotal,
+        selected: defaultComboboxLabels.selected,
+        unselected: defaultComboboxLabels.unselected,
     },
     multiSelectLabels,
     opened,
@@ -93,16 +97,19 @@ export function ComboboxLiveRegion({
             let newMessage = "";
             const lastSelectedLength = lastSelectedValue?.current?.length ?? 0;
             const selectedLength = selected?.length ?? 0;
-            const selectedState =
-                selectedLength > lastSelectedLength
-                    ? "selected"
-                    : "not selected";
+
             // Multi-select combobox.
             if (Array.isArray(selected) && selected.length > 0) {
-                newMessage = `${multiSelectLabels.join(", ")} ${selectedState}`;
+                const currentLabels = multiSelectLabels.join(", ");
+                const selectedState =
+                    selectedLength > lastSelectedLength
+                        ? labels.selected(currentLabels)
+                        : labels.unselected(currentLabels);
+
+                newMessage = selectedState;
             } else {
                 // Announces the selected item for single select combobox.
-                newMessage = multiSelectLabels[0] + " selected";
+                newMessage = labels.selected(multiSelectLabels[0]);
             }
             setMessage(newMessage);
         }
@@ -113,6 +120,7 @@ export function ComboboxLiveRegion({
             setMessage(labels.closedState);
         }
     }, [
+        labels,
         labels.closedState,
         multiSelectLabels,
         opened,
