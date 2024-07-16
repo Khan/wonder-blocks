@@ -1,0 +1,86 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Packages / Dropdown / Combobox / Accessibility" />
+
+# Combobox Accessibility
+
+The Combobox component is built with accessibility in mind. It includes the
+following features (as advised by the <a
+href="https://www.w3.org/WAI/ARIA/apg/patterns/combobox/">WAI-ARIA Authoring
+Practices</a>):
+
+## Keyboard interaction
+
+#### Combobox (input):
+
+-   `Tab`: The combobox is focused.
+-   `ArrowDown`: Opens the listbox if it is not already displayed and moves
+    visual focus to the first option. DOM focus remains on the combobox (input).
+-   `ArrowUp`: Opens the listbox if it is not already displayed and moves visual
+    focus to the last option. DOM focus remains on the combobox (input).
+-   `Escape`: Closes the listbox if displayed.
+
+#### Listbox (Dropdown menu):
+
+-   `ArrowDown`: Moves visual focus to the next option. If the visual focus is
+    on the last option, the visual focus moves to the first option (cyclic
+    navigation).
+-   `ArrowUp`: Moves visual focus to the previous option. If the visual focus in
+    on the first option, the visual focus moves to the last option (cyclic
+    navigation).
+-   `Home`: Moves visual focus to the first option.
+-   `End`: Moves visual focus to the last option.
+-   `Enter`: Sets the Textbox/combobox value to the content of the focused
+    option in the listbox, then closes the listbox.
+-   `Escape`: Closes the listbox.
+
+#### Button (Arrow down icon):
+
+-   It is removed from the tab sequence of the page, but still useful to open
+    the listbox via touch events (e.g. click, press).
+
+## Screen Reader support
+
+The Combobox component is designed to be screen reader friendly.
+
+We provide a custom live region that will announce changes to the combobox due
+to some limitations in browsers (e.g. Safari). This live region will announce
+the following:
+
+-   When the listbox is opened, the focused option in the listbox, including the
+    index of the option and the total number of options (e.g. `Pear selected, 3
+of 9. 9 results available`).
+-   When the user tabs through the listbox, the focused option in the listbox,
+    including the index of the option and the total number of options (e.g.
+    `Strawberry disabled, 2 of 9. 9 results available`).
+-   When an option is selected (e.g. `Pear selected`).
+-   When the listbox is closed.
+
+## ARIA attributes
+
+#### Combobox (input):
+
+-   The input[type=text] has a `combobox` role.
+-   `aria-controls` points to the `listbox` id.
+-   `aria-expanded` will change based on the listbox state (true = visible, false
+    = hidden).
+-   `aria-activedescendant` To announce which option item is visually focused.
+    (see <a
+    href="https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#kbd_focus_activedescendant">Developing
+    a Keyboard Interface</a>).
+-   `autocomplete` is set `off`, so we don't present the default autocomplete
+    list provided by browsers, and instead rely on the listbox controlled by the
+    input.
+
+#### Listbox (Dropdown menu):
+
+-   The listbox has a `listbox` role.
+-   `aria-disabled`: Whether the listbox container is disabled.
+-   Labelling:
+    -   `aria-label`: Provides a label for the listbox.
+    -   `aria-labelledby`: Alternatively, this can be provided by pointing to a
+        DOM reference (ID) that contains the description of the listbox.
+-   `aria-multiselectable`: Whether the user can select more than one option.
+-   `aria-readonly`: The user cannot change which options are selected or
+    unselected, but the listbox is otherwise operable.
+-   `aria-required`: Whether an option item must be selected.
