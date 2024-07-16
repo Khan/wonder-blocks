@@ -27,6 +27,18 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        a11y: {
+            config: {
+                rules: [
+                    {
+                        // Disable the check for an associated label since
+                        // these stories are for the text area on its own
+                        id: "label",
+                        enabled: false,
+                    },
+                ],
+            },
+        },
     },
     argTypes: TextAreaArgTypes,
 } as Meta<typeof TextArea>;
