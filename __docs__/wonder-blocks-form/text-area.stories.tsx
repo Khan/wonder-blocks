@@ -407,3 +407,23 @@ export const CustomStyle: StoryComponentType = {
         value: "Text",
     },
 };
+
+/**
+ * A ref can be passed to the component to have access to the textarea element.
+ */
+export const WithRef = () => {
+    const [value, setValue] = React.useState("Text");
+    const ref = React.useRef<HTMLTextAreaElement>(null);
+
+    const handleClick = () => {
+        ref.current?.focus();
+    };
+
+    return (
+        <View style={{alignItems: "flex-start"}}>
+            <TextArea value={value} onChange={setValue} ref={ref} />
+            <Strut size={spacing.large_24} />
+            <Button onClick={handleClick}>Focus using ref</Button>
+        </View>
+    );
+};

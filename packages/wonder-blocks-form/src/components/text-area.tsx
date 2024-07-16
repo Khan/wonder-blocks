@@ -162,7 +162,10 @@ type TextAreaProps = AriaProps & {
 
 const defaultErrorMessage = "This field is required.";
 
-export default function TextArea(props: TextAreaProps) {
+export default React.forwardRef(function TextArea(
+    props: TextAreaProps,
+    ref: React.ForwardedRef<HTMLTextAreaElement>,
+) {
     const {
         onChange,
         value,
@@ -265,6 +268,7 @@ export default function TextArea(props: TextAreaProps) {
             <textarea
                 id={uniqueId}
                 data-testid={testId}
+                ref={ref}
                 className={[
                     css(...getStyles()),
                     className,
@@ -300,7 +304,7 @@ export default function TextArea(props: TextAreaProps) {
             />
         </div>
     );
-}
+});
 
 const styles = StyleSheet.create({
     textarea: {

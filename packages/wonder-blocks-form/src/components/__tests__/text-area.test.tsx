@@ -283,6 +283,21 @@ describe("TextArea", () => {
         expect(textArea).toHaveValue(testValue);
     });
 
+    it("should forward the ref to the textarea element", async () => {
+        // Arrange
+        const ref = React.createRef<HTMLTextAreaElement>();
+        render(
+            <TextArea value="Text" onChange={() => {}} ref={ref} />,
+            defaultOptions,
+        );
+
+        // Act
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLTextAreaElement);
+        expect(await screen.findByRole("textbox")).toBe(ref.current);
+    });
+
     describe("Event Handlers", () => {
         it("should call the onChange prop when the textarea value changes", async () => {
             // Arrange
