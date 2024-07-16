@@ -12,6 +12,8 @@ import {LabelSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import TextAreaArgTypes from "./text-area.argtypes";
+
 /**
  * A TextArea is an element used to accept text from the user.
  */
@@ -26,6 +28,7 @@ export default {
             />
         ),
     },
+    argTypes: TextAreaArgTypes,
 } as Meta<typeof TextArea>;
 
 type StoryComponentType = StoryObj<typeof TextArea>;
