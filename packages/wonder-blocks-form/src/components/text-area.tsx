@@ -162,149 +162,157 @@ type TextAreaProps = AriaProps & {
 
 const defaultErrorMessage = "This field is required.";
 
-export default React.forwardRef(function TextArea(
-    props: TextAreaProps,
-    ref: React.ForwardedRef<HTMLTextAreaElement>,
-) {
-    const {
-        onChange,
-        value,
-        placeholder,
-        disabled,
-        id,
-        testId,
-        style,
-        readOnly,
-        autoComplete,
-        name,
-        className,
-        autoFocus,
-        rows,
-        spellCheck,
-        wrap,
-        minLength,
-        maxLength,
-        onClick,
-        onKeyDown,
-        onKeyUp,
-        onFocus,
-        onBlur,
-        validate,
-        onValidate,
-        required,
-        resizeType,
-        light,
-        // Should only include aria related props
-        ...otherProps
-    } = props;
+const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+    function TextArea(
+        props: TextAreaProps,
+        ref: React.ForwardedRef<HTMLTextAreaElement>,
+    ) {
+        const {
+            onChange,
+            value,
+            placeholder,
+            disabled,
+            id,
+            testId,
+            style,
+            readOnly,
+            autoComplete,
+            name,
+            className,
+            autoFocus,
+            rows,
+            spellCheck,
+            wrap,
+            minLength,
+            maxLength,
+            onClick,
+            onKeyDown,
+            onKeyUp,
+            onFocus,
+            onBlur,
+            validate,
+            onValidate,
+            required,
+            resizeType,
+            light,
+            // Should only include aria related props
+            ...otherProps
+        } = props;
 
-    const [error, setError] = React.useState<string | null>(null);
+        const [error, setError] = React.useState<string | null>(null);
 
-    const ids = useUniqueIdWithMock("text-area");
-    const uniqueId = id ?? ids.get("id");
+        const ids = useUniqueIdWithMock("text-area");
+        const uniqueId = id ?? ids.get("id");
 
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const newValue = event.target.value;
-        onChange(newValue);
-        handleValidation(newValue);
-    };
+        const handleChange = (
+            event: React.ChangeEvent<HTMLTextAreaElement>,
+        ) => {
+            const newValue = event.target.value;
+            onChange(newValue);
+            handleValidation(newValue);
+        };
 
-    const handleValidation = (newValue: string) => {
-        if (validate) {
-            const error = validate(newValue) || null;
-            setError(error);
-            if (onValidate) {
-                onValidate(error);
+        const handleValidation = (newValue: string) => {
+            if (validate) {
+                const error = validate(newValue) || null;
+                setError(error);
+                if (onValidate) {
+                    onValidate(error);
+                }
+            } else if (required) {
+                const requiredString =
+                    typeof required === "string"
+                        ? required
+                        : defaultErrorMessage;
+                const error = newValue ? null : requiredString;
+                setError(error);
+                if (onValidate) {
+                    onValidate(error);
+                }
             }
-        } else if (required) {
-            const requiredString =
-                typeof required === "string" ? required : defaultErrorMessage;
-            const error = newValue ? null : requiredString;
-            setError(error);
-            if (onValidate) {
-                onValidate(error);
+        };
+
+        useOnMountEffect(() => {
+            // Only validate on mount if the value is not empty. This is so that fields
+            // don't render an error when they are initially empty
+            if (value !== "") {
+                handleValidation(value);
             }
-        }
-    };
+        });
 
-    useOnMountEffect(() => {
-        // Only validate on mount if the value is not empty. This is so that fields
-        // don't render an error when they are initially empty
-        if (value !== "") {
-            handleValidation(value);
-        }
-    });
+        // Processing style prop so we can apply aphrodite styles to the textarea
+        // element. The textarea element is used directly so that we can apply inline
+        // styles for width
+        const processedStyle = processStyleList(style);
 
-    // Processing style prop so we can apply aphrodite styles to the textarea
-    // element. The textarea element is used directly so that we can apply inline
-    // styles for width
-    const processedStyle = processStyleList(style);
-
-    const getStyles = () => {
-        // Base styles are the styles that apply regardless of light mode
-        const baseStyles = [
-            styles.textarea,
-            typographyStyles.LabelMedium,
-            resizeType && resizeStyles[resizeType],
-            Object.keys(processedStyle.style).length > 0 &&
-                processedStyle.style,
-        ];
-        const defaultStyles = [
-            styles.default,
-            !disabled && styles.defaultFocus,
-            disabled && styles.disabled,
-            !!error && styles.error,
-        ];
-        const lightStyles = [
-            styles.light,
-            !disabled && styles.lightFocus,
-            disabled && styles.lightDisabled,
-            !!error && styles.lightError,
-        ];
-        return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
-    };
-    return (
-        <div>
-            <textarea
-                id={uniqueId}
-                data-testid={testId}
-                ref={ref}
-                className={[
-                    css(...getStyles()),
-                    className,
-                    processedStyle.className,
-                ]
-                    .filter(Boolean)
-                    .join(" ")}
-                // Using inline styles for width so that it doesn't have `!important`.
-                // When width has `!important`, it overrides the default browser
-                // behaviour for resizing the textarea
-                style={{width: "100%"}}
-                value={value}
-                onChange={handleChange}
-                placeholder={placeholder}
-                disabled={disabled}
-                readOnly={readOnly}
-                autoComplete={autoComplete}
-                name={name}
-                autoFocus={autoFocus}
-                rows={rows}
-                spellCheck={spellCheck}
-                wrap={wrap}
-                minLength={minLength}
-                maxLength={maxLength}
-                onClick={onClick}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                required={!!required}
-                {...otherProps}
-                aria-invalid={!!error}
-            />
-        </div>
-    );
-});
+        const getStyles = () => {
+            // Base styles are the styles that apply regardless of light mode
+            const baseStyles = [
+                styles.textarea,
+                typographyStyles.LabelMedium,
+                resizeType && resizeStyles[resizeType],
+                Object.keys(processedStyle.style).length > 0 &&
+                    processedStyle.style,
+            ];
+            const defaultStyles = [
+                styles.default,
+                !disabled && styles.defaultFocus,
+                disabled && styles.disabled,
+                !!error && styles.error,
+            ];
+            const lightStyles = [
+                styles.light,
+                !disabled && styles.lightFocus,
+                disabled && styles.lightDisabled,
+                !!error && styles.lightError,
+            ];
+            return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
+        };
+        return (
+            <div>
+                <textarea
+                    id={uniqueId}
+                    data-testid={testId}
+                    ref={ref}
+                    className={[
+                        css(...getStyles()),
+                        className,
+                        processedStyle.className,
+                    ]
+                        .filter(Boolean)
+                        .join(" ")}
+                    // Using inline styles for width so that it doesn't have `!important`.
+                    // When width has `!important`, it overrides the default browser
+                    // behaviour for resizing the textarea
+                    style={{width: "100%"}}
+                    value={value}
+                    onChange={handleChange}
+                    placeholder={placeholder}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                    autoComplete={autoComplete}
+                    name={name}
+                    autoFocus={autoFocus}
+                    rows={rows}
+                    spellCheck={spellCheck}
+                    wrap={wrap}
+                    minLength={minLength}
+                    maxLength={maxLength}
+                    onClick={onClick}
+                    onKeyDown={onKeyDown}
+                    onKeyUp={onKeyUp}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    required={!!required}
+                    {...otherProps}
+                    aria-invalid={!!error}
+                />
+            </div>
+        );
+    },
+) as React.ForwardRefExoticComponent<
+    TextAreaProps & React.RefAttributes<HTMLTextAreaElement>
+>;
 
 const styles = StyleSheet.create({
     textarea: {
@@ -404,3 +412,5 @@ const resizeStyles = StyleSheet.create({
         resize: "vertical",
     },
 });
+
+export default TextArea;
