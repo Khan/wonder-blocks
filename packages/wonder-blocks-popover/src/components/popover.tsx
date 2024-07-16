@@ -102,7 +102,11 @@ type Props = AriaProps &
          * Whether to show the popover tail or not. Defaults to true.
          */
         showTail: boolean;
-
+        /**
+         * Optional property to disable the portal functionality of popover. This is
+         * very handy in cases where teams are implementing custom keyboard functionality
+         * and need to turn off portal and focus manager functionality.
+         */
         disablePortal?: boolean;
     }>;
 
