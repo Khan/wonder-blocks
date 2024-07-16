@@ -316,7 +316,7 @@ describe("TextArea", () => {
             );
 
             // Assert
-            expect(onChangeMock).toHaveBeenCalledOnceWith(letterToType);
+            expect(onChangeMock).toHaveBeenCalledExactlyOnceWith(letterToType);
         });
 
         it("should call the onClick prop when the textarea is clicked", async () => {
@@ -735,7 +735,7 @@ describe("TextArea", () => {
                 // Act
 
                 // Assert
-                expect(validate).toHaveBeenCalledOnceWith("text");
+                expect(validate).toHaveBeenCalledExactlyOnceWith("text");
             });
 
             it("should not call the validate function when it is first rendered if the value is empty", async () => {
@@ -777,7 +777,7 @@ describe("TextArea", () => {
                 await userEvent.type(await screen.findByRole("textbox"), "s");
 
                 // Assert
-                expect(validate).toHaveBeenCalledOnceWith("texts");
+                expect(validate).toHaveBeenCalledExactlyOnceWith("texts");
             });
 
             it("should call the validate function when the value is updated to an empty string", async () => {
@@ -805,7 +805,7 @@ describe("TextArea", () => {
                 );
 
                 // Assert
-                expect(validate).toHaveBeenCalledOnceWith("");
+                expect(validate).toHaveBeenCalledExactlyOnceWith("");
             });
         });
         describe("onValidate prop", () => {
@@ -825,7 +825,9 @@ describe("TextArea", () => {
                 // Act
 
                 // Assert
-                expect(handleValidate).toHaveBeenCalledOnceWith(errorMsg);
+                expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
+                    errorMsg,
+                );
             });
 
             it("should call the onValidate prop with null if the validate prop returns null", () => {
@@ -843,7 +845,7 @@ describe("TextArea", () => {
                 // Act
 
                 // Assert
-                expect(handleValidate).toHaveBeenCalledOnceWith(null);
+                expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
             });
 
             it("should call the onValidate prop with null if the validate prop is a void function", () => {
@@ -861,7 +863,7 @@ describe("TextArea", () => {
                 // Act
 
                 // Assert
-                expect(handleValidate).toHaveBeenCalledOnceWith(null);
+                expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
             });
         });
 
@@ -958,7 +960,7 @@ describe("TextArea", () => {
                 // Act
 
                 // Assert
-                expect(handleValidate).toHaveBeenCalledOnceWith(null);
+                expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
             });
 
             it("should call onValidate when the value is cleared", async () => {
@@ -1009,7 +1011,7 @@ describe("TextArea", () => {
                 );
 
                 // Assert
-                expect(handleValidate).toHaveBeenCalledOnceWith(
+                expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
                     requiredErrorMsg,
                 );
             });
@@ -1036,7 +1038,7 @@ describe("TextArea", () => {
                 );
 
                 // Assert
-                expect(handleValidate).toHaveBeenCalledOnceWith(
+                expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
                     "This field is required.",
                 );
             });
@@ -1066,7 +1068,7 @@ describe("TextArea", () => {
                 );
 
                 // Assert
-                expect(handleValidate).toHaveBeenCalledOnceWith(
+                expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
                     validateErrorMessage,
                 );
             });
