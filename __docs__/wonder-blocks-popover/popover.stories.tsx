@@ -608,6 +608,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
                 <View style={styles.playground}>
                     <Button>First button</Button>
                     <Popover
+                        disablePortal={true}
                         content={({close}) => (
                             <PopoverContent
                                 closeButtonVisible
