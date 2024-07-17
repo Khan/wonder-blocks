@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Testing / Fixtures / Types / FixtureFn"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # FixtureFn
@@ -37,10 +32,10 @@ type FixtureFn<TProps: {...}> = (
 
 ```
 
-The [`fixtures`](/docs/testing-fixtures-exports-fixtures--page) method returns a method of this type, specific to the component that was passed into `fixtures`.
+The <a href="./?path=/docs/packages-testing-fixtures-exports-fixtures--docs">`fixtures`</a> method returns a method of this type, specific to the component that was passed into `fixtures`.
 
 This function takes two or three arguments:
 
 -   `description: string`: A string describing the fixture. This should be used to explain what the fixture is expected to show.
--   `props: FixtureProps<TProps>`: The props that the fixture should be rendered with. See [`FixtureProps`](/docs/testing-fixtures-types-fixtureprops--page).
--   `wrapper?: React.ComponentType<TProps>`: An optional component that will be rendered for the fixture. This can be used to wrap the fixture in a component that adds additional functionality, such as a test harness (see [`makeTestHarness`](/docs/testing-test-harness-exports-maketestharness--page)).
+-   `props: FixtureProps<TProps>`: The props that the fixture should be rendered with. See <a href="./?path=/docs/packages-testing-fixtures-types-fixtureprops--docs">`FixtureProps`</a>.
+-   `wrapper?: React.ComponentType<TProps>`: An optional component that will be rendered for the fixture. This can be used to wrap the fixture in a component that adds additional functionality, such as a test harness (see <a href="./?path=/docs/packages-testing-test-harness-exports-maketestharness--docs">`makeTestHarness`</a>).

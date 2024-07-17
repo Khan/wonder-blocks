@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Exports / hasTrackedRequestsToBeFetched()"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # hasTrackedRequestsToBeFetched()
@@ -15,6 +10,6 @@ import {Meta} from "@storybook/blocks";
 hasTrackedRequestsToBeFetched(): boolean;
 ```
 
-When performing server-side rendering (SSR), any requests that have been tracked will cause this method to return `true`. Once [`fetchTrackedRequests`](/docs/data-exports-fetchtrackedrequests--page) has been called and the promise is settled, this method will return `false` to indicate that there are no more pending requests.
+When performing server-side rendering (SSR), any requests that have been tracked will cause this method to return `true`. Once <a href="./?path=/docs/packages-data-exports-fetchtrackedrequests--docs">`fetchTrackedRequests`</a> has been called and the promise is settled, this method will return `false` to indicate that there are no more pending requests.
 
-More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).
+More details about server-side rendering with Wonder Blocks Data can be found in the <a href="./?path=/docs/packages-data-server-side-rendering-and-hydration--docs">relevant overview section</a>.
