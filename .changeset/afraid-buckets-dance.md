@@ -1,5 +1,5 @@
 ---
-"@khanacademy/wonder-blocks-popover": minor
+"@khanacademy/wonder-blocks-popover": patch
 ---
 
 adds optional aria label for popover
