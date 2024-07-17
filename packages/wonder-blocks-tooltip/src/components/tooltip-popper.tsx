@@ -4,7 +4,7 @@
  */
 import * as React from "react";
 import {Popper} from "react-popper";
-import type {PopperChildrenProps} from "react-popper";
+import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
 import RefTracker from "../util/ref-tracker";
@@ -13,6 +13,7 @@ import type {
     PopperElementProps,
     PopperUpdateFn,
 } from "../util/types";
+import {ModifierArguments, detectOverflow} from "@popperjs/core";
 
 type Props = {
     /**
@@ -62,6 +63,52 @@ const filterPopperPlacement = (
         default:
             throw new UnreachableCaseError(placement);
     }
+};
+
+type SmallViewportOptions = {
+    /**
+     * The offset of the popper relative to its reference.
+     */
+    padding?: number;
+};
+
+function modifyPosition({
+    state,
+    options,
+}: ModifierArguments<SmallViewportOptions>): void {
+    // Calculates the available space for the popper based on the placement
+    // relative to the viewport.
+    const overflow = detectOverflow(state, options);
+    const {y} = state.modifiersData.preventOverflow || {x: 0, y: 0};
+    const {height} = state.rects.popper;
+    const [basePlacement] = state.placement.split("-");
+
+    const heightProp = basePlacement === "top" ? "top" : "bottom";
+
+    const maxHeight = height - overflow[heightProp] - y;
+
+    // Apply the maxHeight to the popper element
+    state.styles.popper = {
+        ...state.styles.popper,
+        maxHeight: `${maxHeight}px`,
+        // Also propagate the maxHeight to its children via CSS variables.
+        // This is useful for adding scrollbars to the dropdown list.
+        ["--popper-max-height" as any]: `${maxHeight}px`,
+    };
+}
+
+type SmallViewportModifier = Modifier<"smallViewport", SmallViewportOptions>;
+
+export const smallViewportModifier: SmallViewportModifier = {
+    name: "smallViewport",
+    enabled: true,
+    phase: "main",
+    options: {
+        // Default padding to 40px to account for the input's height.
+        padding: 0, //DROPDOWN_ITEM_HEIGHT,
+    },
+    requiresIfExists: ["offset", "preventOverflow", "flip"],
+    fn: modifyPosition,
 };
 
 /**
@@ -192,6 +239,7 @@ export default class TooltipPopper extends React.Component<Props> {
                             rootBoundary: "document",
                         },
                     },
+                    smallViewportModifier,
                 ]}
             >
                 {(props) => this._renderPositionedContent(props)}
