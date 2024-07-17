@@ -27,6 +27,6 @@ class SettleController {
 }
 ```
 
-The `SettleController` is used to control the settling of a signal. This is specifically created to work with the [`RespondWith`](/docs/testing-mocking-exports-respondwith--page) API. The `signal` property it exposes can be passed to `RespondWith` methods and then the `settle` method can be invoked to settle the signal, causing the related responses to either reject or resolve as appropriate.
+The `SettleController` is used to control the settling of a signal. This is specifically created to work with the <a href="./?path=/docs/packages-testing-mocking-exports-respondwith--docs">`RespondWith`</a> API. The `signal` property it exposes can be passed to `RespondWith` methods and then the `settle` method can be invoked to settle the signal, causing the related responses to either reject or resolve as appropriate.
 
 This can be useful for tests where the order of operations needs to be controlled in order to verify the expected behaviour of the system under test.

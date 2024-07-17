@@ -15,11 +15,11 @@ import {Meta} from "@storybook/blocks";
 mockGqlFetch(): GqlFetchMockFn;
 ```
 
-The `mockGqlFetch` function provides an API to easily mock GraphQL responses for use with the [Wonder Blocks Data GraphQL API](/docs/data-graphql--page). It follows the similar patterns of `jest.fn()` and jest mocks whereby the returned value is both a proxy for the fetch function that is used by [`GqlRouter`](/docs/data-exports-gqlrouter--page) as well as an API for modifying the behavior of that function.
+The `mockGqlFetch` function provides an API to easily mock GraphQL responses for use with the <a href="./?path=/docs/packages-data-graphql--docs">Wonder Blocks Data GraphQL API</a>. It follows the similar patterns of `jest.fn()` and jest mocks whereby the returned value is both a proxy for the fetch function that is used by <a href="./?path=/docs/packages-data-exports-gqlrouter--docs">`GqlRouter`</a> as well as an API for modifying the behavior of that function.
 
 # API
 
-Besides being a function that fits the [`GqlFetchFn`](/docs/data-types-gqlfetchfn--page) signature, the return value of `mockGqlFetch()` has an API to customize the behavior of that function. Used in conjunction with the [`RespondWith`](/docs/testing-mocking-exports-respondwith--page) API, this can create a variety of GraphQL responses for testing and stories.
+Besides being a function that fits the <a href="./?path=/docs/packages-data-types-gqlfetchfn--docs">`GqlFetchFn`</a> signature, the return value of `mockGqlFetch()` has an API to customize the behavior of that function. Used in conjunction with the <a href="./?path=/docs/packages-testing-mocking-exports-respondwith--docs">`RespondWith`</a> API, this can create a variety of GraphQL responses for testing and stories.
 
 | Function            | Purpose                                                                                                                                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |

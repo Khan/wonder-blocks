@@ -15,9 +15,9 @@ import {GqlRouter} from "@khanacademy/wonder-blocks-data";
 
 The `GqlRouter` component is used to define the default context and fetch function for performing GraphQL requests using the Wonder Blocks Data API.
 
-The [`useGql`](/docs/data-exports-usegql--page) (and therefore any hooks or components that use it) requires at least one `GqlRouter` in the component hierarchy above it or it will throw an error.
+The <a href="./?path=/docs/packages-data-exports-usegql--docs">`useGql`</a> (and therefore any hooks or components that use it) requires at least one `GqlRouter` in the component hierarchy above it or it will throw an error.
 
-The `defaultContext` is specific to the needs of your specific implementation, as is the `fetch` function. Currently, a default for the fetch function is not provided by Wonder Blocks Data and should be written to the specification of the server that will fulfill your GraphQL responses. The `fetch` function must conform to the [`GqlFetchFn<>`](/docs/data-types-gqlfetchfn--page) type.
+The `defaultContext` is specific to the needs of your specific implementation, as is the `fetch` function. Currently, a default for the fetch function is not provided by Wonder Blocks Data and should be written to the specification of the server that will fulfill your GraphQL responses. The `fetch` function must conform to the <a href="./?path=/docs/packages-data-types-gqlfetchfn--docs">`GqlFetchFn<>`</a> type.
 
 ```tsx
 <GqlRouter defaultContext={{a: "1", b: "2"}} fetch={gqlFetchFn}>

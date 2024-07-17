@@ -15,21 +15,21 @@ Wonder Blocks Data has been designed to support testing in a variety of environm
 
 ## Spies
 
-If you are writing unit tests, you may just want to spy on the methods you are calling using `jest.spyOn` or similar. This can be a really easy way to intercept the request handler passed to the [`useCachedEffect`](/docs/data-exports-usecachedeffect--page) hook, for example, and check that it is the handler you expect.
+If you are writing unit tests, you may just want to spy on the methods you are calling using `jest.spyOn` or similar. This can be a really easy way to intercept the request handler passed to the <a href="./?path=/docs/packages-data-exports-usecachedeffect--docs">`useCachedEffect`</a> hook, for example, and check that it is the handler you expect.
 
 ## Interceptors
 
-Each request used by Wonder Blocks Data has to have an identifier. The [`InterceptRequests`](/docs/data-exports-interceptrequests--page) component allows you to wrap the code under test with an interceptor. Interceptors are given the request identifier and get to choose, based off that identifier, if they want to provide their own response rather than let the original request handler deal with it.
+Each request used by Wonder Blocks Data has to have an identifier. The <a href="./?path=/docs/packages-data-exports-interceptrequests--docs">`InterceptRequests`</a> component allows you to wrap the code under test with an interceptor. Interceptors are given the request identifier and get to choose, based off that identifier, if they want to provide their own response rather than let the original request handler deal with it.
 
-Multiple interceptors can be registered by nesting the [`InterceptRequests`](/docs/data-exports-interceptrequests--page) component as is necessary. Registered interceptors are invoked in ancestral order, with the nearest ancestor to the intercepted request being invoked first.
+Multiple interceptors can be registered by nesting the <a href="./?path=/docs/packages-data-exports-interceptrequests--docs">`InterceptRequests`</a> component as is necessary. Registered interceptors are invoked in ancestral order, with the nearest ancestor to the intercepted request being invoked first.
 
-When hooks like [`useServerEffect`](/docs/data-exports-useservereffect--page), [`useCachedEffect`](/docs/data-exports-usecachedeffect--page), or [`useHydratedEffect`](/docs/data-exports-usehydratedeffect--page) run, they get the chain of registered interceptors and chain those with the original handler in order to determine what to actually do when executing the request.
+When hooks like <a href="./?path=/docs/packages-data-exports-useservereffect--docs">`useServerEffect`</a>, <a href="./?path=/docs/packages-data-exports-usecachedeffect--docs">`useCachedEffect`</a>, or <a href="./?path=/docs/packages-data-exports-usehydratedeffect--docs">`useHydratedEffect`</a> run, they get the chain of registered interceptors and chain those with the original handler in order to determine what to actually do when executing the request.
 
 This allows you to mock out requests in unit tests, stories, and other scenarios.
 
 ## GqlRouter, mockGqlFetch, and RespondWith
 
-If you are testing GraphQL operations, you can configure [`GqlRouter`](/docs/data-exports-gqlrouter--page) with your own function for the `fetch` prop. However, crafting the right response to give
+If you are testing GraphQL operations, you can configure <a href="./?path=/docs/packages-data-exports-gqlrouter--docs">`GqlRouter`</a> with your own function for the `fetch` prop. However, crafting the right response to give
 the result you want is a bit tricky.
 
 ```tsx
@@ -65,7 +65,7 @@ const myFakeGqlFetch = (
 </GqlRouter>
 ```
 
-As shown above, you can interrogate parts of the requested operation to decide how to respond. However, this can get cumbersome if you have GraphQL requests nested in more complex components as each test has to mock out suitable responses for each one. To help with this the Wonder Blocks Testing package provides a [`RespondWith`](/docs/testing-exports-respondwith--page) type for defining responses that fit a specific scenario, and the [`mockGqlFetch()`](/docs/testing-exports-mockgqlfetch--page) API.
+As shown above, you can interrogate parts of the requested operation to decide how to respond. However, this can get cumbersome if you have GraphQL requests nested in more complex components as each test has to mock out suitable responses for each one. To help with this the Wonder Blocks Testing package provides a <a href="./?path=/docs/packages-testing-exports-respondwith--docs">`RespondWith`</a> type for defining responses that fit a specific scenario, and the <a href="./?path=/docs/packages-testing-exports-mockgqlfetch--docs">`mockGqlFetch()`</a> API.
 
 ```tsx
 const myFakeGqlFetch = mockGqlFetch().mockOperationOnce(
@@ -119,4 +119,4 @@ const myFakeGqlFetch = mockMyQuery(mockGqlFetch());
 
 Now, using a compose function, multiple mocks can be setup on the same `mockGqlFetch` instance.
 
-For more details on this and other testing utilities, see the [Wonder Blocks Testing documentation](/docs/testing-overview--page).
+For more details on this and other testing utilities, see the <a href="./?path=/docs/packages-testing-overview--docs">Wonder Blocks Testing documentation</a>.

@@ -11,7 +11,7 @@ import {Meta} from "@storybook/blocks";
 
 # SerializableInMemoryCache
 
-This class is a specialization of [`ScopedInMemoryCache`](/docs/data-exports-scopedinmemorycache--page). This specialization requires that values added can be serialized to and from strings.
+This class is a specialization of <a href="./?path=/docs/packages-data-exports-scopedinmemorycache--docs">`ScopedInMemoryCache`</a>. This specialization requires that values added can be serialized to and from strings.
 
 ## constructor()
 
@@ -25,7 +25,7 @@ Creates a new instance. The `initialCache`, if provided, will be cloned and used
 
 | Error Type                                        | Error Name              | Reason                             |
 | ------------------------------------------------- | ----------------------- | ---------------------------------- |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | Could not clone the initial cache. |
+| <a href="./?path=/docs/packages-data-exports-dataerror--docs">`DataError`</a> | `InvalidInputDataError` | Could not clone the initial cache. |
 
 ## inUse
 
@@ -53,8 +53,8 @@ Sets a value in the cache within a given scope. The value is cloned and the clon
 
 | Error Type                                        | Error Name              | Reason                                     |
 | ------------------------------------------------- | ----------------------- | ------------------------------------------ |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value       |
+| <a href="./?path=/docs/packages-data-exports-dataerror--docs">`DataError`</a> | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
+| <a href="./?path=/docs/packages-data-exports-dataerror--docs">`DataError`</a> | `InvalidInputDataError` | `value` must be a non-function value       |
 
 ## get()
 
@@ -76,7 +76,7 @@ Returns a clone of the current cache.
 
 | Error Type                                        | Error Name          | Reason                     |
 | ------------------------------------------------- | ------------------- | -------------------------- |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InternalDataError` | Could not clone the cache. |
+| <a href="./?path=/docs/packages-data-exports-dataerror--docs">`DataError`</a> | `InternalDataError` | Could not clone the cache. |
 
 ## purge()
 
