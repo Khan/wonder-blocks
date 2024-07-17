@@ -523,6 +523,9 @@ export const KeyboardNavigation: StoryComponentType = {
  * Similar example to KeyboardNavigation except this one highlights
  * how popover does not override custom keyboard interactions for
  * content inside the popover.
+ *
+ * NOTE: To see the arrow key navigation, add additional buttons to
+ * the popover container.
  */
 export const CustomKeyboardNavigation: StoryComponentType = {
     render: function Render() {
