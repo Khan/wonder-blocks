@@ -563,7 +563,7 @@ export const PopoverAlignment: StoryComponentType = {
  * With custom aria-label - overrides the default aria-describedby and aria-labelledby
  */
 
-export const WithCustomAriaLabel: StoryComponentType = {
+export const CustomAriaLabel: StoryComponentType = {
     args: {
         children: <Button>Open popover</Button>,
         content: ContentMappings.withTextOnly,
@@ -573,6 +573,6 @@ export const WithCustomAriaLabel: StoryComponentType = {
         initialFocusId: "",
         testId: "",
         onClose: () => {},
-        "aria-label": "",
+        "aria-label": "Popover with custom aria label",
     } as PopoverArgs,
 };
