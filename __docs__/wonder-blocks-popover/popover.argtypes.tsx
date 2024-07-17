@@ -128,7 +128,7 @@ export default {
             `This is very handy in cases where the Popover can't be easily` +
             `injected into the DOM structure and requires portaling to` +
             `the trigger location.` +
-            `Set to "true" by default.\n` +
+            `Set to "true" by default.\n\n` +
             `CAUTION: Turning off portal could cause some clipping issues` +
             `especially around legacy code with usage of z-indexing,` +
             `Use caution when turning this functionality off and ensure` +
