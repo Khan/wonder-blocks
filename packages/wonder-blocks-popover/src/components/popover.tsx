@@ -103,11 +103,14 @@ type Props = AriaProps &
          */
         showTail: boolean;
         /**
-         * Optional property to disable the portal functionality of popover. This is
-         * very handy in cases where teams are implementing custom keyboard functionality
-         * and need to turn off portal and focus manager functionality.
+         * Optional property to enable the portal functionality of popover.
+         * This is very handy in cases where the Popover can't be easily
+         * injected into the DOM structure and requires portaling to
+         * the trigger location.
+         *
+         * Set to "true" by default.
          */
-        disablePortal?: boolean;
+        portal?: boolean;
     }>;
 
 type State = Readonly<{
@@ -128,6 +131,7 @@ type State = Readonly<{
 type DefaultProps = Readonly<{
     placement: Props["placement"];
     showTail: Props["showTail"];
+    portal: Props["portal"];
 }>;
 
 /**
@@ -157,6 +161,7 @@ export default class Popover extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         placement: "top",
         showTail: true,
+        portal: true,
     };
 
     /**
@@ -262,7 +267,7 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {initialFocusId, placement, showTail, disablePortal} = this.props;
+        const {initialFocusId, placement, showTail, portal} = this.props;
         const {anchorElement} = this.state;
 
         const popperContent = (
@@ -282,15 +287,7 @@ export default class Popover extends React.Component<Props, State> {
             </TooltipPopper>
         );
 
-        if (disablePortal) {
-            return (
-                // Ensures the user is focused on the first available element
-                // when popover is rendered without the focus manager.
-                <InitialFocus initialFocusId={initialFocusId}>
-                    {popperContent}
-                </InitialFocus>
-            );
-        } else {
+        if (portal) {
             return (
                 <FocusManager
                     anchorElement={anchorElement}
@@ -298,6 +295,14 @@ export default class Popover extends React.Component<Props, State> {
                 >
                     {popperContent}
                 </FocusManager>
+            );
+        } else {
+            return (
+                // Ensures the user is focused on the first available element
+                // when popover is rendered without the focus manager.
+                <InitialFocus initialFocusId={initialFocusId}>
+                    {popperContent}
+                </InitialFocus>
             );
         }
     }
@@ -313,10 +318,29 @@ export default class Popover extends React.Component<Props, State> {
         );
     }
 
-    render(): React.ReactNode {
-        const {children, dismissEnabled, id, disablePortal} = this.props;
-        const {opened, placement} = this.state;
+    renderPortal(uniqueId: string, opened: boolean) {
+        if (!opened) {
+            return null;
+        }
+
+        const {portal} = this.props;
         const popperHost = this.getHost();
+
+        // Attach the popover to a Portal
+        if (portal && popperHost) {
+            return ReactDOM.createPortal(
+                this.renderPopper(uniqueId),
+                popperHost,
+            );
+        }
+
+        // Otherwise, append the dialog next to the trigger element
+        return this.renderPopper(uniqueId);
+    }
+
+    render(): React.ReactNode {
+        const {children, dismissEnabled, id} = this.props;
+        const {opened, placement} = this.state;
 
         return (
             <PopoverContext.Provider
@@ -337,14 +361,7 @@ export default class Popover extends React.Component<Props, State> {
                             >
                                 {children}
                             </PopoverAnchor>
-                            {disablePortal
-                                ? opened && this.renderPopper(uniqueId)
-                                : popperHost &&
-                                  opened &&
-                                  ReactDOM.createPortal(
-                                      this.renderPopper(uniqueId),
-                                      popperHost,
-                                  )}
+                            {this.renderPortal(uniqueId, opened)}
                         </React.Fragment>
                     )}
                 </IDProvider>

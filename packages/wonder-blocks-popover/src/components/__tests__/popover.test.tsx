@@ -674,7 +674,7 @@ describe("Popover", () => {
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
-                        disablePortal={true}
+                        portal={true}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -762,7 +762,7 @@ describe("Popover", () => {
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
-                        disablePortal={true}
+                        portal={false}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -853,7 +853,7 @@ describe("Popover", () => {
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
-                        disablePortal={true}
+                        portal={false}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -959,7 +959,7 @@ describe("Popover", () => {
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
-                        disablePortal={true}
+                        portal={false}
                         content={
                             <PopoverContent
                                 title="Popover title"
