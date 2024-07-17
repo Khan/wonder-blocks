@@ -622,392 +622,222 @@ describe("Popover", () => {
     });
 
     describe("keyboard navigation", () => {
-        it("should move focus to the first focusable element after popover is open", async () => {
-            // Arrange
-            render(
-                <>
-                    <Button>Prev focusable element outside</Button>
-                    <Popover
-                        onClose={jest.fn()}
-                        content={
-                            <PopoverContent
-                                title="Popover title"
-                                content="content"
-                                actions={
-                                    <>
-                                        <Button>Button 1 inside popover</Button>
-                                        <Button>Button 2 inside popover</Button>
-                                    </>
-                                }
-                            />
-                        }
-                    >
-                        <Button>Open default popover</Button>
-                    </Popover>
-                    <Button>Next focusable element outside</Button>
-                </>,
-            );
+        it.each([true, false])(
+            "should move focus to the first focusable element after popover is open",
+            async (portal) => {
+                // Arrange
+                render(
+                    <>
+                        <Button>Prev focusable element outside</Button>
+                        <Popover
+                            onClose={jest.fn()}
+                            portal={portal}
+                            content={
+                                <PopoverContent
+                                    title="Popover title"
+                                    content="content"
+                                    actions={
+                                        <>
+                                            <Button>
+                                                Button 1 inside popover
+                                            </Button>
+                                            <Button>
+                                                Button 2 inside popover
+                                            </Button>
+                                        </>
+                                    }
+                                />
+                            }
+                        >
+                            <Button>Open default popover</Button>
+                        </Popover>
+                        <Button>Next focusable element outside</Button>
+                    </>,
+                );
 
-            // Focus on the first element outside the popover
-            await userEvent.tab();
-            // open the popover by focusing on the trigger element
-            await userEvent.tab();
-            await userEvent.keyboard("{enter}");
+                // Focus on the first element outside the popover
+                await userEvent.tab();
+                // open the popover by focusing on the trigger element
+                await userEvent.tab();
+                await userEvent.keyboard("{enter}");
 
-            // Act
-            // Wait for the popover to be open.
-            await screen.findByRole("dialog");
+                // Act
+                // Wait for the popover to be open.
+                await screen.findByRole("dialog");
 
-            // Assert
-            // Focus should move to the first button inside the popover
-            expect(
-                await screen.findByRole("button", {
-                    name: "Button 1 inside popover",
-                }),
-            ).toHaveFocus();
-        });
+                // Assert
+                // Focus should move to the first button inside the popover
+                expect(
+                    await screen.findByRole("button", {
+                        name: "Button 1 inside popover",
+                    }),
+                ).toHaveFocus();
+            },
+        );
 
-        it("should move focus to the first focusable element after popover is open - disablePortal", async () => {
-            // Arrange
-            render(
-                <>
-                    <Button>Prev focusable element outside</Button>
-                    <Popover
-                        onClose={jest.fn()}
-                        portal={true}
-                        content={
-                            <PopoverContent
-                                title="Popover title"
-                                content="content"
-                                actions={
-                                    <>
-                                        <Button>Button 1 inside popover</Button>
-                                        <Button>Button 2 inside popover</Button>
-                                    </>
-                                }
-                            />
-                        }
-                    >
-                        <Button>Open default popover</Button>
-                    </Popover>
-                    <Button>Next focusable element outside</Button>
-                </>,
-            );
+        it.each([true, false])(
+            "should allow flowing focus correctly even if the popover remains open",
+            async (portal) => {
+                // Arrange
+                render(
+                    <>
+                        <Button>Prev focusable element outside</Button>
+                        <Popover
+                            onClose={jest.fn()}
+                            portal={portal}
+                            content={
+                                <PopoverContent
+                                    title="Popover title"
+                                    content="content"
+                                    actions={
+                                        <Button>Button inside popover</Button>
+                                    }
+                                />
+                            }
+                        >
+                            <Button>Open default popover</Button>
+                        </Popover>
+                        <Button>Next focusable element outside</Button>
+                    </>,
+                );
 
-            // Focus on the first element outside the popover
-            await userEvent.tab();
-            // open the popover by focusing on the trigger element
-            await userEvent.tab();
-            await userEvent.keyboard("{enter}");
+                // Focus on the first element outside the popover
+                await userEvent.tab();
+                // open the popover by focusing on the trigger element
+                await userEvent.tab();
+                await userEvent.keyboard("{enter}");
 
-            // Act
-            // Wait for the popover to be open.
-            await screen.findByRole("dialog");
+                // Wait for the popover to be open.
+                await screen.findByRole("dialog");
 
-            // Assert
-            // Focus should move to the first button inside the popover
-            expect(
-                await screen.findByRole("button", {
-                    name: "Button 1 inside popover",
-                }),
-            ).toHaveFocus();
-        });
+                // Act
+                // Focus on the next element after the popover
+                await userEvent.tab();
 
-        it("should allow flowing focus correctly even if the popover remains open", async () => {
-            // Arrange
-            render(
-                <>
-                    <Button>Prev focusable element outside</Button>
-                    <Popover
-                        onClose={jest.fn()}
-                        content={
-                            <PopoverContent
-                                title="Popover title"
-                                content="content"
-                                actions={<Button>Button inside popover</Button>}
-                            />
-                        }
-                    >
-                        <Button>Open default popover</Button>
-                    </Popover>
-                    <Button>Next focusable element outside</Button>
-                </>,
-            );
+                // Assert
+                expect(
+                    await screen.findByRole("button", {
+                        name: "Next focusable element outside",
+                    }),
+                ).toHaveFocus();
+            },
+        );
 
-            // Focus on the first element outside the popover
-            await userEvent.tab();
-            // open the popover by focusing on the trigger element
-            await userEvent.tab();
-            await userEvent.keyboard("{enter}");
+        it.each([true, false])(
+            "should allow circular navigation when the popover is open",
+            async (portal) => {
+                // Arrange
+                render(
+                    <>
+                        <Button>Prev focusable element outside</Button>
+                        <Popover
+                            onClose={jest.fn()}
+                            portal={portal}
+                            content={
+                                <PopoverContent
+                                    title="Popover title"
+                                    content="content"
+                                    actions={
+                                        <Button>Button inside popover</Button>
+                                    }
+                                />
+                            }
+                        >
+                            <Button>Open default popover</Button>
+                        </Popover>
+                        <Button>Next focusable element outside</Button>
+                    </>,
+                );
 
-            // Wait for the popover to be open.
-            await screen.findByRole("dialog");
+                // Focus on the first element outside the popover
+                await userEvent.tab();
+                // open the popover by focusing on the trigger element
+                await userEvent.tab();
+                await userEvent.keyboard("{enter}");
 
-            // Act
-            // Focus on the next element after the popover
-            await userEvent.tab();
+                // Wait for the popover to be open.
+                await screen.findByRole("dialog");
 
-            // Assert
-            expect(
-                await screen.findByRole("button", {
-                    name: "Next focusable element outside",
-                }),
-            ).toHaveFocus();
-        });
+                // Focus on the next element after the popover
+                await userEvent.tab();
 
-        it("should allow flowing focus correctly even if the popover remains open - disablePortal", async () => {
-            // Arrange
-            render(
-                <>
-                    <Button>Prev focusable element outside</Button>
-                    <Popover
-                        onClose={jest.fn()}
-                        portal={false}
-                        content={
-                            <PopoverContent
-                                title="Popover title"
-                                content="content"
-                                actions={<Button>Button inside popover</Button>}
-                            />
-                        }
-                    >
-                        <Button>Open default popover</Button>
-                    </Popover>
-                    <Button>Next focusable element outside</Button>
-                </>,
-            );
+                // Focus on the document body
+                await userEvent.tab();
 
-            // Focus on the first element outside the popover
-            await userEvent.tab();
-            // open the popover by focusing on the trigger element
-            await userEvent.tab();
-            await userEvent.keyboard("{enter}");
+                // Act
+                // Focus again on the first element in the document.
+                await userEvent.tab();
 
-            // Wait for the popover to be open.
-            await screen.findByRole("dialog");
+                // Assert
+                expect(
+                    await screen.findByRole("button", {
+                        name: "Prev focusable element outside",
+                    }),
+                ).toHaveFocus();
+            },
+        );
 
-            // Act
-            // Focus on the next element after the popover
-            await userEvent.tab();
+        it.each([true, false])(
+            "should allow navigating backwards when the popover is open",
+            async (portal) => {
+                // Arrange
+                render(
+                    <>
+                        <Button>Prev focusable element outside</Button>
+                        <Popover
+                            onClose={jest.fn()}
+                            portal={portal}
+                            content={
+                                <PopoverContent
+                                    title="Popover title"
+                                    content="content"
+                                    actions={
+                                        <Button>Button inside popover</Button>
+                                    }
+                                />
+                            }
+                        >
+                            <Button>Open default popover</Button>
+                        </Popover>
+                        <Button>Next focusable element outside</Button>
+                    </>,
+                );
 
-            // Assert
-            expect(
-                await screen.findByRole("button", {
-                    name: "Next focusable element outside",
-                }),
-            ).toHaveFocus();
-        });
+                // Open the popover
+                await userEvent.click(
+                    await screen.findByRole("button", {
+                        name: "Open default popover",
+                    }),
+                );
 
-        it("should allow circular navigation when the popover is open", async () => {
-            // Arrange
-            render(
-                <>
-                    <Button>Prev focusable element outside</Button>
-                    <Popover
-                        onClose={jest.fn()}
-                        content={
-                            <PopoverContent
-                                title="Popover title"
-                                content="content"
-                                actions={<Button>Button inside popover</Button>}
-                            />
-                        }
-                    >
-                        <Button>Open default popover</Button>
-                    </Popover>
-                    <Button>Next focusable element outside</Button>
-                </>,
-            );
+                // Wait for the popover to be open.
+                await screen.findByRole("dialog");
 
-            // Focus on the first element outside the popover
-            await userEvent.tab();
-            // open the popover by focusing on the trigger element
-            await userEvent.tab();
-            await userEvent.keyboard("{enter}");
+                // At this point, the focus moves to the focusable element inside
+                // the popover, so we need to move the focus back to the trigger
+                // element.
+                await userEvent.tab({shift: true});
 
-            // Wait for the popover to be open.
-            await screen.findByRole("dialog");
+                // Focus on the first element in the document
+                await userEvent.tab({shift: true});
 
-            // Focus on the next element after the popover
-            await userEvent.tab();
+                // Focus on the document body
+                await userEvent.tab({shift: true});
 
-            // Focus on the document body
-            await userEvent.tab();
+                // Focus on the last element in the document
+                await userEvent.tab({shift: true});
 
-            // Act
-            // Focus again on the first element in the document.
-            await userEvent.tab();
+                // Act
+                // Focus again on element inside the popover.
+                await userEvent.tab({shift: true});
 
-            // Assert
-            expect(
-                await screen.findByRole("button", {
-                    name: "Prev focusable element outside",
-                }),
-            ).toHaveFocus();
-        });
-
-        it("should allow circular navigation when the popover is open - disablePortal", async () => {
-            // Arrange
-            render(
-                <>
-                    <Button>Prev focusable element outside</Button>
-                    <Popover
-                        onClose={jest.fn()}
-                        portal={false}
-                        content={
-                            <PopoverContent
-                                title="Popover title"
-                                content="content"
-                                actions={<Button>Button inside popover</Button>}
-                            />
-                        }
-                    >
-                        <Button>Open default popover</Button>
-                    </Popover>
-                    <Button>Next focusable element outside</Button>
-                </>,
-            );
-
-            // Focus on the first element outside the popover
-            await userEvent.tab();
-            // open the popover by focusing on the trigger element
-            await userEvent.tab();
-            await userEvent.keyboard("{enter}");
-
-            // Wait for the popover to be open.
-            await screen.findByRole("dialog");
-
-            // Focus on the next element after the popover
-            await userEvent.tab();
-
-            // Focus on the document body
-            await userEvent.tab();
-
-            // Act
-            // Focus again on the first element in the document.
-            await userEvent.tab();
-
-            // Assert
-            expect(
-                await screen.findByRole("button", {
-                    name: "Prev focusable element outside",
-                }),
-            ).toHaveFocus();
-        });
-
-        it("should allow navigating backwards when the popover is open", async () => {
-            // Arrange
-            render(
-                <>
-                    <Button>Prev focusable element outside</Button>
-                    <Popover
-                        onClose={jest.fn()}
-                        content={
-                            <PopoverContent
-                                title="Popover title"
-                                content="content"
-                                actions={<Button>Button inside popover</Button>}
-                            />
-                        }
-                    >
-                        <Button>Open default popover</Button>
-                    </Popover>
-                    <Button>Next focusable element outside</Button>
-                </>,
-            );
-
-            // Open the popover
-            await userEvent.click(
-                await screen.findByRole("button", {
-                    name: "Open default popover",
-                }),
-            );
-
-            // Wait for the popover to be open.
-            await screen.findByRole("dialog");
-
-            // At this point, the focus moves to the focusable element inside
-            // the popover, so we need to move the focus back to the trigger
-            // element.
-            await userEvent.tab({shift: true});
-
-            // Focus on the first element in the document
-            await userEvent.tab({shift: true});
-
-            // Focus on the document body
-            await userEvent.tab({shift: true});
-
-            // Focus on the last element in the document
-            await userEvent.tab({shift: true});
-
-            // Act
-            // Focus again on element inside the popover.
-            await userEvent.tab({shift: true});
-
-            // Assert
-            expect(
-                await screen.findByRole("button", {
-                    name: "Button inside popover",
-                }),
-            ).toHaveFocus();
-        });
-
-        it("should allow navigating backwards when the popover is open - disablePortal", async () => {
-            // Arrange
-            render(
-                <>
-                    <Button>Prev focusable element outside</Button>
-                    <Popover
-                        onClose={jest.fn()}
-                        portal={false}
-                        content={
-                            <PopoverContent
-                                title="Popover title"
-                                content="content"
-                                actions={<Button>Button inside popover</Button>}
-                            />
-                        }
-                    >
-                        <Button>Open default popover</Button>
-                    </Popover>
-                    <Button>Next focusable element outside</Button>
-                </>,
-            );
-
-            // Open the popover
-            await userEvent.click(
-                await screen.findByRole("button", {
-                    name: "Open default popover",
-                }),
-            );
-
-            // Wait for the popover to be open.
-            await screen.findByRole("dialog");
-
-            // At this point, the focus moves to the focusable element inside
-            // the popover, so we need to move the focus back to the trigger
-            // element.
-            await userEvent.tab({shift: true});
-
-            // Focus on the first element in the document
-            await userEvent.tab({shift: true});
-
-            // Focus on the document body
-            await userEvent.tab({shift: true});
-
-            // Focus on the last element in the document
-            await userEvent.tab({shift: true});
-
-            // Act
-            // Focus again on element inside the popover.
-            await userEvent.tab({shift: true});
-
-            // Assert
-            expect(
-                await screen.findByRole("button", {
-                    name: "Button inside popover",
-                }),
-            ).toHaveFocus();
-        });
+                // Assert
+                expect(
+                    await screen.findByRole("button", {
+                        name: "Button inside popover",
+                    }),
+                ).toHaveFocus();
+            },
+        );
     });
 });
