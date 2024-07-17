@@ -75,6 +75,14 @@ using:
     **NOTE:** If the focus is set to the first focusable element inside the
     popover, the next shift + tab will set focus on the PopoverAnchor element.
 
+#### When `portal={false}`
+
+If a consumer of popover sets the `portal={false}`, the focus management for the
+popover defaults to the content's implementation. This means that the tab key
+will go to the next focusable element unless there is custom keyboard implementation
+in the content. This ensures any arrow keys or other custom keyboard interactions are
+preserved within the Popover.
+
 ### Dismissing the popover
 
 When a popover dialog closes, focus should return to the anchor element defined

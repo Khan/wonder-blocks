@@ -523,22 +523,6 @@ export const KeyboardNavigation: StoryComponentType = {
  * Similar example to KeyboardNavigation except this one highlights
  * how popover does not override custom keyboard interactions for
  * content inside the popover.
- *
- * The focus is managed in the following way:
- * - When the popover is opened, the focus is set on the first focusable element
- *  inside the popover.
- * - When the popover is closed, the focus is returned to the element that
- * triggered the popover.
- * - If the popover is opened and the focus reaches the last focusable element
- * inside the popover, the next tab will set focus on the next focusable
- * element that exists after the PopoverAnchor (or trigger element).
- * - If the focus is set to the first focusable element inside the popover, the
- * next shift + tab will set focus on the PopoverAnchor element.
- * - If you have custom keyboard navigation (like with left and right arrow keys)
- * popover won't override them
- *
- * **NOTE:** You can add/remove buttons after the trigger element by using the
- * buttons at the top of the example.
  */
 export const CustomKeyboardNavigation: StoryComponentType = {
     render: function Render() {
@@ -608,7 +592,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
                 <View style={styles.playground}>
                     <Button>First button</Button>
                     <Popover
-                        disablePortal={true}
+                        portal={false}
                         content={({close}) => (
                             <PopoverContent
                                 closeButtonVisible
