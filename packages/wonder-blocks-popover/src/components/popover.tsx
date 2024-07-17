@@ -109,6 +109,11 @@ type Props = AriaProps &
          * the trigger location.
          *
          * Set to "true" by default.
+         *
+         * CAUTION: Turning off portal could cause some clipping issues
+         * especially around legacy code with usage of z-indexing,
+         * Use caution when turning this functionality off and ensure
+         * your content does not get clipped or hidden.
          */
         portal?: boolean;
     }>;

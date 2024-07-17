@@ -548,7 +548,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
         };
 
         return (
-            <View>
+            <View style={[{padding: "120px 0"}]}>
                 <View style={[styles.row, {gap: spacing.medium_16}]}>
                     <Button
                         kind="secondary"
