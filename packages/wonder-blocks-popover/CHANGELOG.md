@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.2.9
+
+### Patch Changes
+
+-   47d680f4: Removed usage of focus management in Popover component, in favor of a similar implementation that won't override custom keyboard navigation.
+
 ## 3.2.8
 
 ### Patch Changes
