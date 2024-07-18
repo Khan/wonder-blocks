@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Testing / Test Harness / Exports / makeTestHarness()"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # makeTestHarness()
@@ -21,8 +16,8 @@ makeTestHarness<TAdapters: TestHarnessAdapters>(
 ) => React.AbstractComponent<TProps, Instance>);
 ```
 
-This method takes a set of adapters (such as [`harnessAdapters.DefaultAdapters`](/docs/testing-test-harness-exports-harnessadapters--page)) and a set of default configurations for those adapters (such as [`harnessAdapters.DefaultConfigs`](/docs/testing-test-harness-exports-harnessadapters--page)), and returns a function that can be called to create a component that applys those adapters with those default configs, or overrides to those configs, around another component.
+This method takes a set of adapters (such as <a href="./?path=/docs/packages-testing-test-harness-exports-harnessadapters--docs">`harnessAdapters.DefaultAdapters`</a>) and a set of default configurations for those adapters (such as <a href="./?path=/docs/packages-testing-test-harness-exports-harnessadapters--docs">`harnessAdapters.DefaultConfigs`</a>), and returns a function that can be called to create a component that applys those adapters with those default configs, or overrides to those configs, around another component.
 
 The returned method will ensure refs are forwarded to the harnessed component, and the component the method returns will have the same props as the component it is harnessing.
 
-The harnessed component can be used in unit tests, such as in Jest, to reduce boilerplate needed to setup the test case. It can also be used as a a wrapper component when defining a fixture for a component in the Wonder Blocks Testing [Fixtures framework](/docs/testing-fixtures-overview--page).
+The harnessed component can be used in unit tests, such as in Jest, to reduce boilerplate needed to setup the test case. It can also be used as a a wrapper component when defining a fixture for a component in the Wonder Blocks Testing <a href="./?path=/docs/packages-testing-fixtures-overview--docs">Fixtures framework</a>.

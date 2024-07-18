@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Testing / Test Harness / Types / TestHarnessConfigs<>"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # TestHarnessConfigs\<>
@@ -15,11 +10,11 @@ import {Meta} from "@storybook/blocks";
 type TestHarnessConfigs<TAdapters: TestHarnessAdapters>;
 ```
 
-When given the type of a set of adapters conforming to [`TestHarnessAdapters`](/docs/testing-test-harness-types-testharnessadapters--page), this type will represent a set of configurations for those adapters.
+When given the type of a set of adapters conforming to <a href="./?path=/docs/packages-testing-test-harness-types-testharnessadapters--docs">`TestHarnessAdapters`</a>, this type will represent a set of configurations for those adapters.
 
 It is important to note here that if the `TAdapters` type passed in is the actual `TestHarnessAdapters` type, then the resulting configuration type will have each adapter's config being set to `any`. Instead of using the `TestHarnessAdapters` type directly, the passed object should not be typed as that, but should merely conform to that type.
 
-For example, the [`harnessAdapters.DefaultAdapters`](/docs/testing-test-harness-exports-harnessadapters--page) type is specific to the adapters it contains.
+For example, the <a href="./?path=/docs/packages-testing-test-harness-exports-harnessadapters--docs">`harnessAdapters.DefaultAdapters`</a> type is specific to the adapters it contains.
 
 ```ts
 const DefaultAdapters = {
@@ -43,7 +38,7 @@ type DefaultAdaptersType = {|
 |};
 ```
 
-It conforms to the `TestHarnessAdapters` type, but it is not equivalent to the `TestHarnessAdapters` type. This is important when we consider the companion export, [`harnessAdapters.DefaultConfigs`](/docs/testing-test-harness-exports-harnessadapters--page).
+It conforms to the `TestHarnessAdapters` type, but it is not equivalent to the `TestHarnessAdapters` type. This is important when we consider the companion export, <a href="./?path=/docs/packages-testing-test-harness-exports-harnessadapters--docs">`harnessAdapters.DefaultConfigs`</a>.
 
 ```ts
 const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {

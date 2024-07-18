@@ -655,14 +655,15 @@ describe("Popover", () => {
         });
     });
 
-    describe("keyboard navigation", () => {
-        it("should move focus to the first focusable element after popover is open", async () => {
+    describe.each([true, false])("keyboard navigation", (portal) => {
+        it(`when portal=${portal}, should move focus to the first focusable element after popover is open`, async () => {
             // Arrange
             render(
                 <>
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
+                        portal={portal}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -701,13 +702,14 @@ describe("Popover", () => {
             ).toHaveFocus();
         });
 
-        it("should allow flowing focus correctly even if the popover remains open", async () => {
+        it(`when portal=${portal}, should allow flowing focus correctly even if the popover remains open`, async () => {
             // Arrange
             render(
                 <>
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
+                        portal={portal}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -743,13 +745,14 @@ describe("Popover", () => {
             ).toHaveFocus();
         });
 
-        it("should allow circular navigation when the popover is open", async () => {
+        it(`when portal=${portal}, should allow circular navigation when the popover is open`, async () => {
             // Arrange
             render(
                 <>
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
+                        portal={portal}
                         content={
                             <PopoverContent
                                 title="Popover title"
@@ -791,13 +794,14 @@ describe("Popover", () => {
             ).toHaveFocus();
         });
 
-        it("should allow navigating backwards when the popover is open", async () => {
+        it(`when portal=${portal}, should allow navigating backwards when the popover is open`, async () => {
             // Arrange
             render(
                 <>
                     <Button>Prev focusable element outside</Button>
                     <Popover
                         onClose={jest.fn()}
+                        portal={portal}
                         content={
                             <PopoverContent
                                 title="Popover title"

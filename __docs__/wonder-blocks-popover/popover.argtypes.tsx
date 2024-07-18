@@ -122,4 +122,19 @@ export default {
             type: "boolean",
         },
     },
+    portal: {
+        description:
+            `Optional property to enable the portal functionality of popover.` +
+            `This is very handy in cases where the Popover can't be easily` +
+            `injected into the DOM structure and requires portaling to` +
+            `the trigger location.` +
+            `Set to "true" by default.\n\n` +
+            `CAUTION: Turning off portal could cause some clipping issues` +
+            `especially around legacy code with usage of z-indexing,` +
+            `Use caution when turning this functionality off and ensure` +
+            `your content does not get clipped or hidden.`,
+        control: {
+            type: "boolean",
+        },
+    },
 };
