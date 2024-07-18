@@ -1,12 +1,13 @@
 import * as React from "react";
-import {CSSProperties, Falsy, StyleSheet, css} from "aphrodite";
+import {CSSProperties, Falsy, StyleSheet} from "aphrodite";
 
 import {
     AriaProps,
     StyleType,
     useOnMountEffect,
     useUniqueIdWithMock,
-    processStyleList,
+    addStyle,
+    View,
 } from "@khanacademy/wonder-blocks-core";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -162,6 +163,8 @@ type TextAreaProps = AriaProps & {
 
 const defaultErrorMessage = "This field is required.";
 
+const StyledTextArea = addStyle("textarea");
+
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     function TextArea(
         props: TextAreaProps,
@@ -240,19 +243,12 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         });
 
-        // Processing style prop so we can apply aphrodite styles to the textarea
-        // element. The textarea element is used directly so that we can apply inline
-        // styles for width
-        const processedStyle = processStyleList(style);
-
         const getStyles = (): (CSSProperties | Falsy)[] => {
             // Base styles are the styles that apply regardless of light mode
             const baseStyles = [
                 styles.textarea,
                 typographyStyles.LabelMedium,
                 resizeType && resizeStyles[resizeType],
-                Object.keys(processedStyle.style).length > 0 &&
-                    processedStyle.style,
             ];
             const defaultStyles = [
                 styles.default,
@@ -269,22 +265,13 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
         };
         return (
-            <div>
-                <textarea
+            <View style={{width: "100%"}}>
+                <StyledTextArea
                     id={uniqueId}
                     data-testid={testId}
                     ref={ref}
-                    className={[
-                        css(...getStyles()),
-                        className,
-                        processedStyle.className,
-                    ]
-                        .filter(Boolean)
-                        .join(" ")}
-                    // Using inline styles for width so that it doesn't have `!important`.
-                    // When width has `!important`, it overrides the default browser
-                    // behaviour for resizing the textarea
-                    style={{width: "100%"}}
+                    className={className}
+                    style={[...getStyles(), style]}
                     value={value}
                     onChange={handleChange}
                     placeholder={placeholder}
@@ -307,7 +294,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     {...otherProps}
                     aria-invalid={!!error}
                 />
-            </div>
+            </View>
         );
     },
 );
