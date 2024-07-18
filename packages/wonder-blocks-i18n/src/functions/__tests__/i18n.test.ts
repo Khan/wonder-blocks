@@ -144,22 +144,28 @@ describe("i18n", () => {
 
         it("doNotTranslate should not translate", () => {
             // Arrange
+            loadTranslations(TEST_LOCALE, {
+                test: "arrrr matey",
+            });
 
             // Act
-            const result = doNotTranslate("Test");
+            const result = doNotTranslate("test");
 
             // Assert
-            expect(result).toEqual("Test");
+            expect(result).toEqual("test");
         });
 
         it("doNotTranslateYet should not translate", () => {
             // Arrange
+            loadTranslations(TEST_LOCALE, {
+                test: "arrrr matey",
+            });
 
             // Act
-            const result = doNotTranslateYet("Test");
+            const result = doNotTranslateYet("test");
 
             // Assert
-            expect(result).toEqual("Test");
+            expect(result).toEqual("test");
         });
     });
 
