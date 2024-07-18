@@ -366,11 +366,12 @@ describe("Combobox", () => {
             expect(onChange).toHaveBeenCalledWith(["option2", "option3"]);
         });
 
-        it("should remove visual focus from the listbox when navigating to the selected pills", async () => {
+        it("should move visual focus to the selected pill", async () => {
             // Arrange
             const userEvent = doRender(
                 <Combobox
                     testId="combobox"
+                    id="combobox"
                     selectionType="multiple"
                     value={["option1", "option2"]}
                 >
@@ -388,8 +389,9 @@ describe("Combobox", () => {
             await userEvent.keyboard("{ArrowLeft}");
 
             // Assert
-            expect(screen.getByRole("combobox")).not.toHaveAttribute(
+            expect(screen.getByRole("combobox")).toHaveAttribute(
                 "aria-activedescendant",
+                "combobox-pill-1",
             );
         });
 
@@ -536,6 +538,34 @@ describe("Combobox", () => {
             expect(
                 screen.getByRole("button", {name: "Remove option 2"}),
             ).toBeInTheDocument();
+        });
+
+        describe("LiveRegion", () => {
+            it("should announce when an item is selected", async () => {
+                // Arrange
+                doRender(
+                    <Combobox selectionType="multiple" value={["option1"]}>
+                        <OptionItem label="Option 1" value="option1" />
+                        <OptionItem label="Option 2" value="option2" />
+                        <OptionItem label="Option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // focus on the combobox (input)
+                await userEvent.tab();
+
+                // Move to second option item
+                await userEvent.keyboard("{ArrowDown}");
+
+                // Act
+                // Select the second option item
+                await userEvent.keyboard("{Enter}");
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(
+                    "Option 2 selected, 2 of 3. 3 results available.",
+                );
+            });
         });
     });
 });

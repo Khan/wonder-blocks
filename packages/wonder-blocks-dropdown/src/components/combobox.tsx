@@ -14,7 +14,13 @@ import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
-import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
+import {
+    ComboboxLabels,
+    MaybeValueOrValues,
+    OptionItemComponent,
+} from "../util/types";
+import {defaultComboboxLabels} from "../util/constants";
+import {ComboboxLiveRegion} from "./combobox-live-region";
 import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
@@ -58,6 +64,11 @@ type Props = {
      * The unique identifier of the combobox element.
      */
     id?: string;
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels?: ComboboxLabels;
 
     /**
      * Whether to display the light version of this component.
@@ -118,6 +129,7 @@ export default function Combobox({
     children,
     disabled,
     id,
+    labels = defaultComboboxLabels,
     onChange,
     onToggle,
     opened,
@@ -301,13 +313,11 @@ export default function Combobox({
     };
 
     // The labels of the selected values.
-    const selectedLabels = React.useMemo(
-        () =>
-            children
-                .filter((item) => selected?.includes(item.props.value))
-                .map((item) => item.props.label as string),
-        [children, selected],
-    );
+    const selectedLabels = React.useMemo(() => {
+        return children
+            .filter((item) => selected?.includes(item.props.value))
+            .map((item) => item.props.label as string);
+    }, [children, selected]);
 
     /**
      * Handles the click event on a pill to remove it from the list of selected
@@ -326,6 +336,24 @@ export default function Combobox({
         [selected, setSelected],
     );
 
+    const pillIdPrefix = id ? `${id}-pill-` : ids.get("pill");
+
+    const currentActiveDescendant = !openState
+        ? undefined
+        : focusedIndex >= 0
+        ? // listbox is focused
+          renderList[focusedIndex]?.props?.id
+        : // pills are focused (multiple values selected)
+          pillIdPrefix + focusedMultiSelectIndex;
+
+    // Determine which widget will be controlled by the combobox (listbox or
+    // pills group).
+    const controlledWidget = !openState
+        ? undefined
+        : focusedIndex >= 0
+        ? uniqueId
+        : pillIdPrefix;
+
     return (
         <>
             <View
@@ -335,18 +363,29 @@ export default function Combobox({
                 ref={rootNodeRef}
                 style={[styles.wrapper, isListboxFocused && styles.focused]}
             >
-                {/* TODO(WB-1676.2): Add aria-live region to announce combobox states */}
+                <ComboboxLiveRegion
+                    focusedIndex={focusedIndex}
+                    focusedMultiSelectIndex={focusedMultiSelectIndex}
+                    labels={labels}
+                    options={renderList}
+                    selectedLabels={selectedLabels}
+                    testId={testId}
+                    opened={openState}
+                    selected={selected}
+                    selectionType={selectionType}
+                />
 
                 {/* Multi-select pills display before the input (if options are selected) */}
                 {selectionType === "multiple" && Array.isArray(selected) && (
                     <MultipleSelection
                         labels={selectedLabels}
                         focusedMultiSelectIndex={focusedMultiSelectIndex}
-                        id={ids.get("pill")}
+                        id={pillIdPrefix}
                         selected={selected as Array<string>}
                         onRemove={handleOnRemove}
                         disabled={disabled}
                         testId={testId}
+                        removeSelectedLabel={labels.removeSelected}
                     />
                 )}
                 <TextField
@@ -368,13 +407,9 @@ export default function Combobox({
                         updateOpenState(false);
                         handleBlur();
                     }}
-                    aria-controls={openState ? uniqueId : undefined}
+                    aria-controls={controlledWidget}
                     onKeyDown={onKeyDown}
-                    aria-activedescendant={
-                        openState
-                            ? renderList[focusedIndex]?.props?.id
-                            : undefined
-                    }
+                    aria-activedescendant={currentActiveDescendant}
                     aria-expanded={openState}
                     ref={comboboxRef}
                     // We don't want the browser to suggest autocompletions as
@@ -400,8 +435,7 @@ export default function Combobox({
                     tabIndex={-1}
                     aria-controls={uniqueId}
                     aria-expanded={openState}
-                    // TODO(WB-1676.2): Use the `labels` prop.
-                    aria-label="Toggle listbox"
+                    aria-label={labels.comboboxButton}
                 />
             </View>
 
@@ -425,8 +459,8 @@ export default function Combobox({
                                 {minWidth: rootNodeRef?.current?.offsetWidth},
                             ]}
                             testId={testId ? `${testId}-listbox` : undefined}
-                            // TODO(WB-1676.2): Use the `labels` prop.
-                            aria-label=""
+                            aria-label={labels.listbox}
+                            aria-labelledby={ids.get("input")}
                         >
                             {renderList}
                         </Listbox>

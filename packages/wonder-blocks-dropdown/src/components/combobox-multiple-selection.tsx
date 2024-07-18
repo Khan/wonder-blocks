@@ -5,6 +5,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {color, font, spacing} from "@khanacademy/wonder-blocks-tokens";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     /**
@@ -28,6 +29,10 @@ type Props = {
      */
     onRemove: (value: string) => void;
     /**
+     * Accessible label for the remove button.
+     */
+    removeSelectedLabel: (value: string) => string;
+    /**
      * The list of selected items, where each item represents the value of the
      * selected option.
      */
@@ -48,11 +53,12 @@ export const MultipleSelection = React.memo(function SelectedPills({
     id,
     labels,
     onRemove,
+    removeSelectedLabel,
     selected,
     testId,
 }: Props) {
     return (
-        <>
+        <View role="group" style={styles.pillsWrapper} id={id}>
             {selected.map((value, index) => {
                 const label = labels[index] as string;
                 const focused = index === focusedMultiSelectIndex;
@@ -66,8 +72,7 @@ export const MultipleSelection = React.memo(function SelectedPills({
                         size="small"
                         style={[styles.pill, focused && styles.pillFocused]}
                         kind={focused ? "info" : "neutral"}
-                        // TODO(WB-1676.2): Use the `labels` prop.
-                        aria-label={`Remove ${label}`}
+                        aria-label={removeSelectedLabel(label)}
                         tabIndex={-1}
                         onClick={() => onRemove(value)}
                     >
@@ -80,11 +85,15 @@ export const MultipleSelection = React.memo(function SelectedPills({
                     </Pill>
                 );
             })}
-        </>
+        </View>
     );
 });
 
 const styles = StyleSheet.create({
+    pillsWrapper: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
     pill: {
         fontSize: font.size.small,
         justifyContent: "space-between",
