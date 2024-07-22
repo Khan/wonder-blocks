@@ -89,10 +89,23 @@ export const Default: StoryComponentType = {
     },
 };
 
+/**
+ * When setting a value and onChange props, you can use it as a controlled
+ * component.
+ */
 export const Controlled: StoryComponentType = {
     render: ControlledTextArea,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
+/**
+ * When the `value` prop is provided, the value is rendered in the text area.
+ */
 export const WithValue: StoryComponentType = {
     args: {
         value: "Text",
@@ -170,6 +183,12 @@ export const Required: StoryComponentType = {
         required: true,
     },
     render: ControlledTextArea,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -195,6 +214,12 @@ export const Rows: StoryComponentType = {
 export const AutoComplete: StoryComponentType = {
     args: {
         autoComplete: "on",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
     },
 };
 
@@ -249,6 +274,12 @@ export const AutoFocus = () => {
         </View>
     );
 };
+AutoFocus.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
+    },
+};
 
 /**
  * Spell check can be enabled for the TextArea. It will be checked for spelling
@@ -263,11 +294,23 @@ export const SpellCheckEnabled: StoryComponentType = {
         value: "This exampull will be checkd fur spellung when you try to edit it.",
     },
 };
+SpellCheckEnabled.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
+    },
+};
 
 export const SpellCheckDisabled: StoryComponentType = {
     args: {
         spellCheck: false,
         value: "This exampull will nut be checkd fur spellung when you try to edit it.",
+    },
+};
+SpellCheckDisabled.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
     },
 };
 
@@ -357,6 +400,12 @@ export const MinMaxLength: StoryComponentType = {
         value: "Text",
     },
     render: ControlledTextArea,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -403,6 +452,9 @@ export const ResizeType: StoryComponentType = {
     },
 };
 
+/**
+ * A TextArea with `light` prop set to true and a dark background.
+ */
 export const Light: StoryComponentType = {
     args: {
         light: true,
@@ -416,6 +468,10 @@ export const Light: StoryComponentType = {
     },
 };
 
+/**
+ * Custom styling can be passed to the TextArea component using the `style`
+ * prop.
+ */
 export const CustomStyle: StoryComponentType = {
     args: {
         style: styles.customField,
