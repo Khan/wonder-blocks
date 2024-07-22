@@ -272,16 +272,28 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {initialFocusId, placement, showTail, portal} = this.props;
+        const {
+            initialFocusId,
+            placement,
+            showTail,
+            portal,
+            "aria-label": ariaLabel,
+            "aria-describedby": ariaDescribedBy,
+        } = this.props;
         const {anchorElement} = this.state;
+
+        const describedBy =
+            ariaDescribedBy || (ariaLabel ? undefined : `${uniqueId}-content`);
+        const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
         const popperContent = (
             <TooltipPopper anchorElement={anchorElement} placement={placement}>
                 {(props: PopperElementProps) => (
                     <PopoverDialog
                         {...props}
-                        aria-describedby={`${uniqueId}-content`}
-                        aria-labelledby={`${uniqueId}-title`}
+                        aria-label={ariaLabel}
+                        aria-describedby={describedBy}
+                        aria-labelledby={ariaLabelledBy}
                         id={uniqueId}
                         onUpdate={(placement) => this.setState({placement})}
                         showTail={showTail}
