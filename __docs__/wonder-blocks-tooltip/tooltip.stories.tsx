@@ -486,7 +486,7 @@ export const InTopCorner = {
     parameters: {
         layout: "fullscreen",
         chromatic: {
-            // Disabling snapshot since this since it's for testing purposes
+            // Disabling snapshot since this is for testing purposes
             disableSnapshot: true,
         },
     },
