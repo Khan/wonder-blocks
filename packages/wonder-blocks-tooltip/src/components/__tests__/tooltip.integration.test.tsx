@@ -84,4 +84,33 @@ describe("tooltip integration tests", () => {
         // Assert
         expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
     });
+
+    it("should have an opened tooltip when subsequent mouseover, mouseleave, and mouseover events occur", async () => {
+        // This a test case that simulates a bug in Firefox where a tooltip will
+        // sometimes flicker and not stay opened due to the browser triggering
+        // subsequent mouseover, mouseleave, and mouseover events
+
+        // Arrange
+        const ue = userEvent.setup({
+            advanceTimers: jest.advanceTimersByTime,
+        });
+        render(<Tooltip content="hello, world">an anchor</Tooltip>);
+
+        // Act
+        const anchor = await screen.findByText("an anchor");
+        // Trigger initial mouseover event on anchor and let the timeout complete
+        // to activate the tooltip
+        await ue.hover(anchor);
+        await jest.runAllTimers();
+        expect(screen.getByRole("tooltip")).toBeInTheDocument();
+        // Trigger mouseleave and mouseover event and run timers only after
+        // both have been triggered. This simulates the mouseover event being
+        // triggered before the tooltip is closed from the mouseleave event
+        await ue.unhover(anchor);
+        await ue.hover(anchor);
+        await jest.runAllTimers();
+
+        // Assert
+        expect(screen.getByRole("tooltip")).toBeInTheDocument();
+    });
 });
