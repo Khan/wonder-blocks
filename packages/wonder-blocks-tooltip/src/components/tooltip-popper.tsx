@@ -14,6 +14,8 @@ import type {
     PopperUpdateFn,
 } from "../util/types";
 import {ModifierArguments, detectOverflow} from "@popperjs/core";
+import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
+import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 
 type Props = {
     /**
@@ -65,52 +67,9 @@ const filterPopperPlacement = (
     }
 };
 
-type SmallViewportOptions = {
-    /**
-     * The offset of the popper relative to its reference.
-     */
-    padding?: number;
-};
-
-function modifyPosition({
-    state,
-    options,
-}: ModifierArguments<SmallViewportOptions>): void {
-    // Calculates the available space for the popper based on the placement
-    // relative to the viewport.
-    const overflow = detectOverflow(state, options);
-    const {y} = state.modifiersData.preventOverflow || {x: 0, y: 0};
-    const {height} = state.rects.popper;
-    const [basePlacement] = state.placement.split("-");
-
-    const heightProp = basePlacement === "top" ? "top" : "bottom";
-
-    const maxHeight = height - overflow[heightProp] - y;
-
-    // Apply the maxHeight to the popper element
-    state.styles.popper = {
-        ...state.styles.popper,
-        maxHeight: `${maxHeight}px`,
-        // Also propagate the maxHeight to its children via CSS variables.
-        // This is useful for adding scrollbars to the dropdown list.
-        ["--popper-max-height" as any]: `${maxHeight}px`,
-    };
-}
+type SmallViewportOptions = {};
 
 type SmallViewportModifier = Modifier<"smallViewport", SmallViewportOptions>;
-
-export const smallViewportModifier: SmallViewportModifier = {
-    name: "smallViewport",
-    enabled: true,
-    phase: "main",
-    options: {
-        // Default padding to 40px to account for the input's height.
-        padding: 0, //DROPDOWN_ITEM_HEIGHT,
-    },
-    requiresIfExists: ["offset", "preventOverflow", "flip"],
-    fn: modifyPosition,
-};
-
 /**
  * A component that wraps react-popper's Popper component to provide a
  * consistent interface for positioning floating elements.
@@ -167,6 +126,43 @@ export default class TooltipPopper extends React.Component<Props> {
      * @see https://popper.js.org/docs/v2/lifecycle/#manual-update
      */
     _popperUpdate: PopperUpdateFn | null = null;
+
+    _modifier: Partial<FlipModifier> | Partial<PreventOverflowModifier> = {
+        name: "preventOverflow",
+        options: {
+            rootBoundary: "viewport",
+        },
+    };
+
+    modifyPosition({
+        state,
+        options,
+    }: ModifierArguments<SmallViewportOptions>): void {
+        // Calculates the available space for the popper based on the placement
+        // relative to the viewport.
+        const overflow = detectOverflow(state, options);
+        const {y} = state.modifiersData.preventOverflow || {x: 0, y: 0};
+        const {height} = state.rects.popper;
+        const [basePlacement] = state.placement.split("-");
+
+        const heightProp = basePlacement === "top" ? "top" : "bottom";
+
+        const maxHeight = height - overflow[heightProp] - y;
+
+        console.log(`maxHeight: ${JSON.stringify(maxHeight)}`);
+        console.log(`height: ${height}`);
+        console.log(`placement: ${state.placement}`);
+
+        if (maxHeight < height) {
+            // Change orientation to be based on the document size.
+            this._modifier = {
+                name: "flip",
+                options: {
+                    rootBoundary: "document",
+                },
+            };
+        }
+    }
 
     _renderPositionedContent(
         popperProps: PopperChildrenProps,
@@ -227,20 +223,21 @@ export default class TooltipPopper extends React.Component<Props> {
     render(): React.ReactNode {
         const {anchorElement, placement} = this.props;
 
+        const smallViewportModifier: SmallViewportModifier = {
+            name: "smallViewport",
+            enabled: true,
+            phase: "main",
+            options: {},
+            requiresIfExists: ["offset", "preventOverflow", "flip"],
+            fn: this.modifyPosition,
+        };
+
         return (
             <Popper
                 referenceElement={anchorElement}
                 strategy="fixed"
                 placement={placement}
-                modifiers={[
-                    {
-                        name: "flip",
-                        options: {
-                            rootBoundary: "document",
-                        },
-                    },
-                    smallViewportModifier,
-                ]}
+                modifiers={[this._modifier, smallViewportModifier]}
             >
                 {(props) => this._renderPositionedContent(props)}
             </Popper>
