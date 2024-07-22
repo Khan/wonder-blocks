@@ -568,6 +568,13 @@ describe("TextArea", () => {
                     <TextArea
                         value="text"
                         onChange={() => {}}
+                        // If the validate function returns a string or true,
+                        // then the text area is in an error state. For this
+                        // test, we always return a string upon validation
+                        // to trigger the error state. Since the textarea is
+                        // being mounted with a non-empty value, it is validated
+                        // on initial render. Because the text area is in
+                        // an error state, it will have aria-invalid=true
                         validate={() => "Error"}
                     />,
                     defaultOptions,
