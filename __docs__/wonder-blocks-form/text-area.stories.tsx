@@ -498,3 +498,9 @@ export const WithRef = () => {
         </View>
     );
 };
+WithRef.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
+    },
+};
