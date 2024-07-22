@@ -187,7 +187,11 @@ describe("FieldHeading", () => {
         render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label={<I18nInlineMarkup>Hello, world!</I18nInlineMarkup>}
+                label={
+                    <I18nInlineMarkup b={(s: string) => <b>{s}</b>}>
+                        {"<b>Test</b> Hello, world!"}
+                    </I18nInlineMarkup>
+                }
             />,
         );
 
@@ -205,7 +209,11 @@ describe("FieldHeading", () => {
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={<Body>Hello, world</Body>}
-                description={<I18nInlineMarkup>description</I18nInlineMarkup>}
+                description={
+                    <I18nInlineMarkup b={(s: string) => <b>{s}</b>}>
+                        {"<b>Test</b> description"}
+                    </I18nInlineMarkup>
+                }
             />,
         );
 
