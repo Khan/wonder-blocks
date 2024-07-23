@@ -3,9 +3,10 @@
 /* To fix, remove an entry above, run ka-lint, and fix errors. */
 import * as React from "react";
 
-import FakeTranslate from "./i18n-faketranslate";
 import {allPluralForms} from "./plural-forms";
 import {getLocale} from "./locale";
+import {PluralConfigurationObject} from "./types";
+import {getPluralTranslation, getSingularTranslation} from "./i18n-store";
 
 type InterpolationOptions<T> = {
     [key: string]: T;
@@ -13,11 +14,6 @@ type InterpolationOptions<T> = {
 
 type NGetOptions = {
     [key: string]: any;
-};
-
-type PluralConfigurationObject = {
-    lang: string;
-    messages: Array<string>;
 };
 
 interface ngettextOverloads {
@@ -51,30 +47,10 @@ interface _Overloads {
     ): string;
 }
 
-interface internalTranslateOverloads {
-    (
-        str: string,
-        options:
-            | InterpolationOptions<string | number | null | undefined>
-            | null
-            | undefined,
-        additionalTranslation: (arg1: string) => string,
-    ): string;
-    (
-        pluralConfig: PluralConfigurationObject,
-        options:
-            | InterpolationOptions<string | number | null | undefined>
-            | null
-            | undefined,
-        additionalTranslation: (arg1: string) => string,
-    ): string;
-}
-
-const {translate: fakeTranslate} = new FakeTranslate();
-
 type Language = keyof typeof allPluralForms;
 
 const interpolationMarker = /%\(([\w_]+)\)s/g;
+
 /**
  * Performs sprintf-like %(name)s replacement on str, and returns a React
  * fragment of the string interleaved with those replacements. The replacements
@@ -95,7 +71,7 @@ const interpolateStringToFragment = function (
     options = options || {};
 
     // Split the string into its language fragments and substitutions
-    const split = fakeTranslate(str).split(interpolationMarker);
+    const split = getSingularTranslation(str).split(interpolationMarker);
 
     const result: {
         [key: string]: React.ReactNode;
@@ -149,32 +125,22 @@ const interpolateStringToFragment = function (
 };
 
 /**
- * This is the real worker for handling substitution and fake translation.
+ * Handle string interpolation (for plain strings, not React fragments).
  */
-const internalTranslate: internalTranslateOverloads = (
-    strOrPluralConfig,
-    options,
-    additionalTranslation: (arg1: string) => string,
+const interpolateString = (
+    message: string,
+    options:
+        | InterpolationOptions<string | number | null | undefined>
+        | null
+        | undefined,
 ) => {
-    // Sometimes we're given an argument that's meant for ngettext().  This
-    // happens if the same string is used in both i18n._() and i18n.ngettext()
-    // (.g. a = i18n._(foo); b = i18n.ngettext("foo", "bar", count);
-    // In such cases, only the plural form ends up in the .po file, and
-    // then it gets sent to us for the i18n._() case too.  No problem, though:
-    // we'll just take the singular arg.
-    if (typeof strOrPluralConfig === "object" && strOrPluralConfig.messages) {
-        strOrPluralConfig = strOrPluralConfig.messages[0];
-    }
-
-    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'string | PluralConfigurationObject' is not assignable to parameter of type 'string'.
-    const translated = additionalTranslation(strOrPluralConfig);
     // Options are optional, if we don't have any, just return the string.
     if (options == null) {
-        return translated;
+        return message;
     }
 
     // Otherwise, let's see if our string has anything to be replaced.
-    return translated.replace(interpolationMarker, (match, key) => {
+    return message.replace(interpolationMarker, (match, key) => {
         const replaceWith = options[key];
         return replaceWith != null ? String(replaceWith) : match;
     });
@@ -186,9 +152,10 @@ const internalTranslate: internalTranslateOverloads = (
  *   i18n._("Some string")
  *   i18n._("Hello %(name)s", {name: "John"})
  */
-export const _: _Overloads = (strOrPluralConfig, options) =>
-    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-    internalTranslate(strOrPluralConfig, options, fakeTranslate);
+export const _: _Overloads = (strOrPluralConfig, options) => {
+    const message = getSingularTranslation(strOrPluralConfig);
+    return interpolateString(message, options);
+};
 
 /**
  * i18n method that supports sprintf-like %(name)s replacement for React nodes
@@ -239,7 +206,7 @@ export const ngettext: ngettextOverloads = (
     num?: number | null | undefined | NGetOptions,
     options?: NGetOptions,
 ) => {
-    const {messages, lang}: PluralConfigurationObject =
+    const pluralConfObj: PluralConfigurationObject =
         typeof singular === "object"
             ? singular
             : {
@@ -254,17 +221,17 @@ export const ngettext: ngettextOverloads = (
         (typeof singular === "object" ? num : (options as any)) || {};
 
     // Get the translated string
-    const idx = ngetpos(actualNum, lang);
+    const idx = ngetpos(actualNum, pluralConfObj.lang);
 
     // The common (non-error) case is messages[idx].
-    const translation = idx < messages.length ? messages[idx] : "";
+    const translation = getPluralTranslation(pluralConfObj, idx);
 
     // Get the options to substitute into the string.
     // We automatically add in the 'magic' option-variable 'num'.
     actualOptions.num = formatNumber(actualNum);
 
-    // Then pass into i18n._ for the actual substitution
-    return _(translation, actualOptions);
+    // Then do the actual substitution
+    return interpolateString(translation, actualOptions);
 };
 
 /**
@@ -300,9 +267,13 @@ export const ngetpos = function (num: number, lang?: Language): number {
  * they shouldn't complain that this text isn't translated.)
  * Use it like so: 'tag.author = i18n.doNotTranslate("Jim");'
  */
-export const doNotTranslate: _Overloads = (s, o) =>
-    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-    internalTranslate(s, o, (t) => t);
+export const doNotTranslate: _Overloads = (strOrPluralConfig, options) => {
+    const id =
+        typeof strOrPluralConfig === "string"
+            ? strOrPluralConfig
+            : strOrPluralConfig.messages[0];
+    return interpolateString(id, options);
+};
 
 /*
  * A dummy identity function, like i18n.doNotTranslate. It's used to

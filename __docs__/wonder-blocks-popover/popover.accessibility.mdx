@@ -7,10 +7,6 @@ import {Meta, Story, Canvas} from "@storybook/blocks";
             canvas: {hidden: true},
         },
         viewMode: "docs",
-        chromatic: {
-            // Disables chromatic testing for these stories.
-            disableSnapshot: true,
-        },
     }}
 />
 
@@ -38,6 +34,9 @@ attributes automatically. Internally, it will be set in the `dialog` element and
 the `PopoverContent` component to reference the `title` and `content`
 elements/props. By doing this, the popover will be announced by screen readers
 as a dialog with a title and content.
+
+Alternatively, you can use `aria-label` to add screen reader accessible text to the popover dialog in case there is no
+visible title and/or description inside the dialog.
 
 ## Keyboard Interaction
 
@@ -74,6 +73,14 @@ using:
 
     **NOTE:** If the focus is set to the first focusable element inside the
     popover, the next shift + tab will set focus on the PopoverAnchor element.
+
+#### When `portal={false}`
+
+If a consumer of popover sets the `portal={false}`, the focus management for the
+popover defaults to the content's implementation. This means that the tab key
+will go to the next focusable element unless there is custom keyboard implementation
+in the content. This ensures any arrow keys or other custom keyboard interactions are
+preserved within the Popover.
 
 ### Dismissing the popover
 

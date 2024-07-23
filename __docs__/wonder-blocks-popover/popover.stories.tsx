@@ -419,6 +419,8 @@ export const CustomPopoverContent: StoryComponentType = {
  * element that exists after the PopoverAnchor (or trigger element).
  * - If the focus is set to the first focusable element inside the popover, the
  * next shift + tab will set focus on the PopoverAnchor element.
+ * - If you have custom keyboard navigation (like with left and right arrow keys)
+ * popover won't override them
  *
  * **NOTE:** You can add/remove buttons after the trigger element by using the
  * buttons at the top of the example.
@@ -518,6 +520,170 @@ export const KeyboardNavigation: StoryComponentType = {
 };
 
 /**
+ * Similar example to KeyboardNavigation except this one highlights
+ * how popover does not override custom keyboard interactions for
+ * content inside the popover.
+ *
+ * NOTE: To see the arrow key navigation, add additional buttons to
+ * the popover container.
+ */
+export const CustomKeyboardNavigation: StoryComponentType = {
+    render: function Render() {
+        const [numButtonsAfter, setNumButtonsAfter] = React.useState(0);
+        const [numButtonsInside, setNumButtonsInside] = React.useState(1);
+
+        const [focus, setFocus] = React.useState(0);
+
+        /**
+         * Custom function to create arrow key navigation to highlight how
+         * popover won't override internal custom navigation but still ensure
+         * users will focus in and out of the popover correctly.
+         * @param e - onKeyDown event data.
+         */
+        const onArrowKeyFocus = (e: any) => {
+            if (e.keyCode === 39) {
+                // Right arrow
+                setFocus(focus === numButtonsInside - 1 ? 0 : focus + 1);
+            } else if (e.keyCode === 37) {
+                // Left arrow
+                setFocus(focus === 0 ? numButtonsInside - 1 : focus - 1);
+            }
+        };
+
+        return (
+            <View style={[{padding: "120px 0"}]}>
+                <View style={[styles.row, {gap: spacing.medium_16}]}>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsAfter(numButtonsAfter + 1);
+                        }}
+                    >
+                        Add button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsAfter(numButtonsAfter - 1);
+                            }
+                        }}
+                    >
+                        Remove button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsInside(numButtonsInside + 1);
+                        }}
+                    >
+                        Add button inside popover
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsInside(numButtonsInside - 1);
+                            }
+                        }}
+                    >
+                        Remove button inside popover
+                    </Button>
+                </View>
+                <View style={styles.playground}>
+                    <Button>First button</Button>
+                    <Popover
+                        portal={false}
+                        content={({close}) => (
+                            <PopoverContent
+                                closeButtonVisible
+                                title="Keyboard navigation"
+                                content="This example shows how the focus is managed when a popover is opened."
+                                actions={
+                                    <View
+                                        style={[styles.row, styles.actions]}
+                                        onKeyDown={onArrowKeyFocus}
+                                    >
+                                        {Array.from(
+                                            {length: numButtonsInside},
+                                            (_, index) => (
+                                                <ArrowButton
+                                                    onClick={() => {}}
+                                                    index={index}
+                                                    focus={index === focus}
+                                                />
+                                            ),
+                                        )}
+                                    </View>
+                                }
+                            />
+                        )}
+                        placement="top"
+                    >
+                        <Button>Open popover (trigger element)</Button>
+                    </Popover>
+                    {Array.from({length: numButtonsAfter}, (_, index) => (
+                        <Button onClick={() => {}} key={index}>
+                            {`Button ${index + 1}`}
+                        </Button>
+                    ))}
+                </View>
+            </View>
+        );
+    },
+    parameters: {
+        // This example is behavior based, not visual.
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+};
+
+type ArrowButtonProps = {
+    onClick: () => void;
+    focus?: boolean;
+    index: number;
+};
+
+function ArrowButton(props: ArrowButtonProps): React.ReactElement {
+    const {onClick, focus, index} = props;
+    const tabRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (focus) {
+            /**
+             * When tabs are within a WonderBlocks Popover component, the
+             * manner in which the component is rendered and moved causes
+             * focus to snap to the bottom of the page on first focus.
+             *
+             * This timeout moves around that by delaying the focus enough
+             * to wait for the WonderBlock Popover to move to the correct
+             * location and scroll the user to the correct location.
+             * */
+            if (tabRef?.current) {
+                // Move element into view when it is focused
+                // @ts-expect-error - TS2339 - Property 'focus' does not exist on type 'ReactInstance'.
+                tabRef?.current.focus();
+            }
+        }
+    }, [focus, tabRef]);
+
+    return (
+        <Button
+            onClick={onClick}
+            ref={tabRef}
+            key={index}
+            kind="tertiary"
+            tabIndex={focus ? 0 : -1}
+        >
+            {`Arrow Button ${index + 1}`}
+        </Button>
+    );
+}
+
+/**
  * Alignment example
  */
 const BasePopoverExample = ({placement}: {placement: Placement}) => {
@@ -557,4 +723,22 @@ export const PopoverAlignment: StoryComponentType = {
             <BasePopoverExample placement="top" />
         </View>
     ),
+};
+
+/**
+ * With custom aria-label - overrides the default aria-describedby and aria-labelledby
+ */
+
+export const CustomAriaLabel: StoryComponentType = {
+    args: {
+        children: <Button>Open popover</Button>,
+        content: ContentMappings.withTextOnly,
+        placement: "top",
+        dismissEnabled: true,
+        id: "",
+        initialFocusId: "",
+        testId: "",
+        onClose: () => {},
+        "aria-label": "Popover with custom aria label",
+    } as PopoverArgs,
 };

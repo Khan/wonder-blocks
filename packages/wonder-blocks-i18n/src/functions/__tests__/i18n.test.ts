@@ -3,6 +3,7 @@ import * as React from "react";
 import * as Locale from "../locale";
 import * as FakeTranslate from "../i18n-faketranslate";
 import {_, $_, ngettext, doNotTranslate, doNotTranslateYet} from "../i18n";
+import {clearTranslations, loadTranslations} from "../i18n-store";
 
 jest.mock("react", () => {
     return {
@@ -27,7 +28,7 @@ describe("i18n", () => {
         jest.clearAllMocks();
     });
 
-    describe("integration tests", () => {
+    describe("FakeTranslate integration tests", () => {
         beforeEach(() => {
             jest.spyOn(Locale, "getLocale").mockImplementation(() => "boxes");
         });
@@ -86,6 +87,85 @@ describe("i18n", () => {
 
             // Assert
             expect(result).toEqual("Test");
+        });
+    });
+
+    describe("I18nStore integration tests", () => {
+        const TEST_LOCALE = "en-pt";
+
+        afterEach(() => {
+            clearTranslations(TEST_LOCALE);
+        });
+
+        beforeEach(() => {
+            jest.spyOn(Locale, "getLocale").mockImplementation(
+                () => TEST_LOCALE,
+            );
+        });
+
+        it("_ should translate", () => {
+            // Arrange
+            loadTranslations(TEST_LOCALE, {
+                test: "arrrr matey",
+            });
+
+            // Act
+            const result = _("test");
+
+            // Assert
+            expect(result).toMatchInlineSnapshot(`"arrrr matey"`);
+        });
+
+        it("$_ should translate", () => {
+            // Arrange
+            loadTranslations(TEST_LOCALE, {
+                test: "arrrr matey",
+            });
+
+            // Act
+            const result = $_("test");
+
+            // Assert
+            expect(result).toMatchInlineSnapshot(`"arrrr matey"`);
+        });
+
+        it("ngettext should translate", () => {
+            // Arrange
+            loadTranslations(TEST_LOCALE, {
+                Singular: ["arrrr matey", "arrrr mateys"],
+            });
+
+            // Act
+            const result = ngettext("Singular", "Plural", 0);
+
+            // Assert
+            expect(result).toMatchInlineSnapshot(`"Plural"`);
+        });
+
+        it("doNotTranslate should not translate", () => {
+            // Arrange
+            loadTranslations(TEST_LOCALE, {
+                test: "arrrr matey",
+            });
+
+            // Act
+            const result = doNotTranslate("test");
+
+            // Assert
+            expect(result).toEqual("test");
+        });
+
+        it("doNotTranslateYet should not translate", () => {
+            // Arrange
+            loadTranslations(TEST_LOCALE, {
+                test: "arrrr matey",
+            });
+
+            // Act
+            const result = doNotTranslateYet("test");
+
+            // Assert
+            expect(result).toEqual("test");
         });
     });
 

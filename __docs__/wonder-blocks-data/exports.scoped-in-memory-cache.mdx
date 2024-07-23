@@ -2,16 +2,11 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Exports / ScopedInMemoryCache"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # ScopedInMemoryCache
 
-This class implements an in-memory cache that can contain different scopes of cached data. This allows for quick removal of entire classes of data as identified by their scopes without having to iterate each cached item to find them. It implements the [`ScopedCache`](/docs/data-types-scopedcache--page) interface.
+This class implements an in-memory cache that can contain different scopes of cached data. This allows for quick removal of entire classes of data as identified by their scopes without having to iterate each cached item to find them. It implements the <a href="./?path=/docs/packages-data-types-scopedcache--docs">`ScopedCache`</a> interface.
 
 ## constructor()
 
@@ -47,8 +42,8 @@ Sets a value in the cache within a given scope.
 
 | Error Type                                        | Error Name              | Reason                                     |
 | ------------------------------------------------- | ----------------------- | ------------------------------------------ |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value       |
+| <a href="./?path=/docs/packages-data-exports-dataerror--docs">`DataError`</a> | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
+| <a href="./?path=/docs/packages-data-exports-dataerror--docs">`DataError`</a> | `InvalidInputDataError` | `value` must be a non-function value       |
 
 ## get()
 

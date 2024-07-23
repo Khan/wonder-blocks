@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Types / ResponseCache"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # ResponseCache
@@ -18,7 +13,7 @@ type ResponseCache = {
 };
 ```
 
-`ResponseCache` describes the serialized cache that is used to hydrate responses. An example of a valid `ResponseCache` instance is shown below. Generally, you would not generate this object directly, but rather use the returned data from [`fetchTrackedRequests`](/docs/data-exports-fetchtrackedrequests--page).
+`ResponseCache` describes the serialized cache that is used to hydrate responses. An example of a valid `ResponseCache` instance is shown below. Generally, you would not generate this object directly, but rather use the returned data from <a href="./?path=/docs/packages-data-exports-fetchtrackedrequests--docs">`fetchTrackedRequests`</a>.
 
 ```ts
 const responseCache: ResponseCache = {
@@ -30,4 +25,4 @@ const responseCache: ResponseCache = {
 
 In this example, the cache contains data retrieved for three different requests.
 
-Each entry in the cache is of type [`CachedResponse`](/docs/data-types-cachedresponse--page). See the section on [server-side rendering](/docs/data-server-side-rendering-and-hydration--page) for more information.
+Each entry in the cache is of type <a href="./?path=/docs/packages-data-types-cachedresponse--docs">`CachedResponse`</a>. See the section on <a href="./?path=/docs/packages-data-server-side-rendering-and-hydration--docs">server-side rendering</a> for more information.
