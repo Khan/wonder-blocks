@@ -62,7 +62,7 @@ export default class FocusManager extends React.Component<Props> {
      */
     componentWillUnmount() {
         // Reset focusability
-        this.changeFocusabilityInsidePopover(true);
+        //this.changeFocusabilityInsidePopover(true);
 
         this.removeEventListeners();
     }
@@ -119,7 +119,7 @@ export default class FocusManager extends React.Component<Props> {
         // focus back on the document.
         if (!this.nextElementAfterPopover) {
             window.addEventListener("blur", () => {
-                this.changeFocusabilityInsidePopover(true);
+                //this.changeFocusabilityInsidePopover(true);
             });
         }
 
@@ -157,7 +157,7 @@ export default class FocusManager extends React.Component<Props> {
 
         if (!this.nextElementAfterPopover) {
             window.removeEventListener("blur", () => {
-                this.changeFocusabilityInsidePopover(true);
+                //this.changeFocusabilityInsidePopover(true);
             });
         }
 
@@ -326,13 +326,13 @@ export default class FocusManager extends React.Component<Props> {
             <div
                 ref={this.getComponentRootNode}
                 onClick={() => {
-                    this.changeFocusabilityInsidePopover(true);
+                    //this.changeFocusabilityInsidePopover(true);
                 }}
                 onFocus={() => {
-                    this.changeFocusabilityInsidePopover(true);
+                    //this.changeFocusabilityInsidePopover(true);
                 }}
                 onBlur={() => {
-                    this.changeFocusabilityInsidePopover(false);
+                    //this.changeFocusabilityInsidePopover(false);
                 }}
             >
                 <InitialFocus initialFocusId={this.props.initialFocusId}>
