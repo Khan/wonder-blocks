@@ -7,15 +7,15 @@ import {Popper} from "react-popper";
 import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
-import RefTracker from "../util/ref-tracker";
+import {ModifierArguments, detectOverflow} from "@popperjs/core";
+import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
+import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 import type {
     Placement,
     PopperElementProps,
     PopperUpdateFn,
 } from "../util/types";
-import {ModifierArguments, RootBoundary, detectOverflow} from "@popperjs/core";
-import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
-import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
+import RefTracker from "../util/ref-tracker";
 
 type Props = {
     /**
@@ -71,8 +71,6 @@ type SmallViewportOptions = {};
 
 type SmallViewportModifier = Modifier<"smallViewport", SmallViewportOptions>;
 
-let _rootBoundary: RootBoundary = "viewport";
-
 function modifyPosition({
     state,
     options,
@@ -92,12 +90,18 @@ function modifyPosition({
     // console.log(`height: ${height}`);
     // console.log(`placement: ${state.placement}`);
 
+    let _rootBoundary;
+
     if (maxHeight < height) {
         // Change orientation to be based on the document size.
         _rootBoundary = "document";
     } else {
         _rootBoundary = "viewport";
     }
+
+    // Override the flip modifier's rootBoundary option.
+    const flipModifier = state.options.modifiers.find((m) => m.name === "flip");
+    flipModifier.options.rootBoundary = _rootBoundary;
 }
 /**
  * A component that wraps react-popper's Popper component to provide a
@@ -246,7 +250,7 @@ export default class TooltipPopper extends React.Component<Props> {
                     {
                         name: "flip",
                         options: {
-                            rootBoundary: _rootBoundary,
+                            rootBoundary: "viewport",
                         },
                     },
                     smallViewportModifier,
