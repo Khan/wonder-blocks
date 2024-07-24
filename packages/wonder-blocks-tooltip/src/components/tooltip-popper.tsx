@@ -83,7 +83,7 @@ function modifyPosition({
     const [basePlacement] = state.placement.split("-");
 
     const heightProp = basePlacement === "top" ? "top" : "bottom";
-    const maxHeight = height - overflow[heightProp] - y;
+    const maxHeight = window.innerHeight; //height - overflow[heightProp] - y;
 
     // console.log(`overflow: ${JSON.stringify(overflow)}`);
     // console.log(`maxHeight: ${JSON.stringify(maxHeight)}`);
@@ -101,6 +101,9 @@ function modifyPosition({
 
     // Override the flip modifier's rootBoundary option.
     const flipModifier = state.options.modifiers.find((m) => m.name === "flip");
+    // console.log(`rootBoundary: ${_rootBoundary}`);
+    // console.log(`flipModifier: ${flipModifier.options.rootBoundary}`);
+
     flipModifier.options.rootBoundary = _rootBoundary;
 }
 /**
@@ -241,16 +244,10 @@ export default class TooltipPopper extends React.Component<Props> {
                 strategy="fixed"
                 placement={placement}
                 modifiers={[
-                    // {
-                    //     name: "preventOverflow",
-                    //     options: {
-                    //         rootBoundary: "viewport",
-                    //     },
-                    // },
                     {
                         name: "flip",
                         options: {
-                            rootBoundary: "viewport",
+                            rootBoundary: "document",
                         },
                     },
                     smallViewportModifier,
