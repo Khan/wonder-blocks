@@ -1,6 +1,6 @@
 import * as React from "react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
-import {renderHook} from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react";
 
 import {useRenderState} from "../use-render-state";
 import {RenderStateRoot} from "../../components/render-state-root";

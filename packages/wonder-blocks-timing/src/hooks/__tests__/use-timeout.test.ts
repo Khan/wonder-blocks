@@ -1,4 +1,4 @@
-import {renderHook, act} from "@testing-library/react-hooks";
+import {renderHook, act} from "@testing-library/react";
 import {SchedulePolicy, ClearPolicy, ActionPolicy} from "../../util/policies";
 
 import {useTimeout} from "../use-timeout";

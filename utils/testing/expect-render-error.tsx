@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import {createRoot} from "react-dom/client";
 
 // Code from:
 // https://gist.github.com/gaearon/adf9d5500e11a4e7b2c6f7ebf994fe56
@@ -37,7 +37,8 @@ export default (element: React.ReactNode, expectedError: string) => {
     const div = document.createElement("div");
     window.addEventListener("error", handleTopLevelError);
     try {
-        ReactDOM.render(<TestBoundary>{element}</TestBoundary>, div);
+        const root = createRoot(div);
+        root.render(<TestBoundary>{element}</TestBoundary>);
     } finally {
         window.removeEventListener("error", handleTopLevelError);
     }
