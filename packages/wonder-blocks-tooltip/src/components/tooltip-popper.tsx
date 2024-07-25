@@ -71,46 +71,31 @@ type SmallViewportOptions = {};
 
 type SmallViewportModifier = Modifier<"smallViewport", SmallViewportOptions>;
 
+let hideReference = false;
+
 function modifyPosition({
     state,
     options,
 }: ModifierArguments<SmallViewportOptions>): void {
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
-    const overflow = detectOverflow(state, options);
-    const {y} = state.modifiersData.preventOverflow || {x: 0, y: 0};
     const {height} = state.rects.popper;
-    const [basePlacement] = state.placement.split("-");
-
-    const heightProp = basePlacement === "top" ? "top" : "bottom";
-    const maxHeight = window.innerHeight; //height - overflow[heightProp] - y;
-
-    // console.log(`overflow: ${JSON.stringify(overflow)}`);
-    // console.log(`maxHeight: ${JSON.stringify(maxHeight)}`);
-    // console.log(`height: ${height}`);
-    // console.log(`placement: ${state.placement}`);
-
-    let _rootBoundary;
+    const maxHeight = window.innerHeight;
 
     if (maxHeight < height) {
         // Change orientation to be based on the document size.
-        _rootBoundary = "document";
+        hideReference = true;
     } else {
-        _rootBoundary = "viewport";
+        hideReference = false;
     }
-
-    // Override the flip modifier's rootBoundary option.
-    const flipModifier = state.options.modifiers.find((m) => m.name === "flip");
-    // console.log(`rootBoundary: ${_rootBoundary}`);
-    // console.log(`flipModifier: ${flipModifier.options.rootBoundary}`);
-
-    flipModifier.options.rootBoundary = _rootBoundary;
 }
+
 /**
  * A component that wraps react-popper's Popper component to provide a
  * consistent interface for positioning floating elements.
  */
 export default class TooltipPopper extends React.Component<Props> {
+    popperElement: HTMLElement | null | undefined;
     /**
      * Automatically updates the position of the floating element when necessary
      * to ensure it stays anchored.
@@ -221,7 +206,9 @@ export default class TooltipPopper extends React.Component<Props> {
             // screens or zoomed in and might need to scroll down to see the
             // whole popover (which if it disappears when the reference is out
             // of view, it makes that impossible for some customers).
-            isReferenceHidden: false,
+            isReferenceHidden: hideReference
+                ? false
+                : popperProps.isReferenceHidden,
         } as const;
         return children(bubbleProps);
     }
@@ -233,13 +220,19 @@ export default class TooltipPopper extends React.Component<Props> {
             name: "smallViewport",
             enabled: true,
             phase: "main",
-            options: {},
-            requiresIfExists: ["flip"],
+            options: {
+                // Default padding to 40px to account for the input's height.
+                padding: 40,
+            },
+            requiresIfExists: ["offset", "preventOverflow", "flip"],
             fn: modifyPosition,
         };
 
         return (
             <Popper
+                innerRef={(popperElement) => {
+                    this.popperElement = popperElement;
+                }}
                 referenceElement={anchorElement}
                 strategy="fixed"
                 placement={placement}
