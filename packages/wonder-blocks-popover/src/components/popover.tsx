@@ -281,7 +281,7 @@ export default class Popover extends React.Component<Props, State> {
         } = this.props;
         const {anchorElement} = this.state;
 
-        const ariaDescribedBy = ariaLabel ? undefined : `${uniqueId}-content`;
+        const ariaDescribedBy = `${uniqueId}-content`;
         const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
         const popperContent = (
@@ -289,9 +289,9 @@ export default class Popover extends React.Component<Props, State> {
                 {(props: PopperElementProps) => (
                     <PopoverDialog
                         {...props}
-                        aria-label={ariaLabel}
                         aria-describedby={ariaDescribedBy}
                         aria-labelledby={ariaLabelledBy}
+                        aria-label={ariaLabel}
                         id={uniqueId}
                         onUpdate={(placement) => this.setState({placement})}
                         showTail={showTail}

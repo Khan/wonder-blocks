@@ -6,10 +6,10 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
-import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {Popover, PopoverContent, PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -86,6 +86,16 @@ const styles = StyleSheet.create({
         padding: spacing.large_24,
         flexDirection: "row",
         gap: spacing.medium_16,
+    },
+    srOnly: {
+        border: 0,
+        clip: "rect(0,0,0,0)",
+        height: 1,
+        margin: -1,
+        overflow: "hidden",
+        padding: 0,
+        position: "absolute",
+        width: 1,
     },
 });
 
@@ -741,4 +751,43 @@ export const CustomAriaLabel: StoryComponentType = {
         onClose: () => {},
         "aria-label": "Popover with custom aria label",
     } as PopoverArgs,
+};
+
+
+export const CustomAriaDescribedBy = ({placement}: {placement: Placement}) => {
+
+    const [opened, setOpened] = React.useState(true);
+
+    return (
+        <View style={styles.example}>
+            <Popover
+                aria-label="Popover with custom aria label"
+                aria-describedby="PopoverTitle"
+                placement={placement}
+                opened={opened}
+                onClose={() => setOpened(false)}
+                content={
+                    <>
+                        <HeadingMedium id="PopoverTitle" style={styles.srOnly}>Sample text that would describe the navigation of the expression widget</HeadingMedium>
+                        <PopoverContentCore
+                            closeButtonVisible
+                        >
+                            <>
+                                Popover Content
+                            </>
+                        </PopoverContentCore>
+                    </>
+
+                }
+            >
+                <Button
+                    onClick={() => {
+                        setOpened(true);
+                    }}
+                >
+                    {`Open popover`}
+                </Button>
+            </Popover>
+        </View>
+    );
 };
