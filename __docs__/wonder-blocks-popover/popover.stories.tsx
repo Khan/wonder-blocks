@@ -9,7 +9,7 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
-import {Popover, PopoverContent, PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -739,7 +739,7 @@ export const PopoverAlignment: StoryComponentType = {
  * With custom aria-label - overrides the default aria-describedby and aria-labelledby
  */
 
-export const CustomAriaLabel: StoryComponentType = {
+export const WithCustomAriaLabel: StoryComponentType = {
     args: {
         children: <Button>Open popover</Button>,
         content: ContentMappings.withTextOnly,
@@ -753,31 +753,30 @@ export const CustomAriaLabel: StoryComponentType = {
     } as PopoverArgs,
 };
 
-
-export const CustomAriaDescribedBy = ({placement}: {placement: Placement}) => {
-
-    const [opened, setOpened] = React.useState(true);
+export const WithAriaDescribedBy = ({placement}: {placement: Placement}) => {
+    const [opened, setOpened] = React.useState(false);
 
     return (
         <View style={styles.example}>
             <Popover
-                aria-label="Popover with custom aria label"
-                aria-describedby="PopoverTitle"
+                id="Popover"
                 placement={placement}
                 opened={opened}
                 onClose={() => setOpened(false)}
                 content={
                     <>
-                        <HeadingMedium id="PopoverTitle" style={styles.srOnly}>Sample text that would describe the navigation of the expression widget</HeadingMedium>
-                        <PopoverContentCore
-                            closeButtonVisible
+                        <HeadingMedium
+                            id="Popover-content"
+                            style={styles.srOnly}
                         >
-                            <>
-                                Popover Content
-                            </>
-                        </PopoverContentCore>
+                            Hidden text that would describe the popover content
+                        </HeadingMedium>
+                        <PopoverContent
+                            title="Title"
+                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                            closeButtonVisible
+                        />
                     </>
-
                 }
             >
                 <Button

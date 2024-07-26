@@ -278,10 +278,20 @@ export default class Popover extends React.Component<Props, State> {
             showTail,
             portal,
             "aria-label": ariaLabel,
+            "aria-describedby": ariaDescribedBy,
         } = this.props;
         const {anchorElement} = this.state;
 
-        const ariaDescribedBy = `${uniqueId}-content`;
+        /**
+         * If aria-describedby is provided, use that id as a reference to the content
+         * If only aria-label is provided, don't use aria-describedby
+         * If both are provided, use aria-label as the label (automatically done by SR)
+         * If neither are provided, use the uniqueId to reference the content
+         *  > Don't want to have aria-describedby set by default in case there isn't something
+         *  > for the SR to reference.
+         */
+        const describedBy =
+            ariaDescribedBy || (ariaLabel ? undefined : `${uniqueId}-content`);
         const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
         const popperContent = (
@@ -289,9 +299,9 @@ export default class Popover extends React.Component<Props, State> {
                 {(props: PopperElementProps) => (
                     <PopoverDialog
                         {...props}
-                        aria-describedby={ariaDescribedBy}
-                        aria-labelledby={ariaLabelledBy}
                         aria-label={ariaLabel}
+                        aria-describedby={describedBy}
+                        aria-labelledby={ariaLabelledBy}
                         id={uniqueId}
                         onUpdate={(placement) => this.setState({placement})}
                         showTail={showTail}
