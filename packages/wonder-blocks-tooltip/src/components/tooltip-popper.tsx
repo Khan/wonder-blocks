@@ -13,6 +13,21 @@ import type {
     PopperElementProps,
     PopperUpdateFn,
 } from "../util/types";
+import {
+    autoUpdate,
+    computePosition,
+    flip,
+    limitShift,
+    offset,
+    ReferenceElement,
+    shift,
+    useClick,
+    useDismiss,
+    useFloating,
+    useInteractions,
+    useRole,
+} from "@floating-ui/react";
+import {useState} from "react";
 
 type Props = {
     /**
@@ -68,78 +83,30 @@ const filterPopperPlacement = (
  * A component that wraps react-popper's Popper component to provide a
  * consistent interface for positioning floating elements.
  */
-export default class TooltipPopper extends React.Component<Props> {
-    /**
-     * Automatically updates the position of the floating element when necessary
-     * to ensure it stays anchored.
-     *
-     * NOTE: This is a temporary solution that checks for changes in the anchor
-     * element's DOM. This is not a perfect solution and may not work in all
-     * cases. It is recommended to use the autoUpdate prop only when necessary.
-     *
-     * TODO(WB-1680): Replace this with floating-ui's autoUpdate feature.
-     * @see https://floating-ui.com/docs/autoupdate
-     */
-    componentDidMount() {
-        const {anchorElement, autoUpdate} = this.props;
-        if (!anchorElement || !autoUpdate) {
-            return;
-        }
+export default function TooltipPopper(props: Props) {
+    const {anchorElement} = props;
+    const bubbleRefTracker: RefTracker = new RefTracker();
+    const tailRefTracker: RefTracker = new RefTracker();
+    const [popperUpdate, setPopperUpdate] = useState<PopperUpdateFn | null>(
+        null,
+    );
 
-        this._observer = new MutationObserver(() => {
-            // Update the popper when the anchor element changes.
-            this._popperUpdate?.();
-        });
-
-        // Check for DOM changes to the anchor element.
-        this._observer.observe(anchorElement, {
-            attributes: true,
-            childList: true,
-            subtree: true,
-        });
-    }
-
-    componentWillUnmount() {
-        this._observer?.disconnect();
-    }
-
-    /**
-     * A ref tracker for the bubble element.
-     */
-    _bubbleRefTracker: RefTracker = new RefTracker();
-    /**
-     * A ref tracker for the tail element.
-     */
-    _tailRefTracker: RefTracker = new RefTracker();
-    /**
-     * A MutationObserver that watches for changes to the anchor element.
-     */
-    _observer: MutationObserver | null = null;
-    /**
-     * A function that can be called to update the popper.
-     * @see https://popper.js.org/docs/v2/lifecycle/#manual-update
-     */
-    _popperUpdate: PopperUpdateFn | null = null;
-
-    _renderPositionedContent(
-        popperProps: PopperChildrenProps,
-    ): React.ReactNode {
-        const {children} = this.props;
+    const renderPositionedContent = (popperProps: PopperChildrenProps) => {
+        const {children} = props;
 
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
         const placement: Placement =
-            filterPopperPlacement(popperProps.placement) ||
-            this.props.placement;
+            filterPopperPlacement(popperProps.placement) || props.placement;
 
         // Just in case the callbacks have changed, let's update our reference
         // trackers.
-        this._bubbleRefTracker.setCallback(popperProps.ref);
-        this._tailRefTracker.setCallback(popperProps.arrowProps.ref);
+        bubbleRefTracker.setCallback(popperProps.ref);
+        tailRefTracker.setCallback(popperProps.arrowProps.ref);
 
         // Store a reference to the update function so that we can call it
         // later if needed.
-        this._popperUpdate = popperProps.update;
+        setPopperUpdate(popperProps.update);
 
         // Here we translate from the react-popper's PropperChildrenProps
         // to our own TooltipBubbleProps.
@@ -157,7 +124,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 position: popperProps.style.position,
                 transform: popperProps.style.transform,
             },
-            updateBubbleRef: this._bubbleRefTracker.updateRef,
+            updateBubbleRef: bubbleRefTracker.updateRef,
             tailOffset: {
                 bottom: popperProps.arrowProps.style.bottom,
                 right: popperProps.arrowProps.style.right,
@@ -165,31 +132,73 @@ export default class TooltipPopper extends React.Component<Props> {
                 left: popperProps.arrowProps.style.left,
                 transform: popperProps.arrowProps.style.transform,
             },
-            updateTailRef: this._tailRefTracker.updateRef,
+            updateTailRef: tailRefTracker.updateRef,
             isReferenceHidden: popperProps.isReferenceHidden,
         } as const;
         return children(bubbleProps);
-    }
+    };
 
-    render(): React.ReactNode {
-        const {anchorElement, placement} = this.props;
+    const [isOpen, setIsOpen] = useState(false);
 
-        return (
-            <Popper
-                referenceElement={anchorElement}
-                strategy="fixed"
-                placement={placement}
-                modifiers={[
-                    {
-                        name: "preventOverflow",
-                        options: {
-                            rootBoundary: "viewport",
-                        },
-                    },
-                ]}
+    const {refs, floatingStyles, context} = useFloating({
+        open: isOpen,
+        onOpenChange: setIsOpen,
+        middleware: [offset(10), flip(), shift()],
+        whileElementsMounted: autoUpdate,
+    });
+
+    computePosition(
+        refs.reference.current as ReferenceElement,
+        refs.floating.current as HTMLElement,
+        {
+            placement: "top",
+            middleware: [flip(), shift({limiter: limitShift()})],
+        },
+    ).then(({x, y}) => {
+        // ...
+    });
+
+    const click = useClick(context);
+    const dismiss = useDismiss(context);
+    const role = useRole(context);
+
+    // Merge all the interactions into prop getters
+    const {getReferenceProps, getFloatingProps} = useInteractions([
+        click,
+        dismiss,
+        role,
+    ]);
+
+    // return (
+    //     <Popper
+    //         referenceElement={anchorElement}
+    //         strategy="fixed"
+    //         placement={placement}
+    //         modifiers={[
+    //             {
+    //                 name: "preventOverflow",
+    //                 options: {
+    //                     rootBoundary: "viewport",
+    //                 },
+    //             },
+    //         ]}
+    //     >
+    //         {(props) => renderPositionedContent(props)}
+    //     </Popper>
+    // );
+
+    return (
+        <>
+            <button ref={refs.setReference} {...getReferenceProps()}>
+                Reference element
+            </button>
+            <div
+                ref={refs.setFloating}
+                style={floatingStyles}
+                {...getFloatingProps()}
             >
-                {(props) => this._renderPositionedContent(props)}
-            </Popper>
-        );
-    }
+                {(props: PopperChildrenProps) => renderPositionedContent(props)}
+            </div>
+        </>
+    );
 }
