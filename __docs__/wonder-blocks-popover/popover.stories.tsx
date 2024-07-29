@@ -736,7 +736,7 @@ export const PopoverAlignment: StoryComponentType = {
 };
 
 /**
- * With custom aria-label - overrides the default aria-describedby and aria-labelledby
+ * With custom aria-label - overrides the default aria-labelledby
  */
 
 export const WithCustomAriaLabel: StoryComponentType = {
@@ -753,20 +753,23 @@ export const WithCustomAriaLabel: StoryComponentType = {
     } as PopoverArgs,
 };
 
-export const WithAriaDescribedBy = ({placement}: {placement: Placement}) => {
+/**
+ * With custom aria-describedby - overrides the default aria-describedby
+ */
+export const WithCustomAriaDescribedBy = ({placement}: {placement: Placement}) => {
     const [opened, setOpened] = React.useState(false);
 
     return (
         <View style={styles.example}>
             <Popover
-                id="Popover"
+                aria-describedby="custom-popover-description"
                 placement={placement}
                 opened={opened}
                 onClose={() => setOpened(false)}
                 content={
                     <>
                         <HeadingMedium
-                            id="Popover-content"
+                            id="custom-popover-description"
                             style={styles.srOnly}
                         >
                             Hidden text that would describe the popover content
