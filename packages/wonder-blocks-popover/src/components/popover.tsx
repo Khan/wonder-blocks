@@ -282,16 +282,8 @@ export default class Popover extends React.Component<Props, State> {
         } = this.props;
         const {anchorElement} = this.state;
 
-        /**
-         * If aria-describedby is provided, use that id as a reference to the content
-         * If only aria-label is provided, don't use aria-describedby
-         * If both are provided, use aria-label as the label (automatically done by SR)
-         * If neither are provided, use the uniqueId to reference the content
-         *  > Don't want to have aria-describedby set by default in case there isn't something
-         *  > for the SR to reference.
-         */
-        const describedBy =
-            ariaDescribedBy || (ariaLabel ? undefined : `${uniqueId}-content`);
+        const describedBy = ariaDescribedBy || `${uniqueId}-content`;
+
         const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
         const popperContent = (
