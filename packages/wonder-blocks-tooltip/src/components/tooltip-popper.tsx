@@ -85,8 +85,8 @@ function modifyPosition({
     const html = document.documentElement;
 
     const minHeight = html.clientHeight;
-    console.log(`min height: ${body.offsetHeight}`);
-    console.log(`popper height: ${popperHeight}`);
+    //console.log(`min height: ${body.offsetHeight}`);
+    //console.log(`popper height: ${popperHeight}`);
 
     if (minHeight < popperHeight) {
         // Change orientation to be based on the document size.
