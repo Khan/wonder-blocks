@@ -319,6 +319,26 @@ describe("TextArea", () => {
             expect(onChangeMock).toHaveBeenCalledExactlyOnceWith(letterToType);
         });
 
+        it("should not call the onChange prop when the textarea value changes and it is disabled", async () => {
+            // Arrange
+            const onChangeMock = jest.fn();
+            render(
+                <TextArea value="" onChange={onChangeMock} disabled={true} />,
+                defaultOptions,
+            );
+
+            // Act
+            // Type one letter
+            const letterToType = "X";
+            await userEvent.type(
+                await screen.findByRole("textbox"),
+                letterToType,
+            );
+
+            // Assert
+            expect(onChangeMock).not.toHaveBeenCalled();
+        });
+
         it("should call the onClick prop when the textarea is clicked", async () => {
             // Arrange
             const onClickMock = jest.fn();
@@ -332,6 +352,26 @@ describe("TextArea", () => {
 
             // Assert
             expect(onClickMock).toHaveBeenCalledOnce();
+        });
+
+        it("should not call the onClick prop when the textarea is clicked and it is disabled", async () => {
+            // Arrange
+            const onClickMock = jest.fn();
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onClick={onClickMock}
+                    disabled={true}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("textbox"));
+
+            // Assert
+            expect(onClickMock).not.toHaveBeenCalled();
         });
 
         it("should call the onKeyDown prop when a key is typed in the textarea", async () => {
@@ -358,6 +398,27 @@ describe("TextArea", () => {
             expect(handleOnKeyDown).toHaveReturnedWith("Enter");
         });
 
+        it("should not call the onKeyDown prop when a key is typed in the textarea and it is disabled", async () => {
+            // Arrange
+            const handleOnKeyDown = jest.fn();
+
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onKeyDown={handleOnKeyDown}
+                    disabled={true}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            await userEvent.type(await screen.findByRole("textbox"), "{enter}");
+
+            // Assert
+            expect(handleOnKeyDown).not.toHaveBeenCalled();
+        });
+
         it("should call the onKeyUp prop when a key is typed in the textarea", async () => {
             // Arrange
             const handleOnKeyUp = jest.fn(
@@ -382,6 +443,27 @@ describe("TextArea", () => {
             expect(handleOnKeyUp).toHaveReturnedWith("Enter");
         });
 
+        it("should not call the onKeyUp prop when a key is typed in the textarea and it is disabled", async () => {
+            // Arrange
+            const handleOnKeyUp = jest.fn();
+
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onKeyUp={handleOnKeyUp}
+                    disabled={true}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            await userEvent.type(await screen.findByRole("textbox"), "{enter}");
+
+            // Assert
+            expect(handleOnKeyUp).not.toHaveBeenCalled();
+        });
+
         it("should call the onFocus prop when the textarea is focused", async () => {
             // Arrange
             const handleOnFocus = jest.fn();
@@ -402,6 +484,27 @@ describe("TextArea", () => {
             expect(handleOnFocus).toHaveBeenCalledOnce();
         });
 
+        it("should not call the onFocus prop when the textarea is focused and it is disabled", async () => {
+            // Arrange
+            const handleOnFocus = jest.fn();
+
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onFocus={handleOnFocus}
+                    disabled={true}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            await userEvent.tab();
+
+            // Assert
+            expect(handleOnFocus).not.toHaveBeenCalled();
+        });
+
         it("should call the onBlur prop when the textarea is blurred", async () => {
             // Arrange
             const handleOnBlur = jest.fn();
@@ -419,6 +522,30 @@ describe("TextArea", () => {
 
             // Assert
             expect(handleOnBlur).toHaveBeenCalledOnce();
+        });
+
+        it("should not call the onBlur prop when the textarea is blurred and it is disabled", async () => {
+            // Arrange
+            const handleOnBlur = jest.fn();
+
+            render(
+                <TextArea
+                    value=""
+                    onChange={() => {}}
+                    onBlur={handleOnBlur}
+                    disabled={true}
+                />,
+                defaultOptions,
+            );
+            // Tab to focus on textarea
+            await userEvent.tab();
+
+            // Act
+            // Tab to move focus away
+            await userEvent.tab();
+
+            // Assert
+            expect(handleOnBlur).not.toHaveBeenCalled();
         });
     });
 
