@@ -79,10 +79,16 @@ function modifyPosition({
 }: ModifierArguments<SmallViewportOptions>): void {
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
-    const {height} = state.rects.popper;
-    const maxHeight = window.innerHeight;
+    const popperHeight =
+        state.rects.popper.height + state.rects.reference.height;
+    const body = document.body;
+    const html = document.documentElement;
 
-    if (maxHeight < height) {
+    const minHeight = html.clientHeight;
+    console.log(`min height: ${body.offsetHeight}`);
+    console.log(`popper height: ${popperHeight}`);
+
+    if (minHeight < popperHeight) {
         // Change orientation to be based on the document size.
         hideReference = true;
     } else {
