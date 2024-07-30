@@ -756,7 +756,11 @@ export const WithCustomAriaLabel: StoryComponentType = {
 /**
  * With custom aria-describedby - overrides the default aria-describedby
  */
-export const WithCustomAriaDescribedBy = ({placement}: {placement: Placement}) => {
+export const WithCustomAriaDescribedBy = ({
+    placement,
+}: {
+    placement: Placement;
+}) => {
     const [opened, setOpened] = React.useState(false);
 
     return (
