@@ -330,6 +330,7 @@ const styles = StyleSheet.create({
         },
         cursor: "not-allowed",
         ":focus-visible": {
+            outline: "none",
             boxShadow: `0 0 0 1px ${color.white}, 0 0 0 3px ${color.offBlack32}`,
         },
     },
@@ -370,6 +371,7 @@ const styles = StyleSheet.create({
         },
         cursor: "not-allowed",
         ":focus-visible": {
+            outline: "none",
             boxShadow: `0 0 0 1px ${color.offBlack32}, 0 0 0 3px ${color.fadedBlue}`,
         },
     },
