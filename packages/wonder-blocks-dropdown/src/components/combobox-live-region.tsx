@@ -29,6 +29,7 @@ type Props = {
         | "liveRegionCurrentItem"
         | "liveRegionListboxTotal"
         | "liveRegionMultipleSelectionTotal"
+        | "noItems"
         | "selected"
         | "unselected"
     >;
@@ -147,7 +148,7 @@ export function ComboboxLiveRegion({
         }
 
         // If there are no focused items, don't announce anything.
-        if (focusedIndex < 0) {
+        if (focusedIndex < 0 || !options[focusedIndex]) {
             return "";
         }
 

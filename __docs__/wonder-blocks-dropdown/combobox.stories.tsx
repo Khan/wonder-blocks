@@ -266,3 +266,23 @@ export const ControlledMultilpleCombobox: Story = {
         ),
     ],
 };
+
+/**
+ * `Combobox` supports autocompletion. This means that the listbox will show
+ * options that match the user's input. In this example, we show how this is
+ * done by setting the `autoComplete` prop to "list".
+ */
+export const AutoComplete: Story = {
+    args: {
+        children: items,
+        placeholder: "Type to search",
+        autoComplete: "list",
+    },
+    name: "Autocomplete",
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};

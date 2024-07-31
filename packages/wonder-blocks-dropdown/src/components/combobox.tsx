@@ -12,6 +12,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
 import {
@@ -111,6 +112,17 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
+
+    /**
+     * Indicates whether inputting text could trigger display of one or more
+     * predictions of the user’s intended value.
+     *
+     * It’s internally mapped to aria-autocomplete set in the input field
+     * (combobox).
+     *
+     * TODO(WB-1740): Add support to `inline` and `both` values.
+     */
+    autoComplete?: "none" | "list" | undefined;
 };
 
 /**
@@ -126,6 +138,7 @@ type Props = {
  * - It is displayed when the combobox receives focus.
  */
 export default function Combobox({
+    autoComplete,
     children,
     disabled,
     id,
@@ -158,6 +171,8 @@ export default function Combobox({
         React.useState<MaybeValueOrValues>(value);
     const isValueControlled = value !== "" && onChange !== undefined;
     const valueState = isValueControlled ? value : selectedValue;
+    // A reference to the options in case these are filtered/updated.
+    const [currentOptions, setCurrentOptions] = React.useState(children);
 
     const {
         focusedIndex,
@@ -170,7 +185,7 @@ export default function Combobox({
         setSelected,
         renderList,
     } = useListbox({
-        children,
+        children: currentOptions,
         disabled,
         id: uniqueId,
         value: valueState,
@@ -206,7 +221,7 @@ export default function Combobox({
             comboboxRef.current?.focus();
         }
         if (selectionType === "single" && typeof selected === "string") {
-            const labelFromSelected = children.find(
+            const labelFromSelected = renderList.find(
                 (item) => item.props.value === selected,
             )?.props.label as string;
 
@@ -227,7 +242,7 @@ export default function Combobox({
             }
         }
     }, [
-        children,
+        renderList,
         onChange,
         openState,
         selected,
@@ -251,7 +266,7 @@ export default function Combobox({
             const lowercasedSearchText = value.normalize("NFC").toLowerCase();
 
             // Find the index of the first item that matches the search text.
-            const itemIndex = children.findIndex(
+            const itemIndex = renderList.findIndex(
                 (item) =>
                     !item.props.disabled &&
                     String(item.props.label)
@@ -265,7 +280,7 @@ export default function Combobox({
             // Otherwise, focus on the first item that matches the search text.
             setFocusedIndex(itemIndex);
         },
-        [children, setFocusedIndex],
+        [renderList, setFocusedIndex],
     );
 
     /**
@@ -314,10 +329,10 @@ export default function Combobox({
 
     // The labels of the selected values.
     const selectedLabels = React.useMemo(() => {
-        return children
+        return renderList
             .filter((item) => selected?.includes(item.props.value))
             .map((item) => item.props.label as string);
-    }, [children, selected]);
+    }, [renderList, selected]);
 
     /**
      * Handles the click event on a pill to remove it from the list of selected
@@ -353,6 +368,23 @@ export default function Combobox({
         : focusedIndex >= 0
         ? uniqueId
         : pillIdPrefix;
+
+    /**
+     * Filters the items based on the input value. This is used when the
+     * `autoComplete` prop is set to `list` or `both`.
+     */
+    const filterItems = React.useCallback(
+        (value: string) => {
+            return children.filter((item) => {
+                const label = item.props.label as string;
+                return label
+                    .trim()
+                    .toLowerCase()
+                    .startsWith(value.toLowerCase());
+            });
+        },
+        [children],
+    );
 
     return (
         <>
@@ -395,6 +427,13 @@ export default function Combobox({
                     value={inputValue}
                     onChange={(value: string) => {
                         setInputValue(value);
+                        if (autoComplete === "list") {
+                            const filtered = filterItems(value);
+                            // Update the list of options to display the
+                            // filtered items.
+                            setCurrentOptions(filtered);
+                        }
+
                         focusOnFilteredItem(value);
                     }}
                     disabled={disabled}
@@ -410,6 +449,7 @@ export default function Combobox({
                     aria-controls={controlledWidget}
                     onKeyDown={onKeyDown}
                     aria-activedescendant={currentActiveDescendant}
+                    aria-autocomplete={autoComplete}
                     aria-expanded={openState}
                     ref={comboboxRef}
                     // We don't want the browser to suggest autocompletions as
@@ -447,23 +487,49 @@ export default function Combobox({
                     referenceElement={rootNodeRef?.current as HTMLElement}
                 >
                     {(isReferenceHidden) => (
-                        <Listbox
-                            id={uniqueId}
-                            tabIndex={-1}
-                            selectionType={selectionType}
-                            style={[
-                                styles.listbox,
-                                isReferenceHidden && styles.hidden,
-                                // The listbox width is at least the width of
-                                // the combobox.
-                                {minWidth: rootNodeRef?.current?.offsetWidth},
-                            ]}
-                            testId={testId ? `${testId}-listbox` : undefined}
-                            aria-label={labels.listbox}
-                            aria-labelledby={ids.get("input")}
-                        >
-                            {renderList}
-                        </Listbox>
+                        <>
+                            {renderList.length === 0 ? (
+                                // No items to display
+                                <DetailCell
+                                    title={labels.noItems}
+                                    style={[
+                                        styles.listbox,
+                                        // The listbox width is at least the
+                                        // width of the combobox.
+                                        {
+                                            minWidth:
+                                                rootNodeRef?.current
+                                                    ?.offsetWidth,
+                                        },
+                                    ]}
+                                    horizontalRule="none"
+                                />
+                            ) : (
+                                <Listbox
+                                    id={uniqueId}
+                                    tabIndex={-1}
+                                    selectionType={selectionType}
+                                    style={[
+                                        styles.listbox,
+                                        isReferenceHidden && styles.hidden,
+                                        // The listbox width is at least the
+                                        // width of the combobox.
+                                        {
+                                            minWidth:
+                                                rootNodeRef?.current
+                                                    ?.offsetWidth,
+                                        },
+                                    ]}
+                                    testId={
+                                        testId ? `${testId}-listbox` : undefined
+                                    }
+                                    aria-label={labels.listbox}
+                                    aria-labelledby={ids.get("input")}
+                                >
+                                    {renderList}
+                                </Listbox>
+                            )}
+                        </>
                     )}
                 </DropdownPopper>
             )}
