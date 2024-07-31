@@ -661,6 +661,25 @@ describe("TextArea", () => {
                 const textArea = await screen.findByRole("textbox");
                 expect(textArea).toHaveFocus();
             });
+
+            it("should be focusable if it is disabled", async () => {
+                // Arrange
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        disabled={true}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveFocus();
+            });
         });
 
         describe("ARIA", () => {
