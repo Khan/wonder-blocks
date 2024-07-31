@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-popover": patch
 ---
 
-Testing adding aria-describedby
+Adding logic for aria-describedby
