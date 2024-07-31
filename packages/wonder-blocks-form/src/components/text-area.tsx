@@ -9,7 +9,7 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 type TextAreaProps = AriaProps & {
@@ -329,6 +329,9 @@ const styles = StyleSheet.create({
             color: color.offBlack64,
         },
         cursor: "not-allowed",
+        ":focus-visible": {
+            boxShadow: `0 0 0 1px ${color.white}, 0 0 0 3px ${color.offBlack32}`,
+        },
     },
     error: {
         background: color.fadedRed8,
@@ -360,12 +363,15 @@ const styles = StyleSheet.create({
     },
     lightDisabled: {
         backgroundColor: "transparent",
-        border: `1px solid ${color.white32}`,
-        color: color.white64,
+        border: `1px solid ${mix(color.white32, color.blue)}`,
+        color: mix(color.white32, color.blue),
         "::placeholder": {
             color: color.white64,
         },
         cursor: "not-allowed",
+        ":focus-visible": {
+            boxShadow: `0 0 0 1px ${color.offBlack32}, 0 0 0 3px ${color.fadedBlue}`,
+        },
     },
     lightError: {
         background: color.fadedRed8,
