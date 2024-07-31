@@ -10,6 +10,8 @@ import {TextArea} from "@khanacademy/wonder-blocks-form";
 /**
  * The following stories are used to generate the pseudo states for the
  * TextArea component. This is only used for visual testing in Chromatic.
+ *
+ * Note: Error state is not shown on initial render if the TextArea value is empty.
  */
 export default {
     title: "Packages / Form / TextArea / All Variants",
