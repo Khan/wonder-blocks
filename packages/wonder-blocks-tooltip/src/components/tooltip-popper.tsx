@@ -7,7 +7,7 @@ import {Popper} from "react-popper";
 import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
-import {ModifierArguments, detectOverflow} from "@popperjs/core";
+import {ModifierArguments} from "@popperjs/core";
 import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
 import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 import type {
@@ -67,7 +67,12 @@ const filterPopperPlacement = (
     }
 };
 
-type SmallViewportOptions = {};
+type SmallViewportOptions = {
+    /**
+     * The offset of the popper relative to its reference.
+     */
+    padding?: number;
+};
 
 type SmallViewportModifier = Modifier<"smallViewport", SmallViewportOptions>;
 
@@ -81,7 +86,7 @@ function modifyPosition({
     // relative to the viewport.
     const popperHeight =
         state.rects.popper.height + state.rects.reference.height;
-    const body = document.body;
+    //const body = document.body;
     const html = document.documentElement;
 
     const minHeight = html.clientHeight;
