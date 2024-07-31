@@ -5,6 +5,7 @@ import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
 import Combobox from "../combobox";
 import OptionItem from "../option-item";
+import {defaultComboboxLabels} from "../../util/constants";
 
 const doRender = (element: React.ReactElement) => {
     render(element, {wrapper: RenderStateRoot});
@@ -248,6 +249,59 @@ describe("Combobox", () => {
 
         // Assert
         expect(screen.getByRole("combobox")).not.toHaveFocus();
+    });
+
+    describe("autoComplete", () => {
+        it("should filter the options when typing", async () => {
+            // Arrange
+            const onChange = jest.fn();
+            const userEvent = doRender(
+                <Combobox
+                    selectionType="single"
+                    value=""
+                    onChange={onChange}
+                    autoComplete="list"
+                >
+                    <OptionItem label="Pear" value="pear" />
+                    <OptionItem label="Orange" value="orange" />
+                    <OptionItem label="Pinneaple" value="pinneaple" />
+                </Combobox>,
+            );
+
+            // Act
+            await userEvent.type(screen.getByRole("combobox"), "p");
+
+            // Assert
+            const options = screen.getAllByRole("option", {hidden: true});
+            expect(options).toHaveLength(2);
+            expect(options[0]).toHaveTextContent("Pear");
+            expect(options[1]).toHaveTextContent("Pinneaple");
+        });
+
+        it("should hide the listbox when there are no options", async () => {
+            // Arrange
+            const onChange = jest.fn();
+            const userEvent = doRender(
+                <Combobox
+                    selectionType="single"
+                    value=""
+                    onChange={onChange}
+                    autoComplete="list"
+                >
+                    <OptionItem label="Pear" value="pear" />
+                    <OptionItem label="Orange" value="orange" />
+                    <OptionItem label="Pinneaple" value="pinneaple" />
+                </Combobox>,
+            );
+
+            // Act
+            await userEvent.type(screen.getByRole("combobox"), "not-found");
+
+            // Assert
+            expect(
+                screen.queryByRole("listbox", {hidden: true}),
+            ).not.toBeInTheDocument();
+        });
     });
 
     describe("multiple selection", () => {
@@ -564,6 +618,29 @@ describe("Combobox", () => {
                 // Assert
                 expect(screen.getByRole("log")).toHaveTextContent(
                     "Option 2 selected, 2 of 3. 3 results available.",
+                );
+            });
+
+            it("should announce when there are no items associated with the combobox input value", async () => {
+                // Arrange
+                doRender(
+                    <Combobox
+                        value=""
+                        selectionType="single"
+                        autoComplete="list"
+                    >
+                        <OptionItem label="Option 1" value="option1" />
+                        <OptionItem label="Option 2" value="option2" />
+                        <OptionItem label="Option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // Act
+                await userEvent.type(screen.getByRole("combobox"), "not-found");
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(
+                    defaultComboboxLabels.noItems,
                 );
             });
         });

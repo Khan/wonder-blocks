@@ -29,6 +29,7 @@ type Props = {
         | "liveRegionCurrentItem"
         | "liveRegionListboxTotal"
         | "liveRegionMultipleSelectionTotal"
+        | "noItems"
         | "selected"
         | "unselected"
     >;
@@ -78,6 +79,7 @@ export function ComboboxLiveRegion({
         liveRegionListboxTotal: defaultComboboxLabels.liveRegionListboxTotal,
         liveRegionMultipleSelectionTotal:
             defaultComboboxLabels.liveRegionMultipleSelectionTotal,
+        noItems: defaultComboboxLabels.noItems,
         selected: defaultComboboxLabels.selected,
         unselected: defaultComboboxLabels.unselected,
     },
@@ -146,8 +148,12 @@ export function ComboboxLiveRegion({
             );
         }
 
+        if (options.length === 0) {
+            return labels.noItems;
+        }
+
         // If there are no focused items, don't announce anything.
-        if (focusedIndex < 0) {
+        if (focusedIndex < 0 || !options[focusedIndex]) {
             return "";
         }
 

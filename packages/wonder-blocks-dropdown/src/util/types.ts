@@ -103,6 +103,12 @@ export type ComboboxLabels = {
     liveRegionListboxTotal: (total: number) => string;
 
     /**
+     * Label for when there are no items associated with the combobox input
+     * value.
+     */
+    noItems: string;
+
+    /**
      * Label for the selected item(s) in the listbox.
      */
     selected: (labels: string) => string;
