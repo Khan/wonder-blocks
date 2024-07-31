@@ -302,31 +302,6 @@ describe("Combobox", () => {
                 screen.queryByRole("listbox", {hidden: true}),
             ).not.toBeInTheDocument();
         });
-
-        it("display a message when there are no options", async () => {
-            // Arrange
-            const onChange = jest.fn();
-            const userEvent = doRender(
-                <Combobox
-                    selectionType="single"
-                    value=""
-                    onChange={onChange}
-                    autoComplete="list"
-                >
-                    <OptionItem label="Pear" value="pear" />
-                    <OptionItem label="Orange" value="orange" />
-                    <OptionItem label="Pinneaple" value="pinneaple" />
-                </Combobox>,
-            );
-
-            // Act
-            await userEvent.type(screen.getByRole("combobox"), "not-found");
-
-            // Assert
-            expect(
-                screen.getByText(defaultComboboxLabels.noItems),
-            ).toBeInTheDocument();
-        });
     });
 
     describe("multiple selection", () => {
@@ -643,6 +618,29 @@ describe("Combobox", () => {
                 // Assert
                 expect(screen.getByRole("log")).toHaveTextContent(
                     "Option 2 selected, 2 of 3. 3 results available.",
+                );
+            });
+
+            it("should announce when there are no items associated with the combobox input value", async () => {
+                // Arrange
+                doRender(
+                    <Combobox
+                        value=""
+                        selectionType="single"
+                        autoComplete="list"
+                    >
+                        <OptionItem label="Option 1" value="option1" />
+                        <OptionItem label="Option 2" value="option2" />
+                        <OptionItem label="Option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // Act
+                await userEvent.type(screen.getByRole("combobox"), "not-found");
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(
+                    defaultComboboxLabels.noItems,
                 );
             });
         });

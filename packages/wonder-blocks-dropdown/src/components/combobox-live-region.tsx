@@ -79,6 +79,7 @@ export function ComboboxLiveRegion({
         liveRegionListboxTotal: defaultComboboxLabels.liveRegionListboxTotal,
         liveRegionMultipleSelectionTotal:
             defaultComboboxLabels.liveRegionMultipleSelectionTotal,
+        noItems: defaultComboboxLabels.noItems,
         selected: defaultComboboxLabels.selected,
         unselected: defaultComboboxLabels.unselected,
     },
@@ -145,6 +146,10 @@ export function ComboboxLiveRegion({
                 " " +
                 labels.liveRegionMultipleSelectionTotal(selectedLabels.length)
             );
+        }
+
+        if (options.length === 0) {
+            return labels.noItems;
         }
 
         // If there are no focused items, don't announce anything.
