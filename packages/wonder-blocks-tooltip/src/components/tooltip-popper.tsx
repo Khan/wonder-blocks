@@ -67,38 +67,34 @@ const filterPopperPlacement = (
     }
 };
 
-type SmallViewportOptions = {
-    /**
-     * The offset of the popper relative to its reference.
-     */
-    padding?: number;
-};
+type SmallViewportOptions = {};
 
 type SmallViewportModifier = Modifier<"smallViewport", SmallViewportOptions>;
 
 let hideReference = false;
-
 function modifyPosition({
     state,
-    options,
 }: ModifierArguments<SmallViewportOptions>): void {
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
     const popperHeight =
         state.rects.popper.height + state.rects.reference.height;
-    //const body = document.body;
     const html = document.documentElement;
 
     const minHeight = html.clientHeight;
-    //console.log(`min height: ${body.offsetHeight}`);
-    //console.log(`popper height: ${popperHeight}`);
+    let _rootBoundary = "viewport";
 
     if (minHeight < popperHeight) {
-        // Change orientation to be based on the document size.
         hideReference = true;
+        // Does not work
+        _rootBoundary = "document";
     } else {
         hideReference = false;
+        // Does not work.
+        _rootBoundary = "viewport";
     }
+    //const flipModifier = state.options.modifiers.find((m) => m.name === "flip");
+    //flipModifier.options.rootBoundary = _rootBoundary;
 }
 
 /**
@@ -159,13 +155,6 @@ export default class TooltipPopper extends React.Component<Props> {
      */
     _popperUpdate: PopperUpdateFn | null = null;
 
-    _modifier: Partial<FlipModifier> | Partial<PreventOverflowModifier> = {
-        name: "flip",
-        options: {
-            rootBoundary: "viewport",
-        },
-    };
-
     _renderPositionedContent(
         popperProps: PopperChildrenProps,
     ): React.ReactNode {
@@ -221,6 +210,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 ? false
                 : popperProps.isReferenceHidden,
         } as const;
+
         return children(bubbleProps);
     }
 
@@ -231,11 +221,6 @@ export default class TooltipPopper extends React.Component<Props> {
             name: "smallViewport",
             enabled: true,
             phase: "main",
-            options: {
-                // Default padding to 40px to account for the input's height.
-                padding: 40,
-            },
-            requiresIfExists: ["offset", "preventOverflow", "flip"],
             fn: modifyPosition,
         };
 
