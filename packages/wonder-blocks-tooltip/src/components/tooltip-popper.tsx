@@ -8,8 +8,6 @@ import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
 import {ModifierArguments} from "@popperjs/core";
-import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
-import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 import type {
     Placement,
     PopperElementProps,
