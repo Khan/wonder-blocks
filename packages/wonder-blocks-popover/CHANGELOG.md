@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.2.10
+
+### Patch Changes
+
+-   68dd6059: adds optional aria label for popover
+-   Updated dependencies [be540444]
+    -   @khanacademy/wonder-blocks-tooltip@2.3.8
+
 ## 3.2.9
 
 ### Patch Changes
