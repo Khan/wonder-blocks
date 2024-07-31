@@ -364,13 +364,14 @@ const styles = StyleSheet.create({
     },
     lightDisabled: {
         backgroundColor: "transparent",
-        border: `1px solid ${mix(color.white32, color.blue)}`,
-        color: mix(color.white32, color.blue),
+        border: `1px solid ${color.white32}`,
+        color: color.white64,
         "::placeholder": {
             color: color.white64,
         },
         cursor: "not-allowed",
         ":focus-visible": {
+            borderColor: mix(color.white32, color.blue),
             outline: "none",
             boxShadow: `0 0 0 1px ${color.offBlack32}, 0 0 0 3px ${color.fadedBlue}`,
         },
