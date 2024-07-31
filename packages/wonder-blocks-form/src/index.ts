@@ -4,6 +4,7 @@ import CheckboxGroup from "./components/checkbox-group";
 import RadioGroup from "./components/radio-group";
 import TextField from "./components/text-field";
 import LabeledTextField from "./components/labeled-text-field";
+import TextArea from "./components/text-area";
 
 export {
     Checkbox,
@@ -12,4 +13,5 @@ export {
     RadioGroup,
     TextField,
     LabeledTextField,
+    TextArea,
 };
