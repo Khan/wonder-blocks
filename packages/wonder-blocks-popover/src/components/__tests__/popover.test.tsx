@@ -614,7 +614,9 @@ describe("Popover", () => {
 
             // Assert
             expect(
-                screen.getByLabelText("Popover Aria Label"),
+                await screen.findByRole("dialog", {
+                    name: "Popover Aria Label",
+                }),
             ).toBeInTheDocument();
 
             expect(
