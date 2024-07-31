@@ -658,6 +658,12 @@ describe("Popover", () => {
             //Assert
             expect(
                 await screen.findByRole("dialog", {
+                    name: "This is a popover title",
+                }),
+            ).toBeInTheDocument();
+
+            expect(
+                await screen.findByRole("dialog", {
                     description: "This is a popover description",
                 }),
             ).toBeInTheDocument();
