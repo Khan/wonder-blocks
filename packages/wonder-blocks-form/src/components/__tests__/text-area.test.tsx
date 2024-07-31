@@ -146,6 +146,20 @@ describe("TextArea", () => {
             expect(textArea).toHaveAttribute("readonly");
         });
 
+        it("should set the readonly attribute if the disabled prop is true", async () => {
+            // Arrange
+            render(
+                <TextArea value="Text" onChange={() => {}} disabled={true} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("readonly");
+        });
+
         it("should set the autocomplete attribute when the autoComplete prop is provided", async () => {
             // Arrange
             render(
