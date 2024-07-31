@@ -76,7 +76,7 @@ describe("TextArea", () => {
             expect(textArea).toHaveAttribute("placeholder", placeholder);
         });
 
-        it("should set the disabled attribute when the disabled prop is true", async () => {
+        it("should set the aria-disabled attribute when the disabled prop is true", async () => {
             // Arrange
             render(
                 <TextArea disabled={true} value="Text" onChange={() => {}} />,
@@ -87,7 +87,49 @@ describe("TextArea", () => {
 
             // Assert
             const textArea = await screen.findByRole("textbox");
-            expect(textArea).toBeDisabled();
+            expect(textArea).toHaveAttribute("aria-disabled", "true");
+        });
+
+        it("should set the aria-disabled attribute when the disabled prop is false", async () => {
+            // Arrange
+            render(
+                <TextArea disabled={false} value="Text" onChange={() => {}} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).toHaveAttribute("aria-disabled", "false");
+        });
+
+        it("should not set the aria-disabled attribute if the disabled prop is not provided", async () => {
+            // Arrange
+            render(
+                <TextArea value="Text" onChange={() => {}} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).not.toHaveAttribute("aria-disabled");
+        });
+
+        it("should not set the disabled attribute when the disabled prop is true", async () => {
+            // Arrange
+            render(
+                <TextArea disabled={true} value="Text" onChange={() => {}} />,
+                defaultOptions,
+            );
+
+            // Act
+
+            // Assert
+            const textArea = await screen.findByRole("textbox");
+            expect(textArea).not.toHaveAttribute("disabled");
         });
 
         it("should set the readonly attribute when the readOnly prop is provided", async () => {
@@ -484,7 +526,7 @@ describe("TextArea", () => {
             expect(handleOnFocus).toHaveBeenCalledOnce();
         });
 
-        it("should not call the onFocus prop when the textarea is focused and it is disabled", async () => {
+        it("should continue to call the onFocus prop when the textarea is focused and it is disabled", async () => {
             // Arrange
             const handleOnFocus = jest.fn();
 
@@ -502,7 +544,7 @@ describe("TextArea", () => {
             await userEvent.tab();
 
             // Assert
-            expect(handleOnFocus).not.toHaveBeenCalled();
+            expect(handleOnFocus).toHaveBeenCalledOnce();
         });
 
         it("should call the onBlur prop when the textarea is blurred", async () => {
@@ -524,7 +566,7 @@ describe("TextArea", () => {
             expect(handleOnBlur).toHaveBeenCalledOnce();
         });
 
-        it("should not call the onBlur prop when the textarea is blurred and it is disabled", async () => {
+        it("should continue to call the onBlur prop when the textarea is blurred and it is disabled", async () => {
             // Arrange
             const handleOnBlur = jest.fn();
 
@@ -545,7 +587,7 @@ describe("TextArea", () => {
             await userEvent.tab();
 
             // Assert
-            expect(handleOnBlur).not.toHaveBeenCalled();
+            expect(handleOnBlur).toHaveBeenCalledOnce();
         });
     });
 
