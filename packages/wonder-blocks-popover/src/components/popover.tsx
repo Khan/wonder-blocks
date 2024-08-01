@@ -10,6 +10,7 @@ import type {
     Placement,
     PopperElementProps,
 } from "@khanacademy/wonder-blocks-tooltip";
+import {RootBoundary} from "@popperjs/core";
 
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
@@ -19,7 +20,6 @@ import PopoverDialog from "./popover-dialog";
 import PopoverEventListener from "./popover-event-listener";
 import InitialFocus from "./initial-focus";
 import FocusManager from "./focus-manager";
-import {RootBoundary} from "@popperjs/core";
 
 type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>

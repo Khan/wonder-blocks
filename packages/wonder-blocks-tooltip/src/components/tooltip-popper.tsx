@@ -8,14 +8,14 @@ import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
 import {ModifierArguments, RootBoundary} from "@popperjs/core";
+import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
+import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
 import type {
     Placement,
     PopperElementProps,
     PopperUpdateFn,
 } from "../util/types";
 import RefTracker from "../util/ref-tracker";
-import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
-import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
 
 type Props = {
     /**
@@ -78,14 +78,10 @@ const filterPopperPlacement = (
     }
 };
 
-type SmallViewportOptions = {};
-
-type SmallViewportModifier = Modifier<"smallViewport", SmallViewportOptions>;
+type SmallViewportModifier = Modifier<"smallViewport", object>;
 
 let hideReference = false;
-function modifyPosition({
-    state,
-}: ModifierArguments<SmallViewportOptions>): void {
+function modifyPosition({state}: ModifierArguments<object>): void {
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
     const popperHeight =
@@ -93,16 +89,16 @@ function modifyPosition({
     const html = document.documentElement;
 
     const minHeight = html.clientHeight;
-    let _rootBoundary = "viewport";
+    //let _rootBoundary = "viewport";
 
     if (minHeight < popperHeight) {
         hideReference = true;
         // Does not work
-        _rootBoundary = "document";
+        //_rootBoundary = "document";
     } else {
         hideReference = false;
         // Does not work.
-        _rootBoundary = "viewport";
+        //_rootBoundary = "viewport";
     }
     //const flipModifier = state.options.modifiers.find((m) => m.name === "flip");
     //flipModifier.options.rootBoundary = _rootBoundary;
@@ -237,7 +233,7 @@ export default class TooltipPopper extends React.Component<Props> {
             fn: modifyPosition,
         };
 
-        let modifiers: (
+        const modifiers: (
             | Partial<PreventOverflowModifier>
             | Partial<FlipModifier>
             | Partial<Modifier<"smallViewport", object>>
