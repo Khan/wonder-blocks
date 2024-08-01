@@ -618,15 +618,9 @@ describe("Popover", () => {
                     name: "Popover Aria Label",
                 }),
             ).toBeInTheDocument();
-
-            expect(
-                await screen.findByRole("dialog", {
-                    description: "This is a popover description",
-                }),
-            ).toBeInTheDocument();
         });
 
-        it("should announce a popover correctly by reading the describing contents", async () => {
+        it("should announce a popover correctly by reading the title contents", async () => {
             // Arrange
             render(
                 <Popover
@@ -661,7 +655,38 @@ describe("Popover", () => {
                     name: "This is a popover title",
                 }),
             ).toBeInTheDocument();
+        });
 
+        it("should announce a popover correctly by reading the describing contents", async () => {
+            // Arrange
+            render(
+                <Popover
+                    id="test-popover"
+                    onClose={jest.fn()}
+                    aria-describedby="describing-popover-id"
+                    content={
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <h1 id="test-popover-title">
+                                This is a popover title
+                            </h1>
+                            <p id="describing-popover-id">
+                                This is a popover description
+                            </p>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            //Assert
             expect(
                 await screen.findByRole("dialog", {
                     description: "This is a popover description",
