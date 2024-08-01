@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.8.0
+
+### Minor Changes
+
+-   4215976f: Adds `TextArea` component
+
 ## 4.7.5
 
 ### Patch Changes
