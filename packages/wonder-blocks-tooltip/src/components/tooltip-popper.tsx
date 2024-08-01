@@ -7,13 +7,15 @@ import {Popper} from "react-popper";
 import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
-import {ModifierArguments} from "@popperjs/core";
+import {ModifierArguments, RootBoundary} from "@popperjs/core";
 import type {
     Placement,
     PopperElementProps,
     PopperUpdateFn,
 } from "../util/types";
 import RefTracker from "../util/ref-tracker";
+import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
+import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
 
 type Props = {
     /**
@@ -35,6 +37,17 @@ type Props = {
      * anchor element changes.
      */
     autoUpdate?: boolean;
+    /**
+     * Optional property to set what the root boundary is for the popper behavior.
+     * This is set to "viewport" by default, causing the popper to be positioned based
+     * on the user's viewport. If set to "document", it will position itself based
+     * on where there is available room within the document body.
+     */
+    rootBoundary?: RootBoundary;
+};
+
+type DefaultProps = {
+    rootBoundary: Props["rootBoundary"];
 };
 
 const filterPopperPlacement = (
@@ -100,7 +113,10 @@ function modifyPosition({
  * consistent interface for positioning floating elements.
  */
 export default class TooltipPopper extends React.Component<Props> {
-    popperElement: HTMLElement | null | undefined;
+    static defaultProps: DefaultProps = {
+        rootBoundary: "viewport",
+    };
+
     /**
      * Automatically updates the position of the floating element when necessary
      * to ensure it stays anchored.
@@ -208,12 +224,11 @@ export default class TooltipPopper extends React.Component<Props> {
                 ? false
                 : popperProps.isReferenceHidden,
         } as const;
-
         return children(bubbleProps);
     }
 
     render(): React.ReactNode {
-        const {anchorElement, placement} = this.props;
+        const {anchorElement, placement, rootBoundary} = this.props;
 
         const smallViewportModifier: SmallViewportModifier = {
             name: "smallViewport",
@@ -222,23 +237,34 @@ export default class TooltipPopper extends React.Component<Props> {
             fn: modifyPosition,
         };
 
+        let modifiers: (
+            | Partial<PreventOverflowModifier>
+            | Partial<FlipModifier>
+            | Partial<Modifier<"smallViewport", object>>
+        )[] = [smallViewportModifier];
+
+        if (rootBoundary === "viewport") {
+            modifiers.push({
+                name: "preventOverflow",
+                options: {
+                    rootBoundary: "viewport",
+                },
+            });
+        } else {
+            modifiers.push({
+                name: "flip",
+                options: {
+                    rootBoundary: "document",
+                },
+            });
+        }
+
         return (
             <Popper
-                innerRef={(popperElement) => {
-                    this.popperElement = popperElement;
-                }}
                 referenceElement={anchorElement}
                 strategy="fixed"
                 placement={placement}
-                modifiers={[
-                    {
-                        name: "flip",
-                        options: {
-                            rootBoundary: "document",
-                        },
-                    },
-                    smallViewportModifier,
-                ]}
+                modifiers={modifiers}
             >
                 {(props) => this._renderPositionedContent(props)}
             </Popper>
