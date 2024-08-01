@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
@@ -86,6 +86,16 @@ const styles = StyleSheet.create({
         padding: spacing.large_24,
         flexDirection: "row",
         gap: spacing.medium_16,
+    },
+    srOnly: {
+        border: 0,
+        clip: "rect(0,0,0,0)",
+        height: 1,
+        margin: -1,
+        overflow: "hidden",
+        padding: 0,
+        position: "absolute",
+        width: 1,
     },
 });
 
@@ -726,10 +736,10 @@ export const PopoverAlignment: StoryComponentType = {
 };
 
 /**
- * With custom aria-label - overrides the default aria-describedby and aria-labelledby
+ * With custom aria-label - overrides the default aria-labelledby
  */
 
-export const CustomAriaLabel: StoryComponentType = {
+export const WithCustomAriaLabel: StoryComponentType = {
     args: {
         children: <Button>Open popover</Button>,
         content: ContentMappings.withTextOnly,
@@ -741,4 +751,49 @@ export const CustomAriaLabel: StoryComponentType = {
         onClose: () => {},
         "aria-label": "Popover with custom aria label",
     } as PopoverArgs,
+};
+
+/**
+ * With custom aria-describedby - overrides the default aria-describedby
+ */
+export const WithCustomAriaDescribedBy = ({
+    placement,
+}: {
+    placement: Placement;
+}) => {
+    const [opened, setOpened] = React.useState(false);
+
+    return (
+        <View style={styles.example}>
+            <Popover
+                aria-describedby="custom-popover-description"
+                placement={placement}
+                opened={opened}
+                onClose={() => setOpened(false)}
+                content={
+                    <>
+                        <HeadingMedium
+                            id="custom-popover-description"
+                            style={styles.srOnly}
+                        >
+                            Hidden text that would describe the popover content
+                        </HeadingMedium>
+                        <PopoverContent
+                            title="Title"
+                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                            closeButtonVisible
+                        />
+                    </>
+                }
+            >
+                <Button
+                    onClick={() => {
+                        setOpened(true);
+                    }}
+                >
+                    {`Open popover`}
+                </Button>
+            </Popover>
+        </View>
+    );
 };

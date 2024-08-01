@@ -583,17 +583,21 @@ describe("Popover", () => {
             ).toBeInTheDocument();
         });
 
-        it("should announce a popover correctly by reading the aria label", async () => {
+        it("should announce a popover correctly by reading the aria-label attribute", async () => {
             // Arrange
             render(
                 <Popover
+                    id="test-popover"
                     onClose={jest.fn()}
                     aria-label="Popover Aria Label"
                     content={
-                        <PopoverContentCore>
-                            <button data-close-button onClick={close}>
-                                Close Popover
-                            </button>
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <h1 id="test-popover-title">
+                                This is a popover title
+                            </h1>
+                            <p id="test-popover-content">
+                                This is a popover description
+                            </p>
                         </PopoverContentCore>
                     }
                 >
@@ -602,19 +606,92 @@ describe("Popover", () => {
             );
 
             // Act
-            // Open the popover
-            const openButton = await screen.findByRole("button", {
-                name: "Open default popover",
-            });
-
-            await userEvent.click(openButton);
-            const popover = await screen.findByRole("dialog");
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
 
             // Assert
+            expect(
+                await screen.findByRole("dialog", {
+                    name: "Popover Aria Label",
+                }),
+            ).toBeInTheDocument();
+        });
 
-            expect(popover).toHaveAttribute("aria-label", "Popover Aria Label");
-            expect(popover).not.toHaveAttribute("aria-labelledby");
-            expect(popover).not.toHaveAttribute("aria-describedby");
+        it("should announce a popover correctly by reading the title contents", async () => {
+            // Arrange
+            render(
+                <Popover
+                    id="test-popover"
+                    onClose={jest.fn()}
+                    aria-describedby="describing-popover-id"
+                    content={
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <h1 id="test-popover-title">
+                                This is a popover title
+                            </h1>
+                            <p id="describing-popover-id">
+                                This is a popover description
+                            </p>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            //Assert
+            expect(
+                await screen.findByRole("dialog", {
+                    name: "This is a popover title",
+                }),
+            ).toBeInTheDocument();
+        });
+
+        it("should announce a popover correctly by reading the describing contents", async () => {
+            // Arrange
+            render(
+                <Popover
+                    id="test-popover"
+                    onClose={jest.fn()}
+                    aria-describedby="describing-popover-id"
+                    content={
+                        <PopoverContentCore closeButtonVisible={true}>
+                            <h1 id="test-popover-title">
+                                This is a popover title
+                            </h1>
+                            <p id="describing-popover-id">
+                                This is a popover description
+                            </p>
+                        </PopoverContentCore>
+                    }
+                >
+                    <Button>Open default popover</Button>
+                </Popover>,
+            );
+
+            // Act
+            await userEvent.click(
+                await screen.findByRole("button", {
+                    name: "Open default popover",
+                }),
+            );
+
+            //Assert
+            expect(
+                await screen.findByRole("dialog", {
+                    description: "This is a popover description",
+                }),
+            ).toBeInTheDocument();
         });
 
         it("should correctly describe the popover content core's aria label", async () => {
