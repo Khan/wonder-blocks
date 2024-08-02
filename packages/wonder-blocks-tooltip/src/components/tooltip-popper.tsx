@@ -7,7 +7,7 @@ import {Popper} from "react-popper";
 import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
-import {ModifierArguments, popper, RootBoundary} from "@popperjs/core";
+import {ModifierArguments, RootBoundary} from "@popperjs/core";
 import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
 import type {
@@ -89,7 +89,7 @@ function _modifyPosition({state}: ModifierArguments<object>): void {
 
     const minHeight = html.clientHeight;
 
-    if (minHeight < popperHeight) {
+    if (minHeight < popperHeight && state.modifiersData.hide) {
         state.modifiersData.hide = {
             ...state.modifiersData.hide,
             isReferenceHidden: false,
