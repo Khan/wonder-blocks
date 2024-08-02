@@ -1,5 +1,5 @@
 import * as React from "react";
-import {renderHook} from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react";
 
 import * as GetGqlDataFromResponse from "../../util/get-gql-data-from-response";
 import {GqlRouterContext} from "../../util/gql-router-context";

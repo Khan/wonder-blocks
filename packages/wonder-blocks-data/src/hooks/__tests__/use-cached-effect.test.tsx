@@ -1,10 +1,10 @@
 import * as React from "react";
+import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 import {
+    render,
     renderHook as clientRenderHook,
     act,
-} from "@testing-library/react-hooks";
-import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
-import {render, act as reactAct} from "@testing-library/react";
+} from "@testing-library/react";
 import {values} from "@khanacademy/wonder-stuff-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
