@@ -80,6 +80,15 @@ const filterPopperPlacement = (
 
 type SmallViewportModifier = Modifier<"smallViewport", object>;
 
+/**
+ * This is function calculates the the height of the popper
+ * vs. the height of the viewport. If the popper is larger
+ * than the viewport, it sets the popper isReferenceHidden
+ * state to false, to ensure the popper stays visible even if
+ * the reference is no longer in view. If the popper is less
+ * than the viewport, it leaves it as is so the popper will
+ * disappear if the reference is no longer in view.
+ */
 function _modifyPosition({state}: ModifierArguments<object>): void {
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
@@ -202,12 +211,6 @@ export default class TooltipPopper extends React.Component<Props> {
                 transform: popperProps.arrowProps.style.transform,
             },
             updateTailRef: this._tailRefTracker.updateRef,
-            // This is set to false to ensure the popover doesn't disappear
-            // when the reference element is outside the viewport for customers
-            // this is to solve edge cases where customers are in small
-            // screens or zoomed in and might need to scroll down to see the
-            // whole popover (which if it disappears when the reference is out
-            // of view, it makes that impossible for some customers).
             isReferenceHidden: popperProps.isReferenceHidden,
         } as const;
         return children(bubbleProps);
