@@ -80,12 +80,6 @@ const filterPopperPlacement = (
 
 type SmallViewportModifier = Modifier<"smallViewport", object>;
 
-/**
- * Property tracking if we need to keep the popper in view
- * even if the reference is out of view.
- */
-let _anchorPopper = false;
-
 function _modifyPosition({state}: ModifierArguments<object>): void {
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
@@ -96,9 +90,10 @@ function _modifyPosition({state}: ModifierArguments<object>): void {
     const minHeight = html.clientHeight;
 
     if (minHeight < popperHeight) {
-        _anchorPopper = true;
-    } else {
-        _anchorPopper = false;
+        state.modifiersData.hide = {
+            ...state.modifiersData.hide,
+            isReferenceHidden: false,
+        };
     }
 }
 
@@ -168,10 +163,6 @@ export default class TooltipPopper extends React.Component<Props> {
     ): React.ReactNode {
         const {children} = this.props;
 
-        if (popperProps.ref) {
-            //const height = popperProps.ref.current.style.height;
-            console.log(JSON.stringify(popperProps.ref));
-        }
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
         const placement: Placement =
@@ -218,9 +209,7 @@ export default class TooltipPopper extends React.Component<Props> {
             // screens or zoomed in and might need to scroll down to see the
             // whole popover (which if it disappears when the reference is out
             // of view, it makes that impossible for some customers).
-            isReferenceHidden: _anchorPopper
-                ? false
-                : popperProps.isReferenceHidden,
+            isReferenceHidden: popperProps.isReferenceHidden,
         } as const;
         return children(bubbleProps);
     }
