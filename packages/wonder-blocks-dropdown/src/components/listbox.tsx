@@ -85,24 +85,10 @@ type Props = {
 };
 
 /**
- * A `Listbox` component presents a list of options and allows a user to select
- * one or more of them. A listbox that allows a single option to be chosen is a
- * single-select listbox; one that allows multiple options to be selected is a
- * multi-select listbox.
- *
- * ### Usage
- *
- * ```tsx
- * import {Listbox} from "@khanacademy/wonder-blocks-dropdown";
- *
- * <Listbox>
- *  <OptionItem label="Apple" value="apple" />
- *  <OptionItem disabled label="Strawberry" value="strawberry" />
- *  <OptionItem label="Pear" value="pear" />
- * </Listbox>
- * ```
+ * A standalone version of the `Listbox` component that can be inserted directly
+ * into the DOM (it doesn't require a parent component like combobox or select).
  */
-export default function Listbox(props: Props) {
+function StandaloneListbox(props: Props) {
     const {
         children,
         disabled,
@@ -131,6 +117,7 @@ export default function Listbox(props: Props) {
         handleFocus,
         handleBlur,
     } = useListbox({children, disabled, id: uniqueId, selectionType, value});
+
     React.useEffect(() => {
         // If the value changes, update the parent component.
         if (selected && selected !== value) {
@@ -141,15 +128,20 @@ export default function Listbox(props: Props) {
     return (
         <View
             role="listbox"
-            aria-disabled={disabled}
             id={uniqueId}
             style={[styles.listbox, style, disabled && styles.disabled]}
             tabIndex={tabIndex}
+            testId={testId}
+            aria-disabled={disabled}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+            aria-multiselectable={selectionType === "multiple"}
+            // The following props are specific to the standalone version of the
+            // listbox.
             onKeyDown={handleKeyDown}
             onKeyUp={handleKeyUp}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            testId={testId}
             // This is used to inform assistive technology users of the
             // currently active element when focused.
             // NOTE: This uses visual focus, not actual DOM focus.
@@ -157,11 +149,63 @@ export default function Listbox(props: Props) {
             aria-activedescendant={
                 isListboxFocused ? renderList[focusedIndex].props.id : undefined
             }
+        >
+            {renderList}
+        </View>
+    );
+}
+
+/**
+ * A `Listbox` component presents a list of options and allows a user to select
+ * one or more of them. A listbox that allows a single option to be chosen is a
+ * single-select listbox; one that allows multiple options to be selected is a
+ * multi-select listbox.
+ *
+ * ### Usage
+ *
+ * ```tsx
+ * import {Listbox} from "@khanacademy/wonder-blocks-dropdown";
+ *
+ * <Listbox>
+ *  <OptionItem label="Apple" value="apple" />
+ *  <OptionItem disabled label="Strawberry" value="strawberry" />
+ *  <OptionItem label="Pear" value="pear" />
+ * </Listbox>
+ * ```
+ */
+export default function Listbox(props: Props) {
+    const {
+        children,
+        disabled,
+        id,
+        selectionType = "single",
+        style,
+        tabIndex = 0,
+        testId,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledby,
+    } = props;
+
+    // This version is inlined. The standalone version is used when the listbox
+    // is directly rendered in the DOM.
+    if (tabIndex === 0) {
+        return <StandaloneListbox {...props} />;
+    }
+
+    // This listbox is opened by a separate widget, like a combobox.
+    return (
+        <View
+            role="listbox"
+            id={id}
+            style={[styles.listbox, style, disabled && styles.disabled]}
+            tabIndex={tabIndex}
+            testId={testId}
+            aria-disabled={disabled}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
             aria-multiselectable={selectionType === "multiple"}
         >
-            {renderList}
+            {children}
         </View>
     );
 }

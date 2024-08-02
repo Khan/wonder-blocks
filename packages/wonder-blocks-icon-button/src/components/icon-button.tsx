@@ -118,6 +118,11 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      * href is not
      */
     onClick?: (e: React.SyntheticEvent) => unknown;
+
+    /**
+     * Function to call when the mouse down event is triggered.
+     */
+    onMouseDown?: (e: React.MouseEvent) => void;
 };
 
 /**
