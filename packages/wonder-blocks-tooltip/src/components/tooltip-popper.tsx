@@ -86,7 +86,6 @@ function _modifyPosition({state}: ModifierArguments<object>): void {
     const popperHeight =
         state.rects.popper.height + state.rects.reference.height;
     const html = document.documentElement;
-
     const minHeight = html.clientHeight;
 
     if (minHeight < popperHeight && state.modifiersData.hide) {
