@@ -9,7 +9,7 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 type TextAreaProps = AriaProps & {
@@ -275,8 +275,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     value={value}
                     onChange={handleChange}
                     placeholder={placeholder}
-                    disabled={disabled}
-                    readOnly={readOnly}
+                    aria-disabled={disabled}
+                    readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
                     autoComplete={autoComplete}
                     name={name}
                     autoFocus={autoFocus}
@@ -285,11 +285,11 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     wrap={wrap}
                     minLength={minLength}
                     maxLength={maxLength}
-                    onClick={onClick}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
+                    onClick={disabled ? undefined : onClick}
+                    onKeyDown={disabled ? undefined : onKeyDown}
+                    onKeyUp={disabled ? undefined : onKeyUp}
+                    onFocus={onFocus} // TextArea can be focused on if it is disabled
+                    onBlur={onBlur} // TextArea can be blurred if it is disabled
                     required={!!required}
                     {...otherProps}
                     aria-invalid={!!error}
@@ -329,6 +329,10 @@ const styles = StyleSheet.create({
             color: color.offBlack64,
         },
         cursor: "not-allowed",
+        ":focus-visible": {
+            outline: "none",
+            boxShadow: `0 0 0 1px ${color.white}, 0 0 0 3px ${color.offBlack32}`,
+        },
     },
     error: {
         background: color.fadedRed8,
@@ -366,6 +370,11 @@ const styles = StyleSheet.create({
             color: color.white64,
         },
         cursor: "not-allowed",
+        ":focus-visible": {
+            borderColor: mix(color.white32, color.blue),
+            outline: "none",
+            boxShadow: `0 0 0 1px ${color.offBlack32}, 0 0 0 3px ${color.fadedBlue}`,
+        },
     },
     lightError: {
         background: color.fadedRed8,
