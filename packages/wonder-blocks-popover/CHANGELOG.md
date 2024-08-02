@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.2.11
+
+### Patch Changes
+
+-   166ae1da: Adding logic for aria-describedby
+
 ## 3.2.10
 
 ### Patch Changes
