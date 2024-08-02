@@ -7,7 +7,7 @@ import {Popper} from "react-popper";
 import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
-import {ModifierArguments, RootBoundary} from "@popperjs/core";
+import {ModifierArguments, popper, RootBoundary} from "@popperjs/core";
 import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
 import type {
@@ -80,8 +80,13 @@ const filterPopperPlacement = (
 
 type SmallViewportModifier = Modifier<"smallViewport", object>;
 
-let hideReference = false;
-function modifyPosition({state}: ModifierArguments<object>): void {
+/**
+ * Property tracking if we need to keep the popper in view
+ * even if the reference is out of view.
+ */
+let _anchorPopper = false;
+
+function _modifyPosition({state}: ModifierArguments<object>): void {
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
     const popperHeight =
@@ -89,19 +94,12 @@ function modifyPosition({state}: ModifierArguments<object>): void {
     const html = document.documentElement;
 
     const minHeight = html.clientHeight;
-    //let _rootBoundary = "viewport";
 
     if (minHeight < popperHeight) {
-        hideReference = true;
-        // Does not work
-        //_rootBoundary = "document";
+        _anchorPopper = true;
     } else {
-        hideReference = false;
-        // Does not work.
-        //_rootBoundary = "viewport";
+        _anchorPopper = false;
     }
-    //const flipModifier = state.options.modifiers.find((m) => m.name === "flip");
-    //flipModifier.options.rootBoundary = _rootBoundary;
 }
 
 /**
@@ -170,6 +168,10 @@ export default class TooltipPopper extends React.Component<Props> {
     ): React.ReactNode {
         const {children} = this.props;
 
+        if (popperProps.ref) {
+            //const height = popperProps.ref.current.style.height;
+            console.log(JSON.stringify(popperProps.ref));
+        }
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
         const placement: Placement =
@@ -216,7 +218,7 @@ export default class TooltipPopper extends React.Component<Props> {
             // screens or zoomed in and might need to scroll down to see the
             // whole popover (which if it disappears when the reference is out
             // of view, it makes that impossible for some customers).
-            isReferenceHidden: hideReference
+            isReferenceHidden: _anchorPopper
                 ? false
                 : popperProps.isReferenceHidden,
         } as const;
@@ -230,7 +232,7 @@ export default class TooltipPopper extends React.Component<Props> {
             name: "smallViewport",
             enabled: true,
             phase: "main",
-            fn: modifyPosition,
+            fn: _modifyPosition,
         };
 
         const modifiers: (
