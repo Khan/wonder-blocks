@@ -246,45 +246,53 @@ Controlled.parameters = {
  * With Actions
  */
 
-export const WithActions: StoryComponentType = () => {
-    const [step, setStep] = React.useState(1);
-    const totalSteps = 5;
+export const WithActions: StoryComponentType = {
+    render: function Render() {
+        const [step, setStep] = React.useState(1);
+        const totalSteps = 5;
 
-    return (
-        <Popover
-            content={({close}) => (
-                <PopoverContent
-                    title="Popover with actions"
-                    content="This example shows a popover which contains a set of actions that can be used to control the popover itself."
-                    actions={
-                        <View style={[styles.row, styles.actions]}>
-                            <LabelLarge>
-                                Step {step} of {totalSteps}
-                            </LabelLarge>
-                            <Strut size={spacing.medium_16} />
-                            <Button
-                                kind="tertiary"
-                                onClick={() => {
-                                    if (step < totalSteps) {
-                                        setStep(step + 1);
-                                    } else {
-                                        close();
-                                    }
-                                }}
-                            >
-                                {step < totalSteps
-                                    ? "Skip this step"
-                                    : "Finish"}
-                            </Button>
-                        </View>
-                    }
-                />
-            )}
-            placement="top"
-        >
-            <Button>Open popover with actions</Button>
-        </Popover>
-    );
+        return (
+            <Popover
+                dismissEnabled={true}
+                content={({close}) => (
+                    <PopoverContent
+                        title="Popover with actions"
+                        content="This example shows a popover which contains a set of actions that can be used to control the popover itself."
+                        actions={
+                            <View style={[styles.row, styles.actions]}>
+                                <LabelLarge>
+                                    Step {step} of {totalSteps}
+                                </LabelLarge>
+                                <Strut size={spacing.medium_16} />
+                                <Button
+                                    kind="tertiary"
+                                    onClick={() => {
+                                        if (step < totalSteps) {
+                                            setStep(step + 1);
+                                        } else {
+                                            close();
+                                        }
+                                    }}
+                                >
+                                    {step < totalSteps
+                                        ? "Skip this step"
+                                        : "Finish"}
+                                </Button>
+                            </View>
+                        }
+                    />
+                )}
+                placement="top"
+            >
+                <Button>Open popover with actions</Button>
+            </Popover>
+        );
+    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={{paddingBottom: 500}}>{Story()}</View>
+        ),
+    ],
 };
 
 WithActions.parameters = {
