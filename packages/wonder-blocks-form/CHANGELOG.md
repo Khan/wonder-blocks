@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.8.1
+
+### Patch Changes
+
+-   8ab0b734: Allow `TextArea` to be focusable when disabled. It now sets `aria-disabled` instead of the `disabled` attribute based on the `disabled` prop. This makes it so screenreaders will continue to communicate that the component is disabled, while allowing focus on the disabled component. Focus styling is also added to the disabled state.
+
+## 4.8.0
+
+### Minor Changes
+
+-   4215976f: Adds `TextArea` component
+
 ## 4.7.5
 
 ### Patch Changes

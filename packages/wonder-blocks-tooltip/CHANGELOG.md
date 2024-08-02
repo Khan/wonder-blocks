@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.3.8
+
+### Patch Changes
+
+-   be540444: Fix tooltip bug where it sometimes flickers and stays hidden when the anchor is hovered over in Firefox
+
 ## 2.3.7
 
 ### Patch Changes
