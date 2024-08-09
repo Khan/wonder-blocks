@@ -63,7 +63,7 @@ export default {
         },
     },
     // TODO(FEI-5000): Inline this
-    argTypes: TypographyArgTypes as any,
+    argTypes: TypographyArgTypes,
 } as Meta<typeof ComponentInfo>;
 
 export const ControlProps: StoryObj<typeof Title> = {
