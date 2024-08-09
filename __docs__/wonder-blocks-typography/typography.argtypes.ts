@@ -23,4 +23,11 @@ export default {
         table: {type: {summary: "string"}},
         type: {required: false},
     },
+    tag: {
+        control: {type: "text"},
+        description:
+            "The underyling HTML tag to render (e.g. `h1`, `h2`, etc.) Please use this to ensure that the header is hierarchically correct.",
+        table: {type: {summary: "string"}},
+        type: {required: false},
+    },
 };
