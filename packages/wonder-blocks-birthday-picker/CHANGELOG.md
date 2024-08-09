@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.76
+
+### Patch Changes
+
+-   aef9a246: Added style and dropdownStyle props to BirthdayPicker
+
+## 2.0.75
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.4.4
+
 ## 2.0.74
 
 ### Patch Changes

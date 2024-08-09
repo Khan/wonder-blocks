@@ -1,6 +1,6 @@
 import moment from "moment"; // NOTE: DO NOT use named imports; 'moment' does not support named imports
 import * as React from "react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
@@ -56,6 +56,14 @@ type Props = {
      * format or `null`.
      */
     onChange: (date?: string | null | undefined) => unknown;
+    /**
+     * Additional styles applied to the root element of the component.
+     */
+    style?: StyleType;
+    /**
+     * Additional styles applied to the dropdowns.
+     */
+    dropdownStyle?: StyleType;
 };
 
 type State = {
@@ -263,7 +271,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     }
 
     renderMonth(): React.ReactNode {
-        const {disabled, monthYearOnly} = this.props;
+        const {disabled, monthYearOnly, dropdownStyle} = this.props;
         const {month} = this.state;
         const minWidth = monthYearOnly
             ? FIELD_MIN_WIDTH_MONTH_YEAR
@@ -277,7 +285,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 placeholder={this.labels.month}
                 onChange={this.handleMonthChange}
                 selectedValue={month}
-                style={{minWidth}}
+                style={{minWidth, ...dropdownStyle}}
                 testId="birthday-picker-month"
             >
                 {/* eslint-disable-next-line import/no-named-as-default-member */}
@@ -289,7 +297,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     }
 
     maybeRenderDay(): React.ReactNode | null | undefined {
-        const {disabled, monthYearOnly} = this.props;
+        const {disabled, monthYearOnly, dropdownStyle} = this.props;
         const {day} = this.state;
 
         // Hide the day field if the month/year only mode is enabled.
@@ -307,7 +315,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     placeholder={this.labels.day}
                     onChange={this.handleDayChange}
                     selectedValue={day}
-                    style={{minWidth: 100}}
+                    style={{minWidth: 100, ...dropdownStyle}}
                     testId="birthday-picker-day"
                 >
                     {Array.from(Array(31)).map((_, day) => (
@@ -323,7 +331,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     }
 
     renderYear(): React.ReactNode {
-        const {disabled, monthYearOnly} = this.props;
+        const {disabled, monthYearOnly, dropdownStyle} = this.props;
         const {year} = this.state;
         const minWidth = monthYearOnly
             ? FIELD_MIN_WIDTH_MONTH_YEAR
@@ -337,7 +345,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 placeholder={this.labels.year}
                 onChange={this.handleYearChange}
                 selectedValue={year}
-                style={{minWidth}}
+                style={{minWidth, ...dropdownStyle}}
                 // Allows displaying the dropdown options without truncating
                 // them when the user zooms in the browser.
                 dropdownStyle={{minWidth: 150}}
@@ -355,9 +363,14 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     }
 
     render(): React.ReactNode {
+        const {style} = this.props;
+
         return (
             <>
-                <View testId="birthday-picker" style={{flexDirection: "row"}}>
+                <View
+                    testId="birthday-picker"
+                    style={{flexDirection: "row", ...style}}
+                >
                     {this.renderMonth()}
 
                     {this.maybeRenderDay()}
