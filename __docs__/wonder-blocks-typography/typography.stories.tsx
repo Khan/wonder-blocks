@@ -62,7 +62,6 @@ export default {
             },
         },
     },
-    // TODO(FEI-5000): Inline this
     argTypes: TypographyArgTypes,
 } as Meta<typeof ComponentInfo>;
 

@@ -22,7 +22,7 @@ export default {
     tag: {
         control: {type: "text"},
         description:
-            "The underyling HTML tag to render (e.g. `h1`, `h2`, etc.) Please use this to ensure that the header is hierarchically correct.",
+            "The underlying HTML tag to render (e.g. `h1`, `h2`, `label`, etc.). Please use this to ensure that the typography is hierarchically correct.",
         table: {type: {summary: "string"}},
     },
 };
