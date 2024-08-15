@@ -8,12 +8,10 @@ export const semanticColor = {
     action: {
         primary: {
             default: color.blue,
-            hover: color.fadedBlue,
             active: color.activeBlue,
         },
         destructive: {
             default: color.red,
-            hover: color.fadedRed,
             active: color.activeRed,
         },
         disabled: {

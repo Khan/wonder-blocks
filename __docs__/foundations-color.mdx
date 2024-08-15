@@ -1,14 +1,28 @@
 import {Meta, ColorPalette, ColorItem} from "@storybook/blocks";
+import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
+import Link from "@khanacademy/wonder-blocks-link";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import {Swatch} from "./components/swatch";
-import {ColorGroup, flattenColors} from "./components/color";
+import {ColorGroup} from "./components/color";
 
 <Meta title="Foundations / Using color" />
 
+export const styles = StyleSheet.create({
+    grid: {
+        display: "grid",
+        gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    },
+    gridSmall: {
+        display: "grid",
+        gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+    },
+    banner: {
+        marginBottom: spacing.xLarge_32,
+    },
+});
 
 # Color
 
@@ -16,12 +30,22 @@ Colors are a key part of our design system. They help us communicate information
 and create visual hierarchy. This document outlines the semantic colors we use
 in our product and how these are reflected in our primitive tokens.
 
+Colors are defined into two categories:
 
-<View style={{marginBottom: spacing.xLarge_32}}>
+-   <Link href="#semantic-colors">Semantic Colors</Link>
+-   <Link href="#primitive-colors">Primitive Colors</Link>
+
+## Semantic Colors
+
+Semantic colors are a key part of our design system. They help us communicate
+the intent of a given color and create visual hierarchy. This document outlines
+how to use these colors depending on the context.
+
+<View style={styles.banner}>
     <Banner
         kind="info"
         layout="full-width"
-        text="To use these colors in your project, check out the correspondign tokens page."
+        text="This is the recommended approach. To use these colors in your project, check out the corresponding tokens page."
         actions={[
             {
                 type: "custom",
@@ -36,52 +60,33 @@ in our product and how these are reflected in our primitive tokens.
                     </a>
                 ),
             },
-            {
-                type: "custom",
-                // NOTE: This is a hack to bypass a Storybook bug where the
-                // link doesn't work correctly with iframes.
-                node: (
-                    <a
-                        href="/?path=/docs/packages-tokens-color--docs"
-                        target="_blank"
-                    >
-                        Primitive Color tokens
-                    </a>
-                ),
-            },
         ]}
     />
 </View>
-
-
-## Semantic Colors
-
-Semantic colors are a key part of our design system. They help us communicate
-the intent of a given color and create visual hierarchy. This document outlines
-how to use these colors depending on the context.
-
 
 ### Action
 
 For buttons, links, and controls to communicate the presence and meaning of
 interaction.
 
-<ColorGroup colors={semanticColor.action.primary} group="action.primary" />
-<ColorGroup
-    colors={semanticColor.action.destructive}
-    group="action.destructive"
-/>
-
-<ColorGroup colors={semanticColor.action.disabled} group="action.disabled" />
+<View style={styles.grid}>
+    <ColorGroup colors={semanticColor.action.primary} group="action.primary" />
+    <ColorGroup
+        colors={semanticColor.action.destructive}
+        group="action.destructive"
+    />
+    <ColorGroup
+        colors={semanticColor.action.disabled}
+        group="action.disabled"
+    />
+</View>
 
 ### Status
 
 For labels, icons, filters, alerts, and other elements where color can add
 meaning to the state of the system or an item in the system.
 
-<View
-    style={{display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))"}}
->
+<View style={styles.grid}>
     <ColorGroup
         colors={semanticColor.status.critical}
         group="status.critical"
@@ -132,3 +137,38 @@ it.
 Standalone colors used only for communicating mastery.
 
 <ColorGroup colors={semanticColor.mastery} group="mastery" />
+
+## Primitive Colors
+
+Wonder Blocks also exports a set of primitive colors that can be used for any
+other use cases that don't fit into the semantic color categories.
+
+<View style={styles.banner}>
+    <Banner
+        kind="warning"
+        layout="full-width"
+        text="We recommend using semantic colors whenever possible, but if you need a color that doesn't fit into any of the categories, you can use these primitive colors."
+        actions={[
+            {
+                type: "custom",
+                // NOTE: This is a hack to bypass a Storybook bug where the
+                // link doesn't work correctly with iframes.
+                node: (
+                    <a
+                        href="/?path=/docs/packages-tokens-color--docs"
+                        target="_blank"
+                    >
+                        Primitive Color tokens
+                    </a>
+                ),
+            },
+        ]}
+    />
+</View>
+
+<ColorGroup
+    colors={color}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>

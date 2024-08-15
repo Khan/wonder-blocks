@@ -2,6 +2,7 @@ import {fade, mix} from "../util/utils";
 
 const offBlack = "#21242c";
 const white = "#ffffff";
+const eggplant = "#5f1e5c";
 
 type ColorType = {
     // Product
@@ -21,13 +22,12 @@ type ColorType = {
     white: string;
     white64: string;
     white50: string;
+    white32: string;
     // Brand
     darkBlue: string;
     teal: string;
     lightBlue: string;
     pink: string;
-    // Khanmigo
-    eggplant: string;
 };
 
 const baseColors: ColorType = {
@@ -50,15 +50,13 @@ const baseColors: ColorType = {
     white,
     white64: fade(white, 0.64),
     white50: fade(white, 0.5),
+    white32: fade(white, 0.32),
 
     // Brand
     darkBlue: "#0b2149",
     teal: "#14bf96",
     lightBlue: "#37c5fd",
     pink: "#fa50ae",
-
-    // Khanmigo
-    eggplant: "#5f1e5c",
 };
 
 const fadedColorWithWhite = (color: string, alpha: number) =>
@@ -68,7 +66,6 @@ export const color = {
     // Wonder Blocks base colors
     ...baseColors,
     // Additional colors
-    white32: fade(baseColors.white, 0.32),
     // Blue shades
     activeBlue: mix(baseColors.offBlack32, baseColors.blue),
     fadedBlue: fadedColorWithWhite(baseColors.blue, 0.32),
@@ -94,8 +91,8 @@ export const color = {
     fadedPurple16: fadedColorWithWhite(baseColors.purple, 0.16),
     fadedPurple8: fadedColorWithWhite(baseColors.purple, 0.08),
     // Khanmigo
-    eggplant: baseColors.eggplant,
-    fadedEggplant8: fadedColorWithWhite(baseColors.eggplant, 0.08),
+    eggplant: eggplant,
+    fadedEggplant8: fadedColorWithWhite(eggplant, 0.08),
     // Faded versions of offBlack
     fadedOffBlack64: fadedColorWithWhite(offBlack, 0.64),
     fadedOffBlack50: fadedColorWithWhite(offBlack, 0.5),

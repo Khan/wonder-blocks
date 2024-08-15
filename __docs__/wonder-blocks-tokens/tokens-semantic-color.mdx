@@ -8,7 +8,7 @@ import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 
-import {flattenColors} from "../components/color";
+import {flattenNestedTokens} from "../components/tokens-util";
 
 <Meta title="Packages / Tokens / Semantic Color" />
 
@@ -66,5 +66,5 @@ const styles = {
             ),
         },
     ]}
-    tokens={flattenColors(semanticColor)}
+    tokens={flattenNestedTokens(semanticColor)}
 />

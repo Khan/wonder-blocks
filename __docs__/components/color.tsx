@@ -1,11 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {
     Caption,
     Footnote,
     LabelLarge,
+    LabelMedium,
     LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
 import {
@@ -14,41 +15,42 @@ import {
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
+import {getTokenName} from "./tokens-util";
 
 type Props = {
+    /**
+     * A dictionary of colors to display.
+     */
     colors: Record<string, string>;
+    /**
+     * The type of color group to display.
+     */
+    variant: "primitive" | "semantic";
+    /**
+     * The group name to use as a prefix for the color names.
+     */
     group: string;
+    /**
+     * Custom styles for the component.
+     */
+    style?: StyleType;
 };
 
-type RecursivePartial<T> = {
-    [P in keyof T]?: RecursivePartial<T[P]> | string;
-};
-
-export function flattenColors<T>(colors: RecursivePartial<T>, currentKey = "") {
-    const result: Record<string, string> = {};
-
-    for (const key in colors) {
-        if (!Object.prototype.hasOwnProperty.call(colors, key)) {
-            continue;
-        }
-
-        const nestedKey = currentKey !== "" ? currentKey + "." + key : key;
-        const value = colors[key];
-        if (typeof value === "string") {
-            result[nestedKey] = value;
-        } else {
-            Object.assign(result, flattenColors(value, nestedKey));
-        }
-    }
-
-    return result;
-}
-
-export function ColorGroup({colors, group}: Props) {
+export function ColorGroup({
+    colors,
+    group,
+    style,
+    variant = "semantic",
+}: Props) {
     return (
-        <View style={styles.group}>
+        <View style={[styles.group, style]}>
             {Object.entries(colors).map(([name, value]) => (
-                <Color2 key={name} name={group + "." + name} value={value} />
+                <Color
+                    key={name}
+                    name={group + "." + name}
+                    value={value}
+                    variant={variant}
+                />
             ))}
         </View>
     );
@@ -57,39 +59,38 @@ export function ColorGroup({colors, group}: Props) {
 type ColorProps = {
     name: string;
     value: string;
+    variant: "primitive" | "semantic";
 };
 
-function getColor(value: string) {
-    for (const property in color) {
-        if (color[property] === value) {
-            return property;
-        }
-    }
-}
+function Color({name, value, variant}: ColorProps) {
+    const TypographyComponent =
+        variant === "semantic" ? LabelLarge : LabelMedium;
 
-export function Color({name, value}: ColorProps) {
     return (
-        <View style={[styles.container, {backgroundColor: value}]}>
-            <LabelLarge>{name}</LabelLarge>
+        <View style={styles[variant + "Group"]}>
+            <View
+                style={[
+                    styles.thumbnail,
+                    styles[variant + "Thumbnail"],
+                    {backgroundColor: value},
+                ]}
+            />
             <View>
-                <Caption>color.{getColor(value)}</Caption>
-                <Footnote style={styles.code}>{value}</Footnote>
+                <TypographyComponent>{name}</TypographyComponent>
+                {variant === "semantic" ? (
+                    <>
+                        <Caption>
+                            Primitive: <em>{getTokenName(color, value)}</em>
+                        </Caption>
+                        <LabelSmall>
+                            Value:{" "}
+                            <Footnote style={styles.code}>{value}</Footnote>
+                        </LabelSmall>
+                    </>
+                ) : (
+                    <Footnote style={styles.code}>{value}</Footnote>
+                )}
             </View>
-        </View>
-    );
-}
-
-export function Color2({name, value}: ColorProps) {
-    return (
-        <View>
-            <View style={[styles.container, {backgroundColor: value}]} />
-            <LabelLarge>{name}</LabelLarge>
-            <Caption>
-                Primitive: <em>{getColor(value)}</em>
-            </Caption>
-            <LabelSmall>
-                Value: <Footnote style={styles.code}>{value}</Footnote>
-            </LabelSmall>
         </View>
     );
 }
@@ -98,10 +99,13 @@ const styles = StyleSheet.create({
     group: {
         flexDirection: "row",
         flexWrap: "wrap",
-        gap: spacing.xSmall_8,
+        gap: spacing.small_12,
         marginBlock: spacing.large_24,
     },
-    container: {
+    primitiveGroup: {
+        flexDirection: "row",
+    },
+    thumbnail: {
         border: `1px solid ${semanticColor.border.subtle}`,
         color: semanticColor.text.inverse,
         width: 185,
@@ -109,6 +113,11 @@ const styles = StyleSheet.create({
         padding: spacing.large_24,
         wordWrap: "break-word",
         justifyContent: "space-between",
+    },
+    primitiveThumbnail: {
+        marginInlineEnd: spacing.small_12,
+        width: spacing.xxLarge_48,
+        height: spacing.xxLarge_48,
     },
     code: {
         alignSelf: "flex-start",
