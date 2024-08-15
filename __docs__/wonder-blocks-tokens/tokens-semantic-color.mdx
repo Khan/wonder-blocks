@@ -2,6 +2,7 @@ import {Meta, Source} from "@storybook/blocks";
 
 import TokenTable from "../../.storybook/components/token-table";
 
+import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -16,7 +17,30 @@ import {flattenNestedTokens} from "../components/tokens-util";
 
 <ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
-The color palette containing all the global Wonder Blocks colors.
+The color palette containing all the semantic Wonder Blocks colors.
+
+<View style={{marginBottom: spacing.xLarge_32}}>
+    <Banner
+        kind="info"
+        layout="full-width"
+        text="This is the recommended approach. If you need a color that doesn't fit into any of the categories, you can use the primitive colors."
+        actions={[
+            {
+                type: "custom",
+                // NOTE: This is a hack to bypass a Storybook bug where the
+                // link doesn't work correctly with iframes.
+                node: (
+                    <a
+                        href="/?path=/docs/packages-tokens-color--docs"
+                        target="_blank"
+                    >
+                        Primitive Color tokens
+                    </a>
+                ),
+            },
+        ]}
+    />
+</View>
 
 ## Usage
 

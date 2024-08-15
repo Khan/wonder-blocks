@@ -2,6 +2,7 @@ import {Meta, Source} from "@storybook/blocks";
 
 import TokenTable from "../../.storybook/components/token-table";
 
+import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
@@ -14,7 +15,30 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 
 <ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
-The color palette containing all the global Wonder Blocks colors.
+The color palette containing all the primitive Wonder Blocks colors.
+
+<View style={{marginBottom: tokens.spacing.xLarge_32}}>
+    <Banner
+        kind="warning"
+        layout="full-width"
+        text="We recommend using semantic colors whenever possible, but if you need a color that doesn't fit into any of the categories, you can use these primitive colors. Otherwise, please take a look at our semantic color tokens."
+        actions={[
+            {
+                type: "custom",
+                // NOTE: This is a hack to bypass a Storybook bug where the
+                // link doesn't work correctly with iframes.
+                node: (
+                    <a
+                        href="/?path=/docs/packages-tokens-semantic-color--docs"
+                        target="_blank"
+                    >
+                        Semantic Color tokens
+                    </a>
+                ),
+            },
+        ]}
+    />
+</View>
 
 ## Usage
 
