@@ -26,6 +26,8 @@ type ColorType = {
     teal: string;
     lightBlue: string;
     pink: string;
+    // Khanmigo
+    eggplant: string;
 };
 
 const baseColors: ColorType = {
@@ -54,6 +56,9 @@ const baseColors: ColorType = {
     teal: "#14bf96",
     lightBlue: "#37c5fd",
     pink: "#fa50ae",
+
+    // Khanmigo
+    eggplant: "#5f1e5c",
 };
 
 const fadedColorWithWhite = (color: string, alpha: number) =>
@@ -79,14 +84,18 @@ export const color = {
     // Green shades
     fadedGreen24: fadedColorWithWhite(baseColors.green, 0.24),
     fadedGreen16: fadedColorWithWhite(baseColors.green, 0.16),
+    fadedGreen8: fadedColorWithWhite(baseColors.green, 0.08),
     // Gold shades
     fadedGold24: fadedColorWithWhite(baseColors.gold, 0.24),
     fadedGold16: fadedColorWithWhite(baseColors.gold, 0.16),
+    fadedGold8: fadedColorWithWhite(baseColors.gold, 0.08),
     // Purple shades
     fadedPurple24: fadedColorWithWhite(baseColors.purple, 0.24),
     fadedPurple16: fadedColorWithWhite(baseColors.purple, 0.16),
+    fadedPurple8: fadedColorWithWhite(baseColors.purple, 0.08),
     // Khanmigo
-    eggplant: "#5f1e5c",
+    eggplant: baseColors.eggplant,
+    fadedEggplant8: fadedColorWithWhite(baseColors.eggplant, 0.08),
     // Faded versions of offBlack
     fadedOffBlack64: fadedColorWithWhite(offBlack, 0.64),
     fadedOffBlack50: fadedColorWithWhite(offBlack, 0.5),
