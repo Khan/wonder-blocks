@@ -2,4 +2,6 @@
 "@khanacademy/wonder-blocks-tooltip": minor
 ---
 
-Update tooltip implementation of Popper to ensure popper places the content based on the document size and not the viewport size. This the content is never placed outside the page when it does not fit in the viewport.
+Update tooltip implementation of Popper to ensure that the popper doesn't disappear when the referenced
+element is not inview in very small screen sizes. This ensures customers can interact with the popper
+in extra small screen sizes or +400% zoom without the popper randomly disappearing.
