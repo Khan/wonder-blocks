@@ -9,7 +9,13 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    font,
+    mix,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 type TextAreaProps = AriaProps & {
@@ -306,12 +312,19 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     },
 );
 
+const VERTICAL_SPACING_PX = 10;
+
 const styles = StyleSheet.create({
     textarea: {
         borderRadius: border.radius.medium_4,
         boxSizing: "border-box",
-        padding: `10px ${spacing.medium_16}px`,
-        minHeight: "1em",
+        padding: `${VERTICAL_SPACING_PX}px ${spacing.medium_16}px`,
+        // This minHeight is equivalent to when the textarea has one row
+        minHeight: `${
+            VERTICAL_SPACING_PX * 2 +
+            font.lineHeight.medium +
+            2 * border.width.hairline
+        }px`,
     },
     default: {
         background: color.white,
