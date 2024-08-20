@@ -490,8 +490,15 @@ export const CustomStyle: StoryComponentType = {
  * `rootStyle` prop. If possible, try to use this prop carefully and use the
  * `style` prop instead.
  *
- * This example shows that applying root styles can enable the textarea to fill
- * in the remaining height.
+ * Note: The `rootStyle` prop adds styling to the root node, which is a `div`
+ * that wraps the underlying `textarea` element, whereas the `style` prop adds styling
+ * to the `textarea` element directly. There is a `div` that wraps the textarea
+ * so that the layout of the component is still controlled by the TextArea component.
+ * This will be useful for future work where the TextArea component could include
+ * other elements such as a character counter.
+ *
+ * The following example shows that applying root styles can enable the textarea
+ * to fill in the remaining height:
  */
 export const RootStyle: StoryComponentType = {
     render(args) {

@@ -37,7 +37,7 @@ type TextAreaProps = AriaProps & {
      */
     testId?: string;
     /**
-     * Custom styles for the text area.
+     * Custom styles for the textarea element.
      */
     style?: StyleType;
     /**
