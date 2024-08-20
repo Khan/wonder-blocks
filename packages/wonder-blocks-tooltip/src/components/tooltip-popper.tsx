@@ -7,9 +7,9 @@ import {Popper} from "react-popper";
 import type {Modifier, PopperChildrenProps} from "react-popper";
 
 import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
-import {ModifierArguments, RootBoundary} from "@popperjs/core";
-import {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
-import {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
+import type {ModifierArguments, RootBoundary} from "@popperjs/core";
+import type {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
+import type {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
 import type {
     Placement,
     PopperElementProps,
@@ -78,10 +78,15 @@ const filterPopperPlacement = (
     }
 };
 
-type SmallViewportModifier = Modifier<"smallViewport", object>;
+type SmallViewportModifier = Modifier<"smallViewport", Record<string, never>>;
+
+type Modifiers =
+    | Partial<PreventOverflowModifier>
+    | Partial<FlipModifier>
+    | Partial<SmallViewportModifier>;
 
 /**
- * This is function calculates the the height of the popper
+ * This function calculates the height of the popper
  * vs. the height of the viewport. If the popper is larger
  * than the viewport, it sets the popper isReferenceHidden
  * state to false, to ensure the popper stays visible even if
@@ -89,13 +94,14 @@ type SmallViewportModifier = Modifier<"smallViewport", object>;
  * than the viewport, it leaves it as is so the popper will
  * disappear if the reference is no longer in view.
  */
-function _modifyPosition({state}: ModifierArguments<object>): void {
+function _modifyPosition({
+    state,
+}: ModifierArguments<Record<string, never>>): void {
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
     const popperHeight =
         state.rects.popper.height + state.rects.reference.height;
-    const html = document.documentElement;
-    const minHeight = html.clientHeight;
+    const minHeight = document.documentElement.clientHeight;
 
     if (minHeight < popperHeight && state.modifiersData.hide) {
         state.modifiersData.hide = {
@@ -226,11 +232,7 @@ export default class TooltipPopper extends React.Component<Props> {
             fn: _modifyPosition,
         };
 
-        const modifiers: (
-            | Partial<PreventOverflowModifier>
-            | Partial<FlipModifier>
-            | Partial<Modifier<"smallViewport", object>>
-        )[] = [smallViewportModifier];
+        const modifiers: Modifiers[] = [smallViewportModifier];
 
         if (rootBoundary === "viewport") {
             modifiers.push({

@@ -124,9 +124,9 @@ export default {
     },
     rootBoundary: {
         description:
-            `Optional property to set what the root boundary is for the popper behavior.` +
-            `This is set to "viewport" by default, causing the popper to be positioned based` +
-            `on the user's viewport. If set to "document", it will position itself based` +
+            `Optional property to set what the root boundary is for the popper behavior. ` +
+            `This is set to "viewport" by default, causing the popper to be positioned based ` +
+            `on the user's viewport. If set to "document", it will position itself based ` +
             `on where there is available room within the document body.`,
         control: {
             type: "select",

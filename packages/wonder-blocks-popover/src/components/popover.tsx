@@ -10,7 +10,7 @@ import type {
     Placement,
     PopperElementProps,
 } from "@khanacademy/wonder-blocks-tooltip";
-import {RootBoundary} from "@popperjs/core";
+import type {RootBoundary} from "@popperjs/core";
 
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
