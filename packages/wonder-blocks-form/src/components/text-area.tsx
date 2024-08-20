@@ -35,6 +35,12 @@ type TextAreaProps = AriaProps & {
      */
     style?: StyleType;
     /**
+     * Custom styles for the root node of the component.
+     * If possible, try to use this prop carefully and use the `style` prop
+     * instead.
+     */
+    rootStyle?: StyleType;
+    /**
      * Provide hints or examples of what to enter.
      */
     placeholder?: string;
@@ -198,6 +204,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             required,
             resizeType,
             light,
+            rootStyle,
             // Should only include aria related props
             ...otherProps
         } = props;
@@ -265,7 +272,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
         };
         return (
-            <View style={{width: "100%"}}>
+            <View style={[{width: "100%"}, rootStyle]}>
                 <StyledTextArea
                     id={uniqueId}
                     data-testid={testId}

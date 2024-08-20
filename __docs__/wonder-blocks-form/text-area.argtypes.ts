@@ -57,6 +57,17 @@ export default {
             category: "Visual style",
         },
     },
+    rootStyle: {
+        table: {
+            type: {
+                summary: "StyleType",
+            },
+            category: "Visual style",
+        },
+        control: {
+            type: "null",
+        },
+    },
 
     /**
      * Events
