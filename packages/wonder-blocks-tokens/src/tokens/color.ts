@@ -26,8 +26,6 @@ type ColorType = {
     // Brand
     darkBlue: string;
     teal: string;
-    lightBlue: string;
-    pink: string;
 };
 
 const baseColors: ColorType = {
@@ -55,8 +53,6 @@ const baseColors: ColorType = {
     // Brand
     darkBlue: "#0b2149",
     teal: "#14bf96",
-    lightBlue: "#37c5fd",
-    pink: "#fa50ae",
 };
 
 const fadedColorWithWhite = (color: string, alpha: number) =>

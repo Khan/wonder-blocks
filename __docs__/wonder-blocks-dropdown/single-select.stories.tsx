@@ -113,18 +113,18 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${color.blue}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.lightBlue,
-        color: color.white,
+        background: color.fadedPurple24,
+        color: color.offBlack,
         padding: spacing.medium_16,
     },
     focused: {
-        backgroundColor: fade(color.lightBlue, 0.8),
+        outlineColor: color.purple,
+        outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
         textDecoration: "underline",
-        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {

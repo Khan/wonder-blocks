@@ -128,7 +128,7 @@ export const Kinds: StoryComponentType = {
  * added around the floating banner so that it will not touch its outline.
  */
 export const Layouts: StoryComponentType = () => {
-    const borderStyle = {border: `2px solid ${color.pink}`} as const;
+    const borderStyle = {border: `2px solid ${color.fadedPurple24}`} as const;
     const floatingContainerStyle = {padding: spacing.xSmall_8} as const;
 
     return (

@@ -38,11 +38,6 @@
     --color-text-32: rgba(33, 36, 44, 0.32); /* offBlack 32% */
     --color-text-16: rgba(33, 36, 44, 0.16); /* offBlack 16% */
     --color-text-8: rgba(33, 36, 44, 0.08); /* offBlack 8% */
-    /* Brand */
-    --color-brand-primary: #0b2149; /* darkBlue */
-    --color-brand-secondary: #37c5fd; /* lightBlue */
-    --color-brand-tertiary: #14bf96; /* teal */
-    --color-brand-quaternary: #fa50ae; /* pink */
 
     /**
      * Spacing
