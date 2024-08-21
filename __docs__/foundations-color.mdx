@@ -8,16 +8,25 @@ import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {ColorGroup} from "./components/color";
 
-<Meta title="Foundations / Using color" />
+<Meta
+    title="Foundations / Using color"
+    parameters={{
+        docs: {
+            toc: {
+                headingSelector: "h2, h3, h4",
+            },
+        },
+    }}
+/>
 
 export const styles = StyleSheet.create({
     grid: {
         display: "grid",
-        gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+        gridTemplateColumns: "repeat(2, minmax(100px, auto))",
     },
     gridSmall: {
         display: "grid",
-        gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+        gridTemplateColumns: "repeat(auto-fill, 160px)",
     },
     banner: {
         marginBottom: spacing.xLarge_32,
@@ -86,6 +95,26 @@ interaction.
 For labels, icons, filters, alerts, and other elements where color can add
 meaning to the state of the system or an item in the system.
 
+<Banner
+    kind="success"
+    layout="full-width"
+    text="Make sure to use these colors consistently to communicate the same meaning
+and include an icon or label to provide more context and clarity."
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a
+                    href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html"
+                    target="_blank"
+                >
+                    WCAG Guidelines - Contrast (minimum)
+                </a>
+            ),
+        },
+    ]}
+/>
+
 <View style={styles.grid}>
     <ColorGroup
         colors={semanticColor.status.critical}
@@ -109,13 +138,33 @@ the UI.
 For all type to ensure contrast for legibility. Inverse text applies for dark
 backgrounds in light mode.
 
+<Banner
+    kind="success"
+    layout="full-width"
+    text="Make sure to use these colors consistently to ensure readability and accessibility. This includes checking contrast ratios for text and background colors."
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a
+                    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+                    target="_blank"
+                >
+                    WCAG Guidelines - Contrast (minimum)
+                </a>
+            ),
+        },
+    ]}
+/>
+
 <ColorGroup colors={semanticColor.text} group="text" />
 
 ### Border
 
 Borders define structure for elements. Generally borders for component elements
-would use -Primary, rows and layout elements use -Subtle and -Strong for when
-3:1 contrast is a priority (ex. form elements)
+would use `border.primary`, rows and layout elements use
+`border.subtle` and `border.strong` for when 3:1
+contrast is a priority (ex. form elements)
 
 <ColorGroup colors={semanticColor.border} group="border" />
 
@@ -166,9 +215,184 @@ other use cases that don't fit into the semantic color categories.
     />
 </View>
 
+export const ProductColors = {
+    blue: color.blue,
+    purple: color.purple,
+    gold: color.gold,
+    green: color.green,
+    red: color.red,
+};
+
+### Product
+
 <ColorGroup
-    colors={color}
+    colors={ProductColors}
     group="color"
     variant="primitive"
     style={styles.gridSmall}
 />
+
+### Off-Black
+
+#### Solid (hex)
+
+export const NeutralColors = {
+    offBlack: color.offBlack,
+    fadedOffBlack64: color.fadedOffBlack64,
+    fadedOffBlack50: color.fadedOffBlack50,
+    fadedOffBlack32: color.fadedOffBlack32,
+    fadedOffBlack16: color.fadedOffBlack16,
+};
+
+<ColorGroup
+    colors={NeutralColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+#### Transparent (rgba)
+
+export const TransparentNeutralColors = {
+    offBlack: color.offBlack,
+    offBlack64: color.offBlack64,
+    offBlack50: color.offBlack50,
+    offBlack32: color.offBlack32,
+    offBlack16: color.offBlack16,
+};
+
+<ColorGroup
+    colors={TransparentNeutralColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### White
+
+export const WhiteShades = {
+    offWhite: color.offWhite,
+    white64: color.white64,
+    white50: color.white50,
+    white: color.white,
+};
+
+<ColorGroup
+    colors={WhiteShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### Blue
+
+export const BlueShades = {
+    activeBlue: color.activeBlue,
+    blue: color.blue,
+    fadedBlue: color.fadedBlue,
+    fadedBlue24: color.fadedBlue24,
+    fadedBlue16: color.fadedBlue16,
+    fadedBlue8: color.fadedBlue8,
+};
+
+<ColorGroup
+    colors={BlueShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### Green
+
+export const GreenShades = {
+    green: color.green,
+    fadedGreen24: color.fadedGreen24,
+    fadedGreen16: color.fadedGreen16,
+    fadedGreen8: color.fadedGreen8,
+};
+
+<ColorGroup
+    colors={GreenShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### Gold
+
+export const GoldShades = {
+    gold: color.gold,
+    fadedGold24: color.fadedGold24,
+    fadedGold16: color.fadedGold16,
+    fadedGold8: color.fadedGold8,
+};
+
+<ColorGroup
+    colors={GoldShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### Purple
+
+export const PurpleShades = {
+    purple: color.purple,
+    fadedPurple24: color.fadedPurple24,
+    fadedPurple16: color.fadedPurple16,
+    fadedPurple8: color.fadedPurple8,
+};
+
+<ColorGroup
+    colors={PurpleShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### Brand
+
+export const BrandColors = {
+    darkBlue: color.darkBlue,
+    teal: color.teal,
+};
+
+<ColorGroup
+    colors={BrandColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### Khanmigo
+
+export const KhanmigoColors = {
+    eggplant: color.eggplant,
+    fadedEggplant8: color.fadedEggplant8,
+};
+
+<ColorGroup
+    colors={KhanmigoColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+## Accessibility
+
+When using color, it is important to consider accessibility. The contrast
+between text and background colors should be high enough to ensure readability
+for all users. The <a
+href="https://www.w3.org/WAI/WCAG22/Understanding/distinguishable">Web Content
+Accessibility Guidelines (WCAG)</a> provide guidance on how to ensure that our
+content is accessible to all users.
+
+For more detail, you can check the following Success Criteria documents:
+
+-   <a
+    href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">Use of Color</a>
+-   <a
+    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">Contrast (minimum)</a>
+-   <a
+    href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">Non-text
+    Contrast (Level AA)</a>

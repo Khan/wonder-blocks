@@ -72,16 +72,16 @@ export const semanticColor = {
      * -Strong for when 3:1 contrast is a priority (ex. form elements)
      */
     border: {
-        primary: color.offBlack16,
-        subtle: color.offBlack8,
-        strong: color.offBlack50,
+        primary: color.fadedOffBlack16,
+        subtle: color.fadedOffBlack8,
+        strong: color.fadedOffBlack50,
         inverse: color.white,
     },
     /**
      * Default icon colors that change in context (like actions).
      */
     icon: {
-        primary: color.offBlack64,
+        primary: color.fadedOffBlack64,
         secondary: color.offBlack,
         inverse: color.white,
         action: color.blue,

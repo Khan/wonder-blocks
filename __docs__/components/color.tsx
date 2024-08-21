@@ -6,12 +6,12 @@ import {
     Caption,
     Footnote,
     LabelLarge,
-    LabelMedium,
     LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
 import {
     border,
     color,
+    font,
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
@@ -64,19 +64,31 @@ type ColorProps = {
 
 function Color({name, value, variant}: ColorProps) {
     const TypographyComponent =
-        variant === "semantic" ? LabelLarge : LabelMedium;
+        variant === "semantic" ? LabelLarge : LabelSmall;
 
     return (
-        <View style={styles[variant + "Group"]}>
+        <View style={styles.item}>
             <View
                 style={[
                     styles.thumbnail,
                     styles[variant + "Thumbnail"],
-                    {backgroundColor: value},
+                    styles.pattern,
                 ]}
-            />
+            >
+                <View
+                    style={{
+                        backgroundColor: value,
+                        boxShadow: `inset 0 0 1px 0 ${semanticColor.border.primary}`,
+                        // Expand to fill the parent container
+                        alignSelf: "stretch",
+                        flex: 1,
+                    }}
+                />
+            </View>
             <View>
-                <TypographyComponent>{name}</TypographyComponent>
+                <TypographyComponent style={{fontWeight: font.weight.bold}}>
+                    {name}
+                </TypographyComponent>
                 {variant === "semantic" ? (
                     <>
                         <Caption>
@@ -99,25 +111,22 @@ const styles = StyleSheet.create({
     group: {
         flexDirection: "row",
         flexWrap: "wrap",
-        gap: spacing.small_12,
         marginBlock: spacing.large_24,
     },
-    primitiveGroup: {
-        flexDirection: "row",
+    item: {
+        marginBlockEnd: spacing.medium_16,
+    },
+    pattern: {
+        backgroundImage: `radial-gradient(${color.blue} 0.5px, ${color.offWhite} 0.5px)`,
+        backgroundSize: `${spacing.small_12}px ${spacing.small_12}px`,
     },
     thumbnail: {
-        border: `1px solid ${semanticColor.border.subtle}`,
-        color: semanticColor.text.inverse,
-        width: 185,
+        width: 200,
         height: 160,
-        padding: spacing.large_24,
-        wordWrap: "break-word",
-        justifyContent: "space-between",
     },
     primitiveThumbnail: {
-        marginInlineEnd: spacing.small_12,
-        width: spacing.xxLarge_48,
-        height: spacing.xxLarge_48,
+        width: 160,
+        height: spacing.xxxLarge_64,
     },
     code: {
         alignSelf: "flex-start",

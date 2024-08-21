@@ -77,7 +77,13 @@ const parameters = {
         },
     },
     docs: {
-        toc: true,
+        toc: {
+            // Useful for MDX pages like "Using color".
+            headingSelector: "h2, h3",
+            // Prevents including generic headings like "Stories" and "Usage".
+            ignoreSelector:
+                ".docs-story h2, .docs-story h3, .sbdocs #stories, .sbdocs #usage, .sbdocs-subtitle",
+        },
         theme: wonderBlocksTheme,
         components: {
             // Override the default link component to use the WB Link component.
