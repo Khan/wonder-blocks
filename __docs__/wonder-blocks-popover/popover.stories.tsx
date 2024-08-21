@@ -735,6 +735,42 @@ export const PopoverAlignment: StoryComponentType = {
     ),
 };
 
+export const WithDocumentRootBoundary: StoryComponentType = () => {
+    return (
+        <View style={{paddingBottom: "500px"}}>
+            <Popover
+                rootBoundary="document"
+                content={() => (
+                    <PopoverContent
+                        title="Popover with rootBoundary='document'"
+                        content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
+                        actions={
+                            <View style={[styles.row, styles.actions]}>
+                                <Strut size={spacing.medium_16} />
+                            </View>
+                        }
+                    />
+                )}
+                placement="top"
+            >
+                <Button>Open popover with document rootBoundary</Button>
+            </Popover>
+        </View>
+    );
+};
+
+WithDocumentRootBoundary.parameters = {
+    docs: {
+        description: {
+            story: `Sometimes you need to change the underlining behavior to position the
+                Popover by the whole webpage (document) instead of by the viewport. This is a
+                useful tool for popovers with large content that might not fit in small screen
+                sizes or at 400% zoom. For this reason, you can make use of the
+                \`rootBoundary\` prop:`,
+        },
+    },
+};
+
 /**
  * With custom aria-label - overrides the default aria-labelledby
  */
