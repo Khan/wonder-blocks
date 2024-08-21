@@ -486,6 +486,36 @@ export const CustomStyle: StoryComponentType = {
 };
 
 /**
+ * Custom styling can be passed to the root node of the component using the
+ * `rootStyle` prop. If possible, try to use this prop carefully and use the
+ * `style` prop instead.
+ *
+ * Note: The `rootStyle` prop adds styling to the root node, which is a `div`
+ * that wraps the underlying `textarea` element, whereas the `style` prop adds styling
+ * to the `textarea` element directly. There is a `div` that wraps the textarea
+ * so that the layout of the component is still controlled by the TextArea component.
+ * This will be useful for future work where the TextArea component could include
+ * other elements such as a character counter.
+ *
+ * The following example shows that applying root styles can enable the textarea
+ * to fill in the remaining height:
+ */
+export const RootStyle: StoryComponentType = {
+    render(args) {
+        return (
+            <View style={{height: "500px", gap: spacing.large_24}}>
+                <div>Example flex item child </div>
+                <TextArea
+                    {...args}
+                    style={{height: "100%"}}
+                    rootStyle={{flexGrow: 1}}
+                />
+            </View>
+        );
+    },
+};
+
+/**
  * A ref can be passed to the component to have access to the textarea element.
  */
 export const WithRef = () => {
