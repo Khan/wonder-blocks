@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.9.0
+
+### Minor Changes
+
+-   f7390d9d: `TextArea`: Adds `rootStyle` prop for styling to the root node
+
+### Patch Changes
+
+-   f7390d9d: `TextArea`: Updates the `min-height` of the textarea element so that when it is resized vertically using the resize control, the smallest it can get is equivalent to 1 row of the textarea.
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+    -   @khanacademy/wonder-blocks-layout@2.1.3
+
 ## 4.8.1
 
 ### Patch Changes

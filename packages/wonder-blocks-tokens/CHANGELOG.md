@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 2.0.0
+
+### Major Changes
+
+-   f17dc1ee: Remove pink and lightBlue from brand colors
+-   991eb43f: Add semanticColor tokens, remove deprecated Brand color primitives
+
 ## 1.3.1
 
 ### Patch Changes

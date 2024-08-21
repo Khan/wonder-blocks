@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.3.7
+
+### Patch Changes
+
+-   4d346dc8: Fixes a UI issue where secondary buttons weren't displaying the focus ring when disabled + focused
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+    -   @khanacademy/wonder-blocks-progress-spinner@2.1.5
+
 ## 6.3.6
 
 ### Patch Changes
