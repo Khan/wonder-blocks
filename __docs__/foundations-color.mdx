@@ -1,20 +1,219 @@
 import {Meta, ColorPalette, ColorItem} from "@storybook/blocks";
+import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import Link from "@khanacademy/wonder-blocks-link";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import {Swatch} from "./components/swatch";
+import {ColorGroup} from "./components/color";
 
 <Meta
     title="Foundations / Using color"
     parameters={{
-        previewTabs: {
-            canvas: {hidden: true},
+        docs: {
+            toc: {
+                headingSelector: "h2, h3, h4",
+            },
         },
-        viewMode: "docs",
     }}
 />
+
+export const styles = StyleSheet.create({
+    grid: {
+        display: "grid",
+        gridTemplateColumns: "repeat(2, minmax(100px, auto))",
+    },
+    gridSmall: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, 160px)",
+    },
+    banner: {
+        marginBottom: spacing.xLarge_32,
+    },
+});
+
+# Color
+
+Colors are a key part of our design system. They help us communicate information
+and create visual hierarchy. This document outlines the semantic colors we use
+in our product and how these are reflected in our primitive tokens.
+
+Colors are defined into two categories:
+
+-   <Link href="#semantic-colors">Semantic Colors</Link>
+-   <Link href="#primitive-colors">Primitive Colors</Link>
+
+## Semantic Colors
+
+Semantic colors are a key part of our design system. They help us communicate
+the intent of a given color and create visual hierarchy. This document outlines
+how to use these colors depending on the context.
+
+<View style={styles.banner}>
+    <Banner
+        kind="info"
+        layout="full-width"
+        text="This is the recommended approach. To use these colors in your project, check out the corresponding tokens page."
+        actions={[
+            {
+                type: "custom",
+                // NOTE: This is a hack to bypass a Storybook bug where the
+                // link doesn't work correctly with iframes.
+                node: (
+                    <a
+                        href="/?path=/docs/packages-tokens-semantic-color--docs"
+                        target="_blank"
+                    >
+                        Semantic Color tokens
+                    </a>
+                ),
+            },
+        ]}
+    />
+</View>
+
+### Action
+
+For buttons, links, and controls to communicate the presence and meaning of
+interaction.
+
+<View style={styles.grid}>
+    <ColorGroup colors={semanticColor.action.primary} group="action.primary" />
+    <ColorGroup
+        colors={semanticColor.action.destructive}
+        group="action.destructive"
+    />
+    <ColorGroup
+        colors={semanticColor.action.disabled}
+        group="action.disabled"
+    />
+</View>
+
+### Status
+
+For labels, icons, filters, alerts, and other elements where color can add
+meaning to the state of the system or an item in the system.
+
+<Banner
+    kind="success"
+    layout="full-width"
+    text="Make sure to use these colors consistently to communicate the same meaning
+and include an icon or label to provide more context and clarity."
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a
+                    href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html"
+                    target="_blank"
+                >
+                    WCAG Guidelines - Contrast (minimum)
+                </a>
+            ),
+        },
+    ]}
+/>
+
+<View style={styles.grid}>
+    <ColorGroup
+        colors={semanticColor.status.critical}
+        group="status.critical"
+    />
+    <ColorGroup colors={semanticColor.status.warning} group="status.warning" />
+    <ColorGroup colors={semanticColor.status.success} group="status.success" />
+    <ColorGroup colors={semanticColor.status.notice} group="status.notice" />
+    <ColorGroup colors={semanticColor.status.neutral} group="status.neutral" />
+</View>
+
+### Surface
+
+For background colors. Overlays act as supplementary surfaces that mask areas of
+the UI.
+
+<ColorGroup colors={semanticColor.surface} group="surface" />
+
+### Text
+
+For all type to ensure contrast for legibility. Inverse text applies for dark
+backgrounds in light mode.
+
+<Banner
+    kind="success"
+    layout="full-width"
+    text="Make sure to use these colors consistently to ensure readability and accessibility. This includes checking contrast ratios for text and background colors."
+    actions={[
+        {
+            type: "custom",
+            node: (
+                <a
+                    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+                    target="_blank"
+                >
+                    WCAG Guidelines - Contrast (minimum)
+                </a>
+            ),
+        },
+    ]}
+/>
+
+<ColorGroup colors={semanticColor.text} group="text" />
+
+### Border
+
+Borders define structure for elements. Generally borders for component elements
+would use `border.primary`, rows and layout elements use
+`border.subtle` and `border.strong` for when 3:1
+contrast is a priority (ex. form elements)
+
+<ColorGroup colors={semanticColor.border} group="border" />
+
+### Icon
+
+Default icon colors that change in context (like actions).
+
+<ColorGroup colors={semanticColor.icon} group="icon" />
+
+### Khanmigo
+
+Colors to be used exclusively for Khanmigo or to communicate a relationship to
+it.
+
+<ColorGroup colors={semanticColor.khanmigo} group="khanmigo" />
+
+### Mastery
+
+Standalone colors used only for communicating mastery.
+
+<ColorGroup colors={semanticColor.mastery} group="mastery" />
+
+## Primitive Colors
+
+Wonder Blocks also exports a set of primitive colors that can be used for any
+other use cases that don't fit into the semantic color categories.
+
+<View style={styles.banner}>
+    <Banner
+        kind="warning"
+        layout="full-width"
+        text="We recommend using semantic colors whenever possible, but if you need a color that doesn't fit into any of the categories, you can use these primitive colors."
+        actions={[
+            {
+                type: "custom",
+                // NOTE: This is a hack to bypass a Storybook bug where the
+                // link doesn't work correctly with iframes.
+                node: (
+                    <a
+                        href="/?path=/docs/packages-tokens-color--docs"
+                        target="_blank"
+                    >
+                        Primitive Color tokens
+                    </a>
+                ),
+            },
+        ]}
+    />
+</View>
 
 export const ProductColors = {
     blue: color.blue,
@@ -24,7 +223,37 @@ export const ProductColors = {
     red: color.red,
 };
 
+### Product
+
+<ColorGroup
+    colors={ProductColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### Off-Black
+
+#### Solid (hex)
+
 export const NeutralColors = {
+    offBlack: color.offBlack,
+    fadedOffBlack64: color.fadedOffBlack64,
+    fadedOffBlack50: color.fadedOffBlack50,
+    fadedOffBlack32: color.fadedOffBlack32,
+    fadedOffBlack16: color.fadedOffBlack16,
+};
+
+<ColorGroup
+    colors={NeutralColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+#### Transparent (rgba)
+
+export const TransparentNeutralColors = {
     offBlack: color.offBlack,
     offBlack64: color.offBlack64,
     offBlack50: color.offBlack50,
@@ -32,215 +261,138 @@ export const NeutralColors = {
     offBlack16: color.offBlack16,
 };
 
+<ColorGroup
+    colors={TransparentNeutralColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### White
+
 export const WhiteShades = {
-    offBlack8: color.offBlack8,
     offWhite: color.offWhite,
-    offWhite64: color.offWhite64,
-    offWhite50: color.offWhite50,
+    white64: color.white64,
+    white50: color.white50,
     white: color.white,
 };
 
-export const BrandColors = {
-    darkBlue: color.darkBlue,
-    lightBlue: color.lightBlue,
-    teal: color.teal,
-    pink: color.pink,
+<ColorGroup
+    colors={WhiteShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
+/>
+
+### Blue
+
+export const BlueShades = {
+    activeBlue: color.activeBlue,
+    blue: color.blue,
+    fadedBlue: color.fadedBlue,
+    fadedBlue24: color.fadedBlue24,
+    fadedBlue16: color.fadedBlue16,
+    fadedBlue8: color.fadedBlue8,
 };
 
-# Color
-
-Colors are a key part of our design system. They help us communicate information
-and create visual hierarchy. This document outlines the colors we use in our
-products and brand.
-
-<View style={{marginBottom: 32}}>
-    <Banner
-        kind="info"
-        layout="full-width"
-        text="To use these colors in your project, check out the Color tokens page."
-        actions={[
-            {
-                type: "custom",
-                // NOTE: This is a hack to bypass a Storybook bug where the
-                // link doesn't work correctly with iframes.
-                node: (
-                    <a
-                        href="../?path=/docs/packages-tokens-color--docs"
-                        target="_blank"
-                    >
-                        See Color tokens
-                    </a>
-                ),
-            },
-        ]}
-    />
-</View>
-
-## Summary
-
-<ColorPalette>
-    <ColorItem
-        title="Product colors"
-        subtitle="Use only accessible colors against appropriate backgrounds for links, buttons, and other navigational elements."
-        colors={ProductColors}
-    />
-    <ColorItem
-        title="Neutral colors"
-        subtitle="Use for text and chrome components."
-        colors={NeutralColors}
-    />
-    <ColorItem colors={WhiteShades} />
-    <ColorItem
-        title="Brand colors"
-        subtitle="Use for designing anything centered around Khan Academy as a brand. Secondary brand colors should only be used for decoration. Expanded brand palette used for illustrations."
-        colors={BrandColors}
-    />
-</ColorPalette>
-
-## Categories
-
-### Product
-
-Use only accessible colors against appropriate backgrounds for links, buttons,
-and other navigational elements.
-
-<Swatch
-    name="blue"
-    color={color.blue}
-    use="text"
-    description="Actionable. Used to indicate actionable items like links and buttons."
+<ColorGroup
+    colors={BlueShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
 />
 
-<Swatch
-    name="purple"
-    color={color.purple}
-    use="icons"
-    description="Used to indicate Mastery."
+### Green
+
+export const GreenShades = {
+    green: color.green,
+    fadedGreen24: color.fadedGreen24,
+    fadedGreen16: color.fadedGreen16,
+    fadedGreen8: color.fadedGreen8,
+};
+
+<ColorGroup
+    colors={GreenShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
 />
 
-<Swatch
-    name="gold"
-    color={color.gold}
-    description="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
-    segments={1}
+### Gold
+
+export const GoldShades = {
+    gold: color.gold,
+    fadedGold24: color.fadedGold24,
+    fadedGold16: color.fadedGold16,
+    fadedGold8: color.fadedGold8,
+};
+
+<ColorGroup
+    colors={GoldShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
 />
 
-<Swatch
-    name="green"
-    color={color.green}
-    use="icons"
-    description="Affirmative. Used to indicate success states and correctness. Do not use for text."
+### Purple
+
+export const PurpleShades = {
+    purple: color.purple,
+    fadedPurple24: color.fadedPurple24,
+    fadedPurple16: color.fadedPurple16,
+    fadedPurple8: color.fadedPurple8,
+};
+
+<ColorGroup
+    colors={PurpleShades}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
 />
-
-<Swatch
-    name="red"
-    color={color.red}
-    use="text"
-    description="Negative. Used for errors and destructive actions."
-/>
-
----
-
-### Neutral
-
-Use for text and chrome components.
-
-<Swatch
-    name="offBlack"
-    color={color.offBlack}
-    use="text"
-    description="Primary text color. Can also used for links in lists."
-/>
-
-<Swatch
-    name="offBlack64"
-    color={color.offBlack64}
-    use="text"
-    description="Secondary text color and modal backdrop color."
-/>
-
-<Swatch
-    name="offBlack50"
-    color={color.offBlack50}
-    description="Fieldset borders."
-    segments={1}
-/>
-
-<Swatch
-    name="offBlack32"
-    color={color.offBlack32}
-    description="Disabled states."
-    segments={1}
-/>
-
-<Swatch
-    name="offBlack16"
-    color={color.offBlack16}
-    description="Hairline color."
-    segments={1}
-/>
-
-<Swatch
-    name="offBlack8"
-    color={color.offBlack8}
-    description="Shadow color."
-    segments={1}
-/>
-
-<Swatch
-    name="offWhite"
-    color={color.offWhite}
-    description="Only used as a secondary background color."
-    segments={1}
-/>
-
-<Swatch
-    name="white"
-    color={color.white}
-    use="text"
-    description="Primary background color and primary text color on colored backgrounds."
-    segments={2}
-/>
-
-<Swatch
-    name="white64"
-    color={color.white64}
-    use="text"
-    description="Secondary text color on colored backgrounds, and hairline color on colored backgrounds."
-    segments={1}
-    dark={true}
-/>
-
----
 
 ### Brand
 
-Use for designing anything centered around Khan Academy as a brand. Secondary brand colors should only be used for decoration. Expanded brand palette used for illustrations.
+export const BrandColors = {
+    darkBlue: color.darkBlue,
+    teal: color.teal,
+};
 
-<Swatch
-    name="darkBlue"
-    color={color.darkBlue}
-    description="Primary brand color. Can be used as a background color in headers and illustrative areas."
-    segments={1}
+<ColorGroup
+    colors={BrandColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
 />
 
-<Swatch
-    name="lightBlue"
-    color={color.lightBlue}
-    description="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
-    segments={1}
+### Khanmigo
+
+export const KhanmigoColors = {
+    eggplant: color.eggplant,
+    fadedEggplant8: color.fadedEggplant8,
+};
+
+<ColorGroup
+    colors={KhanmigoColors}
+    group="color"
+    variant="primitive"
+    style={styles.gridSmall}
 />
 
-<Swatch
-    name="teal"
-    color={color.teal}
-    description="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
-    segments={1}
-/>
+## Accessibility
 
-<Swatch
-    name="pink"
-    color={color.pink}
-    description="Secondary brand color."
-    segments={1}
-/>
+When using color, it is important to consider accessibility. The contrast
+between text and background colors should be high enough to ensure readability
+for all users. The <a
+href="https://www.w3.org/WAI/WCAG22/Understanding/distinguishable">Web Content
+Accessibility Guidelines (WCAG)</a> provide guidance on how to ensure that our
+content is accessible to all users.
+
+For more detail, you can check the following Success Criteria documents:
+
+-   <a
+    href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">Use of Color</a>
+-   <a
+    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">Contrast (minimum)</a>
+-   <a
+    href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">Non-text
+    Contrast (Level AA)</a>

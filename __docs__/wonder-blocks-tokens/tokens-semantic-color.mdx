@@ -4,24 +4,26 @@ import TokenTable from "../../.storybook/components/token-table";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 
-<Meta title="Packages / Tokens / Color" />
+import {flattenNestedTokens} from "../components/tokens-util";
 
-# Color
+<Meta title="Packages / Tokens / Semantic Color" />
+
+# Semantic Color
 
 <ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
-The color palette containing all the primitive Wonder Blocks colors.
+The color palette containing all the semantic Wonder Blocks colors.
 
-<View style={{marginBottom: tokens.spacing.xLarge_32}}>
+<View style={{marginBottom: spacing.xLarge_32}}>
     <Banner
-        kind="warning"
+        kind="info"
         layout="full-width"
-        text="We recommend using semantic colors whenever possible, but if you need a color that doesn't fit into any of the categories, you can use these primitive colors. Otherwise, please take a look at our semantic color tokens."
+        text="This is the recommended approach. If you need a color that doesn't fit into any of the categories, you can use the primitive colors."
         actions={[
             {
                 type: "custom",
@@ -29,10 +31,10 @@ The color palette containing all the primitive Wonder Blocks colors.
                 // link doesn't work correctly with iframes.
                 node: (
                     <a
-                        href="/?path=/docs/packages-tokens-semantic-color--docs"
+                        href="/?path=/docs/packages-tokens-color--docs"
                         target="_blank"
                     >
-                        Semantic Color tokens
+                        Primitive Color tokens
                     </a>
                 ),
             },
@@ -42,12 +44,17 @@ The color palette containing all the primitive Wonder Blocks colors.
 
 ## Usage
 
-`wonder-blocks-tokens` exports a set of colors that can be used in your
+`wonder-blocks-tokens` exports a set of semantic colors that can be used in your
 components. The colors are exported as constants and can be used like so:
 
 ```ts
-import {color} from "@khanacademy/wonder-blocks-tokens";
-const styles = {background: color.darkBlue};
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+const styles = {
+    background: semanticColor.surface.secondary,
+    border: semanticColor.border.strong,
+    color: semanticColor.text.primary,
+};
 ```
 
 ## Tokens
@@ -56,7 +63,7 @@ const styles = {background: color.darkBlue};
     columns={[
         {
             label: "Token",
-            cell: (row) => <code>color.{row.label}</code>,
+            cell: (row) => <code>semanticColor.{row.label}</code>,
         },
         {
             label: "Value",
@@ -67,8 +74,8 @@ const styles = {background: color.darkBlue};
             cell: (row) => (
                 <View
                     style={{
-                        background: tokens.color.offBlack8,
-                        padding: tokens.spacing.xxSmall_6,
+                        background: color.offBlack8,
+                        padding: spacing.xxSmall_6,
                     }}
                 >
                     <View
@@ -83,5 +90,5 @@ const styles = {background: color.darkBlue};
             ),
         },
     ]}
-    tokens={tokens.color}
+    tokens={flattenNestedTokens(semanticColor)}
 />
