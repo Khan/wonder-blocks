@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-link
 
+## 6.1.6
+
+### Patch Changes
+
+-   f17dc1ee: Change Link to define color.pink internally
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+
 ## 6.1.5
 
 ### Patch Changes

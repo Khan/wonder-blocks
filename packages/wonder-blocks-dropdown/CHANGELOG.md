@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.4.5
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-cell@3.4.3
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+    -   @khanacademy/wonder-blocks-layout@2.1.3
+    -   @khanacademy/wonder-blocks-modal@5.1.9
+    -   @khanacademy/wonder-blocks-search-field@2.2.23
+
 ## 5.4.4
 
 ### Patch Changes
