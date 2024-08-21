@@ -52,7 +52,7 @@ export const InlineStyles: StoryComponentType = () => (
             style={[
                 styles.container,
                 {
-                    background: color.lightBlue,
+                    background: color.fadedPurple24,
                     border: `1px solid ${color.blue}`,
                     padding: spacing.xxxSmall_4,
                 },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     },
 
     view: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${color.purple}`,
         gap: spacing.medium_16,
         padding: spacing.medium_16,
     },

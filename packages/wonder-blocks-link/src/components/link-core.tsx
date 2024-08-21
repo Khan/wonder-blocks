@@ -191,7 +191,10 @@ const _generateStyles = (
         throw new Error("Only primary link is visitable");
     }
 
-    const {blue, pink, purple, white, offBlack, offBlack32, offBlack64} = color;
+    const {blue, purple, white, offBlack, offBlack32, offBlack64} = color;
+
+    // NOTE: This color is only used here.
+    const pink = "#fa50ae";
 
     // Standard purple
     const linkPurple = mix(fade(offBlack, 0.08), purple);

@@ -61,7 +61,7 @@ export const Default: StoryComponentType = {
             }),
             small: StyleSheet.create({
                 test: {
-                    backgroundColor: color.lightBlue,
+                    backgroundColor: color.purple,
                     color: color.white,
                 },
             }),
@@ -92,7 +92,7 @@ export const ScreenSizeStyles: StoryComponentType = () => {
         }),
         small: StyleSheet.create({
             test: {
-                backgroundColor: color.lightBlue,
+                backgroundColor: color.purple,
                 color: color.white,
             },
         }),
@@ -149,7 +149,7 @@ export const AllStyles: StoryComponentType = () => {
 
         small: StyleSheet.create({
             test: {
-                backgroundColor: color.lightBlue,
+                backgroundColor: color.purple,
             },
         }),
     } as const;
@@ -193,7 +193,7 @@ export const CustomSpec: StoryComponentType = () => {
 
         small: StyleSheet.create({
             example: {
-                backgroundColor: color.lightBlue,
+                backgroundColor: color.purple,
                 padding: spacing.small_12,
             },
         }),

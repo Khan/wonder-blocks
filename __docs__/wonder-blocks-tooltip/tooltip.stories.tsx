@@ -471,7 +471,7 @@ const styles = StyleSheet.create({
         height: "200vh",
     },
     block: {
-        border: `solid 1px ${color.lightBlue}`,
+        border: `solid 1px ${color.purple}`,
         width: spacing.xLarge_32,
         height: spacing.xLarge_32,
         alignItems: "center",
