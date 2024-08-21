@@ -762,9 +762,11 @@ export const WithDocumentRootBoundary: StoryComponentType = () => {
 WithDocumentRootBoundary.parameters = {
     docs: {
         description: {
-            story: `Sometimes you need to add actions to be able to
-                control the popover state. For this reason, you can make use of the
-                \`actions\` prop:`,
+            story: `Sometimes you need to change the underlining behavior to position the
+                Popover by the whole webpage (document) instead of by the viewport. This is a
+                useful tool for popovers with large content that might not fit in small screen
+                sizes or at 400% zoom. For this reason, you can make use of the
+                \`rootBoundary\` prop:`,
         },
     },
 };

@@ -111,6 +111,13 @@ function _modifyPosition({
     }
 }
 
+const smallViewportModifier: SmallViewportModifier = {
+    name: "smallViewport",
+    enabled: true,
+    phase: "main",
+    fn: _modifyPosition,
+};
+
 /**
  * A component that wraps react-popper's Popper component to provide a
  * consistent interface for positioning floating elements.
@@ -225,13 +232,7 @@ export default class TooltipPopper extends React.Component<Props> {
     render(): React.ReactNode {
         const {anchorElement, placement, rootBoundary} = this.props;
 
-        const smallViewportModifier: SmallViewportModifier = {
-            name: "smallViewport",
-            enabled: true,
-            phase: "main",
-            fn: _modifyPosition,
-        };
-
+        // TODO(WB-1680): Use floating-ui's
         const modifiers: Modifiers[] = [smallViewportModifier];
 
         if (rootBoundary === "viewport") {
