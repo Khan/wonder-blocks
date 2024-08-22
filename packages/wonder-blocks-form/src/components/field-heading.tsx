@@ -82,7 +82,7 @@ export default class FieldHeading extends React.Component<Props> {
     }
 
     maybeRenderDescription(): React.ReactNode | null | undefined {
-        const {description, testId} = this.props;
+        const {description, testId, light} = this.props;
 
         if (!description) {
             return null;
@@ -91,7 +91,7 @@ export default class FieldHeading extends React.Component<Props> {
         return (
             <React.Fragment>
                 <LabelSmall
-                    style={styles.description}
+                    style={light ? styles.lightDescription : styles.description}
                     testId={testId && `${testId}-description`}
                 >
                     {description}
@@ -144,6 +144,9 @@ const styles = StyleSheet.create({
     },
     description: {
         color: color.offBlack64,
+    },
+    lightDescription: {
+        color: color.white64,
     },
     error: {
         color: color.red,

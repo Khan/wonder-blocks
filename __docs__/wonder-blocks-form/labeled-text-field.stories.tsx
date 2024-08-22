@@ -452,11 +452,7 @@ export const Light: StoryComponentType = (args: any) => {
                 label={
                     <LabelMedium style={styles.whiteColor}>Name</LabelMedium>
                 }
-                description={
-                    <LabelSmall style={styles.offWhiteColor}>
-                        Please enter your name
-                    </LabelSmall>
-                }
+                description={<LabelSmall>Please enter your name</LabelSmall>}
                 value={value}
                 onChange={setValue}
                 placeholder="Name"
@@ -507,9 +503,7 @@ export const ErrorLight: StoryComponentType = (args: any) => {
                     <LabelMedium style={styles.whiteColor}>Email</LabelMedium>
                 }
                 description={
-                    <LabelSmall style={styles.offWhiteColor}>
-                        Please provide your personal email
-                    </LabelSmall>
+                    <LabelSmall>Please provide your personal email</LabelSmall>
                 }
                 type="email"
                 value={value}
@@ -772,9 +766,6 @@ const styles = StyleSheet.create({
     },
     whiteColor: {
         color: color.white,
-    },
-    offWhiteColor: {
-        color: color.white64,
     },
     button: {
         maxWidth: 150,
