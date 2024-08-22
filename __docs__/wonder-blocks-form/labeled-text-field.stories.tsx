@@ -456,6 +456,7 @@ export const Light: StoryComponentType = (args: any) => {
                 placeholder="Name"
                 light={true}
                 onKeyDown={handleKeyDown}
+                required={true}
             />
         </View>
     );
@@ -508,6 +509,7 @@ export const ErrorLight: StoryComponentType = (args: any) => {
                 placeholder="Email"
                 validate={validate}
                 onKeyDown={handleKeyDown}
+                required={true}
             />
         </View>
     );

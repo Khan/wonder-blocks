@@ -59,7 +59,10 @@ export default class FieldHeading extends React.Component<Props> {
         const {label, id, required, testId, light} = this.props;
 
         const requiredIcon = (
-            <StyledSpan style={styles.required} aria-hidden={true}>
+            <StyledSpan
+                style={light ? styles.lightRequired : styles.required}
+                aria-hidden={true}
+            >
                 {" "}
                 *
             </StyledSpan>
@@ -159,5 +162,8 @@ const styles = StyleSheet.create({
     },
     required: {
         color: color.red,
+    },
+    lightRequired: {
+        color: color.fadedRed,
     },
 });
