@@ -56,7 +56,7 @@ const StyledSpan = addStyle("span");
  */
 export default class FieldHeading extends React.Component<Props> {
     renderLabel(): React.ReactNode {
-        const {label, id, required, testId} = this.props;
+        const {label, id, required, testId, light} = this.props;
 
         const requiredIcon = (
             <StyledSpan style={styles.required} aria-hidden={true}>
@@ -68,7 +68,7 @@ export default class FieldHeading extends React.Component<Props> {
         return (
             <React.Fragment>
                 <LabelMedium
-                    style={styles.label}
+                    style={light ? styles.lightLabel : styles.label}
                     tag="label"
                     htmlFor={id && `${id}-field`}
                     testId={testId && `${testId}-label`}
@@ -141,6 +141,9 @@ export default class FieldHeading extends React.Component<Props> {
 const styles = StyleSheet.create({
     label: {
         color: color.offBlack,
+    },
+    lightLabel: {
+        color: color.white,
     },
     description: {
         color: color.offBlack64,

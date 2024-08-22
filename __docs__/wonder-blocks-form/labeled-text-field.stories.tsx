@@ -449,9 +449,7 @@ export const Light: StoryComponentType = (args: any) => {
         <View style={styles.darkBackground}>
             <LabeledTextField
                 {...args}
-                label={
-                    <LabelMedium style={styles.whiteColor}>Name</LabelMedium>
-                }
+                label={<LabelMedium>Name</LabelMedium>}
                 description={<LabelSmall>Please enter your name</LabelSmall>}
                 value={value}
                 onChange={setValue}
@@ -499,9 +497,7 @@ export const ErrorLight: StoryComponentType = (args: any) => {
         <View style={styles.darkBackground}>
             <LabeledTextField
                 {...args}
-                label={
-                    <LabelMedium style={styles.whiteColor}>Email</LabelMedium>
-                }
+                label={<LabelMedium>Email</LabelMedium>}
                 description={
                     <LabelSmall>Please provide your personal email</LabelSmall>
                 }
@@ -763,9 +759,6 @@ const styles = StyleSheet.create({
     darkBackground: {
         background: color.darkBlue,
         padding: `${spacing.medium_16}px`,
-    },
-    whiteColor: {
-        color: color.white,
     },
     button: {
         maxWidth: 150,
