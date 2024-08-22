@@ -454,24 +454,28 @@ export const Light: StoryComponentType = (args: any) => {
     };
 
     return (
-        <View style={styles.darkBackground}>
-            <LabeledTextField
-                {...args}
-                label="Name"
-                description="Please enter your name"
-                value={value}
-                onChange={setValue}
-                placeholder="Name"
-                light={true}
-                onKeyDown={handleKeyDown}
-                required={true}
-            />
-        </View>
+        <LabeledTextField
+            {...args}
+            label="Name"
+            description="Please enter your name"
+            value={value}
+            onChange={setValue}
+            placeholder="Name"
+            light={true}
+            onKeyDown={handleKeyDown}
+            required={true}
+        />
     );
 };
 
 Light.args = {
     disabled: false,
+};
+
+Light.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
 };
 
 /**
@@ -495,26 +499,30 @@ export const ErrorLight: StoryComponentType = (args: any) => {
     };
 
     return (
-        <View style={styles.darkBackground}>
-            <LabeledTextField
-                {...args}
-                label="Email"
-                description="Please provide your personal email"
-                type="email"
-                value={value}
-                light={true}
-                onChange={setValue}
-                placeholder="Email"
-                validate={validate}
-                onKeyDown={handleKeyDown}
-                required={true}
-            />
-        </View>
+        <LabeledTextField
+            {...args}
+            label="Email"
+            description="Please provide your personal email"
+            type="email"
+            value={value}
+            light={true}
+            onChange={setValue}
+            placeholder="Email"
+            validate={validate}
+            onKeyDown={handleKeyDown}
+            required={true}
+        />
     );
 };
 
 ErrorLight.args = {
     disabled: false,
+};
+
+ErrorLight.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
 };
 
 export const Disabled: StoryComponentType = () => (
@@ -747,10 +755,6 @@ AutoComplete.parameters = {
 };
 
 const styles = StyleSheet.create({
-    darkBackground: {
-        background: color.darkBlue,
-        padding: `${spacing.medium_16}px`,
-    },
     button: {
         maxWidth: 150,
     },
