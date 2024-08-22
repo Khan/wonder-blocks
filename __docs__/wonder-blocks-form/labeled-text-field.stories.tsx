@@ -449,7 +449,7 @@ export const Light: StoryComponentType = (args: any) => {
         <View style={styles.darkBackground}>
             <LabeledTextField
                 {...args}
-                label={<LabelMedium>Name</LabelMedium>}
+                label="Name"
                 description={<LabelSmall>Please enter your name</LabelSmall>}
                 value={value}
                 onChange={setValue}
@@ -497,7 +497,7 @@ export const ErrorLight: StoryComponentType = (args: any) => {
         <View style={styles.darkBackground}>
             <LabeledTextField
                 {...args}
-                label={<LabelMedium>Email</LabelMedium>}
+                label="Email"
                 description={
                     <LabelSmall>Please provide your personal email</LabelSmall>
                 }
