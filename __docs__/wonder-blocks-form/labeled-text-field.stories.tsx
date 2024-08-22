@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
