@@ -39,7 +39,7 @@
     "react-window": "^1.8.5"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^6.3.7",
+    "@khanacademy/wonder-blocks-button": "^6.3.8",
     "@khanacademy/wb-dev-build-settings": "^1.0.1"
   }
 }
