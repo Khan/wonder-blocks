@@ -59,6 +59,7 @@ export const Default: StoryComponentType = {
     args: {
         content: "This is a text tooltip on the top",
         children: "some text",
+        rootBoundary: "document",
     } as TooltipArgs,
 };
 

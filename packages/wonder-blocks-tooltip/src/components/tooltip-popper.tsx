@@ -235,21 +235,12 @@ export default class TooltipPopper extends React.Component<Props> {
         // TODO(WB-1680): Use floating-ui's
         const modifiers: Modifiers[] = [smallViewportModifier];
 
-        if (rootBoundary === "viewport") {
-            modifiers.push({
-                name: "preventOverflow",
-                options: {
-                    rootBoundary: "viewport",
-                },
-            });
-        } else {
-            modifiers.push({
-                name: "flip",
-                options: {
-                    rootBoundary: "document",
-                },
-            });
-        }
+        modifiers.push({
+            name: "flip",
+            options: {
+                rootBoundary: "document",
+            },
+        });
 
         return (
             <Popper
