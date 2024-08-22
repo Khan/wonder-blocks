@@ -42,6 +42,10 @@ type Props = {
      * Optional test ID for e2e testing.
      */
     testId?: string;
+    /**
+     * Change the field’s sub-components to fit a dark background.
+     */
+    light?: boolean;
 };
 
 const StyledSpan = addStyle("span");
