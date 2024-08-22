@@ -34,6 +34,7 @@ import TooltipBubble from "./tooltip-bubble";
 import TooltipContent from "./tooltip-content";
 import TooltipPopper from "./tooltip-popper";
 import type {ContentStyle, Placement} from "../util/types";
+import {RootBoundary} from "@popperjs/core";
 
 type Props = AriaProps &
     Readonly<{
@@ -116,6 +117,13 @@ type Props = AriaProps &
          * Optional background color.
          */
         backgroundColor?: keyof typeof color;
+        /**
+         * Optional property to set what the root boundary is for the popper behavior.
+         * This is set to "viewport" by default, causing the popper to be positioned based
+         * on the user's viewport. If set to "document", it will position itself based
+         * on where there is available room within the document body.
+         */
+        rootBoundary?: RootBoundary;
     }>;
 
 type State = Readonly<{
@@ -136,6 +144,7 @@ type State = Readonly<{
 type DefaultProps = {
     forceAnchorFocusivity: Props["forceAnchorFocusivity"];
     placement: Props["placement"];
+    rootBoundary: Props["rootBoundary"];
 };
 
 /**
@@ -166,6 +175,7 @@ export default class Tooltip extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         forceAnchorFocusivity: true,
         placement: "top",
+        rootBoundary: "viewport",
     };
 
     /**
@@ -216,7 +226,7 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderPopper(ids?: IIdentifierFactory): React.ReactNode {
-        const {id, backgroundColor} = this.props;
+        const {id, backgroundColor, rootBoundary} = this.props;
         const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
         if (!bubbleId) {
             throw new Error("Did not get an identifier factory nor a id prop");
@@ -225,6 +235,7 @@ export default class Tooltip extends React.Component<Props, State> {
         const {placement} = this.props;
         return (
             <TooltipPopper
+                rootBoundary={rootBoundary}
                 anchorElement={this.state.anchorElement}
                 placement={placement}
                 autoUpdate={this.props.autoUpdate}
