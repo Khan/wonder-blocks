@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -459,7 +458,7 @@ export const Light: StoryComponentType = (args: any) => {
             <LabeledTextField
                 {...args}
                 label="Name"
-                description={<LabelSmall>Please enter your name</LabelSmall>}
+                description="Please enter your name"
                 value={value}
                 onChange={setValue}
                 placeholder="Name"
@@ -500,9 +499,7 @@ export const ErrorLight: StoryComponentType = (args: any) => {
             <LabeledTextField
                 {...args}
                 label="Email"
-                description={
-                    <LabelSmall>Please provide your personal email</LabelSmall>
-                }
+                description="Please provide your personal email"
                 type="email"
                 value={value}
                 light={true}
