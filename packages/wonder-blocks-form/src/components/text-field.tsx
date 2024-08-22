@@ -355,6 +355,7 @@ const styles = StyleSheet.create({
         background: color.white,
         border: `1px solid ${color.blue}`,
         color: color.offBlack,
+        outline: `1px solid ${color.blue}`,
         "::placeholder": {
             color: color.offBlack64,
         },
