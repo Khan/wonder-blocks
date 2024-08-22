@@ -102,7 +102,7 @@ export default class FieldHeading extends React.Component<Props> {
     }
 
     maybeRenderError(): React.ReactNode | null | undefined {
-        const {error, id, testId} = this.props;
+        const {error, id, testId, light} = this.props;
 
         if (!error) {
             return null;
@@ -112,7 +112,7 @@ export default class FieldHeading extends React.Component<Props> {
             <React.Fragment>
                 <Strut size={spacing.small_12} />
                 <LabelSmall
-                    style={styles.error}
+                    style={light ? styles.lightError : styles.error}
                     role="alert"
                     id={id && `${id}-error`}
                     testId={testId && `${testId}-error`}
@@ -147,6 +147,9 @@ const styles = StyleSheet.create({
     },
     error: {
         color: color.red,
+    },
+    lightError: {
+        color: color.fadedRed,
     },
     required: {
         color: color.red,
