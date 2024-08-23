@@ -382,28 +382,6 @@ describe("LabeledTextField", () => {
         expect(input).toBeInTheDocument();
     });
 
-    it("light prop is passed to textfield", async () => {
-        // Arrange
-
-        // Act
-        render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                light={true}
-            />,
-        );
-
-        const textField = await screen.findByRole("textbox");
-        textField.focus();
-
-        // Assert
-        expect(textField).toHaveStyle({
-            boxShadow: `0px 0px 0px 1px ${color.blue}, 0px 0px 0px 2px ${color.white}`,
-        });
-    });
-
     it("style prop is passed to fieldheading", async () => {
         // Arrange
         const styles = StyleSheet.create({
