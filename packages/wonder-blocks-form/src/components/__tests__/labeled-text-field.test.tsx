@@ -3,7 +3,6 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
-import {color} from "@khanacademy/wonder-blocks-tokens";
 import LabeledTextField from "../labeled-text-field";
 
 describe("LabeledTextField", () => {
