@@ -479,7 +479,7 @@ Light.parameters = {
 };
 
 /**
- * If an input value fails validation and the `light\` prop is true,
+ * If an input value fails validation and the `light` prop is true,
  * `TextField` will have light error styling.
  */
 export const ErrorLight: StoryComponentType = (args: any) => {
