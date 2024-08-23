@@ -440,7 +440,7 @@ export const Error: StoryComponentType = {
  * `light` prop is set to `true`:
  * - the underlying `TextField` will have a light border when focused
  * - a specific light styling is used for the error state, as seen in the
- * `ErrorLight\` story
+ * `ErrorLight` story
  * - the text in the component (label, required indicator, description, and
  * error message) are modified to work on the dark background
  */
