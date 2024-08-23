@@ -1,8 +1,8 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {Falsy, StyleSheet} from "aphrodite";
 
 import {IDProvider, addStyle} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -240,6 +240,26 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         });
     };
 
+    getStyles = (): (React.CSSProperties | Falsy)[] => {
+        const {disabled, light} = this.props;
+        const {error} = this.state;
+        // Base styles are the styles that apply regardless of light mode
+        const baseStyles = [styles.input, typographyStyles.LabelMedium];
+        const defaultStyles = [
+            styles.default,
+            !disabled && styles.defaultFocus,
+            disabled && styles.disabled,
+            !!error && styles.error,
+        ];
+        const lightStyles = [
+            styles.light,
+            !disabled && styles.lightFocus,
+            disabled && styles.lightDisabled,
+            !!error && styles.lightError,
+        ];
+        return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
+    };
+
     render(): React.ReactNode {
         const {
             id,
@@ -249,7 +269,6 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             disabled,
             onKeyDown,
             placeholder,
-            light,
             style,
             testId,
             readOnly,
@@ -259,6 +278,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             // The following props are being included here to avoid
             // passing them down to the otherProps spread
             /* eslint-disable @typescript-eslint/no-unused-vars */
+            light,
             onFocus,
             onBlur,
             onValidate,
@@ -274,24 +294,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             <IDProvider id={id} scope="text-field">
                 {(uniqueId) => (
                     <StyledInput
-                        style={[
-                            styles.input,
-                            typographyStyles.LabelMedium,
-                            styles.default,
-                            // Prioritizes disabled, then focused, then error (if any)
-                            disabled
-                                ? styles.disabled
-                                : this.state.focused
-                                ? [styles.focused, light && styles.defaultLight]
-                                : !!this.state.error && [
-                                      styles.error,
-                                      light && styles.errorLight,
-                                  ],
-                            // Cast `this.state.error` into boolean since it's being
-                            // used as a conditional
-                            !!this.state.error && styles.error,
-                            style && style,
-                        ]}
+                        style={[...this.getStyles(), style]}
                         id={uniqueId}
                         type={type}
                         placeholder={placeholder}
@@ -320,12 +323,10 @@ const styles = StyleSheet.create({
     input: {
         width: "100%",
         height: 40,
-        borderRadius: 4,
+        borderRadius: border.radius.medium_4,
         boxSizing: "border-box",
         paddingLeft: spacing.medium_16,
         margin: 0,
-        outline: "none",
-        boxShadow: "none",
     },
     default: {
         background: color.white,
@@ -335,6 +336,13 @@ const styles = StyleSheet.create({
             color: color.offBlack64,
         },
     },
+    defaultFocus: {
+        ":focus-visible": {
+            borderColor: color.blue,
+            outline: `1px solid ${color.blue}`,
+            outlineOffset: 0, // Explicitly set outline offset to 0 because Safari sets a default offset
+        },
+    },
     error: {
         background: color.fadedRed8,
         border: `1px solid ${color.red}`,
@@ -342,28 +350,67 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: color.offBlack64,
         },
+        ":focus-visible": {
+            outlineColor: color.red,
+            borderColor: color.red,
+        },
     },
     disabled: {
         background: color.offWhite,
         border: `1px solid ${color.offBlack16}`,
         color: color.offBlack64,
         "::placeholder": {
-            color: color.offBlack32,
+            color: color.offBlack64,
+        },
+        cursor: "not-allowed",
+        ":focus-visible": {
+            outline: "none",
+            boxShadow: `0 0 0 1px ${color.white}, 0 0 0 3px ${color.offBlack32}`,
         },
     },
-    focused: {
+    light: {
         background: color.white,
-        border: `1px solid ${color.blue}`,
+        border: `1px solid ${color.offBlack16}`,
         color: color.offBlack,
         "::placeholder": {
             color: color.offBlack64,
         },
     },
-    defaultLight: {
-        boxShadow: `0px 0px 0px 1px ${color.blue}, 0px 0px 0px 2px ${color.white}`,
+    lightFocus: {
+        ":focus-visible": {
+            outline: `1px solid ${color.blue}`,
+            outlineOffset: 0, // Explicitly set outline offset to 0 because Safari sets a default offset
+            borderColor: color.blue,
+            boxShadow: `0px 0px 0px 2px ${color.blue}, 0px 0px 0px 3px ${color.white}`,
+        },
     },
-    errorLight: {
+    lightDisabled: {
+        backgroundColor: "transparent",
+        border: `1px solid ${color.white32}`,
+        color: color.white64,
+        "::placeholder": {
+            color: color.white64,
+        },
+        cursor: "not-allowed",
+        ":focus-visible": {
+            borderColor: mix(color.white32, color.blue),
+            outline: "none",
+            boxShadow: `0 0 0 1px ${color.offBlack32}, 0 0 0 3px ${color.fadedBlue}`,
+        },
+    },
+    lightError: {
+        background: color.fadedRed8,
+        border: `1px solid ${color.red}`,
         boxShadow: `0px 0px 0px 1px ${color.red}, 0px 0px 0px 2px ${color.white}`,
+        color: color.offBlack,
+        "::placeholder": {
+            color: color.offBlack64,
+        },
+        ":focus-visible": {
+            outlineColor: color.red,
+            borderColor: color.red,
+            boxShadow: `0px 0px 0px 2px ${color.red}, 0px 0px 0px 3px ${color.white}`,
+        },
     },
 });
 
