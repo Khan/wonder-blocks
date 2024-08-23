@@ -152,10 +152,6 @@ type State = {
      * Displayed when the validation fails.
      */
     error: string | null | undefined;
-    /**
-     * The user focuses on this field.
-     */
-    focused: boolean;
 };
 
 /**
@@ -178,7 +174,6 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
 
     state: State = {
         error: null,
-        focused: false,
     };
 
     componentDidMount() {
@@ -222,22 +217,18 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         event,
     ) => {
         const {onFocus} = this.props;
-        this.setState({focused: true}, () => {
-            if (onFocus) {
-                onFocus(event);
-            }
-        });
+        if (onFocus) {
+            onFocus(event);
+        }
     };
 
     handleBlur: (event: React.FocusEvent<HTMLInputElement>) => unknown = (
         event,
     ) => {
         const {onBlur} = this.props;
-        this.setState({focused: false}, () => {
-            if (onBlur) {
-                onBlur(event);
-            }
-        });
+        if (onBlur) {
+            onBlur(event);
+        }
     };
 
     getStyles = (): (React.CSSProperties | Falsy)[] => {
