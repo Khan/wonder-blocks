@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Falsy, StyleSheet} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import {IDProvider, addStyle} from "@khanacademy/wonder-blocks-core";
 import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -231,7 +231,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         }
     };
 
-    getStyles = (): (React.CSSProperties | Falsy)[] => {
+    getStyles = (): StyleType => {
         const {disabled, light} = this.props;
         const {error} = this.state;
         // Base styles are the styles that apply regardless of light mode
@@ -285,7 +285,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             <IDProvider id={id} scope="text-field">
                 {(uniqueId) => (
                     <StyledInput
-                        style={[...this.getStyles(), style]}
+                        style={[this.getStyles(), style]}
                         id={uniqueId}
                         type={type}
                         placeholder={placeholder}
