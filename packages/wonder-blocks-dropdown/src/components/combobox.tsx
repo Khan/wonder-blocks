@@ -25,6 +25,7 @@ import {ComboboxLiveRegion} from "./combobox-live-region";
 import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
+import {getLabel} from "../util/helpers";
 
 type Props = {
     /**
@@ -151,10 +152,6 @@ export default function Combobox({
     testId,
     value = "",
 }: Props) {
-    // NOTE: Clear input value if we are in multi-select mode. The selected
-    // values are handled as individual Pill instances.
-    const initialValue = typeof value === "string" ? value : "";
-    const [inputValue, setInputValue] = React.useState(initialValue);
     const ids = useUniqueIdWithMock("combobox");
     const uniqueId = id ?? ids.get("listbox");
     // Ref to the combobox input element.
@@ -195,6 +192,18 @@ export default function Combobox({
         selectionType,
     });
 
+    const itemFromSelected = renderList.find(
+        (item) => item.props.value === selected,
+    )?.props;
+    const labelFromSelected = itemFromSelected
+        ? getLabel(itemFromSelected)
+        : "";
+
+    // NOTE: Clear input value if we are in multi-select mode. The selected
+    // values are handled as individual Pill instances.
+    const initialValue = typeof value === "string" ? labelFromSelected : "";
+    const [inputValue, setInputValue] = React.useState(initialValue);
+
     /**
      * Updates the open state of the combobox.
      */
@@ -211,8 +220,28 @@ export default function Combobox({
 
                 onToggle?.(newState);
             }
+
+            if (!newState) {
+                if (
+                    selectionType === "multiple" ||
+                    (selectionType === "single" && selected?.length === 0)
+                ) {
+                    // Reset the input value when the listbox is closed.
+                    setInputValue("");
+                }
+                // Reset the options list
+                setCurrentOptions(children);
+            }
         },
-        [disabled, isControlled, onToggle, openState],
+        [
+            children,
+            disabled,
+            isControlled,
+            onToggle,
+            openState,
+            selected?.length,
+            selectionType,
+        ],
     );
 
     // if selected value changes, update the input value
@@ -220,26 +249,32 @@ export default function Combobox({
         if (openState) {
             comboboxRef.current?.focus();
         }
+
+        if (selected === valueState) {
+            return;
+        }
+
         if (selectionType === "single" && typeof selected === "string") {
-            const labelFromSelected = renderList.find(
+            const itemFromSelected = renderList.find(
                 (item) => item.props.value === selected,
-            )?.props.label as string;
+            )?.props;
+            const labelFromSelected = itemFromSelected
+                ? getLabel(itemFromSelected)
+                : "";
 
             // If the value changes, update the parent component.
-            if (selected !== valueState) {
-                setInputValue(labelFromSelected);
-                setSelectedValue(selected);
-                onChange?.(selected);
-
-                // Close the dropdown when a selection is made.
-                updateOpenState(false);
-            }
+            setInputValue(labelFromSelected);
+            setSelectedValue(selected);
+            onChange?.(selected);
+            // Close the dropdown when a selection is made.
+            updateOpenState(false);
         } else if (Array.isArray(selected)) {
             // If the value changes, update the parent component.
-            if (selected !== valueState) {
-                setInputValue("");
-                onChange?.(selected);
-            }
+            setInputValue("");
+            setSelectedValue(selected);
+            onChange?.(selected);
+            // Reset the options list
+            setCurrentOptions(children);
         }
     }, [
         renderList,
@@ -250,6 +285,7 @@ export default function Combobox({
         updateOpenState,
         value,
         valueState,
+        children,
     ]);
 
     const {
@@ -262,25 +298,24 @@ export default function Combobox({
     });
 
     const focusOnFilteredItem = React.useCallback(
-        (value: string) => {
+        (filtered: Array<OptionItemComponent>, value: string) => {
             const lowercasedSearchText = value.normalize("NFC").toLowerCase();
 
             // Find the index of the first item that matches the search text.
-            const itemIndex = renderList.findIndex(
-                (item) =>
-                    !item.props.disabled &&
-                    String(item.props.label)
-                        .normalize("NFC")
-                        .toLowerCase()
-                        .trim()
-                        .includes(lowercasedSearchText),
+            const itemIndex = filtered.findIndex((item) =>
+                getLabel(item.props)
+                    .normalize("NFC")
+                    .toLowerCase()
+                    .trim()
+                    .includes(lowercasedSearchText),
             );
 
             // If no item matches the search text, don't focus on any item.
-            // Otherwise, focus on the first item that matches the search text.
+            // Otherwise, focus on the first item that matches the search
+            // text.
             setFocusedIndex(itemIndex);
         },
-        [renderList, setFocusedIndex],
+        [setFocusedIndex],
     );
 
     /**
@@ -329,10 +364,12 @@ export default function Combobox({
 
     // The labels of the selected values.
     const selectedLabels = React.useMemo(() => {
-        return renderList
+        // NOTE: Using the children prop to get the labels of the selected
+        // values, even when the list of options is filtered.
+        return children
             .filter((item) => selected?.includes(item.props.value))
-            .map((item) => item.props.label as string);
-    }, [renderList, selected]);
+            .map((item) => getLabel(item.props) as string);
+    }, [children, selected]);
 
     /**
      * Handles the click event on a pill to remove it from the list of selected
@@ -376,11 +413,10 @@ export default function Combobox({
     const filterItems = React.useCallback(
         (value: string) => {
             return children.filter((item) => {
-                const label = item.props.label as string;
-                return label
-                    .trim()
-                    .toLowerCase()
-                    .startsWith(value.toLowerCase());
+                const label = getLabel(item.props);
+                return (
+                    label.trim().toLowerCase().indexOf(value.toLowerCase()) > -1
+                );
             });
         },
         [children],
@@ -427,14 +463,16 @@ export default function Combobox({
                     value={inputValue}
                     onChange={(value: string) => {
                         setInputValue(value);
+                        let filteredItems = renderList;
                         if (autoComplete === "list") {
-                            const filtered = filterItems(value);
+                            filteredItems = filterItems(value);
+
                             // Update the list of options to display the
                             // filtered items.
-                            setCurrentOptions(filtered);
+                            setCurrentOptions(filteredItems);
                         }
 
-                        focusOnFilteredItem(value);
+                        focusOnFilteredItem(filteredItems, value);
                     }}
                     disabled={disabled}
                     onFocus={() => {
