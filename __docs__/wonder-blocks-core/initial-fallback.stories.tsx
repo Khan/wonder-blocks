@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {View, InitialFallback} from "@khanacademy/wonder-blocks-core";
-import packageConfig from "@khanacademy/wonder-blocks-core/package.json";
+import packageConfig from "../../packages/wonder-blocks-core/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
