@@ -209,38 +209,49 @@ export default function Combobox({
      */
     const updateOpenState = React.useCallback(
         (newState: boolean) => {
-            if (disabled) {
+            if (disabled || newState === openState) {
                 return;
             }
 
-            if (newState !== openState) {
-                if (!isControlled) {
-                    setOpen(newState);
-                }
-
-                onToggle?.(newState);
+            if (!isControlled) {
+                setOpen(newState);
             }
 
             if (!newState) {
+                // Reset focused index when the listbox is closed.
+                setFocusedIndex(-1);
+
+                const isSingleSelection =
+                    selectionType === "single" && typeof selected === "string";
                 if (
                     selectionType === "multiple" ||
-                    (selectionType === "single" && selected?.length === 0)
+                    (isSingleSelection && selected?.length === 0)
                 ) {
                     // Reset the input value when the listbox is closed.
                     setInputValue("");
                 }
+                // Revert the input value to the selected value when the listbox
+                // is closed.
+                if (isSingleSelection && selected?.length > 0) {
+                    setInputValue(labelFromSelected);
+                }
+
                 // Reset the options list
                 setCurrentOptions(children);
             }
+
+            onToggle?.(newState);
         },
         [
             children,
             disabled,
             isControlled,
+            labelFromSelected,
             onToggle,
             openState,
-            selected?.length,
+            selected,
             selectionType,
+            setFocusedIndex,
         ],
     );
 
@@ -413,10 +424,16 @@ export default function Combobox({
     const filterItems = React.useCallback(
         (value: string) => {
             return children.filter((item) => {
-                const label = getLabel(item.props);
-                return (
-                    label.trim().toLowerCase().indexOf(value.toLowerCase()) > -1
-                );
+                const lowerCasedLabel = getLabel(item.props)
+                    .normalize("NFC")
+                    .trim()
+                    .toLowerCase();
+
+                const lowercasedSearchText = value
+                    .normalize("NFC")
+                    .toLowerCase();
+
+                return lowerCasedLabel.indexOf(lowercasedSearchText) > -1;
             });
         },
         [children],
