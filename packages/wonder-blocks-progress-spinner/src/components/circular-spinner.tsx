@@ -21,7 +21,7 @@ const paths = {
 
 const colors = {
     light: color.white,
-    dark: color.offBlack16,
+    dark: color.offBlack50,
 } as const;
 
 const StyledPath = addStyle("path");
