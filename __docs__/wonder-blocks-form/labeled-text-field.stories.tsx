@@ -3,8 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -436,6 +435,15 @@ export const Error: StoryComponentType = {
     render: ErrorRender,
 };
 
+/**
+ * The `light` prop is intended to be used on a dark background. When the
+ * `light` prop is set to `true`:
+ * - the underlying `TextField` will have a light border when focused
+ * - a specific light styling is used for the error state, as seen in the
+ * `ErrorLight` story
+ * - the text in the component (label, required indicator, description, and
+ * error message) are modified to work on the dark background
+ */
 export const Light: StoryComponentType = (args: any) => {
     const [value, setValue] = React.useState("");
 
@@ -446,24 +454,17 @@ export const Light: StoryComponentType = (args: any) => {
     };
 
     return (
-        <View style={styles.darkBackground}>
-            <LabeledTextField
-                {...args}
-                label={
-                    <LabelMedium style={styles.whiteColor}>Name</LabelMedium>
-                }
-                description={
-                    <LabelSmall style={styles.offWhiteColor}>
-                        Please enter your name
-                    </LabelSmall>
-                }
-                value={value}
-                onChange={setValue}
-                placeholder="Name"
-                light={true}
-                onKeyDown={handleKeyDown}
-            />
-        </View>
+        <LabeledTextField
+            {...args}
+            label="Name"
+            description="Please enter your name"
+            value={value}
+            onChange={setValue}
+            placeholder="Name"
+            light={true}
+            onKeyDown={handleKeyDown}
+            required={true}
+        />
     );
 };
 
@@ -472,17 +473,15 @@ Light.args = {
 };
 
 Light.parameters = {
-    docs: {
-        description: {
-            story: `If the \`light\` prop is set to true, the
-        underlying \`TextField\` will have a light border when focused.
-        This is intended to be used on a dark background. There is also a
-        specific light styling for the error state, as seen in the
-        \`ErrorLight\` story.`,
-        },
+    backgrounds: {
+        default: "darkBlue",
     },
 };
 
+/**
+ * If an input value fails validation and the `light` prop is true,
+ * `TextField` will have light error styling.
+ */
 export const ErrorLight: StoryComponentType = (args: any) => {
     const [value, setValue] = React.useState("khan");
 
@@ -500,26 +499,19 @@ export const ErrorLight: StoryComponentType = (args: any) => {
     };
 
     return (
-        <View style={styles.darkBackground}>
-            <LabeledTextField
-                {...args}
-                label={
-                    <LabelMedium style={styles.whiteColor}>Email</LabelMedium>
-                }
-                description={
-                    <LabelSmall style={styles.offWhiteColor}>
-                        Please provide your personal email
-                    </LabelSmall>
-                }
-                type="email"
-                value={value}
-                light={true}
-                onChange={setValue}
-                placeholder="Email"
-                validate={validate}
-                onKeyDown={handleKeyDown}
-            />
-        </View>
+        <LabeledTextField
+            {...args}
+            label="Email"
+            description="Please provide your personal email"
+            type="email"
+            value={value}
+            light={true}
+            onChange={setValue}
+            placeholder="Email"
+            validate={validate}
+            onKeyDown={handleKeyDown}
+            required={true}
+        />
     );
 };
 
@@ -528,11 +520,8 @@ ErrorLight.args = {
 };
 
 ErrorLight.parameters = {
-    docs: {
-        description: {
-            story: `If an input value fails validation and the
-        \`light\` prop is true, \`TextField\` will have light error styling.`,
-        },
+    backgrounds: {
+        default: "darkBlue",
     },
 };
 
@@ -766,16 +755,6 @@ AutoComplete.parameters = {
 };
 
 const styles = StyleSheet.create({
-    darkBackground: {
-        background: color.darkBlue,
-        padding: `${spacing.medium_16}px`,
-    },
-    whiteColor: {
-        color: color.white,
-    },
-    offWhiteColor: {
-        color: color.white64,
-    },
     button: {
         maxWidth: 150,
     },

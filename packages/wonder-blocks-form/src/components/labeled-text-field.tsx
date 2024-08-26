@@ -241,6 +241,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                         id={uniqueId}
                         testId={testId}
                         style={style}
+                        light={light}
                         field={
                             <TextField
                                 id={`${uniqueId}-field`}
