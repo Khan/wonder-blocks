@@ -16,7 +16,7 @@ const DefaultAdapters = {
     data: data.adapter,
     portal: portal.adapter,
     router: router.adapter,
-    ssr: ssr.adapter,
+    renderState: renderState.adapter,
 };
 
 /**
@@ -28,7 +28,7 @@ const DefaultConfigs: Configs<typeof DefaultAdapters> = {
     data: data.defaultConfig,
     portal: portal.defaultConfig,
     router: router.defaultConfig,
-    ssr: ssr.defaultConfig,
+    renderState: renderState.defaultConfig,
 };
 ```
 
@@ -43,7 +43,7 @@ There are four build-in adapters:
 -   [`data`](#data)
 -   [`portal`](#portal)
 -   [`router`](#router)
--   [`ssr`](#ssr)
+-   [`renderState`](#renderState)
 
 ## boundary
 
@@ -203,12 +203,14 @@ The first of these provides the most flexibility, basically supporting full conf
 
 By default, the router adapter is configured with `{location: "/"}`.
 
-## ssr
+## renderState
 
-The `ssr` adapter ensures that the render state is being managed by rendering a `RenderStateRoot` component around the harnessed component.
+The `renderState` adapter ensures that the render state is being managed by rendering a `RenderStateRoot` component around the harnessed component.
 
 ```ts
 type Config = true | null;
 ```
 
-By default, this adapter is off since state changes occur when `RenderStateRoot` is used that may require tests to make accommodations, such as adding appropriate `act` or `waitFor` calls when using Testing Library.
+By default, this adapter is off as state changes occur when `RenderStateRoot` is used, and these may require tests to make accommodations, such as adding appropriate `act` or `waitFor` calls when using Testing Library.
+
+However, when off, any component or hook rendered during testing that requires render state will likely throw an error.
