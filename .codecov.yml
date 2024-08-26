@@ -20,7 +20,9 @@ comment:
 
 ignore:
   - "utils/*.ts"
-  - "packages/**/dist/index.ts"
+  - "packages/**/dist/index.js"
   - "package"
   - "packages/**/types.ts"
   - "packages/**/*.typestest.ts"
+  - "packages/**/types.js"
+  - "packages/**/*.typestest.js"
