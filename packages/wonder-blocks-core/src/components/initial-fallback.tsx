@@ -14,15 +14,14 @@ type Props = {
      */
     children: () => React.ReactNode;
     /**
-     * What to render during server-side rendering, or null not to
-     * render anything.
+     * What to initially render, or null if nothing should be rendered.
      *
-     * NOTE: Make sure the placeholder will render the same for both
+     * NOTE: Make sure the fallback will render the same for both
      * client and server -- that is, it does the same thing for both
      * the server-side renderer and the rehydration -- or it defeats
-     * the purpose of using the WithSSRPlaceholder component.
+     * the purpose of using the InitialFallback component.
      */
-    placeholder: (() => React.ReactNode) | null;
+    fallback: (() => React.ReactNode) | null;
 };
 
 type State = {
@@ -38,25 +37,25 @@ type State = {
  * is rendered on the server. Therefore, this component also disables rendering
  * the first time around on the client.
  *
- * If `WithSSRPlaceholder` components are nested within one another, the root
- * `WithSSRPlaceholder` component will handle the initial render, but nested
- * `WithSSRPlaceholder` components will delegate to the root one, meaning that
+ * If `InitialFallback` components are nested within one another, the root
+ * `InitialFallback` component will handle the initial render, but nested
+ * `InitialFallback` components will delegate to the root one, meaning that
  * we don't cascade delayed rendering down the component tree. This will also be
  * the case across portal boundaries.
  *
  * ## Usage
  *
  * ```js
- * import {WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
+ * import {InitialFallback} from "@khanacademy/wonder-blocks-core";
  *
- * <WithSSRPlaceholder placeholder={() => <div>Renders on the server!</div>}>
+ * <InitialFallback fallback={() => <div>Renders on the server!</div>}>
  *   {() => (
  *      <div>This is rendered only by the client, for all renders after the rehydration render</div>
  *   )}
- * </WithSSRPlaceholder>
+ * </InitialFallback>
  * ```
  */
-export default class WithSSRPlaceholder extends React.Component<Props, State> {
+export default class InitialFallback extends React.Component<Props, State> {
     state: State = {
         mounted: false,
     };
@@ -77,7 +76,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
 
     _renderAsRootComponent(): React.ReactNode {
         const {mounted} = this.state;
-        const {children, placeholder} = this.props;
+        const {children, fallback} = this.props;
 
         // We are the first component in the tree.
         // We are in control of instigating a second render for our
@@ -85,8 +84,9 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         this._isTheRootComponent = true;
 
         if (mounted) {
-            // This is our second non-SSR render, so let's tell everyone to
-            // do their thing.
+            // This is our second render, so let's tell everyone to
+            // do their thing. Components don't mount during SSR, so we won't
+            // hit this when server-side rendering.
             return (
                 <RenderStateContext.Provider value={RenderState.Standard}>
                     {children()}
@@ -94,14 +94,14 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
             );
         }
 
-        // OK, this is the very first render.
-        // If we have a placeholder, we render it, and ensure that any
-        // nested SSR components know we're still on that first render
-        // but they're not in charge of instigating the second render.
-        if (placeholder) {
+        // OK, this is the very first initial render.
+        // If we have a fallback, we render it, and ensure that any
+        // nested components know we're still on that initial render
+        // and they're not in charge of initiating the next render.
+        if (fallback) {
             return (
                 <RenderStateContext.Provider value={RenderState.Initial}>
-                    {placeholder()}
+                    {fallback()}
                 </RenderStateContext.Provider>
             );
         }
@@ -113,7 +113,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
     _maybeRender(
         renderState: typeof RenderState[keyof typeof RenderState],
     ): React.ReactNode {
-        const {children, placeholder} = this.props;
+        const {children, fallback} = this.props;
 
         switch (renderState) {
             case RenderState.Root:
@@ -123,11 +123,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
                 // We're not the root component, so we just have to either
                 // render our placeholder or nothing.
                 // The second render is going to be triggered for us.
-                if (placeholder) {
-                    return placeholder();
-                }
-                // Otherwise, we render nothing.
-                return null;
+                return fallback ? fallback() : null;
 
             case RenderState.Standard:
                 // We have covered the SSR render, we're now rendering with
@@ -137,7 +133,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
 
         // There are edge cases where for some reason, we get an unknown
         // context value here. So far it seems to be when we're nested in a
-        // v1 WithSSRPlaceholder equivalent component, or in some older
+        // v1 InitialFallback equivalent component, or in some older
         // React v16 situations where we're nested in the provider of a
         // different context.
         //

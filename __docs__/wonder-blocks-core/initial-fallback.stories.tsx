@@ -2,16 +2,16 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
-import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
-import packageConfig from "../../packages/wonder-blocks-core/package.json";
+import {View, InitialFallback} from "@khanacademy/wonder-blocks-core";
+import packageConfig from "@khanacademy/wonder-blocks-core/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
-type StoryComponentType = StoryObj<typeof WithSSRPlaceholder>;
+type StoryComponentType = StoryObj<typeof InitialFallback>;
 
 export default {
-    title: "Packages / Core / WithSSRPlaceholder",
-    component: WithSSRPlaceholder,
+    title: "Packages / Core / InitialFallback",
+    component: InitialFallback,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -33,7 +33,7 @@ export default {
         },
     },
     args: {
-        placeholder: (): React.ReactElement => (
+        fallback: (): React.ReactElement => (
             <View>
                 This gets rendered on server, and also on the client for the
                 very first render (the rehydration render)
@@ -46,19 +46,19 @@ export default {
             </View>
         ),
     },
-} as Meta<typeof WithSSRPlaceholder>;
+} as Meta<typeof InitialFallback>;
 
 export const Default: StoryComponentType = {};
 
 export const WithoutPlaceholder: StoryComponentType = () => (
-    <WithSSRPlaceholder placeholder={null}>
+    <InitialFallback fallback={null}>
         {() => (
             <View>
                 This is rendered only by the client, while nothing was rendered
                 on the server.
             </View>
         )}
-    </WithSSRPlaceholder>
+    </InitialFallback>
 );
 
 WithoutPlaceholder.parameters = {
@@ -104,24 +104,24 @@ export const NestedComponent: StoryComponentType = (): React.ReactElement => {
                 The list below should have three render entries; root
                 placeholder, root children render, and child children render. If
                 there are two child renders that means that the second forced
-                render is still occurring for nested WithSSRPlaceholder
-                components, which would be a bug.
+                render is still occurring for nested InitialFallback components,
+                which would be a bug.
             </Body>
             <ul id={resultsId} />
             <Body>
-                And below this is the actual WithSSRPlaceholder nesting, which
+                And below this is the actual InitialFallback nesting, which
                 should just show the child render.
             </Body>
-            <WithSSRPlaceholder
-                placeholder={() => (
+            <InitialFallback
+                fallback={() => (
                     <View>{trackAndRender("Root: placeholder")}</View>
                 )}
             >
                 {() => {
                     addTrackedRender("Root: render");
                     return (
-                        <WithSSRPlaceholder
-                            placeholder={() => (
+                        <InitialFallback
+                            fallback={() => (
                                 <View>
                                     {trackAndRender(
                                         "Child: placeholder (should never see me)",
@@ -132,10 +132,10 @@ export const NestedComponent: StoryComponentType = (): React.ReactElement => {
                             {() => (
                                 <View>{trackAndRender("Child: render")}</View>
                             )}
-                        </WithSSRPlaceholder>
+                        </InitialFallback>
                     );
                 }}
-            </WithSSRPlaceholder>
+            </InitialFallback>
         </View>
     );
 };
@@ -143,7 +143,7 @@ export const NestedComponent: StoryComponentType = (): React.ReactElement => {
 NestedComponent.parameters = {
     docs: {
         description: {
-            story: "Here, we nest two `WithSSRPlaceholder` components and use an array to track rendering, so that we can see how only the top level `WithSSRPlaceholder` component skips the initial render.",
+            story: "Here, we nest two `InitialFallback` components and use an array to track rendering, so that we can see how only the top level `InitialFallback` component skips the initial render.",
         },
     },
 };
@@ -186,19 +186,19 @@ export const SideBySide: StoryComponentType = (): React.ReactElement => {
             </Body>
             <ul id={resultsId} />
             <Body>
-                And below this are the WithSSRPlaceholder component trees, which
+                And below this are the InitialFallback component trees, which
                 should just show their child renders.
             </Body>
-            <WithSSRPlaceholder
-                placeholder={() => (
+            <InitialFallback
+                fallback={() => (
                     <View>{trackAndRender("Root 1: placeholder")}</View>
                 )}
             >
                 {() => {
                     addTrackedRender("Root 1: render");
                     return (
-                        <WithSSRPlaceholder
-                            placeholder={() => (
+                        <InitialFallback
+                            fallback={() => (
                                 <View>
                                     {trackAndRender(
                                         "Child 1: placeholder (should never see me)",
@@ -209,20 +209,20 @@ export const SideBySide: StoryComponentType = (): React.ReactElement => {
                             {() => (
                                 <View>{trackAndRender("Child 1: render")}</View>
                             )}
-                        </WithSSRPlaceholder>
+                        </InitialFallback>
                     );
                 }}
-            </WithSSRPlaceholder>
-            <WithSSRPlaceholder
-                placeholder={() => (
+            </InitialFallback>
+            <InitialFallback
+                fallback={() => (
                     <View>{trackAndRender("Root 2: placeholder")}</View>
                 )}
             >
                 {() => {
                     addTrackedRender("Root 2: render");
                     return (
-                        <WithSSRPlaceholder
-                            placeholder={() => (
+                        <InitialFallback
+                            fallback={() => (
                                 <View>
                                     {trackAndRender(
                                         "Child 2: placeholder (should never see me)",
@@ -233,10 +233,10 @@ export const SideBySide: StoryComponentType = (): React.ReactElement => {
                             {() => (
                                 <View>{trackAndRender("Child 2: render")}</View>
                             )}
-                        </WithSSRPlaceholder>
+                        </InitialFallback>
                     );
                 }}
-            </WithSSRPlaceholder>
+            </InitialFallback>
         </View>
     );
 };
@@ -244,7 +244,7 @@ export const SideBySide: StoryComponentType = (): React.ReactElement => {
 SideBySide.parameters = {
     docs: {
         description: {
-            story: "In this example, we have side-by-side `WithSSRPlaceholder` components. This demonstrates how component non-nested `WithSSRPlaceholder` components independently track the first render.",
+            story: "In this example, we have side-by-side `InitialFallback` components. This demonstrates how component non-nested `InitialFallback` components independently track the first render.",
         },
     },
 };
