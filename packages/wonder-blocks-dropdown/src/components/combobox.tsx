@@ -446,7 +446,11 @@ export default function Combobox({
                     updateOpenState(true);
                 }}
                 ref={rootNodeRef}
-                style={[styles.wrapper, isListboxFocused && styles.focused]}
+                style={[
+                    styles.wrapper,
+                    isListboxFocused && styles.focused,
+                    disabled && styles.disabled,
+                ]}
             >
                 <ComboboxLiveRegion
                     focusedIndex={focusedIndex}
@@ -608,6 +612,11 @@ const styles = StyleSheet.create({
     focused: {
         background: color.white,
         border: `1px solid ${color.blue}`,
+    },
+    disabled: {
+        background: color.offWhite,
+        border: `1px solid ${color.offBlack16}`,
+        color: color.offBlack64,
     },
     /**
      * Combobox input styles
