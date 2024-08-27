@@ -170,3 +170,81 @@ export const Disabled = {
         value: "pear",
     },
 };
+
+/**
+ * Combobox supports multiple selection. This means that more than one element
+ * can be selected from the listbox at a time. In this example, we show how this
+ * is done by using an array of strings as the value and setting the
+ * `selectionType` prop to "multiple".
+ *
+ * To navigate using the keyboard, use:
+ * - Arrow keys (`up`, `down`) to navigate through the listbox.
+ * - `Enter` to select an item.
+ * - Arrow keys (`left`, `right`) to navigate through the selected items.
+ */
+export const MultipleSelection = {
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        const [value, setValue] = React.useState(args.value);
+
+        return (
+            <Combobox
+                {...args}
+                value={value}
+                onChange={(newValue) => {
+                    setValue(newValue);
+                    action("onChange")(newValue);
+                }}
+            />
+        );
+    },
+    args: {
+        children: items,
+        value: ["pear", "grape"],
+        selectionType: "multiple",
+    },
+    parameters: {
+        chromatic: {
+            // we don't need screenshots because this story only tests behavior.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * This example shows how to use the multi-select `Combobox` component in
+ * controlled mode.
+ */
+export const ControlledMultilpleCombobox: Story = {
+    name: "Controlled Multi-select Combobox (opened state)",
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        const [opened, setOpened] = React.useState(args.opened);
+        const [value, setValue] = React.useState(args.value);
+
+        return (
+            <Combobox
+                {...args}
+                opened={opened}
+                onToggle={() => {
+                    setOpened(!opened);
+                    action("onToggle")();
+                }}
+                onChange={(newValue) => {
+                    setValue(newValue);
+                    action("onChange")(newValue);
+                }}
+                value={value}
+            />
+        );
+    },
+    args: {
+        children: items,
+        opened: true,
+        value: ["pear", "grape"],
+        selectionType: "multiple",
+    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>{Story()}</View>
+        ),
+    ],
+};

@@ -22,6 +22,7 @@
     "@khanacademy/wonder-blocks-icon": "^4.1.4",
     "@khanacademy/wonder-blocks-layout": "^2.2.0",
     "@khanacademy/wonder-blocks-modal": "^5.1.10",
+    "@khanacademy/wonder-blocks-pill": "^2.4.6",
     "@khanacademy/wonder-blocks-search-field": "^2.2.24",
     "@khanacademy/wonder-blocks-timing": "^5.0.1",
     "@khanacademy/wonder-blocks-tokens": "^2.0.0",

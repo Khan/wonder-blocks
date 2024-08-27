@@ -1,7 +1,8 @@
-import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import * as React from "react";
 
 import caretDownIcon from "@phosphor-icons/core/regular/caret-down.svg";
+
 import {
     StyleType,
     useUniqueIdWithMock,
@@ -11,10 +12,12 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
+import {useListbox} from "../hooks/use-listbox";
+import {useMultipleSelection} from "../hooks/use-multiple-selection";
+import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
+import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
-import {useListbox} from "../hooks/use-listbox";
-import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
 
 type Props = {
     /**
@@ -41,22 +44,6 @@ type Props = {
      * is an updated array of the selected value(s).
      */
     onChange?: (value: MaybeValueOrValues) => void;
-
-    /**
-     * A reference to the element that describes the listbox.
-     */
-    "aria-labelledby"?: string;
-
-    /**
-     * Takes as its value the id of the currently focused element within the
-     * option items collection.
-     *
-     * Instead of the screen reader moving focus between owned elements,
-     * aria-activedescendant is used to refer to the currently active element,
-     * informing assistive technology users of the currently active element when
-     * focused.
-     */
-    "aria-activedescendant"?: string;
 
     /**
      * Whether the combobox is disabled.
@@ -136,12 +123,19 @@ export default function Combobox({
     opened,
     placeholder,
     selectionType = "single",
+    testId,
     value = "",
 }: Props) {
-    const [inputValue, setInputValue] = React.useState((value as string) || "");
+    // NOTE: Clear input value if we are in multi-select mode. The selected
+    // values are handled as individual Pill instances.
+    const initialValue = typeof value === "string" ? value : "";
+    const [inputValue, setInputValue] = React.useState(initialValue);
     const ids = useUniqueIdWithMock("combobox");
-    const uniqueId = id ?? ids.get("id");
+    const uniqueId = id ?? ids.get("listbox");
+    // Ref to the combobox input element.
     const comboboxRef = React.useRef<HTMLInputElement>(null);
+    // Ref to the top-level node of the combobox.
+    const rootNodeRef = React.useRef<HTMLDivElement>(null);
     // Determines whether the component is controlled or not.
     const [open, setOpen] = React.useState<boolean>(opened ?? false);
     const isControlled = opened !== undefined;
@@ -155,17 +149,19 @@ export default function Combobox({
 
     const {
         focusedIndex,
+        isListboxFocused,
         setFocusedIndex,
         handleKeyDown,
         handleFocus,
         handleBlur,
         selected,
+        setSelected,
         renderList,
     } = useListbox({
         children,
         disabled,
         id: uniqueId,
-        value,
+        value: valueState,
         // Allows pressing the space key in the input element without selecting
         // an item from the listbox.
         disableSpaceSelection: true,
@@ -212,7 +208,11 @@ export default function Combobox({
                 updateOpenState(false);
             }
         } else if (Array.isArray(selected)) {
-            // TODO(WB-1676): Handle multi-select selected values
+            // If the value changes, update the parent component.
+            if (selected !== valueState) {
+                setInputValue("");
+                onChange?.(selected);
+            }
         }
     }, [
         children,
@@ -224,6 +224,15 @@ export default function Combobox({
         value,
         valueState,
     ]);
+
+    const {
+        focusedMultiSelectIndex,
+        handleKeyDown: handleMultipleSelectionKeyDown,
+    } = useMultipleSelection({
+        inputValue,
+        selected,
+        setSelected,
+    });
 
     const focusOnFilteredItem = React.useCallback(
         (value: string) => {
@@ -247,43 +256,103 @@ export default function Combobox({
         [children, setFocusedIndex],
     );
 
+    /**
+     * Handles specific keyboard events for the combobox.
+     */
     const onKeyDown = (event: React.KeyboardEvent) => {
-        // Propagate the event to useListbox to handle keyboard navigation
-        handleKeyDown(event);
+        const {key} = event;
 
         // Open the listbox under the following conditions:
         const conditionsToOpen =
             // The user presses specific keys
-            event.key === "ArrowDown" ||
-            event.key === "ArrowUp" ||
-            event.key === "Backspace" ||
+            key === "ArrowDown" ||
+            key === "ArrowUp" ||
+            key === "Backspace" ||
             // The user starts typing
-            event.key.length === 1;
+            key.length === 1;
 
         if (!openState && conditionsToOpen) {
             updateOpenState(true);
         }
 
-        // Close only the dropdown, not other elements that are
-        // listening for an escape press
-        if (event.key === "Escape" && openState) {
+        /**
+         * Handle keyboard navigation for multi-select combobox
+         */
+        if (key === "ArrowLeft" || key === "ArrowRight") {
+            setFocusedIndex(-1);
+        }
+        // Propagate the event to useMultipleSelection to handle keyboard
+        // navigation
+        handleMultipleSelectionKeyDown(event);
+
+        /**
+         * Shared keyboard navigation for single and multi-select combobox
+         */
+
+        // Close only the dropdown, not other elements that are listening for an
+        // escape press
+        if (key === "Escape" && openState) {
             event.stopPropagation();
             updateOpenState(false);
         }
+
+        // Propagate the event to useListbox to handle keyboard navigation
+        handleKeyDown(event);
     };
+
+    // The labels of the selected values.
+    const selectedLabels = React.useMemo(
+        () =>
+            children
+                .filter((item) => selected?.includes(item.props.value))
+                .map((item) => item.props.label as string),
+        [children, selected],
+    );
+
+    /**
+     * Handles the click event on a pill to remove it from the list of selected
+     * items.
+     */
+    const handleOnRemove = React.useCallback(
+        (value: string) => {
+            const selectedValues = selected as Array<string>;
+            // Remove the selected item from the list of selected items.
+            const newValues = selectedValues.filter(
+                (selectedValue) => selectedValue !== value,
+            );
+
+            setSelected(newValues);
+        },
+        [selected, setSelected],
+    );
 
     return (
         <>
             <View
                 onClick={() => {
-                    if (!openState) {
-                        updateOpenState(true);
-                    }
+                    updateOpenState(true);
                 }}
-                style={styles.wrapper}
+                ref={rootNodeRef}
+                style={[styles.wrapper, isListboxFocused && styles.focused]}
             >
+                {/* TODO(WB-1676.2): Add aria-live region to announce combobox states */}
+
+                {/* Multi-select pills display before the input (if options are selected) */}
+                {selectionType === "multiple" && Array.isArray(selected) && (
+                    <MultipleSelection
+                        labels={selectedLabels}
+                        focusedMultiSelectIndex={focusedMultiSelectIndex}
+                        id={ids.get("pill")}
+                        selected={selected as Array<string>}
+                        onRemove={handleOnRemove}
+                        disabled={disabled}
+                        testId={testId}
+                    />
+                )}
                 <TextField
                     id={ids.get("input")}
+                    testId={testId}
+                    style={styles.combobox}
                     value={inputValue}
                     onChange={(value: string) => {
                         setInputValue(value);
@@ -291,16 +360,12 @@ export default function Combobox({
                     }}
                     disabled={disabled}
                     onFocus={() => {
-                        if (!openState) {
-                            updateOpenState(true);
-                        }
+                        updateOpenState(true);
                         handleFocus();
                     }}
                     placeholder={placeholder}
                     onBlur={() => {
-                        if (openState) {
-                            updateOpenState(false);
-                        }
+                        updateOpenState(false);
                         handleBlur();
                     }}
                     aria-controls={openState ? uniqueId : undefined}
@@ -312,11 +377,12 @@ export default function Combobox({
                     }
                     aria-expanded={openState}
                     ref={comboboxRef}
-                    // We don't want the browser to suggest autocompletions as the
-                    // combobox is already providing suggestions.
+                    // We don't want the browser to suggest autocompletions as
+                    // the combobox is already providing suggestions.
                     autoComplete="off"
                     role="combobox"
                 />
+
                 <IconButton
                     disabled={disabled}
                     icon={caretDownIcon}
@@ -334,6 +400,7 @@ export default function Combobox({
                     tabIndex={-1}
                     aria-controls={uniqueId}
                     aria-expanded={openState}
+                    // TODO(WB-1676.2): Use the `labels` prop.
                     aria-label="Toggle listbox"
                 />
             </View>
@@ -343,7 +410,7 @@ export default function Combobox({
                     alignment="left"
                     // NOTE: We need to cast comboboxRef to HTMLElement because
                     // the DropdownPopper component expects an HTMLElement.
-                    referenceElement={comboboxRef?.current as HTMLElement}
+                    referenceElement={rootNodeRef?.current as HTMLElement}
                 >
                     {(isReferenceHidden) => (
                         <Listbox
@@ -355,8 +422,11 @@ export default function Combobox({
                                 isReferenceHidden && styles.hidden,
                                 // The listbox width is at least the width of
                                 // the combobox.
-                                {minWidth: comboboxRef?.current?.offsetWidth},
+                                {minWidth: rootNodeRef?.current?.offsetWidth},
                             ]}
+                            testId={testId ? `${testId}-listbox` : undefined}
+                            // TODO(WB-1676.2): Use the `labels` prop.
+                            aria-label=""
                         >
                             {renderList}
                         </Listbox>
@@ -372,7 +442,40 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         width: "100%",
+        maxWidth: "100%",
+        flexWrap: "wrap",
+        // The following styles are to emulate the input styles
+        background: color.white,
+        borderRadius: border.radius.medium_4,
+        border: `solid 1px ${color.offBlack16}`,
+        paddingInline: spacing.xSmall_8,
     },
+    focused: {
+        background: color.white,
+        border: `1px solid ${color.blue}`,
+    },
+    /**
+     * Combobox input styles
+     */
+    combobox: {
+        // reset input styles
+        appearance: "none",
+        background: "none",
+        border: "none",
+        outline: "none",
+        padding: 0,
+        minWidth: spacing.xxxSmall_4,
+        width: "auto",
+        display: "inline-grid",
+        gridArea: "1 / 2",
+        ":focus-visible": {
+            outline: "none",
+            border: "none",
+        },
+    },
+    /**
+     * Listbo custom styles
+     */
     listbox: {
         backgroundColor: color.white,
         borderRadius: border.radius.medium_4,
@@ -387,6 +490,9 @@ const styles = StyleSheet.create({
         pointerEvents: "none",
         visibility: "hidden",
     },
+    /**
+     * Arrow button styles
+     */
     button: {
         position: "absolute",
         right: spacing.xxxSmall_4,
