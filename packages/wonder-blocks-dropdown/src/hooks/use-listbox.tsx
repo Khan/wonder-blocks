@@ -12,6 +12,13 @@ type Props = {
      */
     disabled: boolean | undefined;
     /**
+     * Whether to disable the space key from selecting an item.
+     *
+     * This is useful when the listbox is used in a combobox and the space key
+     * is required in the input field to complete the selection.
+     */
+    disableSpaceSelection?: boolean;
+    /**
      * The unique identifier of the listbox element.
      */
     id: string;
@@ -37,6 +44,7 @@ type Props = {
 export function useListbox({
     children: options,
     disabled,
+    disableSpaceSelection,
     id,
     selectionType = "single",
     value,
@@ -124,6 +132,10 @@ export function useListbox({
                     return;
                 case "Enter":
                 case " ":
+                    // Only handle space if the listbox is focused
+                    if (key === " " && disableSpaceSelection) {
+                        return;
+                    }
                     // Prevent form submission
                     event.preventDefault();
 
@@ -131,7 +143,14 @@ export function useListbox({
                     return;
             }
         },
-        [focusNextItem, focusPreviousItem, focusedIndex, options, selectOption],
+        [
+            disableSpaceSelection,
+            focusNextItem,
+            focusPreviousItem,
+            focusedIndex,
+            options,
+            selectOption,
+        ],
     );
 
     // Some keys should be handled during the keyup event instead.
@@ -211,6 +230,7 @@ export function useListbox({
         isListboxFocused,
         // current option focused
         focusedIndex,
+        setFocusedIndex,
         // list of options
         renderList,
         // selected value(s)

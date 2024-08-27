@@ -4,6 +4,7 @@ import SeparatorItem from "./components/separator-item";
 import ActionMenu from "./components/action-menu";
 import SingleSelect from "./components/single-select";
 import MultiSelect from "./components/multi-select";
+import Combobox from "./components/combobox";
 import Listbox from "./components/listbox";
 
 import type {Labels} from "./components/multi-select";
@@ -16,6 +17,7 @@ export {
     ActionMenu,
     SingleSelect,
     MultiSelect,
+    Combobox,
     Listbox,
 };
 
