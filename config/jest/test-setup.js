@@ -6,6 +6,22 @@ const {
 
 StyleSheetTestUtils.suppressStyleInjection();
 
+
+const attachShims = (targetWindow) => {
+    if (!targetWindow.TextEncoder) {
+        targetWindow.TextEncoder = TextEncoder;
+    }
+    if (!targetWindow.TextDecoder) {
+        targetWindow.TextDecoder = TextDecoder;
+    }
+}
+
+const resetWindow = () => {
+    attachShims(globalThis);
+};
+resetWindow();
+
 beforeEach(() => {
+    resetWindow();
     mockRequestAnimationFrame();
 });
