@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
         color: color.blue,
     },
     focused: {
-        outline: `solid 4px ${color.lightBlue}`,
+        outline: `solid 4px ${color.purple}`,
     },
     centerText: {
         gap: spacing.medium_16,
@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${color.purple}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },

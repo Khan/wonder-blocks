@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Exports / useSharedCache()"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # useSharedCache()
@@ -19,12 +14,12 @@ function useSharedCache<TValue: ValidCacheData>(
 ): [?TValue, CacheValueFn<TValue>];
 ```
 
-The `useSharedCache` hook provides access to a shared in-memory cache. This cache is not part of the cache hydrated by Wonder Blocks Data, so [`SharedCache.purgeAll()`](/docs/data-exports-sharedcache--page) must be called between server-side render cycles.
+The `useSharedCache` hook provides access to a shared in-memory cache. This cache is not part of the cache hydrated by Wonder Blocks Data, so <a href="./?path=/docs/packages-data-exports-sharedcache--docs">`SharedCache.purgeAll()`</a> must be called between server-side render cycles.
 
 The hook returns a tuple of the currently cached value, or `null` if none is cached, and a function that can be used to set the cached value.
 
 The shared cache is passive and as such does not notify of changes to its contents.
 
-Each cached item is identified by an id and a scope. The scope is used to group items. Whole scopes can be cleared by specifying the specific scope when calling [`SharedCache.purgeScope()`](/docs/data-exports-sharedcache--page).
+Each cached item is identified by an id and a scope. The scope is used to group items. Whole scopes can be cleared by specifying the specific scope when calling <a href="./?path=/docs/packages-data-exports-sharedcache--docs">`SharedCache.purgeScope()`</a>.
 
 An optional argument, `initialValue` can be given. This can be either the value to be cached itself or a function that returns the value to be cached (functions themselves are not valid cachable values). This allows for expensive initialization to only occur when it is necessary.

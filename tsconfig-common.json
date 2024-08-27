@@ -2,6 +2,10 @@
 /* Visit https://aka.ms/tsconfig to read more about this file */
 {
     "compilerOptions": {
+        "typeRoots": [
+            "./node_modules/@types",
+            "./types"
+        ],
         /* Language and Environment */
         "target": "ES2016",
         "jsx": "preserve",
@@ -24,6 +28,6 @@
         // "noImplicitAny": true,
         /* Completeness */
         "skipDefaultLibCheck": true, // it's safe to assume that built-in .d.ts files are correct
-        "skipLibCheck": false
+        "skipLibCheck": true
     }
 }

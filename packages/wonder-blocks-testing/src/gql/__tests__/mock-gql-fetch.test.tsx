@@ -2,7 +2,7 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 
 import {GqlRouter, useGql} from "@khanacademy/wonder-blocks-data";
-import {RespondWith} from "../../respond-with";
+import {RespondWith} from "@khanacademy/wonder-blocks-testing-core";
 import {mockGqlFetch} from "../mock-gql-fetch";
 
 describe("#mockGqlFetch", () => {

@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
@@ -81,11 +81,21 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     playground: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${color.purple}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
         flexDirection: "row",
         gap: spacing.medium_16,
+    },
+    srOnly: {
+        border: 0,
+        clip: "rect(0,0,0,0)",
+        height: 1,
+        margin: -1,
+        overflow: "hidden",
+        padding: 0,
+        position: "absolute",
+        width: 1,
     },
 });
 
@@ -419,6 +429,8 @@ export const CustomPopoverContent: StoryComponentType = {
  * element that exists after the PopoverAnchor (or trigger element).
  * - If the focus is set to the first focusable element inside the popover, the
  * next shift + tab will set focus on the PopoverAnchor element.
+ * - If you have custom keyboard navigation (like with left and right arrow keys)
+ * popover won't override them
  *
  * **NOTE:** You can add/remove buttons after the trigger element by using the
  * buttons at the top of the example.
@@ -518,6 +530,170 @@ export const KeyboardNavigation: StoryComponentType = {
 };
 
 /**
+ * Similar example to KeyboardNavigation except this one highlights
+ * how popover does not override custom keyboard interactions for
+ * content inside the popover.
+ *
+ * NOTE: To see the arrow key navigation, add additional buttons to
+ * the popover container.
+ */
+export const CustomKeyboardNavigation: StoryComponentType = {
+    render: function Render() {
+        const [numButtonsAfter, setNumButtonsAfter] = React.useState(0);
+        const [numButtonsInside, setNumButtonsInside] = React.useState(1);
+
+        const [focus, setFocus] = React.useState(0);
+
+        /**
+         * Custom function to create arrow key navigation to highlight how
+         * popover won't override internal custom navigation but still ensure
+         * users will focus in and out of the popover correctly.
+         * @param e - onKeyDown event data.
+         */
+        const onArrowKeyFocus = (e: any) => {
+            if (e.keyCode === 39) {
+                // Right arrow
+                setFocus(focus === numButtonsInside - 1 ? 0 : focus + 1);
+            } else if (e.keyCode === 37) {
+                // Left arrow
+                setFocus(focus === 0 ? numButtonsInside - 1 : focus - 1);
+            }
+        };
+
+        return (
+            <View style={[{padding: "120px 0"}]}>
+                <View style={[styles.row, {gap: spacing.medium_16}]}>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsAfter(numButtonsAfter + 1);
+                        }}
+                    >
+                        Add button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsAfter(numButtonsAfter - 1);
+                            }
+                        }}
+                    >
+                        Remove button after trigger element
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        onClick={() => {
+                            setNumButtonsInside(numButtonsInside + 1);
+                        }}
+                    >
+                        Add button inside popover
+                    </Button>
+                    <Button
+                        kind="secondary"
+                        color="destructive"
+                        onClick={() => {
+                            if (numButtonsAfter > 0) {
+                                setNumButtonsInside(numButtonsInside - 1);
+                            }
+                        }}
+                    >
+                        Remove button inside popover
+                    </Button>
+                </View>
+                <View style={styles.playground}>
+                    <Button>First button</Button>
+                    <Popover
+                        portal={false}
+                        content={({close}) => (
+                            <PopoverContent
+                                closeButtonVisible
+                                title="Keyboard navigation"
+                                content="This example shows how the focus is managed when a popover is opened."
+                                actions={
+                                    <View
+                                        style={[styles.row, styles.actions]}
+                                        onKeyDown={onArrowKeyFocus}
+                                    >
+                                        {Array.from(
+                                            {length: numButtonsInside},
+                                            (_, index) => (
+                                                <ArrowButton
+                                                    onClick={() => {}}
+                                                    index={index}
+                                                    focus={index === focus}
+                                                />
+                                            ),
+                                        )}
+                                    </View>
+                                }
+                            />
+                        )}
+                        placement="top"
+                    >
+                        <Button>Open popover (trigger element)</Button>
+                    </Popover>
+                    {Array.from({length: numButtonsAfter}, (_, index) => (
+                        <Button onClick={() => {}} key={index}>
+                            {`Button ${index + 1}`}
+                        </Button>
+                    ))}
+                </View>
+            </View>
+        );
+    },
+    parameters: {
+        // This example is behavior based, not visual.
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
+};
+
+type ArrowButtonProps = {
+    onClick: () => void;
+    focus?: boolean;
+    index: number;
+};
+
+function ArrowButton(props: ArrowButtonProps): React.ReactElement {
+    const {onClick, focus, index} = props;
+    const tabRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (focus) {
+            /**
+             * When tabs are within a WonderBlocks Popover component, the
+             * manner in which the component is rendered and moved causes
+             * focus to snap to the bottom of the page on first focus.
+             *
+             * This timeout moves around that by delaying the focus enough
+             * to wait for the WonderBlock Popover to move to the correct
+             * location and scroll the user to the correct location.
+             * */
+            if (tabRef?.current) {
+                // Move element into view when it is focused
+                // @ts-expect-error - TS2339 - Property 'focus' does not exist on type 'ReactInstance'.
+                tabRef?.current.focus();
+            }
+        }
+    }, [focus, tabRef]);
+
+    return (
+        <Button
+            onClick={onClick}
+            ref={tabRef}
+            key={index}
+            kind="tertiary"
+            tabIndex={focus ? 0 : -1}
+        >
+            {`Arrow Button ${index + 1}`}
+        </Button>
+    );
+}
+
+/**
  * Alignment example
  */
 const BasePopoverExample = ({placement}: {placement: Placement}) => {
@@ -557,4 +733,103 @@ export const PopoverAlignment: StoryComponentType = {
             <BasePopoverExample placement="top" />
         </View>
     ),
+};
+
+export const WithDocumentRootBoundary: StoryComponentType = () => {
+    return (
+        <View style={{paddingBottom: "500px"}}>
+            <Popover
+                rootBoundary="document"
+                content={() => (
+                    <PopoverContent
+                        title="Popover with rootBoundary='document'"
+                        content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
+                        actions={
+                            <View style={[styles.row, styles.actions]}>
+                                <Strut size={spacing.medium_16} />
+                            </View>
+                        }
+                    />
+                )}
+                placement="top"
+            >
+                <Button>Open popover with document rootBoundary</Button>
+            </Popover>
+        </View>
+    );
+};
+
+WithDocumentRootBoundary.parameters = {
+    docs: {
+        description: {
+            story: `Sometimes you need to change the underlining behavior to position the
+                Popover by the whole webpage (document) instead of by the viewport. This is a
+                useful tool for popovers with large content that might not fit in small screen
+                sizes or at 400% zoom. For this reason, you can make use of the
+                \`rootBoundary\` prop:`,
+        },
+    },
+};
+
+/**
+ * With custom aria-label - overrides the default aria-labelledby
+ */
+
+export const WithCustomAriaLabel: StoryComponentType = {
+    args: {
+        children: <Button>Open popover</Button>,
+        content: ContentMappings.withTextOnly,
+        placement: "top",
+        dismissEnabled: true,
+        id: "",
+        initialFocusId: "",
+        testId: "",
+        onClose: () => {},
+        "aria-label": "Popover with custom aria label",
+    } as PopoverArgs,
+};
+
+/**
+ * With custom aria-describedby - overrides the default aria-describedby
+ */
+export const WithCustomAriaDescribedBy = ({
+    placement,
+}: {
+    placement: Placement;
+}) => {
+    const [opened, setOpened] = React.useState(false);
+
+    return (
+        <View style={styles.example}>
+            <Popover
+                aria-describedby="custom-popover-description"
+                placement={placement}
+                opened={opened}
+                onClose={() => setOpened(false)}
+                content={
+                    <>
+                        <HeadingMedium
+                            id="custom-popover-description"
+                            style={styles.srOnly}
+                        >
+                            Hidden text that would describe the popover content
+                        </HeadingMedium>
+                        <PopoverContent
+                            title="Title"
+                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                            closeButtonVisible
+                        />
+                    </>
+                }
+            >
+                <Button
+                    onClick={() => {
+                        setOpened(true);
+                    }}
+                >
+                    {`Open popover`}
+                </Button>
+            </Popover>
+        </View>
+    );
 };

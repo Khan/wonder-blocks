@@ -173,6 +173,10 @@ type ExportProps = Readonly<{
      * Whether the dropdown and it's interactions should be disabled.
      */
     disabled?: boolean;
+    /**
+     * Unique identifier attached to the dropdown.
+     */
+    id?: string;
 
     // Optional props with defaults
     /**
@@ -861,7 +865,7 @@ class DropdownCore extends React.Component<Props, State> {
                 },
                 // Only pass the ref if the item is focusable.
                 ref: focusable ? currentRef : null,
-                role: itemRole,
+                role: populatedProps.role || itemRole,
             });
         });
     }
@@ -879,6 +883,7 @@ class DropdownCore extends React.Component<Props, State> {
         const itemRole = this.getItemRole();
 
         return this.props.items.map((item, index) => {
+            const {populatedProps} = item;
             if (!SeparatorItem.isClassOf(item.component) && item.focusable) {
                 focusCounter += 1;
             }
@@ -887,7 +892,7 @@ class DropdownCore extends React.Component<Props, State> {
 
             return {
                 ...item,
-                role: itemRole,
+                role: populatedProps.role || itemRole,
                 ref: item.focusable
                     ? this.state.itemRefs[focusIndex]
                         ? this.state.itemRefs[focusIndex].ref
@@ -952,6 +957,7 @@ class DropdownCore extends React.Component<Props, State> {
             light,
             openerElement,
             role,
+            id,
         } = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -977,6 +983,7 @@ class DropdownCore extends React.Component<Props, State> {
             >
                 {isFilterable && this.renderSearchField()}
                 <View
+                    id={id}
                     role={role}
                     style={[
                         styles.listboxOrMenu,

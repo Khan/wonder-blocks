@@ -1,5 +1,76 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.9.1
+
+### Patch Changes
+
+-   982f6808: Update `TextField` state styling so that it is consistent with other components like `TextArea`, `SingleSelect`, `MultiSelect` (especially the focus styling). The styling also now uses CSS pseudo-classes for easier testing in Chromatic and debugging in browsers.
+-   17f9a337: Improve `LabeledTextField` styling when the `light` prop is `true`. This improves the color contrast of the label, required indicator, description, and error message when the component is used on dark backgrounds.
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-layout@2.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.7
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 4.9.0
+
+### Minor Changes
+
+-   f7390d9d: `TextArea`: Adds `rootStyle` prop for styling to the root node
+
+### Patch Changes
+
+-   f7390d9d: `TextArea`: Updates the `min-height` of the textarea element so that when it is resized vertically using the resize control, the smallest it can get is equivalent to 1 row of the textarea.
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+    -   @khanacademy/wonder-blocks-layout@2.1.3
+
+## 4.8.1
+
+### Patch Changes
+
+-   8ab0b734: Allow `TextArea` to be focusable when disabled. It now sets `aria-disabled` instead of the `disabled` attribute based on the `disabled` prop. This makes it so screenreaders will continue to communicate that the component is disabled, while allowing focus on the disabled component. Focus styling is also added to the disabled state.
+
+## 4.8.0
+
+### Minor Changes
+
+-   4215976f: Adds `TextArea` component
+
+## 4.7.5
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-clickable@4.2.5
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-icon@4.1.3
+    -   @khanacademy/wonder-blocks-layout@2.1.2
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 4.7.4
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-clickable@4.2.4
+    -   @khanacademy/wonder-blocks-icon@4.1.2
+    -   @khanacademy/wonder-blocks-layout@2.1.1
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
+## 4.7.3
+
+### Patch Changes
+
+-   Updated dependencies [f099cf87]
+    -   @khanacademy/wonder-blocks-clickable@4.2.3
+
 ## 4.7.2
 
 ### Patch Changes

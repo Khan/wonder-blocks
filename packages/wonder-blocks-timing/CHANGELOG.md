@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 5.0.1
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+
 ## 5.0.0
 
 ### Major Changes

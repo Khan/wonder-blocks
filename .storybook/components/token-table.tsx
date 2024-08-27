@@ -54,7 +54,7 @@ export default function TokenTable<T>({
                 </StyledTableRow>
             </thead>
             <tbody>
-                {data.map((row, idx) => (
+                {data.map((row: any, idx) => (
                     <StyledTableRow key={idx} style={styles.row}>
                         {columns.map((column, i) => (
                             <StyledTableCell key={i} style={styles.cell}>

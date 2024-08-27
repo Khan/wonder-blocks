@@ -73,7 +73,9 @@ const theme = {
              * Icons
              */
             icon: {
-                secondaryHover: tokens.color.blue,
+                // Allows the icon to be visible on hover in both light and dark
+                // backgrounds.
+                secondaryHover: "inherit",
             },
         },
         border: {

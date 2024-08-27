@@ -11,7 +11,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 const styles = StyleSheet.create({
     resting: {
-        boxShadow: `inset 0px 0px 1px 1px ${color.lightBlue}`,
+        boxShadow: `inset 0px 0px 1px 1px ${color.purple}`,
         padding: spacing.xSmall_8,
     },
     hovered: {
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         color: color.darkBlue,
     },
     focused: {
-        outline: `solid 4px ${color.lightBlue}`,
+        outline: `solid 4px ${color.purple}`,
     },
     panel: {
         padding: spacing.medium_16,

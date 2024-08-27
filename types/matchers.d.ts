@@ -2,5 +2,9 @@
 declare namespace jest {
     interface Matchers<R> {
         toBeFunction(): R;
+        /*
+         * From: config/jest/matchers/to-have-no-a11y-violations.ts
+         */
+        toHaveNoA11yViolations(): Promise<R>;
     }
 }

@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Exports / purgeCaches()"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # purgeCaches()
@@ -17,7 +12,7 @@ purgeCaches(scope?: string): void;
 
 The `purgeCaches` method will purge the following caches managed by Wonder Blocks Data:
 
--   Shared in-memory cache as used by [`useSharedCache`](/docs/data-exports-usesharedcache--page) and other hooks
+-   Shared in-memory cache as used by <a href="./?path=/docs/packages-data-exports-usesharedcache--docs">`useSharedCache`</a> and other hooks
 -   Hydration cache as used during server-side rendering
 
 This is equivalent to calling both `SharedCache.purgeAll()` and `purgeHydrationCache()`, and is especially useful when writing tests or setting up a test environment.

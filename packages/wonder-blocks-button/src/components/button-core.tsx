@@ -460,6 +460,7 @@ export const _generateStyles = (
                     outlineColor: light
                         ? theme.color.border.secondary.inverse
                         : theme.color.border.disabled,
+                    outlineStyle: "solid",
                     outlineWidth: theme.border.width.disabled,
                 },
             },
@@ -495,7 +496,7 @@ export const _generateStyles = (
             active: {
                 color: light ? fadedColor : activeColor,
                 ":after": {
-                    height: 1,
+                    height: theme.size.height.tertiaryHover,
                     background: light ? fadedColor : activeColor,
                 },
             },
