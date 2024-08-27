@@ -3,6 +3,7 @@ const {StyleSheetTestUtils} = require("aphrodite");
 const {
     mockRequestAnimationFrame,
 } = require("../../utils/testing/mock-request-animation-frame");
+const {TextEncoder, TextDecoder} = require("util");
 
 StyleSheetTestUtils.suppressStyleInjection();
 
