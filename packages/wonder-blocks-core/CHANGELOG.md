@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 7.0.0
+
+### Major Changes
+
+-   07f7f407: Renamed `WithSSRPlaceholder` to `InitialFallback`. This includes changing the `placeholder` prop to `fallback` so it's closer to `Suspense` usage.
+
 ## 6.4.3
 
 ### Patch Changes

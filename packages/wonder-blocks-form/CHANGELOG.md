@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.9.1
+
+### Patch Changes
+
+-   982f6808: Update `TextField` state styling so that it is consistent with other components like `TextArea`, `SingleSelect`, `MultiSelect` (especially the focus styling). The styling also now uses CSS pseudo-classes for easier testing in Chromatic and debugging in browsers.
+-   17f9a337: Improve `LabeledTextField` styling when the `light` prop is `true`. This improves the color contrast of the label, required indicator, description, and error message when the component is used on dark backgrounds.
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-layout@2.2.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.7
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
 ## 4.9.0
 
 ### Minor Changes
