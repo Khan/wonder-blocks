@@ -38,6 +38,7 @@ module.exports = {
     collectCoverageFrom: [
         "packages/**/*.{ts,tsx}",
         "!packages/**/src/index.{ts,tsx}",
+        "!packages/**/src/**/index.{ts,tsx}",
         "!packages/**/*.stories.{ts,tsx}",
         "!packages/**/*.typestest.{ts,tsx}",
         "!packages/**/types.{ts,tsx}",

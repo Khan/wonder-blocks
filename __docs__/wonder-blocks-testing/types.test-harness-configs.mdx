@@ -22,7 +22,7 @@ const DefaultAdapters = {
     data: data.adapter,
     portal: portal.adapter,
     router: router.adapter,
-    ssr: ssr.adapter,
+    renderState: renderState.adapter,
 };
 ```
 
@@ -34,7 +34,7 @@ type DefaultAdaptersType = {|
     data: typeof data.adapter,
     portal: typeof portal.adapter,
     router: typeof router.adapter,
-    ssr: typeof ssr.adapter,
+    renderState: typeof renderState.adapter,
 |};
 ```
 
@@ -46,7 +46,7 @@ const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {
     data: data.defaultConfig,
     portal: portal.defaultConfig,
     router: router.defaultConfig,
-    ssr: ssr.defaultConfig,
+    renderState: renderState.defaultConfig,
 };
 ```
 

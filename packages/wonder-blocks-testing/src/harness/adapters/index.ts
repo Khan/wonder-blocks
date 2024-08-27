@@ -1,7 +1,7 @@
 import {harnessAdapters} from "@khanacademy/wonder-blocks-testing-core";
 import type {TestHarnessConfigs} from "@khanacademy/wonder-blocks-testing-core";
 import * as data from "./data";
-import * as ssr from "./ssr";
+import * as renderState from "./render-state";
 
 /**
  * NOTE: We do not type `DefaultAdapters` with `Adapters` here because we want
@@ -21,7 +21,7 @@ export const DefaultAdapters = {
     data: data.adapter,
     portal: harnessAdapters.DefaultAdapters.portal,
     router: harnessAdapters.DefaultAdapters.router,
-    ssr: ssr.adapter,
+    renderState: renderState.adapter,
 } as const;
 
 /**
@@ -30,5 +30,5 @@ export const DefaultAdapters = {
 export const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {
     ...harnessAdapters.DefaultConfigs,
     data: data.defaultConfig,
-    ssr: ssr.defaultConfig,
+    renderState: renderState.defaultConfig,
 } as const;
