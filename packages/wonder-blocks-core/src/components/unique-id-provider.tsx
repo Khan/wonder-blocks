@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import WithSSRPlaceholder from "./with-ssr-placeholder";
+import InitialFallback from "./initial-fallback";
 
 import UniqueIDFactory from "../util/unique-id-factory";
 import SsrIDFactory from "../util/ssr-id-factory";
@@ -79,7 +79,7 @@ export default class UniqueIDProvider extends React.Component<Props> {
 
         // If this is our first render, we're going to stop right here.
         // Note: `firstRender` will be `false` on the first render if this
-        // component is a descendant of a `WithSSRPlaceholder`.
+        // component is a descendant of a `InitialFallback`.
         if (firstRender) {
             if (mockOnFirstRender) {
                 // We're allowing an initial render, so let's pass our mock
@@ -99,13 +99,13 @@ export default class UniqueIDProvider extends React.Component<Props> {
     }
 
     render(): React.ReactNode {
-        // Here we use the WithSSRPlaceholder component to control
+        // Here we use the InitialFallback component to control
         // when we render and whether we provide a mock or real
         // identifier factory.
         return (
-            <WithSSRPlaceholder placeholder={() => this._performRender(true)}>
+            <InitialFallback fallback={() => this._performRender(true)}>
                 {() => this._performRender(false)}
-            </WithSSRPlaceholder>
+            </InitialFallback>
         );
     }
 }
