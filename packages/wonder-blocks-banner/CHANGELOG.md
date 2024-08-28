@@ -1,5 +1,79 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.1.8
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-button@6.3.9
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+    -   @khanacademy/wonder-blocks-icon-button@5.3.5
+    -   @khanacademy/wonder-blocks-link@6.1.7
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 3.1.7
+
+### Patch Changes
+
+-   Updated dependencies [efa99094]
+    -   @khanacademy/wonder-blocks-button@6.3.8
+
+## 3.1.6
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [4d346dc8]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-link@6.1.6
+    -   @khanacademy/wonder-blocks-button@6.3.7
+    -   @khanacademy/wonder-blocks-icon-button@5.3.4
+
+## 3.1.5
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-button@6.3.6
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-icon@4.1.3
+    -   @khanacademy/wonder-blocks-icon-button@5.3.3
+    -   @khanacademy/wonder-blocks-link@6.1.5
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 3.1.4
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-button@6.3.5
+    -   @khanacademy/wonder-blocks-icon@4.1.2
+    -   @khanacademy/wonder-blocks-icon-button@5.3.2
+    -   @khanacademy/wonder-blocks-link@6.1.4
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
+## 3.1.3
+
+### Patch Changes
+
+-   a44e87b6: Banner: Fix styling issue where buttons are cropped when used as a custom action
+-   Updated dependencies [04a25ff7]
+    -   @khanacademy/wonder-blocks-button@6.3.4
+
+## 3.1.2
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-button@6.3.3
+-   @khanacademy/wonder-blocks-icon-button@5.3.1
+-   @khanacademy/wonder-blocks-link@6.1.3
+
 ## 3.1.1
 
 ### Patch Changes

@@ -29,6 +29,7 @@ module.exports = {
         "@testing-library/jest-dom/extend-expect",
         "<rootDir>/config/jest/test-setup.js",
         "jest-extended/all",
+        "<rootDir>/config/jest/matchers/to-have-no-a11y-violations.ts",
     ],
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
@@ -37,6 +38,7 @@ module.exports = {
     collectCoverageFrom: [
         "packages/**/*.{ts,tsx}",
         "!packages/**/src/index.{ts,tsx}",
+        "!packages/**/src/**/index.{ts,tsx}",
         "!packages/**/*.stories.{ts,tsx}",
         "!packages/**/*.typestest.{ts,tsx}",
         "!packages/**/types.{ts,tsx}",

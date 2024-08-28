@@ -1,5 +1,5 @@
 import * as React from "react";
-import {renderHook as renderHookOnServer} from "@testing-library/react-hooks/server";
+import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 import {renderHook} from "@testing-library/react-hooks";
 
 import {useRenderState} from "../use-render-state";
@@ -14,7 +14,7 @@ describe("useRenderState", () => {
         );
 
         // Act
-        const {result} = renderHookOnServer(() => useRenderState(), {
+        const {result} = renderHookStatic(() => useRenderState(), {
             wrapper,
         });
 

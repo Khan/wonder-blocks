@@ -1,5 +1,45 @@
 # @khanacademy/wonder-blocks-testing
 
+## 12.0.0
+
+### Major Changes
+
+-   490b5fa4: Rename ssr adapter to renderState
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-data@13.0.11
+
+## 11.0.1
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [c954464a]
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-testing-core@1.0.1
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-data@13.0.10
+
+## 11.0.0
+
+### Major Changes
+
+-   2a6c85df: New package containing core Testing functionality without dependencies on other WB packages
+-   2a6c85df: - Minimum version for Storybook actions addon increased to 7
+    -   Added new `renderHookStatic` utility to replace deprecated `renderHookServer` from `@testing-library/react-hooks`; ready for React 18 updates
+    -   Added new `boundary` error boundary adapter for the test harness to capture errors during tests; ready for React 18 updates
+
+### Patch Changes
+
+-   Updated dependencies [2a6c85df]
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-testing-core@1.0.0
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-data@13.0.9
+
 ## 10.1.1
 
 ### Patch Changes

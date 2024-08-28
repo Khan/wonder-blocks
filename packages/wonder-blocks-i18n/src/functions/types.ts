@@ -14,3 +14,8 @@ export interface IProvideTranslation {
      */
     translate(input: string): string;
 }
+
+export type PluralConfigurationObject = {
+    lang: string;
+    messages: Array<string>;
+};

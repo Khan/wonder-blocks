@@ -25,7 +25,7 @@ const argTypes: ArgTypes = {
             not be opened and does not support interaction.`,
         table: {
             category: "States",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
         },
     },
 
@@ -33,7 +33,7 @@ const argTypes: ArgTypes = {
         description: "Whether this component is in an error state.",
         table: {
             category: "States",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
         },
     },
 
@@ -51,7 +51,7 @@ const argTypes: ArgTypes = {
             instead, for use when the component is used on a dark background.`,
         table: {
             category: "States",
-            defaultValue: {summary: false},
+            defaultValue: {summary: "false"},
         },
     },
 
@@ -117,8 +117,22 @@ const argTypes: ArgTypes = {
         control: {type: "text"},
         description: `Unique identifier attached to the field control. If used,
             we need to guarantee that the ID is unique within everything
-            rendered on a page. Used to match \`<label>\` with \`<button>\`
-            elements for screenreaders.`,
+            rendered on a page. If one is not provided, one is auto-generated.
+            Used to match \`<label>\` with \`<button>\` elements for
+            screenreaders.`,
+        table: {
+            type: {summary: "string"},
+        },
+        type: {name: "string", required: false},
+    },
+
+    dropdownId: {
+        control: {type: "text"},
+        description: `Unique identifier attached to the dropdown. If used,
+            we need to guarantee that the ID is unique within everything
+            rendered on a page. If one is not provided, one is auto-generated.
+            It is used for the opener's \`aria-controls\` attribute for
+            screenreaders.`,
         table: {
             type: {summary: "string"},
         },

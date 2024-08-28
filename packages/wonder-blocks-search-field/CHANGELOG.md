@@ -1,5 +1,75 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.2.24
+
+### Patch Changes
+
+-   Updated dependencies [982f6808]
+-   Updated dependencies [17f9a337]
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-form@4.9.1
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+    -   @khanacademy/wonder-blocks-icon-button@5.3.5
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 2.2.23
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+-   Updated dependencies [f7390d9d]
+-   Updated dependencies [f7390d9d]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-form@4.9.0
+    -   @khanacademy/wonder-blocks-icon-button@5.3.4
+
+## 2.2.22
+
+### Patch Changes
+
+-   Updated dependencies [8ab0b734]
+    -   @khanacademy/wonder-blocks-form@4.8.1
+
+## 2.2.21
+
+### Patch Changes
+
+-   Updated dependencies [4215976f]
+    -   @khanacademy/wonder-blocks-form@4.8.0
+
+## 2.2.20
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-form@4.7.5
+    -   @khanacademy/wonder-blocks-icon@4.1.3
+    -   @khanacademy/wonder-blocks-icon-button@5.3.3
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 2.2.19
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-form@4.7.4
+    -   @khanacademy/wonder-blocks-icon@4.1.2
+    -   @khanacademy/wonder-blocks-icon-button@5.3.2
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
+## 2.2.18
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-form@4.7.3
+-   @khanacademy/wonder-blocks-icon-button@5.3.1
+
 ## 2.2.17
 
 ### Patch Changes

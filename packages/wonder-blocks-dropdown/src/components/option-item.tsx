@@ -65,7 +65,7 @@ type OptionProps = AriaProps & {
     /**
      * Aria role to use, defaults to "option".
      */
-    role: "menuitem" | "option";
+    role: "menuitem" | "option" | "menuitemcheckbox";
     /**
      * Test ID used for e2e testing.
      */

@@ -1,5 +1,40 @@
 # @khanacademy/wonder-blocks-layout
 
+## 2.2.0
+
+### Minor Changes
+
+-   07f7f407: Renamed `WithSSRPlaceholder` to `InitialFallback`. This includes changing the `placeholder` prop to `fallback` so it's closer to `Suspense` usage.
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+
+## 2.1.3
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+
+## 2.1.2
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+
+## 2.1.1
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+
 ## 2.1.0
 
 ### Minor Changes

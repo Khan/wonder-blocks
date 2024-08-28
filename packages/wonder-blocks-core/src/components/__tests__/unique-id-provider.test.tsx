@@ -7,7 +7,7 @@ import View from "../view";
 import SsrIDFactory from "../../util/ssr-id-factory";
 import UniqueIDFactory from "../../util/unique-id-factory";
 import UniqueIDProvider from "../unique-id-provider";
-import WithSSRPlaceholder from "../with-ssr-placeholder";
+import InitialFallback from "../initial-fallback";
 import {RenderStateRoot} from "../render-state-root";
 
 describe("UniqueIDProvider", () => {
@@ -138,19 +138,19 @@ describe("UniqueIDProvider", () => {
         });
     });
 
-    describe("inside a WithSSRPlaceholder", () => {
+    describe("inside a InitialFallback", () => {
         test("it should pass an id to its children", () => {
             // Arrange
             const foo = jest.fn(() => null);
             const nodes = (
-                <WithSSRPlaceholder placeholder={null}>
+                <InitialFallback fallback={null}>
                     {() => (
                         <UniqueIDProvider mockOnFirstRender={false}>
                             {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. | TS2554 - Expected 0 arguments, but got 1. */}
                             {(ids: any) => foo(ids.get(""))}
                         </UniqueIDProvider>
                     )}
-                </WithSSRPlaceholder>
+                </InitialFallback>
             );
 
             // Act

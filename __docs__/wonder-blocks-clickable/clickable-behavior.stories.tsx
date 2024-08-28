@@ -176,6 +176,6 @@ const styles = StyleSheet.create({
         backgroundColor: color.darkBlue,
     },
     focused: {
-        outline: `solid 4px ${color.lightBlue}`,
+        outline: `solid 4px ${color.purple}`,
     },
 });

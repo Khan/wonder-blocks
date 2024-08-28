@@ -13,5 +13,6 @@
     "files.associations": {
         "*.flow": "plaintext",
     },
-    "flow.enabled": false
+    "flow.enabled": false,
+    "jest.jestCommandLine": "yarn jest"
 }

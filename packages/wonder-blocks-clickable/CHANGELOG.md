@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.2.7
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+
+## 4.2.6
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+
+## 4.2.5
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+
+## 4.2.4
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+
+## 4.2.3
+
+### Patch Changes
+
+-   f099cf87: Improves accessibility of the checked status on `OptionItem` components used
+    within the `ActionMenu` component. The checked status is communicated to
+    screenreaders by using a `menuitemcheckbox` role with the `aria-checked`
+    attribute (instead of `aria-selected`). - `CellCore` (used by `CompactCell` and `DetailCell`) has a new optional
+    prop for `aria-checked` - `ClickableRole` type now supports the `menuitemcheckbox` role - `OptionItem`'s `role` prop now also supports the `menuitemcheckbox` role
+
 ## 4.2.2
 
 ### Patch Changes
