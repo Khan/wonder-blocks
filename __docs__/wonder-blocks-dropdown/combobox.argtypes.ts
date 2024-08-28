@@ -46,17 +46,11 @@ const argTypes: ArgTypes = {
         table: {
             category: "Events",
         },
-        control: {
-            type: "function",
-        },
     },
 
     onChange: {
         table: {
             category: "Events",
-        },
-        control: {
-            type: "function",
         },
     },
 
@@ -66,9 +60,6 @@ const argTypes: ArgTypes = {
                 summary: "ComboboxLabels",
                 detail: "See wonder-blocks-dropdown/src/util/types.ts",
             },
-            // defaultValue: {
-            //     summary: "-",
-            // },
         },
     },
 };
