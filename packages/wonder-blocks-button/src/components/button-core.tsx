@@ -460,6 +460,7 @@ export const _generateStyles = (
                     outlineColor: light
                         ? theme.color.border.secondary.inverse
                         : theme.color.border.disabled,
+                    outlineStyle: "solid",
                     outlineWidth: theme.border.width.disabled,
                 },
             },

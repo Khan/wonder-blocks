@@ -1,5 +1,61 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.5.0
+
+### Minor Changes
+
+-   5fb863d0: Add multiple selection support to `Combobox`
+-   ea506e85: Add Combobox component with single selection support
+-   2ad690b3: Add a11y features to announce combobox changes to screen readers
+-   b89e828c: Add autocomplete support to Combobox
+
+### Patch Changes
+
+-   326954dd: Update borderColor to be more a11y friendly
+-   Updated dependencies [5fb863d0]
+    -   @khanacademy/wonder-blocks-pill@2.5.0
+    -   @khanacademy/wonder-blocks-search-field@2.2.25
+    -   @khanacademy/wonder-blocks-modal@5.1.11
+
+## 5.4.6
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-layout@2.2.0
+    -   @khanacademy/wonder-blocks-search-field@2.2.24
+    -   @khanacademy/wonder-blocks-cell@3.4.4
+    -   @khanacademy/wonder-blocks-clickable@4.2.7
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+    -   @khanacademy/wonder-blocks-modal@5.1.10
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 5.4.5
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-cell@3.4.3
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+    -   @khanacademy/wonder-blocks-layout@2.1.3
+    -   @khanacademy/wonder-blocks-modal@5.1.9
+    -   @khanacademy/wonder-blocks-search-field@2.2.23
+
+## 5.4.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-search-field@2.2.22
+
+## 5.4.3
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-search-field@2.2.21
+
 ## 5.4.2
 
 ### Patch Changes

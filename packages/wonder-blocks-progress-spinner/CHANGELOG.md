@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 2.1.6
+
+### Patch Changes
+
+-   688c65dc: Update CircularSpinner color to offBlack50 for improved color contrast for accessibility
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+
+## 2.1.5
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+
 ## 2.1.4
 
 ### Patch Changes

@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.4.0
+
+### Minor Changes
+
+-   ea506e85: Add onMouseDown prop
+
+## 5.3.5
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.7
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+
+## 5.3.4
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+
 ## 5.3.3
 
 ### Patch Changes

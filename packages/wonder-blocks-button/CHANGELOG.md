@@ -1,5 +1,34 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.3.9
+
+### Patch Changes
+
+-   Updated dependencies [688c65dc]
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-progress-spinner@2.1.6
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.7
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 6.3.8
+
+### Patch Changes
+
+-   efa99094: Fixes an issue on the icon color where it was using the incorrect value over dark backgrounds. The icon color now inherits the color from the button to preserve the same color defined for the text.
+
+## 6.3.7
+
+### Patch Changes
+
+-   4d346dc8: Fixes a UI issue where secondary buttons weren't displaying the focus ring when disabled + focused
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+    -   @khanacademy/wonder-blocks-progress-spinner@2.1.5
+
 ## 6.3.6
 
 ### Patch Changes

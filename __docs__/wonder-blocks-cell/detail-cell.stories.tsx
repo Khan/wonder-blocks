@@ -329,7 +329,7 @@ export const DetailCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: color.pink}}
+                    style={{background: color.fadedPurple24}}
                     horizontalRule="full-width"
                 />
             </View>
@@ -351,7 +351,7 @@ const styles = StyleSheet.create({
         width: 376,
     },
     navigation: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${color.purple}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },

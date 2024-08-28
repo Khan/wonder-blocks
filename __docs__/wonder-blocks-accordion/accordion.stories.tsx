@@ -422,7 +422,7 @@ WithAnimation.parameters = {
 
 /**
  * An Accordion with custom styles. The custom styles in this example
- * include a pink border and extra padding.
+ * include a purple border and extra padding.
  * Note that the Accordion's border is different than the AccordionSection
  * border styles. Passing custom styles here will not affect the sections'
  * styles. If you want to change the corner kind of a single section,
@@ -433,7 +433,7 @@ WithAnimation.parameters = {
 export const WithStyle: StoryComponentType = {
     render: () => {
         const customStyles = {
-            border: `2px solid ${tokens.color.pink}`,
+            border: `2px solid ${tokens.color.purple}`,
             padding: tokens.spacing.xLarge_32,
         };
 

@@ -6,7 +6,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
@@ -81,11 +81,21 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     playground: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${color.purple}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
         flexDirection: "row",
         gap: spacing.medium_16,
+    },
+    srOnly: {
+        border: 0,
+        clip: "rect(0,0,0,0)",
+        height: 1,
+        margin: -1,
+        overflow: "hidden",
+        padding: 0,
+        position: "absolute",
+        width: 1,
     },
 });
 
@@ -725,11 +735,47 @@ export const PopoverAlignment: StoryComponentType = {
     ),
 };
 
+export const WithDocumentRootBoundary: StoryComponentType = () => {
+    return (
+        <View style={{paddingBottom: "500px"}}>
+            <Popover
+                rootBoundary="document"
+                content={() => (
+                    <PopoverContent
+                        title="Popover with rootBoundary='document'"
+                        content="This example shows a popover with the rootBoundary='document'. This means that instead of aligning the popover to the viewport, it will instead place the popover where there is room in the DOM. This is a useful tool for popovers with large content that might not fit in small screen sizes or at 400% zoom."
+                        actions={
+                            <View style={[styles.row, styles.actions]}>
+                                <Strut size={spacing.medium_16} />
+                            </View>
+                        }
+                    />
+                )}
+                placement="top"
+            >
+                <Button>Open popover with document rootBoundary</Button>
+            </Popover>
+        </View>
+    );
+};
+
+WithDocumentRootBoundary.parameters = {
+    docs: {
+        description: {
+            story: `Sometimes you need to change the underlining behavior to position the
+                Popover by the whole webpage (document) instead of by the viewport. This is a
+                useful tool for popovers with large content that might not fit in small screen
+                sizes or at 400% zoom. For this reason, you can make use of the
+                \`rootBoundary\` prop:`,
+        },
+    },
+};
+
 /**
- * With custom aria-label - overrides the default aria-describedby and aria-labelledby
+ * With custom aria-label - overrides the default aria-labelledby
  */
 
-export const CustomAriaLabel: StoryComponentType = {
+export const WithCustomAriaLabel: StoryComponentType = {
     args: {
         children: <Button>Open popover</Button>,
         content: ContentMappings.withTextOnly,
@@ -741,4 +787,49 @@ export const CustomAriaLabel: StoryComponentType = {
         onClose: () => {},
         "aria-label": "Popover with custom aria label",
     } as PopoverArgs,
+};
+
+/**
+ * With custom aria-describedby - overrides the default aria-describedby
+ */
+export const WithCustomAriaDescribedBy = ({
+    placement,
+}: {
+    placement: Placement;
+}) => {
+    const [opened, setOpened] = React.useState(false);
+
+    return (
+        <View style={styles.example}>
+            <Popover
+                aria-describedby="custom-popover-description"
+                placement={placement}
+                opened={opened}
+                onClose={() => setOpened(false)}
+                content={
+                    <>
+                        <HeadingMedium
+                            id="custom-popover-description"
+                            style={styles.srOnly}
+                        >
+                            Hidden text that would describe the popover content
+                        </HeadingMedium>
+                        <PopoverContent
+                            title="Title"
+                            content="Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip commodo."
+                            closeButtonVisible
+                        />
+                    </>
+                }
+            >
+                <Button
+                    onClick={() => {
+                        setOpened(true);
+                    }}
+                >
+                    {`Open popover`}
+                </Button>
+            </Popover>
+        </View>
+    );
 };

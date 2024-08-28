@@ -409,6 +409,26 @@ const IconExample = () => (
                 </Button>
             ))}
         </View>
+        <LabelLarge style={styles.label}>Over a dark background</LabelLarge>
+        <View
+            style={[
+                styles.row,
+                {backgroundColor: color.darkBlue, padding: spacing.medium_16},
+            ]}
+        >
+            {kinds.map((kind, idx) => (
+                <Button
+                    light={true}
+                    kind={kind}
+                    startIcon={pencilSimpleBold}
+                    endIcon={plus}
+                    style={styles.button}
+                    key={idx}
+                >
+                    {kind}
+                </Button>
+            ))}
+        </View>
     </View>
 );
 

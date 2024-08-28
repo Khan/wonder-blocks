@@ -12,6 +12,13 @@ type Props = {
      */
     disabled: boolean | undefined;
     /**
+     * Whether to disable the space key from selecting an item.
+     *
+     * This is useful when the listbox is used in a combobox and the space key
+     * is required in the input field to complete the selection.
+     */
+    disableSpaceSelection?: boolean;
+    /**
      * The unique identifier of the listbox element.
      */
     id: string;
@@ -37,6 +44,7 @@ type Props = {
 export function useListbox({
     children: options,
     disabled,
+    disableSpaceSelection,
     id,
     selectionType = "single",
     value,
@@ -87,6 +95,8 @@ export function useListbox({
 
             if (selectionType === "single") {
                 setSelected(optionItem.props.value);
+                // TODO(WB-1754): Add a callback for single selection to notify
+                // parent components of the change.
             } else {
                 setSelected((prevSelected) => {
                     const newSelectedValue = updateMultipleSelection(
@@ -124,14 +134,28 @@ export function useListbox({
                     return;
                 case "Enter":
                 case " ":
+                    if (
+                        // No item is focused
+                        focusedIndex < 0 ||
+                        // Only handle space if the listbox is focused
+                        (key === " " && disableSpaceSelection)
+                    ) {
+                        return;
+                    }
                     // Prevent form submission
                     event.preventDefault();
-
                     selectOption(focusedIndex);
                     return;
             }
         },
-        [focusNextItem, focusPreviousItem, focusedIndex, options, selectOption],
+        [
+            disableSpaceSelection,
+            focusNextItem,
+            focusPreviousItem,
+            focusedIndex,
+            options,
+            selectOption,
+        ],
     );
 
     // Some keys should be handled during the keyup event instead.
@@ -176,8 +200,17 @@ export function useListbox({
 
     const renderList = React.useMemo(() => {
         return options.map((component, index) => {
+            const isSingleSelection =
+                selectionType === "single" && typeof selected === "string";
             const isSelected =
-                selected?.includes(component.props.value) || false;
+                (isSingleSelection
+                    ? // Uses exact match for single selection to avoid false
+                      // positives when the selected value is a substring of the
+                      // option value.
+                      selected === component.props.value
+                    : // Uses includes for multiple selection to allow selecting
+                      // multiple options.
+                      selected?.includes(component.props.value)) || false;
             const optionId = id ? `${id}-option-${index}` : `option-${index}`;
 
             // Renders option items and pass the extra props needed to manage
@@ -211,9 +244,11 @@ export function useListbox({
         isListboxFocused,
         // current option focused
         focusedIndex,
+        setFocusedIndex,
         // list of options
         renderList,
         // selected value(s)
+        setSelected,
         selected,
         // handlers
         handleKeyDown,

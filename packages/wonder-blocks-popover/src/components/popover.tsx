@@ -10,6 +10,7 @@ import type {
     Placement,
     PopperElementProps,
 } from "@khanacademy/wonder-blocks-tooltip";
+import type {RootBoundary} from "@popperjs/core";
 
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
@@ -116,6 +117,13 @@ type Props = AriaProps &
          * your content does not get clipped or hidden.
          */
         portal?: boolean;
+        /**
+         * Optional property to set what the root boundary is for the popper behavior.
+         * This is set to "viewport" by default, causing the popper to be positioned based
+         * on the user's viewport. If set to "document", it will position itself based
+         * on where there is available room within the document body.
+         */
+        rootBoundary?: RootBoundary;
     }>;
 
 type State = Readonly<{
@@ -137,6 +145,7 @@ type DefaultProps = Readonly<{
     placement: Props["placement"];
     showTail: Props["showTail"];
     portal: Props["portal"];
+    rootBoundary: Props["rootBoundary"];
 }>;
 
 /**
@@ -167,6 +176,7 @@ export default class Popover extends React.Component<Props, State> {
         placement: "top",
         showTail: true,
         portal: true,
+        rootBoundary: "viewport",
     };
 
     /**
@@ -278,19 +288,26 @@ export default class Popover extends React.Component<Props, State> {
             showTail,
             portal,
             "aria-label": ariaLabel,
+            "aria-describedby": ariaDescribedBy,
+            rootBoundary,
         } = this.props;
         const {anchorElement} = this.state;
 
-        const ariaDescribedBy = ariaLabel ? undefined : `${uniqueId}-content`;
+        const describedBy = ariaDescribedBy || `${uniqueId}-content`;
+
         const ariaLabelledBy = ariaLabel ? undefined : `${uniqueId}-title`;
 
         const popperContent = (
-            <TooltipPopper anchorElement={anchorElement} placement={placement}>
+            <TooltipPopper
+                anchorElement={anchorElement}
+                placement={placement}
+                rootBoundary={rootBoundary}
+            >
                 {(props: PopperElementProps) => (
                     <PopoverDialog
                         {...props}
                         aria-label={ariaLabel}
-                        aria-describedby={ariaDescribedBy}
+                        aria-describedby={describedBy}
                         aria-labelledby={ariaLabelledBy}
                         id={uniqueId}
                         onUpdate={(placement) => this.setState({placement})}

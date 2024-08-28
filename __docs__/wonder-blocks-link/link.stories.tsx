@@ -833,7 +833,7 @@ WithTypography.play = async ({canvasElement}) => {
 };
 
 export const WithStyle: StoryComponentType = () => (
-    <Link href="#" style={styles.pinkLink}>
+    <Link href="#" style={styles.customLink}>
         This link has a style.
     </Link>
 );
@@ -842,7 +842,7 @@ WithStyle.parameters = {
     docs: {
         storyDescription: `Link can take a \`style\` prop. Here, the
             Link has been given a style in which the \`color\` field has
-            been set to \`Colors.pink\`.`,
+            been set to \`color.red\`.`,
     },
 };
 
@@ -971,12 +971,12 @@ const styles = StyleSheet.create({
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${color.lightBlue}`,
+        border: `1px dashed ${color.purple}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },
-    pinkLink: {
-        color: color.pink,
+    customLink: {
+        color: color.red,
     },
     row: {
         flexDirection: "row",

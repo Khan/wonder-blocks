@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-testing
 
+## 12.0.0
+
+### Major Changes
+
+-   490b5fa4: Rename ssr adapter to renderState
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-data@13.0.11
+
 ## 11.0.1
 
 ### Patch Changes

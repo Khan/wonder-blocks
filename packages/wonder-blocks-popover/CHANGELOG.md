@@ -1,5 +1,57 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.2.15
+
+### Patch Changes
+
+-   Updated dependencies [ea506e85]
+    -   @khanacademy/wonder-blocks-icon-button@5.4.0
+    -   @khanacademy/wonder-blocks-modal@5.1.11
+    -   @khanacademy/wonder-blocks-tooltip@2.4.2
+
+## 3.2.14
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-icon-button@5.3.5
+    -   @khanacademy/wonder-blocks-modal@5.1.10
+    -   @khanacademy/wonder-blocks-tooltip@2.4.1
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 3.2.13
+
+### Patch Changes
+
+-   Updated dependencies [79b9fdb1]
+    -   @khanacademy/wonder-blocks-tooltip@2.4.0
+
+## 3.2.12
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-icon-button@5.3.4
+    -   @khanacademy/wonder-blocks-modal@5.1.9
+    -   @khanacademy/wonder-blocks-tooltip@2.3.9
+
+## 3.2.11
+
+### Patch Changes
+
+-   166ae1da: Adding logic for aria-describedby
+
+## 3.2.10
+
+### Patch Changes
+
+-   68dd6059: adds optional aria label for popover
+-   Updated dependencies [be540444]
+    -   @khanacademy/wonder-blocks-tooltip@2.3.8
+
 ## 3.2.9
 
 ### Patch Changes

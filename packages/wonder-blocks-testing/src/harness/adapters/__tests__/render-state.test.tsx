@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import * as WBCore from "@khanacademy/wonder-blocks-core";
 import {makeTestHarness} from "@khanacademy/wonder-blocks-testing-core";
 
-import * as SSR from "../ssr";
+import * as RenderState from "../render-state";
 
 jest.mock("@khanacademy/wonder-stuff-core", () => {
     const actualCore = jest.requireActual("@khanacademy/wonder-stuff-core");
@@ -22,7 +22,7 @@ describe("SSR.adapter", () => {
         const renderStateRootSpy = jest.spyOn(WBCore, "RenderStateRoot");
 
         // Act
-        render(SSR.adapter(children, true));
+        render(RenderState.adapter(children, true));
 
         // Assert
         expect(renderStateRootSpy).toHaveBeenCalledWith(
@@ -39,7 +39,7 @@ describe("SSR.adapter", () => {
         const children = <div>CHILDREN!</div>;
 
         // Act
-        render(SSR.adapter(children, true));
+        render(RenderState.adapter(children, true));
 
         // Assert
         expect(screen.getByText("CHILDREN!")).toBeInTheDocument();
@@ -53,10 +53,10 @@ describe("SSR.adapter", () => {
         };
         const testHarness = makeTestHarness(
             {
-                ssr: SSR.adapter,
+                renderState: RenderState.adapter,
             },
             {
-                ssr: true,
+                renderState: true,
             },
         );
         const Harnessed = testHarness(ComponentNeedsSsr);
@@ -78,7 +78,7 @@ describe("SSR.adapter", () => {
         const children = <div>CHILDREN!</div>;
 
         // Act
-        const underTest = () => render(SSR.adapter(children, config));
+        const underTest = () => render(RenderState.adapter(children, config));
 
         // Assert
         expect(underTest).toThrowErrorMatchingSnapshot();
