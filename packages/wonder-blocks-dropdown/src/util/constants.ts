@@ -1,4 +1,5 @@
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {ComboboxLabels} from "./types";
 
 export const keyCodes = {
     tab: 9,
@@ -45,3 +46,26 @@ export const defaultLabels = {
         numSelectedValues === 1 ? "1 item" : `${numSelectedValues} items`,
     allSelected: "All items",
 } as const;
+
+export const defaultComboboxLabels: ComboboxLabels = {
+    closedState: "Combobox is closed",
+    comboboxButton: "Toggle listbox",
+    listbox: "Options list",
+    removeSelected: (label: string) => `Remove ${label}`,
+    // Live region labels
+    liveRegionCurrentItem: ({
+        current,
+        index,
+        total,
+        disabled,
+        focused,
+        selected,
+    }) =>
+        `${current}${focused ? " focused" : ""}${disabled ? " disabled" : ""}${
+            selected ? " selected" : ""
+        }, ${index + 1} of ${total}.`,
+    liveRegionMultipleSelectionTotal: (total) => `${total} selected options.`,
+    liveRegionListboxTotal: (total) => `${total} results available.`,
+    selected: (labels: string) => `${labels} selected`,
+    unselected: (labels: string) => `${labels} not selected`,
+};
