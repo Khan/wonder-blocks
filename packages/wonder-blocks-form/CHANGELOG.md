@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.9.2
+
+### Patch Changes
+
+-   9ec147a9: Revert updated `TextField` state styling
+
 ## 4.9.1
 
 ### Patch Changes

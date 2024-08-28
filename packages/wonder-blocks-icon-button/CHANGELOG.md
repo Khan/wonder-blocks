@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.4.0
+
+### Minor Changes
+
+-   ea506e85: Add onMouseDown prop
+
 ## 5.3.5
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-pill
 
+## 2.5.0
+
+### Minor Changes
+
+-   5fb863d0: Add `tabIndex` prop to customize keyboard focusability of clickable pills
+
 ## 2.4.6
 
 ### Patch Changes
