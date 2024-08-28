@@ -62,7 +62,6 @@ const defaultArgs = {
     autoComplete: "none",
     light: false,
     loading: false,
-    // labels: defaultComboboxLabels,
 };
 
 export default {
