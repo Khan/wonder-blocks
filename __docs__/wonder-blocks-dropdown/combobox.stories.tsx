@@ -15,7 +15,6 @@ import argTypes from "./combobox.argtypes";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {defaultComboboxLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 
 const items = [
     <OptionItem label="Banana" value="banana" key={0} />,
