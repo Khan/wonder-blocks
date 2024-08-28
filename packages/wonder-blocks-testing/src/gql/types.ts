@@ -1,6 +1,8 @@
 import type {GqlOperation, GqlContext} from "@khanacademy/wonder-blocks-data";
-import type {GraphQLJson} from "../types";
-import type {MockResponse} from "../respond-with";
+import type {
+    GraphQLJson,
+    MockResponse,
+} from "@khanacademy/wonder-blocks-testing-core";
 
 export type GqlMockOperation<
     TData extends Record<any, any>,

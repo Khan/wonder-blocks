@@ -19,7 +19,10 @@ comment:
   require_head: yes
 
 ignore:
-  - "utils/*.js"
+  - "utils/*.ts"
   - "packages/**/dist/index.js"
+  - "package"
+  - "packages/**/types.ts"
+  - "packages/**/*.typestest.ts"
   - "packages/**/types.js"
-  - "packages/**/*.flowtest.js "
+  - "packages/**/*.typestest.js"

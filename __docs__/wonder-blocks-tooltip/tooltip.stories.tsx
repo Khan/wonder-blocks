@@ -5,6 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {expect, within, userEvent} from "@storybook/test";
 
 import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import info from "@phosphor-icons/core/regular/info.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -13,6 +14,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
@@ -469,10 +471,41 @@ const styles = StyleSheet.create({
         height: "200vh",
     },
     block: {
-        border: `solid 1px ${color.lightBlue}`,
+        border: `solid 1px ${color.purple}`,
         width: spacing.xLarge_32,
         height: spacing.xLarge_32,
         alignItems: "center",
         justifyContent: "center",
     },
 });
+
+/**
+ * This story shows the behaviour of the tooltip when it is in the top corner
+ */
+export const InTopCorner = {
+    parameters: {
+        layout: "fullscreen",
+        chromatic: {
+            // Disabling snapshot since this is for testing purposes
+            disableSnapshot: true,
+        },
+    },
+    render: () => (
+        <View
+            style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+            }}
+        >
+            <Tooltip content="This is an example descriptor that's long with more content to see if it will display properly in different browsers">
+                <PhosphorIcon
+                    icon={info}
+                    size="small"
+                    aria-hidden
+                    style={{":hover": {backgroundColor: color.red}}}
+                />
+            </Tooltip>
+        </View>
+    ),
+};

@@ -6,7 +6,7 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -113,18 +113,18 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${color.blue}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.lightBlue,
-        color: color.white,
+        background: color.fadedPurple24,
+        color: color.offBlack,
         padding: spacing.medium_16,
     },
     focused: {
-        backgroundColor: fade(color.lightBlue, 0.8),
+        outlineColor: color.purple,
+        outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
         textDecoration: "underline",
-        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {
@@ -660,6 +660,9 @@ export const DropdownInModal: StoryComponentType = {
  *
  * **Note:** If you need to use a custom ID for testing the opener, make sure to
  * pass the testId prop inside the opener component/element.
+ *
+ * **Accessibility:** When a custom opener is used, the following attributes are
+ * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
  */
 export const CustomOpener: StoryComponentType = {
     render: Template,

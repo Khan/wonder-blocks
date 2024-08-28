@@ -136,3 +136,39 @@ export const BirthdayPickerWithYearAndMonthOnly: StoryComponentType = {
         },
     },
 };
+
+export const BirthdayPickerVertical: StoryComponentType = {
+    args: {
+        style: {flexDirection: "column"},
+        dropdownStyle: {width: "100%"},
+        onChange: (date?: string | null) => {
+            // eslint-disable-next-line no-console
+            console.log("Date selected: ", date);
+        },
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A BirthdayPicker can be configured to render vertically instead of horizontally. This can be useful when we want to display the component in a narrow container.",
+            },
+        },
+    },
+};
+
+export const BirthdayPickerVerticalWithError: StoryComponentType = {
+    args: {
+        style: {flexDirection: "column"},
+        onChange: (date?: string | null) => {
+            // eslint-disable-next-line no-console
+            console.log("Date selected: ", date);
+        },
+        defaultValue: "2030-07-19",
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A vertical BirthdayPicker may have an error. It should show beneath all the dropdowns.",
+            },
+        },
+    },
+};

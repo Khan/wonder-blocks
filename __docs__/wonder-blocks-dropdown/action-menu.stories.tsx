@@ -144,18 +144,18 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `5px solid ${color.blue}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.lightBlue,
-        color: color.white,
+        background: color.fadedPurple24,
+        color: color.offBlack,
         padding: spacing.medium_16,
     },
     focused: {
-        color: color.offWhite,
+        outlineColor: color.purple,
+        outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
         textDecoration: "underline",
-        color: color.offWhite,
         cursor: "pointer",
     },
     pressed: {
@@ -358,6 +358,9 @@ export const Controlled: StoryComponentType = {
  *
  * **Note:** If you need to use a custom ID for testing the opener, make sure to
  * pass the testId prop inside the opener component/element.
+ *
+ * **Accessibility:** When a custom opener is used, the following attributes are
+ * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
  */
 
 export const CustomOpener: StoryComponentType = {
@@ -375,6 +378,7 @@ export const CustomOpener: StoryComponentType = {
                     hovered && styles.hovered,
                     pressed && styles.pressed,
                 ]}
+                role="button"
             >
                 {text}
             </LabelLarge>

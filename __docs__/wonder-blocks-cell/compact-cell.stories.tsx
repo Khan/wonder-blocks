@@ -407,7 +407,7 @@ export const CompactCellsAsListItems: StoryComponentType = {
                         />
                     }
                     onClick={() => {}}
-                    style={{background: color.pink}}
+                    style={{background: color.fadedPurple24}}
                     horizontalRule="full-width"
                 />
             </View>

@@ -1,0 +1,31 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Packages / Form / TextArea / Accessibility" />
+
+# TextArea Accessibility
+
+- Use labels for every `TextArea` and make the `for=""` and `id=""` values match.
+IDs must be unique on each page, only one label can be associated to each unique
+form element.
+- Have in mind that placeholder text is not a replacement for labels. Assistive
+technologies, such as screen readers, do not treat placeholder text as labels.
+
+## ARIA
+
+`TextArea` can take in all ARIA props defined in Wonder Blocks Core types.
+
+The `aria-invalid` attribute is automatically set to `true`/`false` if it is
+in an error state.
+
+The `aria-disabled` attribute is set to `true`/`false` if the `disabled` prop
+is set.
+
+## Keyboard Interaction
+
+If the `TextArea` is disabled, a user can continue to tab to it using keyboard
+navigation.
+
+## Resources
+- [Form Instructions](https://www.w3.org/WAI/tutorials/forms/instructions/)
+- [A11Y Style Guide](https://a11y-style-guide.com/style-guide/section-forms.html#kssref-forms-text-fields)
+- [Textarea multiline input](https://www.magentaa11y.com/checklist-web/textarea/)

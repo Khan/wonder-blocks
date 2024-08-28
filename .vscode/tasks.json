@@ -44,7 +44,7 @@
                 "focus": false,
                 "panel": "dedicated"
             },
-            "script": "test",
+            "script": "jest",
             "group": {
                 "kind": "test",
                 "isDefault": true

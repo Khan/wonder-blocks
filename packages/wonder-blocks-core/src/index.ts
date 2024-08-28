@@ -7,7 +7,7 @@ import type {
 
 export {default as Text} from "./components/text";
 export {default as View} from "./components/view";
-export {default as WithSSRPlaceholder} from "./components/with-ssr-placeholder";
+export {default as InitialFallback} from "./components/initial-fallback";
 export {default as IDProvider} from "./components/id-provider";
 export {default as UniqueIDProvider} from "./components/unique-id-provider";
 export {default as addStyle} from "./util/add-style";

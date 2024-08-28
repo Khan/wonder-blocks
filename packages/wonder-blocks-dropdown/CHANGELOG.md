@@ -1,5 +1,106 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.4.6
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-layout@2.2.0
+    -   @khanacademy/wonder-blocks-search-field@2.2.24
+    -   @khanacademy/wonder-blocks-cell@3.4.4
+    -   @khanacademy/wonder-blocks-clickable@4.2.7
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+    -   @khanacademy/wonder-blocks-modal@5.1.10
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 5.4.5
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-cell@3.4.3
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+    -   @khanacademy/wonder-blocks-layout@2.1.3
+    -   @khanacademy/wonder-blocks-modal@5.1.9
+    -   @khanacademy/wonder-blocks-search-field@2.2.23
+
+## 5.4.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-search-field@2.2.22
+
+## 5.4.3
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-search-field@2.2.21
+
+## 5.4.2
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-cell@3.4.2
+    -   @khanacademy/wonder-blocks-clickable@4.2.5
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-icon@4.1.3
+    -   @khanacademy/wonder-blocks-layout@2.1.2
+    -   @khanacademy/wonder-blocks-modal@5.1.8
+    -   @khanacademy/wonder-blocks-search-field@2.2.20
+    -   @khanacademy/wonder-blocks-timing@5.0.1
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 5.4.1
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-cell@3.4.1
+    -   @khanacademy/wonder-blocks-clickable@4.2.4
+    -   @khanacademy/wonder-blocks-icon@4.1.2
+    -   @khanacademy/wonder-blocks-layout@2.1.1
+    -   @khanacademy/wonder-blocks-modal@5.1.7
+    -   @khanacademy/wonder-blocks-search-field@2.2.19
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
+## 5.4.0
+
+### Minor Changes
+
+-   4e82c4c2: Improves support for providing ids to the opener and dropdown elements. These ids are auto-generated if they are not provided.
+
+    Also applies attributes to elements automatically for improved accessibility (`aria-controls`, `aria-haspopup`, `aria-expanded`).
+
+    -   `ActionMenu`
+        -   Adds new `dropdownId` and `id` props. If these are not provided, these ids will be generated automatically
+        -   `aria-controls` is set to the dropdown id for both default and custom openers
+        -   Ensure `aria-haspopup` and `aria-expanded` attributes are set on both default and custom openers
+    -   `SingleSelect` and `MultiSelect`
+        -   Adds new `dropdownId` prop. If this is not provided, an id will be generated automatically
+        -   If the `id` prop is not provided, an id for the component is now generated automatically
+        -   `aria-controls` is set to the dropdown id for both default and custom openers
+        -   Ensure `id`, `aria-haspopup` and `aria-expanded` attributes are set on both default and custom openers
+
+### Patch Changes
+
+-   f099cf87: Improves accessibility of the checked status on `OptionItem` components used
+    within the `ActionMenu` component. The checked status is communicated to
+    screenreaders by using a `menuitemcheckbox` role with the `aria-checked`
+    attribute (instead of `aria-selected`). - `CellCore` (used by `CompactCell` and `DetailCell`) has a new optional
+    prop for `aria-checked` - `ClickableRole` type now supports the `menuitemcheckbox` role - `OptionItem`'s `role` prop now also supports the `menuitemcheckbox` role
+-   Updated dependencies [f099cf87]
+    -   @khanacademy/wonder-blocks-clickable@4.2.3
+    -   @khanacademy/wonder-blocks-cell@3.4.0
+    -   @khanacademy/wonder-blocks-search-field@2.2.18
+    -   @khanacademy/wonder-blocks-modal@5.1.6
+
 ## 5.3.9
 
 ### Patch Changes

@@ -122,4 +122,30 @@ export default {
             type: "boolean",
         },
     },
+    rootBoundary: {
+        description:
+            `Optional property to set what the root boundary is for the popper behavior. ` +
+            `This is set to "viewport" by default, causing the popper to be positioned based ` +
+            `on the user's viewport. If set to "document", it will position itself based ` +
+            `on where there is available room within the document body.`,
+        control: {
+            type: "select",
+            options: ["viewport", "document"],
+        },
+    },
+    portal: {
+        description:
+            `Optional property to enable the portal functionality of popover.` +
+            `This is very handy in cases where the Popover can't be easily` +
+            `injected into the DOM structure and requires portaling to` +
+            `the trigger location.` +
+            `Set to "true" by default.\n\n` +
+            `CAUTION: Turning off portal could cause some clipping issues` +
+            `especially around legacy code with usage of z-indexing,` +
+            `Use caution when turning this functionality off and ensure` +
+            `your content does not get clipped or hidden.`,
+        control: {
+            type: "boolean",
+        },
+    },
 };

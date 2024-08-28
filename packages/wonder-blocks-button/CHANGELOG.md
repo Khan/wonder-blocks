@@ -1,5 +1,72 @@
 # @khanacademy/wonder-blocks-button
 
+## 6.3.9
+
+### Patch Changes
+
+-   Updated dependencies [688c65dc]
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-progress-spinner@2.1.6
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.7
+    -   @khanacademy/wonder-blocks-icon@4.1.4
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 6.3.8
+
+### Patch Changes
+
+-   efa99094: Fixes an issue on the icon color where it was using the incorrect value over dark backgrounds. The icon color now inherits the color from the button to preserve the same color defined for the text.
+
+## 6.3.7
+
+### Patch Changes
+
+-   4d346dc8: Fixes a UI issue where secondary buttons weren't displaying the focus ring when disabled + focused
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-clickable@4.2.6
+    -   @khanacademy/wonder-blocks-progress-spinner@2.1.5
+
+## 6.3.6
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-clickable@4.2.5
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-icon@4.1.3
+    -   @khanacademy/wonder-blocks-progress-spinner@2.1.4
+    -   @khanacademy/wonder-blocks-theming@2.0.3
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 6.3.5
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-clickable@4.2.4
+    -   @khanacademy/wonder-blocks-icon@4.1.2
+    -   @khanacademy/wonder-blocks-progress-spinner@2.1.3
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
+## 6.3.4
+
+### Patch Changes
+
+-   04a25ff7: Fix inconsistent underline height in the active state of the tertiary button.
+
+## 6.3.3
+
+### Patch Changes
+
+-   Updated dependencies [f099cf87]
+    -   @khanacademy/wonder-blocks-clickable@4.2.3
+
 ## 6.3.2
 
 ### Patch Changes

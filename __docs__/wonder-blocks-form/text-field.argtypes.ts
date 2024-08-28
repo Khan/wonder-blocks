@@ -110,7 +110,7 @@ export default {
             },
         },
         control: {
-            type: "null",
+            type: undefined,
         },
     },
 
@@ -168,7 +168,7 @@ export default {
             },
         },
         control: {
-            type: "null",
+            type: undefined,
         },
     },
 

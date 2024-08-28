@@ -1,5 +1,68 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.4.1
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-layout@2.2.0
+    -   @khanacademy/wonder-blocks-modal@5.1.10
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 2.4.0
+
+### Minor Changes
+
+-   79b9fdb1: Update tooltip implementation of Popper to:
+
+    -   Ensure that the popper doesn't disappear when the referenced element is not in view in very small screen sizes. This ensures customers can interact with the popper in extra small screen sizes or +400% zoom without the popper randomly disappearing.
+    -   Addition of an optional property to set what the root boundary is for the popper behavior. This is set to "viewport" by default, causing the popper to be positioned based on the user's viewport. If set to "document", it will position itself based on where there is available room within the document body
+
+## 2.3.9
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-layout@2.1.3
+    -   @khanacademy/wonder-blocks-modal@5.1.9
+
+## 2.3.8
+
+### Patch Changes
+
+-   be540444: Fix tooltip bug where it sometimes flickers and stays hidden when the anchor is hovered over in Firefox
+
+## 2.3.7
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-layout@2.1.2
+    -   @khanacademy/wonder-blocks-modal@5.1.8
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 2.3.6
+
+### Patch Changes
+
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-layout@2.1.1
+    -   @khanacademy/wonder-blocks-modal@5.1.7
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
+## 2.3.5
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@5.1.6
+
 ## 2.3.4
 
 ### Patch Changes

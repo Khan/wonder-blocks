@@ -2,22 +2,22 @@ import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
 import {render} from "@testing-library/react";
 
-import WithSSRPlaceholder from "../with-ssr-placeholder";
+import InitialFallback from "../initial-fallback";
 import {RenderStateRoot} from "../render-state-root";
 
-describe("WithSSRPlaceholder", () => {
+describe("InitialFallback", () => {
     describe("client-side rendering", () => {
         test("calls placeholder render first, then the actual content render", async () => {
             // Arrange
             const mockPlaceholder = jest.fn(() => null);
             await new Promise((resolve: any) => {
                 const nodes = (
-                    <WithSSRPlaceholder placeholder={mockPlaceholder}>
+                    <InitialFallback fallback={mockPlaceholder}>
                         {() => {
                             resolve();
                             return null;
                         }}
-                    </WithSSRPlaceholder>
+                    </InitialFallback>
                 );
 
                 // Act
@@ -43,15 +43,15 @@ describe("WithSSRPlaceholder", () => {
                     };
 
                     const placeholder = () => (
-                        <WithSSRPlaceholder placeholder={nestedPlaceholder}>
+                        <InitialFallback fallback={nestedPlaceholder}>
                             {mockChildrenNotCalled}
-                        </WithSSRPlaceholder>
+                        </InitialFallback>
                     );
 
                     const nodes = (
-                        <WithSSRPlaceholder placeholder={placeholder}>
+                        <InitialFallback fallback={placeholder}>
                             {() => null}
-                        </WithSSRPlaceholder>
+                        </InitialFallback>
                     );
 
                     // Act
@@ -60,7 +60,7 @@ describe("WithSSRPlaceholder", () => {
 
                 // Assert
                 // Our promise doesn't resolve until the placeholder of our nested
-                // WithSSRPlaceholder is rendered, therefore if we get here it means
+                // InitialFallback is rendered, therefore if we get here it means
                 // that the test is doing what we'd expect.
                 // In addition, if our code is working right, the children of the
                 // nested placeholder should have been skipped.
@@ -73,18 +73,18 @@ describe("WithSSRPlaceholder", () => {
                 const mockPlaceholderNotCalled = jest.fn(() => null);
                 await new Promise((resolve: any) => {
                     const nodes = (
-                        <WithSSRPlaceholder placeholder={mockPlaceholder}>
+                        <InitialFallback fallback={mockPlaceholder}>
                             {() => (
-                                <WithSSRPlaceholder
-                                    placeholder={mockPlaceholderNotCalled}
+                                <InitialFallback
+                                    fallback={mockPlaceholderNotCalled}
                                 >
                                     {() => {
                                         resolve();
                                         return null;
                                     }}
-                                </WithSSRPlaceholder>
+                                </InitialFallback>
                             )}
-                        </WithSSRPlaceholder>
+                        </InitialFallback>
                     );
 
                     // Act
@@ -92,7 +92,7 @@ describe("WithSSRPlaceholder", () => {
                 });
 
                 // Assert
-                // Our promise doesn't resolve until the children of our nested WithSSRPlaceholder
+                // Our promise doesn't resolve until the children of our nested InitialFallback
                 // are rendered, therefore we don't get here until that and so if the
                 // parent placeholder has been called, it must have been called first.
                 // In addition, if our code is working right, the placeholder of the
@@ -110,9 +110,9 @@ describe("WithSSRPlaceholder", () => {
             const mockPlaceholder = jest.fn(() => null);
 
             const nodes = (
-                <WithSSRPlaceholder placeholder={mockPlaceholder}>
+                <InitialFallback fallback={mockPlaceholder}>
                     {mockChildren}
-                </WithSSRPlaceholder>
+                </InitialFallback>
             );
 
             // Act
@@ -128,9 +128,9 @@ describe("WithSSRPlaceholder", () => {
             const mockChildren = jest.fn(() => null);
 
             const nodes = (
-                <WithSSRPlaceholder placeholder={null}>
+                <InitialFallback fallback={null}>
                     {mockChildren}
-                </WithSSRPlaceholder>
+                </InitialFallback>
             );
 
             // Act
@@ -146,15 +146,15 @@ describe("WithSSRPlaceholder", () => {
                 // Arrange
                 const expectation = "CHILD PLACEHOLDER";
                 const placeholder = (
-                    <WithSSRPlaceholder placeholder={() => expectation}>
+                    <InitialFallback fallback={() => expectation}>
                         {() => "This won't render"}
-                    </WithSSRPlaceholder>
+                    </InitialFallback>
                 );
 
                 const nodes = (
-                    <WithSSRPlaceholder placeholder={() => placeholder}>
+                    <InitialFallback fallback={() => placeholder}>
                         {() => "This won't render"}
-                    </WithSSRPlaceholder>
+                    </InitialFallback>
                 );
 
                 // Act
@@ -167,16 +167,15 @@ describe("WithSSRPlaceholder", () => {
             test("in parent children, renders as null", () => {
                 // Arrange
                 const placeholder = (
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-                    <WithSSRPlaceholder placeholder={undefined}>
+                    <InitialFallback fallback={null}>
                         {() => "This won't render"}
-                    </WithSSRPlaceholder>
+                    </InitialFallback>
                 );
 
                 const nodes = (
-                    <WithSSRPlaceholder placeholder={() => placeholder}>
+                    <InitialFallback fallback={() => placeholder}>
                         {() => "This won't render"}
-                    </WithSSRPlaceholder>
+                    </InitialFallback>
                 );
 
                 // Act
@@ -195,12 +194,12 @@ describe("WithSSRPlaceholder", () => {
             await new Promise((resolve: any) => {
                 const nodes = (
                     <RenderStateRoot>
-                        <WithSSRPlaceholder placeholder={mockPlaceholder}>
+                        <InitialFallback fallback={mockPlaceholder}>
                             {() => {
                                 resolve();
                                 return null;
                             }}
-                        </WithSSRPlaceholder>
+                        </InitialFallback>
                     </RenderStateRoot>
                 );
 
@@ -222,9 +221,9 @@ describe("WithSSRPlaceholder", () => {
 
             const nodes = (
                 <RenderStateRoot>
-                    <WithSSRPlaceholder placeholder={mockPlaceholder}>
+                    <InitialFallback fallback={mockPlaceholder}>
                         {mockChildren}
-                    </WithSSRPlaceholder>
+                    </InitialFallback>
                 </RenderStateRoot>
             );
 
@@ -242,9 +241,9 @@ describe("WithSSRPlaceholder", () => {
 
             const nodes = (
                 <RenderStateRoot>
-                    <WithSSRPlaceholder placeholder={null}>
+                    <InitialFallback fallback={null}>
                         {mockChildren}
-                    </WithSSRPlaceholder>
+                    </InitialFallback>
                 </RenderStateRoot>
             );
 

@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Exports / purgeHydrationCache()"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # purgeHydrationCache()
@@ -21,4 +16,4 @@ purgeHydrationCache(predicate?: (key: string, cacheEntry: $ReadOnly<CachedRespon
 
 Removes all entries that match a given predicate from the cache. If no predicate is given, all cached entries.
 
-This can be used after [`initializeHydrationCache`](/docs/data-exports-initializehydrationcache--page) to manipulate the cache prior to hydration wich can be useful during testing (especially to clear the cache so that it can be initialized again).
+This can be used after <a href="./?path=/docs/packages-data-exports-initializehydrationcache--docs">`initializeHydrationCache`</a> to manipulate the cache prior to hydration wich can be useful during testing (especially to clear the cache so that it can be initialized again).

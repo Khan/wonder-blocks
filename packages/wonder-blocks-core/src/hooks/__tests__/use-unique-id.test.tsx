@@ -1,6 +1,6 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
-import {renderHook} from "@testing-library/react-hooks/server";
+import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 
 import SsrIDFactory from "../../util/ssr-id-factory";
 import UniqueIDFactory from "../../util/unique-id-factory";
@@ -15,7 +15,7 @@ describe("useUniqueIdWithoutMock", () => {
         );
 
         // Act
-        const {result} = renderHook(() => useUniqueIdWithoutMock(), {
+        const {result} = renderHookStatic(() => useUniqueIdWithoutMock(), {
             wrapper,
         });
 
@@ -93,13 +93,12 @@ describe("useUniqueIdWithoutMock", () => {
         // Arrange
 
         // Act
-        const {result} = renderHook(() => useUniqueIdWithoutMock());
+        const underTest = () =>
+            renderHookStatic(() => useUniqueIdWithoutMock());
 
         // Assert
-        expect(result.error).toEqual(
-            new Error(
-                "Components using useUniqueIdWithoutMock() should be descendants of <RenderStateRoot>",
-            ),
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"Components using useUniqueIdWithoutMock() should be descendants of <RenderStateRoot>"`,
         );
     });
 
@@ -140,7 +139,9 @@ describe("useUniqueIdWithMock", () => {
         );
 
         // Act
-        const {result} = renderHook(() => useUniqueIdWithMock(), {wrapper});
+        const {result} = renderHookStatic(() => useUniqueIdWithMock(), {
+            wrapper,
+        });
 
         // Assert
         expect(result.current).toBe(SsrIDFactory);
@@ -216,13 +217,12 @@ describe("useUniqueIdWithMock", () => {
         // Arrange
 
         // Act
-        const {result} = renderHook(() => useUniqueIdWithMock());
+        const underTest = () =>
+            renderHookStatic(() => useUniqueIdWithoutMock());
 
         // Assert
-        expect(result.error).toEqual(
-            new Error(
-                "Components using useUniqueIdWithMock() should be descendants of <RenderStateRoot>",
-            ),
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"Components using useUniqueIdWithoutMock() should be descendants of <RenderStateRoot>"`,
         );
     });
 

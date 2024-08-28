@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Exports / initializeHydrationCache()"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # initializeHydrationCache()
@@ -22,8 +17,8 @@ initializeHydrationCache(sourceCache: ResponseCache): void;
 Wonder Blocks Data caches data in its response cache for hydration. This cache can be initialized with data using the `initializeHydrationCache` method.
 The `initializeHydrationCache` method can only be called when the hydration cache is empty.
 
-Usually, the data to be passed to `v` will be obtained by calling [`fetchTrackedRequests`](/docs/data-exports-fetchtrackedrequests--page) after tracking data requests (see [`TrackData`](/docs/data-exports-trackdata--page)) during server-side rendering.
+Usually, the data to be passed to `v` will be obtained by calling <a href="./?path=/docs/packages-data-exports-fetchtrackedrequests--docs">`fetchTrackedRequests`</a> after tracking data requests (see <a href="./?path=/docs/packages-data-exports-trackdata--docs">`TrackData`</a>) during server-side rendering.
 
-Combine with [`purgeHydrationCache`](/docs/data-exports-purgehydrationcache--page) to support your testing needs.
+Combine with <a href="./?path=/docs/packages-data-exports-purgehydrationcache--docs">`purgeHydrationCache`</a> to support your testing needs.
 
-More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).
+More details about server-side rendering with Wonder Blocks Data can be found in the <a href="./?path=/docs/packages-data-server-side-rendering-and-hydration--docs">relevant overview section</a>.

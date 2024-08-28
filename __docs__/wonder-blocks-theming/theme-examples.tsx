@@ -33,7 +33,7 @@ const defaultTheme = {
 const customTheme = mergeTheme(defaultTheme, {
     color: {
         bg: {
-            primary: tokens.color.pink,
+            primary: tokens.color.purple,
         },
     },
     border: {

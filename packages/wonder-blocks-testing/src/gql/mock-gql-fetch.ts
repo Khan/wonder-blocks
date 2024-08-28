@@ -1,5 +1,5 @@
+import {mockRequester} from "@khanacademy/wonder-blocks-testing-core";
 import {gqlRequestMatchesMock} from "./gql-request-matches-mock";
-import {mockRequester} from "../mock-requester";
 import type {GqlFetchMockFn, GqlMockOperation} from "./types";
 
 /**

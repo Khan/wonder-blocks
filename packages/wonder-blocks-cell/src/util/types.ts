@@ -138,6 +138,10 @@ export type CellProps = {
      */
     "aria-selected"?: AriaProps["aria-selected"];
     /**
+     * Used to indicate the current item is checked.
+     */
+    "aria-checked"?: AriaProps["aria-checked"];
+    /**
      * Optinal href which Cell should direct to, uses client-side routing
      * by default if react-router is present.
      */

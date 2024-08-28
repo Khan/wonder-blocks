@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Exports / abortInflightRequests()"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # abortInflightRequests()
@@ -15,6 +10,6 @@ import {Meta} from "@storybook/blocks";
 abortInflightRequests(): void;
 ```
 
-Aborts all inflight requests that were started via [`useCachedEffect`](/docs/data-exports-usecachedeffect--page), [`useHydratableEffect`](/docs/data-exports-usehydratableeffect--page), or [`fetchTrackedRequests()`](/docs/data-exports-fetchtrackedrequests--page).
+Aborts all inflight requests that were started via <a href="./?path=/docs/packages-data-exports-usecachedeffect--docs">`useCachedEffect`</a>, <a href="./?path=/docs/packages-data-exports-usehydratableeffect--docs">`useHydratableEffect`</a>, or <a href="./?path=/docs/packages-data-exports-fetchtrackedrequests--docs">`fetchTrackedRequests()`</a>.
 
 NOTE: Full abort signalling is not currently implemented. The effect of this call is to remove any inflight requests from our inflight request tracking such that a new matching request will cause a new fetch to occur rather than sharing any existing one.

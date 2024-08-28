@@ -2,11 +2,6 @@ import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Packages / Data / Exports / useServerEffect()"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-    }}
 />
 
 # useServerEffect()
@@ -37,11 +32,11 @@ type ServerEffectOptions = {|
 
 First, this hook checks the server-side rendering cache for the request identifier; if it finds a cached value, it will return that.
 
-If there is no cached value, it will return a "loading" state. In addition, if the current rendering component has a [`TrackData`](/docs/data-exports-trackdata--page) ancestor, `useServerEffect` will register the request for fulfillment.
+If there is no cached value, it will return a "loading" state. In addition, if the current rendering component has a <a href="./?path=/docs/packages-data-exports-trackdata--docs">`TrackData`</a> ancestor, `useServerEffect` will register the request for fulfillment.
 
-This then allows that pending request to be fulfilled with [`fetchTrackedRequests`](/docs/data-exports-fetchtrackddatarequests--page), the response to be placed into the cache, and the render to be reexecuted, at which point, this hook will be able to provide that result instead of "loading.
+This then allows that pending request to be fulfilled with <a href="./?path=/docs/packages-data-exports-fetchtrackddatarequests--docs">`fetchTrackedRequests`</a>, the response to be placed into the cache, and the render to be reexecuted, at which point, this hook will be able to provide that result instead of "loading.
 
-More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).
+More details about server-side rendering with Wonder Blocks Data can be found in the <a href="./?path=/docs/packages-data-server-side-rendering-and-hydration--docs">relevant overview section</a>.
 
 ## Client-side behavior
 

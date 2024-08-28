@@ -228,8 +228,20 @@ export default class TooltipAnchor
             // So, if active is stolen from us, we are changing active state,
             // or we are inactive and have a timer, clear the action.
             this._clearPendingAction();
-        } else if (active === this.state.active && !this._timeoutID) {
-            // Nothing to do if we're already active.
+        } else if (active === this.state.active) {
+            if (this._timeoutID) {
+                // Cancel pending action if the current `this.state.active` is
+                // already the value we want to set it to (ie. the `active` arg).
+                // This is okay to cancel because:
+                // - if the pending action was to set `this.state.active` to the
+                // same value, it is not needed because it already is up to date
+                // - if the pending action was to set `this.state.active` to the
+                // opposite value, it is not needed because there is a more recent
+                // event that triggered this function with an `active` arg that is
+                // the same value as the current state.
+                this._clearPendingAction();
+            }
+            // Nothing else to do if active state is up to date.
             return;
         }
 

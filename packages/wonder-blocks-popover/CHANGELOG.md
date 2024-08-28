@@ -1,5 +1,87 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.2.14
+
+### Patch Changes
+
+-   Updated dependencies [07f7f407]
+    -   @khanacademy/wonder-blocks-core@7.0.0
+    -   @khanacademy/wonder-blocks-icon-button@5.3.5
+    -   @khanacademy/wonder-blocks-modal@5.1.10
+    -   @khanacademy/wonder-blocks-tooltip@2.4.1
+    -   @khanacademy/wonder-blocks-typography@2.1.15
+
+## 3.2.13
+
+### Patch Changes
+
+-   Updated dependencies [79b9fdb1]
+    -   @khanacademy/wonder-blocks-tooltip@2.4.0
+
+## 3.2.12
+
+### Patch Changes
+
+-   Updated dependencies [f17dc1ee]
+-   Updated dependencies [991eb43f]
+    -   @khanacademy/wonder-blocks-tokens@2.0.0
+    -   @khanacademy/wonder-blocks-icon-button@5.3.4
+    -   @khanacademy/wonder-blocks-modal@5.1.9
+    -   @khanacademy/wonder-blocks-tooltip@2.3.9
+
+## 3.2.11
+
+### Patch Changes
+
+-   166ae1da: Adding logic for aria-describedby
+
+## 3.2.10
+
+### Patch Changes
+
+-   68dd6059: adds optional aria label for popover
+-   Updated dependencies [be540444]
+    -   @khanacademy/wonder-blocks-tooltip@2.3.8
+
+## 3.2.9
+
+### Patch Changes
+
+-   47d680f4: Removed usage of focus management in Popover component, in favor of a similar implementation that won't override custom keyboard navigation.
+
+## 3.2.8
+
+### Patch Changes
+
+-   559e82d5: Update to build tooling, generating smaller output
+-   Updated dependencies [559e82d5]
+    -   @khanacademy/wonder-blocks-core@6.4.3
+    -   @khanacademy/wonder-blocks-icon-button@5.3.3
+    -   @khanacademy/wonder-blocks-modal@5.1.8
+    -   @khanacademy/wonder-blocks-tokens@1.3.1
+    -   @khanacademy/wonder-blocks-tooltip@2.3.7
+    -   @khanacademy/wonder-blocks-typography@2.1.14
+
+## 3.2.7
+
+### Patch Changes
+
+-   78ee53c9: Adding aria label attr to View component
+-   Updated dependencies [eab37b8b]
+    -   @khanacademy/wonder-blocks-core@6.4.2
+    -   @khanacademy/wonder-blocks-icon-button@5.3.2
+    -   @khanacademy/wonder-blocks-modal@5.1.7
+    -   @khanacademy/wonder-blocks-tooltip@2.3.6
+    -   @khanacademy/wonder-blocks-typography@2.1.13
+
+## 3.2.6
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.3.1
+-   @khanacademy/wonder-blocks-modal@5.1.6
+-   @khanacademy/wonder-blocks-tooltip@2.3.5
+
 ## 3.2.5
 
 ### Patch Changes
