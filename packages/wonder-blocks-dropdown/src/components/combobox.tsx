@@ -69,6 +69,8 @@ type Props = {
 
     /**
      * The object containing the custom labels used inside this component.
+     *
+     * This is useful for internationalization. Defaults to English.
      */
     labels?: ComboboxLabels;
 
@@ -120,9 +122,8 @@ type Props = {
      *
      * It’s internally mapped to aria-autocomplete set in the input field
      * (combobox).
-     *
-     * TODO(WB-1740): Add support to `inline` and `both` values.
      */
+    // TODO(WB-1740): Add support to `inline` and `both` values.
     autoComplete?: "none" | "list" | undefined;
 };
 
@@ -606,7 +607,7 @@ const styles = StyleSheet.create({
         // The following styles are to emulate the input styles
         background: color.white,
         borderRadius: border.radius.medium_4,
-        border: `solid 1px ${color.offBlack16}`,
+        border: `solid 1px ${color.offBlack50}`,
         paddingInline: spacing.xSmall_8,
     },
     focused: {
@@ -638,7 +639,7 @@ const styles = StyleSheet.create({
         },
     },
     /**
-     * Listbo custom styles
+     * Listbox custom styles
      */
     listbox: {
         backgroundColor: color.white,
