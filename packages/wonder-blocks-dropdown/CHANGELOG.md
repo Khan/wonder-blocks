@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.5.0
+
+### Minor Changes
+
+-   5fb863d0: Add multiple selection support to `Combobox`
+-   ea506e85: Add Combobox component with single selection support
+-   2ad690b3: Add a11y features to announce combobox changes to screen readers
+-   b89e828c: Add autocomplete support to Combobox
+
+### Patch Changes
+
+-   326954dd: Update borderColor to be more a11y friendly
+-   Updated dependencies [5fb863d0]
+    -   @khanacademy/wonder-blocks-pill@2.5.0
+    -   @khanacademy/wonder-blocks-search-field@2.2.25
+    -   @khanacademy/wonder-blocks-modal@5.1.11
+
 ## 5.4.6
 
 ### Patch Changes

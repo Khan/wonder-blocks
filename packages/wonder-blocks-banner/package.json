@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-banner",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "design": "v1",
   "description": "Banner components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -19,7 +19,7 @@
     "@khanacademy/wonder-blocks-button": "^6.3.9",
     "@khanacademy/wonder-blocks-core": "^7.0.0",
     "@khanacademy/wonder-blocks-icon": "^4.1.4",
-    "@khanacademy/wonder-blocks-icon-button": "^5.3.5",
+    "@khanacademy/wonder-blocks-icon-button": "^5.4.0",
     "@khanacademy/wonder-blocks-link": "^6.1.7",
     "@khanacademy/wonder-blocks-tokens": "^2.0.0",
     "@khanacademy/wonder-blocks-typography": "^2.1.15"
