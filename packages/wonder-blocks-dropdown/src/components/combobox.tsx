@@ -649,6 +649,7 @@ const styles = StyleSheet.create({
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
         maxHeight: "var(--popper-max-height)",
+        overflowY: "auto",
     },
     hidden: {
         pointerEvents: "none",
