@@ -29,6 +29,7 @@ type Props = {
         | "liveRegionCurrentItem"
         | "liveRegionListboxTotal"
         | "liveRegionMultipleSelectionTotal"
+        | "noItems"
         | "selected"
         | "unselected"
     >;
@@ -78,6 +79,7 @@ export function ComboboxLiveRegion({
         liveRegionListboxTotal: defaultComboboxLabels.liveRegionListboxTotal,
         liveRegionMultipleSelectionTotal:
             defaultComboboxLabels.liveRegionMultipleSelectionTotal,
+        noItems: defaultComboboxLabels.noItems,
         selected: defaultComboboxLabels.selected,
         unselected: defaultComboboxLabels.unselected,
     },
@@ -93,7 +95,8 @@ export function ComboboxLiveRegion({
 
     // Announce when an item is selected.
     React.useEffect(() => {
-        if (selected !== lastSelectedValue?.current) {
+        // Only announce when the selected value changes (and exists).
+        if (selected && selected !== lastSelectedValue?.current) {
             let newMessage = "";
             const lastSelectedLength = lastSelectedValue?.current?.length ?? 0;
             const selectedLength = selected?.length ?? 0;
@@ -146,8 +149,12 @@ export function ComboboxLiveRegion({
             );
         }
 
+        if (options.length === 0) {
+            return labels.noItems;
+        }
+
         // If there are no focused items, don't announce anything.
-        if (focusedIndex < 0) {
+        if (focusedIndex < 0 || !options[focusedIndex]) {
             return "";
         }
 
@@ -180,7 +187,7 @@ export function ComboboxLiveRegion({
     return (
         <StyledSpan
             role="log"
-            aria-live="assertive"
+            aria-live="polite"
             aria-atomic="false"
             aria-relevant="additions text"
             style={styles.srOnly}

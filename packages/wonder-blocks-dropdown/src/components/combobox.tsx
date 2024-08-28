@@ -12,6 +12,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
 import {
@@ -24,6 +25,7 @@ import {ComboboxLiveRegion} from "./combobox-live-region";
 import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
+import {getLabel} from "../util/helpers";
 
 type Props = {
     /**
@@ -111,6 +113,17 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
+
+    /**
+     * Indicates whether inputting text could trigger display of one or more
+     * predictions of the user’s intended value.
+     *
+     * It’s internally mapped to aria-autocomplete set in the input field
+     * (combobox).
+     *
+     * TODO(WB-1740): Add support to `inline` and `both` values.
+     */
+    autoComplete?: "none" | "list" | undefined;
 };
 
 /**
@@ -126,6 +139,7 @@ type Props = {
  * - It is displayed when the combobox receives focus.
  */
 export default function Combobox({
+    autoComplete,
     children,
     disabled,
     id,
@@ -138,10 +152,6 @@ export default function Combobox({
     testId,
     value = "",
 }: Props) {
-    // NOTE: Clear input value if we are in multi-select mode. The selected
-    // values are handled as individual Pill instances.
-    const initialValue = typeof value === "string" ? value : "";
-    const [inputValue, setInputValue] = React.useState(initialValue);
     const ids = useUniqueIdWithMock("combobox");
     const uniqueId = id ?? ids.get("listbox");
     // Ref to the combobox input element.
@@ -158,6 +168,8 @@ export default function Combobox({
         React.useState<MaybeValueOrValues>(value);
     const isValueControlled = value !== "" && onChange !== undefined;
     const valueState = isValueControlled ? value : selectedValue;
+    // A reference to the options in case these are filtered/updated.
+    const [currentOptions, setCurrentOptions] = React.useState(children);
 
     const {
         focusedIndex,
@@ -170,7 +182,7 @@ export default function Combobox({
         setSelected,
         renderList,
     } = useListbox({
-        children,
+        children: currentOptions,
         disabled,
         id: uniqueId,
         value: valueState,
@@ -180,24 +192,67 @@ export default function Combobox({
         selectionType,
     });
 
+    const itemFromSelected = renderList.find(
+        (item) => item.props.value === selected,
+    )?.props;
+    const labelFromSelected = itemFromSelected
+        ? getLabel(itemFromSelected)
+        : "";
+
+    // NOTE: Clear input value if we are in multi-select mode. The selected
+    // values are handled as individual Pill instances.
+    const initialValue = typeof value === "string" ? labelFromSelected : "";
+    const [inputValue, setInputValue] = React.useState(initialValue);
+
     /**
      * Updates the open state of the combobox.
      */
     const updateOpenState = React.useCallback(
         (newState: boolean) => {
-            if (disabled) {
+            if (disabled || newState === openState) {
                 return;
             }
 
-            if (newState !== openState) {
-                if (!isControlled) {
-                    setOpen(newState);
+            if (!isControlled) {
+                setOpen(newState);
+            }
+
+            if (!newState) {
+                // Reset focused index when the listbox is closed.
+                setFocusedIndex(-1);
+
+                const isSingleSelection =
+                    selectionType === "single" && typeof selected === "string";
+                if (
+                    selectionType === "multiple" ||
+                    (isSingleSelection && selected?.length === 0)
+                ) {
+                    // Reset the input value when the listbox is closed.
+                    setInputValue("");
+                }
+                // Revert the input value to the selected value when the listbox
+                // is closed.
+                if (isSingleSelection && selected?.length > 0) {
+                    setInputValue(labelFromSelected);
                 }
 
-                onToggle?.(newState);
+                // Reset the options list
+                setCurrentOptions(children);
             }
+
+            onToggle?.(newState);
         },
-        [disabled, isControlled, onToggle, openState],
+        [
+            children,
+            disabled,
+            isControlled,
+            labelFromSelected,
+            onToggle,
+            openState,
+            selected,
+            selectionType,
+            setFocusedIndex,
+        ],
     );
 
     // if selected value changes, update the input value
@@ -205,29 +260,35 @@ export default function Combobox({
         if (openState) {
             comboboxRef.current?.focus();
         }
+
+        if (selected === valueState) {
+            return;
+        }
+
         if (selectionType === "single" && typeof selected === "string") {
-            const labelFromSelected = children.find(
+            const itemFromSelected = renderList.find(
                 (item) => item.props.value === selected,
-            )?.props.label as string;
+            )?.props;
+            const labelFromSelected = itemFromSelected
+                ? getLabel(itemFromSelected)
+                : "";
 
             // If the value changes, update the parent component.
-            if (selected !== valueState) {
-                setInputValue(labelFromSelected);
-                setSelectedValue(selected);
-                onChange?.(selected);
-
-                // Close the dropdown when a selection is made.
-                updateOpenState(false);
-            }
+            setInputValue(labelFromSelected);
+            setSelectedValue(selected);
+            onChange?.(selected);
+            // Close the dropdown when a selection is made.
+            updateOpenState(false);
         } else if (Array.isArray(selected)) {
             // If the value changes, update the parent component.
-            if (selected !== valueState) {
-                setInputValue("");
-                onChange?.(selected);
-            }
+            setInputValue("");
+            setSelectedValue(selected);
+            onChange?.(selected);
+            // Reset the options list
+            setCurrentOptions(children);
         }
     }, [
-        children,
+        renderList,
         onChange,
         openState,
         selected,
@@ -235,6 +296,7 @@ export default function Combobox({
         updateOpenState,
         value,
         valueState,
+        children,
     ]);
 
     const {
@@ -247,25 +309,24 @@ export default function Combobox({
     });
 
     const focusOnFilteredItem = React.useCallback(
-        (value: string) => {
+        (filtered: Array<OptionItemComponent>, value: string) => {
             const lowercasedSearchText = value.normalize("NFC").toLowerCase();
 
             // Find the index of the first item that matches the search text.
-            const itemIndex = children.findIndex(
-                (item) =>
-                    !item.props.disabled &&
-                    String(item.props.label)
-                        .normalize("NFC")
-                        .toLowerCase()
-                        .trim()
-                        .includes(lowercasedSearchText),
+            const itemIndex = filtered.findIndex((item) =>
+                getLabel(item.props)
+                    .normalize("NFC")
+                    .toLowerCase()
+                    .trim()
+                    .includes(lowercasedSearchText),
             );
 
             // If no item matches the search text, don't focus on any item.
-            // Otherwise, focus on the first item that matches the search text.
+            // Otherwise, focus on the first item that matches the search
+            // text.
             setFocusedIndex(itemIndex);
         },
-        [children, setFocusedIndex],
+        [setFocusedIndex],
     );
 
     /**
@@ -314,9 +375,11 @@ export default function Combobox({
 
     // The labels of the selected values.
     const selectedLabels = React.useMemo(() => {
+        // NOTE: Using the children prop to get the labels of the selected
+        // values, even when the list of options is filtered.
         return children
             .filter((item) => selected?.includes(item.props.value))
-            .map((item) => item.props.label as string);
+            .map((item) => getLabel(item.props) as string);
     }, [children, selected]);
 
     /**
@@ -354,6 +417,28 @@ export default function Combobox({
         ? uniqueId
         : pillIdPrefix;
 
+    /**
+     * Filters the items based on the input value. This is used when the
+     * `autoComplete` prop is set to `list` or `both`.
+     */
+    const filterItems = React.useCallback(
+        (value: string) => {
+            return children.filter((item) => {
+                const lowerCasedLabel = getLabel(item.props)
+                    .normalize("NFC")
+                    .trim()
+                    .toLowerCase();
+
+                const lowercasedSearchText = value
+                    .normalize("NFC")
+                    .toLowerCase();
+
+                return lowerCasedLabel.indexOf(lowercasedSearchText) > -1;
+            });
+        },
+        [children],
+    );
+
     return (
         <>
             <View
@@ -361,7 +446,11 @@ export default function Combobox({
                     updateOpenState(true);
                 }}
                 ref={rootNodeRef}
-                style={[styles.wrapper, isListboxFocused && styles.focused]}
+                style={[
+                    styles.wrapper,
+                    isListboxFocused && styles.focused,
+                    disabled && styles.disabled,
+                ]}
             >
                 <ComboboxLiveRegion
                     focusedIndex={focusedIndex}
@@ -395,7 +484,16 @@ export default function Combobox({
                     value={inputValue}
                     onChange={(value: string) => {
                         setInputValue(value);
-                        focusOnFilteredItem(value);
+                        let filteredItems = renderList;
+                        if (autoComplete === "list") {
+                            filteredItems = filterItems(value);
+
+                            // Update the list of options to display the
+                            // filtered items.
+                            setCurrentOptions(filteredItems);
+                        }
+
+                        focusOnFilteredItem(filteredItems, value);
                     }}
                     disabled={disabled}
                     onFocus={() => {
@@ -410,6 +508,7 @@ export default function Combobox({
                     aria-controls={controlledWidget}
                     onKeyDown={onKeyDown}
                     aria-activedescendant={currentActiveDescendant}
+                    aria-autocomplete={autoComplete}
                     aria-expanded={openState}
                     ref={comboboxRef}
                     // We don't want the browser to suggest autocompletions as
@@ -447,23 +546,49 @@ export default function Combobox({
                     referenceElement={rootNodeRef?.current as HTMLElement}
                 >
                     {(isReferenceHidden) => (
-                        <Listbox
-                            id={uniqueId}
-                            tabIndex={-1}
-                            selectionType={selectionType}
-                            style={[
-                                styles.listbox,
-                                isReferenceHidden && styles.hidden,
-                                // The listbox width is at least the width of
-                                // the combobox.
-                                {minWidth: rootNodeRef?.current?.offsetWidth},
-                            ]}
-                            testId={testId ? `${testId}-listbox` : undefined}
-                            aria-label={labels.listbox}
-                            aria-labelledby={ids.get("input")}
-                        >
-                            {renderList}
-                        </Listbox>
+                        <>
+                            {renderList.length === 0 ? (
+                                // No items to display
+                                <DetailCell
+                                    title={labels.noItems}
+                                    style={[
+                                        styles.listbox,
+                                        // The listbox width is at least the
+                                        // width of the combobox.
+                                        {
+                                            minWidth:
+                                                rootNodeRef?.current
+                                                    ?.offsetWidth,
+                                        },
+                                    ]}
+                                    horizontalRule="none"
+                                />
+                            ) : (
+                                <Listbox
+                                    id={uniqueId}
+                                    tabIndex={-1}
+                                    selectionType={selectionType}
+                                    style={[
+                                        styles.listbox,
+                                        isReferenceHidden && styles.hidden,
+                                        // The listbox width is at least the
+                                        // width of the combobox.
+                                        {
+                                            minWidth:
+                                                rootNodeRef?.current
+                                                    ?.offsetWidth,
+                                        },
+                                    ]}
+                                    testId={
+                                        testId ? `${testId}-listbox` : undefined
+                                    }
+                                    aria-label={labels.listbox}
+                                    aria-labelledby={ids.get("input")}
+                                >
+                                    {renderList}
+                                </Listbox>
+                            )}
+                        </>
                     )}
                 </DropdownPopper>
             )}
@@ -487,6 +612,11 @@ const styles = StyleSheet.create({
     focused: {
         background: color.white,
         border: `1px solid ${color.blue}`,
+    },
+    disabled: {
+        background: color.offWhite,
+        border: `1px solid ${color.offBlack16}`,
+        color: color.offBlack64,
     },
     /**
      * Combobox input styles
@@ -519,6 +649,7 @@ const styles = StyleSheet.create({
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
         maxHeight: "var(--popper-max-height)",
+        overflowY: "auto",
     },
     hidden: {
         pointerEvents: "none",

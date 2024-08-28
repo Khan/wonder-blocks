@@ -95,6 +95,8 @@ export function useListbox({
 
             if (selectionType === "single") {
                 setSelected(optionItem.props.value);
+                // TODO(WB-1754): Add a callback for single selection to notify
+                // parent components of the change.
             } else {
                 setSelected((prevSelected) => {
                     const newSelectedValue = updateMultipleSelection(
@@ -198,8 +200,17 @@ export function useListbox({
 
     const renderList = React.useMemo(() => {
         return options.map((component, index) => {
+            const isSingleSelection =
+                selectionType === "single" && typeof selected === "string";
             const isSelected =
-                selected?.includes(component.props.value) || false;
+                (isSingleSelection
+                    ? // Uses exact match for single selection to avoid false
+                      // positives when the selected value is a substring of the
+                      // option value.
+                      selected === component.props.value
+                    : // Uses includes for multiple selection to allow selecting
+                      // multiple options.
+                      selected?.includes(component.props.value)) || false;
             const optionId = id ? `${id}-option-${index}` : `option-${index}`;
 
             // Renders option items and pass the extra props needed to manage

@@ -3,24 +3,42 @@ import {Meta, StoryObj} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {expect, userEvent, within} from "@storybook/test";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {allProfilesWithPictures} from "./option-item-examples";
+
+import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 const items = [
     <OptionItem label="Banana" value="banana" key={0} />,
     <OptionItem label="Strawberry" value="strawberry" disabled key={1} />,
     <OptionItem label="Pear" value="pear" key={2} />,
-    <OptionItem label="Orange" value="orange" key={3} />,
-    <OptionItem label="Watermelon" value="watermelon" key={4} />,
-    <OptionItem label="Apple" value="apple" key={5} />,
-    <OptionItem label="Grape" value="grape" key={6} />,
-    <OptionItem label="Lemon" value="lemon" key={7} />,
-    <OptionItem label="Mango" value="mango" key={8} />,
+    <OptionItem label="Pineapple" value="pineapple" key={3} />,
+    <OptionItem label="Orange" value="orange" key={4} />,
+    <OptionItem label="Watermelon" value="watermelon" key={5} />,
+    <OptionItem label="Apple" value="apple" key={6} />,
+    <OptionItem label="Grape" value="grape" key={7} />,
+    <OptionItem label="Lemon" value="lemon" key={8} />,
+    <OptionItem label="Mango" value="mango" key={9} />,
 ];
+
+const customItems = allProfilesWithPictures.map((user, index) => (
+    <OptionItem
+        key={user.id}
+        value={user.id}
+        horizontalRule="full-width"
+        label={<LabelLarge>{user.name}</LabelLarge>}
+        // TODO(WB-1752): Refactor API and types to enforce this prop when
+        // `label` is not a string.
+        labelAsText={user.name}
+        leftAccessory={user.picture}
+        subtitle2={user.email}
+    />
+));
 
 const styles = StyleSheet.create({
     example: {
@@ -29,7 +47,7 @@ const styles = StyleSheet.create({
         width: 300,
     },
     wrapper: {
-        height: 500,
+        height: 550,
     },
 });
 
@@ -223,7 +241,7 @@ export const MultipleSelection: Story = {
 
         // Assert
         expect(canvas.getByRole("log")).toHaveTextContent(
-            "Orange selected, 4 of 9. 9 results available.",
+            "Pineapple selected, 4 of 10. 10 results available.",
         );
     },
 };
@@ -265,4 +283,54 @@ export const ControlledMultilpleCombobox: Story = {
             <View style={styles.wrapper}>{Story()}</View>
         ),
     ],
+};
+
+/**
+ * `Combobox` supports autocompletion. This means that the listbox will show
+ * options that match the user's input. Note that the search is case-insensitive
+ * and it will match any part of the option item's label. This is useful when
+ * using custom option items that could contain Typography components or other
+ * elements.
+ *
+ * In this example, we show how this is done by setting the `autoComplete` prop
+ * to "list".
+ */
+export const AutoComplete: Story = {
+    args: {
+        children: items,
+        placeholder: "Type to search",
+        autoComplete: "list",
+    },
+    name: "Autocomplete",
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * Below you can see an example of a multi-select `Combobox` with custom option
+ * items and autocompletion. This means that the listbox will show options that
+ * match the user's input.
+ *
+ * **NOTE:** If you want to use a custom Typography component in the option
+ * label, you'll need to set the `labelAsText` prop to the text you want to
+ * search for.
+ */
+export const AutoCompleteMultiSelect: Story = {
+    args: {
+        children: customItems,
+        placeholder: "Type to search",
+        autoComplete: "list",
+        selectionType: "multiple",
+    },
+    name: "Autocomplete (Multi-select)",
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
