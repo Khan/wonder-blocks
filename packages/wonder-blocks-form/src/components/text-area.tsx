@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CSSProperties, Falsy, StyleSheet} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import {
     AriaProps,
@@ -256,7 +256,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         });
 
-        const getStyles = (): (CSSProperties | Falsy)[] => {
+        const getStyles = (): StyleType => {
             // Base styles are the styles that apply regardless of light mode
             const baseStyles = [
                 styles.textarea,
@@ -284,7 +284,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     data-testid={testId}
                     ref={ref}
                     className={className}
-                    style={[...getStyles(), style]}
+                    style={[getStyles(), style]}
                     value={value}
                     onChange={handleChange}
                     placeholder={placeholder}

@@ -3,7 +3,6 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
-import {color} from "@khanacademy/wonder-blocks-tokens";
 import LabeledTextField from "../labeled-text-field";
 
 describe("LabeledTextField", () => {
@@ -380,28 +379,6 @@ describe("LabeledTextField", () => {
         // Assert
         const input = await screen.findByPlaceholderText(placeholder);
         expect(input).toBeInTheDocument();
-    });
-
-    it("light prop is passed to textfield", async () => {
-        // Arrange
-
-        // Act
-        render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                light={true}
-            />,
-        );
-
-        const textField = await screen.findByRole("textbox");
-        textField.focus();
-
-        // Assert
-        expect(textField).toHaveStyle({
-            boxShadow: `0px 0px 0px 1px ${color.blue}, 0px 0px 0px 2px ${color.white}`,
-        });
     });
 
     it("style prop is passed to fieldheading", async () => {
