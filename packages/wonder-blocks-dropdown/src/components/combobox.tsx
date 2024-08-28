@@ -391,7 +391,7 @@ export default function Combobox({
                 <TextField
                     id={ids.get("input")}
                     testId={testId}
-                    style={[styles.combobox, {display: "inline-grid"}]}
+                    style={styles.combobox}
                     value={inputValue}
                     onChange={(value: string) => {
                         setInputValue(value);
@@ -500,7 +500,12 @@ const styles = StyleSheet.create({
         padding: 0,
         minWidth: spacing.xxxSmall_4,
         width: "auto",
+        display: "inline-grid",
         gridArea: "1 / 2",
+        ":focus-visible": {
+            outline: "none",
+            border: "none",
+        },
     },
     /**
      * Listbo custom styles
