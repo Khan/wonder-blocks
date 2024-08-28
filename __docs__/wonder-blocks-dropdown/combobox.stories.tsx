@@ -1,4 +1,5 @@
 import {action} from "@storybook/addon-actions";
+import {useArgs} from "@storybook/preview-api";
 import {Meta, StoryObj} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
@@ -8,6 +9,8 @@ import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {allProfilesWithPictures} from "./option-item-examples";
+
+import argTypes from "./combobox.argtypes";
 
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
@@ -56,12 +59,16 @@ const defaultArgs = {
     disabled: false,
     placeholder: "Select an item",
     testId: "",
+    autoComplete: "none",
+    light: false,
+    loading: false,
 };
 
 export default {
     title: "Packages / Dropdown / Combobox",
     component: Combobox,
     args: defaultArgs,
+    argTypes,
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
@@ -85,8 +92,41 @@ type Story = StoryObj<typeof Combobox>;
  * The default Combobox with a list of items.
  */
 export const Default: Story = {
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        const [{selectionType, value}, updateArgs] = useArgs();
+        const prevSelectionTypeRef = React.useRef(args.selectionType);
+
+        // Allows switching between single and multiple selection types without
+        // losing the selected value.
+        React.useEffect(() => {
+            // Try to keep the value in sync with the selection type
+            if (selectionType !== prevSelectionTypeRef.current) {
+                if (selectionType === "single") {
+                    updateArgs({
+                        value: Array.isArray(value) ? value[0] : value,
+                    });
+                } else if (selectionType === "multiple") {
+                    updateArgs({value: Array.isArray(value) ? value : [value]});
+                }
+            }
+            prevSelectionTypeRef.current = selectionType;
+        }, [updateArgs, selectionType, value]);
+
+        return (
+            <Combobox
+                {...args}
+                key={prevSelectionTypeRef.current}
+                value={value}
+                onChange={(newValue) => {
+                    updateArgs({value: newValue});
+                    action("onChange")(newValue);
+                }}
+            />
+        );
+    },
     args: {
         children: items,
+        selectionType: "single",
     },
 };
 
