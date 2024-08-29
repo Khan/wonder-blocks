@@ -417,14 +417,25 @@ export default function Combobox({
         }
     }, [isControlled, openState]);
 
-    // The labels of the selected values.
+    // The labels of the selected value(s).
     const selectedLabels = React.useMemo(() => {
-        // NOTE: Using the children prop to get the labels of the selected
-        // values, even when the list of options is filtered.
-        return children
-            .filter((item) => selected?.includes(item.props.value))
-            .map((item) => getLabel(item.props) as string);
-    }, [children, selected]);
+        // For multiple selection, convert the selected value(s) to an array of
+        // labels.
+        if (Array.isArray(selected)) {
+            return selected.map((value) => {
+                // NOTE: Using the children prop to get the labels of the
+                // selected values, even when the list of options is filtered.
+                const item = children.find(
+                    (item) => item.props.value === value,
+                );
+                return item ? getLabel(item?.props) : "";
+            });
+        }
+
+        // Single selection mode still wraps the selected value in an array
+        // to allow for a consistent API in ComboboxLiveRegion.
+        return [labelFromSelected];
+    }, [children, labelFromSelected, selected]);
 
     const pillIdPrefix = id ? `${id}-pill-` : ids.get("pill");
 
