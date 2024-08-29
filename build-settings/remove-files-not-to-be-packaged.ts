@@ -14,18 +14,19 @@ const npmIgnorer = ignore().add(npmIgnoreContent);
 const gitIgnoreContent = fs.readFileSync(gitIgnorePath, "utf-8");
 const gitIgnorer = ignore().add(gitIgnoreContent);
 
-const packagePaths = fglob.sync("packages/wonder-blocks-*", {
+const packagePaths = fglob.sync("packages/wonder-blocks-*/**/*", {
     cwd: rootDir,
     onlyFiles: false,
 });
 
 for (const fsPath of packagePaths) {
     const absPath = path.join(rootDir, fsPath);
-    if (npmIgnorer.ignores(fsPath) && gitIgnorer.ignores(fsPath)) {
-        if (fs.lstatSync(absPath).isDirectory()) {
-            fs.rmdirSync(absPath, {recursive: true});
-        } else {
-            fs.unlinkSync(absPath);
-        }
+    if (
+        fs.existsSync(fsPath) &&
+        npmIgnorer.ignores(fsPath) &&
+        gitIgnorer.ignores(fsPath)
+    ) {
+        console.log(`Removing ${fsPath}`);
+        fs.rmSync(absPath, {recursive: true});
     }
 }
