@@ -164,5 +164,6 @@ const styles = StyleSheet.create({
     },
     scenario: {
         gap: spacing.small_12,
+        overflow: "hidden",
     },
 });

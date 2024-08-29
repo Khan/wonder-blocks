@@ -331,7 +331,9 @@ const styles = StyleSheet.create({
         ":focus-visible": {
             borderColor: color.blue,
             outline: `1px solid ${color.blue}`,
-            outlineOffset: 0, // Explicitly set outline offset to 0 because Safari sets a default offset
+            // Negative outline offset so it focus outline is not cropped off if
+            // an ancestor element has overflow: hidden
+            outlineOffset: "-2px",
         },
     },
     error: {
@@ -355,8 +357,8 @@ const styles = StyleSheet.create({
         },
         cursor: "not-allowed",
         ":focus-visible": {
-            outline: "none",
-            boxShadow: `0 0 0 1px ${color.white}, 0 0 0 3px ${color.offBlack32}`,
+            outline: `2px solid ${color.offBlack32}`,
+            outlineOffset: "-3px",
         },
     },
     light: {
@@ -369,10 +371,9 @@ const styles = StyleSheet.create({
     },
     lightFocus: {
         ":focus-visible": {
-            outline: `1px solid ${color.blue}`,
-            outlineOffset: 0, // Explicitly set outline offset to 0 because Safari sets a default offset
-            borderColor: color.blue,
-            boxShadow: `0px 0px 0px 2px ${color.blue}, 0px 0px 0px 3px ${color.white}`,
+            outline: `3px solid ${color.blue}`,
+            outlineOffset: "-4px",
+            borderColor: color.white,
         },
     },
     lightDisabled: {
@@ -385,22 +386,22 @@ const styles = StyleSheet.create({
         cursor: "not-allowed",
         ":focus-visible": {
             borderColor: mix(color.white32, color.blue),
-            outline: "none",
-            boxShadow: `0 0 0 1px ${color.offBlack32}, 0 0 0 3px ${color.fadedBlue}`,
+            outline: `3px solid ${color.fadedBlue}`,
+            outlineOffset: "-4px",
         },
     },
     lightError: {
         background: color.fadedRed8,
-        border: `1px solid ${color.red}`,
-        boxShadow: `0px 0px 0px 1px ${color.red}, 0px 0px 0px 2px ${color.white}`,
+        border: `1px solid ${color.white}`,
+        outline: `2px solid ${color.red}`,
+        outlineOffset: "-3px",
         color: color.offBlack,
         "::placeholder": {
             color: color.offBlack64,
         },
         ":focus-visible": {
-            outlineColor: color.red,
-            borderColor: color.red,
-            boxShadow: `0px 0px 0px 2px ${color.red}, 0px 0px 0px 3px ${color.white}`,
+            outline: `3px solid ${color.red}`,
+            outlineOffset: "-4px",
         },
     },
 });
