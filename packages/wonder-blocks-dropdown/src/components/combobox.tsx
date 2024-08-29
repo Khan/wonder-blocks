@@ -415,7 +415,7 @@ export default function Combobox({
         if (openState) {
             comboboxRef.current?.focus();
         }
-    }, [isControlled, openState]);
+    }, [openState]);
 
     // The labels of the selected value(s).
     const selectedLabels = React.useMemo(() => {
