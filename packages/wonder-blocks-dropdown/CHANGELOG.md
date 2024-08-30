@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.5.1
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+-   Updated dependencies [02a1b298]
+    -   @khanacademy/wonder-blocks-cell@3.4.5
+    -   @khanacademy/wonder-blocks-clickable@4.2.8
+    -   @khanacademy/wonder-blocks-core@7.0.1
+    -   @khanacademy/wonder-blocks-icon@4.1.5
+    -   @khanacademy/wonder-blocks-layout@2.2.1
+    -   @khanacademy/wonder-blocks-modal@5.1.12
+    -   @khanacademy/wonder-blocks-pill@2.5.1
+    -   @khanacademy/wonder-blocks-search-field@2.2.26
+    -   @khanacademy/wonder-blocks-timing@5.0.2
+    -   @khanacademy/wonder-blocks-tokens@2.0.1
+    -   @khanacademy/wonder-blocks-typography@2.1.16
+
 ## 5.5.0
 
 ### Minor Changes

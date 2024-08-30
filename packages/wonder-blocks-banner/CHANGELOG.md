@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.1.10
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+-   Updated dependencies [02a1b298]
+    -   @khanacademy/wonder-blocks-button@6.3.10
+    -   @khanacademy/wonder-blocks-core@7.0.1
+    -   @khanacademy/wonder-blocks-icon@4.1.5
+    -   @khanacademy/wonder-blocks-icon-button@5.4.1
+    -   @khanacademy/wonder-blocks-link@6.1.8
+    -   @khanacademy/wonder-blocks-tokens@2.0.1
+    -   @khanacademy/wonder-blocks-typography@2.1.16
+
 ## 3.1.9
 
 ### Patch Changes

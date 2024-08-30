@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.4.5
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+-   Updated dependencies [02a1b298]
+    -   @khanacademy/wonder-blocks-clickable@4.2.8
+    -   @khanacademy/wonder-blocks-core@7.0.1
+    -   @khanacademy/wonder-blocks-layout@2.2.1
+    -   @khanacademy/wonder-blocks-tokens@2.0.1
+    -   @khanacademy/wonder-blocks-typography@2.1.16
+
 ## 3.4.4
 
 ### Patch Changes

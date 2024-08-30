@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 5.0.2
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+
 ## 5.0.1
 
 ### Patch Changes
