@@ -34,15 +34,22 @@ for (const typeDefinitionFile of typeDefinitionFiles) {
         path.join(packagesDir, typeDefinitionFile),
         "utf-8",
     );
+    const lines = content.split("\n");
     let match;
-    while ((match = regexpImportSrc.exec(content))) {
-        foundErrors = true;
-        console.error(
-            `${typeDefinitionFile}: incorrectly imports type ${match[2]} from ${match[1]} source`,
-        );
-        console.error(
-            `    Update the package ${match[1]} to export the type ${match[2]}\n`,
-        );
+    for (let line = 0; line < lines.length; line++) {
+        while ((match = regexpImportSrc.exec(lines[line]))) {
+            foundErrors = true;
+            const position = match.index;
+            const lineNo = line + 1;
+            const refPath = path.join("packages", typeDefinitionFile);
+            console.error(`${refPath}:${lineNo}:${position}`);
+            console.error(
+                `    Incorrectly imported type ${match[2]} from ${match[1]} source`,
+            );
+            console.error(
+                `    Update the package ${match[1]} to export the type ${match[2]}\n`,
+            );
+        }
     }
 }
 
