@@ -1,0 +1,6 @@
+# The paths here are relative to the root of EACH package, not the root of the
+# repo.
+*.tsbuildinfo
+tsconfig-build.json
+dist/**/__tests__
+dist/**/*.test.d.ts
