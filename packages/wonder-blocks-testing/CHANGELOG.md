@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-testing
 
+## 12.0.1
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+-   Updated dependencies [02a1b298]
+    -   @khanacademy/wonder-blocks-core@7.0.1
+    -   @khanacademy/wonder-blocks-data@13.0.12
+    -   @khanacademy/wonder-blocks-testing-core@1.0.2
+
 ## 12.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 2.0.4
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+
 ## 2.0.3
 
 ### Patch Changes

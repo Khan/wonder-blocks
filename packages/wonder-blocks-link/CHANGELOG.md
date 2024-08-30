@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-link
 
+## 6.1.8
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+-   Updated dependencies [02a1b298]
+    -   @khanacademy/wonder-blocks-clickable@4.2.8
+    -   @khanacademy/wonder-blocks-core@7.0.1
+    -   @khanacademy/wonder-blocks-icon@4.1.5
+    -   @khanacademy/wonder-blocks-tokens@2.0.1
+
 ## 6.1.7
 
 ### Patch Changes

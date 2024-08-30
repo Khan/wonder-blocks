@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.2.16
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+-   Updated dependencies [02a1b298]
+    -   @khanacademy/wonder-blocks-core@7.0.1
+    -   @khanacademy/wonder-blocks-icon-button@5.4.1
+    -   @khanacademy/wonder-blocks-modal@5.1.12
+    -   @khanacademy/wonder-blocks-tokens@2.0.1
+    -   @khanacademy/wonder-blocks-tooltip@2.4.3
+    -   @khanacademy/wonder-blocks-typography@2.1.16
+
 ## 3.2.15
 
 ### Patch Changes

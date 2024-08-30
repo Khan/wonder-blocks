@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 3.1.1
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+
 ## 3.1.0
 
 ### Minor Changes
