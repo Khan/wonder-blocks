@@ -1,29 +1,25 @@
 {
-    "name": "@khanacademy/wonder-blocks-theming",
-    "version": "2.0.3",
-    "publishConfig": {
-        "access": "public"
-    },
-    "description": "Theming in Wonder Blocks can be set per package/component level using a theme object that defines your components's colors, spacing, fonts, and more.",
-    "main": "dist/index.js",
-    "module": "dist/es/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist",
-        "CHANGELOG.md"
-    ],
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "dependencies": {},
-    "peerDependencies": {
-        "aphrodite": "^1.2.5",
-        "react": "16.14.0",
-        "react-dom": "16.14.0"
-    },
-    "devDependencies": {
-        "@khanacademy/wb-dev-build-settings": "^1.0.1"
-    },
-    "author": "",
-    "license": "MIT"
+  "name": "@khanacademy/wonder-blocks-theming",
+  "version": "2.0.3",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "Theming in Wonder Blocks can be set per package/component level using a theme object that defines your components's colors, spacing, fonts, and more.",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "^1.0.1"
+  },
+  "author": "",
+  "license": "MIT"
 }

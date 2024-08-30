@@ -2,3 +2,5 @@
 tsconfig-build.json
 dist/**/__tests__
 dist/**/*.test.d.ts
+types
+src
