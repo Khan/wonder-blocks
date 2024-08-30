@@ -10,7 +10,7 @@
   "scripts": {
     "alex": "alex packages/",
     "build": "rollup -c ./build-settings/rollup.config.mjs",
-    "build:types": "yarn tsc --build tsconfig-build.json && ./build-settings/remove-files-not-to-be-packaged.ts",
+    "build:types": "yarn tsc --build tsconfig-build.json && ./build-settings/remove-files-not-to-be-packaged.ts && ./build-settings/check-type-definitions.ts",
     "build:storybook": "storybook build --stats-json",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f packages/*/*.tsbuildinfo && rm -f utils/tsconfig.tsbuildinfo",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
