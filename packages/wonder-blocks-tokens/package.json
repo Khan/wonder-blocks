@@ -1,20 +1,20 @@
 {
-    "name": "@khanacademy/wonder-blocks-tokens",
-    "version": "2.0.0",
-    "description": "Core primitive design tokens for Web Wonder Blocks",
-    "main": "dist/index.js",
-    "module": "dist/es/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "MIT",
-    "publishConfig": {
-        "access": "public"
-    },
-    "dependencies": {},
-    "devDependencies": {
-        "@khanacademy/wb-dev-build-settings": "^1.0.1"
-    }
+  "name": "@khanacademy/wonder-blocks-tokens",
+  "version": "2.0.0",
+  "description": "Core primitive design tokens for Web Wonder Blocks",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "^1.0.1"
+  }
 }

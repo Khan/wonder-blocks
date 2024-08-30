@@ -4,6 +4,7 @@ coverage-ts
 dist
 storybook-static
 *.tsbuildinfo
+utils/**/*.d.ts
 !.vscode
 .DS_Store
 yarn-error.log
