@@ -202,7 +202,10 @@ export default class TooltipPopper extends React.Component<Props> {
         // Store a reference to the update function so that we can call it
         // later if needed.
         this._popperUpdate = popperProps.update;
-
+        const isNotReady =
+            popperProps.style.top === "0" &&
+            popperProps.style.left === "0" &&
+            !popperProps.style.transform;
         // Here we translate from the react-popper's PropperChildrenProps
         // to our own TooltipBubbleProps.
         const bubbleProps = {
@@ -218,6 +221,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 right: popperProps.style.right,
                 position: popperProps.style.position,
                 transform: popperProps.style.transform,
+                visibility: isNotReady ? "hidden" : undefined,
             },
             updateBubbleRef: this._bubbleRefTracker.updateRef,
             tailOffset: {
