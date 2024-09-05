@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * This component is a light wrapper for react-popper, allowing us to position
  * and control the tooltip bubble location and visibility as we need.
@@ -139,6 +140,7 @@ export default class TooltipPopper extends React.Component<Props> {
      * @see https://floating-ui.com/docs/autoupdate
      */
     componentDidMount() {
+        console.log("TooltipPopper componentDidMount");
         const {anchorElement, autoUpdate} = this.props;
         if (!anchorElement || !autoUpdate) {
             return;
@@ -182,6 +184,7 @@ export default class TooltipPopper extends React.Component<Props> {
     _renderPositionedContent(
         popperProps: PopperChildrenProps,
     ): React.ReactNode {
+        console.log("TooltipPopper _renderPositionedContent", popperProps);
         const {children} = this.props;
 
         // We'll hide some complexity from the children here and ensure
@@ -230,6 +233,7 @@ export default class TooltipPopper extends React.Component<Props> {
     }
 
     render(): React.ReactNode {
+        console.log("TooltipPopper render");
         const {anchorElement, placement, rootBoundary} = this.props;
 
         // TODO(WB-1680): Use floating-ui's

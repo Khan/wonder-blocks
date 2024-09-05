@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * The Tooltip component provides the means to anchor some additional
  * information to some content. The additional information is shown in a
@@ -189,6 +190,8 @@ export default class Tooltip extends React.Component<Props, State> {
     static ariaContentId = "aria-content";
 
     _updateAnchorElement(ref?: Element | null) {
+        // eslint-disable-next-line no-console
+        console.log("Tooltip _updateAnchorElement");
         if (ref && ref !== this.state.anchorElement) {
             this.setState({anchorElement: ref as HTMLElement});
         }
@@ -197,6 +200,8 @@ export default class Tooltip extends React.Component<Props, State> {
     _renderBubbleContent(): React.ReactElement<
         React.ComponentProps<typeof TooltipContent>
     > {
+        // eslint-disable-next-line no-console
+        console.log("Tooltip _renderBubbleContent");
         const {title, content, contentStyle, testId} = this.props;
         if (typeof content === "string") {
             return (
@@ -216,6 +221,8 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderPopper(ids?: IIdentifierFactory): React.ReactNode {
+        // eslint-disable-next-line no-console
+        console.log("Tooltip _renderPopper");
         const {id, backgroundColor} = this.props;
         const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
         if (!bubbleId) {
@@ -260,6 +267,8 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderTooltipAnchor(ids?: IIdentifierFactory): React.ReactNode {
+        // eslint-disable-next-line no-console
+        console.log("Tooltip _renderTooltipAnchor", this.props, this.state);
         const {autoUpdate, children, forceAnchorFocusivity} = this.props;
         const {active, activeBubble} = this.state;
 
@@ -290,6 +299,8 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     render(): React.ReactNode {
+        // eslint-disable-next-line no-console
+        console.log("Tooltip render");
         const {id} = this.props;
         if (id) {
             // Let's bypass the extra weight of an id provider since we don't
