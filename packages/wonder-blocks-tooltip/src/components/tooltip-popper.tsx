@@ -124,10 +124,20 @@ const smallViewportModifier: SmallViewportModifier = {
  * A component that wraps react-popper's Popper component to provide a
  * consistent interface for positioning floating elements.
  */
-export default class TooltipPopper extends React.Component<Props> {
+export default class TooltipPopper extends React.Component<
+    Props,
+    {isReady: boolean}
+> {
     static defaultProps: DefaultProps = {
         rootBoundary: "viewport",
     };
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            isReady: false,
+        };
+    }
 
     /**
      * Automatically updates the position of the floating element when necessary
@@ -202,10 +212,7 @@ export default class TooltipPopper extends React.Component<Props> {
         // Store a reference to the update function so that we can call it
         // later if needed.
         this._popperUpdate = popperProps.update;
-        const isNotReady =
-            popperProps.style.top === "0" &&
-            popperProps.style.left === "0" &&
-            !popperProps.style.transform;
+        const {isReady} = this.state;
         // Here we translate from the react-popper's PropperChildrenProps
         // to our own TooltipBubbleProps.
         const bubbleProps = {
@@ -221,7 +228,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 right: popperProps.style.right,
                 position: popperProps.style.position,
                 transform: popperProps.style.transform,
-                visibility: isNotReady ? "hidden" : undefined,
+                visibility: !isReady ? "hidden" : undefined,
             },
             updateBubbleRef: this._bubbleRefTracker.updateRef,
             tailOffset: {
@@ -266,6 +273,9 @@ export default class TooltipPopper extends React.Component<Props> {
                 strategy="fixed"
                 placement={placement}
                 modifiers={modifiers}
+                onFirstUpdate={() => {
+                    this.setState({isReady: true});
+                }}
             >
                 {(props) => this._renderPositionedContent(props)}
             </Popper>
