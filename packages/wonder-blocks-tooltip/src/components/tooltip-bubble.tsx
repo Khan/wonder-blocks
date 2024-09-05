@@ -90,6 +90,9 @@ export default class TooltipBubble extends React.Component<Props, State> {
 const styles = StyleSheet.create({
     bubble: {
         position: "absolute",
+        width: "max-content",
+        top: 0,
+        left: 0,
     },
 
     /**
