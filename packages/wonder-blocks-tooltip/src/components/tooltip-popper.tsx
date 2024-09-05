@@ -124,10 +124,20 @@ const smallViewportModifier: SmallViewportModifier = {
  * A component that wraps react-popper's Popper component to provide a
  * consistent interface for positioning floating elements.
  */
-export default class TooltipPopper extends React.Component<Props> {
+export default class TooltipPopper extends React.Component<
+    Props,
+    {isReady: boolean}
+> {
     static defaultProps: DefaultProps = {
         rootBoundary: "viewport",
     };
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            isReady: false,
+        };
+    }
 
     /**
      * Automatically updates the position of the floating element when necessary
@@ -185,7 +195,14 @@ export default class TooltipPopper extends React.Component<Props> {
     _renderPositionedContent(
         popperProps: PopperChildrenProps,
     ): React.ReactNode {
-        console.log("TooltipPopper _renderPositionedContent", popperProps);
+        console.log(
+            "TooltipPopper _renderPositionedContent",
+            popperProps,
+            this.state,
+        );
+        if (!this.state.isReady) {
+            return <React.Fragment />;
+        }
         const {children} = this.props;
 
         // We'll hide some complexity from the children here and ensure
@@ -233,6 +250,11 @@ export default class TooltipPopper extends React.Component<Props> {
         return children(bubbleProps);
     }
 
+    handleFirstUpdate() {
+        console.log("handle first update");
+        this.setState({isReady: true});
+    }
+
     render(): React.ReactNode {
         console.log("TooltipPopper render");
         const {anchorElement, placement, rootBoundary} = this.props;
@@ -262,6 +284,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 strategy="fixed"
                 placement={placement}
                 modifiers={modifiers}
+                onFirstUpdate={this.handleFirstUpdate}
             >
                 {(props) => this._renderPositionedContent(props)}
             </Popper>
