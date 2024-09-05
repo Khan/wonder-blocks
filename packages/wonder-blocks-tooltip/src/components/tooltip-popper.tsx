@@ -98,6 +98,7 @@ type Modifiers =
 function _modifyPosition({
     state,
 }: ModifierArguments<Record<string, never>>): void {
+    console.log("TooltipPopper _modifyPosition");
     // Calculates the available space for the popper based on the placement
     // relative to the viewport.
     const popperHeight =
