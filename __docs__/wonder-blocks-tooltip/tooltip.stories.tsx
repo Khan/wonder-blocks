@@ -8,7 +8,7 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import info from "@phosphor-icons/core/regular/info.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
@@ -43,9 +43,12 @@ export default {
         chromatic: {delay: 500},
     },
     decorators: [
-        (Story): React.ReactElement => (
-            <View style={styles.storyCanvas}>{Story()}</View>
-        ),
+        (Story, {parameters}): React.ReactElement =>
+            parameters.layout === "fullscreen" ? (
+                Story()
+            ) : (
+                <View style={styles.storyCanvas}>{Story()}</View>
+            ),
     ],
 } as Meta<typeof Tooltip>;
 
@@ -508,4 +511,54 @@ export const InTopCorner = {
             </Tooltip>
         </View>
     ),
+};
+
+export const InCorners = {
+    parameters: {
+        layout: "fullscreen",
+        chromatic: {
+            // Disabling snapshot since this is for testing purposes
+            disableSnapshot: true,
+        },
+    },
+    render: (args: PropsFor<typeof Tooltip>) => {
+        const renderTooltip = () => {
+            return (
+                <Tooltip
+                    {...args}
+                    content="This is an example descriptor that's long with more content to see if it will display properly in different browsers"
+                >
+                    <Button>Open tooltip</Button>
+                </Tooltip>
+            );
+        };
+        return (
+            <View
+                style={{
+                    height: "100vh",
+                    width: "100vw",
+                    justifyContent: "space-between",
+                }}
+            >
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    {renderTooltip()}
+                    {renderTooltip()}
+                </View>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}
+                >
+                    {renderTooltip()}
+                    {renderTooltip()}
+                </View>
+            </View>
+        );
+    },
 };
