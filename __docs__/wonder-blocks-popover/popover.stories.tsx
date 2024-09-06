@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
@@ -832,4 +832,60 @@ export const WithCustomAriaDescribedBy = ({
             </Popover>
         </View>
     );
+};
+
+export const InCorners = (args: PropsFor<typeof Popover>) => {
+    const [openedIndex, setOpenedIndex] = React.useState<number>(0);
+    const renderPopover = (index: number) => {
+        return (
+            <Popover
+                {...args}
+                content={
+                    <PopoverContent
+                        closeButtonVisible
+                        content="The default version only includes text."
+                        title="A simple popover"
+                    />
+                }
+                dismissEnabled
+                onClose={() => setOpenedIndex(-1)}
+                opened={openedIndex === index}
+            >
+                <Button onClick={() => setOpenedIndex(index)}>
+                    Open default popover
+                </Button>
+            </Popover>
+        );
+    };
+    return (
+        <View
+            style={{
+                height: "100vh",
+                width: "100vw",
+                justifyContent: "space-between",
+            }}
+        >
+            <View
+                style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                }}
+            >
+                {renderPopover(0)}
+                {renderPopover(1)}
+            </View>
+            <View
+                style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                }}
+            >
+                {renderPopover(2)}
+                {renderPopover(3)}
+            </View>
+        </View>
+    );
+};
+InCorners.parameters = {
+    layout: "fullscreen",
 };
