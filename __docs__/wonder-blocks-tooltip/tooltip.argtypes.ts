@@ -67,4 +67,13 @@ export default {
             },
         },
     },
+    viewportPadding: {
+        description:
+            `If \`rootBoundary\` is \`viewport\`, this padding value is ` +
+            `used to provide spacing between the popper and the viewport.` +
+            `If not provided, default spacing is applied.`,
+        control: {
+            type: "number",
+        },
+    },
 };

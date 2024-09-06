@@ -116,6 +116,12 @@ type Props = AriaProps &
          * Optional background color.
          */
         backgroundColor?: keyof typeof color;
+        /**
+         * If `rootBoundary` is `viewport`, this padding value is used to provide
+         * spacing between the popper and the viewport. If not provided, default
+         * spacing is applied.
+         */
+        viewportPadding?: number;
     }>;
 
 type State = Readonly<{
@@ -228,6 +234,7 @@ export default class Tooltip extends React.Component<Props, State> {
                 anchorElement={this.state.anchorElement}
                 placement={placement}
                 autoUpdate={this.props.autoUpdate}
+                viewportPadding={this.props.viewportPadding}
             >
                 {(props) => (
                     <TooltipBubble
