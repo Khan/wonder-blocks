@@ -10,6 +10,7 @@ import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
 import type {ModifierArguments, RootBoundary} from "@popperjs/core";
 import type {FlipModifier} from "@popperjs/core/lib/modifiers/flip";
 import type {PreventOverflowModifier} from "@popperjs/core/lib/modifiers/preventOverflow";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {
     Placement,
     PopperElementProps,
@@ -44,10 +45,17 @@ type Props = {
      * on where there is available room within the document body.
      */
     rootBoundary?: RootBoundary;
+    /**
+     * If `rootBoundary` is `viewport`, this padding value is used to provide
+     * spacing between the popper and the viewport. If not provided, default
+     * spacing is applied.
+     */
+    viewportPadding?: number;
 };
 
 type DefaultProps = {
     rootBoundary: Props["rootBoundary"];
+    viewportPadding: Props["viewportPadding"];
 };
 
 const filterPopperPlacement = (
@@ -125,6 +133,7 @@ const smallViewportModifier: SmallViewportModifier = {
 export default class TooltipPopper extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         rootBoundary: "viewport",
+        viewportPadding: spacing.small_12,
     };
 
     /**
@@ -230,7 +239,8 @@ export default class TooltipPopper extends React.Component<Props> {
     }
 
     render(): React.ReactNode {
-        const {anchorElement, placement, rootBoundary} = this.props;
+        const {anchorElement, placement, rootBoundary, viewportPadding} =
+            this.props;
 
         // TODO(WB-1680): Use floating-ui's
         const modifiers: Modifiers[] = [smallViewportModifier];
@@ -240,6 +250,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 name: "preventOverflow",
                 options: {
                     rootBoundary: "viewport",
+                    padding: viewportPadding,
                 },
             });
         } else {
