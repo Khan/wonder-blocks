@@ -7,6 +7,7 @@ import magnifyingGlassPlus from "@phosphor-icons/core/regular/magnifying-glass-p
 import magnifyingGlassMinus from "@phosphor-icons/core/regular/magnifying-glass-minus.svg";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -44,6 +45,23 @@ export const leftContentMappings: Mappings = {
             <Strut size={spacing.medium_16} />
             <IconButton icon={magnifyingGlassPlus} kind="primary" />
         </>
+    ),
+    exitWithTitle: (
+        <View
+            style={{
+                flexDirection: "row",
+                gap: spacing.medium_16,
+                placeItems: "center",
+            }}
+        >
+            <Button startIcon={xIcon} kind="tertiary">
+                Exit
+            </Button>
+            |
+            <LabelLarge>
+                Algebra Test<sup>BETA</sup>
+            </LabelLarge>
+        </View>
     ),
 };
 
