@@ -102,7 +102,9 @@ describe("tooltip integration tests", () => {
         // to activate the tooltip
         await ue.hover(anchor);
         await jest.runAllTimers();
-        expect(screen.getByRole("tooltip")).toBeInTheDocument();
+        // We add `hidden: true` because the tooltip is initially hidden while
+        // it is re-positioned
+        expect(screen.getByRole("tooltip", {hidden: true})).toBeInTheDocument();
         // Trigger mouseleave and mouseenter event and run timers only after
         // both have been triggered. This simulates the mouseenter event being
         // triggered before the tooltip is closed from the mouseleave event
