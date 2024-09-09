@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 3.1.0
+
+### Minor Changes
+
+-   30b67282: Allow title to also support React nodes
+
 ## 3.0.37
 
 ### Patch Changes
