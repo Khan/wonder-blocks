@@ -513,6 +513,11 @@ export const InTopCorner = {
     ),
 };
 
+/**
+ * If the Tooltip is placed near the edge of the viewport, default spacing of
+ * 12px is applied to provide spacing between the Tooltip and the viewport. This
+ * spacing value can be overridden using the `viewportPadding` prop.
+ */
 export const InCorners = {
     parameters: {
         layout: "fullscreen",

@@ -834,6 +834,14 @@ export const WithCustomAriaDescribedBy = ({
     );
 };
 
+/**
+ * If the Popover is placed near the edge of the viewport, default spacing of
+ * 12px is applied to provide spacing between the Popover and the viewport. This
+ * spacing value can be overridden using the `viewportPadding` prop.
+ *
+ * Note: The `viewportPadding` prop is only applied when `rootBoundary` is
+ * `viewport`.
+ */
 export const InCorners = (args: PropsFor<typeof Popover>) => {
     const [openedIndex, setOpenedIndex] = React.useState<number>(0);
     const renderPopover = (index: number) => {
