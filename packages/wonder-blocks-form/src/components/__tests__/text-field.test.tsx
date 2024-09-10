@@ -559,4 +559,88 @@ describe("TextField", () => {
         // Assert
         expect(searchField).not.toHaveFocus();
     });
+
+    describe("Disabled state", () => {
+        it("should not call the onChange prop when the input value changes and it is disabled", async () => {
+            // Arrange
+            const onChangeMock = jest.fn();
+            render(
+                <TextField value="" onChange={onChangeMock} disabled={true} />,
+            );
+
+            // Act
+            // Type one letter
+            const letterToType = "X";
+            await userEvent.type(
+                await screen.findByRole("textbox"),
+                letterToType,
+            );
+
+            // Assert
+            expect(onChangeMock).not.toHaveBeenCalled();
+        });
+
+        it("should not call the onKeyDown prop when a key is typed in the input and it is disabled", async () => {
+            // Arrange
+            const handleOnKeyDown = jest.fn();
+
+            render(
+                <TextField
+                    value=""
+                    onChange={() => {}}
+                    onKeyDown={handleOnKeyDown}
+                    disabled={true}
+                />,
+            );
+
+            // Act
+            await userEvent.type(await screen.findByRole("textbox"), "{enter}");
+
+            // Assert
+            expect(handleOnKeyDown).not.toHaveBeenCalled();
+        });
+
+        it("should not call the onFocus prop when the input is focused and it is disabled", async () => {
+            // Arrange
+            const handleOnFocus = jest.fn();
+
+            render(
+                <TextField
+                    value=""
+                    onChange={() => {}}
+                    onFocus={handleOnFocus}
+                    disabled={true}
+                />,
+            );
+
+            // Act
+            await userEvent.tab();
+
+            // Assert
+            expect(handleOnFocus).not.toHaveBeenCalled();
+        });
+
+        it("should not call the onBlur prop when the input is blurred and it is disabled", async () => {
+            // Arrange
+            const handleOnBlur = jest.fn();
+
+            render(
+                <TextField
+                    value=""
+                    onChange={() => {}}
+                    onBlur={handleOnBlur}
+                    disabled={true}
+                />,
+            );
+            // Tab to focus on input
+            await userEvent.tab();
+
+            // Act
+            // Tab to move focus away
+            await userEvent.tab();
+
+            // Assert
+            expect(handleOnBlur).not.toHaveBeenCalled();
+        });
+    });
 });
