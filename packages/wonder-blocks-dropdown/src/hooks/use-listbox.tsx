@@ -30,6 +30,11 @@ type Props = {
      * The type of selection that the listbox supports.
      */
     selectionType: "single" | "multiple";
+
+    /**
+     * Callback that is called when the value of the listbox changes.
+     */
+    onChange?: (value: MaybeValueOrValues) => void;
 };
 
 /**
@@ -46,6 +51,7 @@ export function useListbox({
     disabled,
     disableSpaceSelection,
     id,
+    onChange,
     selectionType = "single",
     value,
 }: Props) {
@@ -70,7 +76,7 @@ export function useListbox({
     };
 
     const focusPreviousItem = React.useCallback(() => {
-        if (focusedIndex === 0) {
+        if (focusedIndex <= 0) {
             focusItem(options.length - 1);
         } else {
             focusItem(focusedIndex - 1);
@@ -97,6 +103,9 @@ export function useListbox({
                 setSelected(optionItem.props.value);
                 // TODO(WB-1754): Add a callback for single selection to notify
                 // parent components of the change.
+                if (onChange) {
+                    onChange(optionItem.props.value);
+                }
             } else {
                 setSelected((prevSelected) => {
                     const newSelectedValue = updateMultipleSelection(
@@ -104,11 +113,15 @@ export function useListbox({
                         optionItem.props.value,
                     );
 
+                    if (onChange) {
+                        onChange(newSelectedValue);
+                    }
+
                     return newSelectedValue;
                 });
             }
         },
-        [options, selectionType],
+        [onChange, options, selectionType],
     );
 
     const handleKeyDown = React.useCallback(

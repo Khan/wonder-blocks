@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import packageConfig from "../../packages/wonder-blocks-toolbar/package.json";
@@ -209,5 +209,29 @@ Dark.parameters = {
                 "A toolbar can be also used in a dark color scheme.\n\n" +
                 "**Note:** Notice that there's a white hairline in this case, and that the background is transparent (to allow the Dark Blue or illustrated background to come through).",
         },
+    },
+};
+
+/**
+ * Sometimes we need to have a custom toolbar to include a custom component or a
+ * more complex layout in the center of the toolbar. This can be achieved by
+ * passing a React node to the `title` prop.
+ *
+ * **NOTE:** This approach should be used with caution, as it may break the
+ * layout of the toolbar.
+ */
+export const CustomToolbar: StoryComponentType = {
+    args: {
+        leftContent: leftContentMappings.exitWithTitle,
+        rightContent: rightContentMappings.primaryButton,
+        title: (
+            <View
+                style={{
+                    width: 300,
+                    height: spacing.xSmall_8,
+                    background: semanticColor.mastery.primary,
+                }}
+            />
+        ),
     },
 };

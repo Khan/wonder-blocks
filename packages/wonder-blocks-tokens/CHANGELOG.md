@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 2.0.1
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+
 ## 2.0.0
 
 ### Major Changes

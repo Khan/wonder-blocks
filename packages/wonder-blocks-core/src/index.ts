@@ -25,5 +25,6 @@ export {usePreHydrationEffect} from "./hooks/use-pre-hydration-effect";
 export {useRenderState} from "./hooks/use-render-state";
 export {RenderStateRoot} from "./components/render-state-root";
 export {RenderState} from "./components/render-state-context";
+export type {AriaRole, AriaAttributes} from "./util/aria-types";
 
 export type {AriaProps, IIdentifierFactory, StyleType, PropsFor};

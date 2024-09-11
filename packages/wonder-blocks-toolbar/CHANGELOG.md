@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 3.1.0
+
+### Minor Changes
+
+-   30b67282: Allow title to also support React nodes
+
+## 3.0.37
+
+### Patch Changes
+
+-   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+-   Updated dependencies [02a1b298]
+    -   @khanacademy/wonder-blocks-core@7.0.1
+    -   @khanacademy/wonder-blocks-tokens@2.0.1
+    -   @khanacademy/wonder-blocks-typography@2.1.16
+
 ## 3.0.36
 
 ### Patch Changes

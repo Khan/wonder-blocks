@@ -40,20 +40,14 @@ type Props = AriaProps & {
      */
     subtitle?: string;
     /**
-     * The main title rendered in larger bold text.
+     * The main title rendered in larger bold text. It also supports rendering
+     * React nodes (use with caution).
      */
-    title?: string;
+    title?: string | React.ReactNode;
     /**
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
-
-type DefaultProps = {
-    color: Props["color"];
-    leftContent: Props["leftContent"];
-    rightContent: Props["rightContent"];
-    size: Props["size"];
 };
 
 /**
@@ -73,74 +67,70 @@ type DefaultProps = {
  * />
  * ```
  */
-export default class Toolbar extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        color: "light",
-        leftContent: null,
-        rightContent: null,
-        size: "medium",
-    };
+export default function Toolbar({
+    color = "light",
+    leftContent,
+    rightContent,
+    size = "medium",
+    subtitle,
+    title,
+}: Props): React.ReactElement {
+    const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
 
-    render(): React.ReactNode {
-        const {color, leftContent, rightContent, size, subtitle, title} =
-            this.props;
-
-        const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
-
-        return (
+    return (
+        <View
+            style={[
+                sharedStyles.container,
+                color === "dark" && sharedStyles.dark,
+                size === "small" && sharedStyles.small,
+            ]}
+        >
             <View
                 style={[
-                    sharedStyles.container,
-                    color === "dark" && sharedStyles.dark,
-                    size === "small" && sharedStyles.small,
+                    sharedStyles.column,
+                    sharedStyles.leftColumn,
+                    title ? sharedStyles.withTitle : null,
                 ]}
             >
-                <View
-                    style={[
-                        sharedStyles.column,
-                        sharedStyles.leftColumn,
-                        title ? sharedStyles.withTitle : null,
-                    ]}
-                >
-                    {leftContent}
-                </View>
-
-                {title && (
-                    <View
-                        style={[sharedStyles.column, sharedStyles.wideColumn]}
-                    >
-                        <View
-                            style={[sharedStyles.titles, sharedStyles.center]}
-                        >
-                            <TitleComponent id="wb-toolbar-title">
-                                {title}
-                            </TitleComponent>
-                            {subtitle && (
-                                <LabelSmall
-                                    style={
-                                        color === "light" &&
-                                        sharedStyles.subtitle
-                                    }
-                                >
-                                    {subtitle}
-                                </LabelSmall>
-                            )}
-                        </View>
-                    </View>
-                )}
-
-                <View
-                    style={[
-                        sharedStyles.column,
-                        sharedStyles.rightColumn,
-                        title ? sharedStyles.withTitle : null,
-                    ]}
-                >
-                    {rightContent}
-                </View>
+                {leftContent}
             </View>
-        );
-    }
+
+            {title && typeof title === "string" ? (
+                <View style={[sharedStyles.column, sharedStyles.wideColumn]}>
+                    <View style={[sharedStyles.titles, sharedStyles.center]}>
+                        <TitleComponent id="wb-toolbar-title">
+                            {title}
+                        </TitleComponent>
+                        {subtitle && (
+                            <LabelSmall
+                                style={
+                                    color === "light" && sharedStyles.subtitle
+                                }
+                            >
+                                {subtitle}
+                            </LabelSmall>
+                        )}
+                    </View>
+                </View>
+            ) : (
+                // We don't use wideColumn here to allow more flexibility with
+                // the custom node.
+                <View style={[sharedStyles.column]}>
+                    <View style={[sharedStyles.titles]}>{title}</View>
+                </View>
+            )}
+
+            <View
+                style={[
+                    sharedStyles.column,
+                    sharedStyles.rightColumn,
+                    title ? sharedStyles.withTitle : null,
+                ]}
+            >
+                {rightContent}
+            </View>
+        </View>
+    );
 }
 
 const sharedStyles = StyleSheet.create({

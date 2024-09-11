@@ -1,33 +1,33 @@
 {
-    "name": "@khanacademy/wonder-blocks-testing-core",
-    "version": "1.0.1",
-    "design": "v1",
-    "publishConfig": {
-        "access": "public"
-    },
-    "description": "",
-    "main": "dist/index.js",
-    "module": "dist/es/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "dependencies": {
-        "@babel/runtime": "^7.18.6"
-    },
-    "peerDependencies": {
-        "@khanacademy/wonder-stuff-core": "^1.2.2",
-        "@storybook/addon-actions": "^7.0.0",
-        "aphrodite": "^1.2.5",
-        "node-fetch": "^2.6.7",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "react-router-dom": "5.3.4"
-    },
-    "devDependencies": {
-        "@khanacademy/wb-dev-build-settings": "^1.0.1",
-        "@khanacademy/wonder-stuff-testing": "^3.0.1"
-    },
-    "author": "",
-    "license": "MIT"
+  "name": "@khanacademy/wonder-blocks-testing-core",
+  "version": "1.0.2",
+  "design": "v1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.18.6"
+  },
+  "peerDependencies": {
+    "@khanacademy/wonder-stuff-core": "^1.2.2",
+    "@storybook/addon-actions": "^7.0.0",
+    "aphrodite": "^1.2.5",
+    "node-fetch": "^2.6.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "5.3.4"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "^1.0.1",
+    "@khanacademy/wonder-stuff-testing": "^3.0.1"
+  },
+  "author": "",
+  "license": "MIT"
 }
