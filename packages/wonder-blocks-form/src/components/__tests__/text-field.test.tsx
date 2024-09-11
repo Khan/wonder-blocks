@@ -158,7 +158,7 @@ describe("TextField", () => {
         expect(input).toBeInTheDocument();
     });
 
-    it("disabled prop disables the input element", async () => {
+    it("disabled prop sets the aria-disabled attribute on the input element", async () => {
         // Arrange
         render(
             <TextField
@@ -173,7 +173,7 @@ describe("TextField", () => {
         // Act
 
         // Assert
-        expect(input).toBeDisabled();
+        expect(input).toHaveAttribute("aria-disabled", "true");
     });
 
     it("onChange is called when value changes", async () => {
@@ -600,7 +600,7 @@ describe("TextField", () => {
             expect(handleOnKeyDown).not.toHaveBeenCalled();
         });
 
-        it("should not call the onFocus prop when the input is focused and it is disabled", async () => {
+        it("should call the onFocus prop when the input is focused and it is disabled", async () => {
             // Arrange
             const handleOnFocus = jest.fn();
 
@@ -617,10 +617,10 @@ describe("TextField", () => {
             await userEvent.tab();
 
             // Assert
-            expect(handleOnFocus).not.toHaveBeenCalled();
+            expect(handleOnFocus).toHaveBeenCalledTimes(1);
         });
 
-        it("should not call the onBlur prop when the input is blurred and it is disabled", async () => {
+        it("should call the onBlur prop when the input is blurred and it is disabled", async () => {
             // Arrange
             const handleOnBlur = jest.fn();
 
@@ -640,7 +640,7 @@ describe("TextField", () => {
             await userEvent.tab();
 
             // Assert
-            expect(handleOnBlur).not.toHaveBeenCalled();
+            expect(handleOnBlur).toHaveBeenCalledTimes(1);
         });
     });
 });
