@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.3.0
+
+### Minor Changes
+
+-   badad6ee: Adds a `viewportPadding` prop to provide spacing between the popper and the viewport edges. If this prop is not provided, default spacing is applied.
+
+### Patch Changes
+
+-   fcab789b: Only show the `TooltipPopper` contents once the popper has positioned itself. This fixes the issue where Tooltips are initially rendered in the top left corner for a brief moment before moving to the correct position (which was causing a flickering effect).
+-   Updated dependencies [badad6ee]
+-   Updated dependencies [fcab789b]
+    -   @khanacademy/wonder-blocks-tooltip@2.5.0
+
 ## 3.2.16
 
 ### Patch Changes
