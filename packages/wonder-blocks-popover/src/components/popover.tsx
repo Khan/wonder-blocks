@@ -124,6 +124,12 @@ type Props = AriaProps &
          * on where there is available room within the document body.
          */
         rootBoundary?: RootBoundary;
+        /**
+         * If `rootBoundary` is `viewport`, this padding value is used to provide
+         * spacing between the popper and the viewport. If not provided, default
+         * spacing of 12px is applied.
+         */
+        viewportPadding?: number;
     }>;
 
 type State = Readonly<{
@@ -290,6 +296,7 @@ export default class Popover extends React.Component<Props, State> {
             "aria-label": ariaLabel,
             "aria-describedby": ariaDescribedBy,
             rootBoundary,
+            viewportPadding,
         } = this.props;
         const {anchorElement} = this.state;
 
@@ -302,6 +309,7 @@ export default class Popover extends React.Component<Props, State> {
                 anchorElement={anchorElement}
                 placement={placement}
                 rootBoundary={rootBoundary}
+                viewportPadding={viewportPadding}
             >
                 {(props: PopperElementProps) => (
                     <PopoverDialog

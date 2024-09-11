@@ -153,6 +153,29 @@ describe("Combobox", () => {
         expect(screen.getByRole("combobox")).toHaveValue("");
     });
 
+    it("should reset the input to its previous selected value when the user presses Escape", async () => {
+        // Arrange
+        const userEvent = doRender(
+            <Combobox selectionType="single" value="option2">
+                <OptionItem label="option 1" value="option1" />
+                <OptionItem label="option 2" value="option2" />
+                <OptionItem label="option 3" value="option3" />
+            </Combobox>,
+        );
+
+        // Focus the combobox
+        await userEvent.tab();
+        await screen.findByRole("listbox", {hidden: true});
+
+        // Act
+        const combobox = screen.getByRole("combobox");
+        // Input an invalid value, then press Escape
+        await userEvent.type(combobox, "Test{Escape}");
+
+        // Assert
+        expect(screen.getByRole("combobox")).toHaveValue("option 2");
+    });
+
     it("should reopen the listbox when the user presses ArrowDown", async () => {
         // Arrange
         const userEvent = doRender(

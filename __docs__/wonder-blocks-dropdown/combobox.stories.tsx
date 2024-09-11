@@ -1,13 +1,14 @@
 import {action} from "@storybook/addon-actions";
 import {useArgs} from "@storybook/preview-api";
 import {Meta, StoryObj} from "@storybook/react";
+import {expect, userEvent, within} from "@storybook/test";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {expect, userEvent, within} from "@storybook/test";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {allProfilesWithPictures} from "./option-item-examples";
 
 import argTypes from "./combobox.argtypes";
@@ -128,6 +129,8 @@ export const Default: Story = {
         children: items,
         selectionType: "single",
     },
+    // Hide the story in the Docs page (useful for snapshots).
+    tags: ["!autodocs"],
 };
 
 /**
@@ -192,31 +195,49 @@ export const ControlledCombobox: Story = {
         const [opened, setOpened] = React.useState(args.opened);
         const [value, setValue] = React.useState(args.value);
 
+        React.useEffect(() => {
+            setOpened(args.opened);
+        }, [args.opened]);
+
         return (
-            <Combobox
-                {...args}
-                opened={opened}
-                onToggle={() => {
-                    setOpened(!opened);
-                    action("onToggle")();
-                }}
-                onChange={(newValue) => {
-                    setValue(newValue);
-                    action("onChange")(newValue);
-                }}
-                value={value}
-            />
+            <View style={{gap: spacing.medium_16}}>
+                <Checkbox label="Open" onChange={setOpened} checked={opened} />
+                <Combobox
+                    {...args}
+                    opened={opened}
+                    onToggle={() => {
+                        setOpened(!opened);
+                        action("onToggle")();
+                    }}
+                    onChange={(newValue) => {
+                        setValue(newValue);
+                        action("onChange")(newValue);
+                    }}
+                    value={value}
+                />
+            </View>
         );
     },
     args: {
         children: items,
-        opened: true,
+        opened: false,
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.wrapper}>{Story()}</View>
         ),
     ],
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        // Open the combobox by clicking the checkbox
+        await userEvent.click(canvas.getByRole("checkbox"));
+
+        // Assert
+        await expect(canvas.getByRole("listbox")).toBeVisible();
+    },
 };
 
 /**
@@ -267,23 +288,6 @@ export const MultipleSelection: Story = {
             disableSnapshot: true,
         },
     },
-    play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
-        // focus on the combobox (input)
-        await userEvent.tab();
-
-        // Move to second option item
-        await userEvent.keyboard("{ArrowDown}");
-
-        // Act
-        // Select the second option item
-        await userEvent.keyboard("{Enter}");
-
-        // Assert
-        expect(canvas.getByRole("log")).toHaveTextContent(
-            "Pineapple selected, 4 of 10. 10 results available.",
-        );
-    },
 };
 
 /**
@@ -323,6 +327,24 @@ export const ControlledMultilpleCombobox: Story = {
             <View style={styles.wrapper}>{Story()}</View>
         ),
     ],
+
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+
+        // Move to second option item
+        await userEvent.keyboard("{ArrowDown}");
+
+        // Act
+        // Select the second option item
+        await userEvent.keyboard("{Enter}");
+
+        // Assert
+        expect(canvas.getByRole("log")).toHaveTextContent(
+            "Pineapple selected, 4 of 10. 10 results available.",
+        );
+    },
+    // Hide the story in the Docs page (useful for snapshots).
+    tags: ["!autodocs"],
 };
 
 /**
