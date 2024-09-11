@@ -53,6 +53,13 @@ type Props = {
     viewportPadding?: number;
 };
 
+type State = {
+    /**
+     * If the popper is ready to show content.
+     */
+    isReady: boolean;
+};
+
 type DefaultProps = {
     rootBoundary: Props["rootBoundary"];
     viewportPadding: Props["viewportPadding"];
@@ -130,11 +137,18 @@ const smallViewportModifier: SmallViewportModifier = {
  * A component that wraps react-popper's Popper component to provide a
  * consistent interface for positioning floating elements.
  */
-export default class TooltipPopper extends React.Component<Props> {
+export default class TooltipPopper extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         rootBoundary: "viewport",
         viewportPadding: spacing.small_12,
     };
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            isReady: false,
+        };
+    }
 
     /**
      * Automatically updates the position of the floating element when necessary
@@ -192,6 +206,7 @@ export default class TooltipPopper extends React.Component<Props> {
         popperProps: PopperChildrenProps,
     ): React.ReactNode {
         const {children} = this.props;
+        const {isReady} = this.state;
 
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
@@ -223,6 +238,10 @@ export default class TooltipPopper extends React.Component<Props> {
                 right: popperProps.style.right,
                 position: popperProps.style.position,
                 transform: popperProps.style.transform,
+                // We hide the content if the popper isn't ready yet. This
+                // makes it so users do not see the tooltip in the wrong place
+                // while it re-positions itself
+                visibility: !isReady ? "hidden" : undefined,
             },
             updateBubbleRef: this._bubbleRefTracker.updateRef,
             tailOffset: {
@@ -237,6 +256,15 @@ export default class TooltipPopper extends React.Component<Props> {
         } as const;
         return children(bubbleProps);
     }
+
+    handleFirstUpdate = () => {
+        // Once the popper is positioned for the first time, the popper is ready
+        // to show content. For more details on onFirstUpdate, see
+        // https://popper.js.org/docs/v2/lifecycle/#hook-into-the-lifecycle
+        this.setState({
+            isReady: true,
+        });
+    };
 
     render(): React.ReactNode {
         const {anchorElement, placement, rootBoundary, viewportPadding} =
@@ -268,6 +296,7 @@ export default class TooltipPopper extends React.Component<Props> {
                 strategy="fixed"
                 placement={placement}
                 modifiers={modifiers}
+                onFirstUpdate={this.handleFirstUpdate}
             >
                 {(props) => this._renderPositionedContent(props)}
             </Popper>
