@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.5.2
+
+### Patch Changes
+
+-   1e097c20: Change useListbox logic to allow passing a handler for when the selected value changes (instead of relying on useEffect in the caller)
+
 ## 5.5.1
 
 ### Patch Changes
