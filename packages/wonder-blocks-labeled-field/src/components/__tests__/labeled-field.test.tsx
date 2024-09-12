@@ -6,16 +6,16 @@ import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import FieldHeading from "../field-heading";
+import LabeledField from "../labeled-field";
 
-describe("FieldHeading", () => {
-    it("fieldheading renders the label text", () => {
+describe("LabeledField", () => {
+    it("LabeledField renders the label text", () => {
         // Arrange
         const label = "Label";
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={label}
             />,
@@ -25,13 +25,13 @@ describe("FieldHeading", () => {
         expect(screen.getByText(label)).toBeInTheDocument();
     });
 
-    it("fieldheading renders the description text", () => {
+    it("LabeledField renders the description text", () => {
         // Arrange
         const description = "Description";
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
                 description={description}
@@ -42,13 +42,13 @@ describe("FieldHeading", () => {
         expect(screen.getByText(description)).toBeInTheDocument();
     });
 
-    it("fieldheading renders the error text", () => {
+    it("LabeledField renders the error text", () => {
         // Arrange
         const error = "Error";
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
                 error={error}
@@ -59,13 +59,13 @@ describe("FieldHeading", () => {
         expect(screen.getByRole("alert")).toBeInTheDocument();
     });
 
-    it("fieldheading adds testId to label", () => {
+    it("LabeledField adds testId to label", () => {
         // Arrange
         const testId = "testid";
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
                 testId={testId}
@@ -77,13 +77,13 @@ describe("FieldHeading", () => {
         expect(label).toBeInTheDocument();
     });
 
-    it("fieldheading adds testId to description", () => {
+    it("LabeledField adds testId to description", () => {
         // Arrange
         const testId = "testid";
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
                 description="Description"
@@ -96,13 +96,13 @@ describe("FieldHeading", () => {
         expect(description).toBeInTheDocument();
     });
 
-    it("fieldheading adds testId to error", () => {
+    it("LabeledField adds testId to error", () => {
         // Arrange
         const testId = "testid";
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
                 error="Error"
@@ -115,14 +115,14 @@ describe("FieldHeading", () => {
         expect(error).toBeInTheDocument();
     });
 
-    it("fieldheading adds the correctly formatted id to label's htmlFor", () => {
+    it("LabeledField adds the correctly formatted id to label's htmlFor", () => {
         // Arrange
         const id = "exampleid";
         const testId = "testid";
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
                 id={id}
@@ -135,14 +135,14 @@ describe("FieldHeading", () => {
         expect(label).toHaveAttribute("for", `${id}-field`);
     });
 
-    it("fieldheading adds the correctly formatted id to error's id", () => {
+    it("LabeledField adds the correctly formatted id to error's id", () => {
         // Arrange
         const id = "exampleid";
         const testId = "testid";
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
                 error="Error"
@@ -156,7 +156,7 @@ describe("FieldHeading", () => {
         expect(error).toHaveAttribute("id", `${id}-error`);
     });
 
-    it("stype prop applies to the fieldheading container", () => {
+    it("stype prop applies to the LabeledField container", () => {
         // Arrange
         const styles = StyleSheet.create({
             style1: {
@@ -167,7 +167,7 @@ describe("FieldHeading", () => {
 
         // Act
         const {container} = render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
                 error="Error"
@@ -176,8 +176,8 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const fieldHeading = container.childNodes[0];
-        expect(fieldHeading).toHaveStyle("background: blue");
+        const labeledField = container.childNodes[0];
+        expect(labeledField).toHaveStyle("background: blue");
     });
 
     it("should render a LabelMedium when the 'label' prop is a I18nInlineMarkup", () => {
@@ -185,7 +185,7 @@ describe("FieldHeading", () => {
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={
                     <I18nInlineMarkup b={(s: string) => <b>{s}</b>}>
@@ -206,7 +206,7 @@ describe("FieldHeading", () => {
 
         // Act
         render(
-            <FieldHeading
+            <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={<Body>Hello, world</Body>}
                 description={
