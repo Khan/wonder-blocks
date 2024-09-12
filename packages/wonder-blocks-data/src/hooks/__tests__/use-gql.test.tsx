@@ -14,14 +14,10 @@ describe("#useGql", () => {
         // Arrange
 
         // Act
-        const {
-            result: {error: result},
-        } = renderHook(() => useGql());
+        const underTest = () => renderHook(() => useGql());
 
         // Assert
-        expect(result).toMatchInlineSnapshot(
-            `[InternalGqlError: No GqlRouter]`,
-        );
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(`"No GqlRouter"`);
     });
 
     it("should return a function", () => {

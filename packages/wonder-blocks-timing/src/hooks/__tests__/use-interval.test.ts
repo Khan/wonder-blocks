@@ -16,20 +16,21 @@ describe("useInterval", () => {
         // Arrange
 
         // Act
-        const {result} = renderHook(() => useInterval(null as any, 1000));
+        const underTest = () =>
+            renderHook(() => useInterval(null as any, 1000));
 
         // Assert
-        expect(result.error).toEqual(Error("Action must be a function"));
+        expect(underTest).toThrow("Action must be a function");
     });
 
     it("throws if the period is less than 1", () => {
         // Arrange
 
         // Act
-        const {result} = renderHook(() => useInterval(() => {}, 0));
+        const underTest = () => renderHook(() => useInterval(() => {}, 0));
 
         // Assert
-        expect(result.error).toEqual(Error("Interval period must be >= 1"));
+        expect(underTest).toThrow("Interval period must be >= 1");
     });
 
     it("sets an interval when schedule policy is SchedulePolicy.Immediately", () => {

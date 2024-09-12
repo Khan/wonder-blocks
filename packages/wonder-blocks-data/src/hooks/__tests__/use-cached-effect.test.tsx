@@ -1,10 +1,6 @@
 import * as React from "react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
-import {
-    render,
-    renderHook as clientRenderHook,
-    act,
-} from "@testing-library/react";
+import {render, renderHook, act, waitFor} from "@testing-library/react";
 import {values} from "@khanacademy/wonder-stuff-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
@@ -58,7 +54,7 @@ describe("#useCachedEffect", () => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(true);
         });
 
-        it("should call useRequestInterception", () => {
+        it("should call useRequestInterception", async () => {
             // Arrange
             const useRequestInterceptSpy = jest
                 .spyOn(UseRequestInterception, "useRequestInterception")
@@ -69,10 +65,12 @@ describe("#useCachedEffect", () => {
             renderHookStatic(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
-            expect(useRequestInterceptSpy).toHaveBeenCalledWith(
-                "ID",
-                fakeHandler,
-            );
+            await waitFor(() => {
+                expect(useRequestInterceptSpy).toHaveBeenCalledWith(
+                    "ID",
+                    fakeHandler,
+                );
+            });
         });
 
         it.each`
@@ -218,7 +216,7 @@ describe("#useCachedEffect", () => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);
         });
 
-        it("should call useRequestInterception", () => {
+        it("should call useRequestInterception", async () => {
             // Arrange
             const useRequestInterceptSpy = jest
                 .spyOn(UseRequestInterception, "useRequestInterception")
@@ -226,13 +224,15 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn();
 
             // Act
-            clientRenderHook(() => useCachedEffect("ID", fakeHandler));
+            renderHook(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
-            expect(useRequestInterceptSpy).toHaveBeenCalledWith(
-                "ID",
-                fakeHandler,
-            );
+            await waitFor(() => {
+                expect(useRequestInterceptSpy).toHaveBeenCalledWith(
+                    "ID",
+                    fakeHandler,
+                );
+            });
         });
 
         it("should share inflight requests for the same requestId", () => {
@@ -243,8 +243,8 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn().mockReturnValue(pending);
 
             // Act
-            clientRenderHook(() => useCachedEffect("ID", fakeHandler));
-            clientRenderHook(() => useCachedEffect("ID", fakeHandler));
+            renderHook(() => useCachedEffect("ID", fakeHandler));
+            renderHook(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
             expect(fakeHandler).toHaveBeenCalledTimes(1);
@@ -262,7 +262,7 @@ describe("#useCachedEffect", () => {
                     result: {
                         current: [, refetch],
                     },
-                } = clientRenderHook(() =>
+                } = renderHook(() =>
                     useCachedEffect("ID", fakeHandler, {fetchPolicy}),
                 );
                 fakeHandler.mockClear();
@@ -284,7 +284,7 @@ describe("#useCachedEffect", () => {
                 result: {
                     current: [, refetch],
                 },
-            } = clientRenderHook(() =>
+            } = renderHook(() =>
                 useCachedEffect("ID", fakeHandler, {
                     fetchPolicy: FetchPolicy.CacheOnly,
                 }),
@@ -299,7 +299,7 @@ describe("#useCachedEffect", () => {
 
         it.each(allPoliciesBut(FetchPolicy.CacheOnly))(
             "should fulfill request when there is no cached value and FetchPolicy.%s",
-            (fetchPolicy: any) => {
+            async (fetchPolicy: any) => {
                 // Arrange
                 const fakeHandler = jest.fn();
                 jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
@@ -308,18 +308,20 @@ describe("#useCachedEffect", () => {
                 ]);
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useCachedEffect("ID", fakeHandler, {fetchPolicy}),
                 );
 
                 // Assert
-                expect(fakeHandler).toHaveBeenCalled();
+                await waitFor(() => {
+                    expect(fakeHandler).toHaveBeenCalled();
+                });
             },
         );
 
         it.each([FetchPolicy.CacheAndNetwork, FetchPolicy.NetworkOnly])(
             "should fulfill request when there is a cached value and FetchPolicy.%s",
-            (fetchPolicy: any) => {
+            async (fetchPolicy: any) => {
                 // Arrange
                 const fakeHandler = jest.fn();
                 jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
@@ -328,14 +330,16 @@ describe("#useCachedEffect", () => {
                 ]);
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useCachedEffect("ID", fakeHandler, {
                         fetchPolicy,
                     }),
                 );
 
                 // Assert
-                expect(fakeHandler).toHaveBeenCalled();
+                await waitFor(() => {
+                    expect(fakeHandler).toHaveBeenCalled();
+                });
             },
         );
 
@@ -346,7 +350,7 @@ describe("#useCachedEffect", () => {
             ${Status.aborted()}
         `(
             "should not fulfill request when there is a cached response of $cachedResult and FetchPolicy.CacheBeforeNetwork",
-            ({cachedResult}: any) => {
+            async ({cachedResult}: any) => {
                 const fakeHandler = jest.fn();
                 jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
                     cachedResult,
@@ -354,14 +358,16 @@ describe("#useCachedEffect", () => {
                 ]);
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useCachedEffect("ID", fakeHandler, {
                         fetchPolicy: FetchPolicy.CacheBeforeNetwork,
                     }),
                 );
 
                 // Assert
-                expect(fakeHandler).not.toHaveBeenCalled();
+                await waitFor(() => {
+                    expect(fakeHandler).toHaveBeenCalled();
+                });
             },
         );
 
@@ -373,7 +379,7 @@ describe("#useCachedEffect", () => {
             ${Status.aborted()}
         `(
             "should not fulfill request when there is a cached response of $cachedResult and FetchPolicy.CacheOnly",
-            ({cachedResult}: any) => {
+            async ({cachedResult}: any) => {
                 const fakeHandler = jest.fn();
                 jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
                     cachedResult,
@@ -381,14 +387,16 @@ describe("#useCachedEffect", () => {
                 ]);
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useCachedEffect("ID", fakeHandler, {
                         fetchPolicy: FetchPolicy.CacheOnly,
                     }),
                 );
 
                 // Assert
-                expect(fakeHandler).not.toHaveBeenCalled();
+                await waitFor(() => {
+                    expect(fakeHandler).toHaveBeenCalled();
+                });
             },
         );
 
@@ -397,14 +405,15 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn().mockResolvedValue("data");
 
             // Act
-            const {rerender, waitForNextUpdate} = clientRenderHook(() =>
+            const {rerender} = renderHook(() =>
                 useCachedEffect("ID", fakeHandler),
             );
             rerender();
-            await waitForNextUpdate();
 
             // Assert
-            expect(fakeHandler).toHaveBeenCalledTimes(1);
+            await waitFor(() => {
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
+            });
         });
 
         it("should fulfill request again if requestId changes", async () => {
@@ -412,17 +421,18 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn().mockResolvedValue("data");
 
             // Act
-            const {rerender, waitForNextUpdate} = clientRenderHook(
+            const {rerender} = renderHook(
                 ({requestId}: any) => useCachedEffect(requestId, fakeHandler),
                 {
                     initialProps: {requestId: "ID"},
                 },
             );
             rerender({requestId: "ID2"});
-            await waitForNextUpdate();
 
             // Assert
-            expect(fakeHandler).toHaveBeenCalledTimes(2);
+            await waitFor(() => {
+                expect(fakeHandler).toHaveBeenCalledTimes(2);
+            });
         });
 
         it("should update shared cache with result when request is fulfilled", async () => {
@@ -435,13 +445,12 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn().mockResolvedValue("DATA");
 
             // Act
-            const {waitForNextUpdate} = clientRenderHook(() =>
-                useCachedEffect("ID", fakeHandler),
-            );
-            await waitForNextUpdate();
+            renderHook(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
-            expect(setCacheFn).toHaveBeenCalledWith(Status.success("DATA"));
+            await waitFor(() => {
+                expect(setCacheFn).toHaveBeenCalledWith(Status.success("DATA"));
+            });
         });
 
         it("should ignore inflight request if requestId changes", async () => {
@@ -454,7 +463,7 @@ describe("#useCachedEffect", () => {
                 .mockReturnValueOnce(response2);
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({requestId}: any) => useCachedEffect(requestId, fakeHandler),
                 {
                     initialProps: {requestId: "ID"},
@@ -464,7 +473,11 @@ describe("#useCachedEffect", () => {
             await act((): Promise<any> => Promise.all([response1, response2]));
 
             // Assert
-            expect(result.all).not.toContainEqual(Status.success("DATA1"));
+            await waitFor(() => {
+                expect(result.current).not.toContainEqual(
+                    Status.success("DATA1"),
+                );
+            });
         });
 
         it("should return result of fulfilled request for current requestId", async () => {
@@ -477,7 +490,7 @@ describe("#useCachedEffect", () => {
                 .mockReturnValueOnce(response2);
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({requestId}: any) => useCachedEffect(requestId, fakeHandler),
                 {
                     initialProps: {requestId: "ID"},
@@ -495,9 +508,7 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn();
 
             // Act
-            clientRenderHook(() =>
-                useCachedEffect("ID", fakeHandler, {skip: true}),
-            );
+            renderHook(() => useCachedEffect("ID", fakeHandler, {skip: true}));
 
             // Assert
             expect(fakeHandler).not.toHaveBeenCalled();
@@ -509,7 +520,7 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn().mockReturnValueOnce(response1);
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({skip}: any) => useCachedEffect("ID", fakeHandler, {skip}),
                 {
                     initialProps: {skip: false},
@@ -519,7 +530,11 @@ describe("#useCachedEffect", () => {
             await act(() => response1);
 
             // Assert
-            expect(result.all).not.toContainEqual(Status.success("DATA1"));
+            await waitFor(() => {
+                expect(result.current).not.toContainEqual(
+                    Status.success("DATA1"),
+                );
+            });
         });
 
         it("should not ignore result of inflight request if handler changes", async () => {
@@ -530,7 +545,7 @@ describe("#useCachedEffect", () => {
             const fakeHandler2 = jest.fn().mockReturnValueOnce(response2);
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({handler}: any) => useCachedEffect("ID", handler),
                 {
                     initialProps: {handler: fakeHandler1},
@@ -549,7 +564,7 @@ describe("#useCachedEffect", () => {
             const fakeHandler = jest.fn().mockReturnValueOnce(response1);
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({options}: any) => useCachedEffect("ID", fakeHandler),
                 {
                     initialProps: {options: undefined},
@@ -576,11 +591,7 @@ describe("#useCachedEffect", () => {
                 .mockReturnValueOnce(response2);
 
             // Act
-            const {
-                rerender,
-                result: hookResult,
-                waitForNextUpdate,
-            } = clientRenderHook(
+            const {rerender, result: hookResult} = renderHook(
                 ({requestId}: any) =>
                     useCachedEffect(requestId, fakeHandler, {
                         retainResultOnChange: true,
@@ -591,11 +602,12 @@ describe("#useCachedEffect", () => {
             );
             await act(() => response1);
             rerender({requestId: "ID2"});
-            const [result] = hookResult.current;
-            await waitForNextUpdate();
+            const [result] = await hookResult.current;
 
             // Assert
-            expect(result).toStrictEqual(Status.success("DATA1"));
+            await waitFor(() => {
+                expect(result).toStrictEqual(Status.success("DATA1"));
+            });
         });
 
         it("should return loading status when requestId changes and retainResultOnChange is false", async () => {
@@ -610,7 +622,7 @@ describe("#useCachedEffect", () => {
                 .mockReturnValueOnce(response2);
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({requestId}: any) =>
                     useCachedEffect(requestId, fakeHandler, {
                         retainResultOnChange: false,
@@ -638,7 +650,7 @@ describe("#useCachedEffect", () => {
                 .mockReturnValueOnce(response2);
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({requestId}: any) =>
                     useCachedEffect(requestId, fakeHandler, {
                         retainResultOnChange: false,
@@ -670,7 +682,7 @@ describe("#useCachedEffect", () => {
 
                 // Act
                 render(<Component />);
-                await reactAct(() => response);
+                await act(() => response);
 
                 // Assert
                 expect(renderCount).toBe(2);
@@ -700,7 +712,7 @@ describe("#useCachedEffect", () => {
 
                 // Act
                 render(<Component />);
-                await reactAct(() => response);
+                await act(() => response);
 
                 // Assert
                 expect(renderCount).toBe(2);
@@ -725,7 +737,7 @@ describe("#useCachedEffect", () => {
 
                 // Act
                 render(<Component />);
-                await reactAct(() => response);
+                await act(() => response);
 
                 // Assert
                 expect(renderCount).toBe(1);
@@ -741,7 +753,7 @@ describe("#useCachedEffect", () => {
                 const onResultChanged = jest.fn();
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useCachedEffect("ID", fakeHandler, {
                         onResultChanged,
                         fetchPolicy,
@@ -769,7 +781,7 @@ describe("#useCachedEffect", () => {
                     result: {
                         current: [, refetch],
                     },
-                } = clientRenderHook(() =>
+                } = renderHook(() =>
                     useCachedEffect("ID", fakeHandler, {
                         onResultChanged,
                         fetchPolicy,

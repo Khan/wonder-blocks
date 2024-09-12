@@ -1,6 +1,6 @@
 import * as React from "react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
-import {renderHook} from "@testing-library/react";
+import {renderHook, waitFor} from "@testing-library/react";
 
 import {useRenderState} from "../use-render-state";
 import {RenderStateRoot} from "../../components/render-state-root";
@@ -35,22 +35,26 @@ describe("useRenderState", () => {
             });
 
             // Assert
-            expect(result.all[0]).toEqual(RenderState.Initial);
+            expect(result.current).toEqual(RenderState.Initial);
         });
 
-        test("second render returns RenderState.Standard", () => {
+        test("second render returns RenderState.Standard", async () => {
             // Arrange
             const wrapper = ({children}: any) => (
                 <RenderStateRoot>{children}</RenderStateRoot>
             );
 
-            // Act
-            const {result} = renderHook(() => useRenderState(), {
+            const {result, rerender} = renderHook(() => useRenderState(), {
                 wrapper,
             });
 
+            // Act
+            rerender();
+
             // Assert
-            expect(result.all[1]).toEqual(RenderState.Standard);
+            await waitFor(() => {
+                expect(result.current).toEqual(RenderState.Standard);
+            });
         });
     });
 });
