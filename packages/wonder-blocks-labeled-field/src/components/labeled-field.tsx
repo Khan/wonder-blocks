@@ -28,7 +28,7 @@ type Props = {
      */
     error?: React.ReactNode;
     /**
-     * Custom styles for the field heading container.
+     * Custom styles for the labeled field container.
      */
     style?: StyleType;
     /**
