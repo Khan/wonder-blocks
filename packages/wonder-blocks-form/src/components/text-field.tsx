@@ -307,8 +307,8 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                         autoFocus={autoFocus}
                         autoComplete={autoComplete}
                         ref={forwardedRef}
-                        {...otherProps}
                         aria-invalid={this.state.error ? "true" : "false"}
+                        {...otherProps}
                     />
                 )}
             </IDProvider>

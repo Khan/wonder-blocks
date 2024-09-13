@@ -63,6 +63,12 @@ type Props = {
     disabled?: boolean;
 
     /**
+     * Whether this component is in an error state.
+     * If true, adds `aria-invalid` to the combobox element.
+     */
+    error?: boolean;
+
+    /**
      * The unique identifier of the combobox element.
      */
     id?: string;
@@ -143,6 +149,7 @@ export default function Combobox({
     autoComplete,
     children,
     disabled,
+    error,
     id,
     labels = defaultComboboxLabels,
     onChange,
@@ -466,6 +473,7 @@ export default function Combobox({
                     styles.wrapper,
                     isListboxFocused && styles.focused,
                     disabled && styles.disabled,
+                    !disabled && error && styles.error,
                 ]}
             >
                 <ComboboxLiveRegion
@@ -521,11 +529,12 @@ export default function Combobox({
                         updateOpenState(false);
                         handleBlur();
                     }}
-                    aria-controls={controlledWidget}
                     onKeyDown={onKeyDown}
                     aria-activedescendant={currentActiveDescendant}
                     aria-autocomplete={autoComplete}
+                    aria-controls={controlledWidget}
                     aria-expanded={openState}
+                    aria-invalid={!!error}
                     ref={comboboxRef}
                     // We don't want the browser to suggest autocompletions as
                     // the combobox is already providing suggestions.
@@ -545,6 +554,7 @@ export default function Combobox({
                         // this element.
                         e.preventDefault();
                     }}
+                    color={error ? "destructive" : "default"}
                     size="small"
                     style={[styles.button, openState && styles.buttonOpen]}
                     tabIndex={-1}
@@ -633,6 +643,11 @@ const styles = StyleSheet.create({
         background: color.offWhite,
         border: `1px solid ${color.offBlack16}`,
         color: color.offBlack64,
+    },
+    error: {
+        background: color.fadedRed8,
+        border: `1px solid ${color.red}`,
+        color: color.offBlack,
     },
     /**
      * Combobox input styles

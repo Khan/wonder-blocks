@@ -296,6 +296,47 @@ describe("Combobox", () => {
         expect(screen.getByRole("combobox")).not.toHaveFocus();
     });
 
+    describe("error", () => {
+        it("should use aria-invalid=false by default", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <Combobox selectionType="single" value="">
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                "aria-invalid",
+                "false",
+            );
+        });
+
+        it("should display the errror message when the value is invalid", async () => {
+            // Arrange
+            const userEvent = doRender(
+                <Combobox selectionType="single" value="" error={true}>
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Act
+            await userEvent.tab();
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                "aria-invalid",
+                "true",
+            );
+        });
+    });
+
     describe("autoComplete", () => {
         it("should filter the options when typing", async () => {
             // Arrange
