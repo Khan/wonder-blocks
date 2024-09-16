@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.82
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.5.3
+
 ## 2.0.81
 
 ### Patch Changes

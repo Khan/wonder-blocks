@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.9.4
+
+### Patch Changes
+
+-   61dc4448: Allow `TextField` to be focusable when disabled. It now sets `aria-disabled` instead of the `disabled` attribute based on the `disabled` prop. This makes it so screenreaders will continue to communicate that the component is disabled, while allowing focus on the disabled component. Focus styling is also added to the disabled state.
+-   2dfd5eb6: - Update `TextField` state styling so that it is consistent with other components like `TextArea`, `SingleSelect`, `MultiSelect` (especially the focus styling). The styling also now uses CSS pseudo-classes for easier testing in Chromatic and debugging in browsers.
+    -   `TextField` and `TextArea` state styling has also been updated so that any outline styles outside of the component are now applied within the component to prevent cropped focus outlines in places where an ancestor element has `overflow: hidden`.
+
 ## 4.9.3
 
 ### Patch Changes
