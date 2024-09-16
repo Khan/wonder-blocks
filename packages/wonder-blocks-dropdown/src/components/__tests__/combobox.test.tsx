@@ -6,6 +6,7 @@ import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
 import Combobox from "../combobox";
 import OptionItem from "../option-item";
 import {defaultComboboxLabels} from "../../util/constants";
+import {MaybeValueOrValues} from "../../util/types";
 
 const doRender = (element: React.ReactElement) => {
     render(element, {wrapper: RenderStateRoot});
@@ -58,7 +59,9 @@ describe("Combobox", () => {
         );
 
         // Act
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(
+            screen.getByRole("button", {name: /toggle listbox/i}),
+        );
 
         // Assert
         await screen.findByRole("listbox", {hidden: true});
@@ -96,11 +99,15 @@ describe("Combobox", () => {
             </Combobox>,
         );
 
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(
+            screen.getByRole("button", {name: /toggle listbox/i}),
+        );
         await screen.findByRole("listbox", {hidden: true});
 
         // Act
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(
+            screen.getByRole("button", {name: /toggle listbox/i}),
+        );
 
         // Assert
         expect(
@@ -214,7 +221,9 @@ describe("Combobox", () => {
             </Combobox>,
         );
 
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(
+            screen.getByRole("button", {name: /toggle listbox/i}),
+        );
         await screen.findByRole("listbox", {hidden: true});
 
         // Act
@@ -296,6 +305,25 @@ describe("Combobox", () => {
         expect(screen.getByRole("combobox")).not.toHaveFocus();
     });
 
+    it("should clear the value when the user presses the clear button (x)", async () => {
+        // Arrange
+        const userEvent = doRender(
+            <Combobox selectionType="single" value="option2">
+                <OptionItem label="option 1" value="option1" />
+                <OptionItem label="option 2" value="option2" />
+                <OptionItem label="option 3" value="option3" />
+            </Combobox>,
+        );
+
+        // Act
+        await userEvent.click(
+            screen.getByRole("button", {name: /clear selection/i}),
+        );
+
+        // Assert
+        expect(screen.getByRole("combobox")).toHaveValue("");
+    });
+
     describe("error", () => {
         it("should use aria-invalid=false by default", () => {
             // Arrange
@@ -333,6 +361,49 @@ describe("Combobox", () => {
             expect(screen.getByRole("combobox")).toHaveAttribute(
                 "aria-invalid",
                 "true",
+            );
+        });
+
+        it("should clear the error message when the value is valid", async () => {
+            // Arrange
+            const UnderTest = () => {
+                const [value, setValue] =
+                    React.useState<MaybeValueOrValues>("");
+                // empty value should mark the combobox as invalid
+                const [error, setError] = React.useState(value === "");
+
+                return (
+                    <Combobox
+                        selectionType="single"
+                        value={value}
+                        error={error}
+                        onChange={(newValue) => {
+                            if (newValue) {
+                                setValue(newValue);
+                            }
+
+                            setError(newValue === "");
+                        }}
+                    >
+                        <OptionItem label="option 1" value="option1" />
+                        <OptionItem label="option 2" value="option2" />
+                        <OptionItem label="option 3" value="option3" />
+                    </Combobox>
+                );
+            };
+
+            const userEvent = doRender(<UnderTest />);
+
+            // Act
+            await userEvent.type(
+                screen.getByRole("combobox"),
+                "option 1{Enter}",
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                "aria-invalid",
+                "false",
             );
         });
     });

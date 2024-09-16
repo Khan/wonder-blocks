@@ -2,6 +2,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import caretDownIcon from "@phosphor-icons/core/regular/caret-down.svg";
+import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import {
     StyleType,
@@ -542,6 +543,31 @@ export default function Combobox({
                     role="combobox"
                 />
 
+                {inputValue && !disabled && (
+                    <IconButton
+                        disabled={disabled}
+                        icon={xIcon}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            // Reset the combobox value.
+                            setInputValue("");
+                            setSelected("");
+                            onChange?.("");
+                            comboboxRef.current?.focus();
+                        }}
+                        onMouseDown={(e: React.MouseEvent) => {
+                            // Prevents the combobox from losing focus when clicking
+                            // this element.
+                            e.preventDefault();
+                        }}
+                        kind="secondary"
+                        size="small"
+                        style={[styles.button, styles.clearButton]}
+                        aria-label={labels.clearSelection}
+                        testId={testId ? `${testId}-clear` : undefined}
+                    />
+                )}
+
                 <IconButton
                     disabled={disabled}
                     icon={caretDownIcon}
@@ -697,5 +723,13 @@ const styles = StyleSheet.create({
     },
     buttonOpen: {
         transform: "rotate(180deg)",
+    },
+    /**
+     * Clear selection button
+     */
+    clearButton: {
+        // The clear button is positioned to the left of the arrow button.
+        // This is calculated based on the padding + width of the arrow button.
+        right: spacing.xLarge_32 + spacing.xSmall_8,
     },
 });

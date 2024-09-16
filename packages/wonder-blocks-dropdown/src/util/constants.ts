@@ -48,6 +48,7 @@ export const defaultLabels = {
 } as const;
 
 export const defaultComboboxLabels: ComboboxLabels = {
+    clearSelection: "Clear selection",
     closedState: "Combobox is closed",
     comboboxButton: "Toggle listbox",
     listbox: "Options list",
