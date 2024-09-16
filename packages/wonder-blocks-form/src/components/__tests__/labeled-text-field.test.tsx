@@ -173,7 +173,7 @@ describe("LabeledTextField", () => {
 
         // Assert
         const input = await screen.findByRole("textbox");
-        expect(input).toBeDisabled();
+        expect(input).toHaveAttribute("aria-disabled", "true");
     });
 
     it("ariaDescribedby prop sets aria-describedby", async () => {

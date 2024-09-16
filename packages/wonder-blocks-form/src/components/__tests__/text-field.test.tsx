@@ -158,24 +158,6 @@ describe("TextField", () => {
         expect(input).toBeInTheDocument();
     });
 
-    it("disabled prop disables the input element", async () => {
-        // Arrange
-        render(
-            <TextField
-                id="tf-1"
-                value=""
-                onChange={() => {}}
-                disabled={true}
-            />,
-        );
-        const input = await screen.findByRole("textbox");
-
-        // Act
-
-        // Assert
-        expect(input).toBeDisabled();
-    });
-
     it("onChange is called when value changes", async () => {
         // Arrange
         const handleOnChange = jest.fn();
@@ -558,5 +540,171 @@ describe("TextField", () => {
 
         // Assert
         expect(searchField).not.toHaveFocus();
+    });
+
+    describe("Disabled state", () => {
+        it("disabled prop sets the aria-disabled attribute on the input element", async () => {
+            // Arrange
+            render(
+                <TextField
+                    id="tf-1"
+                    value=""
+                    onChange={() => {}}
+                    disabled={true}
+                />,
+            );
+            const input = await screen.findByRole("textbox");
+
+            // Act
+
+            // Assert
+            expect(input).toHaveAttribute("aria-disabled", "true");
+        });
+
+        it("should set the aria-disabled attribute when the disabled prop is false", async () => {
+            // Arrange
+            render(
+                <TextField disabled={false} value="Text" onChange={() => {}} />,
+            );
+
+            // Act
+
+            // Assert
+            const input = await screen.findByRole("textbox");
+            expect(input).toHaveAttribute("aria-disabled", "false");
+        });
+
+        it("should set the aria-disabled attribute to false if the disabled prop is not provided", async () => {
+            // Arrange
+            render(<TextField value="Text" onChange={() => {}} />);
+
+            // Act
+
+            // Assert
+            const input = await screen.findByRole("textbox");
+            expect(input).toHaveAttribute("aria-disabled", "false");
+        });
+
+        it("should not set the disabled attribute when the disabled prop is true", async () => {
+            // Arrange
+            render(
+                <TextField disabled={true} value="Text" onChange={() => {}} />,
+            );
+
+            // Act
+
+            // Assert
+            const input = await screen.findByRole("textbox");
+            expect(input).not.toHaveAttribute("disabled");
+        });
+
+        it("should set the readonly attribute if the disabled prop is true", async () => {
+            // Arrange
+            render(
+                <TextField value="Text" onChange={() => {}} disabled={true} />,
+            );
+
+            // Act
+
+            // Assert
+            const input = await screen.findByRole("textbox");
+            expect(input).toHaveAttribute("readonly");
+        });
+
+        it("should not call the onChange prop when the input value changes and it is disabled", async () => {
+            // Arrange
+            const onChangeMock = jest.fn();
+            render(
+                <TextField value="" onChange={onChangeMock} disabled={true} />,
+            );
+
+            // Act
+            // Type one letter
+            const letterToType = "X";
+            await userEvent.type(
+                await screen.findByRole("textbox"),
+                letterToType,
+            );
+
+            // Assert
+            expect(onChangeMock).not.toHaveBeenCalled();
+        });
+
+        it("should not call the onKeyDown prop when a key is typed in the input and it is disabled", async () => {
+            // Arrange
+            const handleOnKeyDown = jest.fn();
+
+            render(
+                <TextField
+                    value=""
+                    onChange={() => {}}
+                    onKeyDown={handleOnKeyDown}
+                    disabled={true}
+                />,
+            );
+
+            // Act
+            await userEvent.type(await screen.findByRole("textbox"), "{enter}");
+
+            // Assert
+            expect(handleOnKeyDown).not.toHaveBeenCalled();
+        });
+
+        it("should continue to call the onFocus prop when the input is focused and it is disabled", async () => {
+            // Arrange
+            const handleOnFocus = jest.fn();
+
+            render(
+                <TextField
+                    value=""
+                    onChange={() => {}}
+                    onFocus={handleOnFocus}
+                    disabled={true}
+                />,
+            );
+
+            // Act
+            await userEvent.tab();
+
+            // Assert
+            expect(handleOnFocus).toHaveBeenCalledTimes(1);
+        });
+
+        it("should continue to call the onBlur prop when the input is blurred and it is disabled", async () => {
+            // Arrange
+            const handleOnBlur = jest.fn();
+
+            render(
+                <TextField
+                    value=""
+                    onChange={() => {}}
+                    onBlur={handleOnBlur}
+                    disabled={true}
+                />,
+            );
+            // Tab to focus on input
+            await userEvent.tab();
+
+            // Act
+            // Tab to move focus away
+            await userEvent.tab();
+
+            // Assert
+            expect(handleOnBlur).toHaveBeenCalledTimes(1);
+        });
+
+        it("should be focusable if it is disabled", async () => {
+            // Arrange
+            render(
+                <TextField value="Text" onChange={() => {}} disabled={true} />,
+            );
+
+            // Act
+            await userEvent.tab();
+
+            // Assert
+            const input = await screen.findByRole("textbox");
+            expect(input).toHaveFocus();
+        });
     });
 });

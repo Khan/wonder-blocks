@@ -525,6 +525,16 @@ ErrorLight.parameters = {
     },
 };
 
+/**
+ * If the disabled prop is set to `true`, LabeledTextField will have disabled styling
+ * and will not be interactable.
+ *
+ * Note: The `disabled` prop sets the `aria-disabled` attribute to `true`
+ * instead of setting the `disabled` attribute. This is so that the component
+ * remains focusable while communicating to screen readers that it is disabled.
+ * This `disabled` prop will also set the `readonly` attribute to prevent
+ * typing in the field.
+ */
 export const Disabled: StoryComponentType = () => (
     <LabeledTextField
         label="Name"
