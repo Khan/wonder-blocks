@@ -151,6 +151,12 @@ export const Error: StoryComponentType = {
     render: AllFields,
 };
 
+/**
+ * If the labeled field is used on a dark background, the `light` prop can be
+ * set to `true`. When abled, the text in the component (label, required
+ * indicator, description, and error message) are modified to work on a dark
+ * background.
+ */
 export const Light: StoryComponentType = {
     args: {
         description: "Helpful description text",
