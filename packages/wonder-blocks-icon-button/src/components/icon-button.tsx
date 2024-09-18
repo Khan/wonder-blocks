@@ -41,6 +41,10 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     testId?: string;
     /**
+     * Used for icon buttons within <form>s.
+     */
+    type?: "submit";
+    /**
      * Size of the icon button.
      * One of `xsmall` (16 icon, 20 target), `small` (24, 32), `medium` (24, 40),
      * or `large` (24, 48).
@@ -181,6 +185,7 @@ export const IconButton: React.ForwardRefExoticComponent<
         skipClientNav,
         tabIndex,
         target,
+        type,
         ...sharedProps
     } = props;
 
@@ -219,6 +224,7 @@ export const IconButton: React.ForwardRefExoticComponent<
                 tabIndex={tabIndex}
                 onKeyDown={handleKeyDown}
                 onKeyUp={handleKeyUp}
+                type={type}
             />
         </ThemedIconButton>
     );

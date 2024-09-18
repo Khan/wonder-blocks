@@ -320,4 +320,51 @@ describe("IconButton", () => {
             expect(onClickMock).toHaveBeenCalledTimes(1);
         });
     });
+
+    describe("type='submit'", () => {
+        it("should submit button within form via click", async () => {
+            // Arrange
+            const submitFnMock = jest.fn();
+            render(
+                <form onSubmit={submitFnMock}>
+                    <IconButton icon={magnifyingGlassIcon} type="submit" />
+                </form>,
+            );
+
+            // Act
+            const button = await screen.findByRole("button");
+            await userEvent.click(button);
+
+            // Assert
+            expect(submitFnMock).toHaveBeenCalled();
+        });
+
+        it("should submit button within form via keyboard", async () => {
+            // Arrange
+            const submitFnMock = jest.fn();
+            render(
+                <form onSubmit={submitFnMock}>
+                    <IconButton icon={magnifyingGlassIcon} type="submit" />
+                </form>,
+            );
+
+            // Act
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
+
+            // Assert
+            expect(submitFnMock).toHaveBeenCalled();
+        });
+
+        it("should submit button doesn't break if it's not in a form", async () => {
+            // Arrange
+            render(<IconButton icon={magnifyingGlassIcon} type="submit" />);
+
+            // Act
+            expect(async () => {
+                // Assert
+                await userEvent.click(await screen.findByRole("button"));
+            }).not.toThrow();
+        });
+    });
 });

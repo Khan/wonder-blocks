@@ -21,6 +21,7 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
 import IconButtonArgtypes from "./icon-button.argtypes";
+import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
 
 /**
  * An `IconButton` is a button whose contents are an SVG image.
@@ -355,6 +356,41 @@ export const WithRouter: StoryComponentType = {
     ),
 };
 
+/**
+ * If the button is inside a form, you can use the `type="submit"` prop, so the
+ * form will be submitted on click or by pressing `Enter`.
+ */
+export const SubmittingForms: StoryComponentType = {
+    name: "Submitting forms",
+    render: () => (
+        <form
+            onSubmit={(e) => {
+                e.preventDefault();
+                console.log("form submitted");
+                action("form submitted")(e);
+            }}
+        >
+            <View style={styles.row}>
+                <LabelMedium tag="label" style={styles.row}>
+                    Search:{" "}
+                    <TextField
+                        id="foo"
+                        value="press the button"
+                        onChange={() => {}}
+                    />
+                </LabelMedium>
+                <IconButton icon={magnifyingGlass} type="submit" />
+            </View>
+        </form>
+    ),
+    parameters: {
+        chromatic: {
+            // We are testing the form submission, not UI changes.
+            disableSnapshot: true,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     dark: {
         backgroundColor: color.darkBlue,
@@ -366,6 +402,7 @@ const styles = StyleSheet.create({
         width: spacing.xxxLarge_64,
     },
     row: {
+        display: "flex",
         flexDirection: "row",
         gap: spacing.medium_16,
         alignItems: "center",
