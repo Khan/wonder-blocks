@@ -379,7 +379,11 @@ export const SubmittingForms: StoryComponentType = {
                         onChange={() => {}}
                     />
                 </LabelMedium>
-                <IconButton icon={magnifyingGlass} type="submit" />
+                <IconButton
+                    icon={magnifyingGlass}
+                    aria-label="Search"
+                    type="submit"
+                />
             </View>
         </form>
     ),
