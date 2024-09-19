@@ -73,6 +73,10 @@ type Props = AriaProps & {
      */
     onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => unknown;
     /**
+     * Called when a key is released.
+     */
+    onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => unknown;
+    /**
      * Called when the element has been focused.
      */
     onFocus?: (event: React.FocusEvent<HTMLInputElement>) => unknown;
