@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.3.0
+
+### Minor Changes
+
+-   659a031d: Add onKeyUp prop to the `SearchField` component
+
+### Patch Changes
+
+-   Updated dependencies [3463bde3]
+    -   @khanacademy/wonder-blocks-icon-button@5.5.0
+
 ## 2.2.27
 
 ### Patch Changes
