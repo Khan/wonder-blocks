@@ -24,6 +24,15 @@ export default {
 
 type StoryComponentType = StoryObj<typeof RadioGroup>;
 
+/**
+ * `RadioGroup` is a component that groups multiple `Choice` components
+ * together. It is used to allow users to select a single option from a list.
+ *
+ * Note that by using a `label` prop, the `RadioGroup` component will render
+ * a `legend` as the first child of the `fieldset` element. This is important to
+ * include as it ensures that Screen Readers can correctly identify and announce
+ * the group of radio buttons.
+ */
 export const Default: StoryComponentType = {
     render: (args) => {
         return (

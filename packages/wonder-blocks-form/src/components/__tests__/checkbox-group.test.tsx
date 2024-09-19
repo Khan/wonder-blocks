@@ -6,6 +6,29 @@ import CheckboxGroup from "../checkbox-group";
 import Choice from "../choice";
 
 describe("CheckboxGroup", () => {
+    describe("a11y", () => {
+        it("should associate the label with the fieldset", async () => {
+            // Arrange, Act
+            render(
+                <CheckboxGroup
+                    label="Test label"
+                    groupName="test"
+                    onChange={() => {}}
+                    selectedValues={[]}
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    <Choice label="b" value="b" aria-labelledby="test-b" />
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                </CheckboxGroup>,
+            );
+
+            const fieldset = screen.getByRole("group", {name: /test label/i});
+
+            // Assert
+            expect(fieldset).toBeInTheDocument();
+        });
+    });
+
     describe("behavior", () => {
         const TestComponent = ({errorMessage}: {errorMessage?: string}) => {
             const [selectedValues, setSelectedValue] = React.useState([
