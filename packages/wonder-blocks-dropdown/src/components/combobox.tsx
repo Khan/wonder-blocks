@@ -418,6 +418,35 @@ export default function Combobox({
         [selected, setSelected],
     );
 
+    const handleTextFieldChange = React.useCallback(
+        (value: string) => {
+            setInputValue(value);
+            let filteredItems = renderList;
+            if (autoComplete === "list") {
+                filteredItems = filterItems(value);
+
+                // Update the list of options to display the
+                // filtered items.
+                setCurrentOptions(filteredItems);
+            }
+
+            focusOnFilteredItem(filteredItems, value);
+        },
+        [autoComplete, filterItems, focusOnFilteredItem, renderList],
+    );
+
+    const handleClearClick = React.useCallback(
+        (e: React.SyntheticEvent) => {
+            e.stopPropagation();
+            // Reset the combobox value.
+            setInputValue("");
+            setSelected("");
+            onChange?.("");
+            comboboxRef.current?.focus();
+        },
+        [onChange, setSelected],
+    );
+
     React.useEffect(() => {
         // Focus on the combobox input when the dropdown is opened.
         if (openState) {
@@ -507,19 +536,7 @@ export default function Combobox({
                     testId={testId}
                     style={styles.combobox}
                     value={inputValue}
-                    onChange={(value: string) => {
-                        setInputValue(value);
-                        let filteredItems = renderList;
-                        if (autoComplete === "list") {
-                            filteredItems = filterItems(value);
-
-                            // Update the list of options to display the
-                            // filtered items.
-                            setCurrentOptions(filteredItems);
-                        }
-
-                        focusOnFilteredItem(filteredItems, value);
-                    }}
+                    onChange={handleTextFieldChange}
                     disabled={disabled}
                     onFocus={() => {
                         updateOpenState(true);
@@ -545,21 +562,8 @@ export default function Combobox({
 
                 {inputValue && !disabled && (
                     <IconButton
-                        disabled={disabled}
                         icon={xIcon}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            // Reset the combobox value.
-                            setInputValue("");
-                            setSelected("");
-                            onChange?.("");
-                            comboboxRef.current?.focus();
-                        }}
-                        onMouseDown={(e: React.MouseEvent) => {
-                            // Prevents the combobox from losing focus when clicking
-                            // this element.
-                            e.preventDefault();
-                        }}
+                        onClick={handleClearClick}
                         kind="secondary"
                         size="small"
                         style={[styles.button, styles.clearButton]}

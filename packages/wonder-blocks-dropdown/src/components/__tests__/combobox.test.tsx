@@ -344,7 +344,7 @@ describe("Combobox", () => {
             );
         });
 
-        it("should display the errror message when the value is invalid", async () => {
+        it("should use aria-invalid=true if error is true", async () => {
             // Arrange
             const userEvent = doRender(
                 <Combobox selectionType="single" value="" error={true}>
@@ -364,7 +364,7 @@ describe("Combobox", () => {
             );
         });
 
-        it("should clear the error message when the value is valid", async () => {
+        it("should mark the combobox as aria-invalid=false when the value is valid", async () => {
             // Arrange
             const UnderTest = () => {
                 const [value, setValue] =
