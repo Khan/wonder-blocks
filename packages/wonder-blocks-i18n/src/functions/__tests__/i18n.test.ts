@@ -624,6 +624,24 @@ describe("i18n", () => {
             });
         });
 
+        describe("other no plurals locale (using km)", () => {
+            it("should return other for 0", () => {
+                // Arrange
+
+                // Act
+                const result = ngettext(
+                    {
+                        lang: "km",
+                        messages: ["Other"],
+                    },
+                    0,
+                );
+
+                // Assert
+                expect(result).toEqual("Other");
+            });
+        });
+
         describe("multiple plurals local (using pl)", () => {
             it("should return second plural form for 0", () => {
                 // Arrange
