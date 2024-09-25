@@ -74,7 +74,7 @@ export const allPluralForms: PluralFormsMap = {
     "ja": likeJapanese,
     "ka": likeEnglish,
     "kk": likeEnglish,
-    "km": likeEnglish,
+    "km": likeJapanese,
     "kn": likeEnglish,
     "ko": likeJapanese,
     "ky": likeJapanese,
