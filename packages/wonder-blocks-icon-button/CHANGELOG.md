@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.6.0
+
+### Minor Changes
+
+-   75da0046: Adds `id` prop and fixes `type` prop to set 'button' as default value.
+
 ## 5.5.0
 
 ### Minor Changes
