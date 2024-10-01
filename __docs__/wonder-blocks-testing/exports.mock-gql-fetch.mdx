@@ -16,10 +16,11 @@ The `mockGqlFetch` function provides an API to easily mock GraphQL responses for
 
 Besides being a function that fits the <a href="./?path=/docs/packages-data-types-gqlfetchfn--docs">`GqlFetchFn`</a> signature, the return value of `mockGqlFetch()` has an API to customize the behavior of that function. Used in conjunction with the <a href="./?path=/docs/packages-testing-mocking-exports-respondwith--docs">`RespondWith`</a> API, this can create a variety of GraphQL responses for testing and stories.
 
-| Function            | Purpose                                                                                                                                            |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mockOperation`     | When called, any GraphQL operation that matches the defined mock operation will respond with the given response.                                   |
+| Function | Purpose |
+| - | - |
+| `mockOperation` | When called, any GraphQL operation that matches the defined mock operation will respond with the given response. |
 | `mockOperationOnce` | When called, the first GraphQL operation that matches the defined mock operation will respond with the given response. The mock is only used once. |
+| `configure` | This allows you to configure the behavior of the mock fetch function. |
 
 Both of these functions have the same signature:
 
@@ -35,7 +36,24 @@ type GqlMockOperationFn = <
 ) => GqlFetchMockFn;
 ```
 
-# Operation Matching
+## Configuration
+
+The `configure` function allows you to configure the behavior of the mocked fetch function. It takes a partial configuration and applies that to the existing
+configuration. This changes the behavior of all calls to the mocked function.
+
+The full configuration is:
+
+```ts
+{
+    hardFailOnUnmockedRequests: boolean;
+}
+```
+
+| Configuration Key | Purpose |
+| - | - |
+| `hardFailOnUnmockedRequests` | When set to `true`, any unmocked request will throw an error, causing tests to fail. When set to `false`, unmocked requests will reject, which in turn gets handled by the relevant error handling in the code under test - this is the default behavior and is usually what you want so that you don't need to mock every single request that may be invoked during your tests. |
+
+## Operation Matching
 
 The `matchOperation` parameter given to a `mockOperation` or `mockOperationOnce` function is a `GqlMockOperation` defining the actual GraphQL operation to be matched by the mock. The variables and context of the mocked operation change how the mock is matched against requests.
 
