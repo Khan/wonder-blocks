@@ -36,6 +36,8 @@ type GqlMockOperationFn = <
 ) => GqlFetchMockFn;
 ```
 
+It is recommended that you use the `matchGql` function to build the `GqlMockOperation` object for use with `mockOperation` and `mockOperationOnce` as it provides a nicer type checking experience.
+
 ## Configuration
 
 The `configure` function allows you to configure the behavior of the mocked fetch function. It takes a partial configuration and applies that to the existing

@@ -1,0 +1,24 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta
+    title="Packages / Testing / Mocking / Exports / matchGql()"
+/>
+
+# matchGql()
+
+```ts
+matchGql<TData, TVariables, TContext>(operation: GqlOperation<TData, TVariables>: MatchApi<TData, TVariables, TContext>;
+```
+
+The `matchGql` function provides an API to easily build mock GraphQL requests for use with the <a href="./?path=/docs/packages-testing-mocking-exports-mockgqlfetch--docs">`mockGqlFetch`</a> API. Using `matchGql` can provide a nicer type checking experience than building the `GqlMockOperation` object manually.
+
+# API
+
+Besides returning a `GqlMockOperation`-compatible object, the `MatchApi` object has a few methods to help build the mock operation.
+
+| Function | Purpose |
+| - | - |
+| `withVariables` | When called, this adds specific variables that should be matched. |
+| `withContext` | When called, this adds specific context values that should be matched. |
+
+Both of these functions return a `GqlMockOperation`-compatible object and can be chained together to build up the mock operation.
