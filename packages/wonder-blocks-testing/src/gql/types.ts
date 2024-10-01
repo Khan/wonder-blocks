@@ -12,14 +12,27 @@ import type {
  * be used.
  */
 export interface MutableGqlMockOperation<
-    TData extends Record<any, any>,
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
 > {
-    operation: GqlOperation<TData, TVariables>;
-    variables?: TVariables;
+    operation: TOperation;
+    variables?: ExtractVariables<TOperation>;
     context?: TContext;
 }
+
+export type ExtractData<TOperation> = TOperation extends GqlOperation<
+    infer TData,
+    any
+>
+    ? TData
+    : never;
+
+export type ExtractVariables<TOperation> = TOperation extends GqlOperation<
+    any,
+    infer TVariables
+>
+    ? TVariables
+    : never;
 
 /**
  * A GraphQL operation to be mocked.
@@ -28,22 +41,20 @@ export interface MutableGqlMockOperation<
  * be used.
  */
 export type GqlMockOperation<
-    TData extends Record<any, any>,
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
-> = Readonly<MutableGqlMockOperation<TData, TVariables, TContext>>;
+> = Readonly<MutableGqlMockOperation<TOperation, TContext>>;
 
 interface GqlMockOperationFn {
     <
-        TData extends Record<any, any>,
-        TVariables extends Record<any, any>,
+        TOperation extends GqlOperation<any, any>,
         TContext extends GqlContext,
-        TResponseData extends GraphQLJson<TData>,
+        TResponseData extends GraphQLJson<ExtractData<TOperation>>,
     >(
         /**
          * The operation to match.
          */
-        operation: GqlMockOperation<TData, TVariables, TContext>,
+        operation: GqlMockOperation<TOperation, TContext>,
         /**
          * The response to return when the operation is matched.
          */
@@ -105,5 +116,5 @@ export interface GqlFetchMockFn {
      *
      * @returns The mock fetch function for chaining.
      */
-    configure: ConfigureFn<GqlMockOperation<any, any, any>, GraphQLJson<any>>;
+    configure: ConfigureFn<GqlMockOperation<any, any>, GraphQLJson<any>>;
 }

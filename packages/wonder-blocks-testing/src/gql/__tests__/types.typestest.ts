@@ -140,21 +140,27 @@ matchGql(fakeOperation)
     });
 
 // should be ok, returns a GqlMockOperation
-const x1: GqlMockOperation<SomeGqlData, SomeGqlVariables, GqlContext> =
-    matchGql(fakeOperation);
+const x1: GqlMockOperation<
+    GqlOperation<SomeGqlData, SomeGqlVariables>,
+    GqlContext
+> = matchGql(fakeOperation);
 
 // should be ok, returns a GqlMockOperation
-const x2: GqlMockOperation<SomeGqlData, SomeGqlVariables, GqlContext> =
-    matchGql(fakeOperation).withVariables({
-        a: "string",
-        b: 42,
-    });
+const x2: GqlMockOperation<
+    GqlOperation<SomeGqlData, SomeGqlVariables>,
+    GqlContext
+> = matchGql(fakeOperation).withVariables({
+    a: "string",
+    b: 42,
+});
 
 // should be ok, returns a GqlMockOperation
-const x3: GqlMockOperation<SomeGqlData, SomeGqlVariables, GqlContext> =
-    matchGql(fakeOperation).withContext({
-        locale: "en",
-    });
+const x3: GqlMockOperation<
+    GqlOperation<SomeGqlData, SomeGqlVariables>,
+    GqlContext
+> = matchGql(fakeOperation).withContext({
+    locale: "en",
+});
 
 // should error; not a valid operation
 // @ts-expect-error Argument of type 'string' is not assignable to parameter of type 'GqlOperation<any, any>'.

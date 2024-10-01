@@ -34,7 +34,7 @@ const areObjectsEquivalent = (a: any, b: any): boolean => {
 };
 
 export const gqlRequestMatchesMock = (
-    mock: GqlMockOperation<any, any, any>,
+    mock: GqlMockOperation<any, any>,
     operation: GqlOperation<any, any>,
     variables: Record<any, any> | null | undefined,
     context: GqlContext,

@@ -1,52 +1,57 @@
 import {GqlContext, GqlOperation} from "@khanacademy/wonder-blocks-data";
 import {clone} from "@khanacademy/wonder-stuff-core";
-import {GqlMockOperation, MutableGqlMockOperation} from "./types";
+import {
+    ExtractVariables,
+    GqlMockOperation,
+    MutableGqlMockOperation,
+} from "./types";
 
 interface WithVariablesFn<
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
 > {
-    (variables: TVariables): WithContextApi<TVariables, TContext> &
-        GqlMockOperation<any, TVariables, TContext>;
+    (variables: ExtractVariables<TOperation>): WithContextApi<
+        TOperation,
+        TContext
+    > &
+        GqlMockOperation<TOperation, TContext>;
 }
 
 interface WithContextFn<
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
 > {
-    (context: TContext): WithVariablesApi<TVariables, TContext> &
-        GqlMockOperation<any, TVariables, TContext>;
+    (context: TContext): WithVariablesApi<TOperation, TContext> &
+        GqlMockOperation<TOperation, TContext>;
 }
 
 interface WithVariablesApi<
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
 > {
-    withVariables: WithVariablesFn<TVariables, TContext>;
+    withVariables: WithVariablesFn<TOperation, TContext>;
 }
 
 interface WithContextApi<
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
 > {
-    withContext: WithContextFn<TVariables, TContext>;
+    withContext: WithContextFn<TOperation, TContext>;
 }
 
 interface MatchApi<
-    TData extends Record<any, any>,
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
-> extends WithVariablesApi<TVariables, TContext>,
-        WithContextApi<TVariables, TContext>,
-        GqlMockOperation<TData, TVariables, TContext> {}
+> extends WithVariablesApi<TOperation, TContext>,
+        WithContextApi<TOperation, TContext>,
+        GqlMockOperation<TOperation, TContext> {}
 
 interface InternalMatchApi<
-    TData extends Record<any, any>,
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
-> extends WithVariablesApi<TVariables, TContext>,
-        WithContextApi<TVariables, TContext>,
-        MutableGqlMockOperation<TData, TVariables, TContext> {}
+> extends WithVariablesApi<TOperation, TContext>,
+        WithContextApi<TOperation, TContext>,
+        MutableGqlMockOperation<TOperation, TContext> {}
 
 /**
  * Create a mock GQL operation matcher.
@@ -60,25 +65,24 @@ interface InternalMatchApi<
  * trying to match a request.
  */
 export const matchGql = <
-    TData extends Record<any, any>,
-    TVariables extends Record<any, any>,
+    TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
 >(
-    operation: GqlOperation<TData, TVariables>,
-): MatchApi<TData, TVariables, TContext> => {
-    const api: InternalMatchApi<TData, TVariables, TContext> = {
+    operation: TOperation,
+): MatchApi<TOperation, TContext> => {
+    const api: InternalMatchApi<TOperation, TContext> = {
         operation,
         withVariables: (
-            variables: TVariables,
-        ): WithContextApi<TVariables, TContext> &
-            MutableGqlMockOperation<any, TVariables, TContext> => {
+            variables: ExtractVariables<TOperation>,
+        ): WithContextApi<TOperation, TContext> &
+            MutableGqlMockOperation<TOperation, TContext> => {
             api.variables = clone(variables);
             return api;
         },
         withContext: (
             context: TContext,
-        ): WithVariablesApi<TVariables, TContext> &
-            MutableGqlMockOperation<any, TVariables, TContext> => {
+        ): WithVariablesApi<TOperation, TContext> &
+            MutableGqlMockOperation<TOperation, TContext> => {
             api.context = clone(context);
             return api;
         },
