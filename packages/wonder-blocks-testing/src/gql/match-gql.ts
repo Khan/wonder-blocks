@@ -6,14 +6,16 @@ interface WithVariablesFn<
     TVariables extends Record<any, any>,
     TContext extends GqlContext,
 > {
-    (variables: TVariables): WithContextApi<TVariables, TContext>;
+    (variables: TVariables): WithContextApi<TVariables, TContext> &
+        MutableGqlMockOperation<any, TVariables, TContext>;
 }
 
 interface WithContextFn<
     TVariables extends Record<any, any>,
     TContext extends GqlContext,
 > {
-    (context: TContext): WithVariablesApi<TVariables, TContext>;
+    (context: TContext): WithVariablesApi<TVariables, TContext> &
+        MutableGqlMockOperation<any, TVariables, TContext>;
 }
 
 interface WithVariablesApi<
@@ -36,7 +38,7 @@ interface MatchApi<
     TContext extends GqlContext,
 > extends WithVariablesApi<TVariables, TContext>,
         WithContextApi<TVariables, TContext>,
-        Readonly<GqlMockOperation<TData, TVariables, TContext>> {}
+        GqlMockOperation<TData, TVariables, TContext> {}
 
 interface InternalMatchApi<
     TData extends Record<any, any>,
@@ -68,13 +70,15 @@ export const matchGql = <
         operation,
         withVariables: (
             variables: TVariables,
-        ): WithContextApi<TVariables, TContext> => {
+        ): WithContextApi<TVariables, TContext> &
+            MutableGqlMockOperation<any, TVariables, TContext> => {
             api.variables = clone(variables);
             return api;
         },
         withContext: (
             context: TContext,
-        ): WithVariablesApi<TVariables, TContext> => {
+        ): WithVariablesApi<TVariables, TContext> &
+            MutableGqlMockOperation<any, TVariables, TContext> => {
             api.context = clone(context);
             return api;
         },
