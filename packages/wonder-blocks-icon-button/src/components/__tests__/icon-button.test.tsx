@@ -183,6 +183,23 @@ describe("IconButton", () => {
         expect(onClickMock).not.toBeCalled();
     });
 
+    it("sets the 'id' prop on the underlying element", async () => {
+        // Arrange
+        render(
+            <IconButton
+                icon={magnifyingGlassIcon}
+                aria-label="search"
+                id="icon-button"
+            />,
+        );
+
+        // Act
+        const button = await screen.findByRole("button");
+
+        // Assert
+        expect(button).toHaveAttribute("id", "icon-button");
+    });
+
     it("sets the 'target' prop on the underlying element", async () => {
         // Arrange
         render(
@@ -321,7 +338,18 @@ describe("IconButton", () => {
         });
     });
 
-    describe("type='submit'", () => {
+    describe("type", () => {
+        it("should set type attribute to 'button' by default", async () => {
+            // Arrange
+            render(<IconButton icon={magnifyingGlassIcon} />);
+
+            // Act
+            const button = await screen.findByRole("button");
+
+            // Assert
+            expect(button).toHaveAttribute("type", "button");
+        });
+
         it("should submit button within form via click", async () => {
             // Arrange
             const submitFnMock = jest.fn();

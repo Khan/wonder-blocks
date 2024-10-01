@@ -93,6 +93,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         skipClientNav,
         style,
         testId,
+        type = "button",
         ...restProps
     } = props;
     const {theme, themeName} = useScopedTheme(IconButtonThemeContext);
@@ -142,7 +143,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         } else {
             return (
                 <StyledButton
-                    type="button"
+                    type={type}
                     {...commonProps}
                     onClick={disabled ? undefined : restProps.onClick}
                     aria-disabled={disabled}
