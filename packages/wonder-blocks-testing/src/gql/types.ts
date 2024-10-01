@@ -6,6 +6,22 @@ import type {
 } from "@khanacademy/wonder-blocks-testing-core";
 
 /**
+ * A mutable GraphQL operation to be mocked.
+ *
+ * This is used to specify what a request must match in order for a mock to
+ * be used.
+ */
+export interface MutableGqlMockOperation<
+    TData extends Record<any, any>,
+    TVariables extends Record<any, any>,
+    TContext extends GqlContext,
+> {
+    operation: GqlOperation<TData, TVariables>;
+    variables?: TVariables;
+    context?: TContext;
+}
+
+/**
  * A GraphQL operation to be mocked.
  *
  * This is used to specify what a request must match in order for a mock to
@@ -15,11 +31,7 @@ export type GqlMockOperation<
     TData extends Record<any, any>,
     TVariables extends Record<any, any>,
     TContext extends GqlContext,
-> = {
-    operation: GqlOperation<TData, TVariables>;
-    variables?: TVariables;
-    context?: TContext;
-};
+> = Readonly<MutableGqlMockOperation<TData, TVariables, TContext>>;
 
 interface GqlMockOperationFn {
     <

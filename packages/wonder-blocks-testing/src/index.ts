@@ -13,6 +13,7 @@ export {
     SettleController,
 } from "@khanacademy/wonder-blocks-testing-core";
 export {mockGqlFetch} from "./gql/mock-gql-fetch";
+export {matchGql} from "./gql/match-gql";
 export type {
     MockResponse,
     FetchMockFn,

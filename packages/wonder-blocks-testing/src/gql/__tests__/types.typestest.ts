@@ -1,6 +1,12 @@
-import {GqlOperation} from "@khanacademy/wonder-blocks-data";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {GqlContext, GqlOperation} from "@khanacademy/wonder-blocks-data";
 import {RespondWith} from "@khanacademy/wonder-blocks-testing-core";
-import type {GqlFetchMockFn} from "../types";
+import type {
+    GqlFetchMockFn,
+    GqlMockOperation,
+    MutableGqlMockOperation,
+} from "../types";
+import {matchGql} from "../match-gql";
 
 type SomeGqlData = {
     a: string;
@@ -16,6 +22,8 @@ const fakeOperation: GqlOperation<SomeGqlData, SomeGqlVariables> = {} as any;
 
 const mockFetch: GqlFetchMockFn = (() => {}) as any;
 
+// -> GqlFetchMockFn tests
+// mockOperation tests
 // should be ok, no variables
 mockFetch.mockOperation(
     {
@@ -95,3 +103,71 @@ mockFetch.mockOperation(
         b: "string",
     }),
 );
+
+// configure tests
+// should be ok
+mockFetch.configure({hardFailOnUnmockedRequests: true});
+
+// should error; invalid configuration
+mockFetch.configure({
+    // @ts-expect-error Type 'boolean' is not assignable to type 'number'.
+    hardFailOnUnmockedRequests: 4,
+});
+
+// -> matchGql tests
+// should be ok, no variables or context
+matchGql(fakeOperation);
+
+// should be ok, with variables
+matchGql(fakeOperation).withVariables({
+    a: "string",
+    b: 42,
+});
+
+// should be ok, with context
+matchGql(fakeOperation).withContext({
+    locale: "en",
+});
+
+// should be ok, with variables and context
+matchGql(fakeOperation)
+    .withVariables({
+        a: "string",
+        b: 42,
+    })
+    .withContext({
+        locale: "en",
+    });
+
+// should be ok, returns a GqlMockOperation
+const x1: GqlMockOperation<SomeGqlData, SomeGqlVariables, GqlContext> =
+    matchGql(fakeOperation);
+
+// should error; not a valid operation
+// @ts-expect-error Argument of type 'string' is not assignable to parameter of type 'GqlOperation<any, any>'.
+matchGql("not an operation");
+
+// should error; invalid variables
+matchGql(fakeOperation).withVariables({
+    // @ts-expect-error Type 'number' is not assignable to type 'string'.
+    a: 42,
+    b: 42,
+});
+
+// should error; invalid context
+matchGql(fakeOperation).withContext({
+    // @ts-expect-error Type 'number' is not assignable to type 'string'.
+    locale: 42,
+});
+
+// should error; invalid variables and context
+matchGql(fakeOperation)
+    .withVariables({
+        // @ts-expect-error Type 'number' is not assignable to type 'string'.
+        a: 42,
+        b: 42,
+    })
+    .withContext({
+        // @ts-expect-error Type 'number' is not assignable to type 'string'.
+        locale: 42,
+    });
