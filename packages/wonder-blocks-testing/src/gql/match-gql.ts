@@ -7,7 +7,7 @@ interface WithVariablesFn<
     TContext extends GqlContext,
 > {
     (variables: TVariables): WithContextApi<TVariables, TContext> &
-        MutableGqlMockOperation<any, TVariables, TContext>;
+        GqlMockOperation<any, TVariables, TContext>;
 }
 
 interface WithContextFn<
@@ -15,7 +15,7 @@ interface WithContextFn<
     TContext extends GqlContext,
 > {
     (context: TContext): WithVariablesApi<TVariables, TContext> &
-        MutableGqlMockOperation<any, TVariables, TContext>;
+        GqlMockOperation<any, TVariables, TContext>;
 }
 
 interface WithVariablesApi<
