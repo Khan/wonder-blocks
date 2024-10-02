@@ -82,6 +82,18 @@ export default {
         },
     },
 
+    name: {
+        description: "Provide a name for the TextField.",
+        table: {
+            type: {
+                summary: "string",
+            },
+        },
+        control: {
+            type: "text",
+        },
+    },
+
     disabled: {
         description: `Whether the input should be disabled. Defaults to false.
             If the disabled prop is set to \`true\`, LabeledTextField will have disabled

@@ -381,6 +381,25 @@ describe("LabeledTextField", () => {
         expect(input).toBeInTheDocument();
     });
 
+    it("name prop is passed to input", async () => {
+        // Arrange
+        const name = "test-name";
+
+        // Act
+        render(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                name={name}
+            />,
+        );
+
+        // Assert
+        const input = await screen.findByRole("textbox");
+        expect(input).toHaveAttribute("name", name);
+    });
+
     it("style prop is passed to fieldheading", async () => {
         // Arrange
         const styles = StyleSheet.create({

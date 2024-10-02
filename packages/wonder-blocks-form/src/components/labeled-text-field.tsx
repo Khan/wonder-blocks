@@ -126,6 +126,10 @@ type CommonProps = {
      * Specifies if the TextField allows autocomplete.
      */
     autoComplete?: string;
+    /**
+     * Provide a name for the TextField.
+     */
+    name?: string;
 };
 
 type OtherInputProps = CommonProps & {
@@ -228,6 +232,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
             autoComplete,
             forwardedRef,
             ariaDescribedby,
+            name,
             // NOTE: We are not using this prop, but we need to remove it from
             // `otherProps` so it doesn't override the `handleValidate` function
             // call. We use `otherProps` due to a limitation in TypeScript where
@@ -275,6 +280,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                 readOnly={readOnly}
                                 autoComplete={autoComplete}
                                 ref={forwardedRef}
+                                name={name}
                                 {...otherProps}
                             />
                         }
