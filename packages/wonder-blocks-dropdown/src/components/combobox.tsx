@@ -564,7 +564,7 @@ export default function Combobox({
                     <IconButton
                         icon={xIcon}
                         onClick={handleClearClick}
-                        kind="secondary"
+                        kind="tertiary"
                         size="small"
                         style={[styles.button, styles.clearButton]}
                         aria-label={labels.clearSelection}
@@ -584,7 +584,7 @@ export default function Combobox({
                         // this element.
                         e.preventDefault();
                     }}
-                    color={error ? "destructive" : "default"}
+                    kind="tertiary"
                     size="small"
                     style={[styles.button, openState && styles.buttonOpen]}
                     tabIndex={-1}
