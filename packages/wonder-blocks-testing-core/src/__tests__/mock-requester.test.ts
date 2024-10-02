@@ -35,7 +35,17 @@ describe("#mockRequester", () => {
         );
     });
 
-    it("should throw with helpful details formatted by operationToString if no matching mock is found", async () => {
+    it("should provide a configuration API", () => {
+        // Arrange
+
+        // Act
+        const result = mockRequester(jest.fn(), jest.fn());
+
+        // Assert
+        expect(result).toHaveProperty("configure", expect.any(Function));
+    });
+
+    it("should reject with helpful details formatted by operationToString if no matching mock is found", async () => {
         // Arrange
         const mockFn = mockRequester(
             jest.fn(),
@@ -207,6 +217,58 @@ describe("#mockRequester", () => {
 
             // Assert
             await expect(result).resolves.toBe("TWO");
+        });
+    });
+
+    describe("configure", () => {
+        it("should reject promise on unmocked requests by default", async () => {
+            // Arrange
+            const matcher = jest.fn().mockReturnValue(false);
+            const operationToString = jest.fn();
+            const mockFn = mockRequester(matcher, operationToString);
+
+            // Act
+            const result = mockFn("DO SOMETHING");
+
+            // Assert
+            await expect(result).rejects.toThrowErrorMatchingInlineSnapshot(`
+                "No matching mock response found for request:
+                    undefined"
+            `);
+        });
+
+        it("should cause hard fail on unmocked requests when hardFailOnUnmockedRequests is set to true", () => {
+            // Arrange
+            const matcher = jest.fn().mockReturnValue(false);
+            const operationToString = jest.fn();
+            const mockFn = mockRequester(matcher, operationToString);
+
+            // Act
+            mockFn.configure({hardFailOnUnmockedRequests: true});
+            const underTest = () => mockFn("DO SOMETHING");
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(`
+                "No matching mock response found for request:
+                    undefined"
+            `);
+        });
+
+        it("should reject promise on unmocked requests when hardFailOnUnmockedRequests is set to false ", async () => {
+            // Arrange
+            const matcher = jest.fn().mockReturnValue(false);
+            const operationToString = jest.fn();
+            const mockFn = mockRequester(matcher, operationToString);
+
+            // Act
+            mockFn.configure({hardFailOnUnmockedRequests: false});
+            const result = mockFn("DO SOMETHING");
+
+            // Assert
+            await expect(result).rejects.toThrowErrorMatchingInlineSnapshot(`
+                "No matching mock response found for request:
+                    undefined"
+            `);
         });
     });
 });

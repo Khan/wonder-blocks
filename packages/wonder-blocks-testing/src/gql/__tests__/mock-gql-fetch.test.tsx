@@ -2,7 +2,10 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 
 import {GqlRouter, useGql} from "@khanacademy/wonder-blocks-data";
-import {RespondWith} from "@khanacademy/wonder-blocks-testing-core";
+import {
+    RespondWith,
+    testHarness,
+} from "@khanacademy/wonder-blocks-testing-core";
 import {mockGqlFetch} from "../mock-gql-fetch";
 
 describe("#mockGqlFetch", () => {
@@ -39,6 +42,49 @@ describe("#mockGqlFetch", () => {
                     "No matching mock response found for request",
                 ),
             );
+        });
+
+        it("should throw an error when there are no mocks and hardFailOnUnmockedRequests is true", () => {
+            // Arrange
+            jest.spyOn(console, "error").mockImplementation(() => {
+                /* react will log an error - this keeps the output clean */
+            });
+            const mockFetch = mockGqlFetch();
+            mockFetch.configure({hardFailOnUnmockedRequests: true});
+            const RenderError = () => {
+                const [result, setResult] = React.useState<any>(null);
+                const gqlFetch = useGql();
+                React.useEffect(() => {
+                    gqlFetch({
+                        type: "query",
+                        id: "getMyStuff",
+                    }).catch((e: any) => {
+                        setResult(e.message);
+                    });
+                }, [gqlFetch]);
+
+                return <div data-testid="result">{result}</div>;
+            };
+            const captureError = jest.fn();
+            const Harnessed = testHarness(RenderError, {
+                boundary: captureError,
+            });
+
+            // Act
+            render(
+                <GqlRouter defaultContext={{}} fetch={mockFetch}>
+                    <Harnessed />
+                </GqlRouter>,
+            );
+            const result = captureError.mock.calls[0][0];
+
+            // Assert
+            expect(result).toMatchInlineSnapshot(`
+                [Error: No matching mock response found for request:
+                    Operation: query getMyStuff
+                    Variables: None
+                    Context: {}]
+            `);
         });
 
         it("should provide data when response gives data", async () => {
