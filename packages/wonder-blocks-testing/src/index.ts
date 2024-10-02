@@ -19,7 +19,11 @@ export type {
     FetchMockFn,
     FetchMockOperation,
 } from "@khanacademy/wonder-blocks-testing-core";
-export type {GqlFetchMockFn, GqlMockOperation} from "./gql/types";
+export type {
+    GqlFetchMockFn,
+    GqlMockOperation,
+    MatchApiWithOperation,
+} from "./gql/types";
 
 // Test harness framework
 export type {

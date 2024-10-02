@@ -118,3 +118,36 @@ export interface GqlFetchMockFn {
      */
     configure: ConfigureFn<GqlMockOperation<any, any>, GraphQLJson<any>>;
 }
+
+interface WithVariablesFn<
+    TOperation extends GqlOperation<any, any>,
+    TContext extends GqlContext,
+> {
+    (variables: ExtractVariables<TOperation>): Omit<
+        MatchApi<TOperation, TContext>,
+        "withVariables"
+    > &
+        GqlMockOperation<TOperation, TContext>;
+}
+
+interface WithContextFn<
+    TOperation extends GqlOperation<any, any>,
+    TContext extends GqlContext,
+> {
+    (context: TContext): Omit<MatchApi<TOperation, TContext>, "withContext"> &
+        GqlMockOperation<TOperation, TContext>;
+}
+
+export interface MatchApi<
+    TOperation extends GqlOperation<any, any>,
+    TContext extends GqlContext,
+> {
+    withVariables: WithVariablesFn<TOperation, TContext>;
+    withContext: WithContextFn<TOperation, TContext>;
+}
+
+export interface MatchApiWithOperation<
+    TOperation extends GqlOperation<any, any>,
+    TContext extends GqlContext,
+> extends GqlMockOperation<TOperation, TContext>,
+        MatchApi<TOperation, TContext> {}

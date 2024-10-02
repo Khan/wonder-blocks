@@ -1,56 +1,18 @@
 import {GqlContext, GqlOperation} from "@khanacademy/wonder-blocks-data";
 import {clone} from "@khanacademy/wonder-stuff-core";
 import {
-    ExtractVariables,
-    GqlMockOperation,
+    MatchApi,
+    MatchApiWithOperation,
     MutableGqlMockOperation,
 } from "./types";
-
-interface WithVariablesFn<
-    TOperation extends GqlOperation<any, any>,
-    TContext extends GqlContext,
-> {
-    (variables: ExtractVariables<TOperation>): WithContextApi<
-        TOperation,
-        TContext
-    > &
-        GqlMockOperation<TOperation, TContext>;
-}
-
-interface WithContextFn<
-    TOperation extends GqlOperation<any, any>,
-    TContext extends GqlContext,
-> {
-    (context: TContext): WithVariablesApi<TOperation, TContext> &
-        GqlMockOperation<TOperation, TContext>;
-}
-
-interface WithVariablesApi<
-    TOperation extends GqlOperation<any, any>,
-    TContext extends GqlContext,
-> {
-    withVariables: WithVariablesFn<TOperation, TContext>;
-}
-
-interface WithContextApi<
-    TOperation extends GqlOperation<any, any>,
-    TContext extends GqlContext,
-> {
-    withContext: WithContextFn<TOperation, TContext>;
-}
-
-interface MatchApi<
-    TOperation extends GqlOperation<any, any>,
-    TContext extends GqlContext,
-> extends WithVariablesApi<TOperation, TContext>,
-        WithContextApi<TOperation, TContext>,
-        GqlMockOperation<TOperation, TContext> {}
 
 interface InternalMatchApi<
     TOperation extends GqlOperation<any, any>,
     TContext extends GqlContext,
-> extends WithVariablesApi<TOperation, TContext>,
-        WithContextApi<TOperation, TContext>,
+> extends Omit<
+            MatchApi<TOperation, TContext>,
+            "operation | variables | context"
+        >,
         MutableGqlMockOperation<TOperation, TContext> {}
 
 /**
@@ -69,20 +31,14 @@ export const matchGql = <
     TContext extends GqlContext,
 >(
     operation: TOperation,
-): MatchApi<TOperation, TContext> => {
+): MatchApiWithOperation<TOperation, TContext> => {
     const api: InternalMatchApi<TOperation, TContext> = {
         operation,
-        withVariables: (
-            variables: ExtractVariables<TOperation>,
-        ): WithContextApi<TOperation, TContext> &
-            MutableGqlMockOperation<TOperation, TContext> => {
+        withVariables: (variables) => {
             api.variables = clone(variables);
             return api;
         },
-        withContext: (
-            context: TContext,
-        ): WithVariablesApi<TOperation, TContext> &
-            MutableGqlMockOperation<TOperation, TContext> => {
+        withContext: (context) => {
             api.context = clone(context);
             return api;
         },
