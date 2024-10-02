@@ -119,6 +119,13 @@ export type ComboboxLabels = {
     selected: (labels: string) => string;
 
     /**
+     * Label for when the user removes a selected item.
+     *
+     * NOTE: This usually happens when the clear selection button is pressed.
+     */
+    selectionCleared: string;
+
+    /**
      * Label for when item(s) is/are unselected.
      */
     unselected: (labels: string) => string;

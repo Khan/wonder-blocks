@@ -879,6 +879,27 @@ describe("Combobox", () => {
                     defaultComboboxLabels.noItems,
                 );
             });
+
+            it("should announce when the current selected value is cleared", async () => {
+                // Arrange
+                doRender(
+                    <Combobox value="option1" selectionType="single">
+                        <OptionItem label="Option 1" value="option1" />
+                        <OptionItem label="Option 2" value="option2" />
+                        <OptionItem label="Option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // Act
+                await userEvent.click(
+                    screen.getByRole("button", {name: /clear selection/i}),
+                );
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(
+                    defaultComboboxLabels.selectionCleared,
+                );
+            });
         });
     });
 });

@@ -31,6 +31,7 @@ type Props = {
         | "liveRegionMultipleSelectionTotal"
         | "noItems"
         | "selected"
+        | "selectionCleared"
         | "unselected"
     >;
 
@@ -81,6 +82,7 @@ export function ComboboxLiveRegion({
             defaultComboboxLabels.liveRegionMultipleSelectionTotal,
         noItems: defaultComboboxLabels.noItems,
         selected: defaultComboboxLabels.selected,
+        selectionCleared: defaultComboboxLabels.selectionCleared,
         unselected: defaultComboboxLabels.unselected,
     },
     selectedLabels,
@@ -115,6 +117,16 @@ export function ComboboxLiveRegion({
                 newMessage = labels.selected(selectedLabels[0]);
             }
             setMessage(newMessage);
+        }
+
+        // Announce when the single-select value is cleared.
+        // NOTE: It only applies after the user has selected an option.
+        if (
+            selectionType === "single" &&
+            !selected &&
+            lastSelectedValue.current
+        ) {
+            setMessage(labels.selectionCleared);
         }
 
         lastSelectedValue.current = selected;

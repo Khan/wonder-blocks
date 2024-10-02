@@ -69,5 +69,6 @@ export const defaultComboboxLabels: ComboboxLabels = {
     liveRegionListboxTotal: (total) => `${total} results available.`,
     noItems: "No results",
     selected: (labels: string) => `${labels} selected`,
+    selectionCleared: "Selection cleared",
     unselected: (labels: string) => `${labels} not selected`,
 };
