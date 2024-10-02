@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.10.0
+
+### Minor Changes
+
+-   7a98815b: LabeledTextField: Adds `name` prop for the `TextField` component
+
 ## 4.9.4
 
 ### Patch Changes
