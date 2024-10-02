@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 1.1.0
+
+### Minor Changes
+
+-   16565a85: Add support for hard fails to the request mocking features
+
 ## 1.0.2
 
 ### Patch Changes

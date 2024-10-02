@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-testing
 
+## 13.0.0
+
+### Major Changes
+
+-   eb807af8: When mocking GraphQL, consider explicit undefined values in a request to be equivalent to missing keys in a mock
+
+### Minor Changes
+
+-   16565a85: Add support for hard fails to the request mocking features
+
+### Patch Changes
+
+-   Updated dependencies [16565a85]
+    -   @khanacademy/wonder-blocks-testing-core@1.1.0
+
 ## 12.0.1
 
 ### Patch Changes

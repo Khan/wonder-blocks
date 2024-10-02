@@ -23,7 +23,7 @@
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "^1.0.1",
     "@khanacademy/wonder-stuff-testing": "^3.0.1",
-    "@khanacademy/wonder-blocks-testing-core": "^1.0.2"
+    "@khanacademy/wonder-blocks-testing-core": "^1.1.0"
   },
   "author": "",
   "license": "MIT"
