@@ -1,7 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    View,
+    addStyle,
+    StyleType,
+    useUniqueIdWithMock,
+} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -66,6 +71,8 @@ export default function LabeledField(props: Props) {
         description,
         error,
     } = props;
+    const ids = useUniqueIdWithMock("labeled-field");
+    const uniqueId = id ?? ids.get("id");
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
@@ -83,7 +90,7 @@ export default function LabeledField(props: Props) {
                 <LabelMedium
                     style={light ? styles.lightLabel : styles.label}
                     tag="label"
-                    htmlFor={id && `${id}-field`}
+                    htmlFor={`${uniqueId}-field`}
                     testId={testId && `${testId}-label`}
                 >
                     {label}
@@ -123,7 +130,7 @@ export default function LabeledField(props: Props) {
                 <LabelSmall
                     style={light ? styles.lightError : styles.error}
                     role="alert"
-                    id={id && `${id}-error`}
+                    id={`${uniqueId}-error`}
                     testId={testId && `${testId}-error`}
                 >
                     {error}

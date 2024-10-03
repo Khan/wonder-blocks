@@ -6,7 +6,12 @@ import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import LabeledField from "../labeled-field";
+
+const defaultOptions = {
+    wrapper: RenderStateRoot,
+};
 
 describe("LabeledField", () => {
     it("LabeledField renders the label text", () => {
@@ -19,6 +24,7 @@ describe("LabeledField", () => {
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={label}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -36,6 +42,7 @@ describe("LabeledField", () => {
                 label="Label"
                 description={description}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -53,6 +60,7 @@ describe("LabeledField", () => {
                 label="Label"
                 error={error}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -70,6 +78,7 @@ describe("LabeledField", () => {
                 label="Label"
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -89,6 +98,7 @@ describe("LabeledField", () => {
                 description="Description"
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -108,6 +118,7 @@ describe("LabeledField", () => {
                 error="Error"
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -128,6 +139,7 @@ describe("LabeledField", () => {
                 id={id}
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -149,6 +161,7 @@ describe("LabeledField", () => {
                 id={id}
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -173,6 +186,7 @@ describe("LabeledField", () => {
                 error="Error"
                 style={styles.style1}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -193,6 +207,7 @@ describe("LabeledField", () => {
                     </I18nInlineMarkup>
                 }
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -215,6 +230,7 @@ describe("LabeledField", () => {
                     </I18nInlineMarkup>
                 }
             />,
+            defaultOptions,
         );
 
         // Assert
