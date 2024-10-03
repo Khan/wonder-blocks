@@ -15,7 +15,7 @@ type Props = {
     /**
      * The form field component.
      */
-    field: React.ReactNode;
+    field: React.ReactElement;
     /**
      * The title for the label element.
      */
