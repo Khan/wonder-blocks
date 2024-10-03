@@ -73,6 +73,9 @@ export default function LabeledField(props: Props) {
     } = props;
     const ids = useUniqueIdWithMock("labeled-field");
     const uniqueId = id ?? ids.get("id");
+    const descriptionId = `${uniqueId}-description`;
+    const fieldId = `${uniqueId}-field`;
+    const errorId = `${uniqueId}-error`;
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
@@ -90,7 +93,7 @@ export default function LabeledField(props: Props) {
                 <LabelMedium
                     style={light ? styles.lightLabel : styles.label}
                     tag="label"
-                    htmlFor={`${uniqueId}-field`}
+                    htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
                 >
                     {label}
@@ -111,6 +114,7 @@ export default function LabeledField(props: Props) {
                 <LabelSmall
                     style={light ? styles.lightDescription : styles.description}
                     testId={testId && `${testId}-description`}
+                    id={descriptionId}
                 >
                     {description}
                 </LabelSmall>
@@ -130,7 +134,7 @@ export default function LabeledField(props: Props) {
                 <LabelSmall
                     style={light ? styles.lightError : styles.error}
                     role="alert"
-                    id={`${uniqueId}-error`}
+                    id={errorId}
                     testId={testId && `${testId}-error`}
                 >
                     {error}
@@ -139,12 +143,19 @@ export default function LabeledField(props: Props) {
         );
     }
 
+    const fieldWithAttributes = React.cloneElement(field, {
+        id: fieldId,
+        "aria-describedby": [description && descriptionId, error && errorId]
+            .filter(Boolean)
+            .join(" "),
+    });
+
     return (
         <View style={style}>
             {renderLabel()}
             {maybeRenderDescription()}
             <Strut size={spacing.xSmall_8} />
-            {field}
+            {fieldWithAttributes}
             {maybeRenderError()}
         </View>
     );
