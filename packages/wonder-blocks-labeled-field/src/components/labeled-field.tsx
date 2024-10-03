@@ -55,9 +55,19 @@ const StyledSpan = addStyle("span");
  * to present better context and hints to any type of form field component.
  */
 export default function LabeledField(props: Props) {
-    function renderLabel(): React.ReactNode {
-        const {label, id, required, testId, light} = props;
+    const {
+        field,
+        style,
+        label,
+        id,
+        required,
+        testId,
+        light,
+        description,
+        error,
+    } = props;
 
+    function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
                 style={light ? styles.lightRequired : styles.required}
@@ -85,8 +95,6 @@ export default function LabeledField(props: Props) {
     }
 
     function maybeRenderDescription(): React.ReactNode | null | undefined {
-        const {description, testId, light} = props;
-
         if (!description) {
             return null;
         }
@@ -105,8 +113,6 @@ export default function LabeledField(props: Props) {
     }
 
     function maybeRenderError(): React.ReactNode | null | undefined {
-        const {error, id, testId, light} = props;
-
         if (!error) {
             return null;
         }
@@ -125,8 +131,6 @@ export default function LabeledField(props: Props) {
             </React.Fragment>
         );
     }
-
-    const {field, style} = props;
 
     return (
         <View style={style}>
