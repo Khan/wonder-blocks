@@ -146,21 +146,23 @@ export default function LabeledField(props: Props) {
         );
     }
 
-    const fieldWithAttributes = React.cloneElement(field, {
-        id: fieldId,
-        "aria-describedby": [description && descriptionId, error && errorId]
-            .filter(Boolean)
-            .join(" "),
-        "aria-required": required,
-        testId: testId && `${testId}-field`,
-    });
+    function renderField() {
+        return React.cloneElement(field, {
+            id: fieldId,
+            "aria-describedby": [description && descriptionId, error && errorId]
+                .filter(Boolean)
+                .join(" "),
+            "aria-required": required,
+            testId: testId && `${testId}-field`,
+        });
+    }
 
     return (
         <View style={style}>
             {renderLabel()}
             {maybeRenderDescription()}
             <Strut size={spacing.xSmall_8} />
-            {fieldWithAttributes}
+            {renderField()}
             {maybeRenderError()}
         </View>
     );
