@@ -54,10 +54,20 @@ const StyledSpan = addStyle("span");
  * A LabeledField is an element that provides a label, description, and error element
  * to present better context and hints to any type of form field component.
  */
-export default class LabeledField extends React.Component<Props> {
-    renderLabel(): React.ReactNode {
-        const {label, id, required, testId, light} = this.props;
+export default function LabeledField(props: Props) {
+    const {
+        field,
+        style,
+        label,
+        id,
+        required,
+        testId,
+        light,
+        description,
+        error,
+    } = props;
 
+    function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
                 style={light ? styles.lightRequired : styles.required}
@@ -84,9 +94,7 @@ export default class LabeledField extends React.Component<Props> {
         );
     }
 
-    maybeRenderDescription(): React.ReactNode | null | undefined {
-        const {description, testId, light} = this.props;
-
+    function maybeRenderDescription(): React.ReactNode | null | undefined {
         if (!description) {
             return null;
         }
@@ -104,9 +112,7 @@ export default class LabeledField extends React.Component<Props> {
         );
     }
 
-    maybeRenderError(): React.ReactNode | null | undefined {
-        const {error, id, testId, light} = this.props;
-
+    function maybeRenderError(): React.ReactNode | null | undefined {
         if (!error) {
             return null;
         }
@@ -126,19 +132,15 @@ export default class LabeledField extends React.Component<Props> {
         );
     }
 
-    render(): React.ReactNode {
-        const {field, style} = this.props;
-
-        return (
-            <View style={style}>
-                {this.renderLabel()}
-                {this.maybeRenderDescription()}
-                <Strut size={spacing.xSmall_8} />
-                {field}
-                {this.maybeRenderError()}
-            </View>
-        );
-    }
+    return (
+        <View style={style}>
+            {renderLabel()}
+            {maybeRenderDescription()}
+            <Strut size={spacing.xSmall_8} />
+            {field}
+            {maybeRenderError()}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
