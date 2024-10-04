@@ -358,6 +358,29 @@ describe("LabeledField", () => {
             expect(fieldEl).not.toHaveAttribute("data-testid");
             expect(errorEl).not.toHaveAttribute("data-testid");
         });
+
+        it("should persist original attributes on the field if it is not overridden", () => {
+            // Arrange
+            render(
+                <LabeledField
+                    field={
+                        <TextField
+                            value=""
+                            onChange={() => {}}
+                            name="name-example"
+                        />
+                    }
+                    label="Label"
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const fieldEl = screen.getByRole("textbox");
+
+            // Assert
+            expect(fieldEl).toHaveAttribute("name", "name-example");
+        });
     });
 
     describe("Accessibility", () => {
