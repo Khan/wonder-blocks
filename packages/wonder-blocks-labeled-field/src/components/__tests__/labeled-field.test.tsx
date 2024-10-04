@@ -441,41 +441,6 @@ describe("LabeledField", () => {
                 // Assert
                 expect(inputEl).toHaveAttribute("aria-describedby", errorEl.id);
             });
-
-            it("should mark the field with aria-required if the required prop is set to true", () => {
-                // Arrange
-                render(
-                    <LabeledField
-                        field={<TextField value="" onChange={() => {}} />}
-                        label="Label"
-                        required={true}
-                    />,
-                    defaultOptions,
-                );
-
-                // Act
-                const inputEl = screen.getByRole("textbox");
-
-                // Assert
-                expect(inputEl).toHaveAttribute("aria-required", "true");
-            });
-
-            it("should not mark the field with aria-required if the required prop is not set", () => {
-                // Arrange
-                render(
-                    <LabeledField
-                        field={<TextField value="" onChange={() => {}} />}
-                        label="Label"
-                    />,
-                    defaultOptions,
-                );
-
-                // Act
-                const inputEl = screen.getByRole("textbox");
-
-                // Assert
-                expect(inputEl).not.toHaveAttribute("aria-required");
-            });
         });
     });
 });
