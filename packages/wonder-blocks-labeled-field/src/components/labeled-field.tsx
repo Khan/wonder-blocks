@@ -148,6 +148,7 @@ export default function LabeledField(props: Props) {
         "aria-describedby": [description && descriptionId, error && errorId]
             .filter(Boolean)
             .join(" "),
+        "aria-required": required,
     });
 
     return (
