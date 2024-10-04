@@ -238,4 +238,91 @@ describe("LabeledField", () => {
         // LabelSmall has a font-size of 16px
         expect(description).toHaveStyle("font-size: 14px");
     });
+
+    describe("Attributes", () => {
+        it("should autogenerate ids for the elements if the id prop is not provided", () => {});
+        it("should use the id prop for element ids", () => {});
+    });
+
+    describe("Accessibility", () => {
+        describe("Axe", () => {
+            it("should have no accessibility violations", async () => {
+                // Arrange
+                const {container} = render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                    />,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+        });
+        describe("ARIA", () => {
+            it("should render a label tag with the for attribute set to the id of the field", () => {
+                // Arrange
+                const label = "Label";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label={label}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const labelEl = screen.getByText(label);
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(labelEl).toHaveAttribute("for", inputEl.id);
+            });
+
+            it("should set aria-describedby on the field to the id of the description", () => {
+                // Arrange
+                const description = "Description of the field";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        description={description}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const descriptionEl = screen.getByText(description);
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(inputEl).toHaveAttribute(
+                    "aria-describedby",
+                    descriptionEl.id,
+                );
+            });
+
+            it("should set the aria-describedby on the field to the id of the error", () => {
+                // Arrange
+                const error = "Error message";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        error={error}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const errorEl = screen.getByText(error);
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(inputEl).toHaveAttribute("aria-describedby", errorEl.id);
+            });
+        });
+    });
 });
