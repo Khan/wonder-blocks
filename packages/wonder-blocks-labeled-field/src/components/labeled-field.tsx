@@ -37,14 +37,28 @@ type Props = {
      */
     style?: StyleType;
     /**
-     * A unique id to link the label (and optional error) to the field.
+     * A unique id to use as the base of the ids for the elements within the component.
+     * Here is how the id is used for the different elements in the component:
+     * - The label will have an id formatted as `${id}-label`
+     * - The description will have an id formatted as `${id}-description`
+     * - The field will have an id formatted as `${id}-field`
+     * - The error will have an id formatted as `${id}-error`
      *
-     * The label will assume that the field will have its id formatted as `${id}-field`.
-     * The field can assume that the error will have its id formatted as `${id}-error`.
+     * If the `id` prop is not provided, a base unique id will be auto-generated.
+     * This is important so that the different elements can be wired up together
+     * for accessibility!
+     *
+     * Note: When using the `LabeledField` component, an `id` provided to the
+     * field component (ex: a TextField component) will be overridden.
      */
     id?: string;
     /**
-     * Optional test ID for e2e testing.
+     * Optional test id for e2e testing. Here is how the test id is used for the
+     * different elements in the component:
+     * - The label will have a testId formatted as `${testId}-label`
+     * - The description will have a testId formatted as `${testId}-description`
+     * - The field will have a testId formatted as `${testId}-field`
+     * - The error will have a testId formatted as `${testId}-error`
      */
     testId?: string;
     /**
