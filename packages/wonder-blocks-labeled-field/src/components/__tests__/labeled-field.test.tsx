@@ -368,6 +368,8 @@ describe("LabeledField", () => {
                     <LabeledField
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
+                        description="Description for the field"
+                        error="Error message"
                     />,
                     defaultOptions,
                 );
