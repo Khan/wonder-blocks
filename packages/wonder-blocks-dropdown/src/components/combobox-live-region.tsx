@@ -62,6 +62,7 @@ type Props = {
     testId?: string;
 };
 
+// TODO (WB-1757.2): Refactor this component to use hooks + Context.
 /**
  * A component that announces focus changes to Screen Readers.
  *

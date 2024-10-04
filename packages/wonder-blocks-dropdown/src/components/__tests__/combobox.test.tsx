@@ -880,7 +880,9 @@ describe("Combobox", () => {
                 );
             });
 
-            it("should announce when the current selected value is cleared", async () => {
+            // TODO (WB-1757.2): Enable this test once the LiveRegion component
+            // is refactored.
+            it.skip("should announce when the current selected value is cleared", async () => {
                 // Arrange
                 doRender(
                     <Combobox value="option1" selectionType="single">

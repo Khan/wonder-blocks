@@ -438,6 +438,9 @@ export default function Combobox({
     const handleClearClick = React.useCallback(
         (e: React.SyntheticEvent) => {
             e.stopPropagation();
+            // TODO (WB-1757.2): Add Screen Reader Announcements for when the
+            // selection is cleared.
+
             // Reset the combobox value.
             setInputValue("");
             setSelected("");
