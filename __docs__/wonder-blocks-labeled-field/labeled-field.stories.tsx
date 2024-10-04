@@ -13,6 +13,7 @@ import {
     SingleSelect,
 } from "@khanacademy/wonder-blocks-dropdown";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
+import Button from "@khanacademy/wonder-blocks-button";
 
 /**
  * The `LabeledField` component provides common elements for a form field such
@@ -213,5 +214,142 @@ export const Combinations = (args: PropsFor<typeof LabeledField>) => {
                 }
             />
         </View>
+    );
+};
+
+export const Validation = (args) => {
+    const [name, setName] = React.useState("");
+    const [nameError, setNameError] = React.useState<string | undefined | null>(
+        "",
+    );
+    const [description, setDescription] = React.useState("");
+    const [descriptionError, setDescriptionError] = React.useState<
+        string | undefined | null
+    >("");
+    const [singleSelectValue, setSingleSelectValue] = React.useState("");
+    const [singleSelectError, setSingleSelectError] = React.useState("");
+    const [multiSelectValue, setMultiSelectValue] = React.useState<string[]>(
+        [],
+    );
+    const [multiSelectError, setMultiSelectError] = React.useState("");
+    return (
+        <div style={{width: "400px"}}>
+            <div>
+                <form
+                    style={{display: "flex", flexDirection: "column", gap: 8}}
+                >
+                    <LabeledField
+                        label="Email"
+                        field={
+                            <TextField
+                                value={name}
+                                onChange={setName}
+                                validate={(value: string) => {
+                                    const emailRegex =
+                                        /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+                                    if (!emailRegex.test(value)) {
+                                        return "Please enter a valid email";
+                                    }
+                                }}
+                                onValidate={setNameError}
+                            />
+                        }
+                        error={nameError}
+                    />
+                    <LabeledField
+                        label="Description"
+                        field={
+                            <TextArea
+                                value={description}
+                                onChange={setDescription}
+                                validate={(value: string) => {
+                                    if (value.length < 5) {
+                                        return "Please enter at least 5 characters";
+                                    }
+                                }}
+                                onValidate={setDescriptionError}
+                            />
+                        }
+                        error={descriptionError}
+                    />
+                    <LabeledField
+                        {...args}
+                        label="Fruit"
+                        error={singleSelectError}
+                        field={
+                            <SingleSelect
+                                placeholder="Choose a fruit"
+                                selectedValue={singleSelectValue}
+                                onChange={(value) => {
+                                    setSingleSelectValue(value);
+                                    if (value === "strawberry") {
+                                        setSingleSelectError(
+                                            "Don't select strawberry.",
+                                        );
+                                    } else {
+                                        setSingleSelectError("");
+                                    }
+                                }}
+                                error={!!singleSelectError} // should not need to do this! LabeledField should set this
+                            >
+                                <OptionItem label="Mango" value="mango" />
+                                <OptionItem
+                                    label="Strawberry"
+                                    value="strawberry"
+                                />
+                                <OptionItem label="Banana" value="banana" />
+                            </SingleSelect>
+                        }
+                    />
+
+                    <LabeledField
+                        {...args}
+                        label="Fruits"
+                        error={multiSelectError}
+                        field={
+                            <MultiSelect
+                                selectedValues={multiSelectValue}
+                                onChange={(value) => {
+                                    setMultiSelectValue(value);
+                                    if (value.length < 2) {
+                                        setMultiSelectError(
+                                            "Select at least 2",
+                                        );
+                                    } else {
+                                        setMultiSelectError("");
+                                    }
+                                }}
+                                error={!!multiSelectError}
+                            >
+                                <OptionItem label="Mango" value="mango" />
+                                <OptionItem
+                                    label="Strawberry"
+                                    value="strawberry"
+                                />
+                                <OptionItem label="Banana" value="banana" />
+                            </MultiSelect>
+                        }
+                    />
+                    <Button
+                        type="submit"
+                        onClick={() => {
+                            // Example where everything has an error
+                            setNameError("Error with name from backend");
+                            setDescriptionError(
+                                "Error with description from backend",
+                            );
+                            setSingleSelectError(
+                                "Error with single select from backend",
+                            );
+                            setMultiSelectError(
+                                "Error with multi select from backend",
+                            );
+                        }}
+                    >
+                        Submit
+                    </Button>
+                </form>
+            </div>
+        </div>
     );
 };
