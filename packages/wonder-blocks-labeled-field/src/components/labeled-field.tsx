@@ -71,8 +71,10 @@ export default function LabeledField(props: Props) {
         description,
         error,
     } = props;
+
     const ids = useUniqueIdWithMock("labeled-field");
     const uniqueId = id ?? ids.get("id");
+    const labelId = `${uniqueId}-label`;
     const descriptionId = `${uniqueId}-description`;
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
@@ -95,6 +97,7 @@ export default function LabeledField(props: Props) {
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
+                    id={labelId}
                 >
                     {label}
                     {required && requiredIcon}
@@ -149,6 +152,7 @@ export default function LabeledField(props: Props) {
             .filter(Boolean)
             .join(" "),
         "aria-required": required,
+        testId: testId && `${testId}-field`,
     });
 
     return (
