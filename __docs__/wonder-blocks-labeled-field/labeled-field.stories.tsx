@@ -169,3 +169,49 @@ export const Light: StoryComponentType = {
     },
     render: AllFields,
 };
+
+/**
+ * The following story shows what the LabeledField looks like when different
+ * props are set.
+ */
+export const Combinations = (args: PropsFor<typeof LabeledField>) => {
+    const [textFieldValue, setTextFieldValue] = React.useState("");
+
+    return (
+        <View style={{gap: spacing.large_24}}>
+            <LabeledField
+                {...args}
+                label="Label only"
+                field={
+                    <TextField
+                        value={textFieldValue}
+                        onChange={setTextFieldValue}
+                    />
+                }
+            />
+            <LabeledField
+                {...args}
+                label="With description"
+                description="Description"
+                field={
+                    <TextField
+                        value={textFieldValue}
+                        onChange={setTextFieldValue}
+                    />
+                }
+            />
+            <LabeledField
+                {...args}
+                label="With Error"
+                error="Error message"
+                field={
+                    <TextField
+                        value="invalid value"
+                        onChange={() => {}}
+                        validate={() => "Error message"}
+                    />
+                }
+            />
+        </View>
+    );
+};
