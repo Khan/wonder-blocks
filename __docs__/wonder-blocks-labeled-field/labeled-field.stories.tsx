@@ -22,7 +22,7 @@ import SearchField from "@khanacademy/wonder-blocks-search-field";
  * `LabeledField` component so that our form fields are consistent and accessible.
  */
 export default {
-    title: "Packages / LabeledField / LabeledField",
+    title: "Packages / LabeledField",
     component: LabeledField,
     parameters: {
         componentSubtitle: (
