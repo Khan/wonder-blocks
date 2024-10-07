@@ -305,23 +305,47 @@ describe("Combobox", () => {
         expect(screen.getByRole("combobox")).not.toHaveFocus();
     });
 
-    it("should clear the value when the user presses the clear button (x)", async () => {
-        // Arrange
-        const userEvent = doRender(
-            <Combobox selectionType="single" value="option2">
-                <OptionItem label="option 1" value="option1" />
-                <OptionItem label="option 2" value="option2" />
-                <OptionItem label="option 3" value="option3" />
-            </Combobox>,
-        );
+    describe("dismiss button", () => {
+        it("should clear the value when the user presses the clear button (x) via Mouse", async () => {
+            // Arrange
+            const userEvent = doRender(
+                <Combobox selectionType="single" value="option2">
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
 
-        // Act
-        await userEvent.click(
-            screen.getByRole("button", {name: /clear selection/i}),
-        );
+            // Act
+            await userEvent.click(
+                screen.getByRole("button", {name: /clear selection/i}),
+            );
 
-        // Assert
-        expect(screen.getByRole("combobox")).toHaveValue("");
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveValue("");
+        });
+
+        it("should clear the value when the user presses the clear button (x) via Keyboard", async () => {
+            // Arrange
+            const userEvent = doRender(
+                <Combobox selectionType="single" value="option2">
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // focus the combobox
+            await userEvent.tab();
+
+            // Act
+            // Focus the clear button, then press Enter
+            await userEvent.tab();
+            await userEvent.keyboard("{Enter}");
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveValue("");
+        });
     });
 
     describe("error", () => {
