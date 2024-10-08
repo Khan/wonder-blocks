@@ -396,3 +396,35 @@ export const AutoCompleteMultiSelect: Story = {
         },
     },
 };
+
+/**
+ * This `Combobox` is in an error state. Selecting any option will clear the
+ * error state by updating the `error` prop to `false`.
+ *
+ * **NOTE:** We internally apply the correct `aria-invalid` attribute based on
+ * the `error` prop.
+ */
+
+export const Error: Story = {
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        const [error, setError] = React.useState(args.error);
+        const [value, setValue] = React.useState(args.value);
+
+        return (
+            <Combobox
+                {...args}
+                error={error}
+                value={value}
+                onChange={(newValue) => {
+                    setValue(newValue);
+                    setError(newValue !== "" ? false : true);
+                    action("onChange")(newValue);
+                }}
+            />
+        );
+    },
+    args: {
+        children: items,
+        error: true,
+    },
+};

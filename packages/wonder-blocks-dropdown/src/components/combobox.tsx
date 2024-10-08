@@ -2,6 +2,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 import caretDownIcon from "@phosphor-icons/core/regular/caret-down.svg";
+import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import {
     StyleType,
@@ -61,6 +62,12 @@ type Props = {
      * false.
      */
     disabled?: boolean;
+
+    /**
+     * Whether this component is in an error state.
+     * If true, adds `aria-invalid` to the combobox element.
+     */
+    error?: boolean;
 
     /**
      * The unique identifier of the combobox element.
@@ -143,6 +150,7 @@ export default function Combobox({
     autoComplete,
     children,
     disabled,
+    error,
     id,
     labels = defaultComboboxLabels,
     onChange,
@@ -410,6 +418,38 @@ export default function Combobox({
         [selected, setSelected],
     );
 
+    const handleTextFieldChange = React.useCallback(
+        (value: string) => {
+            setInputValue(value);
+            let filteredItems = renderList;
+            if (autoComplete === "list") {
+                filteredItems = filterItems(value);
+
+                // Update the list of options to display the
+                // filtered items.
+                setCurrentOptions(filteredItems);
+            }
+
+            focusOnFilteredItem(filteredItems, value);
+        },
+        [autoComplete, filterItems, focusOnFilteredItem, renderList],
+    );
+
+    const handleClearClick = React.useCallback(
+        (e: React.SyntheticEvent) => {
+            e.stopPropagation();
+            // TODO (WB-1757.2): Add Screen Reader Announcements for when the
+            // selection is cleared.
+
+            // Reset the combobox value.
+            setInputValue("");
+            setSelected("");
+            onChange?.("");
+            comboboxRef.current?.focus();
+        },
+        [onChange, setSelected],
+    );
+
     React.useEffect(() => {
         // Focus on the combobox input when the dropdown is opened.
         if (openState) {
@@ -466,6 +506,7 @@ export default function Combobox({
                     styles.wrapper,
                     isListboxFocused && styles.focused,
                     disabled && styles.disabled,
+                    !disabled && error && styles.error,
                 ]}
             >
                 <ComboboxLiveRegion
@@ -498,19 +539,7 @@ export default function Combobox({
                     testId={testId}
                     style={styles.combobox}
                     value={inputValue}
-                    onChange={(value: string) => {
-                        setInputValue(value);
-                        let filteredItems = renderList;
-                        if (autoComplete === "list") {
-                            filteredItems = filterItems(value);
-
-                            // Update the list of options to display the
-                            // filtered items.
-                            setCurrentOptions(filteredItems);
-                        }
-
-                        focusOnFilteredItem(filteredItems, value);
-                    }}
+                    onChange={handleTextFieldChange}
                     disabled={disabled}
                     onFocus={() => {
                         updateOpenState(true);
@@ -521,17 +550,30 @@ export default function Combobox({
                         updateOpenState(false);
                         handleBlur();
                     }}
-                    aria-controls={controlledWidget}
                     onKeyDown={onKeyDown}
                     aria-activedescendant={currentActiveDescendant}
                     aria-autocomplete={autoComplete}
+                    aria-controls={controlledWidget}
                     aria-expanded={openState}
+                    aria-invalid={!!error}
                     ref={comboboxRef}
                     // We don't want the browser to suggest autocompletions as
                     // the combobox is already providing suggestions.
                     autoComplete="off"
                     role="combobox"
                 />
+
+                {inputValue && !disabled && (
+                    <IconButton
+                        icon={xIcon}
+                        onClick={handleClearClick}
+                        kind="tertiary"
+                        size="small"
+                        style={[styles.button, styles.clearButton]}
+                        aria-label={labels.clearSelection}
+                        testId={testId ? `${testId}-clear` : undefined}
+                    />
+                )}
 
                 <IconButton
                     disabled={disabled}
@@ -545,6 +587,7 @@ export default function Combobox({
                         // this element.
                         e.preventDefault();
                     }}
+                    kind="tertiary"
                     size="small"
                     style={[styles.button, openState && styles.buttonOpen]}
                     tabIndex={-1}
@@ -634,6 +677,11 @@ const styles = StyleSheet.create({
         border: `1px solid ${color.offBlack16}`,
         color: color.offBlack64,
     },
+    error: {
+        background: color.fadedRed8,
+        border: `1px solid ${color.red}`,
+        color: color.offBlack,
+    },
     /**
      * Combobox input styles
      */
@@ -682,5 +730,13 @@ const styles = StyleSheet.create({
     },
     buttonOpen: {
         transform: "rotate(180deg)",
+    },
+    /**
+     * Clear selection button
+     */
+    clearButton: {
+        // The clear button is positioned to the left of the arrow button.
+        // This is calculated based on the padding + width of the arrow button.
+        right: spacing.xLarge_32 + spacing.xSmall_8,
     },
 });

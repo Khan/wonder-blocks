@@ -64,6 +64,11 @@ export type MaybeValueOrValues = MaybeString | Array<MaybeString>;
  */
 export type ComboboxLabels = {
     /**
+     * Label for the "Clear" button that removes a selected item. Only used in
+     * single-select mode.
+     */
+    clearSelection: string;
+    /**
      * Label for when the listbox changes to the closed state.
      */
     closedState: string;
@@ -112,6 +117,13 @@ export type ComboboxLabels = {
      * Label for the selected item(s) in the listbox.
      */
     selected: (labels: string) => string;
+
+    /**
+     * Label for when the user removes a selected item.
+     *
+     * NOTE: This usually happens when the clear selection button is pressed.
+     */
+    selectionCleared: string;
 
     /**
      * Label for when item(s) is/are unselected.
