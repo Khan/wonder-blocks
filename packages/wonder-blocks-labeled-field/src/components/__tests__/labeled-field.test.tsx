@@ -479,7 +479,7 @@ describe("LabeledField", () => {
                 );
 
                 // Act
-                const errorEl = screen.getByText(error);
+                const errorEl = screen.getByRole("alert");
                 const inputEl = screen.getByRole("textbox");
 
                 // Assert
