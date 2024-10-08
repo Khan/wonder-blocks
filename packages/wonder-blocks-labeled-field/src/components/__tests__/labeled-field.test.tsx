@@ -240,123 +240,144 @@ describe("LabeledField", () => {
     });
 
     describe("Attributes", () => {
-        it("should use the id prop for the base of element ids", () => {
-            // Arrange
-            const id = "example-id";
-            const label = "Label";
-            const description = "Description of the field";
-            const error = "Error message";
-            render(
-                <LabeledField
-                    field={<TextField value="" onChange={() => {}} />}
-                    id={id}
-                    label={label}
-                    description={description}
-                    error={error}
-                />,
-                defaultOptions,
+        const id = "example-id";
+        const label = "Label";
+        const description = "Description of the field";
+        const error = "Error message";
+        const testId = "test-id";
+
+        const getLabel = () => screen.getByText(label);
+        const getDescription = () => screen.getByText(description);
+        const getField = () => screen.getByRole("textbox");
+        const getError = () => screen.getByRole("alert");
+
+        describe("id", () => {
+            it.each([
+                ["label", `${id}-label`, getLabel],
+                ["description", `${id}-description`, getDescription],
+                ["field", `${id}-field`, getField],
+                ["error", `${id}-error`, getError],
+            ])(
+                "should have the id for the %s element set to %s",
+                (
+                    _elementType: string, // unused directly but is used for the test name using %s
+                    expectedId: string,
+                    getElement: () => HTMLElement,
+                ) => {
+                    // Arrange
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            id={id}
+                            label={label}
+                            description={description}
+                            error={error}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const el = getElement();
+
+                    // Assert
+                    expect(el.id).toBe(expectedId);
+                },
             );
 
-            // Act
-            const labelEl = screen.getByText(label);
-            const descriptionEl = screen.getByText(description);
-            const fieldEl = screen.getByRole("textbox");
-            const errorEl = screen.getByText(error);
+            it.each([
+                ["label", "-label", getLabel],
+                ["description", "-description", getDescription],
+                ["field", "-field", getField],
+                ["error", "-error", getError],
+            ])(
+                "should have an auto-generated id for the %s element that ends with %s",
+                (
+                    _elementType: string, // unused directly but is used for the test name using %s
+                    expectedPostfix: string,
+                    getElement: () => HTMLElement,
+                ) => {
+                    // Arrange
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            label={label}
+                            description={description}
+                            error={error}
+                        />,
+                        defaultOptions,
+                    );
 
-            // Assert
-            expect(labelEl.id).toBe(`${id}-label`);
-            expect(descriptionEl.id).toBe(`${id}-description`);
-            expect(fieldEl.id).toBe(`${id}-field`);
-            expect(errorEl.id).toBe(`${id}-error`);
+                    // Act
+                    const el = getElement();
+
+                    // Assert
+                    expect(el.id).toEndWith(expectedPostfix);
+                },
+            );
         });
 
-        it("should autogenerate ids for the elements if the id prop is not provided", () => {
-            // Arrange
-            const label = "Label";
-            const description = "Description of the field";
-            const error = "Error message";
-            render(
-                <LabeledField
-                    field={<TextField value="" onChange={() => {}} />}
-                    label={label}
-                    description={description}
-                    error={error}
-                />,
-                defaultOptions,
+        describe("testId", () => {
+            it.each([
+                ["label", `${testId}-label`, getLabel],
+                ["description", `${testId}-description`, getDescription],
+                ["field", `${testId}-field`, getField],
+                ["error", `${testId}-error`, getError],
+            ])(
+                "should use the testId prop to set the %s element's data-testid attribute to %s",
+                (
+                    _elementType: string, // unused directly but is used for the test name using %s
+                    expectedTestId: string,
+                    getElement: () => HTMLElement,
+                ) => {
+                    // Arrange
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            testId={testId}
+                            label={label}
+                            description={description}
+                            error={error}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const el = getElement();
+
+                    // Assert
+                    expect(el).toHaveAttribute("data-testid", expectedTestId);
+                },
             );
 
-            // Act
-            const labelEl = screen.getByText(label);
-            const descriptionEl = screen.getByText(description);
-            const fieldEl = screen.getByRole("textbox");
-            const errorEl = screen.getByText(error);
+            it.each([
+                ["label", getLabel],
+                ["description", getDescription],
+                ["field", getField],
+                ["error", getError],
+            ])(
+                "should not set the data-testid attribute on the %s element if the testId prop is not set",
+                (
+                    _elementType: string, // unused directly but is used for the test name using %s
+                    getElement: () => HTMLElement,
+                ) => {
+                    // Arrange
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            label={label}
+                            description={description}
+                            error={error}
+                        />,
+                        defaultOptions,
+                    );
 
-            // Assert
-            expect(labelEl.id).toInclude("-label");
-            expect(descriptionEl.id).toInclude("-description");
-            expect(fieldEl.id).toInclude("-field");
-            expect(errorEl.id).toInclude("-error");
-        });
+                    // Act
+                    const el = getElement();
 
-        it("should use the testId prop for the base of test ids", () => {
-            // Arrange
-            const testId = "test-id";
-            const label = "Label";
-            const description = "Description of the field";
-            const error = "Error message";
-            render(
-                <LabeledField
-                    field={<TextField value="" onChange={() => {}} />}
-                    testId={testId}
-                    label={label}
-                    description={description}
-                    error={error}
-                />,
-                defaultOptions,
+                    // Assert
+                    expect(el).not.toHaveAttribute("data-testid");
+                },
             );
-
-            // Act
-            const labelEl = screen.getByText(label);
-            const descriptionEl = screen.getByText(description);
-            const fieldEl = screen.getByRole("textbox");
-            const errorEl = screen.getByText(error);
-
-            // Assert
-            expect(labelEl).toHaveAttribute("data-testid", `${testId}-label`);
-            expect(descriptionEl).toHaveAttribute(
-                "data-testid",
-                `${testId}-description`,
-            );
-            expect(fieldEl).toHaveAttribute("data-testid", `${testId}-field`);
-            expect(errorEl).toHaveAttribute("data-testid", `${testId}-error`);
-        });
-
-        it("should not include testId on elements if testId prop is not provided", () => {
-            // Arrange
-            const label = "Label";
-            const description = "Description of the field";
-            const error = "Error message";
-            render(
-                <LabeledField
-                    field={<TextField value="" onChange={() => {}} />}
-                    label={label}
-                    description={description}
-                    error={error}
-                />,
-                defaultOptions,
-            );
-
-            // Act
-            const labelEl = screen.getByText(label);
-            const descriptionEl = screen.getByText(description);
-            const fieldEl = screen.getByRole("textbox");
-            const errorEl = screen.getByText(error);
-
-            // Assert
-            expect(labelEl).not.toHaveAttribute("data-testid");
-            expect(descriptionEl).not.toHaveAttribute("data-testid");
-            expect(fieldEl).not.toHaveAttribute("data-testid");
-            expect(errorEl).not.toHaveAttribute("data-testid");
         });
 
         it("should persist original attributes on the field if it is not overridden", () => {
