@@ -1,6 +1,6 @@
 import moment from "moment"; // NOTE: DO NOT use named imports; 'moment' does not support named imports
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
+import {CSSProperties, StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -104,6 +104,8 @@ const FIELD_MIN_WIDTH_FULL = 110;
 // See: https://www.figma.com/file/uJZi9ZvuEz5N8GJ3HqKFAa/(2021)-Account-records?node-id=20%3A398
 const FIELD_MIN_WIDTH_MONTH_YEAR = 167;
 
+const FIELD_MIN_WIDTH_DAY = 100;
+
 /**
  * Birthday Picker. Similar to a datepicker, but specifically for birthdates.
  * We don't want to show a calendar in this case as it can be quite tedious to
@@ -131,24 +133,6 @@ const FIELD_MIN_WIDTH_MONTH_YEAR = 167;
  * ```
  */
 
-const screenSize = {
-    small: "@media (max-width: 682px)",
-};
-
-const defaultStyles = StyleSheet.create({
-    wrapper: {
-        flexDirection: "row",
-        [screenSize.small]: {
-            flexDirection: "column",
-        },
-    },
-    input: {
-        [screenSize.small]: {
-            minWidth: "100%",
-        },
-    },
-});
-
 export default class BirthdayPicker extends React.Component<Props, State> {
     /**
      * Strings used for placeholders and error message. These are used this way
@@ -159,6 +143,10 @@ export default class BirthdayPicker extends React.Component<Props, State> {
      */
     // @ts-expect-error [FEI-5019] - TS2564 - Property 'labels' has no initializer and is not definitely assigned in the constructor.
     labels: Labels;
+
+    mobileMediaQuery: MediaQueryList | undefined;
+
+    wrapperFlexDirection: CSSProperties["flexDirection"] | undefined;
 
     constructor(props: Props) {
         super(props);
@@ -290,13 +278,22 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         );
     }
 
+    getMonthYearWidth(
+        monthYearOnly: boolean | undefined,
+    ): CSSProperties["minWidth"] {
+        if (this.mobileMediaQuery?.matches) {
+            return "100%";
+        } else {
+            return monthYearOnly
+                ? FIELD_MIN_WIDTH_MONTH_YEAR
+                : FIELD_MIN_WIDTH_FULL;
+        }
+    }
+
     renderMonth(): React.ReactNode {
         const {disabled, monthYearOnly, dropdownStyle} = this.props;
         const {month} = this.state;
-        const minWidth = monthYearOnly
-            ? FIELD_MIN_WIDTH_MONTH_YEAR
-            : FIELD_MIN_WIDTH_FULL;
-
+        const minWidth = this.getMonthYearWidth(monthYearOnly);
         return (
             <SingleSelect
                 aria-invalid={!!this.state.error}
@@ -305,7 +302,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 placeholder={this.labels.month}
                 onChange={this.handleMonthChange}
                 selectedValue={month}
-                style={{minWidth, ...defaultStyles.input, ...dropdownStyle}}
+                style={{minWidth, ...dropdownStyle}}
                 testId="birthday-picker-month"
             >
                 {/* eslint-disable-next-line import/no-named-as-default-member */}
@@ -325,6 +322,10 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             return null;
         }
 
+        const minWidth = this.mobileMediaQuery?.matches
+            ? "100%"
+            : FIELD_MIN_WIDTH_DAY;
+
         return (
             <>
                 <Strut size={spacing.xSmall_8} />
@@ -336,8 +337,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     onChange={this.handleDayChange}
                     selectedValue={day}
                     style={{
-                        minWidth: 100,
-                        ...defaultStyles.input,
+                        minWidth,
                         ...dropdownStyle,
                     }}
                     testId="birthday-picker-day"
@@ -357,9 +357,8 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     renderYear(): React.ReactNode {
         const {disabled, monthYearOnly, dropdownStyle} = this.props;
         const {year} = this.state;
-        const minWidth = monthYearOnly
-            ? FIELD_MIN_WIDTH_MONTH_YEAR
-            : FIELD_MIN_WIDTH_FULL;
+
+        const minWidth = this.getMonthYearWidth(monthYearOnly);
 
         return (
             <SingleSelect
@@ -369,10 +368,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 placeholder={this.labels.year}
                 onChange={this.handleYearChange}
                 selectedValue={year}
-                style={{minWidth, ...defaultStyles.input, ...dropdownStyle}}
-                // Allows displaying the dropdown options without truncating
-                // them when the user zooms in the browser.
-                dropdownStyle={{minWidth: 150}}
+                style={{minWidth, ...dropdownStyle}}
                 testId="birthday-picker-year"
             >
                 {Array.from(Array(120)).map((_, yearOffset) => (
@@ -393,12 +389,38 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             ? FIELD_MIN_WIDTH_MONTH_YEAR
             : FIELD_MIN_WIDTH_FULL;
 
+        const mobileMinWidth =
+            minWidth * 2 + FIELD_MIN_WIDTH_DAY + spacing.xSmall_8;
+
+        this.mobileMediaQuery = window.matchMedia(
+            `(max-width: ${mobileMinWidth}px)`,
+        );
+
+        // component isn't reflowing on resize
+        const handleOrientationChange = (
+            mql: MediaQueryListEvent | MediaQueryList,
+        ): void => {
+            if (mql.matches) {
+                this.wrapperFlexDirection = "column";
+            } else {
+                this.wrapperFlexDirection = "row";
+            }
+            console.log(mql.matches, this.wrapperFlexDirection);
+        };
+
+        handleOrientationChange(this.mobileMediaQuery);
+
+        this.mobileMediaQuery.addEventListener(
+            "change",
+            handleOrientationChange,
+        );
+
         return (
             <>
                 <View
                     testId="birthday-picker"
                     style={{
-                        ...defaultStyles.wrapper,
+                        flexDirection: this.wrapperFlexDirection,
                         ...style,
                     }}
                 >
