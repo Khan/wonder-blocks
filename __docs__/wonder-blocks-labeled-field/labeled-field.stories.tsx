@@ -174,7 +174,7 @@ export const Light: StoryComponentType = {
  * The following story shows what the LabeledField looks like when different
  * props are set.
  */
-export const Combinations = (args: PropsFor<typeof LabeledField>) => {
+export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const [textFieldValue, setTextFieldValue] = React.useState("");
 
     return (
