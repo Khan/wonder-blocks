@@ -202,8 +202,21 @@ export const Combinations = (args: PropsFor<typeof LabeledField>) => {
             />
             <LabeledField
                 {...args}
-                label="With Error"
+                label="With error"
                 error="Error message"
+                field={
+                    <TextField
+                        value="invalid value"
+                        onChange={() => {}}
+                        validate={() => "Error message"}
+                    />
+                }
+            />
+            <LabeledField
+                {...args}
+                label="With description and error"
+                error="Error message"
+                description="Description"
                 field={
                     <TextField
                         value="invalid value"
