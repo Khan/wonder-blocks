@@ -1,7 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {
+    View,
+    addStyle,
+    StyleType,
+    useUniqueIdWithMock,
+} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -10,7 +15,7 @@ type Props = {
     /**
      * The form field component.
      */
-    field: React.ReactNode;
+    field: React.ReactElement;
     /**
      * The title for the label element.
      */
@@ -32,14 +37,28 @@ type Props = {
      */
     style?: StyleType;
     /**
-     * A unique id to link the label (and optional error) to the field.
+     * A unique id to use as the base of the ids for the elements within the component.
+     * Here is how the id is used for the different elements in the component:
+     * - The label will have an id formatted as `${id}-label`
+     * - The description will have an id formatted as `${id}-description`
+     * - The field will have an id formatted as `${id}-field`
+     * - The error will have an id formatted as `${id}-error`
      *
-     * The label will assume that the field will have its id formatted as `${id}-field`.
-     * The field can assume that the error will have its id formatted as `${id}-error`.
+     * If the `id` prop is not provided, a base unique id will be auto-generated.
+     * This is important so that the different elements can be wired up together
+     * for accessibility!
+     *
+     * Note: When using the `LabeledField` component, an `id` provided to the
+     * field component (ex: a TextField component) will be overridden.
      */
     id?: string;
     /**
-     * Optional test ID for e2e testing.
+     * Optional test id for e2e testing. Here is how the test id is used for the
+     * different elements in the component:
+     * - The label will have a testId formatted as `${testId}-label`
+     * - The description will have a testId formatted as `${testId}-description`
+     * - The field will have a testId formatted as `${testId}-field`
+     * - The error will have a testId formatted as `${testId}-error`
      */
     testId?: string;
     /**
@@ -67,6 +86,13 @@ export default function LabeledField(props: Props) {
         error,
     } = props;
 
+    const ids = useUniqueIdWithMock("labeled-field");
+    const uniqueId = id ?? ids.get("id");
+    const labelId = `${uniqueId}-label`;
+    const descriptionId = `${uniqueId}-description`;
+    const fieldId = `${uniqueId}-field`;
+    const errorId = `${uniqueId}-error`;
+
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
@@ -83,8 +109,9 @@ export default function LabeledField(props: Props) {
                 <LabelMedium
                     style={light ? styles.lightLabel : styles.label}
                     tag="label"
-                    htmlFor={id && `${id}-field`}
+                    htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
+                    id={labelId}
                 >
                     {label}
                     {required && requiredIcon}
@@ -104,6 +131,7 @@ export default function LabeledField(props: Props) {
                 <LabelSmall
                     style={light ? styles.lightDescription : styles.description}
                     testId={testId && `${testId}-description`}
+                    id={descriptionId}
                 >
                     {description}
                 </LabelSmall>
@@ -123,7 +151,7 @@ export default function LabeledField(props: Props) {
                 <LabelSmall
                     style={light ? styles.lightError : styles.error}
                     role="alert"
-                    id={id && `${id}-error`}
+                    id={errorId}
                     testId={testId && `${testId}-error`}
                 >
                     {error}
@@ -132,12 +160,23 @@ export default function LabeledField(props: Props) {
         );
     }
 
+    function renderField() {
+        return React.cloneElement(field, {
+            id: fieldId,
+            "aria-describedby": [description && descriptionId, error && errorId]
+                .filter(Boolean)
+                .join(" "),
+            required,
+            testId: testId && `${testId}-field`,
+        });
+    }
+
     return (
         <View style={style}>
             {renderLabel()}
             {maybeRenderDescription()}
             <Strut size={spacing.xSmall_8} />
-            {field}
+            {renderField()}
             {maybeRenderError()}
         </View>
     );

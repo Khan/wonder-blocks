@@ -22,7 +22,7 @@ import SearchField from "@khanacademy/wonder-blocks-search-field";
  * `LabeledField` component so that our form fields are consistent and accessible.
  */
 export default {
-    title: "Packages / LabeledField / LabeledField",
+    title: "Packages / LabeledField",
     component: LabeledField,
     parameters: {
         componentSubtitle: (
@@ -168,4 +168,63 @@ export const Light: StoryComponentType = {
         backgrounds: {default: "darkBlue"},
     },
     render: AllFields,
+};
+
+/**
+ * The following story shows what the LabeledField looks like when different
+ * props are set.
+ */
+export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
+    const [textFieldValue, setTextFieldValue] = React.useState("");
+
+    return (
+        <View style={{gap: spacing.large_24}}>
+            <LabeledField
+                {...args}
+                label="Label only"
+                field={
+                    <TextField
+                        value={textFieldValue}
+                        onChange={setTextFieldValue}
+                    />
+                }
+            />
+            <LabeledField
+                {...args}
+                label="With description"
+                description="Description"
+                field={
+                    <TextField
+                        value={textFieldValue}
+                        onChange={setTextFieldValue}
+                    />
+                }
+            />
+            <LabeledField
+                {...args}
+                label="With error"
+                error="Error message"
+                field={
+                    <TextField
+                        value="invalid value"
+                        onChange={() => {}}
+                        validate={() => "Error message"}
+                    />
+                }
+            />
+            <LabeledField
+                {...args}
+                label="With description and error"
+                error="Error message"
+                description="Description"
+                field={
+                    <TextField
+                        value="invalid value"
+                        onChange={() => {}}
+                        validate={() => "Error message"}
+                    />
+                }
+            />
+        </View>
+    );
 };

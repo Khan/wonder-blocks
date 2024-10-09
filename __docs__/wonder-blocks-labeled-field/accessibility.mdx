@@ -1,0 +1,20 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Packages / LabeledField / Accessibility" />
+# LabeledField Accessibility
+
+The `LabeledField` component should be used in forms whenever possible. Benefits
+for using this component include:
+- Consistent styling for the label, description, and error message
+- HTML attributes are wired up automatically for accessibility:
+  - A `label` element is used with the `for` attribute set to the
+  `id` of the field element
+  - The field element will have `aria-describedby` set to the element ids for
+  the description and error
+
+## Guidelines
+- Make sure the `id` prop for `LabeledField` is unique to the page. If the `id`
+prop is not provided, a unique id will be auto-generated!
+- The `LabeledField` component does not need to be used with the `CheckboxGroup`
+ or `RadioGroup` components since those components already have accessible labels
+ built-in when the `label` prop is used.

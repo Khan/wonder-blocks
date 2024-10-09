@@ -6,7 +6,12 @@ import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import LabeledField from "../labeled-field";
+
+const defaultOptions = {
+    wrapper: RenderStateRoot,
+};
 
 describe("LabeledField", () => {
     it("LabeledField renders the label text", () => {
@@ -19,6 +24,7 @@ describe("LabeledField", () => {
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={label}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -36,6 +42,7 @@ describe("LabeledField", () => {
                 label="Label"
                 description={description}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -53,6 +60,7 @@ describe("LabeledField", () => {
                 label="Label"
                 error={error}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -70,6 +78,7 @@ describe("LabeledField", () => {
                 label="Label"
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -89,6 +98,7 @@ describe("LabeledField", () => {
                 description="Description"
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -108,6 +118,7 @@ describe("LabeledField", () => {
                 error="Error"
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -128,6 +139,7 @@ describe("LabeledField", () => {
                 id={id}
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -149,6 +161,7 @@ describe("LabeledField", () => {
                 id={id}
                 testId={testId}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -173,6 +186,7 @@ describe("LabeledField", () => {
                 error="Error"
                 style={styles.style1}
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -193,6 +207,7 @@ describe("LabeledField", () => {
                     </I18nInlineMarkup>
                 }
             />,
+            defaultOptions,
         );
 
         // Assert
@@ -215,11 +230,261 @@ describe("LabeledField", () => {
                     </I18nInlineMarkup>
                 }
             />,
+            defaultOptions,
         );
 
         // Assert
         const description = screen.getByText("description");
         // LabelSmall has a font-size of 16px
         expect(description).toHaveStyle("font-size: 14px");
+    });
+
+    describe("Attributes", () => {
+        const id = "example-id";
+        const label = "Label";
+        const description = "Description of the field";
+        const error = "Error message";
+        const testId = "test-id";
+
+        const getLabel = () => screen.getByText(label);
+        const getDescription = () => screen.getByText(description);
+        const getField = () => screen.getByRole("textbox");
+        const getError = () => screen.getByRole("alert");
+
+        describe("id", () => {
+            it.each([
+                ["label", `${id}-label`, getLabel],
+                ["description", `${id}-description`, getDescription],
+                ["field", `${id}-field`, getField],
+                ["error", `${id}-error`, getError],
+            ])(
+                "should have the id for the %s element set to %s",
+                (
+                    _elementType: string, // unused directly but is used for the test name using %s
+                    expectedId: string,
+                    getElement: () => HTMLElement,
+                ) => {
+                    // Arrange
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            id={id}
+                            label={label}
+                            description={description}
+                            error={error}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const el = getElement();
+
+                    // Assert
+                    expect(el.id).toBe(expectedId);
+                },
+            );
+
+            it.each([
+                ["label", "-label", getLabel],
+                ["description", "-description", getDescription],
+                ["field", "-field", getField],
+                ["error", "-error", getError],
+            ])(
+                "should have an auto-generated id for the %s element that ends with %s",
+                (
+                    _elementType: string, // unused directly but is used for the test name using %s
+                    expectedPostfix: string,
+                    getElement: () => HTMLElement,
+                ) => {
+                    // Arrange
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            label={label}
+                            description={description}
+                            error={error}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const el = getElement();
+
+                    // Assert
+                    expect(el.id).toEndWith(expectedPostfix);
+                },
+            );
+        });
+
+        describe("testId", () => {
+            it.each([
+                ["label", `${testId}-label`, getLabel],
+                ["description", `${testId}-description`, getDescription],
+                ["field", `${testId}-field`, getField],
+                ["error", `${testId}-error`, getError],
+            ])(
+                "should use the testId prop to set the %s element's data-testid attribute to %s",
+                (
+                    _elementType: string, // unused directly but is used for the test name using %s
+                    expectedTestId: string,
+                    getElement: () => HTMLElement,
+                ) => {
+                    // Arrange
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            testId={testId}
+                            label={label}
+                            description={description}
+                            error={error}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const el = getElement();
+
+                    // Assert
+                    expect(el).toHaveAttribute("data-testid", expectedTestId);
+                },
+            );
+
+            it.each([
+                ["label", getLabel],
+                ["description", getDescription],
+                ["field", getField],
+                ["error", getError],
+            ])(
+                "should not set the data-testid attribute on the %s element if the testId prop is not set",
+                (
+                    _elementType: string, // unused directly but is used for the test name using %s
+                    getElement: () => HTMLElement,
+                ) => {
+                    // Arrange
+                    render(
+                        <LabeledField
+                            field={<TextField value="" onChange={() => {}} />}
+                            label={label}
+                            description={description}
+                            error={error}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const el = getElement();
+
+                    // Assert
+                    expect(el).not.toHaveAttribute("data-testid");
+                },
+            );
+        });
+
+        it("should persist original attributes on the field if it is not overridden", () => {
+            // Arrange
+            render(
+                <LabeledField
+                    field={
+                        <TextField
+                            value=""
+                            onChange={() => {}}
+                            name="name-example"
+                        />
+                    }
+                    label="Label"
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const fieldEl = screen.getByRole("textbox");
+
+            // Assert
+            expect(fieldEl).toHaveAttribute("name", "name-example");
+        });
+    });
+
+    describe("Accessibility", () => {
+        describe("Axe", () => {
+            it("should have no accessibility violations", async () => {
+                // Arrange
+                const {container} = render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        description="Description for the field"
+                        error="Error message"
+                    />,
+                    defaultOptions,
+                );
+                // Act
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+        });
+        describe("ARIA", () => {
+            it("should render a label tag with the for attribute set to the id of the field", () => {
+                // Arrange
+                const label = "Label";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label={label}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const labelEl = screen.getByText(label);
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(labelEl).toHaveAttribute("for", inputEl.id);
+            });
+
+            it("should set aria-describedby on the field to the id of the description", () => {
+                // Arrange
+                const description = "Description of the field";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        description={description}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const descriptionEl = screen.getByText(description);
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(inputEl).toHaveAttribute(
+                    "aria-describedby",
+                    descriptionEl.id,
+                );
+            });
+
+            it("should set the aria-describedby on the field to the id of the error", () => {
+                // Arrange
+                const error = "Error message";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        error={error}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const errorEl = screen.getByRole("alert");
+                const inputEl = screen.getByRole("textbox");
+
+                // Assert
+                expect(inputEl).toHaveAttribute("aria-describedby", errorEl.id);
+            });
+        });
     });
 });
