@@ -168,7 +168,10 @@ export default function LabeledField(props: Props) {
                 <View style={styles.errorSection}>
                     <PhosphorIcon
                         icon={WarningCircle}
-                        style={light ? styles.lightError : styles.error}
+                        style={[
+                            styles.errorIcon,
+                            light ? styles.lightError : styles.error,
+                        ]}
                         role="img"
                         aria-label={labels.errorIconAriaLabel}
                     />
@@ -229,6 +232,9 @@ const styles = StyleSheet.create({
     },
     lightError: {
         color: color.fadedRed,
+    },
+    errorIcon: {
+        marginTop: "1px", // This vertically aligns the icon with the text
     },
     required: {
         color: color.red,
