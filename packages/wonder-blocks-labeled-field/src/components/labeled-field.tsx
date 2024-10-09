@@ -67,6 +67,20 @@ type Props = {
      * Change the field’s sub-components to fit a dark background.
      */
     light?: boolean;
+    /**
+     * The object containing the custom labels used inside this component.
+     *
+     * This is useful for internationalization. Defaults to English.
+     */
+    labels?: LabeledFieldLabels;
+};
+
+type LabeledFieldLabels = {
+    errorIconAriaLabel: string;
+};
+
+const defaultLabeledFieldLabels: LabeledFieldLabels = {
+    errorIconAriaLabel: "Error",
 };
 
 const StyledSpan = addStyle("span");
@@ -86,6 +100,7 @@ export default function LabeledField(props: Props) {
         light,
         description,
         error,
+        labels = defaultLabeledFieldLabels,
     } = props;
 
     const ids = useUniqueIdWithMock("labeled-field");
@@ -155,7 +170,7 @@ export default function LabeledField(props: Props) {
                         icon={WarningCircle}
                         style={light ? styles.lightError : styles.error}
                         role="img"
-                        aria-label="Error"
+                        aria-label={labels.errorIconAriaLabel}
                     />
                     <LabelSmall
                         style={light ? styles.lightError : styles.error}
