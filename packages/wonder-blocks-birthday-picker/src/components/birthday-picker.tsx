@@ -164,8 +164,6 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     // @ts-expect-error [FEI-5019] - TS2564 - Property 'labels' has no initializer and is not definitely assigned in the constructor.
     labels: Labels;
 
-    mobileMediaQuery: MediaQueryList | undefined;
-
     constructor(props: Props) {
         super(props);
 
