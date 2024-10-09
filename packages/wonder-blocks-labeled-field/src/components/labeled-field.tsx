@@ -9,7 +9,7 @@ import {
     useUniqueIdWithMock,
 } from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -212,13 +212,13 @@ export default function LabeledField(props: Props) {
 
 const styles = StyleSheet.create({
     label: {
-        color: color.offBlack,
+        color: semanticColor.text.primary,
     },
     lightLabel: {
-        color: color.white,
+        color: semanticColor.text.inverse,
     },
     description: {
-        color: color.offBlack64,
+        color: semanticColor.text.secondary,
     },
     lightDescription: {
         color: color.white64,
@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
         gap: spacing.xSmall_8,
     },
     error: {
-        color: color.red,
+        color: semanticColor.status.critical.foreground,
     },
     lightError: {
         color: color.fadedRed,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
         marginTop: "1px", // This vertically aligns the icon with the text
     },
     required: {
-        color: color.red,
+        color: semanticColor.status.critical.foreground,
     },
     lightRequired: {
         color: color.fadedRed,
