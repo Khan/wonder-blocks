@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.6.0
+
+### Minor Changes
+
+-   0b3a28a7: - Combobox: Add error prop to support aria-invalid and styling changes.
+    -   TextField: Modify aria-invalid order to be overriden by the caller.
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-search-field@2.3.3
+
 ## 5.5.6
 
 ### Patch Changes

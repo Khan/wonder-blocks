@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.10.1
+
+### Patch Changes
+
+-   8c861955: Modify `RadioGroup` and `CheckboxGroup` to append `legend` as the first child in `fieldset`, so the accessibility tree can associate the legend contents with the fieldset group and announce its label correctly
+-   0b3a28a7: - Combobox: Add error prop to support aria-invalid and styling changes.
+    -   TextField: Modify aria-invalid order to be overriden by the caller.
+
 ## 4.10.0
 
 ### Minor Changes
