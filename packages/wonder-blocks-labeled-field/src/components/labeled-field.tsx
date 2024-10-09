@@ -1,5 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
 import {
     View,
@@ -10,6 +11,7 @@ import {
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 type Props = {
     /**
@@ -148,14 +150,22 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <Strut size={spacing.small_12} />
-                <LabelSmall
-                    style={light ? styles.lightError : styles.error}
-                    role="alert"
-                    id={errorId}
-                    testId={testId && `${testId}-error`}
-                >
-                    {error}
-                </LabelSmall>
+                <View style={styles.errorSection}>
+                    <PhosphorIcon
+                        icon={WarningCircle}
+                        style={light ? styles.lightError : styles.error}
+                        role="img"
+                        aria-label="Error"
+                    />
+                    <LabelSmall
+                        style={light ? styles.lightError : styles.error}
+                        role="alert"
+                        id={errorId}
+                        testId={testId && `${testId}-error`}
+                    >
+                        {error}
+                    </LabelSmall>
+                </View>
             </React.Fragment>
         );
     }
@@ -194,6 +204,10 @@ const styles = StyleSheet.create({
     },
     lightDescription: {
         color: color.white64,
+    },
+    errorSection: {
+        flexDirection: "row",
+        gap: spacing.xSmall_8,
     },
     error: {
         color: color.red,
