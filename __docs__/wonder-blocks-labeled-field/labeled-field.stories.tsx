@@ -176,7 +176,8 @@ export const Light: StoryComponentType = {
  */
 export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const [textFieldValue, setTextFieldValue] = React.useState("");
-
+    const longText =
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
     return (
         <View style={{gap: spacing.large_24}}>
             <LabeledField
@@ -217,6 +218,20 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
                 label="With description and error"
                 error="Error message"
                 description="Description"
+                field={
+                    <TextField
+                        value="invalid value"
+                        onChange={() => {}}
+                        validate={() => "Error message"}
+                    />
+                }
+            />
+            <LabeledField
+                required={true}
+                {...args}
+                label={longText}
+                error={longText}
+                description={longText}
                 field={
                     <TextField
                         value="invalid value"
