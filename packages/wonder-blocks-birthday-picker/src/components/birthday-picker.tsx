@@ -306,7 +306,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 placeholder={this.labels.month}
                 onChange={this.handleMonthChange}
                 selectedValue={month}
-                style={{minWidth, ...defaultStyles.input, ...dropdownStyle}}
+                style={[{minWidth}, defaultStyles.input, dropdownStyle]}
                 testId="birthday-picker-month"
             >
                 {/* eslint-disable-next-line import/no-named-as-default-member */}
@@ -336,11 +336,13 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     placeholder={this.labels.day}
                     onChange={this.handleDayChange}
                     selectedValue={day}
-                    style={{
-                        minWidth: FIELD_MIN_WIDTH_DAY,
-                        ...defaultStyles.input,
-                        ...dropdownStyle,
-                    }}
+                    style={[
+                        {
+                            minWidth: FIELD_MIN_WIDTH_DAY,
+                        },
+                        defaultStyles.input,
+                        dropdownStyle,
+                    ]}
                     testId="birthday-picker-day"
                 >
                     {Array.from(Array(31)).map((_, day) => (
@@ -375,7 +377,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 placeholder={this.labels.year}
                 onChange={this.handleYearChange}
                 selectedValue={year}
-                style={{minWidth, ...defaultStyles.input, ...dropdownStyle}}
+                style={[{minWidth}, defaultStyles.input, dropdownStyle]}
                 // Allows displaying the dropdown options without truncating
                 // them when the user zooms in the browser.
                 dropdownStyle={{minWidth: 150}}
