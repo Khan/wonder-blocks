@@ -32,6 +32,9 @@ const meta: Meta<typeof BirthdayPicker> = {
                 excludeDecorators: true,
             },
         },
+        viewport: {
+            defaultViewport: "large",
+        },
     },
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
 };
@@ -169,6 +172,25 @@ export const BirthdayPickerVerticalWithError: StoryComponentType = {
             description: {
                 story: "A vertical BirthdayPicker may have an error. It should show beneath all the dropdowns.",
             },
+        },
+    },
+};
+
+export const BirthdayPickerMobile: StoryComponentType = {
+    args: {
+        onChange: (date?: string | null) => {
+            // eslint-disable-next-line no-console
+            console.log("Date selected: ", date);
+        },
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A BirthdayPicker will reflow on small screens to stack controls rather than position them side-by-side.",
+            },
+        },
+        viewport: {
+            defaultViewport: "small",
         },
     },
 };
