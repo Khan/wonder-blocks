@@ -113,7 +113,10 @@ export default function LabeledField(props: Props) {
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={light ? styles.lightRequired : styles.required}
+                style={[
+                    styles.textWordBreak,
+                    light ? styles.lightRequired : styles.required,
+                ]}
                 aria-hidden={true}
             >
                 {" "}
@@ -124,7 +127,10 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelMedium
-                    style={light ? styles.lightLabel : styles.label}
+                    style={[
+                        styles.textWordBreak,
+                        light ? styles.lightLabel : styles.label,
+                    ]}
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
@@ -146,7 +152,10 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelSmall
-                    style={light ? styles.lightDescription : styles.description}
+                    style={[
+                        styles.textWordBreak,
+                        light ? styles.lightDescription : styles.description,
+                    ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
                 >
@@ -176,7 +185,11 @@ export default function LabeledField(props: Props) {
                         aria-label={labels.errorIconAriaLabel}
                     />
                     <LabelSmall
-                        style={light ? styles.lightError : styles.error}
+                        style={[
+                            styles.textWordBreak,
+                            styles.errorMessage,
+                            light ? styles.lightError : styles.error,
+                        ]}
                         role="alert"
                         id={errorId}
                         testId={testId && `${testId}-error`}
@@ -236,10 +249,16 @@ const styles = StyleSheet.create({
     errorIcon: {
         marginTop: "1px", // This vertically aligns the icon with the text
     },
+    errorMessage: {
+        minWidth: "0",
+    },
     required: {
         color: semanticColor.status.critical.foreground,
     },
     lightRequired: {
         color: color.fadedRed,
+    },
+    textWordBreak: {
+        overflowWrap: "break-word",
     },
 });
