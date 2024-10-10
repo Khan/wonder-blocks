@@ -1,4 +1,4 @@
-import {renderHook, act} from "@testing-library/react-hooks";
+import {renderHook, act} from "@testing-library/react";
 import {SchedulePolicy, ClearPolicy, ActionPolicy} from "../../util/policies";
 
 import {useTimeout} from "../use-timeout";
@@ -16,20 +16,20 @@ describe("useTimeout", () => {
         // Arrange
 
         // Act
-        const {result} = renderHook(() => useTimeout(null as any, 1000));
+        const underTest = () => renderHook(() => useTimeout(null as any, 1000));
 
         // Assert
-        expect(result.error).toEqual(Error("Action must be a function"));
+        expect(underTest).toThrow("Action must be a function");
     });
 
     it("throws if the period is less than 0", () => {
         // Arrange
 
         // Act
-        const {result} = renderHook(() => useTimeout(() => {}, -1));
+        const underTest = () => renderHook(() => useTimeout(() => {}, -1));
 
         // Assert
-        expect(result.error).toEqual(Error("Timeout period must be >= 0"));
+        expect(underTest).toThrow("Timeout period must be >= 0");
     });
 
     it("should return an ITimeout", () => {
