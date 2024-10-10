@@ -1,5 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
 import {
     View,
@@ -8,8 +9,9 @@ import {
     useUniqueIdWithMock,
 } from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 type Props = {
     /**
@@ -65,6 +67,20 @@ type Props = {
      * Change the field’s sub-components to fit a dark background.
      */
     light?: boolean;
+    /**
+     * The object containing the custom labels used inside this component.
+     *
+     * This is useful for internationalization. Defaults to English.
+     */
+    labels?: LabeledFieldLabels;
+};
+
+type LabeledFieldLabels = {
+    errorIconAriaLabel: string;
+};
+
+const defaultLabeledFieldLabels: LabeledFieldLabels = {
+    errorIconAriaLabel: "Error",
 };
 
 const StyledSpan = addStyle("span");
@@ -84,6 +100,7 @@ export default function LabeledField(props: Props) {
         light,
         description,
         error,
+        labels = defaultLabeledFieldLabels,
     } = props;
 
     const ids = useUniqueIdWithMock("labeled-field");
@@ -96,7 +113,10 @@ export default function LabeledField(props: Props) {
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={light ? styles.lightRequired : styles.required}
+                style={[
+                    styles.textWordBreak,
+                    light ? styles.lightRequired : styles.required,
+                ]}
                 aria-hidden={true}
             >
                 {" "}
@@ -107,7 +127,10 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelMedium
-                    style={light ? styles.lightLabel : styles.label}
+                    style={[
+                        styles.textWordBreak,
+                        light ? styles.lightLabel : styles.label,
+                    ]}
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
@@ -129,7 +152,10 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelSmall
-                    style={light ? styles.lightDescription : styles.description}
+                    style={[
+                        styles.textWordBreak,
+                        light ? styles.lightDescription : styles.description,
+                    ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
                 >
@@ -148,14 +174,29 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <Strut size={spacing.small_12} />
-                <LabelSmall
-                    style={light ? styles.lightError : styles.error}
-                    role="alert"
-                    id={errorId}
-                    testId={testId && `${testId}-error`}
-                >
-                    {error}
-                </LabelSmall>
+                <View style={styles.errorSection}>
+                    <PhosphorIcon
+                        icon={WarningCircle}
+                        style={[
+                            styles.errorIcon,
+                            light ? styles.lightError : styles.error,
+                        ]}
+                        role="img"
+                        aria-label={labels.errorIconAriaLabel}
+                    />
+                    <LabelSmall
+                        style={[
+                            styles.textWordBreak,
+                            styles.errorMessage,
+                            light ? styles.lightError : styles.error,
+                        ]}
+                        role="alert"
+                        id={errorId}
+                        testId={testId && `${testId}-error`}
+                    >
+                        {error}
+                    </LabelSmall>
+                </View>
             </React.Fragment>
         );
     }
@@ -184,27 +225,40 @@ export default function LabeledField(props: Props) {
 
 const styles = StyleSheet.create({
     label: {
-        color: color.offBlack,
+        color: semanticColor.text.primary,
     },
     lightLabel: {
-        color: color.white,
+        color: semanticColor.text.inverse,
     },
     description: {
-        color: color.offBlack64,
+        color: semanticColor.text.secondary,
     },
     lightDescription: {
         color: color.white64,
     },
+    errorSection: {
+        flexDirection: "row",
+        gap: spacing.xSmall_8,
+    },
     error: {
-        color: color.red,
+        color: semanticColor.status.critical.foreground,
     },
     lightError: {
         color: color.fadedRed,
     },
+    errorIcon: {
+        marginTop: "1px", // This vertically aligns the icon with the text
+    },
+    errorMessage: {
+        minWidth: "0", // This enables the wrapping behaviour on the error message
+    },
     required: {
-        color: color.red,
+        color: semanticColor.status.critical.foreground,
     },
     lightRequired: {
         color: color.fadedRed,
+    },
+    textWordBreak: {
+        overflowWrap: "break-word",
     },
 });

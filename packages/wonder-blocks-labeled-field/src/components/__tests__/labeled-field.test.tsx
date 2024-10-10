@@ -239,6 +239,46 @@ describe("LabeledField", () => {
         expect(description).toHaveStyle("font-size: 14px");
     });
 
+    describe("Labels prop", () => {
+        it("should use the errorIconAriaLabel for the error icon aria label", () => {
+            // Arrange
+            const errorIconAriaLabel = "Placeholder for translated aria label";
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    error="Error message"
+                    labels={{errorIconAriaLabel}}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const errorIcon = screen.getByRole("img");
+
+            // Assert
+            expect(errorIcon).toHaveAttribute("aria-label", errorIconAriaLabel);
+        });
+
+        it("should use a default aria-label on the error icon if the errorIconAriaLabel is not provided", () => {
+            // Arrange
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    error="Error message"
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const errorIcon = screen.getByRole("img");
+
+            // Assert
+            expect(errorIcon).toHaveAttribute("aria-label", "Error");
+        });
+    });
+
     describe("Attributes", () => {
         const id = "example-id";
         const label = "Label";
