@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
         marginTop: "1px", // This vertically aligns the icon with the text
     },
     errorMessage: {
-        minWidth: "0",
+        minWidth: "0", // This enables the wrapping behaviour on the error message
     },
     required: {
         color: semanticColor.status.critical.foreground,
