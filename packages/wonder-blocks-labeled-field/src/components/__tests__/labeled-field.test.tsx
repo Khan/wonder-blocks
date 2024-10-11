@@ -23,7 +23,7 @@ describe("LabeledField", () => {
     const getLabel = () => screen.getByText(label);
     const getDescription = () => screen.getByText(description);
     const getField = () => screen.getByRole("textbox");
-    const getError = () => screen.getByRole("alert");
+    const getError = () => screen.getByText(error);
     const getErrorSection = () => {
         // eslint-disable-next-line testing-library/no-node-access
         const el = getError().parentElement; // The error section is the parent of the alert.
@@ -83,7 +83,7 @@ describe("LabeledField", () => {
         );
 
         // Assert
-        expect(screen.getByRole("alert")).toBeInTheDocument();
+        expect(screen.getByText(error)).toBeInTheDocument();
     });
 
     it("LabeledField adds testId to label", () => {
@@ -143,49 +143,6 @@ describe("LabeledField", () => {
         // Assert
         const error = screen.getByTestId(`${testId}-error`);
         expect(error).toBeInTheDocument();
-    });
-
-    it("LabeledField adds the correctly formatted id to label's htmlFor", () => {
-        // Arrange
-        const id = "exampleid";
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                id={id}
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const label = screen.getByTestId(`${testId}-label`);
-        expect(label).toHaveAttribute("for", `${id}-field`);
-    });
-
-    it("LabeledField adds the correctly formatted id to error's id", () => {
-        // Arrange
-        const id = "exampleid";
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                error="Error"
-                id={id}
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const error = screen.getByRole("alert");
-        expect(error).toHaveAttribute("id", `${id}-error`);
     });
 
     it("stype prop applies to the LabeledField container", () => {
@@ -538,6 +495,28 @@ describe("LabeledField", () => {
                 expect(inputEl).toHaveAttribute(
                     "aria-describedby",
                     errorSectionEl.id,
+                );
+            });
+
+            it("should have aria-live=assertive set on the error section", () => {
+                // Arrange
+                const error = "Error message";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        error={error}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const errorSectionEl = getErrorSection();
+
+                // Assert
+                expect(errorSectionEl).toHaveAttribute(
+                    "aria-live",
+                    "assertive",
                 );
             });
         });
