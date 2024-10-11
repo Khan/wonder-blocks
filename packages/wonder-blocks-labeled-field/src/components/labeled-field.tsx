@@ -172,10 +172,6 @@ export default function LabeledField(props: Props) {
     }
 
     function maybeRenderError(): React.ReactNode | null | undefined {
-        if (!error) {
-            return null;
-        }
-
         return (
             <React.Fragment>
                 <Strut size={spacing.small_12} />
@@ -183,28 +179,32 @@ export default function LabeledField(props: Props) {
                     style={styles.errorSection}
                     id={errorSectionId}
                     testId={testId && `${testId}-error-section`}
+                    aria-live="assertive"
                 >
-                    <PhosphorIcon
-                        icon={WarningCircle}
-                        style={[
-                            styles.errorIcon,
-                            light ? styles.lightError : styles.error,
-                        ]}
-                        role="img"
-                        aria-label={labels.errorIconAriaLabel}
-                    />
-                    <LabelSmall
-                        style={[
-                            styles.textWordBreak,
-                            styles.errorMessage,
-                            light ? styles.lightError : styles.error,
-                        ]}
-                        role="alert"
-                        id={errorId}
-                        testId={testId && `${testId}-error`}
-                    >
-                        {error}
-                    </LabelSmall>
+                    {error && (
+                        <>
+                            <PhosphorIcon
+                                icon={WarningCircle}
+                                style={[
+                                    styles.errorIcon,
+                                    light ? styles.lightError : styles.error,
+                                ]}
+                                role="img"
+                                aria-label={labels.errorIconAriaLabel}
+                            />
+                            <LabelSmall
+                                style={[
+                                    styles.textWordBreak,
+                                    styles.errorMessage,
+                                    light ? styles.lightError : styles.error,
+                                ]}
+                                id={errorId}
+                                testId={testId && `${testId}-error`}
+                            >
+                                {error}
+                            </LabelSmall>
+                        </>
+                    )}
                 </View>
             </React.Fragment>
         );
