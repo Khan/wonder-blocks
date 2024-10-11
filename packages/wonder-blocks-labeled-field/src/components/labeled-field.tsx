@@ -32,6 +32,10 @@ type Props = {
     required?: boolean;
     /**
      * The message for the error element.
+     *
+     * Note: Since the error icon has an aria-label, screen readers will
+     * prefix the error message with "Error:" (or the value provided to the
+     * errorIconAriaLabel in the `labels` prop)
      */
     error?: React.ReactNode;
     /**
@@ -80,7 +84,7 @@ type LabeledFieldLabels = {
 };
 
 const defaultLabeledFieldLabels: LabeledFieldLabels = {
-    errorIconAriaLabel: "Error",
+    errorIconAriaLabel: "Error:",
 };
 
 const StyledSpan = addStyle("span");
@@ -109,6 +113,7 @@ export default function LabeledField(props: Props) {
     const descriptionId = `${uniqueId}-description`;
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
+    const errorSectionId = `${uniqueId}-error-section`;
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
@@ -174,7 +179,11 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <Strut size={spacing.small_12} />
-                <View style={styles.errorSection}>
+                <View
+                    style={styles.errorSection}
+                    id={errorSectionId}
+                    testId={testId && `${testId}-error-section`}
+                >
                     <PhosphorIcon
                         icon={WarningCircle}
                         style={[
@@ -204,7 +213,10 @@ export default function LabeledField(props: Props) {
     function renderField() {
         return React.cloneElement(field, {
             id: fieldId,
-            "aria-describedby": [description && descriptionId, error && errorId]
+            "aria-describedby": [
+                description && descriptionId,
+                error && errorSectionId,
+            ]
                 .filter(Boolean)
                 .join(" "),
             required,

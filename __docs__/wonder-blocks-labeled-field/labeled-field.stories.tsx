@@ -46,8 +46,8 @@ export const Default: StoryComponentType = {
     args: {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
-        description: "Helpful description text",
-        error: "Error message",
+        description: "Helpful description text.",
+        error: "Message about the error",
         required: true,
     },
 };
@@ -141,7 +141,7 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
  */
 export const Fields: StoryComponentType = {
     args: {
-        description: "Helpful description text",
+        description: "Helpful description text.",
         required: true,
     },
     render: AllFields,
@@ -149,8 +149,8 @@ export const Fields: StoryComponentType = {
 
 export const Error: StoryComponentType = {
     args: {
-        description: "Helpful description text",
-        error: "Error message",
+        description: "Helpful description text.",
+        error: "Message about the error",
         required: true,
     },
     render: AllFields,
@@ -164,8 +164,8 @@ export const Error: StoryComponentType = {
  */
 export const Light: StoryComponentType = {
     args: {
-        description: "Helpful description text",
-        error: "Error message",
+        description: "Helpful description text.",
+        error: "Message about the error",
         required: true,
         light: true,
     },
@@ -212,25 +212,25 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
             <LabeledField
                 {...args}
                 label="With error"
-                error="Error message"
+                error="Message about the error"
                 field={
                     <TextField
                         value="invalid value"
                         onChange={() => {}}
-                        validate={() => "Error message"}
+                        validate={() => "Message about the error"}
                     />
                 }
             />
             <LabeledField
                 {...args}
                 label="With description and error"
-                error="Error message"
+                error="Message about the error"
                 description="Description"
                 field={
                     <TextField
                         value="invalid value"
                         onChange={() => {}}
-                        validate={() => "Error message"}
+                        validate={() => "Message about the error"}
                     />
                 }
             />
@@ -246,7 +246,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
                     <TextField
                         value="invalid value"
                         onChange={() => {}}
-                        validate={() => "Error message"}
+                        validate={() => "Message about the error"}
                     />
                 }
             />
@@ -261,7 +261,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
                     <TextField
                         value="invalid value"
                         onChange={() => {}}
-                        validate={() => "Error message"}
+                        validate={() => "Message about the error"}
                     />
                 }
             />
