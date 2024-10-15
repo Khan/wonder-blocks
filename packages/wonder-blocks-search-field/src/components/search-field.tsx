@@ -151,7 +151,7 @@ const SearchField: React.ForwardRefExoticComponent<
 
     // @ts-expect-error [FEI-5019] - TS2322 - Type '() => JSX.Element | null' is not assignable to type '() => ReactElement<any, string | JSXElementConstructor<any>>'.
     const maybeRenderClearIconButton: () => React.ReactElement = () => {
-        if (!value.length) {
+        if (!value.length || disabled) {
             return null;
         }
 
