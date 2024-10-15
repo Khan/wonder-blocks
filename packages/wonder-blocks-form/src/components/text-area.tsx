@@ -140,6 +140,10 @@ type TextAreaProps = AriaProps & {
      */
     onValidate?: (errorMessage?: string | null | undefined) => unknown;
     /**
+     * Whether the textarea is in an error state.
+     */
+    error?: boolean;
+    /**
      * Whether this textarea is required to continue, or the error message to
      * render if this textarea is left blank.
      *
@@ -211,6 +215,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             resizeType,
             light,
             rootStyle,
+            error,
             // Should only include aria related props
             ...otherProps
         } = props;
@@ -218,6 +223,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         const [errorMessage, setErrorMessage] = React.useState<string | null>(
             null,
         );
+
+        const hasError = error || !!errorMessage;
 
         const ids = useUniqueIdWithMock("text-area");
         const uniqueId = id ?? ids.get("id");
@@ -269,13 +276,13 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 styles.default,
                 !disabled && styles.defaultFocus,
                 disabled && styles.disabled,
-                !!errorMessage && styles.error,
+                hasError && styles.error,
             ];
             const lightStyles = [
                 styles.light,
                 !disabled && styles.lightFocus,
                 disabled && styles.lightDisabled,
-                !!errorMessage && styles.lightError,
+                hasError && styles.lightError,
             ];
             return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
         };
@@ -307,7 +314,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     onBlur={onBlur} // TextArea can be blurred if it is disabled
                     required={!!required}
                     {...otherProps}
-                    aria-invalid={!!errorMessage}
+                    aria-invalid={hasError}
                 />
             </View>
         );

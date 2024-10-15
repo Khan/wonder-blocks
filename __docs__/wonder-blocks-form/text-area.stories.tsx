@@ -159,13 +159,27 @@ export const ReadOnly: StoryComponentType = {
 };
 
 /**
+ * If the `error` prop is set to true, the TextArea will have error styling and
+ * `aria-invalid` set to `true`.
+ *
+ * Note: The `required` and `validate` props can also put the TextArea in an
+ * error state.
+ */
+export const Error: StoryComponentType = {
+    args: {
+        value: "With error",
+        error: true,
+    },
+};
+
+/**
  * If the textarea fails validation, `TextArea` will have error styling.
  * Note that we will internally set the correct `aria-invalid` attribute to the
  * `textarea` element:
  * - `aria-invalid="true"` if there is an error message.
  * - `aria-invalid="false"` if there is no error message.
  */
-export const Error: StoryComponentType = {
+export const ErrorFromValidation: StoryComponentType = {
     args: {
         value: "khan",
         validate(value: string) {
