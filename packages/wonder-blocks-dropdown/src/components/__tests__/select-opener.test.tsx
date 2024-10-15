@@ -26,7 +26,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(onOpenMock).toHaveBeenCalledTimes(1);
@@ -51,7 +51,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -87,7 +87,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -131,7 +131,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(onOpenMock).toHaveBeenCalledTimes(0);
@@ -156,7 +156,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -192,7 +192,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.

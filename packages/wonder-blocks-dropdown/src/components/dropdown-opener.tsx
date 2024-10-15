@@ -51,15 +51,21 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      * If the dropdown has an error.
      */
     error?: boolean;
+    /**
+     * The role of the opener.
+     */
+    role?: "combobox" | "button";
 };
 
 type DefaultProps = {
     disabled: Props["disabled"];
+    role: Props["role"];
 };
 
 class DropdownOpener extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         disabled: false,
+        role: "combobox",
     };
 
     getTestIdFromProps: (childrenProps?: any) => string = (childrenProps) => {
@@ -79,6 +85,7 @@ class DropdownOpener extends React.Component<Props> {
             "aria-haspopup": ariaHasPopUp,
             "aria-required": ariaRequired,
             id,
+            role,
             onBlur,
         } = this.props;
         const renderedChildren = this.props.children({
@@ -94,6 +101,7 @@ class DropdownOpener extends React.Component<Props> {
             "aria-invalid": this.props.error,
             disabled,
             "aria-controls": ariaControls,
+            role,
             id,
             "aria-expanded": opened ? "true" : "false",
             "aria-haspopup": ariaHasPopUp,
