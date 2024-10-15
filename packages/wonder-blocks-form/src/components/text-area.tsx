@@ -215,7 +215,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             ...otherProps
         } = props;
 
-        const [error, setError] = React.useState<string | null>(null);
+        const [errorMessage, setErrorMessage] = React.useState<string | null>(
+            null,
+        );
 
         const ids = useUniqueIdWithMock("text-area");
         const uniqueId = id ?? ids.get("id");
@@ -231,7 +233,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         const handleValidation = (newValue: string) => {
             if (validate) {
                 const error = validate(newValue) || null;
-                setError(error);
+                setErrorMessage(error);
                 if (onValidate) {
                     onValidate(error);
                 }
@@ -241,7 +243,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         ? required
                         : defaultErrorMessage;
                 const error = newValue ? null : requiredString;
-                setError(error);
+                setErrorMessage(error);
                 if (onValidate) {
                     onValidate(error);
                 }
@@ -267,13 +269,13 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 styles.default,
                 !disabled && styles.defaultFocus,
                 disabled && styles.disabled,
-                !!error && styles.error,
+                !!errorMessage && styles.error,
             ];
             const lightStyles = [
                 styles.light,
                 !disabled && styles.lightFocus,
                 disabled && styles.lightDisabled,
-                !!error && styles.lightError,
+                !!errorMessage && styles.lightError,
             ];
             return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
         };
@@ -305,7 +307,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     onBlur={onBlur} // TextArea can be blurred if it is disabled
                     required={!!required}
                     {...otherProps}
-                    aria-invalid={!!error}
+                    aria-invalid={!!errorMessage}
                 />
             </View>
         );
