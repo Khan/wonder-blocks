@@ -9,7 +9,7 @@ import {View, IDProvider} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -236,11 +236,7 @@ const styles = StyleSheet.create({
     inputStyleReset: {
         display: "flex",
         flex: 1,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
         width: "100%",
-        color: "inherit",
         paddingLeft: spacing.large_24 + spacing.medium_16,
         paddingRight: spacing.large_24 + spacing.medium_16,
     },
