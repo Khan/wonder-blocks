@@ -217,6 +217,16 @@ export const WithAutofocus: StoryComponentType = {
     },
 };
 
+/**
+ * The SearchField can be put in an error state using the `error` prop.
+ */
+export const Error: StoryComponentType = {
+    args: {
+        error: true,
+    },
+    render: Template,
+};
+
 const styles = StyleSheet.create({
     darkBackground: {
         background: color.darkBlue,

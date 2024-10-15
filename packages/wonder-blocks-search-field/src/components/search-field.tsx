@@ -2,14 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import xIcon from "@phosphor-icons/core/regular/x.svg";
-import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {View, IDProvider} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -59,6 +59,10 @@ type Props = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Whether the search field is in an error state.
+     */
+    error?: boolean;
     /**
      * Called when the value has changed.
      */
@@ -123,6 +127,7 @@ const SearchField: React.ForwardRefExoticComponent<
         placeholder,
         style,
         testId,
+        error,
         onClick,
         onChange,
         onFocus,
@@ -167,8 +172,8 @@ const SearchField: React.ForwardRefExoticComponent<
                 <View onClick={onClick} style={[styles.inputContainer, style]}>
                     <PhosphorIcon
                         icon={magnifyingGlassIcon}
-                        size="medium"
-                        color={color.offBlack64}
+                        size="small"
+                        color={semanticColor.icon.primary}
                         style={styles.searchIcon}
                         aria-hidden="true"
                     />
@@ -182,6 +187,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         onFocus={onFocus}
                         onBlur={onBlur}
                         placeholder={placeholder}
+                        error={error}
                         ref={(node) => {
                             // We have to set the value of both refs to
                             // the HTMLInputElement from TextField.
