@@ -159,7 +159,7 @@ type State = {
     /**
      * Displayed when the validation fails.
      */
-    error: string | null | undefined;
+    errorMessage: string | null | undefined;
 };
 
 /**
@@ -176,12 +176,12 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         super(props);
         if (props.validate && props.value !== "") {
             // Ensures error is updated on unmounted server-side renders
-            this.state.error = props.validate(props.value) || null;
+            this.state.errorMessage = props.validate(props.value) || null;
         }
     }
 
     state: State = {
-        error: null,
+        errorMessage: null,
     };
 
     componentDidMount() {
@@ -195,7 +195,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
 
         if (validate) {
             const maybeError = validate(newValue) || null;
-            this.setState({error: maybeError}, () => {
+            this.setState({errorMessage: maybeError}, () => {
                 if (onValidate) {
                     onValidate(maybeError);
                 }
@@ -204,7 +204,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             const requiredString =
                 typeof required === "string" ? required : defaultErrorMessage;
             const maybeError = newValue ? null : requiredString;
-            this.setState({error: maybeError}, () => {
+            this.setState({errorMessage: maybeError}, () => {
                 if (onValidate) {
                     onValidate(maybeError);
                 }
@@ -241,20 +241,20 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
 
     getStyles = (): StyleType => {
         const {disabled, light} = this.props;
-        const {error} = this.state;
+        const {errorMessage} = this.state;
         // Base styles are the styles that apply regardless of light mode
         const baseStyles = [styles.input, typographyStyles.LabelMedium];
         const defaultStyles = [
             styles.default,
             !disabled && styles.defaultFocus,
             disabled && styles.disabled,
-            !!error && styles.error,
+            !!errorMessage && styles.error,
         ];
         const lightStyles = [
             styles.light,
             !disabled && styles.lightFocus,
             disabled && styles.lightDisabled,
-            !!error && styles.lightError,
+            !!errorMessage && styles.lightError,
         ];
         return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
     };
@@ -309,7 +309,9 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                         autoFocus={autoFocus}
                         autoComplete={autoComplete}
                         ref={forwardedRef}
-                        aria-invalid={this.state.error ? "true" : "false"}
+                        aria-invalid={
+                            this.state.errorMessage ? "true" : "false"
+                        }
                         {...otherProps}
                     />
                 )}
