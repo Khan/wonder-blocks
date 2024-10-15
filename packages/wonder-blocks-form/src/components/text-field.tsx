@@ -75,6 +75,10 @@ type CommonProps = AriaProps & {
      */
     placeholder?: string;
     /**
+     * Whether the input is in an error state.
+     */
+    error?: boolean;
+    /**
      * Whether this field is required to to continue, or the error message to
      * render if this field is left blank.
      *
@@ -240,21 +244,22 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
     };
 
     getStyles = (): StyleType => {
-        const {disabled, light} = this.props;
+        const {disabled, light, error} = this.props;
         const {errorMessage} = this.state;
+        const hasError = error || !!errorMessage;
         // Base styles are the styles that apply regardless of light mode
         const baseStyles = [styles.input, typographyStyles.LabelMedium];
         const defaultStyles = [
             styles.default,
             !disabled && styles.defaultFocus,
             disabled && styles.disabled,
-            !!errorMessage && styles.error,
+            hasError && styles.error,
         ];
         const lightStyles = [
             styles.light,
             !disabled && styles.lightFocus,
             disabled && styles.lightDisabled,
-            !!errorMessage && styles.lightError,
+            hasError && styles.lightError,
         ];
         return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
     };
@@ -274,6 +279,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             autoFocus,
             autoComplete,
             forwardedRef,
+            error,
             // The following props are being included here to avoid
             // passing them down to the otherProps spread
             /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -289,6 +295,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             ...otherProps
         } = this.props;
 
+        const hasError = error || !!this.state.errorMessage;
         return (
             <IDProvider id={id} scope="text-field">
                 {(uniqueId) => (
@@ -309,9 +316,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                         autoFocus={autoFocus}
                         autoComplete={autoComplete}
                         ref={forwardedRef}
-                        aria-invalid={
-                            this.state.errorMessage ? "true" : "false"
-                        }
+                        aria-invalid={hasError}
                         {...otherProps}
                     />
                 )}
