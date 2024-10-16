@@ -166,6 +166,9 @@ export const ReadOnly: StoryComponentType = {
  * If the `error` prop is set to true, the TextArea will have error styling and
  * `aria-invalid` set to `true`.
  *
+ * This is useful for scenarios where we want to show an error message on a
+ * specific field after a form is submitted (server validation).
+ *
  * Note: The `required` and `validate` props can also put the TextArea in an
  * error state.
  */
@@ -178,6 +181,10 @@ export const Error: StoryComponentType = {
 
 /**
  * If the textarea fails validation, `TextArea` will have error styling.
+ *
+ * This is useful for scenarios where we want to show error messages while a
+ * user is filling out a form (client validation).
+ *
  * Note that we will internally set the correct `aria-invalid` attribute to the
  * `textarea` element:
  * - `aria-invalid="true"` if there is an error message.
@@ -209,7 +216,7 @@ export const ErrorFromValidation: StoryComponentType = {
  * goes away since it is a valid email.
  * 3. When the Submit button is pressed, another error message is shown (this
  * simulates backend validation).
- * 4. When you enter any other email address and submit it, the error message is
+ * 4. When you enter any other email address, the error message is
  * cleared.
  */
 export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
@@ -223,6 +230,8 @@ export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
+        // Clear the backend error message on change
+        setBackendErrorMessage(null);
     };
 
     const errorMessage = validationErrorMessage || backendErrorMessage;
