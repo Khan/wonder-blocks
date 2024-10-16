@@ -1,5 +1,5 @@
-import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
+import {renderHook as clientRenderHook} from "@testing-library/react";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 
