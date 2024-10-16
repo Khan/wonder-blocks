@@ -10,8 +10,6 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 /**
  * The following stories are used to generate the pseudo states for the
  * TextField component. This is only used for visual testing in Chromatic.
- *
- * Note: Error state is not shown on initial render if the TextField value is empty.
  */
 export default {
     title: "Packages / Form / TextField / All Variants",
@@ -40,7 +38,7 @@ const states = [
     },
     {
         label: "Error",
-        props: {validate: () => "Error"},
+        props: {error: true},
     },
 ];
 const States = (props: {

@@ -707,4 +707,37 @@ describe("TextField", () => {
             expect(input).toHaveFocus();
         });
     });
+
+    it("should set aria-invalid to true if the error prop is true", async () => {
+        // Arrange
+        render(<TextField value="text" onChange={() => {}} error={true} />);
+
+        // Act
+
+        // Assert
+        const input = await screen.findByRole("textbox");
+        expect(input).toHaveAttribute("aria-invalid", "true");
+    });
+
+    it("should set aria-invalid to false if the error prop is false", async () => {
+        // Arrange
+        render(<TextField value="text" onChange={() => {}} error={false} />);
+
+        // Act
+
+        // Assert
+        const input = await screen.findByRole("textbox");
+        expect(input).toHaveAttribute("aria-invalid", "false");
+    });
+
+    it("should set aria-invalid to false if the error prop is not provided", async () => {
+        // Arrange
+        render(<TextField value="text" onChange={() => {}} />);
+
+        // Act
+
+        // Assert
+        const input = await screen.findByRole("textbox");
+        expect(input).toHaveAttribute("aria-invalid", "false");
+    });
 });
