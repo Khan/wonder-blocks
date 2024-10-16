@@ -48,6 +48,9 @@ type CommonProps = AriaProps & {
     /**
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
+     *
+     * Use this for errors that are shown to the user while they are filling out
+     * a form.
      */
     validate?: (value: string) => string | null | void;
     /**
@@ -76,6 +79,9 @@ type CommonProps = AriaProps & {
     placeholder?: string;
     /**
      * Whether the input is in an error state.
+     *
+     * Use this for errors that are triggered by something external to the
+     * component (example: an error after form submission).
      */
     error?: boolean;
     /**
