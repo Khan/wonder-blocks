@@ -174,6 +174,18 @@ export default {
         },
     },
 
+    error: {
+        description: "Whether this field is in an error state.",
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+        control: {
+            type: "boolean",
+        },
+    },
+
     /**
      * Number-specific props
      */
