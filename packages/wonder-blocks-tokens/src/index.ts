@@ -7,6 +7,9 @@ import {spacing} from "./tokens/spacing";
 // semantic tokens
 import {semanticColor} from "./tokens/semantic-color";
 
+// media queries
+import {mediaQueries} from "./tokens/mediaQueries";
+
 // utils
 import {mix, fade} from "./util/utils";
 
@@ -18,6 +21,10 @@ export {
     color,
     font,
     spacing,
+    /**
+     * Media query breakpoints.
+     */
+    mediaQueries,
     /**
      * Semantic tokens.
      */

@@ -1,0 +1,49 @@
+import {Meta, Source} from "@storybook/blocks";
+
+import TokenTable from "../../.storybook/components/token-table";
+
+import {View} from "@khanacademy/wonder-blocks-core";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
+
+import ComponentInfo from "../../.storybook/components/component-info";
+import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
+
+<Meta title="Packages / Tokens / Media Queries" />
+
+# Media Queries
+
+<ComponentInfo name={packageConfig.name} version={packageConfig.version} />
+
+All the available media query breakpoint values that can be used for min-width,
+max-width, width, etc.
+
+## Usage
+
+You can use these values directly by importing `media-queries` from the
+`wonder-blocks-tokens` package and accessing the named property like so:
+`mediaQueries.sm`.
+
+```js
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {
+    [mediaQueries.sm]: {
+        flexDirection: "column"
+    }
+};
+```
+
+## Tokens
+
+<TokenTable
+    columns={[
+        {
+            label: "Token",
+            cell: (row) => <code>mediaQueries.{row.label}</code>,
+        },
+        {
+            label: "Value",
+            cell: "value",
+        },
+    ]}
+    tokens={tokens.mediaQueries}
+/>
