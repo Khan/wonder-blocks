@@ -65,7 +65,14 @@ jobs:
   lint:
     name: Lint
     needs: prime_cache_primary
-    uses: ./.github/workflows/node-ci-lint.yml
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [20.x]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/lint.yml
 
   test:
     if: false

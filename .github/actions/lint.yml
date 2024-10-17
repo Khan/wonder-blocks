@@ -1,0 +1,8 @@
+name: 'Lint'
+description: 'Run linting checks'
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v4
+    - name: Print example
+      run: echo 'Hello'
