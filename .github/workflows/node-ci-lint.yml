@@ -6,6 +6,7 @@ on:
 
 jobs:
   lint:
+    name: Lint
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
