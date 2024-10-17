@@ -65,7 +65,7 @@ jobs:
   lint:
     name: Lint
     needs: prime_cache_primary
-    uses: ./.github/workflow/node-ci-lint.yml
+    uses: ./.github/workflows/node-ci-lint.yml
 
   test:
     if: false
