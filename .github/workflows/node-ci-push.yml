@@ -11,7 +11,8 @@ on:
 #   1. Prime caches for primary configuration (ubuntu on node 14).
 #      This way the next two jobs can run in parallel but rely on this primed
 #      cache.
-#   2. Coverage
+#   2. Lint
+#   3. Test (with coverage)
 #   3. Chromatic autoApprove on squash commits
 #
 # For pushes directly to a branch, we assume a PR has been used with wider
@@ -34,40 +35,6 @@ jobs:
         uses: Khan/actions@shared-node-cache-v2
         with:
           node-version: ${{ matrix.node-version }}
-
-
-  coverage:
-    needs: [prime_cache_primary]
-    name: Gather coverage
-    env:
-      CI: true
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        # Use a matrix as it means we get the version info in the job name
-        # which is very helpful.
-        os: [ubuntu-latest]
-        node-version: [20.x]
-    steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    # Cache and install dependencies
-    - name: Install & cache node_modules
-      uses: Khan/actions@shared-node-cache-v2
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Run Jest with coverage
-      run: yarn coverage:ci
-    - name: Upload Coverage
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage/coverage-final.json
 
   lint:
     name: Lint
