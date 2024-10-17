@@ -68,34 +68,11 @@ jobs:
     uses: ./.github/workflows/node-ci-lint.yml
 
   test:
-    if: false
     name: Test
     needs: prime_cache_primary
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [20.x]
-        shard: ["1/2", "2/2"]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v2
-        with:
-          node-version: ${{ matrix.node-version }}
-      # Testing and coverage
-      - name: Run jest tests with coverage
-        run: yarn coverage:ci --shard ${{ matrix.shard }}
-      - name: Upload Coverage
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage-final.json
+    uses: ./.github/workflows/node-ci-test.yml
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   check_builds:
     if: false
