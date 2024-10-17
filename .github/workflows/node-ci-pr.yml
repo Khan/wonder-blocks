@@ -86,6 +86,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/test
+        secrets:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   check_builds:
     if: false
