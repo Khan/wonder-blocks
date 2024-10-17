@@ -31,7 +31,7 @@ jobs:
 
   changeset:
     name: Check for .changeset entries for all changed files
-    if: false && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
@@ -75,7 +75,6 @@ jobs:
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   check_builds:
-    if: false
     name: Check build sizes
     needs: prime_cache_primary
     runs-on: ${{ matrix.os }}
@@ -113,7 +112,6 @@ jobs:
     # We don't publish snapshots on draft PRs or
     # on the main Changeset "Version Packages" PR
     if: |
-      false &&
       github.event.pull_request.draft == false
       && !startsWith(github.head_ref, 'changeset-release/')
     runs-on: ${{ matrix.os }}
