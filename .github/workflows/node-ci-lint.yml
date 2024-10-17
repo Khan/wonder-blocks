@@ -71,6 +71,3 @@ jobs:
 
       - name: Check package.json files
         run: node utils/publish/pre-publish-check-ci.js
-
-      - name: TODO print out message
-        run: echo "@@@ Done @@@"
