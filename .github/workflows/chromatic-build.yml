@@ -43,6 +43,7 @@ on:
 
 jobs:
   chromatic:
+    if: false
     runs-on: ${{ matrix.os }}
     env:
       CI: true

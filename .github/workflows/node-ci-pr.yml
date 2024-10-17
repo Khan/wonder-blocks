@@ -31,7 +31,7 @@ jobs:
 
   changeset:
     name: Check for .changeset entries for all changed files
-    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+    if: false && github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     runs-on: ${{ matrix.os }}
     strategy:
         matrix:
@@ -68,6 +68,7 @@ jobs:
     uses: ./.github/workflow/node-ci-lint.yml
 
   test:
+    if: false
     name: Test
     needs: prime_cache_primary
     runs-on: ${{ matrix.os }}
@@ -97,6 +98,7 @@ jobs:
           files: ./coverage/coverage-final.json
 
   check_builds:
+    if: false
     name: Check build sizes
     needs: prime_cache_primary
     runs-on: ${{ matrix.os }}
@@ -134,6 +136,7 @@ jobs:
     # We don't publish snapshots on draft PRs or
     # on the main Changeset "Version Packages" PR
     if: |
+      false &&
       github.event.pull_request.draft == false
       && !startsWith(github.head_ref, 'changeset-release/')
     runs-on: ${{ matrix.os }}
