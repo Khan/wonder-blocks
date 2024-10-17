@@ -65,7 +65,3 @@ runs:
     - name: Check package.json files
       shell: bash
       run: node utils/publish/pre-publish-check-ci.js
-
-    - name: TODO print out message
-      shell: bash
-      run: echo "@@@ Done @@@"
