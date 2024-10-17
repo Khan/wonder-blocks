@@ -51,12 +51,15 @@ runs:
     - name: Typecheck
       if: always() # always run this check until we update the eslint config
       # if: steps.js-ts-files.outputs.filtered != '[]' || steps.typecheck-reset.outputs.filtered != '[]'
+      shell: bash
       run: yarn typecheck
 
     - name: Build .js bundles
+      shell: bash
       run: yarn build
 
     - name: Build .d.ts types
+      shell: bash
       run: yarn build:types
 
     - name: Check package.json files
@@ -64,4 +67,5 @@ runs:
       run: node utils/publish/pre-publish-check-ci.js
 
     - name: TODO print out message
+      shell: bash
       run: echo "@@@ Done @@@"
