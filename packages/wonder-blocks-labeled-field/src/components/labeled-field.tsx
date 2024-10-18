@@ -178,6 +178,12 @@ export default function LabeledField(props: Props) {
                     style={styles.errorSection}
                     id={errorId}
                     testId={testId && `${testId}-error`}
+                    // We use aria-live="assertive" for the error so that it is
+                    // immediately announced and the user can address the issue
+                    // before submitting the form. We use aria-live=assertive
+                    // instead of role=alert because Safari + VoiceOver would
+                    // not read out the error when focused on if the element
+                    // referenced by the aria-describedby had role="alert".
                     aria-live="assertive"
                 >
                     {error && (
