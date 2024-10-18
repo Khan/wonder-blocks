@@ -13,6 +13,11 @@ import {
     SingleSelect,
 } from "@khanacademy/wonder-blocks-dropdown";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
+import {
+    HeadingLarge,
+    HeadingMedium,
+    HeadingSmall,
+} from "@khanacademy/wonder-blocks-typography";
 
 /**
  * The `LabeledField` component provides common elements for a form field such
@@ -41,8 +46,8 @@ export const Default: StoryComponentType = {
     args: {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
-        description: "Helpful description text",
-        error: "Error message",
+        description: "Helpful description text.",
+        error: "Message about the error",
         required: true,
     },
 };
@@ -136,7 +141,7 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
  */
 export const Fields: StoryComponentType = {
     args: {
-        description: "Helpful description text",
+        description: "Helpful description text.",
         required: true,
     },
     render: AllFields,
@@ -144,8 +149,8 @@ export const Fields: StoryComponentType = {
 
 export const Error: StoryComponentType = {
     args: {
-        description: "Helpful description text",
-        error: "Error message",
+        description: "Helpful description text.",
+        error: "Message about the error",
         required: true,
     },
     render: AllFields,
@@ -159,8 +164,8 @@ export const Error: StoryComponentType = {
  */
 export const Light: StoryComponentType = {
     args: {
-        description: "Helpful description text",
-        error: "Error message",
+        description: "Helpful description text.",
+        error: "Message about the error",
         required: true,
         light: true,
     },
@@ -176,9 +181,13 @@ export const Light: StoryComponentType = {
  */
 export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const [textFieldValue, setTextFieldValue] = React.useState("");
-
+    const longText =
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
+    const longTextWithNoBreak =
+        "LoremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaUtenimadminimveniamquisnostrudexercitationullamcolaborisnisiutaliquipexeacommodoconsequatDuisauteiruredolorinreprehenderitinvoluptatevelitessecillumdoloreeufugiatnullapariatur";
     return (
         <View style={{gap: spacing.large_24}}>
+            <HeadingLarge>Scenarios</HeadingLarge>
             <LabeledField
                 {...args}
                 label="Label only"
@@ -203,25 +212,56 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
             <LabeledField
                 {...args}
                 label="With error"
-                error="Error message"
+                error="Message about the error"
                 field={
                     <TextField
                         value="invalid value"
                         onChange={() => {}}
-                        validate={() => "Error message"}
+                        validate={() => "Message about the error"}
                     />
                 }
             />
             <LabeledField
                 {...args}
                 label="With description and error"
-                error="Error message"
+                error="Message about the error"
                 description="Description"
                 field={
                     <TextField
                         value="invalid value"
                         onChange={() => {}}
-                        validate={() => "Error message"}
+                        validate={() => "Message about the error"}
+                    />
+                }
+            />
+            <HeadingMedium>Text Scenarios</HeadingMedium>
+            <HeadingSmall>With Long Text</HeadingSmall>
+            <LabeledField
+                required={true}
+                {...args}
+                label={longText}
+                error={longText}
+                description={longText}
+                field={
+                    <TextField
+                        value="invalid value"
+                        onChange={() => {}}
+                        validate={() => "Message about the error"}
+                    />
+                }
+            />
+            <HeadingSmall>With Long Text and No Word Break</HeadingSmall>
+            <LabeledField
+                required={true}
+                {...args}
+                label={longTextWithNoBreak}
+                error={longTextWithNoBreak}
+                description={longTextWithNoBreak}
+                field={
+                    <TextField
+                        value="invalid value"
+                        onChange={() => {}}
+                        validate={() => "Message about the error"}
                     />
                 }
             />

@@ -14,6 +14,25 @@ const defaultOptions = {
 };
 
 describe("LabeledField", () => {
+    const id = "example-id";
+    const label = "Label";
+    const description = "Description of the field";
+    const error = "Error message";
+    const testId = "test-id";
+
+    const getLabel = () => screen.getByText(label);
+    const getDescription = () => screen.getByText(description);
+    const getField = () => screen.getByRole("textbox");
+    const getError = () => screen.getByText(error);
+    const getErrorSection = () => {
+        // eslint-disable-next-line testing-library/no-node-access
+        const el = getError().parentElement; // The error section is the parent of the alert.
+        if (!el) {
+            throw Error("Error section in LabeledField not found");
+        }
+        return el;
+    };
+
     it("LabeledField renders the label text", () => {
         // Arrange
         const label = "Label";
@@ -64,7 +83,7 @@ describe("LabeledField", () => {
         );
 
         // Assert
-        expect(screen.getByRole("alert")).toBeInTheDocument();
+        expect(screen.getByText(error)).toBeInTheDocument();
     });
 
     it("LabeledField adds testId to label", () => {
@@ -124,49 +143,6 @@ describe("LabeledField", () => {
         // Assert
         const error = screen.getByTestId(`${testId}-error`);
         expect(error).toBeInTheDocument();
-    });
-
-    it("LabeledField adds the correctly formatted id to label's htmlFor", () => {
-        // Arrange
-        const id = "exampleid";
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                id={id}
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const label = screen.getByTestId(`${testId}-label`);
-        expect(label).toHaveAttribute("for", `${id}-field`);
-    });
-
-    it("LabeledField adds the correctly formatted id to error's id", () => {
-        // Arrange
-        const id = "exampleid";
-        const testId = "testid";
-
-        // Act
-        render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                error="Error"
-                id={id}
-                testId={testId}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const error = screen.getByRole("alert");
-        expect(error).toHaveAttribute("id", `${id}-error`);
     });
 
     it("stype prop applies to the LabeledField container", () => {
@@ -239,24 +215,54 @@ describe("LabeledField", () => {
         expect(description).toHaveStyle("font-size: 14px");
     });
 
+    describe("Labels prop", () => {
+        it("should use the errorIconAriaLabel for the error icon aria label", () => {
+            // Arrange
+            const errorIconAriaLabel = "Placeholder for translated aria label";
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    error="Error message"
+                    labels={{errorIconAriaLabel}}
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const errorIcon = screen.getByRole("img");
+
+            // Assert
+            expect(errorIcon).toHaveAttribute("aria-label", errorIconAriaLabel);
+        });
+
+        it("should use a default aria-label on the error icon if the errorIconAriaLabel is not provided", () => {
+            // Arrange
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    label="Label"
+                    error="Error message"
+                />,
+                defaultOptions,
+            );
+
+            // Act
+            const errorIcon = screen.getByRole("img");
+
+            // Assert
+            expect(errorIcon).toHaveAttribute("aria-label", "Error:");
+        });
+    });
+
     describe("Attributes", () => {
-        const id = "example-id";
-        const label = "Label";
-        const description = "Description of the field";
-        const error = "Error message";
-        const testId = "test-id";
-
-        const getLabel = () => screen.getByText(label);
-        const getDescription = () => screen.getByText(description);
-        const getField = () => screen.getByRole("textbox");
-        const getError = () => screen.getByRole("alert");
-
         describe("id", () => {
             it.each([
                 ["label", `${id}-label`, getLabel],
                 ["description", `${id}-description`, getDescription],
                 ["field", `${id}-field`, getField],
                 ["error", `${id}-error`, getError],
+                ["error section", `${id}-error-section`, getErrorSection],
             ])(
                 "should have the id for the %s element set to %s",
                 (
@@ -289,6 +295,7 @@ describe("LabeledField", () => {
                 ["description", "-description", getDescription],
                 ["field", "-field", getField],
                 ["error", "-error", getError],
+                ["error section", `-error-section`, getErrorSection],
             ])(
                 "should have an auto-generated id for the %s element that ends with %s",
                 (
@@ -322,6 +329,7 @@ describe("LabeledField", () => {
                 ["description", `${testId}-description`, getDescription],
                 ["field", `${testId}-field`, getField],
                 ["error", `${testId}-error`, getError],
+                ["error section", `${testId}-error-section`, getErrorSection],
             ])(
                 "should use the testId prop to set the %s element's data-testid attribute to %s",
                 (
@@ -354,6 +362,7 @@ describe("LabeledField", () => {
                 ["description", getDescription],
                 ["field", getField],
                 ["error", getError],
+                ["error section", getErrorSection],
             ])(
                 "should not set the data-testid attribute on the %s element if the testId prop is not set",
                 (
@@ -466,7 +475,7 @@ describe("LabeledField", () => {
                 );
             });
 
-            it("should set the aria-describedby on the field to the id of the error", () => {
+            it("should set the aria-describedby on the field to the id of the error section", () => {
                 // Arrange
                 const error = "Error message";
                 render(
@@ -479,11 +488,36 @@ describe("LabeledField", () => {
                 );
 
                 // Act
-                const errorEl = screen.getByRole("alert");
-                const inputEl = screen.getByRole("textbox");
+                const errorSectionEl = getErrorSection();
+                const inputEl = getField();
 
                 // Assert
-                expect(inputEl).toHaveAttribute("aria-describedby", errorEl.id);
+                expect(inputEl).toHaveAttribute(
+                    "aria-describedby",
+                    errorSectionEl.id,
+                );
+            });
+
+            it("should have aria-live=assertive set on the error section", () => {
+                // Arrange
+                const error = "Error message";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        error={error}
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const errorSectionEl = getErrorSection();
+
+                // Assert
+                expect(errorSectionEl).toHaveAttribute(
+                    "aria-live",
+                    "assertive",
+                );
             });
         });
     });
