@@ -185,6 +185,9 @@ export default function LabeledField(props: Props) {
                     // not read out the error when focused on if the element
                     // referenced by the aria-describedby had role="alert".
                     aria-live="assertive"
+                    // We add aria-atomic=true so that any updates to the error
+                    // is announced
+                    aria-atomic="true"
                 >
                     {error && (
                         <>

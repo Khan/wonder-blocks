@@ -18,6 +18,8 @@ import {
     HeadingMedium,
     HeadingSmall,
 } from "@khanacademy/wonder-blocks-typography";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Button from "@khanacademy/wonder-blocks-button";
 
 /**
  * The `LabeledField` component provides common elements for a form field such
@@ -173,6 +175,44 @@ export const Light: StoryComponentType = {
         backgrounds: {default: "darkBlue"},
     },
     render: AllFields,
+};
+
+/**
+ * When this story is used with a screen reader, any updates to an existing
+ * error message will be announced.
+ */
+export const ChangingErrors: StoryComponentType = () => {
+    const errorMsg1 = "First error message";
+    const errorMsg2 = "Second error message";
+
+    const [errorMessage, setErrorMessage] = React.useState(errorMsg1);
+
+    return (
+        <View>
+            <LabeledField
+                label="Label"
+                field={<TextField value="" onChange={() => {}} />}
+                error={errorMessage}
+            />
+            <Strut size={spacing.small_12} />
+            <Button
+                onClick={() =>
+                    setErrorMessage(
+                        errorMessage === errorMsg1 ? errorMsg2 : errorMsg1,
+                    )
+                }
+            >
+                Change error message
+            </Button>
+        </View>
+    );
+};
+
+ChangingErrors.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
+    },
 };
 
 /**

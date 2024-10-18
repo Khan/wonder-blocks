@@ -533,6 +533,28 @@ describe("LabeledField", () => {
                     "assertive",
                 );
             });
+
+            it("should have aria-atomic=true set on the error section", () => {
+                // Arrange
+                const error = "Error message";
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        label="Label"
+                        error={error}
+                        testId="labeled-field"
+                    />,
+                    defaultOptions,
+                );
+
+                // Act
+                const errorSectionEl = screen.getByTestId(
+                    "labeled-field-error",
+                );
+
+                // Assert
+                expect(errorSectionEl).toHaveAttribute("aria-atomic", "true");
+            });
         });
     });
 });
