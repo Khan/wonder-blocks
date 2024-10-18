@@ -1,5 +1,6 @@
 declare module "aphrodite" {
     import * as React from "react";
+    import {mediaQueries} from "@khanacademy/wonder-blocks-tokens";
 
     type _CSSProperties = React.CSSProperties & {
         /**
@@ -17,6 +18,18 @@ declare module "aphrodite" {
         "@media (max-width: 1023px)"?: React.CSSProperties;
         "@media (min-width: 1024px)"?: React.CSSProperties;
         "@media (min-width: 1168px)"?: React.CSSProperties;
+        [mediaQueries.xs]?: React.CSSProperties;
+        [mediaQueries.sm]?: React.CSSProperties;
+        [mediaQueries.md]?: React.CSSProperties;
+        [mediaQueries.lg]?: React.CSSProperties;
+        [mediaQueries.xl]?: React.CSSProperties;
+        [mediaQueries.xsOrSmaller]?: React.CSSProperties;
+        [mediaQueries.smOrSmaller]?: React.CSSProperties;
+        [mediaQueries.mdOrSmaller]?: React.CSSProperties;
+        [mediaQueries.lgOrSmaller]?: React.CSSProperties;
+        [mediaQueries.smOrLarger]?: React.CSSProperties;
+        [mediaQueries.mdOrLarger]?: React.CSSProperties;
+        [mediaQueries.lgOrLarger]?: React.CSSProperties;
     };
 
     /**
