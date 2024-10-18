@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.87
+
+### Patch Changes
+
+-   a32b0779: Add responsive default to BirthdayPicker
+
 ## 2.0.86
 
 ### Patch Changes
