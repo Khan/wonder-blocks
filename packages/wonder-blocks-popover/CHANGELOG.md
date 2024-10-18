@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.3.2
+
+### Patch Changes
+
+-   Updated dependencies [75da0046]
+    -   @khanacademy/wonder-blocks-icon-button@5.6.0
+    -   @khanacademy/wonder-blocks-modal@5.1.14
+    -   @khanacademy/wonder-blocks-tooltip@2.5.2
+
+## 3.3.1
+
+### Patch Changes
+
+-   Updated dependencies [3463bde3]
+    -   @khanacademy/wonder-blocks-icon-button@5.5.0
+    -   @khanacademy/wonder-blocks-modal@5.1.13
+    -   @khanacademy/wonder-blocks-tooltip@2.5.1
+
 ## 3.3.0
 
 ### Minor Changes

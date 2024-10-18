@@ -1,5 +1,42 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.87
+
+### Patch Changes
+
+-   a32b0779: Add responsive default to BirthdayPicker
+
+## 2.0.86
+
+### Patch Changes
+
+-   Updated dependencies [0b3a28a7]
+    -   @khanacademy/wonder-blocks-dropdown@5.6.0
+
+## 2.0.85
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.5.6
+
+## 2.0.84
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.5.5
+
+## 2.0.83
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.5.4
+
+## 2.0.82
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.5.3
+
 ## 2.0.81
 
 ### Patch Changes

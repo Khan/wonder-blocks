@@ -1,14 +1,11 @@
 import type {GqlOperation, GqlContext} from "@khanacademy/wonder-blocks-data";
 import type {GqlMockOperation} from "./types";
 
-const safeHasOwnProperty = (obj: any, prop: string): boolean =>
-    Object.prototype.hasOwnProperty.call(obj, prop);
-
 // TODO(somewhatabstract, FEI-4268): use a third-party library to do this and
 // possibly make it also support the jest `jest.objectContaining` type matching
 // to simplify mock declaration (note that it would need to work in regular
 // tests and stories/fixtures).
-const areObjectsEqual = (a: any, b: any): boolean => {
+const areObjectsEquivalent = (a: any, b: any): boolean => {
     if (a === b) {
         return true;
     }
@@ -18,14 +15,18 @@ const areObjectsEqual = (a: any, b: any): boolean => {
     if (typeof a !== "object" || typeof b !== "object") {
         return false;
     }
+
+    // Now, we need to compare the values of the objects.
+    // We can't just compare key sets as we want to consider an explicit
+    // key with an undefined value to be the same as a missing key.
+    // It makes for a nicer API when defining mocks.
     const aKeys = Object.keys(a);
     const bKeys = Object.keys(b);
-    if (aKeys.length !== bKeys.length) {
-        return false;
-    }
-    for (let i = 0; i < aKeys.length; i++) {
-        const key = aKeys[i];
-        if (!safeHasOwnProperty(b, key) || !areObjectsEqual(a[key], b[key])) {
+
+    const allKeys = new Set([...aKeys, ...bKeys]);
+
+    for (const key of allKeys) {
+        if (!areObjectsEquivalent(a[key], b[key])) {
             return false;
         }
     }
@@ -52,7 +53,7 @@ export const gqlRequestMatchesMock = (
     // we just assume it matches everything.
     if (mock.variables != null) {
         // Variables have to match.
-        if (!areObjectsEqual(mock.variables, variables)) {
+        if (!areObjectsEquivalent(mock.variables, variables)) {
             return false;
         }
     }
@@ -61,7 +62,7 @@ export const gqlRequestMatchesMock = (
     // we just assume it matches everything.
     if (mock.context != null) {
         // Context has to match.
-        if (!areObjectsEqual(mock.context, context)) {
+        if (!areObjectsEquivalent(mock.context, context)) {
             return false;
         }
     }

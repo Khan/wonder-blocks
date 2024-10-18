@@ -48,6 +48,7 @@ export const defaultLabels = {
 } as const;
 
 export const defaultComboboxLabels: ComboboxLabels = {
+    clearSelection: "Clear selection",
     closedState: "Combobox is closed",
     comboboxButton: "Toggle listbox",
     listbox: "Options list",
@@ -68,5 +69,6 @@ export const defaultComboboxLabels: ComboboxLabels = {
     liveRegionListboxTotal: (total) => `${total} results available.`,
     noItems: "No results",
     selected: (labels: string) => `${labels} selected`,
+    selectionCleared: "Selection cleared",
     unselected: (labels: string) => `${labels} not selected`,
 };

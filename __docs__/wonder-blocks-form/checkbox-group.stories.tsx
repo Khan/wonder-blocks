@@ -26,6 +26,15 @@ export default {
 
 type StoryComponentType = StoryObj<typeof CheckboxGroup>;
 
+/**
+ * `CheckboxGroup` is a component that groups multiple `Choice` components
+ * together. It is used to allow users to select multiple options from a list.
+ *
+ * Note that by using a `label` prop, the `CheckboxGroup` component will render
+ * a `legend` as the first child of the `fieldset` element. This is important to
+ * include as it ensures that Screen Readers can correctly identify and announce
+ * the group of checkboxes.
+ */
 export const Default: StoryComponentType = {
     render: (args) => {
         return (

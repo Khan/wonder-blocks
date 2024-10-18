@@ -6,6 +6,7 @@ import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
 import Combobox from "../combobox";
 import OptionItem from "../option-item";
 import {defaultComboboxLabels} from "../../util/constants";
+import {MaybeValueOrValues} from "../../util/types";
 
 const doRender = (element: React.ReactElement) => {
     render(element, {wrapper: RenderStateRoot});
@@ -58,7 +59,9 @@ describe("Combobox", () => {
         );
 
         // Act
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(
+            screen.getByRole("button", {name: /toggle listbox/i}),
+        );
 
         // Assert
         await screen.findByRole("listbox", {hidden: true});
@@ -96,11 +99,15 @@ describe("Combobox", () => {
             </Combobox>,
         );
 
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(
+            screen.getByRole("button", {name: /toggle listbox/i}),
+        );
         await screen.findByRole("listbox", {hidden: true});
 
         // Act
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(
+            screen.getByRole("button", {name: /toggle listbox/i}),
+        );
 
         // Assert
         expect(
@@ -214,7 +221,9 @@ describe("Combobox", () => {
             </Combobox>,
         );
 
-        await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(
+            screen.getByRole("button", {name: /toggle listbox/i}),
+        );
         await screen.findByRole("listbox", {hidden: true});
 
         // Act
@@ -294,6 +303,133 @@ describe("Combobox", () => {
 
         // Assert
         expect(screen.getByRole("combobox")).not.toHaveFocus();
+    });
+
+    describe("dismiss button", () => {
+        it("should clear the value when the user presses the clear button (x) via Mouse", async () => {
+            // Arrange
+            const userEvent = doRender(
+                <Combobox selectionType="single" value="option2">
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Act
+            await userEvent.click(
+                screen.getByRole("button", {name: /clear selection/i}),
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveValue("");
+        });
+
+        it("should clear the value when the user presses the clear button (x) via Keyboard", async () => {
+            // Arrange
+            const userEvent = doRender(
+                <Combobox selectionType="single" value="option2">
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // focus the combobox
+            await userEvent.tab();
+
+            // Act
+            // Focus the clear button, then press Enter
+            await userEvent.tab();
+            await userEvent.keyboard("{Enter}");
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveValue("");
+        });
+    });
+
+    describe("error", () => {
+        it("should use aria-invalid=false by default", () => {
+            // Arrange
+
+            // Act
+            doRender(
+                <Combobox selectionType="single" value="">
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                "aria-invalid",
+                "false",
+            );
+        });
+
+        it("should use aria-invalid=true if error is true", async () => {
+            // Arrange
+            const userEvent = doRender(
+                <Combobox selectionType="single" value="" error={true}>
+                    <OptionItem label="option 1" value="option1" />
+                    <OptionItem label="option 2" value="option2" />
+                    <OptionItem label="option 3" value="option3" />
+                </Combobox>,
+            );
+
+            // Act
+            await userEvent.tab();
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                "aria-invalid",
+                "true",
+            );
+        });
+
+        it("should mark the combobox as aria-invalid=false when the value is valid", async () => {
+            // Arrange
+            const UnderTest = () => {
+                const [value, setValue] =
+                    React.useState<MaybeValueOrValues>("");
+                // empty value should mark the combobox as invalid
+                const [error, setError] = React.useState(value === "");
+
+                return (
+                    <Combobox
+                        selectionType="single"
+                        value={value}
+                        error={error}
+                        onChange={(newValue) => {
+                            if (newValue) {
+                                setValue(newValue);
+                            }
+
+                            setError(newValue === "");
+                        }}
+                    >
+                        <OptionItem label="option 1" value="option1" />
+                        <OptionItem label="option 2" value="option2" />
+                        <OptionItem label="option 3" value="option3" />
+                    </Combobox>
+                );
+            };
+
+            const userEvent = doRender(<UnderTest />);
+
+            // Act
+            await userEvent.type(
+                screen.getByRole("combobox"),
+                "option 1{Enter}",
+            );
+
+            // Assert
+            expect(screen.getByRole("combobox")).toHaveAttribute(
+                "aria-invalid",
+                "false",
+            );
+        });
     });
 
     describe("autoComplete", () => {
@@ -765,6 +901,29 @@ describe("Combobox", () => {
                 // Assert
                 expect(screen.getByRole("log")).toHaveTextContent(
                     defaultComboboxLabels.noItems,
+                );
+            });
+
+            // TODO (WB-1757.2): Enable this test once the LiveRegion component
+            // is refactored.
+            it.skip("should announce when the current selected value is cleared", async () => {
+                // Arrange
+                doRender(
+                    <Combobox value="option1" selectionType="single">
+                        <OptionItem label="Option 1" value="option1" />
+                        <OptionItem label="Option 2" value="option2" />
+                        <OptionItem label="Option 3" value="option3" />
+                    </Combobox>,
+                );
+
+                // Act
+                await userEvent.click(
+                    screen.getByRole("button", {name: /clear selection/i}),
+                );
+
+                // Assert
+                expect(screen.getByRole("log")).toHaveTextContent(
+                    defaultComboboxLabels.selectionCleared,
                 );
             });
         });

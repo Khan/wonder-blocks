@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 3.1.2
+
+### Patch Changes
+
+-   d7330053: Fix plural forms configuration for Khmer locale
+
 ## 3.1.1
 
 ### Patch Changes

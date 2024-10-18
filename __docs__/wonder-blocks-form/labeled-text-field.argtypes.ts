@@ -82,8 +82,22 @@ export default {
         },
     },
 
+    name: {
+        description: "Provide a name for the TextField.",
+        table: {
+            type: {
+                summary: "string",
+            },
+        },
+        control: {
+            type: "text",
+        },
+    },
+
     disabled: {
-        description: "Makes a read-only input field that cannot be focused.",
+        description: `Whether the input should be disabled. Defaults to false.
+            If the disabled prop is set to \`true\`, LabeledTextField will have disabled
+            styling and will not be interactable.`,
         table: {
             type: {
                 summary: "boolean",

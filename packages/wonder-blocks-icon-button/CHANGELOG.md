@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 5.6.0
+
+### Minor Changes
+
+-   75da0046: Adds `id` prop and fixes `type` prop to set 'button' as default value.
+
+## 5.5.0
+
+### Minor Changes
+
+-   3463bde3: Add type=submit prop to allow submitting forms with the button
+
 ## 5.4.1
 
 ### Patch Changes
