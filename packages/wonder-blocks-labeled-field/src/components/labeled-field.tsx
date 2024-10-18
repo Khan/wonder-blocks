@@ -113,7 +113,6 @@ export default function LabeledField(props: Props) {
     const descriptionId = `${uniqueId}-description`;
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
-    const errorSectionId = `${uniqueId}-error-section`;
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
@@ -177,8 +176,8 @@ export default function LabeledField(props: Props) {
                 <Strut size={spacing.small_12} />
                 <View
                     style={styles.errorSection}
-                    id={errorSectionId}
-                    testId={testId && `${testId}-error-section`}
+                    id={errorId}
+                    testId={testId && `${testId}-error`}
                     aria-live="assertive"
                 >
                     {error && (
@@ -198,8 +197,6 @@ export default function LabeledField(props: Props) {
                                     styles.errorMessage,
                                     light ? styles.lightError : styles.error,
                                 ]}
-                                id={errorId}
-                                testId={testId && `${testId}-error`}
                             >
                                 {error}
                             </LabelSmall>
@@ -213,10 +210,7 @@ export default function LabeledField(props: Props) {
     function renderField() {
         return React.cloneElement(field, {
             id: fieldId,
-            "aria-describedby": [
-                description && descriptionId,
-                error && errorSectionId,
-            ]
+            "aria-describedby": [error && errorId, description && descriptionId]
                 .filter(Boolean)
                 .join(" "),
             required,

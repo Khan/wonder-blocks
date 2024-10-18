@@ -1,5 +1,5 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {render, screen, within} from "@testing-library/react";
 import {StyleSheet} from "aphrodite";
 
 import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
@@ -23,15 +23,7 @@ describe("LabeledField", () => {
     const getLabel = () => screen.getByText(label);
     const getDescription = () => screen.getByText(description);
     const getField = () => screen.getByRole("textbox");
-    const getError = () => screen.getByText(error);
-    const getErrorSection = () => {
-        // eslint-disable-next-line testing-library/no-node-access
-        const el = getError().parentElement; // The error section is the parent of the alert.
-        if (!el) {
-            throw Error("Error section in LabeledField not found");
-        }
-        return el;
-    };
+    const getError = () => screen.getByTestId("test-id-error");
 
     it("LabeledField renders the label text", () => {
         // Arrange
@@ -243,12 +235,15 @@ describe("LabeledField", () => {
                     field={<TextField value="" onChange={() => {}} />}
                     label="Label"
                     error="Error message"
+                    testId="labeled-field"
                 />,
                 defaultOptions,
             );
 
             // Act
-            const errorIcon = screen.getByRole("img");
+            // Get the icon within the error section
+            const error = screen.getByTestId("labeled-field-error");
+            const errorIcon = within(error).getByRole("img");
 
             // Assert
             expect(errorIcon).toHaveAttribute("aria-label", "Error:");
@@ -262,7 +257,6 @@ describe("LabeledField", () => {
                 ["description", `${id}-description`, getDescription],
                 ["field", `${id}-field`, getField],
                 ["error", `${id}-error`, getError],
-                ["error section", `${id}-error-section`, getErrorSection],
             ])(
                 "should have the id for the %s element set to %s",
                 (
@@ -278,6 +272,7 @@ describe("LabeledField", () => {
                             label={label}
                             description={description}
                             error={error}
+                            testId={testId}
                         />,
                         defaultOptions,
                     );
@@ -295,7 +290,6 @@ describe("LabeledField", () => {
                 ["description", "-description", getDescription],
                 ["field", "-field", getField],
                 ["error", "-error", getError],
-                ["error section", `-error-section`, getErrorSection],
             ])(
                 "should have an auto-generated id for the %s element that ends with %s",
                 (
@@ -310,6 +304,7 @@ describe("LabeledField", () => {
                             label={label}
                             description={description}
                             error={error}
+                            testId={testId}
                         />,
                         defaultOptions,
                     );
@@ -329,7 +324,6 @@ describe("LabeledField", () => {
                 ["description", `${testId}-description`, getDescription],
                 ["field", `${testId}-field`, getField],
                 ["error", `${testId}-error`, getError],
-                ["error section", `${testId}-error-section`, getErrorSection],
             ])(
                 "should use the testId prop to set the %s element's data-testid attribute to %s",
                 (
@@ -361,8 +355,22 @@ describe("LabeledField", () => {
                 ["label", getLabel],
                 ["description", getDescription],
                 ["field", getField],
-                ["error", getError],
-                ["error section", getErrorSection],
+                [
+                    "error",
+                    () => {
+                        // In order to get the error section (icon + message)
+                        // without using testId, we get the parent of the error
+                        // text
+                        // eslint-disable-next-line testing-library/no-node-access
+                        const el = screen.getByText(error).parentElement;
+                        if (!el) {
+                            throw Error(
+                                "Error section in LabeledField not found",
+                            );
+                        }
+                        return el;
+                    },
+                ],
             ])(
                 "should not set the data-testid attribute on the %s element if the testId prop is not set",
                 (
@@ -483,12 +491,15 @@ describe("LabeledField", () => {
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
                         error={error}
+                        testId="labeled-field"
                     />,
                     defaultOptions,
                 );
 
                 // Act
-                const errorSectionEl = getErrorSection();
+                const errorSectionEl = screen.getByTestId(
+                    "labeled-field-error",
+                );
                 const inputEl = getField();
 
                 // Assert
@@ -506,12 +517,15 @@ describe("LabeledField", () => {
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
                         error={error}
+                        testId="labeled-field"
                     />,
                     defaultOptions,
                 );
 
                 // Act
-                const errorSectionEl = getErrorSection();
+                const errorSectionEl = screen.getByTestId(
+                    "labeled-field-error",
+                );
 
                 // Assert
                 expect(errorSectionEl).toHaveAttribute(
