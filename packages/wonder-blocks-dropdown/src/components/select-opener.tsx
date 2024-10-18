@@ -12,7 +12,7 @@ import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
 
-const StyledButton = addStyle("span");
+const StyledDiv = addStyle("div");
 
 type SelectOpenerProps = AriaProps & {
     /**
@@ -161,7 +161,7 @@ export default class SelectOpener extends React.Component<
         ];
 
         return (
-            <StyledButton
+            <StyledDiv
                 {...sharedProps}
                 aria-disabled={disabled}
                 aria-expanded={open ? "true" : "false"}
@@ -188,7 +188,7 @@ export default class SelectOpener extends React.Component<
                     style={styles.caret}
                     aria-hidden="true"
                 />
-            </StyledButton>
+            </StyledDiv>
         );
     }
 }
