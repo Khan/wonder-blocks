@@ -79,7 +79,7 @@ type Props = {
     labels?: LabeledFieldLabels;
 };
 
-type LabeledFieldLabels = {
+export type LabeledFieldLabels = {
     errorIconAriaLabel: string;
 };
 
