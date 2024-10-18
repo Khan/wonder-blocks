@@ -25,6 +25,6 @@
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",
     "aphrodite": "^1.2.5",
-    "react": "16.14.0"
+    "react": "^18.2.0"
   }
 }
