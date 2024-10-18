@@ -166,13 +166,14 @@ export const ReadOnly: StoryComponentType = {
  * If the `error` prop is set to true, the TextArea will have error styling and
  * `aria-invalid` set to `true`.
  *
- * This is useful for scenarios where we want to show an error message on a
+ * This is useful for scenarios where we want to show an error on a
  * specific field after a form is submitted (server validation).
  *
  * Note: The `required` and `validate` props can also put the TextArea in an
  * error state.
  */
 export const Error: StoryComponentType = {
+    render: ControlledTextArea,
     args: {
         value: "With error",
         error: true,
@@ -182,13 +183,13 @@ export const Error: StoryComponentType = {
 /**
  * If the textarea fails validation, `TextArea` will have error styling.
  *
- * This is useful for scenarios where we want to show error messages while a
+ * This is useful for scenarios where we want to show errors while a
  * user is filling out a form (client validation).
  *
  * Note that we will internally set the correct `aria-invalid` attribute to the
  * `textarea` element:
- * - `aria-invalid="true"` if there is an error message.
- * - `aria-invalid="false"` if there is no error message.
+ * - `aria-invalid="true"` if there is an error.
+ * - `aria-invalid="false"` if there is no error.
  */
 export const ErrorFromValidation: StoryComponentType = {
     args: {
@@ -206,7 +207,7 @@ export const ErrorFromValidation: StoryComponentType = {
 /**
  * This example shows how the `error` and `validate` props can both be used to
  * put the field in an error state. This is useful for scenarios where we want
- * to show error messages while a user is filling out a form (client validation)
+ * to show error while a user is filling out a form (client validation)
  * and after a form is submitted (server validation).
  *
  * In this example:

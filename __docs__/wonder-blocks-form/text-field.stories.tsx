@@ -426,22 +426,22 @@ function ErrorRender(args: PropsFor<typeof TextField>) {
     return (
         <View>
             <TextField
-                {...args}
                 id="tf-7"
                 type="email"
-                value={value}
                 placeholder="Email"
                 validate={validate}
                 onValidate={handleValidate}
-                onChange={handleChange}
                 onKeyDown={handleKeyDown}
+                {...args}
+                value={value}
+                onChange={handleChange}
             />
             {(errorMessage || args.error) && (
                 <View>
-                    <Strut size={spacing.xSmall_8} />
-                    <_Text style={styles.errorMessage}>
+                    <Strut size={spacing.xxSmall_6} />
+                    <LabelSmall style={styles.errorMessage}>
                         {errorMessage || "Error from error prop"}
-                    </_Text>
+                    </LabelSmall>
                 </View>
             )}
         </View>
@@ -452,28 +452,30 @@ function ErrorRender(args: PropsFor<typeof TextField>) {
  * If the `error` prop is set to true, the TextField will have error styling and
  * `aria-invalid` set to `true`.
  *
- * This is useful for scenarios where we want to show an error message on a
+ * This is useful for scenarios where we want to show an error on a
  * specific field after a form is submitted (server validation).
  *
  * Note: The `required` and `validate` props can also put the TextField in an
  * error state.
  */
 export const Error: StoryComponentType = {
+    render: ErrorRender,
     args: {
         error: true,
+        validate: undefined,
     },
 };
 
 /**
  * If an input value fails validation, `TextField` will have error styling.
  *
- * This is useful for scenarios where we want to show error messages while a
+ * This is useful for scenarios where we want to show errors while a
  * user is filling out a form (client validation).
  *
  * Note that we will internally set the correct `aria-invalid` attribute to the
  * `input` element:
- * - aria-invalid="true" if there is an error message.
- * - aria-invalid="false" if there is no error message.
+ * - aria-invalid="true" if there is an error.
+ * - aria-invalid="false" if there is no error.
  */
 export const ErrorFromValidation: StoryComponentType = {
     render: ErrorRender,
@@ -482,7 +484,7 @@ export const ErrorFromValidation: StoryComponentType = {
 /**
  * This example shows how the `error` and `validate` props can both be used to
  * put the field in an error state. This is useful for scenarios where we want
- * to show error messages while a user is filling out a form (client validation)
+ * to show errors while a user is filling out a form (client validation)
  * and after a form is submitted (server validation).
  *
  * In this example:
