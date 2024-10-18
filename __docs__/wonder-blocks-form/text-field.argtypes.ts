@@ -70,7 +70,9 @@ export default {
     },
 
     disabled: {
-        description: "Makes a read-only input field that cannot be focused.",
+        description: `Whether the input should be disabled. Defaults to false.
+            If the disabled prop is set to \`true\`, TextField will have disabled
+            styling and will not be interactable.`,
         table: {
             type: {
                 summary: "boolean",

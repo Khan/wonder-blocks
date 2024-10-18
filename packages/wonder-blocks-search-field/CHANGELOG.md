@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.3.3
+
+### Patch Changes
+
+-   Updated dependencies [8c861955]
+-   Updated dependencies [0b3a28a7]
+    -   @khanacademy/wonder-blocks-form@4.10.1
+
+## 2.3.2
+
+### Patch Changes
+
+-   Updated dependencies [7a98815b]
+    -   @khanacademy/wonder-blocks-form@4.10.0
+
+## 2.3.1
+
+### Patch Changes
+
+-   Updated dependencies [75da0046]
+    -   @khanacademy/wonder-blocks-icon-button@5.6.0
+
+## 2.3.0
+
+### Minor Changes
+
+-   659a031d: Add onKeyUp prop to the `SearchField` component
+
+### Patch Changes
+
+-   Updated dependencies [3463bde3]
+    -   @khanacademy/wonder-blocks-icon-button@5.5.0
+
+## 2.2.27
+
+### Patch Changes
+
+-   Updated dependencies [61dc4448]
+-   Updated dependencies [2dfd5eb6]
+    -   @khanacademy/wonder-blocks-form@4.9.4
+
 ## 2.2.26
 
 ### Patch Changes

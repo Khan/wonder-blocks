@@ -16,10 +16,11 @@ The `mockFetch` function provides an API to easily mock `fetch()` responses. It 
 
 Besides being a function that fits the `fetch()` signature, the return value of `mockFetch()` has an API to customize the behavior of that function. Used in conjunction with the <a href="./?path=/docs/packages-testing-mocking-exports-respondwith--docs">`RespondWith`</a> API, this can create a variety of responses for tests and stories.
 
-| Function            | Purpose                                                                                                                        |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `mockOperation`     | When called, any request that matches the defined mock will respond with the given response.                                   |
+| Function | Purpose |
+| - | - |
+| `mockOperation` | When called, any request that matches the defined mock will respond with the given response. |
 | `mockOperationOnce` | When called, the first request that matches the defined mock will respond with the given response. The mock is only used once. |
+| `configure` | This allows you to configure the behavior of the mock fetch function. |
 
 Both of these functions have the same signature:
 
@@ -30,6 +31,25 @@ type FetchMockOperationFn = (
 ) => FetchMockFn;
 ```
 
-# Operation Matching
+
+## Configuration
+
+The `configure` function allows you to configure the behavior of the mocked fetch function. It takes a partial configuration and applies that to the existing
+configuration. This changes the behavior of all calls to the mocked function.
+
+The full configuration is:
+
+```ts
+{
+    hardFailOnUnmockedRequests: boolean;
+}
+```
+
+| Configuration Key | Purpose |
+| - | - |
+| `hardFailOnUnmockedRequests` | When set to `true`, any unmocked request will throw an error, causing tests to fail. When set to `false`, unmocked requests will reject, which in turn gets handled by the relevant error handling in the code under test - this is the default behavior and is usually what you want so that you don't need to mock every single request that may be invoked during your tests. |
+
+
+## Operation Matching
 
 The `FetchMockOperation` type is either of type `string` or `RegExp`. When specified as a string, the URL of the request must match the string exactly. When specified as a regular expression, the URL of the request must match the regular expression.

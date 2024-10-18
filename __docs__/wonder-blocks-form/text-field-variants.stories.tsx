@@ -5,16 +5,16 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {TextArea} from "@khanacademy/wonder-blocks-form";
+import {TextField} from "@khanacademy/wonder-blocks-form";
 
 /**
  * The following stories are used to generate the pseudo states for the
- * TextArea component. This is only used for visual testing in Chromatic.
+ * TextField component. This is only used for visual testing in Chromatic.
  *
- * Note: Error state is not shown on initial render if the TextArea value is empty.
+ * Note: Error state is not shown on initial render if the TextField value is empty.
  */
 export default {
-    title: "Packages / Form / TextArea / All Variants",
+    title: "Packages / Form / TextField / All Variants",
     parameters: {
         docs: {
             autodocs: false,
@@ -22,7 +22,7 @@ export default {
     },
 } as Meta;
 
-type StoryComponentType = StoryObj<typeof TextArea>;
+type StoryComponentType = StoryObj<typeof TextField>;
 
 const longText =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
@@ -65,7 +65,7 @@ const States = (props: {
                             >
                                 {scenario.label}
                             </LabelMedium>
-                            <TextArea
+                            <TextField
                                 value=""
                                 onChange={() => {}}
                                 {...props}
@@ -122,7 +122,7 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * Similar to TextField, there are currently no hover styles.
+ * There are currently no hover styles.
  */
 export const Hover: StoryComponentType = {
     render: AllVariants,
@@ -141,7 +141,7 @@ export const HoverFocus: StoryComponentType = {
 };
 
 /**
- * Similar to TextField, there are currently no active styles.
+ * There are currently no active styles.
  */
 export const Active: StoryComponentType = {
     render: AllVariants,

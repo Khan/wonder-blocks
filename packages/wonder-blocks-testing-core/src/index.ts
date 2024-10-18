@@ -15,6 +15,8 @@ export type {
     OperationMock,
     OperationMatcher,
     MockOperationFn,
+    MockConfiguration,
+    ConfigureFn,
 } from "./types";
 
 // Test harness framework

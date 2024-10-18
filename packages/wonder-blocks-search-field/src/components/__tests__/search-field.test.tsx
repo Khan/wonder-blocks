@@ -418,4 +418,27 @@ describe("SearchField", () => {
         // Assert
         expect(searchField).not.toHaveFocus();
     });
+
+    it("onKeyDown is called after keyboard key press", async () => {
+        // Arrange
+        const handleOnKeyDown = jest.fn(
+            (event: React.KeyboardEvent<HTMLInputElement>) => {
+                return event.key;
+            },
+        );
+
+        render(
+            <SearchField
+                value="something"
+                onChange={() => {}}
+                onKeyDown={handleOnKeyDown}
+            />,
+        );
+
+        // Act
+        await userEvent.type(await screen.findByRole("textbox"), "{enter}");
+
+        // Assert
+        expect(handleOnKeyDown).toHaveReturnedWith("Enter");
+    });
 });

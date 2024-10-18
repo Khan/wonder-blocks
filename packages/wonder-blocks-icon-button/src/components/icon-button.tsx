@@ -10,6 +10,10 @@ export type IconButtonSize = "xsmall" | "small" | "medium" | "large";
 
 export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
+     * A unique identifier for the IconButton.
+     */
+    id?: string;
+    /**
      * A Phosphor icon asset (imported as a static SVG file).
      */
     icon: PhosphorIconAsset;
@@ -40,6 +44,10 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Used for icon buttons within <form>s.
+     */
+    type?: "submit";
     /**
      * Size of the icon button.
      * One of `xsmall` (16 icon, 20 target), `small` (24, 32), `medium` (24, 40),
@@ -181,6 +189,7 @@ export const IconButton: React.ForwardRefExoticComponent<
         skipClientNav,
         tabIndex,
         target,
+        type,
         ...sharedProps
     } = props;
 
@@ -219,6 +228,7 @@ export const IconButton: React.ForwardRefExoticComponent<
                 tabIndex={tabIndex}
                 onKeyDown={handleKeyDown}
                 onKeyUp={handleKeyUp}
+                type={type}
             />
         </ThemedIconButton>
     );

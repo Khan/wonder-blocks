@@ -6,6 +6,8 @@ import type {StyleDeclaration} from "aphrodite";
 
 const styles: StyleDeclaration = StyleSheet.create({
     fieldset: {
+        display: "flex",
+        flexDirection: "column",
         border: "none",
         padding: 0,
         margin: 0,

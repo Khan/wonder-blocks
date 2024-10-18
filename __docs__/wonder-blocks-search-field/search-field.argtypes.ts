@@ -1,6 +1,5 @@
 export default {
     clearAriaLabel: {
-        description: `ARIA label for the clear button. Defaults to "Clear search".`,
         type: {name: "string", required: false},
         table: {
             type: {
@@ -13,8 +12,6 @@ export default {
         },
     },
     id: {
-        description: `The unique identifier for the input. If one is not
-            provided, a unique id will be generated.`,
         type: {name: "string", required: false},
         table: {
             type: {
@@ -26,7 +23,6 @@ export default {
         },
     },
     value: {
-        description: "The text input value.",
         type: {name: "string", required: true},
         table: {
             type: {
@@ -36,8 +32,6 @@ export default {
         control: {type: "text"},
     },
     name: {
-        description: `The name for the input control. This is submitted along
-            with the form data.`,
         type: {name: "string", required: false},
         table: {
             type: {
@@ -49,9 +43,6 @@ export default {
         },
     },
     placeholder: {
-        description: `Provide hints or examples of what to enter.
-            This shows up as a grayed out text in the field before
-            a value is entered.`,
         type: {name: "string", required: false},
         table: {
             type: {
@@ -63,7 +54,6 @@ export default {
         },
     },
     autoFocus: {
-        description: "Whether this field should autofocus on page load.",
         type: {name: "boolean", required: false},
         table: {
             type: {
@@ -78,8 +68,6 @@ export default {
         },
     },
     disabled: {
-        description: `Makes a read-only input field that cannot be focused.
-            Defaults to false.`,
         type: {name: "boolean", required: false},
         table: {
             type: {
@@ -94,8 +82,6 @@ export default {
         },
     },
     light: {
-        description:
-            "Change the default focus ring color to fit a dark background.",
         type: {name: "boolean", required: false},
         table: {
             type: {
@@ -110,7 +96,6 @@ export default {
         },
     },
     style: {
-        description: "Custom styles for the main wrapper.",
         table: {
             type: {
                 summary: "Style",
@@ -124,7 +109,6 @@ export default {
         },
     },
     testId: {
-        description: "Test ID used for e2e testing.",
         type: {name: "string", required: false},
         table: {
             type: {
@@ -136,7 +120,6 @@ export default {
         },
     },
     onChange: {
-        description: "Called when the value has changed.",
         table: {
             type: {
                 summary: "function",
@@ -145,8 +128,6 @@ export default {
         },
     },
     onClick: {
-        description: `Handler that is triggered when this component is clicked.
-            For example, use this to adjust focus in parent component.`,
         table: {
             type: {
                 summary: "function",
@@ -155,7 +136,14 @@ export default {
         },
     },
     onKeyDown: {
-        description: "Called when a key is pressed.",
+        table: {
+            type: {
+                summary: "function",
+            },
+            category: "Events",
+        },
+    },
+    onKeyUp: {
         table: {
             type: {
                 summary: "function",
@@ -164,7 +152,6 @@ export default {
         },
     },
     onFocus: {
-        description: "Called when the element has been focused.",
         table: {
             type: {
                 summary: "function",
@@ -173,7 +160,6 @@ export default {
         },
     },
     onBlur: {
-        description: "Called when the element has been blurred.",
         table: {
             type: {
                 summary: "function",

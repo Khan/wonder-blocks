@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -115,43 +115,44 @@ const RadioGroup = React.forwardRef(function RadioGroup(
     const allChildren = React.Children.toArray(children).filter(Boolean);
 
     return (
-        <StyledFieldset data-testid={testId} style={styles.fieldset} ref={ref}>
-            {/* We have a View here because fieldset cannot be used with flexbox*/}
-            <View style={style}>
-                {label && (
-                    <StyledLegend style={styles.legend}>
-                        <LabelMedium>{label}</LabelMedium>
-                    </StyledLegend>
-                )}
-                {description && (
-                    <LabelSmall style={styles.description}>
-                        {description}
-                    </LabelSmall>
-                )}
-                {errorMessage && (
-                    <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
-                )}
-                {(label || description || errorMessage) && (
-                    <Strut size={spacing.small_12} />
-                )}
+        <StyledFieldset
+            data-testid={testId}
+            style={[styles.fieldset, style]}
+            ref={ref}
+        >
+            {label && (
+                <StyledLegend style={styles.legend}>
+                    <LabelMedium>{label}</LabelMedium>
+                </StyledLegend>
+            )}
+            {description && (
+                <LabelSmall style={styles.description}>
+                    {description}
+                </LabelSmall>
+            )}
+            {errorMessage && (
+                <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
+            )}
+            {(label || description || errorMessage) && (
+                <Strut size={spacing.small_12} />
+            )}
 
-                {allChildren.map((child, index) => {
-                    // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
-                    const {style, value} = child.props;
-                    const checked = selectedValue === value;
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-                    return React.cloneElement(child, {
-                        checked: checked,
-                        error: !!errorMessage,
-                        groupName: groupName,
-                        id: `${groupName}-${value}`,
-                        key: value,
-                        onChange: () => onChange(value),
-                        style: [index > 0 && styles.defaultLineGap, style],
-                        variant: "radio",
-                    });
-                })}
-            </View>
+            {allChildren.map((child, index) => {
+                // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
+                const {style, value} = child.props;
+                const checked = selectedValue === value;
+                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
+                return React.cloneElement(child, {
+                    checked: checked,
+                    error: !!errorMessage,
+                    groupName: groupName,
+                    id: `${groupName}-${value}`,
+                    key: value,
+                    onChange: () => onChange(value),
+                    style: [index > 0 && styles.defaultLineGap, style],
+                    variant: "radio",
+                });
+            })}
         </StyledFieldset>
     );
 });

@@ -183,6 +183,23 @@ describe("IconButton", () => {
         expect(onClickMock).not.toBeCalled();
     });
 
+    it("sets the 'id' prop on the underlying element", async () => {
+        // Arrange
+        render(
+            <IconButton
+                icon={magnifyingGlassIcon}
+                aria-label="search"
+                id="icon-button"
+            />,
+        );
+
+        // Act
+        const button = await screen.findByRole("button");
+
+        // Assert
+        expect(button).toHaveAttribute("id", "icon-button");
+    });
+
     it("sets the 'target' prop on the underlying element", async () => {
         // Arrange
         render(
@@ -318,6 +335,64 @@ describe("IconButton", () => {
 
             // Assert
             expect(onClickMock).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("type", () => {
+        it("should set type attribute to 'button' by default", async () => {
+            // Arrange
+            render(<IconButton icon={magnifyingGlassIcon} />);
+
+            // Act
+            const button = await screen.findByRole("button");
+
+            // Assert
+            expect(button).toHaveAttribute("type", "button");
+        });
+
+        it("should submit button within form via click", async () => {
+            // Arrange
+            const submitFnMock = jest.fn();
+            render(
+                <form onSubmit={submitFnMock}>
+                    <IconButton icon={magnifyingGlassIcon} type="submit" />
+                </form>,
+            );
+
+            // Act
+            const button = await screen.findByRole("button");
+            await userEvent.click(button);
+
+            // Assert
+            expect(submitFnMock).toHaveBeenCalled();
+        });
+
+        it("should submit button within form via keyboard", async () => {
+            // Arrange
+            const submitFnMock = jest.fn();
+            render(
+                <form onSubmit={submitFnMock}>
+                    <IconButton icon={magnifyingGlassIcon} type="submit" />
+                </form>,
+            );
+
+            // Act
+            const button = await screen.findByRole("button");
+            await userEvent.type(button, "{enter}");
+
+            // Assert
+            expect(submitFnMock).toHaveBeenCalled();
+        });
+
+        it("should submit button doesn't break if it's not in a form", async () => {
+            // Arrange
+            render(<IconButton icon={magnifyingGlassIcon} type="submit" />);
+
+            // Act
+            expect(async () => {
+                // Assert
+                await userEvent.click(await screen.findByRole("button"));
+            }).not.toThrow();
         });
     });
 });
