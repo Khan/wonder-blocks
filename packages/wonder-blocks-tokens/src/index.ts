@@ -8,7 +8,7 @@ import {spacing} from "./tokens/spacing";
 import {semanticColor} from "./tokens/semantic-color";
 
 // media queries
-import {mediaQueries} from "./tokens/mediaQueries";
+import {mediaQueries} from "./tokens/media-queries";
 
 // utils
 import {mix, fade} from "./util/utils";
