@@ -1,6 +1,6 @@
 declare module "aphrodite" {
     import * as React from "react";
-    import {mediaQueries} from "@khanacademy/wonder-blocks-tokens";
+    import {mediaQueries} from "../../packages/wonder-blocks-tokens";
 
     type _CSSProperties = React.CSSProperties & {
         /**
