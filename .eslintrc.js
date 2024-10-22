@@ -7,10 +7,12 @@ module.exports = {
         // This config includes rules from storybook to enforce story best
         // practices
         "plugin:storybook/recommended",
+        "plugin:jsx-a11y/recommended",
     ],
     plugins: [
         "import",
         "jest",
+        "jsx-a11y",
         "jsdoc",
         "promise",
         "monorepo",
