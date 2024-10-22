@@ -7,7 +7,7 @@ module.exports = {
         // This config includes rules from storybook to enforce story best
         // practices
         "plugin:storybook/recommended",
-        "plugin:jsx-a11y/recommended",
+        "plugin:jsx-a11y/strict",
     ],
     plugins: [
         "import",
