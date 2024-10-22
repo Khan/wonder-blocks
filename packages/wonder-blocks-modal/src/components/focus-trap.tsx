@@ -128,6 +128,7 @@ export default class FocusTrap extends React.Component<Props> {
                  * they're always in view, this prevents page scrolling when
                  * tabbing. */}
                 <div
+                    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                     tabIndex={0}
                     className="modal-focus-trap-first"
                     onFocus={this.handleFocusMoveToLast}
@@ -137,6 +138,7 @@ export default class FocusTrap extends React.Component<Props> {
                     {this.props.children}
                 </View>
                 <div
+                    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                     tabIndex={0}
                     className="modal-focus-trap-last"
                     onFocus={this.handleFocusMoveToFirst}
