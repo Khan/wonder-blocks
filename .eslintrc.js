@@ -61,6 +61,14 @@ module.exports = {
                 "no-undef": "off",
             },
         },
+        {
+            files: ["**/*.ts", "**/*.tsx"],
+            rules: {
+                // Disable autofocus rule for WB. It should be up to consumers
+                // to use the autofocus prop depending on the context.
+                "jsx-a11y/no-autofocus": "off",
+            },
+        },
     ],
     globals: {
         // `no-undef` doesn't support `globalThis`, for details see
