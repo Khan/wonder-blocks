@@ -27,6 +27,8 @@ describe("isFocusable", () => {
 
     it("should mark a div with tabIndex greater than -1 as focusable", () => {
         // Arrange
+        // Explicitly testing a div with tabIndex
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
         render(<div tabIndex={0}>placeholder</div>);
 
         // Act
