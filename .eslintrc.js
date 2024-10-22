@@ -59,6 +59,9 @@ module.exports = {
             files: ["**/*.test.ts", "**/*.test.tsx"],
             rules: {
                 "no-undef": "off",
+                // Disabled rule because some tests check for when a positive
+                // tabindex is provided
+                "jsx-a11y/tabindex-no-positive": "off",
             },
         },
         {
