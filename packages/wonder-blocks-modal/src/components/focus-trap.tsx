@@ -127,6 +127,7 @@ export default class FocusTrap extends React.Component<Props> {
                  * We set the sentinels to be position: fixed to make sure
                  * they're always in view, this prevents page scrolling when
                  * tabbing. */}
+                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                 <div
                     // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                     tabIndex={0}
@@ -137,6 +138,7 @@ export default class FocusTrap extends React.Component<Props> {
                 <View style={style} ref={this.getModalRoot}>
                     {this.props.children}
                 </View>
+                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
                 <div
                     // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                     tabIndex={0}
