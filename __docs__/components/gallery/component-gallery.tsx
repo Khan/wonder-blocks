@@ -1,49 +1,65 @@
 import * as React from "react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 
-import AccordionGallerySection from "./sections/accordion-section";
-import BannerSection from "./sections/banner-section";
-import BirthdayPickerSection from "./sections/birthday-picker-section";
-import BreadcrumbsSection from "./sections/breadcrumbs-section";
-import ButtonSection from "./sections/button-section";
-import CellSection from "./sections/cell-section";
-import DropdownSection from "./sections/dropdown-section";
-import FormSection from "./sections/form-section";
-import IconButtonSection from "./sections/icon-button-section";
-import IconSection from "./sections/icon-section";
-import LinkSection from "./sections/link-section";
-import ModalSection from "./sections/modal-section";
-import PillSection from "./sections/pill-section";
-import PopoverSection from "./sections/popover-section";
-import ProgressSpinnerSection from "./sections/progress-spinner-section";
-import SearchFieldSection from "./sections/search-field-section";
-import SwitchSection from "./sections/switch-section";
-import ToolbarSection from "./sections/toolbar-section";
-import TooltipSection from "./sections/tooltip-section";
+import AccordionTile from "./tiles/accordion-tile";
+import AccordionSectionTile from "./tiles/accordion-section-tile";
+import ActionMenuTile from "./tiles/action-menu-tile";
+import BannerTile from "./tiles/banner-tile";
+import BirthdayPickerTile from "./tiles/birthday-picker-tile";
+import BreadcrumbsTile from "./tiles/breadcrumbs-tile";
+import ButtonTile from "./tiles/button-tile";
+import CompactCellTile from "./tiles/compact-cell-tile";
+import DetailCellTile from "./tiles/detail-cell-tile";
+import IconButtonTile from "./tiles/icon-button-tile";
+import IconTile from "./tiles/icon-tile";
+import LinkTile from "./tiles/link-tile";
+import ModalTile from "./tiles/modal-tile";
+import MultiSelectTile from "./tiles/multi-select-tile";
+import PillTile from "./tiles/pill-tile";
+import PopoverTile from "./tiles/popover-tile";
+import ProgressSpinnerTile from "./tiles/progress-spinner-tile";
+import SearchFieldTile from "./tiles/search-field-tile";
+import SingleSelectTile from "./tiles/single-select-tile";
+import SwitchTile from "./tiles/switch-tile";
+import ToolbarTile from "./tiles/toolbar-tile";
+import TooltipTile from "./tiles/tooltip-tile";
+import CheckboxTile from "./tiles/checkbox-tile";
+import CheckboxGroupTile from "./tiles/checkbox-group-tile";
+import RadioGroupTile from "./tiles/radio-group-tile";
+import TextFieldTile from "./tiles/text-field-tile";
+import LabeledTextFieldTile from "./tiles/labeled-text-field-tile";
 
 export default function ComponentGallery() {
     return (
         <View>
-            <AccordionGallerySection />
-            <BannerSection />
-            <BirthdayPickerSection />
-            <BreadcrumbsSection />
-            <ButtonSection />
-            <CellSection />
-            <DropdownSection />
-            <FormSection />
-            <IconButtonSection />
-            <IconSection />
-            <LinkSection />
-            <ModalSection />
-            <PillSection />
-            <PopoverSection />
-            <ProgressSpinnerSection />
-            <SearchFieldSection />
-            <SwitchSection />
-            <ToolbarSection />
-            <TooltipSection />
+            <AccordionTile />
+            <AccordionSectionTile />
+            <BannerTile />
+            <BirthdayPickerTile />
+            <BreadcrumbsTile />
+            <ButtonTile />
+            <CompactCellTile />
+            <DetailCellTile />
+            <ActionMenuTile />
+            <MultiSelectTile />
+            <SingleSelectTile />
+            <CheckboxTile />
+            <CheckboxGroupTile />
+            <RadioGroupTile />
+            <TextFieldTile />
+            <LabeledTextFieldTile />
+            <IconButtonTile />
+            <IconTile />
+            <LinkTile />
+            <ModalTile />
+            <PillTile />
+            <PopoverTile />
+            <ProgressSpinnerTile />
+            <SearchFieldTile />
+            <SwitchTile />
+            <ToolbarTile />
+            <TooltipTile />
         </View>
     );
 }
