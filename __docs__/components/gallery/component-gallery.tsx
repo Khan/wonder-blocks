@@ -18,6 +18,7 @@ import IconButtonTile from "./tiles/icon-button-tile";
 import IconTile from "./tiles/icon-tile";
 import LabeledTextFieldTile from "./tiles/labeled-text-field-tile";
 import LinkTile from "./tiles/link-tile";
+import ListboxTile from "./tiles/listbox-tile";
 import ModalTile from "./tiles/modal-tile";
 import MultiSelectTile from "./tiles/multi-select-tile";
 import PillTile from "./tiles/pill-tile";
@@ -46,6 +47,7 @@ export default function ComponentGallery() {
             <MultiSelectTile />
             <SingleSelectTile />
             <ComboboxTile />
+            <ListboxTile />
             <CheckboxTile />
             <CheckboxGroupTile />
             <RadioGroupTile />
