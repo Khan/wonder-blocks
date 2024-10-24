@@ -9,16 +9,26 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {CommonTileProps} from "./types";
+import {Spring} from "@khanacademy/wonder-blocks-layout";
 
 type Props = CommonTileProps & {
     children: React.ReactNode;
     name: string;
     description?: string;
     href: string;
+    rightAccessory?: React.ReactNode;
 };
 
 export default function ComponentTile(props: Props) {
-    const {children, description, name, href, layout, compactGrid} = props;
+    const {
+        children,
+        description,
+        name,
+        href,
+        rightAccessory,
+        layout,
+        compactGrid,
+    } = props;
 
     if (layout === "list") {
         return (
@@ -26,6 +36,7 @@ export default function ComponentTile(props: Props) {
                 title={name}
                 subtitle2={description}
                 leftAccessory={<PhosphorIcon icon={externalLinkIcon} />}
+                rightAccessory={rightAccessory}
                 href={href}
                 target="_blank"
             />
@@ -63,6 +74,8 @@ export default function ComponentTile(props: Props) {
                                         aria-hidden="true"
                                     />
                                 </View>
+                                <Spring />
+                                {rightAccessory}
                             </View>
 
                             {!compactGrid && (
@@ -123,7 +136,6 @@ const styles = StyleSheet.create({
         padding: tokens.spacing.small_12,
     },
     headingContainer: {
-        width: "fit-content",
         flexDirection: "row",
         alignItems: "center",
     },
@@ -142,5 +154,6 @@ const styles = StyleSheet.create({
     },
     externalLinkIcon: {
         marginLeft: tokens.spacing.xSmall_8,
+        marginRight: tokens.spacing.xSmall_8,
     },
 });
