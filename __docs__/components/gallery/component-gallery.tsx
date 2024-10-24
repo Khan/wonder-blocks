@@ -28,6 +28,7 @@ import RadioGroupTile from "./tiles/radio-group-tile";
 import SearchFieldTile from "./tiles/search-field-tile";
 import SingleSelectTile from "./tiles/single-select-tile";
 import SwitchTile from "./tiles/switch-tile";
+import TextAreaTile from "./tiles/text-area-tile";
 import TextFieldTile from "./tiles/text-field-tile";
 import ToolbarTile from "./tiles/toolbar-tile";
 import TooltipTile from "./tiles/tooltip-tile";
@@ -52,6 +53,7 @@ export default function ComponentGallery() {
             <CheckboxGroupTile />
             <RadioGroupTile />
             <TextFieldTile />
+            <TextAreaTile />
             <LabeledTextFieldTile />
             <IconButtonTile />
             <IconTile />
