@@ -37,14 +37,18 @@ export const makeStyled = <
     ).toUpperCase()}${Component.slice(1)}` as `Styled${Capitalize<T & string>}`;
     return {
         [styledComponentName]: addStyle(Component, defaultStyle),
-    } as NamedStyledType<T, Props>;
+    } as unknown as NamedStyledType<T, Props>;
 };
 
 export default function addStyle<
     // We extend `React.ComponentType<any>` to support `addStyle(Link)` with
     // react-router's `Link` component.
     T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
-    Props extends StyledProps,
+    Props extends {
+        className?: string;
+        style?: StyleType;
+        children?: React.ReactNode;
+    } & Omit<React.ComponentProps<T>, "style">, // Removes the 'style' prop from the original component
 >(
     Component: T,
     defaultStyle?: StyleType,
