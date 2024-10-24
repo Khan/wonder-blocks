@@ -37,45 +37,60 @@ export default function ComponentGallery() {
                     featured in this gallery.`}
                 />
                 <View style={styles.menuBar}>
-                    <LabelMedium>Group by</LabelMedium>
-                    <Strut size={spacing.xSmall_8} />
-                    <SingleSelect
-                        selectedValue={currentGroup}
-                        onChange={setCurrentGroup}
-                        // Placehoder is not used here
-                        placeholder=""
-                    >
-                        <OptionItem label="alphabet" value="alphabet" />
-                        <OptionItem label="function" value="function" />
-                        <OptionItem label="package" value="package" />
-                    </SingleSelect>
+                    <LabelMedium tag="label" style={styles.row}>
+                        Group by
+                        <Strut size={spacing.xSmall_8} />
+                        <SingleSelect
+                            selectedValue={currentGroup}
+                            onChange={setCurrentGroup}
+                            // Placehoder is not used here
+                            placeholder=""
+                        >
+                            <OptionItem label="alphabet" value="alphabet" />
+                            <OptionItem label="function" value="function" />
+                            <OptionItem label="package" value="package" />
+                        </SingleSelect>
+                    </LabelMedium>
                     <Strut size={spacing.large_24} />
 
-                    <LabelMedium>Layout</LabelMedium>
-                    <Strut size={spacing.xSmall_8} />
-                    <SingleSelect
-                        selectedValue={currentLayout}
-                        onChange={(newValue) =>
-                            setCurrentLayout(
-                                newValue === "grid" ? "grid" : "list",
-                            )
-                        }
-                        // Placehoder is not used here
-                        placeholder=""
-                    >
-                        <OptionItem label="grid" value="grid" />
-                        <OptionItem label="list" value="list" />
-                    </SingleSelect>
+                    <LabelMedium tag="label" style={styles.row}>
+                        Layout
+                        <Strut size={spacing.xSmall_8} />
+                        <SingleSelect
+                            selectedValue={currentLayout}
+                            onChange={(newValue) =>
+                                setCurrentLayout(
+                                    newValue === "grid" ? "grid" : "list",
+                                )
+                            }
+                            // Placehoder is not used here
+                            placeholder=""
+                        >
+                            <OptionItem label="grid" value="grid" />
+                            <OptionItem label="list" value="list" />
+                        </SingleSelect>
+                    </LabelMedium>
 
                     {currentLayout === "grid" && (
                         <>
                             <Spring />
                             <Switch
+                                // This shouldn't need to be a unique ID, since
+                                // it shoulbe the only compact grid switch on
+                                // the page, and the page should not be
+                                // rendered multiple times in one place.
+                                id="wb-storybook-gallery-compact-grid-switch"
                                 checked={compactGridView}
                                 onChange={setCompactGridView}
                             />
                             <Strut size={spacing.xSmall_8} />
-                            <LabelMedium>Compact grid</LabelMedium>
+                            <LabelMedium
+                                tag="label"
+                                htmlFor="wb-storybook-gallery-compact-grid-switch"
+                                style={styles.row}
+                            >
+                                Compact grid
+                            </LabelMedium>
                         </>
                     )}
                 </View>
@@ -118,7 +133,8 @@ export const styles = StyleSheet.create({
         marginTop: spacing.xLarge_32,
         marginBottom: spacing.large_24,
     },
-    labeledSwitch: {
+    row: {
+        display: "flex",
         flexDirection: "row",
         alignItems: "center",
     },
