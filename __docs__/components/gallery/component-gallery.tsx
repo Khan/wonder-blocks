@@ -12,6 +12,7 @@ import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 
 import type {GroupMap} from "./groups";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import Banner from "@khanacademy/wonder-blocks-banner";
 
 export default function ComponentGallery() {
     const groupMaps: Record<string, GroupMap[]> = {
@@ -27,6 +28,13 @@ export default function ComponentGallery() {
 
     return (
         <View>
+            <Banner
+                kind="info"
+                layout="floating"
+                text={`Note: The core, data, translations, layout, testing,
+                    theming, timing, tokens, and typography packages are not
+                    featured in this gallery.`}
+            />
             <View style={styles.menuBar}>
                 <LabelMedium>Group by</LabelMedium>
                 <Strut size={spacing.xSmall_8} />
@@ -92,7 +100,7 @@ export default function ComponentGallery() {
 
 export const styles = StyleSheet.create({
     menuBar: {
-        marginTop: spacing.large_24,
+        marginTop: spacing.medium_16,
         flexDirection: "row",
         alignItems: "center",
     },
