@@ -2,15 +2,17 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {screen, render} from "@testing-library/react";
 
-import addStyle from "../add-style";
+import {makeStyled} from "../add-style";
 
-const StyledDiv = addStyle("div");
+// const StyledDiv = addStyle("div");
 
 const styles = StyleSheet.create({
     foo: {
         height: "100%",
     },
 });
+
+const {StyledDiv} = makeStyled("div");
 
 describe("addStyle", () => {
     let SNAPSHOT_INLINE_APHRODITE: any;

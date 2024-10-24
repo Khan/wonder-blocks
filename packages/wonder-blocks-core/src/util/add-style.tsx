@@ -5,15 +5,46 @@ import {processStyleList} from "./util";
 
 import type {StyleType} from "./types";
 
+type StyledProps = {
+    className?: string;
+    style?: StyleType;
+    children?: React.ReactNode;
+} & Omit<React.ComponentProps<"div">, "style">; // Removes the 'style' prop from the original component
+
+type StyledElement<
+    T extends keyof JSX.IntrinsicElements,
+    Props extends StyledProps,
+> = React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<Props> & React.RefAttributes<IntrinsicElementsMap[T]>
+>;
+
+type NamedStyledType<
+    T extends keyof JSX.IntrinsicElements,
+    Props extends StyledProps,
+> = {
+    [K in T as `Styled${Capitalize<T & string>}`]: StyledElement<T, Props>;
+};
+
+export const makeStyled = <
+    T extends keyof JSX.IntrinsicElements,
+    Props extends StyledProps,
+>(
+    Component: T,
+    defaultStyle?: StyleType,
+): NamedStyledType<T, Props> => {
+    const styledComponentName = `Styled${Component.charAt(
+        0,
+    ).toUpperCase()}${Component.slice(1)}` as `Styled${Capitalize<T & string>}`;
+    return {
+        [styledComponentName]: addStyle(Component, defaultStyle),
+    } as NamedStyledType<T, Props>;
+};
+
 export default function addStyle<
     // We extend `React.ComponentType<any>` to support `addStyle(Link)` with
     // react-router's `Link` component.
     T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
-    Props extends {
-        className?: string;
-        style?: StyleType;
-        children?: React.ReactNode;
-    } & Omit<React.ComponentProps<T>, "style">, // Removes the 'style' prop from the original component
+    Props extends StyledProps,
 >(
     Component: T,
     defaultStyle?: StyleType,
