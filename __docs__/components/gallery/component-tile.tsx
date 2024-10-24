@@ -139,10 +139,6 @@ const styles = StyleSheet.create({
         borderEndStartRadius: tokens.spacing.small_12,
         borderEndEndRadius: tokens.spacing.small_12,
         flexGrow: 1,
-
-        [mobile]: {
-            overflowX: "scroll",
-        },
     },
     externalLinkIcon: {
         marginLeft: tokens.spacing.xSmall_8,

@@ -48,6 +48,8 @@ export default function OnePaneDialogTile(props: CommonTileProps) {
     );
 }
 
+const mobile = "@media (max-width: 1023px)";
+
 const localStyles = StyleSheet.create({
     modalPositioner: {
         // Checkerboard background
@@ -69,6 +71,10 @@ const localStyles = StyleSheet.create({
     previewSizer: {
         minHeight: 500,
         width: "100%",
+
+        [mobile]: {
+            overflowX: "scroll",
+        },
     },
     footer: {
         justifyContent: "end",
