@@ -11,7 +11,6 @@ import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 
 import type {GroupMap} from "./groups";
-import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import Banner from "@khanacademy/wonder-blocks-banner";
 import Switch from "@khanacademy/wonder-blocks-switch";
 
