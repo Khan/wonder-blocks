@@ -6,7 +6,7 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 
 import ComponentTile from "../component-tile";
 
-export default function PopoverTile() {
+export default function PopoverTile(props: {layout: "grid" | "list"}) {
     const [opened, setOpened] = React.useState(true);
 
     return (
@@ -16,6 +16,7 @@ export default function PopoverTile() {
             description={`Provides additional information that is
                     related to a particular element and/or content.
                     Must be dismissed by clicking an element.`}
+            layout={props.layout}
         >
             <View
                 // Add an artificial height to the view so that the popover

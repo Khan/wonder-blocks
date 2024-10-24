@@ -9,7 +9,7 @@ import {IconMappings} from "../../../wonder-blocks-icon/phosphor-icon.argtypes";
 
 import ComponentTile from "../component-tile";
 
-export default function DetailCellTile() {
+export default function DetailCellTile(props: {layout: "grid" | "list"}) {
     return (
         <ComponentTile
             name="DetailCell"
@@ -18,6 +18,7 @@ export default function DetailCellTile() {
                         subtitles before and after the cell title. They
                         typically represent an item that can be
                         clicked/tapped to view more complex details.`}
+            layout={props.layout}
         >
             <View style={localStyles.cellExample}>
                 <DetailCell

@@ -7,7 +7,7 @@ import {Listbox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 type MaybeString = string | null | undefined;
 type MaybeValueOrValues = MaybeString | Array<MaybeString>;
 
-export default function ListboxTile() {
+export default function ListboxTile(props: {layout: "grid" | "list"}) {
     const [currentValue, setCurrentValue] =
         React.useState<MaybeValueOrValues>("");
 
@@ -18,6 +18,7 @@ export default function ListboxTile() {
                 href="/?path=/docs/packages-dropdown-listbox--docs"
                 description={`A Listbox component presents a list of
                     options and allows a user to select one or more of them.`}
+                layout={props.layout}
             >
                 <View>
                     <Listbox

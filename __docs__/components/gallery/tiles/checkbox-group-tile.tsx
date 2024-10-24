@@ -4,7 +4,7 @@ import {CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
 
 import ComponentTile from "../component-tile";
 
-export default function CheckboxGroupTile() {
+export default function CheckboxGroupTile(props: {layout: "grid" | "list"}) {
     const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
 
     return (
@@ -12,6 +12,7 @@ export default function CheckboxGroupTile() {
             name="CheckboxGroup"
             href="/?path=/docs/packages-form-checkboxgroup--docs"
             description="Allows multiple selections."
+            layout={props.layout}
         >
             <CheckboxGroup
                 groupName="toppings"

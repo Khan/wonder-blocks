@@ -10,7 +10,7 @@ import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
 
-export default function PhosphorIconTile() {
+export default function PhosphorIconTile(props: {layout: "grid" | "list"}) {
     return (
         <ComponentTile
             name="PhosphorIcon"
@@ -18,6 +18,7 @@ export default function PhosphorIconTile() {
             description={`Displays a small informational or
                         decorative image available from the
                         @phosphor-icons/core package.`}
+            layout={props.layout}
         >
             <View style={[localStyles.content, styles.centerContent]}>
                 <PhosphorIcon

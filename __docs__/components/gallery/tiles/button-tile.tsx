@@ -6,12 +6,13 @@ import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentTile from "../component-tile";
 
-export default function ButtonTile() {
+export default function ButtonTile(props: {layout: "grid" | "list"}) {
     return (
         <ComponentTile
             name="Button"
             href="/?path=/docs/packages-button--docs"
             description="Standard button. Triggers an action."
+            layout={props.layout}
         >
             <Button
                 kind="primary"

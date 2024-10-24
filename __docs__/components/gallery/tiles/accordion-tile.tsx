@@ -8,7 +8,7 @@ import {
 import ComponentTile from "../component-tile";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 
-export default function AccordionTile() {
+export default function AccordionTile(props: {layout: "grid" | "list"}) {
     return (
         <RenderStateRoot>
             <ComponentTile
@@ -17,6 +17,7 @@ export default function AccordionTile() {
                 description={`A vertically stacked list of sections,
                         each of which contains content that can be expanded
                         or collapsed by clicking its header.`}
+                layout={props.layout}
             >
                 <Accordion>
                     <AccordionSection header="First section">

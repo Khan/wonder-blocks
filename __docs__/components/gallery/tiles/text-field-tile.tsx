@@ -4,7 +4,7 @@ import {TextField} from "@khanacademy/wonder-blocks-form";
 
 import ComponentTile from "../component-tile";
 
-export default function TextFieldTile() {
+export default function TextFieldTile(props: {layout: "grid" | "list"}) {
     const [textValue, setTextValue] = React.useState<string>("");
 
     return (
@@ -14,6 +14,7 @@ export default function TextFieldTile() {
             description={`Standard text input field. This is
                         used to accept a single line of text from
                         the user.`}
+            layout={props.layout}
         >
             <TextField
                 id="text-field"

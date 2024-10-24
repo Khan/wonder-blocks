@@ -9,7 +9,7 @@ import {IconMappings} from "../../../wonder-blocks-icon/phosphor-icon.argtypes";
 
 import ComponentTile from "../component-tile";
 
-export default function CompactCellTile() {
+export default function CompactCellTile(props: {layout: "grid" | "list"}) {
     return (
         <ComponentTile
             name="CompactCell"
@@ -17,6 +17,7 @@ export default function CompactCellTile() {
             description={`A compacted-height cell with limited
                         subviews and accessories. Typically they represent
                         additional info or selection lists.`}
+            layout={props.layout}
         >
             <View style={localStyles.cellExample}>
                 <CompactCell

@@ -1,5 +1,3 @@
-import React from "react";
-
 import AccordionTile from "./tiles/accordion-tile";
 import AccordionSectionTile from "./tiles/accordion-section-tile";
 import BannerTile from "./tiles/banner-tile";
@@ -33,7 +31,7 @@ import TooltipTile from "./tiles/tooltip-tile";
 
 export type GroupMap = {
     name: string;
-    components: React.ComponentType[];
+    components: Array<(props: {layout: "grid" | "list"}) => JSX.Element>;
 };
 
 export const packageGroups: Array<GroupMap> = [
@@ -146,7 +144,7 @@ export const functionGroups: Array<GroupMap> = [
     },
 ];
 
-export const alphabetical: Array<GroupMap> = [
+export const alphabetGroups: Array<GroupMap> = [
     {
         name: "A",
         components: [AccordionTile, AccordionSectionTile, ActionMenuTile],

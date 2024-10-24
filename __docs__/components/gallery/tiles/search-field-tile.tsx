@@ -4,7 +4,7 @@ import SearchField from "@khanacademy/wonder-blocks-search-field";
 
 import ComponentTile from "../component-tile";
 
-export default function SearchFieldTile() {
+export default function SearchFieldTile(props: {layout: "grid" | "list"}) {
     const [value, setValue] = React.useState<string>("");
     return (
         <ComponentTile
@@ -12,6 +12,7 @@ export default function SearchFieldTile() {
             href="/?path=/docs/packages-searchfield--docs"
             description={`A text field with a search icon at its start
                     and an X icon at its end (when containing text).`}
+            layout={props.layout}
         >
             <SearchField
                 placeholder="Search for a topic"

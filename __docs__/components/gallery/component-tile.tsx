@@ -7,16 +7,30 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {Body, HeadingMedium} from "@khanacademy/wonder-blocks-typography";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 
 type Props = {
     children: React.ReactNode;
     name: string;
     description?: string;
     href: string;
+    layout: "grid" | "list";
 };
 
 export default function ComponentTile(props: Props) {
-    const {children, description, name, href} = props;
+    const {children, description, name, href, layout} = props;
+
+    if (layout === "list") {
+        return (
+            <DetailCell
+                title={name}
+                subtitle2={description}
+                leftAccessory={<PhosphorIcon icon={externalLinkIcon} />}
+                href={href}
+            />
+        );
+    }
+
     return (
         <View style={styles.tile}>
             <Clickable

@@ -6,7 +6,7 @@ import Switch from "@khanacademy/wonder-blocks-switch";
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
 
-export default function SwitchTile() {
+export default function SwitchTile(props: {layout: "grid" | "list"}) {
     const [checked, setChecked] = React.useState<boolean>(false);
     return (
         <RenderStateRoot>
@@ -15,6 +15,7 @@ export default function SwitchTile() {
                 href="/?path=/docs/packages-switch--docs"
                 description={`An input that allows users to toggle
                     between two states (typically "on" and "off").`}
+                layout={props.layout}
             >
                 <View style={styles.centerContent}>
                     <Switch

@@ -5,7 +5,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import {packageGroups, functionGroups, alphabetical} from "./groups";
+import {packageGroups, functionGroups, alphabetGroups} from "./groups";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -16,14 +16,17 @@ export default function ComponentGallery() {
     const groupMaps: Record<string, GroupMap[]> = {
         package: packageGroups,
         function: functionGroups,
-        alphabetical: alphabetical,
+        alphabet: alphabetGroups,
     };
     const [currentGroup, setCurrentGroup] = React.useState("function");
+    const [currentLayout, setCurrentLayout] = React.useState<"grid" | "list">(
+        "grid",
+    );
 
     return (
         <View>
             <View style={styles.menuBar}>
-                <LabelMedium>Sort by</LabelMedium>
+                <LabelMedium>Group by</LabelMedium>
                 <Strut size={spacing.xSmall_8} />
                 <SingleSelect
                     selectedValue={currentGroup}
@@ -33,7 +36,22 @@ export default function ComponentGallery() {
                 >
                     <OptionItem label="package" value="package" />
                     <OptionItem label="function" value="function" />
-                    <OptionItem label="alphabetical" value="alphabetical" />
+                    <OptionItem label="alphabet" value="alphabet" />
+                </SingleSelect>
+                <Strut size={spacing.large_24} />
+
+                <LabelMedium>Layout</LabelMedium>
+                <Strut size={spacing.xSmall_8} />
+                <SingleSelect
+                    selectedValue={currentLayout}
+                    onChange={(newValue) =>
+                        setCurrentLayout(newValue === "grid" ? "grid" : "list")
+                    }
+                    // Placehoder is not used here
+                    placeholder=""
+                >
+                    <OptionItem label="grid" value="grid" />
+                    <OptionItem label="list" value="list" />
                 </SingleSelect>
             </View>
 
@@ -45,7 +63,7 @@ export default function ComponentGallery() {
 
                     <View style={styles.section}>
                         {group.components.map((Tile) => {
-                            return <Tile />;
+                            return <Tile layout={currentLayout} />;
                         })}
                     </View>
                 </View>
@@ -56,6 +74,7 @@ export default function ComponentGallery() {
 
 export const styles = StyleSheet.create({
     menuBar: {
+        marginTop: spacing.large_24,
         flexDirection: "row",
         alignItems: "center",
     },
