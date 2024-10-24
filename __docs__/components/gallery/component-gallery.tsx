@@ -8,9 +8,10 @@ import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {packageGroups, functionGroups, alphabetGroups} from "./groups";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 
 import type {GroupMap} from "./groups";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
 
 export default function ComponentGallery() {
     const groupMaps: Record<string, GroupMap[]> = {
@@ -22,6 +23,7 @@ export default function ComponentGallery() {
     const [currentLayout, setCurrentLayout] = React.useState<"grid" | "list">(
         "grid",
     );
+    const [compactGridView, setCompactGridView] = React.useState(false);
 
     return (
         <View>
@@ -34,9 +36,9 @@ export default function ComponentGallery() {
                     // Placehoder is not used here
                     placeholder=""
                 >
-                    <OptionItem label="package" value="package" />
-                    <OptionItem label="function" value="function" />
                     <OptionItem label="alphabet" value="alphabet" />
+                    <OptionItem label="function" value="function" />
+                    <OptionItem label="package" value="package" />
                 </SingleSelect>
                 <Strut size={spacing.large_24} />
 
@@ -53,6 +55,17 @@ export default function ComponentGallery() {
                     <OptionItem label="grid" value="grid" />
                     <OptionItem label="list" value="list" />
                 </SingleSelect>
+
+                {currentLayout === "grid" && (
+                    <>
+                        <Spring />
+                        <Checkbox
+                            label="Compact grid"
+                            checked={compactGridView}
+                            onChange={setCompactGridView}
+                        />
+                    </>
+                )}
             </View>
 
             {groupMaps[currentGroup].map((group) => (
@@ -63,7 +76,12 @@ export default function ComponentGallery() {
 
                     <View style={styles.section}>
                         {group.components.map((Tile) => {
-                            return <Tile layout={currentLayout} />;
+                            return (
+                                <Tile
+                                    layout={currentLayout}
+                                    compactGrid={compactGridView}
+                                />
+                            );
                         })}
                     </View>
                 </View>

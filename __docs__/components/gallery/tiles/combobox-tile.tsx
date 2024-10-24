@@ -3,11 +3,12 @@ import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 
 import ComponentTile from "../component-tile";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {CommonTileProps} from "../types";
 
 type MaybeString = string | null | undefined;
 type MaybeValueOrValues = MaybeString | Array<MaybeString>;
 
-export default function ComboboxTile(props: {layout: "grid" | "list"}) {
+export default function ComboboxTile(props: CommonTileProps) {
     const [currentValue, setCurrentValue] =
         React.useState<MaybeValueOrValues>("");
 
@@ -20,7 +21,7 @@ export default function ComboboxTile(props: {layout: "grid" | "list"}) {
                     associated listbox. This listbox enables users to
                     choose one or more values for the input from a
                     collection of option items.`}
-                layout={props.layout}
+                {...props}
             >
                 <View>
                     <Combobox

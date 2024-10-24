@@ -5,15 +5,16 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
+import {CommonTileProps} from "../types";
 
-export default function TooltipTile(props: {layout: "grid" | "list"}) {
+export default function TooltipTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="Tooltip"
             href="/?path=/docs/packages-tooltip-tooltip--docs"
             description={`A text label that appears when a user hovers
                     over or focuses on an element.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={styles.centerContent}>
                 <View

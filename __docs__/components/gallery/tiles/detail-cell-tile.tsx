@@ -8,8 +8,9 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "../../../wonder-blocks-icon/phosphor-icon.argtypes";
 
 import ComponentTile from "../component-tile";
+import {CommonTileProps} from "../types";
 
-export default function DetailCellTile(props: {layout: "grid" | "list"}) {
+export default function DetailCellTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="DetailCell"
@@ -18,7 +19,7 @@ export default function DetailCellTile(props: {layout: "grid" | "list"}) {
                         subtitles before and after the cell title. They
                         typically represent an item that can be
                         clicked/tapped to view more complex details.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={localStyles.cellExample}>
                 <DetailCell

@@ -5,8 +5,9 @@ import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
+import {CommonTileProps} from "../types";
 
-export default function MultiSelectTile(props: {layout: "grid" | "list"}) {
+export default function MultiSelectTile(props: CommonTileProps) {
     const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
 
     return (
@@ -15,7 +16,7 @@ export default function MultiSelectTile(props: {layout: "grid" | "list"}) {
             href="/?path=/docs/packages-dropdown-multiselect--docs"
             description={`A dropdown menu that allows multiple
                         options to be selected.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={styles.centerContent}>
                 <MultiSelect

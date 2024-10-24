@@ -4,8 +4,9 @@ import {AccordionSection} from "@khanacademy/wonder-blocks-accordion";
 
 import ComponentTile from "../component-tile";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import {CommonTileProps} from "../types";
 
-export default function ActionSectionTile(props: {layout: "grid" | "list"}) {
+export default function ActionSectionTile(props: CommonTileProps) {
     return (
         <RenderStateRoot>
             <ComponentTile
@@ -14,7 +15,7 @@ export default function ActionSectionTile(props: {layout: "grid" | "list"}) {
                 description={`A single collapsible section within
                         an accordion. It can be used by itself or within
                         an accordion.`}
-                layout={props.layout}
+                {...props}
             >
                 <AccordionSection header="Accordion Section">
                     This is an accordion section.

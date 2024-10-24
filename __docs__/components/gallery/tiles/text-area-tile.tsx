@@ -5,8 +5,9 @@ import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
+import {CommonTileProps} from "../types";
 
-export default function TextAreaTile(props: {layout: "grid" | "list"}) {
+export default function TextAreaTile(props: CommonTileProps) {
     const [value, setValue] = React.useState("");
 
     return (
@@ -16,7 +17,7 @@ export default function TextAreaTile(props: {layout: "grid" | "list"}) {
                 href="/?path=/docs/packages-form-textarea--docs"
                 description="A TextArea is a larger element used to accept
                     text from the user."
-                layout={props.layout}
+                {...props}
             >
                 <View style={styles.centerContent}>
                     <TextArea value={value} onChange={setValue} />

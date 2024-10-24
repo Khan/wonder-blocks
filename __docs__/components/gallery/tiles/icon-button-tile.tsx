@@ -6,14 +6,15 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
+import {CommonTileProps} from "../types";
 
-export default function IconButtonTile(props: {layout: "grid" | "list"}) {
+export default function IconButtonTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="IconButton"
             href="/?path=/docs/packages-iconbutton--docs"
             description="A button whose contents are an SVG image."
-            layout={props.layout}
+            {...props}
         >
             <View style={styles.centerContent}>
                 <IconButton

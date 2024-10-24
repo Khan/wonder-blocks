@@ -23,7 +23,7 @@ import OnePaneDialogTile from "./tiles/one-pane-dialog-tile";
 import PhosphorIconTile from "./tiles/phosphor-icon-tile";
 import PillTile from "./tiles/pill-tile";
 import PopoverTile from "./tiles/popover-tile";
-import ProgressSpinnerTile from "./tiles/progress-spinner-tile";
+import CircularSpinnerTile from "./tiles/circular-spinner-tile";
 import SearchFieldTile from "./tiles/search-field-tile";
 import SwitchTile from "./tiles/switch-tile";
 import ToolbarTile from "./tiles/toolbar-tile";
@@ -31,48 +31,50 @@ import TooltipTile from "./tiles/tooltip-tile";
 
 export type GroupMap = {
     name: string;
-    components: Array<(props: {layout: "grid" | "list"}) => JSX.Element>;
+    components: Array<
+        (props: {layout: "grid" | "list"; compactGrid: boolean}) => JSX.Element
+    >;
 };
 
-export const packageGroups: Array<GroupMap> = [
-    {name: "Accordion", components: [AccordionTile, AccordionSectionTile]},
-    {name: "Banner", components: [BannerTile]},
-    {name: "Birthday Picker", components: [BirthdayPickerTile]},
-    {name: "Breadcrumbs", components: [BreadcrumbsTile]},
-    {name: "Button", components: [ButtonTile]},
-    {name: "Cell", components: [CompactCellTile, DetailCellTile]},
+export const alphabetGroups: Array<GroupMap> = [
     {
-        name: "Dropdown",
+        name: "A",
+        components: [AccordionTile, AccordionSectionTile, ActionMenuTile],
+    },
+    {
+        name: "B",
         components: [
-            ActionMenuTile,
-            ComboboxTile,
-            ListboxTile,
-            MultiSelectTile,
-            SingleSelectTile,
+            BannerTile,
+            BirthdayPickerTile,
+            BreadcrumbsTile,
+            ButtonTile,
         ],
     },
     {
-        name: "Form",
+        name: "C",
         components: [
             CheckboxTile,
             CheckboxGroupTile,
-            RadioGroupTile,
-            TextFieldTile,
-            LabeledTextFieldTile,
-            TextAreaTile,
+            CircularSpinnerTile,
+            ComboboxTile,
+            CompactCellTile,
         ],
     },
-    {name: "Icon Button", components: [IconButtonTile]},
-    {name: "Icon", components: [PhosphorIconTile]},
-    {name: "Link", components: [LinkTile]},
-    {name: "Modal", components: [OnePaneDialogTile]},
-    {name: "Pill", components: [PillTile]},
-    {name: "Popover", components: [PopoverTile]},
-    {name: "Progress Spinner", components: [ProgressSpinnerTile]},
-    {name: "Search Field", components: [SearchFieldTile]},
-    {name: "Switch", components: [SwitchTile]},
-    {name: "Toolbar", components: [ToolbarTile]},
-    {name: "Tooltip", components: [TooltipTile]},
+    {name: "D", components: [DetailCellTile]},
+    {name: "I", components: [IconButtonTile]},
+    {name: "L", components: [LabeledTextFieldTile, LinkTile, ListboxTile]},
+    {name: "M", components: [MultiSelectTile]},
+    {name: "O", components: [OnePaneDialogTile]},
+    {
+        name: "P",
+        components: [PhosphorIconTile, PillTile, PopoverTile],
+    },
+    {name: "R", components: [RadioGroupTile]},
+    {name: "S", components: [SearchFieldTile, SingleSelectTile, SwitchTile]},
+    {
+        name: "T",
+        components: [TextAreaTile, TextFieldTile, ToolbarTile, TooltipTile],
+    },
 ];
 
 export const functionGroups: Array<GroupMap> = [
@@ -81,10 +83,10 @@ export const functionGroups: Array<GroupMap> = [
         components: [
             ButtonTile,
             IconButtonTile,
+            LinkTile,
             PillTile,
             CompactCellTile,
             DetailCellTile,
-            LinkTile,
         ],
     },
     {
@@ -108,7 +110,7 @@ export const functionGroups: Array<GroupMap> = [
             PhosphorIconTile,
             PillTile,
             BannerTile,
-            ProgressSpinnerTile,
+            CircularSpinnerTile,
         ],
     },
     {
@@ -144,47 +146,43 @@ export const functionGroups: Array<GroupMap> = [
     },
 ];
 
-export const alphabetGroups: Array<GroupMap> = [
+export const packageGroups: Array<GroupMap> = [
+    {name: "Accordion", components: [AccordionTile, AccordionSectionTile]},
+    {name: "Banner", components: [BannerTile]},
+    {name: "Birthday Picker", components: [BirthdayPickerTile]},
+    {name: "Breadcrumbs", components: [BreadcrumbsTile]},
+    {name: "Button", components: [ButtonTile]},
+    {name: "Cell", components: [CompactCellTile, DetailCellTile]},
     {
-        name: "A",
-        components: [AccordionTile, AccordionSectionTile, ActionMenuTile],
-    },
-    {
-        name: "B",
+        name: "Dropdown",
         components: [
-            BannerTile,
-            BirthdayPickerTile,
-            BreadcrumbsTile,
-            ButtonTile,
+            ActionMenuTile,
+            ComboboxTile,
+            ListboxTile,
+            MultiSelectTile,
+            SingleSelectTile,
         ],
     },
     {
-        name: "C",
+        name: "Form",
         components: [
             CheckboxTile,
             CheckboxGroupTile,
-            ComboboxTile,
-            CompactCellTile,
+            RadioGroupTile,
+            TextFieldTile,
+            LabeledTextFieldTile,
+            TextAreaTile,
         ],
     },
-    {name: "D", components: [DetailCellTile]},
-    {name: "I", components: [IconButtonTile]},
-    {name: "L", components: [LabeledTextFieldTile, LinkTile, ListboxTile]},
-    {name: "M", components: [MultiSelectTile]},
-    {name: "O", components: [OnePaneDialogTile]},
-    {
-        name: "P",
-        components: [
-            PhosphorIconTile,
-            PillTile,
-            PopoverTile,
-            ProgressSpinnerTile,
-        ],
-    },
-    {name: "R", components: [RadioGroupTile]},
-    {name: "S", components: [SearchFieldTile, SingleSelectTile, SwitchTile]},
-    {
-        name: "T",
-        components: [TextAreaTile, TextFieldTile, ToolbarTile, TooltipTile],
-    },
+    {name: "Icon Button", components: [IconButtonTile]},
+    {name: "Icon", components: [PhosphorIconTile]},
+    {name: "Link", components: [LinkTile]},
+    {name: "Modal", components: [OnePaneDialogTile]},
+    {name: "Pill", components: [PillTile]},
+    {name: "Popover", components: [PopoverTile]},
+    {name: "Progress Spinner", components: [CircularSpinnerTile]},
+    {name: "Search Field", components: [SearchFieldTile]},
+    {name: "Switch", components: [SwitchTile]},
+    {name: "Toolbar", components: [ToolbarTile]},
+    {name: "Tooltip", components: [TooltipTile]},
 ];

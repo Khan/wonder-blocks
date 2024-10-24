@@ -7,8 +7,9 @@ import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
+import {CommonTileProps} from "../types";
 
-export default function OnePaneDialogTile(props: {layout: "grid" | "list"}) {
+export default function OnePaneDialogTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="OnePaneDialog"
@@ -17,7 +18,7 @@ export default function OnePaneDialogTile(props: {layout: "grid" | "list"}) {
                         modal experiences. Modals display in front of the
                         current view and prevent interaction background until
                         they are dismissed.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={localStyles.previewSizer}>
                 <View style={localStyles.modalPositioner}>

@@ -9,8 +9,9 @@ import Link from "@khanacademy/wonder-blocks-link";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
+import {CommonTileProps} from "../types";
 
-export default function BreadcrumbsTile(props: {layout: "grid" | "list"}) {
+export default function BreadcrumbsTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="Breadcrumbs"
@@ -19,7 +20,7 @@ export default function BreadcrumbsTile(props: {layout: "grid" | "list"}) {
                     links to the parent pages of the current page in
                     hierarchical order. It helps users find their place
                     within a website or web application.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={styles.centerContent}>
                 <Breadcrumbs>

@@ -3,11 +3,12 @@ import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 
 import ComponentTile from "../component-tile";
 import {Listbox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {CommonTileProps} from "../types";
 
 type MaybeString = string | null | undefined;
 type MaybeValueOrValues = MaybeString | Array<MaybeString>;
 
-export default function ListboxTile(props: {layout: "grid" | "list"}) {
+export default function ListboxTile(props: CommonTileProps) {
     const [currentValue, setCurrentValue] =
         React.useState<MaybeValueOrValues>("");
 
@@ -18,7 +19,7 @@ export default function ListboxTile(props: {layout: "grid" | "list"}) {
                 href="/?path=/docs/packages-dropdown-listbox--docs"
                 description={`A Listbox component presents a list of
                     options and allows a user to select one or more of them.`}
-                layout={props.layout}
+                {...props}
             >
                 <View>
                     <Listbox

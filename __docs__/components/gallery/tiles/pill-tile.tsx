@@ -7,15 +7,16 @@ import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
+import {CommonTileProps} from "../types";
 
-export default function PillTile(props: {layout: "grid" | "list"}) {
+export default function PillTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="Pill"
             href="/?path=/docs/packages-pill--docs"
             description={`Used to display a small amount of
                     information, such as a tag or a status.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={[styles.centerContent, localStyles.grid]}>
                 <View>

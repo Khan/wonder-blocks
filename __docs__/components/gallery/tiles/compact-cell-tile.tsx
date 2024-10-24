@@ -8,8 +8,9 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {IconMappings} from "../../../wonder-blocks-icon/phosphor-icon.argtypes";
 
 import ComponentTile from "../component-tile";
+import {CommonTileProps} from "../types";
 
-export default function CompactCellTile(props: {layout: "grid" | "list"}) {
+export default function CompactCellTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="CompactCell"
@@ -17,7 +18,7 @@ export default function CompactCellTile(props: {layout: "grid" | "list"}) {
             description={`A compacted-height cell with limited
                         subviews and accessories. Typically they represent
                         additional info or selection lists.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={localStyles.cellExample}>
                 <CompactCell

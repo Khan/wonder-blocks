@@ -9,15 +9,16 @@ import {
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
+import {CommonTileProps} from "../types";
 
-export default function ActionMenuTile(props: {layout: "grid" | "list"}) {
+export default function ActionMenuTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="ActionMenu"
             href="/?path=/docs/packages-dropdown-actionmenu--docs"
             description={`A dropdown menu that consists of
                         various types of items.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={styles.centerContent}>
                 <ActionMenu menuText="Action Menu">

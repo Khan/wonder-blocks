@@ -5,8 +5,9 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
+import {CommonTileProps} from "../types";
 
-export default function BirthdayPickerTile(props: {layout: "grid" | "list"}) {
+export default function BirthdayPickerTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="BirthdayPicker"
@@ -14,7 +15,7 @@ export default function BirthdayPickerTile(props: {layout: "grid" | "list"}) {
             description={`Similar to a datepicker, but specifically
                     for birthdates. It consists of a set of dropdowns
                     to choose the date.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={styles.centerContent}>
                 <BirthdayPicker onChange={() => {}} />

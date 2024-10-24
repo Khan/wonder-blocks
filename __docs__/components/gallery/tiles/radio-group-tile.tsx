@@ -3,8 +3,9 @@ import * as React from "react";
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 
 import ComponentTile from "../component-tile";
+import {CommonTileProps} from "../types";
 
-export default function RadioGroupTile(props: {layout: "grid" | "list"}) {
+export default function RadioGroupTile(props: CommonTileProps) {
     const [selectedValue, setSelectedValue] = React.useState<string>("");
 
     return (
@@ -12,7 +13,7 @@ export default function RadioGroupTile(props: {layout: "grid" | "list"}) {
             name="RadioGroup"
             href="/?path=/docs/packages-form-radiogroup--docs"
             description="Allows only a single selection."
-            layout={props.layout}
+            {...props}
         >
             <RadioGroup
                 groupName="pokemon"

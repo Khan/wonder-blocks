@@ -7,8 +7,9 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 import ComponentTile from "../component-tile";
+import {CommonTileProps} from "../types";
 
-export default function ToolbarTile(props: {layout: "grid" | "list"}) {
+export default function ToolbarTile(props: CommonTileProps) {
     return (
         <ComponentTile
             name="Toolbar"
@@ -16,7 +17,7 @@ export default function ToolbarTile(props: {layout: "grid" | "list"}) {
             description={`A generic toolbar wrapper that exposes
                     customization options, including a title and left/right
                     content.`}
-            layout={props.layout}
+            {...props}
         >
             <View>
                 <Toolbar

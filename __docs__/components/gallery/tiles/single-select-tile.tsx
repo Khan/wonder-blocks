@@ -5,8 +5,9 @@ import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
+import {CommonTileProps} from "../types";
 
-export default function SingleSelectTile(props: {layout: "grid" | "list"}) {
+export default function SingleSelectTile(props: CommonTileProps) {
     const [selectedValue, setSelectedValue] = React.useState<string>("");
 
     return (
@@ -15,7 +16,7 @@ export default function SingleSelectTile(props: {layout: "grid" | "list"}) {
             href="/?path=/docs/packages-dropdown-singleselect--docs"
             description={`A dropdown menu that allows the
                         selection of one item.`}
-            layout={props.layout}
+            {...props}
         >
             <View style={styles.centerContent}>
                 <SingleSelect
