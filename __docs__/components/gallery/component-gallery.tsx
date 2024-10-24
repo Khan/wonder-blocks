@@ -1,71 +1,71 @@
 import * as React from "react";
 
+import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import AccordionTile from "./tiles/accordion-tile";
-import AccordionSectionTile from "./tiles/accordion-section-tile";
-import ActionMenuTile from "./tiles/action-menu-tile";
-import BannerTile from "./tiles/banner-tile";
-import BirthdayPickerTile from "./tiles/birthday-picker-tile";
-import BreadcrumbsTile from "./tiles/breadcrumbs-tile";
-import ButtonTile from "./tiles/button-tile";
-import CheckboxTile from "./tiles/checkbox-tile";
-import CheckboxGroupTile from "./tiles/checkbox-group-tile";
-import ComboboxTile from "./tiles/combobox-tile";
-import CompactCellTile from "./tiles/compact-cell-tile";
-import DetailCellTile from "./tiles/detail-cell-tile";
-import IconButtonTile from "./tiles/icon-button-tile";
-import IconTile from "./tiles/icon-tile";
-import LabeledTextFieldTile from "./tiles/labeled-text-field-tile";
-import LinkTile from "./tiles/link-tile";
-import ListboxTile from "./tiles/listbox-tile";
-import ModalTile from "./tiles/modal-tile";
-import MultiSelectTile from "./tiles/multi-select-tile";
-import PillTile from "./tiles/pill-tile";
-import PopoverTile from "./tiles/popover-tile";
-import ProgressSpinnerTile from "./tiles/progress-spinner-tile";
-import RadioGroupTile from "./tiles/radio-group-tile";
-import SearchFieldTile from "./tiles/search-field-tile";
-import SingleSelectTile from "./tiles/single-select-tile";
-import SwitchTile from "./tiles/switch-tile";
-import TextAreaTile from "./tiles/text-area-tile";
-import TextFieldTile from "./tiles/text-field-tile";
-import ToolbarTile from "./tiles/toolbar-tile";
-import TooltipTile from "./tiles/tooltip-tile";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+
+import {packageGroups, functionGroups, alphabetical} from "./groups";
+import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+
+import type {GroupMap} from "./groups";
 
 export default function ComponentGallery() {
+    const groupMaps: Record<string, GroupMap[]> = {
+        package: packageGroups,
+        function: functionGroups,
+        alphabetical: alphabetical,
+    };
+    const [currentGroup, setCurrentGroup] = React.useState("function");
+
     return (
         <View>
-            <AccordionTile />
-            <AccordionSectionTile />
-            <BannerTile />
-            <BirthdayPickerTile />
-            <BreadcrumbsTile />
-            <ButtonTile />
-            <CompactCellTile />
-            <DetailCellTile />
-            <ActionMenuTile />
-            <MultiSelectTile />
-            <SingleSelectTile />
-            <ComboboxTile />
-            <ListboxTile />
-            <CheckboxTile />
-            <CheckboxGroupTile />
-            <RadioGroupTile />
-            <TextFieldTile />
-            <TextAreaTile />
-            <LabeledTextFieldTile />
-            <IconButtonTile />
-            <IconTile />
-            <LinkTile />
-            <ModalTile />
-            <PillTile />
-            <PopoverTile />
-            <ProgressSpinnerTile />
-            <SearchFieldTile />
-            <SwitchTile />
-            <ToolbarTile />
-            <TooltipTile />
+            <View style={styles.menuBar}>
+                <LabelMedium>Sort by</LabelMedium>
+                <Strut size={spacing.xSmall_8} />
+                <SingleSelect
+                    selectedValue={currentGroup}
+                    onChange={setCurrentGroup}
+                    // Placehoder is not used here
+                    placeholder=""
+                >
+                    <OptionItem label="package" value="package" />
+                    <OptionItem label="function" value="function" />
+                    <OptionItem label="alphabetical" value="alphabetical" />
+                </SingleSelect>
+            </View>
+
+            {groupMaps[currentGroup].map((group) => (
+                <View key={group.name}>
+                    <HeadingLarge tag="h3" style={styles.sectionLabel}>
+                        {group.name}
+                    </HeadingLarge>
+
+                    <View style={styles.section}>
+                        {group.components.map((Tile) => {
+                            return <Tile />;
+                        })}
+                    </View>
+                </View>
+            ))}
         </View>
     );
 }
+
+export const styles = StyleSheet.create({
+    menuBar: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    section: {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+    },
+    sectionLabel: {
+        marginTop: spacing.xLarge_32,
+        marginBottom: spacing.large_24,
+    },
+});

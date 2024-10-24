@@ -8,7 +8,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentTile from "../component-tile";
 
-export default function ModalTile() {
+export default function OnePaneDialogTile() {
     return (
         <ComponentTile
             name="OnePaneDialog"

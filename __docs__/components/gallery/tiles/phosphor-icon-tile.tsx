@@ -10,7 +10,7 @@ import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import ComponentTile from "../component-tile";
 import {styles} from "../styles";
 
-export default function IconTile() {
+export default function PhosphorIconTile() {
     return (
         <ComponentTile
             name="PhosphorIcon"
