@@ -5,40 +5,28 @@ import {processStyleList} from "./util";
 
 import type {StyleType} from "./types";
 
-type StyledProps = {
+type StyledProps<T extends keyof JSX.IntrinsicElements> = {
     className?: string;
     style?: StyleType;
     children?: React.ReactNode;
-} & Omit<React.ComponentProps<"div">, "style">; // Removes the 'style' prop from the original component
+} & Omit<React.ComponentProps<T>, "style">;
 
-type StyledElement<
-    T extends keyof JSX.IntrinsicElements,
-    Props extends StyledProps,
-> = React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<Props> & React.RefAttributes<IntrinsicElementsMap[T]>
->;
+interface StyledTag<T extends keyof JSX.IntrinsicElements> {
+    Styled: ReturnType<typeof addStyle<T, StyledProps<T>>>;
+}
 
-type NamedStyledType<
-    T extends keyof JSX.IntrinsicElements,
-    Props extends StyledProps,
-> = {
-    [K in T as `Styled${Capitalize<T & string>}`]: StyledElement<T, Props>;
+type NamedStyledTag<Tag extends string & keyof JSX.IntrinsicElements> = {
+    [Property in keyof StyledTag<Tag> as `${Property}${Capitalize<Tag>}`]: StyledTag<Tag>[Property];
 };
 
-export const makeStyled = <
-    T extends keyof JSX.IntrinsicElements,
-    Props extends StyledProps,
->(
-    Component: T,
+export const makeStyled = <Tag extends string & keyof JSX.IntrinsicElements>(
+    Component: Tag,
     defaultStyle?: StyleType,
-): NamedStyledType<T, Props> => {
-    const styledComponentName = `Styled${Component.charAt(
-        0,
-    ).toUpperCase()}${Component.slice(1)}` as `Styled${Capitalize<T & string>}`;
-    return {
-        [styledComponentName]: addStyle(Component, defaultStyle),
-    } as unknown as NamedStyledType<T, Props>;
-};
+) =>
+    ({
+        [`Styled${Component.charAt(0).toUpperCase()}${Component.slice(1)}`]:
+            addStyle(Component, defaultStyle),
+    } as NamedStyledTag<Tag>);
 
 export default function addStyle<
     // We extend `React.ComponentType<any>` to support `addStyle(Link)` with
