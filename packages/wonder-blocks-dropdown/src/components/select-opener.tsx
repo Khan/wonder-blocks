@@ -12,7 +12,7 @@ import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
 
-const StyledButton = addStyle("button");
+const StyledDiv = addStyle("div");
 
 type SelectOpenerProps = AriaProps & {
     /**
@@ -38,6 +38,8 @@ type SelectOpenerProps = AriaProps & {
      * of this component. A placeholder has more faded text colors and styles.
      */
     isPlaceholder: boolean;
+
+    placeholder?: string;
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
@@ -130,6 +132,7 @@ export default class SelectOpener extends React.Component<
             error,
             id,
             isPlaceholder,
+            placeholder,
             light,
             open,
             testId,
@@ -158,15 +161,17 @@ export default class SelectOpener extends React.Component<
         ];
 
         return (
-            <StyledButton
+            <StyledDiv
                 {...sharedProps}
                 aria-disabled={disabled}
                 aria-expanded={open ? "true" : "false"}
                 aria-haspopup="listbox"
                 data-testid={testId}
+                tabIndex={0}
                 id={id}
+                role="combobox"
+                aria-label={placeholder}
                 style={style}
-                type="button"
                 onClick={!disabled ? this.handleClick : undefined}
                 onKeyDown={!disabled ? this.handleKeyDown : undefined}
                 onKeyUp={!disabled ? this.handleKeyUp : undefined}
@@ -183,7 +188,7 @@ export default class SelectOpener extends React.Component<
                     style={styles.caret}
                     aria-hidden="true"
                 />
-            </StyledButton>
+            </StyledDiv>
         );
     }
 }

@@ -440,6 +440,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                     ) : (
                         <SelectOpener
                             {...sharedProps}
+                            placeholder={placeholder}
                             aria-controls={dropdownId}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
