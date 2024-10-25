@@ -10,7 +10,7 @@ export {default as View} from "./components/view";
 export {default as InitialFallback} from "./components/initial-fallback";
 export {default as IDProvider} from "./components/id-provider";
 export {default as UniqueIDProvider} from "./components/unique-id-provider";
-export {default as addStyle} from "./util/add-style";
+export {default as addStyle, makeStyled} from "./util/add-style";
 export {default as Server} from "./util/server";
 export {
     useUniqueIdWithMock,

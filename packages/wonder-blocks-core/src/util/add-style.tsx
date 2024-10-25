@@ -5,6 +5,40 @@ import {processStyleList} from "./util";
 
 import type {StyleType} from "./types";
 
+type StyledProps<T extends keyof JSX.IntrinsicElements> = {
+    className?: string;
+    style?: StyleType;
+    children?: React.ReactNode;
+} & Omit<React.ComponentProps<T>, "style">;
+
+interface StyledTag<T extends keyof JSX.IntrinsicElements> {
+    Styled: ReturnType<typeof addStyle<T, StyledProps<T>>>;
+}
+
+type NamedStyledTag<Tag extends string & keyof JSX.IntrinsicElements> = {
+    [Property in keyof StyledTag<Tag> as `${Property}${Capitalize<Tag>}`]: StyledTag<Tag>[Property];
+};
+
+/**
+ * Creates a styled component with the given tag name.
+ * @param tag The tag name of the native element.
+ * @param defaultStyle Optional. The default style to apply to the component.
+ * @returns An object with a single key, `Styled${tag}`, which is the styled component.
+ */
+export const makeStyled = <Tag extends string & keyof JSX.IntrinsicElements>(
+    tag: Tag,
+    defaultStyle?: StyleType,
+) =>
+    ({
+        [`Styled${tag.charAt(0).toUpperCase()}${tag.slice(1)}`]: addStyle(
+            tag,
+            defaultStyle,
+        ),
+    } as NamedStyledTag<Tag>);
+
+/**
+ * @deprecated Use `makeStyled` instead.
+ */
 export default function addStyle<
     // We extend `React.ComponentType<any>` to support `addStyle(Link)` with
     // react-router's `Link` component.
