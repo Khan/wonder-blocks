@@ -4,8 +4,6 @@ import {screen, render} from "@testing-library/react";
 
 import {makeStyled} from "../add-style";
 
-// const StyledDiv = addStyle("div");
-
 const styles = StyleSheet.create({
     foo: {
         height: "100%",
