@@ -37,7 +37,7 @@ describe("PopoverContent", () => {
             <PopoverContent
                 title="illustration"
                 content="content"
-                image={<img src="/dummy-image.png" alt="popover image" />}
+                image={<img src="/dummy-image.png" alt="popover" />}
                 icon={<img src="/dummy-icon.png" alt="popover icon" />}
             />
         );

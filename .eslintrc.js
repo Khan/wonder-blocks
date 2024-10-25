@@ -7,10 +7,12 @@ module.exports = {
         // This config includes rules from storybook to enforce story best
         // practices
         "plugin:storybook/recommended",
+        "plugin:jsx-a11y/strict",
     ],
     plugins: [
         "import",
         "jest",
+        "jsx-a11y",
         "jsdoc",
         "promise",
         "monorepo",
@@ -57,6 +59,17 @@ module.exports = {
             files: ["**/*.test.ts", "**/*.test.tsx"],
             rules: {
                 "no-undef": "off",
+                // Disabled rule because some tests check for when a positive
+                // tabindex is provided
+                "jsx-a11y/tabindex-no-positive": "off",
+            },
+        },
+        {
+            files: ["**/*.ts", "**/*.tsx"],
+            rules: {
+                // Disable autofocus rule for WB. It should be up to consumers
+                // to use the autofocus prop depending on the context.
+                "jsx-a11y/no-autofocus": "off",
             },
         },
     ],
