@@ -805,6 +805,48 @@ describe("TextArea", () => {
                 const textArea = await screen.findByRole("textbox");
                 expect(textArea).toHaveAttribute("aria-invalid", "false");
             });
+
+            it("should set aria-invalid to true if the error prop is true", async () => {
+                // Arrange
+                render(
+                    <TextArea value="text" onChange={() => {}} error={true} />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "true");
+            });
+
+            it("should set aria-invalid to false if the error prop is false", async () => {
+                // Arrange
+                render(
+                    <TextArea value="text" onChange={() => {}} error={false} />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
+
+            it("should set aria-invalid to false if the error prop is not provided", async () => {
+                // Arrange
+                render(
+                    <TextArea value="text" onChange={() => {}} />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
         });
     });
 
