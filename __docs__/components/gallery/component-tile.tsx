@@ -6,19 +6,51 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
-import {Body, HeadingMedium} from "@khanacademy/wonder-blocks-typography";
+import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {CommonTileProps} from "./types";
+import {Spring} from "@khanacademy/wonder-blocks-layout";
 
-type Props = {
+type Props = CommonTileProps & {
     children: React.ReactNode;
     name: string;
     description?: string;
     href: string;
+    rightAccessory?: React.ReactNode;
 };
 
 export default function ComponentTile(props: Props) {
-    const {children, description, name, href} = props;
+    const {
+        children,
+        description,
+        name,
+        href,
+        rightAccessory,
+        layout,
+        compactGrid,
+    } = props;
+
+    if (layout === "list") {
+        return (
+            <DetailCell
+                title={name}
+                subtitle2={description}
+                leftAccessory={<PhosphorIcon icon={externalLinkIcon} />}
+                rightAccessory={rightAccessory}
+                href={href}
+                target="_blank"
+            />
+        );
+    }
+
     return (
-        <View style={styles.tile}>
+        <View
+            style={[
+                styles.tile,
+                compactGrid && styles.tileWithoutDetails,
+                !compactGrid && styles.tileWithDetails,
+            ]}
+        >
             <Clickable
                 href={href}
                 target="_blank"
@@ -27,9 +59,14 @@ export default function ComponentTile(props: Props) {
             >
                 {() => (
                     <>
-                        <View style={styles.description}>
+                        <View
+                            style={[
+                                compactGrid && styles.descriptionWithoutDetails,
+                                !compactGrid && styles.descriptionWithDetails,
+                            ]}
+                        >
                             <View style={styles.headingContainer}>
-                                <HeadingMedium tag="h4">{name}</HeadingMedium>
+                                <HeadingSmall tag="h4">{name}</HeadingSmall>
                                 <View style={styles.externalLinkIcon}>
                                     <PhosphorIcon
                                         icon={externalLinkIcon}
@@ -37,8 +74,11 @@ export default function ComponentTile(props: Props) {
                                         aria-hidden="true"
                                     />
                                 </View>
+                                <Spring />
+                                {rightAccessory}
                             </View>
-                            {description && (
+
+                            {!compactGrid && (
                                 <Body style={styles.descriptionText}>
                                     {description}
                                 </Body>
@@ -59,13 +99,19 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         margin: tokens.spacing.xSmall_8,
-        // Set the width to half the max width of the stories page content.
-        width: 484,
-        minHeight: 300,
 
         [mobile]: {
             width: "95%",
         },
+    },
+    tileWithDetails: {
+        // Set the width to half the max width of the stories page content.
+        width: 484,
+        minHeight: 300,
+    },
+    tileWithoutDetails: {
+        width: "auto",
+        height: "auto",
     },
     clickable: {
         backgroundColor: tokens.color.offWhite,
@@ -83,11 +129,13 @@ const styles = StyleSheet.create({
             outline: `1px solid ${tokens.color.blue}`,
         },
     },
-    description: {
+    descriptionWithDetails: {
         padding: tokens.spacing.large_24,
     },
+    descriptionWithoutDetails: {
+        padding: tokens.spacing.small_12,
+    },
     headingContainer: {
-        width: "fit-content",
         flexDirection: "row",
         alignItems: "center",
     },
@@ -103,12 +151,9 @@ const styles = StyleSheet.create({
         borderEndStartRadius: tokens.spacing.small_12,
         borderEndEndRadius: tokens.spacing.small_12,
         flexGrow: 1,
-
-        [mobile]: {
-            overflowX: "scroll",
-        },
     },
     externalLinkIcon: {
         marginLeft: tokens.spacing.xSmall_8,
+        marginRight: tokens.spacing.xSmall_8,
     },
 });
