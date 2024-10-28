@@ -464,6 +464,12 @@ export const Error: StoryComponentType = {
         error: true,
         validate: undefined,
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -479,6 +485,12 @@ export const Error: StoryComponentType = {
  */
 export const ErrorFromValidation: StoryComponentType = {
     render: ErrorRender,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -699,6 +711,10 @@ ErrorLight.parameters = {
             story: `If an input value fails validation and the
         \`light\` prop is true, \`TextField\` will have light error styling.`,
         },
+    },
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
     },
 };
 

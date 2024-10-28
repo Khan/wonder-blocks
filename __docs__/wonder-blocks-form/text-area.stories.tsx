@@ -178,6 +178,12 @@ export const Error: StoryComponentType = {
         value: "With error",
         error: true,
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -202,6 +208,12 @@ export const ErrorFromValidation: StoryComponentType = {
         },
     },
     render: ControlledTextArea,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
