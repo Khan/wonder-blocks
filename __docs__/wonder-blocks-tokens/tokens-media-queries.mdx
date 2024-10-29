@@ -8,7 +8,7 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 
-<Meta title="Packages / Tokens / Media Queries" />
+<Meta title="Packages / Tokens / Media Query Breakpoints" />
 
 # Media Queries
 
@@ -19,14 +19,14 @@ max-width, width, etc.
 
 ## Usage
 
-You can use these values directly by importing `mediaQueries` from the
+You can use these values directly by importing `breakpoints` from the
 `wonder-blocks-tokens` package and accessing the named property like so:
-`mediaQueries.sm`.
+`breakpoints.sm`.
 
 ```js
-import {mediaQueries} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoints} from "@khanacademy/wonder-blocks-tokens";
 const styles = {
-    [mediaQueries.sm]: {
+    [breakpoints.sm]: {
         flexDirection: "column"
     }
 };
@@ -38,12 +38,12 @@ const styles = {
     columns={[
         {
             label: "Token",
-            cell: (row) => <code>mediaQueries.{row.label}</code>,
+            cell: (row) => <code>breakpoints.{row.label}</code>,
         },
         {
             label: "Value",
             cell: "value",
         },
     ]}
-    tokens={tokens.mediaQueries}
+    tokens={tokens.breakpoints}
 />

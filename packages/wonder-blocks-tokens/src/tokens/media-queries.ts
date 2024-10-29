@@ -5,27 +5,29 @@
  *
  */
 
-export const pureXsMax = "567px";
-export const pureSmMin = "568px";
-export const pureSmMax = "681px";
-export const pureMdMin = "682px";
-export const pureMdMax = "1023px";
-export const pureLgMin = "1024px";
+export const pureWidths = {
+    xsMax: 567,
+    smMin: 568,
+    smMax: 681,
+    mdMin: 682,
+    mdMax: 1023,
+    lgMin: 1024,
+} as const;
 
-export const mediaQueries = {
+export const breakpoints = {
     // Named
-    xs: `@media screen and (max-width: ${pureXsMax})`,
-    sm: `@media screen and (min-width: ${pureSmMin}) and (max-width: ${pureSmMax})`,
-    md: `@media screen and (min-width: ${pureMdMin}) and (max-width: ${pureMdMax})`,
-    lg: `@media screen and (min-width: ${pureMdMin}) and (max-width: ${pureLgMin})`,
-    xl: `@media screen and (min-width: ${pureLgMin})`,
+    xs: `@media screen and (max-width: ${pureWidths.xsMax}px) /* breakpoints.xs */`,
+    sm: `@media screen and (min-width: ${pureWidths.smMin}px) and (max-width: ${pureWidths.smMax}px) /* breakpoints.sm */`,
+    md: `@media screen and (min-width: ${pureWidths.mdMin}px) and (max-width: ${pureWidths.mdMax}px) /* breakpoints.md */`,
+    lg: `@media screen and (min-width: ${pureWidths.mdMin}px) and (max-width: ${pureWidths.lgMin}px) /* breakpoints.lg */`,
+    xl: `@media screen and (min-width: ${pureWidths.lgMin}px) /* breakpoints.xl */`,
 
-    xsOrSmaller: `@media screen and (max-width: ${pureXsMax})`,
-    smOrSmaller: `@media screen and (max-width: ${pureSmMax})`,
-    mdOrSmaller: `@media screen and (max-width: ${pureMdMax})`,
-    lgOrSmaller: `@media screen and (max-width: ${pureLgMin})`,
+    xsOrSmaller: `@media screen and (max-width: ${pureWidths.xsMax}px) /* breakpoints.xsOrSmaller */`,
+    smOrSmaller: `@media screen and (max-width: ${pureWidths.smMax}px) /* breakpoints.smOrSmaller */`,
+    mdOrSmaller: `@media screen and (max-width: ${pureWidths.mdMax}px) /* breakpoints.mdOrSmaller */`,
+    lgOrSmaller: `@media screen and (max-width: ${pureWidths.lgMin}px) /* breakpoints.lgOrSmaller */`,
 
-    smOrLarger: `@media screen and (min-width: ${pureSmMin})`,
-    mdOrLarger: `@media screen and (min-width: ${pureMdMin})`,
-    lgOrLarger: `@media screen and (min-width: ${pureLgMin})`,
+    smOrLarger: `@media screen and (min-width: ${pureWidths.smMin}px) /* breakpoints.smOrLarger */`,
+    mdOrLarger: `@media screen and (min-width: ${pureWidths.mdMin}px) /* breakpoints.mdOrLarger */`,
+    lgOrLarger: `@media screen and (min-width: ${pureWidths.lgMin}px) /* breakpoints.lgOrLarger */`,
 } as const;

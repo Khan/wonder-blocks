@@ -4,11 +4,10 @@ import {color} from "./tokens/color";
 import {font} from "./tokens/font";
 import {spacing} from "./tokens/spacing";
 
+// media queries
+import {breakpoints, pureWidths} from "./tokens/media-queries";
 // semantic tokens
 import {semanticColor} from "./tokens/semantic-color";
-
-// media queries
-import {mediaQueries} from "./tokens/media-queries";
 
 // utils
 import {mix, fade} from "./util/utils";
@@ -24,7 +23,8 @@ export {
     /**
      * Media query breakpoints.
      */
-    mediaQueries,
+    breakpoints,
+    pureWidths,
     /**
      * Semantic tokens.
      */
