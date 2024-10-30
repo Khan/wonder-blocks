@@ -5,16 +5,34 @@ import {processStyleList} from "./util";
 
 import type {StyleType} from "./types";
 
-type StyledProps<T extends keyof JSX.IntrinsicElements> = {
+/**
+ * The props that can be passed to a styled component. Removes the `style` prop
+ * from the original component and replaces with the Aphrodite style object.
+ */
+type StyledProps<
+    T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
+> = {
     className?: string;
     style?: StyleType;
     children?: React.ReactNode;
 } & Omit<React.ComponentProps<T>, "style">;
 
+/**
+ * This type only exists to be mapped in NamedStyledTag.
+ * An object with a key, `Styled`, and the value is the styled component.
+ * There may be a way to accomplish this without an intermediate type, but
+ * this was the simplest way to get it working.
+ */
 interface StyledTag<T extends keyof JSX.IntrinsicElements> {
     Styled: ReturnType<typeof addStyle<T, StyledProps<T>>>;
 }
 
+/**
+ * A mapped type that appends the tag name to the keys in StyledTag. Since
+ * there is only one key in StyledTag, the key will be `Styled${Tag}`. For
+ * example, if Tag is "div", the key will be `StyledDiv`. The value is the
+ * styled component.
+ */
 type NamedStyledTag<Tag extends string & keyof JSX.IntrinsicElements> = {
     [Property in keyof StyledTag<Tag> as `${Property}${Capitalize<Tag>}`]: StyledTag<Tag>[Property];
 };
@@ -43,11 +61,7 @@ export default function addStyle<
     // We extend `React.ComponentType<any>` to support `addStyle(Link)` with
     // react-router's `Link` component.
     T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
-    Props extends {
-        className?: string;
-        style?: StyleType;
-        children?: React.ReactNode;
-    } & Omit<React.ComponentProps<T>, "style">, // Removes the 'style' prop from the original component
+    Props extends StyledProps<T>,
 >(
     Component: T,
     defaultStyle?: StyleType,
