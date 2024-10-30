@@ -55,7 +55,7 @@ export const makeStyled = <Tag extends string & keyof JSX.IntrinsicElements>(
     } as NamedStyledTag<Tag>);
 
 /**
- * @deprecated Use `makeStyled` instead.
+ * If you are decorating a native element, use `makeStyled` instead.
  */
 export default function addStyle<
     // We extend `React.ComponentType<any>` to support `addStyle(Link)` with

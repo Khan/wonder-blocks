@@ -7,6 +7,10 @@ import * as AddStyleStories from './add-style.stories';
 
 # addStyle
 
+For most purposes, you will want to use `makeStyled` instead of `addStyle` in
+order to create styled components with consistent names. This helps with
+linting.
+
 The `addStyle` function is a HOC that accepts a **React Component** or a **DOM**
 **intrinsic** ("div", "span", etc.) as its first argument and optional default
 styles as its second argument. This HOC returns a **React Component** with a

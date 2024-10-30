@@ -1,0 +1,153 @@
+import * as React from "react";
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as MakeStyledStories from "./make-styled.stories";
+
+<Meta of={MakeStyledStories} />
+
+# makeStyled
+
+The `makeStyled` function accepts a **DOM intrinsic** ("div", "span", etc.) as
+its first argument and optional default styles as its second argument. This
+returns a named **React Component** with a `style` prop included, ready to be
+rendered.
+
+_Note: this differs from using a bare **DOM intrinsic** with a `style`
+prop. The bare **DOM** **intrinsic** will generate inline styles whereas a
+component that has been wrapped with `makeStyled` will process the styles with
+[Aphrodite](https://github.com/Khan/aphrodite). As a result, always use
+`makeStyled` if you need to style the component/element._
+
+## Usage
+
+```js
+import {makeStyled} from "@khanacademy/wonder-blocks-core";
+
+makeStyled(
+    Tag: keyof JSX.IntrinsicElements,
+    defaultStyle?: StyleType
+): React.Element;
+```
+
+## API
+
+| Argument       | TypeScript Type               | Default    | Description                          |
+| -------------- | ----------------------------- | ---------- | ------------------------------------ |
+| `Tag`          | `keyof JSX.IntrinsicElements` | _Required_ | The tag name that will be decorated. |
+| `defaultStyle` | `StyleType`                   | null       | The initial styles to be applied.    |
+
+## Examples
+
+It's recommended to create your styled component using `makeStyled` outside of the
+component so we don't have to create a new instance on every render.
+
+### 1. Adding default styles
+
+You can create a new styled component by using the `makeStyled` function. Note
+here that you can also define default styles for this component by passing an
+initial style object to this function:
+
+```tsx
+import {StyleSheet} from "aphrodite";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {makeStyled} from "@khanacademy/wonder-blocks-core";
+
+const {StyledInput} = makeStyled("input", styles.input);
+
+const styles = StyleSheet.create({
+    input: {
+        background: color.white,
+        borderColor: color.offBlack16,
+        borderRadius: spacing.xxxSmall_4,
+        fontSize: spacing.medium_16,
+        padding: spacing.xSmall_8,
+    },
+});
+
+const MyComponent = () => {
+    return <StyledInput type="text" placeholder: "This is a styled input" />;
+};
+```
+
+<Canvas sourceState="none" of={MakeStyledStories.WithDefaultStyle} />
+
+### 2. Overriding a default style
+
+After defining default styles, you can also customize the instance by adding
+and/or merging styles using the `style` prop in your newly created styled
+component.
+
+```tsx
+import {StyleSheet} from "aphrodite";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {makeStyled} from "@khanacademy/wonder-blocks-core";
+
+const {StyledInput} = makeStyled("input", styles.input);
+
+const styles = StyleSheet.create({
+    input: {
+        background: color.white,
+        borderColor: color.offBlack16,
+        borderRadius: spacing.xxxSmall_4,
+        fontSize: spacing.medium_16,
+        padding: spacing.xSmall_8,
+    },
+    error: {
+        background: fade(color.red, 0.16),
+        borderColor: color.red,
+    },
+});
+
+const MyComponent = () => {
+    return <StyledInput type="text" placeholder: "This is a styled input" style={styles.error} />;
+};
+```
+
+<Canvas sourceState="none" of={MakeStyledStories.OverrideStyles} />
+
+### 3. Adding styles dynamically
+
+This example shows that you can dynamically create styles by adding them to the
+`style` prop only when you need them.
+
+```tsx
+import {StyleSheet} from "aphrodite";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {makeStyled} from "@khanacademy/wonder-blocks-core";
+
+const {StyledInput} = makeStyled("input", styles.input);
+
+const styles = StyleSheet.create({
+    input: {
+        background: color.white,
+        borderColor: color.offBlack16,
+        borderRadius: spacing.xxxSmall_4,
+        fontSize: spacing.medium_16,
+        padding: spacing.xSmall_8,
+    },
+    error: {
+        background: fade(color.red, 0.16),
+        borderColor: color.red,
+    },
+});
+
+const MyComponent = () => {
+    const [error, setError] = React.useState(false);
+    const {StyledInput} = makeStyled("input", styles.input);
+    return (
+        <View>
+            <Checkbox
+                label="Click here to add the error style to the input"
+                checked={error}
+                onChange={() => setError(!error)}
+            />
+            <StyledInput
+                style={[styles.input, error && styles.error]}
+                type="text"
+                placeholder="Lorem ipsum"
+            />
+        </View>
+    );
+};
+```
+
+<Canvas sourceState="none" of={MakeStyledStories.AddingStylesDynamically} />
