@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import addStyle from "../util/add-style";
+import {makeStyled} from "../util/add-style";
 
 import type {TextViewSharedProps} from "../util/types";
 
@@ -33,11 +33,11 @@ type Props = TextViewSharedProps & {
     tag?: ValidViewTags;
 };
 
-const StyledDiv = addStyle("div", styles.default);
-const StyledArticle = addStyle("article", styles.default);
-const StyledAside = addStyle("aside", styles.default);
-const StyledNav = addStyle("nav", styles.default);
-const StyledSection = addStyle("section", styles.default);
+const {StyledDiv} = makeStyled("div", styles.default);
+const {StyledArticle} = makeStyled("article", styles.default);
+const {StyledAside} = makeStyled("aside", styles.default);
+const {StyledNav} = makeStyled("nav", styles.default);
+const {StyledSection} = makeStyled("section", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly
