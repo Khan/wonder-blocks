@@ -41,6 +41,53 @@ module.exports = {
         react: {
             version: "detect",
         },
+        "jsx-a11y": {
+            polymorphicPropName: "tag",
+            components: {
+                Link: "a",
+                Button: "button",
+                Textarea: "textarea",
+                TextField: "input",
+
+                // Mapping for common wrappers for html elements when we can use `addStyle`
+                StyledButton: "button",
+                StyledImg: "img",
+                StyledImage: "img",
+                StyledSvg: "svg",
+                StyledUL: "ul",
+                StyledUl: "ul",
+                StyledOL: "ol",
+                StyledOl: "ol",
+                StyledLI: "li",
+                StyledLi: "li",
+                StyledSpan: "span",
+                StyledDiv: "div",
+                StyledSection: "section",
+                StyledForm: "form",
+                StyledOutput: "output",
+                StyledIframe: "iframe",
+                StyledHr: "hr",
+                StyledP: "p",
+                StyledFieldset: "fieldset",
+                StyledLegend: "legend",
+                StyledCaption: "caption",
+                StyledPre: "pre",
+                StyledSUP: "sup",
+                StyledMark: "mark",
+                StyledTable: "table",
+                StyledTableRow: "tr",
+                StyledTableData: "td",
+                Td: "td",
+                StyledTableHeader: "th",
+                Th: "th",
+                Dl: "dl",
+                Dt: "dt",
+                Dd: "dd",
+            },
+            attributes: {
+                for: ["htmlFor", "for"],
+            },
+        },
     },
     overrides: [
         {
@@ -59,17 +106,6 @@ module.exports = {
             files: ["**/*.test.ts", "**/*.test.tsx"],
             rules: {
                 "no-undef": "off",
-                // Disabled rule because some tests check for when a positive
-                // tabindex is provided
-                "jsx-a11y/tabindex-no-positive": "off",
-            },
-        },
-        {
-            files: ["**/*.ts", "**/*.tsx"],
-            rules: {
-                // Disable autofocus rule for WB. It should be up to consumers
-                // to use the autofocus prop depending on the context.
-                "jsx-a11y/no-autofocus": "off",
             },
         },
     ],
@@ -225,5 +261,42 @@ module.exports = {
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/prefer-enum-initializers": "error",
         "@typescript-eslint/prefer-literal-enum-member": "error",
+
+        /**
+         * JSX A11y rules
+         */
+        // Disabled since using autofocus could be valid depending on the context
+        "jsx-a11y/no-autofocus": "off",
+        // Disabled since setting role is sometimes valid, especially on flexible
+        // custom components
+        "jsx-a11y/prefer-tag-over-role": "off",
+        // Disabled because results from rule are not reliable. Would be more
+        // helpful to check associated labels on rendered output
+        "jsx-a11y/control-has-associated-label": "off",
+        "jsx-a11y/lang": "error",
+        "jsx-a11y/no-aria-hidden-on-focusable": "error",
+        "jsx-a11y/anchor-ambiguous-text": "error",
+        "jsx-a11y/anchor-is-valid": [
+            "error",
+            // This makes it so Link components using the `to` prop is valid
+            // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/340#issuecomment-338424908
+            {components: ["Link"], specialLink: ["to"]},
+        ],
+        "jsx-a11y/no-noninteractive-tabindex": [
+            "error",
+            // It is recommended to allow this rule on elements with role=tabpanel
+            // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/e5dda96f9c021c524a05d9b6b209a2389828ffb3/docs/rules/no-noninteractive-tabindex.md#rule-options
+            {
+                tags: [],
+                roles: ["tabpanel"],
+            },
+        ],
+        "jsx-a11y/label-has-associated-control": [
+            "error",
+            {
+                // Increase depth to support cases where there are nested elements within a label
+                depth: 3,
+            },
+        ],
     },
 };
