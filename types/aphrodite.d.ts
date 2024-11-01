@@ -1,28 +1,30 @@
 declare module "aphrodite" {
     import * as React from "react";
 
-    const xs = "@media screen and (max-width: 567px) /* breakpoints.xs */";
+    const xs =
+        "@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xs */";
     const sm =
-        "@media screen and (min-width: 568px) and (max-width: 681px) /* breakpoints.sm */";
+        "@media screen and (min-width: 568px) and (max-width: 681px) /* breakpoint.mediaQuery.sm */";
     const md =
-        "@media screen and (min-width: 682px) and (max-width: 1023px) /* breakpoints.md */";
+        "@media screen and (min-width: 682px) and (max-width: 1023px) /* breakpoint.mediaQuery.md */";
     const lg =
-        "@media screen and (min-width: 682px) and (max-width: 1024px) /* breakpoints.lg */";
-    const xl = "@media screen and (min-width: 1024px) /* breakpoints.xl */";
+        "@media screen and (min-width: 682px) and (max-width: 1024px) /* breakpoint.mediaQuery.lg */";
+    const xl =
+        "@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.xl */";
     const xsOrSmaller =
-        "@media screen and (max-width: 567px) /* breakpoints.xsOrSmaller */";
+        "@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xsOrSmaller */";
     const smOrSmaller =
-        "@media screen and (max-width: 681px) /* breakpoints.smOrSmaller */";
+        "@media screen and (max-width: 681px) /* breakpoint.mediaQuery.smOrSmaller */";
     const mdOrSmaller =
-        "@media screen and (max-width: 1023px) /* breakpoints.mdOrSmaller */";
+        "@media screen and (max-width: 1023px) /* breakpoint.mediaQuery.mdOrSmaller */";
     const lgOrSmaller =
-        "@media screen and (min-width: 1024px) /* breakpoints.lgOrLarger */";
+        "@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.lgOrLarger */";
     const smOrLarger =
-        "@media screen and (min-width: 568px) /* breakpoints.smOrLarger */";
+        "@media screen and (min-width: 568px) /* breakpoint.mediaQuery.smOrLarger */";
     const mdOrLarger =
-        "@media screen and (min-width: 682px) /* breakpoints.mdOrLarger */";
+        "@media screen and (min-width: 682px) /* breakpoint.mediaQuery.mdOrLarger */";
     const lgOrLarger =
-        "@media screen and (min-width: 1024px) /* breakpoints.lgOrLarger */";
+        "@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.lgOrLarger */";
 
     type _CSSProperties = React.CSSProperties & {
         /**
