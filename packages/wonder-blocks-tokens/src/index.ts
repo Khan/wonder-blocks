@@ -5,7 +5,7 @@ import {font} from "./tokens/font";
 import {spacing} from "./tokens/spacing";
 
 // media queries
-import {breakpoints, pureWidths} from "./tokens/media-queries";
+import {breakpoint} from "./tokens/media-queries";
 // semantic tokens
 import {semanticColor} from "./tokens/semantic-color";
 
@@ -23,8 +23,7 @@ export {
     /**
      * Media query breakpoints.
      */
-    breakpoints,
-    pureWidths,
+    breakpoint,
     /**
      * Semantic tokens.
      */

@@ -14,20 +14,33 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 
 <ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
-All the available media query breakpoint values that can be used for min-width,
+All the available media query breakpoint values and pure widths that can be used for min-width,
 max-width, width, etc.
 
 ## Usage
 
-You can use these values directly by importing `breakpoints` from the
-`wonder-blocks-tokens` package and accessing the named property like so:
-`breakpoints.sm`.
+You can use mediaQueries and pure widths directly by importing `breakpoint` from the
+`wonder-blocks-tokens` package and accessing the named properties like so:
+`breakpoint.mediaQuery.sm`.
+
+### Media Queries
 
 ```js
-import {breakpoints} from "@khanacademy/wonder-blocks-tokens";
+import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 const styles = {
-    [breakpoints.sm]: {
+    [breakpoint.mediaQuery.sm]: {
         flexDirection: "column"
+    }
+};
+```
+
+### Pure widths
+
+```js
+import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
+const styles = {
+    element: {
+        max-width: `${breakpoint.width.lg}px`
     }
 };
 ```
@@ -37,13 +50,27 @@ const styles = {
 <TokenTable
     columns={[
         {
-            label: "Token",
-            cell: (row) => <code>breakpoints.{row.label}</code>,
+            label: "Media Query Token",
+            cell: (row) => <code>breakpoint.mediaQuery.{row.label}</code>,
         },
         {
             label: "Value",
             cell: "value",
         },
     ]}
-    tokens={tokens.breakpoints}
+    tokens={tokens.breakpoint.mediaQuery}
+/>
+
+<TokenTable
+    columns={[
+        {
+            label: "Width Token",
+            cell: (row) => <code>breakpoint.width.{row.label}</code>,
+        },
+        {
+            label: "Value",
+            cell: "value",
+        },
+    ]}
+    tokens={tokens.breakpoint.width}
 />
