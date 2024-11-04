@@ -1,6 +1,32 @@
 declare module "aphrodite" {
     import * as React from "react";
 
+    // Note: Updates here are also needed in /wonder-blocks-tokens/src/tokens/media-queries.ts
+    const xs =
+        "@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xs */";
+    const sm =
+        "@media screen and (min-width: 568px) and (max-width: 681px) /* breakpoint.mediaQuery.sm */";
+    const md =
+        "@media screen and (min-width: 682px) and (max-width: 1023px) /* breakpoint.mediaQuery.md */";
+    const lg =
+        "@media screen and (min-width: 682px) and (max-width: 1024px) /* breakpoint.mediaQuery.lg */";
+    const xl =
+        "@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.xl */";
+    const xsOrSmaller =
+        "@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xsOrSmaller */";
+    const smOrSmaller =
+        "@media screen and (max-width: 681px) /* breakpoint.mediaQuery.smOrSmaller */";
+    const mdOrSmaller =
+        "@media screen and (max-width: 1023px) /* breakpoint.mediaQuery.mdOrSmaller */";
+    const lgOrSmaller =
+        "@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.lgOrLarger */";
+    const smOrLarger =
+        "@media screen and (min-width: 568px) /* breakpoint.mediaQuery.smOrLarger */";
+    const mdOrLarger =
+        "@media screen and (min-width: 682px) /* breakpoint.mediaQuery.mdOrLarger */";
+    const lgOrLarger =
+        "@media screen and (min-width: 1024px) /* breakpoint.mediaQuery.lgOrLarger */";
+
     type _CSSProperties = React.CSSProperties & {
         /**
          * Browser Specific
@@ -17,6 +43,19 @@ declare module "aphrodite" {
         "@media (max-width: 1023px)"?: React.CSSProperties;
         "@media (min-width: 1024px)"?: React.CSSProperties;
         "@media (min-width: 1168px)"?: React.CSSProperties;
+
+        [xs]?: React.CSSProperties;
+        [sm]?: React.CSSProperties;
+        [md]?: React.CSSProperties;
+        [lg]?: React.CSSProperties;
+        [xl]?: React.CSSProperties;
+        [xsOrSmaller]?: React.CSSProperties;
+        [smOrSmaller]?: React.CSSProperties;
+        [mdOrSmaller]?: React.CSSProperties;
+        [lgOrSmaller]?: React.CSSProperties;
+        [smOrLarger]?: React.CSSProperties;
+        [mdOrLarger]?: React.CSSProperties;
+        [lgOrLarger]?: React.CSSProperties;
     };
 
     /**
