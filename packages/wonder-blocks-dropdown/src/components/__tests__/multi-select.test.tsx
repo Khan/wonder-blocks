@@ -150,7 +150,7 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(await screen.findByRole("button")).toHaveTextContent(
-                "1 student",
+                "custom item 1",
             );
         });
 

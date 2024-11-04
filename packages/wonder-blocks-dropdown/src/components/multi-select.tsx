@@ -25,7 +25,7 @@ import type {
     OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 
 export type Labels = {
     /**
@@ -315,7 +315,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         onChange([]);
     };
 
-    getMenuText(children: OptionItemComponentArray): string {
+    getMenuText(children: OptionItemComponentArray): string | JSX.Element {
         const {implicitAllEnabled, selectedValues} = this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
         const numSelectedAll = children.filter(
@@ -345,7 +345,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                         // we fallback to, the default label for the case where only
                         // one item is selected.
                     } else {
-                        return someSelected(1);
+                        return getSelectOpenerLabel(selectedItem?.props);
                     }
                 }
 
