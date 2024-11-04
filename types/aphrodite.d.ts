@@ -1,6 +1,7 @@
 declare module "aphrodite" {
     import * as React from "react";
 
+    // Note: Updates here are also needed in /wonder-blocks-tokens/src/tokens/media-queries.ts
     const xs =
         "@media screen and (max-width: 567px) /* breakpoint.mediaQuery.xs */";
     const sm =

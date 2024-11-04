@@ -5,6 +5,7 @@
  *
  */
 
+/* Pure width values */
 const width = {
     xsMax: 567,
     smMin: 568,
@@ -14,8 +15,9 @@ const width = {
     lgMin: 1024,
 } as const;
 
+/* Named mediaQuery conditions */
 const mediaQuery = {
-    // Named
+    // Note: any updates to this will need to be replicated in /types/aphrodite.d.ts
     xs: `@media screen and (max-width: ${width.xsMax}px) /* breakpoint.mediaQuery.xs */`,
     sm: `@media screen and (min-width: ${width.smMin}px) and (max-width: ${width.smMax}px) /* breakpoint.mediaQuery.sm */`,
     md: `@media screen and (min-width: ${width.mdMin}px) and (max-width: ${width.mdMax}px) /* breakpoint.mediaQuery.md */`,
