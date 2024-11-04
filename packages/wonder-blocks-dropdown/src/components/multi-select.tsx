@@ -545,6 +545,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
+                            placeholder={noneSelected}
                             isPlaceholder={menuText === noneSelected}
                             light={light}
                             onOpenChanged={this.handleOpenChanged}
