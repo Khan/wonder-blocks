@@ -19,11 +19,11 @@ max-width, width, etc.
 
 ## Usage
 
-You can use mediaQueries and pure widths directly by importing `breakpoint` from the
-`wonder-blocks-tokens` package and accessing the named properties like so:
-`breakpoint.mediaQuery.sm`.
-
 ### Media Queries
+
+You can use mediaQuery conditions by importing `breakpoint` from the
+`wonder-blocks-tokens` package and accessing its object properties for sizing like so:
+`breakpoint.mediaQuery.sm`.
 
 ```js
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
@@ -35,6 +35,11 @@ const styles = {
 ```
 
 ### Pure widths
+
+You can also use pure width values by importing `breakpoint` from the
+`wonder-blocks-tokens` package and accessing the `width` object:
+`breakpoint.width.sm`. The pixel values are returned as raw numbers without a unit.
+You can interpolate a string to add the `px` unit like so:
 
 ```js
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
