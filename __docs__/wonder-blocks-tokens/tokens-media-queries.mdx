@@ -38,8 +38,9 @@ const styles = {
 
 You can also use pure width values by importing `breakpoint` from the
 `wonder-blocks-tokens` package and accessing the `width` object:
-`breakpoint.width.sm`. The pixel values are returned as raw numbers without a unit.
-You can interpolate a string to add the `px` unit like so:
+`breakpoint.width.sm`. These can be useful for tooling or in CSS where a number value
+is needed. Therefore, pixel values are returned without a unit. You can interpolate
+a string to add the `px` unit like so:
 
 ```js
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
