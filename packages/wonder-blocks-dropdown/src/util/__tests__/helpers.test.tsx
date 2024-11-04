@@ -1,7 +1,12 @@
 import * as React from "react";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import OptionItem from "../../components/option-item";
-import {debounce, getLabel, getStringForKey} from "../helpers";
+import {
+    debounce,
+    getLabel,
+    getSelectOpenerLabel,
+    getStringForKey,
+} from "../helpers";
 
 describe("getStringForKey", () => {
     it("should get a valid string", () => {
@@ -117,5 +122,51 @@ describe("getLabel", () => {
 
         // Assert
         expect(label).toBe("");
+    });
+});
+
+describe("getSelectorLabel", () => {
+    it("should return the label if the label is a Node and labelAsText is not defined", () => {
+        // Arrange
+        const props: PropsFor<typeof OptionItem> = {
+            label: <div>a custom node</div>,
+            labelAsText: undefined,
+            value: "foo",
+        };
+
+        // Act
+        const label = getSelectOpenerLabel(props);
+
+        // Assert
+        expect(label).toStrictEqual(<div>a custom node</div>);
+    });
+
+    it("should return a string if the label is a string", () => {
+        // Arrange
+        const props: PropsFor<typeof OptionItem> = {
+            label: "option 1",
+            value: "foo",
+        };
+
+        // Act
+        const label = getSelectOpenerLabel(props);
+
+        // Assert
+        expect(label).toBe("option 1");
+    });
+
+    it("should return a string if the label is a Node and labelAsText is defined", () => {
+        // Arrange
+        const props: PropsFor<typeof OptionItem> = {
+            label: <div>a custom node</div>,
+            labelAsText: "plain text",
+            value: "foo",
+        };
+
+        // Act
+        const label = getSelectOpenerLabel(props);
+
+        // Assert
+        expect(label).toBe("plain text");
     });
 });

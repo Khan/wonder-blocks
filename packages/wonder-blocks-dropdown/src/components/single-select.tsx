@@ -22,7 +22,7 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 
 export type SingleSelectLabels = {
     /**
@@ -418,7 +418,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
         const menuText = selectedItem
-            ? getLabel(selectedItem.props)
+            ? getSelectOpenerLabel(selectedItem.props)
             : placeholder;
 
         const dropdownOpener = (

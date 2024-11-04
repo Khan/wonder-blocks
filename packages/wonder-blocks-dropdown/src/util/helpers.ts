@@ -70,3 +70,17 @@ export function getLabel(props: OptionItemProps): string {
 
     return "";
 }
+
+/**
+ * Returns the label for the SelectOpener in the SingleSelect and MultiSelect.
+ * If the label is a Node, and `labelAsText` is undefined, returns the label.
+ */
+export function getSelectOpenerLabel(
+    props: OptionItemProps,
+): string | JSX.Element {
+    const labelText = getLabel(props);
+    if (labelText === "") {
+        return props.label;
+    }
+    return labelText;
+}
