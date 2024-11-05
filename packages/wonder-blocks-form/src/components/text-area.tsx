@@ -143,6 +143,13 @@ type TextAreaProps = AriaProps & {
      */
     onValidate?: (errorMessage?: string | null | undefined) => unknown;
     /**
+     * If true, textarea is validated as the user types (onChange). If false,
+     * it is validated when the user's focus moves out of the field (onBlur).
+     * It is preferred that instantValidation is set to `false`, however, it
+     * defaults to `true` for backwards compatibility with existing implementations.
+     */
+    instantValidation?: boolean;
+    /**
      * Whether the textarea is in an error state.
      *
      * Use this for errors that are triggered by something external to the
@@ -222,6 +229,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             light,
             rootStyle,
             error,
+            instantValidation = true,
             // Should only include aria related props
             ...otherProps
         } = props;
@@ -240,10 +248,42 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         ) => {
             const newValue = event.target.value;
             onChange(newValue);
-            handleValidation(newValue);
+            if (instantValidation) {
+                handleValidation(newValue);
+            } else {
+                if (errorMessage) {
+                    // If instantValidation is false and there is an error
+                    // message, error needs to be cleared when the user updates
+                    // the value
+                    setErrorMessage("");
+                    if (onValidate) {
+                        onValidate("");
+                    }
+                }
+            }
+        };
+
+        const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
+            // Only handle validation on blur if instantValidation is false
+            if (!instantValidation) {
+                // Only handle validation when there is a value in the field so
+                // a user tabbing through fields doesn't trigger the error state
+                // when the field is left empty
+                if (event.target.value) {
+                    handleValidation(event.target.value);
+                }
+            }
+
+            if (onBlur) {
+                onBlur(event);
+            }
         };
 
         const handleValidation = (newValue: string) => {
+            // Should not handle validation if it is disabled
+            if (disabled) {
+                return;
+            }
             if (validate) {
                 const error = validate(newValue) || null;
                 setErrorMessage(error);
@@ -317,7 +357,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     onKeyDown={disabled ? undefined : onKeyDown}
                     onKeyUp={disabled ? undefined : onKeyUp}
                     onFocus={onFocus} // TextArea can be focused on if it is disabled
-                    onBlur={onBlur} // TextArea can be blurred if it is disabled
+                    onBlur={handleBlur} // TextArea can be blurred if it is disabled
                     required={!!required}
                     {...otherProps}
                     aria-invalid={hasError}

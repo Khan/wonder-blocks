@@ -294,6 +294,54 @@ ErrorFromPropAndValidation.parameters = {
 };
 
 /**
+ * The `instantValidation` prop controls when validation is triggered. Validation
+ * is only triggered if the `validate` or `required` props are set.
+ *
+ * Validation is triggered:
+ * 1. On mount if the `value` prop is not empty
+ * 2. If `instantValidation` is `true`, validation occurs `onChange` (default)
+ * 3. If `instantValidation` is `false`, validation occurs `onBlur`
+ */
+export const InstantValidation: StoryComponentType = {
+    args: {
+        validate(value: string) {
+            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+            if (!emailRegex.test(value)) {
+                return "Please enter a valid email";
+            }
+        },
+    },
+    render: (args) => {
+        return (
+            <View style={{gap: spacing.small_12}}>
+                <LabelSmall htmlFor="instant-validation-true">
+                    Instant Validation: true
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    id="instant-validation-true"
+                    instantValidation={true}
+                />
+                <LabelSmall htmlFor="instant-validation-false">
+                    Instant Validation: false
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    id="instant-validation-false"
+                    instantValidation={false}
+                />
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
  * A required field will have error styling if the field is left blank. To
  * observe this, type something into the field, backspace all the way,
  * and then shift focus out of the field.
