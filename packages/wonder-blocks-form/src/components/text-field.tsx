@@ -204,7 +204,7 @@ const TextField = (props: PropsWithForwardRef) => {
         }
     });
 
-    const maybeValidate: (newValue: string) => void = (newValue) => {
+    const maybeValidate = (newValue: string) => {
         if (validate) {
             const maybeError = validate(newValue) || null;
             setErrorMessage(maybeError);
@@ -222,25 +222,19 @@ const TextField = (props: PropsWithForwardRef) => {
         }
     };
 
-    const handleChange: (
-        event: React.ChangeEvent<HTMLInputElement>,
-    ) => unknown = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
         maybeValidate(newValue);
         onChange(newValue);
     };
 
-    const handleFocus: (
-        event: React.FocusEvent<HTMLInputElement>,
-    ) => unknown = (event) => {
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         if (onFocus) {
             onFocus(event);
         }
     };
 
-    const handleBlur: (event: React.FocusEvent<HTMLInputElement>) => unknown = (
-        event,
-    ) => {
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         if (onBlur) {
             onBlur(event);
         }
