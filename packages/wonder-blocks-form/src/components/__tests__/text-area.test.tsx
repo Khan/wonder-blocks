@@ -1579,6 +1579,7 @@ describe("TextArea", () => {
                             value="test"
                             validate={validate}
                             disabled={true}
+                            instantValidation={false}
                         />,
                         defaultOptions,
                     );
@@ -1612,6 +1613,29 @@ describe("TextArea", () => {
                         expect(textArea).toHaveAttribute(
                             "aria-invalid",
                             "true",
+                        );
+                    });
+
+                    it("shound not be in error state if it is required, the value changes to an empty string, and the user has not tabbed away", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTextArea
+                                value="T"
+                                required="Required"
+                                instantValidation={false}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Act
+                        const field = await screen.findByRole("textbox");
+                        await userEvent.type(field, "{backspace}");
+
+                        // Assert
+                        const textArea = await screen.findByRole("textbox");
+                        expect(textArea).toHaveAttribute(
+                            "aria-invalid",
+                            "false",
                         );
                     });
 
