@@ -255,9 +255,9 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     // If instantValidation is false and there is an error
                     // message, error needs to be cleared when the user updates
                     // the value
-                    setErrorMessage("");
+                    setErrorMessage(null);
                     if (onValidate) {
-                        onValidate("");
+                        onValidate(null);
                     }
                 }
             }
