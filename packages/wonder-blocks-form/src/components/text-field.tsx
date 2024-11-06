@@ -48,7 +48,7 @@ type CommonProps = AriaProps & {
      * This `disabled` prop will also set the `readonly` attribute to prevent
      * typing in the field.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
@@ -114,7 +114,7 @@ type CommonProps = AriaProps & {
     /**
      * Change the default focus ring color to fit a dark background.
      */
-    light: boolean;
+    light?: boolean;
     /**
      * Custom styles for the input.
      */
@@ -138,7 +138,7 @@ type CommonProps = AriaProps & {
 };
 
 type OtherInputProps = CommonProps & {
-    type: "text" | "password" | "email" | "tel";
+    type?: "text" | "password" | "email" | "tel";
 };
 
 // Props that are only available for inputs of type "number".
