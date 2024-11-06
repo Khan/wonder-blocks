@@ -197,6 +197,7 @@ const TextField = (props: PropsWithForwardRef) => {
         (props.validate && props.value !== "" && props.validate(props.value)) ||
             null,
     );
+    const hasError = error || !!errorMessage;
 
     useOnMountEffect(() => {
         if (props.value !== "") {
@@ -241,7 +242,6 @@ const TextField = (props: PropsWithForwardRef) => {
     };
 
     const getStyles = (): StyleType => {
-        const hasError = error || !!errorMessage;
         // Base styles are the styles that apply regardless of light mode
         const baseStyles = [styles.input, typographyStyles.LabelMedium];
         const defaultStyles = [
@@ -259,7 +259,6 @@ const TextField = (props: PropsWithForwardRef) => {
         return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
     };
 
-    const hasError = error || !!errorMessage;
     return (
         <IDProvider id={id} scope="text-field">
             {(uniqueId) => (
