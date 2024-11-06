@@ -295,12 +295,23 @@ ErrorFromPropAndValidation.parameters = {
 
 /**
  * The `instantValidation` prop controls when validation is triggered. Validation
- * is only triggered if the `validate` or `required` props are set.
+ * is triggered if the `validate` or `required` props are set.
+ *
+ * It is preferred to set `instantValidation` to `false` so that the user isn't
+ * shown an error until they are done with a field. Note: if `instantValidation`
+ * is not explicitly set, it defaults to `true` since this is the current
+ * behaviour of existing usage. Validation on blur needs to be opted in.
  *
  * Validation is triggered:
- * 1. On mount if the `value` prop is not empty
- * 2. If `instantValidation` is `true`, validation occurs `onChange` (default)
- * 3. If `instantValidation` is `false`, validation occurs `onBlur`
+ * - On mount if the `value` prop is not empty
+ * - If `instantValidation` is `true`, validation occurs `onChange` (default)
+ * - If `instantValidation` is `false`, validation occurs `onBlur`
+ *
+ * When `required` is set to `true`:
+ * - If `instantValidation` is `true`, the required error message is shown after
+ * a value is cleared
+ * - If `instantValidation` is `false`, the required error message is shown
+ * whenever the user tabs away from the required field
  */
 export const InstantValidation: StoryComponentType = {
     args: {
@@ -314,21 +325,55 @@ export const InstantValidation: StoryComponentType = {
     render: (args) => {
         return (
             <View style={{gap: spacing.small_12}}>
-                <LabelSmall htmlFor="instant-validation-true">
-                    Instant Validation: true
+                <LabelSmall htmlFor="instant-validation-true-not-required">
+                    Validation on mount if there is a value
                 </LabelSmall>
                 <ControlledTextArea
                     {...args}
-                    id="instant-validation-true"
+                    id="instant-validation-true-not-required"
+                    value="invalid"
+                />
+                <LabelSmall htmlFor="instant-validation-true-not-required">
+                    Error shown immediately (instantValidation: true, required:
+                    false)
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    id="instant-validation-true-not-required"
                     instantValidation={true}
                 />
-                <LabelSmall htmlFor="instant-validation-false">
-                    Instant Validation: false
+                <LabelSmall htmlFor="instant-validation-false-not-required">
+                    Error shown onBlur (instantValidation: false, required:
+                    false)
                 </LabelSmall>
                 <ControlledTextArea
                     {...args}
-                    id="instant-validation-false"
+                    id="instant-validation-false-not-required"
                     instantValidation={false}
+                />
+
+                <LabelSmall htmlFor="instant-validation-true-required">
+                    Error shown immediately after clearing the value
+                    (instantValidation: true, required: true)
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    validate={undefined}
+                    value="T"
+                    id="instant-validation-true-required"
+                    instantValidation={true}
+                    required="Required"
+                />
+                <LabelSmall htmlFor="instant-validation-false-required">
+                    Error shown on blur if it is empty (instantValidation:
+                    false, required: true)
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    validate={undefined}
+                    id="instant-validation-false-required"
+                    instantValidation={false}
+                    required="Required"
                 />
             </View>
         );

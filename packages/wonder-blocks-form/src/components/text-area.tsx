@@ -266,10 +266,13 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
             // Only handle validation on blur if instantValidation is false
             if (!instantValidation) {
-                // Only handle validation when there is a value in the field so
-                // a user tabbing through fields doesn't trigger the error state
-                // when the field is left empty
-                if (event.target.value) {
+                // Handle validation on blur if:
+                // 1. There is a value in the field so a user tabbing through
+                // fields doesn't trigger the error state when the field is left
+                // empty. Or,
+                // 2. The field is required. Tabbing through an empty field that
+                // is required will trigger the error state
+                if (event.target.value || required) {
                     handleValidation(event.target.value);
                 }
             }
