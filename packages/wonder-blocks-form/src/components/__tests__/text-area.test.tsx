@@ -1568,7 +1568,10 @@ describe("TextArea", () => {
                     await userEvent.type(field, "tests");
 
                     // Assert
-                    expect(handleValidate).toHaveBeenLastCalledWith("");
+                    expect(handleValidate.mock.calls).toStrictEqual([
+                        [errorMsg],
+                        [""],
+                    ]);
                 });
 
                 it("should not call the validate prop on blur if it is disabled", async () => {
@@ -1659,9 +1662,10 @@ describe("TextArea", () => {
                         await userEvent.tab();
 
                         // Assert
-                        expect(onValidate).toHaveBeenLastCalledWith(
-                            requiredMessage,
-                        );
+                        expect(onValidate.mock.calls).toStrictEqual([
+                            [null],
+                            [requiredMessage],
+                        ]);
                     });
 
                     it("shound be in error state if it is required, the value is empty, and the user tabs away", async () => {
