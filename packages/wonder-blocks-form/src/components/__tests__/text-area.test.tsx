@@ -1376,7 +1376,7 @@ describe("TextArea", () => {
             });
 
             describe("instantValidation=true", () => {
-                it("should call validate each time the value changes if the instantValidation prop is true", async () => {
+                it("should call validate each time the value changes", async () => {
                     // Arrange
                     const validate = jest.fn();
                     render(
@@ -1446,7 +1446,7 @@ describe("TextArea", () => {
                 });
             });
             describe("instantValidation=false", () => {
-                it("should call validate once the user leaves the field if the instantValidation prop is false", async () => {
+                it("should call validate once the user leaves the field", async () => {
                     // Arrange
                     const validate = jest.fn();
                     render(
@@ -1466,7 +1466,7 @@ describe("TextArea", () => {
                     expect(validate).toHaveBeenCalledExactlyOnceWith("test");
                 });
 
-                it("should call onValidate once the user leaves the field if the instantValidation prop is false", async () => {
+                it("should call onValidate once the user leaves the field", async () => {
                     // Arrange
                     const handleValidate = jest.fn();
                     const errorMsg = "error message";
