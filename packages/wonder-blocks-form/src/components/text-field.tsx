@@ -62,6 +62,13 @@ type CommonProps = AriaProps & {
      */
     onValidate?: (errorMessage?: string | null | undefined) => unknown;
     /**
+     * If true, TextField is validated as the user types (onChange). If false,
+     * it is validated when the user's focus moves out of the field (onBlur).
+     * It is preferred that instantValidation is set to `false`, however, it
+     * defaults to `true` for backwards compatibility with existing implementations.
+     */
+    instantValidation?: boolean;
+    /**
      * Called when the value has changed.
      */
     onChange: (newValue: string) => unknown;
