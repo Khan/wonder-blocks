@@ -69,7 +69,13 @@ export const useFieldValidation = ({
     required,
     instantValidation,
 }: FieldValidationProps) => {
-    const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = React.useState<string | null>(
+        // Ensures error is updated on unmounted server-side renders
+        // Pass in an initializer function so the validate prop is not called
+        // on every render here
+        () =>
+            (validate && value !== "" && !disabled && validate(value)) || null,
+    );
 
     const onChangeValidation = (newValue: string) => {
         if (instantValidation) {

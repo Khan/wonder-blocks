@@ -977,8 +977,9 @@ describe("TextArea", () => {
                 expect(textArea).toHaveAttribute("aria-invalid", "false");
             });
 
-            it("should call the validate function when it is first rendered", async () => {
+            it("should call the validate function twice when it is first rendered (once on initialization, once after mount)", async () => {
                 // Arrange
+                // Act
                 const validate = jest.fn();
                 render(
                     <TextArea
@@ -988,10 +989,48 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
-                expect(validate).toHaveBeenCalledExactlyOnceWith("text");
+                expect(validate.mock.calls).toStrictEqual([["text"], ["text"]]);
+            });
+
+            it("should call the onValidate function only once when it is first rendered (once after mount)", async () => {
+                // Arrange
+                // Act
+                const onValidate = jest.fn();
+                const errorMessage = "Error message";
+                render(
+                    <TextArea
+                        value="text"
+                        onChange={() => {}}
+                        validate={() => errorMessage}
+                        onValidate={onValidate}
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                    errorMessage,
+                );
+            });
+
+            it("should not call the validate function when it is first rendered if it is disabled and value is not empty", async () => {
+                // Arrange
+                // Act
+                const validate = jest.fn();
+                render(
+                    <TextArea
+                        value="text"
+                        disabled={true}
+                        onChange={() => {}}
+                        validate={validate}
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(validate).not.toHaveBeenCalled();
             });
 
             it("should not call the validate function when it is first rendered if the value is empty", async () => {
