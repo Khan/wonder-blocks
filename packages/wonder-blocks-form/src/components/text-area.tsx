@@ -4,7 +4,6 @@ import {StyleSheet} from "aphrodite";
 import {
     AriaProps,
     StyleType,
-    useOnMountEffect,
     useUniqueIdWithMock,
     addStyle,
     View,
@@ -17,6 +16,7 @@ import {
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {useFieldValidation} from "../hooks/use-field-validation";
 
 type TextAreaProps = AriaProps & {
     /**
@@ -190,8 +190,6 @@ type TextAreaProps = AriaProps & {
     light?: boolean;
 };
 
-const defaultErrorMessage = "This field is required.";
-
 const StyledTextArea = addStyle("textarea");
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
@@ -234,9 +232,15 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             ...otherProps
         } = props;
 
-        const [errorMessage, setErrorMessage] = React.useState<string | null>(
-            null,
-        );
+        const {errorMessage, onBlurValidation, onChangeValidation} =
+            useFieldValidation({
+                value,
+                disabled,
+                validate,
+                onValidate,
+                required,
+                instantValidation,
+            });
 
         const hasError = error || !!errorMessage;
 
@@ -247,72 +251,17 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             event: React.ChangeEvent<HTMLTextAreaElement>,
         ) => {
             const newValue = event.target.value;
+            onChangeValidation(newValue);
             onChange(newValue);
-            if (instantValidation) {
-                handleValidation(newValue);
-            } else {
-                if (errorMessage) {
-                    // If instantValidation is false and there is an error
-                    // message, error needs to be cleared when the user updates
-                    // the value
-                    setErrorMessage(null);
-                    if (onValidate) {
-                        onValidate(null);
-                    }
-                }
-            }
         };
 
         const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
-            // Only handle validation on blur if instantValidation is false
-            if (!instantValidation) {
-                // Handle validation on blur if:
-                // 1. There is a value in the field so a user tabbing through
-                // fields doesn't trigger the error state when the field is left
-                // empty. Or,
-                // 2. The field is required. Tabbing through an empty field that
-                // is required will trigger the error state
-                if (event.target.value || required) {
-                    handleValidation(event.target.value);
-                }
-            }
+            onBlurValidation(event.target.value);
 
             if (onBlur) {
                 onBlur(event);
             }
         };
-
-        const handleValidation = (newValue: string) => {
-            // Should not handle validation if it is disabled
-            if (disabled) {
-                return;
-            }
-            if (validate) {
-                const error = validate(newValue) || null;
-                setErrorMessage(error);
-                if (onValidate) {
-                    onValidate(error);
-                }
-            } else if (required) {
-                const requiredString =
-                    typeof required === "string"
-                        ? required
-                        : defaultErrorMessage;
-                const error = newValue ? null : requiredString;
-                setErrorMessage(error);
-                if (onValidate) {
-                    onValidate(error);
-                }
-            }
-        };
-
-        useOnMountEffect(() => {
-            // Only validate on mount if the value is not empty. This is so that fields
-            // don't render an error when they are initially empty
-            if (value !== "") {
-                handleValidation(value);
-            }
-        });
 
         const getStyles = (): StyleType => {
             // Base styles are the styles that apply regardless of light mode
