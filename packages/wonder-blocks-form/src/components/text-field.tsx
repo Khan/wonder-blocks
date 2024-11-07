@@ -1,24 +1,19 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {
-    IDProvider,
-    addStyle,
-    useOnMountEffect,
-} from "@khanacademy/wonder-blocks-core";
+import {IDProvider, addStyle} from "@khanacademy/wonder-blocks-core";
 import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {OmitConstrained} from "../util/types";
+import {useFieldValidation} from "../hooks/use-field-validation";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
 type WithForwardRef = {
     forwardedRef: React.ForwardedRef<HTMLInputElement>;
 };
-
-const defaultErrorMessage = "This field is required.";
 
 const StyledInput = addStyle("input");
 
@@ -192,6 +187,7 @@ const TextField = (props: PropsWithForwardRef) => {
         autoFocus,
         autoComplete,
         forwardedRef,
+        instantValidation = true,
         onKeyDown,
         onChange,
         onFocus,
@@ -199,40 +195,20 @@ const TextField = (props: PropsWithForwardRef) => {
         // Should only include Aria related props
         ...otherProps
     } = props;
-    // Ensures error is updated on unmounted server-side renders
-    const [errorMessage, setErrorMessage] = React.useState(
-        (props.validate && props.value !== "" && props.validate(props.value)) ||
-            null,
-    );
+    const {errorMessage, onBlurValidation, onChangeValidation} =
+        useFieldValidation({
+            value,
+            required,
+            disabled,
+            instantValidation,
+            validate,
+            onValidate,
+        });
     const hasError = error || !!errorMessage;
-
-    useOnMountEffect(() => {
-        if (props.value !== "") {
-            maybeValidate(props.value);
-        }
-    });
-
-    const maybeValidate = (newValue: string) => {
-        if (validate) {
-            const maybeError = validate(newValue) || null;
-            setErrorMessage(maybeError);
-            if (onValidate) {
-                onValidate(maybeError);
-            }
-        } else if (required) {
-            const requiredString =
-                typeof required === "string" ? required : defaultErrorMessage;
-            const maybeError = newValue ? null : requiredString;
-            setErrorMessage(maybeError);
-            if (onValidate) {
-                onValidate(maybeError);
-            }
-        }
-    };
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
-        maybeValidate(newValue);
+        onChangeValidation(newValue);
         onChange(newValue);
     };
 
@@ -243,6 +219,8 @@ const TextField = (props: PropsWithForwardRef) => {
     };
 
     const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+        onBlurValidation(event.target.value);
+
         if (onBlur) {
             onBlur(event);
         }
