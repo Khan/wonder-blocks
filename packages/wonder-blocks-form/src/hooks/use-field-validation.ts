@@ -13,8 +13,11 @@ type FieldValidationProps = {
 };
 
 /**
- * Hook for validation logic for text based fields. It will call the `validate`
- * and `onValidate` callbacks depending on the props provided.
+ * Hook for validation logic for text based fields. Based on the props provided,
+ * the hook will:
+ * - call the `validate` and `onValidate` props on initialization and mount
+ * - provide validation functions for specific events (onChange and onBlur).
+ * These functions will call the `validate` and `onValidate` props as needed.
  *
  * @param {FieldValidationProps} props An object with:
  * - `value` - The value of the field.
