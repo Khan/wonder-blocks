@@ -63,11 +63,11 @@ type FieldValidationProps = {
  */
 export const useFieldValidation = ({
     value,
-    disabled,
+    disabled = false,
     validate,
     onValidate,
-    required,
-    instantValidation,
+    required = false,
+    instantValidation = true,
 }: FieldValidationProps) => {
     const [errorMessage, setErrorMessage] = React.useState<string | null>(
         // Ensures error is updated on unmounted server-side renders
