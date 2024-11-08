@@ -18,6 +18,7 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import TextFieldArgTypes from "./text-field.argtypes";
+import {validateEmail, validatePhoneNumber} from "./form-utilities";
 
 /**
  * A TextField is an element used to accept a single line of text from the user.
@@ -269,13 +270,6 @@ export const Email: StoryComponentType = () => {
         setValue(newValue);
     };
 
-    const validate = (value: string) => {
-        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-        if (!emailRegex.test(value)) {
-            return "Please enter a valid email";
-        }
-    };
-
     const handleValidate = (errorMessage?: string | null) => {
         setErrorMessage(errorMessage);
     };
@@ -301,7 +295,7 @@ export const Email: StoryComponentType = () => {
                 type="email"
                 value={value}
                 placeholder="Email"
-                validate={validate}
+                validate={validateEmail}
                 onValidate={handleValidate}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
@@ -338,13 +332,6 @@ export const Telephone: StoryComponentType = () => {
         setValue(newValue);
     };
 
-    const validate = (value: string) => {
-        const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-        if (!telRegex.test(value)) {
-            return "Invalid US telephone number";
-        }
-    };
-
     const handleValidate = (errorMessage?: string | null) => {
         setErrorMessage(errorMessage);
     };
@@ -370,7 +357,7 @@ export const Telephone: StoryComponentType = () => {
                 type="tel"
                 value={value}
                 placeholder="Telephone"
-                validate={validate}
+                validate={validatePhoneNumber}
                 onValidate={handleValidate}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
@@ -432,13 +419,6 @@ function ErrorRender(args: PropsFor<typeof TextField>) {
         setValue(newValue);
     };
 
-    const validate = (value: string) => {
-        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-        if (!emailRegex.test(value)) {
-            return "Please enter a valid email";
-        }
-    };
-
     const handleValidate = (errorMessage?: string | null) => {
         setErrorMessage(errorMessage);
     };
@@ -455,7 +435,7 @@ function ErrorRender(args: PropsFor<typeof TextField>) {
                 id="tf-7"
                 type="email"
                 placeholder="Email"
-                validate={validate}
+                validate={validateEmail}
                 onValidate={handleValidate}
                 onKeyDown={handleKeyDown}
                 {...args}
@@ -560,12 +540,7 @@ export const ErrorFromPropAndValidation = (
                 {...args}
                 value={value}
                 onChange={handleChange}
-                validate={(value: string) => {
-                    const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-                    if (!emailRegex.test(value)) {
-                        return "Please enter a valid email";
-                    }
-                }}
+                validate={validateEmail}
                 onValidate={setValidationErrorMessage}
                 error={!!errorMessage}
             />
@@ -622,12 +597,7 @@ ErrorFromPropAndValidation.parameters = {
  */
 export const InstantValidation: StoryComponentType = {
     args: {
-        validate(value: string) {
-            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-            if (!emailRegex.test(value)) {
-                return "Please enter a valid email";
-            }
-        },
+        validate: validateEmail,
     },
     render: (args) => {
         return (
@@ -702,13 +672,6 @@ export const Light: StoryComponentType = () => {
         setValue(newValue);
     };
 
-    const validate = (value: string) => {
-        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-        if (!emailRegex.test(value)) {
-            return "Please enter a valid email";
-        }
-    };
-
     const handleValidate = (errorMessage?: string | null) => {
         setErrorMessage(errorMessage);
     };
@@ -735,7 +698,7 @@ export const Light: StoryComponentType = () => {
                 value={value}
                 placeholder="Email"
                 light={true}
-                validate={validate}
+                validate={validateEmail}
                 onValidate={handleValidate}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
@@ -774,13 +737,6 @@ export const ErrorLight: StoryComponentType = () => {
         setValue(newValue);
     };
 
-    const validate = (value: string) => {
-        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-        if (!emailRegex.test(value)) {
-            return "Please enter a valid email";
-        }
-    };
-
     const handleValidate = (errorMessage?: string | null) => {
         setErrorMessage(errorMessage);
     };
@@ -807,7 +763,7 @@ export const ErrorLight: StoryComponentType = () => {
                 value={value}
                 placeholder="Email"
                 light={true}
-                validate={validate}
+                validate={validateEmail}
                 onValidate={handleValidate}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}

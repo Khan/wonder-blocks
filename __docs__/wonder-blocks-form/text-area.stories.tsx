@@ -13,6 +13,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 
 import TextAreaArgTypes from "./text-area.argtypes";
+import {validateEmail} from "./form-utilities";
 
 /**
  * A TextArea is an element used to accept text from the user.
@@ -200,12 +201,7 @@ export const Error: StoryComponentType = {
 export const ErrorFromValidation: StoryComponentType = {
     args: {
         value: "khan",
-        validate(value: string) {
-            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-            if (!emailRegex.test(value)) {
-                return "Please enter a valid email";
-            }
-        },
+        validate: validateEmail,
     },
     render: ControlledTextArea,
     parameters: {
@@ -255,12 +251,7 @@ export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
                 {...args}
                 value={value}
                 onChange={handleChange}
-                validate={(value: string) => {
-                    const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-                    if (!emailRegex.test(value)) {
-                        return "Please enter a valid email";
-                    }
-                }}
+                validate={validateEmail}
                 onValidate={setValidationErrorMessage}
                 error={!!errorMessage}
             />
@@ -315,12 +306,7 @@ ErrorFromPropAndValidation.parameters = {
  */
 export const InstantValidation: StoryComponentType = {
     args: {
-        validate(value: string) {
-            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-            if (!emailRegex.test(value)) {
-                return "Please enter a valid email";
-            }
-        },
+        validate: validateEmail,
     },
     render: (args) => {
         return (
