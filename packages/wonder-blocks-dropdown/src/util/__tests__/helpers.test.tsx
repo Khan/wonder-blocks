@@ -125,7 +125,7 @@ describe("getLabel", () => {
     });
 });
 
-describe("getSelectorLabel", () => {
+describe("getSelectOpenerLabel", () => {
     it("should return the label if the label is a Node and labelAsText is not defined", () => {
         // Arrange
         const props: PropsFor<typeof OptionItem> = {

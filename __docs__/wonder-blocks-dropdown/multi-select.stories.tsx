@@ -26,7 +26,6 @@ import {
 } from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
