@@ -1446,7 +1446,7 @@ describe("TextField", () => {
                     expect(field).toHaveAttribute("aria-invalid", "false");
                 });
 
-                it("should call onValidate with an null when the user changes the value after there was an error", async () => {
+                it("should call onValidate with null when the user changes the value after there was an error", async () => {
                     // Arrange
                     const handleValidate = jest.fn();
                     const errorMsg = "error message";
