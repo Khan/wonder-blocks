@@ -398,6 +398,32 @@ Telephone.parameters = {
     },
 };
 
+const ControlledTextField = (args: PropsFor<typeof TextField>) => {
+    const [value, setValue] = React.useState(args.value || "");
+    const [error, setError] = React.useState<string | null | undefined>(null);
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    return (
+        <View>
+            <TextField
+                {...args}
+                value={value}
+                onChange={handleChange}
+                onValidate={setError}
+            />
+            <Strut size={spacing.xxSmall_6} />
+            {(error || args.error) && (
+                <LabelSmall style={styles.errorMessage}>
+                    {error || "Error from error prop"}
+                </LabelSmall>
+            )}
+        </View>
+    );
+};
+
 function ErrorRender(args: PropsFor<typeof TextField>) {
     const [value, setValue] = React.useState("khan");
     const [errorMessage, setErrorMessage] = React.useState<any>();
@@ -571,6 +597,99 @@ ErrorFromPropAndValidation.parameters = {
     chromatic: {
         // Disabling because this doesn't test anything visual.
         disableSnapshot: true,
+    },
+};
+
+/**
+ * The `instantValidation` prop controls when validation is triggered. Validation
+ * is triggered if the `validate` or `required` props are set.
+ *
+ * It is preferred to set `instantValidation` to `false` so that the user isn't
+ * shown an error until they are done with a field. Note: if `instantValidation`
+ * is not explicitly set, it defaults to `true` since this is the current
+ * behaviour of existing usage. Validation on blur needs to be opted in.
+ *
+ * Validation is triggered:
+ * - On mount if the `value` prop is not empty
+ * - If `instantValidation` is `true`, validation occurs `onChange` (default)
+ * - If `instantValidation` is `false`, validation occurs `onBlur`
+ *
+ * When `required` is set to `true`:
+ * - If `instantValidation` is `true`, the required error message is shown after
+ * a value is cleared
+ * - If `instantValidation` is `false`, the required error message is shown
+ * whenever the user tabs away from the required field
+ */
+export const InstantValidation: StoryComponentType = {
+    args: {
+        validate(value: string) {
+            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+            if (!emailRegex.test(value)) {
+                return "Please enter a valid email";
+            }
+        },
+    },
+    render: (args) => {
+        return (
+            <View style={{gap: spacing.small_12}}>
+                <LabelSmall htmlFor="instant-validation-true-not-required">
+                    Validation on mount if there is a value
+                </LabelSmall>
+                <ControlledTextField
+                    {...args}
+                    id="instant-validation-true-not-required"
+                    value="invalid"
+                />
+                <LabelSmall htmlFor="instant-validation-true-not-required">
+                    Error shown immediately (instantValidation: true, required:
+                    false)
+                </LabelSmall>
+                <ControlledTextField
+                    {...args}
+                    id="instant-validation-true-not-required"
+                    instantValidation={true}
+                />
+                <LabelSmall htmlFor="instant-validation-false-not-required">
+                    Error shown onBlur (instantValidation: false, required:
+                    false)
+                </LabelSmall>
+                <ControlledTextField
+                    {...args}
+                    id="instant-validation-false-not-required"
+                    instantValidation={false}
+                />
+
+                <LabelSmall htmlFor="instant-validation-true-required">
+                    Error shown immediately after clearing the value
+                    (instantValidation: true, required: true)
+                </LabelSmall>
+                <ControlledTextField
+                    {...args}
+                    validate={undefined}
+                    value="T"
+                    id="instant-validation-true-required"
+                    instantValidation={true}
+                    required="Required"
+                />
+                <LabelSmall htmlFor="instant-validation-false-required">
+                    Error shown on blur if it is empty (instantValidation:
+                    false, required: true)
+                </LabelSmall>
+                <ControlledTextField
+                    {...args}
+                    validate={undefined}
+                    id="instant-validation-false-required"
+                    instantValidation={false}
+                    required="Required"
+                />
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
     },
 };
 
