@@ -15,7 +15,6 @@ export const validateEmail = (value: string) => {
  * @param value the phone number to validate
  * @returns An error message if there is a validation error
  */
-
 export const validatePhoneNumber = (value: string) => {
     const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     if (!telRegex.test(value)) {

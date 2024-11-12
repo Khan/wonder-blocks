@@ -751,6 +751,8 @@ describe("TextArea", () => {
             it("should set the aria-details attribute when provided", async () => {
                 // Arrange
                 const ariaDetails = "details-id";
+
+                // Act
                 render(
                     <TextArea
                         value="Text"
@@ -759,7 +761,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -979,8 +980,9 @@ describe("TextArea", () => {
 
             it("should call the validate function twice when it is first rendered (once on initialization, once after mount)", async () => {
                 // Arrange
-                // Act
                 const validate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value="text"
