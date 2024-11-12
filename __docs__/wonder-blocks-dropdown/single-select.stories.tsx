@@ -893,7 +893,7 @@ export const CustomOptionItems: StoryComponentType = {
  * `labelAsText` is undefined.
  * **Note** this is only supported for SingleSelect and MultiSelect, not Combobox.
  */
-export const CustomOptionItemWithoutTextLabel: StoryComponentType = {
+export const CustomOptionItemWithNodeLabel: StoryComponentType = {
     render: function Render() {
         const [opened, setOpened] = React.useState(true);
         const [selectedValue, setSelectedValue] = React.useState("");
