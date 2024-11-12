@@ -751,6 +751,7 @@ describe("TextField", () => {
         describe("validate prop", () => {
             it("should be in an error state if the initial value is not empty and not valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextField
                         value="tooShort"
@@ -762,7 +763,6 @@ describe("TextField", () => {
                         }}
                     />,
                 );
-                // Act
 
                 // Assert
                 const field = await screen.findByRole("textbox");
@@ -771,6 +771,7 @@ describe("TextField", () => {
 
             it("should not be in an error state if the initial value is empty and not valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextField
                         value=""
@@ -782,7 +783,6 @@ describe("TextField", () => {
                         }}
                     />,
                 );
-                // Act
 
                 // Assert
                 const field = await screen.findByRole("textbox");
@@ -791,6 +791,7 @@ describe("TextField", () => {
 
             it("should not be in an error state if the initial value is valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextField
                         value="LongerThan10"
@@ -802,7 +803,6 @@ describe("TextField", () => {
                         }}
                     />,
                 );
-                // Act
 
                 // Assert
                 const field = await screen.findByRole("textbox");
@@ -868,8 +868,9 @@ describe("TextField", () => {
 
             it("should call the validate function twice when it is first rendered (once on initialization, once after mount)", async () => {
                 // Arrange
-                // Act
                 const validate = jest.fn();
+
+                // Act
                 render(
                     <TextField
                         value="text"
@@ -884,9 +885,10 @@ describe("TextField", () => {
 
             it("should call the onValidate function only once when it is first rendered (once after mount)", async () => {
                 // Arrange
-                // Act
                 const onValidate = jest.fn();
                 const errorMessage = "Error message";
+
+                // Act
                 render(
                     <TextField
                         value="text"
@@ -904,8 +906,9 @@ describe("TextField", () => {
 
             it("should not call the validate function when it is first rendered if it is disabled and value is not empty", async () => {
                 // Arrange
-                // Act
                 const validate = jest.fn();
+
+                // Act
                 render(
                     <TextField
                         value="text"
@@ -922,6 +925,8 @@ describe("TextField", () => {
             it("should not call the validate function when it is first rendered if the value is empty", async () => {
                 // Arrange
                 const validate = jest.fn();
+
+                // Act
                 render(
                     <TextField
                         value=""
@@ -929,7 +934,6 @@ describe("TextField", () => {
                         validate={validate}
                     />,
                 );
-                // Act
 
                 // Assert
                 expect(validate).not.toHaveBeenCalled();
@@ -993,6 +997,8 @@ describe("TextField", () => {
                 // Arrange
                 const handleValidate = jest.fn();
                 const errorMsg = "error message";
+
+                // Act
                 render(
                     <TextField
                         value="text"
@@ -1001,7 +1007,6 @@ describe("TextField", () => {
                         onValidate={handleValidate}
                     />,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
@@ -1012,6 +1017,8 @@ describe("TextField", () => {
             it("should call the onValidate prop with null if the validate prop returns null", () => {
                 // Arrange
                 const handleValidate = jest.fn();
+
+                // Act
                 render(
                     <TextField
                         value="text"
@@ -1020,7 +1027,6 @@ describe("TextField", () => {
                         onValidate={handleValidate}
                     />,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
@@ -1029,6 +1035,8 @@ describe("TextField", () => {
             it("should call the onValidate prop with null if the validate prop is a void function", () => {
                 // Arrange
                 const handleValidate = jest.fn();
+
+                // Act
                 render(
                     <TextField
                         value="text"
@@ -1037,7 +1045,6 @@ describe("TextField", () => {
                         onValidate={handleValidate}
                     />,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
@@ -1047,6 +1054,7 @@ describe("TextField", () => {
         describe("required prop", () => {
             it("should initially render with no error if it is required and the value is empty", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextField
                         value=""
@@ -1055,8 +1063,6 @@ describe("TextField", () => {
                     />,
                 );
 
-                // Act
-
                 // Assert
                 const field = await screen.findByRole("textbox");
                 expect(field).toHaveAttribute("aria-invalid", "false");
@@ -1064,6 +1070,7 @@ describe("TextField", () => {
 
             it("should initially render with no error if it is required and the value is not empty", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextField
                         value="Text"
@@ -1071,8 +1078,6 @@ describe("TextField", () => {
                         required="Required"
                     />,
                 );
-
-                // Act
 
                 // Assert
                 const field = await screen.findByRole("textbox");
@@ -1123,6 +1128,8 @@ describe("TextField", () => {
             it("should not call onValidate on first render if the value is empty and required prop is used", async () => {
                 // Arrange
                 const handleValidate = jest.fn();
+
+                // Act
                 render(
                     <TextField
                         value=""
@@ -1132,8 +1139,6 @@ describe("TextField", () => {
                     />,
                 );
 
-                // Act
-
                 // Assert
                 expect(handleValidate).not.toHaveBeenCalled();
             });
@@ -1141,6 +1146,8 @@ describe("TextField", () => {
             it("should call onValidate with no error message on first render if the value is not empty and required prop is used", async () => {
                 // Arrange
                 const handleValidate = jest.fn();
+
+                // Act
                 render(
                     <TextField
                         value="Text"
@@ -1149,8 +1156,6 @@ describe("TextField", () => {
                         onValidate={handleValidate}
                     />,
                 );
-
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
