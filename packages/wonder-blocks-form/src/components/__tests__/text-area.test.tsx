@@ -751,6 +751,8 @@ describe("TextArea", () => {
             it("should set the aria-details attribute when provided", async () => {
                 // Arrange
                 const ariaDetails = "details-id";
+
+                // Act
                 render(
                     <TextArea
                         value="Text"
@@ -759,7 +761,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -827,12 +828,11 @@ describe("TextArea", () => {
 
             it("should set aria-invalid to false if the error prop is false", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea value="text" onChange={() => {}} error={false} />,
                     defaultOptions,
                 );
-
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -841,12 +841,11 @@ describe("TextArea", () => {
 
             it("should set aria-invalid to false if the error prop is not provided", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea value="text" onChange={() => {}} />,
                     defaultOptions,
                 );
-
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -859,6 +858,7 @@ describe("TextArea", () => {
         describe("validate prop", () => {
             it("should be in an error state if the initial value is not empty and not valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea
                         value="tooShort"
@@ -871,7 +871,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -880,6 +879,7 @@ describe("TextArea", () => {
 
             it("should not be in an error state if the initial value is empty and not valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea
                         value=""
@@ -892,7 +892,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -901,6 +900,7 @@ describe("TextArea", () => {
 
             it("should not be in an error state if the initial value is valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea
                         value="LongerThan10"
@@ -913,7 +913,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -977,9 +976,11 @@ describe("TextArea", () => {
                 expect(textArea).toHaveAttribute("aria-invalid", "false");
             });
 
-            it("should call the validate function when it is first rendered", async () => {
+            it("should call the validate function twice when it is first rendered (once on initialization, once after mount)", async () => {
                 // Arrange
                 const validate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value="text"
@@ -988,15 +989,57 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
-                expect(validate).toHaveBeenCalledExactlyOnceWith("text");
+                expect(validate.mock.calls).toStrictEqual([["text"], ["text"]]);
+            });
+
+            it("should call the onValidate function only once when it is first rendered (once after mount)", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const errorMessage = "Error message";
+
+                // Act
+                render(
+                    <TextArea
+                        value="text"
+                        onChange={() => {}}
+                        validate={() => errorMessage}
+                        onValidate={onValidate}
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                    errorMessage,
+                );
+            });
+
+            it("should not call the validate function when it is first rendered if it is disabled and value is not empty", async () => {
+                // Arrange
+                const validate = jest.fn();
+
+                // Act
+                render(
+                    <TextArea
+                        value="text"
+                        disabled={true}
+                        onChange={() => {}}
+                        validate={validate}
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(validate).not.toHaveBeenCalled();
             });
 
             it("should not call the validate function when it is first rendered if the value is empty", async () => {
                 // Arrange
                 const validate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value=""
@@ -1005,7 +1048,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 expect(validate).not.toHaveBeenCalled();
@@ -1069,6 +1111,8 @@ describe("TextArea", () => {
                 // Arrange
                 const handleValidate = jest.fn();
                 const errorMsg = "error message";
+
+                // Act
                 render(
                     <TextArea
                         value="text"
@@ -1078,7 +1122,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
@@ -1089,6 +1132,8 @@ describe("TextArea", () => {
             it("should call the onValidate prop with null if the validate prop returns null", () => {
                 // Arrange
                 const handleValidate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value="text"
@@ -1098,7 +1143,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
@@ -1107,6 +1151,8 @@ describe("TextArea", () => {
             it("should call the onValidate prop with null if the validate prop is a void function", () => {
                 // Arrange
                 const handleValidate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value="text"
@@ -1116,7 +1162,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
@@ -1126,6 +1171,7 @@ describe("TextArea", () => {
         describe("required prop", () => {
             it("should initially render with no error if it is required and the value is empty", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea
                         value=""
@@ -1135,8 +1181,6 @@ describe("TextArea", () => {
                     defaultOptions,
                 );
 
-                // Act
-
                 // Assert
                 const textArea = await screen.findByRole("textbox");
                 expect(textArea).toHaveAttribute("aria-invalid", "false");
@@ -1144,6 +1188,7 @@ describe("TextArea", () => {
 
             it("should initially render with no error if it is required and the value is not empty", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea
                         value="Text"
@@ -1152,8 +1197,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -1205,6 +1248,7 @@ describe("TextArea", () => {
 
             it("should not call onValidate on first render if the value is empty and required prop is used", async () => {
                 // Arrange
+                // Act
                 const handleValidate = jest.fn();
                 render(
                     <TextArea
@@ -1216,14 +1260,13 @@ describe("TextArea", () => {
                     defaultOptions,
                 );
 
-                // Act
-
                 // Assert
                 expect(handleValidate).not.toHaveBeenCalled();
             });
 
             it("should call onValidate with no error message on first render if the value is not empty and required prop is used", async () => {
                 // Arrange
+                // Act
                 const handleValidate = jest.fn();
                 render(
                     <TextArea
@@ -1234,8 +1277,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
