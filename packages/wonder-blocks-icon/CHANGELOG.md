@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 4.2.0
+
+### Minor Changes
+
+-   c1110599: defaults the role of PhosphorIcon to "img" when an aria-label is provided
+
 ## 4.1.5
 
 ### Patch Changes
