@@ -1,7 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {IDProvider, addStyle} from "@khanacademy/wonder-blocks-core";
+import {
+    IDProvider,
+    addStyle,
+    useOnMountEffect,
+} from "@khanacademy/wonder-blocks-core";
 import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
@@ -44,7 +48,7 @@ type CommonProps = AriaProps & {
      * This `disabled` prop will also set the `readonly` attribute to prevent
      * typing in the field.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
@@ -110,7 +114,7 @@ type CommonProps = AriaProps & {
     /**
      * Change the default focus ring color to fit a dark background.
      */
-    light: boolean;
+    light?: boolean;
     /**
      * Custom styles for the input.
      */
@@ -134,7 +138,7 @@ type CommonProps = AriaProps & {
 };
 
 type OtherInputProps = CommonProps & {
-    type: "text" | "password" | "email" | "tel";
+    type?: "text" | "password" | "email" | "tel";
 };
 
 // Props that are only available for inputs of type "number".
@@ -159,100 +163,85 @@ type FullNumericInputProps = CommonProps & NumericInputProps;
 type Props = OtherInputProps | FullNumericInputProps;
 type PropsWithForwardRef = Props & WithForwardRef;
 
-type DefaultProps = {
-    type: PropsWithForwardRef["type"];
-    disabled: PropsWithForwardRef["disabled"];
-    light: PropsWithForwardRef["light"];
-};
-
-type State = {
-    /**
-     * Displayed when the validation fails.
-     */
-    errorMessage: string | null | undefined;
-};
-
 /**
  * A TextField is an element used to accept a single line of text from the user.
  */
-class TextField extends React.Component<PropsWithForwardRef, State> {
-    static defaultProps: DefaultProps = {
-        type: "text",
-        disabled: false,
-        light: false,
-    };
+const TextField = (props: PropsWithForwardRef) => {
+    const {
+        id,
+        type = "text",
+        value,
+        name,
+        disabled = false,
+        light = false,
+        error,
+        validate,
+        onValidate,
+        required,
+        placeholder,
+        style,
+        testId,
+        readOnly,
+        autoFocus,
+        autoComplete,
+        forwardedRef,
+        onKeyDown,
+        onChange,
+        onFocus,
+        onBlur,
+        // Should only include Aria related props
+        ...otherProps
+    } = props;
+    // Ensures error is updated on unmounted server-side renders
+    const [errorMessage, setErrorMessage] = React.useState(
+        (props.validate && props.value !== "" && props.validate(props.value)) ||
+            null,
+    );
+    const hasError = error || !!errorMessage;
 
-    constructor(props: PropsWithForwardRef) {
-        super(props);
-        if (props.validate && props.value !== "") {
-            // Ensures error is updated on unmounted server-side renders
-            this.state.errorMessage = props.validate(props.value) || null;
+    useOnMountEffect(() => {
+        if (props.value !== "") {
+            maybeValidate(props.value);
         }
-    }
+    });
 
-    state: State = {
-        errorMessage: null,
-    };
-
-    componentDidMount() {
-        if (this.props.value !== "") {
-            this.maybeValidate(this.props.value);
-        }
-    }
-
-    maybeValidate: (newValue: string) => void = (newValue) => {
-        const {validate, onValidate, required} = this.props;
-
+    const maybeValidate = (newValue: string) => {
         if (validate) {
             const maybeError = validate(newValue) || null;
-            this.setState({errorMessage: maybeError}, () => {
-                if (onValidate) {
-                    onValidate(maybeError);
-                }
-            });
+            setErrorMessage(maybeError);
+            if (onValidate) {
+                onValidate(maybeError);
+            }
         } else if (required) {
             const requiredString =
                 typeof required === "string" ? required : defaultErrorMessage;
             const maybeError = newValue ? null : requiredString;
-            this.setState({errorMessage: maybeError}, () => {
-                if (onValidate) {
-                    onValidate(maybeError);
-                }
-            });
+            setErrorMessage(maybeError);
+            if (onValidate) {
+                onValidate(maybeError);
+            }
         }
     };
 
-    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => unknown = (
-        event,
-    ) => {
-        const {onChange} = this.props;
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = event.target.value;
-        this.maybeValidate(newValue);
+        maybeValidate(newValue);
         onChange(newValue);
     };
 
-    handleFocus: (event: React.FocusEvent<HTMLInputElement>) => unknown = (
-        event,
-    ) => {
-        const {onFocus} = this.props;
+    const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
         if (onFocus) {
             onFocus(event);
         }
     };
 
-    handleBlur: (event: React.FocusEvent<HTMLInputElement>) => unknown = (
-        event,
-    ) => {
-        const {onBlur} = this.props;
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
         if (onBlur) {
             onBlur(event);
         }
     };
 
-    getStyles = (): StyleType => {
-        const {disabled, light, error} = this.props;
-        const {errorMessage} = this.state;
-        const hasError = error || !!errorMessage;
+    const getStyles = (): StyleType => {
         // Base styles are the styles that apply regardless of light mode
         const baseStyles = [styles.input, typographyStyles.LabelMedium];
         const defaultStyles = [
@@ -270,66 +259,33 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
     };
 
-    render(): React.ReactNode {
-        const {
-            id,
-            type,
-            value,
-            name,
-            disabled,
-            onKeyDown,
-            placeholder,
-            style,
-            testId,
-            readOnly,
-            autoFocus,
-            autoComplete,
-            forwardedRef,
-            error,
-            // The following props are being included here to avoid
-            // passing them down to the otherProps spread
-            /* eslint-disable @typescript-eslint/no-unused-vars */
-            light,
-            onFocus,
-            onBlur,
-            onValidate,
-            validate,
-            onChange,
-            required,
-            /* eslint-enable @typescript-eslint/no-unused-vars */
-            // Should only include Aria related props
-            ...otherProps
-        } = this.props;
-
-        const hasError = error || !!this.state.errorMessage;
-        return (
-            <IDProvider id={id} scope="text-field">
-                {(uniqueId) => (
-                    <StyledInput
-                        style={[this.getStyles(), style]}
-                        id={uniqueId}
-                        type={type}
-                        placeholder={placeholder}
-                        value={value}
-                        name={name}
-                        aria-disabled={disabled}
-                        onChange={this.handleChange}
-                        onKeyDown={disabled ? undefined : onKeyDown}
-                        onFocus={this.handleFocus} // TextField can be focused if disabled
-                        onBlur={this.handleBlur} // TextField can be blurred if disabled
-                        data-testid={testId}
-                        readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
-                        autoFocus={autoFocus}
-                        autoComplete={autoComplete}
-                        ref={forwardedRef}
-                        aria-invalid={hasError}
-                        {...otherProps}
-                    />
-                )}
-            </IDProvider>
-        );
-    }
-}
+    return (
+        <IDProvider id={id} scope="text-field">
+            {(uniqueId) => (
+                <StyledInput
+                    style={[getStyles(), style]}
+                    id={uniqueId}
+                    type={type}
+                    placeholder={placeholder}
+                    value={value}
+                    name={name}
+                    aria-disabled={disabled}
+                    onChange={handleChange}
+                    onKeyDown={disabled ? undefined : onKeyDown}
+                    onFocus={handleFocus} // TextField can be focused if disabled
+                    onBlur={handleBlur} // TextField can be blurred if disabled
+                    data-testid={testId}
+                    readOnly={readOnly || disabled} // Set readOnly also if it is disabled, otherwise users can type in the field
+                    autoFocus={autoFocus}
+                    autoComplete={autoComplete}
+                    ref={forwardedRef}
+                    aria-invalid={hasError}
+                    {...otherProps}
+                />
+            )}
+        </IDProvider>
+    );
+};
 
 const styles = StyleSheet.create({
     input: {
