@@ -1,12 +1,17 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {View, Text as _Text} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View, Text as _Text} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
+import {
+    LabelLarge,
+    Body,
+    LabelSmall,
+} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -393,10 +398,9 @@ Telephone.parameters = {
     },
 };
 
-function ErrorRender() {
+function ErrorRender(args: PropsFor<typeof TextField>) {
     const [value, setValue] = React.useState("khan");
     const [errorMessage, setErrorMessage] = React.useState<any>();
-    const [focused, setFocused] = React.useState(false);
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
@@ -419,32 +423,25 @@ function ErrorRender() {
         }
     };
 
-    const handleFocus = () => {
-        setFocused(true);
-    };
-
-    const handleBlur = () => {
-        setFocused(false);
-    };
-
     return (
         <View>
             <TextField
                 id="tf-7"
                 type="email"
-                value={value}
                 placeholder="Email"
                 validate={validate}
                 onValidate={handleValidate}
-                onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
+                {...args}
+                value={value}
+                onChange={handleChange}
             />
-            {!focused && errorMessage && (
+            {(errorMessage || args.error) && (
                 <View>
-                    <Strut size={spacing.xSmall_8} />
-                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
+                    <Strut size={spacing.xxSmall_6} />
+                    <LabelSmall style={styles.errorMessage}>
+                        {errorMessage || "Error from error prop"}
+                    </LabelSmall>
                 </View>
             )}
         </View>
@@ -452,15 +449,129 @@ function ErrorRender() {
 }
 
 /**
- * If an input value fails validation, `TextField` will have error styling.
+ * If the `error` prop is set to true, the TextField will have error styling and
+ * `aria-invalid` set to `true`.
  *
- * Note that we will internally set the correct `aria-invalid` attribute to the
- * `input` element:
- * - aria-invalid="true" if there is an error message.
- * - aria-invalid="false" if there is no error message.
+ * This is useful for scenarios where we want to show an error on a
+ * specific field after a form is submitted (server validation).
+ *
+ * Note: The `required` and `validate` props can also put the TextField in an
+ * error state.
  */
 export const Error: StoryComponentType = {
     render: ErrorRender,
+    args: {
+        error: true,
+        validate: undefined,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * If an input value fails validation, `TextField` will have error styling.
+ *
+ * This is useful for scenarios where we want to show errors while a
+ * user is filling out a form (client validation).
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * `input` element:
+ * - aria-invalid="true" if there is an error.
+ * - aria-invalid="false" if there is no error.
+ */
+export const ErrorFromValidation: StoryComponentType = {
+    render: ErrorRender,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * This example shows how the `error` and `validate` props can both be used to
+ * put the field in an error state. This is useful for scenarios where we want
+ * to show errors while a user is filling out a form (client validation)
+ * and after a form is submitted (server validation).
+ *
+ * In this example:
+ * 1. It starts with an invalid email. The error message shown is the message returned
+ * by the `validate` function prop
+ * 2. Once the email is fixed to `test@test.com`, the validation error message
+ * goes away since it is a valid email.
+ * 3. When the Submit button is pressed, another error message is shown (this
+ * simulates backend validation).
+ * 4. When you enter any other email address, the error message is
+ * cleared.
+ */
+export const ErrorFromPropAndValidation = (
+    args: PropsFor<typeof TextField>,
+) => {
+    const [value, setValue] = React.useState(args.value || "test@test,com");
+    const [validationErrorMessage, setValidationErrorMessage] = React.useState<
+        string | null | undefined
+    >(null);
+    const [backendErrorMessage, setBackendErrorMessage] = React.useState<
+        string | null | undefined
+    >(null);
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+        // Clear the backend error message on change
+        setBackendErrorMessage(null);
+    };
+
+    const errorMessage = validationErrorMessage || backendErrorMessage;
+
+    return (
+        <View>
+            <TextField
+                {...args}
+                value={value}
+                onChange={handleChange}
+                validate={(value: string) => {
+                    const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+                    if (!emailRegex.test(value)) {
+                        return "Please enter a valid email";
+                    }
+                }}
+                onValidate={setValidationErrorMessage}
+                error={!!errorMessage}
+            />
+            <Strut size={spacing.xxSmall_6} />
+            {errorMessage && (
+                <LabelSmall style={styles.errorMessage}>
+                    {errorMessage}
+                </LabelSmall>
+            )}
+            <Strut size={spacing.xxSmall_6} />
+            <Button
+                onClick={() => {
+                    if (value === "test@test.com") {
+                        setBackendErrorMessage(
+                            "This email is already being used, please try another email.",
+                        );
+                    } else {
+                        setBackendErrorMessage(null);
+                    }
+                }}
+            >
+                Submit
+            </Button>
+        </View>
+    );
+};
+
+ErrorFromPropAndValidation.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
+    },
 };
 
 export const Light: StoryComponentType = () => {
@@ -600,6 +711,10 @@ ErrorLight.parameters = {
             story: `If an input value fails validation and the
         \`light\` prop is true, \`TextField\` will have light error styling.`,
         },
+    },
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
     },
 };
 

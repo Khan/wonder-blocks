@@ -133,12 +133,22 @@ type TextAreaProps = AriaProps & {
     /**
      * Provide a validation for the textarea value.
      * Return a string error message or null | void for a valid input.
+     *
+     * Use this for errors that are shown to the user while they are filling out
+     * a form.
      */
     validate?: (value: string) => string | null | void;
     /**
      * Called right after the textarea is validated.
      */
     onValidate?: (errorMessage?: string | null | undefined) => unknown;
+    /**
+     * Whether the textarea is in an error state.
+     *
+     * Use this for errors that are triggered by something external to the
+     * component (example: an error after form submission).
+     */
+    error?: boolean;
     /**
      * Whether this textarea is required to continue, or the error message to
      * render if this textarea is left blank.
@@ -211,11 +221,16 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             resizeType,
             light,
             rootStyle,
+            error,
             // Should only include aria related props
             ...otherProps
         } = props;
 
-        const [error, setError] = React.useState<string | null>(null);
+        const [errorMessage, setErrorMessage] = React.useState<string | null>(
+            null,
+        );
+
+        const hasError = error || !!errorMessage;
 
         const ids = useUniqueIdWithMock("text-area");
         const uniqueId = id ?? ids.get("id");
@@ -231,7 +246,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         const handleValidation = (newValue: string) => {
             if (validate) {
                 const error = validate(newValue) || null;
-                setError(error);
+                setErrorMessage(error);
                 if (onValidate) {
                     onValidate(error);
                 }
@@ -241,7 +256,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                         ? required
                         : defaultErrorMessage;
                 const error = newValue ? null : requiredString;
-                setError(error);
+                setErrorMessage(error);
                 if (onValidate) {
                     onValidate(error);
                 }
@@ -267,13 +282,13 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 styles.default,
                 !disabled && styles.defaultFocus,
                 disabled && styles.disabled,
-                !!error && styles.error,
+                hasError && styles.error,
             ];
             const lightStyles = [
                 styles.light,
                 !disabled && styles.lightFocus,
                 disabled && styles.lightDisabled,
-                !!error && styles.lightError,
+                hasError && styles.lightError,
             ];
             return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
         };
@@ -305,7 +320,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     onBlur={onBlur} // TextArea can be blurred if it is disabled
                     required={!!required}
                     {...otherProps}
-                    aria-invalid={!!error}
+                    aria-invalid={hasError}
                 />
             </View>
         );

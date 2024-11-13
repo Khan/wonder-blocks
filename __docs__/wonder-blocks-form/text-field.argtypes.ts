@@ -163,7 +163,7 @@ export default {
 
     validate: {
         description:
-            "Provide a validation for the input value. Return a string error message or null | void for a valid input.",
+            "Provide a validation for the input value. Return a string error message or null | void for a valid input. \n Use this for errors that are shown to the user while they are filling out a form.",
         table: {
             type: {
                 summary: "(value: string) => ?string",
@@ -171,6 +171,19 @@ export default {
         },
         control: {
             type: undefined,
+        },
+    },
+
+    error: {
+        description:
+            "Whether this field is in an error state. \n Use this for errors that are triggered by something external to the component (example: an error after form submission).",
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+        control: {
+            type: "boolean",
         },
     },
 
