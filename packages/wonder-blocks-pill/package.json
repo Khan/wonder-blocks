@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-pill",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "design": "v1",
   "description": "Pill components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -18,7 +18,7 @@
   "dependencies": {
     "@khanacademy/wonder-blocks-clickable": "^4.2.9",
     "@khanacademy/wonder-blocks-core": "^7.0.1",
-    "@khanacademy/wonder-blocks-link": "^6.1.9",
+    "@khanacademy/wonder-blocks-link": "^6.1.10",
     "@khanacademy/wonder-blocks-tokens": "^2.1.0",
     "@khanacademy/wonder-blocks-typography": "^2.1.16"
   },
