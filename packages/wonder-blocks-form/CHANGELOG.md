@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.11.0
+
+### Minor Changes
+
+-   9ed7bd5b: Adds `instantValidation` prop for TextArea
+-   cdcfe1ba: - TextArea and TextField: Adds `error` prop so that the components can be put in an error state explicitly. This is useful for backend validation errors after a form has already been submitted.
+-   486c6a80: - `TextField`
+    -   Add `instantValidation` prop
+    -   No longer calls `validate` prop if the field is disabled during initialization and on change
+    -   `TextArea`
+        -   Validate the value during initialization if the field is not disabled
+
+### Patch Changes
+
+-   21f6779a: Refactor TextField from class component to function component
+
 ## 4.10.3
 
 ### Patch Changes
