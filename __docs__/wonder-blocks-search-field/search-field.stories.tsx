@@ -3,16 +3,17 @@ import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 import SearchFieldArgtypes from "./search-field.argtypes";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 /**
  * `SearchField` helps users input text to search for relevant content. It is
@@ -52,7 +53,7 @@ export default {
 
 type StoryComponentType = StoryObj<typeof SearchField>;
 
-const Template = (args: any) => {
+const Template = (args: PropsFor<typeof SearchField>) => {
     const [value, setValue] = React.useState("");
 
     const handleChange = (newValue: string) => {
@@ -227,9 +228,45 @@ export const Error: StoryComponentType = {
     render: Template,
 };
 
+/**
+ * The SearchField supports `validate`, `onValidate`, and `instantValidation`
+ * props. See docs for the TextField component for more details since
+ * SearchField uses TextField internally.
+ */
+export const Validation: StoryComponentType = {
+    args: {
+        validate(value) {
+            if (value.length < 5) {
+                return "Too short. Value should be at least 5 characters";
+            }
+        },
+        instantValidation: false,
+    },
+    render: function Render(args: PropsFor<typeof SearchField>) {
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >(null);
+        return (
+            <View>
+                <Template {...args} onValidate={setErrorMessage} />
+                <Strut size={spacing.xxSmall_6} />
+                {(errorMessage || args.error) && (
+                    <LabelSmall style={styles.errorMessage}>
+                        {errorMessage || "Error from error prop"}
+                    </LabelSmall>
+                )}
+            </View>
+        );
+    },
+};
+
 const styles = StyleSheet.create({
     darkBackground: {
         background: color.darkBlue,
         padding: spacing.medium_16,
+    },
+    errorMessage: {
+        color: color.red,
+        paddingLeft: spacing.xxxSmall_4,
     },
 });

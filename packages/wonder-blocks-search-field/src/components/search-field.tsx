@@ -64,6 +64,26 @@ type Props = AriaProps & {
      */
     error?: boolean;
     /**
+     * Provide a validation for the input value.
+     * Return a string error message or null | void for a valid input.
+     *
+     * Use this for errors that are shown to the user while they are filling out
+     * a form.
+     */
+    validate?: (value: string) => string | null | void;
+    /**
+     * Called right after the SearchField is validated.
+     */
+    onValidate?: (errorMessage?: string | null | undefined) => unknown;
+    /**
+     * If true, SearchField is validated as the user types (onChange). If false,
+     * it is validated when the user's focus moves out of the field (onBlur).
+     * It is preferred that instantValidation is set to `false`, however, it
+     * defaults to `true` for consistency with form components like TextField
+     * and TextArea.
+     */
+    instantValidation?: boolean;
+    /**
      * Called when the value has changed.
      */
     onChange: (newValue: string) => unknown;
@@ -128,6 +148,9 @@ const SearchField: React.ForwardRefExoticComponent<
         style,
         testId,
         error,
+        instantValidation = true,
+        validate,
+        onValidate,
         onClick,
         onChange,
         onFocus,
@@ -183,6 +206,9 @@ const SearchField: React.ForwardRefExoticComponent<
                         autoFocus={autoFocus}
                         disabled={disabled}
                         light={light}
+                        instantValidation={instantValidation}
+                        validate={validate}
+                        onValidate={onValidate}
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
