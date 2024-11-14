@@ -236,8 +236,10 @@ export const Error: StoryComponentType = {
 
 /**
  * The SearchField supports `validate`, `onValidate`, and `instantValidation`
- * props. See docs for the TextField component for more details since
- * SearchField uses TextField internally.
+ * props.
+ *
+ * See docs for the TextField component for more details around validation
+ * since SearchField uses TextField internally.
  */
 export const Validation: StoryComponentType = {
     args: {
