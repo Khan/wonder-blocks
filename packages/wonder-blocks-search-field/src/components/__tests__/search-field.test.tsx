@@ -2,10 +2,17 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
 import SearchField from "../search-field";
+
+const ControlledSearchField = (
+    props: Partial<PropsFor<typeof SearchField>>,
+) => {
+    const [value, setValue] = React.useState<string>("");
+    return <SearchField {...props} value={value} onChange={setValue} />;
+};
 
 describe("SearchField", () => {
     test("value is updated when text is entered into the field", async () => {
@@ -440,5 +447,201 @@ describe("SearchField", () => {
 
         // Assert
         expect(handleOnKeyDown).toHaveReturnedWith("Enter");
+    });
+
+    describe("error prop", () => {
+        it("should be in an error state if the error prop is set to true", async () => {
+            // Arrange
+            render(
+                <SearchField
+                    value="something"
+                    onChange={() => {}}
+                    error={true}
+                />,
+            );
+            // Act
+            const field = await screen.findByRole("textbox");
+
+            // Assert
+            expect(field).toHaveAttribute("aria-invalid", "true");
+        });
+
+        it("should not be in an error state if the error prop is set to false", async () => {
+            // Arrange
+            render(
+                <SearchField
+                    value="something"
+                    onChange={() => {}}
+                    error={false}
+                />,
+            );
+            // Act
+            const field = await screen.findByRole("textbox");
+
+            // Assert
+            expect(field).toHaveAttribute("aria-invalid", "false");
+        });
+
+        it("should not be in an error state if the error prop is not set", async () => {
+            // Arrange
+            render(<SearchField value="something" onChange={() => {}} />);
+            // Act
+            const field = await screen.findByRole("textbox");
+
+            // Assert
+            expect(field).toHaveAttribute("aria-invalid", "false");
+        });
+    });
+
+    describe("validation", () => {
+        it("should call the validate prop when a user types in the field and instantValidation is not set", async () => {
+            // Arrange
+            const validate = jest.fn();
+            render(
+                <ControlledSearchField
+                    value=""
+                    onChange={() => {}}
+                    validate={validate}
+                />,
+            );
+            const field = await screen.findByRole("textbox");
+
+            // Act
+            await userEvent.type(field, "t");
+
+            // Assert
+            expect(validate).toHaveBeenCalledWith("t");
+        });
+
+        describe("instantValidation=true", () => {
+            it("should call the validate prop when a user types in the field", async () => {
+                // Arrange
+                const validate = jest.fn();
+                render(
+                    <ControlledSearchField
+                        value=""
+                        onChange={() => {}}
+                        validate={validate}
+                        instantValidation={true}
+                    />,
+                );
+                const field = await screen.findByRole("textbox");
+
+                // Act
+                await userEvent.type(field, "t");
+
+                // Assert
+                expect(validate).toHaveBeenCalledWith("t");
+            });
+
+            it("should call the onValidate prop when the field is validated after a user types in the field", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const errorMsg = "Error message";
+                render(
+                    <ControlledSearchField
+                        value=""
+                        onChange={() => {}}
+                        instantValidation={true}
+                        validate={() => errorMsg}
+                        onValidate={onValidate}
+                    />,
+                );
+                const field = await screen.findByRole("textbox");
+
+                // Act
+                await userEvent.type(field, "t");
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledWith(errorMsg);
+            });
+
+            it("should put the field in an error state if validation fails after a user types in the field", async () => {
+                // Arrange
+                const errorMsg = "Error message";
+                render(
+                    <ControlledSearchField
+                        value=""
+                        instantValidation={true}
+                        onChange={() => {}}
+                        validate={() => errorMsg}
+                    />,
+                );
+                const field = await screen.findByRole("textbox");
+
+                // Act
+                await userEvent.type(field, "t");
+
+                // Assert
+                expect(field).toHaveAttribute("aria-invalid", "true");
+            });
+        });
+
+        describe("instantValidation=false", () => {
+            it("should call the validate prop when a user leaves the field", async () => {
+                // Arrange
+                const validate = jest.fn();
+                render(
+                    <ControlledSearchField
+                        value=""
+                        onChange={() => {}}
+                        validate={validate}
+                        instantValidation={false}
+                    />,
+                );
+                const field = await screen.findByRole("textbox");
+
+                // Act
+                await userEvent.type(field, "t");
+                await userEvent.tab();
+
+                // Assert
+                expect(validate).toHaveBeenCalledWith("t");
+            });
+
+            it("should call the onValidate prop when the field is validated after a user leaves the field", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const errorMsg = "Error message";
+                render(
+                    <ControlledSearchField
+                        value=""
+                        onChange={() => {}}
+                        instantValidation={false}
+                        validate={() => errorMsg}
+                        onValidate={onValidate}
+                    />,
+                );
+                const field = await screen.findByRole("textbox");
+
+                // Act
+                await userEvent.type(field, "t");
+                await userEvent.tab();
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledWith(errorMsg);
+            });
+
+            it("should put the field in an error state if validation fails after a user leaves the field", async () => {
+                // Arrange
+                const errorMsg = "Error message";
+                render(
+                    <ControlledSearchField
+                        value=""
+                        instantValidation={false}
+                        onChange={() => {}}
+                        validate={() => errorMsg}
+                    />,
+                );
+                const field = await screen.findByRole("textbox");
+
+                // Act
+                await userEvent.type(field, "t");
+                await userEvent.tab();
+
+                // Assert
+                expect(field).toHaveAttribute("aria-invalid", "true");
+            });
+        });
     });
 });
