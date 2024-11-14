@@ -255,9 +255,6 @@ const styles = StyleSheet.create({
         margin: 0,
         position: "absolute",
         right: 0,
-        ":hover": {
-            border: "none",
-        },
     },
     inputStyleReset: {
         display: "flex",
