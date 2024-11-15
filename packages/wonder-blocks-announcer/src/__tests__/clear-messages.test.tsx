@@ -1,6 +1,4 @@
-import * as React from "react";
-import {render, screen} from "@testing-library/react";
-import {SendMessageButton} from "../components/send-message-button";
+import {screen} from "@testing-library/react";
 import {sendMessage, clearMessages} from "../index";
 
 describe("Announcer.clearMessages", () => {
