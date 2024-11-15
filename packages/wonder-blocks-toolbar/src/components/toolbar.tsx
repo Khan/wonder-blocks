@@ -137,8 +137,9 @@ const sharedStyles = StyleSheet.create({
     container: {
         border: `1px solid ${color.offBlack16}`,
         flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
+        display: "grid",
+        gridTemplateColumns:
+            "minmax(max-content, 1fr) auto minmax(max-content, 1fr)",
         minHeight: 66,
         paddingLeft: spacing.medium_16,
         paddingRight: spacing.medium_16,
