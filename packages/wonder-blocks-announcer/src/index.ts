@@ -68,6 +68,37 @@ class Announcer {
         }
     }
 
+    static getInstance() {
+        if (!Announcer._instance) {
+            Announcer._instance = new Announcer();
+            console.log(Announcer._instance);
+        }
+
+        Announcer._instance.rebootForHMR();
+        return Announcer._instance;
+    }
+
+    init(id: string) {
+        this.node = document.createElement("div");
+        this.node.id = id;
+        this.node.setAttribute("data-testid", `wbAnnounce`);
+
+        // Object.assign(this.node.style, srOnly);
+
+        const aWrapper = this.createRegionWrapper("assertive");
+        this.assertiveRegions = this.createDuplicateRegions(
+            aWrapper,
+            "assertive",
+        );
+        this.node?.appendChild(aWrapper);
+
+        const pWrapper = this.createRegionWrapper("polite");
+        this.politeRegions = this.createDuplicateRegions(pWrapper, "polite");
+        this.node.appendChild(pWrapper);
+
+        document.body.prepend(this.node);
+    }
+
     rebootForHMR() {
         // Recover in the event regions get lost
         // This happens in Storybook when saving a file:
@@ -94,36 +125,6 @@ class Announcer {
         }
     }
 
-    static getInstance() {
-        if (!Announcer._instance) {
-            Announcer._instance = new Announcer();
-            console.log(Announcer._instance);
-        }
-
-        Announcer._instance.rebootForHMR();
-        return Announcer._instance;
-    }
-
-    init(id: string) {
-        this.node = document.createElement("div");
-        this.node.id = id;
-
-        // Object.assign(this.node.style, srOnly);
-
-        const aWrapper = this.createRegionWrapper("assertive");
-        this.assertiveRegions = this.createDuplicateRegions(
-            aWrapper,
-            "assertive",
-        );
-        this.node?.appendChild(aWrapper);
-
-        const pWrapper = this.createRegionWrapper("polite");
-        this.politeRegions = this.createDuplicateRegions(pWrapper, "polite");
-        this.node.appendChild(pWrapper);
-
-        document.body.prepend(this.node);
-    }
-
     isAttached() {
         return this.node?.isConnected;
     }
@@ -148,13 +149,15 @@ class Announcer {
         return result;
     }
 
-    createRegion(level: PolitenessLevel, id: number, role = "log") {
+    createRegion(level: PolitenessLevel, index: number, role = "log") {
         const region = document.createElement("div");
         // TODO: test combinations of attrs
         region.setAttribute("role", role);
         region.setAttribute("aria-live", level);
         region.classList.add("wbARegion");
-        region.id = `wbARegion-${level}${id}`;
+        const id = `wbARegion-${level}${index}`;
+        region.id = id;
+        region.setAttribute("data-testid", id);
         return region;
     }
 
@@ -179,10 +182,11 @@ class Announcer {
                 this.regionFactory.pIndex,
             );
             this.regionFactory.pIndex = index;
-            // console.log(
-            //     "code:",
-            //     this.politeRegions[this.regionFactory.pIndex].textContent,
-            // );
+            console.log(
+                "code:",
+                this.politeRegions[this.regionFactory.pIndex].id,
+                this.politeRegions[this.regionFactory.pIndex].textContent,
+            );
             targetedId = this.politeRegions[this.regionFactory.pIndex].id || "";
         } else if (level === "assertive" && this.assertiveRegions) {
             const index = this.appendMessage(
