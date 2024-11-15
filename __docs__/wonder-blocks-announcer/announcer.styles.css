@@ -1,0 +1,13 @@
+.wbARegion {
+    border: 1px solid red;
+    margin-bottom: 0.5em;
+    position: relative;
+}
+.wbARegion::before {
+    background-color: white;
+    border: 1px solid red;
+    content: attr(id);
+    display: block;
+    font-size: 0.75rem;
+    padding: 0.25em;
+}

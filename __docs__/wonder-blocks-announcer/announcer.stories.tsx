@@ -12,13 +12,21 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-announcer/package.json";
 
+import "./announcer.styles.css";
+
 const AnnouncerExample = ({
     message = "Clicked!",
     level,
     timeoutDelay,
 }: SendMessageProps) => {
     return (
-        <Button onClick={() => sendMessage({message, level, timeoutDelay})}>
+        <Button
+            onClick={() => {
+                // TODO: explore making method async for consistent return string
+                const id = sendMessage({message, level, timeoutDelay});
+                console.log(id);
+            }}
+        >
             Save
         </Button>
     );
