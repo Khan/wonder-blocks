@@ -17,13 +17,13 @@ import "./announcer.styles.css";
 const AnnouncerExample = ({
     message = "Clicked!",
     level,
-    timeoutDelay,
+    removalDelay,
 }: SendMessageProps) => {
     return (
         <Button
             onClick={() => {
                 // TODO: explore making method async for consistent return string
-                const id = sendMessage({message, level, timeoutDelay});
+                const id = sendMessage({message, level, removalDelay});
                 console.log(id);
             }}
         >
