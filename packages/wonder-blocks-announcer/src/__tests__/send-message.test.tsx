@@ -65,12 +65,12 @@ describe("Announcer.sendMessage", () => {
         const message2 = "Red Fish Blue Fish";
 
         // ACT
-        const announcement1 = sendMessage({message: message1});
-        const announcement2 = sendMessage({message: message2});
+        const announcement1Id = sendMessage({message: message1});
+        const announcement2Id = sendMessage({message: message2});
 
         // ASSERT
-        expect(announcement1).toBe("wbARegion-polite1");
-        expect(announcement2).toBe("wbARegion-polite0");
+        expect(announcement1Id).toBe("wbARegion-polite1");
+        expect(announcement2Id).toBe("wbARegion-polite0");
     });
 
     test("appends messages in alternating assertive live region elements", () => {

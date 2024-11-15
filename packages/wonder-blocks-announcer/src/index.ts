@@ -3,12 +3,6 @@
 
 export type PolitenessLevel = "polite" | "assertive";
 
-type RegionFactory = {
-    count: number;
-    aIndex: number;
-    pIndex: number;
-};
-
 const TIMEOUT_DELAY = 5000;
 let announcer: Announcer | null = null;
 
@@ -22,7 +16,7 @@ export function sendMessage({
     message,
     level = "polite", // TODO: decide whether to allow role=`timer`
     timeoutDelay,
-}: SendMessageProps): string | void {
+}: SendMessageProps): string {
     announcer = Announcer.getInstance();
 
     if (typeof jest === "undefined") {
@@ -33,27 +27,57 @@ export function sendMessage({
         // If we are in a test environment, announce without waiting
         return announcer.announce(message, level, timeoutDelay);
     }
+    return "";
 }
 
 export function clearMessages(id?: string) {
     if (id && document?.getElementById(id)) {
-        // announcer?.clear(id);
+        announcer?.clear(id);
     } else if (document) {
-        // announcer?.clear();
+        announcer?.clear();
     }
 }
 
+type RegionFactory = {
+    count: number;
+    aIndex: number;
+    pIndex: number;
+};
+
+interface RegionSet {
+    polite: HTMLElement[];
+    assertive: HTMLElement[];
+} //deprecate
+
+type RegionList = {[K in keyof RegionSet]: HTMLElement[]}; //deprecate
+type RegionDef = {
+    id: string;
+    levelIndex: number;
+    level: PolitenessLevel;
+    element: HTMLElement;
+};
+type RegionDictionary = Map<string, RegionDef>;
+
+/* {
+    wbARegion-polite0: {id: 0, level: polite, element: HTMLElement}
+    wbARegion-polite1: {id: 1, level: polite, element: HTMLElement}
+    wbARegion-assertive0: {id: 0, level: assertive, element: HTMLElement}
+    wbARegion-assertive1: {id: 1, level: assertive, element: HTMLElement}
+}
+{
+    assertive: [element0, element1]
+    polite: [element0, element1]
+} */
 class Announcer {
     private static _instance: Announcer;
     node: HTMLElement | null = null;
-    assertiveRegions: HTMLElement[] | null = null;
-    politeRegions: HTMLElement[] | null = null;
     regionFactory: RegionFactory = {
         count: 2,
         aIndex: 0,
         pIndex: 0,
     };
-    delayNum: number = TIMEOUT_DELAY;
+    regionList: RegionList = {polite: [], assertive: []};
+    dictionary: RegionDictionary = new Map();
 
     private constructor() {
         if (typeof document !== "undefined") {
@@ -61,7 +85,6 @@ class Announcer {
 
             // Prevent duplicates in HMR
             const announcerCheck = document.getElementById(topLevelId);
-            console.log(announcerCheck);
             if (announcerCheck === null) {
                 this.init(topLevelId);
             }
@@ -71,7 +94,6 @@ class Announcer {
     static getInstance() {
         if (!Announcer._instance) {
             Announcer._instance = new Announcer();
-            console.log(Announcer._instance);
         }
 
         Announcer._instance.rebootForHMR();
@@ -83,17 +105,14 @@ class Announcer {
         this.node.id = id;
         this.node.setAttribute("data-testid", `wbAnnounce`);
 
-        // Object.assign(this.node.style, srOnly);
+        Object.assign(this.node.style, srOnly);
 
         const aWrapper = this.createRegionWrapper("assertive");
-        this.assertiveRegions = this.createDuplicateRegions(
-            aWrapper,
-            "assertive",
-        );
+        this.createDuplicateRegions(aWrapper, "assertive");
         this.node?.appendChild(aWrapper);
 
         const pWrapper = this.createRegionWrapper("polite");
-        this.politeRegions = this.createDuplicateRegions(pWrapper, "polite");
+        this.createDuplicateRegions(pWrapper, "polite");
         this.node.appendChild(pWrapper);
 
         document.body.prepend(this.node);
@@ -106,22 +125,21 @@ class Announcer {
         const announcerCheck = document.getElementById(`wbAnnounce`);
         if (announcerCheck !== null) {
             this.node = announcerCheck;
-            const pRegions = Array.from(
+            const regions = Array.from(
                 announcerCheck.querySelectorAll<HTMLElement>(
-                    "[id^='wbARegion-polite'",
+                    "[id^='wbARegion'",
                 ),
             );
-            if (pRegions.length) {
-                this.politeRegions = pRegions;
-            }
-            const aRegions = Array.from(
-                announcerCheck.querySelectorAll<HTMLElement>(
-                    "[id^='wbARegion-assertive'",
-                ),
-            );
-            if (aRegions.length) {
-                this.assertiveRegions = aRegions;
-            }
+            regions.forEach((region) => {
+                this.dictionary.set(region.id, {
+                    id: region.id,
+                    levelIndex: parseInt(
+                        region.id.charAt(region.id.length - 1),
+                    ),
+                    level: region.getAttribute("aria-live") as PolitenessLevel,
+                    element: region,
+                });
+            });
         }
     }
 
@@ -158,56 +176,60 @@ class Announcer {
         const id = `wbARegion-${level}${index}`;
         region.id = id;
         region.setAttribute("data-testid", id);
+        this.dictionary.set(id, {
+            id,
+            levelIndex: index,
+            level,
+            element: region,
+        });
         return region;
     }
 
     announce(
         message: string,
         level: PolitenessLevel,
-        timeoutDelay = TIMEOUT_DELAY,
-    ): string | void {
+        timeoutDelay?: number,
+    ): string {
         if (!this.node) {
-            return;
+            return "";
         }
 
-        if (timeoutDelay) {
-            this.delayNum = timeoutDelay;
-        }
-        let targetedId = "";
+        // Filter region elements to the selected level
+        const regions: RegionDef[] = [...this.dictionary.values()].filter(
+            (entry: RegionDef) => entry.level === level,
+        );
 
-        if (level === "polite" && this.politeRegions) {
-            const index = this.appendMessage(
-                message,
-                this.politeRegions,
-                this.regionFactory.pIndex,
-            );
-            this.regionFactory.pIndex = index;
-            console.log(
-                "code:",
-                this.politeRegions[this.regionFactory.pIndex].id,
-                this.politeRegions[this.regionFactory.pIndex].textContent,
-            );
-            targetedId = this.politeRegions[this.regionFactory.pIndex].id || "";
-        } else if (level === "assertive" && this.assertiveRegions) {
-            const index = this.appendMessage(
-                message,
-                this.assertiveRegions,
-                this.regionFactory.aIndex,
-            );
-            this.regionFactory.aIndex = index;
-            targetedId =
-                this.assertiveRegions[this.regionFactory.aIndex].id || "";
+        const newIndex = this.appendMessage(
+            message,
+            level,
+            regions,
+            timeoutDelay,
+        );
+
+        // overwrite central index for the given level
+        if (level === "assertive") {
+            this.regionFactory.aIndex = newIndex;
+        } else {
+            this.regionFactory.pIndex = newIndex;
         }
-        return targetedId;
+
+        return regions[newIndex].id || "";
     }
 
     appendMessage(
         message: string,
-        targetRegions: HTMLElement[],
-        index: number,
+        level: PolitenessLevel, // level
+        regionList: RegionDef[], // list of relevant elements
+        timeoutDelay: number = TIMEOUT_DELAY,
     ): number {
+        // Starting index for a given level
+        let index =
+            level === "assertive"
+                ? this.regionFactory.aIndex
+                : this.regionFactory.pIndex;
+
         // empty region at the previous index
-        targetRegions[index].replaceChildren();
+        regionList[index].element.replaceChildren();
 
         // overwrite index passed in to update locally
         index = this.alternateIndex(index);
@@ -217,11 +239,11 @@ class Announcer {
         messageEl.textContent = message;
 
         // append message to new index
-        targetRegions[index].appendChild(messageEl);
+        regionList[index].element.appendChild(messageEl);
 
         setTimeout(() => {
             messageEl.remove();
-        }, this.delayNum);
+        }, timeoutDelay);
 
         return index;
     }
@@ -232,15 +254,17 @@ class Announcer {
         return index;
     }
 
-    clear(targetRegions?: HTMLElement[] | null, index?: number) {
+    clear(id?: string) {
         if (!this.node) {
             return;
         }
-
-        // if (index && targetRegions) {
-        //     targetRegions[index].replaceChildren();
-        // } else {
-        // }
+        if (id) {
+            this.dictionary.get(id)?.element.replaceChildren();
+        } else {
+            this.dictionary.forEach((region) => {
+                region.element.replaceChildren();
+            });
+        }
     }
 }
 
