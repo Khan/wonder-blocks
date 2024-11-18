@@ -210,6 +210,19 @@ describe("SearchField", () => {
         expect(dismissIcon).toBeInTheDocument();
     });
 
+    test("does not display the clear icon button if the field is disabled", async () => {
+        // Arrange
+        render(
+            <SearchField value="Value" onChange={() => {}} disabled={true} />,
+        );
+
+        // Act
+        const clearButton = screen.queryByRole("button");
+
+        // Assert
+        expect(clearButton).not.toBeInTheDocument();
+    });
+
     test("clear button clears any text in the field", async () => {
         // Arrange
         const SearchFieldWrapper = () => {
