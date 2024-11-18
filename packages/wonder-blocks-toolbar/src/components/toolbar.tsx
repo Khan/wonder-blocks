@@ -184,5 +184,7 @@ const sharedStyles = StyleSheet.create({
     },
     titles: {
         padding: spacing.small_12,
+        maxWidth: "min(100%, 700px)",
+        margin: "0 auto",
     },
 });
