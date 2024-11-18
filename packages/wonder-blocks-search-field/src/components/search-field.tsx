@@ -208,7 +208,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         aria-hidden="true"
                     />
                     <TextField
-                        id={`${uniqueId}-field`}
+                        id={uniqueId}
                         type="text"
                         autoFocus={autoFocus}
                         disabled={disabled}
