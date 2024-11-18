@@ -4,10 +4,13 @@ import {Meta, StoryObj} from "@storybook/react";
 import {expect, userEvent, within} from "@storybook/test";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {allProfilesWithPictures} from "./option-item-examples";
 
@@ -426,5 +429,19 @@ export const Error: Story = {
     args: {
         children: items,
         error: true,
+    },
+};
+
+/**
+ * With start icon, you can customize the icon that appears at the beginning of
+ * the Combobox. This is useful when you want to add a custom icon to the
+ * component.
+ *
+ * In this example, we show how this is done by setting the `startIcon` prop.
+ */
+export const StartIcon: Story = {
+    args: {
+        children: items,
+        startIcon: <PhosphorIcon icon={magnifyingGlassIcon} size="medium" />,
     },
 };

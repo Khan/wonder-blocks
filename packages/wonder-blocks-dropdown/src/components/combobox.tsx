@@ -14,6 +14,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
 import {
@@ -132,6 +133,14 @@ type Props = {
      */
     // TODO(WB-1740): Add support to `inline` and `both` values.
     autoComplete?: "none" | "list" | undefined;
+
+    /**
+     * The icon (wrapped by a button) that allows opening the listbox widget
+     * when pressed/activated. Defaults to caretDown.
+     */
+    startIcon?: React.ReactElement<
+        React.ComponentProps<typeof PhosphorIcon>
+    > | null;
 };
 
 /**
@@ -158,6 +167,7 @@ export default function Combobox({
     opened,
     placeholder,
     selectionType = "single",
+    startIcon,
     testId,
     value = "",
 }: Props) {
@@ -534,6 +544,10 @@ export default function Combobox({
                         removeSelectedLabel={labels.removeSelected}
                     />
                 )}
+                {startIcon && (
+                    <View style={styles.iconWrapper}>{startIcon}</View>
+                )}
+
                 <TextField
                     id={ids.get("input")}
                     testId={testId}
@@ -738,5 +752,12 @@ const styles = StyleSheet.create({
         // The clear button is positioned to the left of the arrow button.
         // This is calculated based on the padding + width of the arrow button.
         right: spacing.xLarge_32 + spacing.xSmall_8,
+    },
+    iconWrapper: {
+        padding: spacing.xxxSmall_4,
+        // View has a default minWidth of 0, which causes the label text
+        // to encroach on the icon when it needs to truncate. We can fix
+        // this by setting the minWidth to auto.
+        minWidth: "auto",
     },
 });
