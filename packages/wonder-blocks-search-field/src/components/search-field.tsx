@@ -2,14 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import xIcon from "@phosphor-icons/core/regular/x.svg";
-import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {View, IDProvider} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -195,8 +195,8 @@ const SearchField: React.ForwardRefExoticComponent<
                 <View onClick={onClick} style={[styles.inputContainer, style]}>
                     <PhosphorIcon
                         icon={magnifyingGlassIcon}
-                        size="small"
-                        color={semanticColor.icon.primary}
+                        size="medium"
+                        color={color.offBlack64}
                         style={styles.searchIcon}
                         aria-hidden="true"
                     />
