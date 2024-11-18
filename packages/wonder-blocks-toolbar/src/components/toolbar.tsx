@@ -81,9 +81,13 @@ export default function Toolbar({
         <View
             style={[
                 sharedStyles.container,
-                title && typeof title === "string"
-                    ? sharedStyles.containerWithTextTitle
-                    : sharedStyles.containerWithNonTextTitle,
+                title &&
+                    typeof title === "string" &&
+                    sharedStyles.containerWithTextTitle,
+                title &&
+                    typeof title !== "string" &&
+                    sharedStyles.containerWithNodeTitle,
+                !title && sharedStyles.containerWithNoTitle,
                 color === "dark" && sharedStyles.dark,
                 size === "small" && sharedStyles.small,
             ]}
@@ -126,9 +130,12 @@ const sharedStyles = StyleSheet.create({
     containerWithTextTitle: {
         gridTemplateColumns: "1fr minmax(auto, 67%) 1fr",
     },
-    containerWithNonTextTitle: {
+    containerWithNodeTitle: {
         gridTemplateColumns:
             "minmax(max-content, 1fr) auto minmax(max-content, 1fr)",
+    },
+    containerWithNoTitle: {
+        gridTemplateColumns: "auto auto 1fr",
     },
     small: {
         minHeight: 50,
@@ -147,6 +154,7 @@ const sharedStyles = StyleSheet.create({
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "flex-end",
+        flexGrow: 1,
     },
     subtitle: {
         color: color.offBlack64,
