@@ -612,6 +612,26 @@ describe("SearchField", () => {
                 expect(validate).toHaveBeenCalledWith("t");
             });
 
+            it("should not call the validate prop before a user leaves the field", async () => {
+                // Arrange
+                const validate = jest.fn();
+                render(
+                    <ControlledSearchField
+                        value=""
+                        onChange={() => {}}
+                        validate={validate}
+                        instantValidation={false}
+                    />,
+                );
+                const field = await screen.findByRole("textbox");
+
+                // Act
+                await userEvent.type(field, "t");
+
+                // Assert
+                expect(validate).not.toHaveBeenCalled();
+            });
+
             it("should call the onValidate prop when the field is validated after a user leaves the field", async () => {
                 // Arrange
                 const onValidate = jest.fn();
