@@ -81,20 +81,18 @@ export default function Toolbar({
         <View
             style={[
                 sharedStyles.container,
-                title &&
-                    typeof title === "string" &&
-                    sharedStyles.containerWithTextTitle,
-                title &&
-                    typeof title !== "string" &&
-                    sharedStyles.containerWithNodeTitle,
-                !title && sharedStyles.containerWithNoTitle,
+                !title
+                    ? sharedStyles.containerWithNoTitle
+                    : typeof title === "string"
+                    ? sharedStyles.containerWithTextTitle
+                    : sharedStyles.containerWithNodeTitle,
                 color === "dark" && sharedStyles.dark,
                 size === "small" && sharedStyles.small,
             ]}
         >
             <View style={sharedStyles.leftColumn}>{leftContent}</View>
 
-            {title && typeof title === "string" ? (
+            {title && typeof title === "string" && (
                 <View style={sharedStyles.titles}>
                     <TitleComponent id="wb-toolbar-title">
                         {title}
@@ -107,8 +105,12 @@ export default function Toolbar({
                         </LabelSmall>
                     )}
                 </View>
-            ) : (
+            )}
+            {title && typeof title !== "string" && (
                 <View style={sharedStyles.titles}>{title}</View>
+            )}
+            {!title && (
+                <View style={leftContent ? sharedStyles.spacer : undefined} />
             )}
 
             <View style={sharedStyles.rightColumn}>{rightContent}</View>
@@ -164,5 +166,8 @@ const sharedStyles = StyleSheet.create({
         textAlign: "center",
         justifySelf: "center",
         maxWidth: "100%",
+    },
+    spacer: {
+        minWidth: spacing.small_12,
     },
 });

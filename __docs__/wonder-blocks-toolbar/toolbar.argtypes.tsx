@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     fillContent: {
         marginLeft: spacing.small_12,
         [mobile]: {
+            marginLeft: 0,
             width: "100%",
         },
     },
