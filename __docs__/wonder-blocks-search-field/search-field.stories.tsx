@@ -54,7 +54,10 @@ export default {
 type StoryComponentType = StoryObj<typeof SearchField>;
 
 const Template = (args: PropsFor<typeof SearchField>) => {
-    const [value, setValue] = React.useState("");
+    const [value, setValue] = React.useState(args?.value || "");
+    const [errorMessage, setErrorMessage] = React.useState<
+        string | null | undefined
+    >("");
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
@@ -67,15 +70,26 @@ const Template = (args: PropsFor<typeof SearchField>) => {
     };
 
     return (
-        <SearchField
-            {...args}
-            value={value}
-            onChange={handleChange}
-            onKeyDown={(e) => {
-                action("onKeyDown")(e);
-                handleKeyDown(e);
-            }}
-        />
+        <View>
+            <SearchField
+                {...args}
+                value={value}
+                onChange={handleChange}
+                onKeyDown={(e) => {
+                    action("onKeyDown")(e);
+                    handleKeyDown(e);
+                }}
+                onValidate={setErrorMessage}
+            />
+            {(errorMessage || args.error) && (
+                <>
+                    <Strut size={spacing.xSmall_8} />
+                    <LabelSmall style={styles.errorMessage}>
+                        {errorMessage || "Error from error prop"}
+                    </LabelSmall>
+                </>
+            )}
+        </View>
     );
 };
 
@@ -248,21 +262,30 @@ export const Validation: StoryComponentType = {
                 return "Too short. Value should be at least 5 characters";
             }
         },
-        instantValidation: false,
     },
-    render: function Render(args: PropsFor<typeof SearchField>) {
-        const [errorMessage, setErrorMessage] = React.useState<
-            string | null | undefined
-        >(null);
+    render: (args) => {
         return (
-            <View>
-                <Template {...args} onValidate={setErrorMessage} />
-                <Strut size={spacing.xxSmall_6} />
-                {(errorMessage || args.error) && (
-                    <LabelSmall style={styles.errorMessage}>
-                        {errorMessage || "Error from error prop"}
-                    </LabelSmall>
-                )}
+            <View style={{gap: spacing.small_12}}>
+                <LabelSmall htmlFor="instant-validation-true">
+                    Validation on mount if there is a value
+                </LabelSmall>
+                <Template {...args} id="instant-validation-true" value="T" />
+                <LabelSmall htmlFor="instant-validation-true">
+                    Error shown immediately (instantValidation: true)
+                </LabelSmall>
+                <Template
+                    {...args}
+                    id="instant-validation-true"
+                    instantValidation={true}
+                />
+                <LabelSmall htmlFor="instant-validation-false">
+                    Error shown onBlur (instantValidation: false)
+                </LabelSmall>
+                <Template
+                    {...args}
+                    id="instant-validation-false"
+                    instantValidation={false}
+                />
             </View>
         );
     },
