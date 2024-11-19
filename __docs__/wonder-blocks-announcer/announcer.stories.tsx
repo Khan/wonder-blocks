@@ -21,8 +21,7 @@ const AnnouncerExample = ({
         <Button
             onClick={() => {
                 // TODO: explore making method async for consistent return string
-                const id = sendMessage({message, level, removalDelay});
-                console.log(id);
+                sendMessage({message, level, removalDelay});
             }}
         >
             Save
