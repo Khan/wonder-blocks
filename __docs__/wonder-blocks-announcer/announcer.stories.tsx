@@ -12,8 +12,6 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-announcer/package.json";
 
-import "./announcer.styles.css";
-
 const AnnouncerExample = ({
     message = "Clicked!",
     level,
