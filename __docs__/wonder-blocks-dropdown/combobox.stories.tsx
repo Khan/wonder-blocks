@@ -6,7 +6,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -440,8 +440,39 @@ export const Error: Story = {
  * In this example, we show how this is done by setting the `startIcon` prop.
  */
 export const StartIcon: Story = {
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        const [_, updateArgs] = useArgs();
+
+        return (
+            <View style={{gap: spacing.medium_16}}>
+                <LabelMedium>Default:</LabelMedium>
+                <Combobox
+                    {...args}
+                    onChange={(newValue) => {
+                        updateArgs({value: newValue});
+                        action("onChange")(newValue);
+                    }}
+                />
+                <LabelMedium>Disabled:</LabelMedium>
+                <Combobox
+                    {...args}
+                    disabled={true}
+                    onChange={(newValue) => {
+                        updateArgs({value: newValue});
+                        action("onChange")(newValue);
+                    }}
+                />
+            </View>
+        );
+    },
     args: {
         children: items,
-        startIcon: <PhosphorIcon icon={magnifyingGlassIcon} size="medium" />,
+        startIcon: (
+            <PhosphorIcon
+                icon={magnifyingGlassIcon}
+                size="medium"
+                color={color.offBlack64}
+            />
+        ),
     },
 };

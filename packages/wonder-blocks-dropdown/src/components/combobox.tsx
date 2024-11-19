@@ -1,3 +1,4 @@
+import {start} from "repl";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
@@ -135,8 +136,7 @@ type Props = {
     autoComplete?: "none" | "list" | undefined;
 
     /**
-     * The icon (wrapped by a button) that allows opening the listbox widget
-     * when pressed/activated. Defaults to caretDown.
+     * An optional decorative icon to display at the start of the combobox.
      */
     startIcon?: React.ReactElement<
         React.ComponentProps<typeof PhosphorIcon>
@@ -487,6 +487,24 @@ export default function Combobox({
         return [labelFromSelected];
     }, [children, labelFromSelected, selected]);
 
+    /**
+     * Renders the start icon if provided.
+     */
+    const maybeRenderStartIcon = () => {
+        if (!startIcon) {
+            return null;
+        }
+
+        const startIconElement = React.cloneElement(startIcon, {
+            ...startIcon.props,
+            // Override the disable state of the icon to match the combobox
+            // state.
+            color: disabled ? color.offBlack32 : startIcon.props.color,
+        } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
+
+        return <View style={styles.iconWrapper}>{startIconElement}</View>;
+    };
+
     const pillIdPrefix = id ? `${id}-pill-` : ids.get("pill");
 
     const currentActiveDescendant = !openState
@@ -544,9 +562,7 @@ export default function Combobox({
                         removeSelectedLabel={labels.removeSelected}
                     />
                 )}
-                {startIcon && (
-                    <View style={styles.iconWrapper}>{startIcon}</View>
-                )}
+                {maybeRenderStartIcon()}
 
                 <TextField
                     id={ids.get("input")}
@@ -695,6 +711,12 @@ const styles = StyleSheet.create({
         background: color.fadedRed8,
         border: `1px solid ${color.red}`,
         color: color.offBlack,
+    },
+    /**
+     * Start icon styles
+     */
+    iconDisabled: {
+        color: color.offBlack32,
     },
     /**
      * Combobox input styles
