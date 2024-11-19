@@ -1,9 +1,16 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import {SendMessageButton} from "../components/send-message-button";
-import {sendMessage} from "../index";
+import {sendMessage, clearMessages} from "../index";
+
+jest.useFakeTimers();
+jest.spyOn(global, "setTimeout");
 
 describe("Announcer.sendMessage", () => {
+    afterEach(() => {
+        clearMessages();
+    });
+
     test("creates the live region elements when called", () => {
         // ARRANGE
         const message = "Ta-da!";
@@ -65,8 +72,12 @@ describe("Announcer.sendMessage", () => {
         const message2 = "Red Fish Blue Fish";
 
         // ACT
-        const announcement1Id = sendMessage({message: message1});
-        const announcement2Id = sendMessage({message: message2});
+        const announcement1Id = sendMessage({
+            message: message1,
+        });
+        const announcement2Id = sendMessage({
+            message: message2,
+        });
 
         // ASSERT
         expect(announcement1Id).toBe("wbARegion-polite1");
@@ -93,11 +104,31 @@ describe("Announcer.sendMessage", () => {
         expect(message2Region).toHaveTextContent(bagleyMsg);
     });
 
-    // test("removes messages after an optional delay", () => {
-    //     const rainierMsg = "Rainier McCheddarton";
-    //     const bagleyMsg = "Bagley Fluffpants";
-    //     // default timeout is 5000ms
-    //     render(<SendMessageButton message={rainierMsg} />);
-    //     render(<SendMessageButton message={bagleyMsg} timeoutDelay={10000} />);
-    // });
+    test("removes messages after an optional duration", async () => {
+        const message1 = "A Thing";
+        const message2 = "A Different Thing";
+
+        // default timeout is 5000ms
+        render(<SendMessageButton message={message1} removalDelay={500} />);
+        render(<SendMessageButton message={message2} removalDelay={700} />);
+
+        const button = screen.getAllByRole("button");
+        button[0].click();
+        const message1Region = screen.queryByTestId("wbARegion-polite1");
+
+        // Assert
+        expect(message1Region).toHaveTextContent(message1);
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 500);
+        await waitFor(() =>
+            expect(screen.queryByText(message1)).not.toBeInTheDocument(),
+        );
+
+        button[1].click();
+        const message2Region = screen.queryByTestId("wbARegion-polite0");
+        expect(message2Region).toHaveTextContent(message2);
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 700);
+        await waitFor(() =>
+            expect(screen.queryByText(message2)).not.toBeInTheDocument(),
+        );
+    });
 });
