@@ -287,11 +287,20 @@ class Announcer {
         // append message to new index
         regionList[index].element.appendChild(messageEl);
 
-        setTimeout(() => {
-            messageEl.remove();
-        }, removalDelay);
+        this.removeMessage(messageEl, removalDelay);
 
         return index;
+    }
+
+    /**
+     * Alternate index for cycling through elements
+     * @param {number} index Previous element index (0 or 1)
+     * @returns {number} New index
+     */
+    removeMessage(messageElement: HTMLElement, removalDelay: number) {
+        setTimeout(() => {
+            messageElement.remove();
+        }, removalDelay);
     }
 
     /**
