@@ -162,6 +162,7 @@ export default class SelectOpener extends React.Component<
                 {...sharedProps}
                 aria-disabled={disabled}
                 aria-expanded={open ? "true" : "false"}
+                aria-invalid={error}
                 aria-haspopup="listbox"
                 data-testid={testId}
                 id={id}
