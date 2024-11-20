@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import xIcon from "@phosphor-icons/core/bold/x-bold.svg";
+import xIcon from "@phosphor-icons/core/regular/x.svg";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -181,7 +181,7 @@ const SearchField: React.ForwardRefExoticComponent<
         return (
             <IconButton
                 icon={xIcon}
-                size="xsmall"
+                size="small"
                 kind="tertiary"
                 onClick={handleClear}
                 style={styles.dismissIcon}
