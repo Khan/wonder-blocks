@@ -13,7 +13,6 @@ import SearchField from "@khanacademy/wonder-blocks-search-field";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 import SearchFieldArgtypes from "./search-field.argtypes";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 /**
  * `SearchField` helps users input text to search for relevant content. It is
