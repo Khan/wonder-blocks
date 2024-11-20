@@ -70,7 +70,7 @@ const Template = (args: PropsFor<typeof SearchField>) => {
     };
 
     return (
-        <View>
+        <View style={{gap: spacing.xSmall_8}}>
             <SearchField
                 {...args}
                 value={value}
@@ -82,12 +82,9 @@ const Template = (args: PropsFor<typeof SearchField>) => {
                 onValidate={setErrorMessage}
             />
             {(errorMessage || args.error) && (
-                <>
-                    <Strut size={spacing.xSmall_8} />
-                    <LabelSmall style={styles.errorMessage}>
-                        {errorMessage || "Error from error prop"}
-                    </LabelSmall>
-                </>
+                <LabelSmall style={styles.errorMessage}>
+                    {errorMessage || "Error from error prop"}
+                </LabelSmall>
             )}
         </View>
     );

@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
         padding: spacing.medium_16,
     },
     scenarios: {
-        display: "flex",
         flexDirection: "row",
         alignItems: "center",
         gap: spacing.xxxLarge_64,
