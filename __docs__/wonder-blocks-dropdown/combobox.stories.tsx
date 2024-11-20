@@ -4,10 +4,10 @@ import {Meta, StoryObj} from "@storybook/react";
 import {expect, userEvent, within} from "@storybook/test";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -433,11 +433,16 @@ export const Error: Story = {
 };
 
 /**
- * With start icon, you can customize the icon that appears at the beginning of
+ * With `startIcon`, you can customize the icon that appears at the beginning of
  * the Combobox. This is useful when you want to add a custom icon to the
  * component.
  *
- * In this example, we show how this is done by setting the `startIcon` prop.
+ * **NOTE:** When `startIcon` is set, we set some default values for the icon:
+ * - `size`: "small"
+ * - `color`: `semanticColor.icon.default`
+ *
+ * You can customize the size and color of the icon by passing the `size` and
+ * `color` props to the `PhosphorIcon` component.
  */
 export const StartIcon: Story = {
     render: function Render(args: PropsFor<typeof Combobox>) {
@@ -445,17 +450,56 @@ export const StartIcon: Story = {
 
         return (
             <View style={{gap: spacing.medium_16}}>
-                <LabelMedium>Default:</LabelMedium>
+                <LabelMedium>With default size and color:</LabelMedium>
                 <Combobox
                     {...args}
+                    startIcon={
+                        <PhosphorIcon icon={magnifyingGlassIcon} size="small" />
+                    }
                     onChange={(newValue) => {
                         updateArgs({value: newValue});
                         action("onChange")(newValue);
                     }}
                 />
-                <LabelMedium>Disabled:</LabelMedium>
+                <LabelMedium>With custom size:</LabelMedium>
                 <Combobox
                     {...args}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={magnifyingGlassIcon}
+                            size="medium"
+                        />
+                    }
+                    onChange={(newValue) => {
+                        updateArgs({value: newValue});
+                        action("onChange")(newValue);
+                    }}
+                />
+                <LabelMedium>With custom color:</LabelMedium>
+                <Combobox
+                    {...args}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={magnifyingGlassIcon}
+                            size="small"
+                            color={semanticColor.icon.action}
+                        />
+                    }
+                    onChange={(newValue) => {
+                        updateArgs({value: newValue});
+                        action("onChange")(newValue);
+                    }}
+                />
+                <LabelMedium>Disabled (overrides color prop):</LabelMedium>
+                <Combobox
+                    {...args}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={magnifyingGlassIcon}
+                            size="small"
+                            color={semanticColor.icon.action}
+                        />
+                    }
                     disabled={true}
                     onChange={(newValue) => {
                         updateArgs({value: newValue});
@@ -467,12 +511,5 @@ export const StartIcon: Story = {
     },
     args: {
         children: items,
-        startIcon: (
-            <PhosphorIcon
-                icon={magnifyingGlassIcon}
-                size="medium"
-                color={color.offBlack64}
-            />
-        ),
     },
 };

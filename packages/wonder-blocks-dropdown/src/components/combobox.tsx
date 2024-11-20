@@ -1,3 +1,4 @@
+import {start} from "repl";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
@@ -11,7 +12,12 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -495,10 +501,16 @@ export default function Combobox({
         }
 
         const startIconElement = React.cloneElement(startIcon, {
+            // Provide a default size for the icon that can be overridden by
+            // the consumer.
+            size: "small",
             ...startIcon.props,
-            // Override the disable state of the icon to match the combobox
+            // Override the disabled state of the icon to match the combobox
             // state.
-            color: disabled ? color.offBlack32 : startIcon.props.color,
+            color: disabled
+                ? color.offBlack32
+                : // Use the color passed in, otherwise use the default color.
+                  startIcon.props.color ?? semanticColor.icon.primary,
         } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
 
         return <View style={styles.iconWrapper}>{startIconElement}</View>;
@@ -710,12 +722,6 @@ const styles = StyleSheet.create({
         background: color.fadedRed8,
         border: `1px solid ${color.red}`,
         color: color.offBlack,
-    },
-    /**
-     * Start icon styles
-     */
-    iconDisabled: {
-        color: color.offBlack32,
     },
     /**
      * Combobox input styles
