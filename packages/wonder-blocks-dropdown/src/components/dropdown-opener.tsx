@@ -43,6 +43,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      * The unique identifier for the opener.
      */
     id?: string;
+    /**
+     * If the dropdown has an error.
+     */
+    error?: boolean;
 };
 
 type DefaultProps = {
@@ -81,6 +85,7 @@ class DropdownOpener extends React.Component<Props> {
 
         return React.cloneElement(renderedChildren, {
             ...clickableChildrenProps,
+            "aria-invalid": this.props.error,
             disabled,
             "aria-controls": ariaControls,
             id,
