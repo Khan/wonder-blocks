@@ -453,9 +453,7 @@ export const StartIcon: Story = {
                 <LabelMedium>With default size and color:</LabelMedium>
                 <Combobox
                     {...args}
-                    startIcon={
-                        <PhosphorIcon icon={magnifyingGlassIcon} size="small" />
-                    }
+                    startIcon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                     onChange={(newValue) => {
                         updateArgs({value: newValue});
                         action("onChange")(newValue);
