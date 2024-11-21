@@ -24,6 +24,8 @@ import type {
 } from "../util/types";
 import {getLabel} from "../util/helpers";
 
+const defaultErrorMessage = "This field is required.";
+
 export type SingleSelectLabels = {
     /**
      * Label for describing the dismiss icon on the search filter.
@@ -161,6 +163,41 @@ type Props = AriaProps &
          * opener's `aria-controls` attribute for screenreaders.
          */
         dropdownId?: string;
+        /**
+         * Provide validation for the selected option.
+         * Return a string error message or null | void for a valid selected option.
+         *
+         * Use this for errors that are shown to the user while they are filling out
+         * a form.
+         */
+        validate?: (value: string) => string | null | void;
+        /**
+         * Called right after the SingleSelect is validated.
+         */
+        onValidate?: (errorMessage?: string | null | undefined) => unknown;
+        /**
+         * Whether this field is required to continue, or the error message to
+         * render if this field is left blank.
+         *
+         * This can be a boolean or a string.
+         *
+         * String:
+         * Please pass in a translated string to use as the error message that will
+         * render if the user leaves this field blank. If this field is required,
+         * and a string is not passed in, a default untranslated string will render
+         * upon error.
+         * Note: The string will not be used if a `validate` prop is passed in.
+         *
+         * Example message: i18n._("A password is required to log in.")
+         *
+         * Boolean:
+         * True/false indicating whether this field is required. Please do not pass
+         * in `true` if possible - pass in the error string instead.
+         * If `true` is passed, and a `validate` prop is not passed, that means
+         * there is no corresponding message and the default untranlsated message
+         * will be used.
+         */
+        required?: boolean | string;
     }>;
 
 type State = Readonly<{
@@ -178,6 +215,10 @@ type State = Readonly<{
      * to this element, and also to pass the reference to Popper.js.
      */
     openerElement?: HTMLElement;
+    /**
+     * Error message from validation.
+     */
+    errorMessage: string | null | void;
 }>;
 
 /**
@@ -251,6 +292,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         this.state = {
             open: false,
             searchText: "",
+            errorMessage: null,
         };
     }
 
@@ -300,6 +342,37 @@ export default class SingleSelect extends React.Component<Props, State> {
 
         if (this.props.onToggle) {
             this.props.onToggle(false);
+        }
+
+        this.handleValidation(selectedValue);
+    };
+
+    handleValidation = (selectedValue: string) => {
+        const {required, disabled, onValidate, validate} = this.props;
+        if (disabled) {
+            return;
+        }
+        if (validate) {
+            const errorMessage = validate(selectedValue) || null;
+            this.setState({errorMessage});
+
+            if (onValidate) {
+                onValidate(errorMessage);
+            }
+            if (errorMessage) {
+                // There is already an error from validation, no need to check
+                // anything else
+                return;
+            }
+        }
+        if (required) {
+            const requiredString =
+                typeof required === "string" ? required : defaultErrorMessage;
+            const errorMessage = selectedValue ? null : requiredString;
+            this.setState({errorMessage});
+            if (onValidate) {
+                onValidate(errorMessage);
+            }
         }
     };
 
@@ -406,6 +479,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             className,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
+            required,
             ...sharedProps
         } = this.props;
 
@@ -421,6 +495,8 @@ export default class SingleSelect extends React.Component<Props, State> {
             ? getLabel(selectedItem.props)
             : placeholder;
 
+        const hasError = error || !!this.state.errorMessage;
+
         const dropdownOpener = (
             <IDProvider id={id} scope="single-select-opener">
                 {(uniqueOpenerId) => {
@@ -429,6 +505,8 @@ export default class SingleSelect extends React.Component<Props, State> {
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
+                            aria-required={ariaRequired || !!required}
+                            error={hasError}
                             onClick={this.handleClick}
                             disabled={isDisabled}
                             ref={this.handleOpenerRef}
@@ -441,9 +519,10 @@ export default class SingleSelect extends React.Component<Props, State> {
                         <SelectOpener
                             {...sharedProps}
                             aria-controls={dropdownId}
+                            aria-required={ariaRequired || !!required}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
-                            error={error}
+                            error={hasError}
                             isPlaceholder={!selectedItem}
                             light={light}
                             onOpenChanged={this.handleOpenChanged}
@@ -475,6 +554,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             style,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
+            required,
             disabled,
             dropdownId,
         } = this.props;
@@ -523,7 +603,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                         searchText={isFilterable ? searchText : ""}
                         labels={labels}
                         aria-invalid={ariaInvalid}
-                        aria-required={ariaRequired}
+                        aria-required={ariaRequired || !!required}
                         disabled={isDisabled}
                     />
                 )}

@@ -6,8 +6,8 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -17,6 +17,7 @@ import {
     Body,
     HeadingLarge,
     LabelMedium,
+    LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
@@ -409,6 +410,71 @@ const ErrorWrapper = () => {
  */
 export const Error: StoryComponentType = {
     render: ErrorWrapper,
+};
+
+const ControlledSingleSelect = (args: PropsFor<typeof SingleSelect>) => {
+    const [opened, setOpened] = React.useState(false);
+    const [selectedValue, setSelectedValue] = React.useState("");
+    const [errorMessage, setErrorMessage] = React.useState<
+        null | string | void
+    >(null);
+    return (
+        <View style={{gap: spacing.xSmall_8}}>
+            <SingleSelect
+                {...args}
+                id="single-select"
+                opened={opened}
+                onToggle={setOpened}
+                selectedValue={selectedValue}
+                onChange={setSelectedValue}
+                placeholder="Choose a fruit"
+                validate={(value) => {
+                    if (value === "lemon") {
+                        return "Pick another option!";
+                    }
+                }}
+                onValidate={setErrorMessage}
+            >
+                {items}
+            </SingleSelect>
+            <LabelSmall
+                style={{color: semanticColor.status.critical.foreground}}
+            >
+                {errorMessage}
+            </LabelSmall>
+        </View>
+    );
+};
+
+export const Validation = (args: PropsFor<typeof SingleSelect>) => {
+    return (
+        <View style={{gap: spacing.xSmall_8}}>
+            <LabelSmall htmlFor="single-select" tag="label">
+                Validation example (try picking lemon)
+            </LabelSmall>
+            <ControlledSingleSelect
+                {...args}
+                id="single-select"
+                validate={(value) => {
+                    if (value === "lemon") {
+                        return "Pick another option!";
+                    }
+                }}
+            >
+                {items}
+            </ControlledSingleSelect>
+            <LabelSmall htmlFor="single-select-required" tag="label">
+                Validation example (required)
+            </LabelSmall>
+            <ControlledSingleSelect
+                {...args}
+                id="single-select-required"
+                required={"This field is required"}
+            >
+                {items}
+            </ControlledSingleSelect>
+        </View>
+    );
 };
 
 /**
