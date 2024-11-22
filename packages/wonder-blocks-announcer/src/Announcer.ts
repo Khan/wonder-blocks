@@ -8,6 +8,9 @@ import {
     RegionDef,
 } from "../types/Announcer.types";
 
+import { createRegionWrapper, createDuplicateRegions, removeMessage } from "./util/dom";
+import { alternateIndex } from "./util/util"
+
 const TIMEOUT_DELAY = 5000;
 
 /**
@@ -61,12 +64,12 @@ class Announcer {
 
         Object.assign(this.node.style, srOnly);
 
-        const aWrapper = this.createRegionWrapper("assertive");
-        this.createDuplicateRegions(aWrapper, "assertive");
+        const aWrapper = createRegionWrapper("assertive");
+        createDuplicateRegions(aWrapper, "assertive", this.regionFactory.count, this.dictionary);
         this.node?.appendChild(aWrapper);
 
-        const pWrapper = this.createRegionWrapper("polite");
-        this.createDuplicateRegions(pWrapper, "polite");
+        const pWrapper = createRegionWrapper("polite");
+        createDuplicateRegions(pWrapper, "polite", this.regionFactory.count, this.dictionary);
         this.node.appendChild(pWrapper);
 
         document.body.prepend(this.node);
@@ -98,61 +101,6 @@ class Announcer {
         }
     }
 
-    /**
-     * Create a wrapper element to group regions for a given level
-     * @param {string} level Politeness level for grouping
-     * @returns {HTMLElement} Wrapper DOM element reference
-     */
-    createRegionWrapper(level: PolitenessLevel) {
-        const wrapper = document.createElement("div");
-        wrapper.id = `wbAWrap-${level}`;
-        return wrapper;
-    }
-
-    /**
-     * Create multiple live regions for a given level
-     * @param {HTMLElement} wrapper Parent DOM element reference to append into
-     * @param {string} level Politeness level for grouping
-     * @returns {HTMLElement[]} Array of region elements
-     */
-    createDuplicateRegions(
-        wrapper: HTMLElement,
-        level: PolitenessLevel,
-    ): HTMLElement[] {
-        const result = new Array(this.regionFactory.count)
-            .fill(0)
-            .map((el, i) => {
-                const region = this.createRegion(level, i);
-                wrapper.appendChild(region);
-                return region;
-            });
-        return result;
-    }
-
-    /**
-     * Create live region element for a given level
-     * @param {string} level Politeness level for grouping
-     * @param {number} index Incrementor for duplicate regions
-     * @param {string} role Role attribute for live regions, defaults to log
-     * @returns {HTMLElement} DOM element reference for live region
-     */
-    createRegion(level: PolitenessLevel, index: number, role = "log") {
-        const region = document.createElement("div");
-        // TODO: test combinations of attrs
-        region.setAttribute("role", role);
-        region.setAttribute("aria-live", level);
-        region.classList.add("wbARegion");
-        const id = `wbARegion-${level}${index}`;
-        region.id = id;
-        region.setAttribute("data-testid", id);
-        this.dictionary.set(id, {
-            id,
-            levelIndex: index,
-            level,
-            element: region,
-        });
-        return region;
-    }
 
     /**
      * Announce a live region message for a given level
@@ -235,7 +183,7 @@ class Announcer {
         regionList[index].element.replaceChildren();
 
         // overwrite index passed in to update locally
-        index = this.alternateIndex(index);
+        index = alternateIndex(index, this.regionFactory.count);
 
         // create element for new message
         const messageEl = document.createElement("p");
@@ -244,30 +192,8 @@ class Announcer {
         // append message to new index
         regionList[index].element.appendChild(messageEl);
 
-        this.removeMessage(messageEl, removalDelay);
+        removeMessage(messageEl, removalDelay);
 
-        return index;
-    }
-
-    /**
-     * Alternate index for cycling through elements
-     * @param {number} index Previous element index (0 or 1)
-     * @returns {number} New index
-     */
-    removeMessage(messageElement: HTMLElement, removalDelay: number) {
-        setTimeout(() => {
-            messageElement.remove();
-        }, removalDelay);
-    }
-
-    /**
-     * Alternate index for cycling through elements
-     * @param {number} index Previous element index (0 or 1)
-     * @returns {number} New index
-     */
-    alternateIndex(index: number): number {
-        index += 1;
-        index = index % this.regionFactory.count;
         return index;
     }
 }
