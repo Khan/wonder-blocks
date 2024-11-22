@@ -2,7 +2,7 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 import {AnnounceMessageButton} from "./util/announce-message-button";
 import {announceMessage} from "../announce-message";
-import {clearMessages} from "../clear-message";
+import {clearMessages} from "../clear-messages";
 
 jest.useFakeTimers();
 jest.spyOn(global, "setTimeout");
