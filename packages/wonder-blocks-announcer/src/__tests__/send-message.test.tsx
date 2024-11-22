@@ -1,7 +1,8 @@
 import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
-import {SendMessageButton} from "../components/send-message-button";
-import {sendMessage, clearMessages} from "../index";
+import {SendMessageButton} from "./util/send-message-button";
+import {sendMessage} from "../send-message";
+import {clearMessages} from "../clear-message";
 
 jest.useFakeTimers();
 jest.spyOn(global, "setTimeout");
