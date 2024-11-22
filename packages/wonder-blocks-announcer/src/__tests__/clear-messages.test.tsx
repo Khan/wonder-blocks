@@ -1,6 +1,6 @@
 import {screen} from "@testing-library/react";
 import {announceMessage} from "../announce-message";
-import {clearMessages} from "../clear-message";
+import {clearMessages} from "../clear-messages";
 
 describe("Announcer.clearMessages", () => {
     test("empties a targeted live region element by IDREF", () => {
