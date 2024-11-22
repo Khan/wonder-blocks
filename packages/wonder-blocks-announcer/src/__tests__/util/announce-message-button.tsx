@@ -10,5 +10,6 @@ type AnnounceMessageButtonProps = {
 
 export const AnnounceMessageButton = (props: AnnounceMessageButtonProps) => {
     const {buttonText = "Click"} = props;
-    return <button onClick={() => announceMessage(props)}>{buttonText}</button>;
+    // add timeoutDelay: 0 to skip browser setTimeout in Jest tests
+    return <button onClick={() => announceMessage({timeoutDelay: 0, ...props})}>{buttonText}</button>;
 };
