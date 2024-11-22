@@ -8,8 +8,12 @@ import {
     RegionDef,
 } from "../types/Announcer.types";
 
-import { createRegionWrapper, createDuplicateRegions, removeMessage } from "./util/dom";
-import { alternateIndex } from "./util/util"
+import {
+    createRegionWrapper,
+    createDuplicateRegions,
+    removeMessage
+} from "./util/dom";
+import {alternateIndex} from "./util/util"
 
 const REMOVAL_TIMEOUT_DELAY = 5000;
 
@@ -67,11 +71,21 @@ class Announcer {
         // For each level, we create at least two live region elements.
         // This is to work around AT occasionally dropping messages.
         const aWrapper = createRegionWrapper("assertive");
-        createDuplicateRegions(aWrapper, "assertive", this.regionFactory.count, this.dictionary);
+        createDuplicateRegions(
+            aWrapper,
+            "assertive",
+            this.regionFactory.count,
+            this.dictionary
+        );
         this.node?.appendChild(aWrapper);
 
         const pWrapper = createRegionWrapper("polite");
-        createDuplicateRegions(pWrapper, "polite", this.regionFactory.count, this.dictionary);
+        createDuplicateRegions(
+            pWrapper,
+            "polite",
+            this.regionFactory.count,
+            this.dictionary
+        );
         this.node.appendChild(pWrapper);
 
         document.body.append(this.node);
@@ -102,7 +116,6 @@ class Announcer {
             });
         }
     }
-
 
     /**
      * Announce a live region message for a given level
