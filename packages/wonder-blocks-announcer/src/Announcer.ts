@@ -11,9 +11,9 @@ import {
 import {
     createRegionWrapper,
     createDuplicateRegions,
-    removeMessage
+    removeMessage,
 } from "./util/dom";
-import {alternateIndex} from "./util/util"
+import {alternateIndex} from "./util/util";
 
 const REMOVAL_TIMEOUT_DELAY = 5000;
 
@@ -75,7 +75,7 @@ class Announcer {
             aWrapper,
             "assertive",
             this.regionFactory.count,
-            this.dictionary
+            this.dictionary,
         );
         this.node?.appendChild(aWrapper);
 
@@ -84,7 +84,7 @@ class Announcer {
             pWrapper,
             "polite",
             this.regionFactory.count,
-            this.dictionary
+            this.dictionary,
         );
         this.node.appendChild(pWrapper);
 
