@@ -72,7 +72,7 @@ class Announcer {
         createDuplicateRegions(pWrapper, "polite", this.regionFactory.count, this.dictionary);
         this.node.appendChild(pWrapper);
 
-        document.body.prepend(this.node);
+        document.body.append(this.node);
     }
     /**
      * Recover in the event regions get lost
