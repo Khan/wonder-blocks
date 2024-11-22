@@ -11,7 +11,7 @@ import {
 import { createRegionWrapper, createDuplicateRegions, removeMessage } from "./util/dom";
 import { alternateIndex } from "./util/util"
 
-const TIMEOUT_DELAY = 5000;
+const REMOVAL_TIMEOUT_DELAY = 5000;
 
 /**
  * Internal class to manage screen reader announcements.
@@ -38,7 +38,7 @@ class Announcer {
             }
             // The structure exists but references are lost, so help HMR recover
             else {
-                this.rebootForHMR();
+                this.reattachNodes();
             }
         }
     }
@@ -64,6 +64,8 @@ class Announcer {
 
         Object.assign(this.node.style, srOnly);
 
+        // For each level, we create at least two live region elements.
+        // This is to work around AT occasionally dropping messages.
         const aWrapper = createRegionWrapper("assertive");
         createDuplicateRegions(aWrapper, "assertive", this.regionFactory.count, this.dictionary);
         this.node?.appendChild(aWrapper);
@@ -76,10 +78,10 @@ class Announcer {
     }
     /**
      * Recover in the event regions get lost
-     * This happens in Storybook when saving a file:
-     * Announcer exists, but it loses the connection to element Refs
+     * This happens in Storybook or other HMR environments when saving a file:
+     * Announcer exists, but it loses the connection to DOM element Refs
      */
-    rebootForHMR() {
+    reattachNodes() {
         const announcerCheck = document.getElementById(`wbAnnounce`);
         if (announcerCheck !== null) {
             this.node = announcerCheck;
@@ -115,7 +117,7 @@ class Announcer {
         removalDelay?: number,
     ): string {
         if (!this.node) {
-            return "";
+            this.reattachNodes();
         }
 
         // Filter region elements to the selected level
@@ -171,7 +173,7 @@ class Announcer {
         message: string,
         level: PolitenessLevel, // level
         regionList: RegionDef[], // list of relevant elements
-        removalDelay: number = TIMEOUT_DELAY,
+        removalDelay: number = REMOVAL_TIMEOUT_DELAY,
     ): number {
         // Starting index for a given level
         let index =
