@@ -192,32 +192,33 @@ type Props = AriaProps &
  */
 const MultiSelect = (props: Props) => {
     const {
-        alignment = "left",
-        disabled = false,
-        error = false,
+        id,
         light = false,
-        shortcuts = false,
-        selectedValues = [],
-        opened,
-        onToggle,
-        onChange,
-        children,
+        opener,
+        testId,
+        alignment = "left",
+        dropdownStyle,
         implicitAllEnabled,
         isFilterable,
-        dropdownId,
+        labels: propLabels,
+        onChange,
+        onToggle,
+        opened,
+        selectedValues = [],
+        shortcuts = false,
         style,
         className,
-        dropdownStyle,
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
-        id,
-        testId,
-        opener,
+        disabled = false,
+        error = false,
+        children,
+        dropdownId,
         ...sharedProps
     } = props;
 
     // Merge custom labels with the default ones
-    const labels = {...defaultLabels, ...props.labels};
+    const labels = {...defaultLabels, ...propLabels};
 
     // Whether or not the dropdown is open.
     const [open, setOpen] = React.useState(false);
@@ -483,6 +484,7 @@ const MultiSelect = (props: Props) => {
                     ) : (
                         <SelectOpener
                             {...sharedProps}
+                            error={error}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
