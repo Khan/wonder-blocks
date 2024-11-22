@@ -3,8 +3,8 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {
-    sendMessage,
-    type SendMessageProps,
+    announceMessage,
+    type AnnounceMessageProps,
 } from "@khanacademy/wonder-blocks-announcer";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -16,12 +16,12 @@ const AnnouncerExample = ({
     message = "Clicked!",
     level,
     removalDelay,
-}: SendMessageProps) => {
+}: AnnounceMessageProps) => {
     return (
         <Button
             onClick={() => {
                 // TODO: explore making method async for consistent return string
-                sendMessage({message, level, removalDelay});
+                announceMessage({message, level, removalDelay});
             }}
         >
             Save

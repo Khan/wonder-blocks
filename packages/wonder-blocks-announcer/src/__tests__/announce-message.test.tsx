@@ -1,13 +1,13 @@
 import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
-import {SendMessageButton} from "./util/send-message-button";
-import {sendMessage} from "../send-message";
+import {AnnounceMessageButton} from "./util/announce-message-button";
+import {announceMessage} from "../announce-message";
 import {clearMessages} from "../clear-message";
 
 jest.useFakeTimers();
 jest.spyOn(global, "setTimeout");
 
-describe("Announcer.sendMessage", () => {
+describe("Announcer.announceMessage", () => {
     afterEach(() => {
         clearMessages();
     });
@@ -15,7 +15,7 @@ describe("Announcer.sendMessage", () => {
     test("creates the live region elements when called", () => {
         // ARRANGE
         const message = "Ta-da!";
-        render(<SendMessageButton message={message} />);
+        render(<AnnounceMessageButton message={message} />);
 
         // ACT: call function
         const button = screen.getByRole("button");
@@ -31,7 +31,7 @@ describe("Announcer.sendMessage", () => {
     test("appends to polite live regions by default", () => {
         // ARRANGE
         const message = "Ta-da, nicely!";
-        render(<SendMessageButton message={message} />);
+        render(<AnnounceMessageButton message={message} />);
 
         // ACT: call function
         const button = screen.getByRole("button");
@@ -50,8 +50,8 @@ describe("Announcer.sendMessage", () => {
         // ARRANGE
         const rainierMsg = "Rainier McCheddarton";
         const bagleyMsg = "Bagley Fluffpants";
-        render(<SendMessageButton message={rainierMsg} />);
-        render(<SendMessageButton message={bagleyMsg} />);
+        render(<AnnounceMessageButton message={rainierMsg} />);
+        render(<AnnounceMessageButton message={bagleyMsg} />);
 
         // ACT: post two messages
         const button = screen.getAllByRole("button");
@@ -73,10 +73,10 @@ describe("Announcer.sendMessage", () => {
         const message2 = "Red Fish Blue Fish";
 
         // ACT
-        const announcement1Id = sendMessage({
+        const announcement1Id = announceMessage({
             message: message1,
         });
-        const announcement2Id = sendMessage({
+        const announcement2Id = announceMessage({
             message: message2,
         });
 
@@ -88,8 +88,10 @@ describe("Announcer.sendMessage", () => {
     test("appends messages in alternating assertive live region elements", () => {
         const rainierMsg = "Rainier McCheddarton";
         const bagleyMsg = "Bagley Fluffpants";
-        render(<SendMessageButton message={rainierMsg} level="assertive" />);
-        render(<SendMessageButton message={bagleyMsg} level="assertive" />);
+        render(
+            <AnnounceMessageButton message={rainierMsg} level="assertive" />,
+        );
+        render(<AnnounceMessageButton message={bagleyMsg} level="assertive" />);
 
         // ACT: post two messages
         const button = screen.getAllByRole("button");
@@ -110,8 +112,8 @@ describe("Announcer.sendMessage", () => {
         const message2 = "A Different Thing";
 
         // default timeout is 5000ms
-        render(<SendMessageButton message={message1} removalDelay={500} />);
-        render(<SendMessageButton message={message2} removalDelay={700} />);
+        render(<AnnounceMessageButton message={message1} removalDelay={500} />);
+        render(<AnnounceMessageButton message={message2} removalDelay={700} />);
 
         const button = screen.getAllByRole("button");
         button[0].click();

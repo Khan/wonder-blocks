@@ -1,5 +1,5 @@
 import {screen} from "@testing-library/react";
-import {sendMessage} from "../send-message";
+import {announceMessage} from "../announce-message";
 import {clearMessages} from "../clear-message";
 
 describe("Announcer.clearMessages", () => {
@@ -9,12 +9,12 @@ describe("Announcer.clearMessages", () => {
         const message2 = "Dull no stars";
 
         // ACT
-        const announcement1Id = sendMessage({message: message1});
+        const announcement1Id = announceMessage({message: message1});
 
         const region1 = screen.getByTestId("wbARegion-polite1");
         expect(region1).toHaveTextContent(message1);
 
-        sendMessage({message: message2});
+        announceMessage({message: message2});
         const region2 = screen.getByTestId("wbARegion-polite0");
 
         clearMessages(announcement1Id);
@@ -30,16 +30,16 @@ describe("Announcer.clearMessages", () => {
         const message2 = "Red fish blue fish";
 
         // ACT
-        sendMessage({message: message1});
+        announceMessage({message: message1});
 
         const region1 = screen.getByTestId("wbARegion-polite1");
         expect(region1).toHaveTextContent(message1);
 
-        sendMessage({message: message2});
+        announceMessage({message: message2});
         const region2 = screen.getByTestId("wbARegion-polite0");
         expect(region2).toHaveTextContent(message2);
 
-        sendMessage({message: message1, level: "assertive"});
+        announceMessage({message: message1, level: "assertive"});
         const region3 = screen.getByTestId("wbARegion-assertive1");
         expect(region3).toHaveTextContent(message1);
 
