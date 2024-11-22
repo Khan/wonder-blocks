@@ -1,4 +1,4 @@
-import {sendMessage, type SendMessageProps} from "./send-message";
+import {announceMessage, type AnnounceMessageProps} from "./announce-message";
 import {clearMessages} from "./clear-message";
 
-export {sendMessage, type SendMessageProps, clearMessages};
+export {announceMessage, type AnnounceMessageProps, clearMessages};
