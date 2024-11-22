@@ -1,7 +1,8 @@
 import * as React from "react";
 // TODO: fix dupMap.get is not a function issue
 // import Button from "@khanacademy/wonder-blocks-button";
-import {sendMessage, type SendMessageProps} from "../index";
+import {sendMessage} from "../../send-message";
+import {type SendMessageProps} from "../../send-message";
 
 type SendMessageButtonProps = {
     buttonText?: string;
