@@ -4,10 +4,13 @@ import {Meta, StoryObj} from "@storybook/react";
 import {expect, userEvent, within} from "@storybook/test";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
+
+import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {allProfilesWithPictures} from "./option-item-examples";
 
@@ -426,5 +429,85 @@ export const Error: Story = {
     args: {
         children: items,
         error: true,
+    },
+};
+
+/**
+ * With `startIcon`, you can customize the icon that appears at the beginning of
+ * the Combobox. This is useful when you want to add a custom icon to the
+ * component.
+ *
+ * **NOTE:** When `startIcon` is set, we set some default values for the icon:
+ * - `size`: "small"
+ * - `color`: `semanticColor.icon.default`
+ *
+ * You can customize the size and color of the icon by passing the `size` and
+ * `color` props to the `PhosphorIcon` component.
+ */
+export const StartIcon: Story = {
+    render: function Render(args: PropsFor<typeof Combobox>) {
+        const [_, updateArgs] = useArgs();
+
+        return (
+            <View style={{gap: spacing.medium_16}}>
+                <LabelMedium>With default size and color:</LabelMedium>
+                <Combobox
+                    {...args}
+                    startIcon={<PhosphorIcon icon={magnifyingGlassIcon} />}
+                    onChange={(newValue) => {
+                        updateArgs({value: newValue});
+                        action("onChange")(newValue);
+                    }}
+                />
+                <LabelMedium>With custom size:</LabelMedium>
+                <Combobox
+                    {...args}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={magnifyingGlassIcon}
+                            size="medium"
+                        />
+                    }
+                    onChange={(newValue) => {
+                        updateArgs({value: newValue});
+                        action("onChange")(newValue);
+                    }}
+                />
+                <LabelMedium>With custom color:</LabelMedium>
+                <Combobox
+                    {...args}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={magnifyingGlassIcon}
+                            size="small"
+                            color={semanticColor.icon.action}
+                        />
+                    }
+                    onChange={(newValue) => {
+                        updateArgs({value: newValue});
+                        action("onChange")(newValue);
+                    }}
+                />
+                <LabelMedium>Disabled (overrides color prop):</LabelMedium>
+                <Combobox
+                    {...args}
+                    startIcon={
+                        <PhosphorIcon
+                            icon={magnifyingGlassIcon}
+                            size="small"
+                            color={semanticColor.icon.action}
+                        />
+                    }
+                    disabled={true}
+                    onChange={(newValue) => {
+                        updateArgs({value: newValue});
+                        action("onChange")(newValue);
+                    }}
+                />
+            </View>
+        );
+    },
+    args: {
+        children: items,
     },
 };

@@ -11,9 +11,15 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
 import {
@@ -132,6 +138,13 @@ type Props = {
      */
     // TODO(WB-1740): Add support to `inline` and `both` values.
     autoComplete?: "none" | "list" | undefined;
+
+    /**
+     * An optional decorative icon to display at the start of the combobox.
+     */
+    startIcon?: React.ReactElement<
+        React.ComponentProps<typeof PhosphorIcon>
+    > | null;
 };
 
 /**
@@ -158,6 +171,7 @@ export default function Combobox({
     opened,
     placeholder,
     selectionType = "single",
+    startIcon,
     testId,
     value = "",
 }: Props) {
@@ -477,6 +491,30 @@ export default function Combobox({
         return [labelFromSelected];
     }, [children, labelFromSelected, selected]);
 
+    /**
+     * Renders the start icon if provided.
+     */
+    const maybeRenderStartIcon = () => {
+        if (!startIcon) {
+            return null;
+        }
+
+        const startIconElement = React.cloneElement(startIcon, {
+            // Provide a default size for the icon that can be overridden by
+            // the consumer.
+            size: "small",
+            ...startIcon.props,
+            // Override the disabled state of the icon to match the combobox
+            // state.
+            color: disabled
+                ? color.offBlack32
+                : // Use the color passed in, otherwise use the default color.
+                  startIcon.props.color ?? semanticColor.icon.primary,
+        } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
+
+        return <View style={styles.iconWrapper}>{startIconElement}</View>;
+    };
+
     const pillIdPrefix = id ? `${id}-pill-` : ids.get("pill");
 
     const currentActiveDescendant = !openState
@@ -534,6 +572,8 @@ export default function Combobox({
                         removeSelectedLabel={labels.removeSelected}
                     />
                 )}
+                {maybeRenderStartIcon()}
+
                 <TextField
                     id={ids.get("input")}
                     testId={testId}
@@ -738,5 +778,12 @@ const styles = StyleSheet.create({
         // The clear button is positioned to the left of the arrow button.
         // This is calculated based on the padding + width of the arrow button.
         right: spacing.xLarge_32 + spacing.xSmall_8,
+    },
+    iconWrapper: {
+        padding: spacing.xxxSmall_4,
+        // View has a default minWidth of 0, which causes the label text
+        // to encroach on the icon when it needs to truncate. We can fix
+        // this by setting the minWidth to auto.
+        minWidth: "auto",
     },
 });
