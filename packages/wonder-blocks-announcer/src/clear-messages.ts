@@ -9,7 +9,7 @@ export function clearMessages(id?: string) {
     const announcer = Announcer.getInstance();
     if (id && document?.getElementById(id)) {
         announcer?.clear(id);
-    } else if (document) {
+    } else if (typeof document !== "undefined") {
         announcer?.clear();
     }
 }
