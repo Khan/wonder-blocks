@@ -21,7 +21,7 @@ const REMOVAL_TIMEOUT_DELAY = 5000;
  * Internal class to manage screen reader announcements.
  */
 class Announcer {
-    private static _instance: Announcer;
+    private static _instance: Announcer | null;
     node: HTMLElement | null = null;
     regionFactory: RegionFactory = {
         count: 2,
@@ -212,6 +212,10 @@ class Announcer {
         return index;
     }
 
+    /**
+     * Reset state to defaults.
+     * Useful for testing.
+     **/
     reset() {
         this.regionFactory.aIndex = 0;
         this.regionFactory.pIndex = 0;
