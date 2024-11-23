@@ -211,6 +211,13 @@ class Announcer {
 
         return index;
     }
+
+    reset() {
+        this.regionFactory.aIndex = 0;
+        this.regionFactory.pIndex = 0;
+
+        this.clear();
+    }
 }
 
 export default Announcer;
