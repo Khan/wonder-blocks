@@ -47,6 +47,31 @@ describe("Announcer class", () => {
             ).toBe("a thing");
         });
 
+        test("appending two messages", () => {
+            // Arrange
+            const announcer = Announcer.getInstance();
+            expect(announcer.regionFactory.pIndex).toBe(0);
+
+            // Act
+            announcer.announce("a nice thing", "polite");
+
+            // Assert
+            expect(announcer.regionFactory.pIndex).toBe(1);
+            expect(
+                announcer.dictionary.get("wbARegion-polite1")?.element
+                    .textContent,
+            ).toBe("a nice thing");
+
+            announcer.announce("another nice thing", "polite");
+
+            // Assert
+            expect(announcer.regionFactory.pIndex).toBe(0);
+            expect(
+                announcer.dictionary.get("wbARegion-polite0")?.element
+                    .textContent,
+            ).toBe("another nice thing");
+        });
+
         test("returning an IDREF", () => {
             // Arrange
             const announcer = Announcer.getInstance();
@@ -92,6 +117,18 @@ describe("Announcer class", () => {
             // Assert
             expect(screen.queryByText("One Fish")).not.toBeInTheDocument();
             expect(screen.queryByText("Loud Fish")).not.toBeInTheDocument();
+        });
+
+        test("handling calls when nothing has been announced", () => {
+            const announcer = Announcer.getInstance();
+
+            expect(() => announcer.clear()).not.toThrow();
+        });
+
+        test("handling calls with an invalid IDREF", () => {
+            const announcer = Announcer.getInstance();
+
+            expect(() => announcer.clear("random-id")).not.toThrow();
         });
     });
 });
