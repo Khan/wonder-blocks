@@ -44,7 +44,7 @@ export function createDuplicateRegions(
  * @param {string} role Role attribute for live regions, defaults to log
  * @returns {HTMLElement} DOM element reference for live region
  */
-function createRegion(
+export function createRegion(
     level: PolitenessLevel,
     index: number,
     dictionary: RegionDictionary,
