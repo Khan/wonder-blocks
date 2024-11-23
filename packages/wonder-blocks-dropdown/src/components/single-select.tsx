@@ -318,7 +318,18 @@ export default class SingleSelect extends React.Component<Props, State> {
         this.setState({
             open: opened,
             searchText: "",
+            errorMessage: null, // Clear any errors when dropdown is opened
         });
+
+        // TODO: This doesn't get triggered if it is closed via keyboard or clicking away. or selecting a value
+        if (opened && this.props.onValidate) {
+            // Clear any errors when dropdown is opened
+            this.props.onValidate(null);
+        }
+
+        if (!opened) {
+            this.handleValidation(this.props.selectedValue);
+        }
 
         if (this.props.onToggle) {
             this.props.onToggle(opened);
@@ -343,16 +354,14 @@ export default class SingleSelect extends React.Component<Props, State> {
         if (this.props.onToggle) {
             this.props.onToggle(false);
         }
-
-        this.handleValidation(selectedValue);
     };
 
-    handleValidation = (selectedValue: string) => {
-        const {required, disabled, onValidate, validate} = this.props;
+    handleValidation = (selectedValue?: string | null) => {
+        const {disabled, required, onValidate, validate} = this.props;
         if (disabled) {
             return;
         }
-        if (validate) {
+        if (validate && selectedValue) {
             const errorMessage = validate(selectedValue) || null;
             this.setState({errorMessage});
 
@@ -448,6 +457,19 @@ export default class SingleSelect extends React.Component<Props, State> {
         this.handleOpenChanged(!this.state.open);
     };
 
+    handleOpenerBlur = () => {
+        // If field is required, there is no value, and the field is currently closed,
+        // handle required validation. This makes it so a user that tabs through
+        // or
+        if (
+            this.props.required &&
+            !this.props.selectedValue &&
+            !this.props.opened
+        ) {
+            this.handleValidation(this.props.selectedValue);
+        }
+    };
+
     renderOpener(
         isDisabled: boolean,
         dropdownId: string,
@@ -529,6 +551,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                             open={this.state.open}
                             ref={this.handleOpenerRef}
                             testId={testId}
+                            onBlur={this.handleOpenerBlur}
                         >
                             {menuText}
                         </SelectOpener>
