@@ -292,6 +292,7 @@ const SingleSelect = (props: Props) => {
     const [errorMessage, setErrorMessage] = React.useState<
         string | null | undefined
     >(null);
+    const hasError = error || !!errorMessage;
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled
@@ -469,6 +470,7 @@ const SingleSelect = (props: Props) => {
                             ref={handleOpenerRef}
                             text={menuText}
                             opened={open}
+                            error={hasError}
                         >
                             {opener}
                         </DropdownOpener>
@@ -478,7 +480,7 @@ const SingleSelect = (props: Props) => {
                             aria-controls={dropdownId}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
-                            error={error}
+                            error={hasError}
                             isPlaceholder={!selectedItem}
                             light={light}
                             onOpenChanged={handleOpenChanged}
