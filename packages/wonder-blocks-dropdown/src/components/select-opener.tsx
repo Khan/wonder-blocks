@@ -175,7 +175,6 @@ export default class SelectOpener extends React.Component<
                 aria-required={ariaRequired}
                 aria-haspopup="listbox"
                 data-testid={testId}
-                tabIndex={0}
                 id={id}
                 role="combobox"
                 aria-label={placeholder}
