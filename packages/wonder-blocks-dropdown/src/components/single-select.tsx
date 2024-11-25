@@ -251,10 +251,7 @@ const SingleSelect = (props: Props) => {
     const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
 
     React.useEffect(() => {
-        /**
-         * Used to sync the `opened` state when this component acts as a controlled
-         * component
-         */
+        // Used to sync the `opened` state when this component acts as a controlled
         if (disabled) {
             // open should always be false if select is disabled
             setOpen(false);
