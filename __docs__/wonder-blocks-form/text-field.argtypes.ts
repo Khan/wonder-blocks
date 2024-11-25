@@ -163,7 +163,7 @@ export default {
 
     validate: {
         description:
-            "Provide a validation for the input value. Return a string error message or null | void for a valid input.",
+            "Provide a validation for the input value. Return a string error message or null | void for a valid input. \n Use this for errors that are shown to the user while they are filling out a form.",
         table: {
             type: {
                 summary: "(value: string) => ?string",
@@ -171,6 +171,32 @@ export default {
         },
         control: {
             type: undefined,
+        },
+    },
+
+    error: {
+        description:
+            "Whether this field is in an error state. \n Use this for errors that are triggered by something external to the component (example: an error after form submission).",
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+        control: {
+            type: "boolean",
+        },
+    },
+
+    instantValidation: {
+        description:
+            "If true, TextField is validated as the user types (onChange). If false, it is validated when the user's focus moves out of the field (onBlur). It is preferred that instantValidation is set to `false`, however, it defaults to `true` for backwards compatibility with existing implementations.",
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+        control: {
+            type: "boolean",
         },
     },
 

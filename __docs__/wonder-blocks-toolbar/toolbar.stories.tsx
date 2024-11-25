@@ -228,6 +228,7 @@ export const CustomToolbar: StoryComponentType = {
             <View
                 style={{
                     width: 300,
+                    maxWidth: "100%",
                     height: spacing.xSmall_8,
                     background: semanticColor.mastery.primary,
                 }}

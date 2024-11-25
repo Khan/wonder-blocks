@@ -26,7 +26,8 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     className?: string;
 
     /**
-     * The role of the icon.
+     * The role of the icon. Will default to `img` if an `aria-label` is
+     * provided.
      * @see https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24
      */
     role?: "img";
@@ -89,6 +90,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
         style,
         testId,
         className,
+        role,
         ...sharedProps
     } = props;
 
@@ -113,6 +115,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
             ]}
             data-testid={testId}
             ref={ref}
+            role={role ?? sharedProps["aria-label"] ? "img" : undefined}
         />
     );
 });

@@ -4,7 +4,6 @@ import {StyleSheet} from "aphrodite";
 import {
     AriaProps,
     StyleType,
-    useOnMountEffect,
     useUniqueIdWithMock,
     addStyle,
     View,
@@ -17,6 +16,7 @@ import {
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {useFieldValidation} from "../hooks/use-field-validation";
 
 type TextAreaProps = AriaProps & {
     /**
@@ -133,12 +133,29 @@ type TextAreaProps = AriaProps & {
     /**
      * Provide a validation for the textarea value.
      * Return a string error message or null | void for a valid input.
+     *
+     * Use this for errors that are shown to the user while they are filling out
+     * a form.
      */
     validate?: (value: string) => string | null | void;
     /**
      * Called right after the textarea is validated.
      */
     onValidate?: (errorMessage?: string | null | undefined) => unknown;
+    /**
+     * If true, textarea is validated as the user types (onChange). If false,
+     * it is validated when the user's focus moves out of the field (onBlur).
+     * It is preferred that instantValidation is set to `false`, however, it
+     * defaults to `true` for backwards compatibility with existing implementations.
+     */
+    instantValidation?: boolean;
+    /**
+     * Whether the textarea is in an error state.
+     *
+     * Use this for errors that are triggered by something external to the
+     * component (example: an error after form submission).
+     */
+    error?: boolean;
     /**
      * Whether this textarea is required to continue, or the error message to
      * render if this textarea is left blank.
@@ -172,8 +189,6 @@ type TextAreaProps = AriaProps & {
      */
     light?: boolean;
 };
-
-const defaultErrorMessage = "This field is required.";
 
 const StyledTextArea = addStyle("textarea");
 
@@ -211,11 +226,23 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             resizeType,
             light,
             rootStyle,
+            error,
+            instantValidation = true,
             // Should only include aria related props
             ...otherProps
         } = props;
 
-        const [error, setError] = React.useState<string | null>(null);
+        const {errorMessage, onBlurValidation, onChangeValidation} =
+            useFieldValidation({
+                value,
+                disabled,
+                validate,
+                onValidate,
+                required,
+                instantValidation,
+            });
+
+        const hasError = error || !!errorMessage;
 
         const ids = useUniqueIdWithMock("text-area");
         const uniqueId = id ?? ids.get("id");
@@ -224,37 +251,17 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             event: React.ChangeEvent<HTMLTextAreaElement>,
         ) => {
             const newValue = event.target.value;
+            onChangeValidation(newValue);
             onChange(newValue);
-            handleValidation(newValue);
         };
 
-        const handleValidation = (newValue: string) => {
-            if (validate) {
-                const error = validate(newValue) || null;
-                setError(error);
-                if (onValidate) {
-                    onValidate(error);
-                }
-            } else if (required) {
-                const requiredString =
-                    typeof required === "string"
-                        ? required
-                        : defaultErrorMessage;
-                const error = newValue ? null : requiredString;
-                setError(error);
-                if (onValidate) {
-                    onValidate(error);
-                }
+        const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
+            onBlurValidation(event.target.value);
+
+            if (onBlur) {
+                onBlur(event);
             }
         };
-
-        useOnMountEffect(() => {
-            // Only validate on mount if the value is not empty. This is so that fields
-            // don't render an error when they are initially empty
-            if (value !== "") {
-                handleValidation(value);
-            }
-        });
 
         const getStyles = (): StyleType => {
             // Base styles are the styles that apply regardless of light mode
@@ -267,13 +274,13 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 styles.default,
                 !disabled && styles.defaultFocus,
                 disabled && styles.disabled,
-                !!error && styles.error,
+                hasError && styles.error,
             ];
             const lightStyles = [
                 styles.light,
                 !disabled && styles.lightFocus,
                 disabled && styles.lightDisabled,
-                !!error && styles.lightError,
+                hasError && styles.lightError,
             ];
             return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
         };
@@ -302,10 +309,10 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     onKeyDown={disabled ? undefined : onKeyDown}
                     onKeyUp={disabled ? undefined : onKeyUp}
                     onFocus={onFocus} // TextArea can be focused on if it is disabled
-                    onBlur={onBlur} // TextArea can be blurred if it is disabled
+                    onBlur={handleBlur} // TextArea can be blurred if it is disabled
                     required={!!required}
                     {...otherProps}
-                    aria-invalid={!!error}
+                    aria-invalid={hasError}
                 />
             </View>
         );

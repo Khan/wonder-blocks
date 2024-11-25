@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 2.1.0
+
+### Minor Changes
+
+-   6999fd39: Add mediaQuery tokens for viewport sizing
+
 ## 2.0.1
 
 ### Patch Changes

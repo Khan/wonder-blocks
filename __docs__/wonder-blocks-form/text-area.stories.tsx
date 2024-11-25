@@ -10,9 +10,10 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 
 import TextAreaArgTypes from "./text-area.argtypes";
+import {validateEmail} from "./form-utilities";
 
 /**
  * A TextArea is an element used to accept text from the user.
@@ -60,9 +61,9 @@ const styles = StyleSheet.create({
     },
 });
 
-const ControlledTextArea = (args: any) => {
+const ControlledTextArea = (args: PropsFor<typeof TextArea>) => {
     const [value, setValue] = React.useState(args.value || "");
-    const [error, setError] = React.useState<string | null>(null);
+    const [error, setError] = React.useState<string | null | undefined>(null);
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
@@ -77,7 +78,11 @@ const ControlledTextArea = (args: any) => {
                 onValidate={setError}
             />
             <Strut size={spacing.xxSmall_6} />
-            {error && <LabelSmall style={styles.error}>{error}</LabelSmall>}
+            {(error || args.error) && (
+                <LabelSmall style={styles.error}>
+                    {error || "Error from error prop"}
+                </LabelSmall>
+            )}
         </View>
     );
 };
@@ -159,23 +164,212 @@ export const ReadOnly: StoryComponentType = {
 };
 
 /**
- * If the textarea fails validation, `TextArea` will have error styling.
- * Note that we will internally set the correct `aria-invalid` attribute to the
- * `textarea` element:
- * - `aria-invalid="true"` if there is an error message.
- * - `aria-invalid="false"` if there is no error message.
+ * If the `error` prop is set to true, the TextArea will have error styling and
+ * `aria-invalid` set to `true`.
+ *
+ * This is useful for scenarios where we want to show an error on a
+ * specific field after a form is submitted (server validation).
+ *
+ * Note: The `required` and `validate` props can also put the TextArea in an
+ * error state.
  */
 export const Error: StoryComponentType = {
+    render: ControlledTextArea,
     args: {
-        value: "khan",
-        validate(value: string) {
-            const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-            if (!emailRegex.test(value)) {
-                return "Please enter a valid email";
-            }
+        value: "With error",
+        error: true,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
         },
     },
+};
+
+/**
+ * If the textarea fails validation, `TextArea` will have error styling.
+ *
+ * This is useful for scenarios where we want to show errors while a
+ * user is filling out a form (client validation).
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * `textarea` element:
+ * - `aria-invalid="true"` if there is an error.
+ * - `aria-invalid="false"` if there is no error.
+ */
+export const ErrorFromValidation: StoryComponentType = {
+    args: {
+        value: "khan",
+        validate: validateEmail,
+    },
     render: ControlledTextArea,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * This example shows how the `error` and `validate` props can both be used to
+ * put the field in an error state. This is useful for scenarios where we want
+ * to show error while a user is filling out a form (client validation)
+ * and after a form is submitted (server validation).
+ *
+ * In this example:
+ * 1. It starts with an invalid email. The error message shown is the message returned
+ * by the `validate` function prop
+ * 2. Once the email is fixed to `test@test.com`, the validation error message
+ * goes away since it is a valid email.
+ * 3. When the Submit button is pressed, another error message is shown (this
+ * simulates backend validation).
+ * 4. When you enter any other email address, the error message is
+ * cleared.
+ */
+export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
+    const [value, setValue] = React.useState(args.value || "test@test,com");
+    const [validationErrorMessage, setValidationErrorMessage] = React.useState<
+        string | null | undefined
+    >(null);
+    const [backendErrorMessage, setBackendErrorMessage] = React.useState<
+        string | null | undefined
+    >(null);
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+        // Clear the backend error message on change
+        setBackendErrorMessage(null);
+    };
+
+    const errorMessage = validationErrorMessage || backendErrorMessage;
+
+    return (
+        <View>
+            <TextArea
+                {...args}
+                value={value}
+                onChange={handleChange}
+                validate={validateEmail}
+                onValidate={setValidationErrorMessage}
+                error={!!errorMessage}
+            />
+            <Strut size={spacing.xxSmall_6} />
+            {errorMessage && (
+                <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
+            )}
+            <Strut size={spacing.xxSmall_6} />
+            <Button
+                onClick={() => {
+                    if (value === "test@test.com") {
+                        setBackendErrorMessage(
+                            "This email is already being used, please try another email.",
+                        );
+                    } else {
+                        setBackendErrorMessage(null);
+                    }
+                }}
+            >
+                Submit
+            </Button>
+        </View>
+    );
+};
+
+ErrorFromPropAndValidation.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test anything visual.
+        disableSnapshot: true,
+    },
+};
+
+/**
+ * The `instantValidation` prop controls when validation is triggered. Validation
+ * is triggered if the `validate` or `required` props are set.
+ *
+ * It is preferred to set `instantValidation` to `false` so that the user isn't
+ * shown an error until they are done with a field. Note: if `instantValidation`
+ * is not explicitly set, it defaults to `true` since this is the current
+ * behaviour of existing usage. Validation on blur needs to be opted in.
+ *
+ * Validation is triggered:
+ * - On mount if the `value` prop is not empty
+ * - If `instantValidation` is `true`, validation occurs `onChange` (default)
+ * - If `instantValidation` is `false`, validation occurs `onBlur`
+ *
+ * When `required` is set to `true`:
+ * - If `instantValidation` is `true`, the required error message is shown after
+ * a value is cleared
+ * - If `instantValidation` is `false`, the required error message is shown
+ * whenever the user tabs away from the required field
+ */
+export const InstantValidation: StoryComponentType = {
+    args: {
+        validate: validateEmail,
+    },
+    render: (args) => {
+        return (
+            <View style={{gap: spacing.small_12}}>
+                <LabelSmall htmlFor="instant-validation-true-not-required">
+                    Validation on mount if there is a value
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    id="instant-validation-true-not-required"
+                    value="invalid"
+                />
+                <LabelSmall htmlFor="instant-validation-true-not-required">
+                    Error shown immediately (instantValidation: true, required:
+                    false)
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    id="instant-validation-true-not-required"
+                    instantValidation={true}
+                />
+                <LabelSmall htmlFor="instant-validation-false-not-required">
+                    Error shown onBlur (instantValidation: false, required:
+                    false)
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    id="instant-validation-false-not-required"
+                    instantValidation={false}
+                />
+
+                <LabelSmall htmlFor="instant-validation-true-required">
+                    Error shown immediately after clearing the value
+                    (instantValidation: true, required: true)
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    validate={undefined}
+                    value="T"
+                    id="instant-validation-true-required"
+                    instantValidation={true}
+                    required="Required"
+                />
+                <LabelSmall htmlFor="instant-validation-false-required">
+                    Error shown on blur if it is empty (instantValidation:
+                    false, required: true)
+                </LabelSmall>
+                <ControlledTextArea
+                    {...args}
+                    validate={undefined}
+                    id="instant-validation-false-required"
+                    instantValidation={false}
+                    required="Required"
+                />
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
