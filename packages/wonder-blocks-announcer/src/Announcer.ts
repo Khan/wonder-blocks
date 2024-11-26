@@ -123,7 +123,7 @@ class Announcer {
      * @param {string} message The message to be announced
      * @param {string} level Politeness level: should it interrupt?
      * @param {number} removalDelay How long to wait before removing message
-     * @returns {string} IDREF for targeted element or empty string if it failed
+     * @returns {Promise<string>} Promise that resolves with an IDREF for targeted element or empty string if it failed
      */
     async announce(
         message: string,

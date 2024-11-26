@@ -14,9 +14,9 @@ export const defaultTimeout = 100;
  * @param {string} message The message to announce.
  * @param {PolitenessLevel} level Polite or assertive announcements
  * @param {number} removalDelay Optional duration to remove a message after sending. Defaults to 5000ms.
- * @returns {string} IDREF for targeted live region element
+ * @returns {Promise<string>} Promise that resolves with an IDREF for targeted live region element
  */
-export async function announceMessage({
+export function announceMessage({
     message,
     level = "polite", // TODO: decide whether to allow other roles, i.e. role=`timer`
     removalDelay,

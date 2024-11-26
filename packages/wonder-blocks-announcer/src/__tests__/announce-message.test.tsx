@@ -77,20 +77,20 @@ describe("Announcer.announceMessage", () => {
         const message2 = "Red Fish Blue Fish";
 
         // ACT
-        const announcement1Id = await announceMessage({
+        const announcement1Id = announceMessage({
             message: message1,
         });
-        const announcement2Id = await announceMessage({
+        jest.advanceTimersByTime(500);
+
+        // ASSERT
+        await expect(announcement1Id).resolves.toBe("wbARegion-polite1");
+
+        const announcement2Id = announceMessage({
             message: message2,
         });
 
-        // ASSERT
-        // await waitFor(() => {
-        await expect(announcement1Id).toBe("wbARegion-polite1");
-        // });
-        // await waitFor(() => {
-        await expect(announcement2Id).toBe("wbARegion-polite0");
-        // });
+        jest.advanceTimersByTime(500);
+        await expect(announcement2Id).resolves.toBe("wbARegion-polite0");
     });
 
     test("appends messages in alternating assertive live region elements", async () => {
@@ -123,33 +123,36 @@ describe("Announcer.announceMessage", () => {
         const message2 = "A Different Thing";
 
         // default timeout is 5000ms
-        render(<AnnounceMessageButton message={message1} removalDelay={500} />);
-        render(<AnnounceMessageButton message={message2} removalDelay={700} />);
+        render(
+            <AnnounceMessageButton message={message1} removalDelay={2000} />,
+        );
+        render(
+            <AnnounceMessageButton message={message2} removalDelay={7000} />,
+        );
 
         const button = screen.getAllByRole("button");
         button[0].click();
+
         const message1Region = screen.queryByTestId("wbARegion-polite1");
 
         // Assert
+        jest.advanceTimersByTime(500);
+        expect(message1Region).toHaveTextContent(message1);
+
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
+
+        jest.advanceTimersByTime(2000);
         await waitFor(() => {
-            expect(message1Region).toHaveTextContent(message1);
+            expect(screen.queryByText(message1)).not.toBeInTheDocument();
         });
-        await waitFor(() => {
-            expect(setTimeout).toHaveBeenLastCalledWith(
-                expect.any(Function),
-                500,
-            );
-        });
-        await waitFor(() =>
-            expect(screen.queryByText(message1)).not.toBeInTheDocument(),
-        );
 
         button[1].click();
         const message2Region = screen.queryByTestId("wbARegion-polite0");
-        expect(message2Region).toHaveTextContent(message2);
-        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 700);
-        await waitFor(() =>
-            expect(screen.queryByText(message2)).not.toBeInTheDocument(),
-        );
+        await waitFor(() => {
+            expect(message2Region).toHaveTextContent(message2);
+        });
+        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 7000);
+        jest.advanceTimersByTime(7000);
+        expect(screen.queryByText(message2)).not.toBeInTheDocument();
     });
 });
