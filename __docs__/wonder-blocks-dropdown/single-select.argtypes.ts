@@ -21,7 +21,7 @@ const argTypes: ArgTypes = {
             type: {summary: "Labels"},
         },
     },
-    showLabelAsText: {
+    showOpenerLabelAsText: {
         control: {type: "boolean"},
         description: `When false, the SelectOpener can show a Node as a label. When true, the
          SelectOpener will use a string as a label. If using custom OptionItems, a

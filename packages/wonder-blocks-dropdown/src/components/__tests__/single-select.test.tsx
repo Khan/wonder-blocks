@@ -142,7 +142,7 @@ describe("SingleSelect", () => {
                         placeholder="Default placeholder"
                         onChange={jest.fn()}
                         selectedValue="toggle_a"
-                        showLabelAsText={false}
+                        showOpenerLabelAsText={false}
                     >
                         <OptionItem
                             label={<div>custom item A</div>}

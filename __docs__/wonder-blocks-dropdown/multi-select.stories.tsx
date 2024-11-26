@@ -658,8 +658,8 @@ export const CustomOptionItems: StoryComponentType = {
 
 /**
  * This example illustrates how a JSX Element can appear as the label by setting
- * `showLabelAsText` to false. Note that in this example, we define `labelAsText`
- * on the OptionItems to ensure that filtering works correctly.
+ * `showOpenerLabelAsText` to false. Note that in this example, we define
+ * `labelAsText` on the OptionItems to ensure that filtering works correctly.
  */
 export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
     render: function Render() {
@@ -682,7 +682,7 @@ export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
                 selectedValues={selectedValues}
                 onToggle={handleToggle}
                 opened={opened}
-                showLabelAsText={false}
+                showOpenerLabelAsText={false}
                 isFilterable={true}
             >
                 {locales.map((locale, index) => (

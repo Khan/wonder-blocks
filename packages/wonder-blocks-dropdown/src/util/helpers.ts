@@ -76,10 +76,10 @@ export function getLabel(props: OptionItemProps): string {
  * If the label is a Node, and `labelAsText` is undefined, returns the label.
  */
 export function getSelectOpenerLabel(
-    showLabelAsText: boolean,
+    showOpenerLabelAsText: boolean,
     props: OptionItemProps,
 ): string | JSX.Element {
-    if (showLabelAsText) {
+    if (showOpenerLabelAsText) {
         return getLabel(props);
     }
     return props.label;

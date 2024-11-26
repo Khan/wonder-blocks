@@ -91,7 +91,7 @@ type DefaultProps = Readonly<{
      * plain text label can be provided with the `labelAsText` prop.
      * Defaults to true.
      */
-    showLabelAsText: boolean;
+    showOpenerLabelAsText: boolean;
 }>;
 
 type Props = AriaProps &
@@ -248,7 +248,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             noResults: defaultLabels.noResults,
             someResults: defaultLabels.someSelected,
         },
-        showLabelAsText: true,
+        showOpenerLabelAsText: true,
     };
 
     constructor(props: Props) {
@@ -414,7 +414,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             className,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
-            showLabelAsText,
+            showOpenerLabelAsText,
             ...sharedProps
         } = this.props;
 
@@ -427,7 +427,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
         const menuText = selectedItem
-            ? getSelectOpenerLabel(showLabelAsText, selectedItem.props)
+            ? getSelectOpenerLabel(showOpenerLabelAsText, selectedItem.props)
             : placeholder;
 
         const dropdownOpener = (

@@ -914,7 +914,7 @@ export const CustomOptionItemWithNodeLabel: StoryComponentType = {
                     selectedValue={selectedValue}
                     onToggle={handleToggle}
                     opened={opened}
-                    showLabelAsText={false}
+                    showOpenerLabelAsText={false}
                     isFilterable={true}
                 >
                     {currencies.map((currency, index) => (

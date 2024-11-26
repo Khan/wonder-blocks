@@ -97,7 +97,7 @@ type DefaultProps = Readonly<{
      * plain text label can be provided with the `labelAsText` prop.
      * Defaults to true.
      */
-    showLabelAsText: boolean;
+    showOpenerLabelAsText: boolean;
 }>;
 
 type Props = AriaProps &
@@ -234,7 +234,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         light: false,
         shortcuts: false,
         selectedValues: [],
-        showLabelAsText: true,
+        showOpenerLabelAsText: true,
     };
 
     constructor(props: Props) {
@@ -324,7 +324,7 @@ export default class MultiSelect extends React.Component<Props, State> {
     };
 
     getMenuText(children: OptionItemComponentArray): string | JSX.Element {
-        const {implicitAllEnabled, selectedValues, showLabelAsText} =
+        const {implicitAllEnabled, selectedValues, showOpenerLabelAsText} =
             this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
         const numSelectedAll = children.filter(
@@ -348,7 +348,7 @@ export default class MultiSelect extends React.Component<Props, State> {
 
                 if (selectedItem) {
                     const selectedLabel = getSelectOpenerLabel(
-                        showLabelAsText,
+                        showOpenerLabelAsText,
                         selectedItem?.props,
                     );
                     if (selectedLabel) {

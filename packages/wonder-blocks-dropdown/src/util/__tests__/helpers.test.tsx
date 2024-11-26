@@ -126,7 +126,7 @@ describe("getLabel", () => {
 });
 
 describe("getSelectOpenerLabel", () => {
-    it("should return the label if the label is a Node and showLabelAsText is true", () => {
+    it("should return the label if the label is a Node and showOpenerLabelAsText is true", () => {
         // Arrange
         const props: PropsFor<typeof OptionItem> = {
             label: <div>a custom node</div>,
@@ -141,7 +141,7 @@ describe("getSelectOpenerLabel", () => {
         expect(label).toStrictEqual(<div>a custom node</div>);
     });
 
-    it("should return a string if the label is a Node and showLabelAsText is false", () => {
+    it("should return a string if the label is a Node and showOpenerLabelAsText is false", () => {
         // Arrange
         const props: PropsFor<typeof OptionItem> = {
             label: <div>a custom node</div>,
