@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import {
     IDProvider,
+    useOnMountEffect,
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
@@ -302,6 +303,14 @@ const SingleSelect = (props: Props) => {
     >(null);
     const hasError = error || !!errorMessage;
 
+    useOnMountEffect(() => {
+        // Only validate on mount if the value is not empty. This is so that fields
+        // don't render an error when they are initially empty
+        if (selectedValue) {
+            handleValidation(selectedValue);
+        }
+    });
+
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled
         if (disabled) {
@@ -353,13 +362,6 @@ const SingleSelect = (props: Props) => {
         [disabled, validate, setErrorMessage, onValidate, required],
     );
 
-    React.useEffect(() => {
-        if (!open) {
-            // Once dropdown is closed, validate the selected value
-            handleValidation(selectedValue);
-        }
-    }, [open, selectedValue, handleValidation]);
-
     const handleToggle = (newSelectedValue: string) => {
         // Call callback if selection changed.
         if (newSelectedValue !== selectedValue) {
@@ -376,6 +378,8 @@ const SingleSelect = (props: Props) => {
         if (onToggle) {
             onToggle(false);
         }
+
+        handleValidation(newSelectedValue);
     };
 
     const mapOptionItemsToDropdownItems = (
@@ -447,6 +451,14 @@ const SingleSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
+    const handleOpenerBlur = () => {
+        if (!open && required) {
+            // Only validate on opener blur if the dropdown is closed. This
+            // prevents an error when the dropdown is opened without a value yet
+            handleValidation(selectedValue);
+        }
+    };
+
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -479,6 +491,7 @@ const SingleSelect = (props: Props) => {
                             text={menuText}
                             opened={open}
                             error={hasError}
+                            onBlur={handleOpenerBlur}
                         >
                             {opener}
                         </DropdownOpener>
@@ -495,6 +508,7 @@ const SingleSelect = (props: Props) => {
                             open={open}
                             ref={handleOpenerRef}
                             testId={testId}
+                            onBlur={handleOpenerBlur}
                         >
                             {menuText}
                         </SelectOpener>
