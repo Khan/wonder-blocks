@@ -31,13 +31,13 @@ describe("Announcer class", () => {
             announcer.reset();
         });
 
-        test("appending a message", () => {
+        test("appending a message", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
             expect(announcer.regionFactory.pIndex).toBe(0);
 
             // Act
-            announcer.announce("a thing", "polite");
+            await announcer.announce("a thing", "polite");
 
             // Assert
             expect(announcer.regionFactory.pIndex).toBe(1);
@@ -47,13 +47,13 @@ describe("Announcer class", () => {
             ).toBe("a thing");
         });
 
-        test("appending two messages", () => {
+        test("appending two messages", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
             expect(announcer.regionFactory.pIndex).toBe(0);
 
             // Act
-            announcer.announce("a nice thing", "polite");
+            await announcer.announce("a nice thing", "polite");
 
             // Assert
             expect(announcer.regionFactory.pIndex).toBe(1);
@@ -62,7 +62,7 @@ describe("Announcer class", () => {
                     .textContent,
             ).toBe("a nice thing");
 
-            announcer.announce("another nice thing", "polite");
+            await announcer.announce("another nice thing", "polite");
 
             // Assert
             expect(announcer.regionFactory.pIndex).toBe(0);
@@ -72,13 +72,13 @@ describe("Announcer class", () => {
             ).toBe("another nice thing");
         });
 
-        test("returning an IDREF", () => {
+        test("returning an IDREF", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
             expect(announcer.regionFactory.pIndex).toBe(0);
 
             // Act
-            const idRef = announcer.announce("another thing", "polite");
+            const idRef = await announcer.announce("another thing", "polite");
 
             // Assert
             expect(idRef).toBe("wbARegion-polite1");
@@ -102,13 +102,13 @@ describe("Announcer class", () => {
             expect(firstRegion?.textContent).not.toBe("something");
         });
 
-        test("clearing all elements", () => {
+        test("clearing all elements", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
 
             // Act
-            announcer.announce("One Fish", "polite");
-            announcer.announce("Loud Fish", "assertive");
+            await announcer.announce("One Fish", "polite");
+            await announcer.announce("Loud Fish", "assertive");
             expect(screen.getByText("One Fish")).toBeInTheDocument();
             expect(screen.getByText("Loud Fish")).toBeInTheDocument();
 
