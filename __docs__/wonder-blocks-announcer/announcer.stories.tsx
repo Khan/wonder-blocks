@@ -41,19 +41,20 @@ type StoryComponentType = StoryObj<typeof AnnouncerExample>;
  * cases include combobox filtering, toast notifications, client-side routing,
  * and more.
  *
- * Calling the sendMessage method automatically prepends the appropriate live regions
+ * Calling the `announceMessage` function automatically appends the appropriate live regions
  * to the document body. It sends messages at a default `polite` level, with the
  * ability to override to `assertive` by passing a `level` argument. You can also
- * pass a `timeoutDelay` to wait a specific duration before sending a message.
+ * pass a `timeoutDelay` to wait a specific duration before the message is automatically
+ * removed from the DOM.
  *
- * To test this API, turn on VoiceOver or NVDA on Windows and click the example button.
+ * To test this API, turn on VoiceOver for Mac/iOS or NVDA on Windows and click the example button.
  *
  * ### Usage
  * ```jsx
- * import { sendMessage } from "@khanacademy/wonder-blocks-announcer";
+ * import { appendMessage } from "@khanacademy/wonder-blocks-announcer";
  *
  * <div>
- *  <button onClick={() => sendMessage({message: 'Saved your work for you.'})}>
+ *  <button onClick={() => appendMessage({message: 'Saved your work for you.'})}>
  *      Save
  *  </button>
  * </div>
