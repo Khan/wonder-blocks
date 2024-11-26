@@ -1,13 +1,12 @@
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {ComboboxLabels} from "./types";
 
-export const keyCodes = {
-    tab: 9,
-    enter: 13,
-    escape: 27,
-    space: 32,
-    up: 38,
-    down: 40,
+export const keys = {
+    escape: "Escape",
+    tab: "Tab",
+    space: "Space",
+    up: "ArrowUp",
+    down: "ArrowDown",
 } as const;
 
 export const selectDropdownStyle = {
