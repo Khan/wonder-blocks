@@ -86,13 +86,13 @@ describe("Announcer class", () => {
     });
 
     describe("clearing messages", () => {
-        test("clearing by IDREF", () => {
+        test("clearing by IDREF", async () => {
             // Arrange
             const announcer = Announcer.getInstance();
             expect(announcer.regionFactory.pIndex).toBe(0);
 
             // Act
-            const idRef = announcer.announce("something", "polite");
+            const idRef = await announcer.announce("something", "polite");
             const firstRegion = announcer.dictionary.get(idRef)?.element;
             expect(firstRegion?.textContent).toBe("something");
 
