@@ -130,11 +130,7 @@ class Announcer {
         level: PolitenessLevel,
         removalDelay?: number,
     ): Promise<string> {
-        const announceCB = (
-            message: string,
-            level: PolitenessLevel,
-            removalDelay?: number,
-        ) => {
+        const announceCB = () => {
             if (!this.node) {
                 this.reattachNodes();
             }
