@@ -9,5 +9,6 @@
         "paths": {
             "@khanacademy/*": ["./packages/*/src"]
         },
+        "types": ["@testing-library/jest-dom"]
     }
 }
