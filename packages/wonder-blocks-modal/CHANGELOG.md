@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 5.1.17
+
+### Patch Changes
+
+-   b5cad0b1: Use h2 tag in modal header instead of h3
+
 ## 5.1.16
 
 ### Patch Changes

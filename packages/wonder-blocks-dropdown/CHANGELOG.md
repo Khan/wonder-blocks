@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.7.0
+
+### Minor Changes
+
+-   c512e76e: Add `startIcon` prop to Combobox
+
+### Patch Changes
+
+-   Updated dependencies [b5cad0b1]
+    -   @khanacademy/wonder-blocks-modal@5.1.17
+
 ## 5.6.3
 
 ### Patch Changes
