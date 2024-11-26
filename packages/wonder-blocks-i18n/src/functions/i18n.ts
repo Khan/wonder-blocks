@@ -210,7 +210,7 @@ export const ngettext: ngettextOverloads = (
         typeof singular === "object"
             ? singular
             : {
-                  lang: "en",
+                  lang: getLocale(),
                   // We know plural is a string if singular is not a config object
                   messages: [singular, plural as any],
               };

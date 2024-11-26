@@ -139,7 +139,7 @@ describe("i18n", () => {
             const result = ngettext("Singular", "Plural", 0);
 
             // Assert
-            expect(result).toMatchInlineSnapshot(`"Plural"`);
+            expect(result).toMatchInlineSnapshot(`"arrrr mateys"`);
         });
 
         it("doNotTranslate should not translate", () => {
