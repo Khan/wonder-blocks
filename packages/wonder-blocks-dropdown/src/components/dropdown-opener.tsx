@@ -28,6 +28,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     onClick: (e: React.SyntheticEvent) => unknown;
     /**
+     * Callback for when the opener is blurred.
+     */
+    onBlur?: (e: React.SyntheticEvent) => unknown;
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string;
@@ -74,6 +78,7 @@ class DropdownOpener extends React.Component<Props> {
             "aria-controls": ariaControls,
             "aria-haspopup": ariaHasPopUp,
             id,
+            onBlur,
         } = this.props;
         const renderedChildren = this.props.children({
             ...eventState,
@@ -103,6 +108,7 @@ class DropdownOpener extends React.Component<Props> {
             // try to get the testId from the child element
             // If it's not set, try to fallback to the parent's testId
             "data-testid": childrenTestId || testId,
+            onBlur,
         });
     }
 

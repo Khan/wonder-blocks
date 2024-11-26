@@ -55,6 +55,10 @@ type SelectOpenerProps = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Called when it is blurred
+     */
+    onBlur?: (e: React.SyntheticEvent) => unknown;
 };
 
 type DefaultProps = {
@@ -133,6 +137,7 @@ export default class SelectOpener extends React.Component<
             light,
             open,
             testId,
+            onBlur,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onOpenChanged,
             ...sharedProps
@@ -171,6 +176,7 @@ export default class SelectOpener extends React.Component<
                 onClick={!disabled ? this.handleClick : undefined}
                 onKeyDown={!disabled ? this.handleKeyDown : undefined}
                 onKeyUp={!disabled ? this.handleKeyUp : undefined}
+                onBlur={onBlur}
             >
                 <LabelMedium style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
