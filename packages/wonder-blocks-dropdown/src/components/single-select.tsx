@@ -85,6 +85,13 @@ type DefaultProps = Readonly<{
      * The object containing the custom labels used inside this component.
      */
     labels: SingleSelectLabels;
+    /**
+     * When false, the SelectOpener can show a Node as a label. When true, the
+     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * plain text label can be provided with the `labelAsText` prop.
+     * Defaults to true.
+     */
+    showLabelAsText: boolean;
 }>;
 
 type Props = AriaProps &
@@ -241,6 +248,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             noResults: defaultLabels.noResults,
             someResults: defaultLabels.someSelected,
         },
+        showLabelAsText: true,
     };
 
     constructor(props: Props) {
@@ -406,6 +414,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             className,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
+            showLabelAsText,
             ...sharedProps
         } = this.props;
 
@@ -418,7 +427,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
         const menuText = selectedItem
-            ? getSelectOpenerLabel(selectedItem.props)
+            ? getSelectOpenerLabel(showLabelAsText, selectedItem.props)
             : placeholder;
 
         const dropdownOpener = (

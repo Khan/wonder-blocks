@@ -126,7 +126,7 @@ describe("getLabel", () => {
 });
 
 describe("getSelectOpenerLabel", () => {
-    it("should return the label if the label is a Node and labelAsText is not defined", () => {
+    it("should return the label if the label is a Node and showLabelAsText is true", () => {
         // Arrange
         const props: PropsFor<typeof OptionItem> = {
             label: <div>a custom node</div>,
@@ -135,27 +135,13 @@ describe("getSelectOpenerLabel", () => {
         };
 
         // Act
-        const label = getSelectOpenerLabel(props);
+        const label = getSelectOpenerLabel(false, props);
 
         // Assert
         expect(label).toStrictEqual(<div>a custom node</div>);
     });
 
-    it("should return a string if the label is a string", () => {
-        // Arrange
-        const props: PropsFor<typeof OptionItem> = {
-            label: "option 1",
-            value: "foo",
-        };
-
-        // Act
-        const label = getSelectOpenerLabel(props);
-
-        // Assert
-        expect(label).toBe("option 1");
-    });
-
-    it("should return a string if the label is a Node and labelAsText is defined", () => {
+    it("should return a string if the label is a Node and showLabelAsText is false", () => {
         // Arrange
         const props: PropsFor<typeof OptionItem> = {
             label: <div>a custom node</div>,
@@ -164,7 +150,7 @@ describe("getSelectOpenerLabel", () => {
         };
 
         // Act
-        const label = getSelectOpenerLabel(props);
+        const label = getSelectOpenerLabel(true, props);
 
         // Assert
         expect(label).toBe("plain text");

@@ -890,8 +890,8 @@ export const CustomOptionItems: StoryComponentType = {
 
 /**
  * This example illustrates how a JSX Element can appear as the label if
- * `labelAsText` is undefined.
- * **Note** this is only supported for SingleSelect and MultiSelect, not Combobox.
+ * `labelAsText` is undefined. Note that in this example, we define `labelAsText`
+ * on the OptionItems to ensure that filtering works correctly.
  */
 export const CustomOptionItemWithNodeLabel: StoryComponentType = {
     render: function Render() {
@@ -914,6 +914,8 @@ export const CustomOptionItemWithNodeLabel: StoryComponentType = {
                     selectedValue={selectedValue}
                     onToggle={handleToggle}
                     opened={opened}
+                    showLabelAsText={false}
+                    isFilterable={true}
                 >
                     {currencies.map((currency, index) => (
                         <OptionItem
@@ -929,6 +931,7 @@ export const CustomOptionItemWithNodeLabel: StoryComponentType = {
                                     {currency.name}
                                 </span>
                             }
+                            labelAsText={currency.name}
                         />
                     ))}
                 </SingleSelect>

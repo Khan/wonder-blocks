@@ -91,6 +91,13 @@ type DefaultProps = Readonly<{
      * Whether to display shortcuts for Select All and Select None.
      */
     shortcuts: boolean;
+    /**
+     * When false, the SelectOpener can show a Node as a label. When true, the
+     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * plain text label can be provided with the `labelAsText` prop.
+     * Defaults to true.
+     */
+    showLabelAsText: boolean;
 }>;
 
 type Props = AriaProps &
@@ -227,6 +234,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         light: false,
         shortcuts: false,
         selectedValues: [],
+        showLabelAsText: true,
     };
 
     constructor(props: Props) {
@@ -316,7 +324,8 @@ export default class MultiSelect extends React.Component<Props, State> {
     };
 
     getMenuText(children: OptionItemComponentArray): string | JSX.Element {
-        const {implicitAllEnabled, selectedValues} = this.props;
+        const {implicitAllEnabled, selectedValues, showLabelAsText} =
+            this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
         const numSelectedAll = children.filter(
             (option) => !option.props.disabled,
@@ -338,14 +347,17 @@ export default class MultiSelect extends React.Component<Props, State> {
                 );
 
                 if (selectedItem) {
-                    const selectedLabel = getLabel(selectedItem?.props);
+                    const selectedLabel = getSelectOpenerLabel(
+                        showLabelAsText,
+                        selectedItem?.props,
+                    );
                     if (selectedLabel) {
                         return selectedLabel;
                         // If the label is a ReactNode and `labelAsText` is not set,
                         // we fallback to, the default label for the case where only
                         // one item is selected.
                     } else {
-                        return getSelectOpenerLabel(selectedItem?.props);
+                        return someSelected(1);
                     }
                 }
 

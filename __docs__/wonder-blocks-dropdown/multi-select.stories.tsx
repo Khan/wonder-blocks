@@ -657,9 +657,9 @@ export const CustomOptionItems: StoryComponentType = {
 };
 
 /**
- * This example illustrates how a JSX Element can appear as the label when only
- * one option is selected and `labelAsText` is undefined.
- * **Note** this is only supported for SingleSelect and MultiSelect, not Combobox.
+ * This example illustrates how a JSX Element can appear as the label by setting
+ * `showLabelAsText` to false. Note that in this example, we define `labelAsText`
+ * on the OptionItems to ensure that filtering works correctly.
  */
 export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
     render: function Render() {
@@ -682,6 +682,8 @@ export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
                 selectedValues={selectedValues}
                 onToggle={handleToggle}
                 opened={opened}
+                showLabelAsText={false}
+                isFilterable={true}
             >
                 {locales.map((locale, index) => (
                     <OptionItem
@@ -692,6 +694,7 @@ export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
                                 {chatIcon} {locale}
                             </span>
                         }
+                        labelAsText={locale}
                     />
                 ))}
             </MultiSelect>
