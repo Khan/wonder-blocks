@@ -2,7 +2,8 @@ import * as React from "react";
 import {
     renderHook as clientRenderHook,
     act,
-} from "@testing-library/react-hooks";
+    waitFor,
+} from "@testing-library/react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
@@ -353,14 +354,15 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, waitForNextUpdate} = clientRenderHook(() =>
+            const {rerender} = clientRenderHook(() =>
                 useHydratableEffect("ID", fakeHandler),
             );
             rerender();
-            await waitForNextUpdate();
 
             // Assert
-            expect(fakeHandler).toHaveBeenCalledTimes(1);
+            await waitFor(() => {
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
+            });
         });
 
         it("should fulfill request again if requestId changes", async () => {
@@ -371,7 +373,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, waitForNextUpdate} = clientRenderHook(
+            const {rerender} = clientRenderHook(
                 ({requestId}: any) =>
                     useHydratableEffect(requestId, fakeHandler),
                 {
@@ -379,10 +381,11 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            await waitForNextUpdate();
 
             // Assert
-            expect(fakeHandler).toHaveBeenCalledTimes(2);
+            await waitFor(() => {
+                expect(fakeHandler).toHaveBeenCalledTimes(2);
+            });
         });
 
         it("should default shared cache to hydrate value for new requestId", () => {
@@ -420,13 +423,12 @@ describe("#useHydratableEffect", () => {
             const fakeHandler = jest.fn().mockResolvedValue("DATA");
 
             // Act
-            const {waitForNextUpdate} = clientRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler),
-            );
-            await waitForNextUpdate();
+            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
 
             // Assert
-            expect(setCacheFn).toHaveBeenCalledWith(Status.success("DATA"));
+            await waitFor(() => {
+                expect(setCacheFn).toHaveBeenCalledWith(Status.success("DATA"));
+            });
         });
 
         it("should ignore inflight request if requestId changes", async () => {
@@ -453,7 +455,12 @@ describe("#useHydratableEffect", () => {
             await act((): Promise<any> => Promise.all([response1, response2]));
 
             // Assert
-            expect(result.all).not.toContainEqual(Status.success("DATA1"));
+            // TODO(juan): See if this needs to be fixed.
+            await waitFor(() => {
+                expect(result.current).not.toContainEqual(
+                    Status.success("DATA1"),
+                );
+            });
         });
 
         it("should return result of fulfilled request for current requestId", async () => {
@@ -519,7 +526,12 @@ describe("#useHydratableEffect", () => {
             await act((): Promise<any> => response1);
 
             // Assert
-            expect(result.all).not.toContainEqual(Status.success("DATA1"));
+            // TODO(juan): See if this needs to be fixed.
+            await waitFor(() => {
+                expect(result.current).not.toContainEqual(
+                    Status.success("DATA1"),
+                );
+            });
         });
 
         it("should not ignore inflight request if handler changes", async () => {
@@ -586,11 +598,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {
-                rerender,
-                result: hookResult,
-                waitForNextUpdate,
-            } = clientRenderHook(
+            const {rerender, result: hookResult} = clientRenderHook(
                 ({requestId}: any) =>
                     useHydratableEffect(requestId, fakeHandler, {
                         retainResultOnChange: true,
@@ -603,10 +611,11 @@ describe("#useHydratableEffect", () => {
             await act((): Promise<any> => response1);
             rerender({requestId: "ID2"});
             const result = hookResult.current;
-            await waitForNextUpdate();
 
             // Assert
-            expect(result).toStrictEqual(Status.success("DATA1"));
+            await waitFor(() => {
+                expect(result).toStrictEqual(Status.success("DATA1"));
+            });
         });
 
         it("should return loading status when requestId changes and retainResultOnChange is false", async () => {

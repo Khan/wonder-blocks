@@ -1,4 +1,4 @@
-import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
@@ -208,7 +208,7 @@ describe("#useServerEffect", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useServerEffect("ID", fakeHandler));
+            } = renderHook(() => useServerEffect("ID", fakeHandler));
 
             // Assert
             expect(result).toBeNull();
@@ -225,7 +225,7 @@ describe("#useServerEffect", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useServerEffect("ID", fakeHandler));
+            } = renderHook(() => useServerEffect("ID", fakeHandler));
 
             // Assert
             expect(result).toEqual({status: "success", data: "DATA"});
@@ -241,7 +241,7 @@ describe("#useServerEffect", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useServerEffect("ID", fakeHandler));
+            } = renderHook(() => useServerEffect("ID", fakeHandler));
 
             // Assert
             expect(result).toEqual({
@@ -263,7 +263,7 @@ describe("#useServerEffect", () => {
             );
 
             // Act
-            clientRenderHook(() => useServerEffect("ID", fakeHandler), {
+            renderHook(() => useServerEffect("ID", fakeHandler), {
                 wrapper: TrackData,
             });
 
@@ -284,7 +284,7 @@ describe("#useServerEffect", () => {
             );
 
             // Act
-            clientRenderHook(() => useServerEffect("ID", fakeHandler));
+            renderHook(() => useServerEffect("ID", fakeHandler));
 
             // Assert
             expect(fulfillRequestSpy).not.toHaveBeenCalled();
