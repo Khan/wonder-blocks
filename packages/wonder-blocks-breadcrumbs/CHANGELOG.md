@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 2.2.8
+
+### Patch Changes
+
+-   Updated dependencies [6999fd39]
+    -   @khanacademy/wonder-blocks-tokens@2.1.0
+
 ## 2.2.7
 
 ### Patch Changes

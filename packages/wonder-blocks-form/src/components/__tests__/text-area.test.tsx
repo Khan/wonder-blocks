@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {userEvent} from "@testing-library/user-event";
 import TextArea from "../text-area";
 
@@ -11,6 +11,11 @@ const defaultOptions = {
 };
 
 const wrapOptions: Array<"soft" | "hard" | "off"> = ["soft", "hard", "off"];
+
+const ControlledTextArea = (props: Partial<PropsFor<typeof TextArea>>) => {
+    const [value, setValue] = React.useState(props.value || "");
+    return <TextArea {...props} value={value} onChange={setValue} />;
+};
 
 describe("TextArea", () => {
     describe("Attributes", () => {
@@ -746,6 +751,8 @@ describe("TextArea", () => {
             it("should set the aria-details attribute when provided", async () => {
                 // Arrange
                 const ariaDetails = "details-id";
+
+                // Act
                 render(
                     <TextArea
                         value="Text"
@@ -754,7 +761,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -805,6 +811,46 @@ describe("TextArea", () => {
                 const textArea = await screen.findByRole("textbox");
                 expect(textArea).toHaveAttribute("aria-invalid", "false");
             });
+
+            it("should set aria-invalid to true if the error prop is true", async () => {
+                // Arrange
+                render(
+                    <TextArea value="text" onChange={() => {}} error={true} />,
+                    defaultOptions,
+                );
+
+                // Act
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "true");
+            });
+
+            it("should set aria-invalid to false if the error prop is false", async () => {
+                // Arrange
+                // Act
+                render(
+                    <TextArea value="text" onChange={() => {}} error={false} />,
+                    defaultOptions,
+                );
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
+
+            it("should set aria-invalid to false if the error prop is not provided", async () => {
+                // Arrange
+                // Act
+                render(
+                    <TextArea value="text" onChange={() => {}} />,
+                    defaultOptions,
+                );
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
         });
     });
 
@@ -812,6 +858,7 @@ describe("TextArea", () => {
         describe("validate prop", () => {
             it("should be in an error state if the initial value is not empty and not valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea
                         value="tooShort"
@@ -824,7 +871,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -833,6 +879,7 @@ describe("TextArea", () => {
 
             it("should not be in an error state if the initial value is empty and not valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea
                         value=""
@@ -845,7 +892,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -854,6 +900,7 @@ describe("TextArea", () => {
 
             it("should not be in an error state if the initial value is valid", async () => {
                 // Arrange
+                // Act
                 render(
                     <TextArea
                         value="LongerThan10"
@@ -866,7 +913,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -930,9 +976,11 @@ describe("TextArea", () => {
                 expect(textArea).toHaveAttribute("aria-invalid", "false");
             });
 
-            it("should call the validate function when it is first rendered", async () => {
+            it("should call the validate function twice when it is first rendered (once on initialization, once after mount)", async () => {
                 // Arrange
                 const validate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value="text"
@@ -941,15 +989,57 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
-                expect(validate).toHaveBeenCalledExactlyOnceWith("text");
+                expect(validate.mock.calls).toStrictEqual([["text"], ["text"]]);
+            });
+
+            it("should call the onValidate function only once when it is first rendered (once after mount)", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const errorMessage = "Error message";
+
+                // Act
+                render(
+                    <TextArea
+                        value="text"
+                        onChange={() => {}}
+                        validate={() => errorMessage}
+                        onValidate={onValidate}
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                    errorMessage,
+                );
+            });
+
+            it("should not call the validate function when it is first rendered if it is disabled and value is not empty", async () => {
+                // Arrange
+                const validate = jest.fn();
+
+                // Act
+                render(
+                    <TextArea
+                        value="text"
+                        disabled={true}
+                        onChange={() => {}}
+                        validate={validate}
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(validate).not.toHaveBeenCalled();
             });
 
             it("should not call the validate function when it is first rendered if the value is empty", async () => {
                 // Arrange
                 const validate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value=""
@@ -958,7 +1048,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 expect(validate).not.toHaveBeenCalled();
@@ -1022,6 +1111,8 @@ describe("TextArea", () => {
                 // Arrange
                 const handleValidate = jest.fn();
                 const errorMsg = "error message";
+
+                // Act
                 render(
                     <TextArea
                         value="text"
@@ -1031,7 +1122,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
@@ -1042,6 +1132,8 @@ describe("TextArea", () => {
             it("should call the onValidate prop with null if the validate prop returns null", () => {
                 // Arrange
                 const handleValidate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value="text"
@@ -1051,7 +1143,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
@@ -1060,6 +1151,8 @@ describe("TextArea", () => {
             it("should call the onValidate prop with null if the validate prop is a void function", () => {
                 // Arrange
                 const handleValidate = jest.fn();
+
+                // Act
                 render(
                     <TextArea
                         value="text"
@@ -1069,7 +1162,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
@@ -1078,6 +1170,40 @@ describe("TextArea", () => {
 
         describe("required prop", () => {
             it("should initially render with no error if it is required and the value is empty", async () => {
+                // Arrange
+                // Act
+                render(
+                    <TextArea
+                        value=""
+                        onChange={() => {}}
+                        required="Required"
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
+
+            it("should initially render with no error if it is required and the value is not empty", async () => {
+                // Arrange
+                // Act
+                render(
+                    <TextArea
+                        value="Text"
+                        onChange={() => {}}
+                        required="Required"
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                const textArea = await screen.findByRole("textbox");
+                expect(textArea).toHaveAttribute("aria-invalid", "false");
+            });
+
+            it("should not be in an error state if it is required, the field is empty, and a user tabs through the field", async () => {
                 // Arrange
                 render(
                     <TextArea
@@ -1089,24 +1215,10 @@ describe("TextArea", () => {
                 );
 
                 // Act
-
-                // Assert
-                const textArea = await screen.findByRole("textbox");
-                expect(textArea).toHaveAttribute("aria-invalid", "false");
-            });
-
-            it("should initially render with no error if it is required and the value is not empty", async () => {
-                // Arrange
-                render(
-                    <TextArea
-                        value="Text"
-                        onChange={() => {}}
-                        required="Required"
-                    />,
-                    defaultOptions,
-                );
-
-                // Act
+                // Tab into field
+                await userEvent.tab();
+                // Tab out of field
+                await userEvent.tab();
 
                 // Assert
                 const textArea = await screen.findByRole("textbox");
@@ -1136,6 +1248,7 @@ describe("TextArea", () => {
 
             it("should not call onValidate on first render if the value is empty and required prop is used", async () => {
                 // Arrange
+                // Act
                 const handleValidate = jest.fn();
                 render(
                     <TextArea
@@ -1147,14 +1260,13 @@ describe("TextArea", () => {
                     defaultOptions,
                 );
 
-                // Act
-
                 // Assert
                 expect(handleValidate).not.toHaveBeenCalled();
             });
 
             it("should call onValidate with no error message on first render if the value is not empty and required prop is used", async () => {
                 // Arrange
+                // Act
                 const handleValidate = jest.fn();
                 render(
                     <TextArea
@@ -1165,8 +1277,6 @@ describe("TextArea", () => {
                     />,
                     defaultOptions,
                 );
-
-                // Act
 
                 // Assert
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(null);
@@ -1280,6 +1390,420 @@ describe("TextArea", () => {
                 expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
                     validateErrorMessage,
                 );
+            });
+        });
+
+        describe("instantValidation prop", () => {
+            it("should call validate each time the value changes if the instantValidation prop is not provided", async () => {
+                // Arrange
+                const validate = jest.fn();
+                render(
+                    <ControlledTextArea validate={validate} />,
+                    defaultOptions,
+                );
+
+                // Act
+                const field = screen.getByRole("textbox");
+                await userEvent.type(field, "test");
+                await userEvent.tab();
+
+                // Assert
+                expect(validate.mock.calls).toStrictEqual([
+                    ["t"],
+                    ["te"],
+                    ["tes"],
+                    ["test"],
+                ]);
+            });
+
+            describe("instantValidation=true", () => {
+                it("should call validate each time the value changes", async () => {
+                    // Arrange
+                    const validate = jest.fn();
+                    render(
+                        <ControlledTextArea
+                            validate={validate}
+                            instantValidation={true}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const field = screen.getByRole("textbox");
+                    await userEvent.type(field, "test");
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(validate.mock.calls).toStrictEqual([
+                        ["t"],
+                        ["te"],
+                        ["tes"],
+                        ["test"],
+                    ]);
+                });
+
+                it("should call onValidate with the error message each time the value changes", async () => {
+                    // Arrange
+                    const onValidate = jest.fn();
+                    const errorMessage = "Error";
+                    render(
+                        <ControlledTextArea
+                            validate={() => errorMessage}
+                            onValidate={onValidate}
+                            instantValidation={true}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const field = screen.getByRole("textbox");
+                    await userEvent.type(field, "test");
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(onValidate.mock.calls).toStrictEqual([
+                        [errorMessage],
+                        [errorMessage],
+                        [errorMessage],
+                        [errorMessage],
+                    ]);
+                });
+
+                it("should have the textarea in an error state after validation fails without waiting for the user to tab away", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTextArea
+                            instantValidation={true}
+                            validate={() => "Error message"}
+                        />,
+                        defaultOptions,
+                    );
+                    // Act
+                    const field = screen.getByRole("textbox");
+                    await userEvent.type(field, "test");
+
+                    // Assert
+                    expect(field).toHaveAttribute("aria-invalid", "true");
+                });
+            });
+            describe("instantValidation=false", () => {
+                it("should call validate once the user leaves the field", async () => {
+                    // Arrange
+                    const validate = jest.fn();
+                    render(
+                        <ControlledTextArea
+                            validate={validate}
+                            instantValidation={false}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const field = screen.getByRole("textbox");
+                    await userEvent.type(field, "test");
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(validate).toHaveBeenCalledExactlyOnceWith("test");
+                });
+
+                it("should call onValidate once the user leaves the field", async () => {
+                    // Arrange
+                    const handleValidate = jest.fn();
+                    const errorMsg = "error message";
+                    render(
+                        <ControlledTextArea
+                            validate={() => errorMsg}
+                            onValidate={handleValidate}
+                            instantValidation={false}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const field = screen.getByRole("textbox");
+                    await userEvent.type(field, "test");
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
+                        errorMsg,
+                    );
+                });
+
+                it("should not have the textarea in an error state before the field is blurred", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTextArea
+                            instantValidation={false}
+                            validate={() => "Error message"}
+                        />,
+                        defaultOptions,
+                    );
+                    // Act
+                    const field = screen.getByRole("textbox");
+                    await userEvent.type(field, "test");
+
+                    // Assert
+                    expect(field).toHaveAttribute("aria-invalid", "false");
+                });
+
+                it("should have the textarea in an error state after validation fails and the field is blurred", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTextArea
+                            instantValidation={false}
+                            validate={() => "Error message"}
+                        />,
+                        defaultOptions,
+                    );
+                    // Act
+                    const field = screen.getByRole("textbox");
+                    await userEvent.type(field, "test");
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(field).toHaveAttribute("aria-invalid", "true");
+                });
+
+                it("should not be in an error state after a user updates the value after there was an error", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTextArea
+                            validate={() => "Error message"}
+                            instantValidation={false}
+                        />,
+                        defaultOptions,
+                    );
+                    // Act
+                    const field = await screen.findByRole("textbox");
+                    await userEvent.type(field, "t");
+                    // Trigger blur so error is shown
+                    await userEvent.tab();
+                    // Updating the value should clear the error
+                    await userEvent.type(field, "te");
+
+                    // Assert
+                    expect(field).toHaveAttribute("aria-invalid", "false");
+                });
+
+                it("should call onValidate with null when the user changes the value after there was an error", async () => {
+                    // Arrange
+                    const handleValidate = jest.fn();
+                    const errorMsg = "error message";
+                    render(
+                        <ControlledTextArea
+                            validate={() => errorMsg}
+                            onValidate={handleValidate}
+                            instantValidation={false}
+                        />,
+                        defaultOptions,
+                    );
+
+                    // Act
+                    const field = screen.getByRole("textbox");
+                    await userEvent.type(field, "test");
+                    // Blur will trigger error to be shown
+                    await userEvent.tab();
+                    // Updating the value should clear the error using the onValidate prop
+                    await userEvent.type(field, "tests");
+
+                    // Assert
+                    expect(handleValidate.mock.calls).toStrictEqual([
+                        [errorMsg],
+                        [null],
+                    ]);
+                });
+
+                it("should not call the validate prop on blur if it is disabled", async () => {
+                    // Arrange
+                    const validate = jest.fn();
+                    render(
+                        <ControlledTextArea
+                            value="test"
+                            validate={validate}
+                            disabled={true}
+                            instantValidation={false}
+                        />,
+                        defaultOptions,
+                    );
+                    // Act
+                    await userEvent.tab();
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(validate).not.toHaveBeenCalled();
+                });
+
+                describe("required", () => {
+                    it("shound be in error state if it is required, the value changes to an empty string, and the user tabs away", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTextArea
+                                value="T"
+                                required="Required"
+                                instantValidation={false}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Act
+                        const field = await screen.findByRole("textbox");
+                        await userEvent.type(field, "{backspace}");
+                        await userEvent.tab();
+
+                        // Assert
+                        const textArea = await screen.findByRole("textbox");
+                        expect(textArea).toHaveAttribute(
+                            "aria-invalid",
+                            "true",
+                        );
+                    });
+
+                    it("shound not be in error state if it is required, the value changes to an empty string, and the user has not tabbed away", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTextArea
+                                value="T"
+                                required="Required"
+                                instantValidation={false}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Act
+                        const field = await screen.findByRole("textbox");
+                        await userEvent.type(field, "{backspace}");
+
+                        // Assert
+                        const textArea = await screen.findByRole("textbox");
+                        expect(textArea).toHaveAttribute(
+                            "aria-invalid",
+                            "false",
+                        );
+                    });
+
+                    it("shound call onValidate with the required message if it is required, the value changes to an empty string, and the user tabs away", async () => {
+                        // Arrange
+                        const onValidate = jest.fn();
+                        const requiredMessage = "Required";
+                        render(
+                            <ControlledTextArea
+                                value="T"
+                                required={requiredMessage}
+                                instantValidation={false}
+                                onValidate={onValidate}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Act
+                        const field = await screen.findByRole("textbox");
+                        await userEvent.type(field, "{backspace}");
+                        await userEvent.tab();
+
+                        // Assert
+                        expect(onValidate.mock.calls).toStrictEqual([
+                            [null],
+                            [requiredMessage],
+                        ]);
+                    });
+
+                    it("shound be in error state if it is required, the value is empty, and the user tabs away", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTextArea
+                                required="Required"
+                                instantValidation={false}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Act
+                        // Tab into field
+                        await userEvent.tab();
+                        // Tab out of field
+                        await userEvent.tab();
+
+                        // Assert
+                        const textArea = await screen.findByRole("textbox");
+                        expect(textArea).toHaveAttribute(
+                            "aria-invalid",
+                            "true",
+                        );
+                    });
+
+                    it("shound call onValidate with the required message if it is required, the value is empty, and the user tabs away", async () => {
+                        // Arrange
+                        const onValidate = jest.fn();
+                        const requiredMessage = "Required";
+                        render(
+                            <ControlledTextArea
+                                required={requiredMessage}
+                                onValidate={onValidate}
+                                instantValidation={false}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Act
+                        // Tab into field
+                        await userEvent.tab();
+                        // Tab out of field
+                        await userEvent.tab();
+
+                        // Assert
+                        expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                            requiredMessage,
+                        );
+                    });
+
+                    it("should not be in error state if it is not required, the value is empty, and the user tabs away", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTextArea
+                                required={undefined}
+                                instantValidation={false}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Act
+                        // Tab into field
+                        await userEvent.tab();
+                        // Tab out of field
+                        await userEvent.tab();
+
+                        // Assert
+                        const textArea = await screen.findByRole("textbox");
+                        expect(textArea).toHaveAttribute(
+                            "aria-invalid",
+                            "false",
+                        );
+                    });
+
+                    it("should not call onValidate if it is not required, the value is empty, and the user tabs away", async () => {
+                        // Arrange
+                        const onValidate = jest.fn();
+                        render(
+                            <ControlledTextArea
+                                required={undefined}
+                                instantValidation={false}
+                                onValidate={onValidate}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Act
+                        // Tab into field
+                        await userEvent.tab();
+                        // Tab out of field
+                        await userEvent.tab();
+
+                        // Assert
+                        expect(onValidate).not.toHaveBeenCalled();
+                    });
+                });
             });
         });
     });
