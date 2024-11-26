@@ -59,33 +59,41 @@ describe("Announcer.announceMessage", () => {
 
         // ASSERT: check messages were appended to elements
         // The second region will be targeted first
-        const message1Region = screen.queryByTestId("wbARegion-polite1");
-        expect(message1Region).toHaveTextContent(rainierMsg);
+        await waitFor(() => {
+            const message1Region = screen.queryByTestId("wbARegion-polite1");
+            expect(message1Region).toHaveTextContent(rainierMsg);
+        });
 
         button[1].click();
-        const message2Region = screen.queryByTestId("wbARegion-polite0");
-        expect(message2Region).toHaveTextContent(bagleyMsg);
+        await waitFor(() => {
+            const message2Region = screen.queryByTestId("wbARegion-polite0");
+            expect(message2Region).toHaveTextContent(bagleyMsg);
+        });
     });
 
-    test("returns a targeted element IDREF", () => {
+    test("returns a targeted element IDREF", async () => {
         // ARRANGE
         const message1 = "One Fish Two Fish";
         const message2 = "Red Fish Blue Fish";
 
         // ACT
-        const announcement1Id = announceMessage({
+        const announcement1Id = await announceMessage({
             message: message1,
         });
-        const announcement2Id = announceMessage({
+        const announcement2Id = await announceMessage({
             message: message2,
         });
 
         // ASSERT
-        expect(announcement1Id).toBe("wbARegion-polite1");
-        expect(announcement2Id).toBe("wbARegion-polite0");
+        // await waitFor(() => {
+        await expect(announcement1Id).toBe("wbARegion-polite1");
+        // });
+        // await waitFor(() => {
+        await expect(announcement2Id).toBe("wbARegion-polite0");
+        // });
     });
 
-    test("appends messages in alternating assertive live region elements", () => {
+    test("appends messages in alternating assertive live region elements", async () => {
         const rainierMsg = "Rainier McCheddarton";
         const bagleyMsg = "Bagley Fluffpants";
         render(
@@ -99,12 +107,15 @@ describe("Announcer.announceMessage", () => {
 
         // ASSERT: check messages were appended to elements
         // The second region will be targeted first
-        const message1Region = screen.queryByTestId("wbARegion-assertive1");
-        expect(message1Region).toHaveTextContent(rainierMsg);
-
+        await waitFor(() => {
+            const message1Region = screen.queryByTestId("wbARegion-assertive1");
+            expect(message1Region).toHaveTextContent(rainierMsg);
+        });
         button[1].click();
-        const message2Region = screen.queryByTestId("wbARegion-assertive0");
-        expect(message2Region).toHaveTextContent(bagleyMsg);
+        await waitFor(() => {
+            const message2Region = screen.queryByTestId("wbARegion-assertive0");
+            expect(message2Region).toHaveTextContent(bagleyMsg);
+        });
     });
 
     test("removes messages after an optional duration", async () => {
@@ -120,8 +131,15 @@ describe("Announcer.announceMessage", () => {
         const message1Region = screen.queryByTestId("wbARegion-polite1");
 
         // Assert
-        expect(message1Region).toHaveTextContent(message1);
-        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 500);
+        await waitFor(() => {
+            expect(message1Region).toHaveTextContent(message1);
+        });
+        await waitFor(() => {
+            expect(setTimeout).toHaveBeenLastCalledWith(
+                expect.any(Function),
+                500,
+            );
+        });
         await waitFor(() =>
             expect(screen.queryByText(message1)).not.toBeInTheDocument(),
         );

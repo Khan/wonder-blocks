@@ -1,4 +1,4 @@
-import {screen} from "@testing-library/react";
+import {screen, waitFor} from "@testing-library/react";
 import {announceMessage} from "../announce-message";
 import {clearMessages} from "../clear-messages";
 
@@ -13,35 +13,41 @@ describe("Announcer.clearMessages", () => {
             message: message1,
         });
 
-        const region1 = screen.getByTestId("wbARegion-polite1");
-        expect(region1).toHaveTextContent(message1);
+        let region1: HTMLElement | null = null;
+        await waitFor(() => {
+            region1 = screen.getByTestId("wbARegion-polite1");
+            expect(region1).toHaveTextContent(message1);
+        });
 
-        announceMessage({message: message2});
+        await announceMessage({message: message2});
+
         const region2 = screen.getByTestId("wbARegion-polite0");
 
         clearMessages(announcement1Id);
 
         // ASSERT
-        expect(region1).toBeEmptyDOMElement();
+        await waitFor(() => {
+            expect(region1).toBeEmptyDOMElement();
+        });
         expect(region2).toHaveTextContent(message2);
     });
 
-    test("empties all live region elements by default", () => {
+    test("empties all live region elements by default", async () => {
         // ARRANGE
         const message1 = "One fish two fish";
         const message2 = "Red fish blue fish";
 
         // ACT
-        announceMessage({message: message1});
+        await announceMessage({message: message1});
 
-        const region1 = screen.getByTestId("wbARegion-polite1");
+        const region1 = screen.queryByTestId("wbARegion-polite1");
         expect(region1).toHaveTextContent(message1);
 
-        announceMessage({message: message2});
+        await announceMessage({message: message2});
         const region2 = screen.getByTestId("wbARegion-polite0");
         expect(region2).toHaveTextContent(message2);
 
-        announceMessage({
+        await announceMessage({
             message: message1,
             level: "assertive",
         });
