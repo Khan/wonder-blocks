@@ -19,9 +19,14 @@ const AnnouncerExample = ({
 }: AnnounceMessageProps) => {
     return (
         <Button
-            onClick={() => {
-                // TODO: explore making method async for consistent return string
-                announceMessage({message, level, removalDelay});
+            onClick={async () => {
+                const idRef = await announceMessage({
+                    message,
+                    level,
+                    removalDelay,
+                });
+                /* eslint-disable-next-line */
+                console.log(idRef);
             }}
         >
             Save

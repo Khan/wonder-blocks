@@ -75,11 +75,9 @@ describe("Announcer.announceMessage", () => {
         // ACT
         const announcement1Id = announceMessage({
             message: message1,
-            timeoutDelay: 0,
         });
         const announcement2Id = announceMessage({
             message: message2,
-            timeoutDelay: 0,
         });
 
         // ASSERT
