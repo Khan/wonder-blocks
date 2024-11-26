@@ -16,6 +16,7 @@ import {
 import {alternateIndex} from "./util/util";
 
 const REMOVAL_TIMEOUT_DELAY = 5000;
+const WAIT_THRESHOLD = 250;
 
 /**
  * Internal class to manage screen reader announcements.
@@ -124,35 +125,44 @@ class Announcer {
      * @param {number} removalDelay How long to wait before removing message
      * @returns {string} IDREF for targeted element or empty string if it failed
      */
-    announce(
+    async announce(
         message: string,
         level: PolitenessLevel,
         removalDelay?: number,
-    ): string {
-        if (!this.node) {
-            this.reattachNodes();
-        }
+    ): Promise<string> {
+        const announceCB = (
+            message: string,
+            level: PolitenessLevel,
+            removalDelay?: number,
+        ) => {
+            if (!this.node) {
+                this.reattachNodes();
+            }
+            // Filter region elements to the selected level
+            const regions: RegionDef[] = [...this.dictionary.values()].filter(
+                (entry: RegionDef) => entry.level === level,
+            );
 
-        // Filter region elements to the selected level
-        const regions: RegionDef[] = [...this.dictionary.values()].filter(
-            (entry: RegionDef) => entry.level === level,
-        );
+            const newIndex = this.appendMessage(
+                message,
+                level,
+                regions,
+                removalDelay,
+            );
 
-        const newIndex = this.appendMessage(
-            message,
-            level,
-            regions,
-            removalDelay,
-        );
+            // overwrite central index for the given level
+            if (level === "assertive") {
+                this.regionFactory.aIndex = newIndex;
+            } else {
+                this.regionFactory.pIndex = newIndex;
+            }
 
-        // overwrite central index for the given level
-        if (level === "assertive") {
-            this.regionFactory.aIndex = newIndex;
-        } else {
-            this.regionFactory.pIndex = newIndex;
-        }
+            return regions[newIndex].id || "";
+        };
 
-        return regions[newIndex].id || "";
+        const safeAnnounce = this.debounce(announceCB, WAIT_THRESHOLD);
+        const result = await safeAnnounce({message, level, removalDelay});
+        return result;
     }
 
     /**
@@ -210,6 +220,30 @@ class Announcer {
         removeMessage(messageEl, removalDelay);
 
         return index;
+    }
+
+    /**
+     * Keep announcements from happening too often.
+     * Anytime the announcer is called repeatedly, this will slow down the results.
+     * @param {Function} callback Announce method to call with argments
+     * @param {number} wait Length of time to wait before calling callback again
+     * @returns {string} idRef of targeted live region element
+     */
+    debounce(callback: (...args: any[]) => string, wait: number) {
+        let timeoutId: ReturnType<typeof setTimeout> | null = null;
+
+        return (...args: any[]): Promise<string> => {
+            return new Promise((resolve) => {
+                if (timeoutId !== null) {
+                    clearTimeout(timeoutId);
+                }
+
+                timeoutId = setTimeout(() => {
+                    const result = callback(...args);
+                    resolve(result);
+                }, wait);
+            });
+        };
     }
 
     /**

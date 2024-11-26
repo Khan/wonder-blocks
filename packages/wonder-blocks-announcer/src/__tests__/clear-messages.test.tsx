@@ -3,21 +3,20 @@ import {announceMessage} from "../announce-message";
 import {clearMessages} from "../clear-messages";
 
 describe("Announcer.clearMessages", () => {
-    test("empties a targeted live region element by IDREF", () => {
+    test("empties a targeted live region element by IDREF", async () => {
         // ARRANGE
         const message1 = "Shine a million stars";
         const message2 = "Dull no stars";
 
         // ACT
-        const announcement1Id = announceMessage({
+        const announcement1Id = await announceMessage({
             message: message1,
-            timeoutDelay: 0,
         });
 
         const region1 = screen.getByTestId("wbARegion-polite1");
         expect(region1).toHaveTextContent(message1);
 
-        announceMessage({message: message2, timeoutDelay: 0});
+        announceMessage({message: message2});
         const region2 = screen.getByTestId("wbARegion-polite0");
 
         clearMessages(announcement1Id);
@@ -33,19 +32,18 @@ describe("Announcer.clearMessages", () => {
         const message2 = "Red fish blue fish";
 
         // ACT
-        announceMessage({message: message1, timeoutDelay: 0});
+        announceMessage({message: message1});
 
         const region1 = screen.getByTestId("wbARegion-polite1");
         expect(region1).toHaveTextContent(message1);
 
-        announceMessage({message: message2, timeoutDelay: 0});
+        announceMessage({message: message2});
         const region2 = screen.getByTestId("wbARegion-polite0");
         expect(region2).toHaveTextContent(message2);
 
         announceMessage({
             message: message1,
             level: "assertive",
-            timeoutDelay: 0,
         });
         const region3 = screen.getByTestId("wbARegion-assertive1");
         expect(region3).toHaveTextContent(message1);
