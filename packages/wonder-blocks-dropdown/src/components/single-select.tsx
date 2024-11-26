@@ -296,9 +296,10 @@ const SingleSelect = (props: Props) => {
     const hasError = error || !!errorMessage;
 
     useOnMountEffect(() => {
-        // Only validate on mount if the value is not empty. This is so that fields
-        // don't render an error when they are initially empty
-        if (selectedValue) {
+        // Only validate on mount if the value is not empty and the field is not
+        // required. This is so that fields don't render an error when they are
+        //initially empty
+        if (selectedValue && !required) {
             handleValidation(selectedValue);
         }
     });
@@ -319,6 +320,10 @@ const SingleSelect = (props: Props) => {
 
         if (onToggle) {
             onToggle(opened);
+        }
+        if (!opened && required) {
+            // If closed and field is required, validate the selected value
+            handleValidation(selectedValue);
         }
     };
 

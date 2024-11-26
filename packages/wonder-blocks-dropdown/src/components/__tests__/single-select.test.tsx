@@ -1772,6 +1772,55 @@ describe("SingleSelect", () => {
             });
         });
 
+        describe("picking a value after there was a validation error", () => {
+            it("should still be in an error state before a value is picked", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const userEvent = doRender(
+                    <ControlledSingleSelect
+                        validate={(value) =>
+                            value === "1" ? errorMessage : undefined
+                        }
+                        selectedValue={"1"}
+                    />,
+                );
+
+                // Act
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
+            it("should not be in an error state once a value is picked", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const userEvent = doRender(
+                    <ControlledSingleSelect
+                        validate={(value) =>
+                            value === "1" ? errorMessage : undefined
+                        }
+                        selectedValue={"1"}
+                    />,
+                );
+                await userEvent.tab();
+                await userEvent.tab(); // Tab through the select to trigger error
+
+                // Act
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByText("item 2")); // Pick a value
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+        });
+
         describe("required", () => {
             describe("tabbing through without picking a value", () => {
                 it("should call onValidate prop", async () => {
@@ -1908,26 +1957,10 @@ describe("SingleSelect", () => {
                 });
             });
             describe("opening and closing the dropdown without picking a value", () => {
-                it.only("should call the validate prop when it is closed", async () => {
-                    // Arrange
-                    const validate = jest.fn();
-                    const requiredMessage = "Required field";
-                    const userEvent = doRender(
-                        <ControlledSingleSelect required={requiredMessage} />,
-                    );
-
-                    // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
-                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
-
-                    // Assert
-                    expect(validate).toHaveBeenCalled();
-                });
-
                 it("should call the onValidate prop when it is closed", async () => {
                     // Arrange
-                    const requiredMessage = "Required field";
                     const onValidate = jest.fn();
+                    const requiredMessage = "Required field";
                     const userEvent = doRender(
                         <ControlledSingleSelect
                             onValidate={onValidate}
@@ -1944,6 +1977,7 @@ describe("SingleSelect", () => {
                         requiredMessage,
                     );
                 });
+
                 it("should be in an error state when it is closed", async () => {
                     // Arrange
                     const requiredMessage = "Required field";
@@ -1962,7 +1996,7 @@ describe("SingleSelect", () => {
                     );
                 });
 
-                it("should not call the onValidate prop when it is opened", async () => {
+                it("should not call the onValidate prop when it is only opened", async () => {
                     // Arrange
                     const requiredMessage = "Required field";
                     const onValidate = jest.fn();
@@ -1980,7 +2014,7 @@ describe("SingleSelect", () => {
                     expect(onValidate).not.toHaveBeenCalled();
                 });
 
-                it("should not be in an error state when it is opened", async () => {
+                it("should not be in an error state when it is only opened", async () => {
                     // Arrange
                     const requiredMessage = "Required field";
                     const userEvent = doRender(
@@ -2011,8 +2045,9 @@ describe("SingleSelect", () => {
                     );
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
-                    await userEvent.keyboard("{Escape}"); // Close the dropdown
+                    await userEvent.tab();
+                    await userEvent.keyboard("{enter}"); // Open the dropdown
+                    await userEvent.keyboard("{escape}"); // Close the dropdown
 
                     // Assert
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(
@@ -2028,8 +2063,9 @@ describe("SingleSelect", () => {
                     );
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
-                    await userEvent.keyboard("{Escape}"); // Close the dropdown
+                    await userEvent.tab();
+                    await userEvent.keyboard("{enter}"); // Open the dropdown
+                    await userEvent.keyboard("{escape}"); // Close the dropdown
 
                     // Assert
                     expect(await screen.findByRole("button")).toHaveAttribute(
@@ -2055,7 +2091,7 @@ describe("SingleSelect", () => {
                     // Assert
                     expect(onValidate).not.toHaveBeenCalled();
                 });
-                it("should not onValidate if there is a selected value on the initial render", () => {
+                it("should call onValidate with null if there is a selected value on the initial render", () => {
                     // Arrange
                     const requiredMessage = "Required field";
                     const onValidate = jest.fn();
@@ -2074,6 +2110,24 @@ describe("SingleSelect", () => {
                 });
             });
             describe("picking a value after there was an error", () => {
+                it("should still be in an error state before a value is picked", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const userEvent = doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+                    await userEvent.tab();
+                    await userEvent.tab(); // Tab through the select to trigger error
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
                 it("should not be in an error state once a value is picked", async () => {
                     // Arrange
                     const requiredMessage = "Required field";
@@ -2095,7 +2149,7 @@ describe("SingleSelect", () => {
                 });
             });
 
-            it("should use the default required error message is required is set to true", async () => {
+            it("should use the default required error message if required is set to true", async () => {
                 // Arrange
                 const onValidate = jest.fn();
                 const userEvent = doRender(
@@ -2111,7 +2165,7 @@ describe("SingleSelect", () => {
 
                 // Assert
                 expect(onValidate).toHaveBeenCalledExactlyOnceWith(
-                    "This field is required",
+                    "This field is required.",
                 );
             });
         });
