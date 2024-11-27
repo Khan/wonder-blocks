@@ -98,6 +98,10 @@ jobs:
         # Generate snapshots for only changed stories
         # See: https://www.chromatic.com/docs/turbosnap
         onlyChanged: true
+    - name: Run Storybook tests
+      run: yarn test:storybook
+      env:
+        SB_URL: '${{ steps.chromatic_publish.outputs.storybookUrl }}'
 
     # (if) Run this step on dependabot or changesets PRs.
     - name: Skip Chromatic builds (dependabot or changesets PRs)
