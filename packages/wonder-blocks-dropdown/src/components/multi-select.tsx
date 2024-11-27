@@ -284,7 +284,7 @@ const MultiSelect = (props: Props) => {
     // to this element, and also to pass the reference to Popper.js.
     const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
 
-    const {errorMessage} = useSelectValidation({
+    const {errorMessage, onOpenerBlurValidation} = useSelectValidation({
         selectedValue: selectedValues,
         disabled,
         validate,
@@ -535,6 +535,7 @@ const MultiSelect = (props: Props) => {
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
                             onClick={handleClick}
+                            onBlur={onOpenerBlurValidation}
                             disabled={isDisabled}
                             ref={handleOpenerRef}
                             text={menuText}
@@ -552,6 +553,7 @@ const MultiSelect = (props: Props) => {
                             isPlaceholder={menuText === noneSelected}
                             light={light}
                             onOpenChanged={handleOpenChanged}
+                            onBlur={onOpenerBlurValidation}
                             open={open}
                             ref={handleOpenerRef}
                             testId={testId}
