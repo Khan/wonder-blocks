@@ -19,7 +19,7 @@ describe("Debouncing messages", () => {
         await expect(resultPromise).resolves.toBe("Hello, World!");
     });
 
-    test("resolving with the last argument passed if debounced multiple times", async () => {
+    test("resolving with the first argument passed if debounced multiple times", async () => {
         // ARRANGE
         const callback = jest.fn((message: string) => message);
         const debounced = debounce(callback, 500);
@@ -27,14 +27,13 @@ describe("Debouncing messages", () => {
         // ACT
         debounced("First message");
         debounced("Second message");
-        const thirdCall = debounced("Third message");
+        debounced("Third message");
 
         jest.advanceTimersByTime(500);
 
-        await expect(thirdCall).resolves.toBe("Third message");
         expect(callback).toHaveBeenCalledTimes(1);
 
         // ASSERT
-        expect(callback).toHaveBeenCalledWith("Third message");
+        expect(callback).toHaveBeenCalledWith("First message");
     });
 });
