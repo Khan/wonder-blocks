@@ -329,8 +329,8 @@ const SingleSelect = (props: Props) => {
         if (onToggle) {
             onToggle(opened);
         }
-        if (!opened && required) {
-            // If closed and field is required, validate the selected value
+        if (!opened && required && !selectedValue) {
+            // If closed, field is required, and no value is selected, validate
             handleValidation(selectedValue);
         }
     };
@@ -384,6 +384,7 @@ const SingleSelect = (props: Props) => {
             onToggle(false);
         }
 
+        // Validate when a value is selected
         handleValidation(newSelectedValue);
     };
 
@@ -457,9 +458,10 @@ const SingleSelect = (props: Props) => {
     };
 
     const handleOpenerBlur = () => {
-        if (!open && required) {
-            // Only validate on opener blur if the dropdown is closed. This
-            // prevents an error when the dropdown is opened without a value yet
+        if (!open && required && !selectedValue) {
+            // Only validate on opener blur if the dropdown is closed, the field
+            // is required, and no value is selected. This prevents an error when
+            // the dropdown is opened without a value yet.
             handleValidation(selectedValue);
         }
     };
