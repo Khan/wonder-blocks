@@ -1826,7 +1826,7 @@ describe("SingleSelect", () => {
                 // Act
                 await userEvent.click(screen.getByText("item 1"));
                 // Assert
-                expect(validate).toHaveBeenCalledOnce();
+                expect(validate).toHaveBeenCalledExactlyOnceWith("1");
             });
 
             it("should call onValidate prop", async () => {
@@ -1841,7 +1841,6 @@ describe("SingleSelect", () => {
                 );
                 const opener = await screen.findByRole("button");
                 await userEvent.click(opener);
-                onValidate.mockClear(); // Clear the mock
 
                 // Act
                 await userEvent.click(screen.getByText("item 1"));
@@ -1890,17 +1889,31 @@ describe("SingleSelect", () => {
         describe("validation on mount", () => {
             it("should validate on mount if there is a selected value", () => {
                 // Arrange
-                // Act
                 const validate = jest.fn();
+                // Act
                 doRender(
                     <ControlledSingleSelect
                         validate={validate}
                         selectedValue={"1"}
                     />,
                 );
-
                 // Assert
                 expect(validate).toHaveBeenCalledExactlyOnceWith("1");
+            });
+            it("should be in an error state on mount if there is an invalid selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledSingleSelect
+                        validate={() => "Error"}
+                        selectedValue={"1"}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
             });
             it("should not validate on mount if there is no selected value", () => {
                 // Arrange
@@ -1915,6 +1928,21 @@ describe("SingleSelect", () => {
 
                 // Assert
                 expect(validate).not.toHaveBeenCalled();
+            });
+            it("should not be in an error state on mount if there is no selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledSingleSelect
+                        validate={() => "Error"}
+                        selectedValue={undefined}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
             });
         });
 
@@ -1952,11 +1980,9 @@ describe("SingleSelect", () => {
                         selectedValue={"1"}
                     />,
                 );
-                await userEvent.tab();
-                await userEvent.tab(); // Tab through the select to trigger error
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
 
                 // Act
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
                 await userEvent.click(await screen.findByText("item 2")); // Pick a value
 
                 // Assert
@@ -2237,7 +2263,7 @@ describe("SingleSelect", () => {
                     // Assert
                     expect(onValidate).not.toHaveBeenCalled();
                 });
-                it("should call onValidate with null if there is a selected value on the initial render", () => {
+                it("should not call onValidate if there is a selected value on the initial render", () => {
                     // Arrange
                     const requiredMessage = "Required field";
                     const onValidate = jest.fn();
@@ -2282,9 +2308,9 @@ describe("SingleSelect", () => {
                     );
                     await userEvent.tab();
                     await userEvent.tab(); // Tab through the select to trigger error
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
                     await userEvent.click(await screen.findByText("item 1")); // Pick a value
 
                     // Assert
