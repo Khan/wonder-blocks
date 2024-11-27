@@ -6,10 +6,10 @@ import {
     PointerEventsCheckLevel,
 } from "@testing-library/user-event";
 
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import OptionItem from "../option-item";
 import SingleSelect from "../single-select";
 import type {SingleSelectLabels} from "../single-select";
-import {PropsFor} from "../../../../wonder-blocks-core/src/util/types";
 
 const doRender = (element: React.ReactElement) => {
     render(element);
