@@ -17,7 +17,6 @@ export function alternateIndex(index: number, count: number): number {
  * @returns {string} idRef of targeted live region element
  */
 export function debounce(callback: (...args: any[]) => string, wait: number) {
-    console.log("wait:", wait);
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
     let executed = false;
 
