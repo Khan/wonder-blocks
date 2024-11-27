@@ -289,6 +289,7 @@ const MultiSelect = (props: Props) => {
         onOpenerBlurValidation,
         onDropdownClosedValidation,
         onSelectionValidation,
+        onSelectedValuesChangeValidation,
     } = useSelectValidation({
         selectedValue: selectedValues,
         disabled,
@@ -343,6 +344,8 @@ const MultiSelect = (props: Props) => {
             // Item was newly selected
             onChange([...selectedValues, selectedValue]);
         }
+        // Handle validation when the selected values change
+        onSelectedValuesChangeValidation();
     };
 
     const handleSelectAll = () => {
