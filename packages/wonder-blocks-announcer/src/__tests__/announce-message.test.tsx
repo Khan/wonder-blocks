@@ -5,27 +5,9 @@ import {announceMessage} from "../announce-message";
 import {clearMessages} from "../clear-messages";
 
 jest.useFakeTimers();
-
-let originalSetTimeout: typeof setTimeout;
+jest.spyOn(global, "setTimeout");
 
 describe("Announcer.announceMessage", () => {
-    beforeAll(() => {
-        originalSetTimeout = global.setTimeout;
-
-        // Mock setTimeout to log its calls
-        jest.spyOn(global, "setTimeout").mockImplementation(
-            (callback, delay) => {
-                console.log("setTimeout called with delay:", delay);
-                // Call the original setTimeout implementation
-                return originalSetTimeout(callback, delay);
-            },
-        );
-    });
-
-    afterEach(() => {
-        jest.clearAllMocks(); // Clear mocks after each test
-    });
-
     afterEach(() => {
         clearMessages();
     });
