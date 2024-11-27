@@ -3,32 +3,41 @@ import * as React from "react";
 
 const defaultErrorMessage = "This field is required.";
 
-type SelectValidationProps = {
-    selectedValue?: string | null;
+type SingleSelectedValue = string | null | undefined;
+type MultiSelectedValues = string[];
+
+type SelectValue = SingleSelectedValue | MultiSelectedValues;
+
+type SelectValidationProps<T extends SelectValue> = {
+    selectedValue?: T;
     disabled?: boolean;
-    validate?: (value: string) => string | null | void;
+    validate?: (value: T) => string | null | void;
     onValidate?: (errorMessage?: string | null | undefined) => unknown;
     required?: boolean | string;
     open: boolean;
 };
 
-export function useSelectValidation({
+function hasValue<T extends SelectValue>(value?: T | null): value is T {
+    return value ? value.length > 0 : false;
+}
+
+export function useSelectValidation<T extends SelectValue>({
     selectedValue,
     disabled = false,
     validate,
     onValidate,
     required,
     open,
-}: SelectValidationProps) {
+}: SelectValidationProps<T>) {
     const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
     const handleValidation = React.useCallback(
-        (value?: string | null) => {
+        (value?: T) => {
             // Should not handle validation if it is disabled
             if (disabled) {
                 return;
             }
-            if (validate && value) {
+            if (validate && hasValue(value)) {
                 const error = validate(value) || null;
                 setErrorMessage(error);
                 if (onValidate) {
@@ -44,7 +53,7 @@ export function useSelectValidation({
                     typeof required === "string"
                         ? required
                         : defaultErrorMessage;
-                const error = value ? null : requiredString;
+                const error = hasValue(value) ? null : requiredString;
                 setErrorMessage(error);
                 if (onValidate) {
                     onValidate(error);
@@ -58,28 +67,28 @@ export function useSelectValidation({
         // Only validate on mount if the value is not empty and the field is not
         // required. This is so that fields don't render an error when they are
         //initially empty
-        if (selectedValue && !required) {
+        if (hasValue(selectedValue) && !required) {
             handleValidation(selectedValue);
         }
     });
 
-    const onOpenerBlurValidation = () => {
-        if (!open && required && !selectedValue) {
+    function onOpenerBlurValidation() {
+        if (!open && required && !hasValue(selectedValue)) {
             // Only validate on opener blur if the dropdown is closed, the field
             // is required, and no value is selected. This prevents an error when
             // the dropdown is opened without a value yet.
             handleValidation(selectedValue);
         }
-    };
+    }
 
     const onDropdownClosedValidation = () => {
-        if (required && !selectedValue) {
+        if (required && !hasValue(selectedValue)) {
             // If closed, field is required, and no value is selected, validate
             handleValidation(selectedValue);
         }
     };
 
-    const onSelectionValidation = (value: string) => {
+    const onSelectionValidation = (value: T) => {
         handleValidation(value);
     };
 
