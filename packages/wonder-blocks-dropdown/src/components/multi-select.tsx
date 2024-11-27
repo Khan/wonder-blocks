@@ -26,6 +26,7 @@ import type {
     OptionItemComponentArray,
 } from "../util/types";
 import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type Labels = {
     /**
@@ -176,6 +177,41 @@ type Props = AriaProps &
          * opener's `aria-controls` attribute for screenreaders.
          */
         dropdownId?: string;
+        /**
+         * Whether this field is required to continue, or the error message to
+         * render if this field is left blank.
+         *
+         * This can be a boolean or a string.
+         *
+         * String:
+         * Please pass in a translated string to use as the error message that will
+         * render if the user leaves this field blank. If this field is required,
+         * and a string is not passed in, a default untranslated string will render
+         * upon error.
+         * Note: The string will not be used if a `validate` prop is passed in.
+         *
+         * Example message: i18n._("A password is required to log in.")
+         *
+         * Boolean:
+         * True/false indicating whether this field is required. Please do not pass
+         * in `true` if possible - pass in the error string instead.
+         * If `true` is passed, and a `validate` prop is not passed, that means
+         * there is no corresponding message and the default untranlsated message
+         * will be used.
+         */
+        required?: boolean | string;
+        /**
+         * Provide a validation for the field value.
+         * Return a string error message or null | void for a valid input.
+         *
+         * Use this for errors that are shown to the user while they are filling out
+         * a form.
+         */
+        validate?: (value: string[]) => string | null | void;
+        /**
+         * Called right after the field is validated.
+         */
+        onValidate?: (errorMessage?: string | null | undefined) => unknown;
     }>;
 
 /**
@@ -222,6 +258,9 @@ const MultiSelect = (props: Props) => {
         children,
         dropdownId,
         showOpenerLabelAsText = true,
+        validate,
+        onValidate,
+        required,
         ...sharedProps
     } = props;
 
@@ -244,6 +283,17 @@ const MultiSelect = (props: Props) => {
     // The DOM reference to the opener element. This is mainly used to set focus
     // to this element, and also to pass the reference to Popper.js.
     const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
+
+    const {errorMessage} = useSelectValidation({
+        selectedValue: selectedValues,
+        disabled,
+        validate,
+        onValidate,
+        required,
+        open,
+    });
+
+    const hasError = error || !!errorMessage;
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled component
@@ -481,6 +531,7 @@ const MultiSelect = (props: Props) => {
                     return opener ? (
                         <DropdownOpener
                             id={uniqueOpenerId}
+                            error={hasError}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
                             onClick={handleClick}
@@ -494,7 +545,7 @@ const MultiSelect = (props: Props) => {
                     ) : (
                         <SelectOpener
                             {...sharedProps}
-                            error={error}
+                            error={hasError}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
