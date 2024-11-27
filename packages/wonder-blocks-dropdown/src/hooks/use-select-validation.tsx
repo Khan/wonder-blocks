@@ -14,7 +14,7 @@ type SelectValidationProps<T extends SelectValue> = {
     validate?: (value: T) => string | null | void;
     onValidate?: (errorMessage?: string | null | undefined) => unknown;
     required?: boolean | string;
-    open: boolean;
+    open?: boolean;
 };
 
 function hasValue<T extends SelectValue>(value?: T | null): value is T {
