@@ -325,14 +325,15 @@ export const ControlledMultilpleCombobox: Story = {
         value: ["pear", "grape"],
         selectionType: "multiple",
     },
-    decorators: [
-        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View style={styles.wrapper}>{Story()}</View>
-        ),
-    ],
+    // decorators: [
+    //     (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+    //         <View style={styles.wrapper}>{Story()}</View>
+    //     ),
+    // ],
 
     play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
+        const canvas = within(canvasElement.ownerDocument.body);
+        console.log("combobox.play.canvasElement: ", canvasElement);
 
         // Move to second option item
         await userEvent.keyboard("{ArrowDown}");

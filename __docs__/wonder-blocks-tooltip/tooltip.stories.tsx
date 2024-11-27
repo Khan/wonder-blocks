@@ -375,23 +375,6 @@ export const AutoUpdate: StoryComponentType = {
         } | null>(null);
         return (
             <View style={[styles.centered, styles.row, {position: "relative"}]}>
-                <Tooltip
-                    content="This is a tooltip that auto-updates its position when the trigger element changes."
-                    opened={true}
-                    autoUpdate={true}
-                >
-                    <View
-                        style={[
-                            position && {
-                                position: "absolute",
-                                top: position.y,
-                                left: position.x,
-                            },
-                        ]}
-                    >
-                        Trigger element
-                    </View>
-                </Tooltip>
                 <Button
                     onClick={() => {
                         setPosition({
@@ -413,6 +396,23 @@ export const AutoUpdate: StoryComponentType = {
                 >
                     Click to update trigger position (fixed)
                 </Button>
+                <Tooltip
+                    content="This is a tooltip that auto-updates its position when the trigger element changes."
+                    opened={true}
+                    autoUpdate={true}
+                >
+                    <View
+                        style={[
+                            position && {
+                                position: "absolute",
+                                top: position.y,
+                                left: position.x,
+                            },
+                        ]}
+                    >
+                        Trigger element
+                    </View>
+                </Tooltip>
             </View>
         );
     },
@@ -439,8 +439,8 @@ export const AutoUpdate: StoryComponentType = {
 
         // Assert
         // The tooltip should have updated its position
-        await expect(initialLeft).not.toEqual(newLeft);
-        await expect(initialTop).not.toEqual(newTop);
+        await expect(initialLeft).not.toBe(newLeft);
+        await expect(initialTop).not.toBe(newTop);
     },
 };
 

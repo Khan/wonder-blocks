@@ -324,28 +324,34 @@ Variants.play = async ({canvasElement}) => {
 
     // Test clickable pill styles
     await neutralMediumClickable.focus();
-    let computedStyle = getComputedStyle(neutralMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
+    await expect(neutralMediumClickable).toHaveStyle(
+        "outline: rgb(24, 101, 242) solid 2px",
+    );
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(accentMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
+    await expect(accentMediumClickable).toHaveStyle(
+        "outline: rgb(24, 101, 242) solid 2px",
+    );
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(infoMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
+    await expect(infoMediumClickable).toHaveStyle(
+        "outline: rgb(24, 101, 242) solid 2px",
+    );
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(successMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
+    await expect(successMediumClickable).toHaveStyle(
+        "outline: rgb(24, 101, 242) solid 2px",
+    );
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(warningMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
+    await expect(warningMediumClickable).toHaveStyle(
+        "outline: rgb(24, 101, 242) solid 2px",
+    );
 
     await userEvent.tab();
-    computedStyle = getComputedStyle(criticalMediumClickable, ":hover");
-    await expect(computedStyle.outline).toBe("rgb(217, 41, 22) solid 2px");
+    await expect(criticalMediumClickable).toHaveStyle(
+        "outline: rgb(217, 41, 22) solid 2px",
+    );
 };
 
 export const WithTypography: StoryComponentType = () => (
