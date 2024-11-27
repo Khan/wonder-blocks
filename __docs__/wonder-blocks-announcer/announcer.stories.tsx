@@ -15,7 +15,7 @@ import packageConfig from "../../packages/wonder-blocks-announcer/package.json";
 const AnnouncerExample = ({
     message = "Clicked!",
     level,
-    removalDelay,
+    debounceThreshold,
 }: AnnounceMessageProps) => {
     return (
         <Button
@@ -23,7 +23,7 @@ const AnnouncerExample = ({
                 const idRef = await announceMessage({
                     message,
                     level,
-                    removalDelay,
+                    debounceThreshold,
                 });
                 /* eslint-disable-next-line */
                 console.log(idRef);
@@ -44,8 +44,7 @@ type StoryComponentType = StoryObj<typeof AnnouncerExample>;
  * Calling the `announceMessage` function automatically appends the appropriate live regions
  * to the document body. It sends messages at a default `polite` level, with the
  * ability to override to `assertive` by passing a `level` argument. You can also
- * pass a `timeoutDelay` to wait a specific duration before the message is automatically
- * removed from the DOM.
+ * pass a `debounceThreshold` to wait a specific duration before making another announcement.
  *
  * To test this API, turn on VoiceOver for Mac/iOS or NVDA on Windows and click the example button.
  *
@@ -90,7 +89,7 @@ export default {
             options: ["polite", "assertive"],
             defaultValue: "polite",
         },
-        timeoutDelay: {
+        debounceThreshold: {
             control: "number",
             type: "number",
             description: "(milliseconds)",
@@ -106,6 +105,14 @@ export const SendMessage: StoryComponentType = {
     args: {
         message: "Here is some example text.",
         level: "polite",
+    },
+};
+
+export const DebounceMessages: StoryComponentType = {
+    args: {
+        message: "Here is some example text.",
+        level: "polite",
+        debounceThreshold: 1000,
     },
 };
 

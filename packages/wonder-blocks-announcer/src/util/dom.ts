@@ -70,7 +70,7 @@ export function createRegion(
 /**
  * Remove message element from the DOM
  * @param {HTMLElement} messageElement Dynamically created message element
- * @param {number} removalDelay Configurable timeout to wait before removing
+ * @param {number} removalDelay How long to wait before removing the message
  */
 export function removeMessage(
     messageElement: HTMLElement,
