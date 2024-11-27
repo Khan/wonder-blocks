@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
-  "type": "module",
   "engines": {
     "node": ">=16"
   },
