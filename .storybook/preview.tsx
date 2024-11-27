@@ -1,6 +1,6 @@
 import * as React from "react";
-import wonderBlocksTheme from "./wonder-blocks-theme";
-
+// import wonderBlocksTheme from "./wonder-blocks-theme";
+import {Decorator} from "@storybook/react";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
@@ -84,7 +84,7 @@ const parameters = {
             ignoreSelector:
                 ".docs-story h2, .docs-story h3, .sbdocs #stories, .sbdocs #usage, .sbdocs-subtitle",
         },
-        theme: wonderBlocksTheme,
+        // theme: wonderBlocksTheme,
         components: {
             // Override the default link component to use the WB Link component.
             a: Link,
@@ -95,31 +95,31 @@ const parameters = {
     },
 };
 
-export const decorators = [
-    (Story, context) => {
-        const theme = context.globals.theme;
-        const enableRenderStateRootDecorator =
-            context.parameters.enableRenderStateRootDecorator;
-
-        if (enableRenderStateRootDecorator) {
-            return (
-                <RenderStateRoot>
-                    <ThemeSwitcherContext.Provider value={theme}>
-                        <Story />
-                    </ThemeSwitcherContext.Provider>
-                </RenderStateRoot>
-            );
-        }
+const withThemeSwitcher: Decorator = (
+    Story,
+    {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
+) => {
+    if (enableRenderStateRootDecorator) {
         return (
-            <ThemeSwitcherContext.Provider value={theme}>
-                <Story />
-            </ThemeSwitcherContext.Provider>
+            <RenderStateRoot>
+                <ThemeSwitcherContext.Provider value={theme}>
+                    <Story />
+                </ThemeSwitcherContext.Provider>
+            </RenderStateRoot>
         );
-    },
-];
+    }
+    return (
+        <ThemeSwitcherContext.Provider value={theme}>
+            <Story />
+        </ThemeSwitcherContext.Provider>
+    );
+};
+
+export const decorators = [withThemeSwitcher];
 
 const preview: Preview = {
     parameters,
+
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
@@ -146,6 +146,8 @@ const preview: Preview = {
             },
         },
     },
+
+    tags: ["autodocs"],
 };
 
 export default preview;
