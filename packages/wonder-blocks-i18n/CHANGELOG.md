@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 3.1.4
+
+### Patch Changes
+
+-   5af2e751: Fix a bug with pluralization for fallback untranslated languages.
+
 ## 3.1.3
 
 ### Patch Changes
