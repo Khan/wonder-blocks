@@ -284,14 +284,15 @@ const MultiSelect = (props: Props) => {
     // to this element, and also to pass the reference to Popper.js.
     const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
 
-    const {errorMessage, onOpenerBlurValidation} = useSelectValidation({
-        selectedValue: selectedValues,
-        disabled,
-        validate,
-        onValidate,
-        required,
-        open,
-    });
+    const {errorMessage, onOpenerBlurValidation, onDropdownClosedValidation} =
+        useSelectValidation({
+            selectedValue: selectedValues,
+            disabled,
+            validate,
+            onValidate,
+            required,
+            open,
+        });
 
     const hasError = error || !!errorMessage;
 
@@ -312,6 +313,10 @@ const MultiSelect = (props: Props) => {
 
         if (onToggle) {
             onToggle(opened);
+        }
+
+        if (!opened) {
+            onDropdownClosedValidation();
         }
     };
 
