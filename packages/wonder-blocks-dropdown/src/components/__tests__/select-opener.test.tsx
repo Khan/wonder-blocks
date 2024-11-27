@@ -219,58 +219,31 @@ describe("SelectOpener", () => {
     });
 
     describe("error prop", () => {
-        it("should set aria-invalid to true if error is true", () => {
-            // Arrange
-            // Act
-            render(
-                <SelectOpener
-                    error={true}
-                    onOpenChanged={jest.fn()}
-                    open={false}
-                >
-                    {children}
-                </SelectOpener>,
-            );
-            // Assert
-            expect(screen.getByRole("button")).toHaveAttribute(
-                "aria-invalid",
-                "true",
-            );
-        });
-
-        it("should set aria-invalid to false if error is false", () => {
-            // Arrange
-            // Act
-            render(
-                <SelectOpener
-                    error={false}
-                    onOpenChanged={jest.fn()}
-                    open={false}
-                >
-                    {children}
-                </SelectOpener>,
-            );
-            // Assert
-            expect(screen.getByRole("button")).toHaveAttribute(
-                "aria-invalid",
-                "false",
-            );
-        });
-
-        it("should set aria-invalid to false if error is not set ", () => {
-            // Arrange
-            // Act
-            render(
-                <SelectOpener onOpenChanged={jest.fn()} open={false}>
-                    {children}
-                </SelectOpener>,
-            );
-            // Assert
-            expect(screen.getByRole("button")).toHaveAttribute(
-                "aria-invalid",
-                "false",
-            );
-        });
+        it.each([
+            {ariaInvalid: "true", error: true},
+            {ariaInvalid: "false", error: false},
+            {ariaInvalid: "false", error: undefined},
+        ])(
+            "should set aria-invalid to $ariaInvalid if error is $error",
+            ({ariaInvalid, error}) => {
+                // Arrange
+                // Act
+                render(
+                    <SelectOpener
+                        error={error}
+                        onOpenChanged={jest.fn()}
+                        open={false}
+                    >
+                        {children}
+                    </SelectOpener>,
+                );
+                // Assert
+                expect(screen.getByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    ariaInvalid,
+                );
+            },
+        );
     });
 
     it("should call onBlur when it is blurred", async () => {
