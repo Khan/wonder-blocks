@@ -92,10 +92,23 @@ export function useSelectValidation<T extends SelectValue>({
         handleValidation(value);
     };
 
+    const onSelectedValuesChangeValidation = () => {
+        // When selected values change, clear the error message
+        // This is so errors aren't shown to the user while they update the
+        // selected values. Note that this should only be called when there are
+        // multiple values that can be selected. onSelectionValidation should be
+        // used whenever the user is done selecting a value or values.
+        setErrorMessage(null);
+        if (onValidate) {
+            onValidate(null);
+        }
+    };
+
     return {
         errorMessage,
         onOpenerBlurValidation,
         onDropdownClosedValidation,
         onSelectionValidation,
+        onSelectedValuesChangeValidation,
     };
 }
