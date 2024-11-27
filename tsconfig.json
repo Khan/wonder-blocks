@@ -2,7 +2,6 @@
 /* Visit https://aka.ms/tsconfig to read more about this file */
 {
     "exclude": ["**/dist", "coverage", "coverage-ts"],
-    "include": ["__docs__/**/*", ".storybook/*"],
     "extends": "./tsconfig-common.json",
     "compilerOptions": {
         "noEmit": true,
