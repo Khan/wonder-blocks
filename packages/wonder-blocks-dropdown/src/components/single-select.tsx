@@ -3,7 +3,6 @@ import * as ReactDOM from "react-dom";
 
 import {
     IDProvider,
-    useOnMountEffect,
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
@@ -24,8 +23,7 @@ import type {
     OptionItemComponentArray,
 } from "../util/types";
 import {getLabel, getSelectOpenerLabel} from "../util/helpers";
-
-const defaultErrorMessage = "This field is required.";
+import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type SingleSelectLabels = {
     /**
@@ -298,19 +296,20 @@ const SingleSelect = (props: Props) => {
     // The DOM reference to the opener element. This is mainly used to set focus
     // to this element, and also to pass the reference to Popper.js.
     const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
-    const [errorMessage, setErrorMessage] = React.useState<
-        string | null | undefined
-    >(null);
-    const hasError = error || !!errorMessage;
-
-    useOnMountEffect(() => {
-        // Only validate on mount if the value is not empty and the field is not
-        // required. This is so that fields don't render an error when they are
-        // initially empty
-        if (selectedValue && !required) {
-            handleValidation(selectedValue);
-        }
+    const {
+        errorMessage,
+        onOpenerBlurValidation,
+        onDropdownClosedValidation,
+        onSelectionValidation,
+    } = useSelectValidation({
+        selectedValue,
+        disabled,
+        validate,
+        onValidate,
+        required,
+        open,
     });
+    const hasError = error || !!errorMessage;
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled
@@ -329,43 +328,11 @@ const SingleSelect = (props: Props) => {
         if (onToggle) {
             onToggle(opened);
         }
-        if (!opened && required && !selectedValue) {
-            // If closed, field is required, and no value is selected, validate
-            handleValidation(selectedValue);
+        if (!opened) {
+            // If dropdown is closed, handle dropdown closedvalidation
+            onDropdownClosedValidation();
         }
     };
-
-    const handleValidation = React.useCallback(
-        (value?: string | null) => {
-            // Should not handle validation if it is disabled
-            if (disabled) {
-                return;
-            }
-            if (validate && value) {
-                const error = validate(value) || null;
-                setErrorMessage(error);
-                if (onValidate) {
-                    onValidate(error);
-                }
-                if (error) {
-                    // If there is an error, do not continue with required validation
-                    return;
-                }
-            }
-            if (required) {
-                const requiredString =
-                    typeof required === "string"
-                        ? required
-                        : defaultErrorMessage;
-                const error = value ? null : requiredString;
-                setErrorMessage(error);
-                if (onValidate) {
-                    onValidate(error);
-                }
-            }
-        },
-        [disabled, validate, setErrorMessage, onValidate, required],
-    );
 
     const handleToggle = (newSelectedValue: string) => {
         // Call callback if selection changed.
@@ -385,7 +352,7 @@ const SingleSelect = (props: Props) => {
         }
 
         // Validate when a value is selected
-        handleValidation(newSelectedValue);
+        onSelectionValidation(newSelectedValue);
     };
 
     const mapOptionItemsToDropdownItems = (
@@ -457,15 +424,6 @@ const SingleSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
-    const handleOpenerBlur = () => {
-        if (!open && required && !selectedValue) {
-            // Only validate on opener blur if the dropdown is closed, the field
-            // is required, and no value is selected. This prevents an error when
-            // the dropdown is opened without a value yet.
-            handleValidation(selectedValue);
-        }
-    };
-
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -498,7 +456,7 @@ const SingleSelect = (props: Props) => {
                             text={menuText}
                             opened={open}
                             error={hasError}
-                            onBlur={handleOpenerBlur}
+                            onBlur={onOpenerBlurValidation}
                         >
                             {opener}
                         </DropdownOpener>
@@ -515,7 +473,7 @@ const SingleSelect = (props: Props) => {
                             open={open}
                             ref={handleOpenerRef}
                             testId={testId}
-                            onBlur={handleOpenerBlur}
+                            onBlur={onOpenerBlurValidation}
                         >
                             {menuText}
                         </SelectOpener>
