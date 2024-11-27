@@ -4,7 +4,9 @@ import {
     createTestRegionList,
     createTestElements,
     resetTestElements,
-} from "./util/util";
+} from "./util/test-utilities";
+
+jest.useFakeTimers();
 
 describe("Announcer class", () => {
     describe("instantiation", () => {
@@ -27,47 +29,6 @@ describe("Announcer class", () => {
             expect(wrapperElement).toBeInTheDocument();
             expect(wrapperElement?.childElementCount).toBe(2);
             expect(regions.size).toBe(4);
-        });
-    });
-
-    describe("Debouncing messages", () => {
-        jest.useFakeTimers();
-
-        test("a single message", async () => {
-            // ARRANGE
-            const announcer = Announcer.getInstance();
-            const callback = jest.fn((message: string) => message);
-            const debounced = announcer.debounce(callback, 300);
-
-            // ACT
-            const resultPromise = debounced("Hello, World!");
-
-            // ASSERT
-            expect(resultPromise).toBeInstanceOf(Promise);
-
-            jest.advanceTimersByTime(300);
-
-            await expect(resultPromise).resolves.toBe("Hello, World!");
-        });
-
-        test("resolving with the last argument passed if debounced multiple times", async () => {
-            // ARRANGE
-            const announcer = Announcer.getInstance();
-            const callback = jest.fn((message: string) => message);
-            const debounced = announcer.debounce(callback, 500);
-
-            // ACT
-            debounced("First message");
-            debounced("Second message");
-            const thirdCall = debounced("Third message");
-
-            jest.advanceTimersByTime(500);
-
-            await expect(thirdCall).resolves.toBe("Third message");
-            expect(callback).toHaveBeenCalledTimes(1);
-
-            // ASSERT
-            expect(callback).toHaveBeenCalledWith("Third message");
         });
     });
 
@@ -190,6 +151,28 @@ describe("Announcer class", () => {
             // Assert
             jest.advanceTimersByTime(500);
             await expect(idRef).resolves.toBe("wbARegion-polite1");
+        });
+
+        test("debouncing with a specific wait threshold", async () => {
+            // ARRANGE
+            const announcer = Announcer.getInstance();
+            const waitThreshold = 1000;
+
+            // Act
+            announcer.announce("a thing", "polite", waitThreshold);
+            announcer.announce("two things", "polite", waitThreshold);
+
+            // Assert
+            jest.advanceTimersByTime(1000);
+
+            const targetElement =
+                announcer.dictionary.get(`wbARegion-polite1`)?.element;
+            const targetElement2 =
+                announcer.dictionary.get(`wbARegion-polite0`)?.element;
+
+            // ASSERT
+            await expect(targetElement?.textContent).toBe("");
+            await expect(targetElement2?.textContent).toBe("two things");
         });
     });
 
