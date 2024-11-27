@@ -1,5 +1,5 @@
 import * as React from "react";
-// import wonderBlocksTheme from "./wonder-blocks-theme";
+import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -84,7 +84,7 @@ const parameters = {
             ignoreSelector:
                 ".docs-story h2, .docs-story h3, .sbdocs #stories, .sbdocs #usage, .sbdocs-subtitle",
         },
-        // theme: wonderBlocksTheme,
+        theme: wonderBlocksTheme,
         components: {
             // Override the default link component to use the WB Link component.
             a: Link,
