@@ -84,10 +84,10 @@ describe("getPluralTranslation", () => {
         // Act
         const result = getPluralTranslation(
             {
-                lang: TEST_LOCALE,
+                lang: "en",
                 messages: ["test singular", "test plural"],
             },
-            0,
+            1,
         );
 
         // Assert
@@ -104,10 +104,10 @@ describe("getPluralTranslation", () => {
         // Act
         const result = getPluralTranslation(
             {
-                lang: TEST_LOCALE,
+                lang: "en",
                 messages: ["test singular", "test plural"],
             },
-            1,
+            2,
         );
 
         // Assert
@@ -135,10 +135,10 @@ describe("getPluralTranslation", () => {
         // Act
         const result = getPluralTranslation(
             {
-                lang: TEST_LOCALE,
+                lang: "en",
                 messages: ["test singular", "test plural"],
             },
-            0,
+            1,
         );
 
         // Assert
