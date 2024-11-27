@@ -137,6 +137,7 @@ export default class SelectOpener extends React.Component<
             light,
             open,
             testId,
+            "aria-required": ariaRequired,
             onBlur,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onOpenChanged,
@@ -168,6 +169,7 @@ export default class SelectOpener extends React.Component<
                 aria-disabled={disabled}
                 aria-expanded={open ? "true" : "false"}
                 aria-invalid={error}
+                aria-required={ariaRequired}
                 aria-haspopup="listbox"
                 data-testid={testId}
                 id={id}
