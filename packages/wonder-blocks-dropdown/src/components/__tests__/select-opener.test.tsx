@@ -5,8 +5,8 @@ import {userEvent} from "@testing-library/user-event";
 import SelectOpener from "../select-opener";
 
 describe("SelectOpener", () => {
+    const children = "text";
     describe("onOpenChanged", () => {
-        const children = "text";
         it("should trigger using the mouse", async () => {
             // Arrange
             const onOpenMock = jest.fn();
@@ -216,5 +216,80 @@ describe("SelectOpener", () => {
             // Assert
             expect(onOpenMock).toHaveBeenCalledTimes(0);
         });
+    });
+
+    describe("error prop", () => {
+        it("should set aria-invalid to true if error is true", () => {
+            // Arrange
+            // Act
+            render(
+                <SelectOpener
+                    error={true}
+                    onOpenChanged={jest.fn()}
+                    open={false}
+                >
+                    {children}
+                </SelectOpener>,
+            );
+            // Assert
+            expect(screen.getByRole("button")).toHaveAttribute(
+                "aria-invalid",
+                "true",
+            );
+        });
+
+        it("should set aria-invalid to false if error is false", () => {
+            // Arrange
+            // Act
+            render(
+                <SelectOpener
+                    error={false}
+                    onOpenChanged={jest.fn()}
+                    open={false}
+                >
+                    {children}
+                </SelectOpener>,
+            );
+            // Assert
+            expect(screen.getByRole("button")).toHaveAttribute(
+                "aria-invalid",
+                "false",
+            );
+        });
+
+        it("should set aria-invalid to false if error is not set ", () => {
+            // Arrange
+            // Act
+            render(
+                <SelectOpener onOpenChanged={jest.fn()} open={false}>
+                    {children}
+                </SelectOpener>,
+            );
+            // Assert
+            expect(screen.getByRole("button")).toHaveAttribute(
+                "aria-invalid",
+                "false",
+            );
+        });
+    });
+
+    it("should call onBlur when it is blurred", async () => {
+        // Arrange
+        const onBlur = jest.fn();
+        render(
+            <SelectOpener
+                onBlur={onBlur}
+                open={false}
+                onOpenChanged={jest.fn()}
+            >
+                {children}
+            </SelectOpener>,
+        );
+        // Act
+        await userEvent.tab();
+        await userEvent.tab();
+
+        // Assert
+        expect(onBlur).toHaveBeenCalledTimes(1);
     });
 });
