@@ -77,6 +77,7 @@ class DropdownOpener extends React.Component<Props> {
             opened,
             "aria-controls": ariaControls,
             "aria-haspopup": ariaHasPopUp,
+            "aria-required": ariaRequired,
             id,
             onBlur,
         } = this.props;
@@ -96,6 +97,7 @@ class DropdownOpener extends React.Component<Props> {
             id,
             "aria-expanded": opened ? "true" : "false",
             "aria-haspopup": ariaHasPopUp,
+            "aria-required": ariaRequired,
             onClick: childrenProps.onClick
                 ? (e: React.MouseEvent) => {
                       // This is done to avoid overriding a
