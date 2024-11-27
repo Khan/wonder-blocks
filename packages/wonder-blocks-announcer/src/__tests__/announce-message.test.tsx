@@ -5,9 +5,27 @@ import {announceMessage} from "../announce-message";
 import {clearMessages} from "../clear-messages";
 
 jest.useFakeTimers();
-jest.spyOn(global, "setTimeout");
+
+let originalSetTimeout: typeof setTimeout;
 
 describe("Announcer.announceMessage", () => {
+    beforeAll(() => {
+        originalSetTimeout = global.setTimeout;
+
+        // Mock setTimeout to log its calls
+        jest.spyOn(global, "setTimeout").mockImplementation(
+            (callback, delay) => {
+                console.log("setTimeout called with delay:", delay);
+                // Call the original setTimeout implementation
+                return originalSetTimeout(callback, delay);
+            },
+        );
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks(); // Clear mocks after each test
+    });
+
     afterEach(() => {
         clearMessages();
     });
@@ -118,17 +136,11 @@ describe("Announcer.announceMessage", () => {
         });
     });
 
-    test("removes messages after an optional duration", async () => {
+    test("removes messages after a length of time", async () => {
         const message1 = "A Thing";
-        const message2 = "A Different Thing";
 
-        // default timeout is 5000ms
-        render(
-            <AnnounceMessageButton message={message1} removalDelay={2000} />,
-        );
-        render(
-            <AnnounceMessageButton message={message2} removalDelay={7000} />,
-        );
+        // default timeout is 5000ms + 250ms (removalDelay + debounceThreshold)
+        render(<AnnounceMessageButton message={message1} />);
 
         const button = screen.getAllByRole("button");
         button[0].click();
@@ -139,20 +151,15 @@ describe("Announcer.announceMessage", () => {
         jest.advanceTimersByTime(500);
         expect(message1Region).toHaveTextContent(message1);
 
-        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
+        expect(setTimeout).toHaveBeenNthCalledWith(
+            1,
+            expect.any(Function),
+            5250,
+        );
 
-        jest.advanceTimersByTime(2000);
+        jest.advanceTimersByTime(5250);
         await waitFor(() => {
             expect(screen.queryByText(message1)).not.toBeInTheDocument();
         });
-
-        button[1].click();
-        const message2Region = screen.queryByTestId("wbARegion-polite0");
-        await waitFor(() => {
-            expect(message2Region).toHaveTextContent(message2);
-        });
-        expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 7000);
-        jest.advanceTimersByTime(7000);
-        expect(screen.queryByText(message2)).not.toBeInTheDocument();
     });
 });

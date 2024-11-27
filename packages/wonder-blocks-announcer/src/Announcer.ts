@@ -13,10 +13,10 @@ import {
     createDuplicateRegions,
     removeMessage,
 } from "./util/dom";
-import {alternateIndex} from "./util/util";
+import {alternateIndex, debounce} from "./util/util";
 
 const REMOVAL_TIMEOUT_DELAY = 5000;
-const WAIT_THRESHOLD = 250;
+const DEFAULT_WAIT_THRESHOLD = 250;
 
 /**
  * Internal class to manage screen reader announcements.
@@ -30,6 +30,7 @@ class Announcer {
         pIndex: 0,
     };
     dictionary: RegionDictionary = new Map();
+    stateLock = false;
 
     private constructor() {
         if (typeof document !== "undefined") {
@@ -122,14 +123,19 @@ class Announcer {
      * Announce a live region message for a given level
      * @param {string} message The message to be announced
      * @param {string} level Politeness level: should it interrupt?
-     * @param {number} removalDelay How long to wait before removing message
+     * @param {number} debounceThreshold Optional duration to wait before appending another message (defaults to 250ms)
      * @returns {Promise<string>} Promise that resolves with an IDREF for targeted element or empty string if it failed
      */
     async announce(
         message: string,
         level: PolitenessLevel,
-        removalDelay?: number,
+        debounceThreshold: number = DEFAULT_WAIT_THRESHOLD,
     ): Promise<string> {
+        // Locking variable to prevent simultaneous updates
+        if (this.stateLock) {
+            return Promise.resolve(""); // Return early if state is locked
+        }
+
         const announceCB = () => {
             if (!this.node) {
                 this.reattachNodes();
@@ -139,12 +145,7 @@ class Announcer {
                 (entry: RegionDef) => entry.level === level,
             );
 
-            const newIndex = this.appendMessage(
-                message,
-                level,
-                regions,
-                removalDelay,
-            );
+            const newIndex = this.appendMessage(message, level, regions);
 
             // overwrite central index for the given level
             if (level === "assertive") {
@@ -153,17 +154,23 @@ class Announcer {
                 this.regionFactory.pIndex = newIndex;
             }
 
+            this.stateLock = false; // Release the lock
+
             return regions[newIndex].id || "";
         };
 
-        const safeAnnounce = this.debounce(announceCB, WAIT_THRESHOLD);
-        const result = await safeAnnounce({message, level, removalDelay});
+        const safeAnnounce = debounce(announceCB, debounceThreshold);
+        const result = await safeAnnounce({
+            message,
+            level,
+            debounceThreshold,
+        });
         return result;
     }
 
     /**
      * Clear messages on demand.
-     * This could be useful for clearing immediately, rather than waiting for the removalDelay.
+     * This could be useful for clearing immediately, rather than waiting for the default removalDelay.
      * Defaults to clearing all live region elements
      * @param {string} id Optional IDREF of specific element to empty
      */
@@ -185,14 +192,13 @@ class Announcer {
      * @param {string} message The message to be appended
      * @param {string} level Which level to alternate
      * @param {RegionDef[]} regionList Filtered dictionary of regions for level
-     * @param {number} removalDelay How long to wait before removing message
      * @returns {number} Index of targeted region for updating central register
      */
     appendMessage(
         message: string,
         level: PolitenessLevel, // level
         regionList: RegionDef[], // list of relevant elements
-        removalDelay: number = REMOVAL_TIMEOUT_DELAY,
+        debounceThreshold: number = DEFAULT_WAIT_THRESHOLD,
     ): number {
         // Starting index for a given level
         let index =
@@ -213,33 +219,11 @@ class Announcer {
         // append message to new index
         regionList[index].element.appendChild(messageEl);
 
-        removeMessage(messageEl, removalDelay);
+        // add debounce wait duration to the default removalDelay
+        // so we aren't removing messages before a debounce cycle has concluded
+        removeMessage(messageEl, debounceThreshold + REMOVAL_TIMEOUT_DELAY);
 
         return index;
-    }
-
-    /**
-     * Keep announcements from happening too often.
-     * Anytime the announcer is called repeatedly, this will slow down the results.
-     * @param {Function} callback Announce method to call with argments
-     * @param {number} wait Length of time to wait before calling callback again
-     * @returns {string} idRef of targeted live region element
-     */
-    debounce(callback: (...args: any[]) => string, wait: number) {
-        let timeoutId: ReturnType<typeof setTimeout> | null = null;
-
-        return (...args: any[]): Promise<string> => {
-            return new Promise((resolve) => {
-                if (timeoutId !== null) {
-                    clearTimeout(timeoutId);
-                }
-
-                timeoutId = setTimeout(() => {
-                    const result = callback(...args);
-                    resolve(result);
-                }, wait);
-            });
-        };
     }
 
     /**
