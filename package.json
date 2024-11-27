@@ -28,6 +28,7 @@
     "start:storybook": "storybook dev -p 6061",
     "test:common": "yarn run build && yarn run lint && yarn run typecheck && yarn run alex",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
+    "test:storybook": "vitest --project=storybook",
     "test": "yarn run jest && yarn run test:common",
     "typecheck": "tsc",
     "typewatch": "tsc --noEmit --watch --incremental",
