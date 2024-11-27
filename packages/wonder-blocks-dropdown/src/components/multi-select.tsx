@@ -25,7 +25,7 @@ import type {
     OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel, areArraysEqual} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type Labels = {
@@ -284,15 +284,19 @@ const MultiSelect = (props: Props) => {
     // to this element, and also to pass the reference to Popper.js.
     const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
 
-    const {errorMessage, onOpenerBlurValidation, onDropdownClosedValidation} =
-        useSelectValidation({
-            selectedValue: selectedValues,
-            disabled,
-            validate,
-            onValidate,
-            required,
-            open,
-        });
+    const {
+        errorMessage,
+        onOpenerBlurValidation,
+        onDropdownClosedValidation,
+        onSelectionValidation,
+    } = useSelectValidation({
+        selectedValue: selectedValues,
+        disabled,
+        validate,
+        onValidate,
+        required,
+        open,
+    });
 
     const hasError = error || !!errorMessage;
 
@@ -315,8 +319,15 @@ const MultiSelect = (props: Props) => {
             onToggle(opened);
         }
 
+        // Handle validation when it is closed
         if (!opened) {
-            onDropdownClosedValidation();
+            if (!areArraysEqual(lastSelectedValues, selectedValues)) {
+                // If there are newly selected values, trigger selection validation
+                onSelectionValidation(selectedValues);
+            } else {
+                // If there are no newly selected values, trigger closed validation
+                onDropdownClosedValidation();
+            }
         }
     };
 
