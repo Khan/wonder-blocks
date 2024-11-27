@@ -492,6 +492,7 @@ const SingleSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
+                            aria-required={ariaRequired || !!required}
                             onClick={handleClick}
                             disabled={isDisabled}
                             ref={handleOpenerRef}
@@ -506,6 +507,7 @@ const SingleSelect = (props: Props) => {
                         <SelectOpener
                             {...sharedProps}
                             aria-controls={dropdownId}
+                            aria-required={ariaRequired || !!required}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             error={hasError}
