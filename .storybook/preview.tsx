@@ -115,11 +115,9 @@ const withThemeSwitcher: Decorator = (
     );
 };
 
-export const decorators = [withThemeSwitcher];
-
 const preview: Preview = {
     parameters,
-
+    decorators: [withThemeSwitcher],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {

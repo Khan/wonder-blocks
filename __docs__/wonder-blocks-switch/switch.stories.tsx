@@ -103,7 +103,6 @@ export const Controlled: StoryComponentType = {
     },
     play: async ({canvasElement}) => {
         const canvas = within(canvasElement);
-        console.log("switch.play.canvas: ", canvas);
 
         const switchWithIcon = canvas.getByTestId("test-switch");
         const switchInput = canvas.getByRole("switch", {name: "test switch"});
