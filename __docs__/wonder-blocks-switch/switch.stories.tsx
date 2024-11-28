@@ -89,7 +89,6 @@ export const Controlled: StoryComponentType = {
 
         return (
             <View style={styles.column}>
-                hello
                 <Switch checked={checkedOne} onChange={setCheckedOne} />
                 <Switch
                     testId="test-switch"

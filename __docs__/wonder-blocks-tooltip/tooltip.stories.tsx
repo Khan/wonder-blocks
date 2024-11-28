@@ -439,8 +439,8 @@ export const AutoUpdate: StoryComponentType = {
 
         // Assert
         // The tooltip should have updated its position
-        await expect(initialLeft).not.toBe(newLeft);
-        await expect(initialTop).not.toBe(newTop);
+        await expect(initialLeft).not.toEqual(newLeft);
+        await expect(initialTop).not.toEqual(newTop);
     },
 };
 
