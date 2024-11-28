@@ -199,7 +199,7 @@ type Props = AriaProps &
          * Use this for errors that are shown to the user while they are filling out
          * a form.
          */
-        validate?: (value: string) => string | null | void;
+        validate?: (value?: string | null) => string | null | void;
         /**
          * Called right after the field is validated.
          */
@@ -302,7 +302,7 @@ const SingleSelect = (props: Props) => {
         onDropdownClosedValidation,
         onSelectionValidation,
     } = useSelectValidation({
-        selectedValue,
+        value: selectedValue,
         disabled,
         validate,
         onValidate,
