@@ -64,10 +64,9 @@ export function useSelectValidation<T extends SelectValue>({
     );
 
     useOnMountEffect(() => {
-        // Only validate on mount if the value is not empty and the field is not
-        // required. This is so that fields don't render an error when they are
-        //initially empty
-        if (hasValue(selectedValue) && !required) {
+        // Only validate on mount if the value is not empty. This is so that
+        // fields don't render an error when they are initially empty
+        if (hasValue(selectedValue)) {
             handleValidation(selectedValue);
         }
     });
