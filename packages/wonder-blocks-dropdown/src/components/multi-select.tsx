@@ -291,7 +291,7 @@ const MultiSelect = (props: Props) => {
         onSelectionValidation,
         onSelectedValuesChangeValidation,
     } = useSelectValidation({
-        selectedValue: selectedValues,
+        value: selectedValues,
         disabled,
         validate,
         onValidate,
