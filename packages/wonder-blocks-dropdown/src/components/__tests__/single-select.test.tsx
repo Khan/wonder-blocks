@@ -2285,8 +2285,7 @@ describe("SingleSelect", () => {
                     // Assert
                     expect(onValidate).not.toHaveBeenCalled();
                 });
-
-                it("should not call onValidate if there is a selected value on the initial render", () => {
+                it("should call onValidate with null if there is a selected value on the initial render", () => {
                     // Arrange
                     const requiredMessage = "Required field";
                     const onValidate = jest.fn();
@@ -2301,7 +2300,7 @@ describe("SingleSelect", () => {
                     );
 
                     // Assert
-                    expect(onValidate).not.toHaveBeenCalled();
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
                 });
             });
 
