@@ -1,6 +1,10 @@
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {ComboboxLabels} from "./types";
 
+/**
+ * Key value mapping reference:
+ * https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
+ */
 export const keys = {
     escape: "Escape",
     tab: "Tab",
