@@ -658,9 +658,9 @@ class DropdownCore extends React.Component<Props, State> {
         const key = event.key;
 
         // Listen for the keydown events if we are using ASCII characters.
-        if (enableTypeAhead && getStringForKey(event.key)) {
+        if (enableTypeAhead && getStringForKey(key)) {
             event.stopPropagation();
-            this.textSuggestion += event.key;
+            this.textSuggestion += key;
             // Trigger the filter logic only after the debounce is resolved.
             this.handleKeyDownDebounced(this.textSuggestion);
         }

@@ -1813,7 +1813,7 @@ describe("SingleSelect", () => {
                 </SingleSelect>
             );
         };
-        describe("validation when a value is selected", () => {
+        describe("when a value is selected", () => {
             it("should call validate prop", async () => {
                 // Arrange
                 const validate = jest.fn();
@@ -1850,6 +1850,7 @@ describe("SingleSelect", () => {
                     errorMessage,
                 );
             });
+
             it("should be in an error state when validation fails", async () => {
                 // Arrange
                 const userEvent = doRender(
@@ -1900,12 +1901,17 @@ describe("SingleSelect", () => {
                 // Assert
                 expect(validate).toHaveBeenCalledExactlyOnceWith("1");
             });
+
             it("should be in an error state on mount if there is an invalid selected value", async () => {
                 // Arrange
                 // Act
                 doRender(
                     <ControlledSingleSelect
-                        validate={() => "Error"}
+                        validate={(value) => {
+                            if (value === "1") {
+                                return "Error";
+                            }
+                        }}
                         selectedValue={"1"}
                     />,
                 );
@@ -1915,6 +1921,27 @@ describe("SingleSelect", () => {
                     "true",
                 );
             });
+
+            it("should not be in an error state on mount if there is a valid selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledSingleSelect
+                        validate={(value) => {
+                            if (value === "1") {
+                                return "Error";
+                            }
+                        }}
+                        selectedValue={"2"}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+
             it("should not validate on mount if there is no selected value", () => {
                 // Arrange
                 // Act
@@ -1929,6 +1956,7 @@ describe("SingleSelect", () => {
                 // Assert
                 expect(validate).not.toHaveBeenCalled();
             });
+
             it("should not be in an error state on mount if there is no selected value", async () => {
                 // Arrange
                 // Act
@@ -1946,7 +1974,7 @@ describe("SingleSelect", () => {
             });
         });
 
-        describe("picking a value after there was a validation error", () => {
+        describe("interactions after there is a validation error", () => {
             it("should still be in an error state before a value is picked", async () => {
                 // Arrange
                 const errorMessage = "Error message";
@@ -2022,9 +2050,9 @@ describe("SingleSelect", () => {
                     const userEvent = doRender(
                         <ControlledSingleSelect required={requiredMessage} />,
                     );
+                    await userEvent.tab(); // focus on the select
 
                     // Act
-                    await userEvent.tab(); // focus on the select
                     await userEvent.tab(); // leave the select
 
                     // Assert
@@ -2263,6 +2291,7 @@ describe("SingleSelect", () => {
                     // Assert
                     expect(onValidate).not.toHaveBeenCalled();
                 });
+
                 it("should not call onValidate if there is a selected value on the initial render", () => {
                     // Arrange
                     const requiredMessage = "Required field";
@@ -2281,6 +2310,7 @@ describe("SingleSelect", () => {
                     expect(onValidate).not.toHaveBeenCalled();
                 });
             });
+
             describe("picking a value after there was an error", () => {
                 it("should still be in an error state before a value is picked", async () => {
                     // Arrange
@@ -2300,6 +2330,7 @@ describe("SingleSelect", () => {
                         "true",
                     );
                 });
+
                 it("should not be in an error state once a value is picked", async () => {
                     // Arrange
                     const requiredMessage = "Required field";

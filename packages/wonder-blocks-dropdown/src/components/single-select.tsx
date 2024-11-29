@@ -306,7 +306,7 @@ const SingleSelect = (props: Props) => {
     useOnMountEffect(() => {
         // Only validate on mount if the value is not empty and the field is not
         // required. This is so that fields don't render an error when they are
-        //initially empty
+        // initially empty
         if (selectedValue && !required) {
             handleValidation(selectedValue);
         }

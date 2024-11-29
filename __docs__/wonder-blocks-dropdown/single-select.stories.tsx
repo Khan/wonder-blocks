@@ -384,7 +384,9 @@ export const Disabled: StoryComponentType = {
 
 const ControlledSingleSelect = (args: PropsFor<typeof SingleSelect>) => {
     const [opened, setOpened] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState("");
+    const [selectedValue, setSelectedValue] = React.useState(
+        args.selectedValue,
+    );
     const [errorMessage, setErrorMessage] = React.useState<
         null | string | void
     >(null);
@@ -490,7 +492,7 @@ export const ErrorFromValidation: StoryComponentType = {
         return (
             <View style={{gap: spacing.xSmall_8}}>
                 <LabelSmall htmlFor="single-select" tag="label">
-                    Validation example (try picking lemon)
+                    Validation example (try picking lemon to trigger an error)
                 </LabelSmall>
                 <ControlledSingleSelect
                     {...args}

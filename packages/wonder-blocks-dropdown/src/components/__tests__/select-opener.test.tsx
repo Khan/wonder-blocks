@@ -258,9 +258,9 @@ describe("SelectOpener", () => {
                 {children}
             </SelectOpener>,
         );
+        await userEvent.tab(); // focus on the opener
         // Act
-        await userEvent.tab();
-        await userEvent.tab();
+        await userEvent.tab(); // blur the opener
 
         // Assert
         expect(onBlur).toHaveBeenCalledTimes(1);
