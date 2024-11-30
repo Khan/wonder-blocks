@@ -6,9 +6,9 @@ const defaultErrorMessage = "This field is required.";
 type SingleSelectedValue = string | null | undefined;
 type MultiSelectedValues = string[];
 
-type SelectValue = SingleSelectedValue | MultiSelectedValues;
+export type SelectValue = SingleSelectedValue | MultiSelectedValues;
 
-type SelectValidationProps<T extends SelectValue> = {
+export type SelectValidationProps<T extends SelectValue> = {
     value?: T;
     disabled?: boolean;
     validate?: (value: T) => string | null | void;
@@ -29,7 +29,14 @@ export function useSelectValidation<T extends SelectValue>({
     required,
     open,
 }: SelectValidationProps<T>) {
-    const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = React.useState<string | null>(
+        // Ensures error is updated on unmounted server-side renders
+        // Pass in an initializer function so the validate prop is not called
+        // on every render here
+        () =>
+            (validate && hasValue(value) && !disabled && validate(value)) ||
+            null,
+    );
 
     const handleValidation = React.useCallback(
         (newValue?: T) => {
@@ -37,8 +44,8 @@ export function useSelectValidation<T extends SelectValue>({
             if (disabled) {
                 return;
             }
-            if (validate && hasValue(newValue)) {
-                const error = validate(newValue) || null;
+            if (validate) {
+                const error = (newValue !== undefined && validate(newValue)) || null;
                 setErrorMessage(error);
                 if (onValidate) {
                     onValidate(error);
