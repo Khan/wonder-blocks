@@ -1891,7 +1891,7 @@ describe("SingleSelect", () => {
         });
 
         describe("validation on mount", () => {
-            it("should validate on mount if there is a selected value", () => {
+            it("should validate twice when first rendered if there is a selected value (once on initalization, once after mount)", () => {
                 // Arrange
                 const validate = jest.fn();
                 // Act
@@ -1902,7 +1902,7 @@ describe("SingleSelect", () => {
                     />,
                 );
                 // Assert
-                expect(validate).toHaveBeenCalledExactlyOnceWith("1");
+                expect(validate.mock.calls).toStrictEqual([["1"], ["1"]]);
             });
 
             it("should be in an error state on mount if there is an invalid selected value", async () => {
