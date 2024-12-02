@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.8.0
+
+### Minor Changes
+
+-   2b8424ca: Allow use of JSX Element as label in SingleSelect and MultiSelect
+
 ## 5.7.0
 
 ### Minor Changes
