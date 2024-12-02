@@ -2912,5 +2912,107 @@ describe("MultiSelect", () => {
                 );
             });
         });
+
+        describe("validate and required props", () => {
+            it("should be in an error state if validate succeeds and required is set to true", async () => {
+                // Arrange
+                const requiredMessage = "Required field";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        required={requiredMessage}
+                        validate={() => {}}
+                        selectedValues={["1"]}
+                    />,
+                );
+                // Open the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Unselect selected option
+                const listbox = await screen.findByRole("listbox", {
+                    hidden: true,
+                });
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+
+                // Act
+                // Close the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
+            it("should call the onValidate prop with null and the required error message if validate succeeds and required is set to true", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const requiredMessage = "Required field";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        onValidate={onValidate}
+                        required={requiredMessage}
+                        validate={() => {}}
+                        selectedValues={["1"]}
+                    />,
+                );
+                // Open the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Unselect selected option
+                const listbox = await screen.findByRole("listbox", {
+                    hidden: true,
+                });
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+                onValidate.mockClear(); // Clear the mock
+
+                // Act
+                // Close the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Assert
+                expect(onValidate.mock.calls).toStrictEqual([
+                    [null], // onValidate is called with null when `validate` is called, this clears any existing errors
+                    [requiredMessage], // onValidate is called with the required error message if it is required
+                ]);
+            });
+
+            it("should call the onValidate prop with the validate error message", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        onValidate={onValidate}
+                        validate={() => errorMessage}
+                        required={true}
+                        selectedValues={["1"]}
+                    />,
+                );
+                // Open the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+                // Unselect selected option
+                const listbox = await screen.findByRole("listbox", {
+                    hidden: true,
+                });
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+                onValidate.mockClear(); // Clear the mock
+
+                // Act
+                // Close the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                    errorMessage,
+                );
+            });
+        });
     });
 });
