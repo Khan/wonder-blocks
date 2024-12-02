@@ -25,6 +25,16 @@ describe("ModalHeader", () => {
         expect(screen.getByText("Title")).toBeInTheDocument();
     });
 
+    test("uses an h2 tag for the title", () => {
+        // Arrange, Act
+        render(<ModalHeader title="Title" titleId="modal-title" />);
+
+        // Assert
+        expect(
+            screen.getByRole("heading", {level: 2, name: "Title"}),
+        ).toBeInTheDocument();
+    });
+
     test("using only `breadcrumbs` should render the header", () => {
         // Arrange, Act
         render(

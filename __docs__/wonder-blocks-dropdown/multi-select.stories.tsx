@@ -18,7 +18,12 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
-import {allCountries, allProfilesWithPictures} from "./option-item-examples";
+import {
+    allCountries,
+    allProfilesWithPictures,
+    locales,
+    chatIcon,
+} from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
@@ -639,6 +644,57 @@ export const CustomOptionItems: StoryComponentType = {
                             ) : undefined
                         }
                         subtitle2={user.email}
+                    />
+                ))}
+            </MultiSelect>
+        );
+    },
+    decorators: [
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
+            <View style={styles.wrapper}>{Story()}</View>
+        ),
+    ],
+};
+
+/**
+ * This example illustrates how a JSX Element can appear as the label by setting
+ * `showOpenerLabelAsText` to false. Note that in this example, we define
+ * `labelAsText` on the OptionItems to ensure that filtering works correctly.
+ */
+export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        const [selectedValues, setSelectedValues] = React.useState<
+            Array<string>
+        >([]);
+
+        const handleChange = (selectedValues: Array<string>) => {
+            setSelectedValues(selectedValues);
+        };
+
+        const handleToggle = (opened: boolean) => {
+            setOpened(opened);
+        };
+
+        return (
+            <MultiSelect
+                onChange={handleChange}
+                selectedValues={selectedValues}
+                onToggle={handleToggle}
+                opened={opened}
+                showOpenerLabelAsText={false}
+                isFilterable={true}
+            >
+                {locales.map((locale, index) => (
+                    <OptionItem
+                        key={index}
+                        value={String(index)}
+                        label={
+                            <span>
+                                {chatIcon} {locale}
+                            </span>
+                        }
+                        labelAsText={locale}
                     />
                 ))}
             </MultiSelect>

@@ -23,7 +23,7 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 
 const defaultErrorMessage = "This field is required.";
 
@@ -88,6 +88,13 @@ type DefaultProps = Readonly<{
      * The object containing the custom labels used inside this component.
      */
     labels?: SingleSelectLabels;
+    /**
+     * When false, the SelectOpener can show a Node as a label. When true, the
+     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * plain text label can be provided with the `labelAsText` prop.
+     * Defaults to true.
+     */
+    showOpenerLabelAsText?: boolean;
 }>;
 
 type Props = AriaProps &
@@ -280,6 +287,7 @@ const SingleSelect = (props: Props) => {
         validate,
         onValidate,
         required,
+        showOpenerLabelAsText = true,
         ...sharedProps
     } = props;
 
@@ -473,7 +481,7 @@ const SingleSelect = (props: Props) => {
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
         const menuText = selectedItem
-            ? getLabel(selectedItem.props)
+            ? getSelectOpenerLabel(showOpenerLabelAsText, selectedItem.props)
             : placeholder;
 
         const dropdownOpener = (

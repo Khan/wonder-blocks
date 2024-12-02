@@ -5,7 +5,10 @@
  */
 import FakeTranslate from "./i18n-faketranslate";
 import {getLocale} from "./locale";
+import {allPluralForms} from "./plural-forms";
 import {PluralConfigurationObject} from "./types";
+
+type Language = keyof typeof allPluralForms;
 
 // The cache of strings that have been translated, by locale.
 const localeMessageStore = new Map<
@@ -17,6 +20,20 @@ const localeMessageStore = new Map<
 
 // Create a fake translate object to use if we can't find a translation.
 const {translate: fakeTranslate} = new FakeTranslate();
+
+/*
+ * Return the ngettext position that matches the given number and lang.
+ *
+ * Arguments:
+ *  - num: The number upon which to toggle the plural forms.
+ *  - lang: The language to use as the basis for the pluralization.
+ */
+export const ngetpos = function (num: number, lang?: Language): number {
+    const pluralForm = (lang && allPluralForms[lang]) || allPluralForms["en"];
+    const pos = pluralForm(num);
+    // Map true to 1 and false to 0, keep any numeric return value the same.
+    return pos === true ? 1 : pos ? pos : 0;
+};
 
 /**
  * Get the translation for a given id and locale.
@@ -89,12 +106,15 @@ export const getSingularTranslation = (
  */
 export const getPluralTranslation = (
     pluralConfig: PluralConfigurationObject,
-    idx: number,
+    num: number,
 ) => {
     const {lang, messages} = pluralConfig;
 
     // We try to find the translation in the cache.
-    const translatedMessages = getTranslationFromStore(messages[0], lang);
+    const translatedMessages = getTranslationFromStore(
+        messages[0],
+        getLocale(),
+    );
 
     // We found the translation so we can return the right plural form.
     if (translatedMessages) {
@@ -103,10 +123,13 @@ export const getPluralTranslation = (
             // just in case.
             return translatedMessages;
         }
+        // Get the translated string
+        const idx = ngetpos(num, getLocale());
         return translatedMessages[idx];
     }
 
     // Otherwise, there's no translation, so we try to do fake translation.
+    const idx = ngetpos(num, lang);
     return fakeTranslate(messages[idx]);
 };
 

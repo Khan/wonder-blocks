@@ -124,6 +124,7 @@ export default function ModalHeader(props: Props) {
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}
             <HeadingMedium
+                tag="h2"
                 style={styles.title}
                 id={titleId}
                 testId={testId && `${testId}-title`}
