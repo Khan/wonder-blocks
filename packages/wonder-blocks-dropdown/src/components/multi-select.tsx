@@ -25,7 +25,7 @@ import type {
     OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel, getSelectOpenerLabel, areArraysEqual} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type Labels = {
@@ -322,11 +322,11 @@ const MultiSelect = (props: Props) => {
 
         // Handle validation when it is closed
         if (!opened) {
-            if (!areArraysEqual(lastSelectedValues, selectedValues)) {
-                // If there are newly selected values, trigger selection validation
+            if (lastSelectedValues !== selectedValues) {
+                // If lastSelectedValues is not the same as selectedValues, trigger selection validation
                 onSelectionValidation(selectedValues);
             } else {
-                // If there are no newly selected values, trigger closed validation
+                // If there are no changes to the selected values, trigger closed validation
                 onDropdownClosedValidation();
             }
         }

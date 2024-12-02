@@ -2473,6 +2473,44 @@ describe("MultiSelect", () => {
                 // Assert
                 expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
             });
+
+            it("should still be in an error state if an invalid value is unselected and selected again", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                        testId="multi-select"
+                    />,
+                );
+                // Open the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+                // Need to find item text within the listbox since the item text is also used on the opener
+                const listbox = await screen.findByRole("listbox", {
+                    hidden: true,
+                });
+                // Unselect the invalid value
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+                // Select the invalid value again
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+
+                // Act
+                // Close the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
         });
 
         describe("required", () => {
