@@ -3,7 +3,6 @@
 /* To fix, remove an entry above, run ka-lint, and fix errors. */
 import * as React from "react";
 
-import {allPluralForms} from "./plural-forms";
 import {getLocale} from "./locale";
 import {PluralConfigurationObject} from "./types";
 import {getPluralTranslation, getSingularTranslation} from "./i18n-store";
@@ -46,8 +45,6 @@ interface _Overloads {
             | undefined,
     ): string;
 }
-
-type Language = keyof typeof allPluralForms;
 
 const interpolationMarker = /%\(([\w_]+)\)s/g;
 
@@ -220,11 +217,7 @@ export const ngettext: ngettextOverloads = (
     const actualOptions: NGetOptions =
         (typeof singular === "object" ? num : (options as any)) || {};
 
-    // Get the translated string
-    const idx = ngetpos(actualNum, pluralConfObj.lang);
-
-    // The common (non-error) case is messages[idx].
-    const translation = getPluralTranslation(pluralConfObj, idx);
+    const translation = getPluralTranslation(pluralConfObj, actualNum);
 
     // Get the options to substitute into the string.
     // We automatically add in the 'magic' option-variable 'num'.
@@ -243,20 +236,6 @@ export const ngettext: ngettextOverloads = (
  */
 const formatNumber = (num: number): string => {
     return Intl.NumberFormat(getLocale()).format(num);
-};
-
-/*
- * Return the ngettext position that matches the given number and lang.
- *
- * Arguments:
- *  - num: The number upon which to toggle the plural forms.
- *  - lang: The language to use as the basis for the pluralization.
- */
-export const ngetpos = function (num: number, lang?: Language): number {
-    const pluralForm = (lang && allPluralForms[lang]) || allPluralForms["en"];
-    const pos = pluralForm(num);
-    // Map true to 1 and false to 0, keep any numeric return value the same.
-    return pos === true ? 1 : pos ? pos : 0;
 };
 
 /*

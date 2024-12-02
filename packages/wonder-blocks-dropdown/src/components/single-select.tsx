@@ -22,7 +22,7 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 
 export type SingleSelectLabels = {
     /**
@@ -85,6 +85,13 @@ type DefaultProps = Readonly<{
      * The object containing the custom labels used inside this component.
      */
     labels?: SingleSelectLabels;
+    /**
+     * When false, the SelectOpener can show a Node as a label. When true, the
+     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * plain text label can be provided with the `labelAsText` prop.
+     * Defaults to true.
+     */
+    showOpenerLabelAsText?: boolean;
 }>;
 
 type Props = AriaProps &
@@ -239,6 +246,7 @@ const SingleSelect = (props: Props) => {
         "aria-required": ariaRequired,
         disabled = false,
         dropdownId,
+        showOpenerLabelAsText = true,
         ...sharedProps
     } = props;
 
@@ -371,7 +379,7 @@ const SingleSelect = (props: Props) => {
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
         const menuText = selectedItem
-            ? getLabel(selectedItem.props)
+            ? getSelectOpenerLabel(showOpenerLabelAsText, selectedItem.props)
             : placeholder;
 
         const dropdownOpener = (

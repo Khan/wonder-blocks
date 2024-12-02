@@ -31,7 +31,11 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import singleSelectArgtypes from "./single-select.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
-import {allCountries, allProfilesWithPictures} from "./option-item-examples";
+import {
+    allCountries,
+    allProfilesWithPictures,
+    currencies,
+} from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
@@ -876,6 +880,58 @@ export const CustomOptionItems: StoryComponentType = {
                                 ) : undefined
                             }
                             subtitle2={user.email}
+                        />
+                    ))}
+                </SingleSelect>
+            </View>
+        );
+    },
+};
+
+/**
+ * This example illustrates how a JSX Element can appear as the label if
+ * `labelAsText` is undefined. Note that in this example, we define `labelAsText`
+ * on the OptionItems to ensure that filtering works correctly.
+ */
+export const CustomOptionItemWithNodeLabel: StoryComponentType = {
+    render: function Render() {
+        const [opened, setOpened] = React.useState(true);
+        const [selectedValue, setSelectedValue] = React.useState("");
+
+        const handleChange = (selectedValue: string) => {
+            setSelectedValue(selectedValue);
+        };
+
+        const handleToggle = (opened: boolean) => {
+            setOpened(opened);
+        };
+
+        return (
+            <View style={styles.wrapper}>
+                <SingleSelect
+                    placeholder="Select your currency"
+                    onChange={handleChange}
+                    selectedValue={selectedValue}
+                    onToggle={handleToggle}
+                    opened={opened}
+                    showOpenerLabelAsText={false}
+                    isFilterable={true}
+                >
+                    {currencies.map((currency, index) => (
+                        <OptionItem
+                            key={index}
+                            value={String(index)}
+                            horizontalRule="full-width"
+                            label={
+                                <span>
+                                    <PhosphorIcon
+                                        icon={currency.icon}
+                                        size={"small"}
+                                    />
+                                    {currency.name}
+                                </span>
+                            }
+                            labelAsText={currency.name}
                         />
                     ))}
                 </SingleSelect>
