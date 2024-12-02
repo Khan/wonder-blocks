@@ -271,36 +271,11 @@ export const CustomStylesOpened: StoryComponentType = {
     ],
 };
 
-const ErrorWrapper = (args: any) => {
-    const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
-    const [opened, setOpened] = React.useState(false);
-    const [error, setError] = React.useState(true);
-
-    return (
-        <>
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                Select at least 2 options to clear the error!
-            </LabelMedium>
-            <MultiSelect
-                {...args}
-                error={error}
-                onChange={(values) => {
-                    setSelectedValues(values);
-                    setError(values.length < 2);
-                }}
-                onToggle={setOpened}
-                opened={opened}
-                selectedValues={selectedValues}
-            >
-                {items}
-            </MultiSelect>
-        </>
-    );
-};
-
 const ControlledMultiSelect = (args: PropsFor<typeof MultiSelect>) => {
     const [opened, setOpened] = React.useState(false);
-    const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
+    const [selectedValues, setSelectedValues] = React.useState<string[]>(
+        args.selectedValues || [],
+    );
     const [errorMessage, setErrorMessage] = React.useState<
         null | string | void
     >(null);
@@ -395,9 +370,9 @@ export const Required: StoryComponentType = {
  *
  * Validation is triggered:
  * - On mount if the `value` prop is not empty and it is not required
- * - When an option is selected
+ * - When the dropdown is closed after updating the selected values
  *
- * Validation errors are cleared when a valid value is selected. The component
+ * Validation errors are cleared when the value is updated. The component
  * will set aria-invalid to "false" and call the onValidate prop with null.
  */
 export const ErrorFromValidation: StoryComponentType = {
