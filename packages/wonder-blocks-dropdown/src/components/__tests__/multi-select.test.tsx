@@ -2226,7 +2226,7 @@ describe("MultiSelect", () => {
                 },
             },
             {
-                closingMethod: "pressing Esc",
+                closingMethod: "pressing Escape",
                 closingAction: async (userEvent: UserEvent) => {
                     await userEvent.keyboard("{escape}");
                 },
@@ -2317,6 +2317,55 @@ describe("MultiSelect", () => {
                 });
             },
         );
+
+        describe("when selected values are updated and the dropdown isn't closed yet", () => {
+            it("should not call validate prop", async () => {
+                // Arrange
+                const validate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect validate={validate} />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(validate).not.toHaveBeenCalled();
+            });
+
+            it("should call onValidate prop with null to clear any errors", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={() => "Error"}
+                        onValidate={onValidate}
+                    />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
+            });
+
+            it("should not be in an error state", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect validate={() => "Error"} />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", "false");
+            });
+        });
 
         describe("validation on mount", () => {
             it("should validate twice when first rendered if there is a selected value (once on initalization, once after mount)", () => {
