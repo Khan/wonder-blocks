@@ -2151,4 +2151,55 @@ describe("MultiSelect", () => {
             },
         );
     });
+
+    describe("a11y > aria-invalid", () => {
+        it.each([
+            {error: true, ariaInvalid: "true"},
+            {error: false, ariaInvalid: "false"},
+            {error: undefined, ariaInvalid: "false"},
+        ])(
+            "should set aria-invalid to $ariaInvalid if error is $error",
+            async ({error, ariaInvalid}) => {
+                // Arrange
+                doRender(
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        error={error}
+                    />,
+                );
+
+                // Act
+                const opener = await screen.findByRole("button");
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
+            },
+        );
+
+        it.each([
+            {error: true, ariaInvalid: "true"},
+            {error: false, ariaInvalid: "false"},
+            {error: undefined, ariaInvalid: "false"},
+        ])(
+            "should set aria-invalid to $ariaInvalid if error is $error and there is a custom opener",
+            async ({error, ariaInvalid}) => {
+                // Arrange
+                doRender(
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        error={error}
+                        opener={() => (
+                            <button aria-label="Search" onClick={jest.fn()} />
+                        )}
+                    />,
+                );
+
+                // Act
+                const opener = await screen.findByRole("button");
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
+            },
+        );
+    });
 });
