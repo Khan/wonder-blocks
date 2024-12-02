@@ -2098,4 +2098,57 @@ describe("MultiSelect", () => {
             expect(opener).toHaveAttribute("aria-expanded", "true");
         });
     });
+
+    describe("a11y > aria-required", () => {
+        it.each([
+            {required: "Custom required error message", ariaRequired: "true"},
+            {required: true, ariaRequired: "true"},
+            {required: false, ariaRequired: "false"},
+            {required: undefined, ariaRequired: "false"},
+        ])(
+            "should set aria-required to $ariaRequired if required is $required",
+            async ({required, ariaRequired}) => {
+                // Arrange
+                doRender(
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        required={required}
+                    />,
+                );
+
+                // Act
+                const opener = await screen.findByRole("button");
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-required", ariaRequired);
+            },
+        );
+
+        it.each([
+            {required: "Custom required error message", ariaRequired: "true"},
+            {required: true, ariaRequired: "true"},
+            {required: false, ariaRequired: "false"},
+            {required: undefined, ariaRequired: "false"},
+        ])(
+            "should set aria-required to $ariaRequired if required is $required and there is a custom opener",
+            async ({required, ariaRequired}) => {
+                // Arrange
+                doRender(
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        required={required}
+                        opener={() => (
+                            <button aria-label="Search" onClick={jest.fn()} />
+                        )}
+                    />,
+                );
+
+                // Act
+                const opener = await screen.findByRole("button");
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-required", ariaRequired);
+            },
+        );
+    });
 });
