@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 import * as React from "react";
-import {fireEvent, render, screen} from "@testing-library/react";
+import {fireEvent, render, screen, within} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -134,6 +134,35 @@ describe("SingleSelect", () => {
 
                 // Assert
                 expect(opener).toHaveTextContent("Plain Toggle A");
+            });
+            it("can render a Node as a label", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                        showOpenerLabelAsText={false}
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = await screen.findByRole("button");
+                const menuLabel = within(opener).getByText("custom item A");
+
+                // Assert
+                expect(menuLabel).toBeVisible();
             });
         });
 

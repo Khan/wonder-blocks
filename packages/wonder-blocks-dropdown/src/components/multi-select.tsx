@@ -25,7 +25,7 @@ import type {
     OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 
 export type Labels = {
     /**
@@ -91,6 +91,13 @@ type DefaultProps = Readonly<{
      * Whether to display shortcuts for Select All and Select None.
      */
     shortcuts: boolean;
+    /**
+     * When false, the SelectOpener can show a Node as a label. When true, the
+     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * plain text label can be provided with the `labelAsText` prop.
+     * Defaults to true.
+     */
+    showOpenerLabelAsText: boolean;
 }>;
 
 type Props = AriaProps &
@@ -227,6 +234,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         light: false,
         shortcuts: false,
         selectedValues: [],
+        showOpenerLabelAsText: true,
     };
 
     constructor(props: Props) {
@@ -315,8 +323,9 @@ export default class MultiSelect extends React.Component<Props, State> {
         onChange([]);
     };
 
-    getMenuText(children: OptionItemComponentArray): string {
-        const {implicitAllEnabled, selectedValues} = this.props;
+    getMenuText(children: OptionItemComponentArray): string | JSX.Element {
+        const {implicitAllEnabled, selectedValues, showOpenerLabelAsText} =
+            this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
         const numSelectedAll = children.filter(
             (option) => !option.props.disabled,
@@ -338,7 +347,10 @@ export default class MultiSelect extends React.Component<Props, State> {
                 );
 
                 if (selectedItem) {
-                    const selectedLabel = getLabel(selectedItem?.props);
+                    const selectedLabel = getSelectOpenerLabel(
+                        showOpenerLabelAsText,
+                        selectedItem?.props,
+                    );
                     if (selectedLabel) {
                         return selectedLabel;
                         // If the label is a ReactNode and `labelAsText` is not set,
