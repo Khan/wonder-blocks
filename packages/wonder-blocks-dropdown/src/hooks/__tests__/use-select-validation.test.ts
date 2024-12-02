@@ -648,7 +648,9 @@ describe("useSelectValidation", () => {
                     });
 
                     // Assert
-                    expect(result.current.errorMessage).toBe(testRequiredErrorMessage);
+                    expect(result.current.errorMessage).toBe(
+                        testRequiredErrorMessage,
+                    );
                 });
 
                 it("should set the errorMessage to the default required message if the required prop is true", () => {
@@ -666,14 +668,20 @@ describe("useSelectValidation", () => {
                     });
 
                     // Assert
-                    expect(result.current.errorMessage).toBe("This field is required.");
+                    expect(result.current.errorMessage).toBe(
+                        "This field is required.",
+                    );
                 });
 
                 it("should call onValidate with the required prop message", () => {
                     // Arrange
                     const onValidate = jest.fn();
                     const {result} = renderHook(() =>
-                        useSelectValidation<SelectValue>({value, required: testRequiredErrorMessage, onValidate}),
+                        useSelectValidation<SelectValue>({
+                            value,
+                            required: testRequiredErrorMessage,
+                            onValidate,
+                        }),
                     );
                     onValidate.mockClear(); // Clear any calls from mounting
 
@@ -683,14 +691,20 @@ describe("useSelectValidation", () => {
                     });
 
                     // Assert
-                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(testRequiredErrorMessage);
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        testRequiredErrorMessage,
+                    );
                 });
 
                 it("should call onValidate with the default required message if the required prop is true", () => {
                     // Arrange
                     const onValidate = jest.fn();
                     const {result} = renderHook(() =>
-                        useSelectValidation<SelectValue>({value, required: true, onValidate}),
+                        useSelectValidation<SelectValue>({
+                            value,
+                            required: true,
+                            onValidate,
+                        }),
                     );
                     onValidate.mockClear(); // Clear any calls from mounting
 
@@ -721,7 +735,10 @@ describe("useSelectValidation", () => {
                 it("should have a null errorMessage since the field has a value", () => {
                     // Arrange
                     const {result} = renderHook(() =>
-                        useSelectValidation<SelectValue>({value, required: testRequiredErrorMessage}),
+                        useSelectValidation<SelectValue>({
+                            value,
+                            required: testRequiredErrorMessage,
+                        }),
                     );
 
                     // Act
@@ -737,7 +754,11 @@ describe("useSelectValidation", () => {
                     // Arrange
                     const onValidate = jest.fn();
                     const {result} = renderHook(() =>
-                        useSelectValidation<SelectValue>({value, onValidate, required: testRequiredErrorMessage}),
+                        useSelectValidation<SelectValue>({
+                            value,
+                            onValidate,
+                            required: testRequiredErrorMessage,
+                        }),
                     );
                     onValidate.mockClear(); // Clear any calls from mounting
 
@@ -750,13 +771,17 @@ describe("useSelectValidation", () => {
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
                 });
             });
-        })
+        });
 
         describe("validate + required", () => {
             it("should set the error message to the required error message if the validation succeeds", () => {
                 // Arrange
                 const {result} = renderHook(() =>
-                    useSelectValidation<SelectValue>({value: "Test", validate: () => {},required: testRequiredErrorMessage}),
+                    useSelectValidation<SelectValue>({
+                        value: "Test",
+                        validate: () => {},
+                        required: testRequiredErrorMessage,
+                    }),
                 );
 
                 // Act
@@ -765,13 +790,19 @@ describe("useSelectValidation", () => {
                 });
 
                 // Assert
-                expect(result.current.errorMessage).toBe(testRequiredErrorMessage);
+                expect(result.current.errorMessage).toBe(
+                    testRequiredErrorMessage,
+                );
             });
 
             it("should set the error message to the validate error message if the validation fails", () => {
                 // Arrange
                 const {result} = renderHook(() =>
-                    useSelectValidation<SelectValue>({value: "Test", validate: () => testErrorMessage,required: testRequiredErrorMessage}),
+                    useSelectValidation<SelectValue>({
+                        value: "Test",
+                        validate: () => testErrorMessage,
+                        required: testRequiredErrorMessage,
+                    }),
                 );
 
                 // Act

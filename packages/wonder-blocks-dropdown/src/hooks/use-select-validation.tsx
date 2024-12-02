@@ -45,7 +45,8 @@ export function useSelectValidation<T extends SelectValue>({
                 return;
             }
             if (validate) {
-                const error = (newValue !== undefined && validate(newValue)) || null;
+                const error =
+                    (newValue !== undefined && validate(newValue)) || null;
                 setErrorMessage(error);
                 if (onValidate) {
                     onValidate(error);
