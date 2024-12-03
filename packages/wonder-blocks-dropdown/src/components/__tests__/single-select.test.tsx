@@ -2300,6 +2300,8 @@ describe("SingleSelect", () => {
                     );
 
                     // Assert
+                    // onValidate is called with null because required validation
+                    // is triggered and clears any errors
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
                 });
             });
