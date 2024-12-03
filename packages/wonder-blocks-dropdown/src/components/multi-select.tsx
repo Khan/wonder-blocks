@@ -547,14 +547,12 @@ const MultiSelect = (props: Props) => {
         const dropdownOpener = (
             <IDProvider id={id} scope="multi-select-opener">
                 {(uniqueOpenerId) => {
-                    const hasAriaRequired = ariaRequired || !!required;
                     return opener ? (
                         <DropdownOpener
                             id={uniqueOpenerId}
                             error={hasError}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
-                            aria-required={hasAriaRequired}
                             onClick={handleClick}
                             onBlur={onOpenerBlurValidation}
                             disabled={isDisabled}
@@ -571,7 +569,6 @@ const MultiSelect = (props: Props) => {
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
-                            aria-required={hasAriaRequired}
                             isPlaceholder={menuText === noneSelected}
                             light={light}
                             onOpenChanged={handleOpenChanged}

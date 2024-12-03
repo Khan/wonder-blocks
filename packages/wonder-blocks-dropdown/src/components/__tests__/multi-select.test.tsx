@@ -2101,56 +2101,6 @@ describe("MultiSelect", () => {
         });
     });
 
-    describe("a11y > aria-required", () => {
-        it.each([
-            {required: "Custom required error message", ariaRequired: "true"},
-            {required: true, ariaRequired: "true"},
-            {required: false, ariaRequired: "false"},
-            {required: undefined, ariaRequired: "false"},
-        ])(
-            "should set aria-required to $ariaRequired if required is $required",
-            async ({required, ariaRequired}) => {
-                // Arrange
-                doRender(
-                    <MultiSelect onChange={jest.fn()} required={required} />,
-                );
-
-                // Act
-                const opener = await screen.findByRole("button");
-
-                // Assert
-                expect(opener).toHaveAttribute("aria-required", ariaRequired);
-            },
-        );
-
-        it.each([
-            {required: "Custom required error message", ariaRequired: "true"},
-            {required: true, ariaRequired: "true"},
-            {required: false, ariaRequired: "false"},
-            {required: undefined, ariaRequired: "false"},
-        ])(
-            "should set aria-required to $ariaRequired if required is $required and there is a custom opener",
-            async ({required, ariaRequired}) => {
-                // Arrange
-                doRender(
-                    <MultiSelect
-                        onChange={jest.fn()}
-                        required={required}
-                        opener={() => (
-                            <button aria-label="Search" onClick={jest.fn()} />
-                        )}
-                    />,
-                );
-
-                // Act
-                const opener = await screen.findByRole("button");
-
-                // Assert
-                expect(opener).toHaveAttribute("aria-required", ariaRequired);
-            },
-        );
-    });
-
     describe("a11y > aria-invalid", () => {
         it.each([
             {error: true, ariaInvalid: "true"},
@@ -2195,6 +2145,54 @@ describe("MultiSelect", () => {
                 expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
             },
         );
+    });
+
+    describe("a11y > violations", () => {
+        afterEach(() => {
+            jest.useFakeTimers();
+        });
+
+        it("should not have any violations", async () => {
+            // Arrange
+            const {container} = doRender(
+                <MultiSelect onChange={jest.fn()} opened={true}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // Flush any pending timers before switching to real timers
+            // https://testing-library.com/docs/using-fake-timers/
+            jest.runOnlyPendingTimers();
+            // Use real timers for the jest-axe check otherwise the test will timeout
+            // https://github.com/dequelabs/axe-core/issues/3055
+            jest.useRealTimers();
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
+
+        it("should not have any violations when it is open", async () => {
+            // Arrange
+            const {container} = doRender(
+                <MultiSelect onChange={jest.fn()} opened={true}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // Flush any pending timers before switching to real timers
+            // https://testing-library.com/docs/using-fake-timers/
+            jest.runOnlyPendingTimers();
+            // Use real timers for the jest-axe check otherwise the test will timeout
+            // https://github.com/dequelabs/axe-core/issues/3055
+            jest.useRealTimers();
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
     });
 
     describe("validation", () => {
