@@ -37,7 +37,9 @@ function hasValue<T extends SelectValue>(value?: T | null): value is T {
  * selecting (a) value/value(s)
  * - `onSelectedValuesChangeValidation` - Validation logic for when selected
  * values are updated before selection is done (ie. values are updated and
- * dropdown isn't closed yet)
+ * dropdown isn't closed yet). Note that this should only be called when there
+ * are multiple values that can be selected. onSelectionValidation should be
+ * used whenever the user is done selecting a value or values.
  */
 export function useSelectValidation<T extends SelectValue>({
     value,
@@ -70,7 +72,7 @@ export function useSelectValidation<T extends SelectValue>({
                     onValidate(error);
                 }
                 if (error) {
-                    // If there is an error, do not continue with required validation
+                    // If there is an error, do not continue with validation related to `required` prop
                     return;
                 }
             }
@@ -100,15 +102,19 @@ export function useSelectValidation<T extends SelectValue>({
     function onOpenerBlurValidation() {
         if (!open && required && !hasValue(value)) {
             // Only validate on opener blur if the dropdown is closed, the field
-            // is required, and no value is selected. This prevents an error when
-            // the dropdown is opened without a value yet.
+            // is required, and no value is selected. This prevents an error state
+            // when the dropdown is opened without a value yet since opening
+            // the dropdown will also trigger the blur event since focus is moved
+            // to the dropdown
             handleValidation(value);
         }
     }
 
     const onDropdownClosedValidation = () => {
         if (required && !hasValue(value)) {
-            // If closed, field is required, and no value is selected, validate
+            // If field is required, and no value is selected, validate
+            // We don't check for `!open` because `open` is not updated yet
+            // when this is called
             handleValidation(value);
         }
     };
