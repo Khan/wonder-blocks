@@ -94,7 +94,7 @@
 .sb-show-main .wbARegion::before {
     background-color: white;
     border: 1px solid red;
-    content: attr(id);
+    content: attr(id) / "";
     display: block;
     font-size: 0.75rem;
     padding: 0.25em;
