@@ -329,7 +329,7 @@ const SingleSelect = (props: Props) => {
             onToggle(opened);
         }
         if (!opened) {
-            // If dropdown is closed, handle dropdown closedvalidation
+            // If dropdown is closed, handle dropdown closed validation
             onDropdownClosedValidation();
         }
     };
