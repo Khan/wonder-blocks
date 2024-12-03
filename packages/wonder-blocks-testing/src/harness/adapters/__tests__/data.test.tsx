@@ -24,7 +24,9 @@ describe("WonderBlocksData.adapter", () => {
             return (
                 <div>
                     CONTENT:{" "}
-                    {result.status === "success" ? result.data : undefined}
+                    {result.status === "success"
+                        ? String(result.data)
+                        : undefined}
                 </div>
             );
         };
@@ -40,7 +42,7 @@ describe("WonderBlocksData.adapter", () => {
         await waitFor(() => expect(container).toContainHTML("INTERCEPTED!"));
     });
 
-    it("should render like we expect", () => {
+    it("should render like we expect", async () => {
         // Snapshot test is handy to visualize what's going on and help debug
         // test failures of the other cases. The other cases assert specifics.
         // Arrange
@@ -50,7 +52,9 @@ describe("WonderBlocksData.adapter", () => {
             return (
                 <div>
                     CONTENT:
-                    {result.status === "success" ? result.data : undefined}
+                    {result.status === "success"
+                        ? String(result.data)
+                        : undefined}
                 </div>
             );
         };
@@ -63,6 +67,7 @@ describe("WonderBlocksData.adapter", () => {
         );
 
         // Assert
+        await screen.findByText("CONTENT:INTERCEPTED!");
         expect(container).toMatchInlineSnapshot(`
             <div>
               <div>

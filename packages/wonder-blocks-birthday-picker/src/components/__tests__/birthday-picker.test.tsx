@@ -4,7 +4,6 @@ import {render, screen, waitFor} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 
-import {wait} from "@testing-library/user-event/dist/types/utils";
 import BirthdayPicker, {defaultLabels} from "../birthday-picker";
 
 import type {Labels} from "../birthday-picker";

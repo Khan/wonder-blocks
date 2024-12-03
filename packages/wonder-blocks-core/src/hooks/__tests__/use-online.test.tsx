@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-unassigned-import
-import "jest-extended";
 import * as React from "react";
 import {render, act as reactAct, renderHook} from "@testing-library/react";
 
