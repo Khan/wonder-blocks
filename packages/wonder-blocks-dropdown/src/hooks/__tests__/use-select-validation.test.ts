@@ -58,6 +58,7 @@ describe("useSelectValidation", () => {
                 // Assert
                 expect(result.current.errorMessage).toBe(null);
             });
+
             it.each(valueCases)(
                 "should have the errorMessage from the validate prop if value is set to %s",
                 (value) => {
@@ -135,6 +136,7 @@ describe("useSelectValidation", () => {
                 expect(validate).not.toHaveBeenCalled();
             });
         });
+
         describe("onValidate prop", () => {
             it.each(valueCases)(
                 "should call the onValidate prop once initially (only after mount) when value is `%s`",
@@ -178,7 +180,7 @@ describe("useSelectValidation", () => {
                 },
             );
 
-            it("should not call the validate prop if it is disabled", () => {
+            it("should not call the onValidate prop if it is disabled", () => {
                 // Arrange
                 const onValidate = jest.fn();
 
@@ -299,12 +301,13 @@ describe("useSelectValidation", () => {
             // Assert
             expect(result.current.errorMessage).toBe("This field is required.");
         });
+
         it.each([
             {condition: "if it is open", props: {open: true}},
             {condition: "if it is not required", props: {required: false}},
-            {condition: "if it is has a string value", props: {value: "Test"}},
+            {condition: "if it has a string value", props: {value: "Test"}},
             {
-                condition: "if it is has an array value",
+                condition: "if it has an array value",
                 props: {value: ["Test"]},
             },
         ])("should not call the onValidate prop $condition", ({props}) => {
@@ -333,9 +336,9 @@ describe("useSelectValidation", () => {
         it.each([
             {condition: "if it is open", props: {open: true}},
             {condition: "if it is not required", props: {required: false}},
-            {condition: "if it is has a string value", props: {value: "Test"}},
+            {condition: "if it has a string value", props: {value: "Test"}},
             {
-                condition: "if it is has an array value",
+                condition: "if it has an array value",
                 props: {value: ["Test"]},
             },
         ])("should not have an error message $condition", ({props}) => {
@@ -483,6 +486,7 @@ describe("useSelectValidation", () => {
             },
         );
     });
+
     describe("onSelectionValidation", () => {
         describe("validate prop", () => {
             it("should not call the validate prop if it is disabled", () => {
@@ -615,6 +619,7 @@ describe("useSelectValidation", () => {
                 });
             });
         });
+
         describe("validating a new value when it is required", () => {
             describe.each([
                 {

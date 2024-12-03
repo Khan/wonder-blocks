@@ -2327,6 +2327,7 @@ describe("MultiSelect", () => {
                 );
                 const opener = await screen.findByRole("button");
                 await userEvent.click(opener);
+
                 // Act
                 await userEvent.click(screen.getByText("item 1"));
 
@@ -2345,6 +2346,8 @@ describe("MultiSelect", () => {
                 );
                 const opener = await screen.findByRole("button");
                 await userEvent.click(opener);
+
+                // Act
                 await userEvent.click(screen.getByText("item 1"));
 
                 // Assert
@@ -2371,6 +2374,7 @@ describe("MultiSelect", () => {
             it("should validate twice when first rendered if there is a selected value (once on initalization, once after mount)", () => {
                 // Arrange
                 const validate = jest.fn();
+
                 // Act
                 doRender(
                     <ControlledMultiSelect
@@ -2500,6 +2504,30 @@ describe("MultiSelect", () => {
                 );
             });
 
+            it("should be in an error state once closed if the new values still includes invalid values", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByText("item 2")); // Pick a value
+
+                // Act
+                await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
             it("should call onValidate with null once values are updated", async () => {
                 // Arrange
                 const errorMessage = "Error message";
@@ -2574,9 +2602,9 @@ describe("MultiSelect", () => {
                             required={requiredMessage}
                         />,
                     );
+                    await userEvent.tab(); // focus on the select
 
                     // Act
-                    await userEvent.tab(); // focus on the select
                     await userEvent.tab(); // leave the select
 
                     // Assert
@@ -2619,9 +2647,9 @@ describe("MultiSelect", () => {
                             )}
                         />,
                     );
+                    await userEvent.tab(); // focus on the select
 
                     // Act
-                    await userEvent.tab(); // focus on the select
                     await userEvent.tab(); // leave the select
 
                     // Assert
@@ -2644,9 +2672,9 @@ describe("MultiSelect", () => {
                             required={requiredMessage}
                         />,
                     );
+                    await userEvent.tab(); // focus on the select
 
                     // Act
-                    await userEvent.tab(); // focus on the select
                     await userEvent.tab(); // leave the select
 
                     // Assert
@@ -2667,9 +2695,9 @@ describe("MultiSelect", () => {
                             disabled={true}
                         />,
                     );
+                    await userEvent.tab(); // focus on the select
 
                     // Act
-                    await userEvent.tab(); // focus on the select
                     await userEvent.tab(); // leave the select
 
                     // Assert
@@ -2685,9 +2713,9 @@ describe("MultiSelect", () => {
                             disabled={true}
                         />,
                     );
+                    await userEvent.tab(); // focus on the select
 
                     // Act
-                    await userEvent.tab(); // focus on the select
                     await userEvent.tab(); // leave the select
 
                     // Assert
@@ -2708,9 +2736,9 @@ describe("MultiSelect", () => {
                             required={requiredMessage}
                         />,
                     );
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
                     await userEvent.click(await screen.findByRole("button")); // Close the dropdown
 
                     // Assert
@@ -2725,9 +2753,9 @@ describe("MultiSelect", () => {
                     const {userEvent} = doRender(
                         <ControlledMultiSelect required={requiredMessage} />,
                     );
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
                     await userEvent.click(await screen.findByRole("button")); // Close the dropdown
 
                     // Assert
@@ -2784,10 +2812,10 @@ describe("MultiSelect", () => {
                             required={requiredMessage}
                         />,
                     );
-
-                    // Act
                     await userEvent.tab();
                     await userEvent.keyboard("{enter}"); // Open the dropdown
+
+                    // Act
                     await userEvent.keyboard("{escape}"); // Close the dropdown
 
                     // Assert
@@ -2802,10 +2830,10 @@ describe("MultiSelect", () => {
                     const {userEvent} = doRender(
                         <ControlledMultiSelect required={requiredMessage} />,
                     );
-
-                    // Act
                     await userEvent.tab();
                     await userEvent.keyboard("{enter}"); // Open the dropdown
+
+                    // Act
                     await userEvent.keyboard("{escape}"); // Close the dropdown
 
                     // Assert
@@ -2851,7 +2879,7 @@ describe("MultiSelect", () => {
                 });
             });
 
-            describe("picking a value after there was an error", () => {
+            describe("interactions after there was an error", () => {
                 it("should still be in an error state before a value is picked", async () => {
                     // Arrange
                     const requiredMessage = "Required field";
@@ -2901,9 +2929,9 @@ describe("MultiSelect", () => {
                         required={true}
                     />,
                 );
+                await userEvent.tab();
 
                 // Act
-                await userEvent.tab();
                 await userEvent.tab();
 
                 // Assert
@@ -2914,7 +2942,7 @@ describe("MultiSelect", () => {
         });
 
         describe("validate and required props", () => {
-            it("should be in an error state if validate succeeds and required is set to true", async () => {
+            it("should be in an error state if validate succeeds and required is set", async () => {
                 // Arrange
                 const requiredMessage = "Required field";
                 const {userEvent} = doRender(
@@ -2946,7 +2974,7 @@ describe("MultiSelect", () => {
                 );
             });
 
-            it("should call the onValidate prop with null and the required error message if validate succeeds and required is set to true", async () => {
+            it("should call the onValidate prop with null and the required error message if validate succeeds and required is set", async () => {
                 // Arrange
                 const onValidate = jest.fn();
                 const requiredMessage = "Required field";
