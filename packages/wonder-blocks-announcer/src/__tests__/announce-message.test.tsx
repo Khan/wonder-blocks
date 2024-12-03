@@ -79,6 +79,7 @@ describe("Announcer.announceMessage", () => {
         // ACT
         const announcement1Id = announceMessage({
             message: message1,
+            initialTimeout: 0,
         });
         jest.advanceTimersByTime(500);
 
@@ -87,6 +88,7 @@ describe("Announcer.announceMessage", () => {
 
         const announcement2Id = announceMessage({
             message: message2,
+            initialTimeout: 0,
         });
 
         jest.advanceTimersByTime(500);
@@ -122,7 +124,7 @@ describe("Announcer.announceMessage", () => {
         const message1 = "A Thing";
 
         // default timeout is 5000ms + 250ms (removalDelay + debounceThreshold)
-        render(<AnnounceMessageButton message={message1} />);
+        render(<AnnounceMessageButton message={message1} initialTimeout={0} />);
 
         const button = screen.getAllByRole("button");
         button[0].click();
@@ -134,7 +136,7 @@ describe("Announcer.announceMessage", () => {
         expect(message1Region).toHaveTextContent(message1);
 
         expect(setTimeout).toHaveBeenNthCalledWith(
-            1,
+            7,
             expect.any(Function),
             5250,
         );
