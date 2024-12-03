@@ -5,6 +5,5 @@
 # MultiSelect
 
 - Add `required`, `validate`, and `onValidate` props to support validation.
-- Set `aria-required` on the opener if the `required` prop is `true` or
-`aria-required` is set
+- Set `aria-invalid` on the opener if it is in an error state
 - Share validation logic with SingleSelect
