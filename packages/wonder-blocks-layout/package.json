@@ -22,7 +22,7 @@
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
-    "react": "16.14.0"
+    "react": "18.2.0"
   },
   "author": "",
   "license": "MIT"
