@@ -248,27 +248,21 @@ describe("Popover", () => {
 
         // Act
         // Close the popover by pressing Enter on the close button.
-        // NOTE: we need to use fireEvent here because await userEvent doesn't support
-        // keyUp/Down events and we use these handlers to override the default
-        // behavior of the button.
-        // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.keyDown(
-            await screen.findByRole("button", {name: "Click to close popover"}),
-            {key: "Enter", code: "Enter", charCode: 13},
-        );
-        // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.keyDown(
-            await screen.findByRole("button", {name: "Click to close popover"}),
-            {key: "Enter", code: "Enter", charCode: 13},
-        );
-        // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.keyUp(
-            await screen.findByRole("button", {name: "Click to close popover"}),
-            {key: "Enter", code: "Enter", charCode: 13},
-        );
+        const button = await screen.findByRole("button", {
+            name: "Click to close popover",
+        });
+        /* eslint-disable testing-library/prefer-user-event */
+        // NOTE: we need to use fireEvent here because await userEvent doesn't
+        // support keyUp/Down events and we use these handlers to override the
+        // default behavior of the button.
+        fireEvent.keyDown(button, {key: "Enter", code: "Enter", charCode: 13});
+        fireEvent.keyUp(button, {key: "Enter", code: "Enter", charCode: 13});
+        /* eslint-enable testing-library/prefer-user-event */
 
         // Assert
-        expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+        await waitFor(() =>
+            expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
+        );
     });
 
     describe("return focus", () => {
@@ -301,7 +295,7 @@ describe("Popover", () => {
             const closeButton = await screen.findByRole("button", {
                 name: "Close Popover",
             });
-            closeButton.click();
+            await userEvent.click(closeButton, {pointerEventsCheck: 0});
 
             // Assert
             expect(anchorButton).toHaveFocus();

@@ -17,7 +17,7 @@ describe("#useGql", () => {
         const underTest = () => renderHook(() => useGql());
 
         // Assert
-        expect(underTest).toThrowErrorMatchingInlineSnapshot("No GqlRouter");
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(`"No GqlRouter"`);
     });
 
     it("should return a function", () => {

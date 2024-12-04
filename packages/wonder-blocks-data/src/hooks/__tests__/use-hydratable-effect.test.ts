@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-    renderHook as clientRenderHook,
-    act,
-    waitFor,
-} from "@testing-library/react";
+import {renderHook, act, waitFor} from "@testing-library/react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
@@ -206,10 +202,10 @@ describe("#useHydratableEffect", () => {
                 const useServerEffectSpy = jest
                     .spyOn(UseServerEffect, "useServerEffect")
                     .mockReturnValue(null);
-                const fakeHandler = jest.fn();
+                const fakeHandler = jest.fn().mockResolvedValue("data");
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useHydratableEffect("ID", fakeHandler, {
                         clientBehavior,
                     }),
@@ -226,13 +222,13 @@ describe("#useHydratableEffect", () => {
 
         it("should fulfill request when there is no server value to hydrate", () => {
             // Arrange
-            const fakeHandler = jest.fn();
+            const fakeHandler = jest.fn().mockResolvedValue("data");
             jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
                 null,
             );
 
             // Act
-            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            renderHook(() => useHydratableEffect("ID", fakeHandler));
 
             // Assert
             expect(fakeHandler).toHaveBeenCalled();
@@ -246,8 +242,8 @@ describe("#useHydratableEffect", () => {
             const fakeHandler = jest.fn().mockReturnValue(pending);
 
             // Act
-            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
-            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            renderHook(() => useHydratableEffect("ID", fakeHandler));
+            renderHook(() => useHydratableEffect("ID", fakeHandler));
 
             // Assert
             expect(fakeHandler).toHaveBeenCalledTimes(1);
@@ -261,13 +257,13 @@ describe("#useHydratableEffect", () => {
             "should fulfill request when server value is $serverResult and clientBehavior is ExecuteWhenNoSuccessResult",
             ({serverResult}: any) => {
                 // Arrange
-                const fakeHandler = jest.fn();
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
                     serverResult,
                 );
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useHydratableEffect("ID", fakeHandler, {
                         clientBehavior:
                             WhenClientSide.ExecuteWhenNoSuccessResult,
@@ -288,13 +284,13 @@ describe("#useHydratableEffect", () => {
             "should fulfill request when server value is $serveResult and clientBehavior is AlwaysExecute",
             ({serverResult}: any) => {
                 // Arrange
-                const fakeHandler = jest.fn();
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
                     serverResult,
                 );
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useHydratableEffect("ID", fakeHandler, {
                         clientBehavior: WhenClientSide.AlwaysExecute,
                     }),
@@ -313,7 +309,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            clientRenderHook(() =>
+            renderHook(() =>
                 useHydratableEffect("ID", fakeHandler, {
                     clientBehavior: WhenClientSide.ExecuteWhenNoSuccessResult,
                 }),
@@ -336,7 +332,7 @@ describe("#useHydratableEffect", () => {
                 );
 
                 // Act
-                clientRenderHook(() =>
+                renderHook(() =>
                     useHydratableEffect("ID", fakeHandler, {
                         clientBehavior: WhenClientSide.ExecuteWhenNoResult,
                     }),
@@ -354,7 +350,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender} = clientRenderHook(() =>
+            const {rerender} = renderHook(() =>
                 useHydratableEffect("ID", fakeHandler),
             );
             rerender();
@@ -373,7 +369,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender} = clientRenderHook(
+            const {rerender} = renderHook(
                 ({requestId}: any) =>
                     useHydratableEffect(requestId, fakeHandler),
                 {
@@ -400,7 +396,7 @@ describe("#useHydratableEffect", () => {
                 .mockReturnValueOnce(Status.success("GOODDATA"));
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({requestId}: any) =>
                     useHydratableEffect(requestId, fakeHandler),
                 {
@@ -423,7 +419,7 @@ describe("#useHydratableEffect", () => {
             const fakeHandler = jest.fn().mockResolvedValue("DATA");
 
             // Act
-            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            renderHook(() => useHydratableEffect("ID", fakeHandler));
 
             // Assert
             await waitFor(() => {
@@ -444,7 +440,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({requestId}: any) =>
                     useHydratableEffect(requestId, fakeHandler),
                 {
@@ -476,7 +472,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({requestId}: any) =>
                     useHydratableEffect(requestId, fakeHandler),
                 {
@@ -498,7 +494,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            clientRenderHook(() =>
+            renderHook(() =>
                 useHydratableEffect("ID", fakeHandler, {skip: true}),
             );
 
@@ -515,7 +511,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({skip}: any) => useHydratableEffect("ID", fakeHandler, {skip}),
                 {
                     initialProps: {skip: false},
@@ -545,7 +541,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({handler}: any) => useHydratableEffect("ID", handler),
                 {
                     initialProps: {handler: fakeHandler1},
@@ -567,7 +563,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({options}: any) => useHydratableEffect("ID", fakeHandler),
                 {
                     initialProps: {options: undefined},
@@ -598,7 +594,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, result: hookResult} = clientRenderHook(
+            const {rerender, result: hookResult} = renderHook(
                 ({requestId}: any) =>
                     useHydratableEffect(requestId, fakeHandler, {
                         retainResultOnChange: true,
@@ -633,7 +629,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {rerender, result} = clientRenderHook(
+            const {rerender, result} = renderHook(
                 ({requestId}: any) =>
                     useHydratableEffect(requestId, fakeHandler, {
                         retainResultOnChange: false,
@@ -659,7 +655,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {result} = clientRenderHook(() =>
+            const {result} = renderHook(() =>
                 useHydratableEffect("ID", fakeHandler),
             );
 
@@ -678,7 +674,7 @@ describe("#useHydratableEffect", () => {
             );
 
             // Act
-            const {result} = clientRenderHook(() =>
+            const {result} = renderHook(() =>
                 useHydratableEffect("ID", fakeHandler, {
                     onResultChanged: () => {},
                 }),
@@ -700,7 +696,7 @@ describe("#useHydratableEffect", () => {
             const onResultChanged = jest.fn();
 
             // Act
-            clientRenderHook(() =>
+            renderHook(() =>
                 useHydratableEffect("ID", fakeHandler, {
                     onResultChanged,
                 }),

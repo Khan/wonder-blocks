@@ -333,7 +333,7 @@ describe("LabeledTextField", () => {
 
         // Act
         const field = await screen.findByRole("textbox");
-        field.focus();
+        await userEvent.click(field);
 
         // Assert
         expect(handleFocus).toHaveBeenCalled();
