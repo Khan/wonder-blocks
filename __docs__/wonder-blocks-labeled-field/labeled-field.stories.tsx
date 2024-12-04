@@ -56,12 +56,16 @@ export const Default: StoryComponentType = {
 
 const textValidate = (value: string) => {
     if (value.length < 5) {
-        return "Should be 5 or more characters"
+        return "Should be 5 or more characters";
     }
-}
+};
 
-const AllFields = (storyArgs: PropsFor<typeof LabeledField> & { shouldValidateInStory?: boolean }) => {
-    const { shouldValidateInStory, ...args } = storyArgs;
+const AllFields = (
+    storyArgs: PropsFor<typeof LabeledField> & {
+        shouldValidateInStory?: boolean;
+    },
+) => {
+    const {shouldValidateInStory, ...args} = storyArgs;
     const [textFieldValue, setTextFieldValue] = React.useState("");
     const [textAreaValue, setTextAreaValue] = React.useState("");
     const [singleSelectValue, setSingleSelectValue] = React.useState("");
@@ -70,13 +74,28 @@ const AllFields = (storyArgs: PropsFor<typeof LabeledField> & { shouldValidateIn
     );
     const [searchValue, setSearchValue] = React.useState("");
 
-    const [textFieldErrorMessage, setTextFieldErrorMessage] = React.useState<string | null | undefined>();
-    const [textAreaErrorMessage, setTextAreaErrorMessage] = React.useState<string | null | undefined>();
-    const [singleSelectErrorMessage, setSingleSelectErrorMessage] = React.useState<string | null | undefined>();
-    const [multiSelectErrorMessage, setMultiSelectErrorMessage] = React.useState<string | null | undefined>(
-    );
-    const [searchErrorMessage, setSearchErrorMessage] = React.useState<string | null | undefined>();
+    const [textFieldErrorMessage, setTextFieldErrorMessage] = React.useState<
+        string | null | undefined
+    >();
+    const [textAreaErrorMessage, setTextAreaErrorMessage] = React.useState<
+        string | null | undefined
+    >();
+    const [singleSelectErrorMessage, setSingleSelectErrorMessage] =
+        React.useState<string | null | undefined>();
+    const [multiSelectErrorMessage, setMultiSelectErrorMessage] =
+        React.useState<string | null | undefined>();
+    const [searchErrorMessage, setSearchErrorMessage] = React.useState<
+        string | null | undefined
+    >();
 
+    const handleSubmit = () => {
+        const backendErrorMessage = "Example error message from backend";
+        setTextFieldErrorMessage(backendErrorMessage);
+        setTextAreaErrorMessage(backendErrorMessage);
+        setSingleSelectErrorMessage(backendErrorMessage);
+        setMultiSelectErrorMessage(backendErrorMessage);
+        setSearchErrorMessage(backendErrorMessage);
+    };
     return (
         <View style={{gap: spacing.large_24}}>
             <LabeledField
@@ -87,9 +106,10 @@ const AllFields = (storyArgs: PropsFor<typeof LabeledField> & { shouldValidateIn
                     <TextField
                         value={textFieldValue}
                         onChange={setTextFieldValue}
-                        error={!!args.error}
                         onValidate={setTextFieldErrorMessage}
-                        validate={shouldValidateInStory ? textValidate : undefined}
+                        validate={
+                            shouldValidateInStory ? textValidate : undefined
+                        }
                         instantValidation={false}
                     />
                 }
@@ -102,9 +122,10 @@ const AllFields = (storyArgs: PropsFor<typeof LabeledField> & { shouldValidateIn
                     <TextArea
                         value={textAreaValue}
                         onChange={setTextAreaValue}
-                        error={!!args.error}
                         onValidate={setTextAreaErrorMessage}
-                        validate={shouldValidateInStory ? textValidate : undefined}
+                        validate={
+                            shouldValidateInStory ? textValidate : undefined
+                        }
                         instantValidation={false}
                     />
                 }
@@ -119,7 +140,6 @@ const AllFields = (storyArgs: PropsFor<typeof LabeledField> & { shouldValidateIn
                         placeholder="Choose a fruit"
                         selectedValue={singleSelectValue}
                         onChange={setSingleSelectValue}
-                        error={!!args.error}
                         // onValidate={setSingleSelectErrorMessage}
                     >
                         <OptionItem label="Mango" value="mango" />
@@ -137,7 +157,6 @@ const AllFields = (storyArgs: PropsFor<typeof LabeledField> & { shouldValidateIn
                     <MultiSelect
                         selectedValues={multiSelectValue}
                         onChange={setMultiSelectValue}
-                        error={!!args.error}
                         // onValidate={setMultiSelectErrorMessage}
                     >
                         <OptionItem label="Mango" value="mango" />
@@ -155,12 +174,13 @@ const AllFields = (storyArgs: PropsFor<typeof LabeledField> & { shouldValidateIn
                     <SearchField
                         value={searchValue}
                         onChange={setSearchValue}
-                        error={!!args.error}
                         // validate={shouldValidateInStory ? textValidate : undefined}
                         // onValidate={setSearchErrorMessage}
                     />
                 }
             />
+
+            <Button onClick={handleSubmit}>Submit</Button>
         </View>
     );
 };
@@ -199,7 +219,6 @@ export const Required: StoryComponentType = {
 export const Validation: StoryComponentType = {
     args: {
         description: "Helpful description text.",
-        required: "Custom required error message",
         shouldValidateInStory: true,
     },
     render: AllFields,
