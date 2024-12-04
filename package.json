@@ -113,7 +113,6 @@
     "react-refresh": "^0.14.0",
     "rollup": "^2.79.1",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-externals": "^7.1.2",
     "storybook": "^8.2.1",
     "storybook-addon-pseudo-states": "^3.1.1",

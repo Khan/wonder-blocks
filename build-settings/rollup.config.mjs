@@ -5,7 +5,6 @@ import path from "path";
 import {nodeExternals} from "rollup-plugin-node-externals";
 import babel from "rollup-plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
 // eslint-disable-next-line import/extensions
 import makeBabelConfig from "./babel.config.js";
 
@@ -50,7 +49,6 @@ const createConfig = (pkgName) => {
                 browser: true,
                 extensions,
             }),
-            commonjs(),
             nodeExternals({
                 packagePath: `packages/${pkgName}/package.json`,
             }),
