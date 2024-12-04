@@ -17,7 +17,6 @@ describe("WonderBlocksData.adapter", () => {
 
     it("should support request interception via configured dataIntercepts", async () => {
         // Arrange
-
         const TestFixture = () => {
             const [result] = useCachedEffect("ID", jest.fn());
 
