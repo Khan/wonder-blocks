@@ -243,6 +243,7 @@ export default function LabeledField(props: Props) {
                 .filter(Boolean)
                 .join(" "),
             required,
+            error,
             testId: testId && `${testId}-field`,
         });
     }
