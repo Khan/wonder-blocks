@@ -27,6 +27,17 @@ import Button from "@khanacademy/wonder-blocks-button";
  *
  * It is highly recommended that all form fields should be used with the
  * `LabeledField` component so that our form fields are consistent and accessible.
+ *
+ * Tips for using LabeledField:
+ * - if `errorMessage` prop is set on `LabeledField`, the `error` prop on the
+ * form field component will be auto-populated so it doesn't need to be set
+ * explicitly
+ * - if `required` prop is set on `LabeledField`, it will be passed onto the
+ * form field component so it doesn't need to be set explicitly
+ * - For TextField and TextArea, it is highly recommended that they are
+ * configured with `instantValidation=false` so that validation happens on blur.
+ * See Validation docs for those components for more details!
+ *
  */
 export default {
     title: "Packages / LabeledField",
@@ -49,23 +60,20 @@ export const Default: StoryComponentType = {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
         description: "Helpful description text.",
-        error: "Message about the error",
+        errorMessage: "Message about the error",
         required: true,
     },
-};
-
-const textValidate = (value: string) => {
-    if (value.length < 5) {
-        return "Should be 5 or more characters";
-    }
 };
 
 const AllFields = (
     storyArgs: PropsFor<typeof LabeledField> & {
         shouldValidateInStory?: boolean;
+        showSubmitButtonInStory?: boolean;
     },
 ) => {
-    const {shouldValidateInStory, ...args} = storyArgs;
+    const {shouldValidateInStory, showSubmitButtonInStory, ...args} = storyArgs;
+
+    /** Values */
     const [textFieldValue, setTextFieldValue] = React.useState("");
     const [textAreaValue, setTextAreaValue] = React.useState("");
     const [singleSelectValue, setSingleSelectValue] = React.useState("");
@@ -74,33 +82,53 @@ const AllFields = (
     );
     const [searchValue, setSearchValue] = React.useState("");
 
+    /** Error messages */
     const [textFieldErrorMessage, setTextFieldErrorMessage] = React.useState<
         string | null | undefined
-    >();
+    >(args.errorMessage);
     const [textAreaErrorMessage, setTextAreaErrorMessage] = React.useState<
         string | null | undefined
-    >();
+    >(args.errorMessage);
     const [singleSelectErrorMessage, setSingleSelectErrorMessage] =
-        React.useState<string | null | undefined>();
+        React.useState<string | null | undefined>(args.errorMessage);
     const [multiSelectErrorMessage, setMultiSelectErrorMessage] =
-        React.useState<string | null | undefined>();
+        React.useState<string | null | undefined>(args.errorMessage);
     const [searchErrorMessage, setSearchErrorMessage] = React.useState<
         string | null | undefined
-    >();
+    >(args.errorMessage);
 
     const handleSubmit = () => {
-        const backendErrorMessage = "Example error message from backend";
+        const backendErrorMessage = "Example server side error message";
         setTextFieldErrorMessage(backendErrorMessage);
         setTextAreaErrorMessage(backendErrorMessage);
         setSingleSelectErrorMessage(backendErrorMessage);
         setMultiSelectErrorMessage(backendErrorMessage);
         setSearchErrorMessage(backendErrorMessage);
     };
+
+    const textValidate = (value: string) => {
+        if (value.length < 5) {
+            return "Should be 5 or more characters";
+        }
+    };
+
+    const singleSelectValidate = (value: string) => {
+        if (value === "mango") {
+            return "Don't pick mango!";
+        }
+    };
+
+    const multiSelectValidate = (values: string[]) => {
+        if (values.includes("mango")) {
+            return "Don't pick mango!";
+        }
+    };
+
     return (
         <View style={{gap: spacing.large_24}}>
             <LabeledField
                 {...args}
-                errorMessage={textFieldErrorMessage || args.errorMessage}
+                errorMessage={textFieldErrorMessage}
                 label="Text Field"
                 field={
                     <TextField
@@ -116,7 +144,7 @@ const AllFields = (
             />
             <LabeledField
                 {...args}
-                errorMessage={textAreaErrorMessage || args.errorMessage}
+                errorMessage={textAreaErrorMessage}
                 label="Text Area"
                 field={
                     <TextArea
@@ -133,7 +161,7 @@ const AllFields = (
 
             <LabeledField
                 {...args}
-                errorMessage={singleSelectErrorMessage || args.errorMessage}
+                errorMessage={singleSelectErrorMessage}
                 label="Single Select"
                 field={
                     <SingleSelect
@@ -141,6 +169,7 @@ const AllFields = (
                         selectedValue={singleSelectValue}
                         onChange={setSingleSelectValue}
                         // onValidate={setSingleSelectErrorMessage}
+                        // validate={shouldValidateInStory ? singleSelectValidate : undefined}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -151,13 +180,14 @@ const AllFields = (
 
             <LabeledField
                 {...args}
-                errorMessage={multiSelectErrorMessage || args.errorMessage}
+                errorMessage={multiSelectErrorMessage}
                 label="Multi Select"
                 field={
                     <MultiSelect
                         selectedValues={multiSelectValue}
                         onChange={setMultiSelectValue}
                         // onValidate={setMultiSelectErrorMessage}
+                        // validate={shouldValidateInStory ? multiSelectValidate : undefined}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -168,7 +198,7 @@ const AllFields = (
 
             <LabeledField
                 {...args}
-                errorMessage={searchErrorMessage || args.errorMessage}
+                errorMessage={searchErrorMessage}
                 label="Search"
                 field={
                     <SearchField
@@ -180,7 +210,9 @@ const AllFields = (
                 }
             />
 
-            <Button onClick={handleSubmit}>Submit</Button>
+            {showSubmitButtonInStory && (
+                <Button onClick={handleSubmit}>Submit</Button>
+            )}
         </View>
     );
 };
@@ -192,6 +224,9 @@ const AllFields = (
  * - `SingleSelect`
  * - `MultiSelect`
  * - `SearchField`
+ *
+ * LabeledField works best with field components that accept `error` and
+ * `required` props since these props will get auto-populated by LabeledField.
  */
 export const Fields: StoryComponentType = {
     args: {
@@ -200,6 +235,14 @@ export const Fields: StoryComponentType = {
     render: AllFields,
 };
 
+/**
+ * The `errorMessage` prop can be used to define the error message to show for
+ * the field.
+ *
+ * It will also put the field component in an error state by
+ * auto-populating the field's `error` prop depending on if there is an error
+ * message.
+ */
 export const Error: StoryComponentType = {
     args: {
         description: "Helpful description text.",
@@ -208,6 +251,18 @@ export const Error: StoryComponentType = {
     render: AllFields,
 };
 
+/**
+ * If it is mandatory for a user to fill out a field, it can be marked as
+ * required.
+ *
+ * LabeledField will auto-populate the `required` prop for the field
+ * component and validation is handled by the specific field components. See
+ * docs for each component for more details on validation logic.
+ *
+ * If LabeledField's `required` prop is used and the field's `onValidate` prop
+ * sets LabeledField's `errorMessage` prop, the error message for the required
+ * field will be shown.
+ */
 export const Required: StoryComponentType = {
     args: {
         description: "Helpful description text.",
@@ -216,29 +271,24 @@ export const Required: StoryComponentType = {
     render: AllFields,
 };
 
+/**
+ * The LabeledField's `errorMessage` prop can be configured with the form field's
+ * validation props like `validate` and `onValidate`. This example also shows
+ * how an error message can be shown after the form is submitted.
+ *
+ * Note: For `TextField` and `TextArea` components, it is recommended to use
+ * `instantValidation=false` so that validation occurs on blur for better
+ * usability.
+ *
+ * In this example, the text-based fields will show an error if the value has
+ * less than 5 characters. The select-based fields will show an error if "Mango"
+ * is selected.
+ */
 export const Validation = {
     args: {
         description: "Helpful description text.",
         shouldValidateInStory: true,
-    },
-    render: AllFields,
-};
-
-/**
- * If the labeled field is used on a dark background, the `light` prop can be
- * set to `true`. When abled, the text in the component (label, required
- * indicator, description, and error message) are modified to work on a dark
- * background.
- */
-export const Light: StoryComponentType = {
-    args: {
-        description: "Helpful description text.",
-        errorMessage: "Message about the error",
-        required: true,
-        light: true,
-    },
-    parameters: {
-        backgrounds: {default: "darkBlue"},
+        showSubmitButtonInStory: true,
     },
     render: AllFields,
 };
@@ -279,6 +329,25 @@ ChangingErrors.parameters = {
         // Disabling because this doesn't test anything visual.
         disableSnapshot: true,
     },
+};
+
+/**
+ * If the labeled field is used on a dark background, the `light` prop can be
+ * set to `true`. When abled, the text in the component (label, required
+ * indicator, description, and error message) are modified to work on a dark
+ * background.
+ */
+export const Light: StoryComponentType = {
+    args: {
+        description: "Helpful description text.",
+        errorMessage: "Message about the error",
+        required: true,
+        light: true,
+    },
+    parameters: {
+        backgrounds: {default: "darkBlue"},
+    },
+    render: AllFields,
 };
 
 /**
