@@ -63,33 +63,45 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
     );
     const [searchValue, setSearchValue] = React.useState("");
 
+    const [textFieldErrorMessage, setTextFieldErrorMessage] = React.useState<string | null | undefined>();
+    const [textAreaErrorMessage, setTextAreaErrorMessage] = React.useState<string | null | undefined>();
+    const [singleSelectErrorMessage, setSingleSelectErrorMessage] = React.useState<string | null | undefined>();
+    const [multiSelectErrorMessage, setMultiSelectErrorMessage] = React.useState<string | null | undefined>(
+    );
+    const [searchErrorMessage, setSearchErrorMessage] = React.useState<string | null | undefined>();
+
     return (
         <View style={{gap: spacing.large_24}}>
             <LabeledField
                 {...args}
+                error={textFieldErrorMessage || args.error}
                 label="Text Field"
                 field={
                     <TextField
                         value={textFieldValue}
                         onChange={setTextFieldValue}
                         error={!!args.error}
+                        onValidate={setTextFieldErrorMessage}
                     />
                 }
             />
             <LabeledField
                 {...args}
+                error={textAreaErrorMessage || args.error}
                 label="Text Area"
                 field={
                     <TextArea
                         value={textAreaValue}
                         onChange={setTextAreaValue}
                         error={!!args.error}
+                        onValidate={setTextAreaErrorMessage}
                     />
                 }
             />
 
             <LabeledField
                 {...args}
+                error={singleSelectErrorMessage || args.error}
                 label="Single Select"
                 field={
                     <SingleSelect
@@ -97,6 +109,7 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
                         selectedValue={singleSelectValue}
                         onChange={setSingleSelectValue}
                         error={!!args.error}
+                        // onValidate={setSingleSelectErrorMessage}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -107,12 +120,14 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
 
             <LabeledField
                 {...args}
+                error={multiSelectErrorMessage || args.error}
                 label="Multi Select"
                 field={
                     <MultiSelect
                         selectedValues={multiSelectValue}
                         onChange={setMultiSelectValue}
                         error={!!args.error}
+                        // onValidate={setMultiSelectErrorMessage}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -123,12 +138,14 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
 
             <LabeledField
                 {...args}
+                error={searchErrorMessage || args.error}
                 label="Search"
                 field={
                     <SearchField
                         value={searchValue}
                         onChange={setSearchValue}
                         error={!!args.error}
+                        // onValidate={setSearchErrorMessage}
                     />
                 }
             />
