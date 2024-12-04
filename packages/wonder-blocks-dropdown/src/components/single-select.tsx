@@ -398,6 +398,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             placeholder,
             selectedValue,
             testId,
+            showOpenerLabelAsText,
             // the following props are being included here to avoid
             // passing them down to the opener as part of sharedProps
             /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -414,7 +415,6 @@ export default class SingleSelect extends React.Component<Props, State> {
             className,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
-            showOpenerLabelAsText,
             ...sharedProps
         } = this.props;
 

@@ -528,6 +528,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             className,
             "aria-invalid": ariaInvalid,
             "aria-required": ariaRequired,
+            showOpenerLabelAsText,
             /* eslint-enable @typescript-eslint/no-unused-vars */
             ...sharedProps
         } = this.props;
