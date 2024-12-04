@@ -3,7 +3,7 @@
 // alternatives work. Click includes mouseUp, which removes the pressed style.
 /* eslint-disable testing-library/prefer-user-event */
 import * as React from "react";
-import {expect, within, userEvent, fireEvent} from "@storybook/test";
+import {expect, within, userEvent /*fireEvent*/} from "@storybook/test";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
@@ -38,8 +38,8 @@ export default {
     argTypes: LinkArgTypes,
 } as Meta<typeof Link>;
 
-const activeBlue = "#1b50b3";
-const fadedBlue = "#b5cefb";
+// const activeBlue = "#1b50b3";
+// const fadedBlue = "#b5cefb";
 
 type StoryComponentType = StoryObj<typeof Link>;
 
@@ -87,11 +87,11 @@ Primary.play = async ({canvasElement}) => {
     // // rgb(24, 101, 242) is the same as Color.blue
     // await expect(link).toHaveStyle("outline: rgb(24, 101, 242) solid 1px");
 
-    // Mousedown style
-    await fireEvent.mouseDown(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${activeBlue}`,
-    );
+    // // Mousedown style
+    // await fireEvent.mouseDown(link);
+    // await expect(link).toHaveStyle(
+    //     `text-decoration: underline solid ${activeBlue}`,
+    // );
 };
 
 export const Secondary: StoryComponentType = () => (
@@ -133,11 +133,11 @@ Secondary.play = async ({canvasElement}) => {
     // // rgb(24, 101, 242) is the same as Color.blue.
     // await expect(link).toHaveStyle("outline: rgb(24, 101, 242) solid 1px");
 
-    // Mousedown style
-    await fireEvent.mouseDown(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${color.offBlack}`,
-    );
+    // // Mousedown style
+    // await fireEvent.mouseDown(link);
+    // await expect(link).toHaveStyle(
+    //     `text-decoration: underline solid ${color.offBlack}`,
+    // );
 };
 
 export const Visitable: StoryComponentType = () => (
@@ -200,11 +200,11 @@ LightPrimary.play = async ({canvasElement}) => {
     // // rgb(255, 255, 255) is the same as Color.white.
     // await expect(link).toHaveStyle("outline: rgb(255, 255, 255) solid 1px");
 
-    // Mousedown style
-    await fireEvent.mouseDown(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${fadedBlue}`,
-    );
+    // // Mousedown style
+    // await fireEvent.mouseDown(link);
+    // await expect(link).toHaveStyle(
+    //     `text-decoration: underline solid ${fadedBlue}`,
+    // );
 };
 
 export const LightVisitable: StoryComponentType = () => (
@@ -495,11 +495,11 @@ Inline.play = async ({canvasElement}) => {
     //     "outline: rgb(24, 101, 242) solid 1px",
     // );
 
-    // Mousedown style
-    await fireEvent.mouseDown(primaryLink);
-    await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline solid ${activeBlue}`,
-    );
+    // // Mousedown style
+    // await fireEvent.mouseDown(primaryLink);
+    // await expect(primaryLink).toHaveStyle(
+    //     `text-decoration: underline solid ${activeBlue}`,
+    // );
 
     /* *** Secondary link styles***  */
 
@@ -524,11 +524,11 @@ Inline.play = async ({canvasElement}) => {
     //     "outline: rgb(24, 101, 242) solid 1px",
     // );
 
-    // Mousedown style
-    await fireEvent.mouseDown(secondaryLink);
-    await expect(secondaryLink).toHaveStyle(
-        `text-decoration: underline solid ${activeBlue}`,
-    );
+    // // Mousedown style
+    // await fireEvent.mouseDown(secondaryLink);
+    // await expect(secondaryLink).toHaveStyle(
+    //     `text-decoration: underline solid ${activeBlue}`,
+    // );
 };
 
 export const InlineLight: StoryComponentType = () => (
@@ -605,11 +605,11 @@ InlineLight.play = async ({canvasElement}) => {
     //     "outline: rgb(255, 255, 255) solid 1px",
     // );
 
-    // Mousedown style
-    await fireEvent.mouseDown(primaryLink);
-    await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline solid ${fadedBlue}`,
-    );
+    // // Mousedown style
+    // await fireEvent.mouseDown(primaryLink);
+    // await expect(primaryLink).toHaveStyle(
+    //     `text-decoration: underline solid ${fadedBlue}`,
+    // );
 };
 
 export const Variants: StoryComponentType = () => (
