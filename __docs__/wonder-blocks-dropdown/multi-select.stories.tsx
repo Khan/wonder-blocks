@@ -129,14 +129,14 @@ const styles = StyleSheet.create({
 });
 
 const items = [
-    <OptionItem label="Mercury" value="1" key={1} />,
-    <OptionItem label="Venus" value="2" key={2} />,
-    <OptionItem label="Earth" value="3" disabled key={3} />,
-    <OptionItem label="Mars" value="4" key={4} />,
-    <OptionItem label="Jupiter" value="5" key={5} />,
-    <OptionItem label="Saturn" value="6" key={6} />,
-    <OptionItem label="Neptune" value="7" key={7} />,
-    <OptionItem label="Uranus" value="8" key={8} />,
+    <OptionItem label="Mercury" value="mercury" key={1} />,
+    <OptionItem label="Venus" value="venus" key={2} />,
+    <OptionItem label="Earth" value="earth" disabled key={3} />,
+    <OptionItem label="Mars" value="mars" key={4} />,
+    <OptionItem label="Jupiter" value="jupiter" key={5} />,
+    <OptionItem label="Saturn" value="saturn" key={6} />,
+    <OptionItem label="Neptune" value="neptune" key={7} />,
+    <OptionItem label="Uranus" value="uranus" key={8} />,
 ];
 
 const Template = (args: any) => {
@@ -289,7 +289,7 @@ const ControlledMultiSelect = (args: PropsFor<typeof MultiSelect>) => {
                 selectedValues={selectedValues}
                 onChange={setSelectedValues}
                 validate={(values) => {
-                    if (values.includes("5")) {
+                    if (values.includes("jupiter")) {
                         return "Don't pick jupiter!";
                     }
                 }}
@@ -383,6 +383,16 @@ export const ErrorFromValidation: StoryComponentType = {
                     Validation example (try picking jupiter)
                 </LabelMedium>
                 <ControlledMultiSelect {...args} id="multi-select">
+                    {items}
+                </ControlledMultiSelect>
+                <LabelMedium htmlFor="multi-select" tag="label">
+                    Validation example (on mount)
+                </LabelMedium>
+                <ControlledMultiSelect
+                    {...args}
+                    selectedValues={["jupiter"]}
+                    id="multi-select"
+                >
                     {items}
                 </ControlledMultiSelect>
             </View>

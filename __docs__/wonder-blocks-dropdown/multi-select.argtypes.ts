@@ -12,6 +12,7 @@ const argTypes: ArgTypes = {
         table: {
             type: {summary: "Array<string>"},
         },
+        control: {type: "object"},
     },
     labels: {
         control: {type: "object"},
