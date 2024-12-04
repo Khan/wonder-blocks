@@ -224,7 +224,7 @@ describe("#useCachedEffect", () => {
             // Arrange
             const useRequestInterceptSpy = jest
                 .spyOn(UseRequestInterception, "useRequestInterception")
-                .mockReturnValue(jest.fn());
+                .mockReturnValue(jest.fn().mockResolvedValue("data"));
             const fakeHandler = jest.fn();
 
             // Act
@@ -303,7 +303,7 @@ describe("#useCachedEffect", () => {
             "should fulfill request when there is no cached value and FetchPolicy.%s",
             (fetchPolicy: any) => {
                 // Arrange
-                const fakeHandler = jest.fn();
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
                     null,
                     jest.fn(),
@@ -323,7 +323,7 @@ describe("#useCachedEffect", () => {
             "should fulfill request when there is a cached value and FetchPolicy.%s",
             (fetchPolicy: any) => {
                 // Arrange
-                const fakeHandler = jest.fn();
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
                     Status.success("data"),
                     jest.fn(),

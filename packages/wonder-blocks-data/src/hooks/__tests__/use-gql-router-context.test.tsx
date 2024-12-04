@@ -12,7 +12,7 @@ describe("#useGqlRouterContext", () => {
         const underTest = () => renderHook(() => useGqlRouterContext());
 
         // Assert
-        expect(underTest).toThrowErrorMatchingInlineSnapshot("No GqlRouter");
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(`"No GqlRouter"`);
     });
 
     it("should return an equivalent to the GqlRouterContext if no overrides given", () => {

@@ -1,5 +1,8 @@
 import {renderHook} from "@testing-library/react";
-import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
+import {
+    renderHookStatic,
+    testHarness,
+} from "@khanacademy/wonder-blocks-testing-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 
@@ -261,10 +264,14 @@ describe("#useServerEffect", () => {
                 RequestTracker.Default,
                 "trackDataRequest",
             );
+            const HarnessedTrackData = testHarness(TrackData, {
+                // We don't care about the error that can get thrown.
+                boundary: jest.fn(),
+            });
 
             // Act
             renderHook(() => useServerEffect("ID", fakeHandler), {
-                wrapper: TrackData,
+                wrapper: HarnessedTrackData,
             });
 
             // Assert

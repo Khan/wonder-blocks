@@ -18,6 +18,10 @@ jest.mock("react", () => {
 });
 
 describe("usePreHydrationEffect", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     describe("client side mode", () => {
         beforeEach(() => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);
