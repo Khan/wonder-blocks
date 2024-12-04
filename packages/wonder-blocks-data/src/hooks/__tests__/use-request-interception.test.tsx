@@ -69,7 +69,7 @@ describe("#useRequestInterception", () => {
         const handler = jest.fn();
         const interceptor1 = jest.fn().mockResolvedValue("INTERCEPTED_DATA1");
         const interceptor2 = jest.fn().mockResolvedValue("INTERCEPTED_DATA2");
-        const HookWrapper = (): React.ReactNode => {
+        const HookWrapper = (): React.ReactElement => {
             const resultToCapture = useRequestInterception("ID", handler);
             captureHookResult(resultToCapture);
             return <></>;

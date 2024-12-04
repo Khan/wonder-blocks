@@ -89,7 +89,7 @@ Primary.play = async ({canvasElement}) => {
     await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 1px");
 
     // Mousedown style
-    await fireEvent.mouseDown(link);
+    fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
         `text-decoration: underline solid ${activeBlue}`,
     );
@@ -136,7 +136,7 @@ Secondary.play = async ({canvasElement}) => {
     await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 1px");
 
     // Mousedown style
-    await fireEvent.mouseDown(link);
+    fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
         `text-decoration: underline solid ${color.offBlack}`,
     );
@@ -204,7 +204,7 @@ LightPrimary.play = async ({canvasElement}) => {
     await expect(computedStyle.outline).toBe("rgb(255, 255, 255) solid 1px");
 
     // Mousedown style
-    await fireEvent.mouseDown(link);
+    fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
         `text-decoration: underline solid ${fadedBlue}`,
     );
@@ -503,7 +503,7 @@ Inline.play = async ({canvasElement}) => {
     );
 
     // Mousedown style
-    await fireEvent.mouseDown(primaryLink);
+    fireEvent.mouseDown(primaryLink);
     await expect(primaryLink).toHaveStyle(
         `text-decoration: underline solid ${activeBlue}`,
     );
@@ -537,7 +537,7 @@ Inline.play = async ({canvasElement}) => {
     );
 
     // Mousedown style
-    await fireEvent.mouseDown(secondaryLink);
+    fireEvent.mouseDown(secondaryLink);
     await expect(secondaryLink).toHaveStyle(
         `text-decoration: underline solid ${activeBlue}`,
     );
@@ -617,7 +617,7 @@ InlineLight.play = async ({canvasElement}) => {
     await expect(computedStyle.outline).toBe("rgb(255, 255, 255) solid 1px");
 
     // Mousedown style
-    await fireEvent.mouseDown(primaryLink);
+    fireEvent.mouseDown(primaryLink);
     await expect(primaryLink).toHaveStyle(
         `text-decoration: underline solid ${fadedBlue}`,
     );

@@ -46,7 +46,7 @@ type Props<TData extends ValidCacheData> = {
 const InterceptRequests = <TData extends ValidCacheData>({
     interceptor,
     children,
-}: Props<TData>): React.ReactNode => {
+}: Props<TData>): React.ReactElement => {
     const interceptors = React.useContext(InterceptContext);
 
     const updatedInterceptors = React.useMemo(

@@ -117,7 +117,7 @@ export const Tertiary: StoryComponentType = {
         await expect(computedStyleLabel.color).toBe("rgb(24, 101, 242)");
 
         // Focus style
-        await fireEvent.focus(button);
+        fireEvent.focus(button);
         await expect(computedStyleButton.outlineColor).toBe(
             "rgb(24, 101, 242)",
         );
@@ -125,7 +125,7 @@ export const Tertiary: StoryComponentType = {
 
         // Active (mouse down) style
         // eslint-disable-next-line testing-library/prefer-user-event
-        await fireEvent.mouseDown(button);
+        fireEvent.mouseDown(button);
         await expect(innerLabel).toHaveStyle("color: rgb(27, 80, 179)");
         await expect(computedStyleLabel.height).toBe("2px");
         await expect(computedStyleLabel.color).toBe("rgb(27, 80, 179)");
