@@ -51,13 +51,14 @@ type Props = {
      */
     required?: boolean | string;
     /**
-     * The message for the error element.
+     * The message for the error element. If there is a message, it will also
+     * set the `error` prop on the `field` component.
      *
      * Note: Since the error icon has an aria-label, screen readers will
      * prefix the error message with "Error:" (or the value provided to the
      * errorIconAriaLabel in the `labels` prop)
      */
-    error?: React.ReactNode;
+    errorMessage?: React.ReactNode;
     /**
      * Custom styles for the labeled field container.
      */
@@ -110,8 +111,9 @@ const defaultLabeledFieldLabels: LabeledFieldLabels = {
 const StyledSpan = addStyle("span");
 
 /**
- * A LabeledField is an element that provides a label, description, and error element
- * to present better context and hints to any type of form field component.
+ * A LabeledField is an element that provides a label, required indicator,
+ * description, and error to present better context and hints to any type of
+ * form field component.
  */
 export default function LabeledField(props: Props) {
     const {
@@ -123,7 +125,7 @@ export default function LabeledField(props: Props) {
         testId,
         light,
         description,
-        error,
+        errorMessage,
         labels = defaultLabeledFieldLabels,
     } = props;
 
@@ -209,7 +211,7 @@ export default function LabeledField(props: Props) {
                     // is announced
                     aria-atomic="true"
                 >
-                    {error && (
+                    {errorMessage && (
                         <>
                             <PhosphorIcon
                                 icon={WarningCircle}
@@ -227,7 +229,7 @@ export default function LabeledField(props: Props) {
                                     light ? styles.lightError : styles.error,
                                 ]}
                             >
-                                {error}
+                                {errorMessage}
                             </LabelSmall>
                         </>
                     )}
@@ -239,11 +241,14 @@ export default function LabeledField(props: Props) {
     function renderField() {
         return React.cloneElement(field, {
             id: fieldId,
-            "aria-describedby": [error && errorId, description && descriptionId]
+            "aria-describedby": [
+                errorMessage && errorId,
+                description && descriptionId,
+            ]
                 .filter(Boolean)
                 .join(" "),
             required,
-            error,
+            error: !!errorMessage,
             testId: testId && `${testId}-field`,
         });
     }

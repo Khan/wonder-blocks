@@ -17,7 +17,7 @@ describe("LabeledField", () => {
     const id = "example-id";
     const label = "Label";
     const description = "Description of the field";
-    const error = "Error message";
+    const errorMessage = "Error message";
     const testId = "test-id";
 
     const getLabel = () => screen.getByText(label);
@@ -62,20 +62,20 @@ describe("LabeledField", () => {
 
     it("LabeledField renders the error text", () => {
         // Arrange
-        const error = "Error";
+        const errorMessage = "Error";
 
         // Act
         render(
             <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
-                error={error}
+                errorMessage={errorMessage}
             />,
             defaultOptions,
         );
 
         // Assert
-        expect(screen.getByText(error)).toBeInTheDocument();
+        expect(screen.getByText(errorMessage)).toBeInTheDocument();
     });
 
     it("LabeledField adds testId to label", () => {
@@ -126,7 +126,7 @@ describe("LabeledField", () => {
             <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
-                error="Error"
+                errorMessage="Error"
                 testId={testId}
             />,
             defaultOptions,
@@ -151,7 +151,7 @@ describe("LabeledField", () => {
             <LabeledField
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
-                error="Error"
+                errorMessage="Error"
                 style={styles.style1}
             />,
             defaultOptions,
@@ -215,7 +215,7 @@ describe("LabeledField", () => {
                 <LabeledField
                     field={<TextField value="" onChange={() => {}} />}
                     label="Label"
-                    error="Error message"
+                    errorMessage="Error message"
                     labels={{errorIconAriaLabel}}
                 />,
                 defaultOptions,
@@ -234,7 +234,7 @@ describe("LabeledField", () => {
                 <LabeledField
                     field={<TextField value="" onChange={() => {}} />}
                     label="Label"
-                    error="Error message"
+                    errorMessage="Error message"
                     testId="labeled-field"
                 />,
                 defaultOptions,
@@ -271,7 +271,7 @@ describe("LabeledField", () => {
                             id={id}
                             label={label}
                             description={description}
-                            error={error}
+                            errorMessage={errorMessage}
                             testId={testId}
                         />,
                         defaultOptions,
@@ -303,7 +303,7 @@ describe("LabeledField", () => {
                             field={<TextField value="" onChange={() => {}} />}
                             label={label}
                             description={description}
-                            error={error}
+                            errorMessage={errorMessage}
                             testId={testId}
                         />,
                         defaultOptions,
@@ -338,7 +338,7 @@ describe("LabeledField", () => {
                             testId={testId}
                             label={label}
                             description={description}
-                            error={error}
+                            errorMessage={errorMessage}
                         />,
                         defaultOptions,
                     );
@@ -362,7 +362,7 @@ describe("LabeledField", () => {
                         // without using testId, we get the parent of the error
                         // text
                         // eslint-disable-next-line testing-library/no-node-access
-                        const el = screen.getByText(error).parentElement;
+                        const el = screen.getByText(errorMessage).parentElement;
                         if (!el) {
                             throw Error(
                                 "Error section in LabeledField not found",
@@ -383,7 +383,7 @@ describe("LabeledField", () => {
                             field={<TextField value="" onChange={() => {}} />}
                             label={label}
                             description={description}
-                            error={error}
+                            errorMessage={errorMessage}
                         />,
                         defaultOptions,
                     );
@@ -430,7 +430,7 @@ describe("LabeledField", () => {
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
                         description="Description for the field"
-                        error="Error message"
+                        errorMessage="Error message"
                     />,
                     defaultOptions,
                 );
@@ -485,12 +485,12 @@ describe("LabeledField", () => {
 
             it("should set the aria-describedby on the field to the id of the error section", () => {
                 // Arrange
-                const error = "Error message";
+                const errorMessage = "Error message";
                 render(
                     <LabeledField
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
-                        error={error}
+                        errorMessage={errorMessage}
                         testId="labeled-field"
                     />,
                     defaultOptions,
@@ -511,12 +511,12 @@ describe("LabeledField", () => {
 
             it("should have aria-live=assertive set on the error section", () => {
                 // Arrange
-                const error = "Error message";
+                const errorMessage = "Error message";
                 render(
                     <LabeledField
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
-                        error={error}
+                        errorMessage={errorMessage}
                         testId="labeled-field"
                     />,
                     defaultOptions,
@@ -536,12 +536,12 @@ describe("LabeledField", () => {
 
             it("should have aria-atomic=true set on the error section", () => {
                 // Arrange
-                const error = "Error message";
+                const errorMessage = "Error message";
                 render(
                     <LabeledField
                         field={<TextField value="" onChange={() => {}} />}
                         label="Label"
-                        error={error}
+                        errorMessage={errorMessage}
                         testId="labeled-field"
                     />,
                     defaultOptions,

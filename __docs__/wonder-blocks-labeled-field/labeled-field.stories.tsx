@@ -100,7 +100,7 @@ const AllFields = (
         <View style={{gap: spacing.large_24}}>
             <LabeledField
                 {...args}
-                error={textFieldErrorMessage || args.error}
+                errorMessage={textFieldErrorMessage || args.errorMessage}
                 label="Text Field"
                 field={
                     <TextField
@@ -116,7 +116,7 @@ const AllFields = (
             />
             <LabeledField
                 {...args}
-                error={textAreaErrorMessage || args.error}
+                errorMessage={textAreaErrorMessage || args.errorMessage}
                 label="Text Area"
                 field={
                     <TextArea
@@ -133,7 +133,7 @@ const AllFields = (
 
             <LabeledField
                 {...args}
-                error={singleSelectErrorMessage || args.error}
+                errorMessage={singleSelectErrorMessage || args.errorMessage}
                 label="Single Select"
                 field={
                     <SingleSelect
@@ -151,7 +151,7 @@ const AllFields = (
 
             <LabeledField
                 {...args}
-                error={multiSelectErrorMessage || args.error}
+                errorMessage={multiSelectErrorMessage || args.errorMessage}
                 label="Multi Select"
                 field={
                     <MultiSelect
@@ -168,7 +168,7 @@ const AllFields = (
 
             <LabeledField
                 {...args}
-                error={searchErrorMessage || args.error}
+                errorMessage={searchErrorMessage || args.errorMessage}
                 label="Search"
                 field={
                     <SearchField
@@ -203,7 +203,7 @@ export const Fields: StoryComponentType = {
 export const Error: StoryComponentType = {
     args: {
         description: "Helpful description text.",
-        error: "Message about the error",
+        errorMessage: "Message about the error",
     },
     render: AllFields,
 };
@@ -216,7 +216,7 @@ export const Required: StoryComponentType = {
     render: AllFields,
 };
 
-export const Validation: StoryComponentType = {
+export const Validation = {
     args: {
         description: "Helpful description text.",
         shouldValidateInStory: true,
@@ -233,7 +233,7 @@ export const Validation: StoryComponentType = {
 export const Light: StoryComponentType = {
     args: {
         description: "Helpful description text.",
-        error: "Message about the error",
+        errorMessage: "Message about the error",
         required: true,
         light: true,
     },
@@ -258,7 +258,7 @@ export const ChangingErrors: StoryComponentType = () => {
             <LabeledField
                 label="Label"
                 field={<TextField value="" onChange={() => {}} />}
-                error={errorMessage}
+                errorMessage={errorMessage}
             />
             <Strut size={spacing.small_12} />
             <Button
@@ -318,7 +318,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
             <LabeledField
                 {...args}
                 label="With error"
-                error="Message about the error"
+                errorMessage="Message about the error"
                 field={
                     <TextField
                         value="invalid value"
@@ -330,7 +330,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
             <LabeledField
                 {...args}
                 label="With description and error"
-                error="Message about the error"
+                errorMessage="Message about the error"
                 description="Description"
                 field={
                     <TextField
@@ -346,7 +346,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
                 required={true}
                 {...args}
                 label={longText}
-                error={longText}
+                errorMessage={longText}
                 description={longText}
                 field={
                     <TextField
@@ -361,7 +361,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
                 required={true}
                 {...args}
                 label={longTextWithNoBreak}
-                error={longTextWithNoBreak}
+                errorMessage={longTextWithNoBreak}
                 description={longTextWithNoBreak}
                 field={
                     <TextField
