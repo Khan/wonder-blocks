@@ -2723,6 +2723,7 @@ describe("MultiSelect", () => {
                     );
                 });
             });
+
             describe("opening and closing the dropdown without picking a value", () => {
                 it("should call the onValidate prop when it is closed", async () => {
                     // Arrange
