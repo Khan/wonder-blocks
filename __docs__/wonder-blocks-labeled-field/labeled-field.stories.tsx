@@ -72,6 +72,7 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
                     <TextField
                         value={textFieldValue}
                         onChange={setTextFieldValue}
+                        error={!!args.error}
                     />
                 }
             />
@@ -82,6 +83,7 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
                     <TextArea
                         value={textAreaValue}
                         onChange={setTextAreaValue}
+                        error={!!args.error}
                     />
                 }
             />
@@ -126,6 +128,7 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
                     <SearchField
                         value={searchValue}
                         onChange={setSearchValue}
+                        error={!!args.error}
                     />
                 }
             />
