@@ -1,9 +1,10 @@
 import * as React from "react";
 import moment from "moment";
-import {render, screen} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 
+import {wait} from "@testing-library/user-event/dist/types/utils";
 import BirthdayPicker, {defaultLabels} from "../birthday-picker";
 
 import type {Labels} from "../birthday-picker";
@@ -565,13 +566,15 @@ describe("BirthdayPicker", () => {
 
     describe("keyboard", () => {
         beforeEach(() => {
-            jest.useFakeTimers();
+            jest.useFakeTimers({
+                advanceTimers: true,
+            });
         });
 
         it("should find and select an item using the keyboard", async () => {
             // Arrange
             const ue = userEvent.setup({
-                advanceTimers: jest.advanceTimersByTime,
+                advanceTimers: jest.advanceTimersByTimeAsync,
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
             const onChange = jest.fn();
@@ -583,20 +586,22 @@ describe("BirthdayPicker", () => {
             // Focus on the month selector
             await ue.tab();
             await ue.keyboard("Jul");
-            jest.advanceTimersByTime(501);
+            await jest.advanceTimersByTimeAsync(501);
 
             // Focus on the day selector
             await ue.tab();
             await ue.keyboard("5");
-            jest.advanceTimersByTime(501);
+            await jest.advanceTimersByTimeAsync(501);
 
             // Focus on the year selector
             await ue.tab();
             await ue.keyboard(lastYear);
-            jest.advanceTimersByTime(501);
+            await jest.advanceTimersByTimeAsync(501);
 
             // Assert
+            // await waitFor(() => {
             expect(onChange).toHaveBeenCalledWith(`${lastYear}-07-05`);
+            // });
         });
     });
 });

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unassigned-import
 import "jest-extended";
-import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
+import {renderHook as clientRenderHook} from "@testing-library/react";
 
 import {useSharedCache, SharedCache} from "../use-shared-cache";
 

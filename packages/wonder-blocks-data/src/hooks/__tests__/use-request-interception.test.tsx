@@ -1,5 +1,5 @@
 import * as React from "react";
-import {renderHook} from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react";
 import InterceptRequests from "../../components/intercept-requests";
 import {useRequestInterception} from "../use-request-interception";
 
