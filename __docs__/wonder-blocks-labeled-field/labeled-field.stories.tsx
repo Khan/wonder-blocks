@@ -147,7 +147,6 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
 export const Fields: StoryComponentType = {
     args: {
         description: "Helpful description text.",
-        required: true,
     },
     render: AllFields,
 };
@@ -156,7 +155,14 @@ export const Error: StoryComponentType = {
     args: {
         description: "Helpful description text.",
         error: "Message about the error",
-        required: true,
+    },
+    render: AllFields,
+};
+
+export const Required: StoryComponentType = {
+    args: {
+        description: "Helpful description text.",
+        required: "Custom required error message",
     },
     render: AllFields,
 };
