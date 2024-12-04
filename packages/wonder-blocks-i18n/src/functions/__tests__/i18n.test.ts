@@ -139,6 +139,17 @@ describe("i18n", () => {
             const result = ngettext("Singular", "Plural", 0);
 
             // Assert
+            expect(result).toMatchInlineSnapshot(`"arrrr mateys"`);
+        });
+
+        it("ngettext should handle missing translations", () => {
+            // Arrange
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "ru");
+
+            // Act
+            const result = ngettext("Singular", "Plural", 0);
+
+            // Assert
             expect(result).toMatchInlineSnapshot(`"Plural"`);
         });
 

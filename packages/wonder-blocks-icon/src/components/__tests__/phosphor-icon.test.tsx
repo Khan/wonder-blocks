@@ -48,6 +48,16 @@ describe("PhosphorIcon", () => {
         );
     });
 
+    it("applies role=img when aria-label is provided", async () => {
+        // Arrange
+
+        // Act
+        render(<PhosphorIcon icon={Plus} aria-label="something" />);
+
+        // Assert
+        expect(screen.getByRole("img")).toBeInTheDocument();
+    });
+
     it("calls viewportPixelsForSize with size from props", async () => {
         // Arrange
         const viewPortPixelsForSizeSpy = jest.spyOn(

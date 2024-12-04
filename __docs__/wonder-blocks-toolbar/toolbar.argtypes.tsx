@@ -20,7 +20,8 @@ const styles = StyleSheet.create({
     fillContent: {
         marginLeft: spacing.small_12,
         [mobile]: {
-            width: "100vw",
+            marginLeft: 0,
+            width: "100%",
         },
     },
     onlyDesktop: {

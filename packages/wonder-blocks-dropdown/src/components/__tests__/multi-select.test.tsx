@@ -1,7 +1,13 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable max-lines */
 import * as React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {
+    fireEvent,
+    render,
+    screen,
+    waitFor,
+    within,
+} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -263,6 +269,28 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(opener).toHaveAttribute("data-testid", "some-test-id");
+        });
+
+        it("can render a Node as a label", async () => {
+            // Arrange
+            doRender(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["1"]}
+                    showOpenerLabelAsText={false}
+                >
+                    <OptionItem label={<div>custom item 1</div>} value="1" />
+                    <OptionItem label={<div>custom item 2</div>} value="2" />
+                    <OptionItem label={<div>custom item 3</div>} value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("button");
+            const menuLabel = within(opener).getByText("custom item 1");
+
+            // Assert
+            expect(menuLabel).toBeVisible();
         });
     });
 
