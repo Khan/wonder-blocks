@@ -54,7 +54,14 @@ export const Default: StoryComponentType = {
     },
 };
 
-const AllFields = (args: PropsFor<typeof LabeledField>) => {
+const textValidate = (value: string) => {
+    if (value.length < 5) {
+        return "Should be 5 or more characters"
+    }
+}
+
+const AllFields = (storyArgs: PropsFor<typeof LabeledField> & { shouldValidateInStory?: boolean }) => {
+    const { shouldValidateInStory, ...args } = storyArgs;
     const [textFieldValue, setTextFieldValue] = React.useState("");
     const [textAreaValue, setTextAreaValue] = React.useState("");
     const [singleSelectValue, setSingleSelectValue] = React.useState("");
@@ -82,6 +89,8 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
                         onChange={setTextFieldValue}
                         error={!!args.error}
                         onValidate={setTextFieldErrorMessage}
+                        validate={shouldValidateInStory ? textValidate : undefined}
+                        instantValidation={false}
                     />
                 }
             />
@@ -95,6 +104,8 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
                         onChange={setTextAreaValue}
                         error={!!args.error}
                         onValidate={setTextAreaErrorMessage}
+                        validate={shouldValidateInStory ? textValidate : undefined}
+                        instantValidation={false}
                     />
                 }
             />
@@ -145,6 +156,7 @@ const AllFields = (args: PropsFor<typeof LabeledField>) => {
                         value={searchValue}
                         onChange={setSearchValue}
                         error={!!args.error}
+                        // validate={shouldValidateInStory ? textValidate : undefined}
                         // onValidate={setSearchErrorMessage}
                     />
                 }
@@ -180,6 +192,15 @@ export const Required: StoryComponentType = {
     args: {
         description: "Helpful description text.",
         required: "Custom required error message",
+    },
+    render: AllFields,
+};
+
+export const Validation: StoryComponentType = {
+    args: {
+        description: "Helpful description text.",
+        required: "Custom required error message",
+        shouldValidateInStory: true,
     },
     render: AllFields,
 };
