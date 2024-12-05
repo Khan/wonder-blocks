@@ -28,6 +28,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     onClick: (e: React.SyntheticEvent) => unknown;
     /**
+     * Callback for when the opener is blurred.
+     */
+    onBlur?: (e: React.SyntheticEvent) => unknown;
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string;
@@ -43,6 +47,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      * The unique identifier for the opener.
      */
     id?: string;
+    /**
+     * If the dropdown has an error.
+     */
+    error?: boolean;
 };
 
 type DefaultProps = {
@@ -69,7 +77,9 @@ class DropdownOpener extends React.Component<Props> {
             opened,
             "aria-controls": ariaControls,
             "aria-haspopup": ariaHasPopUp,
+            "aria-required": ariaRequired,
             id,
+            onBlur,
         } = this.props;
         const renderedChildren = this.props.children({
             ...eventState,
@@ -81,11 +91,13 @@ class DropdownOpener extends React.Component<Props> {
 
         return React.cloneElement(renderedChildren, {
             ...clickableChildrenProps,
+            "aria-invalid": this.props.error,
             disabled,
             "aria-controls": ariaControls,
             id,
             "aria-expanded": opened ? "true" : "false",
             "aria-haspopup": ariaHasPopUp,
+            "aria-required": ariaRequired,
             onClick: childrenProps.onClick
                 ? (e: React.MouseEvent) => {
                       // This is done to avoid overriding a
@@ -98,6 +110,7 @@ class DropdownOpener extends React.Component<Props> {
             // try to get the testId from the child element
             // If it's not set, try to fallback to the parent's testId
             "data-testid": childrenTestId || testId,
+            onBlur,
         });
     }
 
