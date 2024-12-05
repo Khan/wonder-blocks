@@ -6,5 +6,26 @@ import {Meta} from "@storybook/blocks";
 
 # Form
 
-`wonder-blocks-form` provides building blocks form Form components, including
+`wonder-blocks-form` provides building blocks for Form components, including
 TextField, TextArea, Choice, Checkbox, RadioButton, etc.
+
+
+## Best Practices
+
+- Use form field components with the `LabeledField` component. `LabeledField`
+provides a consistent pattern for things like the label,
+description, required indicator, and error message for a field. It will also
+wire up the proper attributes for accessibility. Use `LabeledField` for the
+following components:
+  - `TextField`
+  - `TextArea`
+  - `SingleSelect`
+  - `MultiSelect`
+  - `SearchField`
+- For fields like `TextField` and `TextArea`, prefer setting `instantValidation=false`.
+This makes it so validation occurs on blur after a user is done interacting with
+a field.
+- Avoid disabling form submission buttons. There could be exceptions if the
+button is for one field.
+- If there are errors after a form is submitted, programatically move the user's
+focus to the first field with an error
