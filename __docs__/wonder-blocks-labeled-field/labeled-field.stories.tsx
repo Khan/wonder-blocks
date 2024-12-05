@@ -97,6 +97,8 @@ const AllFields = (
         string | null | undefined
     >(args.errorMessage);
 
+    const textFieldRef = React.useRef<HTMLInputElement>();
+
     const handleSubmit = () => {
         const backendErrorMessage = "Example server side error message";
         setTextFieldErrorMessage(backendErrorMessage);
@@ -104,6 +106,10 @@ const AllFields = (
         setSingleSelectErrorMessage(backendErrorMessage);
         setMultiSelectErrorMessage(backendErrorMessage);
         setSearchErrorMessage(backendErrorMessage);
+        // Move focus to the first field with an error
+        // Since this example sets an error for all the fields, we move
+        // focus to the first field
+        textFieldRef.current?.focus();
     };
 
     const textValidate = (value: string) => {
@@ -139,6 +145,7 @@ const AllFields = (
                             shouldValidateInStory ? textValidate : undefined
                         }
                         instantValidation={false}
+                        ref={textFieldRef}
                     />
                 }
             />
