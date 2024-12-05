@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 5.8.1
+
+### Patch Changes
+
+-   c8b5b2e2: [MultiSelect and SingleSelect] Remove `showOpenerLabelAsText` from sharedProps that are passed to SelectOpener
+
 ## 5.8.0
 
 ### Minor Changes
