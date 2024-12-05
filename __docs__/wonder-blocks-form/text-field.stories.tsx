@@ -3,15 +3,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {PropsFor, View, Text as _Text} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {
-    LabelLarge,
-    Body,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -19,6 +15,7 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 import TextFieldArgTypes from "./text-field.argtypes";
 import {validateEmail, validatePhoneNumber} from "./form-utilities";
+import LabeledField from "../../packages/wonder-blocks-labeled-field/src/components/labeled-field";
 
 /**
  * A TextField is an element used to accept a single line of text from the user.
@@ -38,6 +35,7 @@ export default {
 } as Meta<typeof TextField>;
 
 type StoryComponentType = StoryObj<typeof TextField>;
+type ControlledStoryComponentType = StoryObj<typeof ControlledTextField>;
 
 export const Default: StoryComponentType = {
     args: {
@@ -193,7 +191,6 @@ Number.parameters = {
 export const Password: StoryComponentType = () => {
     const [value, setValue] = React.useState("Password123");
     const [errorMessage, setErrorMessage] = React.useState<any>();
-    const [focused, setFocused] = React.useState(false);
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
@@ -218,35 +215,23 @@ export const Password: StoryComponentType = () => {
         }
     };
 
-    const handleFocus = () => {
-        setFocused(true);
-    };
-
-    const handleBlur = () => {
-        setFocused(false);
-    };
-
     return (
-        <View>
-            <TextField
-                id="tf-4"
-                type="password"
-                value={value}
-                placeholder="Password"
-                validate={validate}
-                onValidate={handleValidate}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-            />
-            {!focused && errorMessage && (
-                <View>
-                    <Strut size={spacing.xSmall_8} />
-                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
-                </View>
-            )}
-        </View>
+        <LabeledField
+            label="Password"
+            errorMessage={errorMessage}
+            field={
+                <TextField
+                    id="tf-4"
+                    type="password"
+                    value={value}
+                    placeholder="Password"
+                    validate={validate}
+                    onValidate={handleValidate}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                />
+            }
+        />
     );
 };
 
@@ -264,7 +249,6 @@ Password.parameters = {
 export const Email: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan@khanacademy.org");
     const [errorMessage, setErrorMessage] = React.useState<any>();
-    const [focused, setFocused] = React.useState(false);
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
@@ -280,35 +264,23 @@ export const Email: StoryComponentType = () => {
         }
     };
 
-    const handleFocus = () => {
-        setFocused(true);
-    };
-
-    const handleBlur = () => {
-        setFocused(false);
-    };
-
     return (
-        <View>
-            <TextField
-                id="tf-5"
-                type="email"
-                value={value}
-                placeholder="Email"
-                validate={validateEmail}
-                onValidate={handleValidate}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-            />
-            {!focused && errorMessage && (
-                <View>
-                    <Strut size={spacing.xSmall_8} />
-                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
-                </View>
-            )}
-        </View>
+        <LabeledField
+            label="Email"
+            errorMessage={errorMessage}
+            field={
+                <TextField
+                    id="tf-5"
+                    type="email"
+                    value={value}
+                    placeholder="Email"
+                    validate={validateEmail}
+                    onValidate={handleValidate}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                />
+            }
+        />
     );
 };
 
@@ -326,7 +298,6 @@ Email.parameters = {
 export const Telephone: StoryComponentType = () => {
     const [value, setValue] = React.useState("123-456-7890");
     const [errorMessage, setErrorMessage] = React.useState<any>();
-    const [focused, setFocused] = React.useState(false);
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
@@ -342,35 +313,23 @@ export const Telephone: StoryComponentType = () => {
         }
     };
 
-    const handleFocus = () => {
-        setFocused(true);
-    };
-
-    const handleBlur = () => {
-        setFocused(false);
-    };
-
     return (
-        <View>
-            <TextField
-                id="tf-6"
-                type="tel"
-                value={value}
-                placeholder="Telephone"
-                validate={validatePhoneNumber}
-                onValidate={handleValidate}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-            />
-            {!focused && errorMessage && (
-                <View>
-                    <Strut size={spacing.xSmall_8} />
-                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
-                </View>
-            )}
-        </View>
+        <LabeledField
+            label="Telephone"
+            errorMessage={errorMessage}
+            field={
+                <TextField
+                    id="tf-6"
+                    type="tel"
+                    value={value}
+                    placeholder="Telephone"
+                    validate={validatePhoneNumber}
+                    onValidate={handleValidate}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                />
+            }
+        />
     );
 };
 
@@ -385,7 +344,10 @@ Telephone.parameters = {
     },
 };
 
-const ControlledTextField = (args: PropsFor<typeof TextField>) => {
+const ControlledTextField = (
+    storyArgs: PropsFor<typeof TextField> & {label?: string},
+) => {
+    const {label, ...args} = storyArgs;
     const [value, setValue] = React.useState(args.value || "");
     const [error, setError] = React.useState<string | null | undefined>(null);
 
@@ -394,65 +356,20 @@ const ControlledTextField = (args: PropsFor<typeof TextField>) => {
     };
 
     return (
-        <View>
-            <TextField
-                {...args}
-                value={value}
-                onChange={handleChange}
-                onValidate={setError}
-            />
-            <Strut size={spacing.xxSmall_6} />
-            {(error || args.error) && (
-                <LabelSmall style={styles.errorMessage}>
-                    {error || "Error from error prop"}
-                </LabelSmall>
-            )}
-        </View>
+        <LabeledField
+            label={label || "Text field label"}
+            errorMessage={error || (args.error && "Error from error prop")}
+            field={
+                <TextField
+                    {...args}
+                    value={value}
+                    onChange={handleChange}
+                    onValidate={setError}
+                />
+            }
+        />
     );
 };
-
-function ErrorRender(args: PropsFor<typeof TextField>) {
-    const [value, setValue] = React.useState("khan");
-    const [errorMessage, setErrorMessage] = React.useState<any>();
-
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
-
-    const handleValidate = (errorMessage?: string | null) => {
-        setErrorMessage(errorMessage);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <View>
-            <TextField
-                id="tf-7"
-                type="email"
-                placeholder="Email"
-                validate={validateEmail}
-                onValidate={handleValidate}
-                onKeyDown={handleKeyDown}
-                {...args}
-                value={value}
-                onChange={handleChange}
-            />
-            {(errorMessage || args.error) && (
-                <View>
-                    <Strut size={spacing.xxSmall_6} />
-                    <LabelSmall style={styles.errorMessage}>
-                        {errorMessage || "Error from error prop"}
-                    </LabelSmall>
-                </View>
-            )}
-        </View>
-    );
-}
 
 /**
  * If the `error` prop is set to true, the TextField will have error styling and
@@ -464,11 +381,13 @@ function ErrorRender(args: PropsFor<typeof TextField>) {
  * Note: The `required` and `validate` props can also put the TextField in an
  * error state.
  */
-export const Error: StoryComponentType = {
-    render: ErrorRender,
+export const Error: ControlledStoryComponentType = {
+    render: ControlledTextField,
     args: {
         error: true,
         validate: undefined,
+        value: "khan",
+        label: "Error state using error prop",
     },
     parameters: {
         chromatic: {
@@ -489,8 +408,13 @@ export const Error: StoryComponentType = {
  * - aria-invalid="true" if there is an error.
  * - aria-invalid="false" if there is no error.
  */
-export const ErrorFromValidation: StoryComponentType = {
-    render: ErrorRender,
+export const ErrorFromValidation: ControlledStoryComponentType = {
+    render: ControlledTextField,
+    args: {
+        label: "Error state from validation",
+        validate: validateEmail,
+        value: "khan",
+    },
     parameters: {
         chromatic: {
             // Disabling because this doesn't test anything visual.
@@ -536,21 +460,20 @@ export const ErrorFromPropAndValidation = (
 
     return (
         <View>
-            <TextField
-                {...args}
-                value={value}
-                onChange={handleChange}
-                validate={validateEmail}
-                onValidate={setValidationErrorMessage}
-                error={!!errorMessage}
+            <LabeledField
+                label="Error state from prop and validation"
+                errorMessage={errorMessage}
+                field={
+                    <TextField
+                        {...args}
+                        value={value}
+                        onChange={handleChange}
+                        validate={validateEmail}
+                        onValidate={setValidationErrorMessage}
+                        error={!!errorMessage}
+                    />
+                }
             />
-            <Strut size={spacing.xxSmall_6} />
-            {errorMessage && (
-                <LabelSmall style={styles.errorMessage}>
-                    {errorMessage}
-                </LabelSmall>
-            )}
-            <Strut size={spacing.xxSmall_6} />
             <Button
                 onClick={() => {
                     if (value === "test@test.com") {
@@ -602,53 +525,38 @@ export const InstantValidation: StoryComponentType = {
     render: (args) => {
         return (
             <View style={{gap: spacing.small_12}}>
-                <LabelSmall htmlFor="instant-validation-true-not-required">
-                    Validation on mount if there is a value
-                </LabelSmall>
                 <ControlledTextField
                     {...args}
-                    id="instant-validation-true-not-required"
+                    label="Validation on mount if there is a value"
                     value="invalid"
                 />
-                <LabelSmall htmlFor="instant-validation-true-not-required">
-                    Error shown immediately (instantValidation: true, required:
-                    false)
-                </LabelSmall>
                 <ControlledTextField
                     {...args}
-                    id="instant-validation-true-not-required"
+                    label="Error shown immediately (instantValidation: true, required:
+                    false)"
                     instantValidation={true}
                 />
-                <LabelSmall htmlFor="instant-validation-false-not-required">
-                    Error shown onBlur (instantValidation: false, required:
-                    false)
-                </LabelSmall>
                 <ControlledTextField
                     {...args}
-                    id="instant-validation-false-not-required"
+                    label="Error shown onBlur (instantValidation: false, required:
+                    false)"
                     instantValidation={false}
                 />
-
-                <LabelSmall htmlFor="instant-validation-true-required">
-                    Error shown immediately after clearing the value
-                    (instantValidation: true, required: true)
-                </LabelSmall>
                 <ControlledTextField
                     {...args}
+                    label="Error shown immediately after clearing the value
+                    (instantValidation: true, required: true)"
                     validate={undefined}
                     value="T"
                     id="instant-validation-true-required"
                     instantValidation={true}
                     required="Required"
                 />
-                <LabelSmall htmlFor="instant-validation-false-required">
-                    Error shown on blur if it is empty (instantValidation:
-                    false, required: true)
-                </LabelSmall>
                 <ControlledTextField
                     {...args}
+                    label="Error shown on blur if it is empty (instantValidation:
+                    false, required: true)"
                     validate={undefined}
-                    id="instant-validation-false-required"
                     instantValidation={false}
                     required="Required"
                 />
@@ -663,133 +571,46 @@ export const InstantValidation: StoryComponentType = {
     },
 };
 
-export const Light: StoryComponentType = () => {
-    const [value, setValue] = React.useState("khan@khanacademy.org");
-    const [errorMessage, setErrorMessage] = React.useState<any>();
-    const [focused, setFocused] = React.useState(false);
-
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
-
-    const handleValidate = (errorMessage?: string | null) => {
-        setErrorMessage(errorMessage);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    const handleFocus = () => {
-        setFocused(true);
-    };
-
-    const handleBlur = () => {
-        setFocused(false);
-    };
-
-    return (
-        <View style={styles.darkBackground}>
-            <TextField
-                id="tf-9"
-                type="email"
-                value={value}
-                placeholder="Email"
-                light={true}
-                validate={validateEmail}
-                onValidate={handleValidate}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-            />
-            {!focused && errorMessage && (
-                <View>
-                    <Strut size={spacing.xSmall_8} />
-                    <_Text style={styles.errorMessageLight}>
-                        {errorMessage}
-                    </_Text>
-                </View>
-            )}
-        </View>
-    );
-};
-
-Light.parameters = {
-    docs: {
+export const Light: StoryComponentType = {
+    args: {
+        light: true,
+    },
+    parameters: {
+        backgrounds: {
+            default: "darkBlue",
+        },
         description: {
             story: `If the \`light\` prop is set to true,
         \`TextField\` will have light styling. This is intended to be used
         on a dark background. There is also a specific light styling for the
         error state, as seen in the \`ErrorLight\` story.`,
         },
-    },
-};
-
-export const ErrorLight: StoryComponentType = () => {
-    const [value, setValue] = React.useState("khan");
-    const [errorMessage, setErrorMessage] = React.useState<any>();
-    const [focused, setFocused] = React.useState(false);
-
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
-
-    const handleValidate = (errorMessage?: string | null) => {
-        setErrorMessage(errorMessage);
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    const handleFocus = () => {
-        setFocused(true);
-    };
-
-    const handleBlur = () => {
-        setFocused(false);
-    };
-
-    return (
-        <View style={styles.darkBackground}>
-            <TextField
-                id="tf-7"
-                type="email"
-                value={value}
-                placeholder="Email"
-                light={true}
-                validate={validateEmail}
-                onValidate={handleValidate}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-            />
-            {!focused && errorMessage && (
-                <View>
-                    <Strut size={spacing.xSmall_8} />
-                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
-                </View>
-            )}
-        </View>
-    );
-};
-
-ErrorLight.parameters = {
-    docs: {
-        description: {
-            story: `If an input value fails validation and the
-        \`light\` prop is true, \`TextField\` will have light error styling.`,
+        chromatic: {
+            disableSnapshot: true, // Disable snapshot because it's covered by variants stories
         },
     },
-    chromatic: {
-        // Disabling because this doesn't test anything visual.
-        disableSnapshot: true,
+};
+
+export const ErrorLight: StoryComponentType = {
+    args: {
+        light: true,
+        error: true,
+        value: "khan",
+    },
+    parameters: {
+        backgrounds: {
+            default: "darkBlue",
+        },
+        docs: {
+            description: {
+                story: `If an input value fails validation and the
+        \`light\` prop is true, \`TextField\` will have light error styling.`,
+            },
+        },
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
     },
 };
 
@@ -1072,18 +893,6 @@ AutoComplete.parameters = {
 };
 
 const styles = StyleSheet.create({
-    errorMessage: {
-        color: color.red,
-        paddingLeft: spacing.xxxSmall_4,
-    },
-    errorMessageLight: {
-        color: color.white,
-        paddingLeft: spacing.xxxSmall_4,
-    },
-    darkBackground: {
-        backgroundColor: color.darkBlue,
-        padding: spacing.medium_16,
-    },
     customField: {
         backgroundColor: color.darkBlue,
         color: color.white,
