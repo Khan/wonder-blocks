@@ -3,7 +3,6 @@ import {
     renderHook as clientRenderHook,
     act,
     render,
-    act as reactAct,
     waitFor,
 } from "@testing-library/react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
@@ -670,7 +669,7 @@ describe("#useCachedEffect", () => {
 
                 // Act
                 render(<Component />);
-                await reactAct(() => response);
+                await act(() => response);
 
                 // Assert
                 expect(renderCount).toBe(2);
@@ -700,7 +699,7 @@ describe("#useCachedEffect", () => {
 
                 // Act
                 render(<Component />);
-                await reactAct(() => response);
+                await act(() => response);
 
                 // Assert
                 expect(renderCount).toBe(2);
@@ -725,7 +724,7 @@ describe("#useCachedEffect", () => {
 
                 // Act
                 render(<Component />);
-                await reactAct(() => response);
+                await act(() => response);
 
                 // Assert
                 expect(renderCount).toBe(1);

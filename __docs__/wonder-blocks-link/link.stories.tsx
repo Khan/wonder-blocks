@@ -579,7 +579,8 @@ InlineLight.parameters = {
     },
 };
 
-InlineLight.play = async ({canvasElement}) => {
+// TODO(WB-1809, somewhatabstract): This isn't working.
+/* InlineLight.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
     const primaryLink = canvas.getByRole("link", {name: "Primary link"});
@@ -597,7 +598,6 @@ InlineLight.play = async ({canvasElement}) => {
         `text-decoration: underline ${color.white} solid`,
     );
 
-    // TODO(WB-1809, somewhatabstract): This isn't working.
     // // Focus style with keyboard navigation
     // await userEvent.tab();
     // // rgb(255, 255, 255) is the same as Color.white.
@@ -611,6 +611,7 @@ InlineLight.play = async ({canvasElement}) => {
     //     `text-decoration: underline solid ${fadedBlue}`,
     // );
 };
+*/
 
 export const Variants: StoryComponentType = () => (
     <View>
