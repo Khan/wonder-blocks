@@ -262,18 +262,6 @@ type State = Readonly<{
  * in overflow: auto containers.
  */
 class DropdownCore extends React.Component<Props, State> {
-    // Keeps track of the index of the focused item, out of a list of focusable items
-    // @ts-expect-error [FEI-5019] - TS2564 - Property 'focusedIndex' has no initializer and is not definitely assigned in the constructor.
-    focusedIndex: number;
-    // Keeps track of the index of the focused item in the context of all the
-    // items contained by this menu, whether focusable or not, used for figuring
-    // out focus correctly when the items have changed in terms of whether
-    // they're focusable or not
-    // @ts-expect-error [FEI-5019] - TS2564 - Property 'focusedOriginalIndex' has no initializer and is not definitely assigned in the constructor.
-    focusedOriginalIndex: number;
-    // Whether any items have been selected since the menu was opened
-    // @ts-expect-error [FEI-5019] - TS2564 - Property 'itemsClicked' has no initializer and is not definitely assigned in the constructor.
-    itemsClicked: boolean;
     popperElement: HTMLElement | null | undefined;
     // Keeps a reference of the virtualized list instance
     virtualizedListRef: {
@@ -440,6 +428,16 @@ class DropdownCore extends React.Component<Props, State> {
         this.removeEventListeners();
     }
 
+    // Keeps track of the index of the focused item, out of a list of focusable items
+    focusedIndex = -1;
+    // Keeps track of the index of the focused item in the context of all the
+    // items contained by this menu, whether focusable or not, used for figuring
+    // out focus correctly when the items have changed in terms of whether
+    // they're focusable or not
+    focusedOriginalIndex = -1;
+    // Whether any items have been selected since the menu was opened
+    itemsClicked = false;
+
     searchFieldRef: {
         current: null | HTMLInputElement;
     } = React.createRef();
@@ -544,20 +542,43 @@ class DropdownCore extends React.Component<Props, State> {
                 );
             }
 
-            const node = ReactDOM.findDOMNode(
-                focusedItemRef.ref.current,
-            ) as HTMLElement;
-            if (node) {
-                node.focus();
-                // Keep track of the original index of the newly focused item.
-                // To be used if the set of focusable items in the menu changes
-                this.focusedOriginalIndex = focusedItemRef.originalIndex;
-
-                if (onFocus) {
-                    // Call the callback with the node that was focused.
-                    onFocus(node);
+            const focusNode = () => {
+                // No point in doing work if we're not open.
+                if (!this.props.open) {
+                    return;
                 }
-            }
+
+                const node = ReactDOM.findDOMNode(
+                    focusedItemRef.ref.current,
+                ) as HTMLElement;
+
+                // If we don't have a node and we're virtualized, we need to
+                // wait for the next animation frame to focus the item.
+                if (!node && this.shouldVirtualizeList()) {
+                    // Wait for the next animation frame to focus the item,
+                    // that way the virtualized list has time to render the
+                    // item in the DOM. We do this in a recursive way as
+                    // occasionally, one frame is not enough.
+                    this.props.schedule.animationFrame(focusNode);
+                    return;
+                }
+
+                // If the node doesn't exist and we're still mounted, then
+                // we need to schedule another focus attempt so that we run when
+                // the node *is* mounted.
+                if (node) {
+                    node.focus();
+                    // Keep track of the original index of the newly focused item.
+                    // To be used if the set of focusable items in the menu changes
+                    this.focusedOriginalIndex = focusedItemRef.originalIndex;
+
+                    if (onFocus) {
+                        // Call the callback with the node that was focused.
+                        onFocus(node);
+                    }
+                }
+            };
+            focusNode();
         }
     }
 
@@ -588,7 +609,7 @@ class DropdownCore extends React.Component<Props, State> {
                 return this.focusSearchField();
             }
             this.focusedIndex = this.state.itemRefs.length - 1;
-        } else {
+        } else if (!this.isSearchFieldFocused()) {
             this.focusedIndex -= 1;
         }
 
@@ -605,7 +626,7 @@ class DropdownCore extends React.Component<Props, State> {
                 return this.focusSearchField();
             }
             this.focusedIndex = 0;
-        } else {
+        } else if (!this.isSearchFieldFocused()) {
             this.focusedIndex += 1;
         }
 
@@ -893,11 +914,10 @@ class DropdownCore extends React.Component<Props, State> {
             return {
                 ...item,
                 role: populatedProps.role || itemRole,
-                ref: item.focusable
-                    ? this.state.itemRefs[focusIndex]
+                ref:
+                    item.focusable && this.state.itemRefs[focusIndex]
                         ? this.state.itemRefs[focusIndex].ref
-                        : null
-                    : null,
+                        : null,
                 onClick: () => {
                     this.handleItemClick(focusIndex, item);
                 },
