@@ -54,6 +54,7 @@ export default {
 } as Meta<typeof LabeledField>;
 
 type StoryComponentType = StoryObj<typeof LabeledField>;
+type AllFieldsStoryComponentType = StoryObj<typeof AllFields>;
 
 export const Default: StoryComponentType = {
     args: {
@@ -83,33 +84,99 @@ const AllFields = (
     const [searchValue, setSearchValue] = React.useState("");
 
     /** Error messages */
+    const errorMessage =
+        typeof args.errorMessage === "string" ? args.errorMessage : "";
     const [textFieldErrorMessage, setTextFieldErrorMessage] = React.useState<
         string | null | undefined
-    >(args.errorMessage);
+    >(errorMessage);
     const [textAreaErrorMessage, setTextAreaErrorMessage] = React.useState<
         string | null | undefined
-    >(args.errorMessage);
+    >(errorMessage);
     const [singleSelectErrorMessage, setSingleSelectErrorMessage] =
-        React.useState<string | null | undefined>(args.errorMessage);
+        React.useState<string | null | undefined>(errorMessage);
     const [multiSelectErrorMessage, setMultiSelectErrorMessage] =
-        React.useState<string | null | undefined>(args.errorMessage);
+        React.useState<string | null | undefined>(errorMessage);
     const [searchErrorMessage, setSearchErrorMessage] = React.useState<
         string | null | undefined
-    >(args.errorMessage);
+    >(errorMessage);
 
-    const textFieldRef = React.useRef<HTMLInputElement>();
+    const textFieldRef = React.createRef<HTMLInputElement>();
+    const textAreaRef = React.createRef<HTMLTextAreaElement>();
+    const singleSelectRef = React.createRef<HTMLButtonElement>();
+    const multiSelectRef = React.createRef<HTMLButtonElement>();
+    const searchRef = React.createRef<HTMLInputElement>();
+
+    const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
+
+    const moveFocusToFirstFieldWithError = React.useCallback(() => {
+        // The errors in the order they are presented, along with the refs
+        const errors = [
+            {message: textFieldErrorMessage, ref: textFieldRef},
+            {message: textAreaErrorMessage, ref: textAreaRef},
+            {message: singleSelectErrorMessage, ref: singleSelectRef},
+            {message: multiSelectErrorMessage, ref: multiSelectRef},
+            {message: searchErrorMessage, ref: searchRef},
+        ];
+
+        for (const error of errors) {
+            if (error.message) {
+                // Once a field with an error is found, focus on it and end the loop
+                error.ref?.current?.focus();
+                break;
+            }
+        }
+    }, [
+        multiSelectErrorMessage,
+        multiSelectRef,
+        searchErrorMessage,
+        searchRef,
+        singleSelectErrorMessage,
+        singleSelectRef,
+        textAreaErrorMessage,
+        textAreaRef,
+        textFieldErrorMessage,
+        textFieldRef,
+    ]);
+
+    React.useEffect(() => {
+        if (isFormSubmitted) {
+            // If the form has been submitted, move focus. We use useEffect
+            // so that the error message states are updated before we move focus
+            moveFocusToFirstFieldWithError();
+            setIsFormSubmitted(false);
+        }
+    }, [isFormSubmitted, moveFocusToFirstFieldWithError]);
 
     const handleSubmit = () => {
         const backendErrorMessage = "Example server side error message";
-        setTextFieldErrorMessage(backendErrorMessage);
-        setTextAreaErrorMessage(backendErrorMessage);
-        setSingleSelectErrorMessage(backendErrorMessage);
-        setMultiSelectErrorMessage(backendErrorMessage);
-        setSearchErrorMessage(backendErrorMessage);
-        // Move focus to the first field with an error
-        // Since this example sets an error for all the fields, we move
-        // focus to the first field
-        textFieldRef.current?.focus();
+        if (args.required) {
+            const requiredMsg =
+                typeof args.required === "string"
+                    ? args.required
+                    : "Story default required msg";
+            if (!textFieldValue) {
+                setTextFieldErrorMessage(requiredMsg);
+            }
+            if (!textAreaValue) {
+                setTextAreaErrorMessage(requiredMsg);
+            }
+            if (!singleSelectValue) {
+                setSingleSelectErrorMessage(requiredMsg);
+            }
+            if (multiSelectValue.length === 0) {
+                setMultiSelectErrorMessage(requiredMsg);
+            }
+            if (!searchValue) {
+                setSearchErrorMessage(requiredMsg);
+            }
+        } else {
+            setTextFieldErrorMessage(backendErrorMessage);
+            setTextAreaErrorMessage(backendErrorMessage);
+            setSingleSelectErrorMessage(backendErrorMessage);
+            setMultiSelectErrorMessage(backendErrorMessage);
+            setSearchErrorMessage(backendErrorMessage);
+        }
+        setIsFormSubmitted(true);
     };
 
     const textValidate = (value: string) => {
@@ -138,6 +205,7 @@ const AllFields = (
                 label="Text Field"
                 field={
                     <TextField
+                        ref={textFieldRef}
                         value={textFieldValue}
                         onChange={setTextFieldValue}
                         onValidate={setTextFieldErrorMessage}
@@ -145,7 +213,6 @@ const AllFields = (
                             shouldValidateInStory ? textValidate : undefined
                         }
                         instantValidation={false}
-                        ref={textFieldRef}
                     />
                 }
             />
@@ -155,6 +222,7 @@ const AllFields = (
                 label="Text Area"
                 field={
                     <TextArea
+                        ref={textAreaRef}
                         value={textAreaValue}
                         onChange={setTextAreaValue}
                         onValidate={setTextAreaErrorMessage}
@@ -172,6 +240,7 @@ const AllFields = (
                 label="Single Select"
                 field={
                     <SingleSelect
+                        // ref={singleSelectRef} // TODO once SingleSelect supports ref
                         placeholder="Choose a fruit"
                         selectedValue={singleSelectValue}
                         onChange={setSingleSelectValue}
@@ -191,6 +260,7 @@ const AllFields = (
                 label="Multi Select"
                 field={
                     <MultiSelect
+                        // ref={multiSelectRef} // TODO once MultiSelect supports ref
                         selectedValues={multiSelectValue}
                         onChange={setMultiSelectValue}
                         // onValidate={setMultiSelectErrorMessage}
@@ -209,6 +279,7 @@ const AllFields = (
                 label="Search"
                 field={
                     <SearchField
+                        ref={searchRef}
                         value={searchValue}
                         onChange={setSearchValue}
                         // validate={shouldValidateInStory ? textValidate : undefined}
@@ -269,13 +340,25 @@ export const Error: StoryComponentType = {
  * If LabeledField's `required` prop is used and the field's `onValidate` prop
  * sets LabeledField's `errorMessage` prop, the error message for the required
  * field will be shown.
+ *
+ * Note: The validation around required fields is only triggered if a field is
+ * interacted with. If the form is submitted with required empty fields, it is
+ * up to the parent component to set the `errorMessage` prop on the
+ * LabeledField component.
  */
-export const Required: StoryComponentType = {
+export const Required: AllFieldsStoryComponentType = {
     args: {
         description: "Helpful description text.",
         required: "Custom required error message",
+        showSubmitButtonInStory: true,
     },
     render: AllFields,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -291,13 +374,19 @@ export const Required: StoryComponentType = {
  * less than 5 characters. The select-based fields will show an error if "Mango"
  * is selected.
  */
-export const Validation = {
+export const Validation: AllFieldsStoryComponentType = {
     args: {
         description: "Helpful description text.",
         shouldValidateInStory: true,
         showSubmitButtonInStory: true,
     },
     render: AllFields,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
