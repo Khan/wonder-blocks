@@ -529,60 +529,65 @@ class DropdownCore extends React.Component<Props, State> {
     focusCurrentItem(onFocus?: (node: HTMLElement) => void) {
         const focusedItemRef = this.state.itemRefs[this.focusedIndex];
 
-        if (focusedItemRef) {
-            // force react-window to scroll to ensure the focused item is visible
-            if (this.virtualizedListRef.current) {
-                // Our focused index does not include disabled items, but the
-                // react-window index system does include the disabled items
-                // in the count.  So we need to use "originalIndex", which
-                // does account for disabled items.
-                this.virtualizedListRef.current.scrollToItem(
-                    focusedItemRef.originalIndex,
-                );
+        if (!focusedItemRef) {
+            return;
+        }
+
+        const {current: virtualizedList} = this.virtualizedListRef;
+        if (virtualizedList) {
+            // Our focused index does not include disabled items, but the
+            // react-window index system does include the disabled items
+            // in the count.  So we need to use "originalIndex", which
+            // does account for disabled items.
+            virtualizedList.scrollToItem(focusedItemRef.originalIndex);
+        }
+
+        const focusNode = () => {
+            // No point in doing work if we're not open.
+            if (!this.props.open) {
+                return;
             }
 
-            const focusNode = () => {
-                // No point in doing work if we're not open.
-                if (!this.props.open) {
-                    return;
+            // We look the item up just to make sure we have the right
+            // information at the point this function runs.
+            const currentFocusedItemRef =
+                this.state.itemRefs[this.focusedIndex];
+
+            const node = ReactDOM.findDOMNode(
+                currentFocusedItemRef.ref.current,
+            ) as HTMLElement;
+
+            if (!node && this.shouldVirtualizeList()) {
+                // Wait for the next animation frame to focus the item,
+                // that way the virtualized list has time to render the
+                // item in the DOM. We do this in a recursive way as
+                // occasionally, one frame is not enough.
+                this.props.schedule.animationFrame(focusNode);
+                return;
+            }
+
+            // If the node doesn't exist and we're still mounted, then
+            // we need to schedule another focus attempt so that we run when
+            // the node *is* mounted.
+            if (node) {
+                node.focus();
+                // Keep track of the original index of the newly focused item.
+                // To be used if the set of focusable items in the menu changes
+                this.focusedOriginalIndex = currentFocusedItemRef.originalIndex;
+
+                if (onFocus) {
+                    // Call the callback with the node that was focused.
+                    onFocus(node);
                 }
+            }
+        };
 
-                // We look the item up just to make sure we have the right
-                // information at the point this function runs.
-                const currentFocusedItemRef =
-                    this.state.itemRefs[this.focusedIndex];
-
-                const node = ReactDOM.findDOMNode(
-                    currentFocusedItemRef.ref.current,
-                ) as HTMLElement;
-
-                // If we don't have a node and we're virtualized, we need to
-                // wait for the next animation frame to focus the item.
-                if (!node && this.shouldVirtualizeList()) {
-                    // Wait for the next animation frame to focus the item,
-                    // that way the virtualized list has time to render the
-                    // item in the DOM. We do this in a recursive way as
-                    // occasionally, one frame is not enough.
-                    this.props.schedule.animationFrame(focusNode);
-                    return;
-                }
-
-                // If the node doesn't exist and we're still mounted, then
-                // we need to schedule another focus attempt so that we run when
-                // the node *is* mounted.
-                if (node) {
-                    node.focus();
-                    // Keep track of the original index of the newly focused item.
-                    // To be used if the set of focusable items in the menu changes
-                    this.focusedOriginalIndex =
-                        currentFocusedItemRef.originalIndex;
-
-                    if (onFocus) {
-                        // Call the callback with the node that was focused.
-                        onFocus(node);
-                    }
-                }
-            };
+        // If we are virtualized, we need to make sure the scroll can occur
+        // before focus is updated. So, we schedule the focus to happen in an
+        // animation frame.
+        if (this.shouldVirtualizeList()) {
+            this.props.schedule.animationFrame(focusNode);
+        } else {
             focusNode();
         }
     }
