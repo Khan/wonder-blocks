@@ -242,7 +242,7 @@ describe("ModalLauncher", () => {
         expect(onClose).not.toHaveBeenCalled();
     });
 
-    test("if modal is launched, move focus inside the modal", async () => {
+    test("if modal is launched, move focus to first focusable element inside dialog", async () => {
         // Arrange
         render(
             <ModalLauncher
@@ -258,20 +258,24 @@ describe("ModalLauncher", () => {
                 }
             >
                 {({openModal}: any) => (
-                    <button onClick={openModal}>Open modal</button>
+                    <button
+                        onClick={() => {
+                            console.log("button clicked!!");
+                            openModal();
+                        }}
+                    >
+                        Open modal
+                    </button>
                 )}
             </ModalLauncher>,
         );
 
-        const modalOpener = await screen.findByRole("button", {
-            name: "Open modal",
-        });
-        // force focus
-        modalOpener.focus();
+        // focus on the open modal button
+        userEvent.tab();
 
         // Act
         // Launch the modal.
-        await userEvent.type(modalOpener, "{enter}");
+        await userEvent.keyboard("{enter}");
 
         // wait until the modal is open
         await screen.findByRole("dialog");
@@ -279,7 +283,7 @@ describe("ModalLauncher", () => {
         // Assert
         await waitFor(async () =>
             expect(
-                await screen.findByRole("button", {name: "Button in modal"}),
+                await screen.findByRole("button", {name: "Close modal"}),
             ).toHaveFocus(),
         );
     });

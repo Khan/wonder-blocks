@@ -39,7 +39,8 @@ export default {
         control: {type: "text"},
         description: `The selector for the element that will be focused
             when the dialog shows. When not set, the first tabbable element
-            within the dialog will be used.`,
+            within the dialog will be used, which usually is the dismiss button
+            (X).`,
         table: {
             type: {summary: "string"},
         },
