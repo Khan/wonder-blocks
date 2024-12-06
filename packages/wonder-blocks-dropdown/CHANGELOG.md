@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 6.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-timing@6.0.0
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-cell@4.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.0
+    -   @khanacademy/wonder-blocks-layout@3.0.0
+    -   @khanacademy/wonder-blocks-modal@6.0.0
+    -   @khanacademy/wonder-blocks-pill@3.0.0
+    -   @khanacademy/wonder-blocks-search-field@3.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
 ## 5.8.1
 
 ### Patch Changes

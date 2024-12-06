@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-data
 
+## 14.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-core@8.0.0
+
 ## 13.0.12
 
 ### Patch Changes

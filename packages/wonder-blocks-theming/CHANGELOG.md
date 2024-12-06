@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 3.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
 ## 2.0.4
 
 ### Patch Changes
