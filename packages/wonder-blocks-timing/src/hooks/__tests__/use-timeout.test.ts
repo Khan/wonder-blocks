@@ -1,4 +1,5 @@
-import {renderHook, act} from "@testing-library/react-hooks";
+import {renderHook, act} from "@testing-library/react";
+import {hookHarness} from "@khanacademy/wonder-blocks-testing-core";
 import {SchedulePolicy, ClearPolicy, ActionPolicy} from "../../util/policies";
 
 import {useTimeout} from "../use-timeout";
@@ -14,22 +15,30 @@ describe("useTimeout", () => {
 
     it("throws if the action is not a function", () => {
         // Arrange
+        const captureErrorFn = jest.fn();
 
         // Act
-        const {result} = renderHook(() => useTimeout(null as any, 1000));
+        renderHook(() => useTimeout(null as any, 1000), {
+            wrapper: hookHarness({boundary: captureErrorFn}),
+        });
+        const result = captureErrorFn.mock.calls[0][0];
 
         // Assert
-        expect(result.error).toEqual(Error("Action must be a function"));
+        expect(result).toEqual(Error("Action must be a function"));
     });
 
     it("throws if the period is less than 0", () => {
         // Arrange
+        const captureErrorFn = jest.fn();
 
         // Act
-        const {result} = renderHook(() => useTimeout(() => {}, -1));
+        renderHook(() => useTimeout(() => {}, -1), {
+            wrapper: hookHarness({boundary: captureErrorFn}),
+        });
+        const result = captureErrorFn.mock.calls[0][0];
 
         // Assert
-        expect(result.error).toEqual(Error("Timeout period must be >= 0"));
+        expect(result).toEqual(Error("Timeout period must be >= 0"));
     });
 
     it("should return an ITimeout", () => {

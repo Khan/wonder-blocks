@@ -1,5 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import {userEvent} from "@testing-library/user-event";
 
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 
@@ -52,7 +53,7 @@ describe("AccordionSection", () => {
         expect(screen.queryByText("Section content")).toBeVisible();
     });
 
-    test("calls onToggle when clicked (controlled)", () => {
+    test("calls onToggle when clicked (controlled)", async () => {
         // Arrange
         const onToggleSpy = jest.fn();
 
@@ -70,13 +71,13 @@ describe("AccordionSection", () => {
         const button = screen.getByRole("button", {name: "Title"});
 
         // Act
-        button.click();
+        await userEvent.click(button);
 
         // Assert
         expect(onToggleSpy).toHaveBeenCalledTimes(1);
     });
 
-    test("calls onToggle when clicked (uncontrolled: no expanded, includes onToggle)", () => {
+    test("calls onToggle when clicked (uncontrolled: no expanded, includes onToggle)", async () => {
         // Arrange
         const onToggleSpy = jest.fn();
 
@@ -90,13 +91,13 @@ describe("AccordionSection", () => {
         const button = screen.getByRole("button", {name: "Title"});
 
         // Act
-        button.click();
+        await userEvent.click(button);
 
         // Assert
         expect(onToggleSpy).toHaveBeenCalledTimes(1);
     });
 
-    test("shows/hides panel when clicked (uncontrolled: includes expanded, no onToggle)", () => {
+    test("shows/hides panel when clicked (uncontrolled: includes expanded, no onToggle)", async () => {
         // Arrange
         render(
             <AccordionSection header="Title" expanded={true}>
@@ -110,17 +111,17 @@ describe("AccordionSection", () => {
         expect(screen.getByText("Section content")).toBeVisible();
 
         const button = screen.getByRole("button", {name: "Title"});
-        button.click();
+        await userEvent.click(button);
 
         // Assert
         // Make sure the section has closed after clicking
         expect(screen.queryByText("Section content")).not.toBeVisible();
         // Repeat clicking to confirm behavior
-        button.click();
+        await userEvent.click(button);
         expect(screen.getByText("Section content")).toBeVisible();
     });
 
-    test("shows/hides panel when clicked (uncontrolled: no expanded, no onToggle)", () => {
+    test("shows/hides panel when clicked (uncontrolled: no expanded, no onToggle)", async () => {
         // Arrange
         render(
             <AccordionSection header="Title">Section content</AccordionSection>,
@@ -132,13 +133,13 @@ describe("AccordionSection", () => {
         expect(screen.queryByText("Section content")).not.toBeVisible();
 
         const button = screen.getByRole("button", {name: "Title"});
-        button.click();
+        await userEvent.click(button);
 
         // Assert
         // Make sure the section has opened after clicking
         expect(screen.getByText("Section content")).toBeVisible();
         // Repeat clicking to confirm behavior
-        button.click();
+        await userEvent.click(button);
         expect(screen.queryByText("Section content")).not.toBeVisible();
     });
 
@@ -288,7 +289,7 @@ describe("AccordionSection", () => {
         expect(button).toHaveAttribute("aria-disabled", "true");
     });
 
-    test("does not allow clicking when collapsible prop is false", () => {
+    test("does not allow clicking when collapsible prop is false", async () => {
         // Arrange
         render(
             <AccordionSection header="Title" collapsible={false}>

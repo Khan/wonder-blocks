@@ -70,19 +70,15 @@ export default class PopoverAnchor extends React.Component<Props> {
         } else {
             // add onClick handler to automatically open the dialog after
             // clicking on this anchor element
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             return React.cloneElement(children, {
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactElement<any, string | JSXElementConstructor<any>> | (ReactElement<any, string | JSXElementConstructor<any>> & string) | ... 9 more ... | (((arg1: { ...; }) => ReactElement<...>) & true)'.
                 ...children.props,
                 ...sharedProps,
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactElement<any, string | JSXElementConstructor<any>> | (ReactElement<any, string | JSXElementConstructor<any>> & string) | ... 9 more ... | (((arg1: { ...; }) => ReactElement<...>) & true)'.
                 onClick: children.props.onClick
                     ? // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                       (e) => {
                           e.stopPropagation();
                           // This is done to avoid overriding a custom onClick
                           // handler inside the children node
-                          // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactElement<any, string | JSXElementConstructor<any>> | (ReactElement<any, string | JSXElementConstructor<any>> & string) | ... 9 more ... | (((arg1: { ...; }) => ReactElement<...>) & true)'.
                           children.props.onClick();
                           onClick();
                       }
