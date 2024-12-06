@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 4.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
 ## 3.1.4
 
 ### Patch Changes
