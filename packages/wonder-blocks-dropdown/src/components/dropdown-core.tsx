@@ -263,10 +263,9 @@ type State = Readonly<{
  */
 class DropdownCore extends React.Component<Props, State> {
     popperElement: HTMLElement | null | undefined;
+
     // Keeps a reference of the virtualized list instance
-    virtualizedListRef: {
-        current: null | React.ElementRef<typeof List>;
-    };
+    virtualizedListRef: React.RefObject<List>;
 
     handleKeyDownDebounced: (key: string) => void;
 
@@ -548,8 +547,13 @@ class DropdownCore extends React.Component<Props, State> {
                     return;
                 }
 
+                // We look the item up just to make sure we have the right
+                // information at the point this function runs.
+                const currentFocusedItemRef =
+                    this.state.itemRefs[this.focusedIndex];
+
                 const node = ReactDOM.findDOMNode(
-                    focusedItemRef.ref.current,
+                    currentFocusedItemRef.ref.current,
                 ) as HTMLElement;
 
                 // If we don't have a node and we're virtualized, we need to
@@ -570,7 +574,8 @@ class DropdownCore extends React.Component<Props, State> {
                     node.focus();
                     // Keep track of the original index of the newly focused item.
                     // To be used if the set of focusable items in the menu changes
-                    this.focusedOriginalIndex = focusedItemRef.originalIndex;
+                    this.focusedOriginalIndex =
+                        currentFocusedItemRef.originalIndex;
 
                     if (onFocus) {
                         // Call the callback with the node that was focused.
