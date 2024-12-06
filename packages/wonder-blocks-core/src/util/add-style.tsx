@@ -22,17 +22,18 @@ export default function addStyle<
         React.RefAttributes<
             // We need to lookup the HTML/SVG element type based on the tag name, but only
             // for JSX intrinsics (aka HTML/SVG tags).
-            T extends keyof JSX.IntrinsicElements ? IntrinsicElementsMap[T] : T
+            T extends keyof IntrinsicElementsMap ? IntrinsicElementsMap[T] : T
         >
 > {
     return React.forwardRef<
         // We need to lookup the HTML/SVG element type based on the tag name, but only
         // for JSX intrinsics (aka HTML/SVG tags).
-        T extends keyof JSX.IntrinsicElements ? IntrinsicElementsMap[T] : T,
+        T extends keyof IntrinsicElementsMap ? IntrinsicElementsMap[T] : T,
         Props
     >((props, ref) => {
-        // eslint-disable-next-line react/prop-types
-        const {className, style, ...otherProps} = props;
+        // NOTE: Cast as any here because our types are too comlicated for
+        // TypeScript to properly understand them.
+        const {className, style, ...otherProps} = props as any;
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
 
@@ -40,9 +41,6 @@ export default function addStyle<
             processStyleList([reset, defaultStyle, style]);
 
         return (
-            // @ts-expect-error: TS says this is not assignable to the return forwardRef()'s return type.
-            // Type 'Omit<PropsWithChildren<Props>, "style" | "className"> & { ref: ForwardedRef<ElementMap[T]>; className: string; style: CSSProperties; }' is not assignable to type 'IntrinsicAttributes & LibraryManagedAttributes<T, SVGProps<SVGSymbolElement> & ClassAttributes<HTMLObjectElement> & ... 179 more ... & SVGProps<...>>'.
-            //   Type 'Omit<PropsWithChildren<Props>, "style" | "className"> & { ref: ForwardedRef<ElementMap[T]>; className: string; style: CSSProperties; }' is not assignable to type 'LibraryManagedAttributes<T, SVGProps<SVGSymbolElement> & ClassAttributes<HTMLObjectElement> & ObjectHTMLAttributes<HTMLObjectElement> & ... 178 more ... & SVGProps<...>>'
             <Component
                 {...otherProps}
                 ref={ref}

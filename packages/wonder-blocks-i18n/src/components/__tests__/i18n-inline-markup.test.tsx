@@ -5,66 +5,56 @@ import * as ParseSimpleHTML from "../parse-simple-html";
 import {I18nInlineMarkup} from "../i18n-inline-markup";
 import * as i18n from "../../functions/i18n";
 
-const SingleShallowSubstitution = (): React.ReactElement => {
-    return (
-        <I18nInlineMarkup
-            u={(t: string) => (
-                <React.Fragment>
-                    [Underline:<u>{t}</u>]
-                </React.Fragment>
-            )}
-        >
-            {i18n._(
-                "-6\u00b0C, Sunny, Fells like: <u>-12</u>, Wind: VR 5 km/h",
-            )}
-        </I18nInlineMarkup>
-    );
-};
+const SingleShallowSubstitution = (): React.ReactElement => (
+    <I18nInlineMarkup
+        u={(t: string) => (
+            <React.Fragment>
+                [Underline:<u>{t}</u>]
+            </React.Fragment>
+        )}
+    >
+        {i18n._("-6\u00b0C, Sunny, Fells like: <u>-12</u>, Wind: VR 5 km/h")}
+    </I18nInlineMarkup>
+);
 
-const MultipleShallowSubstitution = (): React.ReactElement => {
-    return (
-        <I18nInlineMarkup
-            u={(t: string) => (
-                <React.Fragment>
-                    __<u>{t}</u>__
-                </React.Fragment>
-            )}
-            i={(t: string) => (
-                <span style={{background: "lightblue"}}>
-                    *<i style={{fontStyle: "italic"}}>{t}</i>*
-                </span>
-            )}
-        >
-            {i18n._(
-                "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
-            )}
-        </I18nInlineMarkup>
-    );
-};
+const MultipleShallowSubstitution = (): React.ReactElement => (
+    <I18nInlineMarkup
+        u={(t: string) => (
+            <React.Fragment>
+                __<u>{t}</u>__
+            </React.Fragment>
+        )}
+        i={(t: string) => (
+            <span style={{background: "lightblue"}}>
+                *<i style={{fontStyle: "italic"}}>{t}</i>*
+            </span>
+        )}
+    >
+        {i18n._(
+            "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+        )}
+    </I18nInlineMarkup>
+);
 
-const ElementWrapper = (): React.ReactElement => {
-    return (
-        <I18nInlineMarkup
-            elementWrapper={(t) => (
-                <span style={{background: "yellow"}}>{t}</span>
-            )}
-            u={(t: string) => (
-                <span style={{background: "red"}}>
-                    __<u>{t}</u>__
-                </span>
-            )}
-            i={(t: string) => (
-                <span style={{background: "lightblue"}}>
-                    *<i style={{fontStyle: "italic"}}>{t}</i>*
-                </span>
-            )}
-        >
-            {i18n._(
-                "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
-            )}
-        </I18nInlineMarkup>
-    );
-};
+const ElementWrapper = (): React.ReactElement => (
+    <I18nInlineMarkup
+        elementWrapper={(t) => <span style={{background: "yellow"}}>{t}</span>}
+        u={(t: string) => (
+            <span style={{background: "red"}}>
+                __<u>{t}</u>__
+            </span>
+        )}
+        i={(t: string) => (
+            <span style={{background: "lightblue"}}>
+                *<i style={{fontStyle: "italic"}}>{t}</i>*
+            </span>
+        )}
+    >
+        {i18n._(
+            "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+        )}
+    </I18nInlineMarkup>
+);
 
 describe("I18nInlineMarkup", () => {
     test("SingleShallowSubstitution", () => {
@@ -111,6 +101,7 @@ describe("I18nInlineMarkup", () => {
         });
 
         it("should throw an error if `parseSimpleHTML()` throws", () => {
+            // Arrange
             jest.spyOn(
                 ParseSimpleHTML,
                 "parseSimpleHTML",
@@ -118,14 +109,27 @@ describe("I18nInlineMarkup", () => {
                 throw new Error("foo");
             });
 
+            // Act
             const action = () =>
                 render(
                     // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                     <I18nInlineMarkup b={(value) => <span>{value}</span>}>
                         {"Hello <b>world</b>!"}
                     </I18nInlineMarkup>,
+
+                    // NOTE(somewhatabstract): This component uses its own
+                    // custom error handling instead of relying on error
+                    // boundaries. This seems to break the React error boundary
+                    // stuff, at least when testing, so the `boundary` test
+                    // harness adapter never gets the thrown error. However,
+                    // we can use this `legacyRoot` setting to use synchronous
+                    // rendering like before, and then the test works as-is.
+                    // We probably should rework this stuff before they drop
+                    // this feature.
+                    {legacyRoot: true},
                 );
 
+            // Assert
             expect(action).toThrowErrorMatchingInlineSnapshot(`"foo"`);
         });
 

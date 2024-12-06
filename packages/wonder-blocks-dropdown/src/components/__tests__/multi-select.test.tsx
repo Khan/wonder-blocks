@@ -444,11 +444,11 @@ describe("MultiSelect", () => {
 
             // Act
             // Grab the second item in the list
-            const item = screen.getByRole("option", {
+            const item = await screen.findByRole("option", {
                 name: "item 2",
                 hidden: true,
             });
-            userEvent.click(item);
+            await userEvent.click(item);
 
             // Assert
             expect(item).toHaveAttribute("aria-selected", "true");
