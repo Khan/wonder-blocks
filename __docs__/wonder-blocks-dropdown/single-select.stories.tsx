@@ -523,12 +523,6 @@ export const ErrorFromValidation: StoryComponentType = {
             </View>
         );
     },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
 };
 
 /**
