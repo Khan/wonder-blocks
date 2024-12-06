@@ -322,6 +322,15 @@ const _generateStyles = (
         outlineColor: disabledStrokeColor,
     };
 
+    const focusStyles = {
+        outlineWidth: theme.border.width.default,
+        outlineColor: defaultStrokeColor,
+        outlineOffset: 1,
+        outlineStyle: "solid",
+        borderRadius: theme.border.radius.default,
+        ...kindOverrides[":focus-visible"],
+    };
+
     const newStyles = {
         default: {
             height: pixelsForSize,
@@ -353,29 +362,11 @@ const _generateStyles = (
                     backgroundColor: "transparent",
                 },
             },
-            // Provide basic, default focus styles on older browsers (e.g.
-            // Safari 14)
-            ":focus": {
-                boxShadow: `0 0 0 ${theme.border.width.default}px ${defaultStrokeColor}`,
-                borderRadius: theme.border.radius.default,
-            },
-            // Remove default focus styles for mouse users ONLY if
-            // :focus-visible is supported on this platform.
-            ":focus:not(:focus-visible)": {
-                boxShadow: "none",
-            },
-            // Provide focus styles for keyboard users on modern browsers.
-            ":focus-visible": {
-                // Reset default focus styles
-                boxShadow: "none",
-                // Apply modern focus styles
-                outlineWidth: theme.border.width.default,
-                outlineColor: defaultStrokeColor,
-                outlineOffset: 1,
-                outlineStyle: "solid",
-                borderRadius: theme.border.radius.default,
-                ...kindOverrides[":focus-visible"],
-            },
+            // :focus -> Provide basic, default focus styles to support
+            // programmatic focus (e.g. element.focus()).
+            ":focus": focusStyles,
+            // :focus-visible -> Provide focus styles for keyboard users only.
+            ":focus-visible": focusStyles,
             ":active": {
                 color: light ? activeInverseColor : activeColor,
                 outlineWidth: theme.border.width.default,
@@ -397,17 +388,7 @@ const _generateStyles = (
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
             ":hover": {...disabledStatesStyles, outline: "none"},
             ":active": {...disabledStatesStyles, outline: "none"},
-            // Provide basic, default focus styles on older browsers (e.g.
-            // Safari 14)
-            ":focus": {
-                boxShadow: `0 0 0 ${theme.border.width.default}px ${disabledStrokeColor}`,
-                borderRadius: theme.border.radius.default,
-            },
-            // Remove default focus styles for mouse users ONLY if
-            // :focus-visible is supported on this platform.
-            ":focus:not(:focus-visible)": {
-                boxShadow: "none",
-            },
+            ":focus": disabledStatesStyles,
             ":focus-visible": disabledStatesStyles,
         },
     } as const;
