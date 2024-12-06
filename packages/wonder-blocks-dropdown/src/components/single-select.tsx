@@ -48,16 +48,16 @@ type DefaultProps = Readonly<{
      * Whether this dropdown should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
-    alignment: "left" | "right";
+    alignment?: "left" | "right";
     /**
      * Whether to auto focus an option. Defaults to true.
      */
-    autoFocus: boolean;
+    autoFocus?: boolean;
     /**
      * Whether this component is disabled. A disabled dropdown may not be opened
      * and does not support interaction. Defaults to false.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Whether to enable the type-ahead suggestions feature. Defaults to true.
      *
@@ -71,27 +71,27 @@ type DefaultProps = Readonly<{
      * some cases where it's not desirable (for example when using a `TextField`
      * as the opener element).
      */
-    enableTypeAhead: boolean;
+    enableTypeAhead?: boolean;
     /**
      * Whether or not the input in is an error state. Defaults to false.
      */
-    error: boolean;
+    error?: boolean;
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the component is used on a dark background.
      */
-    light: boolean;
+    light?: boolean;
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: SingleSelectLabels;
+    labels?: SingleSelectLabels;
     /**
      * When false, the SelectOpener can show a Node as a label. When true, the
      * SelectOpener will use a string as a label. If using custom OptionItems, a
      * plain text label can be provided with the `labelAsText` prop.
      * Defaults to true.
      */
-    showOpenerLabelAsText: boolean;
+    showOpenerLabelAsText?: boolean;
 }>;
 
 type Props = AriaProps &
@@ -170,23 +170,6 @@ type Props = AriaProps &
         dropdownId?: string;
     }>;
 
-type State = Readonly<{
-    /**
-     * Whether or not the dropdown is open.
-     */
-    open: boolean;
-    /**
-     * The text input to filter the items by their label. Defaults to an empty
-     * string.
-     */
-    searchText: string;
-    /**
-     * The DOM reference to the opener element. This is mainly used to set focus
-     * to this element, and also to pass the reference to Popper.js.
-     */
-    openerElement?: HTMLElement;
-}>;
-
 /**
  * The single select allows the selection of one item. Clients are responsible
  * for keeping track of the selected item in the select.
@@ -232,100 +215,100 @@ type State = Readonly<{
  * </SingleSelect>
  * ```
  */
-export default class SingleSelect extends React.Component<Props, State> {
-    selectedIndex: number;
-
-    static defaultProps: DefaultProps = {
-        alignment: "left",
-        autoFocus: true,
-        disabled: false,
-        enableTypeAhead: true,
-        error: false,
-        light: false,
-        labels: {
+const SingleSelect = (props: Props) => {
+    const selectedIndex = React.useRef(0);
+    const {
+        children,
+        error = false,
+        id,
+        opener,
+        light = false,
+        placeholder,
+        selectedValue,
+        testId,
+        alignment = "left",
+        autoFocus = true,
+        dropdownStyle,
+        enableTypeAhead = true,
+        isFilterable,
+        labels = {
             clearSearch: defaultLabels.clearSearch,
             filter: defaultLabels.filter,
             noResults: defaultLabels.noResults,
             someResults: defaultLabels.someSelected,
         },
-        showOpenerLabelAsText: true,
-    };
+        onChange,
+        onToggle,
+        opened,
+        style,
+        className,
+        "aria-invalid": ariaInvalid,
+        "aria-required": ariaRequired,
+        disabled = false,
+        dropdownId,
+        showOpenerLabelAsText = true,
+        ...sharedProps
+    } = props;
 
-    constructor(props: Props) {
-        super(props);
+    // Whether or not the dropdown is open.
+    const [open, setOpen] = React.useState(false);
+    // The text input to filter the items by their label. Defaults to an empty string.
+    const [searchText, setSearchText] = React.useState("");
+    // The DOM reference to the opener element. This is mainly used to set focus
+    // to this element, and also to pass the reference to Popper.js.
+    const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
 
-        this.selectedIndex = 0;
-
-        this.state = {
-            open: false,
-            searchText: "",
-        };
-    }
-
-    /**
-     * Used to sync the `opened` state when this component acts as a controlled
-     * component
-     */
-    static getDerivedStateFromProps(
-        props: Props,
-        state: State,
-    ): Partial<State> | null {
-        return {
+    React.useEffect(() => {
+        // Used to sync the `opened` state when this component acts as a controlled
+        if (disabled) {
             // open should always be false if select is disabled
-            open: props.disabled
-                ? false
-                : typeof props.opened === "boolean"
-                ? props.opened
-                : state.open,
-        };
-    }
+            setOpen(false);
+        } else if (typeof opened === "boolean") {
+            setOpen(opened);
+        }
+    }, [disabled, opened]);
 
-    handleOpenChanged: (opened: boolean) => void = (opened) => {
-        this.setState({
-            open: opened,
-            searchText: "",
-        });
+    const handleOpenChanged = (opened: boolean) => {
+        setOpen(opened);
+        setSearchText("");
 
-        if (this.props.onToggle) {
-            this.props.onToggle(opened);
+        if (onToggle) {
+            onToggle(opened);
         }
     };
 
-    handleToggle: (selectedValue: string) => void = (selectedValue) => {
+    const handleToggle = (newSelectedValue: string) => {
         // Call callback if selection changed.
-        if (selectedValue !== this.props.selectedValue) {
-            this.props.onChange(selectedValue);
+        if (newSelectedValue !== selectedValue) {
+            onChange(newSelectedValue);
         }
 
         // Bring focus back to the opener element.
-        if (this.state.open && this.state.openerElement) {
-            this.state.openerElement.focus();
+        if (open && openerElement) {
+            openerElement.focus();
         }
 
-        this.setState({
-            open: false, // close the menu upon selection
-        });
+        setOpen(false); // close the menu upon selection
 
-        if (this.props.onToggle) {
-            this.props.onToggle(false);
+        if (onToggle) {
+            onToggle(false);
         }
     };
 
-    mapOptionItemsToDropdownItems: (
+    const mapOptionItemsToDropdownItems = (
         children: OptionItemComponentArray,
-    ) => DropdownItem[] = (children) => {
+    ): DropdownItem[] => {
         // Figure out which index should receive focus when this select opens
         // Needs to exclude counting items that are disabled
         let indexCounter = 0;
-        this.selectedIndex = 0;
+        selectedIndex.current = 0;
 
         return children.map((option) => {
-            const {selectedValue} = this.props;
             const {disabled, value} = option.props;
             const selected = selectedValue === value;
 
             if (selected) {
-                this.selectedIndex = indexCounter;
+                selectedIndex.current = indexCounter;
             }
 
             if (!disabled) {
@@ -336,7 +319,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 component: option,
                 focusable: !disabled,
                 populatedProps: {
-                    onToggle: this.handleToggle,
+                    onToggle: handleToggle,
                     selected: selected,
                     variant: "check",
                 },
@@ -344,11 +327,9 @@ export default class SingleSelect extends React.Component<Props, State> {
         });
     };
 
-    filterChildren(
+    const filterChildren = (
         children: OptionItemComponentArray,
-    ): OptionItemComponentArray {
-        const {searchText} = this.state;
-
+    ): OptionItemComponentArray => {
         const lowercasedSearchText = searchText.toLowerCase();
 
         // Filter the children with the searchText if any.
@@ -358,66 +339,37 @@ export default class SingleSelect extends React.Component<Props, State> {
                 getLabel(props).toLowerCase().indexOf(lowercasedSearchText) >
                     -1,
         );
-    }
+    };
 
-    getMenuItems(children: OptionItemComponentArray): DropdownItem[] {
-        const {isFilterable} = this.props;
-
+    const getMenuItems = (
+        children: OptionItemComponentArray,
+    ): DropdownItem[] => {
         // If it's not filterable, no need to do any extra besides mapping the
         // option items to dropdown items.
-        return this.mapOptionItemsToDropdownItems(
-            isFilterable ? this.filterChildren(children) : children,
+        return mapOptionItemsToDropdownItems(
+            isFilterable ? filterChildren(children) : children,
         );
-    }
-
-    handleSearchTextChanged: (searchText: string) => void = (searchText) => {
-        this.setState({searchText});
     };
 
-    handleOpenerRef: (node?: any) => void = (node) => {
+    const handleSearchTextChanged = (searchText: string) => {
+        setSearchText(searchText);
+    };
+
+    const handleOpenerRef: (node?: any) => void = (node) => {
         const openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
-        this.setState({openerElement});
+        setOpenerElement(openerElement);
     };
 
-    handleClick: (e: React.SyntheticEvent) => void = (e) => {
-        this.handleOpenChanged(!this.state.open);
+    const handleClick = (e: React.SyntheticEvent) => {
+        handleOpenChanged(!open);
     };
 
-    renderOpener(
+    const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>
-        | React.ReactElement<React.ComponentProps<typeof SelectOpener>> {
-        const {
-            children,
-            error,
-            id,
-            light,
-            opener,
-            placeholder,
-            selectedValue,
-            testId,
-            showOpenerLabelAsText,
-            // the following props are being included here to avoid
-            // passing them down to the opener as part of sharedProps
-            /* eslint-disable @typescript-eslint/no-unused-vars */
-            alignment,
-            autoFocus,
-            dropdownStyle,
-            enableTypeAhead,
-            isFilterable,
-            labels,
-            onChange,
-            onToggle,
-            opened,
-            style,
-            className,
-            "aria-invalid": ariaInvalid,
-            "aria-required": ariaRequired,
-            ...sharedProps
-        } = this.props;
-
+        | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
         const items = React.Children.toArray(
             children,
         ) as OptionItemComponentArray;
@@ -438,11 +390,11 @@ export default class SingleSelect extends React.Component<Props, State> {
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
-                            onClick={this.handleClick}
+                            onClick={handleClick}
                             disabled={isDisabled}
-                            ref={this.handleOpenerRef}
+                            ref={handleOpenerRef}
                             text={menuText}
-                            opened={this.state.open}
+                            opened={open}
                         >
                             {opener}
                         </DropdownOpener>
@@ -455,9 +407,9 @@ export default class SingleSelect extends React.Component<Props, State> {
                             error={error}
                             isPlaceholder={!selectedItem}
                             light={light}
-                            onOpenChanged={this.handleOpenChanged}
-                            open={this.state.open}
-                            ref={this.handleOpenerRef}
+                            onOpenChanged={handleOpenChanged}
+                            open={open}
+                            ref={handleOpenerRef}
                             testId={testId}
                         >
                             {menuText}
@@ -468,75 +420,56 @@ export default class SingleSelect extends React.Component<Props, State> {
         );
 
         return dropdownOpener;
-    }
+    };
 
-    render(): React.ReactNode {
-        const {
-            alignment,
-            autoFocus,
-            children,
-            className,
-            dropdownStyle,
-            enableTypeAhead,
-            isFilterable,
-            labels,
-            light,
-            style,
-            "aria-invalid": ariaInvalid,
-            "aria-required": ariaRequired,
-            disabled,
-            dropdownId,
-        } = this.props;
-        const {searchText} = this.state;
-        const allChildren = (
-            React.Children.toArray(children) as Array<
-                React.ReactElement<React.ComponentProps<typeof OptionItem>>
-            >
-        ).filter(Boolean);
-        const numEnabledOptions = allChildren.filter(
-            (option) => !option.props.disabled,
-        ).length;
-        const items = this.getMenuItems(allChildren);
-        const isDisabled = numEnabledOptions === 0 || disabled;
+    const allChildren = (
+        React.Children.toArray(children) as Array<
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
+        >
+    ).filter(Boolean);
+    const numEnabledOptions = allChildren.filter(
+        (option) => !option.props.disabled,
+    ).length;
+    const items = getMenuItems(allChildren);
+    const isDisabled = numEnabledOptions === 0 || disabled;
 
-        return (
-            <IDProvider id={dropdownId} scope="single-select-dropdown">
-                {(uniqueDropdownId) => (
-                    <DropdownCore
-                        id={uniqueDropdownId}
-                        role="listbox"
-                        selectionType="single"
-                        alignment={alignment}
-                        autoFocus={autoFocus}
-                        enableTypeAhead={enableTypeAhead}
-                        dropdownStyle={[
-                            isFilterable && filterableDropdownStyle,
-                            selectDropdownStyle,
-                            dropdownStyle,
-                        ]}
-                        initialFocusedIndex={this.selectedIndex}
-                        items={items}
-                        light={light}
-                        onOpenChanged={this.handleOpenChanged}
-                        open={this.state.open}
-                        opener={this.renderOpener(isDisabled, uniqueDropdownId)}
-                        openerElement={this.state.openerElement}
-                        style={style}
-                        className={className}
-                        isFilterable={isFilterable}
-                        onSearchTextChanged={
-                            isFilterable
-                                ? this.handleSearchTextChanged
-                                : undefined
-                        }
-                        searchText={isFilterable ? searchText : ""}
-                        labels={labels}
-                        aria-invalid={ariaInvalid}
-                        aria-required={ariaRequired}
-                        disabled={isDisabled}
-                    />
-                )}
-            </IDProvider>
-        );
-    }
-}
+    return (
+        <IDProvider id={dropdownId} scope="single-select-dropdown">
+            {(uniqueDropdownId) => (
+                <DropdownCore
+                    id={uniqueDropdownId}
+                    role="listbox"
+                    selectionType="single"
+                    alignment={alignment}
+                    autoFocus={autoFocus}
+                    enableTypeAhead={enableTypeAhead}
+                    dropdownStyle={[
+                        isFilterable && filterableDropdownStyle,
+                        selectDropdownStyle,
+                        dropdownStyle,
+                    ]}
+                    initialFocusedIndex={selectedIndex.current}
+                    items={items}
+                    light={light}
+                    onOpenChanged={handleOpenChanged}
+                    open={open}
+                    opener={renderOpener(isDisabled, uniqueDropdownId)}
+                    openerElement={openerElement}
+                    style={style}
+                    className={className}
+                    isFilterable={isFilterable}
+                    onSearchTextChanged={
+                        isFilterable ? handleSearchTextChanged : undefined
+                    }
+                    searchText={isFilterable ? searchText : ""}
+                    labels={labels}
+                    aria-invalid={ariaInvalid}
+                    aria-required={ariaRequired}
+                    disabled={isDisabled}
+                />
+            )}
+        </IDProvider>
+    );
+};
+
+export default SingleSelect;
