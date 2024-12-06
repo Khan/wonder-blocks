@@ -258,20 +258,13 @@ describe("ModalLauncher", () => {
                 }
             >
                 {({openModal}: any) => (
-                    <button
-                        onClick={() => {
-                            console.log("button clicked!!");
-                            openModal();
-                        }}
-                    >
-                        Open modal
-                    </button>
+                    <button onClick={openModal}>Open modal</button>
                 )}
             </ModalLauncher>,
         );
 
         // focus on the open modal button
-        userEvent.tab();
+        await userEvent.tab();
 
         // Act
         // Launch the modal.
