@@ -1,4 +1,5 @@
-import {Meta} from "@storybook/blocks";
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as AccessibilityStories from './accessibility.stories';
 
 <Meta
     title="Packages / Form / Overview"
@@ -12,19 +13,37 @@ TextField, TextArea, Choice, Checkbox, RadioButton, etc.
 
 ## Best Practices
 
+### Form Field Labels
+
 - Use form field components with the `LabeledField` component. `LabeledField`
 provides a consistent pattern for things like the label,
 description, required indicator, and error message for a field. It will also
-wire up the proper attributes for accessibility. Use `LabeledField` for the
-following components:
+provide unique ids automatically and wire up the proper attributes for
+accessibility. Use `LabeledField` for the following components:
   - `TextField`
   - `TextArea`
   - `SingleSelect`
   - `MultiSelect`
   - `SearchField`
-- For fields like `TextField` and `TextArea`, prefer setting `instantValidation=false`.
-This makes it so validation occurs on blur after a user is done interacting with
-a field.
+- If you are using the `CheckboxGroup` or `RadioGroup` components, use the
+`label` prop for an accessible field label. This uses `<fieldset>` and
+`<legend>` elements instead of a `<label>` since the label is for a group of
+related controls. See [Grouping Controls](https://www.w3.org/WAI/tutorials/forms/grouping/)
+for more details!
+- For custom implementations of field labels:
+  - Make sure the id of the form field element is unique to the page
+  - When using Wonder Blocks typography components for the form field label,
+  set the `tag` prop to `label` to change the underlying element to render and
+  use the `htmlFor` prop. Here is an example of a form field label using Wonder
+  Blocks components `LabelMedium` and `TextArea`:
+
+<Canvas of={AccessibilityStories.FormLabelExample} />
+
+### Error Validation
+
+- For fields like `TextField`, `TextArea`, and `SearchField` prefer setting
+`instantValidation=false`. This makes it so validation occurs on blur after a
+user is done interacting with a field.
 - Avoid disabling form submission buttons. There could be exceptions if the
 button is for one field.
 - If there are errors after a form is submitted, programatically move the user's
