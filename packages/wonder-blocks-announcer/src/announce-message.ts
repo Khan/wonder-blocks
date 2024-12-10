@@ -26,7 +26,6 @@ export function announceMessage({
 
     if (initialTimeout > 0) {
         setTimeout(() => {
-            console.log("set timeout", initialTimeout);
             return announcer.announce(message, level, debounceThreshold);
         }, initialTimeout);
     } else {
