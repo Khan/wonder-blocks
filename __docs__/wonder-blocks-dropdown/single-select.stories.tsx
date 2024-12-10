@@ -505,14 +505,23 @@ export const ErrorFromValidation: StoryComponentType = {
                 >
                     {items}
                 </ControlledSingleSelect>
+                <LabelSmall htmlFor="single-select" tag="label">
+                    Validation example (on mount)
+                </LabelSmall>
+                <ControlledSingleSelect
+                    {...args}
+                    id="single-select"
+                    validate={(value) => {
+                        if (value === "lemon") {
+                            return "Pick another option!";
+                        }
+                    }}
+                    selectedValue="lemon"
+                >
+                    {items}
+                </ControlledSingleSelect>
             </View>
         );
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
     },
 };
 
