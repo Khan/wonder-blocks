@@ -1,4 +1,4 @@
-import Announcer from "./Announcer";
+import Announcer from "./announcer";
 
 /**
  * Public API method to clear screen reader messages after sending.

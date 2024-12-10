@@ -6,7 +6,7 @@ import {
     RegionFactory,
     RegionDictionary,
     RegionDef,
-} from "../types/Announcer.types";
+} from "../types/announcer.types";
 
 import {
     createRegionWrapper,

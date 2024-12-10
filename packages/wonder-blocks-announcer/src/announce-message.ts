@@ -1,5 +1,5 @@
-import type {PolitenessLevel} from "../types/Announcer.types";
-import Announcer from "./Announcer";
+import type {PolitenessLevel} from "../types/announcer.types";
+import Announcer from "./announcer";
 
 export type AnnounceMessageProps = {
     message: string;
