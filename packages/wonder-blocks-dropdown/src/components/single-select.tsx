@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 
 import {
     IDProvider,
+    useOnMountEffect,
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
@@ -23,6 +24,8 @@ import type {
     OptionItemComponentArray,
 } from "../util/types";
 import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+
+const defaultErrorMessage = "This field is required.";
 
 export type SingleSelectLabels = {
     /**
@@ -168,6 +171,41 @@ type Props = AriaProps &
          * opener's `aria-controls` attribute for screenreaders.
          */
         dropdownId?: string;
+        /**
+         * Whether this field is required to continue, or the error message to
+         * render if this field is left blank.
+         *
+         * This can be a boolean or a string.
+         *
+         * String:
+         * Please pass in a translated string to use as the error message that will
+         * render if the user leaves this field blank. If this field is required,
+         * and a string is not passed in, a default untranslated string will render
+         * upon error.
+         * Note: The string will not be used if a `validate` prop is passed in.
+         *
+         * Example message: i18n._("A password is required to log in.")
+         *
+         * Boolean:
+         * True/false indicating whether this field is required. Please do not pass
+         * in `true` if possible - pass in the error string instead.
+         * If `true` is passed, and a `validate` prop is not passed, that means
+         * there is no corresponding message and the default untranlsated message
+         * will be used.
+         */
+        required?: boolean | string;
+        /**
+         * Provide a validation for the field value.
+         * Return a string error message or null | void for a valid input.
+         *
+         * Use this for errors that are shown to the user while they are filling out
+         * a form.
+         */
+        validate?: (value: string) => string | null | void;
+        /**
+         * Called right after the field is validated.
+         */
+        onValidate?: (errorMessage?: string | null | undefined) => unknown;
     }>;
 
 /**
@@ -246,6 +284,9 @@ const SingleSelect = (props: Props) => {
         "aria-required": ariaRequired,
         disabled = false,
         dropdownId,
+        validate,
+        onValidate,
+        required,
         showOpenerLabelAsText = true,
         ...sharedProps
     } = props;
@@ -257,6 +298,19 @@ const SingleSelect = (props: Props) => {
     // The DOM reference to the opener element. This is mainly used to set focus
     // to this element, and also to pass the reference to Popper.js.
     const [openerElement, setOpenerElement] = React.useState<HTMLElement>();
+    const [errorMessage, setErrorMessage] = React.useState<
+        string | null | undefined
+    >(null);
+    const hasError = error || !!errorMessage;
+
+    useOnMountEffect(() => {
+        // Only validate on mount if the value is not empty and the field is not
+        // required. This is so that fields don't render an error when they are
+        // initially empty
+        if (selectedValue && !required) {
+            handleValidation(selectedValue);
+        }
+    });
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled
@@ -275,7 +329,43 @@ const SingleSelect = (props: Props) => {
         if (onToggle) {
             onToggle(opened);
         }
+        if (!opened && required && !selectedValue) {
+            // If closed, field is required, and no value is selected, validate
+            handleValidation(selectedValue);
+        }
     };
+
+    const handleValidation = React.useCallback(
+        (value?: string | null) => {
+            // Should not handle validation if it is disabled
+            if (disabled) {
+                return;
+            }
+            if (validate && value) {
+                const error = validate(value) || null;
+                setErrorMessage(error);
+                if (onValidate) {
+                    onValidate(error);
+                }
+                if (error) {
+                    // If there is an error, do not continue with required validation
+                    return;
+                }
+            }
+            if (required) {
+                const requiredString =
+                    typeof required === "string"
+                        ? required
+                        : defaultErrorMessage;
+                const error = value ? null : requiredString;
+                setErrorMessage(error);
+                if (onValidate) {
+                    onValidate(error);
+                }
+            }
+        },
+        [disabled, validate, setErrorMessage, onValidate, required],
+    );
 
     const handleToggle = (newSelectedValue: string) => {
         // Call callback if selection changed.
@@ -293,6 +383,9 @@ const SingleSelect = (props: Props) => {
         if (onToggle) {
             onToggle(false);
         }
+
+        // Validate when a value is selected
+        handleValidation(newSelectedValue);
     };
 
     const mapOptionItemsToDropdownItems = (
@@ -364,6 +457,15 @@ const SingleSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
+    const handleOpenerBlur = () => {
+        if (!open && required && !selectedValue) {
+            // Only validate on opener blur if the dropdown is closed, the field
+            // is required, and no value is selected. This prevents an error when
+            // the dropdown is opened without a value yet.
+            handleValidation(selectedValue);
+        }
+    };
+
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -395,6 +497,8 @@ const SingleSelect = (props: Props) => {
                             ref={handleOpenerRef}
                             text={menuText}
                             opened={open}
+                            error={hasError}
+                            onBlur={handleOpenerBlur}
                         >
                             {opener}
                         </DropdownOpener>
@@ -404,13 +508,14 @@ const SingleSelect = (props: Props) => {
                             aria-controls={dropdownId}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
-                            error={error}
+                            error={hasError}
                             isPlaceholder={!selectedItem}
                             light={light}
                             onOpenChanged={handleOpenChanged}
                             open={open}
                             ref={handleOpenerRef}
                             testId={testId}
+                            onBlur={handleOpenerBlur}
                         >
                             {menuText}
                         </SelectOpener>

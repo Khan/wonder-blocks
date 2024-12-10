@@ -18,7 +18,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
-import {defaultLabels, keyCodes} from "../util/constants";
+import {defaultLabels, keys} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
@@ -655,19 +655,19 @@ class DropdownCore extends React.Component<Props, State> {
 
     handleKeyDown: (event: React.KeyboardEvent) => void = (event) => {
         const {enableTypeAhead, onOpenChanged, open, searchText} = this.props;
-        const keyCode = event.which || event.keyCode;
+        const key = event.key;
 
         // Listen for the keydown events if we are using ASCII characters.
-        if (enableTypeAhead && getStringForKey(event.key)) {
+        if (enableTypeAhead && getStringForKey(key)) {
             event.stopPropagation();
-            this.textSuggestion += event.key;
+            this.textSuggestion += key;
             // Trigger the filter logic only after the debounce is resolved.
             this.handleKeyDownDebounced(this.textSuggestion);
         }
 
         // If menu isn't open and user presses down, open the menu
         if (!open) {
-            if (keyCode === keyCodes.down) {
+            if (key === keys.down) {
                 event.preventDefault();
                 onOpenChanged(true);
                 return;
@@ -676,8 +676,8 @@ class DropdownCore extends React.Component<Props, State> {
         }
 
         // Handle all other key behavior
-        switch (keyCode) {
-            case keyCodes.tab:
+        switch (key) {
+            case keys.tab:
                 // When we show SearchField and that is focused and the
                 // searchText is entered at least one character, dismiss button
                 // is displayed. When user presses tab, we should move focus to
@@ -688,7 +688,7 @@ class DropdownCore extends React.Component<Props, State> {
                 this.restoreTabOrder();
                 onOpenChanged(false);
                 return;
-            case keyCodes.space:
+            case keys.space:
                 // When we display SearchField and the focus is on it, we should
                 // let the user type space.
                 if (this.isSearchFieldFocused()) {
@@ -697,11 +697,11 @@ class DropdownCore extends React.Component<Props, State> {
                 // Prevent space from scrolling down the page
                 event.preventDefault();
                 return;
-            case keyCodes.up:
+            case keys.up:
                 event.preventDefault();
                 this.focusPreviousItem();
                 return;
-            case keyCodes.down:
+            case keys.down:
                 event.preventDefault();
                 this.focusNextItem();
                 return;
@@ -711,9 +711,9 @@ class DropdownCore extends React.Component<Props, State> {
     // Some keys should be handled during the keyup event instead.
     handleKeyUp: (event: React.KeyboardEvent) => void = (event) => {
         const {onOpenChanged, open} = this.props;
-        const keyCode = event.which || event.keyCode;
-        switch (keyCode) {
-            case keyCodes.space:
+        const key = event.key;
+        switch (key) {
+            case keys.space:
                 // When we display SearchField and the focus is on it, we should
                 // let the user type space.
                 if (this.isSearchFieldFocused()) {
@@ -722,7 +722,7 @@ class DropdownCore extends React.Component<Props, State> {
                 // Prevent space from scrolling down the page
                 event.preventDefault();
                 return;
-            case keyCodes.escape:
+            case keys.escape:
                 // Close only the dropdown, not other elements that are
                 // listening for an escape press
                 if (open) {
