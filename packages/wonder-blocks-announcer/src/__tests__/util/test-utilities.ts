@@ -1,4 +1,4 @@
-import type {RegionDef, PolitenessLevel} from "../../../types/Announcer.types";
+import type {RegionDef, PolitenessLevel} from "../../../types/announcer.types";
 
 export function createTestRegionList(
     level: PolitenessLevel,

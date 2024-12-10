@@ -1,5 +1,5 @@
 import {screen} from "@testing-library/react";
-import Announcer from "../Announcer";
+import Announcer from "../announcer";
 import {
     createTestRegionList,
     createTestElements,
