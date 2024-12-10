@@ -103,7 +103,7 @@ class Announcer {
             this.node = announcerCheck;
             const regions = Array.from(
                 announcerCheck.querySelectorAll<HTMLElement>(
-                    "[id^='wbARegion'",
+                    "[id^='wbARegion']",
                 ),
             );
             regions.forEach((region) => {
