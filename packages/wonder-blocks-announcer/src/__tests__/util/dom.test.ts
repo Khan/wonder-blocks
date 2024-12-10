@@ -5,6 +5,7 @@ import {
     createRegion,
     removeMessage,
 } from "../../util/dom";
+import {PolitenessLevel} from "../../../types/announcer.types";
 
 jest.useFakeTimers();
 jest.spyOn(global, "setTimeout");
@@ -27,61 +28,47 @@ describe("Announcer utility functions", () => {
     });
 
     describe("createDuplicateRegions", () => {
-        test("it creates multiple polite region elements", () => {
-            const wrapper = document.createElement("div");
-            const dictionary = new Map();
+        test.each(["polite", "assertive"])(
+            "it creates a group of multiple %s Live Region elements",
+            (politenessLevel) => {
+                const wrapper = document.createElement("div");
+                const dictionary = new Map();
 
-            const regionList = createDuplicateRegions(
-                wrapper,
-                "polite",
-                2,
-                dictionary,
-            );
+                const regionList = createDuplicateRegions(
+                    wrapper,
+                    politenessLevel as PolitenessLevel,
+                    2,
+                    dictionary,
+                );
 
-            expect(regionList.length).toBe(2);
-            expect(regionList[0].id).toBe("wbARegion-polite0");
-            expect(regionList[1].id).toBe("wbARegion-polite1");
-            expect(dictionary.size).toBe(2);
-        });
-
-        test("it creates multiple assertive region elements", () => {
-            const wrapper = document.createElement("div");
-            const dictionary = new Map();
-
-            const regionList = createDuplicateRegions(
-                wrapper,
-                "assertive",
-                2,
-                dictionary,
-            );
-
-            expect(regionList.length).toBe(2);
-            expect(regionList[0].id).toBe("wbARegion-assertive0");
-            expect(regionList[1].id).toBe("wbARegion-assertive1");
-            expect(dictionary.size).toBe(2);
-        });
+                expect(regionList.length).toBe(2);
+                expect(regionList[0].id).toBe(`wbARegion-${politenessLevel}0`);
+                expect(regionList[1].id).toBe(`wbARegion-${politenessLevel}1`);
+                expect(dictionary.size).toBe(2);
+            },
+        );
     });
 
     describe("createRegion", () => {
-        test("it creates a polite Live Region element", () => {
-            const dictionary = new Map();
-            const region = createRegion("polite", 0, dictionary);
+        test.each(["polite", "assertive"])(
+            "it creates a %s Live Region element",
+            (politenessLevel) => {
+                // Arrange
+                const dictionary = new Map();
 
-            expect(region.id).toBe("wbARegion-polite0");
-            expect(region.getAttribute("aria-live")).toBe("polite");
-            expect(region.getAttribute("role")).toBe("log");
-            expect(dictionary.size).toBe(1);
-        });
+                // Act
+                const region = createRegion(
+                    politenessLevel as PolitenessLevel,
+                    0,
+                    dictionary,
+                );
 
-        test("it creates an assertive Live Region element", () => {
-            const dictionary = new Map();
-            const region = createRegion("assertive", 0, dictionary);
-
-            expect(region.id).toBe("wbARegion-assertive0");
-            expect(region.getAttribute("aria-live")).toBe("assertive");
-            expect(region.getAttribute("role")).toBe("log");
-            expect(dictionary.size).toBe(1);
-        });
+                // Assert
+                expect(region.getAttribute("aria-live")).toBe(politenessLevel);
+                expect(region.getAttribute("role")).toBe("log");
+                expect(dictionary.size).toBe(1);
+            },
+        );
 
         test("it allows the role to be overridden", () => {
             const dictionary = new Map();
