@@ -10,12 +10,9 @@ describe("Debouncing messages", () => {
 
         // ACT
         const resultPromise = debounced("Hello, World!");
-
-        // ASSERT
-        expect(resultPromise).toBeInstanceOf(Promise);
-
         jest.advanceTimersByTime(300);
 
+        // ASSERT
         await expect(resultPromise).resolves.toBe("Hello, World!");
     });
 
