@@ -4,8 +4,7 @@ import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-// eslint-disable-next-line import/no-deprecated
-import {IDProvider} from "@khanacademy/wonder-blocks-core";
+import {Id} from "@khanacademy/wonder-blocks-core";
 import ModalDialog from "./modal-dialog";
 import ModalPanel from "./modal-panel";
 import ModalHeader from "./modal-header";
@@ -197,7 +196,7 @@ export default class OnePaneDialog extends React.Component<Props> {
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
-                    <IDProvider id={titleId} scope="modal">
+                    <Id id={titleId}>
                         {(uniqueId) => (
                             <ModalDialog
                                 style={[styles.dialog, style]}
@@ -218,7 +217,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                                 />
                             </ModalDialog>
                         )}
-                    </IDProvider>
+                    </Id>
                 )}
             </MediaLayout>
         );
