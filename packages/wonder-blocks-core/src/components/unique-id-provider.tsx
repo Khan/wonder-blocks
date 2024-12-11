@@ -44,6 +44,9 @@ type Props = {
 };
 
 /**
+ * @deprecated This component is deprecated and will be removed in an
+ * upcoming release. Migrate existing code to use `useId` or the `Id` component.
+ *
  * The `UniqueIDProvider` component is how Wonder Blocks components obtain
  * unique identifiers. This component ensures that server-side rendering and
  * initial client rendering match while allowing the provision of unique
@@ -70,9 +73,6 @@ type Props = {
  *  )}
  * </UniqueIDProvider>
  * ```
- *
- * @deprecated Use `useId` for your ID needs. If you are in a class-based
- * component and cannot use hooks, then use the `Id` component.
  */
 export default class UniqueIDProvider extends React.Component<Props> {
     // @ts-expect-error [FEI-5019] - TS2564 - Property '_idFactory' has no initializer and is not definitely assigned in the constructor.
