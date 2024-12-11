@@ -20,11 +20,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {
-    // eslint-disable-next-line import/no-deprecated
-    UniqueIDProvider,
-    IIdentifierFactory,
-} from "@khanacademy/wonder-blocks-core";
+import {Id} from "@khanacademy/wonder-blocks-core";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -193,7 +189,6 @@ export default class Tooltip extends React.Component<Props, State> {
         active: false,
         activeBubble: false,
     };
-    static ariaContentId = "aria-content";
 
     _updateAnchorElement(ref?: Element | null) {
         if (ref && ref !== this.state.anchorElement) {
@@ -222,14 +217,8 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(ids?: IIdentifierFactory): React.ReactNode {
-        const {id, backgroundColor} = this.props;
-        const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
-        if (!bubbleId) {
-            throw new Error("Did not get an identifier factory nor a id prop");
-        }
-
-        const {placement} = this.props;
+    _renderPopper(bubbleId: string): React.ReactNode {
+        const {backgroundColor, placement} = this.props;
         return (
             <TooltipPopper
                 anchorElement={this.state.anchorElement}
@@ -267,7 +256,7 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
-    _renderTooltipAnchor(ids?: IIdentifierFactory): React.ReactNode {
+    _renderTooltipAnchor(uniqueId: string): React.ReactNode {
         const {autoUpdate, children, forceAnchorFocusivity} = this.props;
         const {active, activeBubble} = this.state;
 
@@ -287,28 +276,23 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
-                    ids={ids}
+                    id={`${uniqueId}-anchor`}
                 >
                     {children}
                 </TooltipAnchor>
                 {shouldBeVisible &&
-                    ReactDOM.createPortal(this._renderPopper(ids), popperHost)}
+                    ReactDOM.createPortal(
+                        this._renderPopper(uniqueId),
+                        popperHost,
+                    )}
             </React.Fragment>
         );
     }
 
     render(): React.ReactNode {
         const {id} = this.props;
-        if (id) {
-            // Let's bypass the extra weight of an id provider since we don't
-            // need it.
-            return this._renderTooltipAnchor();
-        } else {
-            return (
-                <UniqueIDProvider scope="tooltip" mockOnFirstRender={true}>
-                    {(ids) => this._renderTooltipAnchor(ids)}
-                </UniqueIDProvider>
-            );
-        }
+        return (
+            <Id id={id}>{(uniqueId) => this._renderTooltipAnchor(uniqueId)}</Id>
+        );
     }
 }
