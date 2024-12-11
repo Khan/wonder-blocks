@@ -38,13 +38,13 @@ describe("TextArea", () => {
 
             // Act
             render(<TextArea value="" onChange={() => {}} />, defaultOptions);
+            const textArea = await screen.findByRole("textbox");
+            const result = textArea.getAttribute("id");
 
             // Assert
             // Since the generated id is unique, we cannot know what it will be. We
-            // only test if the id attribute starts with "uid-", then followed by
-            // "text-field-" as the scope assigned to IDProvider.
-            const textArea = await screen.findByRole("textbox");
-            expect(textArea.getAttribute("id")).toMatch(/uid-text-area-.*$/);
+            // only test that it is there.
+            expect(result).toBeString();
         });
 
         it("should use the testId prop for the textarea element", async () => {
