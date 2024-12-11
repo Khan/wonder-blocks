@@ -62,7 +62,7 @@ export const Default: StoryComponentType = {
         label: "Name",
         description: "Helpful description text.",
         errorMessage: "Message about the error",
-        required: true,
+        required: "Custom required message",
     },
 };
 
@@ -179,13 +179,20 @@ const AllFields = (
         setIsFormSubmitted(true);
     };
 
+    const textDescription = shouldValidateInStory
+        ? "Trigger error by entering text that is 4 characters or less"
+        : args.description;
+    const selectDescription = shouldValidateInStory
+        ? "Trigger error by selecting mango"
+        : args.description;
+
     const textValidate = (value: string) => {
         if (value.length < 5) {
             return "Should be 5 or more characters";
         }
     };
 
-    const singleSelectValidate = (value: string) => {
+    const singleSelectValidate = (value?: string | null) => {
         if (value === "mango") {
             return "Don't pick mango!";
         }
@@ -203,6 +210,7 @@ const AllFields = (
                 {...args}
                 errorMessage={textFieldErrorMessage}
                 label="Text Field"
+                description={textDescription}
                 field={
                     <TextField
                         ref={textFieldRef}
@@ -220,6 +228,7 @@ const AllFields = (
                 {...args}
                 errorMessage={textAreaErrorMessage}
                 label="Text Area"
+                description={textDescription}
                 field={
                     <TextArea
                         ref={textAreaRef}
@@ -238,14 +247,15 @@ const AllFields = (
                 {...args}
                 errorMessage={singleSelectErrorMessage}
                 label="Single Select"
+                description={selectDescription}
                 field={
                     <SingleSelect
                         // ref={singleSelectRef} // TODO once SingleSelect supports ref
                         placeholder="Choose a fruit"
                         selectedValue={singleSelectValue}
                         onChange={setSingleSelectValue}
-                        // onValidate={setSingleSelectErrorMessage}
-                        // validate={shouldValidateInStory ? singleSelectValidate : undefined}
+                        onValidate={setSingleSelectErrorMessage}
+                        validate={singleSelectValidate}
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -258,13 +268,18 @@ const AllFields = (
                 {...args}
                 errorMessage={multiSelectErrorMessage}
                 label="Multi Select"
+                description={selectDescription}
                 field={
                     <MultiSelect
                         // ref={multiSelectRef} // TODO once MultiSelect supports ref
                         selectedValues={multiSelectValue}
                         onChange={setMultiSelectValue}
-                        // onValidate={setMultiSelectErrorMessage}
-                        // validate={shouldValidateInStory ? multiSelectValidate : undefined}
+                        onValidate={setMultiSelectErrorMessage}
+                        validate={
+                            shouldValidateInStory
+                                ? multiSelectValidate
+                                : undefined
+                        }
                     >
                         <OptionItem label="Mango" value="mango" />
                         <OptionItem label="Strawberry" value="strawberry" />
@@ -277,13 +292,17 @@ const AllFields = (
                 {...args}
                 errorMessage={searchErrorMessage}
                 label="Search"
+                description={textDescription}
                 field={
                     <SearchField
                         ref={searchRef}
                         value={searchValue}
                         onChange={setSearchValue}
-                        // validate={shouldValidateInStory ? textValidate : undefined}
-                        // onValidate={setSearchErrorMessage}
+                        validate={
+                            shouldValidateInStory ? textValidate : undefined
+                        }
+                        onValidate={setSearchErrorMessage}
+                        instantValidation={false}
                     />
                 }
             />
@@ -437,7 +456,7 @@ export const Light: StoryComponentType = {
     args: {
         description: "Helpful description text.",
         errorMessage: "Message about the error",
-        required: true,
+        required: "Custom required message",
         light: true,
     },
     parameters: {
