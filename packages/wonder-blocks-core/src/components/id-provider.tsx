@@ -54,6 +54,8 @@ type Props = {
  * </IDProvider>
  * ```
  *
+ * @deprecated Use `useId` for your ID needs. If you are in a class-based
+ * component and cannot use hooks, then use the `Id` component.
  */
 export default class IDProvider extends React.Component<Props> {
     static defaultId = "wb-id";

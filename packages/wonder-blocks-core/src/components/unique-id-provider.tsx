@@ -69,6 +69,9 @@ type Props = {
  *  )}
  * </UniqueIDProvider>
  * ```
+ *
+ * @deprecated Use `useId` for your ID needs. If you are in a class-based
+ * component and cannot use hooks, then use the `Id` component.
  */
 export default class UniqueIDProvider extends React.Component<Props> {
     // @ts-expect-error [FEI-5019] - TS2564 - Property '_idFactory' has no initializer and is not definitely assigned in the constructor.
