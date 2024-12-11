@@ -15,6 +15,8 @@ const theme = {
     },
     border: {
         radius: tokens.border.radius.medium_4,
+        width: tokens.border.width.thin,
+        color: tokens.color.blue,
     },
     spacing: {
         dialog: {
