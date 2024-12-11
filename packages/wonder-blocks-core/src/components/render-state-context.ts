@@ -1,6 +1,11 @@
 import * as React from "react";
 
 export enum RenderState {
+    Initial = "initial",
+    Standard = "standard",
+}
+
+export enum RenderStateInternal {
     Root = "root",
     Initial = "initial",
     Standard = "standard",
@@ -21,9 +26,9 @@ export enum RenderState {
  * standard:
  *   means that we're all now doing non-SSR rendering
  */
-const RenderStateContext = React.createContext<
-    typeof RenderState[keyof typeof RenderState]
->(RenderState.Root);
+const RenderStateContext = React.createContext<RenderStateInternal>(
+    RenderStateInternal.Root,
+);
 RenderStateContext.displayName = "RenderStateContext";
 
 export {RenderStateContext};
