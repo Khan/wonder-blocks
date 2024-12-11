@@ -14,4 +14,15 @@ describe("Id", () => {
         // Assert
         expect(childrenFn).toHaveBeenCalledWith(expect.any(String));
     });
+
+    it("should pass through the given id to the children", () => {
+        // Arrange
+        const childrenFn = jest.fn().mockReturnValue(null);
+
+        // Act
+        render(<Id id="my-id">{childrenFn}</Id>);
+
+        // Assert
+        expect(childrenFn).toHaveBeenCalledWith("my-id");
+    });
 });
