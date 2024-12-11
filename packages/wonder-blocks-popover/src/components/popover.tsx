@@ -1,8 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-// eslint-disable-next-line import/no-deprecated
-import {IDProvider} from "@khanacademy/wonder-blocks-core";
+import {Id} from "@khanacademy/wonder-blocks-core";
 import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 
@@ -390,7 +389,7 @@ export default class Popover extends React.Component<Props, State> {
                     placement: placement,
                 }}
             >
-                <IDProvider id={id} scope="popover">
+                <Id id={id}>
                     {(uniqueId) => (
                         <React.Fragment>
                             <PopoverAnchor
@@ -405,7 +404,7 @@ export default class Popover extends React.Component<Props, State> {
                             {this.renderPortal(uniqueId, opened)}
                         </React.Fragment>
                     )}
-                </IDProvider>
+                </Id>
 
                 {dismissEnabled && opened && (
                     <PopoverEventListener

@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-// eslint-disable-next-line import/no-deprecated
-import {IDProvider, addStyle} from "@khanacademy/wonder-blocks-core";
+import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
 import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
@@ -246,7 +245,7 @@ const TextField = (props: PropsWithForwardRef) => {
     };
 
     return (
-        <IDProvider id={id} scope="text-field">
+        <Id id={id}>
             {(uniqueId) => (
                 <StyledInput
                     style={[getStyles(), style]}
@@ -269,7 +268,7 @@ const TextField = (props: PropsWithForwardRef) => {
                     {...otherProps}
                 />
             )}
-        </IDProvider>
+        </Id>
     );
 };
 

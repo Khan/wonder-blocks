@@ -1,7 +1,6 @@
-/* eslint-disable import/no-deprecated */
 import * as React from "react";
 import {Meta} from "@storybook/react";
-import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
+import {Id, View} from "@khanacademy/wonder-blocks-core";
 
 import {
     Unmounter,
@@ -30,7 +29,7 @@ export default {
 } as Meta;
 
 export const IncorrectUsage = () => (
-    <IDProvider id="incorrect" scope="example">
+    <Id>
         {(id) => (
             <View>
                 <Unmounter>
@@ -39,11 +38,11 @@ export const IncorrectUsage = () => (
                 <View id={id} />
             </View>
         )}
-    </IDProvider>
+    </Id>
 );
 
 export const CorrectUsage = () => (
-    <IDProvider id="correct" scope="example">
+    <Id>
         {(id) => (
             <View>
                 <Unmounter>
@@ -52,5 +51,5 @@ export const CorrectUsage = () => (
                 <View id={id} />
             </View>
         )}
-    </IDProvider>
+    </Id>
 );
