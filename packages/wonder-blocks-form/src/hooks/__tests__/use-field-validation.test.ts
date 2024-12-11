@@ -1,11 +1,11 @@
-import {act, renderHook, RenderResult} from "@testing-library/react-hooks";
+import {act, renderHook, RenderHookResult} from "@testing-library/react";
 import {useFieldValidation} from "../use-field-validation";
 
-type Result = RenderResult<{
-    errorMessage: string | null;
-    onBlurValidation: (newValue: string) => void;
-    onChangeValidation: (newValue: string) => void;
-}>;
+type HookResult = RenderHookResult<
+    ReturnType<typeof useFieldValidation>,
+    Parameters<typeof useFieldValidation>[0]
+>["result"];
+
 describe("useFieldValidation", () => {
     const testErrorMessage = "Error message";
 
@@ -181,14 +181,14 @@ describe("useFieldValidation", () => {
             [
                 "onChangeValidation",
                 true,
-                (result: Result, value: string) => {
+                (result: HookResult, value: string) => {
                     result.current.onChangeValidation(value);
                 },
             ],
             [
                 "onBlurValidation",
                 false,
-                (result: Result, value: string) => {
+                (result: HookResult, value: string) => {
                     result.current.onBlurValidation(value);
                 },
             ],
@@ -197,7 +197,7 @@ describe("useFieldValidation", () => {
             (
                 _actionName: string,
                 instantValidation: boolean,
-                action: (result: Result, value: string) => void,
+                action: (result: HookResult, value: string) => void,
             ) => {
                 describe("validate", () => {
                     it("should call the validate prop", () => {

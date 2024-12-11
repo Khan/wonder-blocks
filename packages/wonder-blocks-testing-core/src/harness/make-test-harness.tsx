@@ -43,7 +43,7 @@ export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
             ...defaultConfigs,
             ...configs,
         };
-        const harnessedComponent = React.forwardRef((props: TProps, ref) => (
+        const harnessedComponent = React.forwardRef((props, ref) => (
             <Adapt adapters={adapters} configs={fullConfig}>
                 <Component {...(props as TProps)} ref={ref} />
             </Adapt>
@@ -55,6 +55,8 @@ export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
             Component.displayName || Component.name || "Component"
         })`;
 
-        return harnessedComponent;
+        return harnessedComponent as React.ForwardRefExoticComponent<
+            React.PropsWithoutRef<TProps> & React.RefAttributes<unknown>
+        >;
     };
 };

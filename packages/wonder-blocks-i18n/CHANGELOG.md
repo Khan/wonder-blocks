@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 4.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+## 3.1.4
+
+### Patch Changes
+
+-   5af2e751: Fix a bug with pluralization for fallback untranslated languages.
+
+## 3.1.3
+
+### Patch Changes
+
+-   5899cbe4: Fix ngettext not returning plural translations.
+
 ## 3.1.2
 
 ### Patch Changes

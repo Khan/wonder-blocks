@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 8.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
 ## 7.0.1
 
 ### Patch Changes
