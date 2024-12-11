@@ -175,6 +175,17 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.
         zIndex: 1,
+
+        // NOTE: IconButton uses :focus-visible, which is not supported for
+        // programmatic focus. This is a workaround to make sure the focus
+        // outline is visible when this control is focused.
+        ":focus": {
+            outlineWidth: theme.border.width,
+            outlineColor: theme.border.color,
+            outlineOffset: 1,
+            outlineStyle: "solid",
+            borderRadius: theme.border.radius,
+        },
     },
 
     dark: {
