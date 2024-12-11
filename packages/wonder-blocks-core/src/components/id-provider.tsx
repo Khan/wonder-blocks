@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import * as React from "react";
 
 import UniqueIDProvider from "./unique-id-provider";
