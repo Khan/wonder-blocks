@@ -59,7 +59,7 @@
 }
 
 /* only include the counter to the stories titles */
-.sb-anchor > h3::before {
+.sb-anchor>h3::before {
     counter-increment: story;
     color: var(--color-text-64);
     content: counter(story) ".";
@@ -80,7 +80,7 @@
     line-height: var(--typography-heading-line-height-xs);
 }
 
-.sb-show-main #wbAnnounce {
+/* .sb-show-main #wbAnnounce {
     display: block !important;
     clip: revert !important;
     position: relative !important;
@@ -98,4 +98,4 @@
     display: block;
     font-size: 0.75rem;
     padding: 0.25em;
-}
+} */

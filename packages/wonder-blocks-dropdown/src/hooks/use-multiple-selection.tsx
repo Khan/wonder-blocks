@@ -1,5 +1,6 @@
 import * as React from "react";
-import {MaybeValueOrValues} from "../util/types";
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
+import {ComboboxLabels, MaybeValueOrValues} from "../util/types";
 
 type Props = {
     /**
@@ -8,6 +9,10 @@ type Props = {
      */
     selected: MaybeValueOrValues;
     /**
+     * The label(s) of the selected item(s).
+     */
+    selectedLabels: Array<string>;
+    /**
      * Function to set the selected items.
      */
     setSelected: (value: MaybeValueOrValues) => void;
@@ -15,6 +20,11 @@ type Props = {
      * The current value of the input.
      */
     inputValue: string;
+
+    labels: Pick<
+        ComboboxLabels,
+        "liveRegionCurrentItem" | "liveRegionMultipleSelectionTotal"
+    >;
 };
 
 /**
@@ -26,11 +36,33 @@ type Props = {
 export function useMultipleSelection({
     inputValue,
     selected,
+    selectedLabels,
     setSelected,
+    labels,
 }: Props) {
     // Index of the currently focused pill in the multi-select combobox.
     const [focusedMultiSelectIndex, setFocusedMultiSelectIndex] =
         React.useState<number>(-1);
+    const focusedItem = React.useCallback(
+        (index: number) => {
+            // Announces the pill group.
+            const label = selectedLabels[index];
+            announceMessage({
+                message:
+                    labels.liveRegionCurrentItem({
+                        current: label,
+                        focused: true,
+                        index: index,
+                        total: selectedLabels.length,
+                    }) +
+                    " " +
+                    labels.liveRegionMultipleSelectionTotal(
+                        selectedLabels.length,
+                    ),
+            });
+        },
+        [labels, selectedLabels],
+    );
 
     /**
      * Keyboard specific behaviors for the multi-select combobox.
@@ -47,14 +79,19 @@ export function useMultipleSelection({
             if (key === "ArrowLeft") {
                 setFocusedMultiSelectIndex((prev) => {
                     const newIndex = prev - 1;
-                    return newIndex < 0 ? selected?.length - 1 : newIndex;
+                    const index =
+                        newIndex < 0 ? selected?.length - 1 : newIndex;
+                    focusedItem(index);
+                    return index;
                 });
             }
 
             if (key === "ArrowRight") {
                 setFocusedMultiSelectIndex((prev) => {
                     const newIndex = prev + 1;
-                    return newIndex >= selected?.length ? 0 : newIndex;
+                    const index = newIndex >= selected?.length ? 0 : newIndex;
+                    focusedItem(index);
+                    return index;
                 });
             }
 
@@ -85,8 +122,8 @@ export function useMultipleSelection({
                 setFocusedMultiSelectIndex(-1);
             }
 
-            // Clear the focused pill index when navigating through the listbox, so
-            // the visual focus is back to the listbox.
+            // Clear the focused pill index when navigating through the listbox,
+            // so the visual focus is back to the listbox.
             if (key === "ArrowDown" || key === "ArrowUp") {
                 setFocusedMultiSelectIndex(-1);
             }
@@ -96,7 +133,13 @@ export function useMultipleSelection({
                 setFocusedMultiSelectIndex(-1);
             }
         },
-        [focusedMultiSelectIndex, inputValue, selected, setSelected],
+        [
+            focusedItem,
+            focusedMultiSelectIndex,
+            inputValue,
+            selected,
+            setSelected,
+        ],
     );
 
     return {
