@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import planetIcon from "@phosphor-icons/core/regular/planet.svg";
@@ -6,8 +7,8 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -17,6 +18,7 @@ import {
     Body,
     HeadingLarge,
     LabelMedium,
+    LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
@@ -380,39 +382,147 @@ export const Disabled: StoryComponentType = {
     ),
 };
 
-const ErrorWrapper = () => {
-    const [error, setError] = React.useState(true);
-    const [selectedValue, setSelectedValue] = React.useState("");
+const ControlledSingleSelect = (args: PropsFor<typeof SingleSelect>) => {
     const [opened, setOpened] = React.useState(false);
-
+    const [selectedValue, setSelectedValue] = React.useState(
+        args.selectedValue,
+    );
+    const [errorMessage, setErrorMessage] = React.useState<
+        null | string | void
+    >(null);
     return (
-        <>
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                Select any fruit other than lemon to clear the error!
-            </LabelMedium>
+        <View style={{gap: spacing.xSmall_8}}>
             <SingleSelect
-                error={error}
-                onChange={(value) => {
-                    setSelectedValue(value);
-                    setError(value === "lemon");
-                }}
-                onToggle={setOpened}
+                {...args}
+                id="single-select"
                 opened={opened}
-                placeholder="Choose a fruit"
+                onToggle={setOpened}
                 selectedValue={selectedValue}
+                onChange={setSelectedValue}
+                placeholder="Choose a fruit"
+                validate={(value) => {
+                    if (value === "lemon") {
+                        return "Pick another option!";
+                    }
+                }}
+                onValidate={setErrorMessage}
             >
                 {items}
             </SingleSelect>
-        </>
+            {(errorMessage || args.error) && (
+                <LabelSmall
+                    style={{color: semanticColor.status.critical.foreground}}
+                >
+                    {errorMessage || "Error from error prop"}
+                </LabelSmall>
+            )}
+        </View>
     );
 };
 
 /**
- * This select is in an error state. Selecting any option other than lemon will
- * clear the error state by updating the `error` prop to `false`.
+ * If the `error` prop is set to true, the field will have error styling and
+ * `aria-invalid` set to `true`.
+ *
+ * This is useful for scenarios where we want to show an error on a
+ * specific field after a form is submitted (server validation).
+ *
+ * Note: The `required` and `validate` props can also put the field in an
+ * error state.
  */
 export const Error: StoryComponentType = {
-    render: ErrorWrapper,
+    render: ControlledSingleSelect,
+    args: {
+        error: true,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered by variants story
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * A required field will have error styling and aria-invalid set to true if the
+ * select is left blank.
+ *
+ * When `required` is set to `true`, validation is triggered:
+ * - When a user tabs away from the select (opener's onBlur event)
+ * - When a user closes the dropdown without selecting a value
+ * (either by pressing escape, clicking away, or clicking on the opener).
+ *
+ * Validation errors are cleared when a valid value is selected. The component
+ * will set aria-invalid to "false" and call the onValidate prop with null.
+ *
+ */
+export const Required: StoryComponentType = {
+    render: ControlledSingleSelect,
+    args: {
+        required: "Custom required error message",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * If a selected value fails validation, the field will have error styling.
+ *
+ * This is useful for scenarios where we want to show errors while a
+ * user is filling out a form (client validation).
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * field:
+ * - aria-invalid="true" if there is an error.
+ * - aria-invalid="false" if there is no error.
+ *
+ * Validation is triggered:
+ * - On mount if the `value` prop is not empty and it is not required
+ * - When an option is selected
+ *
+ * Validation errors are cleared when a valid value is selected. The component
+ * will set aria-invalid to "false" and call the onValidate prop with null.
+ */
+export const ErrorFromValidation: StoryComponentType = {
+    render: (args: PropsFor<typeof SingleSelect>) => {
+        return (
+            <View style={{gap: spacing.xSmall_8}}>
+                <LabelSmall htmlFor="single-select" tag="label">
+                    Validation example (try picking lemon to trigger an error)
+                </LabelSmall>
+                <ControlledSingleSelect
+                    {...args}
+                    id="single-select"
+                    validate={(value) => {
+                        if (value === "lemon") {
+                            return "Pick another option!";
+                        }
+                    }}
+                >
+                    {items}
+                </ControlledSingleSelect>
+                <LabelSmall htmlFor="single-select" tag="label">
+                    Validation example (on mount)
+                </LabelSmall>
+                <ControlledSingleSelect
+                    {...args}
+                    id="single-select"
+                    validate={(value) => {
+                        if (value === "lemon") {
+                            return "Pick another option!";
+                        }
+                    }}
+                    selectedValue="lemon"
+                >
+                    {items}
+                </ControlledSingleSelect>
+            </View>
+        );
+    },
 };
 
 /**

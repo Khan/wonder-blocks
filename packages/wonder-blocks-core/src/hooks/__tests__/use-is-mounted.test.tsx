@@ -1,6 +1,5 @@
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
-import {renderHook} from "@testing-library/react-hooks";
+import {render, screen, renderHook} from "@testing-library/react";
 import {renderToString} from "react-dom/server";
 
 import Server from "../../util/server";

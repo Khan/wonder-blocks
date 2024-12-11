@@ -15,7 +15,7 @@ const attachShims = (targetWindow) => {
     if (!targetWindow.TextDecoder) {
         targetWindow.TextDecoder = TextDecoder;
     }
-}
+};
 
 const resetWindow = () => {
     attachShims(globalThis);

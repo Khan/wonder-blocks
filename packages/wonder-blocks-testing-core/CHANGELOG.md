@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 2.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
 ## 1.1.0
 
 ### Minor Changes

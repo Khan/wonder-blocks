@@ -3,12 +3,12 @@ import {StyleSheet} from "aphrodite";
 
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
@@ -129,14 +129,14 @@ const styles = StyleSheet.create({
 });
 
 const items = [
-    <OptionItem label="Mercury" value="1" key={1} />,
-    <OptionItem label="Venus" value="2" key={2} />,
-    <OptionItem label="Earth" value="3" disabled key={3} />,
-    <OptionItem label="Mars" value="4" key={4} />,
-    <OptionItem label="Jupiter" value="5" key={5} />,
-    <OptionItem label="Saturn" value="6" key={6} />,
-    <OptionItem label="Neptune" value="7" key={7} />,
-    <OptionItem label="Uranus" value="8" key={8} />,
+    <OptionItem label="Mercury" value="mercury" key={1} />,
+    <OptionItem label="Venus" value="venus" key={2} />,
+    <OptionItem label="Earth" value="earth" disabled key={3} />,
+    <OptionItem label="Mars" value="mars" key={4} />,
+    <OptionItem label="Jupiter" value="jupiter" key={5} />,
+    <OptionItem label="Saturn" value="saturn" key={6} />,
+    <OptionItem label="Neptune" value="neptune" key={7} />,
+    <OptionItem label="Uranus" value="uranus" key={8} />,
 ];
 
 const Template = (args: any) => {
@@ -271,42 +271,133 @@ export const CustomStylesOpened: StoryComponentType = {
     ],
 };
 
-const ErrorWrapper = (args: any) => {
-    const [selectedValues, setSelectedValues] = React.useState<string[]>([]);
+const ControlledMultiSelect = (args: PropsFor<typeof MultiSelect>) => {
     const [opened, setOpened] = React.useState(false);
-    const [error, setError] = React.useState(true);
-
+    const [selectedValues, setSelectedValues] = React.useState<string[]>(
+        args.selectedValues || [],
+    );
+    const [errorMessage, setErrorMessage] = React.useState<
+        null | string | void
+    >(null);
     return (
-        <>
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                Select at least 2 options to clear the error!
-            </LabelMedium>
+        <View style={{gap: spacing.xSmall_8}}>
             <MultiSelect
                 {...args}
-                error={error}
-                onChange={(values) => {
-                    setSelectedValues(values);
-                    setError(values.length < 2);
-                }}
-                onToggle={setOpened}
+                id="multi-select"
                 opened={opened}
+                onToggle={setOpened}
                 selectedValues={selectedValues}
+                onChange={setSelectedValues}
+                validate={(values) => {
+                    if (values.includes("jupiter")) {
+                        return "Don't pick jupiter!";
+                    }
+                }}
+                onValidate={setErrorMessage}
             >
                 {items}
             </MultiSelect>
-        </>
+            {(errorMessage || args.error) && (
+                <LabelMedium
+                    style={{color: semanticColor.status.critical.foreground}}
+                >
+                    {errorMessage || "Error from error prop"}
+                </LabelMedium>
+            )}
+        </View>
     );
 };
 
 /**
- * Here is an example of a dropdown that is in an error state. Selecting two or
- * more options will clear the error by setting the `error` prop to `false`.
+ * If the `error` prop is set to true, the field will have error styling and
+ * `aria-invalid` set to `true`.
+ *
+ * This is useful for scenarios where we want to show an error on a
+ * specific field after a form is submitted (server validation).
+ *
+ * Note: The `required` and `validate` props can also put the field in an
+ * error state.
  */
 export const Error: StoryComponentType = {
-    render: ErrorWrapper,
+    render: ControlledMultiSelect,
     args: {
         error: true,
-    } as MultiSelectArgs,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered by variants story
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * A required field will have error styling and aria-invalid set to true if the
+ * select is left blank.
+ *
+ * When `required` is set to `true`, validation is triggered:
+ * - When a user tabs away from the select (opener's onBlur event)
+ * - When a user closes the dropdown without selecting a value
+ * (either by pressing escape, clicking away, or clicking on the opener).
+ *
+ * Validation errors are cleared when a valid value is selected. The component
+ * will set aria-invalid to "false" and call the onValidate prop with null.
+ *
+ */
+export const Required: StoryComponentType = {
+    render: ControlledMultiSelect,
+    args: {
+        required: "Custom required error message",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * If a selected value fails validation, the field will have error styling.
+ *
+ * This is useful for scenarios where we want to show errors while a
+ * user is filling out a form (client validation).
+ *
+ * Note that we will internally set the correct `aria-invalid` attribute to the
+ * field:
+ * - aria-invalid="true" if there is an error.
+ * - aria-invalid="false" if there is no error.
+ *
+ * Validation is triggered:
+ * - On mount if the `value` prop is not empty and it is not required
+ * - When the dropdown is closed after updating the selected values
+ *
+ * Validation errors are cleared when the value is updated. The component
+ * will set aria-invalid to "false" and call the onValidate prop with null.
+ */
+export const ErrorFromValidation: StoryComponentType = {
+    render: (args: PropsFor<typeof MultiSelect>) => {
+        return (
+            <View style={{gap: spacing.xSmall_8}}>
+                <LabelMedium htmlFor="multi-select" tag="label">
+                    Validation example (try picking jupiter)
+                </LabelMedium>
+                <ControlledMultiSelect {...args} id="multi-select">
+                    {items}
+                </ControlledMultiSelect>
+                <LabelMedium htmlFor="multi-select" tag="label">
+                    Validation example (on mount)
+                </LabelMedium>
+                <ControlledMultiSelect
+                    {...args}
+                    selectedValues={["jupiter"]}
+                    id="multi-select"
+                >
+                    {items}
+                </ControlledMultiSelect>
+            </View>
+        );
+    },
 };
 
 /**

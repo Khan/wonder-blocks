@@ -1,5 +1,35 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 3.1.0
+
+### Minor Changes
+
+-   e9a119a8: # SearchField
+
+    -   Adds `error`, `instantValidation`, `validate`, and `onValidate` props to be consistent with form components.
+    -   Refine magnifying glass icon styling to make it match Figma more (smaller, bold icon, spacing, update disabled state)
+    -   Hide the clear button if the SearchField is disabled
+
+### Patch Changes
+
+-   257b6bc3: SearchField: Remove "-field" that was automatically appended to the id.
+
+## 3.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-form@5.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
 ## 2.3.6
 
 ### Patch Changes

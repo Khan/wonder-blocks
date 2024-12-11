@@ -11,10 +11,12 @@ import {
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
+    UserEvent,
 } from "@testing-library/user-event";
 
 import {ngettext} from "@khanacademy/wonder-blocks-i18n";
 
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
 import {defaultLabels as builtinLabels} from "../../util/constants";
@@ -444,11 +446,11 @@ describe("MultiSelect", () => {
 
             // Act
             // Grab the second item in the list
-            const item = screen.getByRole("option", {
+            const item = await screen.findByRole("option", {
                 name: "item 2",
                 hidden: true,
             });
-            userEvent.click(item);
+            await userEvent.click(item);
 
             // Assert
             expect(item).toHaveAttribute("aria-selected", "true");
@@ -2096,6 +2098,948 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(opener).toHaveAttribute("aria-expanded", "true");
+        });
+    });
+
+    describe("a11y > aria-invalid", () => {
+        it.each([
+            {error: true, ariaInvalid: "true"},
+            {error: false, ariaInvalid: "false"},
+            {error: undefined, ariaInvalid: "false"},
+        ])(
+            "should set aria-invalid to $ariaInvalid if error is $error",
+            async ({error, ariaInvalid}) => {
+                // Arrange
+                doRender(<MultiSelect onChange={jest.fn()} error={error} />);
+
+                // Act
+                const opener = await screen.findByRole("button");
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
+            },
+        );
+
+        it.each([
+            {error: true, ariaInvalid: "true"},
+            {error: false, ariaInvalid: "false"},
+            {error: undefined, ariaInvalid: "false"},
+        ])(
+            "should set aria-invalid to $ariaInvalid if error is $error and there is a custom opener",
+            async ({error, ariaInvalid}) => {
+                // Arrange
+                doRender(
+                    <MultiSelect
+                        onChange={jest.fn()}
+                        error={error}
+                        opener={() => (
+                            <button aria-label="Search" onClick={jest.fn()} />
+                        )}
+                    />,
+                );
+
+                // Act
+                const opener = await screen.findByRole("button");
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
+            },
+        );
+    });
+
+    describe("a11y > violations", () => {
+        afterEach(() => {
+            jest.useFakeTimers();
+        });
+
+        it("should not have any violations", async () => {
+            // Arrange
+            const {container} = doRender(
+                <MultiSelect onChange={jest.fn()} opened={true}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // Flush any pending timers before switching to real timers
+            // https://testing-library.com/docs/using-fake-timers/
+            jest.runOnlyPendingTimers();
+            // Use real timers for the jest-axe check otherwise the test will timeout
+            // https://github.com/dequelabs/axe-core/issues/3055
+            jest.useRealTimers();
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
+
+        it("should not have any violations when it is open", async () => {
+            // Arrange
+            const {container} = doRender(
+                <MultiSelect onChange={jest.fn()} opened={true}>
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // Flush any pending timers before switching to real timers
+            // https://testing-library.com/docs/using-fake-timers/
+            jest.runOnlyPendingTimers();
+            // Use real timers for the jest-axe check otherwise the test will timeout
+            // https://github.com/dequelabs/axe-core/issues/3055
+            jest.useRealTimers();
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
+    });
+
+    describe("validation", () => {
+        const ControlledMultiSelect = (
+            props: Partial<PropsFor<typeof MultiSelect>>,
+        ) => {
+            const [values, setValues] = React.useState<string[] | undefined>(
+                props.selectedValues || undefined,
+            );
+            return (
+                <MultiSelect
+                    {...props}
+                    selectedValues={values}
+                    onChange={setValues}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>
+            );
+        };
+        describe.each([
+            {
+                closingMethod: "clicking the opener",
+                closingAction: async (
+                    userEvent: UserEvent,
+                    opener: HTMLElement,
+                ) => {
+                    await userEvent.click(opener);
+                },
+            },
+            {
+                closingMethod: "pressing Escape",
+                closingAction: async (userEvent: UserEvent) => {
+                    await userEvent.keyboard("{escape}");
+                },
+            },
+        ])(
+            "when a value is selected and the dropdown is closed by $closingMethod",
+            ({closingAction}) => {
+                it("should call validate prop", async () => {
+                    // Arrange
+                    const validate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect validate={validate} />,
+                    );
+                    const opener = await screen.findByRole("button");
+                    await userEvent.click(opener);
+                    await userEvent.click(screen.getByText("item 1"));
+                    validate.mockClear(); // Clear any calls
+
+                    // Act
+                    await closingAction(userEvent, opener); // Close the dropdown
+
+                    // Assert
+                    expect(validate).toHaveBeenCalledExactlyOnceWith(["1"]);
+                });
+
+                it("should call onValidate prop", async () => {
+                    // Arrange
+                    const errorMessage = "error";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            validate={() => errorMessage}
+                            onValidate={onValidate}
+                        />,
+                    );
+                    const opener = await screen.findByRole("button");
+                    await userEvent.click(opener);
+                    await userEvent.click(screen.getByText("item 1"));
+                    onValidate.mockClear(); // Clear any calls
+
+                    // Act
+                    await userEvent.click(opener); // Close the dropdown
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        errorMessage,
+                    );
+                });
+
+                it("should be in an error state when validation fails", async () => {
+                    // Arrange
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect validate={() => "Error"} />,
+                    );
+                    const opener = await screen.findByRole("button");
+                    await userEvent.click(opener);
+                    await userEvent.click(screen.getByText("item 1"));
+
+                    // Act
+                    await userEvent.click(opener); // Close the dropdown
+
+                    // Assert
+                    expect(opener).toHaveAttribute("aria-invalid", "true");
+                });
+
+                it("should be in an error state when validation fails with a custom opener", async () => {
+                    // Arrange
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            validate={() => "Error"}
+                            opener={() => (
+                                <button
+                                    aria-label="Search"
+                                    onClick={jest.fn()}
+                                />
+                            )}
+                        />,
+                    );
+                    const opener = await screen.findByLabelText("Search");
+                    await userEvent.click(opener);
+                    await userEvent.click(screen.getByText("item 1"));
+
+                    // Act
+                    await userEvent.click(opener); // Close the dropdown
+
+                    // Assert
+                    expect(opener).toHaveAttribute("aria-invalid", "true");
+                });
+            },
+        );
+
+        describe("when selected values are updated and the dropdown isn't closed yet", () => {
+            it("should not call validate prop", async () => {
+                // Arrange
+                const validate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect validate={validate} />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(validate).not.toHaveBeenCalled();
+            });
+
+            it("should call onValidate prop with null to clear any errors", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={() => "Error"}
+                        onValidate={onValidate}
+                    />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
+            });
+
+            it("should not be in an error state", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect validate={() => "Error"} />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", "false");
+            });
+        });
+
+        describe("validation on mount", () => {
+            it("should validate twice when first rendered if there is a selected value (once on initalization, once after mount)", () => {
+                // Arrange
+                const validate = jest.fn();
+
+                // Act
+                doRender(
+                    <ControlledMultiSelect
+                        validate={validate}
+                        selectedValues={["1"]}
+                    />,
+                );
+                // Assert
+                expect(validate.mock.calls).toStrictEqual([[["1"]], [["1"]]]);
+            });
+
+            it("should be in an error state on mount if there is an invalid selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledMultiSelect
+                        validate={(values) => {
+                            if (values.includes("1")) {
+                                return "Error";
+                            }
+                        }}
+                        selectedValues={["1"]}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
+            it("should not be in an error state on mount if there is a valid selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledMultiSelect
+                        validate={(values) => {
+                            if (values.includes("1")) {
+                                return "Error";
+                            }
+                        }}
+                        selectedValues={["2"]}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+
+            it("should not validate on mount if there is no selected value", () => {
+                // Arrange
+                // Act
+                const validate = jest.fn();
+                doRender(
+                    <ControlledMultiSelect
+                        validate={validate}
+                        selectedValues={undefined}
+                    />,
+                );
+
+                // Assert
+                expect(validate).not.toHaveBeenCalled();
+            });
+
+            it("should not be in an error state on mount if there is no selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledMultiSelect
+                        validate={() => "Error"}
+                        selectedValues={undefined}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+        });
+
+        describe("interactions after there is a validation error", () => {
+            it("should still be in an error state before values are updated", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                    />,
+                );
+
+                // Act
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
+            it("should not be in an error state once values are updated", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                // Act
+                await userEvent.click(await screen.findByText("item 2")); // Pick a value
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+
+            it("should be in an error state once closed if the new values still includes invalid values", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByText("item 2")); // Pick a value
+
+                // Act
+                await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
+            it("should call onValidate with null once values are updated", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                        onValidate={onValidate}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                onValidate.mockClear(); // Clear any calls
+
+                // Act
+                await userEvent.click(await screen.findByText("item 2")); // Pick a value
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
+            });
+
+            it("should still be in an error state if an invalid value is unselected and selected again", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                        testId="multi-select"
+                    />,
+                );
+                // Open the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+                // Need to find item text within the listbox since the item text is also used on the opener
+                const listbox = await screen.findByRole("listbox", {
+                    hidden: true,
+                });
+                // Unselect the invalid value
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+                // Select the invalid value again
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+
+                // Act
+                // Close the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+        });
+
+        describe("required", () => {
+            describe("tabbing through without picking a value", () => {
+                it("should call onValidate prop", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                        />,
+                    );
+                    await userEvent.tab(); // focus on the select
+
+                    // Act
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        requiredMessage,
+                    );
+                });
+
+                it("should be in an error state", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect required={requiredMessage} />,
+                    );
+                    await userEvent.tab(); // focus on the select
+
+                    // Act
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should call onValidate prop with a custom opener", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                            opener={() => (
+                                <button
+                                    aria-label="Search"
+                                    onClick={jest.fn()}
+                                />
+                            )}
+                        />,
+                    );
+                    await userEvent.tab(); // focus on the select
+
+                    // Act
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        requiredMessage,
+                    );
+                });
+
+                it("should be in an error state with a custom opener", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            opener={() => (
+                                <button
+                                    aria-label="Search"
+                                    onClick={jest.fn()}
+                                />
+                            )}
+                            required={requiredMessage}
+                        />,
+                    );
+                    await userEvent.tab(); // focus on the select
+
+                    // Act
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(screen.getByLabelText("Search")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should not call onValidate prop if it is disabled", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                            disabled={true}
+                        />,
+                    );
+                    await userEvent.tab(); // focus on the select
+
+                    // Act
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(onValidate).not.toHaveBeenCalled();
+                });
+
+                it("should not be in an error state if it is disabled", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            required={requiredMessage}
+                            disabled={true}
+                        />,
+                    );
+                    await userEvent.tab(); // focus on the select
+
+                    // Act
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "false",
+                    );
+                });
+            });
+
+            describe("opening and closing the dropdown without picking a value", () => {
+                it("should call the onValidate prop when it is closed", async () => {
+                    // Arrange
+                    const onValidate = jest.fn();
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                        />,
+                    );
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        requiredMessage,
+                    );
+                });
+
+                it("should be in an error state when it is closed", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect required={requiredMessage} />,
+                    );
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should not call the onValidate prop when it is only opened", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            required={requiredMessage}
+                            onValidate={onValidate}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Assert
+                    expect(onValidate).not.toHaveBeenCalled();
+                });
+
+                it("should not be in an error state when it is only opened", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect required={requiredMessage} />,
+                    );
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "false",
+                    );
+                });
+            });
+
+            describe("opening and closing the dropdown by pressing escape without picking a value", () => {
+                it("should call the onValidate prop", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                        />,
+                    );
+                    await userEvent.tab();
+                    await userEvent.keyboard("{enter}"); // Open the dropdown
+
+                    // Act
+                    await userEvent.keyboard("{escape}"); // Close the dropdown
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        requiredMessage,
+                    );
+                });
+
+                it("should be in an error state", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect required={requiredMessage} />,
+                    );
+                    await userEvent.tab();
+                    await userEvent.keyboard("{enter}"); // Open the dropdown
+
+                    // Act
+                    await userEvent.keyboard("{escape}"); // Close the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+            });
+
+            describe("initial render", () => {
+                it("should not call onValidate if there is no selected value on the initial render", () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    // Act
+                    doRender(
+                        <ControlledMultiSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                        />,
+                    );
+
+                    // Assert
+                    expect(onValidate).not.toHaveBeenCalled();
+                });
+                it("should call onValidate with null if there is a selected value on the initial render", () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+
+                    // Act
+                    doRender(
+                        <ControlledMultiSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                            selectedValues={["1"]}
+                        />,
+                    );
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
+                });
+            });
+
+            describe("interactions after there was an error", () => {
+                it("should still be in an error state before a value is picked", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect required={requiredMessage} />,
+                    );
+                    await userEvent.tab();
+                    await userEvent.tab(); // Tab through the select to trigger error
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should not be in an error state once a value is picked", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledMultiSelect required={requiredMessage} />,
+                    );
+                    await userEvent.tab();
+                    await userEvent.tab(); // Tab through the select to trigger error
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Act
+                    await userEvent.click(await screen.findByText("item 1")); // Pick a value
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "false",
+                    );
+                });
+            });
+
+            it("should use the default required error message if required is set to true", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        onValidate={onValidate}
+                        required={true}
+                    />,
+                );
+                await userEvent.tab();
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                    "This field is required.",
+                );
+            });
+        });
+
+        describe("validate and required props", () => {
+            it("should be in an error state if validate succeeds and required is set", async () => {
+                // Arrange
+                const requiredMessage = "Required field";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        required={requiredMessage}
+                        validate={() => {}}
+                        selectedValues={["1"]}
+                    />,
+                );
+                // Open the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Unselect selected option
+                const listbox = await screen.findByRole("listbox", {
+                    hidden: true,
+                });
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+
+                // Act
+                // Close the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
+            it("should call the onValidate prop with null and the required error message if validate succeeds and required is set", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const requiredMessage = "Required field";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        onValidate={onValidate}
+                        required={requiredMessage}
+                        validate={() => {}}
+                        selectedValues={["1"]}
+                    />,
+                );
+                // Open the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Unselect selected option
+                const listbox = await screen.findByRole("listbox", {
+                    hidden: true,
+                });
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+                onValidate.mockClear(); // Clear the mock
+
+                // Act
+                // Close the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Assert
+                expect(onValidate.mock.calls).toStrictEqual([
+                    [null], // onValidate is called with null when `validate` is called, this clears any existing errors
+                    [requiredMessage], // onValidate is called with the required error message if it is required
+                ]);
+            });
+
+            it("should call the onValidate prop with the validate error message", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        onValidate={onValidate}
+                        validate={() => errorMessage}
+                        required={true}
+                        selectedValues={["1"]}
+                    />,
+                );
+                // Open the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+                // Unselect selected option
+                const listbox = await screen.findByRole("listbox", {
+                    hidden: true,
+                });
+                await userEvent.click(
+                    await within(listbox).findByText("item 1"),
+                );
+                onValidate.mockClear(); // Clear the mock
+
+                // Act
+                // Close the dropdown
+                await userEvent.click(await screen.findByRole("button"));
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                    errorMessage,
+                );
+            });
         });
     });
 });

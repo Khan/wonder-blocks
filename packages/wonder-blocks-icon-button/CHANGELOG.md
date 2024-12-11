@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 6.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-theming@3.0.0
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+
 ## 5.6.2
 
 ### Patch Changes

@@ -6,16 +6,19 @@ import {
     PointerEventsCheckLevel,
 } from "@testing-library/user-event";
 
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import OptionItem from "../option-item";
 import SingleSelect from "../single-select";
 import type {SingleSelectLabels} from "../single-select";
 
 const doRender = (element: React.ReactElement) => {
-    render(element);
-    return ue.setup({
-        advanceTimers: jest.advanceTimersByTime,
-        pointerEventsCheck: PointerEventsCheckLevel.Never,
-    });
+    return {
+        ...render(element),
+        userEvent: ue.setup({
+            advanceTimers: jest.advanceTimersByTime,
+            pointerEventsCheck: PointerEventsCheckLevel.Never,
+        }),
+    };
 };
 
 describe("SingleSelect", () => {
@@ -169,7 +172,7 @@ describe("SingleSelect", () => {
         describe("mouse", () => {
             it("should open when clicking on the default opener", async () => {
                 // Arrange
-                const userEvent = doRender(uncontrolledSingleSelect);
+                const {userEvent} = doRender(uncontrolledSingleSelect);
                 const opener = await screen.findByText("Choose");
 
                 // Act
@@ -183,7 +186,7 @@ describe("SingleSelect", () => {
 
             it("should focus the first item in the dropdown", async () => {
                 // Arrange
-                const userEvent = doRender(uncontrolledSingleSelect);
+                const {userEvent} = doRender(uncontrolledSingleSelect);
                 const opener = await screen.findByText("Choose");
 
                 // Act
@@ -196,7 +199,7 @@ describe("SingleSelect", () => {
 
             it("should close when clicking on the default opener a second time", async () => {
                 // Arrange
-                const userEvent = doRender(uncontrolledSingleSelect);
+                const {userEvent} = doRender(uncontrolledSingleSelect);
                 const opener = await screen.findByText("Choose");
                 await userEvent.click(opener);
 
@@ -209,7 +212,7 @@ describe("SingleSelect", () => {
 
             it("should close when clicking on an item", async () => {
                 // Arrange
-                const userEvent = doRender(uncontrolledSingleSelect);
+                const {userEvent} = doRender(uncontrolledSingleSelect);
                 const opener = await screen.findByText("Choose");
                 await userEvent.click(opener);
 
@@ -222,7 +225,7 @@ describe("SingleSelect", () => {
 
             it("should call onChange() with the item's value when clicking it", async () => {
                 // Arrange
-                const userEvent = doRender(uncontrolledSingleSelect);
+                const {userEvent} = doRender(uncontrolledSingleSelect);
                 const opener = await screen.findByText("Choose");
                 await userEvent.click(opener);
 
@@ -235,7 +238,7 @@ describe("SingleSelect", () => {
 
             it("should not focus in the first item if autoFocus is disabled", async () => {
                 // Arrange
-                const userEvent = doRender(
+                const {userEvent} = doRender(
                     <SingleSelect
                         autoFocus={false}
                         onChange={onChange}
@@ -271,7 +274,7 @@ describe("SingleSelect", () => {
                 ({key}: any) => {
                     it("should open when pressing the key when the default opener is focused", async () => {
                         // Arrange
-                        const userEvent = doRender(uncontrolledSingleSelect);
+                        const {userEvent} = doRender(uncontrolledSingleSelect);
                         await userEvent.tab();
 
                         // Act
@@ -285,7 +288,7 @@ describe("SingleSelect", () => {
 
                     it("should focus the first item in the dropdown", async () => {
                         // Arrange
-                        const userEvent = doRender(uncontrolledSingleSelect);
+                        const {userEvent} = doRender(uncontrolledSingleSelect);
                         await userEvent.tab();
 
                         // Act
@@ -304,7 +307,7 @@ describe("SingleSelect", () => {
             // user-event v14. We need to investigate and fix this.
             it.skip("should select an item when pressing {enter}", async () => {
                 // Arrange
-                const userEvent = doRender(uncontrolledSingleSelect);
+                const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{enter}"); // open
 
@@ -320,7 +323,7 @@ describe("SingleSelect", () => {
             // user-event v14. We need to investigate and fix this.
             it.skip("should select an item when pressing {space}", async () => {
                 // Arrange
-                const userEvent = doRender(uncontrolledSingleSelect);
+                const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{enter}"); // open
 
@@ -332,9 +335,18 @@ describe("SingleSelect", () => {
                 expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
             });
 
-            it("should find and select an item using the keyboard", async () => {
+            /*
+            The keyboard events (I tried .keyboard and .type) are not working as
+            needed. From what I can tell, they are going to the wrong element or
+            otherwise not getting handled as they would in a non-test world.
+            We had this issue with elsewhere too and haven't resolved it (since
+            updating to UserEvents v14, it seems). Skipping this test for now
+            until we can work out how to replicate things again. This could be
+            changed to a storybook test perhaps.
+            */
+            it.skip("should find and select an item using the keyboard", async () => {
                 // Arrange
-                const userEvent = doRender(
+                const {userEvent} = doRender(
                     <SingleSelect onChange={onChange} placeholder="Choose">
                         <OptionItem label="apple" value="apple" />
                         <OptionItem label="orange" value="orange" />
@@ -355,7 +367,7 @@ describe("SingleSelect", () => {
 
             it("should NOT find/select an item using the keyboard if enableTypeAhead is set false", async () => {
                 // Arrange
-                const userEvent = doRender(
+                const {userEvent} = doRender(
                     <SingleSelect
                         onChange={onChange}
                         placeholder="Choose"
@@ -381,7 +393,7 @@ describe("SingleSelect", () => {
 
             it("should dismiss the dropdown when pressing {escape}", async () => {
                 // Arrange
-                const userEvent = doRender(uncontrolledSingleSelect);
+                const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{enter}"); // open
 
@@ -435,7 +447,7 @@ describe("SingleSelect", () => {
         it("opens the menu when the parent updates its state", async () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <ControlledComponent onToggle={onToggleMock} />,
             );
 
@@ -451,7 +463,7 @@ describe("SingleSelect", () => {
         it("closes the menu when the parent updates its state", async () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <ControlledComponent onToggle={onToggleMock} />,
             );
             // open the menu from the outside
@@ -470,7 +482,7 @@ describe("SingleSelect", () => {
         it("should still allow the opener to open the menu", async () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <ControlledComponent onToggle={onToggleMock} />,
             );
 
@@ -483,7 +495,7 @@ describe("SingleSelect", () => {
 
         it("opens the menu when the anchor is clicked once", async () => {
             // Arrange
-            const userEvent = doRender(<ControlledComponent />);
+            const {userEvent} = doRender(<ControlledComponent />);
 
             // Act
             // click on the anchor
@@ -497,7 +509,7 @@ describe("SingleSelect", () => {
 
         it("closes the menu when the anchor is clicked", async () => {
             // Arrange
-            const userEvent = doRender(<ControlledComponent />);
+            const {userEvent} = doRender(<ControlledComponent />);
 
             // Act
             const opener = await screen.findByRole("button", {name: "Choose"});
@@ -516,7 +528,7 @@ describe("SingleSelect", () => {
     describe("Custom Opener", () => {
         it("opens the menu when clicking on the custom opener", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={jest.fn()}
                     placeholder="custom opener"
@@ -547,7 +559,7 @@ describe("SingleSelect", () => {
             // Arrange
             const onClickMock = jest.fn();
 
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={jest.fn()}
                     placeholder="custom opener"
@@ -595,7 +607,7 @@ describe("SingleSelect", () => {
 
         it("passes the placeholder text to the custom opener", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     placeholder="Custom placeholder"
                     testId="openTest"
@@ -652,7 +664,7 @@ describe("SingleSelect", () => {
                 }
             }
 
-            const userEvent = doRender(<ControlledComponent />);
+            const {userEvent} = doRender(<ControlledComponent />);
 
             // Act
             const opener = await screen.findByRole("button");
@@ -670,7 +682,7 @@ describe("SingleSelect", () => {
     describe("isFilterable", () => {
         it("displays SearchField when isFilterable is true", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     light={true}
                     onChange={onChange}
@@ -693,7 +705,7 @@ describe("SingleSelect", () => {
 
         it("filters the items by the search input (case insensitive)", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -717,7 +729,7 @@ describe("SingleSelect", () => {
 
         it("Type something in SearchField should update searchText in SingleSelect", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -743,7 +755,7 @@ describe("SingleSelect", () => {
 
         it("Click dismiss button should clear the searchText in SingleSelect", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -769,7 +781,7 @@ describe("SingleSelect", () => {
 
         it("Open SingleSelect should clear the searchText", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -797,7 +809,7 @@ describe("SingleSelect", () => {
         // search (which does exist in the page).
         it.skip("should move focus to the dismiss button after pressing {tab} on the text input", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -826,7 +838,7 @@ describe("SingleSelect", () => {
 
         it("should filter an option", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     placeholder="Choose"
@@ -849,7 +861,7 @@ describe("SingleSelect", () => {
 
         it("should filter out an option if it's not part of the results", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     placeholder="Choose"
@@ -965,7 +977,7 @@ describe("SingleSelect", () => {
     describe("a11y > Live region", () => {
         it("should change the number of options after using the search filter", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     placeholder="Choose"
@@ -1045,7 +1057,7 @@ describe("SingleSelect", () => {
                 filter: "Filtrar",
             };
 
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     placeholder="Escoge una fruta"
@@ -1078,7 +1090,7 @@ describe("SingleSelect", () => {
                 noResults: "No hay resultados",
             };
 
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     onChange={onChange}
                     placeholder="Escoge una fruta"
@@ -1407,7 +1419,7 @@ describe("SingleSelect", () => {
         });
         it("Should auto-generate an id for the dropdown if `dropdownId` prop is not provided", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect placeholder="Choose" onChange={jest.fn()}>
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1430,7 +1442,7 @@ describe("SingleSelect", () => {
         it("Should use the `dropdownId` prop if provided", async () => {
             // Arrange
             const dropdownId = "test-id";
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     placeholder="Choose"
                     onChange={jest.fn()}
@@ -1457,7 +1469,7 @@ describe("SingleSelect", () => {
         it("Should set the `aria-controls` attribute on the default opener to the provided dropdownId prop", async () => {
             // Arrange
             const dropdownId = "test-id";
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     placeholder="Choose"
                     onChange={jest.fn()}
@@ -1480,7 +1492,7 @@ describe("SingleSelect", () => {
 
         it("Should set the `aria-controls` attribute on the default opener to the auto-generated dropdownId", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect placeholder="Choose" onChange={jest.fn()}>
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1503,7 +1515,7 @@ describe("SingleSelect", () => {
         it("Should set the `aria-controls` attribute on the custom opener to the provided dropdownId prop", async () => {
             // Arrange
             const dropdownId = "test-id";
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     placeholder="Choose"
                     onChange={jest.fn()}
@@ -1529,7 +1541,7 @@ describe("SingleSelect", () => {
 
         it("Should set the `aria-controls` attribute on the custom opener to the auto-generated dropdownId", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     placeholder="Choose"
                     onChange={jest.fn()}
@@ -1615,7 +1627,7 @@ describe("SingleSelect", () => {
 
         it("updates the aria-expanded value when opening", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect placeholder="Choose" onChange={jest.fn()}>
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1654,7 +1666,7 @@ describe("SingleSelect", () => {
 
         it("updates the aria-expanded value when opening and using a custom opener", async () => {
             // Arrange
-            const userEvent = doRender(
+            const {userEvent} = doRender(
                 <SingleSelect
                     placeholder="Choose"
                     onChange={jest.fn()}
@@ -1673,6 +1685,696 @@ describe("SingleSelect", () => {
 
             // Assert
             expect(opener).toHaveAttribute("aria-expanded", "true");
+        });
+    });
+
+    describe("a11y > aria-invalid", () => {
+        it.each([
+            {error: true, ariaInvalid: "true"},
+            {error: false, ariaInvalid: "false"},
+            {error: undefined, ariaInvalid: "false"},
+        ])(
+            "should set aria-invalid to $ariaInvalid if error is $error",
+            async ({error, ariaInvalid}) => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Choose"
+                        onChange={jest.fn()}
+                        error={error}
+                    />,
+                );
+
+                // Act
+                const opener = await screen.findByRole("button");
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
+            },
+        );
+
+        it.each([
+            {error: true, ariaInvalid: "true"},
+            {error: false, ariaInvalid: "false"},
+            {error: undefined, ariaInvalid: "false"},
+        ])(
+            "should set aria-invalid to $ariaInvalid if error is $error and there is a custom opener",
+            async ({error, ariaInvalid}) => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Choose"
+                        onChange={jest.fn()}
+                        error={error}
+                        opener={() => (
+                            <button aria-label="Search" onClick={jest.fn()} />
+                        )}
+                    />,
+                );
+
+                // Act
+                const opener = await screen.findByRole("button");
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
+            },
+        );
+    });
+
+    describe("a11y > violations", () => {
+        afterEach(() => {
+            jest.useFakeTimers();
+        });
+
+        it("should not have any violations", async () => {
+            // Arrange
+            const {container} = doRender(
+                <SingleSelect
+                    onChange={jest.fn()}
+                    opened={true}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            // Flush any pending timers before switching to real timers
+            // https://testing-library.com/docs/using-fake-timers/
+            jest.runOnlyPendingTimers();
+            // Use real timers for the jest-axe check otherwise the test will timeout
+            // https://github.com/dequelabs/axe-core/issues/3055
+            jest.useRealTimers();
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
+
+        it("should not have any violations when it is open", async () => {
+            // Arrange
+            const {container} = doRender(
+                <SingleSelect
+                    onChange={jest.fn()}
+                    opened={true}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            // Flush any pending timers before switching to real timers
+            // https://testing-library.com/docs/using-fake-timers/
+            jest.runOnlyPendingTimers();
+            // Use real timers for the jest-axe check otherwise the test will timeout
+            // https://github.com/dequelabs/axe-core/issues/3055
+            jest.useRealTimers();
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
+    });
+
+    describe("validation", () => {
+        const ControlledSingleSelect = (
+            props: Partial<PropsFor<typeof SingleSelect>>,
+        ) => {
+            const [value, setValue] = React.useState<string | undefined>(
+                props.selectedValue || undefined,
+            );
+            return (
+                <SingleSelect
+                    {...props}
+                    placeholder="Choose"
+                    selectedValue={value}
+                    onChange={setValue}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>
+            );
+        };
+        describe("when a value is selected", () => {
+            it("should call validate prop", async () => {
+                // Arrange
+                const validate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledSingleSelect validate={validate} />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+                // Assert
+                expect(validate).toHaveBeenCalledExactlyOnceWith("1");
+            });
+
+            it("should call onValidate prop", async () => {
+                // Arrange
+                const errorMessage = "error";
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledSingleSelect
+                        validate={() => errorMessage}
+                        onValidate={onValidate}
+                    />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                    errorMessage,
+                );
+            });
+
+            it("should be in an error state when validation fails", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <ControlledSingleSelect validate={() => "Error"} />,
+                );
+                const opener = await screen.findByRole("button");
+                await userEvent.click(opener);
+
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", "true");
+            });
+
+            it("should be in an error state when validation fails with a custom opener", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <ControlledSingleSelect
+                        validate={() => "Error"}
+                        opener={() => (
+                            <button aria-label="Search" onClick={jest.fn()} />
+                        )}
+                    />,
+                );
+                const opener = await screen.findByLabelText("Search");
+                await userEvent.click(opener);
+
+                // Act
+                await userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(opener).toHaveAttribute("aria-invalid", "true");
+            });
+        });
+
+        describe("validation on mount", () => {
+            it("should validate twice when first rendered if there is a selected value (once on initalization, once after mount)", () => {
+                // Arrange
+                const validate = jest.fn();
+                // Act
+                doRender(
+                    <ControlledSingleSelect
+                        validate={validate}
+                        selectedValue={"1"}
+                    />,
+                );
+                // Assert
+                expect(validate.mock.calls).toStrictEqual([["1"], ["1"]]);
+            });
+
+            it("should be in an error state on mount if there is an invalid selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledSingleSelect
+                        validate={(value) => {
+                            if (value === "1") {
+                                return "Error";
+                            }
+                        }}
+                        selectedValue={"1"}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
+            it("should not be in an error state on mount if there is a valid selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledSingleSelect
+                        validate={(value) => {
+                            if (value === "1") {
+                                return "Error";
+                            }
+                        }}
+                        selectedValue={"2"}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+
+            it("should not validate on mount if there is no selected value", () => {
+                // Arrange
+                // Act
+                const validate = jest.fn();
+                doRender(
+                    <ControlledSingleSelect
+                        validate={validate}
+                        selectedValue={undefined}
+                    />,
+                );
+
+                // Assert
+                expect(validate).not.toHaveBeenCalled();
+            });
+
+            it("should not be in an error state on mount if there is no selected value", async () => {
+                // Arrange
+                // Act
+                doRender(
+                    <ControlledSingleSelect
+                        validate={() => "Error"}
+                        selectedValue={undefined}
+                    />,
+                );
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+        });
+
+        describe("interactions after there is a validation error", () => {
+            it("should still be in an error state before a value is picked", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledSingleSelect
+                        validate={(value) =>
+                            value === "1" ? errorMessage : undefined
+                        }
+                        selectedValue={"1"}
+                    />,
+                );
+
+                // Act
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+
+            it("should not be in an error state once a value is picked", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledSingleSelect
+                        validate={(value) =>
+                            value === "1" ? errorMessage : undefined
+                        }
+                        selectedValue={"1"}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                // Act
+                await userEvent.click(await screen.findByText("item 2")); // Pick a value
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+        });
+
+        describe("required", () => {
+            describe("tabbing through without picking a value", () => {
+                it("should call onValidate prop", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.tab(); // focus on the select
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        requiredMessage,
+                    );
+                });
+
+                it("should be in an error state", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+                    await userEvent.tab(); // focus on the select
+
+                    // Act
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should call onValidate prop with a custom opener", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                            opener={() => (
+                                <button
+                                    aria-label="Search"
+                                    onClick={jest.fn()}
+                                />
+                            )}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.tab(); // focus on the select
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        requiredMessage,
+                    );
+                });
+
+                it("should be in an error state with a custom opener", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect
+                            opener={() => (
+                                <button
+                                    aria-label="Search"
+                                    onClick={jest.fn()}
+                                />
+                            )}
+                            required={requiredMessage}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.tab(); // focus on the select
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(screen.getByLabelText("Search")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should not call onValidate prop if it is disabled", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                            disabled={true}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.tab(); // focus on the select
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(onValidate).not.toHaveBeenCalled();
+                });
+
+                it("should not be in an error state if it is disabled", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect
+                            required={requiredMessage}
+                            disabled={true}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.tab(); // focus on the select
+                    await userEvent.tab(); // leave the select
+
+                    // Assert
+                    expect(screen.getByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "false",
+                    );
+                });
+            });
+            describe("opening and closing the dropdown without picking a value", () => {
+                it("should call the onValidate prop when it is closed", async () => {
+                    // Arrange
+                    const onValidate = jest.fn();
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        requiredMessage,
+                    );
+                });
+
+                it("should be in an error state when it is closed", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should not call the onValidate prop when it is only opened", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect
+                            required={requiredMessage}
+                            onValidate={onValidate}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Assert
+                    expect(onValidate).not.toHaveBeenCalled();
+                });
+
+                it("should not be in an error state when it is only opened", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "false",
+                    );
+                });
+            });
+
+            describe("opening and closing the dropdown by pressing escape without picking a value", () => {
+                it("should call the onValidate prop", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                        />,
+                    );
+
+                    // Act
+                    await userEvent.tab();
+                    await userEvent.keyboard("{enter}"); // Open the dropdown
+                    await userEvent.keyboard("{escape}"); // Close the dropdown
+
+                    // Assert
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                        requiredMessage,
+                    );
+                });
+
+                it("should be in an error state", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+
+                    // Act
+                    await userEvent.tab();
+                    await userEvent.keyboard("{enter}"); // Open the dropdown
+                    await userEvent.keyboard("{escape}"); // Close the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+            });
+
+            describe("initial render", () => {
+                it("should not call onValidate if there is no selected value on the initial render", () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+                    // Act
+                    doRender(
+                        <ControlledSingleSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                        />,
+                    );
+
+                    // Assert
+                    expect(onValidate).not.toHaveBeenCalled();
+                });
+                it("should call onValidate with null if there is a selected value on the initial render", () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const onValidate = jest.fn();
+
+                    // Act
+                    doRender(
+                        <ControlledSingleSelect
+                            onValidate={onValidate}
+                            required={requiredMessage}
+                            selectedValue={"1"}
+                        />,
+                    );
+
+                    // Assert
+                    // onValidate is called with null because required validation
+                    // is triggered and clears any errors
+                    expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
+                });
+            });
+
+            describe("picking a value after there was an error", () => {
+                it("should still be in an error state before a value is picked", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+                    await userEvent.tab();
+                    await userEvent.tab(); // Tab through the select to trigger error
+
+                    // Act
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "true",
+                    );
+                });
+
+                it("should not be in an error state once a value is picked", async () => {
+                    // Arrange
+                    const requiredMessage = "Required field";
+                    const {userEvent} = doRender(
+                        <ControlledSingleSelect required={requiredMessage} />,
+                    );
+                    await userEvent.tab();
+                    await userEvent.tab(); // Tab through the select to trigger error
+                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                    // Act
+                    await userEvent.click(await screen.findByText("item 1")); // Pick a value
+
+                    // Assert
+                    expect(await screen.findByRole("button")).toHaveAttribute(
+                        "aria-invalid",
+                        "false",
+                    );
+                });
+            });
+
+            it("should use the default required error message if required is set to true", async () => {
+                // Arrange
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledSingleSelect
+                        onValidate={onValidate}
+                        required={true}
+                    />,
+                );
+
+                // Act
+                await userEvent.tab();
+                await userEvent.tab();
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                    "This field is required.",
+                );
+            });
         });
     });
 });

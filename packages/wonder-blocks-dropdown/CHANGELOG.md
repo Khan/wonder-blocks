@@ -1,5 +1,57 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 6.1.0
+
+### Minor Changes
+
+-   71e70869: # SingleSelect
+
+    -   Add `required`, `validate`, and `onValidate` props to support validation.
+    -   DropdownOpener and SelectOpener:
+        -   Add `onBlur` prop
+        -   Set `aria-invalid` if it is in an error state.
+
+-   bc4da9ec: # MultiSelect
+
+    -   Add `required`, `validate`, and `onValidate` props to support validation.
+    -   Set `aria-invalid` on the opener if it is in an error state
+    -   Share validation logic with SingleSelect
+
+### Patch Changes
+
+-   c7178e13: Update SingleSelect and MultiSelect to functional components
+-   71e70869: Update `DropdownCore` to check for key presses using `event.key` instead of `event.which` or `event.keyCode` (which are both deprecated now)
+-   Updated dependencies [e9a119a8]
+-   Updated dependencies [257b6bc3]
+    -   @khanacademy/wonder-blocks-search-field@3.1.0
+
+## 6.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-timing@6.0.0
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-cell@4.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.0
+    -   @khanacademy/wonder-blocks-layout@3.0.0
+    -   @khanacademy/wonder-blocks-modal@6.0.0
+    -   @khanacademy/wonder-blocks-pill@3.0.0
+    -   @khanacademy/wonder-blocks-search-field@3.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
+## 5.8.1
+
+### Patch Changes
+
+-   c8b5b2e2: [MultiSelect and SingleSelect] Remove `showOpenerLabelAsText` from sharedProps that are passed to SelectOpener
+
 ## 5.8.0
 
 ### Minor Changes
