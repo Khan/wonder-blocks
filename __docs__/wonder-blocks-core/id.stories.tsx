@@ -17,12 +17,26 @@ export default {
     },
 } as Meta;
 
-export const BasicExample = () => (
+export const GeneratedIdExample = () => (
     <View>
         <Id>
             {(id) => (
                 <View style={{flexDirection: "row"}}>
                     <Body>Generated identifier: </Body>
+                    <Strut size={spacing.xSmall_8} />
+                    <BodyMonospace>{id}</BodyMonospace>
+                </View>
+            )}
+        </Id>
+    </View>
+);
+
+export const PassedThroughIdExample = () => (
+    <View>
+        <Id id="my-identifier">
+            {(id) => (
+                <View style={{flexDirection: "row"}}>
+                    <Body>Passed through identifier: </Body>
                     <Strut size={spacing.xSmall_8} />
                     <BodyMonospace>{id}</BodyMonospace>
                 </View>
