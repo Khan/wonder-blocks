@@ -16,7 +16,10 @@ type Props = {
 };
 
 /**
- * A component that provides an identifier to its children.
+ * `Id` is a component that provides an identifier to its children.
+ *
+ * It is useful for situations where the `useId` hook cannot be easily used,
+ * such as in class-based components.
  *
  * If an `id` prop is provided, that is passed through to the children;
  * otherwise, a unique identifier is generated.

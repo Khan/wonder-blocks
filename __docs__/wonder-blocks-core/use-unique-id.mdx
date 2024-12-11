@@ -1,9 +1,12 @@
 import {Meta, Story, Canvas} from "@storybook/blocks";
-import * as UseUniqueIdStories from './use-unique-id.stories';
+import * as UseUniqueIdStories from "./use-unique-id.stories";
 
 <Meta of={UseUniqueIdStories} />
 
 # `useUniqueIdWithoutMock`
+
+DEPRECATED: Will be removed in a future release. Use `useId` from React or
+the `Id` component.
 
 This hook is similar to `<UniqueIDProvider mockOnFirstRender={false}>`.
 It will return `null` on the initial render and then the same identifier
@@ -18,6 +21,9 @@ render tree.
 <Canvas of={UseUniqueIdStories.WithoutMockExample} />
 
 # `useUniqueIdWithMock`
+
+DEPRECATED: Will be removed in a future release. Use `useId` from React or
+the `Id` component.
 
 This hook is similar to `<UniqueIDProvider mockOnFirstRender={true}>`.
 It will return a mock identifier factory on the initial render that doesn'that

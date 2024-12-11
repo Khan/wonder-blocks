@@ -28,6 +28,9 @@ type Props = {
 };
 
 /**
+ * @deprecated This component is deprecated and will be removed in an
+ * upcoming release. Migrate existing code to use `useId` or the `Id` component.
+ *
  * This is a wrapper that returns an identifier. If the `id` prop is set, the
  * component will return the same id to be consumed by its children. Otherwise,
  * a unique id will be provided. This is beneficial for accessibility purposes,
@@ -54,9 +57,6 @@ type Props = {
  *  )}
  * </IDProvider>
  * ```
- *
- * @deprecated Use `useId` for your ID needs. If you are in a class-based
- * component and cannot use hooks, then use the `Id` component.
  */
 export default class IDProvider extends React.Component<Props> {
     static defaultId = "wb-id";
