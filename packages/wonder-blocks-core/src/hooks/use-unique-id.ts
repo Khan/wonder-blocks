@@ -20,12 +20,6 @@ export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
     const renderState = useRenderState();
     const idFactory = useRef<IIdentifierFactory | null | undefined>(null);
 
-    if (renderState === RenderState.Root) {
-        throw new Error(
-            "Components using useUniqueIdWithMock() should be descendants of <RenderStateRoot>",
-        );
-    }
-
     if (renderState === RenderState.Initial) {
         return SsrIDFactory;
     }
@@ -49,12 +43,6 @@ export const useUniqueIdWithoutMock = (
 ): IIdentifierFactory | null | undefined => {
     const renderState = useRenderState();
     const idFactory = useRef<IIdentifierFactory | null | undefined>(null);
-
-    if (renderState === RenderState.Root) {
-        throw new Error(
-            "Components using useUniqueIdWithoutMock() should be descendants of <RenderStateRoot>",
-        );
-    }
 
     if (renderState === RenderState.Initial) {
         return null;
