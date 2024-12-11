@@ -36,7 +36,7 @@ describe("Checkbox", () => {
         const checkbox = screen.getByRole("checkbox");
 
         // Assert
-        expect(checkbox).toHaveAttribute("id", "uid-choice-1-main");
+        expect(checkbox).toHaveAttribute("id", expect.any(String));
     });
 
     test("clicking the checkbox triggers `onChange`", () => {

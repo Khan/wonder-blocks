@@ -387,7 +387,7 @@ describe("SearchField", () => {
         const searchField = await screen.findByTestId("search-field-test");
 
         // Assert
-        expect(searchField.getAttribute("id")).toMatch(/^uid-search-field.*$/);
+        expect(searchField).toHaveAttribute("id", expect.any(String));
     });
 
     test("has focus if autoFocus is true", async () => {

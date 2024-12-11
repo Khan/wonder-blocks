@@ -2,8 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {
-    // eslint-disable-next-line import/no-deprecated
-    IDProvider,
+    Id,
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
@@ -256,7 +255,7 @@ export default class ActionMenu extends React.Component<Props, State> {
         const {disabled, menuText, opener, testId, id} = this.props;
 
         return (
-            <IDProvider id={id} scope="action-menu-opener">
+            <Id id={id}>
                 {(uniqueOpenerId) => (
                     <DropdownOpener
                         id={uniqueOpenerId}
@@ -291,7 +290,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                               }}
                     </DropdownOpener>
                 )}
-            </IDProvider>
+            </Id>
         );
     }
 
@@ -302,7 +301,7 @@ export default class ActionMenu extends React.Component<Props, State> {
         const items = this.getMenuItems();
 
         return (
-            <IDProvider id={dropdownId} scope="action-menu-dropdown">
+            <Id id={dropdownId}>
                 {(uniqueDropdownId) => (
                     <DropdownCore
                         id={uniqueDropdownId}
@@ -321,7 +320,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                         dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
                     />
                 )}
-            </IDProvider>
+            </Id>
         );
     }
 }

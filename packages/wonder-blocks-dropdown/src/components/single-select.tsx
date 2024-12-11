@@ -2,8 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {
-    // eslint-disable-next-line import/no-deprecated
-    IDProvider,
+    Id,
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
@@ -444,7 +443,7 @@ const SingleSelect = (props: Props) => {
             : placeholder;
 
         const dropdownOpener = (
-            <IDProvider id={id} scope="single-select-opener">
+            <Id id={id}>
                 {(uniqueOpenerId) => {
                     return opener ? (
                         <DropdownOpener
@@ -480,7 +479,7 @@ const SingleSelect = (props: Props) => {
                         </SelectOpener>
                     );
                 }}
-            </IDProvider>
+            </Id>
         );
 
         return dropdownOpener;
@@ -498,7 +497,7 @@ const SingleSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
 
     return (
-        <IDProvider id={dropdownId} scope="single-select-dropdown">
+        <Id id={dropdownId}>
             {(uniqueDropdownId) => (
                 <DropdownCore
                     id={uniqueDropdownId}
@@ -532,7 +531,7 @@ const SingleSelect = (props: Props) => {
                     disabled={isDisabled}
                 />
             )}
-        </IDProvider>
+        </Id>
     );
 };
 
