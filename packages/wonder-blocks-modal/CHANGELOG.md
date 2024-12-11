@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-modal
 
+## 6.0.1
+
+### Patch Changes
+
+-   0955be7e: - ModalBackdrop: Change initial focus behavior. Focus on the dismiss button (X) by default.
+
+    -   CloseButton: Override `:focus` styles on the dismiss button to make it visually distinct when the focus is set programmatically.
+
+-   Updated dependencies [f4abd572]
+-   Updated dependencies [0955be7e]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.1
+    -   @khanacademy/wonder-blocks-breadcrumbs@3.0.1
+    -   @khanacademy/wonder-blocks-layout@3.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
 ## 6.0.0
 
 ### Major Changes
