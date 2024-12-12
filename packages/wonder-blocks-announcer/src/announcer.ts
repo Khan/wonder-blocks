@@ -1,6 +1,3 @@
-// TODO: publish wonder-blocks-style package WB-1776
-// import {srOnly} from "../../wonder-blocks-style/src/styles/a11y";
-
 import {
     PolitenessLevel,
     RegionFactory,
