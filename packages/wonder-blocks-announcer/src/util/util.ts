@@ -14,12 +14,13 @@ export function alternateIndex(index: number, count: number): number {
 /**
  * Keep announcements from happening too often by limiting callback execution by time.
  * Anytime the announcer is called repeatedly, this can slow down the results.
- * @param {Function} callback Announce method to call with argments
- * @param {number} wait Length of time to wait before calling callback again
- * @returns {string} idRef of targeted live region element
+ * @param {Announcer} context Reference to the Announcer instance for maintaining correct scope
+ * @param {Function} callback Callback announcer method to call with argments
+ * @param {number} debounceThreshold Length of time to wait before calling callback again
+ * @returns {Function & { updateWaitTime: (time: number) => void }} Promise resolving with idRef of targeted live region element, and a method to update wait duration
  */
 export function createDebounceFunction(
-    context: Announcer | typeof window,
+    context: Announcer,
     callback: (...args: any[]) => string,
     debounceThreshold: number,
 ): {
