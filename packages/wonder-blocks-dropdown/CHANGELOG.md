@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 6.1.2
+
+### Patch Changes
+
+-   2a9c2fa8: Remove i18n reference from unit tests
+    -   @khanacademy/wonder-blocks-search-field@3.1.2
+
 ## 6.1.1
 
 ### Patch Changes
