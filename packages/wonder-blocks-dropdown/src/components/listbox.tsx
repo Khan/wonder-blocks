@@ -8,13 +8,28 @@ import {
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
 import {useListbox} from "../hooks/use-listbox";
-import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
+import {
+    ComboboxLabels,
+    MaybeValueOrValues,
+    OptionItemComponent,
+} from "../util/types";
+import {defaultComboboxLabels} from "../util/constants";
 
 type Props = {
     /**
      * The list of items to display in the listbox.
      */
     children: Array<OptionItemComponent>;
+
+    /**
+     * The object containing the custom labels used inside this component.
+     *
+     * This is useful for internationalization. Defaults to English.
+     */
+    labels?: Pick<
+        ComboboxLabels,
+        "liveRegionCurrentItem" | "liveRegionListboxTotal" | "selected"
+    >;
 
     /**
      * Whether the use can select more than one option item. Defaults to
@@ -93,6 +108,12 @@ function StandaloneListbox(props: Props) {
         children,
         disabled,
         id,
+        labels = {
+            liveRegionCurrentItem: defaultComboboxLabels.liveRegionCurrentItem,
+            liveRegionListboxTotal:
+                defaultComboboxLabels.liveRegionListboxTotal,
+            selected: defaultComboboxLabels.selected,
+        },
         onChange,
         selectionType = "single",
         style,
@@ -116,7 +137,14 @@ function StandaloneListbox(props: Props) {
         handleKeyUp,
         handleFocus,
         handleBlur,
-    } = useListbox({children, disabled, id: uniqueId, selectionType, value});
+    } = useListbox({
+        children,
+        disabled,
+        id: uniqueId,
+        labels,
+        selectionType,
+        value,
+    });
 
     React.useEffect(() => {
         // If the value changes, update the parent component.

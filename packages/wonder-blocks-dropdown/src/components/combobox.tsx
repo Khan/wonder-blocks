@@ -19,6 +19,7 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
@@ -28,7 +29,6 @@ import {
     OptionItemComponent,
 } from "../util/types";
 import {defaultComboboxLabels} from "../util/constants";
-import {ComboboxLiveRegion} from "./combobox-live-region";
 import {MultipleSelection} from "./combobox-multiple-selection";
 import DropdownPopper from "./dropdown-popper";
 import Listbox from "./listbox";
@@ -208,6 +208,11 @@ export default function Combobox({
         children: currentOptions,
         disabled,
         id: uniqueId,
+        labels: {
+            liveRegionCurrentItem: labels.liveRegionCurrentItem,
+            liveRegionListboxTotal: labels.liveRegionListboxTotal,
+            selected: labels.selected,
+        },
         onChange: (value) => handleChange(value),
         value: valueState,
         // Allows pressing the space key in the input element without selecting
@@ -229,13 +234,39 @@ export default function Combobox({
     const initialValue = typeof value === "string" ? labelFromSelected : "";
     const [inputValue, setInputValue] = React.useState(initialValue);
 
+    // The labels of the selected value(s).
+    const selectedLabels = React.useMemo(() => {
+        // For multiple selection, convert the selected value(s) to an array of
+        // labels.
+        if (Array.isArray(selected)) {
+            return selected.map((value) => {
+                // NOTE: Using the children prop to get the labels of the
+                // selected values, even when the list of options is filtered.
+                const item = children.find(
+                    (item) => item.props.value === value,
+                );
+                return item ? getLabel(item?.props) : "";
+            });
+        }
+
+        // Single selection mode still wraps the selected value in an array
+        // to allow for a consistent API in ComboboxLiveRegion.
+        return [labelFromSelected];
+    }, [children, labelFromSelected, selected]);
+
     const {
         focusedMultiSelectIndex,
         handleKeyDown: handleMultipleSelectionKeyDown,
     } = useMultipleSelection({
         inputValue,
         selected,
+        selectedLabels,
         setSelected,
+        labels: {
+            liveRegionCurrentItem: labels.liveRegionCurrentItem,
+            liveRegionMultipleSelectionTotal:
+                labels.liveRegionMultipleSelectionTotal,
+        },
     });
 
     /**
@@ -259,6 +290,9 @@ export default function Combobox({
                 // Reset focused index when the listbox is closed.
                 setFocusedIndex(-1);
                 if (selectionType === "multiple") {
+                    announceMessage({
+                        message: labels.closedState,
+                    });
                     // Reset the input value when the listbox is closed.
                     setInputValue("");
                 } else {
@@ -278,6 +312,7 @@ export default function Combobox({
             disabled,
             isControlled,
             labelFromSelected,
+            labels.closedState,
             onToggle,
             openState,
             selectionType,
@@ -347,8 +382,24 @@ export default function Combobox({
             // Otherwise, focus on the first item that matches the search
             // text.
             setFocusedIndex(itemIndex);
+
+            if (itemIndex >= 0) {
+                announceMessage({
+                    message:
+                        labels.liveRegionCurrentItem({
+                            current: getLabel(filtered[itemIndex].props),
+                            focused: true,
+                            index: itemIndex,
+                            total: filtered.length,
+                        }) +
+                        " " +
+                        labels.liveRegionListboxTotal(filtered.length),
+                });
+            } else {
+                announceMessage({message: labels.noItems});
+            }
         },
-        [setFocusedIndex],
+        [labels, setFocusedIndex],
     );
 
     /**
@@ -408,6 +459,7 @@ export default function Combobox({
         // escape press
         if (key === "Escape" && openState) {
             event.stopPropagation();
+            announceMessage({message: labels.closedState});
             updateOpenState(false);
         }
 
@@ -460,36 +512,22 @@ export default function Combobox({
             setSelected("");
             onChange?.("");
             comboboxRef.current?.focus();
+
+            console.log("should announce clear selection");
+            announceMessage({
+                message: labels.selectionCleared,
+                level: "assertive",
+            });
         },
-        [onChange, setSelected],
+        [labels.selectionCleared, onChange, setSelected],
     );
 
-    React.useEffect(() => {
-        // Focus on the combobox input when the dropdown is opened.
-        if (openState) {
-            comboboxRef.current?.focus();
-        }
-    }, [openState]);
-
-    // The labels of the selected value(s).
-    const selectedLabels = React.useMemo(() => {
-        // For multiple selection, convert the selected value(s) to an array of
-        // labels.
-        if (Array.isArray(selected)) {
-            return selected.map((value) => {
-                // NOTE: Using the children prop to get the labels of the
-                // selected values, even when the list of options is filtered.
-                const item = children.find(
-                    (item) => item.props.value === value,
-                );
-                return item ? getLabel(item?.props) : "";
-            });
-        }
-
-        // Single selection mode still wraps the selected value in an array
-        // to allow for a consistent API in ComboboxLiveRegion.
-        return [labelFromSelected];
-    }, [children, labelFromSelected, selected]);
+    // React.useEffect(() => {
+    //     // Focus on the combobox input when the dropdown is opened.
+    //     if (openState) {
+    //         comboboxRef.current?.focus();
+    //     }
+    // }, [openState]);
 
     /**
      * Renders the start icon if provided.
@@ -547,18 +585,6 @@ export default function Combobox({
                     !disabled && error && styles.error,
                 ]}
             >
-                <ComboboxLiveRegion
-                    focusedIndex={focusedIndex}
-                    focusedMultiSelectIndex={focusedMultiSelectIndex}
-                    labels={labels}
-                    options={renderList}
-                    selectedLabels={selectedLabels}
-                    testId={testId}
-                    opened={openState}
-                    selected={selected}
-                    selectionType={selectionType}
-                />
-
                 {/* Multi-select pills display before the input (if options are selected) */}
                 {selectionType === "multiple" && Array.isArray(selected) && (
                     <MultipleSelection
@@ -607,6 +633,11 @@ export default function Combobox({
                     <IconButton
                         icon={xIcon}
                         onClick={handleClearClick}
+                        onMouseDown={(e: React.MouseEvent) => {
+                            // Prevents the combobox from losing focus when clicking
+                            // this element.
+                            e.preventDefault();
+                        }}
                         kind="tertiary"
                         size="small"
                         style={[styles.button, styles.clearButton]}
