@@ -8,5 +8,13 @@ type AnnounceMessageButtonProps = {
 
 export const AnnounceMessageButton = (props: AnnounceMessageButtonProps) => {
     const {buttonText = "Click"} = props;
-    return <button onClick={() => announceMessage(props)}>{buttonText}</button>;
+    const announceProps = {
+        initialTimeout: 0,
+        ...props,
+    };
+    return (
+        <button onClick={() => announceMessage(announceProps)}>
+            {buttonText}
+        </button>
+    );
 };
