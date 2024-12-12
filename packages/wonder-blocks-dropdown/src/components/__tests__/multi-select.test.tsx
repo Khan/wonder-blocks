@@ -14,8 +14,6 @@ import {
     UserEvent,
 } from "@testing-library/user-event";
 
-import {ngettext} from "@khanacademy/wonder-blocks-i18n";
-
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
@@ -868,7 +866,9 @@ describe("MultiSelect", () => {
             const labels: Labels = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
-                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+                    numOptions <= 1
+                        ? `${numOptions} planet`
+                        : `${numOptions} planets`,
             };
 
             const {userEvent} = doRender(
@@ -900,7 +900,9 @@ describe("MultiSelect", () => {
             const labels: Labels = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
-                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+                    numOptions <= 1
+                        ? `${numOptions} planet`
+                        : `${numOptions} planets`,
             };
 
             const {userEvent} = doRender(
@@ -1512,7 +1514,9 @@ describe("MultiSelect", () => {
             const labels: Labels = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
-                    ngettext("%(num)s school", "%(num)s schools", numOptions),
+                    numOptions <= 1
+                        ? `${numOptions} school`
+                        : `${numOptions} schools`,
             };
 
             // Act
@@ -1540,7 +1544,9 @@ describe("MultiSelect", () => {
             const labels: Labels = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
-                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+                    numOptions <= 1
+                        ? `${numOptions} planet`
+                        : `${numOptions} planets`,
             };
 
             const {container, userEvent} = doRender(
