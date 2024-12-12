@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-form
 
+## 5.0.2
+
+### Patch Changes
+
+-   2a9c2fa8: Remove i18n reference from unit tests
+
+## 5.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.1
+    -   @khanacademy/wonder-blocks-layout@3.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
 ## 5.0.0
 
 ### Major Changes
