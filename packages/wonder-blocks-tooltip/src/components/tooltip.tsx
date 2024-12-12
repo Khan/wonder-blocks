@@ -21,6 +21,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {
+    // eslint-disable-next-line import/no-deprecated
     UniqueIDProvider,
     IIdentifierFactory,
 } from "@khanacademy/wonder-blocks-core";

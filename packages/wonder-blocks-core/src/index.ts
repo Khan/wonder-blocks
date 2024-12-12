@@ -1,5 +1,6 @@
 import type {
     AriaProps,
+    // eslint-disable-next-line import/no-deprecated
     IIdentifierFactory,
     StyleType,
     PropsFor,
@@ -27,4 +28,5 @@ export {RenderStateRoot} from "./components/render-state-root";
 export {RenderState} from "./components/render-state-context";
 export type {AriaRole, AriaAttributes} from "./util/aria-types";
 
+// eslint-disable-next-line import/no-deprecated
 export type {AriaProps, IIdentifierFactory, StyleType, PropsFor};

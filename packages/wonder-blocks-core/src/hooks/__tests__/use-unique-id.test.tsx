@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import * as React from "react";
 import {render} from "@testing-library/react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";

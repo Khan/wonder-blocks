@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import type {IIdentifierFactory} from "./types";
 
 /**
@@ -9,6 +10,8 @@ import type {IIdentifierFactory} from "./types";
  *
  * The identifiers are not guaranteed to be unique, but they will match between
  * server and the first client render.
+ * @deprecated Use `useId` for your ID needs. If you are in a class-based
+ * component and cannot use hooks, then use the `Id` component.
  */
 class SsrIDFactory implements IIdentifierFactory {
     static Default: IIdentifierFactory = new SsrIDFactory();

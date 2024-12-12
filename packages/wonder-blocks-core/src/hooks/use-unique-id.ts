@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import {useRef} from "react";
 
 import {useRenderState} from "./use-render-state";
