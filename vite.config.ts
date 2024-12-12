@@ -14,12 +14,6 @@ export default defineConfig({
                     "./packages/wonder-blocks$1/src",
                 ),
             },
-            // Needed for Storybook + React to work with vitest.
-            // https://github.com/storybookjs/storybook/issues/26842
-            {
-                find: "@storybook/react-dom-shim",
-                replacement: "@storybook/react-dom-shim/dist/react-16",
-            },
         ],
     },
 });
