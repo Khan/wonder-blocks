@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 6.0.1
+
+### Patch Changes
+
+-   0955be7e: Fix focus styles: drop Safari v14 support.
+-   Updated dependencies [f4abd572]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.1
+
 ## 6.0.0
 
 ### Major Changes
