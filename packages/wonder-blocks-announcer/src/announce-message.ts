@@ -9,7 +9,7 @@ export type AnnounceMessageProps = {
 };
 
 /**
- * Public API method to announce screen reader messages in ARIA Live Regions.
+ * Method to announce screen reader messages in ARIA Live Regions.
  * @param {string} message The message to announce.
  * @param {PolitenessLevel} level Polite or assertive announcements
  * @param {number} debounceThreshold Optional duration to wait before announcing another message. Defaults to 250ms.
@@ -23,13 +23,21 @@ export function announceMessage({
     initialTimeout = 150,
 }: AnnounceMessageProps): Promise<string> {
     const announcer = Announcer.getInstance();
-
     if (initialTimeout > 0) {
-        setTimeout(() => {
-            return announcer.announce(message, level, debounceThreshold);
-        }, initialTimeout);
+        return new Promise<string>((resolve) => {
+            setTimeout(async () => {
+                const result = await announcer.announce(
+                    message,
+                    level,
+                    debounceThreshold,
+                );
+                resolve(result);
+            }, initialTimeout);
+        });
     } else {
-        return announcer.announce(message, level, debounceThreshold);
+        const result = announcer.announce(message, level, debounceThreshold);
+        return new Promise<string>((resolve) => {
+            resolve(result);
+        });
     }
-    return Promise.resolve("");
 }
