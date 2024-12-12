@@ -1,5 +1,73 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 3.1.2
+
+### Patch Changes
+
+-   Updated dependencies [2a9c2fa8]
+    -   @khanacademy/wonder-blocks-form@5.0.2
+
+## 3.1.1
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+-   Updated dependencies [0955be7e]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.1
+    -   @khanacademy/wonder-blocks-form@5.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
+## 3.1.0
+
+### Minor Changes
+
+-   e9a119a8: # SearchField
+
+    -   Adds `error`, `instantValidation`, `validate`, and `onValidate` props to be consistent with form components.
+    -   Refine magnifying glass icon styling to make it match Figma more (smaller, bold icon, spacing, update disabled state)
+    -   Hide the clear button if the SearchField is disabled
+
+### Patch Changes
+
+-   257b6bc3: SearchField: Remove "-field" that was automatically appended to the id.
+
+## 3.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-form@5.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
+## 2.3.6
+
+### Patch Changes
+
+-   Updated dependencies [9ed7bd5b]
+-   Updated dependencies [cdcfe1ba]
+-   Updated dependencies [21f6779a]
+-   Updated dependencies [486c6a80]
+    -   @khanacademy/wonder-blocks-form@4.11.0
+
+## 2.3.5
+
+### Patch Changes
+
+-   Updated dependencies [c1110599]
+    -   @khanacademy/wonder-blocks-icon@4.2.0
+    -   @khanacademy/wonder-blocks-form@4.10.3
+    -   @khanacademy/wonder-blocks-icon-button@5.6.2
+
 ## 2.3.4
 
 ### Patch Changes

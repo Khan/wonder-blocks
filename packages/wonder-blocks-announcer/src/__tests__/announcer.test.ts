@@ -27,6 +27,7 @@ describe("Announcer class", () => {
 
             // Assert
             expect(wrapperElement).toBeInTheDocument();
+            // eslint-disable-next-line testing-library/no-node-access
             expect(wrapperElement?.childElementCount).toBe(2);
             expect(regions.size).toBe(4);
         });

@@ -1,5 +1,51 @@
 # @khanacademy/wonder-blocks-modal
 
+## 6.0.1
+
+### Patch Changes
+
+-   0955be7e: - ModalBackdrop: Change initial focus behavior. Focus on the dismiss button (X) by default.
+
+    -   CloseButton: Override `:focus` styles on the dismiss button to make it visually distinct when the focus is set programmatically.
+
+-   Updated dependencies [f4abd572]
+-   Updated dependencies [0955be7e]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.1
+    -   @khanacademy/wonder-blocks-breadcrumbs@3.0.1
+    -   @khanacademy/wonder-blocks-layout@3.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
+## 6.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-theming@3.0.0
+    -   @khanacademy/wonder-blocks-timing@6.0.0
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-breadcrumbs@3.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.0
+    -   @khanacademy/wonder-blocks-layout@3.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
+## 5.1.17
+
+### Patch Changes
+
+-   b5cad0b1: Use h2 tag in modal header instead of h3
+
+## 5.1.16
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.6.2
+
 ## 5.1.15
 
 ### Patch Changes

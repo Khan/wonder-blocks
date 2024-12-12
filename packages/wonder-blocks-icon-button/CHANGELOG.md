@@ -1,5 +1,37 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 6.0.1
+
+### Patch Changes
+
+-   0955be7e: Fix focus styles: drop Safari v14 support.
+-   Updated dependencies [f4abd572]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.1
+
+## 6.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-theming@3.0.0
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+
+## 5.6.2
+
+### Patch Changes
+
+-   Updated dependencies [c1110599]
+    -   @khanacademy/wonder-blocks-icon@4.2.0
+
 ## 5.6.1
 
 ### Patch Changes

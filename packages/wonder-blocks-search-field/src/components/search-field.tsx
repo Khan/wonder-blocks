@@ -2,14 +2,14 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import xIcon from "@phosphor-icons/core/regular/x.svg";
-import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {View, IDProvider} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -59,6 +59,30 @@ type Props = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Whether the search field is in an error state.
+     */
+    error?: boolean;
+    /**
+     * Provide a validation for the input value.
+     * Return a string error message or null | void for a valid input.
+     *
+     * Use this for errors that are shown to the user while they are filling out
+     * a form.
+     */
+    validate?: (value: string) => string | null | void;
+    /**
+     * Called right after the SearchField is validated.
+     */
+    onValidate?: (errorMessage?: string | null | undefined) => unknown;
+    /**
+     * If true, SearchField is validated as the user types (onChange). If false,
+     * it is validated when the user's focus moves out of the field (onBlur).
+     * It is preferred that instantValidation is set to `false`, however, it
+     * defaults to `true` for consistency with form components like TextField
+     * and TextArea.
+     */
+    instantValidation?: boolean;
     /**
      * Called when the value has changed.
      */
@@ -123,6 +147,10 @@ const SearchField: React.ForwardRefExoticComponent<
         placeholder,
         style,
         testId,
+        error,
+        instantValidation = true,
+        validate,
+        onValidate,
         onClick,
         onChange,
         onFocus,
@@ -146,13 +174,14 @@ const SearchField: React.ForwardRefExoticComponent<
 
     // @ts-expect-error [FEI-5019] - TS2322 - Type '() => JSX.Element | null' is not assignable to type '() => ReactElement<any, string | JSXElementConstructor<any>>'.
     const maybeRenderClearIconButton: () => React.ReactElement = () => {
-        if (!value.length) {
+        if (!value.length || disabled) {
             return null;
         }
 
         return (
             <IconButton
                 icon={xIcon}
+                size="small"
                 kind="tertiary"
                 onClick={handleClear}
                 style={styles.dismissIcon}
@@ -167,21 +196,31 @@ const SearchField: React.ForwardRefExoticComponent<
                 <View onClick={onClick} style={[styles.inputContainer, style]}>
                     <PhosphorIcon
                         icon={magnifyingGlassIcon}
-                        size="medium"
-                        color={color.offBlack64}
+                        size="small"
+                        color={
+                            disabled
+                                ? light
+                                    ? color.white32
+                                    : semanticColor.action.disabled.default
+                                : semanticColor.icon.primary
+                        }
                         style={styles.searchIcon}
                         aria-hidden="true"
                     />
                     <TextField
-                        id={`${uniqueId}-field`}
+                        id={uniqueId}
                         type="text"
                         autoFocus={autoFocus}
                         disabled={disabled}
                         light={light}
+                        instantValidation={instantValidation}
+                        validate={validate}
+                        onValidate={onValidate}
                         onChange={onChange}
                         onFocus={onFocus}
                         onBlur={onBlur}
                         placeholder={placeholder}
+                        error={error}
                         ref={(node) => {
                             // We have to set the value of both refs to
                             // the HTMLInputElement from TextField.
@@ -222,20 +261,13 @@ const styles = StyleSheet.create({
     dismissIcon: {
         margin: 0,
         position: "absolute",
-        right: 0,
-        ":hover": {
-            border: "none",
-        },
+        right: spacing.xxxSmall_4,
     },
     inputStyleReset: {
         display: "flex",
         flex: 1,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
         width: "100%",
-        color: "inherit",
-        paddingLeft: spacing.large_24 + spacing.medium_16,
+        paddingLeft: spacing.xLarge_32,
         paddingRight: spacing.large_24 + spacing.medium_16,
     },
 });

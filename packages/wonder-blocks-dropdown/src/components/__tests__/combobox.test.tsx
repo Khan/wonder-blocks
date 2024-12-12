@@ -1,12 +1,14 @@
-import * as React from "react";
-import {render, screen, waitFor} from "@testing-library/react";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import {render, screen, waitFor} from "@testing-library/react";
+import * as React from "react";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
-import Combobox from "../combobox";
-import OptionItem from "../option-item";
 import {defaultComboboxLabels} from "../../util/constants";
 import {MaybeValueOrValues} from "../../util/types";
+import Combobox from "../combobox";
+import OptionItem from "../option-item";
 
 const doRender = (element: React.ReactElement) => {
     render(element, {wrapper: RenderStateRoot});
@@ -303,6 +305,31 @@ describe("Combobox", () => {
 
         // Assert
         expect(screen.getByRole("combobox")).not.toHaveFocus();
+    });
+
+    it("should include an icon at the beginning of the combobox", () => {
+        // Arrange
+
+        // Act
+        doRender(
+            <Combobox
+                selectionType="single"
+                value=""
+                startIcon={
+                    <PhosphorIcon
+                        icon={magnifyingGlassIcon}
+                        testId="start-icon"
+                    />
+                }
+            >
+                <OptionItem label="option 1" value="option1" />
+                <OptionItem label="option 2" value="option2" />
+                <OptionItem label="option 3" value="option3" />
+            </Combobox>,
+        );
+
+        // Assert
+        expect(screen.getByTestId("start-icon")).toBeInTheDocument();
     });
 
     describe("dismiss button", () => {

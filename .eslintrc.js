@@ -59,6 +59,12 @@ module.exports = {
                 "no-undef": "off",
             },
         },
+        {
+            files: ["**/*.stories.tsx"],
+            rules: {
+                "testing-library/no-await-sync-events": "off",
+            },
+        },
     ],
     globals: {
         // `no-undef` doesn't support `globalThis`, for details see

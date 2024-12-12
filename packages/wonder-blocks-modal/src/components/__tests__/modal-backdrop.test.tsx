@@ -197,7 +197,7 @@ describe("ModalBackdrop", () => {
         );
 
         const firstFocusableElement = await screen.findByRole("button", {
-            name: "first focusable button",
+            name: "Close modal",
         });
 
         // Assert
@@ -207,7 +207,7 @@ describe("ModalBackdrop", () => {
         await waitFor(() => expect(firstFocusableElement).toHaveFocus());
     });
 
-    test("If no initialFocusId is set, we focus the first button in the modal", async () => {
+    test("If no initialFocusId is set, we focus the dismiss button in the modal", async () => {
         // Arrange
         render(
             <ModalBackdrop onCloseModal={() => {}}>
@@ -217,7 +217,7 @@ describe("ModalBackdrop", () => {
 
         // Act
         const firstFocusableElement = await screen.findByRole("button", {
-            name: "first focusable button",
+            name: "Close modal",
         });
 
         // Assert
@@ -228,7 +228,14 @@ describe("ModalBackdrop", () => {
         // Arrange
         render(
             <ModalBackdrop onCloseModal={() => {}}>
-                {exampleModal}
+                <OnePaneDialog
+                    content={<div data-testid="example-modal-content" />}
+                    title="Title"
+                    footer={<div data-testid="example-modal-footer" />}
+                    testId="example-modal-test-id"
+                    // Ensure that there are no focusable elements
+                    closeButtonVisible={false}
+                />
             </ModalBackdrop>,
         );
 

@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-icon
 
+## 5.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+
+## 5.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-core@8.0.0
+
+## 4.2.0
+
+### Minor Changes
+
+-   c1110599: defaults the role of PhosphorIcon to "img" when an aria-label is provided
+
 ## 4.1.5
 
 ### Patch Changes

@@ -3,10 +3,10 @@ import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 
@@ -52,8 +52,11 @@ export default {
 
 type StoryComponentType = StoryObj<typeof SearchField>;
 
-const Template = (args: any) => {
-    const [value, setValue] = React.useState("");
+const Template = (args: PropsFor<typeof SearchField>) => {
+    const [value, setValue] = React.useState(args?.value || "");
+    const [errorMessage, setErrorMessage] = React.useState<
+        string | null | undefined
+    >("");
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
@@ -66,15 +69,23 @@ const Template = (args: any) => {
     };
 
     return (
-        <SearchField
-            {...args}
-            value={value}
-            onChange={handleChange}
-            onKeyDown={(e) => {
-                action("onKeyDown")(e);
-                handleKeyDown(e);
-            }}
-        />
+        <View style={{gap: spacing.xSmall_8}}>
+            <SearchField
+                {...args}
+                value={value}
+                onChange={handleChange}
+                onKeyDown={(e) => {
+                    action("onKeyDown")(e);
+                    handleKeyDown(e);
+                }}
+                onValidate={setErrorMessage}
+            />
+            {(errorMessage || args.error) && (
+                <LabelSmall style={styles.errorMessage}>
+                    {errorMessage || "Error from error prop"}
+                </LabelSmall>
+            )}
+        </View>
     );
 };
 
@@ -217,9 +228,78 @@ export const WithAutofocus: StoryComponentType = {
     },
 };
 
+/**
+ * The SearchField can be put in an error state using the `error` prop.
+ */
+export const Error: StoryComponentType = {
+    args: {
+        error: true,
+    },
+    render: Template,
+    parameters: {
+        chromatic: {
+            // Disabling because this is covered by the All Variants stories
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * The SearchField supports `validate`, `onValidate`, and `instantValidation`
+ * props.
+ *
+ * See docs for the TextField component for more details around validation
+ * since SearchField uses TextField internally.
+ */
+export const Validation: StoryComponentType = {
+    args: {
+        validate(value) {
+            if (value.length < 5) {
+                return "Too short. Value should be at least 5 characters";
+            }
+        },
+    },
+    render: (args) => {
+        return (
+            <View style={{gap: spacing.small_12}}>
+                <LabelSmall htmlFor="instant-validation-true">
+                    Validation on mount if there is a value
+                </LabelSmall>
+                <Template {...args} id="instant-validation-true" value="T" />
+                <LabelSmall htmlFor="instant-validation-true">
+                    Error shown immediately (instantValidation: true)
+                </LabelSmall>
+                <Template
+                    {...args}
+                    id="instant-validation-true"
+                    instantValidation={true}
+                />
+                <LabelSmall htmlFor="instant-validation-false">
+                    Error shown onBlur (instantValidation: false)
+                </LabelSmall>
+                <Template
+                    {...args}
+                    id="instant-validation-false"
+                    instantValidation={false}
+                />
+            </View>
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     darkBackground: {
         background: color.darkBlue,
         padding: spacing.medium_16,
+    },
+    errorMessage: {
+        color: color.red,
+        paddingLeft: spacing.xxxSmall_4,
     },
 });

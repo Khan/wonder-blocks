@@ -1,5 +1,50 @@
 # @khanacademy/wonder-blocks-popover
 
+## 4.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+-   Updated dependencies [0955be7e]
+-   Updated dependencies [0955be7e]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-modal@6.0.1
+    -   @khanacademy/wonder-blocks-icon-button@6.0.1
+    -   @khanacademy/wonder-blocks-tooltip@3.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
+## 4.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-tooltip@3.0.0
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.0
+    -   @khanacademy/wonder-blocks-modal@6.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
+## 3.3.5
+
+### Patch Changes
+
+-   Updated dependencies [b5cad0b1]
+    -   @khanacademy/wonder-blocks-modal@5.1.17
+    -   @khanacademy/wonder-blocks-tooltip@2.5.5
+
+## 3.3.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@5.6.2
+-   @khanacademy/wonder-blocks-modal@5.1.16
+-   @khanacademy/wonder-blocks-tooltip@2.5.4
+
 ## 3.3.3
 
 ### Patch Changes

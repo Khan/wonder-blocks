@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-cell",
-  "version": "3.4.6",
+  "version": "4.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -14,18 +14,18 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-clickable": "^4.2.9",
-    "@khanacademy/wonder-blocks-core": "^7.0.1",
-    "@khanacademy/wonder-blocks-layout": "^2.2.2",
-    "@khanacademy/wonder-blocks-tokens": "^2.1.0",
-    "@khanacademy/wonder-blocks-typography": "^2.1.16"
+    "@khanacademy/wonder-blocks-clickable": "^5.0.1",
+    "@khanacademy/wonder-blocks-core": "^9.0.0",
+    "@khanacademy/wonder-blocks-layout": "^3.0.1",
+    "@khanacademy/wonder-blocks-tokens": "^3.0.0",
+    "@khanacademy/wonder-blocks-typography": "^3.0.1"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
-    "react": "16.14.0"
+    "react": "18.2.0"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^1.0.1"
+    "@khanacademy/wb-dev-build-settings": "^2.0.0"
   },
   "author": "",
   "license": "MIT"

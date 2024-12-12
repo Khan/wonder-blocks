@@ -314,10 +314,9 @@ describe("ActionMenu", () => {
         // Arrange
         const showDeleteAction = false;
         render(
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             <ActionMenu menuText={"Action menu!"}>
                 <ActionItem label="Create" />
-                {showDeleteAction && <ActionItem label="Delete" />}
+                {(showDeleteAction as any) && <ActionItem label="Delete" />}
             </ActionMenu>,
         );
 

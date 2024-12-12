@@ -81,54 +81,39 @@ export default function Toolbar({
         <View
             style={[
                 sharedStyles.container,
+                !title
+                    ? sharedStyles.containerWithNoTitle
+                    : typeof title === "string"
+                    ? sharedStyles.containerWithTextTitle
+                    : sharedStyles.containerWithNodeTitle,
                 color === "dark" && sharedStyles.dark,
                 size === "small" && sharedStyles.small,
             ]}
         >
-            <View
-                style={[
-                    sharedStyles.column,
-                    sharedStyles.leftColumn,
-                    title ? sharedStyles.withTitle : null,
-                ]}
-            >
-                {leftContent}
-            </View>
+            <View style={sharedStyles.leftColumn}>{leftContent}</View>
 
-            {title && typeof title === "string" ? (
-                <View style={[sharedStyles.column, sharedStyles.wideColumn]}>
-                    <View style={[sharedStyles.titles, sharedStyles.center]}>
-                        <TitleComponent id="wb-toolbar-title">
-                            {title}
-                        </TitleComponent>
-                        {subtitle && (
-                            <LabelSmall
-                                style={
-                                    color === "light" && sharedStyles.subtitle
-                                }
-                            >
-                                {subtitle}
-                            </LabelSmall>
-                        )}
-                    </View>
-                </View>
-            ) : (
-                // We don't use wideColumn here to allow more flexibility with
-                // the custom node.
-                <View style={[sharedStyles.column]}>
-                    <View style={[sharedStyles.titles]}>{title}</View>
+            {title && typeof title === "string" && (
+                <View style={sharedStyles.titles}>
+                    <TitleComponent id="wb-toolbar-title">
+                        {title}
+                    </TitleComponent>
+                    {subtitle && (
+                        <LabelSmall
+                            style={color === "light" && sharedStyles.subtitle}
+                        >
+                            {subtitle}
+                        </LabelSmall>
+                    )}
                 </View>
             )}
+            {title && typeof title !== "string" && (
+                <View style={sharedStyles.titles}>{title}</View>
+            )}
+            {!title && (
+                <View style={leftContent ? sharedStyles.spacer : undefined} />
+            )}
 
-            <View
-                style={[
-                    sharedStyles.column,
-                    sharedStyles.rightColumn,
-                    title ? sharedStyles.withTitle : null,
-                ]}
-            >
-                {rightContent}
-            </View>
+            <View style={sharedStyles.rightColumn}>{rightContent}</View>
         </View>
     );
 }
@@ -137,12 +122,22 @@ const sharedStyles = StyleSheet.create({
     container: {
         border: `1px solid ${color.offBlack16}`,
         flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-between",
+        display: "grid",
+        alignItems: "center",
         minHeight: 66,
         paddingLeft: spacing.medium_16,
         paddingRight: spacing.medium_16,
         width: "100%",
+    },
+    containerWithTextTitle: {
+        gridTemplateColumns: "1fr minmax(auto, 67%) 1fr",
+    },
+    containerWithNodeTitle: {
+        gridTemplateColumns:
+            "minmax(max-content, 1fr) auto minmax(max-content, 1fr)",
+    },
+    containerWithNoTitle: {
+        gridTemplateColumns: "auto auto 1fr",
     },
     small: {
         minHeight: 50,
@@ -152,36 +147,27 @@ const sharedStyles = StyleSheet.create({
         boxShadow: `0 1px 0 0 ${color.white64}`,
         color: "white",
     },
-    column: {
-        justifyContent: "center",
-    },
-    withTitle: {
-        flex: 1,
-    },
-    wideColumn: {
-        flex: 1,
-        flexBasis: "50%",
-    },
     leftColumn: {
         alignItems: "center",
         flexDirection: "row",
-        // TODO(WB-1445): Find a way to replicate this behavior with
-        // rightContent.
-        flexShrink: 0,
         justifyContent: "flex-start",
     },
     rightColumn: {
         alignItems: "center",
         flexDirection: "row",
         justifyContent: "flex-end",
-    },
-    center: {
-        textAlign: "center",
+        flexGrow: 1,
     },
     subtitle: {
         color: color.offBlack64,
     },
     titles: {
         padding: spacing.small_12,
+        textAlign: "center",
+        justifySelf: "center",
+        maxWidth: "100%",
+    },
+    spacer: {
+        minWidth: spacing.small_12,
     },
 });

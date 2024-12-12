@@ -15,7 +15,8 @@ type Props = {
     onCloseModal: () => unknown;
     /**
      * The selector for the element that will be focused when the dialog shows.
-     * When not set, the first tabbable element within the dialog will be used.
+     * When not set, the first tabbable element within the dialog will be used,
+     * which usually is the dismiss button (X).
      */
     initialFocusId?: string;
     /**

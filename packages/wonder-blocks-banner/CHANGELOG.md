@@ -1,5 +1,45 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+-   Updated dependencies [0955be7e]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.1
+    -   @khanacademy/wonder-blocks-button@7.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.1
+    -   @khanacademy/wonder-blocks-link@7.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
+## 4.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-button@7.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.0
+    -   @khanacademy/wonder-blocks-link@7.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
+## 3.1.14
+
+### Patch Changes
+
+-   Updated dependencies [c1110599]
+    -   @khanacademy/wonder-blocks-icon@4.2.0
+    -   @khanacademy/wonder-blocks-button@6.3.12
+    -   @khanacademy/wonder-blocks-icon-button@5.6.2
+    -   @khanacademy/wonder-blocks-link@6.1.10
+
 ## 3.1.13
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 2.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
 ## 1.0.1
 
 ### Patch Changes

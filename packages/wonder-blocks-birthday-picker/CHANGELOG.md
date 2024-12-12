@@ -1,5 +1,84 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 3.0.3
+
+### Patch Changes
+
+-   Updated dependencies [2a9c2fa8]
+    -   @khanacademy/wonder-blocks-dropdown@6.1.2
+
+## 3.0.2
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-dropdown@6.1.1
+    -   @khanacademy/wonder-blocks-icon@5.0.1
+    -   @khanacademy/wonder-blocks-layout@3.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
+## 3.0.1
+
+### Patch Changes
+
+-   Updated dependencies [71e70869]
+-   Updated dependencies [c7178e13]
+-   Updated dependencies [71e70869]
+-   Updated dependencies [bc4da9ec]
+    -   @khanacademy/wonder-blocks-dropdown@6.1.0
+
+## 3.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-dropdown@6.0.0
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.0
+    -   @khanacademy/wonder-blocks-layout@3.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
+## 2.0.93
+
+### Patch Changes
+
+-   Updated dependencies [c8b5b2e2]
+    -   @khanacademy/wonder-blocks-dropdown@5.8.1
+
+## 2.0.92
+
+### Patch Changes
+
+-   Updated dependencies [2b8424ca]
+    -   @khanacademy/wonder-blocks-dropdown@5.8.0
+
+## 2.0.91
+
+### Patch Changes
+
+-   Updated dependencies [c512e76e]
+    -   @khanacademy/wonder-blocks-dropdown@5.7.0
+
+## 2.0.90
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@5.6.3
+
+## 2.0.89
+
+### Patch Changes
+
+-   Updated dependencies [c1110599]
+    -   @khanacademy/wonder-blocks-icon@4.2.0
+    -   @khanacademy/wonder-blocks-dropdown@5.6.2
+
 ## 2.0.88
 
 ### Patch Changes

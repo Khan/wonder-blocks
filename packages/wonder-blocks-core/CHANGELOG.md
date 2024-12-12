@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-core
 
+## 9.0.0
+
+### Major Changes
+
+-   f4abd572: - Remove `RenderState.Root` from exported enum
+    -   Change `useRenderState` to only return `RenderState.Initial` or `RenderState.Standard`
+
+## 8.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
 ## 7.0.1
 
 ### Patch Changes
