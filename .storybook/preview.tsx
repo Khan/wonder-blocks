@@ -101,6 +101,19 @@ export const decorators = [
         const enableRenderStateRootDecorator =
             context.parameters.enableRenderStateRootDecorator;
 
+        // Allow stories to specify a CSS body class
+        if (context.parameters.addBodyClass) {
+            document.body.classList.add(context.parameters.addBodyClass);
+        }
+        // Remove body class when changing stories
+        React.useEffect(() => {
+            return () => {
+              if (context.parameters.addBodyClass) {
+                document.body.classList.remove(context.parameters.addBodyClass);
+              }
+            };
+          }, [context.parameters.addBodyClass]);
+
         if (enableRenderStateRootDecorator) {
             return (
                 <RenderStateRoot>
