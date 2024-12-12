@@ -1,6 +1,3 @@
-// TODO: publish wonder-blocks-style package WB-1776
-// import {srOnly} from "../../wonder-blocks-style/src/styles/a11y";
-
 import {
     PolitenessLevel,
     RegionFactory,
@@ -13,10 +10,10 @@ import {
     createDuplicateRegions,
     removeMessage,
 } from "./util/dom";
-import {alternateIndex, debounce} from "./util/util";
+import {alternateIndex, createDebounceFunction} from "./util/util";
 
-const REMOVAL_TIMEOUT_DELAY = 5000;
-const DEFAULT_WAIT_THRESHOLD = 250;
+export const REMOVAL_TIMEOUT_DELAY = 5000;
+export const DEFAULT_WAIT_THRESHOLD = 250;
 
 /**
  * Internal class to manage screen reader announcements.
@@ -30,7 +27,12 @@ class Announcer {
         pIndex: 0,
     };
     dictionary: RegionDictionary = new Map();
-    stateLock = false;
+    waitThreshold: number = DEFAULT_WAIT_THRESHOLD;
+    lastExecutionTime = 0;
+    private debounced!: {
+        (...args: any[]): Promise<string>;
+        updateWaitTime: (newWaitTime: number) => void;
+    };
 
     private constructor() {
         if (typeof document !== "undefined") {
@@ -46,6 +48,15 @@ class Announcer {
             else {
                 this.reattachNodes();
             }
+
+            // Create the debounced message attachment function
+            // This API makes leading edge debouncing work while preserving the
+            // ability to change the wait parameter through Announcer.announce
+            this.debounced = createDebounceFunction(
+                this,
+                this.processAnnouncement,
+                this.waitThreshold,
+            );
         }
     }
     /**
@@ -118,7 +129,6 @@ class Announcer {
             });
         }
     }
-
     /**
      * Announce a live region message for a given level
      * @param {string} message The message to be announced
@@ -126,46 +136,57 @@ class Announcer {
      * @param {number} debounceThreshold Optional duration to wait before appending another message (defaults to 250ms)
      * @returns {Promise<string>} Promise that resolves with an IDREF for targeted element or empty string if it failed
      */
-    async announce(
+    announce(
         message: string,
         level: PolitenessLevel,
-        debounceThreshold: number = DEFAULT_WAIT_THRESHOLD,
+        debounceThreshold?: number,
     ): Promise<string> {
-        // Locking variable to prevent simultaneous updates
-        if (this.stateLock) {
-            return Promise.resolve(""); // Return early if state is locked
+        // if callers specify a different wait threshold, update our debounce fn
+        if (debounceThreshold !== undefined) {
+            this.updateWaitThreshold(debounceThreshold);
+        }
+        return this.debounced(this, message, level);
+    }
+    /**
+     * Override the default debounce wait threshold
+     * @param {number} debounceThreshold Duration to wait before appending messages
+     */
+    updateWaitThreshold(debounceThreshold: number) {
+        this.waitThreshold = debounceThreshold;
+        if (this.debounced) {
+            this.debounced.updateWaitTime(debounceThreshold);
+        }
+    }
+    /**
+     * Callback for appending live region messages through debounce
+     * @param {Announcer} context Pass the correct `this` arg to the callback
+     * @param {sting} message The live region message to append
+     * @param {string} level The politeness level for whether to interrupt
+     */
+    processAnnouncement(
+        context: Announcer,
+        message: string,
+        level: PolitenessLevel,
+    ) {
+        if (!context.node) {
+            context.reattachNodes();
         }
 
-        const announceCB = () => {
-            if (!this.node) {
-                this.reattachNodes();
-            }
-            // Filter region elements to the selected level
-            const regions: RegionDef[] = [...this.dictionary.values()].filter(
-                (entry: RegionDef) => entry.level === level,
-            );
+        // Filter region elements to the selected level
+        const regions: RegionDef[] = [...context.dictionary.values()].filter(
+            (entry: RegionDef) => entry.level === level,
+        );
 
-            const newIndex = this.appendMessage(message, level, regions);
+        const newIndex = context.appendMessage(message, level, regions);
 
-            // overwrite central index for the given level
-            if (level === "assertive") {
-                this.regionFactory.aIndex = newIndex;
-            } else {
-                this.regionFactory.pIndex = newIndex;
-            }
+        // overwrite central index for the given level
+        if (level === "assertive") {
+            context.regionFactory.aIndex = newIndex;
+        } else {
+            context.regionFactory.pIndex = newIndex;
+        }
 
-            this.stateLock = false; // Release the lock
-
-            return regions[newIndex].id || "";
-        };
-
-        const safeAnnounce = debounce(announceCB, debounceThreshold);
-        const result = await safeAnnounce({
-            message,
-            level,
-            debounceThreshold,
-        });
-        return result;
+        return regions[newIndex].id || "";
     }
 
     /**

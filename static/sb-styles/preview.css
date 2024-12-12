@@ -80,22 +80,23 @@
     line-height: var(--typography-heading-line-height-xs);
 }
 
-/* .sb-show-main #wbAnnounce {
+.showAnnouncer.sb-show-main #wbAnnounce {
+    bottom: 0;
     display: block !important;
     clip: revert !important;
-    position: relative !important;
+    position: fixed !important;
 }
 
-.sb-show-main .wbARegion {
+.showAnnouncer.sb-show-main .wbARegion {
     border: 1px solid red;
     margin-bottom: 0.5em;
 }
 
-.sb-show-main .wbARegion::before {
+.showAnnouncer.sb-show-main .wbARegion::before {
     background-color: white;
     border: 1px solid red;
     content: attr(id) / "";
     display: block;
     font-size: 0.75rem;
     padding: 0.25em;
-} */
+}

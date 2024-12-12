@@ -70,6 +70,7 @@ export default {
         ),
     ],
     parameters: {
+        addBodyClass: "showAnnouncer",
         componentSubtitle: (
             <ComponentInfo
                 name={packageConfig.name}
@@ -87,7 +88,6 @@ export default {
         level: {
             control: "radio",
             options: ["polite", "assertive"],
-            defaultValue: "polite",
         },
         debounceThreshold: {
             control: "number",
@@ -105,14 +105,6 @@ export const SendMessage: StoryComponentType = {
     args: {
         message: "Here is some example text.",
         level: "polite",
-    },
-};
-
-export const DebounceMessages: StoryComponentType = {
-    args: {
-        message: "Here is some example text.",
-        level: "polite",
-        debounceThreshold: 1000,
     },
 };
 
