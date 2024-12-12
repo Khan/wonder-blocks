@@ -2,6 +2,8 @@ import {screen, waitFor} from "@testing-library/react";
 import {announceMessage} from "../announce-message";
 import {clearMessages} from "../clear-messages";
 
+jest.useFakeTimers();
+
 describe("Announcer.clearMessages", () => {
     test("empties a targeted live region element by IDREF", async () => {
         // ARRANGE
@@ -12,18 +14,26 @@ describe("Announcer.clearMessages", () => {
         const announcement1Id = await announceMessage({
             message: message1,
             initialTimeout: 0,
+            debounceThreshold: 0,
         });
 
-        let region1: HTMLElement | null = null;
+        const region1 = screen.getByTestId("wbARegion-polite1");
+
+        jest.advanceTimersByTime(250);
+
         await waitFor(() => {
-            region1 = screen.getByTestId("wbARegion-polite1");
             expect(region1).toHaveTextContent(message1);
         });
 
-        await announceMessage({message: message2, initialTimeout: 0});
+        await announceMessage({
+            message: message2,
+            initialTimeout: 0,
+            debounceThreshold: 0,
+        });
 
         const region2 = screen.getByTestId("wbARegion-polite0");
 
+        jest.advanceTimersByTime(250);
         clearMessages(announcement1Id);
 
         // ASSERT
@@ -39,12 +49,23 @@ describe("Announcer.clearMessages", () => {
         const message2 = "Red fish blue fish";
 
         // ACT
-        await announceMessage({message: message1, initialTimeout: 0});
+        await announceMessage({
+            message: message1,
+            initialTimeout: 0,
+            debounceThreshold: 0,
+        });
+
+        jest.advanceTimersByTime(250);
 
         const region1 = screen.queryByTestId("wbARegion-polite1");
         expect(region1).toHaveTextContent(message1);
 
-        await announceMessage({message: message2, initialTimeout: 0});
+        await announceMessage({
+            message: message2,
+            initialTimeout: 0,
+            debounceThreshold: 0,
+        });
+        jest.advanceTimersByTime(250);
         const region2 = screen.getByTestId("wbARegion-polite0");
         expect(region2).toHaveTextContent(message2);
 
@@ -52,7 +73,9 @@ describe("Announcer.clearMessages", () => {
             message: message1,
             level: "assertive",
             initialTimeout: 0,
+            debounceThreshold: 0,
         });
+        jest.advanceTimersByTime(250);
         const region3 = screen.getByTestId("wbARegion-assertive1");
         expect(region3).toHaveTextContent(message1);
 

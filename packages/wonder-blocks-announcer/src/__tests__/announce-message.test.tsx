@@ -1,21 +1,41 @@
 import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
+import Announcer, {REMOVAL_TIMEOUT_DELAY} from "../announcer";
 import {AnnounceMessageButton} from "./components/announce-message-button";
 import {announceMessage} from "../announce-message";
-import {clearMessages} from "../clear-messages";
 
 jest.useFakeTimers();
 jest.spyOn(global, "setTimeout");
 
 describe("Announcer.announceMessage", () => {
     afterEach(() => {
-        clearMessages();
+        const announcer = Announcer.getInstance();
+        jest.advanceTimersByTime(REMOVAL_TIMEOUT_DELAY);
+        announcer.reset();
+    });
+
+    test("returns a targeted element IDREF", async () => {
+        // ARRANGE
+        const message1 = "One Fish Two Fish";
+
+        // ACT
+        const announcement1Id = await announceMessage({
+            message: message1,
+            initialTimeout: 0,
+            debounceThreshold: 0,
+        });
+        jest.advanceTimersByTime(500);
+
+        // ASSERT
+        expect(announcement1Id).toBe("wbARegion-polite1");
     });
 
     test("creates the live region elements when called", () => {
         // ARRANGE
         const message = "Ta-da!";
-        render(<AnnounceMessageButton message={message} />);
+        render(
+            <AnnounceMessageButton message={message} debounceThreshold={0} />,
+        );
 
         // ACT: call function
         const button = screen.getByRole("button");
@@ -31,7 +51,9 @@ describe("Announcer.announceMessage", () => {
     test("appends to polite live regions by default", () => {
         // ARRANGE
         const message = "Ta-da, nicely!";
-        render(<AnnounceMessageButton message={message} />);
+        render(
+            <AnnounceMessageButton message={message} debounceThreshold={0} />,
+        );
 
         // ACT: call function
         const button = screen.getByRole("button");
@@ -50,72 +72,71 @@ describe("Announcer.announceMessage", () => {
         // ARRANGE
         const rainierMsg = "Rainier McCheddarton";
         const bagleyMsg = "Bagley Fluffpants";
-        render(<AnnounceMessageButton message={rainierMsg} />);
-        render(<AnnounceMessageButton message={bagleyMsg} />);
+        render(
+            <AnnounceMessageButton
+                message={rainierMsg}
+                debounceThreshold={0}
+            />,
+        );
+        render(
+            <AnnounceMessageButton message={bagleyMsg} debounceThreshold={0} />,
+        );
 
         // ACT: post two messages
         const button = screen.getAllByRole("button");
         button[0].click();
 
+        jest.advanceTimersByTime(250);
+
         // ASSERT: check messages were appended to elements
         // The second region will be targeted first
+        const message1Region = screen.queryByTestId("wbARegion-polite1");
         await waitFor(() => {
-            const message1Region = screen.queryByTestId("wbARegion-polite1");
             expect(message1Region).toHaveTextContent(rainierMsg);
         });
 
         button[1].click();
+        const message2Region = screen.queryByTestId("wbARegion-polite0");
         await waitFor(() => {
-            const message2Region = screen.queryByTestId("wbARegion-polite0");
             expect(message2Region).toHaveTextContent(bagleyMsg);
         });
     });
 
-    test("returns a targeted element IDREF", async () => {
-        // ARRANGE
-        const message1 = "One Fish Two Fish";
-        const message2 = "Red Fish Blue Fish";
-
-        // ACT
-        const announcement1Id = announceMessage({
-            message: message1,
-            initialTimeout: 0,
-        });
-        jest.advanceTimersByTime(500);
-
-        // ASSERT
-        await expect(announcement1Id).resolves.toBe("wbARegion-polite1");
-
-        const announcement2Id = announceMessage({
-            message: message2,
-            initialTimeout: 0,
-        });
-
-        jest.advanceTimersByTime(500);
-        await expect(announcement2Id).resolves.toBe("wbARegion-polite0");
-    });
-
     test("appends messages in alternating assertive live region elements", async () => {
-        const rainierMsg = "Rainier McCheddarton";
-        const bagleyMsg = "Bagley Fluffpants";
+        const rainierMsg = "Rainier McCheese";
+        const bagleyMsg = "Bagley The Cat";
         render(
-            <AnnounceMessageButton message={rainierMsg} level="assertive" />,
+            <AnnounceMessageButton
+                message={rainierMsg}
+                level="assertive"
+                debounceThreshold={0}
+            />,
         );
-        render(<AnnounceMessageButton message={bagleyMsg} level="assertive" />);
+        render(
+            <AnnounceMessageButton
+                message={bagleyMsg}
+                level="assertive"
+                debounceThreshold={0}
+            />,
+        );
 
         // ACT: post two messages
         const button = screen.getAllByRole("button");
         button[0].click();
 
+        jest.advanceTimersByTime(250);
+
         // ASSERT: check messages were appended to elements
         // The second region will be targeted first
+        const message1Region = screen.queryByTestId("wbARegion-assertive1");
         await waitFor(() => {
-            const message1Region = screen.queryByTestId("wbARegion-assertive1");
             expect(message1Region).toHaveTextContent(rainierMsg);
         });
         button[1].click();
+        jest.advanceTimersByTime(250);
+
+        const message2Region = screen.queryByTestId("wbARegion-assertive0");
         await waitFor(() => {
-            const message2Region = screen.queryByTestId("wbARegion-assertive0");
             expect(message2Region).toHaveTextContent(bagleyMsg);
         });
     });
@@ -124,7 +145,9 @@ describe("Announcer.announceMessage", () => {
         const message1 = "A Thing";
 
         // default timeout is 5000ms + 250ms (removalDelay + debounceThreshold)
-        render(<AnnounceMessageButton message={message1} initialTimeout={0} />);
+        render(
+            <AnnounceMessageButton message={message1} debounceThreshold={1} />,
+        );
 
         const button = screen.getAllByRole("button");
         button[0].click();
@@ -136,7 +159,7 @@ describe("Announcer.announceMessage", () => {
         expect(message1Region).toHaveTextContent(message1);
 
         expect(setTimeout).toHaveBeenNthCalledWith(
-            7,
+            1,
             expect.any(Function),
             5250,
         );

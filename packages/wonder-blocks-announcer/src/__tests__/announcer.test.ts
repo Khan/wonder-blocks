@@ -1,5 +1,5 @@
 import {screen} from "@testing-library/react";
-import Announcer from "../announcer";
+import Announcer, {REMOVAL_TIMEOUT_DELAY} from "../announcer";
 import {
     createTestRegionList,
     createTestElements,
@@ -92,6 +92,7 @@ describe("Announcer class", () => {
     describe("Announcing messages", () => {
         afterEach(() => {
             const announcer = Announcer.getInstance();
+            jest.advanceTimersByTime(REMOVAL_TIMEOUT_DELAY);
             announcer.reset();
         });
 
@@ -163,7 +164,7 @@ describe("Announcer class", () => {
             announcer.announce("two things", "polite", waitThreshold);
 
             // Assert
-            jest.advanceTimersByTime(1000);
+            jest.advanceTimersByTime(1010);
 
             const targetElement =
                 announcer.dictionary.get(`wbARegion-polite1`)?.element;
@@ -171,8 +172,8 @@ describe("Announcer class", () => {
                 announcer.dictionary.get(`wbARegion-polite0`)?.element;
 
             // ASSERT
-            await expect(targetElement?.textContent).toBe("");
-            await expect(targetElement2?.textContent).toBe("two things");
+            await expect(targetElement?.textContent).toBe("a thing");
+            await expect(targetElement2?.textContent).toBe("");
         });
     });
 
@@ -202,10 +203,10 @@ describe("Announcer class", () => {
             const announcer = Announcer.getInstance();
 
             // Act
-            announcer.announce("One Fish", "polite");
-            announcer.announce("Loud Fish", "assertive");
+            announcer.announce("One Fish", "polite", 0);
+            jest.advanceTimersByTime(5);
+            announcer.announce("Loud Fish", "assertive", 0);
 
-            jest.advanceTimersByTime(500);
             expect(screen.getByText("One Fish")).toBeInTheDocument();
             expect(screen.getByText("Loud Fish")).toBeInTheDocument();
 
