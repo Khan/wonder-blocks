@@ -20,8 +20,9 @@ describe("Debouncing messages", () => {
 
     test("resolving with the first argument passed if debounced multiple times", async () => {
         // ARRANGE
+        const announcer = Announcer.getInstance();
         const callback = jest.fn((message: string) => message);
-        const debounced = createDebounceFunction(window, callback, 500);
+        const debounced = createDebounceFunction(announcer, callback, 500);
 
         // ACT
         debounced("First message");
