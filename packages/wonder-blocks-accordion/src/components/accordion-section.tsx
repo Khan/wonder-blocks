@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
         // vertically stacked.
         position: "static",
         boxSizing: "border-box",
-        backgroundColor: tokens.color.white,
+        backgroundColor: tokens.semanticColor.surface.primary,
     },
     wrapperWithAnimation: {
         transition: "grid-template-rows 300ms",
@@ -353,23 +353,25 @@ const _generateStyles = (
     let firstSectionStyle: StyleType = Object.freeze({});
     let lastSectionStyle: StyleType = Object.freeze({});
 
+    const borderStyle = `1px solid ${tokens.semanticColor.border.primary}`;
+
     if (cornerKind === "square") {
         wrapperStyle = {
-            border: `1px solid ${tokens.color.offBlack16}`,
+            border: borderStyle,
             borderBottom: "none",
             borderRadius: 0,
         };
 
         if (isLastSection) {
             lastSectionStyle = {
-                borderBottom: `1px solid ${tokens.color.offBlack16}`,
+                borderBottom: borderStyle,
             };
         }
     }
 
     if (cornerKind === "rounded") {
         wrapperStyle = {
-            border: `1px solid ${tokens.color.offBlack16}`,
+            border: borderStyle,
             borderBottom: "none",
         };
 
@@ -382,7 +384,7 @@ const _generateStyles = (
 
         if (isLastSection) {
             lastSectionStyle = {
-                borderBottom: `1px solid ${tokens.color.offBlack16}`,
+                borderBottom: borderStyle,
                 borderEndStartRadius: tokens.spacing.small_12,
                 borderEndEndRadius: tokens.spacing.small_12,
             };
@@ -401,7 +403,7 @@ const _generateStyles = (
 
     if (cornerKind === "rounded-per-section") {
         wrapperStyle = {
-            border: `1px solid ${tokens.color.offBlack16}`,
+            border: borderStyle,
             borderRadius: tokens.spacing.small_12,
             marginBottom: tokens.spacing.medium_16,
         };
