@@ -2,12 +2,12 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
-// eslint-disable-next-line import/no-deprecated
-import {useUniqueIdWithMock, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {useId} from "react";
 import type {AccordionCornerKindType} from "./accordion";
 import AccordionSectionHeader from "./accordion-section-header";
 
@@ -204,15 +204,15 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
     const controlledMode = expanded !== undefined && onToggle;
 
-    // eslint-disable-next-line import/no-deprecated
-    const ids = useUniqueIdWithMock();
-    const sectionId = id ?? ids.get("accordion-section");
+    const uniqueSectionId = useId();
+    const sectionId = id ?? uniqueSectionId;
     // We need an ID for the header so that the content section's
     // aria-labelledby attribute can point to it.
-    const headerId = id ? `${id}-header` : ids.get("accordion-section-header");
+    const uniqueHeaderId = useId();
+    const headerId = id ? `${id}-header` : uniqueHeaderId;
     // We need an ID for the content section so that the opener's
     // aria-controls attribute can point to it.
-    const sectionContentUniqueId = ids.get("accordion-section-content");
+    const sectionContentUniqueId = useId();
 
     const sectionStyles = _generateStyles(
         cornerKind,
