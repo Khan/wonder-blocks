@@ -258,7 +258,7 @@ export default function LabeledField(props: Props) {
     }
 
     return (
-        <View style={[styles.container, style]}>
+        <View style={style}>
             {renderLabel()}
             {maybeRenderDescription()}
             <Strut size={spacing.xSmall_8} />
@@ -269,12 +269,6 @@ export default function LabeledField(props: Props) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        // Prevent flex items from stretching. This prevents the label from
-        // being the full width so that only clicking on the label text will
-        // focus on the field
-        alignItems: "flex-start",
-    },
     label: {
         color: semanticColor.text.primary,
     },
