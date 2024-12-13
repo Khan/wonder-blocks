@@ -680,6 +680,7 @@ export default function Combobox({
                                         testId ? `${testId}-listbox` : undefined
                                     }
                                     aria-label={labels.listbox}
+                                    aria-labelledby={textFieldId}
                                 >
                                     {renderList}
                                 </Listbox>
