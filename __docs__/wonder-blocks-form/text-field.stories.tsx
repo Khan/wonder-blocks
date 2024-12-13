@@ -89,43 +89,52 @@ Text.parameters = {
     },
 };
 
-export const Required: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
+const ControlledTextField = (
+    storyArgs: PropsFor<typeof TextField> & {label?: string},
+) => {
+    const {label, ...args} = storyArgs;
+    const [value, setValue] = React.useState(args.value || "");
+    const [error, setError] = React.useState<string | null | undefined>(null);
 
     const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
     return (
-        <TextField
-            id="tf-2"
-            type="text"
-            value={value}
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            required={true}
+        <LabeledField
+            label={label || "Text Field"}
+            errorMessage={error || (args.error && "Error from error prop")}
+            required={args.required}
+            field={
+                <TextField
+                    {...args}
+                    value={value}
+                    onChange={handleChange}
+                    onValidate={setError}
+                />
+            }
         />
     );
 };
 
-Required.parameters = {
-    docs: {
-        description: {
-            story: `A required field will have error styling if the
-        field is left blank. To observe this, type something into the
-        field, backspace all the way, and then shift focus out of the field.`,
-        },
+/**
+ * A required field will have error styling if the field is left blank. To
+ * observe this, type something into the field, backspace all the way,
+ * and then shift focus out of the field.
+ *
+ * Note: If you are using `LabeledField`, pass the `required` prop into
+ * `LabeledField` so the required indicator is shown.
+ */
+export const Required: StoryComponentType = {
+    args: {
+        required: true,
     },
-    chromatic: {
-        // Disabling snapshot because it doesn't show the error style
-        // until after the user interacts with this field.
-        disableSnapshot: true,
+    render: ControlledTextField,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
     },
 };
 
@@ -342,33 +351,6 @@ Telephone.parameters = {
         if the \`validate\` prop is passed in, as in this example.`,
         },
     },
-};
-
-const ControlledTextField = (
-    storyArgs: PropsFor<typeof TextField> & {label?: string},
-) => {
-    const {label, ...args} = storyArgs;
-    const [value, setValue] = React.useState(args.value || "");
-    const [error, setError] = React.useState<string | null | undefined>(null);
-
-    const handleChange = (newValue: string) => {
-        setValue(newValue);
-    };
-
-    return (
-        <LabeledField
-            label={label || "Text field label"}
-            errorMessage={error || (args.error && "Error from error prop")}
-            field={
-                <TextField
-                    {...args}
-                    value={value}
-                    onChange={handleChange}
-                    onValidate={setError}
-                />
-            }
-        />
-    );
 };
 
 /**

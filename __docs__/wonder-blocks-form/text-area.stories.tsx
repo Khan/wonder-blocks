@@ -75,6 +75,7 @@ const ControlledTextArea = (
         <LabeledField
             label={label || "Text Area"}
             errorMessage={error || (args.error && "Error from error prop")}
+            required={args.required}
             field={
                 <TextArea
                     {...args}
@@ -369,6 +370,9 @@ export const InstantValidation: StoryComponentType = {
  * A required field will have error styling if the field is left blank. To
  * observe this, type something into the field, backspace all the way,
  * and then shift focus out of the field.
+ *
+ * Note: If you are using `LabeledField`, pass the `required` prop into
+ * `LabeledField` so the required indicator is shown.
  */
 export const Required: StoryComponentType = {
     args: {
