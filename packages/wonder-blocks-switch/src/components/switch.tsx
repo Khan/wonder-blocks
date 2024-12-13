@@ -5,6 +5,7 @@ import {
     AriaProps,
     View,
     addStyle,
+    // eslint-disable-next-line import/no-deprecated
     useUniqueIdWithMock,
 } from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -69,6 +70,7 @@ const SwitchCore = React.forwardRef(function SwitchCore(
         testId,
     } = props;
 
+    // eslint-disable-next-line import/no-deprecated
     const ids = useUniqueIdWithMock("labeled-field");
     const uniqueId = id ?? ids.get("labeled-field-id");
 

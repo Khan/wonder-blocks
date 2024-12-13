@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {
     StyleType,
+    // eslint-disable-next-line import/no-deprecated
     useUniqueIdWithMock,
     View,
 } from "@khanacademy/wonder-blocks-core";
@@ -103,6 +104,7 @@ function StandaloneListbox(props: Props) {
         "aria-labelledby": ariaLabelledby,
     } = props;
 
+    // eslint-disable-next-line import/no-deprecated
     const ids = useUniqueIdWithMock("listbox");
     const uniqueId = id ?? ids.get("id");
 

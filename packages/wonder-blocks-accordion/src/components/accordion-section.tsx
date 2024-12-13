@@ -2,6 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
+// eslint-disable-next-line import/no-deprecated
 import {useUniqueIdWithMock, View} from "@khanacademy/wonder-blocks-core";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
@@ -203,6 +204,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
 
     const controlledMode = expanded !== undefined && onToggle;
 
+    // eslint-disable-next-line import/no-deprecated
     const ids = useUniqueIdWithMock();
     const sectionId = id ?? ids.get("accordion-section");
     // We need an ID for the header so that the content section's

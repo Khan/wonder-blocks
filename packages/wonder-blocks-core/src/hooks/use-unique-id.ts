@@ -10,6 +10,9 @@ import {RenderState} from "../components/render-state-context";
 import type {IIdentifierFactory} from "../util/types";
 
 /**
+ * @deprecated Use `useId` for your ID needs. If you are in a class-based
+ * component and cannot use hooks, then use the `Id` component.
+ *
  * Returns a unique identifier factory.  If the parent component hasn't
  * been mounted yet, the global SsrIDFactory will be returned until the
  * component becomes mounted.
@@ -33,6 +36,9 @@ export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
 };
 
 /**
+ * @deprecated Use `useId` for your ID needs. If you are in a class-based
+ * component and cannot use hooks, then use the `Id` component.
+ *
  * Returns a unique identifier factory.  If the parent component hasn't
  * been mounted yet, null will be returned.
  *

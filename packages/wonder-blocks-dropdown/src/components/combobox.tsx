@@ -6,6 +6,7 @@ import xIcon from "@phosphor-icons/core/regular/x.svg";
 
 import {
     StyleType,
+    // eslint-disable-next-line import/no-deprecated
     useUniqueIdWithMock,
     View,
 } from "@khanacademy/wonder-blocks-core";
@@ -175,6 +176,7 @@ export default function Combobox({
     testId,
     value = "",
 }: Props) {
+    // eslint-disable-next-line import/no-deprecated
     const ids = useUniqueIdWithMock("combobox");
     const uniqueId = id ?? ids.get("listbox");
     // Ref to the combobox input element.

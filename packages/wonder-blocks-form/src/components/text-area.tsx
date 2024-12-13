@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {
     AriaProps,
     StyleType,
+    // eslint-disable-next-line import/no-deprecated
     useUniqueIdWithMock,
     addStyle,
     View,
@@ -244,6 +245,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         const hasError = error || !!errorMessage;
 
+        // eslint-disable-next-line import/no-deprecated
         const ids = useUniqueIdWithMock("text-area");
         const uniqueId = id ?? ids.get("id");
 

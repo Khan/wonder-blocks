@@ -48,6 +48,7 @@ describe("SSR.adapter", () => {
     it("should enable harnessing of components that require RenderStateRoot", () => {
         // Arrange
         const ComponentNeedsSsr = (props: any) => {
+            // eslint-disable-next-line import/no-deprecated
             const idf = WBCore.useUniqueIdWithoutMock();
             return <div>{idf?.get("my-id")}</div>;
         };
