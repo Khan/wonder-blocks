@@ -255,6 +255,7 @@ const TextField = (props: PropsWithForwardRef) => {
                     value={value}
                     name={name}
                     aria-disabled={disabled}
+                    aria-required={!!required}
                     onChange={handleChange}
                     onKeyDown={disabled ? undefined : onKeyDown}
                     onFocus={handleFocus} // TextField can be focused if disabled
