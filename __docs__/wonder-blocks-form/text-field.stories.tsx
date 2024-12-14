@@ -441,7 +441,7 @@ export const ErrorFromPropAndValidation = (
     const errorMessage = validationErrorMessage || backendErrorMessage;
 
     return (
-        <View>
+        <View style={{gap: spacing.medium_16}}>
             <LabeledField
                 label="Error state from prop and validation"
                 errorMessage={errorMessage}
