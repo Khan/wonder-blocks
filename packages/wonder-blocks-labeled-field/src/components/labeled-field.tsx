@@ -136,12 +136,16 @@ export default function LabeledField(props: Props) {
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
 
+    const isRequired = !!required || !!field.props.required;
+    const hasError = !!errorMessage || !!field.props.error;
+    const isLight = light || field.props.light;
+
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
                 style={[
                     styles.textWordBreak,
-                    light ? styles.lightRequired : styles.required,
+                    isLight ? styles.lightRequired : styles.required,
                 ]}
                 aria-hidden={true}
             >
@@ -155,7 +159,7 @@ export default function LabeledField(props: Props) {
                 <LabelMedium
                     style={[
                         styles.textWordBreak,
-                        light ? styles.lightLabel : styles.label,
+                        isLight ? styles.lightLabel : styles.label,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
@@ -163,7 +167,7 @@ export default function LabeledField(props: Props) {
                     id={labelId}
                 >
                     {label}
-                    {required && requiredIcon}
+                    {isRequired && requiredIcon}
                 </LabelMedium>
                 <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
@@ -180,7 +184,7 @@ export default function LabeledField(props: Props) {
                 <LabelSmall
                     style={[
                         styles.textWordBreak,
-                        light ? styles.lightDescription : styles.description,
+                        isLight ? styles.lightDescription : styles.description,
                     ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
@@ -221,7 +225,7 @@ export default function LabeledField(props: Props) {
                                 icon={WarningCircle}
                                 style={[
                                     styles.errorIcon,
-                                    light ? styles.lightError : styles.error,
+                                    isLight ? styles.lightError : styles.error,
                                 ]}
                                 role="img"
                                 aria-label={labels.errorIconAriaLabel}
@@ -230,7 +234,7 @@ export default function LabeledField(props: Props) {
                                 style={[
                                     styles.textWordBreak,
                                     styles.errorMessage,
-                                    light ? styles.lightError : styles.error,
+                                    isLight ? styles.lightError : styles.error,
                                 ]}
                             >
                                 {errorMessage}
@@ -251,9 +255,10 @@ export default function LabeledField(props: Props) {
             ]
                 .filter(Boolean)
                 .join(" "),
-            required,
-            error: !!errorMessage,
+            required: isRequired,
+            error: hasError,
             testId: testId && `${testId}-field`,
+            light: isLight,
         });
     }
 
