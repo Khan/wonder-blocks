@@ -1424,10 +1424,11 @@ describe("TextField", () => {
                             instantValidation={false}
                         />,
                     );
-
-                    // Act
                     const field = screen.getByRole("textbox");
                     await userEvent.type(field, "test");
+                    handleValidate.mockReset(); // Reset mock before leaving the field
+
+                    // Act
                     await userEvent.tab();
 
                     // Assert
@@ -1500,20 +1501,19 @@ describe("TextField", () => {
                             instantValidation={false}
                         />,
                     );
-
-                    // Act
                     const field = screen.getByRole("textbox");
                     await userEvent.type(field, "test");
                     // Blur will trigger error to be shown
                     await userEvent.tab();
+                    handleValidate.mockReset(); // Reset mock before changing the value
+                    // Act
                     // Updating the value should clear the error using the onValidate prop
-                    await userEvent.type(field, "tests");
+                    await userEvent.type(field, "t");
 
                     // Assert
-                    expect(handleValidate.mock.calls).toStrictEqual([
-                        [errorMsg],
-                        [null],
-                    ]);
+                    expect(handleValidate).toHaveBeenCalledExactlyOnceWith(
+                        null,
+                    );
                 });
 
                 it("should not call the validate prop on blur if it is disabled", async () => {
@@ -1585,17 +1585,17 @@ describe("TextField", () => {
                                 onValidate={onValidate}
                             />,
                         );
-
-                        // Act
                         const field = await screen.findByRole("textbox");
                         await userEvent.type(field, "{backspace}");
+                        onValidate.mockReset(); // Reset mock before leaving the field
+
+                        // Act
                         await userEvent.tab();
 
                         // Assert
-                        expect(onValidate.mock.calls).toStrictEqual([
-                            [null],
-                            [requiredMessage],
-                        ]);
+                        expect(onValidate).toHaveBeenCalledExactlyOnceWith(
+                            requiredMessage,
+                        );
                     });
 
                     it("shound be in error state if it is required, the value is empty, and the user tabs away", async () => {
