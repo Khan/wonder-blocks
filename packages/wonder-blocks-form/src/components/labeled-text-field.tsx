@@ -1,7 +1,6 @@
 import * as React from "react";
 
-// eslint-disable-next-line import/no-deprecated
-import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
+import {Id, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FieldHeading from "./field-heading";
 import TextField from "./text-field";
@@ -249,7 +248,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
         } = this.props;
 
         return (
-            <IDProvider id={id} scope="labeled-text-field">
+            <Id id={id}>
                 {(uniqueId) => (
                     <FieldHeading
                         id={uniqueId}
@@ -291,7 +290,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                         error={(!this.state.focused && this.state.error) || ""}
                     />
                 )}
-            </IDProvider>
+            </Id>
         );
     }
 }

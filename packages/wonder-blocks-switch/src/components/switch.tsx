@@ -1,19 +1,14 @@
 import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 
-import {
-    AriaProps,
-    View,
-    addStyle,
-    // eslint-disable-next-line import/no-deprecated
-    useUniqueIdWithMock,
-} from "@khanacademy/wonder-blocks-core";
+import {AriaProps, View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {
     ThemedStylesFn,
     useScopedTheme,
     useStyles,
 } from "@khanacademy/wonder-blocks-theming";
+import {useId} from "react";
 import ThemedSwitch, {
     SwitchThemeContext,
     SwitchThemeContract,
@@ -70,9 +65,8 @@ const SwitchCore = React.forwardRef(function SwitchCore(
         testId,
     } = props;
 
-    // eslint-disable-next-line import/no-deprecated
-    const ids = useUniqueIdWithMock("labeled-field");
-    const uniqueId = id ?? ids.get("labeled-field-id");
+    const generatedUniqueId = useId();
+    const uniqueId = id ?? generatedUniqueId;
 
     const {theme, themeName} = useScopedTheme(SwitchThemeContext);
     const sharedStyles = useStyles(themedSharedStyles, theme);
