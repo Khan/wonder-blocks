@@ -6,7 +6,7 @@ import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
-    title: "Packages / Form / Accessibility",
+    title: "", // Empty title so that these examples don't show in the sidebar. Examples are referenced in the .mdx file
     parameters: {
         previewTabs: {
             canvas: {
