@@ -27,9 +27,29 @@ type Props = {
      */
     description?: React.ReactNode;
     /**
-     * Whether this field is required to continue.
+     * Whether this field is required to to continue, or the error message to
+     * render if this field is left blank. This is passed into the field
+     * component.
+     *
+     * This can be a boolean or a string.
+     *
+     * String:
+     * Please pass in a translated string to use as the error message that will
+     * render if the user leaves this field blank. If this field is required,
+     * and a string is not passed in, a default untranslated string will render
+     * upon error.
+     * Note: The string will not be used if a `validate` prop is passed in.
+     *
+     * Example message: i18n._("A password is required to log in.")
+     *
+     * Boolean:
+     * True/false indicating whether this field is required. Please do not pass
+     * in `true` if possible - pass in the error string instead.
+     * If `true` is passed, and a `validate` prop is not passed, that means
+     * there is no corresponding message and the default untranlsated message
+     * will be used.
      */
-    required?: boolean;
+    required?: boolean | string;
     /**
      * The message for the error element.
      *
@@ -90,8 +110,9 @@ const defaultLabeledFieldLabels: LabeledFieldLabels = {
 const StyledSpan = addStyle("span");
 
 /**
- * A LabeledField is an element that provides a label, description, and error element
- * to present better context and hints to any type of form field component.
+ * A LabeledField is an element that provides a label, required indicator,
+ * description, and error to present better context and hints to any type of
+ * form field component.
  */
 export default function LabeledField(props: Props) {
     const {
