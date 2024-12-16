@@ -13,13 +13,18 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
 
 /**
+ * ** DEPRECATED: Please use LabeledField with TextField instead. See [Migration
+ * story](#migration%20to%20labeled%20field) for more details. **
+ *
  * A LabeledTextField is an element used to accept a single line of text from
  * the user paired with a label, description, and error field elements.
  */
 export default {
-    title: "Packages / Form / LabeledTextField",
+    title: "Packages / Form / LabeledTextField (Deprecated)",
     component: LabeledTextField,
     parameters: {
         componentSubtitle: (
@@ -53,6 +58,73 @@ export const Default: StoryComponentType = {
         onKeyDown: () => {},
         onFocus: () => {},
         onBlur: () => {},
+    },
+};
+
+/**
+ * Please use the **LabeledField** component with the **TextField** component
+ * instead of the `LabeledTextField` component.
+ *
+ * LabeledField is more flexible since it is decoupled from specific field
+ * components. It also allows use of everything supported by TextField since it
+ * is used directly.
+ *
+ * Note: Validation is now handled by the specific field component and an error
+ * message is passed into LabeledField. For TextField validation, it is preferred
+ * that validation occurs on blur once a user is done interacting with a field.
+ * This can be done using `instantValidation=false` on `TextField`, see TextField
+ * validation docs for more details!
+ *
+ * This example shows how LabeledTextField functionality can be mapped to
+ * LabeledField and TextField components.
+ */
+export const MigrationToLabeledField: StoryComponentType = {
+    render: function Story(args) {
+        const [labeledTextFieldValue, setLabeledTextFieldValue] =
+            React.useState("");
+        const [textFieldValue, setTextFieldValue] = React.useState("");
+        const [textFieldErrorMessage, setTextFieldErrorMessage] =
+            React.useState<string | null | undefined>("");
+
+        const description = "Enter text that is at least 5 characters long.";
+        const placeholder = "Placeholder";
+        const required = "Custom required message";
+        const validate = (value: string) => {
+            if (value.length < 5) {
+                return "Should be 5 or more characters";
+            }
+        };
+        return (
+            <View style={{gap: spacing.xxxLarge_64}}>
+                <LabeledTextField
+                    {...args}
+                    label="Using LabeledTextField"
+                    description={description}
+                    value={labeledTextFieldValue}
+                    onChange={setLabeledTextFieldValue}
+                    required={required}
+                    placeholder={placeholder}
+                    validate={validate}
+                />
+                <LabeledField
+                    label="Using LabeledField with TextField (recommended)"
+                    description={description}
+                    required={required}
+                    errorMessage={textFieldErrorMessage}
+                    field={
+                        <TextField
+                            {...args}
+                            value={textFieldValue}
+                            onChange={setTextFieldValue}
+                            placeholder={placeholder}
+                            validate={validate}
+                            onValidate={setTextFieldErrorMessage}
+                            instantValidation={false}
+                        />
+                    }
+                />
+            </View>
+        );
     },
 };
 
