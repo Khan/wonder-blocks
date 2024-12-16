@@ -199,9 +199,13 @@ export default function LabeledField(props: Props) {
     function maybeRenderError(): React.ReactNode | null | undefined {
         return (
             <React.Fragment>
-                <Strut size={spacing.small_12} />
                 <View
-                    style={styles.errorSection}
+                    style={[
+                        styles.errorSection,
+                        errorMessage
+                            ? styles.errorSectionWithContent
+                            : undefined,
+                    ]}
                     id={errorId}
                     testId={testId && `${testId}-error`}
                     // We use aria-live="assertive" for the error so that it is
@@ -285,6 +289,9 @@ const styles = StyleSheet.create({
     errorSection: {
         flexDirection: "row",
         gap: spacing.xSmall_8,
+    },
+    errorSectionWithContent: {
+        paddingTop: spacing.small_12,
     },
     error: {
         color: semanticColor.status.critical.foreground,
