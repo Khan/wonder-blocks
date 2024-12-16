@@ -49,8 +49,8 @@ export const Default: StoryComponentType = {
         field: <TextField value="" onChange={() => {}} />,
         label: "Name",
         description: "Helpful description text.",
-        error: "Message about the error",
-        required: true,
+        errorMessage: "Message about the error",
+        required: "Custom required message",
     },
 };
 
@@ -192,7 +192,7 @@ export const ChangingErrors: StoryComponentType = () => {
             <LabeledField
                 label="Label"
                 field={<TextField value="" onChange={() => {}} />}
-                error={errorMessage}
+                errorMessage={errorMessage}
             />
             <Strut size={spacing.small_12} />
             <Button
@@ -252,7 +252,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
             <LabeledField
                 {...args}
                 label="With error"
-                error="Message about the error"
+                errorMessage="Message about the error"
                 field={
                     <TextField
                         value="invalid value"
@@ -264,7 +264,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
             <LabeledField
                 {...args}
                 label="With description and error"
-                error="Message about the error"
+                errorMessage="Message about the error"
                 description="Description"
                 field={
                     <TextField
@@ -280,7 +280,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
                 required={true}
                 {...args}
                 label={longText}
-                error={longText}
+                errorMessage={longText}
                 description={longText}
                 field={
                     <TextField
@@ -295,7 +295,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
                 required={true}
                 {...args}
                 label={longTextWithNoBreak}
-                error={longTextWithNoBreak}
+                errorMessage={longTextWithNoBreak}
                 description={longTextWithNoBreak}
                 field={
                     <TextField
