@@ -7,19 +7,14 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {
-    Body,
-    HeadingLarge,
-    LabelMedium,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     SingleSelect,
     OptionItem,
@@ -39,6 +34,7 @@ import {
     currencies,
 } from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 type StoryComponentType = StoryObj<typeof SingleSelect>;
 type SingleSelectArgs = Partial<typeof SingleSelect>;
@@ -353,36 +349,49 @@ export const LongOptionLabels: StoryComponentType = {
  */
 export const Disabled: StoryComponentType = {
     render: () => (
-        <View>
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                Disabled prop is set to true
-            </LabelMedium>
-            <SingleSelect
-                placeholder="Choose a fruit"
-                onChange={() => {}}
-                selectedValue=""
-                disabled={true}
-            >
-                {items}
-            </SingleSelect>
-            <Strut size={spacing.xLarge_32} />
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                No items
-            </LabelMedium>
-            <SingleSelect placeholder="Choose a fruit" onChange={() => {}} />
-            <Strut size={spacing.xLarge_32} />
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                All items are disabled
-            </LabelMedium>
-            <SingleSelect placeholder="Choose a fruit" onChange={() => {}}>
-                <OptionItem label="Apple" value="1" disabled={true} />
-                <OptionItem label="Orange" value="2" disabled={true} />
-            </SingleSelect>
+        <View style={{gap: spacing.xLarge_32}}>
+            <LabeledField
+                label="Disabled prop is set to true"
+                field={
+                    <SingleSelect
+                        placeholder="Choose a fruit"
+                        onChange={() => {}}
+                        selectedValue=""
+                        disabled={true}
+                    >
+                        {items}
+                    </SingleSelect>
+                }
+            />
+            <LabeledField
+                label="No items"
+                field={
+                    <SingleSelect
+                        placeholder="Choose a fruit"
+                        onChange={() => {}}
+                    />
+                }
+            />
+            <LabeledField
+                label="All items are disabled"
+                field={
+                    <SingleSelect
+                        placeholder="Choose a fruit"
+                        onChange={() => {}}
+                    >
+                        <OptionItem label="Apple" value="1" disabled={true} />
+                        <OptionItem label="Orange" value="2" disabled={true} />
+                    </SingleSelect>
+                }
+            />
         </View>
     ),
 };
 
-const ControlledSingleSelect = (args: PropsFor<typeof SingleSelect>) => {
+const ControlledSingleSelect = (
+    storyArgs: PropsFor<typeof SingleSelect> & {label?: string},
+) => {
+    const {label, ...args} = storyArgs;
     const [opened, setOpened] = React.useState(false);
     const [selectedValue, setSelectedValue] = React.useState(
         args.selectedValue,
@@ -392,30 +401,31 @@ const ControlledSingleSelect = (args: PropsFor<typeof SingleSelect>) => {
     >(null);
     return (
         <View style={{gap: spacing.xSmall_8}}>
-            <SingleSelect
-                {...args}
-                id="single-select"
-                opened={opened}
-                onToggle={setOpened}
-                selectedValue={selectedValue}
-                onChange={setSelectedValue}
-                placeholder="Choose a fruit"
-                validate={(value) => {
-                    if (value === "lemon") {
-                        return "Pick another option!";
-                    }
-                }}
-                onValidate={setErrorMessage}
-            >
-                {items}
-            </SingleSelect>
-            {(errorMessage || args.error) && (
-                <LabelSmall
-                    style={{color: semanticColor.status.critical.foreground}}
-                >
-                    {errorMessage || "Error from error prop"}
-                </LabelSmall>
-            )}
+            <LabeledField
+                label={label || "SingleSelect"}
+                errorMessage={
+                    errorMessage || (args.error && "Error from error prop")
+                }
+                field={
+                    <SingleSelect
+                        {...args}
+                        id="single-select"
+                        opened={opened}
+                        onToggle={setOpened}
+                        selectedValue={selectedValue}
+                        onChange={setSelectedValue}
+                        placeholder="Choose a fruit"
+                        validate={(value) => {
+                            if (value === "lemon") {
+                                return "Pick another option!";
+                            }
+                        }}
+                        onValidate={setErrorMessage}
+                    >
+                        {items}
+                    </SingleSelect>
+                }
+            />
         </View>
     );
 };
@@ -491,12 +501,9 @@ export const ErrorFromValidation: StoryComponentType = {
     render: (args: PropsFor<typeof SingleSelect>) => {
         return (
             <View style={{gap: spacing.xSmall_8}}>
-                <LabelSmall htmlFor="single-select" tag="label">
-                    Validation example (try picking lemon to trigger an error)
-                </LabelSmall>
                 <ControlledSingleSelect
                     {...args}
-                    id="single-select"
+                    label="Validation example (try picking lemon to trigger an error)"
                     validate={(value) => {
                         if (value === "lemon") {
                             return "Pick another option!";
@@ -505,12 +512,9 @@ export const ErrorFromValidation: StoryComponentType = {
                 >
                     {items}
                 </ControlledSingleSelect>
-                <LabelSmall htmlFor="single-select" tag="label">
-                    Validation example (on mount)
-                </LabelSmall>
                 <ControlledSingleSelect
                     {...args}
-                    id="single-select"
+                    label="Validation example (on mount)"
                     validate={(value) => {
                         if (value === "lemon") {
                             return "Pick another option!";

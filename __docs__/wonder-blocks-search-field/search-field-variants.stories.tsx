@@ -4,8 +4,9 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -58,16 +59,16 @@ const States = (props: {
                 {states.map((scenario) => {
                     return (
                         <View style={styles.scenario} key={scenario.label}>
-                            <LabelMedium
-                                style={props.light && {color: color.white}}
-                            >
-                                {scenario.label}
-                            </LabelMedium>
-                            <SearchField
-                                value=""
-                                onChange={() => {}}
-                                {...props}
-                                {...scenario.props}
+                            <LabeledField
+                                label={scenario.label}
+                                field={
+                                    <SearchField
+                                        value=""
+                                        onChange={() => {}}
+                                        {...props}
+                                        {...scenario.props}
+                                    />
+                                }
                             />
                         </View>
                     );
