@@ -138,6 +138,7 @@ describe("SingleSelect", () => {
                 // Assert
                 expect(opener).toHaveTextContent("Plain Toggle A");
             });
+
             it("can render a Node as a label", async () => {
                 // Arrange
                 doRender(
