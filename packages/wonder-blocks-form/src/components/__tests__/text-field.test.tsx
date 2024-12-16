@@ -1266,6 +1266,44 @@ describe("TextField", () => {
                     validateErrorMessage,
                 );
             });
+
+            it.each([
+                {
+                    required: true,
+                    ariaRequired: "true",
+                },
+                {
+                    required: false,
+                    ariaRequired: "false",
+                },
+                {
+                    required: undefined,
+                    ariaRequired: "false",
+                },
+                {
+                    required: "Custom required message",
+                    ariaRequired: "true",
+                },
+            ])(
+                "should set the aria-required attribute to $ariaRequired if required prop is $required",
+                ({required, ariaRequired}) => {
+                    // Arrange
+                    // Act
+                    render(
+                        <TextField
+                            value=""
+                            onChange={() => {}}
+                            required={required}
+                        />,
+                    );
+
+                    // Assert
+                    expect(screen.getByRole("textbox")).toHaveAttribute(
+                        "aria-required",
+                        ariaRequired,
+                    );
+                },
+            );
         });
 
         describe("instantValidation prop", () => {
