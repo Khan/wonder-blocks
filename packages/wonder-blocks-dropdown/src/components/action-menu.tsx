@@ -2,6 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {
+    // eslint-disable-next-line import/no-deprecated
     IDProvider,
     type AriaProps,
     type StyleType,

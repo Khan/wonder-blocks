@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+// eslint-disable-next-line import/no-deprecated
 import {IDProvider} from "@khanacademy/wonder-blocks-core";
 import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";

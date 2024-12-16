@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import * as React from "react";
 
 import UniqueIDProvider from "./unique-id-provider";
@@ -54,6 +55,8 @@ type Props = {
  * </IDProvider>
  * ```
  *
+ * @deprecated Use `useId` for your ID needs. If you are in a class-based
+ * component and cannot use hooks, then use the `Id` component.
  */
 export default class IDProvider extends React.Component<Props> {
     static defaultId = "wb-id";

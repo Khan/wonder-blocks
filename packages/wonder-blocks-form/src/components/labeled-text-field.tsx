@@ -1,5 +1,6 @@
 import * as React from "react";
 
+// eslint-disable-next-line import/no-deprecated
 import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FieldHeading from "./field-heading";

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server";
 import {render} from "@testing-library/react";

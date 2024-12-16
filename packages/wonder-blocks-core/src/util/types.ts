@@ -104,6 +104,8 @@ export type TextViewSharedProps = {
 
 /**
  * Interface implemented by types that can provide identifiers.
+ * @deprecated Use `useId` for your ID needs. If you are in a class-based
+ * component and cannot use hooks, then use the `Id` component.
  */
 export interface IIdentifierFactory {
     get(id: string): string;
