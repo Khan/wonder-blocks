@@ -557,4 +557,135 @@ describe("LabeledField", () => {
             });
         });
     });
+
+    describe("Field", () => {
+        it.each([
+            {
+                required: true,
+                ariaRequired: "true",
+            },
+            {
+                required: false,
+                ariaRequired: "false",
+            },
+            {
+                required: undefined,
+                ariaRequired: "false",
+            },
+            {
+                required: "Custom required message",
+                ariaRequired: "true",
+            },
+        ])(
+            "should set aria-required to $ariaRequired on the field if LabeledField has the required set to $required",
+            ({required, ariaRequired}) => {
+                // Arrange
+                // Act
+                render(
+                    <LabeledField
+                        field={<TextField value="" onChange={() => {}} />}
+                        required={required}
+                        label="Label"
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(screen.getByRole("textbox")).toHaveAttribute(
+                    "aria-required",
+                    ariaRequired,
+                );
+            },
+        );
+
+        it("should set aria-invalid on the field if LabeledField has the errorMessage prop", () => {
+            // Arrange
+            // Act
+            render(
+                <LabeledField
+                    field={<TextField value="" onChange={() => {}} />}
+                    errorMessage="Error"
+                    label="Label"
+                />,
+                defaultOptions,
+            );
+
+            // Assert
+            expect(screen.getByRole("textbox")).toHaveAttribute(
+                "aria-invalid",
+                "true",
+            );
+        });
+
+        describe("Using props set on field", () => {
+            it("should set the required indicator if the field has the required prop set", async () => {
+                // Arrange
+                // Act
+                render(
+                    <LabeledField
+                        field={
+                            <TextField
+                                value=""
+                                onChange={() => {}}
+                                required="Required msg"
+                            />
+                        }
+                        label="Label"
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                await screen.findByLabelText("Label *");
+            });
+
+            it("should still set the field as required if it is set on the field and not LabeledField", () => {
+                // Arrange
+                // Act
+                render(
+                    <LabeledField
+                        field={
+                            <TextField
+                                value=""
+                                onChange={() => {}}
+                                required="Required msg"
+                            />
+                        }
+                        label="Label"
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(screen.getByRole("textbox")).toHaveAttribute(
+                    "aria-required",
+                    "true",
+                );
+            });
+
+            it("should still use the field's error prop if it is not set on LabeledField", () => {
+                // Arrange
+                // Act
+                render(
+                    <LabeledField
+                        field={
+                            <TextField
+                                value=""
+                                onChange={() => {}}
+                                error={true}
+                            />
+                        }
+                        label="Label"
+                    />,
+                    defaultOptions,
+                );
+
+                // Assert
+                expect(screen.getByRole("textbox")).toHaveAttribute(
+                    "aria-invalid",
+                    "true",
+                );
+            });
+        });
+    });
 });
