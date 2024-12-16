@@ -851,6 +851,47 @@ describe("TextArea", () => {
                 const textArea = await screen.findByRole("textbox");
                 expect(textArea).toHaveAttribute("aria-invalid", "false");
             });
+
+            describe("aria-required", () => {
+                it.each([
+                    {
+                        required: true,
+                        ariaRequired: "true",
+                    },
+                    {
+                        required: false,
+                        ariaRequired: "false",
+                    },
+                    {
+                        required: undefined,
+                        ariaRequired: "false",
+                    },
+                    {
+                        required: "Custom required message",
+                        ariaRequired: "true",
+                    },
+                ])(
+                    "should set the aria-required attribute to $ariaRequired if required prop is $required",
+                    ({required, ariaRequired}) => {
+                        // Arrange
+                        // Act
+                        render(
+                            <TextArea
+                                value=""
+                                onChange={() => {}}
+                                required={required}
+                            />,
+                            defaultOptions,
+                        );
+
+                        // Assert
+                        expect(screen.getByRole("textbox")).toHaveAttribute(
+                            "aria-required",
+                            ariaRequired,
+                        );
+                    },
+                );
+            });
         });
     });
 
