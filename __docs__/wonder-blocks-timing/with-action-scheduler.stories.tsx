@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Meta} from "@storybook/react";
-import {Id, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 import {
     Unmounter,
@@ -28,28 +28,26 @@ export default {
     decorators: [(Story) => <View>{Story()}</View>],
 } as Meta;
 
-export const IncorrectUsage = () => (
-    <Id>
-        {(id) => (
-            <View>
-                <Unmounter>
-                    <MyNaughtyComponent targetId={id} />
-                </Unmounter>
-                <View id={id} />
-            </View>
-        )}
-    </Id>
-);
+export const IncorrectUsage = () => {
+    const id = React.useId();
+    return (
+        <View>
+            <Unmounter>
+                <MyNaughtyComponent targetId={id} />
+            </Unmounter>
+            <View id={id} />
+        </View>
+    );
+};
 
-export const CorrectUsage = () => (
-    <Id>
-        {(id) => (
-            <View>
-                <Unmounter>
-                    <MyGoodComponentWithScheduler targetId={id} />
-                </Unmounter>
-                <View id={id} />
-            </View>
-        )}
-    </Id>
-);
+export const CorrectUsage = () => {
+    const id = React.useId();
+    return (
+        <View>
+            <Unmounter>
+                <MyGoodComponentWithScheduler targetId={id} />
+            </Unmounter>
+            <View id={id} />
+        </View>
+    );
+};

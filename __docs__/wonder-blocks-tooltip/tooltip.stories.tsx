@@ -124,7 +124,7 @@ ComplexAnchorAndTitle.play = async ({canvasElement}) => {
 ComplexAnchorAndTitle.parameters = {
     docs: {
         description: {
-            story: "In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `UniqueIDProvider`, but we'll cheat here and give our own identifier).",
+            story: "In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `useId`, but we'll cheat here and give our own identifier).",
         },
     },
 };

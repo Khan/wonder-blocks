@@ -1,6 +1,6 @@
 import {Meta, Story, Canvas} from "@storybook/blocks";
-import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
-import * as WithActionSchedulerStories from './with-action-scheduler.stories';
+import {Id, View} from "@khanacademy/wonder-blocks-core";
+import * as WithActionSchedulerStories from "./with-action-scheduler.stories";
 
 import packageConfig from "../../packages/wonder-blocks-timing/package.json";
 
@@ -47,149 +47,11 @@ component.
 The following component, `MyNaughtyComponent`, will keep spamming our pretend
 log even after it was unmounted.
 
-export const IncorrectUsage = () => (
-    <IDProvider id="incorrect">
-        {(id) => (
-            <View>
-                <Unmounter>
-                    <MyNaughtyComponent targetId={id} />
-                </Unmounter>
-                <View id={id} />
-            </View>
-        )}
-    </IDProvider>
-);
-
 <Canvas of={WithActionSchedulerStories.IncorrectUsage} />
-
-```jsx
-function Unmounter(props: {|children: React.Node|}): React.Node {
-    const [mountKids, setMountKids] = React.useState(true);
-
-    const maybeRenderKids = () => {
-        if (!mountKids) {
-            return "Children unmounted";
-        }
-
-        return (
-            <>
-                <Button
-                    onClick={() => {
-                        setMountKids(false);
-                    }}
-                >
-                    Unmount
-                </Button>
-                {props.children}
-            </>
-        );
-    };
-
-    return <View>{maybeRenderKids()}</View>;
-}
-
-class MyNaughtyComponent extends React.Component<{|targetId: string|}> {
-    componentDidMount() {
-        const {targetId} = this.props;
-        let counter = 0;
-        const domElement: HTMLElement = (document.getElementById(
-            targetId,
-        ): any);
-
-        setInterval(() => {
-            domElement.innerText = "Naughty interval logged: " + counter++;
-        }, 200);
-    }
-
-    render(): React.Node {
-        return <View>NaughtyComponent here</View>;
-    }
-}
-
-const IncorrectUsage = () => (
-    <IDProvider id="incorrect">
-        {(id) => (
-            <View>
-                <Unmounter>
-                    <MyNaughtyComponent targetId={id} />
-                </Unmounter>
-                <View id={id} />
-            </View>
-        )}
-    </IDProvider>
-);
-```
 
 ### Correct Usage
 
 But if we use `withActionScheduler` and the `interval` method, everything is
 fine. Unmount the component, and the logging stops.
 
-export const CorrectUsage = () => (
-    <IDProvider id="correct">
-        {(id) => (
-            <View>
-                <Unmounter>
-                    <MyGoodComponentWithScheduler targetId={id} />
-                </Unmounter>
-                <View id={id} />
-            </View>
-        )}
-    </IDProvider>
-);
-
 <Canvas of={WithActionSchedulerStories.CorrectUsage} />
-
-```jsx
-import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
-import type {
-    WithActionSchedulerProps,
-    WithoutActionScheduler,
-} from "@khanacademy/wonder-blocks-timing";
-
-type Props = {|
-    ...WithActionSchedulerProps,
-    targetId: string,
-|};
-
-class MyGoodComponent extends React.Component<Props> {
-    componentDidMount() {
-        const {targetId, schedule} = this.props;
-        let counter = 0;
-        const domElement: HTMLElement = (document.getElementById(
-            targetId,
-        ): any);
-
-        schedule.interval(() => {
-            domElement.innerText = "Naughty interval logged: " + counter++;
-        }, 200);
-    }
-
-    render(): React.Node {
-        return <View>GoodComponent here</View>;
-    }
-}
-
-const MyGoodComponentWithScheduler: React.AbstractComponent<
-    WithoutActionScheduler<React.ElementConfig<typeof MyGoodComponent>>,
-    MyGoodComponent,
-> = withActionScheduler(MyGoodComponent);
-
-// This is the same as the previous example
-function Unmounter(props: {|children: React.Node|}): React.Node {
-    ...
-}
-
-const CorrectUsage = () => (
-    <IDProvider id="correct">
-        {(id) => (
-            <View>
-                <Unmounter>
-                    <MyGoodComponentWithScheduler targetId={id} />
-                </Unmounter>
-                <View id={id} />
-            </View>
-        )}
-    </IDProvider>
-);
-```
