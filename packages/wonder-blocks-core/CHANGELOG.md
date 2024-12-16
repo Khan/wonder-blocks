@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-core
 
+## 10.0.0
+
+### Major Changes
+
+-   b6009b77: Deprecate the ID provider and unique ID utilities
+
+### Minor Changes
+
+-   897686bc: - Add the `Id` component for cases where `useId` cannot be used directly
+
+### Patch Changes
+
+-   56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
+
+## 9.0.0
+
+### Major Changes
+
+-   f4abd572: - Remove `RenderState.Root` from exported enum
+    -   Change `useRenderState` to only return `RenderState.Initial` or `RenderState.Standard`
+
 ## 8.0.0
 
 ### Major Changes

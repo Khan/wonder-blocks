@@ -1,5 +1,50 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 7.0.0
+
+### Major Changes
+
+-   56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
+
+### Patch Changes
+
+-   b6009b77: Deprecate the ID provider and unique ID utilities
+-   Updated dependencies [b6009b77]
+-   Updated dependencies [897686bc]
+-   Updated dependencies [56d961f1]
+    -   @khanacademy/wonder-blocks-core@10.0.0
+    -   @khanacademy/wonder-blocks-search-field@4.0.0
+    -   @khanacademy/wonder-blocks-modal@7.0.0
+    -   @khanacademy/wonder-blocks-cell@4.0.2
+    -   @khanacademy/wonder-blocks-clickable@5.0.2
+    -   @khanacademy/wonder-blocks-icon@5.0.2
+    -   @khanacademy/wonder-blocks-layout@3.0.2
+    -   @khanacademy/wonder-blocks-pill@3.0.2
+    -   @khanacademy/wonder-blocks-typography@3.0.2
+
+## 6.1.2
+
+### Patch Changes
+
+-   2a9c2fa8: Remove i18n reference from unit tests
+    -   @khanacademy/wonder-blocks-search-field@3.1.2
+
+## 6.1.1
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+-   Updated dependencies [0955be7e]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-modal@6.0.1
+    -   @khanacademy/wonder-blocks-cell@4.0.1
+    -   @khanacademy/wonder-blocks-clickable@5.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.1
+    -   @khanacademy/wonder-blocks-layout@3.0.1
+    -   @khanacademy/wonder-blocks-pill@3.0.1
+    -   @khanacademy/wonder-blocks-search-field@3.1.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
 ## 6.1.0
 
 ### Minor Changes

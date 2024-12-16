@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import * as React from "react";
 
 import InitialFallback from "./initial-fallback";
@@ -43,6 +44,9 @@ type Props = {
 };
 
 /**
+ * @deprecated This component is deprecated and will be removed in an
+ * upcoming release. Migrate existing code to use `useId` or the `Id` component.
+ *
  * The `UniqueIDProvider` component is how Wonder Blocks components obtain
  * unique identifiers. This component ensures that server-side rendering and
  * initial client rendering match while allowing the provision of unique

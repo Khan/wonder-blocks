@@ -1,12 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {
-    StyleType,
-    useUniqueIdWithMock,
-    View,
-} from "@khanacademy/wonder-blocks-core";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
+import {useId} from "react";
 import {useListbox} from "../hooks/use-listbox";
 import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
 
@@ -103,8 +100,8 @@ function StandaloneListbox(props: Props) {
         "aria-labelledby": ariaLabelledby,
     } = props;
 
-    const ids = useUniqueIdWithMock("listbox");
-    const uniqueId = id ?? ids.get("id");
+    const generatedUniqueId = useId();
+    const uniqueId = id ?? generatedUniqueId;
 
     const {
         focusedIndex,

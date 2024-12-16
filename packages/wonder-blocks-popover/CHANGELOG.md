@@ -1,5 +1,36 @@
 # @khanacademy/wonder-blocks-popover
 
+## 5.0.0
+
+### Major Changes
+
+-   56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
+
+### Patch Changes
+
+-   b6009b77: Deprecate the ID provider and unique ID utilities
+-   Updated dependencies [b6009b77]
+-   Updated dependencies [897686bc]
+-   Updated dependencies [56d961f1]
+    -   @khanacademy/wonder-blocks-core@10.0.0
+    -   @khanacademy/wonder-blocks-tooltip@4.0.0
+    -   @khanacademy/wonder-blocks-modal@7.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.2
+    -   @khanacademy/wonder-blocks-typography@3.0.2
+
+## 4.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+-   Updated dependencies [0955be7e]
+-   Updated dependencies [0955be7e]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-modal@6.0.1
+    -   @khanacademy/wonder-blocks-icon-button@6.0.1
+    -   @khanacademy/wonder-blocks-tooltip@3.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
 ## 4.0.0
 
 ### Major Changes

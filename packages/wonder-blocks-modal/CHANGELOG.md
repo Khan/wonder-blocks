@@ -1,5 +1,39 @@
 # @khanacademy/wonder-blocks-modal
 
+## 7.0.0
+
+### Major Changes
+
+-   56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
+
+### Patch Changes
+
+-   b6009b77: Deprecate the ID provider and unique ID utilities
+-   Updated dependencies [b6009b77]
+-   Updated dependencies [897686bc]
+-   Updated dependencies [56d961f1]
+    -   @khanacademy/wonder-blocks-core@10.0.0
+    -   @khanacademy/wonder-blocks-breadcrumbs@3.0.2
+    -   @khanacademy/wonder-blocks-icon-button@6.0.2
+    -   @khanacademy/wonder-blocks-layout@3.0.2
+    -   @khanacademy/wonder-blocks-typography@3.0.2
+
+## 6.0.1
+
+### Patch Changes
+
+-   0955be7e: - ModalBackdrop: Change initial focus behavior. Focus on the dismiss button (X) by default.
+
+    -   CloseButton: Override `:focus` styles on the dismiss button to make it visually distinct when the focus is set programmatically.
+
+-   Updated dependencies [f4abd572]
+-   Updated dependencies [0955be7e]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.1
+    -   @khanacademy/wonder-blocks-breadcrumbs@3.0.1
+    -   @khanacademy/wonder-blocks-layout@3.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
 ## 6.0.0
 
 ### Major Changes

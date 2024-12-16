@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import UniqueIDFactory from "../unique-id-factory";
 
 describe("UniqueIDFactory", () => {

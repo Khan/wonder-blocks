@@ -14,8 +14,6 @@ import {
     UserEvent,
 } from "@testing-library/user-event";
 
-import {ngettext} from "@khanacademy/wonder-blocks-i18n";
-
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
@@ -868,7 +866,9 @@ describe("MultiSelect", () => {
             const labels: Labels = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
-                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+                    numOptions <= 1
+                        ? `${numOptions} planet`
+                        : `${numOptions} planets`,
             };
 
             const {userEvent} = doRender(
@@ -900,7 +900,9 @@ describe("MultiSelect", () => {
             const labels: Labels = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
-                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+                    numOptions <= 1
+                        ? `${numOptions} planet`
+                        : `${numOptions} planets`,
             };
 
             const {userEvent} = doRender(
@@ -1512,7 +1514,9 @@ describe("MultiSelect", () => {
             const labels: Labels = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
-                    ngettext("%(num)s school", "%(num)s schools", numOptions),
+                    numOptions <= 1
+                        ? `${numOptions} school`
+                        : `${numOptions} schools`,
             };
 
             // Act
@@ -1540,7 +1544,9 @@ describe("MultiSelect", () => {
             const labels: Labels = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
-                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+                    numOptions <= 1
+                        ? `${numOptions} planet`
+                        : `${numOptions} planets`,
             };
 
             const {container, userEvent} = doRender(
@@ -1822,11 +1828,9 @@ describe("MultiSelect", () => {
             const opener = await screen.findByRole("button");
 
             // Assert
-            expect(opener).toHaveAttribute(
-                "id",
-                expect.stringMatching(/^uid-multi-select-opener-\d+-wb-id$/),
-            );
+            expect(opener).toHaveAttribute("id", expect.any(String));
         });
+
         it("Should use the `id` prop if provided", async () => {
             // Arrange
             const id = "test-id";
@@ -1843,6 +1847,7 @@ describe("MultiSelect", () => {
             // Assert
             expect(opener).toHaveAttribute("id", id);
         });
+
         it("Should auto-generate an id for the dropdown if `dropdownId` prop is not provided", async () => {
             // Arrange
             const {userEvent} = doRender(
@@ -1860,11 +1865,9 @@ describe("MultiSelect", () => {
             // Assert
             expect(
                 await screen.findByRole("listbox", {hidden: true}),
-            ).toHaveAttribute(
-                "id",
-                expect.stringMatching(/^uid-multi-select-dropdown-\d+-wb-id$/),
-            );
+            ).toHaveAttribute("id", expect.any(String));
         });
+
         it("Should use the `dropdownId` prop if provided", async () => {
             // Arrange
             const dropdownId = "test-id";
@@ -1924,10 +1927,7 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(opener).toHaveAttribute("aria-controls", dropdown.id);
-            expect(opener).toHaveAttribute(
-                "aria-controls",
-                expect.stringMatching(/^uid-multi-select-dropdown-\d+-wb-id$/),
-            );
+            expect(opener).toHaveAttribute("aria-controls", expect.any(String));
         });
 
         it("Should set the `aria-controls` attribute on the custom opener to the provided dropdownId prop", async () => {
@@ -1977,10 +1977,7 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(opener).toHaveAttribute("aria-controls", dropdown.id);
-            expect(opener).toHaveAttribute(
-                "aria-controls",
-                expect.stringMatching(/^uid-multi-select-dropdown-\d+-wb-id$/),
-            );
+            expect(opener).toHaveAttribute("aria-controls", expect.any(String));
         });
     });
 

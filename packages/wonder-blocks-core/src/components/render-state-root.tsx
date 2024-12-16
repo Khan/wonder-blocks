@@ -1,9 +1,8 @@
 import * as React from "react";
 
-import {RenderState, RenderStateContext} from "./render-state-context";
-import {useRenderState} from "../hooks/use-render-state";
+import {RenderStateInternal, RenderStateContext} from "./render-state-context";
 
-const {useEffect, useState} = React;
+const {useEffect, useState, useContext} = React;
 
 type Props = {
     children: React.ReactNode;
@@ -18,12 +17,12 @@ const RenderStateRoot = ({
     throwIfNested = true,
 }: Props): React.ReactElement => {
     const [firstRender, setFirstRender] = useState<boolean>(true);
-    const renderState = useRenderState();
+    const renderState = useContext(RenderStateContext);
     useEffect(() => {
         setFirstRender(false);
     }, []); // This effect will only run once.
 
-    if (renderState !== RenderState.Root) {
+    if (renderState !== RenderStateInternal.Root) {
         if (throwIfNested) {
             throw new Error(
                 "There's already a <RenderStateRoot> above this instance in " +
@@ -35,7 +34,9 @@ const RenderStateRoot = ({
         return <>{children}</>;
     }
 
-    const value = firstRender ? RenderState.Initial : RenderState.Standard;
+    const value = firstRender
+        ? RenderStateInternal.Initial
+        : RenderStateInternal.Standard;
 
     return (
         <RenderStateContext.Provider value={value}>
