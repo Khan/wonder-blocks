@@ -104,6 +104,7 @@ const AllFields = (
         string | null | undefined
     >(errorMessage);
 
+    /** Refs */
     const textFieldRef = React.createRef<HTMLInputElement>();
     const textAreaRef = React.createRef<HTMLTextAreaElement>();
     const singleSelectRef = React.createRef<HTMLButtonElement>();
@@ -254,7 +255,7 @@ const AllFields = (
                 description={selectDescription}
                 field={
                     <SingleSelect
-                        // ref={singleSelectRef} // TODO once SingleSelect supports ref
+                        // ref={singleSelectRef} // TODO(WB-1841) once SingleSelect supports ref
                         placeholder="Choose a fruit"
                         selectedValue={singleSelectValue}
                         onChange={setSingleSelectValue}
@@ -275,7 +276,7 @@ const AllFields = (
                 description={selectDescription}
                 field={
                     <MultiSelect
-                        // ref={multiSelectRef} // TODO once MultiSelect supports ref
+                        // ref={multiSelectRef} // TODO(WB-1841) once MultiSelect supports ref
                         selectedValues={multiSelectValue}
                         onChange={setMultiSelectValue}
                         onValidate={setMultiSelectErrorMessage}
