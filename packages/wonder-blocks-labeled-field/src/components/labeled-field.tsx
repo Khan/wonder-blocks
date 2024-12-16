@@ -2,12 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
-import {
-    View,
-    addStyle,
-    StyleType,
-    useUniqueIdWithMock,
-} from "@khanacademy/wonder-blocks-core";
+import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -129,8 +124,8 @@ export default function LabeledField(props: Props) {
         labels = defaultLabeledFieldLabels,
     } = props;
 
-    const ids = useUniqueIdWithMock("labeled-field");
-    const uniqueId = id ?? ids.get("id");
+    const generatedUniqueId = React.useId();
+    const uniqueId = id ?? `${generatedUniqueId}-labeled-field`;
     const labelId = `${uniqueId}-label`;
     const descriptionId = `${uniqueId}-description`;
     const fieldId = `${uniqueId}-field`;
