@@ -1,5 +1,5 @@
 import * as React from "react";
-import {renderHook} from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react";
 import {renderToString} from "react-dom/server";
 
 import Server from "../../util/server";
@@ -18,6 +18,10 @@ jest.mock("react", () => {
 });
 
 describe("usePreHydrationEffect", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     describe("client side mode", () => {
         beforeEach(() => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);

@@ -1,13 +1,16 @@
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {ComboboxLabels} from "./types";
 
-export const keyCodes = {
-    tab: 9,
-    enter: 13,
-    escape: 27,
-    space: 32,
-    up: 38,
-    down: 40,
+/**
+ * Key value mapping reference:
+ * https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values
+ */
+export const keys = {
+    escape: "Escape",
+    tab: "Tab",
+    space: " ",
+    up: "ArrowUp",
+    down: "ArrowDown",
 } as const;
 
 export const selectDropdownStyle = {

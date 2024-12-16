@@ -2,9 +2,6 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {StyleSheet} from "aphrodite";
 
-import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
-import {Body} from "@khanacademy/wonder-blocks-typography";
-
 import FieldHeading from "../field-heading";
 import TextField from "../text-field";
 
@@ -178,48 +175,5 @@ describe("FieldHeading", () => {
         // Assert
         const fieldHeading = container.childNodes[0];
         expect(fieldHeading).toHaveStyle("background: blue");
-    });
-
-    it("should render a LabelMedium when the 'label' prop is a I18nInlineMarkup", () => {
-        // Arrange
-
-        // Act
-        render(
-            <FieldHeading
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label={
-                    <I18nInlineMarkup b={(s: string) => <b>{s}</b>}>
-                        {"<b>Test</b> Hello, world!"}
-                    </I18nInlineMarkup>
-                }
-            />,
-        );
-
-        // Assert
-        const label = screen.getByText("Hello, world!");
-        // LabelMedium has a font-size of 16px
-        expect(label).toHaveStyle("font-size: 16px");
-    });
-
-    it("should render a LabelSmall when the 'description' prop is a I18nInlineMarkup", () => {
-        // Arrange
-
-        // Act
-        render(
-            <FieldHeading
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label={<Body>Hello, world</Body>}
-                description={
-                    <I18nInlineMarkup b={(s: string) => <b>{s}</b>}>
-                        {"<b>Test</b> description"}
-                    </I18nInlineMarkup>
-                }
-            />,
-        );
-
-        // Assert
-        const description = screen.getByText("description");
-        // LabelSmall has a font-size of 16px
-        expect(description).toHaveStyle("font-size: 14px");
     });
 });

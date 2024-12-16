@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
 import Tooltip from "../tooltip";
@@ -55,7 +55,7 @@ describe("tooltip integration tests", () => {
     it("should close TooltipBubble on mouseleave on TooltipBubble", async () => {
         // Arrange
         const ue = userEvent.setup({
-            advanceTimers: jest.advanceTimersByTime,
+            advanceTimers: jest.advanceTimersByTimeAsync,
         });
         render(<Tooltip content="hello, world">an anchor</Tooltip>);
 
@@ -82,7 +82,9 @@ describe("tooltip integration tests", () => {
         jest.runAllTimers();
 
         // Assert
-        expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
+        await waitFor(() =>
+            expect(screen.queryByRole("tooltip")).not.toBeInTheDocument(),
+        );
     });
 
     it("should have an opened tooltip when subsequent mouseenter, mouseleave, and mouseenter events occur", async () => {
@@ -92,7 +94,7 @@ describe("tooltip integration tests", () => {
 
         // Arrange
         const ue = userEvent.setup({
-            advanceTimers: jest.advanceTimersByTime,
+            advanceTimers: jest.advanceTimersByTimeAsync,
         });
         render(<Tooltip content="hello, world">an anchor</Tooltip>);
 
@@ -104,7 +106,7 @@ describe("tooltip integration tests", () => {
         await jest.runAllTimers();
         // We add `hidden: true` because the tooltip is initially hidden while
         // it is re-positioned
-        expect(screen.getByRole("tooltip", {hidden: true})).toBeInTheDocument();
+        await screen.findByRole("tooltip", {hidden: true});
         // Trigger mouseleave and mouseenter event and run timers only after
         // both have been triggered. This simulates the mouseenter event being
         // triggered before the tooltip is closed from the mouseleave event

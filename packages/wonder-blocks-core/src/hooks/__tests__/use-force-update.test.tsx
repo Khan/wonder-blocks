@@ -1,6 +1,5 @@
 import * as React from "react";
-import {render, act} from "@testing-library/react";
-import {renderHook} from "@testing-library/react-hooks";
+import {render, act, renderHook, waitFor} from "@testing-library/react";
 
 import {useForceUpdate} from "../use-force-update";
 
@@ -22,7 +21,7 @@ describe("#useForceUpdate", () => {
             jest.useFakeTimers();
         });
 
-        it("should cause component to render when invoked multiple times before a render", () => {
+        it("should cause component to render when invoked multiple times before a render", async () => {
             // Arrange
             const Component = (): React.ReactElement => {
                 const countRef = React.useRef(0);
@@ -49,20 +48,21 @@ describe("#useForceUpdate", () => {
 
             // Act
             const wrapper = render(<Component />);
-            act(() => {
+            await act(() => {
                 // Advance enough for the timeout to run 4 times.
                 // Which means the component should have rendered 4 times,
                 // with one more pending for the timeout that was setup in
                 // the last render.
                 jest.advanceTimersByTime(204);
             });
-            const result = wrapper.container.textContent;
 
             // Assert
-            expect(result).toBe("4");
+            await waitFor(() => {
+                expect(wrapper.container.textContent).toBe("4");
+            });
         });
 
-        it("should cause component to render each time it is invoked after a render", () => {
+        it("should cause component to render each time it is invoked after a render", async () => {
             // Arrange
             const Component = (): React.ReactElement => {
                 const countRef = React.useRef(0);
@@ -85,10 +85,11 @@ describe("#useForceUpdate", () => {
                 // the last render.
                 jest.advanceTimersByTime(204);
             });
-            const result = wrapper.container.textContent;
 
             // Assert
-            expect(result).toBe("4");
+            await waitFor(() => {
+                expect(wrapper.container.textContent).toBe("4");
+            });
         });
 
         it("should cause a consuming hook to update without a render", async () => {
@@ -107,15 +108,15 @@ describe("#useForceUpdate", () => {
             };
 
             // Act
-            const {result, waitForNextUpdate} = renderHook(() => useTestHook());
+            const {result} = renderHook(() => useTestHook());
             const [, updateMe] = result.current;
-            act(() => updateMe());
-            await waitForNextUpdate();
-            act(() => updateMe());
-            await waitForNextUpdate();
+            await act(() => updateMe());
+            await act(() => updateMe());
 
             // Assert
-            expect(result.current[0]).toBe(2);
+            await waitFor(() => {
+                expect(result.current[0]).toBe(2);
+            });
         });
     });
 });

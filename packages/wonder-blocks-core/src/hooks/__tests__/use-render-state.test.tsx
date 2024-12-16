@@ -1,6 +1,6 @@
 import * as React from "react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
-import {renderHook} from "@testing-library/react-hooks";
+import {render} from "@testing-library/react";
 
 import {useRenderState} from "../use-render-state";
 import {RenderStateRoot} from "../../components/render-state-root";
@@ -25,32 +25,46 @@ describe("useRenderState", () => {
     describe("client-side rendering", () => {
         test("first render returns RenderState.Initial", () => {
             // Arrange
-            const wrapper = ({children}: any) => (
-                <RenderStateRoot>{children}</RenderStateRoot>
-            );
+            const mockRenderState = jest.fn();
+
+            const UnderTest = () => {
+                const renderState = useRenderState();
+                // Mock the render state so we can test every state change
+                return mockRenderState(renderState);
+            };
 
             // Act
-            const {result} = renderHook(() => useRenderState(), {
-                wrapper,
+            render(<UnderTest />, {
+                wrapper: RenderStateRoot,
             });
 
             // Assert
-            expect(result.all[0]).toEqual(RenderState.Initial);
+            expect(mockRenderState).toHaveBeenNthCalledWith(
+                1,
+                RenderState.Initial,
+            );
         });
 
-        test("second render returns RenderState.Standard", () => {
+        test("second render returns RenderState.Standard", async () => {
             // Arrange
-            const wrapper = ({children}: any) => (
-                <RenderStateRoot>{children}</RenderStateRoot>
-            );
+            const mockRenderState = jest.fn();
+
+            const UnderTest = () => {
+                const renderState = useRenderState();
+                // Mock the render state so we can test every state change
+                return mockRenderState(renderState);
+            };
 
             // Act
-            const {result} = renderHook(() => useRenderState(), {
-                wrapper,
+            render(<UnderTest />, {
+                wrapper: RenderStateRoot,
             });
 
             // Assert
-            expect(result.all[1]).toEqual(RenderState.Standard);
+            expect(mockRenderState).toHaveBeenNthCalledWith(
+                2,
+                RenderState.Standard,
+            );
         });
     });
 });

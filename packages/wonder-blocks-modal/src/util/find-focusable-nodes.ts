@@ -2,8 +2,7 @@
  * List of elements that can be focused
  * @see https://www.w3.org/TR/html5/editing.html#can-be-focused
  */
-const FOCUSABLE_ELEMENTS =
-    'a[href], details, input, textarea, select, button:not([aria-label^="Close"])';
+const FOCUSABLE_ELEMENTS = "a[href], details, input, textarea, select, button";
 
 export function findFocusableNodes(
     root: HTMLElement | Document,

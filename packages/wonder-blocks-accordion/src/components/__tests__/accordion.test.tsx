@@ -47,8 +47,8 @@ describe("Accordion", () => {
         const button2 = await screen.findByRole("button", {name: "Section 2"});
 
         // Act
-        button1.click();
-        button2.click();
+        await userEvent.click(button1);
+        await userEvent.click(button2);
 
         // Assert
         expect(await screen.findByText("Section 1 content")).toBeVisible();
@@ -128,7 +128,7 @@ describe("Accordion", () => {
 
         // Act
         const button = await screen.findByRole("button", {name: "Section 3"});
-        button.click();
+        await userEvent.click(button);
 
         // Assert
         expect(screen.queryByText("Section 1 content")).not.toBeVisible();

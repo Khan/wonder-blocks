@@ -95,7 +95,7 @@ const parameters = {
     },
 };
 
-export const decorators = [
+const decorators = [
     (Story, context) => {
         const theme = context.globals.theme;
         const enableRenderStateRootDecorator =
@@ -120,6 +120,7 @@ export const decorators = [
 
 const preview: Preview = {
     parameters,
+    decorators,
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {

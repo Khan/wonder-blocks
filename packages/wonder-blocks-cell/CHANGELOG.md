@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-cell
 
+## 4.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f4abd572]
+    -   @khanacademy/wonder-blocks-core@9.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.1
+    -   @khanacademy/wonder-blocks-layout@3.0.1
+    -   @khanacademy/wonder-blocks-typography@3.0.1
+
+## 4.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
+### Patch Changes
+
+-   Updated dependencies [e6abdd17]
+    -   @khanacademy/wonder-blocks-core@8.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.0
+    -   @khanacademy/wonder-blocks-layout@3.0.0
+    -   @khanacademy/wonder-blocks-tokens@3.0.0
+    -   @khanacademy/wonder-blocks-typography@3.0.0
+
 ## 3.4.6
 
 ### Patch Changes

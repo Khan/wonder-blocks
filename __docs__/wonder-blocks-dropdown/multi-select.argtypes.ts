@@ -12,6 +12,7 @@ const argTypes: ArgTypes = {
         table: {
             type: {summary: "Array<string>"},
         },
+        control: {type: "object"},
     },
     labels: {
         control: {type: "object"},
@@ -19,6 +20,18 @@ const argTypes: ArgTypes = {
             "The object containing the custom labels used inside this component.",
         table: {
             type: {summary: "Labels"},
+        },
+    },
+    showOpenerLabelAsText: {
+        control: {type: "boolean"},
+        description: `When false, the SelectOpener can show a Node as a label. When true, the
+         SelectOpener will use a string as a label. If using custom OptionItems, a
+         plain text label can be provided with the \`labelAsText\` prop.
+         Defaults to true.`,
+
+        table: {
+            type: {summary: "boolean"},
+            defaultValue: {summary: "true"},
         },
     },
 };

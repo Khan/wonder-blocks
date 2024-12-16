@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 6.0.0
+
+### Major Changes
+
+-   e6abdd17: Upgrade to React 18
+
 ## 5.0.2
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {RenderState, RenderStateContext} from "./render-state-context";
+import {RenderStateInternal, RenderStateContext} from "./render-state-context";
 
 /**
  * We use render functions so that we don't do any work unless we need to.
@@ -88,7 +88,9 @@ export default class InitialFallback extends React.Component<Props, State> {
             // do their thing. Components don't mount during SSR, so we won't
             // hit this when server-side rendering.
             return (
-                <RenderStateContext.Provider value={RenderState.Standard}>
+                <RenderStateContext.Provider
+                    value={RenderStateInternal.Standard}
+                >
                     {children()}
                 </RenderStateContext.Provider>
             );
@@ -100,7 +102,9 @@ export default class InitialFallback extends React.Component<Props, State> {
         // and they're not in charge of initiating the next render.
         if (fallback) {
             return (
-                <RenderStateContext.Provider value={RenderState.Initial}>
+                <RenderStateContext.Provider
+                    value={RenderStateInternal.Initial}
+                >
                     {fallback()}
                 </RenderStateContext.Provider>
             );
@@ -110,22 +114,20 @@ export default class InitialFallback extends React.Component<Props, State> {
         return null;
     }
 
-    _maybeRender(
-        renderState: typeof RenderState[keyof typeof RenderState],
-    ): React.ReactNode {
+    _maybeRender(renderState: RenderStateInternal): React.ReactNode {
         const {children, fallback} = this.props;
 
         switch (renderState) {
-            case RenderState.Root:
+            case RenderStateInternal.Root:
                 return this._renderAsRootComponent();
 
-            case RenderState.Initial:
+            case RenderStateInternal.Initial:
                 // We're not the root component, so we just have to either
                 // render our placeholder or nothing.
                 // The second render is going to be triggered for us.
                 return fallback ? fallback() : null;
 
-            case RenderState.Standard:
+            case RenderStateInternal.Standard:
                 // We have covered the SSR render, we're now rendering with
                 // standard rendering semantics.
                 return children();
@@ -156,7 +158,7 @@ export default class InitialFallback extends React.Component<Props, State> {
             // We "fallthrough" to the root case. This is more obvious
             // and maintainable code than just ignoring the no-fallthrough
             // lint rule.
-            return this._maybeRender(RenderState.Root);
+            return this._maybeRender(RenderStateInternal.Root);
         }
     }
 

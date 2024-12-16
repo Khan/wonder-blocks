@@ -17,7 +17,6 @@
         {"path": "./packages/wonder-blocks-dropdown/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-form/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-grid/tsconfig-build.json"},
-        {"path": "./packages/wonder-blocks-i18n/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-icon/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-icon-button/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-labeled-field/tsconfig-build.json"},

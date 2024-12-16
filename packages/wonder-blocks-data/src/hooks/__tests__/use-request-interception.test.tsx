@@ -1,5 +1,5 @@
 import * as React from "react";
-import {renderHook} from "@testing-library/react-hooks";
+import {render, renderHook} from "@testing-library/react";
 import InterceptRequests from "../../components/intercept-requests";
 import {useRequestInterception} from "../use-request-interception";
 
@@ -63,25 +63,31 @@ describe("#useRequestInterception", () => {
         expect(result1).not.toBe(result2);
     });
 
-    it("should return a new function if the context changes", () => {
+    it("should return a new function if the context changes", async () => {
         // Arrange
+        const captureHookResult = jest.fn();
         const handler = jest.fn();
-        const interceptor1 = jest.fn();
-        const interceptor2 = jest.fn();
-        const Wrapper = ({children, interceptor}: any): React.ReactElement => (
-            <InterceptRequests interceptor={interceptor}>
-                {children}
-            </InterceptRequests>
-        );
+        const interceptor1 = jest.fn().mockResolvedValue("INTERCEPTED_DATA1");
+        const interceptor2 = jest.fn().mockResolvedValue("INTERCEPTED_DATA2");
+        const HookWrapper = (): React.ReactElement => {
+            const resultToCapture = useRequestInterception("ID", handler);
+            captureHookResult(resultToCapture);
+            return <></>;
+        };
 
         // Act
-        const wrapper = renderHook(
-            () => useRequestInterception("ID", handler),
-            {wrapper: Wrapper, initialProps: {interceptor: interceptor1}},
+        const wrapper = render(
+            <InterceptRequests interceptor={interceptor1}>
+                <HookWrapper />
+            </InterceptRequests>,
         );
-        const result1 = wrapper.result.current;
-        wrapper.rerender({interceptor: interceptor2});
-        const result2 = wrapper.result.current;
+        const result1 = captureHookResult.mock.calls[0][0];
+        wrapper.rerender(
+            <InterceptRequests interceptor={interceptor2}>
+                <HookWrapper />
+            </InterceptRequests>,
+        );
+        const result2 = captureHookResult.mock.calls[1][0];
 
         // Assert
         expect(result1).not.toBe(result2);

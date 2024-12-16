@@ -1,4 +1,5 @@
-import {renderHook, act} from "@testing-library/react-hooks";
+import {renderHook, act} from "@testing-library/react";
+import {hookHarness} from "@khanacademy/wonder-blocks-testing-core";
 import {SchedulePolicy, ClearPolicy, ActionPolicy} from "../../util/policies";
 
 import {useInterval} from "../use-interval";
@@ -14,22 +15,30 @@ describe("useInterval", () => {
 
     it("throws if the action is not a function", () => {
         // Arrange
+        const captureErrorFn = jest.fn();
 
         // Act
-        const {result} = renderHook(() => useInterval(null as any, 1000));
+        renderHook(() => useInterval(null as any, 1000), {
+            wrapper: hookHarness({boundary: captureErrorFn}),
+        });
+        const result = captureErrorFn.mock.calls[0][0];
 
         // Assert
-        expect(result.error).toEqual(Error("Action must be a function"));
+        expect(result).toEqual(Error("Action must be a function"));
     });
 
     it("throws if the period is less than 1", () => {
         // Arrange
+        const captureErrorFn = jest.fn();
 
         // Act
-        const {result} = renderHook(() => useInterval(() => {}, 0));
+        renderHook(() => useInterval(() => {}, 0), {
+            wrapper: hookHarness({boundary: captureErrorFn}),
+        });
+        const result = captureErrorFn.mock.calls[0][0];
 
         // Assert
-        expect(result.error).toEqual(Error("Interval period must be >= 1"));
+        expect(result).toEqual(Error("Interval period must be >= 1"));
     });
 
     it("sets an interval when schedule policy is SchedulePolicy.Immediately", () => {

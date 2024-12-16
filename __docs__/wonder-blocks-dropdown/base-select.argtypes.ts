@@ -30,10 +30,50 @@ const argTypes: ArgTypes = {
     },
 
     error: {
-        description: "Whether this component is in an error state.",
+        description: `Whether this component is in an error state. Use this for
+            errors that are triggered by something external to the component
+            (example: an error after form submission).`,
         table: {
             category: "States",
             defaultValue: {summary: "false"},
+        },
+    },
+
+    required: {
+        description: `Whether this field is required to to continue, or the
+            error message to render if the select is left blank. Pass in a
+            message instead of "true" if possible.`,
+        table: {
+            category: "States",
+            type: {
+                summary: "boolean | string",
+            },
+        },
+        control: {
+            type: undefined,
+        },
+    },
+
+    validate: {
+        description: `Provide a validation for the selected value. Return a
+            string error message or null | void for a valid input.
+            \n Use this for errors that are shown to the user while they are
+            filling out a form.`,
+        table: {
+            category: "States",
+            type: {
+                summary: "(value: string) => ?string",
+            },
+        },
+    },
+
+    onValidate: {
+        description: "Called right after the field is validated.",
+        table: {
+            category: "Events",
+            type: {
+                summary: "(errorMessage: ?string) => mixed",
+            },
         },
     },
 

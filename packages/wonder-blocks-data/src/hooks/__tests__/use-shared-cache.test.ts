@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-unassigned-import
-import "jest-extended";
-import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react";
+import {hookHarness} from "@khanacademy/wonder-blocks-testing-core";
 
 import {useSharedCache, SharedCache} from "../use-shared-cache";
 
@@ -17,12 +16,16 @@ describe("#useSharedCache", () => {
         ${() => "BOO"}
     `("should throw if the id is $id", ({id}: any) => {
         // Arrange
+        const captureErrorFn = jest.fn();
 
         // Act
-        const {result} = clientRenderHook(() => useSharedCache(id, "scope"));
+        renderHook(() => useSharedCache(id, "scope"), {
+            wrapper: hookHarness({boundary: captureErrorFn}),
+        });
+        const result = captureErrorFn.mock.calls[0][0];
 
         // Assert
-        expect(result.error).toMatchSnapshot();
+        expect(result).toMatchSnapshot();
     });
 
     it.each`
@@ -33,12 +36,16 @@ describe("#useSharedCache", () => {
         ${() => "BOO"}
     `("should throw if the scope is $scope", ({scope}: any) => {
         // Arrange
+        const captureErrorFn = jest.fn();
 
         // Act
-        const {result} = clientRenderHook(() => useSharedCache("id", scope));
+        renderHook(() => useSharedCache("id", scope), {
+            wrapper: hookHarness({boundary: captureErrorFn}),
+        });
+        const result = captureErrorFn.mock.calls[0][0];
 
         // Assert
-        expect(result.error).toMatchSnapshot();
+        expect(result).toMatchSnapshot();
     });
 
     it("should return a tuple of two items", () => {
@@ -47,7 +54,7 @@ describe("#useSharedCache", () => {
         // Act
         const {
             result: {current: result},
-        } = clientRenderHook(() => useSharedCache("id", "scope"));
+        } = renderHook(() => useSharedCache("id", "scope"));
 
         // Assert
         expect(result).toBeArrayOfSize(2);
@@ -60,7 +67,7 @@ describe("#useSharedCache", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useSharedCache("id", "scope"));
+            } = renderHook(() => useSharedCache("id", "scope"));
 
             // Assert
             expect(result[0]).toBeNull();
@@ -72,7 +79,7 @@ describe("#useSharedCache", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() =>
+            } = renderHook(() =>
                 useSharedCache("id", "scope", "INITIAL VALUE"),
             );
 
@@ -86,7 +93,7 @@ describe("#useSharedCache", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() =>
+            } = renderHook(() =>
                 useSharedCache("id", "scope", () => "INITIAL VALUE"),
             );
 
@@ -102,7 +109,7 @@ describe("#useSharedCache", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useSharedCache("id", "scope"));
+            } = renderHook(() => useSharedCache("id", "scope"));
 
             // Assert
             expect(result[1]).toBeFunction();
@@ -110,17 +117,17 @@ describe("#useSharedCache", () => {
 
         it("should be the same function if the id and scope remain the same", () => {
             // Arrange
-            const wrapper = clientRenderHook(
+            const wrapper = renderHook(
                 ({id, scope}: any) => useSharedCache(id, scope),
                 {initialProps: {id: "id", scope: "scope"}},
             );
+            const value1 = wrapper.result.current;
 
             // Act
             wrapper.rerender({
                 id: "id",
                 scope: "scope",
             });
-            const value1 = wrapper.result.all[wrapper.result.all.length - 2];
             const value2 = wrapper.result.current;
             const result1 = Array.isArray(value1) ? value1[1] : "BAD1";
             const result2 = Array.isArray(value2) ? value2[1] : "BAD2";
@@ -131,16 +138,16 @@ describe("#useSharedCache", () => {
 
         it("should be a new function if the id changes", () => {
             // Arrange
-            const wrapper = clientRenderHook(
+            const wrapper = renderHook(
                 ({id}: any) => useSharedCache(id, "scope"),
                 {
                     initialProps: {id: "id"},
                 },
             );
+            const value1 = wrapper.result.current;
 
             // Act
             wrapper.rerender({id: "new-id"});
-            const value1 = wrapper.result.all[wrapper.result.all.length - 2];
             const value2 = wrapper.result.current;
             const result1 = Array.isArray(value1) ? value1[1] : "BAD1";
             const result2 = Array.isArray(value2) ? value2[1] : "BAD2";
@@ -151,16 +158,16 @@ describe("#useSharedCache", () => {
 
         it("should be a new function if the scope changes", () => {
             // Arrange
-            const wrapper = clientRenderHook(
+            const wrapper = renderHook(
                 ({scope}: any) => useSharedCache("id", scope),
                 {
                     initialProps: {scope: "scope"},
                 },
             );
+            const value1 = wrapper.result.current;
 
             // Act
             wrapper.rerender({scope: "new-scope"});
-            const value1 = wrapper.result.all[wrapper.result.all.length - 2];
             const value2 = wrapper.result.current;
             const result1 = Array.isArray(value1) ? value1[1] : "BAD1";
             const result2 = Array.isArray(value2) ? value2[1] : "BAD2";
@@ -171,9 +178,7 @@ describe("#useSharedCache", () => {
 
         it("should set the value in the cache", () => {
             // Arrange
-            const wrapper = clientRenderHook(() =>
-                useSharedCache("id", "scope"),
-            );
+            const wrapper = renderHook(() => useSharedCache("id", "scope"));
             const setValue = wrapper.result.current[1];
 
             // Act
@@ -192,9 +197,7 @@ describe("#useSharedCache", () => {
             ${null}
         `("should purge the value from the cache if $value", ({value}: any) => {
             // Arrange
-            const wrapper = clientRenderHook(() =>
-                useSharedCache("id", "scope"),
-            );
+            const wrapper = renderHook(() => useSharedCache("id", "scope"));
             const setValue = wrapper.result.current[1];
             setValue("CACHED_VALUE");
 
@@ -213,8 +216,8 @@ describe("#useSharedCache", () => {
 
     it("should share cache across all uses", () => {
         // Arrange
-        const hook1 = clientRenderHook(() => useSharedCache("id", "scope"));
-        const hook2 = clientRenderHook(() => useSharedCache("id", "scope"));
+        const hook1 = renderHook(() => useSharedCache("id", "scope"));
+        const hook2 = renderHook(() => useSharedCache("id", "scope"));
         hook1.result.current[1]("VALUE_1");
 
         // Act
@@ -231,8 +234,8 @@ describe("#useSharedCache", () => {
         ${"id2"}
     `("should not share cache if scope is different", ({id}: any) => {
         // Arrange
-        const hook1 = clientRenderHook(() => useSharedCache("id1", "scope1"));
-        const hook2 = clientRenderHook(() => useSharedCache(id, "scope2"));
+        const hook1 = renderHook(() => useSharedCache("id1", "scope1"));
+        const hook2 = renderHook(() => useSharedCache(id, "scope2"));
         hook1.result.current[1]("VALUE_1");
 
         // Act
@@ -249,8 +252,8 @@ describe("#useSharedCache", () => {
         ${"scope2"}
     `("should not share cache if id is different", ({scope}: any) => {
         // Arrange
-        const hook1 = clientRenderHook(() => useSharedCache("id1", "scope1"));
-        const hook2 = clientRenderHook(() => useSharedCache("id2", scope));
+        const hook1 = renderHook(() => useSharedCache("id1", "scope1"));
+        const hook2 = renderHook(() => useSharedCache("id2", scope));
         hook1.result.current[1]("VALUE_1");
 
         // Act

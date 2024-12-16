@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import * as React from "react";
 import {render} from "@testing-library/react";
 import {renderHookStatic} from "@khanacademy/wonder-blocks-testing-core";
@@ -43,7 +44,7 @@ describe("useUniqueIdWithoutMock", () => {
         expect(factoryValues[0]).toBe(null);
     });
 
-    test("second client render retursn a unique id factory", () => {
+    test("second client render returns a unique id factory", () => {
         // Arrange
         const factoryValues: Array<any> = [];
         const TestComponent = (): React.ReactElement | null => {
@@ -89,20 +90,7 @@ describe("useUniqueIdWithoutMock", () => {
         expect(factoryValues[1]).toBe(factoryValues[2]);
     });
 
-    it("should throw an error if it isn't a descendant of <RenderStateRoot>", () => {
-        // Arrange
-
-        // Act
-        const underTest = () =>
-            renderHookStatic(() => useUniqueIdWithoutMock());
-
-        // Assert
-        expect(underTest).toThrowErrorMatchingInlineSnapshot(
-            `"Components using useUniqueIdWithoutMock() should be descendants of <RenderStateRoot>"`,
-        );
-    });
-
-    it("Should minimize the number of renders it does", () => {
+    it("should minimize the number of renders it does", () => {
         // Arrange
         const values1: Array<any> = [];
         const TestComponent1 = (): React.ReactElement | null => {
@@ -211,19 +199,6 @@ describe("useUniqueIdWithMock", () => {
 
         // Assert
         expect(factoryValues[1]).toBe(factoryValues[2]);
-    });
-
-    it("should throw an error if it isn't a descendant of <RenderStateRoot>", () => {
-        // Arrange
-
-        // Act
-        const underTest = () =>
-            renderHookStatic(() => useUniqueIdWithoutMock());
-
-        // Assert
-        expect(underTest).toThrowErrorMatchingInlineSnapshot(
-            `"Components using useUniqueIdWithoutMock() should be descendants of <RenderStateRoot>"`,
-        );
     });
 
     it("Should minimize the number of renders it does", () => {

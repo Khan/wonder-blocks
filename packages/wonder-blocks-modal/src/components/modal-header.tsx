@@ -71,7 +71,8 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
  *   ModalHeader doesn’t have to have the `titleId` prop however this is
  *   recommended. It should match the `aria-labelledby` prop of the
  *   [ModalDialog](/#modaldialog) component. If you want to see an example of
- *   how to generate this ID, check [IDProvider](/#idprovider).
+ *   how to generate this ID look at the `React.useId` hook documentation, o
+ *   check [Id](/#id).
  *
  * **Implementation notes:**
  *
@@ -124,6 +125,7 @@ export default function ModalHeader(props: Props) {
                 <View style={styles.breadcrumbs}>{breadcrumbs}</View>
             )}
             <HeadingMedium
+                tag="h2"
                 style={styles.title}
                 id={titleId}
                 testId={testId && `${testId}-title`}

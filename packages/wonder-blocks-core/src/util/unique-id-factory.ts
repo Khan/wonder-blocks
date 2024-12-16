@@ -1,9 +1,13 @@
+/* eslint-disable import/no-deprecated */
 import type {IIdentifierFactory} from "./types";
 
 /**
  * This is NOT for direct use. Instead, see the UniqueIDProvider component.
  *
  * Implements IIdentifierFactory to provide unique identifiers.
+ *
+ * @deprecated Use `useId` for your ID needs. If you are in a class-based
+ * component and cannot use hooks, then use the `Id` component.
  */
 export default class UniqueIDFactory implements IIdentifierFactory {
     _uniqueFactoryName: string;
