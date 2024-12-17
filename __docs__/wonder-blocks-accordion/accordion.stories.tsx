@@ -611,6 +611,7 @@ export const BackgroundColorExample: StoryComponentType = {
     render: () => {
         const accordionSectionStyle = {
             backgroundColor: tokens.color.fadedBlue,
+            borderColor: tokens.color.offBlack16,
         };
 
         const sections = [
