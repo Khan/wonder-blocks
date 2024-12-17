@@ -327,8 +327,9 @@ const AllFields = (
  * - `MultiSelect`
  * - `SearchField`
  *
- * LabeledField works best with field components that accept `error` and
- * `required` props since these props will get auto-populated by LabeledField.
+ * LabeledField works best with field components that accept `error`, `light`,
+ * and `required` props since these props will get auto-populated by
+ * LabeledField.
  */
 export const Fields: StoryComponentType = {
     args: {
@@ -562,4 +563,19 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
             />
         </View>
     );
+};
+
+/**
+ * Here is an example where LabeledField is used with a custom element.
+ */
+export const WithNonWb = {
+    render() {
+        return <LabeledField label="Label" field={<input type="text" />} />;
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
 };
