@@ -4,7 +4,6 @@ import {StyleSheet} from "aphrodite";
 import {
     AriaProps,
     StyleType,
-    useUniqueIdWithMock,
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
@@ -16,6 +15,7 @@ import {
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {useId} from "react";
 import {useFieldValidation} from "../hooks/use-field-validation";
 
 type TextAreaProps = AriaProps & {
@@ -244,8 +244,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         const hasError = error || !!errorMessage;
 
-        const ids = useUniqueIdWithMock("text-area");
-        const uniqueId = id ?? ids.get("id");
+        const generatedUniqueId = useId();
+        const uniqueId = id ?? generatedUniqueId;
 
         const handleChange = (
             event: React.ChangeEvent<HTMLTextAreaElement>,

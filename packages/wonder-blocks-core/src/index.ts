@@ -1,5 +1,6 @@
 import type {
     AriaProps,
+    // eslint-disable-next-line import/no-deprecated
     IIdentifierFactory,
     StyleType,
     PropsFor,
@@ -12,6 +13,7 @@ export {default as IDProvider} from "./components/id-provider";
 export {default as UniqueIDProvider} from "./components/unique-id-provider";
 export {default as addStyle} from "./util/add-style";
 export {default as Server} from "./util/server";
+export {Id} from "./components/id";
 export {
     useUniqueIdWithMock,
     useUniqueIdWithoutMock,
@@ -27,4 +29,5 @@ export {RenderStateRoot} from "./components/render-state-root";
 export {RenderState} from "./components/render-state-context";
 export type {AriaRole, AriaAttributes} from "./util/aria-types";
 
+// eslint-disable-next-line import/no-deprecated
 export type {AriaProps, IIdentifierFactory, StyleType, PropsFor};

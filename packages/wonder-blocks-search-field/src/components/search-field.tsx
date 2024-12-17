@@ -5,7 +5,7 @@ import xIcon from "@phosphor-icons/core/regular/x.svg";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {View, IDProvider} from "@khanacademy/wonder-blocks-core";
+import {View, Id} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -191,7 +191,7 @@ const SearchField: React.ForwardRefExoticComponent<
     };
 
     return (
-        <IDProvider id={id} scope="search-field">
+        <Id id={id}>
             {(uniqueId) => (
                 <View onClick={onClick} style={[styles.inputContainer, style]}>
                     <PhosphorIcon
@@ -241,7 +241,7 @@ const SearchField: React.ForwardRefExoticComponent<
                     {maybeRenderClearIconButton()}
                 </View>
             )}
-        </IDProvider>
+        </Id>
     );
 });
 
