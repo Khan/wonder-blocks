@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 11.0.0
+
+### Major Changes
+
+-   d23c9c5f: Delete the custom identifier generation API
+
 ## 10.0.0
 
 ### Major Changes
