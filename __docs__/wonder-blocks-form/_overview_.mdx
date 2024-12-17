@@ -1,5 +1,6 @@
 import {Meta, Story, Canvas} from "@storybook/blocks";
 import * as AccessibilityStories from './accessibility.stories';
+import * as LabeledFieldStories from '../wonder-blocks-labeled-field/labeled-field.stories';
 
 <Meta
     title="Packages / Form / Overview"
@@ -47,4 +48,11 @@ user is done interacting with a field.
 - Avoid disabling form submission buttons. There could be exceptions if the
 button is for one field.
 - If there are errors after a form is submitted, programatically move the user's
-focus to the first field with an error
+focus to the first field with an error.
+
+Here is an example of validation behaviour in a form. It validates when a
+user is done filling out a field and also shows a validation error once
+the form is submitted (this simulates a backend validation error). When the form
+is submitted, the focus is also moved to the first field with an error.
+
+<Canvas of={LabeledFieldStories.Validation} />
