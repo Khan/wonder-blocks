@@ -566,11 +566,30 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
 };
 
 /**
- * Here is an example where LabeledField is used with a custom element.
+ * Here is an example where LabeledField is used with a non-Wonder Blocks
+ * component.
+ *
+ * Although it can be used with custom components, it is recommended that
+ * LabeledField is used with the following Wonder Blocks components:
+ * - TextField
+ * - TextArea
+ * - SearchField
+ * - SingleSelect
+ * - MultiSelect
+ *
+ * This is recommended because LabeledField will inject WB specific props:
+ * `required`, `error`, `light`, and `testId`. The `field` component should
+ * handle these props accordingly. This is helpful because for example,
+ * if LabeledField has an error message, the field should also be in an error state.
+ * If the `field` component doesn't support these props, there will be console warnings.
  */
 export const WithNonWb = {
-    render() {
-        return <LabeledField label="Label" field={<input type="text" />} />;
+    args: {
+        label: "Label",
+        description: "Description",
+        errorMessage: "Error message",
+        required: true,
+        field: <input type="text" />,
     },
     parameters: {
         chromatic: {
