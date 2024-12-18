@@ -569,6 +569,7 @@ const MultiSelect = (props: Props) => {
                             disabled={isDisabled}
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
+                            placeholder={noneSelected}
                             isPlaceholder={menuText === noneSelected}
                             light={light}
                             onOpenChanged={handleOpenChanged}
