@@ -28,7 +28,7 @@ const theme = mergeTheme(defaultTheme, {
         },
         text: {
             icon: {
-                secondaryHover: tokens.color.blue,
+                secondaryHover: tokens.semanticColor.icon.action,
             },
         },
     },
