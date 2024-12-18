@@ -1,4 +1,6 @@
-import {Meta} from "@storybook/blocks";
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as AccessibilityStories from './accessibility.stories';
+import * as LabeledFieldStories from '../wonder-blocks-labeled-field/labeled-field.stories';
 
 <Meta
     title="Packages / Form / Overview"
@@ -6,5 +8,51 @@ import {Meta} from "@storybook/blocks";
 
 # Form
 
-`wonder-blocks-form` provides building blocks form Form components, including
+`wonder-blocks-form` provides building blocks for Form components, including
 TextField, TextArea, Choice, Checkbox, RadioButton, etc.
+
+
+## Best Practices
+
+### Form Field Labels
+
+- Use form field components with the `LabeledField` component. `LabeledField`
+provides a consistent pattern for things like the label,
+description, required indicator, and error message for a field. It will also
+provide unique ids automatically and wire up the proper attributes for
+accessibility. Use `LabeledField` for the following components:
+  - `TextField`
+  - `TextArea`
+  - `SingleSelect`
+  - `MultiSelect`
+  - `SearchField`
+- If you are using the `CheckboxGroup` or `RadioGroup` components, use the
+`label` prop for an accessible field label. This uses `<fieldset>` and
+`<legend>` elements instead of a `<label>` since the label is for a group of
+related controls. See [Grouping Controls](https://www.w3.org/WAI/tutorials/forms/grouping/)
+for more details!
+- For custom implementations of field labels:
+  - Make sure the id of the form field element is unique to the page
+  - When using Wonder Blocks typography components for the form field label,
+  set the `tag` prop to `label` to change the underlying element to render and
+  use the `htmlFor` prop. Here is an example of a form field label using Wonder
+  Blocks components `LabelMedium` and `TextArea`:
+
+<Canvas of={AccessibilityStories.FormLabelExample} />
+
+### Error Validation
+
+- For fields like `TextField`, `TextArea`, and `SearchField` prefer setting
+`instantValidation=false`. This makes it so validation occurs on blur after a
+user is done interacting with a field.
+- Avoid disabling form submission buttons. There could be exceptions if the
+button is for one field.
+- If there are errors after a form is submitted, programatically move the user's
+focus to the first field with an error.
+
+Here is an example of validation behaviour in a form. It validates when a
+user is done filling out a field and also shows a validation error once
+the form is submitted (this simulates a backend validation error). When the form
+is submitted, the focus is also moved to the first field with an error.
+
+<Canvas of={LabeledFieldStories.Validation} />

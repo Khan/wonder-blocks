@@ -6,7 +6,7 @@ import {TextArea} from "@khanacademy/wonder-blocks-form";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
-    title: "Packages / Form / Accessibility",
+    title: "Packages / Form / Overview", // Named the same as overiew docs to hide it from the sidebar
     parameters: {
         previewTabs: {
             canvas: {

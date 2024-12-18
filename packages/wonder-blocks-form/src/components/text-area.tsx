@@ -305,6 +305,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     wrap={wrap}
                     minLength={minLength}
                     maxLength={maxLength}
+                    aria-required={!!required}
                     onClick={disabled ? undefined : onClick}
                     onKeyDown={disabled ? undefined : onKeyDown}
                     onKeyUp={disabled ? undefined : onKeyUp}
