@@ -252,7 +252,7 @@ export default function LabeledField(props: Props) {
                 .join(" "),
             required: isRequired,
             error: hasError,
-            testId: testId && `${testId}-field`,
+            testId: testId ? `${testId}-field` : undefined,
             light: isLight,
         });
     }
