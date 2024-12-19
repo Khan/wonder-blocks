@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 6.0.2
+
+### Patch Changes
+
+-   361cb52b: Adds `width: 100%` to `legend` element to allow expanding it to fill the available space
+
 ## 6.0.1
 
 ### Patch Changes
