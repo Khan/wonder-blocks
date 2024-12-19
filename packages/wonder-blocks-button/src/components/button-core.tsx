@@ -486,7 +486,8 @@ export const _generateStyles = (
         };
         const activePressedStyling = {
             color: light ? fadedColor : activeColor,
-            textDecoration: `underline ${theme.size.underline.active}px`,
+            textDecoration: "underline",
+            textDecorationThickness: theme.size.underline.active,
         };
 
         newStyles = {
@@ -497,7 +498,8 @@ export const _generateStyles = (
                 paddingRight: 0,
                 [":hover:not([aria-disabled=true])" as any]: {
                     textUnderlineOffset: theme.font.offset.default,
-                    textDecoration: `underline ${theme.size.underline.hover}px`,
+                    textDecoration: "underline",
+                    textDecorationThickness: theme.size.underline.hover,
                 },
                 [":focus-visible:not([aria-disabled=true])" as any]:
                     focusStyling,
