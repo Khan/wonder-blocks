@@ -79,3 +79,24 @@
     font-size: var(--typography-heading-size-xs);
     line-height: var(--typography-heading-line-height-xs);
 }
+
+.showAnnouncer.sb-show-main #wbAnnounce {
+    bottom: 0;
+    display: block !important;
+    clip: revert !important;
+    position: fixed !important;
+}
+
+.showAnnouncer.sb-show-main .wbARegion {
+    border: 1px solid red;
+    margin-bottom: 0.5em;
+}
+
+.showAnnouncer.sb-show-main .wbARegion::before {
+    background-color: white;
+    border: 1px solid red;
+    content: attr(id) / "";
+    display: block;
+    font-size: 0.75rem;
+    padding: 0.25em;
+}
