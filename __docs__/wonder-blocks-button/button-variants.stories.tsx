@@ -20,6 +20,12 @@ export default {
         docs: {
             autodocs: false,
         },
+        chromatic: {
+            // NOTE: This is required to prevent Chromatic from cutting off the
+            // dark background in screenshots (accounts for all the space taken
+            // by the variants).
+            viewports: [1700],
+        },
     },
 } as Meta;
 
