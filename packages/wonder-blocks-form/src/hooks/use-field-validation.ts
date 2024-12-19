@@ -84,14 +84,12 @@ export const useFieldValidation = ({
         if (instantValidation) {
             handleValidation(newValue);
         } else {
-            if (errorMessage) {
-                // If instantValidation is false and there is an error
-                // message, error needs to be cleared when the user updates
-                // the value
-                setErrorMessage(null);
-                if (onValidate) {
-                    onValidate(null);
-                }
+            // If instantValidation is false and there is an error
+            // message, error needs to be cleared when the user updates
+            // the value
+            setErrorMessage(null);
+            if (onValidate) {
+                onValidate(null);
             }
         }
     };

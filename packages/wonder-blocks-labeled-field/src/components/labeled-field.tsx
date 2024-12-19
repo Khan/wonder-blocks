@@ -2,12 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
-import {
-    View,
-    addStyle,
-    StyleType,
-    useUniqueIdWithMock,
-} from "@khanacademy/wonder-blocks-core";
+import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -27,17 +22,38 @@ type Props = {
      */
     description?: React.ReactNode;
     /**
-     * Whether this field is required to continue.
+     * Whether this field is required to to continue, or the error message to
+     * render if this field is left blank. This is passed into the field
+     * component.
+     *
+     * This can be a boolean or a string.
+     *
+     * String:
+     * Please pass in a translated string to use as the error message that will
+     * render if the user leaves this field blank. If this field is required,
+     * and a string is not passed in, a default untranslated string will render
+     * upon error.
+     * Note: The string will not be used if a `validate` prop is passed in.
+     *
+     * Example message: i18n._("A password is required to log in.")
+     *
+     * Boolean:
+     * True/false indicating whether this field is required. Please do not pass
+     * in `true` if possible - pass in the error string instead.
+     * If `true` is passed, and a `validate` prop is not passed, that means
+     * there is no corresponding message and the default untranlsated message
+     * will be used.
      */
-    required?: boolean;
+    required?: boolean | string;
     /**
-     * The message for the error element.
+     * The message for the error element. If there is a message, it will also
+     * set the `error` prop on the `field` component.
      *
      * Note: Since the error icon has an aria-label, screen readers will
      * prefix the error message with "Error:" (or the value provided to the
      * errorIconAriaLabel in the `labels` prop)
      */
-    error?: React.ReactNode;
+    errorMessage?: React.ReactNode;
     /**
      * Custom styles for the labeled field container.
      */
@@ -90,8 +106,9 @@ const defaultLabeledFieldLabels: LabeledFieldLabels = {
 const StyledSpan = addStyle("span");
 
 /**
- * A LabeledField is an element that provides a label, description, and error element
- * to present better context and hints to any type of form field component.
+ * A LabeledField is an element that provides a label, required indicator,
+ * description, and error to present better context and hints to any type of
+ * form field component.
  */
 export default function LabeledField(props: Props) {
     const {
@@ -103,23 +120,27 @@ export default function LabeledField(props: Props) {
         testId,
         light,
         description,
-        error,
+        errorMessage,
         labels = defaultLabeledFieldLabels,
     } = props;
 
-    const ids = useUniqueIdWithMock("labeled-field");
-    const uniqueId = id ?? ids.get("id");
+    const generatedUniqueId = React.useId();
+    const uniqueId = id ?? `${generatedUniqueId}-labeled-field`;
     const labelId = `${uniqueId}-label`;
     const descriptionId = `${uniqueId}-description`;
     const fieldId = `${uniqueId}-field`;
     const errorId = `${uniqueId}-error`;
+
+    const isRequired = !!required || !!field.props.required;
+    const hasError = !!errorMessage || !!field.props.error;
+    const isLight = light || field.props.light;
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
                 style={[
                     styles.textWordBreak,
-                    light ? styles.lightRequired : styles.required,
+                    isLight ? styles.lightRequired : styles.required,
                 ]}
                 aria-hidden={true}
             >
@@ -133,7 +154,7 @@ export default function LabeledField(props: Props) {
                 <LabelMedium
                     style={[
                         styles.textWordBreak,
-                        light ? styles.lightLabel : styles.label,
+                        isLight ? styles.lightLabel : styles.label,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
@@ -141,7 +162,7 @@ export default function LabeledField(props: Props) {
                     id={labelId}
                 >
                     {label}
-                    {required && requiredIcon}
+                    {isRequired && requiredIcon}
                 </LabelMedium>
                 <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
@@ -158,7 +179,7 @@ export default function LabeledField(props: Props) {
                 <LabelSmall
                     style={[
                         styles.textWordBreak,
-                        light ? styles.lightDescription : styles.description,
+                        isLight ? styles.lightDescription : styles.description,
                     ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
@@ -173,9 +194,13 @@ export default function LabeledField(props: Props) {
     function maybeRenderError(): React.ReactNode | null | undefined {
         return (
             <React.Fragment>
-                <Strut size={spacing.small_12} />
                 <View
-                    style={styles.errorSection}
+                    style={[
+                        styles.errorSection,
+                        errorMessage
+                            ? styles.errorSectionWithContent
+                            : undefined,
+                    ]}
                     id={errorId}
                     testId={testId && `${testId}-error`}
                     // We use aria-live="assertive" for the error so that it is
@@ -189,13 +214,13 @@ export default function LabeledField(props: Props) {
                     // is announced
                     aria-atomic="true"
                 >
-                    {error && (
+                    {errorMessage && (
                         <>
                             <PhosphorIcon
                                 icon={WarningCircle}
                                 style={[
                                     styles.errorIcon,
-                                    light ? styles.lightError : styles.error,
+                                    isLight ? styles.lightError : styles.error,
                                 ]}
                                 role="img"
                                 aria-label={labels.errorIconAriaLabel}
@@ -204,10 +229,10 @@ export default function LabeledField(props: Props) {
                                 style={[
                                     styles.textWordBreak,
                                     styles.errorMessage,
-                                    light ? styles.lightError : styles.error,
+                                    isLight ? styles.lightError : styles.error,
                                 ]}
                             >
-                                {error}
+                                {errorMessage}
                             </LabelSmall>
                         </>
                     )}
@@ -219,11 +244,16 @@ export default function LabeledField(props: Props) {
     function renderField() {
         return React.cloneElement(field, {
             id: fieldId,
-            "aria-describedby": [error && errorId, description && descriptionId]
+            "aria-describedby": [
+                errorMessage && errorId,
+                description && descriptionId,
+            ]
                 .filter(Boolean)
                 .join(" "),
-            required,
-            testId: testId && `${testId}-field`,
+            required: isRequired,
+            error: hasError,
+            testId: testId ? `${testId}-field` : undefined,
+            light: isLight,
         });
     }
 
@@ -254,6 +284,9 @@ const styles = StyleSheet.create({
     errorSection: {
         flexDirection: "row",
         gap: spacing.xSmall_8,
+    },
+    errorSectionWithContent: {
+        paddingTop: spacing.small_12,
     },
     error: {
         color: semanticColor.status.critical.foreground,
