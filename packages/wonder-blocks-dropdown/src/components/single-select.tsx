@@ -463,6 +463,7 @@ const SingleSelect = (props: Props) => {
                     ) : (
                         <SelectOpener
                             {...sharedProps}
+                            placeholder={placeholder}
                             aria-controls={dropdownId}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
