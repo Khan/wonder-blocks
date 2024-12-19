@@ -15,6 +15,8 @@ const styles: StyleDeclaration = StyleSheet.create({
 
     legend: {
         padding: 0,
+        // Let the legend use the size defined by the parent.
+        width: "100%",
     },
 
     description: {

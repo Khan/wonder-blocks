@@ -2,7 +2,9 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
@@ -223,6 +225,36 @@ FiltersOutFalsyChildren.parameters = {
     chromatic: {
         // The unit tests already verify that false-y children aren't rendered.
         disableSnapshot: true,
+    },
+};
+
+/**
+ * There are specific situations where you might want to use a custom label
+ * component instead of using the default `LabelMedium` component. This example
+ * demonstrates how to use a custom label component that can be passed in as a
+ * prop to the `RadioGroup` component.
+ */
+export const CustomLabel: StoryComponentType = {
+    ...Default,
+    args: {
+        style: {
+            // Adding an arbitrary width to the radio group to demonstrate how
+            // the custom label component expands to fill the available space.
+            width: 400,
+        },
+        label: (
+            <View
+                style={{
+                    border: `1px dashed ${semanticColor.border.strong}`,
+                    padding: spacing.medium_16,
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                }}
+            >
+                <LabelLarge>Pokemon</LabelLarge>
+                <LabelMedium>(optional)</LabelMedium>
+            </View>
+        ),
     },
 };
 
