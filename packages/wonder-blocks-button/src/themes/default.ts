@@ -1,5 +1,10 @@
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
+// The underline-offset is the distance between the text baseline and the
+// bottom of the underline. This is necessary to prevent the underline from
+// breaking with descenders.
+const textUnderlineOffset = tokens.spacing.xxxSmall_4;
+
 const theme = {
     color: {
         bg: {
@@ -106,8 +111,6 @@ const theme = {
         radius: {
             // default
             default: tokens.border.radius.medium_4,
-            // tertiary
-            // tertiary: tokens.border.radius.xSmall_2,
             // small button
             small: tokens.border.radius.medium_4,
             // large button
@@ -125,6 +128,10 @@ const theme = {
             // NOTE: These height tokens are specific to this component.
             medium: 40,
             large: 56,
+        },
+        underline: {
+            hover: tokens.spacing.xxxxSmall_2,
+            active: 1,
         },
     },
     margin: {
@@ -145,10 +152,15 @@ const theme = {
             large: 18,
         },
         lineHeight: {
-            large: tokens.font.lineHeight.medium,
+            small: tokens.font.lineHeight.small + textUnderlineOffset,
+            default: tokens.font.lineHeight.medium + textUnderlineOffset,
+            large: tokens.font.lineHeight.medium + 2 + textUnderlineOffset,
         },
         weight: {
             default: tokens.font.weight.bold,
+        },
+        offset: {
+            default: textUnderlineOffset,
         },
     },
 };

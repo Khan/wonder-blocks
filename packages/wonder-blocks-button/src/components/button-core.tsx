@@ -110,6 +110,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
             <Label
                 style={[
                     sharedStyles.text,
+                    size === "small" && sharedStyles.smallText,
                     size === "large" && sharedStyles.largeText,
                     labelStyle,
                     spinner && sharedStyles.hiddenText,
@@ -276,13 +277,15 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         alignItems: "center",
         fontWeight: theme.font.weight.default,
         whiteSpace: "nowrap",
-        // TODO(juan): Figure out how to use text-underline with this for
-        // tertiary variant
         overflow: "hidden",
-        // contain: "paint",
+        // To account for the underline-offset in tertiary buttons
+        lineHeight: `${theme.font.lineHeight.default}px`,
         textOverflow: "ellipsis",
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
+    },
+    smallText: {
+        lineHeight: `${theme.font.lineHeight.small}px`,
     },
     largeText: {
         fontSize: theme.font.size.large,
@@ -383,14 +386,15 @@ export const _generateStyles = (
                 color: light ? color : theme.color.text.inverse,
                 paddingLeft: padding,
                 paddingRight: padding,
-                // TODO(juan): Change this when we get final designs for hover.
+                // TODO(WB-1844): Change this when we get final designs for
+                // hover.
                 [":hover:not([aria-disabled=true])" as any]: focusStyling,
                 [":focus-visible:not([aria-disabled=true])" as any]:
                     focusStyling,
                 [":active:not([aria-disabled=true])" as any]:
                     activePressedStyling,
             },
-            // focused: focusStyling,
+            focused: focusStyling,
             pressed: activePressedStyling,
             disabled: {
                 background: light
@@ -448,6 +452,8 @@ export const _generateStyles = (
                 borderWidth: theme.border.width.secondary,
                 paddingLeft: padding,
                 paddingRight: padding,
+                // TODO(WB-1844): Change this when we get final designs for
+                // hover.
                 [":hover:not([aria-disabled=true])" as any]: focusStyling,
                 [":focus-visible:not([aria-disabled=true])" as any]:
                     focusStyling,
@@ -480,6 +486,7 @@ export const _generateStyles = (
         };
         const activePressedStyling = {
             color: light ? fadedColor : activeColor,
+            textDecoration: `underline ${theme.size.underline.active}px`,
         };
 
         newStyles = {
@@ -489,8 +496,8 @@ export const _generateStyles = (
                 paddingLeft: 0,
                 paddingRight: 0,
                 [":hover:not([aria-disabled=true])" as any]: {
-                    textUnderlineOffset: 3,
-                    textDecoration: "underline",
+                    textUnderlineOffset: theme.font.offset.default,
+                    textDecoration: `underline ${theme.size.underline.hover}px`,
                 },
                 [":focus-visible:not([aria-disabled=true])" as any]:
                     focusStyling,

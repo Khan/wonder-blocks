@@ -135,24 +135,6 @@ export const Tertiary: StoryComponentType = {
     },
 };
 
-export const Focus: StoryComponentType = {
-    args: {
-        onClick: () => {},
-        kind: "primary",
-        children: "Hello, world!",
-    },
-    play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
-
-        // Get HTML elements
-        const button = canvas.getByRole("button");
-
-        // Focus style
-        await userEvent.tab(button);
-        await expect(button).toHaveFocus();
-    },
-};
-
 export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
