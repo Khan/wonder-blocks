@@ -283,32 +283,29 @@ const ControlledMultiSelect = (
         null | string | void
     >(null);
     return (
-        <View style={{gap: spacing.xSmall_8}}>
-            <LabeledField
-                label={label || "MultiSelect"}
-                errorMessage={
-                    errorMessage || (args.error && "Error from error prop")
-                }
-                field={
-                    <MultiSelect
-                        {...args}
-                        id="multi-select"
-                        opened={opened}
-                        onToggle={setOpened}
-                        selectedValues={selectedValues}
-                        onChange={setSelectedValues}
-                        validate={(values) => {
-                            if (values.includes("jupiter")) {
-                                return "Don't pick jupiter!";
-                            }
-                        }}
-                        onValidate={setErrorMessage}
-                    >
-                        {items}
-                    </MultiSelect>
-                }
-            />
-        </View>
+        <LabeledField
+            label={label || "MultiSelect"}
+            errorMessage={
+                errorMessage || (args.error && "Error from error prop")
+            }
+            field={
+                <MultiSelect
+                    {...args}
+                    opened={opened}
+                    onToggle={setOpened}
+                    selectedValues={selectedValues}
+                    onChange={setSelectedValues}
+                    validate={(values) => {
+                        if (values.includes("jupiter")) {
+                            return "Don't pick jupiter!";
+                        }
+                    }}
+                    onValidate={setErrorMessage}
+                >
+                    {items}
+                </MultiSelect>
+            }
+        />
     );
 };
 
@@ -382,7 +379,7 @@ export const Required: StoryComponentType = {
 export const ErrorFromValidation: StoryComponentType = {
     render: (args: PropsFor<typeof MultiSelect>) => {
         return (
-            <View style={{gap: spacing.xSmall_8}}>
+            <View style={{gap: spacing.large_24}}>
                 <ControlledMultiSelect
                     {...args}
                     label="Validation example (try picking jupiter)"
@@ -393,7 +390,6 @@ export const ErrorFromValidation: StoryComponentType = {
                     {...args}
                     label="Validation example (on mount)"
                     selectedValues={["jupiter"]}
-                    id="multi-select"
                 >
                     {items}
                 </ControlledMultiSelect>

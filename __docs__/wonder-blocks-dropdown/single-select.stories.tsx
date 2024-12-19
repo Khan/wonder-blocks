@@ -400,33 +400,30 @@ const ControlledSingleSelect = (
         null | string | void
     >(null);
     return (
-        <View style={{gap: spacing.xSmall_8}}>
-            <LabeledField
-                label={label || "SingleSelect"}
-                errorMessage={
-                    errorMessage || (args.error && "Error from error prop")
-                }
-                field={
-                    <SingleSelect
-                        {...args}
-                        id="single-select"
-                        opened={opened}
-                        onToggle={setOpened}
-                        selectedValue={selectedValue}
-                        onChange={setSelectedValue}
-                        placeholder="Choose a fruit"
-                        validate={(value) => {
-                            if (value === "lemon") {
-                                return "Pick another option!";
-                            }
-                        }}
-                        onValidate={setErrorMessage}
-                    >
-                        {items}
-                    </SingleSelect>
-                }
-            />
-        </View>
+        <LabeledField
+            label={label || "SingleSelect"}
+            errorMessage={
+                errorMessage || (args.error && "Error from error prop")
+            }
+            field={
+                <SingleSelect
+                    {...args}
+                    opened={opened}
+                    onToggle={setOpened}
+                    selectedValue={selectedValue}
+                    onChange={setSelectedValue}
+                    placeholder="Choose a fruit"
+                    validate={(value) => {
+                        if (value === "lemon") {
+                            return "Pick another option!";
+                        }
+                    }}
+                    onValidate={setErrorMessage}
+                >
+                    {items}
+                </SingleSelect>
+            }
+        />
     );
 };
 
@@ -500,7 +497,7 @@ export const Required: StoryComponentType = {
 export const ErrorFromValidation: StoryComponentType = {
     render: (args: PropsFor<typeof SingleSelect>) => {
         return (
-            <View style={{gap: spacing.xSmall_8}}>
+            <View style={{gap: spacing.large_24}}>
                 <ControlledSingleSelect
                     {...args}
                     label="Validation example (try picking lemon to trigger an error)"
