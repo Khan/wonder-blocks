@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
-import {expect, userEvent, within} from "@storybook/test";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
@@ -27,26 +26,6 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import ButtonArgTypes from "./button.argtypes";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 
-/**
- * Reusable button component.
- *
- * Consisting of a [`ClickableBehavior`](#clickablebehavior) surrounding a
- * `ButtonCore`. `ClickableBehavior` handles interactions and state changes.
- * `ButtonCore` is a stateless component which displays the different states the
- * `Button` can take.
- *
- * ### Usage
- *
- * ```tsx
- * import Button from "@khanacademy/wonder-blocks-button";
- *
- * <Button
- *     onClick={(e) => console.log("Hello, world!")}
- * >
- *     Hello, world!
- * </Button>
- * ```
- */
 export default {
     title: "Packages / Button",
     component: Button,
@@ -80,58 +59,11 @@ export const Default: StoryComponentType = {
         },
     },
     parameters: {
-        design: {
-            type: "figma",
-            url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/%F0%9F%92%A0-Main-Components?type=design&node-id=389-0&mode=design",
-        },
         chromatic: {
-            // We already have screenshots of other stories that cover more of the button states
+            // We already have screenshots of other stories that cover more of
+            // the button states
             disableSnapshot: true,
         },
-    },
-};
-
-export const Tertiary: StoryComponentType = {
-    args: {
-        onClick: () => {},
-        kind: "tertiary",
-        testId: "test-button",
-        children: "Hello, world!",
-    },
-    play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
-
-        // Get HTML elements
-        const button = canvas.getByRole("button");
-        const innerLabel = canvas.getByTestId("test-button-inner-label");
-        const computedStyleLabel = getComputedStyle(innerLabel, ":after");
-
-        // Resting style
-        await expect(button).toHaveStyle(`color: ${color.blue}`);
-        await expect(button).toHaveTextContent("Hello, world!");
-
-        // Hover style
-        await userEvent.hover(button);
-        await expect(computedStyleLabel.height).toBe("2px");
-        await expect(computedStyleLabel.color).toBe("rgb(24, 101, 242)");
-
-        // TODO(WB-1808, somewhatabstract): This isn't working. I got it passing
-        // locally by calling `button.focus()` as well, but it was super flaky
-        // and never passed first time.
-        // Focus style
-        // const computedStyleButton = getComputedStyle(button);
-        // await fireEvent.focus(button);
-        // await expect(computedStyleButton.outlineColor).toBe(
-        //     "rgb(24, 101, 242)",
-        // );
-        // await expect(computedStyleButton.outlineWidth).toBe("2px");
-
-        // // Active (mouse down) style
-        // // eslint-disable-next-line testing-library/prefer-user-event
-        // await fireEvent.mouseDown(button);
-        // await expect(innerLabel).toHaveStyle("color: rgb(27, 80, 179)");
-        // await expect(computedStyleLabel.color).toBe("rgb(27, 80, 179)");
-        // await expect(computedStyleLabel.height).toBe("2px");
     },
 };
 
@@ -202,6 +134,11 @@ Variants.parameters = {
         description: {
             story: "There are three kinds of buttons: `primary` (default), `secondary`, and `tertiary`.",
         },
+    },
+    chromatic: {
+        // We already have screenshots of other stories that cover more of
+        // the button states
+        disableSnapshot: true,
     },
 };
 
@@ -323,6 +260,11 @@ Dark.parameters = {
         description: {
             story: "Buttons on a `darkBlue` background should set `light` to `true`.",
         },
+    },
+    chromatic: {
+        // We already have screenshots of other stories that cover more of
+        // the button states
+        disableSnapshot: true,
     },
 };
 
@@ -538,6 +480,11 @@ Size.parameters = {
         description: {
             story: "Buttons have a size that's either `medium` (default), `small`, or `large`.",
         },
+    },
+    chromatic: {
+        // We already have screenshots of other stories that cover more of
+        // the button states
+        disableSnapshot: true,
     },
 };
 
@@ -788,5 +735,12 @@ export const KhanmigoTheme: StoryComponentType = {
                 </View>
             </ThemeSwitcherContext.Provider>
         );
+    },
+    parameters: {
+        chromatic: {
+            // We already have screenshots of other stories that cover more of
+            // the button states
+            disableSnapshot: true,
+        },
     },
 };

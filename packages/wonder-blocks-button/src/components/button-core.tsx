@@ -376,7 +376,7 @@ export const _generateStyles = (
         };
 
         const activePressedStyling = {
-            backgroundColor: activeColor,
+            background: light ? fadedColor : activeColor,
             outlineColor: light ? fadedColor : activeColor,
         };
 
