@@ -125,7 +125,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
                         {collapsible && (
                             <PhosphorIcon
                                 icon={caretDown}
-                                color={tokens.color.offBlack64}
+                                color={tokens.semanticColor.icon.primary}
                                 size="small"
                                 style={[
                                     animated && styles.iconWithAnimation,
@@ -176,27 +176,15 @@ const styles = StyleSheet.create({
         zIndex: 1,
 
         ":active": {
-            outline: `2px solid ${tokens.color.activeBlue}`,
+            outline: `2px solid ${tokens.semanticColor.action.primary.active}`,
         },
 
         ":hover": {
-            outline: `2px solid ${tokens.color.blue}`,
-        },
-
-        // Provide basic, default focus styles on older browsers (e.g.
-        // Safari 14)
-        ":focus": {
-            boxShadow: `0 0 0 2px ${tokens.color.blue}`,
-        },
-
-        // Remove default focus styles for mouse users ONLY if
-        // :focus-visible is supported on this platform.
-        ":focus:not(:focus-visible)": {
-            boxShadow: "none",
+            outline: `2px solid ${tokens.semanticColor.action.primary.default}`,
         },
 
         ":focus-visible": {
-            outline: `2px solid ${tokens.color.blue}`,
+            outline: `2px solid ${tokens.semanticColor.action.primary.default}`,
         },
     },
     headerWrapperWithAnimation: {
@@ -250,20 +238,8 @@ const styles = StyleSheet.create({
         pointerEvents: "none",
         color: "inherit",
 
-        // Provide basic, default focus styles on older browsers (e.g.
-        // Safari 14)
-        ":focus": {
-            boxShadow: `0 0 0 2px ${tokens.color.offBlack32}`,
-        },
-
-        // Remove default focus styles for mouse users ONLY if
-        // :focus-visible is supported on this platform.
-        ":focus:not(:focus-visible)": {
-            boxShadow: "none",
-        },
-
         ":focus-visible": {
-            outline: `2px solid ${tokens.color.offBlack32}`,
+            outline: `2px solid ${tokens.semanticColor.action.disabled.default}`,
         },
     },
 });
