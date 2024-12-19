@@ -84,12 +84,12 @@ const ButtonCore: React.ForwardRefExoticComponent<
             kind !== "tertiary" &&
                 !disabled &&
                 (pressed
-                    ? buttonStyles.active
-                    : (hovered || focused) && buttonStyles.focus),
+                    ? buttonStyles.pressed
+                    : focused && buttonStyles.focused),
             kind === "tertiary" &&
                 !pressed &&
                 focused && [
-                    buttonStyles.focus,
+                    buttonStyles.focused,
                     disabled && buttonStyles.disabledFocus,
                 ],
             size === "small" && sharedStyles.small,
@@ -276,7 +276,10 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         alignItems: "center",
         fontWeight: theme.font.weight.default,
         whiteSpace: "nowrap",
+        // TODO(juan): Figure out how to use text-underline with this for
+        // tertiary variant
         overflow: "hidden",
+        // contain: "paint",
         textOverflow: "ellipsis",
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
@@ -362,9 +365,17 @@ export const _generateStyles = (
 
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
-        const boxShadowInnerColor: string = light
-            ? theme.color.bg.primary.inverse
-            : theme.color.bg.primary.default;
+        const focusStyling = {
+            outlineColor: light ? theme.color.bg.primary.default : color,
+            outlineOffset: 2,
+            outlineStyle: "solid",
+            outlineWidth: 2,
+        };
+
+        const activePressedStyling = {
+            backgroundColor: activeColor,
+            outlineColor: light ? fadedColor : activeColor,
+        };
 
         newStyles = {
             default: {
@@ -372,37 +383,26 @@ export const _generateStyles = (
                 color: light ? color : theme.color.text.inverse,
                 paddingLeft: padding,
                 paddingRight: padding,
+                // TODO(juan): Change this when we get final designs for hover.
+                [":hover:not([aria-disabled=true])" as any]: focusStyling,
+                [":focus-visible:not([aria-disabled=true])" as any]:
+                    focusStyling,
+                [":active:not([aria-disabled=true])" as any]:
+                    activePressedStyling,
             },
-            focus: {
-                // This assumes a background of white for the regular button and
-                // a background of darkBlue for the light version. The inner
-                // box shadow/ring is also small enough for a slight variation
-                // in the background color not to matter too much.
-                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
-                    light ? theme.color.bg.primary.default : color
-                }`,
-            },
-            active: {
-                boxShadow: `0 0 0 1px ${boxShadowInnerColor}, 0 0 0 3px ${
-                    light ? fadedColor : activeColor
-                }`,
-                background: light ? fadedColor : activeColor,
-                color: light ? activeColor : fadedColor,
-            },
+            // focused: focusStyling,
+            pressed: activePressedStyling,
             disabled: {
                 background: light
                     ? fadedColor
                     : theme.color.bg.primary.disabled,
                 color: light ? color : theme.color.text.primary.disabled,
                 cursor: "default",
-                ":focus": {
-                    boxShadow: `0 0 0 1px ${
-                        light
-                            ? theme.color.bg.primary.disabled
-                            : theme.color.bg.primary.default
-                    }, 0 0 0 3px ${
-                        light ? fadedColor : theme.color.bg.primary.disabled
-                    }`,
+                ":focus-visible": {
+                    ...focusStyling,
+                    outlineColor: light
+                        ? fadedColor
+                        : theme.color.bg.primary.disabled,
                 },
             },
         };
@@ -415,6 +415,25 @@ export const _generateStyles = (
             buttonColor === "destructive"
                 ? theme.color.bg.secondary.active.critical
                 : theme.color.bg.secondary.active.action;
+
+        const focusStyling = {
+            background: light
+                ? theme.color.bg.secondary.inverse
+                : theme.color.bg.secondary.focus,
+            borderColor: "transparent",
+            outlineColor: light ? theme.color.border.primary.inverse : color,
+            outlineStyle: "solid",
+            outlineWidth: theme.border.width.focused,
+        };
+
+        const activePressedStyling = {
+            background: light ? activeColor : secondaryActiveColor,
+            color: light ? fadedColor : activeColor,
+            borderColor: "transparent",
+            outlineColor: light ? fadedColor : activeColor,
+            outlineStyle: "solid",
+            outlineWidth: theme.border.width.focused,
+        };
 
         newStyles = {
             default: {
@@ -429,34 +448,21 @@ export const _generateStyles = (
                 borderWidth: theme.border.width.secondary,
                 paddingLeft: padding,
                 paddingRight: padding,
+                [":hover:not([aria-disabled=true])" as any]: focusStyling,
+                [":focus-visible:not([aria-disabled=true])" as any]:
+                    focusStyling,
+                [":active:not([aria-disabled=true])" as any]:
+                    activePressedStyling,
             },
-            focus: {
-                background: light
-                    ? theme.color.bg.secondary.inverse
-                    : theme.color.bg.secondary.focus,
-                borderColor: "transparent",
-                outlineColor: light
-                    ? theme.color.border.primary.inverse
-                    : color,
-                outlineStyle: "solid",
-                outlineWidth: theme.border.width.focused,
-            },
-
-            active: {
-                background: light ? activeColor : secondaryActiveColor,
-                color: light ? fadedColor : activeColor,
-                borderColor: "transparent",
-                outlineColor: light ? fadedColor : activeColor,
-                outlineStyle: "solid",
-                outlineWidth: theme.border.width.focused,
-            },
+            focused: focusStyling,
+            pressed: activePressedStyling,
             disabled: {
                 color: light
                     ? theme.color.text.secondary.inverse
                     : theme.color.text.disabled,
                 outlineColor: light ? fadedColor : theme.color.border.disabled,
                 cursor: "default",
-                ":focus": {
+                ":focus-visible": {
                     outlineColor: light
                         ? theme.color.border.secondary.inverse
                         : theme.color.border.disabled,
@@ -466,40 +472,33 @@ export const _generateStyles = (
             },
         };
     } else if (kind === "tertiary") {
+        const focusStyling = {
+            outlineStyle: "solid",
+            outlineColor: light ? theme.color.border.tertiary.inverse : color,
+            outlineWidth: theme.border.width.focused,
+            borderRadius: theme.border.radius.default,
+        };
+        const activePressedStyling = {
+            color: light ? fadedColor : activeColor,
+        };
+
         newStyles = {
             default: {
                 background: "none",
                 color: light ? theme.color.text.inverse : color,
                 paddingLeft: 0,
                 paddingRight: 0,
-            },
-            hover: {
-                ":after": {
-                    content: "''",
-                    position: "absolute",
-                    height: theme.size.height.tertiaryHover,
-                    width: "100%",
-                    right: 0,
-                    bottom: 0,
-                    background: light ? theme.color.bg.tertiary.hover : color,
-                    borderRadius: theme.border.radius.tertiary,
+                [":hover:not([aria-disabled=true])" as any]: {
+                    textUnderlineOffset: 3,
+                    textDecoration: "underline",
                 },
+                [":focus-visible:not([aria-disabled=true])" as any]:
+                    focusStyling,
+                [":active:not([aria-disabled=true])" as any]:
+                    activePressedStyling,
             },
-            focus: {
-                outlineStyle: "solid",
-                outlineColor: light
-                    ? theme.color.border.tertiary.inverse
-                    : color,
-                outlineWidth: theme.border.width.focused,
-                borderRadius: theme.border.radius.default,
-            },
-            active: {
-                color: light ? fadedColor : activeColor,
-                ":after": {
-                    height: theme.size.height.tertiaryHover,
-                    background: light ? fadedColor : activeColor,
-                },
-            },
+            focused: focusStyling,
+            pressed: activePressedStyling,
             disabled: {
                 color: light ? fadedColor : theme.color.text.disabled,
                 cursor: "default",

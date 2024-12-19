@@ -25,8 +25,6 @@ const theme = {
             primary: {
                 default: tokens.color.white,
                 disabled: tokens.color.offBlack32,
-                // used in boxShadow
-                inverse: tokens.color.darkBlue,
             },
 
             secondary: {
@@ -37,10 +35,6 @@ const theme = {
                     action: tokens.color.fadedBlue,
                     critical: tokens.color.fadedRed,
                 },
-            },
-
-            tertiary: {
-                hover: tokens.color.white,
             },
 
             /**
@@ -113,7 +107,7 @@ const theme = {
             // default
             default: tokens.border.radius.medium_4,
             // tertiary
-            tertiary: tokens.border.radius.xSmall_2,
+            // tertiary: tokens.border.radius.xSmall_2,
             // small button
             small: tokens.border.radius.medium_4,
             // large button
@@ -127,7 +121,6 @@ const theme = {
     },
     size: {
         height: {
-            tertiaryHover: tokens.spacing.xxxxSmall_2,
             small: tokens.spacing.xLarge_32,
             // NOTE: These height tokens are specific to this component.
             medium: 40,
