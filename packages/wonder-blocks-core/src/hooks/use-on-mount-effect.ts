@@ -29,7 +29,7 @@ import * as React from "react";
  * If you only need to do something on mount, don't return a cleanup function from `callback`.
  *
  * If your callback is async, use the `isMountedRef` ref that's passed to the callback to ensure
- * that the component using `useOnMountEffec` hasn't been unmounted, e.g.
+ * that the component using `useOnMountEffect` hasn't been unmounted, e.g.
  *
  * ```
  * const MyComponent = () => {
