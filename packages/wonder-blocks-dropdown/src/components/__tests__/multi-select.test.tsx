@@ -77,7 +77,7 @@ describe("MultiSelect", () => {
             const {userEvent} = doRender(uncontrolledMultiSelect);
 
             // Act
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(
@@ -109,7 +109,7 @@ describe("MultiSelect", () => {
             doRender(uncontrolledMultiSelect);
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             // No items are selected, display placeholder because there is one
@@ -133,7 +133,7 @@ describe("MultiSelect", () => {
             );
 
             // Assert
-            expect(await screen.findByRole("button")).toHaveTextContent(
+            expect(await screen.findByRole("combobox")).toHaveTextContent(
                 "item 1",
             );
         });
@@ -155,7 +155,7 @@ describe("MultiSelect", () => {
             );
 
             // Assert
-            expect(await screen.findByRole("button")).toHaveTextContent(
+            expect(await screen.findByRole("combobox")).toHaveTextContent(
                 "1 student",
             );
         });
@@ -177,7 +177,7 @@ describe("MultiSelect", () => {
             );
 
             // Assert
-            expect(await screen.findByRole("button")).toHaveTextContent(
+            expect(await screen.findByRole("combobox")).toHaveTextContent(
                 "Choose",
             );
         });
@@ -200,7 +200,7 @@ describe("MultiSelect", () => {
 
             // Assert
             // More than one item is selected, display n itemTypes
-            expect(await screen.findByRole("button")).toHaveTextContent(
+            expect(await screen.findByRole("combobox")).toHaveTextContent(
                 "2 students",
             );
         });
@@ -223,7 +223,7 @@ describe("MultiSelect", () => {
 
             // Assert
             // All items are selected
-            expect(await screen.findByRole("button")).toHaveTextContent(
+            expect(await screen.findByRole("combobox")).toHaveTextContent(
                 "All students",
             );
         });
@@ -246,7 +246,7 @@ describe("MultiSelect", () => {
             );
 
             // Assert
-            expect(await screen.findByRole("button")).toHaveTextContent(
+            expect(await screen.findByRole("combobox")).toHaveTextContent(
                 "All students",
             );
         });
@@ -265,7 +265,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("data-testid", "some-test-id");
@@ -552,7 +552,7 @@ describe("MultiSelect", () => {
 
             const {userEvent} = doRender(<ControlledMultiSelect />);
 
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
 
             // Act
@@ -625,7 +625,7 @@ describe("MultiSelect", () => {
             // Arrange
             const {userEvent} = doRender(filterableMultiSelect);
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Act
             const searchInput = await screen.findByPlaceholderText("Filter");
@@ -638,7 +638,7 @@ describe("MultiSelect", () => {
             // Arrange
             const {userEvent} = doRender(filterableMultiSelect);
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             const searchInput = await screen.findByPlaceholderText("Filter");
 
@@ -655,7 +655,7 @@ describe("MultiSelect", () => {
             // Arrange
             const {userEvent} = doRender(filterableMultiSelect);
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             const searchInput = await screen.findByPlaceholderText("Filter");
 
@@ -686,7 +686,7 @@ describe("MultiSelect", () => {
 
             // Act
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(
@@ -709,7 +709,7 @@ describe("MultiSelect", () => {
                 </MultiSelect>,
             );
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             const searchInput = await screen.findByPlaceholderText("Filter");
 
@@ -724,7 +724,7 @@ describe("MultiSelect", () => {
             // Arrange
             const {userEvent} = doRender(filterableMultiSelect);
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Act
             const searchInput = await screen.findByPlaceholderText("Filter");
@@ -751,7 +751,7 @@ describe("MultiSelect", () => {
 
             // Act
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(
@@ -775,7 +775,7 @@ describe("MultiSelect", () => {
                 </MultiSelect>,
             );
 
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             const searchInput = await screen.findByPlaceholderText("Filter");
             await userEvent.type(searchInput, "Item 2");
@@ -807,7 +807,7 @@ describe("MultiSelect", () => {
                 </MultiSelect>,
             );
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             const searchInput = await screen.findByPlaceholderText("Filter");
             await userEvent.type(searchInput, "some text");
@@ -824,7 +824,7 @@ describe("MultiSelect", () => {
             // Arrange
             const {userEvent} = doRender(filterableMultiSelect);
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             const searchInput = await screen.findByPlaceholderText("Filter");
             await userEvent.type(searchInput, "Should be cleared");
@@ -842,7 +842,7 @@ describe("MultiSelect", () => {
             // Arrange
             const {userEvent} = doRender(filterableMultiSelect);
             // open the dropdown menu
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
 
             const searchInput = await screen.findByPlaceholderText("Filter");
@@ -1462,7 +1462,7 @@ describe("MultiSelect", () => {
             rerender(<TranslatedComponent labels={updatedLabels} />);
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             // open dropdown
             await userEvent.click(opener);
 
@@ -1682,7 +1682,7 @@ describe("MultiSelect", () => {
 
             // Act
             // Press the button
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -1710,7 +1710,7 @@ describe("MultiSelect", () => {
 
             // Act
             // Press the button
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -1825,7 +1825,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("id", expect.any(String));
@@ -1842,7 +1842,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("id", id);
@@ -1859,7 +1859,7 @@ describe("MultiSelect", () => {
 
             // Act
             // Open the dropdown
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
 
             // Assert
@@ -1880,7 +1880,7 @@ describe("MultiSelect", () => {
 
             // Act
             // Open the dropdown
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
 
             // Assert
@@ -1902,7 +1902,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
             const dropdown = await screen.findByRole("listbox", {hidden: true});
 
@@ -1921,7 +1921,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
             const dropdown = await screen.findByRole("listbox", {hidden: true});
 
@@ -1992,7 +1992,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("aria-haspopup", "listbox");
@@ -2031,7 +2031,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("aria-expanded", "false");
@@ -2047,7 +2047,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
 
             // Assert
