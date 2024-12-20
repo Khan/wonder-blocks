@@ -2583,6 +2583,106 @@ describe("MultiSelect", () => {
                     "true",
                 );
             });
+
+            it("should call onValidate with null if values are cleared using the 'select none' shortcut", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                        onValidate={onValidate}
+                        shortcuts={true}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                onValidate.mockClear(); // Clear any calls
+
+                // Act
+                await userEvent.click(await screen.findByText("Select none")); // Select none
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
+            });
+
+            it("should not be in an error state if values are cleared using the 'select none' shortcut", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                        shortcuts={true}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                // Act
+                await userEvent.click(await screen.findByText("Select none")); // Select none
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
+
+            it("should call onValidate with null if values are changed using the 'select all' shortcut", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const onValidate = jest.fn();
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                        onValidate={onValidate}
+                        shortcuts={true}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                onValidate.mockClear(); // Clear any calls
+
+                // Act
+                await userEvent.click(
+                    await screen.findByText("Select all (2)"),
+                ); // Select all
+
+                // Assert
+                expect(onValidate).toHaveBeenCalledExactlyOnceWith(null);
+            });
+
+            it("should not be in an error state if values are changed using the 'select all' shortcut", async () => {
+                // Arrange
+                const errorMessage = "Error message";
+                const {userEvent} = doRender(
+                    <ControlledMultiSelect
+                        validate={(values) =>
+                            values.includes("1") ? errorMessage : undefined
+                        }
+                        selectedValues={["1"]}
+                        shortcuts={true}
+                    />,
+                );
+                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+
+                // Act
+                await userEvent.click(
+                    await screen.findByText("Select all (2)"),
+                ); // Select all
+
+                // Assert
+                expect(await screen.findByRole("button")).toHaveAttribute(
+                    "aria-invalid",
+                    "false",
+                );
+            });
         });
 
         describe("required", () => {
