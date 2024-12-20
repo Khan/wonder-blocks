@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 2.0.1
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+
 ## 2.0.0
 
 ### Major Changes

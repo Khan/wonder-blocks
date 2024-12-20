@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-core",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "^2.0.0",
-    "@khanacademy/wonder-blocks-testing-core": "^2.0.0"
+    "@khanacademy/wonder-blocks-testing-core": "^2.0.1"
   },
   "author": "",
   "license": "MIT"
