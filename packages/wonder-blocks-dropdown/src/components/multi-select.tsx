@@ -357,10 +357,12 @@ const MultiSelect = (props: Props) => {
             .filter((option) => !!option && !option.props.disabled)
             .map((option) => option.props.value);
         onChange(selected);
+        onSelectedValuesChangeValidation();
     };
 
     const handleSelectNone = () => {
         onChange([]);
+        onSelectedValuesChangeValidation();
     };
 
     const getMenuText = (
