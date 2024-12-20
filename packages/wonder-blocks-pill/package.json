@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-pill",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "design": "v1",
   "description": "Pill components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -17,11 +17,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-clickable": "^5.0.3",
-    "@khanacademy/wonder-blocks-core": "^11.0.0",
-    "@khanacademy/wonder-blocks-link": "^7.0.3",
-    "@khanacademy/wonder-blocks-tokens": "^3.0.0",
-    "@khanacademy/wonder-blocks-typography": "^3.0.3"
+    "@khanacademy/wonder-blocks-clickable": "^5.0.4",
+    "@khanacademy/wonder-blocks-core": "^11.0.1",
+    "@khanacademy/wonder-blocks-link": "^7.0.4",
+    "@khanacademy/wonder-blocks-tokens": "^3.0.1",
+    "@khanacademy/wonder-blocks-typography": "^3.0.4"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",

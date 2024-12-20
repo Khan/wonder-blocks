@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-data
 
+## 14.0.4
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+-   Updated dependencies [11a0f5c6]
+    -   @khanacademy/wonder-blocks-core@11.0.1
+
 ## 14.0.3
 
 ### Patch Changes
