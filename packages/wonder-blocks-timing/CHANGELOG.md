@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 6.0.1
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+
 ## 6.0.0
 
 ### Major Changes
