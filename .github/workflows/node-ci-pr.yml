@@ -6,6 +6,12 @@ on:
     # draft".
     types: [edited, opened, synchronize, ready_for_review, reopened]
 
+# When a new revision is pushed to a PR, cancel all in-progress CI runs for that
+# PR. See https://docs.github.com/en/actions/using-jobs/using-concurrency
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
 # Our jobs run like this to minimize wasting resource cycles:
 #   1. Prime caches for primary configuration (ubuntu on node 16).
 #      This way the next two jobs can run in parallel but rely on this primed
@@ -135,6 +141,34 @@ jobs:
           REF=$(git rev-parse HEAD)
           git checkout main
           git checkout $REF
+
+      # Helper to get the URL of the current run, if we need it.
+      - name: Get workflow run URL
+        id: get-run-url
+        run: echo "run_url=https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}" >> $GITHUB_OUTPUT
+
+
+      # We need to see if any releases are in progress.
+      # We do not want to try and publish anything if a publish is
+      # pending. We fail here, but we make sure to update the
+      # PR comment later. This has to come after the checkout.
+      - name: Check for release
+        id: check-release
+        env:
+            GH_TOKEN: ${{ github.token }}
+        run: |
+            # Releases are triggered by merging "Version Packages" PRs.
+            # So we look for instances of the release.yml workflow, with
+            # a title containing "Version Packages", that are in progress.
+            release_count=$(gh run list --workflow release.yml --json status,displayTitle --jq '[.[] | select(.status == "in_progress" and (.displayTitle | contains("Version Packages")))] | length')
+            echo "release_count=$release_count" >> $GITHUB_OUTPUT
+            if [ "$release_count" -ne 0 ]; then
+              echo "Error: There are $release_count releases in progress."
+              exit 1
+            else
+              echo "No releases in progress."
+            fi
+
       - name: Use Node.js ${{ matrix.node-version }} & Install & cache node_modules
         uses: Khan/actions@shared-node-cache-v2
         with:
@@ -153,6 +187,8 @@ jobs:
       # Note: these two actions are locked to the latest version that were
       # published when @jeremy (Jeremy Wiebe) created the original job in Perseus.
       - name: Find existing comment
+        # Even if we're failing, we want to update the comments.
+        if: always()
         uses: peter-evans/find-comment@3eae4d37986fb5a8592848f6a574fdf654e61f9e
         id: find-comment
         with:
@@ -194,3 +230,19 @@ jobs:
               ## npm Snapshot: **NOT** Published
               🤕 Oh noes!! We couldn't find any changesets in this PR (${{
               steps.short-sha.outputs.short_sha }}). As a result, we did **not** publish an npm snapshot for you.
+
+      - name: Create or update npm snapshot comment - failure, concurrent with release
+        if: failure() && steps.check-release.outputs.release_count != '0'
+        uses: peter-evans/create-or-update-comment@71345be0265236311c031f5c7866368bd1eff043
+        with:
+            issue-number: ${{ github.event.pull_request.number }}
+            comment-id: ${{ steps.find-comment.outputs.comment-id }}
+            edit-mode: replace
+            body: |
+                # npm Snapshot: **NOT** Published
+
+                🤕 Oh noes!! We couldn't publish an npm snapshot for you because
+                there is a release in progress. Please wait for the release to
+                finish, then retry this workflow.
+
+                [View the workflow run](${{ steps.get-run-url.outputs.run_url }})
