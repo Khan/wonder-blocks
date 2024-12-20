@@ -12,7 +12,7 @@ import {
     RadioGroup,
 } from "@khanacademy/wonder-blocks-form";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 export default {

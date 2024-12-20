@@ -1,31 +1,26 @@
 import * as React from "react";
 
+import githubLogo from "@phosphor-icons/core/fill/github-logo-fill.svg";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Caption} from "@khanacademy/wonder-blocks-typography";
-import githubLogo from "@phosphor-icons/core/fill/github-logo-fill.svg";
 
 type Props = {
     /**
      * The package name.
      */
-    name: string,
+    name: string;
     /**
      * The latest stable version.
      */
-    version: string
+    version: string;
 };
 
 /**
  * An internal component that displays the package name and version. It also
  * includes a link to the Github repo.
  */
-const ComponentInfo: React.FC<Props> = (
-    {
-        name,
-        version,
-    },
-): React.ReactElement => {
+function ComponentInfo({name, version}: Props): React.ReactElement {
     const packageFolder = name.split("/")?.[1];
     return (
         <View
@@ -50,6 +45,6 @@ const ComponentInfo: React.FC<Props> = (
             </Button>
         </View>
     );
-};
+}
 
 export default ComponentInfo;

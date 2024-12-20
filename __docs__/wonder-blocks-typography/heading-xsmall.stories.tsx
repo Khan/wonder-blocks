@@ -2,7 +2,7 @@ import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react";
 import packageConfig from "../../packages/wonder-blocks-typography/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
 import {HeadingXSmall} from "@khanacademy/wonder-blocks-typography";

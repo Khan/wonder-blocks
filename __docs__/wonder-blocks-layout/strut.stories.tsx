@@ -9,7 +9,7 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 export default {
     title: "Packages / Layout / Strut",
