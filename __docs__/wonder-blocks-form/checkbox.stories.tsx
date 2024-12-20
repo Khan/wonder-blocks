@@ -8,7 +8,7 @@ import {Checkbox, CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
 export default {

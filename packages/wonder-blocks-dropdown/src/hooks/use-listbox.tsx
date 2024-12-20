@@ -1,6 +1,12 @@
 import * as React from "react";
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
+import {getLabel} from "../util/helpers";
 import {updateMultipleSelection} from "../util/selection";
-import {MaybeValueOrValues, OptionItemComponent} from "../util/types";
+import {
+    ComboboxLabels,
+    MaybeValueOrValues,
+    OptionItemComponent,
+} from "../util/types";
 
 type Props = {
     /**
@@ -22,6 +28,10 @@ type Props = {
      * The unique identifier of the listbox element.
      */
     id: string;
+    labels: Pick<
+        ComboboxLabels,
+        "liveRegionCurrentItem" | "liveRegionListboxTotal" | "selected"
+    >;
     /**
      * The value of the currently selected items.
      */
@@ -51,6 +61,7 @@ export function useListbox({
     disabled,
     disableSpaceSelection,
     id,
+    labels,
     onChange,
     selectionType = "single",
     value,
@@ -71,9 +82,29 @@ export function useListbox({
 
     const [selected, setSelected] = React.useState(value);
 
-    const focusItem = (index: number) => {
-        setFocusedIndex(index);
-    };
+    const focusItem = React.useCallback(
+        (index: number) => {
+            const currentItemProps = options[index].props;
+            const label = getLabel(currentItemProps);
+            const totalResults = options.length;
+
+            announceMessage({
+                message:
+                    labels.liveRegionCurrentItem({
+                        current: label,
+                        disabled: currentItemProps.disabled,
+                        focused: false,
+                        index: index,
+                        selected: currentItemProps.selected,
+                        total: totalResults,
+                    }) +
+                    " " +
+                    labels.liveRegionListboxTotal(totalResults),
+            });
+            setFocusedIndex(index);
+        },
+        [labels, options],
+    );
 
     const focusPreviousItem = React.useCallback(() => {
         if (focusedIndex <= 0) {
@@ -81,7 +112,7 @@ export function useListbox({
         } else {
             focusItem(focusedIndex - 1);
         }
-    }, [options, focusedIndex]);
+    }, [focusedIndex, focusItem, options.length]);
 
     const focusNextItem = React.useCallback(() => {
         if (focusedIndex === options.length - 1) {
@@ -89,7 +120,7 @@ export function useListbox({
         } else {
             focusItem(focusedIndex + 1);
         }
-    }, [options, focusedIndex]);
+    }, [focusedIndex, options.length, focusItem]);
 
     const selectOption = React.useCallback(
         (index: number) => {
@@ -98,6 +129,9 @@ export function useListbox({
             if (optionItem.props.disabled) {
                 return;
             }
+
+            const labelFromSelected = getLabel(optionItem.props);
+            announceMessage({message: labels.selected(labelFromSelected)});
 
             if (selectionType === "single") {
                 setSelected(optionItem.props.value);
@@ -121,7 +155,7 @@ export function useListbox({
                 });
             }
         },
-        [onChange, options, selectionType],
+        [labels, onChange, options, selectionType],
     );
 
     const handleKeyDown = React.useCallback(
@@ -163,10 +197,11 @@ export function useListbox({
         },
         [
             disableSpaceSelection,
+            focusItem,
             focusNextItem,
             focusPreviousItem,
             focusedIndex,
-            options,
+            options.length,
             selectOption,
         ],
     );
@@ -208,7 +243,7 @@ export function useListbox({
             focusItem(index);
             selectOption(index);
         },
-        [disabled, options, selectOption],
+        [disabled, focusItem, options, selectOption],
     );
 
     const renderList = React.useMemo(() => {

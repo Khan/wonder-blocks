@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {
-    IDProvider,
+    Id,
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
@@ -545,7 +545,7 @@ const MultiSelect = (props: Props) => {
         const menuText = getMenuText(allChildren);
 
         const dropdownOpener = (
-            <IDProvider id={id} scope="multi-select-opener">
+            <Id id={id}>
                 {(uniqueOpenerId) => {
                     return opener ? (
                         <DropdownOpener
@@ -581,7 +581,7 @@ const MultiSelect = (props: Props) => {
                         </SelectOpener>
                     );
                 }}
-            </IDProvider>
+            </Id>
         );
 
         return dropdownOpener;
@@ -601,7 +601,7 @@ const MultiSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
 
     return (
-        <IDProvider id={dropdownId} scope="multi-select-dropdown">
+        <Id id={dropdownId}>
             {(uniqueDropdownId) => (
                 <DropdownCore
                     id={uniqueDropdownId}
@@ -644,7 +644,7 @@ const MultiSelect = (props: Props) => {
                     disabled={isDisabled}
                 />
             )}
-        </IDProvider>
+        </Id>
     );
 };
 

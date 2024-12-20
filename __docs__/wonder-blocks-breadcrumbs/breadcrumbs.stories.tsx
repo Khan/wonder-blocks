@@ -8,7 +8,7 @@ import {
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import packageConfig from "../../packages/wonder-blocks-breadcrumbs/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 import BreadcrumbsArgTypes from "./breadcrumbs.argtypes";
 

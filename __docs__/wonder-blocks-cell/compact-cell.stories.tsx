@@ -10,7 +10,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import packageConfig from "../../packages/wonder-blocks-cell/package.json";
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import CompactCellArgTypes, {AccessoryMappings} from "./compact-cell.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 

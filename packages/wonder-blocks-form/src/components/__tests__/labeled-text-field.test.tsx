@@ -58,15 +58,13 @@ describe("LabeledTextField", () => {
 
         // Act
         render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
+        const input = await screen.findByRole("textbox");
+        const result = input.getAttribute("id");
 
         // Assert
         // Since the generated id is unique, we cannot know what it will be. We
-        // only test if the id attribute starts with "uid-", then followed by
-        // "text-field-" as the scope assigned to IDProvider.
-        const input = await screen.findByRole("textbox");
-        expect(input.getAttribute("id")).toMatch(
-            /uid-labeled-text-field.*-field/,
-        );
+        // only that it ends with "-field".
+        expect(result).toMatch(/.*-field/);
     });
 
     it("type prop is passed to input", async () => {
@@ -207,16 +205,14 @@ describe("LabeledTextField", () => {
                 // ariaDescribedby is not passed in
             />,
         );
+        const input = await screen.findByRole("textbox");
+        const result = input.getAttribute("aria-describedby");
 
         // Assert
         // Since the generated aria-describedby is unique,
         // we cannot know what it will be.
-        // We only test if the aria-describedby attribute starts with
-        // "uid-" and ends with "-error".
-        const input = await screen.findByRole("textbox");
-        expect(input.getAttribute("aria-describedby")).toMatch(
-            /^uid-.*-error$/,
-        );
+        // We only test if the aria-describedby attribute ends with "-error".
+        expect(result).toMatch(/^.*-error$/);
     });
 
     it("validate prop is called when input changes", async () => {

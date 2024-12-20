@@ -10,7 +10,7 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {allProfilesWithPictures} from "./option-item-examples";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 const items = [

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
+import {View, Id} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -111,20 +111,18 @@ type Props = AriaProps & {
     const ChoiceCore = getChoiceCoreComponent();
 
     return (
-        <UniqueIDProvider mockOnFirstRender={true} scope="choice">
-            {(ids) => {
-                // A choice element should always have a unique ID set
-                // so that the label can always refer to this element.
-                // This guarantees that clicking on the label will
-                // always click on the choice as well. If an ID is
-                // passed in as a prop, use that one. Otherwise,
-                // create a unique ID using the provider.
-                const uniqueId = id || ids.get("main");
-
+        // A choice element should always have a unique ID set
+        // so that the label can always refer to this element.
+        // This guarantees that clicking on the label will
+        // always click on the choice as well. If an ID is
+        // passed in as a prop, use that one. Otherwise,
+        // create a unique ID using the provider.
+        <Id id={id}>
+            {(uniqueId) => {
                 // Create a unique ID for the description section to be
                 // used by this element's `aria-describedby`.
                 const descriptionId = description
-                    ? ids.get("description")
+                    ? `${uniqueId}-description`
                     : undefined;
 
                 return (
@@ -153,7 +151,7 @@ type Props = AriaProps & {
                     </View>
                 );
             }}
-        </UniqueIDProvider>
+        </Id>
     );
 });
 

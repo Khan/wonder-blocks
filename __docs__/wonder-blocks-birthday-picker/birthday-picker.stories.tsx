@@ -6,7 +6,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import packageConfig from "../../packages/wonder-blocks-birthday-picker/package.json";
 import BirthdayPicker from "@khanacademy/wonder-blocks-birthday-picker";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 import ArgTypes from "./birthday-picker.argtypes";
 

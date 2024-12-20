@@ -5,7 +5,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 import {View, InitialFallback} from "@khanacademy/wonder-blocks-core";
 import packageConfig from "../../packages/wonder-blocks-core/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 type StoryComponentType = StoryObj<typeof InitialFallback>;
 

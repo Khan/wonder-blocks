@@ -15,6 +15,9 @@ const styles: StyleDeclaration = StyleSheet.create({
 
     legend: {
         padding: 0,
+        // Let the legend use the size defined by the parent.
+        // NOTE: This applies to `RadioGroup` and `CheckboxGroup`.
+        width: "100%",
     },
 
     description: {

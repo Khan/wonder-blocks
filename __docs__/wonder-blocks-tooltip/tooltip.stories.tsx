@@ -19,7 +19,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import TooltipArgTypes from "./tooltip.argtypes";
 
 type StoryComponentType = StoryObj<typeof Tooltip>;
@@ -124,7 +124,7 @@ ComplexAnchorAndTitle.play = async ({canvasElement}) => {
 ComplexAnchorAndTitle.parameters = {
     docs: {
         description: {
-            story: "In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `UniqueIDProvider`, but we'll cheat here and give our own identifier).",
+            story: "In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `useId`, but we'll cheat here and give our own identifier).",
         },
     },
 };

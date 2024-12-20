@@ -10,7 +10,7 @@ import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import PopoverContentArgtypes from "./popover-content.argtypes";
 
 export default {

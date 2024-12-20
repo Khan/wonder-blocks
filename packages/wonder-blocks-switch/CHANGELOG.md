@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.0.1
+
+### Patch Changes
+
+-   Updated dependencies [d23c9c5f]
+    -   @khanacademy/wonder-blocks-core@11.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.3
+
+## 3.0.0
+
+### Major Changes
+
+-   56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
+
+### Patch Changes
+
+-   b6009b77: Deprecate the ID provider and unique ID utilities
+-   Updated dependencies [b6009b77]
+-   Updated dependencies [897686bc]
+-   Updated dependencies [56d961f1]
+    -   @khanacademy/wonder-blocks-core@10.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.2
+
 ## 2.0.1
 
 ### Patch Changes

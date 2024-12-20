@@ -21,7 +21,7 @@ import {
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import actionMenuArgtypes from "./action-menu.argtypes";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";

@@ -12,7 +12,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionSectionArgtypes from "./accordion-section.argtypes";

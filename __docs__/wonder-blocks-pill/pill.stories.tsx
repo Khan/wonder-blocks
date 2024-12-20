@@ -18,7 +18,7 @@ import type {
     PillSize,
 } from "../../packages/wonder-blocks-pill/src/components/pill";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 
 import PillArgtypes from "./pill.argtypes";

@@ -3,6 +3,7 @@ import {render, screen} from "@testing-library/react";
 import * as WBCore from "@khanacademy/wonder-blocks-core";
 import {makeTestHarness} from "@khanacademy/wonder-blocks-testing-core";
 
+import {useId} from "react";
 import * as RenderState from "../render-state";
 
 jest.mock("@khanacademy/wonder-stuff-core", () => {
@@ -48,8 +49,8 @@ describe("SSR.adapter", () => {
     it("should enable harnessing of components that require RenderStateRoot", () => {
         // Arrange
         const ComponentNeedsSsr = (props: any) => {
-            const idf = WBCore.useUniqueIdWithoutMock();
-            return <div>{idf?.get("my-id")}</div>;
+            const id = useId();
+            return <div>{id}-my-id</div>;
         };
         const testHarness = makeTestHarness(
             {
@@ -65,7 +66,7 @@ describe("SSR.adapter", () => {
         const underTest = () => render(<Harnessed />);
 
         // Assert
-        expect(underTest).not.toThrowError();
+        expect(underTest).not.toThrow();
     });
 
     it.each`

@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-form
 
+## 6.0.3
+
+### Patch Changes
+
+-   53b41970: Adding more info about the legend change
+
+## 6.0.2
+
+### Patch Changes
+
+-   361cb52b: Adds `width: 100%` to `legend` element to allow expanding it to fill the available space
+
+## 6.0.1
+
+### Patch Changes
+
+-   Updated dependencies [d23c9c5f]
+    -   @khanacademy/wonder-blocks-core@11.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.3
+    -   @khanacademy/wonder-blocks-icon@5.0.3
+    -   @khanacademy/wonder-blocks-layout@3.0.3
+    -   @khanacademy/wonder-blocks-typography@3.0.3
+
+## 6.0.0
+
+### Major Changes
+
+-   56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
+
+### Patch Changes
+
+-   b6009b77: Deprecate the ID provider and unique ID utilities
+-   Updated dependencies [b6009b77]
+-   Updated dependencies [897686bc]
+-   Updated dependencies [56d961f1]
+    -   @khanacademy/wonder-blocks-core@10.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.2
+    -   @khanacademy/wonder-blocks-icon@5.0.2
+    -   @khanacademy/wonder-blocks-layout@3.0.2
+    -   @khanacademy/wonder-blocks-typography@3.0.2
+
 ## 5.0.2
 
 ### Patch Changes

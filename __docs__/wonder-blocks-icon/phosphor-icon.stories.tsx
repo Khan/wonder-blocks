@@ -18,7 +18,7 @@ import {
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 import PhosphorIconArgtypes, {IconMappings} from "./phosphor-icon.argtypes";
 
