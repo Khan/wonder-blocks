@@ -370,9 +370,9 @@ export const _generateStyles = (
     if (kind === "primary") {
         const focusStyling = {
             outlineColor: light ? theme.color.bg.primary.default : color,
-            outlineOffset: 2,
+            outlineOffset: theme.border.offset.primary,
             outlineStyle: "solid",
-            outlineWidth: 2,
+            outlineWidth: theme.border.width.focused,
         };
 
         const activePressedStyling = {

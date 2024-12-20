@@ -103,10 +103,13 @@ const theme = {
         width: {
             // secondary (resting)
             secondary: tokens.border.width.hairline,
-            // secondary (resting, focus, active), tertiary (focus)
+            // primary (focus), secondary (focus, active), tertiary (focus)
             focused: tokens.border.width.thin,
             // secondary (disabled)
             disabled: tokens.border.width.thin,
+        },
+        offset: {
+            primary: tokens.spacing.xxxxSmall_2,
         },
         radius: {
             // default
