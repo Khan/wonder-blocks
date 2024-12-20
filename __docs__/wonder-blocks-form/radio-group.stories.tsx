@@ -9,7 +9,7 @@ import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 export default {
     title: "Packages / Form / RadioGroup",

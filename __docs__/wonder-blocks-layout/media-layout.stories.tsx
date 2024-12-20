@@ -19,7 +19,7 @@ import {
     MediaLayoutContext,
 } from "@khanacademy/wonder-blocks-layout";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
 export default {

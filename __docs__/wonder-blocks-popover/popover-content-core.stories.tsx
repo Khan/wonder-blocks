@@ -14,7 +14,7 @@ import {
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 // NOTE: We are reusing an existing Cell SB Story to test how Popovers can be

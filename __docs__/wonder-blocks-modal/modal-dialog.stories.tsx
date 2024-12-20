@@ -15,7 +15,7 @@ import {
     ModalPanel,
 } from "@khanacademy/wonder-blocks-modal";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
 
