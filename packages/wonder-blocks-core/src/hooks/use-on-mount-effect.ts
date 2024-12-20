@@ -34,7 +34,7 @@ import * as React from "react";
  * ```
  * const MyComponent = () => {
  *    const [foo, setFoo] = React.useState("");
- *    useOnMountEffect(async (isMountedRef) => {
+ *    useOnMountEffect((isMountedRef) => {
  *        const action = async () => {
  *            const res = await fetch("/foo");
  *            const text = res.text();
