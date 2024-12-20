@@ -33,10 +33,12 @@ const checkPublishConfig = ({
     // check that we are running our pre-publish check for this package
     if (
         !scripts.prepublishOnly ||
-        !scripts.prepublishOnly.includes("utils/package-pre-publish-check.sh")
+        !scripts.prepublishOnly.includes(
+            "utils/publish/package-pre-publish-check.sh",
+        )
     ) {
         console.error(
-            `ERROR: ${name} must have a "prepublishOnly" script that runs "utils/package-pre-publish-check.sh".`,
+            `ERROR: ${name} must have a "prepublishOnly" script that runs "utils/publish/package-pre-publish-check.sh".`,
         );
         returnCode = false;
     }
