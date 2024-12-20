@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 14.0.5
+
+### Patch Changes
+
+-   faf7bd21: Version bump to verify release protections
+
 ## 14.0.4
 
 ### Patch Changes
