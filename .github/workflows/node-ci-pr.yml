@@ -49,6 +49,11 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
       - name: Get changed files
         uses: Khan/actions@get-changed-files-v2
         id: changed
