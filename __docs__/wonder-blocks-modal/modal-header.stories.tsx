@@ -17,7 +17,7 @@ import {
 } from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
 
 const customViewports = {

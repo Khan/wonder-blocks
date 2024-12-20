@@ -5,7 +5,7 @@ import {StyleSheet} from "aphrodite";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";

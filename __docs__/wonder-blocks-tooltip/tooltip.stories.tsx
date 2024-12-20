@@ -19,7 +19,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import TooltipArgTypes from "./tooltip.argtypes";
 
 type StoryComponentType = StoryObj<typeof Tooltip>;
