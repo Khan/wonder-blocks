@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 6.0.3
+
+### Patch Changes
+
+-   53b41970: Adding more info about the legend change
+
 ## 6.0.2
 
 ### Patch Changes
