@@ -13,6 +13,7 @@ import packageConfig from "../../packages/wonder-blocks-cell/package.json";
 import ComponentInfo from "../components/component-info";
 import DetailCellArgTypes from "./detail-cell.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Cell / DetailCell",
@@ -342,6 +343,130 @@ export const DetailCellsAsListItems: StoryComponentType = {
             disableSnapshot: true,
         },
     },
+};
+
+export const Scenarios = () => {
+    const longText =
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ";
+    const longTextWithNoWordBreak =
+        "Loremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliqua";
+
+    const defaultProps = {
+        title: "Title for article item",
+        subtitle1: "Subtitle 1 for article item",
+        subtitle2: "Subtitle 2 for article item",
+        leftAccessory: (
+            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+        ),
+        rightAccessory: <PhosphorIcon icon={IconMappings.caretRight} />,
+    };
+
+    const scenarios = [
+        {
+            label: "Default",
+            props: defaultProps,
+        },
+        {
+            label: "No Icons",
+            props: {
+                ...defaultProps,
+                leftAccessory: undefined,
+                rightAccessory: undefined,
+            },
+        },
+        {
+            label: "Left Icon Only",
+            props: {
+                ...defaultProps,
+                rightAccessory: undefined,
+            },
+        },
+        {
+            label: "Right Icon Only",
+            props: {
+                ...defaultProps,
+                leftAccessory: undefined,
+            },
+        },
+        {
+            label: "No Subtitles",
+            props: {
+                ...defaultProps,
+                subtitle1: undefined,
+                subtitle2: undefined,
+            },
+        },
+        {
+            label: "Subtitle 1 only",
+            props: {
+                ...defaultProps,
+                subtitle2: undefined,
+            },
+        },
+        {
+            label: "Subtitle 2 only",
+            props: {
+                ...defaultProps,
+                subtitle1: undefined,
+            },
+        },
+        {
+            label: "Title only",
+            props: {
+                title: defaultProps.title,
+            },
+        },
+        {
+            label: "Long Text",
+            props: {
+                ...defaultProps,
+                title: longText,
+                subtitle1: longText,
+                subtitle2: longText,
+            },
+        },
+        {
+            label: "Long Text No Word Break",
+            props: {
+                ...defaultProps,
+                title: longTextWithNoWordBreak,
+                subtitle1: longTextWithNoWordBreak,
+                subtitle2: longTextWithNoWordBreak,
+            },
+        },
+        {
+            label: "Long Text (no icons)",
+            props: {
+                ...defaultProps,
+                title: longText,
+                subtitle1: longText,
+                subtitle2: longText,
+                leftAccessory: undefined,
+                rightAccessory: undefined,
+            },
+        },
+        {
+            label: "Long Text No Word Break (no icons)",
+            props: {
+                ...defaultProps,
+                title: longTextWithNoWordBreak,
+                subtitle1: longTextWithNoWordBreak,
+                subtitle2: longTextWithNoWordBreak,
+                leftAccessory: undefined,
+                rightAccessory: undefined,
+            },
+        },
+    ];
+    return (
+        <View style={{gap: spacing.large_24}}>
+            {scenarios.map((scenario) => (
+                <>
+                    <LabelSmall>{scenario.label}</LabelSmall>
+                    <DetailCell {...scenario.props} />
+                </>
+            ))}
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
