@@ -4,11 +4,7 @@ import * as React from "react";
 import caretDownIcon from "@phosphor-icons/core/regular/caret-down.svg";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 
-import {
-    StyleType,
-    useUniqueIdWithMock,
-    View,
-} from "@khanacademy/wonder-blocks-core";
+import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {
@@ -21,6 +17,7 @@ import {
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
 import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {useId} from "react";
 import {useListbox} from "../hooks/use-listbox";
 import {useMultipleSelection} from "../hooks/use-multiple-selection";
 import {
@@ -175,8 +172,9 @@ export default function Combobox({
     testId,
     value = "",
 }: Props) {
-    const ids = useUniqueIdWithMock("combobox");
-    const uniqueId = id ?? ids.get("listbox");
+    // eslint-disable-next-line import/no-deprecated
+    const generatedUniqueId = useId();
+    const uniqueId = id ?? generatedUniqueId;
     // Ref to the combobox input element.
     const comboboxRef = React.useRef<HTMLInputElement>(null);
     // Ref to the top-level node of the combobox.
@@ -552,8 +550,8 @@ export default function Combobox({
 
         return <View style={styles.iconWrapper}>{startIconElement}</View>;
     };
-
-    const pillIdPrefix = id ? `${id}-pill-` : ids.get("pill");
+    const pillIdPrefix = `${uniqueId}-pill-`;
+    const textFieldId = useId();
 
     const currentActiveDescendant = !openState
         ? undefined
@@ -601,7 +599,7 @@ export default function Combobox({
                 {maybeRenderStartIcon()}
 
                 <TextField
-                    id={ids.get("input")}
+                    id={textFieldId}
                     testId={testId}
                     style={styles.combobox}
                     value={inputValue}
@@ -713,7 +711,7 @@ export default function Combobox({
                                         testId ? `${testId}-listbox` : undefined
                                     }
                                     aria-label={labels.listbox}
-                                    aria-labelledby={ids.get("input")}
+                                    aria-labelledby={textFieldId}
                                 >
                                     {renderList}
                                 </Listbox>

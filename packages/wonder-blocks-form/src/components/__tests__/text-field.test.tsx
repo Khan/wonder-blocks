@@ -32,13 +32,13 @@ describe("TextField", () => {
 
         // Act
         render(<TextField value="" onChange={() => {}} />);
+        const input = await screen.findByRole("textbox");
+        const result = input.getAttribute("id");
 
         // Assert
         // Since the generated id is unique, we cannot know what it will be. We
-        // only test if the id attribute starts with "uid-", then followed by
-        // "text-field-" as the scope assigned to IDProvider.
-        const input = await screen.findByRole("textbox");
-        expect(input.getAttribute("id")).toMatch(/uid-text-field-.*$/);
+        // only test if the id attribute exists.
+        expect(result).toBeString();
     });
 
     it("textfield is focused", async () => {

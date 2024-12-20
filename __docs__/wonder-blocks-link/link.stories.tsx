@@ -20,7 +20,7 @@ import {
 import Link from "@khanacademy/wonder-blocks-link";
 import packageConfig from "../../packages/wonder-blocks-link/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import LinkArgTypes from "./link.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 

@@ -16,7 +16,7 @@ import {
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import TextFieldArgTypes from "./text-field.argtypes";
 import {validateEmail, validatePhoneNumber} from "./form-utilities";
 
