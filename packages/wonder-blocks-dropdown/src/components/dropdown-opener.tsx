@@ -32,6 +32,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     onBlur?: (e: React.SyntheticEvent) => unknown;
     /**
+     * The role of the opener.
+     */
+    role?: "combobox" | "button";
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string;
@@ -55,11 +59,13 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
 
 type DefaultProps = {
     disabled: Props["disabled"];
+    role: Props["role"];
 };
 
 class DropdownOpener extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         disabled: false,
+        role: "combobox",
     };
 
     getTestIdFromProps: (childrenProps?: any) => string = (childrenProps) => {
@@ -80,6 +86,7 @@ class DropdownOpener extends React.Component<Props> {
             "aria-required": ariaRequired,
             id,
             onBlur,
+            role,
         } = this.props;
         const renderedChildren = this.props.children({
             ...eventState,
@@ -111,6 +118,7 @@ class DropdownOpener extends React.Component<Props> {
             // If it's not set, try to fallback to the parent's testId
             "data-testid": childrenTestId || testId,
             onBlur,
+            role,
         });
     }
 

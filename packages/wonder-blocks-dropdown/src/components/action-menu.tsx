@@ -265,6 +265,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                         disabled={numItems === 0 || disabled}
                         text={menuText}
                         ref={this.handleOpenerRef}
+                        role="button"
                         testId={opener ? undefined : testId}
                         opened={this.state.opened}
                     >

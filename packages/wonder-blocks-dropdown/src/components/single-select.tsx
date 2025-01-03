@@ -471,6 +471,7 @@ const SingleSelect = (props: Props) => {
                             light={light}
                             onOpenChanged={handleOpenChanged}
                             open={open}
+                            placeholder={placeholder}
                             ref={handleOpenerRef}
                             testId={testId}
                             onBlur={onOpenerBlurValidation}

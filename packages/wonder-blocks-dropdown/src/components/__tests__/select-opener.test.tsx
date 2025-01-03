@@ -25,8 +25,8 @@ describe("SelectOpener", () => {
             );
 
             // Act
-            // Press the button.
-            await userEvent.click(await screen.findByRole("button"));
+            // Press the combobox opener.
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(onOpenMock).toHaveBeenCalledTimes(1);
@@ -50,17 +50,17 @@ describe("SelectOpener", () => {
             );
 
             // Act
-            // Press the button.
-            const button = await screen.findByRole("button");
+            // Press the combobox opener.
+            const opener = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
-            // the default behavior of the button.
+            // the default behavior of the opener.
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyDown(button, {
+            fireEvent.keyDown(opener, {
                 key: " ",
             });
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyUp(button, {
+            fireEvent.keyUp(opener, {
                 key: " ",
             });
 
@@ -86,25 +86,25 @@ describe("SelectOpener", () => {
             );
 
             // Act
-            // Press the button.
-            const button = await screen.findByRole("button");
+            // Press the combobox opener.
+            const opener = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
-            // the default behavior of the button.
+            // the default behavior of the opener.
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyDown(button, {
+            fireEvent.keyDown(opener, {
                 key: "Enter",
             });
             // NOTE: We need to trigger multiple events to simulate the browser
-            // behavior of pressing Enter on a button. By default, browsers will
+            // behavior of pressing Enter on an opener. By default, browsers will
             // trigger a click event on keyDown, but we need to trigger it on
             // keyUp.
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyDown(button, {
+            fireEvent.keyDown(opener, {
                 key: "Enter",
             });
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyUp(button, {
+            fireEvent.keyUp(opener, {
                 key: "Enter",
             });
 
@@ -130,8 +130,8 @@ describe("SelectOpener", () => {
             );
 
             // Act
-            // Press the button.
-            await userEvent.click(await screen.findByRole("button"));
+            // Press the combobox opener.
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(onOpenMock).toHaveBeenCalledTimes(0);
@@ -155,17 +155,17 @@ describe("SelectOpener", () => {
             );
 
             // Act
-            // Press the button.
-            const button = await screen.findByRole("button");
+            // Press the combobox opener.
+            const opener = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyDown(button, {
+            fireEvent.keyDown(opener, {
                 key: " ",
             });
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyUp(button, {
+            fireEvent.keyUp(opener, {
                 key: " ",
             });
 
@@ -191,25 +191,25 @@ describe("SelectOpener", () => {
             );
 
             // Act
-            // Press the button.
-            const button = await screen.findByRole("button");
+            // Press the combobox opener.
+            const opener = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
-            // the default behavior of the button.
+            // the default behavior of the opener.
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyDown(button, {
+            fireEvent.keyDown(opener, {
                 key: "Enter",
             });
             // NOTE: We need to trigger multiple events to simulate the browser
-            // behavior of pressing Enter on a button. By default, browsers will
+            // behavior of pressing Enter on an opener. By default, browsers will
             // trigger a click event on keyDown, but we need to trigger it on
             // keyUp.
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyDown(button, {
+            fireEvent.keyDown(opener, {
                 key: "Enter",
             });
             // eslint-disable-next-line testing-library/prefer-user-event
-            fireEvent.keyUp(button, {
+            fireEvent.keyUp(opener, {
                 key: "Enter",
             });
 
@@ -238,7 +238,7 @@ describe("SelectOpener", () => {
                     </SelectOpener>,
                 );
                 // Assert
-                expect(screen.getByRole("button")).toHaveAttribute(
+                expect(screen.getByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     ariaInvalid,
                 );
