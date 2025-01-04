@@ -105,6 +105,7 @@ export default class SelectOpener extends React.Component<
 
     handleClick: (e: React.SyntheticEvent) => void = (e) => {
         const {open} = this.props;
+        console.log("handleClick", !open);
         this.props.onOpenChanged(!open);
     };
 
@@ -114,7 +115,16 @@ export default class SelectOpener extends React.Component<
         // is only open while the Enter key is pressed.
         // Prevent default behavior for Space key. Without this, Safari stays in
         // active state visually
-        if (keyCode === "Enter" || keyCode === " ") {
+        console.log(
+            keyCode,
+            (e.target as HTMLElement).getAttribute("role"),
+            (e.target as HTMLElement).textContent,
+        );
+        if (
+            keyCode === "Enter" ||
+            keyCode.toLowerCase() === "space" ||
+            keyCode === " "
+        ) {
             this.setState({pressed: true});
             e.preventDefault();
         }
@@ -123,8 +133,17 @@ export default class SelectOpener extends React.Component<
     handleKeyUp: (e: React.KeyboardEvent) => void = (e) => {
         const keyCode = e.key;
         // On key up for Enter and Space, trigger the click handler
-        if (keyCode === "Enter" || keyCode === " ") {
+        if (
+            keyCode === "Enter" ||
+            keyCode.toLowerCase() === "space" ||
+            keyCode === " "
+        ) {
             this.setState({pressed: false});
+            console.log(
+                keyCode,
+                (e.target as HTMLElement).getAttribute("role"),
+                (e.target as HTMLElement).textContent,
+            );
             this.handleClick(e);
         }
     };

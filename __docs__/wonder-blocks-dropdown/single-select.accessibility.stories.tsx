@@ -57,3 +57,25 @@ export const UsingAriaAttributes = {
     render: SingleSelectAccessibility.bind({}),
     name: "Using aria attributes",
 };
+
+const SingleSelectKeyboardSelection = () => {
+    const [selectedValue, setSelectedValue] = React.useState("");
+    return (
+        <View>
+            <SingleSelect
+                placeholder="Choose"
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+            >
+                <OptionItem label="apple" value="apple" />
+                <OptionItem label="orange" value="orange" />
+                <OptionItem label="pear" value="pear" />
+            </SingleSelect>
+        </View>
+    );
+};
+
+export const UsingKeyboardSelection = {
+    render: SingleSelectKeyboardSelection.bind({}),
+    name: "Using the keyboard",
+};

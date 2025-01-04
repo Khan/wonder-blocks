@@ -26,7 +26,8 @@
     "@khanacademy/wonder-blocks-search-field": "^4.0.1",
     "@khanacademy/wonder-blocks-timing": "^6.0.0",
     "@khanacademy/wonder-blocks-tokens": "^3.0.0",
-    "@khanacademy/wonder-blocks-typography": "^3.0.3"
+    "@khanacademy/wonder-blocks-typography": "^3.0.3",
+    "@testing-library/jest-dom": "testing-library/jest-dom"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",
@@ -40,7 +41,7 @@
     "react-window": "^1.8.10"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^7.0.3",
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "^2.0.0",
+    "@khanacademy/wonder-blocks-button": "^7.0.3"
   }
 }
