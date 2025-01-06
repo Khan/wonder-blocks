@@ -25,3 +25,84 @@ prop is not provided, a unique id will be auto-generated!
 - The `LabeledField` component does not need to be used with the `CheckboxGroup`
  or `RadioGroup` components since those components already have accessible labels
  built-in when the `label` prop is used.
+
+## Screen Reader Behaviour
+
+Since the label, description, and error message are associated with the field,
+they are read out with the field when it is interacted with. If the field component
+handles the `error` and `required` props and sets the `aria-invalid` and `aria-required`
+attributes, then this information is also announced.
+
+### Error messages
+
+The error message is implemented following the
+[W3C-WAI Form Notifications On Focus Change](https://www.w3.org/WAI/tutorials/forms/notifications/#on-focus-change)
+pattern. The field has `aria-describedby` set to the `id` for the error message
+and the error message has `aria-live="assertive"`. `aria-atomic=true` is also set
+so that any updates to the error message is announced.
+
+Different browsers and screen readers announce this differently unfortunately
+(in both the W3C example and LabeledField stories). The following documents the
+current behaviour for 3 scenarios around error messages:
+
+#### 1. The field is in an error state already
+
+**Expected:** When a user interacts with the field, it should announce the field
+details along with the error message.
+
+**Safari + VoiceOver, Firefox + NVDA, Chrome + NVDA:** Works as expected - field
+details are announced (including the error message)
+
+#### 2. There is an error after interacting with a field
+
+**Expected:** When the error message is shown after interacting with a field, it
+should announce the error message.
+
+**Safari + VoiceOver:** Announces the error message for SingleSelect and MultiSelect
+since the focus is moved to the opener when the options are closed. It does not
+announce the error message for TextField, TextArea, and Search Field.
+- Mitigation: Since the focus should move to the first field with an error, the
+error message will be announced then. Tabbing through the other fields will
+read out the error message as expected (see scenario #1).
+- Note: [Related Safari Bug around `aria-describedby`](https://bugs.webkit.org/show_bug.cgi?id=262895#c22).
+We also use `aria-live=assertive` instead of `role=alert` for the error
+message because of a different Safari bug where [`aria-describedby` with
+`role="alert"` is not announced](https://bugs.webkit.org/show_bug.cgi?id=270943).
+By using `aria-live` instead, the error message is announced when the field is
+interacted with (scenario #1).
+
+
+**Firefox + NVDA:** Announces the error as expected when leaving a field. For
+SingleSelect and MultiSelect, the error message is announced twice. The first
+time, it announces the error message. The second time, it reads out the details
+of the field, including the error message.
+
+**Chrome + NVDA:** It announces the error message twice when leaving a field. The
+first time, it announces the error message. The second time, it reads out the
+details of the field, including the error message.
+- Reasoning: This seems to be the behaviour when we set both the field's
+`aria-describedby` to the id of the error message and `aria-live=assertive` on
+the error message. We need `aria-describedby` set so that the error message is
+announced when the field is interacted with (scenario #1). We need the live region
+on the error message so that it is announced on blur when using Firefox + NVDA.
+- Based on the [Core Accessibility API Mappings](https://www.w3.org/TR/core-aam-1.2/#event-aria-describedby) spec,
+user agents must notify assitive technology when `aria-describedby` changes,
+though "user agents may trim out change events for state or property changes that
+assistive technologies typically ignore, such as events that are happening in a
+window that does not currently have focus". Chrome seems to follow this and
+treat `aria-describedby` as a live region even when the field is blurred,
+while Firefox does not (which could be why Firefox doesn't repeat the field
+details). (Note: There is a [bug for the Chromium behaviour](https://issues.chromium.org/issues/41449536)
+that is marked as "Won't Fix")
+
+#### 3. There is an error after form submission
+
+**Expected:** When an error message is shown after a form is submitted, focus
+should be programmatically moved to the first field with an error and the field
+details should be announced with the error message.
+
+**Safari + VoiceOver, Firefox + NVDA, Chrome + NVDA:** Works as expected - once
+focus is moved to the first field with an error, the field details are read out
+along with the error.
+
+
