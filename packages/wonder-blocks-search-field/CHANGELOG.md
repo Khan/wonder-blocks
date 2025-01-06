@@ -1,5 +1,32 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 4.0.4
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+-   Updated dependencies [11a0f5c6]
+    -   @khanacademy/wonder-blocks-icon-button@6.0.4
+    -   @khanacademy/wonder-blocks-typography@3.0.4
+    -   @khanacademy/wonder-blocks-tokens@3.0.1
+    -   @khanacademy/wonder-blocks-core@11.0.1
+    -   @khanacademy/wonder-blocks-form@6.0.4
+    -   @khanacademy/wonder-blocks-icon@5.0.4
+
+## 4.0.3
+
+### Patch Changes
+
+-   Updated dependencies [53b41970]
+    -   @khanacademy/wonder-blocks-form@6.0.3
+
+## 4.0.2
+
+### Patch Changes
+
+-   Updated dependencies [361cb52b]
+    -   @khanacademy/wonder-blocks-form@6.0.2
+
 ## 4.0.1
 
 ### Patch Changes

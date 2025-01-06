@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.0.2
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+-   Updated dependencies [11a0f5c6]
+    -   @khanacademy/wonder-blocks-theming@3.0.1
+    -   @khanacademy/wonder-blocks-tokens@3.0.1
+    -   @khanacademy/wonder-blocks-core@11.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.4
+
 ## 3.0.1
 
 ### Patch Changes

@@ -10,7 +10,7 @@ import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 import SearchFieldArgtypes from "./search-field.argtypes";
 

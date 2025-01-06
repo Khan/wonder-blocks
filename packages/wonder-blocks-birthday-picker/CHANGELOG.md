@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 3.0.8
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+-   Updated dependencies [11a0f5c6]
+    -   @khanacademy/wonder-blocks-typography@3.0.4
+    -   @khanacademy/wonder-blocks-dropdown@7.0.4
+    -   @khanacademy/wonder-blocks-layout@3.0.4
+    -   @khanacademy/wonder-blocks-tokens@3.0.1
+    -   @khanacademy/wonder-blocks-core@11.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.4
+
+## 3.0.7
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@7.0.3
+
+## 3.0.6
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@7.0.2
+
 ## 3.0.5
 
 ### Patch Changes

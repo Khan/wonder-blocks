@@ -17,7 +17,7 @@ import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import OnePaneDialogArgTypes from "./one-pane-dialog.argtypes";
 
 const customViewports = {

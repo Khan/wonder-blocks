@@ -8,7 +8,7 @@ import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import packageConfig from "../../packages/wonder-blocks-toolbar/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import ToolbarArgtypes, {
     leftContentMappings,
     rightContentMappings,
