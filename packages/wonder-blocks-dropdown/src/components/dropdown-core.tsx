@@ -733,7 +733,6 @@ class DropdownCore extends React.Component<Props, State> {
                 if (this.isSearchFieldFocused()) {
                     return;
                 }
-                console.log("key:", key);
                 // Prevent space from scrolling down the page
                 event.preventDefault();
                 event.stopPropagation();
@@ -907,18 +906,6 @@ class DropdownCore extends React.Component<Props, State> {
             return React.cloneElement(component, {
                 ...populatedProps,
                 key: index,
-                onKeyUp: (e: React.KeyboardEvent) => {
-                    console.log("dropdown-core onKeyDown", e.key);
-                    if (populatedProps.onKeyUp) {
-                        populatedProps.onKeyUp(e);
-                    }
-                },
-                onKeyDown: (e: React.KeyboardEvent) => {
-                    console.log("dropdown-core onKeyDown", e.key);
-                    if (populatedProps.onKeyDown) {
-                        populatedProps.onKeyDown(e);
-                    }
-                },
                 onClick: () => {
                     console.log("dropdown-core item onClick");
                     this.handleItemClick(focusIndex, item);

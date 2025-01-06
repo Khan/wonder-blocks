@@ -362,10 +362,7 @@ const SingleSelect = (props: Props) => {
 
         // Bring focus back to the opener element.
         if (open && openerElement) {
-            setTimeout(() => {
-                // This event is causing keyboard tests to fail, so delay a bit.
-                openerElement.focus();
-            }, 100);
+            openerElement.focus();
         }
 
         setOpen(false); // close the menu upon selection

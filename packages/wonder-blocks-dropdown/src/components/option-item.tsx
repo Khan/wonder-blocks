@@ -171,30 +171,8 @@ export default class OptionItem extends React.Component<OptionProps> {
     handleClick: () => void = () => {
         const {onClick, onToggle, value} = this.props;
         onToggle(value);
-        console.log("option-item handleClick", value);
         if (onClick) {
             onClick();
-        }
-    };
-
-    handleKeyDown: (e: React.KeyboardEvent) => void = (e) => {
-        const {onClick, onToggle, value} = this.props;
-        const keyCode = e.key;
-
-        console.log("option-item handleKeyDown", keyCode);
-
-        if (keyCode.toLowerCase() === "space" || keyCode === " ") {
-            this.handleClick();
-        }
-    };
-    handleKeyUp: (e: React.KeyboardEvent) => void = (e) => {
-        const {onClick, onToggle, value} = this.props;
-        const keyCode = e.key;
-
-        console.log("option-item handleKeyUp", keyCode);
-
-        if (keyCode.toLowerCase() === "space" || keyCode === " ") {
-            this.handleClick();
         }
     };
 
@@ -300,8 +278,6 @@ export default class OptionItem extends React.Component<OptionProps> {
                         // on the option item.
                         e.preventDefault();
                     }}
-                    onKeyDown={(e) => console.log(e.key)}
-                    onKeyUp={(e) => console.log(e.key)}
                     onClick={this.handleClick}
                     style={[
                         styles.reset,
