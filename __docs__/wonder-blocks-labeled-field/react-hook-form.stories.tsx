@@ -418,3 +418,8 @@ export const ValidationOnTouched = {
     render: UseController,
     args: {mode: "onTouched"},
 };
+
+export const ValidationOnChange = {
+    render: UseController,
+    args: {mode: "onChange"},
+};
