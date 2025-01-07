@@ -26,8 +26,7 @@
     "@khanacademy/wonder-blocks-search-field": "^4.0.1",
     "@khanacademy/wonder-blocks-timing": "^6.0.0",
     "@khanacademy/wonder-blocks-tokens": "^3.0.0",
-    "@khanacademy/wonder-blocks-typography": "^3.0.3",
-    "@testing-library/jest-dom": "testing-library/jest-dom"
+    "@khanacademy/wonder-blocks-typography": "^3.0.3"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",
