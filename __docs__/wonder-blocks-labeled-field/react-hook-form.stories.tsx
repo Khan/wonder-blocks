@@ -6,6 +6,7 @@ import {
     SubmitErrorHandler,
     useController,
 } from "react-hook-form";
+import {Meta} from "@storybook/react/*";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {
     CheckboxGroup,
@@ -23,7 +24,17 @@ import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
-export default {title: "Test/ReactHookForm"};
+export default {
+    title: "Test/ReactHookForm",
+    argTypes: {
+        mode: {
+            control: {
+                type: "select",
+            },
+            options: ["onBlur", "onChange", "onSubmit", "onTouched", "all"],
+        },
+    },
+} as Meta;
 
 type Inputs = {
     exampleTextField: string;
@@ -67,19 +78,23 @@ const defaultValues = {
     exampleCheckboxGroup: ["banana"],
     exampleRadioGroup: "banana",
 };
-export const ExampleController = (args) => {
+
+type StoryArgs = {
+    mode: "onBlur" | "onChange" | "onSubmit" | "onTouched" | "all" | undefined;
+};
+
+export const ExampleController = (args: StoryArgs) => {
     const {
         handleSubmit,
         formState: {errors},
         control,
     } = useForm<Inputs>({
-        mode: "onTouched",
-        // NOTE: comment out defaultValues to see behaviour when empty
+        mode: args.mode,
         defaultValues,
     });
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log("successful submit", data.exampleTextField);
+        console.log("successful submit", data);
     };
 
     const onInvalidSubmit: SubmitErrorHandler<Inputs> = (data) => {
@@ -215,8 +230,7 @@ export const ExampleController = (args) => {
                     name="exampleCheckboxGroup"
                     control={control}
                     rules={selectedValuesRules}
-                    render={({field, ...others}) => {
-                        console.log("others", others);
+                    render={({field}) => {
                         return (
                             <CheckboxGroup
                                 label="CheckboxGroup"
@@ -243,14 +257,13 @@ export const ExampleController = (args) => {
     );
 };
 
-export const UseController = () => {
+export const UseController = (args: StoryArgs) => {
     const {
         handleSubmit,
         formState: {errors},
         control,
     } = useForm<Inputs>({
-        mode: "onTouched",
-        // NOTE: comment out defaultValues to see behaviour when empty
+        mode: args.mode,
         defaultValues,
     });
 
@@ -376,4 +389,14 @@ export const UseController = () => {
             </View>
         </form>
     );
+};
+
+export const ValidationOnBlur = {
+    render: UseController,
+    args: {mode: "onBlur"},
+};
+
+export const ValidationOnTouched = {
+    render: UseController,
+    args: {mode: "onTouched"},
 };
