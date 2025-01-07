@@ -113,6 +113,7 @@ export const ExampleController = (args: StoryArgs) => {
     } = useForm<Inputs>({
         mode: args.mode,
         defaultValues,
+        disabled: args.disableFields,
     });
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
@@ -130,7 +131,6 @@ export const ExampleController = (args: StoryArgs) => {
                     name="exampleTextField"
                     control={control}
                     rules={textRules}
-                    disabled={args.disableFields}
                     render={({field}) => {
                         return (
                             <LabeledField
@@ -146,7 +146,6 @@ export const ExampleController = (args: StoryArgs) => {
                     name="exampleTextArea"
                     control={control}
                     rules={textRules}
-                    disabled={args.disableFields}
                     render={({field}) => {
                         return (
                             <LabeledField
@@ -162,7 +161,6 @@ export const ExampleController = (args: StoryArgs) => {
                     name="exampleSingleSelect"
                     control={control}
                     rules={selectedValueRules}
-                    disabled={args.disableFields}
                     render={({field}) => {
                         return (
                             <LabeledField
@@ -199,7 +197,6 @@ export const ExampleController = (args: StoryArgs) => {
                     name="exampleMultiSelect"
                     control={control}
                     rules={selectedValuesRules}
-                    disabled={args.disableFields}
                     render={({field}) => {
                         return (
                             <LabeledField
@@ -235,7 +232,6 @@ export const ExampleController = (args: StoryArgs) => {
                     name="exampleRadioGroup"
                     control={control}
                     rules={selectedValueRules}
-                    disabled={args.disableFields}
                     render={({field}) => {
                         return (
                             <RadioGroup
@@ -257,7 +253,6 @@ export const ExampleController = (args: StoryArgs) => {
                     name="exampleCheckboxGroup"
                     control={control}
                     rules={selectedValuesRules}
-                    disabled={args.disableFields}
                     render={({field}) => {
                         return (
                             <CheckboxGroup
@@ -296,48 +291,43 @@ export const UseController = (args: StoryArgs) => {
     } = useForm<Inputs>({
         mode: args.mode,
         defaultValues,
+        disabled: args.disableFields,
     });
 
     const {field: tfField} = useController({
         name: "exampleTextField",
         control,
         rules: textRules,
-        disabled: args.disableFields,
     });
 
     const {field: taField} = useController({
         name: "exampleTextArea",
         control,
         rules: textRules,
-        disabled: args.disableFields,
     });
 
     const {field: ssField} = useController({
         name: "exampleSingleSelect",
         control,
         rules: selectedValueRules,
-        disabled: args.disableFields,
     });
 
     const {field: msField} = useController({
         name: "exampleMultiSelect",
         control,
         rules: selectedValuesRules,
-        disabled: args.disableFields,
     });
 
     const {field: rgField} = useController({
         name: "exampleRadioGroup",
         control,
         rules: selectedValueRules,
-        disabled: args.disableFields,
     });
 
     const {field: cbgField} = useController({
         name: "exampleCheckboxGroup",
         control,
         rules: selectedValuesRules,
-        disabled: args.disableFields,
     });
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
