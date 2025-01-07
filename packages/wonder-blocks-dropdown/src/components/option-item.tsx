@@ -269,6 +269,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     render(): React.ReactNode {
         const {disabled, focused, parentComponent, role, selected} = this.props;
 
+        // Only used for Combobox component, not SingleSelect/MultiSelect
         if (parentComponent === "listbox") {
             return (
                 <StyledListItem
