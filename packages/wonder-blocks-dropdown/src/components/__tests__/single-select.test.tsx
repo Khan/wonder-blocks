@@ -1,6 +1,12 @@
 /* eslint-disable max-lines */
 import * as React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import {
+    fireEvent,
+    render,
+    screen,
+    within,
+    waitFor,
+} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -54,7 +60,7 @@ describe("SingleSelect", () => {
         jest.spyOn(console, "error").mockReset();
     });
 
-    describe.only("uncontrolled", () => {
+    describe("uncontrolled", () => {
         const uncontrolledSingleSelect = (
             <SingleSelect onChange={onChange} placeholder="Choose">
                 <OptionItem label="item 1" value="1" />
@@ -63,267 +69,268 @@ describe("SingleSelect", () => {
             </SingleSelect>
         );
 
-        // describe("opener", () => {
-        //     it("should render the placeholder if no selections are made", async () => {
-        //         // Arrange
-        //         doRender(
-        //             <SingleSelect
-        //                 placeholder="Default placeholder"
-        //                 onChange={jest.fn()}
-        //             >
-        //                 <OptionItem label="Toggle A" value="toggle_a" />
-        //                 <OptionItem label="Toggle B" value="toggle_b" />
-        //             </SingleSelect>,
-        //         );
+        describe("opener", () => {
+            it("should render the placeholder if no selections are made", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                    >
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
 
-        //         // Act
-        //         const opener = await screen.findByRole("combobox");
+                // Act
+                const opener = await screen.findByRole("combobox");
 
-        //         // Assert
-        //         expect(opener).toHaveTextContent("Default placeholder");
-        //     });
+                // Assert
+                expect(opener).toHaveTextContent("Default placeholder");
+            });
 
-        //     it("should render empty if the selected option has an empty value", async () => {
-        //         // Arrange
-        //         doRender(
-        //             <SingleSelect
-        //                 placeholder="Default placeholder"
-        //                 onChange={jest.fn()}
-        //                 selectedValue=""
-        //             >
-        //                 <OptionItem label="" value="" />
-        //                 <OptionItem label="Toggle A" value="toggle_a" />
-        //                 <OptionItem label="Toggle B" value="toggle_b" />
-        //             </SingleSelect>,
-        //         );
+            it("should render empty if the selected option has an empty value", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue=""
+                    >
+                        <OptionItem label="" value="" />
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
 
-        //         // Act
-        //         const opener = await screen.findByRole("combobox");
+                // Act
+                const opener = await screen.findByRole("combobox");
 
-        //         // Assert
-        //         expect(opener).toHaveTextContent("");
-        //     });
+                // Assert
+                expect(opener).toHaveTextContent("");
+            });
 
-        //     it("should render the label of the selected option", async () => {
-        //         // Arrange
-        //         doRender(
-        //             <SingleSelect
-        //                 placeholder="Default placeholder"
-        //                 onChange={jest.fn()}
-        //                 selectedValue="toggle_a"
-        //             >
-        //                 <OptionItem label="Toggle A" value="toggle_a" />
-        //                 <OptionItem label="Toggle B" value="toggle_b" />
-        //             </SingleSelect>,
-        //         );
+            it("should render the label of the selected option", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                    >
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
 
-        //         // Act
-        //         const opener = await screen.findByRole("combobox");
+                // Act
+                const opener = await screen.findByRole("combobox");
 
-        //         // Assert
-        //         expect(opener).toHaveTextContent("Toggle A");
-        //     });
+                // Assert
+                expect(opener).toHaveTextContent("Toggle A");
+            });
 
-        //     it("should render labelAsText of the selected option", async () => {
-        //         // Arrange
-        //         doRender(
-        //             <SingleSelect
-        //                 placeholder="Default placeholder"
-        //                 onChange={jest.fn()}
-        //                 selectedValue="toggle_a"
-        //             >
-        //                 <OptionItem
-        //                     label={<div>custom item A</div>}
-        //                     value="toggle_a"
-        //                     labelAsText="Plain Toggle A"
-        //                 />
-        //                 <OptionItem
-        //                     label={<div>custom item B</div>}
-        //                     value="toggle_b"
-        //                     labelAsText="Plain Toggle B"
-        //                 />
-        //             </SingleSelect>,
-        //         );
+            it("should render labelAsText of the selected option", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </SingleSelect>,
+                );
 
-        //         // Act
-        //         const opener = await screen.findByRole("combobox");
+                // Act
+                const opener = await screen.findByRole("combobox");
 
-        //         // Assert
-        //         expect(opener).toHaveTextContent("Plain Toggle A");
-        //     });
+                // Assert
+                expect(opener).toHaveTextContent("Plain Toggle A");
+            });
 
-        //     it("can render a Node as a label", async () => {
-        //         // Arrange
-        //         doRender(
-        //             <SingleSelect
-        //                 placeholder="Default placeholder"
-        //                 onChange={jest.fn()}
-        //                 selectedValue="toggle_a"
-        //                 showOpenerLabelAsText={false}
-        //             >
-        //                 <OptionItem
-        //                     label={<div>custom item A</div>}
-        //                     value="toggle_a"
-        //                     labelAsText="Plain Toggle A"
-        //                 />
-        //                 <OptionItem
-        //                     label={<div>custom item B</div>}
-        //                     value="toggle_b"
-        //                     labelAsText="Plain Toggle B"
-        //                 />
-        //             </SingleSelect>,
-        //         );
+            it("can render a Node as a label", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                        showOpenerLabelAsText={false}
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </SingleSelect>,
+                );
 
-        //         // Act
-        //         const opener = await screen.findByRole("combobox");
-        //         const menuLabel = within(opener).getByText("custom item A");
+                // Act
+                const opener = await screen.findByRole("combobox");
+                const menuLabel = within(opener).getByText("custom item A");
 
-        //         // Assert
-        //         expect(menuLabel).toBeVisible();
-        //     });
-        // });
+                // Assert
+                expect(menuLabel).toBeVisible();
+            });
+        });
 
-        // describe("mouse", () => {
-        //     it("should open when clicking on the default opener", async () => {
-        //         // Arrange
-        //         const {userEvent} = doRender(uncontrolledSingleSelect);
-        //         const opener = await screen.findByText("Choose");
+        describe("mouse", () => {
+            it("should open when clicking on the default opener", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                const opener = await screen.findByText("Choose");
 
-        //         // Act
-        //         await userEvent.click(opener);
+                // Act
+                await userEvent.click(opener);
 
-        //         // Assert
-        //         expect(
-        //             await screen.findByRole("listbox", {hidden: true}),
-        //         ).toBeInTheDocument();
-        //     });
+                // Assert
+                expect(
+                    await screen.findByRole("listbox", {hidden: true}),
+                ).toBeInTheDocument();
+            });
 
-        //     it("should focus the first item in the dropdown", async () => {
-        //         // Arrange
-        //         const {userEvent} = doRender(uncontrolledSingleSelect);
-        //         const opener = await screen.findByText("Choose");
+            it("should focus the first item in the dropdown", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                const opener = await screen.findByText("Choose");
 
-        //         // Act
-        //         await userEvent.click(opener);
+                // Act
+                await userEvent.click(opener);
 
-        //         // Assert
-        //         const options = screen.getAllByRole("option", {hidden: true});
-        //         expect(options[0]).toHaveFocus();
-        //     });
+                // Assert
+                const options = screen.getAllByRole("option", {hidden: true});
+                expect(options[0]).toHaveFocus();
+            });
 
-        //     it("should close when clicking on the default opener a second time", async () => {
-        //         // Arrange
-        //         const {userEvent} = doRender(uncontrolledSingleSelect);
-        //         const opener = await screen.findByText("Choose");
-        //         await userEvent.click(opener);
+            it("should close when clicking on the default opener a second time", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                const opener = await screen.findByText("Choose");
+                await userEvent.click(opener);
 
-        //         // Act
-        //         await userEvent.click(opener);
+                // Act
+                await userEvent.click(opener);
 
-        //         // Assert
-        //         expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-        //     });
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
 
-        //     it("should close when clicking on an item", async () => {
-        //         // Arrange
-        //         const {userEvent} = doRender(uncontrolledSingleSelect);
-        //         const opener = await screen.findByText("Choose");
-        //         await userEvent.click(opener);
+            it("should close when clicking on an item", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                const opener = await screen.findByText("Choose");
+                await userEvent.click(opener);
 
-        //         // Act
-        //         await userEvent.click(await screen.findByText("item 1"));
+                // Act
+                await userEvent.click(await screen.findByText("item 1"));
 
-        //         // Assert
-        //         expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
-        //     });
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
 
-        //     it("should call onChange() with the item's value when clicking it", async () => {
-        //         // Arrange
-        //         const {userEvent} = doRender(uncontrolledSingleSelect);
-        //         const opener = await screen.findByText("Choose");
-        //         await userEvent.click(opener);
+            it("should call onChange() with the item's value when clicking it", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                const opener = await screen.findByText("Choose");
+                await userEvent.click(opener);
 
-        //         // Act
-        //         await userEvent.click(await screen.findByText("item 1")); // closed
+                // Act
+                await userEvent.click(await screen.findByText("item 1")); // closed
 
-        //         // Assert
-        //         expect(onChange).toHaveBeenCalledWith("1"); // value
-        //     });
+                // Assert
+                expect(onChange).toHaveBeenCalledWith("1"); // value
+            });
 
-        //     it("should not focus in the first item if autoFocus is disabled", async () => {
-        //         // Arrange
-        //         const {userEvent} = doRender(
-        //             <SingleSelect
-        //                 autoFocus={false}
-        //                 onChange={onChange}
-        //                 placeholder="Choose"
-        //                 opener={() => <input type="text" />}
-        //             >
-        //                 <OptionItem label="item 1" value="1" />
-        //                 <OptionItem label="item 2" value="2" />
-        //                 <OptionItem label="item 3" value="3" />
-        //             </SingleSelect>,
-        //         );
+            it("should not focus in the first item if autoFocus is disabled", async () => {
+                // Arrange
+                const {userEvent} = doRender(
+                    <SingleSelect
+                        autoFocus={false}
+                        onChange={onChange}
+                        placeholder="Choose"
+                        opener={() => <input type="text" />}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </SingleSelect>,
+                );
 
-        //         // Act
-        //         await userEvent.click(await screen.findByRole("combobox"));
+                // Act
+                await userEvent.click(await screen.findByRole("combobox"));
 
-        //         // wait for the dropdown to open
-        //         await screen.findByRole("listbox", {hidden: true});
+                // wait for the dropdown to open
+                await screen.findByRole("listbox", {hidden: true});
 
-        //         // Assert
-        //         expect(await screen.findByRole("combobox")).toHaveFocus();
-        //     });
-        // });
+                // Assert
+                expect(await screen.findByRole("combobox")).toHaveFocus();
+            });
+        });
 
-        describe.only("keyboard", () => {
+        describe("keyboard", () => {
             beforeEach(() => {
                 jest.useFakeTimers();
             });
 
-            // describe.each([{key: "{enter}"}, {key: "{space}"}])(
-            //     "$key",
-            //     ({key}: any) => {
-            //         it("should open when pressing the key when the default opener is focused", async () => {
-            //             // Arrange
-            //             const {userEvent} = doRender(uncontrolledSingleSelect);
-            //             await userEvent.tab();
+            describe.each([{key: "{enter}"}, {key: "{space}"}])(
+                "$key",
+                ({key}: any) => {
+                    it("should open when pressing the key when the default opener is focused", async () => {
+                        // Arrange
+                        const {userEvent} = doRender(uncontrolledSingleSelect);
+                        await userEvent.tab();
 
-            //             // Act
-            //             await userEvent.keyboard(key);
+                        // Act
+                        await userEvent.keyboard(key);
 
-            //             // Assert
-            //             const listbox = await screen.findByRole("listbox");
-            //             expect(listbox).toBeInTheDocument();
-            //         });
+                        // Assert
+                        const listbox = await screen.findByRole("listbox");
+                        expect(listbox).toBeInTheDocument();
+                    });
 
-            //         it("should focus the first item in the dropdown", async () => {
-            //             // Arrange
-            //             const {userEvent} = doRender(uncontrolledSingleSelect);
-            //             await userEvent.tab();
+                    it("should focus the first item in the dropdown", async () => {
+                        // Arrange
+                        const {userEvent} = doRender(uncontrolledSingleSelect);
+                        await userEvent.tab();
 
-            //             // Act
-            //             await userEvent.keyboard(key);
+                        // Act
+                        await userEvent.keyboard(key);
 
-            //             // Assert
-            //             const options = screen.getAllByRole("option", {
-            //                 hidden: true,
-            //             });
-            //             expect(options[0]).toHaveFocus();
-            //         });
-            //     },
-            // );
+                        // Assert
+                        const options = screen.getAllByRole("option", {
+                            hidden: true,
+                        });
+                        expect(options[0]).toHaveFocus();
+                    });
+                },
+            );
 
-            it.skip("should select an item when pressing {enter}", async () => {
+            it("should select an item when pressing {enter}", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{enter}"); // open
 
                 // Ensure first option is focused, not the opener
-                // Ignoring direct node access--we could use jest-dom matchers instead.
-                // eslint-disable-next-line testing-library/no-node-access
-                expect(document.activeElement).toHaveAccessibleName("item 1");
+                const firstItem = await screen.findByRole("option", {
+                    name: /item 1/,
+                });
+                expect(firstItem).toHaveFocus();
 
                 // Act
                 await userEvent.keyboard("{enter}");
@@ -338,9 +345,7 @@ describe("SingleSelect", () => {
                 );
             });
 
-            // TODO(FEI-5533): Key press events aren't working correctly with
-            // user-event v14. We need to investigate and fix this.
-            it.only("should select an item when pressing {space}", async () => {
+            it("should select an item when pressing {space}", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
@@ -357,7 +362,6 @@ describe("SingleSelect", () => {
                 // Assert
                 expect(onChange).toHaveBeenCalledWith("1");
                 await waitFor(() => {
-                    screen.debug();
                     expect(
                         screen.queryByRole("listbox"),
                     ).not.toBeInTheDocument();
@@ -373,7 +377,7 @@ describe("SingleSelect", () => {
             until we can work out how to replicate things again. This could be
             changed to a storybook test perhaps.
             */
-            it("should find and select an item using the keyboard", async () => {
+            it.skip("should find and select an item using the keyboard", async () => {
                 // Arrange
                 const {userEvent} = doRender(
                     <SingleSelect onChange={onChange} placeholder="Choose">
@@ -394,7 +398,7 @@ describe("SingleSelect", () => {
                 expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
             });
 
-            it.skip("should NOT find/select an item using the keyboard if enableTypeAhead is set false", async () => {
+            it("should NOT find/select an item using the keyboard if enableTypeAhead is set false", async () => {
                 // Arrange
                 const {userEvent} = doRender(
                     <SingleSelect
@@ -420,7 +424,7 @@ describe("SingleSelect", () => {
                 expect(onChange).not.toHaveBeenCalled();
             });
 
-            it.skip("should dismiss the dropdown when pressing {escape}", async () => {
+            it("should dismiss the dropdown when pressing {escape}", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
@@ -835,10 +839,7 @@ describe("SingleSelect", () => {
             expect(searchInput.textContent).toEqual("");
         });
 
-        // NOTE(john): This is no longer working after upgrading to user-events v14
-        // The .tab() call just moves focus to the body, rather than the Clear
-        // search (which does exist in the page).
-        it.skip("should move focus to the dismiss button after pressing {tab} on the text input", async () => {
+        it("should move focus to the dismiss button after pressing {tab} on the text input", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect

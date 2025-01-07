@@ -656,12 +656,6 @@ class DropdownCore extends React.Component<Props, State> {
     handleKeyDown: (event: React.KeyboardEvent) => void = (event) => {
         const {enableTypeAhead, onOpenChanged, open, searchText} = this.props;
         const key = event.key;
-        console.log(
-            "handleKeyDown",
-            key,
-            (event.target as HTMLElement).getAttribute("role"),
-            (event.target as HTMLElement).textContent,
-        );
 
         // Listen for the keydown events if we are using ASCII characters.
         if (enableTypeAhead && getStringForKey(key)) {
@@ -719,13 +713,6 @@ class DropdownCore extends React.Component<Props, State> {
         const {onOpenChanged, open} = this.props;
         const key = event.key;
 
-        console.log(
-            "handleKeyUp",
-            key,
-            (event.target as HTMLElement).getAttribute("role"),
-            (event.target as HTMLElement).textContent,
-        );
-        console.log(key);
         switch (key) {
             case keys.space:
                 // When we display SearchField and the focus is on it, we should
@@ -907,7 +894,6 @@ class DropdownCore extends React.Component<Props, State> {
                 ...populatedProps,
                 key: index,
                 onClick: () => {
-                    console.log("dropdown-core item onClick");
                     this.handleItemClick(focusIndex, item);
                 },
                 // Only pass the ref if the item is focusable.

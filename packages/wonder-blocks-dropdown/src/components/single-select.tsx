@@ -321,24 +321,6 @@ const SingleSelect = (props: Props) => {
         }
     }, [disabled, opened]);
 
-    React.useEffect(() => {
-        console.log("open", open);
-    }, [open]);
-
-    const logActiveElement = () => {
-        const activeElement = document.activeElement;
-        console.log(
-            "activeElement:",
-            activeElement?.getAttribute("role"),
-            activeElement?.textContent,
-        );
-    };
-    React.useEffect(() => {
-        document.addEventListener("focusin", logActiveElement);
-
-        return () => document.removeEventListener("focusin", logActiveElement);
-    }, []);
-
     const handleOpenChanged = (opened: boolean) => {
         setOpen(opened);
         setSearchText("");
@@ -354,9 +336,7 @@ const SingleSelect = (props: Props) => {
 
     const handleToggle = (newSelectedValue: string) => {
         // Call callback if selection changed.
-        console.log("handleToggle", newSelectedValue, selectedValue);
         if (newSelectedValue !== selectedValue) {
-            console.log("onChange");
             onChange(newSelectedValue);
         }
 
