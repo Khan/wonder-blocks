@@ -1,6 +1,7 @@
 import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
+import {keys} from "@khanacademy/wonder-blocks-core";
 
 import SelectOpener from "../select-opener";
 
@@ -57,11 +58,11 @@ describe("SelectOpener", () => {
             // the default behavior of the button.
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyDown(button, {
-                key: " ",
+                key: keys.space,
             });
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyUp(button, {
-                key: " ",
+                key: keys.space,
             });
 
             // Assert

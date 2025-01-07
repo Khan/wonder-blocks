@@ -8,7 +8,7 @@ import {ComboboxLabels} from "./types";
 export const keys = {
     escape: "Escape",
     tab: "Tab",
-    space: " ",
+    space: "Space",
     up: "ArrowUp",
     down: "ArrowDown",
 } as const;

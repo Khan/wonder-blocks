@@ -1,4 +1,5 @@
 import * as React from "react";
+import {keys} from "@khanacademy/wonder-blocks-core";
 
 // NOTE: Potentially add to this as more cases come up.
 export type ClickableRole =
@@ -227,11 +228,6 @@ const disabledHandlers = {
     onTouchCancel: () => void 0,
     onKeyDown: () => void 0,
     onKeyUp: () => void 0,
-} as const;
-
-const keyCodes = {
-    enter: 13,
-    space: 32,
 } as const;
 
 const startState: ClickableState = {
@@ -560,13 +556,13 @@ export default class ClickableBehavior extends React.Component<
         if (onKeyDown) {
             onKeyDown(e);
         }
-
-        const keyCode = e.which || e.keyCode;
+        // Allow tests to use mixed case commands ("Space" or "space")
+        const keyCode = e.key.toLowerCase();
         const {triggerOnEnter, triggerOnSpace} =
             getAppropriateTriggersForRole(role);
         if (
-            (triggerOnEnter && keyCode === keyCodes.enter) ||
-            (triggerOnSpace && keyCode === keyCodes.space)
+            (triggerOnEnter && keyCode === keys.enter.toLowerCase()) ||
+            (triggerOnSpace && keyCode === keys.space.toLowerCase())
         ) {
             // This prevents space from scrolling down. It also prevents the
             // space and enter keys from triggering click events. We manually
@@ -574,7 +570,7 @@ export default class ClickableBehavior extends React.Component<
             // handleKeyUp instead.
             e.preventDefault();
             this.setState({pressed: true});
-        } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
+        } else if (!triggerOnEnter && keyCode === keys.enter.toLowerCase()) {
             // If the component isn't supposed to trigger on enter, we have to
             // keep track of the enter keydown to negate the onClick callback
             this.enterClick = true;
@@ -587,17 +583,17 @@ export default class ClickableBehavior extends React.Component<
             onKeyUp(e);
         }
 
-        const keyCode = e.which || e.keyCode;
+        const keyCode = e.key.toLowerCase();
         const {triggerOnEnter, triggerOnSpace} =
             getAppropriateTriggersForRole(role);
         if (
-            (triggerOnEnter && keyCode === keyCodes.enter) ||
-            (triggerOnSpace && keyCode === keyCodes.space)
+            (triggerOnEnter && keyCode === keys.enter.toLowerCase()) ||
+            (triggerOnSpace && keyCode === keys.space.toLowerCase())
         ) {
             this.setState({pressed: false, focused: true});
 
             this.runCallbackAndMaybeNavigate(e);
-        } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
+        } else if (!triggerOnEnter && keyCode === keys.enter) {
             this.enterClick = false;
         }
     };
