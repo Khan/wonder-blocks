@@ -5,7 +5,7 @@ import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";

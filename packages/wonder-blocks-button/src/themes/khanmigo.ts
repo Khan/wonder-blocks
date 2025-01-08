@@ -9,12 +9,12 @@ const theme = mergeTheme(defaultTheme, {
     color: {
         bg: {
             secondary: {
-                default: tokens.color.offWhite,
+                default: tokens.semanticColor.surface.secondary,
                 active: {
-                    action: tokens.color.fadedBlue8,
-                    critical: tokens.color.fadedRed8,
+                    action: tokens.semanticColor.status.notice.background,
+                    critical: tokens.semanticColor.status.critical.background,
                 },
-                focus: tokens.color.offWhite,
+                focus: tokens.semanticColor.surface.secondary,
             },
             icon: {
                 secondaryHover: tokens.color.fadedBlue16,

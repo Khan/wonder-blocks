@@ -10,13 +10,13 @@ const theme = {
             action: {
                 default: tokens.semanticColor.action.primary.default,
                 active: tokens.semanticColor.action.primary.active,
-                inverse: tokens.color.fadedBlue,
+                inverse: tokens.semanticColor.action.primary.pressing,
             },
             // color="destructive"
             critical: {
                 default: tokens.semanticColor.action.destructive.default,
                 active: tokens.semanticColor.action.destructive.active,
-                inverse: tokens.color.fadedRed,
+                inverse: tokens.semanticColor.action.destructive.pressing,
             },
 
             /**
@@ -34,8 +34,8 @@ const theme = {
                 inverse: "none",
                 focus: tokens.semanticColor.surface.primary,
                 active: {
-                    action: tokens.color.fadedBlue,
-                    critical: tokens.color.fadedRed,
+                    action: tokens.semanticColor.action.primary.pressing,
+                    critical: tokens.semanticColor.action.destructive.pressing,
                 },
             },
 
@@ -91,8 +91,8 @@ const theme = {
                 inverse: tokens.semanticColor.border.inverse,
             },
             secondary: {
-                action: tokens.color.offBlack50,
-                critical: tokens.color.offBlack50,
+                action: tokens.semanticColor.border.strong,
+                critical: tokens.semanticColor.border.strong,
                 inverse: tokens.color.white50,
             },
             tertiary: {
