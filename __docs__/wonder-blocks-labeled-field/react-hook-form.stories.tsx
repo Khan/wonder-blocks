@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import * as React from "react";
 import {
     useForm,
@@ -6,7 +7,7 @@ import {
     SubmitErrorHandler,
     useController,
 } from "react-hook-form";
-import {Meta} from "@storybook/react/*";
+import {Meta} from "@storybook/react";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {
     CheckboxGroup,
