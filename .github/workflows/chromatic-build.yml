@@ -88,7 +88,7 @@ jobs:
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing (review PRs only)
       id: chromatic_publish
-      # if: ${{ inputs.target == 'review' }}
+      if: ${{ inputs.target == 'review' }}
       uses: chromaui/action@v11
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
