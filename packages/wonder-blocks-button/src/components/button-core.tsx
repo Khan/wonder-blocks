@@ -488,6 +488,7 @@ export const _generateStyles = (
             color: light ? fadedColor : activeColor,
             textDecoration: "underline",
             textDecorationThickness: theme.size.underline.active,
+            textUnderlineOffset: theme.font.offset.default,
         };
 
         newStyles = {
