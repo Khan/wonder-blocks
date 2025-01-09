@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {mix} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -11,6 +10,8 @@ import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
+
+const {semanticColor} = tokens;
 
 const StyledButton = addStyle("button");
 
@@ -146,12 +147,8 @@ export default class SelectOpener extends React.Component<
 
         const stateStyles = _generateStyles(light, isPlaceholder, error);
 
-        // The icon colors are kind of fickle. This is just logic
-        // based on the zeplin design.
         const iconColor = light
-            ? disabled || error
-                ? "currentColor"
-                : tokens.color.white
+            ? "currentColor"
             : disabled
             ? tokens.color.offBlack32
             : tokens.color.offBlack64;
@@ -204,7 +201,7 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
-        color: tokens.color.offBlack,
+        color: semanticColor.text.primary,
         height: DROPDOWN_ITEM_HEIGHT,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
@@ -257,44 +254,59 @@ const _generateStyles = (
 
     let newStyles: Record<string, any> = {};
     if (light) {
+        const borderWidth = tokens.border.width.hairline;
+
         const focusHoverStyling = {
-            borderColor: error ? tokens.color.red : tokens.color.white,
-            borderWidth: tokens.spacing.xxxxSmall_2,
-            paddingLeft: adjustedPaddingLeft,
-            paddingRight: adjustedPaddingRight,
+            borderColor: semanticColor.border.inverse,
+            outlineColor: error
+                ? semanticColor.status.critical.foreground
+                : semanticColor.action.primary.default,
+            // Provides an outline around the button to match the border width
+            outlineOffset: -(tokens.border.width.thin + borderWidth),
+            outlineStyle: "solid",
+            outlineWidth: tokens.border.width.thin,
         };
         const activePressedStyling = {
-            paddingLeft: adjustedPaddingLeft,
-            paddingRight: adjustedPaddingRight,
-            borderColor: error ? tokens.color.red : tokens.color.fadedBlue,
-            borderWidth: tokens.border.width.thin,
+            borderColor: "transparent",
+            outlineColor: error
+                ? semanticColor.status.critical.foreground
+                : semanticColor.action.primary.pressing,
+            // Provides an outline around the button to match the border width
+            outlineOffset: -(tokens.border.width.thin + borderWidth),
+            outlineStyle: "solid",
+            outlineWidth: tokens.border.width.thin,
             color: error
-                ? tokens.color.offBlack64
+                ? placeholder
+                    ? semanticColor.text.secondary
+                    : semanticColor.text.primary
                 : placeholder
-                ? mix(tokens.color.white32, tokens.color.blue)
-                : tokens.color.fadedBlue,
+                ? semanticColor.action.primary.pressing
+                : semanticColor.text.inverse,
             backgroundColor: error
-                ? tokens.color.fadedRed
-                : tokens.color.activeBlue,
+                ? semanticColor.action.destructive.pressing
+                : semanticColor.action.primary.active,
         };
         newStyles = {
             default: {
-                background: error ? tokens.color.fadedRed8 : "transparent",
-                color: error
-                    ? tokens.color.offBlack64
-                    : placeholder
-                    ? tokens.color.white50
-                    : tokens.color.white,
-                borderColor: error ? tokens.color.red : tokens.color.white50,
+                background: error
+                    ? semanticColor.status.critical.background
+                    : semanticColor.surface.primary,
+                color: placeholder
+                    ? semanticColor.text.secondary
+                    : semanticColor.text.primary,
+                borderColor: error
+                    ? semanticColor.status.critical.foreground
+                    : semanticColor.border.strong,
                 borderWidth: tokens.border.width.hairline,
                 ":hover:not([aria-disabled=true])": focusHoverStyling,
-                // Allow hover styles on non-touch devices only. This prevents an
-                // issue with hover being sticky on touch devices (e.g. mobile).
+                // Allow hover styles on non-touch devices only. This prevents
+                // an issue with hover being sticky on touch devices (e.g.
+                // mobile).
                 ["@media not (hover: hover)"]: {
                     ":hover:not([aria-disabled=true])": {
                         borderColor: error
-                            ? tokens.color.red
-                            : tokens.color.white50,
+                            ? semanticColor.status.critical.foreground
+                            : semanticColor.border.strong,
                         borderWidth: tokens.border.width.hairline,
                         paddingLeft: tokens.spacing.medium_16,
                         paddingRight: tokens.spacing.small_12,
@@ -305,11 +317,20 @@ const _generateStyles = (
             },
             disabled: {
                 background: "transparent",
-                borderColor: mix(tokens.color.white32, tokens.color.blue),
-                color: mix(tokens.color.white32, tokens.color.blue),
+                borderColor: semanticColor.border.strong,
+                color: semanticColor.text.disabled,
                 cursor: "not-allowed",
                 ":focus-visible": {
-                    boxShadow: `0 0 0 1px ${tokens.color.offBlack32}, 0 0 0 3px ${tokens.color.fadedBlue}`,
+                    outlineColor: semanticColor.action.disabled.default,
+                    // Provides a bigger outline around the button to account
+                    // for the border showing up on the button
+                    outlineOffset: -(
+                        tokens.border.width.thin +
+                        borderWidth +
+                        1
+                    ),
+                    outlineStyle: "solid",
+                    outlineWidth: tokens.border.width.thin,
                 },
             },
             pressed: activePressedStyling,

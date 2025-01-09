@@ -9,10 +9,12 @@ export const semanticColor = {
         primary: {
             default: color.blue,
             active: color.activeBlue,
+            pressing: color.fadedBlue,
         },
         destructive: {
             default: color.red,
             active: color.activeRed,
+            pressing: color.fadedRed,
         },
         disabled: {
             default: color.fadedOffBlack32,
