@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-button
 
+## 7.0.5
+
+### Patch Changes
+
+-   0cffa81f: Use pseudo-classes for styling states (:hover, :focus-visible). Keep some clickable states for programmatic focus and preserve active/pressed overrides.
+-   Updated dependencies [7516b239]
+    -   @khanacademy/wonder-blocks-core@11.1.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.5
+    -   @khanacademy/wonder-blocks-icon@5.0.5
+    -   @khanacademy/wonder-blocks-progress-spinner@3.0.5
+    -   @khanacademy/wonder-blocks-typography@3.0.5
+
 ## 7.0.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 11.1.0
+
+### Minor Changes
+
+-   7516b239: Update useOnMountEffect to pass isMountedRef to callback
+
 ## 11.0.1
 
 ### Patch Changes
