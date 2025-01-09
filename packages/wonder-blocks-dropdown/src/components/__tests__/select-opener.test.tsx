@@ -238,7 +238,7 @@ describe("SelectOpener", () => {
                     </SelectOpener>,
                 );
                 // Assert
-                expect(screen.getByRole("button")).toHaveAttribute(
+                expect(screen.getByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     ariaInvalid,
                 );

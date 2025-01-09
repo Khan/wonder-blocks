@@ -286,7 +286,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             const menuLabel = within(opener).getByText("custom item 1");
 
             // Assert
@@ -2110,7 +2110,7 @@ describe("MultiSelect", () => {
                 doRender(<MultiSelect onChange={jest.fn()} error={error} />);
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
 
                 // Assert
                 expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
@@ -2136,7 +2136,7 @@ describe("MultiSelect", () => {
                 );
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
 
                 // Assert
                 expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
@@ -2235,7 +2235,7 @@ describe("MultiSelect", () => {
                     const {userEvent} = doRender(
                         <ControlledMultiSelect validate={validate} />,
                     );
-                    const opener = await screen.findByRole("button");
+                    const opener = await screen.findByRole("combobox");
                     await userEvent.click(opener);
                     await userEvent.click(screen.getByText("item 1"));
                     validate.mockClear(); // Clear any calls
@@ -2257,7 +2257,7 @@ describe("MultiSelect", () => {
                             onValidate={onValidate}
                         />,
                     );
-                    const opener = await screen.findByRole("button");
+                    const opener = await screen.findByRole("combobox");
                     await userEvent.click(opener);
                     await userEvent.click(screen.getByText("item 1"));
                     onValidate.mockClear(); // Clear any calls
@@ -2276,7 +2276,7 @@ describe("MultiSelect", () => {
                     const {userEvent} = doRender(
                         <ControlledMultiSelect validate={() => "Error"} />,
                     );
-                    const opener = await screen.findByRole("button");
+                    const opener = await screen.findByRole("combobox");
                     await userEvent.click(opener);
                     await userEvent.click(screen.getByText("item 1"));
 
@@ -2320,7 +2320,7 @@ describe("MultiSelect", () => {
                 const {userEvent} = doRender(
                     <ControlledMultiSelect validate={validate} />,
                 );
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
                 await userEvent.click(opener);
 
                 // Act
@@ -2339,7 +2339,7 @@ describe("MultiSelect", () => {
                         onValidate={onValidate}
                     />,
                 );
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
                 await userEvent.click(opener);
 
                 // Act
@@ -2354,7 +2354,7 @@ describe("MultiSelect", () => {
                 const {userEvent} = doRender(
                     <ControlledMultiSelect validate={() => "Error"} />,
                 );
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
                 await userEvent.click(opener);
 
                 // Act
@@ -2395,7 +2395,7 @@ describe("MultiSelect", () => {
                     />,
                 );
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "true",
                 );
@@ -2415,7 +2415,7 @@ describe("MultiSelect", () => {
                     />,
                 );
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "false",
                 );
@@ -2446,7 +2446,7 @@ describe("MultiSelect", () => {
                     />,
                 );
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "false",
                 );
@@ -2467,10 +2467,10 @@ describe("MultiSelect", () => {
                 );
 
                 // Act
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "true",
                 );
@@ -2487,13 +2487,13 @@ describe("MultiSelect", () => {
                         selectedValues={["1"]}
                     />,
                 );
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                 // Act
                 await userEvent.click(await screen.findByText("item 2")); // Pick a value
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "false",
                 );
@@ -2510,14 +2510,14 @@ describe("MultiSelect", () => {
                         selectedValues={["1"]}
                     />,
                 );
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
                 await userEvent.click(await screen.findByText("item 2")); // Pick a value
 
                 // Act
-                await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Close the dropdown
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "true",
                 );
@@ -2536,7 +2536,7 @@ describe("MultiSelect", () => {
                         onValidate={onValidate}
                     />,
                 );
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
                 onValidate.mockClear(); // Clear any calls
 
                 // Act
@@ -2559,7 +2559,7 @@ describe("MultiSelect", () => {
                     />,
                 );
                 // Open the dropdown
-                await userEvent.click(await screen.findByRole("button"));
+                await userEvent.click(await screen.findByRole("combobox"));
                 // Need to find item text within the listbox since the item text is also used on the opener
                 const listbox = await screen.findByRole("listbox", {
                     hidden: true,
@@ -2575,10 +2575,10 @@ describe("MultiSelect", () => {
 
                 // Act
                 // Close the dropdown
-                await userEvent.click(await screen.findByRole("button"));
+                await userEvent.click(await screen.findByRole("combobox"));
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "true",
                 );
@@ -2720,7 +2720,7 @@ describe("MultiSelect", () => {
                     await userEvent.tab(); // leave the select
 
                     // Assert
-                    expect(screen.getByRole("button")).toHaveAttribute(
+                    expect(screen.getByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "true",
                     );
@@ -2814,7 +2814,7 @@ describe("MultiSelect", () => {
                     await userEvent.tab(); // leave the select
 
                     // Assert
-                    expect(screen.getByRole("button")).toHaveAttribute(
+                    expect(screen.getByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "false",
                     );
@@ -2832,10 +2832,10 @@ describe("MultiSelect", () => {
                             required={requiredMessage}
                         />,
                     );
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Close the dropdown
 
                     // Assert
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(
@@ -2849,13 +2849,13 @@ describe("MultiSelect", () => {
                     const {userEvent} = doRender(
                         <ControlledMultiSelect required={requiredMessage} />,
                     );
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Close the dropdown
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "true",
                     );
@@ -2873,7 +2873,7 @@ describe("MultiSelect", () => {
                     );
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Assert
                     expect(onValidate).not.toHaveBeenCalled();
@@ -2887,10 +2887,10 @@ describe("MultiSelect", () => {
                     );
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "false",
                     );
@@ -2933,7 +2933,7 @@ describe("MultiSelect", () => {
                     await userEvent.keyboard("{escape}"); // Close the dropdown
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "true",
                     );
@@ -2986,10 +2986,10 @@ describe("MultiSelect", () => {
                     await userEvent.tab(); // Tab through the select to trigger error
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "true",
                     );
@@ -3003,13 +3003,13 @@ describe("MultiSelect", () => {
                     );
                     await userEvent.tab();
                     await userEvent.tab(); // Tab through the select to trigger error
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Act
                     await userEvent.click(await screen.findByText("item 1")); // Pick a value
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "false",
                     );
@@ -3049,7 +3049,7 @@ describe("MultiSelect", () => {
                     />,
                 );
                 // Open the dropdown
-                await userEvent.click(await screen.findByRole("button"));
+                await userEvent.click(await screen.findByRole("combobox"));
 
                 // Unselect selected option
                 const listbox = await screen.findByRole("listbox", {
@@ -3061,10 +3061,10 @@ describe("MultiSelect", () => {
 
                 // Act
                 // Close the dropdown
-                await userEvent.click(await screen.findByRole("button"));
+                await userEvent.click(await screen.findByRole("combobox"));
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "true",
                 );
@@ -3083,7 +3083,7 @@ describe("MultiSelect", () => {
                     />,
                 );
                 // Open the dropdown
-                await userEvent.click(await screen.findByRole("button"));
+                await userEvent.click(await screen.findByRole("combobox"));
 
                 // Unselect selected option
                 const listbox = await screen.findByRole("listbox", {
@@ -3096,7 +3096,7 @@ describe("MultiSelect", () => {
 
                 // Act
                 // Close the dropdown
-                await userEvent.click(await screen.findByRole("button"));
+                await userEvent.click(await screen.findByRole("combobox"));
 
                 // Assert
                 expect(onValidate.mock.calls).toStrictEqual([
@@ -3118,7 +3118,7 @@ describe("MultiSelect", () => {
                     />,
                 );
                 // Open the dropdown
-                await userEvent.click(await screen.findByRole("button"));
+                await userEvent.click(await screen.findByRole("combobox"));
                 // Unselect selected option
                 const listbox = await screen.findByRole("listbox", {
                     hidden: true,
@@ -3130,7 +3130,7 @@ describe("MultiSelect", () => {
 
                 // Act
                 // Close the dropdown
-                await userEvent.click(await screen.findByRole("button"));
+                await userEvent.click(await screen.findByRole("combobox"));
 
                 // Assert
                 expect(onValidate).toHaveBeenCalledExactlyOnceWith(
