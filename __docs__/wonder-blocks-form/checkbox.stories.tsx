@@ -23,7 +23,7 @@ export default {
         ),
         chromatic: {
             // These stories are being tested in checkbox-variants.stories.tsx
-            disableSnapshot: false,
+            disableSnapshot: true,
         },
     },
 } as Meta<typeof Checkbox>;
