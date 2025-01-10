@@ -3,7 +3,8 @@ import {render, screen, within} from "@testing-library/react";
 import {StyleSheet} from "aphrodite";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import userEvent from "@testing-library/user-event";
 import LabeledField from "../labeled-field";
 
 const defaultOptions = {
@@ -638,6 +639,76 @@ describe("LabeledField", () => {
                     "true",
                 );
             });
+        });
+    });
+
+    describe("Custom required message", () => {
+        it("should show the custom required message if it is set on the field", async () => {
+            // Arrange
+            const requiredMessage = "Custom required message";
+
+            const ControlledLabeledFieldWithTextField = () => {
+                const [value, setValue] = React.useState("T");
+                const [errorMessage, setErrorMessage] = React.useState<
+                    string | null
+                >();
+                return (
+                    <LabeledField
+                        field={
+                            <TextField
+                                value={value}
+                                onChange={setValue}
+                                onValidate={setErrorMessage}
+                                required="Custom required message"
+                            />
+                        }
+                        label="Label"
+                        errorMessage={errorMessage}
+                    />
+                );
+            };
+            render(<ControlledLabeledFieldWithTextField />, defaultOptions);
+            const field = await screen.findByRole("textbox");
+
+            // Act
+            await userEvent.type(field, "{backspace}");
+
+            // Assert
+            await screen.findByText(requiredMessage);
+        });
+
+        it("should show the custom required message if it is set on LabeledField", async () => {
+            // Arrange
+            const requiredMessage = "Custom required message";
+
+            const ControlledLabeledFieldWithTextField = () => {
+                const [value, setValue] = React.useState("T");
+                const [errorMessage, setErrorMessage] = React.useState<
+                    string | null
+                >();
+                return (
+                    <LabeledField
+                        field={
+                            <TextField
+                                value={value}
+                                onChange={setValue}
+                                onValidate={setErrorMessage}
+                            />
+                        }
+                        required="Custom required message"
+                        label="Label"
+                        errorMessage={errorMessage}
+                    />
+                );
+            };
+            render(<ControlledLabeledFieldWithTextField />, defaultOptions);
+            const field = await screen.findByRole("textbox");
+
+            // Act
+            await userEvent.type(field, "{backspace}");
+
+            // Assert
+            await screen.findByText(requiredMessage);
         });
     });
 });

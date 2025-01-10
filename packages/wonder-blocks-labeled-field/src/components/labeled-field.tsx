@@ -250,7 +250,7 @@ export default function LabeledField(props: Props) {
             ]
                 .filter(Boolean)
                 .join(" "),
-            required: isRequired,
+            required: required || field.props.required,
             error: hasError,
             testId: testId ? `${testId}-field` : undefined,
             light: isLight,
