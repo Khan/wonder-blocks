@@ -21,6 +21,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in checkbox-variants.stories.tsx
+            disableSnapshot: false,
+        },
     },
 } as Meta<typeof Checkbox>;
 
@@ -30,14 +34,6 @@ export const Default: StoryComponentType = {
     args: {
         checked: false,
         onChange: () => {},
-    },
-};
-
-Default.parameters = {
-    chromatic: {
-        // We already have screenshots of another story that covers
-        // this and more cases.
-        disableSnapshot: true,
     },
 };
 
@@ -55,11 +51,6 @@ export const Controlled: StoryComponentType = () => {
 };
 
 Controlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, its for testing
-        // that `state` works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `Use state to keep track of whether the checkbox
@@ -258,11 +249,6 @@ export const VariantsControlled: StoryComponentType = () => {
 };
 
 VariantsControlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, its for testing
-        // that `state` works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `A demo of the different kinds of checkboxes
