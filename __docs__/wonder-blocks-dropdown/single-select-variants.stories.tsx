@@ -65,26 +65,6 @@ const KindVariants = ({light}: {light: boolean}) => {
                         ]}
                     >
                         <LabelMedium style={light && {color: color.white}}>
-                            Value selected
-                        </LabelMedium>
-                        <SingleSelect
-                            {...defaultProps}
-                            selectedValue="1"
-                            light={light}
-                        >
-                            {selectItems}
-                        </SingleSelect>
-                    </View>
-                    <View
-                        style={[
-                            styles.gridRow,
-                            light &&
-                                (theme === "khanmigo"
-                                    ? styles.darkKhanmigo
-                                    : styles.darkDefault),
-                        ]}
-                    >
-                        <LabelMedium style={light && {color: color.white}}>
                             Disabled
                         </LabelMedium>
                         <SingleSelect
@@ -111,7 +91,26 @@ const KindVariants = ({light}: {light: boolean}) => {
                             {...defaultProps}
                             light={light}
                             error={true}
-                            // selectedValue="1"
+                        >
+                            {selectItems}
+                        </SingleSelect>
+                    </View>
+                    <View
+                        style={[
+                            styles.gridRow,
+                            light &&
+                                (theme === "khanmigo"
+                                    ? styles.darkKhanmigo
+                                    : styles.darkDefault),
+                        ]}
+                    >
+                        <LabelMedium style={light && {color: color.white}}>
+                            Value selected
+                        </LabelMedium>
+                        <SingleSelect
+                            {...defaultProps}
+                            selectedValue="1"
+                            light={light}
                         >
                             {selectItems}
                         </SingleSelect>
