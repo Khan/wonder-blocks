@@ -150,8 +150,8 @@ export default class SelectOpener extends React.Component<
         const iconColor = light
             ? "currentColor"
             : disabled
-            ? tokens.color.offBlack32
-            : tokens.color.offBlack64;
+            ? semanticColor.action.disabled.default
+            : semanticColor.icon.primary;
 
         const style = [
             styles.shared,
@@ -229,15 +229,9 @@ const styles = StyleSheet.create({
     },
 
     caret: {
-        minWidth: 16,
+        minWidth: tokens.spacing.medium_16,
     },
 });
-
-// These values are default padding (16 and 12) minus 1, because
-// changing the borderWidth to 2 messes up the button width
-// and causes it to move a couple pixels. This fixes that.
-const adjustedPaddingLeft = tokens.spacing.medium_16 - 1;
-const adjustedPaddingRight = tokens.spacing.small_12 - 1;
 
 const stateStyles: Record<string, any> = {};
 
@@ -253,9 +247,9 @@ const _generateStyles = (
     }
 
     let newStyles: Record<string, any> = {};
-    if (light) {
-        const borderWidth = tokens.border.width.hairline;
+    const borderWidth = tokens.border.width.hairline;
 
+    if (light) {
         const focusHoverStyling = {
             borderColor: semanticColor.border.inverse,
             outlineColor: error
@@ -337,34 +331,51 @@ const _generateStyles = (
         };
     } else {
         const focusHoverStyling = {
-            borderColor: error ? tokens.color.red : tokens.color.blue,
-            borderWidth: tokens.border.width.thin,
-            paddingLeft: adjustedPaddingLeft,
-            paddingRight: adjustedPaddingRight,
+            outlineColor: error
+                ? semanticColor.status.critical.foreground
+                : semanticColor.action.primary.default,
+            // Outline sits inside the border (inset)
+            outlineOffset: -tokens.border.width.thin,
+            outlineStyle: "solid",
+            outlineWidth: tokens.border.width.thin,
         };
         const activePressedStyling = {
-            background: error ? tokens.color.fadedRed : tokens.color.fadedBlue,
-            borderColor: error ? tokens.color.red : tokens.color.activeBlue,
-            borderWidth: tokens.border.width.thin,
-            paddingLeft: adjustedPaddingLeft,
-            paddingRight: adjustedPaddingRight,
+            background: error
+                ? semanticColor.action.destructive.pressing
+                : semanticColor.action.primary.pressing,
+            color: placeholder
+                ? error
+                    ? semanticColor.text.primary
+                    : semanticColor.action.primary.active
+                : semanticColor.text.primary,
+            outlineColor: error
+                ? semanticColor.status.critical.foreground
+                : semanticColor.action.primary.active,
+            // Outline sits inside the border (inset)
+            outlineOffset: -tokens.border.width.thin,
+            outlineStyle: "solid",
+            outlineWidth: tokens.border.width.thin,
         };
         newStyles = {
             default: {
-                background: error ? tokens.color.fadedRed8 : tokens.color.white,
-                borderColor: error ? tokens.color.red : tokens.color.offBlack50,
+                background: error
+                    ? semanticColor.status.critical.background
+                    : semanticColor.surface.primary,
+                borderColor: error
+                    ? semanticColor.status.critical.foreground
+                    : semanticColor.border.strong,
                 borderWidth: tokens.border.width.hairline,
                 color: placeholder
-                    ? tokens.color.offBlack64
-                    : tokens.color.offBlack,
+                    ? semanticColor.text.secondary
+                    : semanticColor.text.primary,
                 ":hover:not([aria-disabled=true])": focusHoverStyling,
                 // Allow hover styles on non-touch devices only. This prevents an
                 // issue with hover being sticky on touch devices (e.g. mobile).
                 ["@media not (hover: hover)"]: {
                     ":hover:not([aria-disabled=true])": {
                         borderColor: error
-                            ? tokens.color.red
-                            : tokens.color.offBlack50,
+                            ? semanticColor.status.critical.foreground
+                            : semanticColor.border.strong,
                         borderWidth: tokens.border.width.hairline,
                         paddingLeft: tokens.spacing.medium_16,
                         paddingRight: tokens.spacing.small_12,
@@ -374,12 +385,15 @@ const _generateStyles = (
                 ":active:not([aria-disabled=true])": activePressedStyling,
             },
             disabled: {
-                background: tokens.color.offWhite,
-                borderColor: tokens.color.offBlack16,
-                color: tokens.color.offBlack64,
+                background: semanticColor.action.disabled.secondary,
+                borderColor: semanticColor.border.primary,
+                color: semanticColor.text.secondary,
                 cursor: "not-allowed",
                 ":focus-visible": {
-                    boxShadow: `0 0 0 1px ${tokens.color.white}, 0 0 0 3px ${tokens.color.offBlack32}`,
+                    outlineColor: semanticColor.action.disabled.default,
+                    outlineOffset: -tokens.border.width.thin,
+                    outlineStyle: "solid",
+                    outlineWidth: tokens.border.width.thin,
                 },
             },
             pressed: activePressedStyling,
