@@ -105,7 +105,7 @@ const KindVariants = ({light}: {light: boolean}) => {
                         ]}
                     >
                         <LabelMedium style={light && {color: color.white}}>
-                            Value selected
+                            Selected
                         </LabelMedium>
                         <SingleSelect
                             {...defaultProps}

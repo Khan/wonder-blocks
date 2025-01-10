@@ -94,6 +94,26 @@ const KindVariants = ({light}: {light: boolean}) => {
                             {selectItems}
                         </MultiSelect>
                     </View>
+                    <View
+                        style={[
+                            styles.gridRow,
+                            light &&
+                                (theme === "khanmigo"
+                                    ? styles.darkKhanmigo
+                                    : styles.darkDefault),
+                        ]}
+                    >
+                        <LabelMedium style={light && {color: color.white}}>
+                            Selected
+                        </LabelMedium>
+                        <MultiSelect
+                            {...defaultProps}
+                            selectedValues={["1", "2"]}
+                            light={light}
+                        >
+                            {selectItems}
+                        </MultiSelect>
+                    </View>
                 </>
             )}
         </ThemeSwitcherContext.Consumer>
@@ -150,7 +170,7 @@ const styles = StyleSheet.create({
     },
     grid: {
         display: "grid",
-        gridTemplateColumns: "repeat(3, 250px)",
+        gridTemplateColumns: "repeat(4, 250px)",
         gap: spacing.large_24,
     },
     gridRow: {
