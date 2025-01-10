@@ -608,6 +608,13 @@ export const Light: StoryComponentType = {
             </View>
         );
     },
+    parameters: {
+        chromatic: {
+            // Disabling because it is already covered in "All variants".
+            // @see single-select-variants.stories.tsx
+            disableSnapshot: true,
+        },
+    },
 };
 
 const optionItems = allCountries.map(([code, translatedName]) => (
