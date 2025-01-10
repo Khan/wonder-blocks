@@ -17,7 +17,7 @@ import {
     SingleSelect,
 } from "@khanacademy/wonder-blocks-dropdown";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionArgtypes from "./accordion.argtypes";

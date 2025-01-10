@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-core
 
+## 11.1.0
+
+### Minor Changes
+
+-   7516b239: Update useOnMountEffect to pass isMountedRef to callback
+
+## 11.0.1
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+
+## 11.0.0
+
+### Major Changes
+
+-   d23c9c5f: Delete the custom identifier generation API
+
 ## 10.0.0
 
 ### Major Changes

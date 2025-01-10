@@ -1,5 +1,44 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.0.5
+
+### Patch Changes
+
+-   Updated dependencies [0cffa81f]
+-   Updated dependencies [7516b239]
+    -   @khanacademy/wonder-blocks-button@7.0.5
+    -   @khanacademy/wonder-blocks-core@11.1.0
+    -   @khanacademy/wonder-blocks-icon@5.0.5
+    -   @khanacademy/wonder-blocks-icon-button@6.0.5
+    -   @khanacademy/wonder-blocks-link@7.0.5
+    -   @khanacademy/wonder-blocks-typography@3.0.5
+
+## 4.0.4
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+-   Updated dependencies [11a0f5c6]
+    -   @khanacademy/wonder-blocks-icon-button@6.0.4
+    -   @khanacademy/wonder-blocks-typography@3.0.4
+    -   @khanacademy/wonder-blocks-button@7.0.4
+    -   @khanacademy/wonder-blocks-tokens@3.0.1
+    -   @khanacademy/wonder-blocks-core@11.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.4
+    -   @khanacademy/wonder-blocks-link@7.0.4
+
+## 4.0.3
+
+### Patch Changes
+
+-   Updated dependencies [d23c9c5f]
+    -   @khanacademy/wonder-blocks-core@11.0.0
+    -   @khanacademy/wonder-blocks-button@7.0.3
+    -   @khanacademy/wonder-blocks-icon@5.0.3
+    -   @khanacademy/wonder-blocks-icon-button@6.0.3
+    -   @khanacademy/wonder-blocks-link@7.0.3
+    -   @khanacademy/wonder-blocks-typography@3.0.3
+
 ## 4.0.2
 
 ### Patch Changes

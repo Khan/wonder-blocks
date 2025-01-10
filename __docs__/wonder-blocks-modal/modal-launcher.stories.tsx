@@ -30,7 +30,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
 import ModalLauncherArgTypes from "./modal-launcher.argtypes";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 const customViewports = {
     phone: {

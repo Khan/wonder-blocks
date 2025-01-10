@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-testing-core",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -10,7 +10,8 @@
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
     "@babel/runtime": "^7.18.6"

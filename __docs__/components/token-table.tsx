@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 const StyledTable = addStyle("table");
