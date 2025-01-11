@@ -58,6 +58,7 @@ export const UsingAriaAttributes = {
     name: "Using aria attributes",
 };
 
+// This story exists for debugging automated unit tests.
 const SingleSelectKeyboardSelection = () => {
     const [selectedValue, setSelectedValue] = React.useState("");
     return (
@@ -78,4 +79,7 @@ const SingleSelectKeyboardSelection = () => {
 export const UsingKeyboardSelection = {
     render: SingleSelectKeyboardSelection.bind({}),
     name: "Using the keyboard",
+    parameters: {
+        chromatic: {disableSnapshot: true},
+    },
 };
