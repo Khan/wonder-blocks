@@ -3,8 +3,8 @@ import {render, screen, within} from "@testing-library/react";
 import {StyleSheet} from "aphrodite";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import {PropsFor, RenderStateRoot} from "@khanacademy/wonder-blocks-core";
-import userEvent from "@testing-library/user-event";
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
+import {userEvent} from "@testing-library/user-event";
 import LabeledField from "../labeled-field";
 
 const defaultOptions = {
