@@ -107,27 +107,21 @@ export default class SelectOpener extends React.Component<
     };
 
     handleKeyDown: (e: React.KeyboardEvent) => void = (e) => {
-        const keyCode = e.key.toLowerCase();
+        const keyName = e.key;
         // Prevent default behavior for Enter key. Without this, the select
         // is only open while the Enter key is pressed.
         // Prevent default behavior for Space key. Without this, Safari stays in
         // active state visually
-        if (
-            keyCode === keys.enter.toLowerCase() ||
-            keyCode === keys.space.toLowerCase()
-        ) {
+        if (keyName === keys.enter || keyName === keys.space) {
             this.setState({pressed: true});
             e.preventDefault();
         }
     };
 
     handleKeyUp: (e: React.KeyboardEvent) => void = (e) => {
-        const keyCode = e.key.toLowerCase();
+        const keyName = e.key;
         // On key up for Enter and Space, trigger the click handler
-        if (
-            keyCode === keys.enter.toLowerCase() ||
-            keyCode.toLowerCase() === keys.space.toLowerCase()
-        ) {
+        if (keyName === keys.enter || keyName === keys.space) {
             this.setState({pressed: false});
             this.handleClick(e);
         }

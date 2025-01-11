@@ -556,13 +556,12 @@ export default class ClickableBehavior extends React.Component<
         if (onKeyDown) {
             onKeyDown(e);
         }
-        // Allow tests to use mixed case commands ("Space" or "space")
-        const keyCode = e.key.toLowerCase();
+        const keyName = e.key;
         const {triggerOnEnter, triggerOnSpace} =
             getAppropriateTriggersForRole(role);
         if (
-            (triggerOnEnter && keyCode === keys.enter.toLowerCase()) ||
-            (triggerOnSpace && keyCode === keys.space.toLowerCase())
+            (triggerOnEnter && keyName === keys.enter) ||
+            (triggerOnSpace && keyName === keys.space)
         ) {
             // This prevents space from scrolling down. It also prevents the
             // space and enter keys from triggering click events. We manually
@@ -570,7 +569,7 @@ export default class ClickableBehavior extends React.Component<
             // handleKeyUp instead.
             e.preventDefault();
             this.setState({pressed: true});
-        } else if (!triggerOnEnter && keyCode === keys.enter.toLowerCase()) {
+        } else if (!triggerOnEnter && keyName === keys.enter) {
             // If the component isn't supposed to trigger on enter, we have to
             // keep track of the enter keydown to negate the onClick callback
             this.enterClick = true;
@@ -583,17 +582,17 @@ export default class ClickableBehavior extends React.Component<
             onKeyUp(e);
         }
 
-        const keyCode = e.key.toLowerCase();
+        const keyName = e.key;
         const {triggerOnEnter, triggerOnSpace} =
             getAppropriateTriggersForRole(role);
         if (
-            (triggerOnEnter && keyCode === keys.enter.toLowerCase()) ||
-            (triggerOnSpace && keyCode === keys.space.toLowerCase())
+            (triggerOnEnter && keyName === keys.enter) ||
+            (triggerOnSpace && keyName === keys.space)
         ) {
             this.setState({pressed: false, focused: true});
 
             this.runCallbackAndMaybeNavigate(e);
-        } else if (!triggerOnEnter && keyCode === keys.enter) {
+        } else if (!triggerOnEnter && keyName === keys.enter) {
             this.enterClick = false;
         }
     };

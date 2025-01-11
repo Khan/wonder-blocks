@@ -85,17 +85,15 @@ describe("MultiSelect", () => {
             ).toBeInTheDocument();
         });
 
-        // TODO(FEI-5533): Key press events aren't working correctly with
-        // user-event v14. We need to investigate and fix this.
-        it.skip("closes the select on {escape}", async () => {
+        it("closes the select on {Escape}", async () => {
             // Arrange
             const {userEvent} = doRender(uncontrolledMultiSelect);
 
             await userEvent.tab();
-            await userEvent.keyboard("{enter}"); // open
+            await userEvent.keyboard("{Enter}"); // open
 
             // Act
-            await userEvent.keyboard("{escape}");
+            await userEvent.keyboard("{Escape}");
 
             // Assert
             expect(onChange).not.toHaveBeenCalled();
@@ -2809,10 +2807,10 @@ describe("MultiSelect", () => {
                         />,
                     );
                     await userEvent.tab();
-                    await userEvent.keyboard("{enter}"); // Open the dropdown
+                    await userEvent.keyboard("{Enter}"); // Open the dropdown
 
                     // Act
-                    await userEvent.keyboard("{escape}"); // Close the dropdown
+                    await userEvent.keyboard("{Escape}"); // Close the dropdown
 
                     // Assert
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(
@@ -2827,10 +2825,10 @@ describe("MultiSelect", () => {
                         <ControlledMultiSelect required={requiredMessage} />,
                     );
                     await userEvent.tab();
-                    await userEvent.keyboard("{enter}"); // Open the dropdown
+                    await userEvent.keyboard("{Enter}"); // Open the dropdown
 
                     // Act
-                    await userEvent.keyboard("{escape}"); // Close the dropdown
+                    await userEvent.keyboard("{Escape}"); // Close the dropdown
 
                     // Assert
                     expect(await screen.findByRole("button")).toHaveAttribute(

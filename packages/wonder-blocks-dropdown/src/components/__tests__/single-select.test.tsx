@@ -287,7 +287,7 @@ describe("SingleSelect", () => {
                 jest.useFakeTimers();
             });
 
-            describe.each([{key: "{enter}"}, {key: "{space}"}])(
+            describe.each([{key: "{Enter}"}, {key: "{Space}"}])(
                 "$key",
                 ({key}: any) => {
                     it("should open when pressing the key when the default opener is focused", async () => {
@@ -320,22 +320,32 @@ describe("SingleSelect", () => {
                 },
             );
 
-            it("should select an item when pressing {enter}", async () => {
+            it("should focus on the first option when pressing {Enter} on the opener", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
+
+                // Act
+                await userEvent.keyboard("{Enter}"); // open
 
                 // Ensure first option is focused, not the opener
                 const firstItem = await screen.findByRole("option", {
                     name: /item 1/,
                 });
+                // Assert
                 expect(firstItem).toHaveFocus();
+            });
+
+            it("should select an item when pressing {Enter}", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                await userEvent.tab();
+                await userEvent.keyboard("{Enter}"); // open
 
                 // Act
-                await userEvent.keyboard("{enter}");
+                await userEvent.keyboard("{Enter}");
 
-                // // Assert
+                // Assert
                 expect(onChange).toHaveBeenCalledWith("1");
 
                 await waitFor(() =>
@@ -345,11 +355,28 @@ describe("SingleSelect", () => {
                 );
             });
 
-            it("should select an item when pressing {space}", async () => {
+            it("should focus on the first option when pressing {Space} on the opener", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
+
+                // Act
+                await userEvent.keyboard("{Space}"); // open
+
+                // Ensure first option is focused, not the opener
+                const firstItem = await screen.findByRole("option", {
+                    name: /item 1/,
+                });
+
+                // Assert
+                expect(firstItem).toHaveFocus();
+            });
+
+            it("should select an item when pressing {Space}", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                await userEvent.tab();
+                await userEvent.keyboard("{Enter}"); // open
 
                 const firstItem = await screen.findByRole("option", {
                     name: /item 1/,
@@ -357,7 +384,7 @@ describe("SingleSelect", () => {
                 expect(firstItem).toHaveFocus();
 
                 // Act
-                await userEvent.keyboard("{space}");
+                await userEvent.keyboard("{Space}");
 
                 // Assert
                 expect(onChange).toHaveBeenCalledWith("1");
@@ -428,7 +455,7 @@ describe("SingleSelect", () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
+                await userEvent.keyboard("{Enter}"); // open
 
                 // Act
                 await userEvent.keyboard("{escape}");
@@ -2270,7 +2297,7 @@ describe("SingleSelect", () => {
 
                     // Act
                     await userEvent.tab();
-                    await userEvent.keyboard("{enter}"); // Open the dropdown
+                    await userEvent.keyboard("{Enter}"); // Open the dropdown
                     await userEvent.keyboard("{escape}"); // Close the dropdown
 
                     // Assert
@@ -2288,7 +2315,7 @@ describe("SingleSelect", () => {
 
                     // Act
                     await userEvent.tab();
-                    await userEvent.keyboard("{enter}"); // Open the dropdown
+                    await userEvent.keyboard("{Enter}"); // Open the dropdown
                     await userEvent.keyboard("{escape}"); // Close the dropdown
 
                     // Assert
