@@ -659,7 +659,7 @@ describe("LabeledField", () => {
                                 value={value}
                                 onChange={setValue}
                                 onValidate={setErrorMessage}
-                                required="Custom required message"
+                                required={requiredMessage}
                             />
                         }
                         label="Label"
@@ -695,7 +695,7 @@ describe("LabeledField", () => {
                                 onValidate={setErrorMessage}
                             />
                         }
-                        required="Custom required message"
+                        required={requiredMessage}
                         label="Label"
                         errorMessage={errorMessage}
                     />
