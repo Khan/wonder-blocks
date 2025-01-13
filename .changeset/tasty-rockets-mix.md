@@ -1,5 +1,5 @@
 ---
-"@khanacademy/wonder-blocks-dropdown": patch
+"@khanacademy/wonder-blocks-dropdown": major
 ---
 
-Update dropdown openers to use `role="combobox"` instead of `button`.
+Update dropdown openers for SingleSelect and MultiSelect to use `role="combobox"` instead of `button`.
