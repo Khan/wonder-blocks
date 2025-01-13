@@ -83,6 +83,7 @@ export default {
                 excludeDecorators: true,
             },
         },
+        chromatic: {disableSnapshot: true},
     },
     argTypes: {
         level: {
