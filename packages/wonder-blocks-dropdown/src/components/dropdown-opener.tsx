@@ -54,7 +54,7 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * The role of the opener.
      */
-    role?: "combobox" | "button";
+    role: "combobox" | "button";
 };
 
 type DefaultProps = {
