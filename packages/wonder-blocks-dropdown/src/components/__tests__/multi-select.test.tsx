@@ -430,7 +430,7 @@ describe("MultiSelect", () => {
             ).not.toBeInTheDocument();
         });
 
-        // NOTE(john): After upgrading to user-event v14 this test is failing.
+        // NOTE(john) FEI-5533: After upgrading to user-event v14 this test is failing.
         // We are unale to find the option with the specified text, even though
         // it exists in the document.
         it.skip("selects on item as expected", async () => {
@@ -788,7 +788,7 @@ describe("MultiSelect", () => {
             expect(options[0]).toHaveTextContent("item 1");
         });
 
-        // NOTE(john): This isn't working after upgrading to user-event v14,
+        // NOTE(john) FEI-5533: This isn't working after upgrading to user-event v14,
         // the focus is moving to the body instead of the Clear search button.
         it.skip("should move focus to the dismiss button after pressing {tab} on the text input", async () => {
             // Arrange
@@ -891,7 +891,7 @@ describe("MultiSelect", () => {
             expect(filteredOption).toBeInTheDocument();
         });
 
-        // NOTE(john): After upgrading to user-event v14, this test is failing.
+        // NOTE(john) FEI-5533: After upgrading to user-event v14, this test is failing.
         // The Venus option is still in the document.
         it.skip("should filter out an option if it's not part of the results", async () => {
             // Arrange
@@ -1535,9 +1535,7 @@ describe("MultiSelect", () => {
             expect(container).toHaveTextContent("3 schools");
         });
 
-        // NOTE(john): This fails after upgrading to user-event v14. The text
-        // output is now: "2 planets0 items".
-        it.skip("should change the number of options after using the search filter", async () => {
+        it("should change the number of options after using the search filter", async () => {
             // Arrange
             const labels: Labels = {
                 ...builtinLabels,

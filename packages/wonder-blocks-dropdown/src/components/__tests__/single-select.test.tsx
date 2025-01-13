@@ -396,7 +396,7 @@ describe("SingleSelect", () => {
             });
 
             /*
-            The keyboard events (I tried .keyboard and .type) are not working as
+            TODO (FEI-5533): The keyboard events (I tried .keyboard and .type) are not working as
             needed. From what I can tell, they are going to the wrong element or
             otherwise not getting handled as they would in a non-test world.
             We had this issue with elsewhere too and haven't resolved it (since
@@ -1032,6 +1032,8 @@ describe("SingleSelect", () => {
     });
 
     describe("a11y > Live region", () => {
+        // TODO (WB-1757.2): Enable this test once the LiveRegion component
+        // is refactored.
         it.skip("should change the number of options after using the search filter", async () => {
             // Arrange
             const {userEvent} = doRender(
