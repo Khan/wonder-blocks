@@ -5,7 +5,6 @@ import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {
     Caption,
     Footnote,
-    LabelLarge,
     LabelSmall,
 } from "@khanacademy/wonder-blocks-typography";
 import {
@@ -17,6 +16,8 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 import {getTokenName} from "./tokens-util";
 
+type Variant = "primitive" | "semantic" | "compact";
+
 type Props = {
     /**
      * A dictionary of colors to display.
@@ -25,7 +26,7 @@ type Props = {
     /**
      * The type of color group to display.
      */
-    variant: "primitive" | "semantic";
+    variant: Variant;
     /**
      * The group name to use as a prefix for the color names.
      */
@@ -59,15 +60,12 @@ export function ColorGroup({
 type ColorProps = {
     name: string;
     value: string;
-    variant: "primitive" | "semantic";
+    variant: Variant;
 };
 
 function Color({name, value, variant}: ColorProps) {
-    const TypographyComponent =
-        variant === "semantic" ? LabelLarge : LabelSmall;
-
     return (
-        <View style={styles.item}>
+        <View style={[styles.item, styles[variant + "Item"]]}>
             <View
                 style={[
                     styles.thumbnail,
@@ -82,17 +80,23 @@ function Color({name, value, variant}: ColorProps) {
                         // Expand to fill the parent container
                         alignSelf: "stretch",
                         flex: 1,
+                        padding: spacing.medium_16,
                     }}
                 />
             </View>
-            <View>
-                <TypographyComponent style={{fontWeight: font.weight.bold}}>
+            <View style={styles.info}>
+                <LabelSmall
+                    style={{
+                        fontWeight: font.weight.bold,
+                    }}
+                >
                     {name}
-                </TypographyComponent>
-                {variant === "semantic" ? (
+                </LabelSmall>
+                {variant !== "primitive" ? (
                     <>
                         <Caption>
-                            Primitive: <em>{getTokenName(color, value)}</em>
+                            Primitive:{" "}
+                            <em>{getTokenName(color, value) || value}</em>
                         </Caption>
                         <LabelSmall>
                             Value:{" "}
@@ -107,6 +111,9 @@ function Color({name, value, variant}: ColorProps) {
     );
 }
 
+const itemWidth = 200;
+const itemHeight = 120;
+
 const styles = StyleSheet.create({
     group: {
         flexDirection: "row",
@@ -114,19 +121,33 @@ const styles = StyleSheet.create({
         marginBlock: spacing.large_24,
     },
     item: {
-        marginBlockEnd: spacing.medium_16,
+        maxWidth: itemWidth,
+        overflowWrap: "break-word",
+    },
+    compactItem: {
+        flexDirection: "row",
+        gap: spacing.xSmall_8,
+        maxWidth: "unset",
     },
     pattern: {
         backgroundImage: `radial-gradient(${color.blue} 0.5px, ${color.offWhite} 0.5px)`,
         backgroundSize: `${spacing.small_12}px ${spacing.small_12}px`,
+        boxShadow: `0 0 1px 0 ${semanticColor.border.primary}`,
     },
     thumbnail: {
-        width: 200,
-        height: 160,
+        width: itemWidth,
+        height: itemHeight,
     },
     primitiveThumbnail: {
         width: 160,
         height: spacing.xxxLarge_64,
+    },
+    compactThumbnail: {
+        width: spacing.xxxLarge_64,
+        height: spacing.xxxLarge_64,
+    },
+    info: {
+        paddingInlineEnd: spacing.medium_16,
     },
     code: {
         alignSelf: "flex-start",

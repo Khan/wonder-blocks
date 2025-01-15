@@ -1,18 +1,87 @@
 import {color} from "./color";
 
+const border = {
+    primary: color.fadedOffBlack16,
+    subtle: color.fadedOffBlack8,
+    strong: color.fadedOffBlack50,
+    inverse: color.white,
+};
+
 export const semanticColor = {
     /**
      * For buttons, links, and controls to communicate the presence and meaning
      * of interaction.
      */
     action: {
-        primary: {
-            default: color.blue,
-            active: color.activeBlue,
+        // For primary actions
+        progressive: {
+            default: {
+                border: "transparent",
+                background: color.blue,
+                foreground: color.white,
+            },
+            hover: {
+                border: color.blue,
+                background: color.blue,
+                foreground: color.white,
+            },
+            press: {
+                border: color.activeBlue,
+                background: color.activeBlue,
+                foreground: color.white,
+            },
+        },
+        // Inverse is meant for use on secondary controls.
+        progressiveInverse: {
+            default: {
+                border: border.strong,
+                background: color.white,
+                foreground: color.blue,
+            },
+            hover: {
+                border: color.blue,
+                background: color.white,
+                foreground: color.blue,
+            },
+            press: {
+                border: color.activeBlue,
+                background: color.fadedBlue,
+                foreground: color.activeBlue,
+            },
         },
         destructive: {
-            default: color.red,
-            active: color.activeRed,
+            default: {
+                border: "transparent",
+                background: color.red,
+                foreground: color.white,
+            },
+            hover: {
+                border: color.red,
+                background: color.white,
+                foreground: color.red,
+            },
+            press: {
+                border: color.activeRed,
+                background: color.activeRed,
+                foreground: color.white,
+            },
+        },
+        destructiveInverse: {
+            default: {
+                border: border.strong,
+                background: color.white,
+                foreground: color.red,
+            },
+            hover: {
+                border: color.red,
+                background: color.white,
+                foreground: color.red,
+            },
+            press: {
+                border: color.activeRed,
+                background: color.fadedRed,
+                foreground: color.activeRed,
+            },
         },
         disabled: {
             default: color.fadedOffBlack32,
@@ -71,12 +140,7 @@ export const semanticColor = {
      * elements would use -Primary, rows and layout elements use -Subtle and
      * -Strong for when 3:1 contrast is a priority (ex. form elements)
      */
-    border: {
-        primary: color.fadedOffBlack16,
-        subtle: color.fadedOffBlack8,
-        strong: color.fadedOffBlack50,
-        inverse: color.white,
-    },
+    border: border,
     /**
      * Default icon colors that change in context (like actions).
      */

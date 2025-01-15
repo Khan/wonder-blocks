@@ -28,6 +28,10 @@ export const styles = StyleSheet.create({
         display: "grid",
         gridTemplateColumns: "repeat(auto-fill, 160px)",
     },
+    gridCompact: {
+        display: "grid",
+        gridTemplateColumns: "repeat(3, minmax(100px, auto))",
+    },
     banner: {
         marginBottom: spacing.xLarge_32,
     },
@@ -78,17 +82,98 @@ how to use these colors depending on the context.
 For buttons, links, and controls to communicate the presence and meaning of
 interaction.
 
-<View style={styles.grid}>
-    <ColorGroup colors={semanticColor.action.primary} group="action.primary" />
-    <ColorGroup
-        colors={semanticColor.action.destructive}
-        group="action.destructive"
-    />
-    <ColorGroup
-        colors={semanticColor.action.disabled}
-        group="action.disabled"
-    />
-</View>
+#### Progressive
+
+<ColorGroup
+    colors={semanticColor.action.progressive.default}
+    group="action.progressive.default"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+<ColorGroup
+    colors={semanticColor.action.progressive.hover}
+    group="action.progressive.hover"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+<ColorGroup
+    colors={semanticColor.action.progressive.press}
+    group="action.progressive.press"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+
+#### Progressive inverse
+
+<ColorGroup
+    colors={semanticColor.action.progressiveInverse.default}
+    group="action.progressiveInverse.default"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+<ColorGroup
+    colors={semanticColor.action.progressiveInverse.hover}
+    group="action.progressiveInverse.hover"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+<ColorGroup
+    colors={semanticColor.action.progressiveInverse.press}
+    group="action.progressiveInverse.press"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+
+#### Destructive
+
+<ColorGroup
+    colors={semanticColor.action.destructive.default}
+    group="action.destructive.default"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+<ColorGroup
+    colors={semanticColor.action.destructive.hover}
+    group="action.destructive.hover"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+<ColorGroup
+    colors={semanticColor.action.destructive.press}
+    group="action.destructive.press"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+
+#### Destructive inverse
+
+<ColorGroup
+    colors={semanticColor.action.destructiveInverse.default}
+    group="action.destructiveInverse.default"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+<ColorGroup
+    colors={semanticColor.action.destructiveInverse.hover}
+    group="action.destructiveInverse.hover"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+<ColorGroup
+    colors={semanticColor.action.destructiveInverse.press}
+    group="action.destructiveInverse.press"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+
+#### Disabled
+
+<ColorGroup
+    colors={semanticColor.action.disabled}
+    group="action.disabled"
+    variant="compact"
+    style={styles.gridCompact}
+/>
 
 ### Status
 
@@ -389,10 +474,12 @@ content is accessible to all users.
 
 For more detail, you can check the following Success Criteria documents:
 
--   <a
-    href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">Use of Color</a>
--   <a
-    href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">Contrast (minimum)</a>
--   <a
-    href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">Non-text
-    Contrast (Level AA)</a>
+-   <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">
+        Use of Color
+    </a>
+-   <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
+        Contrast (minimum)
+    </a>
+-   <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">
+        Non-text Contrast (Level AA)
+    </a>
