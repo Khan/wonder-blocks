@@ -13,10 +13,17 @@ export default {
             },
         },
     },
-    error: {
+    errorMessage: {
         table: {
             type: {
                 summary: "string | ReactNode",
+            },
+        },
+    },
+    required: {
+        table: {
+            type: {
+                summary: "string | boolean",
             },
         },
     },

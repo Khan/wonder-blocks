@@ -598,3 +598,30 @@ export const WithNonWb = {
         },
     },
 };
+
+/**
+ * Custom ReactNode elements can be used for the `label`, `description`, and
+ * `error` props. Ideally, the styling of LabeledField should not be overridden.
+ * If there is a specific use case where the styling needs to be overridden,
+ * please reach out to the Wonder Blocks team!
+ */
+export const Custom = {
+    args: {
+        label: (
+            <span>
+                <b>Label</b> <i>using</i> <u>JSX</u>
+            </span>
+        ),
+        description: (
+            <span>
+                <b>Description</b> <i>using</i> <u>JSX</u>
+            </span>
+        ),
+        field: <TextField value="" onChange={() => {}} />,
+        errorMessage: (
+            <span>
+                <b>Error</b> <i>using</i> <u>JSX</u>
+            </span>
+        ),
+    },
+};
