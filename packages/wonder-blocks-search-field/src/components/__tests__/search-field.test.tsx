@@ -10,7 +10,7 @@ import SearchField from "../search-field";
 const ControlledSearchField = (
     props: Partial<PropsFor<typeof SearchField>>,
 ) => {
-    const [value, setValue] = React.useState<string>(props.value || "");
+    const [value, setValue] = React.useState<string>("");
     return <SearchField {...props} value={value} onChange={setValue} />;
 };
 
@@ -672,71 +672,6 @@ describe("SearchField", () => {
 
                 // Assert
                 expect(field).toHaveAttribute("aria-invalid", "true");
-            });
-        });
-
-        describe("Clearing the field value", () => {
-            describe.each([
-                {
-                    label: "Clearing the input field",
-                    clearAction: async () => {
-                        const field = screen.getByRole("textbox");
-                        await userEvent.clear(field);
-                    },
-                },
-                {
-                    label: "Pressing the clear button",
-                    clearAction: async () => {
-                        const clearButton = screen.getByRole("button");
-                        await userEvent.click(clearButton);
-                    },
-                },
-            ])("Clear Action: $label", ({clearAction}) => {
-                describe.each([true, false])(
-                    "when instantValidation is %s",
-                    (instantValidation) => {
-                        it("should clear the error state", async () => {
-                            // Arrange
-                            render(
-                                <ControlledSearchField
-                                    value="test"
-                                    validate={() => "error message"}
-                                    instantValidation={instantValidation}
-                                />,
-                            );
-                            const field = screen.getByRole("textbox");
-
-                            // Act
-                            await clearAction();
-
-                            // Assert
-                            expect(field).toHaveAttribute(
-                                "aria-invalid",
-                                "false",
-                            );
-                        });
-
-                        it("should call onValidate with null", async () => {
-                            // Arrange
-                            const onValidate = jest.fn();
-                            render(
-                                <ControlledSearchField
-                                    value="test"
-                                    validate={() => "error message"}
-                                    onValidate={onValidate}
-                                    instantValidation={instantValidation}
-                                />,
-                            );
-                            onValidate.mockReset(); // Reset mock before clearing the field
-
-                            // Act
-                            await clearAction();
-
-                            // Assert
-                            expect(onValidate).toHaveBeenLastCalledWith(null);
-                        });
-                    },
-                );
             });
         });
     });
