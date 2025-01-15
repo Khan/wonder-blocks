@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {mix} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
