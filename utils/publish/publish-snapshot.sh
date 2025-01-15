@@ -18,6 +18,15 @@ MYPATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # ROOT is the root directory of our project.
 ROOT="$MYPATH/../.."
 
+# This is used in prepublishOnly hooks to verify that the package is correctly
+# versioned for a snapshot release before proceeding.
+# This is done to catch a race condition where a main release is occurring
+# while a snapshot release is requested, avoiding us publishing packages
+# that we shouldn't be.
+# See https://khanacademy.atlassian.net/wiki/spaces/ENG/pages/3571646568/Race+condition+breaks+Perseus+release
+# Need to export this so that the invoked commands see it.
+export SNAPSHOT_RELEASE=1
+
 pushd "$ROOT"
 
 verify_env() {
@@ -75,7 +84,7 @@ check_for_changes() {
 }
 
 pre_publish_check() {
-    SWCRC=true node -r @swc-node/register "$ROOT/utils/publish/pre-publish-check-ci.js"
+    SWCRC=true node -r @swc-node/register "$ROOT/utils/publish/pre-publish-check-ci.ts"
 
     if ! git diff --stat --exit-code HEAD; then
         echo "Git repo is dirty. This is unexpected when running in CI."

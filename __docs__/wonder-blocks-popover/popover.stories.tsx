@@ -12,7 +12,7 @@ import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import PopoverArgtypes, {ContentMappings} from "./popover.argtypes";
 
 /**

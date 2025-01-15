@@ -11,7 +11,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import TextField from "../../packages/wonder-blocks-form/src/components/text-field";

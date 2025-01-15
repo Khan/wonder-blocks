@@ -73,4 +73,4 @@ jobs:
         run: yarn build:types
 
       - name: Check package.json files
-        run: node utils/publish/pre-publish-check-ci.js
+        run: ./utils/publish/pre-publish-check-ci.ts

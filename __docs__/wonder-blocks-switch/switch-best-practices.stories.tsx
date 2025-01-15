@@ -10,7 +10,7 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 import SwitchArgtypes from "./switch.argtypes";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
