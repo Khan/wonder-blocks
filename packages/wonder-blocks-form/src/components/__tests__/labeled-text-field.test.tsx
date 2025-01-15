@@ -704,7 +704,7 @@ describe("Required LabeledTextField", () => {
         const errorMessage = "Empty string!";
 
         const validate = (value: string): string | null | undefined => {
-            if (value === "initials") {
+            if (value === "") {
                 return errorMessage;
             }
         };
@@ -729,10 +729,10 @@ describe("Required LabeledTextField", () => {
             "test-labeled-text-field-field",
         );
         textField.focus();
-        await userEvent.type(textField, "s");
+        await userEvent.clear(textField);
 
         // Act
-        await textField.blur();
+        textField.blur();
 
         // Assert
         expect(await screen.findByRole("alert")).toHaveTextContent(
