@@ -72,7 +72,6 @@ export const useFieldValidation = ({
     required = false,
     instantValidation = true,
 }: FieldValidationProps) => {
-    const prevValue = React.useRef(value);
     const [errorMessage, setErrorMessage] = React.useState<string | null>(
         // Ensures error is updated on unmounted server-side renders
         // Pass in an initializer function so the validate prop is not called
@@ -141,17 +140,6 @@ export const useFieldValidation = ({
             handleValidation(value);
         }
     });
-
-    React.useEffect(() => {
-        // If it is not required, clear the error when the value is now empty
-        if (!required && prevValue.current !== value && value.length === 0) {
-            setErrorMessage(null);
-            if (onValidate) {
-                onValidate(null);
-            }
-        }
-        prevValue.current = value;
-    }, [onValidate, required, value]);
 
     return {
         errorMessage,
