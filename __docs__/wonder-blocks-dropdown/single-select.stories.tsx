@@ -85,7 +85,6 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
-        light: false,
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
@@ -569,43 +568,6 @@ export const TwoWithText: StoryComponentType = {
                     {[...items, <OptionItem label="" value="" key={9} />]}
                 </SingleSelect>
             </div>
-        );
-    },
-};
-
-/**
- * "This single select is on a dark background and is also right-aligned.
- */
-export const Light: StoryComponentType = {
-    render: function Render(args: any) {
-        const [selectedValue, setSelectedValue] = React.useState("pear");
-
-        return (
-            <View style={styles.row}>
-                <View style={styles.darkBackgroundWrapper}>
-                    <SingleSelect
-                        {...args}
-                        alignment="right"
-                        light={true}
-                        onChange={setSelectedValue}
-                        placeholder="Choose a drink"
-                        selectedValue={selectedValue}
-                    >
-                        <OptionItem
-                            label="Regular milk tea with boba"
-                            value="regular"
-                        />
-                        <OptionItem
-                            label="Wintermelon milk tea with boba"
-                            value="wintermelon"
-                        />
-                        <OptionItem
-                            label="Taro milk tea, half sugar"
-                            value="taro"
-                        />
-                    </SingleSelect>
-                </View>
-            </View>
         );
     },
 };

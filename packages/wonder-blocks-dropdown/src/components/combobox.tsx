@@ -85,14 +85,6 @@ type Props = {
     labels?: ComboboxLabels;
 
     /**
-     * Whether to display the light version of this component.
-     *
-     * For use when the component is used on a dark background. Defaults to
-     * false.
-     */
-    light?: boolean;
-
-    /**
      * TODO(WB-1678): Add async support to the listbox.
      *
      * Whether to display the loading state to let the user know that the

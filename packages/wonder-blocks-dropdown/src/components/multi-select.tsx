@@ -80,11 +80,6 @@ type DefaultProps = Readonly<{
      */
     error?: boolean;
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the component is used on a dark background.
-     */
-    light?: boolean;
-    /**
      * The values of the items that are currently selected.
      */
     selectedValues?: Array<string>;
@@ -236,7 +231,6 @@ type Props = AriaProps &
 const MultiSelect = (props: Props) => {
     const {
         id,
-        light = false,
         opener,
         testId,
         alignment = "left",
@@ -570,7 +564,6 @@ const MultiSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
                             isPlaceholder={menuText === noneSelected}
-                            light={light}
                             onOpenChanged={handleOpenChanged}
                             onBlur={onOpenerBlurValidation}
                             open={open}
@@ -617,7 +610,6 @@ const MultiSelect = (props: Props) => {
                         ...getShortcuts(numEnabledOptions),
                         ...filteredItems,
                     ]}
-                    light={light}
                     onOpenChanged={handleOpenChanged}
                     open={open}
                     opener={renderOpener(

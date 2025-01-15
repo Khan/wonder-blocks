@@ -64,7 +64,6 @@ const defaultArgs = {
     placeholder: "Select an item",
     testId: "",
     autoComplete: "none",
-    light: false,
     loading: false,
 };
 

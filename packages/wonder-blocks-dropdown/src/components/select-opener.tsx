@@ -39,11 +39,6 @@ type SelectOpenerProps = AriaProps & {
      */
     isPlaceholder: boolean;
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean;
-    /**
      * Callback for when the SelectOpener is pressed.
      */
     onOpenChanged: (open: boolean) => unknown;
@@ -64,7 +59,6 @@ type SelectOpenerProps = AriaProps & {
 type DefaultProps = {
     disabled: SelectOpenerProps["disabled"];
     error: SelectOpenerProps["error"];
-    light: SelectOpenerProps["light"];
     isPlaceholder: SelectOpenerProps["isPlaceholder"];
 };
 
@@ -89,7 +83,6 @@ export default class SelectOpener extends React.Component<
     static defaultProps: DefaultProps = {
         disabled: false,
         error: false,
-        light: false,
         isPlaceholder: false,
     };
 
@@ -134,7 +127,6 @@ export default class SelectOpener extends React.Component<
             error,
             id,
             isPlaceholder,
-            light,
             open,
             testId,
             "aria-required": ariaRequired,
@@ -144,15 +136,9 @@ export default class SelectOpener extends React.Component<
             ...sharedProps
         } = this.props;
 
-        const stateStyles = _generateStyles(light, isPlaceholder, error);
+        const stateStyles = _generateStyles(isPlaceholder, error);
 
-        // The icon colors are kind of fickle. This is just logic
-        // based on the zeplin design.
-        const iconColor = light
-            ? disabled || error
-                ? "currentColor"
-                : tokens.color.white
-            : disabled
+        const iconColor = disabled
             ? tokens.color.offBlack32
             : tokens.color.offBlack64;
 
@@ -160,7 +146,7 @@ export default class SelectOpener extends React.Component<
             styles.shared,
             stateStyles.default,
             disabled && stateStyles.disabled,
-            !disabled && this.state.pressed && stateStyles.pressed,
+            !disabled && this.state.pressed && stateStyles.press,
         ];
 
         return (
@@ -244,126 +230,62 @@ const adjustedPaddingRight = tokens.spacing.small_12 - 1;
 
 const stateStyles: Record<string, any> = {};
 
-const _generateStyles = (
-    light: boolean,
-    placeholder: boolean,
-    error: boolean,
-) => {
+const _generateStyles = (placeholder: boolean, error: boolean) => {
     // "hash" the parameters
-    const styleKey = `${light}-${placeholder}-${error}`;
+    const styleKey = `${placeholder}-${error}`;
     if (stateStyles[styleKey]) {
         return stateStyles[styleKey];
     }
 
-    let newStyles: Record<string, any> = {};
-    if (light) {
-        const focusHoverStyling = {
-            borderColor: error ? tokens.color.red : tokens.color.white,
-            borderWidth: tokens.spacing.xxxxSmall_2,
-            paddingLeft: adjustedPaddingLeft,
-            paddingRight: adjustedPaddingRight,
-        };
-        const activePressedStyling = {
-            paddingLeft: adjustedPaddingLeft,
-            paddingRight: adjustedPaddingRight,
-            borderColor: error ? tokens.color.red : tokens.color.fadedBlue,
-            borderWidth: tokens.border.width.thin,
-            color: error
+    const focusHoverStyling = {
+        borderColor: error ? tokens.color.red : tokens.color.blue,
+        borderWidth: tokens.border.width.thin,
+        paddingLeft: adjustedPaddingLeft,
+        paddingRight: adjustedPaddingRight,
+    };
+    const activePressedStyling = {
+        background: error ? tokens.color.fadedRed : tokens.color.fadedBlue,
+        borderColor: error ? tokens.color.red : tokens.color.activeBlue,
+        borderWidth: tokens.border.width.thin,
+        paddingLeft: adjustedPaddingLeft,
+        paddingRight: adjustedPaddingRight,
+    };
+
+    const newStyles: Record<string, any> = {
+        default: {
+            background: error ? tokens.color.fadedRed8 : tokens.color.white,
+            borderColor: error ? tokens.color.red : tokens.color.offBlack50,
+            borderWidth: tokens.border.width.hairline,
+            color: placeholder
                 ? tokens.color.offBlack64
-                : placeholder
-                ? mix(tokens.color.white32, tokens.color.blue)
-                : tokens.color.fadedBlue,
-            backgroundColor: error
-                ? tokens.color.fadedRed
-                : tokens.color.activeBlue,
-        };
-        newStyles = {
-            default: {
-                background: error ? tokens.color.fadedRed8 : "transparent",
-                color: error
-                    ? tokens.color.offBlack64
-                    : placeholder
-                    ? tokens.color.white50
-                    : tokens.color.white,
-                borderColor: error ? tokens.color.red : tokens.color.white50,
-                borderWidth: tokens.border.width.hairline,
-                ":hover:not([aria-disabled=true])": focusHoverStyling,
-                // Allow hover styles on non-touch devices only. This prevents an
-                // issue with hover being sticky on touch devices (e.g. mobile).
-                ["@media not (hover: hover)"]: {
-                    ":hover:not([aria-disabled=true])": {
-                        borderColor: error
-                            ? tokens.color.red
-                            : tokens.color.white50,
-                        borderWidth: tokens.border.width.hairline,
-                        paddingLeft: tokens.spacing.medium_16,
-                        paddingRight: tokens.spacing.small_12,
-                    },
-                },
-                ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
-                ":active:not([aria-disabled=true])": activePressedStyling,
-            },
-            disabled: {
-                background: "transparent",
-                borderColor: mix(tokens.color.white32, tokens.color.blue),
-                color: mix(tokens.color.white32, tokens.color.blue),
-                cursor: "not-allowed",
-                ":focus-visible": {
-                    boxShadow: `0 0 0 1px ${tokens.color.offBlack32}, 0 0 0 3px ${tokens.color.fadedBlue}`,
+                : tokens.color.offBlack,
+            ":hover:not([aria-disabled=true])": focusHoverStyling,
+            // Allow hover styles on non-touch devices only. This prevents an
+            // issue with hover being sticky on touch devices (e.g. mobile).
+            ["@media not (hover: hover)"]: {
+                ":hover:not([aria-disabled=true])": {
+                    borderColor: error
+                        ? tokens.color.red
+                        : tokens.color.offBlack50,
+                    borderWidth: tokens.border.width.hairline,
+                    paddingLeft: tokens.spacing.medium_16,
+                    paddingRight: tokens.spacing.small_12,
                 },
             },
-            pressed: activePressedStyling,
-        };
-    } else {
-        const focusHoverStyling = {
-            borderColor: error ? tokens.color.red : tokens.color.blue,
-            borderWidth: tokens.border.width.thin,
-            paddingLeft: adjustedPaddingLeft,
-            paddingRight: adjustedPaddingRight,
-        };
-        const activePressedStyling = {
-            background: error ? tokens.color.fadedRed : tokens.color.fadedBlue,
-            borderColor: error ? tokens.color.red : tokens.color.activeBlue,
-            borderWidth: tokens.border.width.thin,
-            paddingLeft: adjustedPaddingLeft,
-            paddingRight: adjustedPaddingRight,
-        };
-        newStyles = {
-            default: {
-                background: error ? tokens.color.fadedRed8 : tokens.color.white,
-                borderColor: error ? tokens.color.red : tokens.color.offBlack50,
-                borderWidth: tokens.border.width.hairline,
-                color: placeholder
-                    ? tokens.color.offBlack64
-                    : tokens.color.offBlack,
-                ":hover:not([aria-disabled=true])": focusHoverStyling,
-                // Allow hover styles on non-touch devices only. This prevents an
-                // issue with hover being sticky on touch devices (e.g. mobile).
-                ["@media not (hover: hover)"]: {
-                    ":hover:not([aria-disabled=true])": {
-                        borderColor: error
-                            ? tokens.color.red
-                            : tokens.color.offBlack50,
-                        borderWidth: tokens.border.width.hairline,
-                        paddingLeft: tokens.spacing.medium_16,
-                        paddingRight: tokens.spacing.small_12,
-                    },
-                },
-                ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
-                ":active:not([aria-disabled=true])": activePressedStyling,
+            ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
+            ":active:not([aria-disabled=true])": activePressedStyling,
+        },
+        disabled: {
+            background: tokens.color.offWhite,
+            borderColor: tokens.color.offBlack16,
+            color: tokens.color.offBlack64,
+            cursor: "not-allowed",
+            ":focus-visible": {
+                boxShadow: `0 0 0 1px ${tokens.color.white}, 0 0 0 3px ${tokens.color.offBlack32}`,
             },
-            disabled: {
-                background: tokens.color.offWhite,
-                borderColor: tokens.color.offBlack16,
-                color: tokens.color.offBlack64,
-                cursor: "not-allowed",
-                ":focus-visible": {
-                    boxShadow: `0 0 0 1px ${tokens.color.white}, 0 0 0 3px ${tokens.color.offBlack32}`,
-                },
-            },
-            pressed: activePressedStyling,
-        };
-    }
+        },
+        press: activePressedStyling,
+    };
 
     stateStyles[styleKey] = StyleSheet.create(newStyles);
     return stateStyles[styleKey];
