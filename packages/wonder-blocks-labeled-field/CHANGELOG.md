@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 1.1.1
+
+### Patch Changes
+
+-   dce7d780: Make labeled-field package public
+
 ## 1.1.0
 
 ### Minor Changes
