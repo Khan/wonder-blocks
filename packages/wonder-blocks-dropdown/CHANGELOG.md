@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 7.0.6
+
+### Patch Changes
+
+-   b2df9d32: MultiSelect: Clear error state when "Select none" or "Select all" shortcuts are used
+    -   @khanacademy/wonder-blocks-search-field@4.0.6
+
 ## 7.0.5
 
 ### Patch Changes
