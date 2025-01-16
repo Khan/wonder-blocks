@@ -250,6 +250,7 @@ const MultiSelect = (props: Props) => {
         shortcuts = false,
         style,
         className,
+        "aria-label": ariaLabel,
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
@@ -569,8 +570,8 @@ const MultiSelect = (props: Props) => {
                             error={hasError}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
+                            aria-label={ariaLabel}
                             aria-controls={dropdownId}
-                            placeholder={noneSelected}
                             isPlaceholder={menuText === noneSelected}
                             light={light}
                             onOpenChanged={handleOpenChanged}

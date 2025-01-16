@@ -36,16 +36,36 @@ export const SingleSelectAccessibility = () => (
     </View>
 );
 
-# Accessibility
+# SingleSelect Accessibility
+
+## Labeling the `SingleSelect` opener and option items
 
 If you need to associate this component with another element (e.g. `<label>`),
-make sure to pass the `aria-labelledby` and/or `id` props to the `SingleSelect` component.
-This way, the `opener` will receive this value and it will associate both
-elements.
+make sure to pass the `aria-labelledby` or `id` props to the `SingleSelect` component.
 
-Also, if you need screen readers to understand any relevant information on every
-option item, you can use `aria-label` on each item. e.g. You can use it to let
+An `id` on the SingleSelect would pair with `<label for="id">`, while `aria-labelledby`
+on the SingleSelect could associate it with the `id` of any other element. By using
+one of these methods, the `opener` will pair with the associated label and
+expose that label's text for its accessible name.
+
+Also, if you need screen readers to understand relevant information on
+option items, you can use `aria-label` on each item. e.g. You can use it to let
 screen readers know the current selected/unselected status of the item when it
 receives focus.
 
 <Canvas of={SingleSelectAccessibilityStories.UsingAriaAttributes} />
+
+## Using `aria-label` for the opener
+
+For cases where the `SingleSelect` is not paired with a `LabeledField` or other
+visible `<label>` element, you **must** supply an `aria-label` attribute
+for an accessible name on the opener.
+
+This will ensure the `SingleSelect` has a name that describes its purpose.
+
+For example, an `aria-label` for `SingleSelect` in a vocabulary quiz could be
+"Adjective 1" while its value would be one of the selected options, such as "happy".
+It might also have a placeholder value of "Select an option", which would go away
+when the user selected an option.
+
+<Canvas of={SingleSelectAccessibilityStories.UsingOpenerAriaLabel} />

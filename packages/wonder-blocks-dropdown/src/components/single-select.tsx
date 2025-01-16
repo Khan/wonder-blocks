@@ -278,6 +278,7 @@ const SingleSelect = (props: Props) => {
         opened,
         style,
         className,
+        "aria-label": ariaLabel,
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
@@ -463,7 +464,7 @@ const SingleSelect = (props: Props) => {
                     ) : (
                         <SelectOpener
                             {...sharedProps}
-                            placeholder={placeholder}
+                            aria-label={ariaLabel}
                             aria-controls={dropdownId}
                             disabled={isDisabled}
                             id={uniqueOpenerId}

@@ -38,8 +38,11 @@ type SelectOpenerProps = AriaProps & {
      * of this component. A placeholder has more faded text colors and styles.
      */
     isPlaceholder: boolean;
-
-    placeholder?: string;
+    /**
+     * A label to expose on the opener, in the absence of an associated label element or `aria-labelledby`.
+     * If no `ariaLabel` prop is provided, the opener `aria-label` will fall back to `placeholder` (if present).
+     */
+    ariaLabel?: string;
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
@@ -136,10 +139,10 @@ export default class SelectOpener extends React.Component<
             error,
             id,
             isPlaceholder,
-            placeholder,
             light,
             open,
             testId,
+            "aria-label": ariaLabel,
             "aria-required": ariaRequired,
             onBlur,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -172,12 +175,12 @@ export default class SelectOpener extends React.Component<
                 aria-disabled={disabled}
                 aria-expanded={open ? "true" : "false"}
                 aria-invalid={error}
+                aria-label={ariaLabel ?? undefined}
                 aria-required={ariaRequired}
                 aria-haspopup="listbox"
                 data-testid={testId}
                 id={id}
                 role="combobox"
-                aria-label={placeholder}
                 style={style}
                 onClick={!disabled ? this.handleClick : undefined}
                 onKeyDown={!disabled ? this.handleKeyDown : undefined}

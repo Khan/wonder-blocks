@@ -1,11 +1,11 @@
 import * as React from "react";
-import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Dropdown / SingleSelect / Accessibility",
-    component: SingleSelect,
+    title: "Packages / Dropdown / MultiSelect / Accessibility",
+    component: MultiSelect,
 
     // Disables chromatic testing for these stories.
     parameters: {
@@ -23,20 +23,18 @@ export default {
     },
 };
 
-const SingleSelectAccessibility = () => (
+const MultiSelectAccessibility = () => (
     <View>
         <LabelLarge
             tag="label"
-            id="label-for-single-select"
-            htmlFor="unique-single-select"
+            id="label-for-multi-select"
+            htmlFor="unique-multi-select"
         >
             Associated label element
         </LabelLarge>
-        <SingleSelect
-            aria-labelledby="label-for-single-select"
-            id="unique-single-select"
-            placeholder="Accessible SingleSelect"
-            selectedValue="one"
+        <MultiSelect
+            id="unique-multi-select"
+            selectedValues={["one"]}
             onChange={() => {}}
         >
             <OptionItem
@@ -49,24 +47,24 @@ const SingleSelectAccessibility = () => (
                 aria-label="Second element, unselelected"
                 value="two"
             />
-        </SingleSelect>
+        </MultiSelect>
     </View>
 );
 
 export const UsingAriaAttributes = {
-    render: SingleSelectAccessibility.bind({}),
+    render: MultiSelectAccessibility.bind({}),
     name: "Using aria attributes",
 };
 
-const SingleSelectAriaLabel = () => {
-    const [selectedValue, setSelectedValue] = React.useState("");
+const MultiSelectAriaLabel = () => {
+    const [selectedValues, setSelectedValues] = React.useState([""]);
     return (
         <View>
-            <SingleSelect
+            <MultiSelect
                 aria-label="Class options"
-                placeholder="Choose"
-                onChange={setSelectedValue}
-                selectedValue={selectedValue}
+                id="unique-single-select"
+                selectedValues={selectedValues}
+                onChange={setSelectedValues}
             >
                 <OptionItem
                     label="First element"
@@ -78,12 +76,12 @@ const SingleSelectAriaLabel = () => {
                     aria-label="Second element, unselelected"
                     value="two"
                 />
-            </SingleSelect>
+            </MultiSelect>
         </View>
     );
 };
 
 export const UsingOpenerAriaLabel = {
-    render: SingleSelectAriaLabel.bind({}),
-    name: "Using aria-label for opener",
+    render: MultiSelectAriaLabel.bind({}),
+    name: "Using aria-label on opener",
 };

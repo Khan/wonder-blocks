@@ -70,6 +70,49 @@ describe("SingleSelect", () => {
                 expect(opener).toHaveTextContent("Default placeholder");
             });
 
+            it("should render an aria-label if passed in as a prop", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        aria-label="Select a thing"
+                    >
+                        <OptionItem label="" value="" />
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = await screen.findByRole("combobox");
+
+                // Assert
+                expect(opener).toHaveAccessibleName("Select a thing");
+            });
+
+            it("should preserve the original aria-label when an option is selected", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        aria-label="Select a thing"
+                        selectedValue="toggle_a"
+                    >
+                        <OptionItem label="" value="" />
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = await screen.findByRole("combobox");
+
+                // Assert
+                expect(opener).toHaveAccessibleName("Select a thing");
+            });
+
             it("should render empty if the selected option has an empty value", async () => {
                 // Arrange
                 doRender(
@@ -432,6 +475,7 @@ describe("SingleSelect", () => {
                         onToggle={handleToggleMenu}
                         onChange={onChange}
                         placeholder="Choose"
+                        aria-label="Choose"
                     >
                         <OptionItem label="item 1" value="1" />
                         <OptionItem label="item 2" value="2" />
@@ -1747,6 +1791,7 @@ describe("SingleSelect", () => {
                     onChange={jest.fn()}
                     opened={true}
                     placeholder="Choose"
+                    aria-label="Choose"
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1772,6 +1817,7 @@ describe("SingleSelect", () => {
                     onChange={jest.fn()}
                     opened={true}
                     placeholder="Choose"
+                    aria-label="Choose"
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1801,6 +1847,7 @@ describe("SingleSelect", () => {
             return (
                 <SingleSelect
                     {...props}
+                    aria-label="Choose"
                     placeholder="Choose"
                     selectedValue={value}
                     onChange={setValue}
