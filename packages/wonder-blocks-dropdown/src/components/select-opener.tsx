@@ -190,7 +190,7 @@ export default class SelectOpener extends React.Component<
                 <LabelMedium style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
                                 shift for empty selection */}
-                    {children || "\u00A0"}
+                    {children || <span aria-hidden="true">&nbsp;</span>}
                 </LabelMedium>
                 <PhosphorIcon
                     icon={caretDownIcon}
