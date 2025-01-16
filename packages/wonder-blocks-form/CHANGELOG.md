@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-form
 
+## 6.0.6
+
+### Patch Changes
+
+-   d9bc865b: TextField and TextArea: Set `aria-required` if it is required
+-   d9bc865b: TextField and TextArea validation: Always clear error message onChange if instantValidation=false so externally set error state can still be cleared
+
 ## 6.0.5
 
 ### Patch Changes

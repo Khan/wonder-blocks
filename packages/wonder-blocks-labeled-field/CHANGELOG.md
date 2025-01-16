@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 1.1.0
+
+### Minor Changes
+
+-   0869c5ee: - Update `LabeledField` styling to use semantic tokens to match Figma specs
+    -   Add error icon to the error message. This addresses accessibility issues related to color being the only way to communicate information
+    -   Add a labels prop so that a translated label for the error icon can be passed in
+    -   Handle long text overflow with and without word breaks
+-   dea7c71e: LabeledField: Wire up attributes for elements and apply attributes to the field element
+
+### Patch Changes
+
+-   fd29f864: LabeledField: Refactor from class component to function component
+-   ed8fb7bd: Makes sure custom required messages passed into `LabeledField` or the `field` prop are displayed
+-   d9bc865b: Set required, error and light props for LabeledField and field component if it is set on either LabeledField or field component
+-   d9bc865b: Use `errorMessage` prop instead of `error` prop for consistency (`error` prop is used for boolean props in form field components).
+-   d9bc865b: LabeledField: Let `required` prop be a boolean or string so it can be passed down to the field prop
+-   daf459a1: Sets up the initial implementation for LabeledField based on the internal FieldHeading component in the form package
+
 ## 1.0.5
 
 ### Patch Changes
