@@ -2643,7 +2643,7 @@ describe("MultiSelect", () => {
                         shortcuts={true}
                     />,
                 );
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
                 onValidate.mockClear(); // Clear any calls
 
                 // Act
@@ -2665,13 +2665,13 @@ describe("MultiSelect", () => {
                         shortcuts={true}
                     />,
                 );
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                 // Act
                 await userEvent.click(await screen.findByText("Select none")); // Select none
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "false",
                 );
@@ -2691,7 +2691,7 @@ describe("MultiSelect", () => {
                         shortcuts={true}
                     />,
                 );
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
                 onValidate.mockClear(); // Clear any calls
 
                 // Act
@@ -2715,7 +2715,7 @@ describe("MultiSelect", () => {
                         shortcuts={true}
                     />,
                 );
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                 // Act
                 await userEvent.click(
@@ -2723,7 +2723,7 @@ describe("MultiSelect", () => {
                 ); // Select all
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "false",
                 );
