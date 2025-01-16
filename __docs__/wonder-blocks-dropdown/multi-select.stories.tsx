@@ -12,7 +12,7 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
+import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
@@ -221,7 +221,7 @@ export const ControlledOpened: StoryComponentType = {
 };
 
 // Custom MultiSelect labels
-const dropdownLabels: Labels = {
+const dropdownLabels: LabelsValues = {
     ...defaultLabels,
     noneSelected: "Solar system",
     someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
@@ -661,7 +661,7 @@ export const CustomLabels: StoryComponentType = {
         >([]);
         const [opened, setOpened] = React.useState(true);
 
-        const labels: Labels = {
+        const labels: LabelsValues = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",

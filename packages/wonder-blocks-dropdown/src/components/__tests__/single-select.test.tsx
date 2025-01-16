@@ -9,7 +9,7 @@ import {
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import OptionItem from "../option-item";
 import SingleSelect from "../single-select";
-import type {SingleSelectLabels} from "../single-select";
+import type {SingleSelectLabelsValues} from "../single-select";
 
 const doRender = (element: React.ReactElement) => {
     return {
@@ -111,7 +111,7 @@ describe("SingleSelect", () => {
                 expect(opener).toHaveTextContent("Toggle A");
             });
 
-            it("should render labelAsText of the selected option", async () => {
+            it("should render labelAsText of the selected option for opener value", async () => {
                 // Arrange
                 doRender(
                     <SingleSelect
@@ -139,7 +139,7 @@ describe("SingleSelect", () => {
                 expect(opener).toHaveTextContent("Plain Toggle A");
             });
 
-            it("can render a Node as a label", async () => {
+            it("can render a Node as an opener value", async () => {
                 // Arrange
                 doRender(
                     <SingleSelect
@@ -633,7 +633,7 @@ describe("SingleSelect", () => {
             expect(opener).toHaveTextContent("Custom placeholder");
         });
 
-        it("passes the selected label to the custom opener", async () => {
+        it("passes the selected value to the custom opener", async () => {
             // Arrange
             type Props = Record<any, any>;
 
@@ -676,7 +676,7 @@ describe("SingleSelect", () => {
             await userEvent.click(await screen.findByText("Toggle B"));
 
             // Assert
-            // NOTE: the opener text is only updated in response to changes to the
+            // NOTE: the opener value text is only updated in response to changes to the
             // `selectedValue` prop.
             expect(opener).toHaveTextContent("Toggle B");
         });
@@ -1019,7 +1019,7 @@ describe("SingleSelect", () => {
             <OptionItem label="Mango" value="mango" />,
         ];
 
-        const enLabels: SingleSelectLabels = {
+        const enLabels: SingleSelectLabelsValues = {
             clearSearch: "Clear Search",
             filter: "Filter",
             noResults: "No Results",
@@ -1028,7 +1028,7 @@ describe("SingleSelect", () => {
 
         it("passes the custom label to the search input field", async () => {
             // Arrange
-            const labels: SingleSelectLabels = {
+            const labels: SingleSelectLabelsValues = {
                 ...enLabels,
                 filter: "Filtrar",
             };
@@ -1054,7 +1054,7 @@ describe("SingleSelect", () => {
 
         it("passes the custom label to the dismiss filter icon", async () => {
             // Arrange
-            const labels: SingleSelectLabels = {
+            const labels: SingleSelectLabelsValues = {
                 ...enLabels,
                 clearSearch: "Limpiar busqueda",
                 filter: "Filtrar",
@@ -1087,7 +1087,7 @@ describe("SingleSelect", () => {
 
         it("passes the custom label to the no results label", async () => {
             // Arrange
-            const labels: SingleSelectLabels = {
+            const labels: SingleSelectLabelsValues = {
                 ...enLabels,
                 filter: "Filtrar",
                 noResults: "No hay resultados",

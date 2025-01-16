@@ -25,9 +25,9 @@ import type {
 import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
-export type SingleSelectLabels = {
+export type SingleSelectLabelsValues = {
     /**
-     * Label for describing the dismiss icon on the search filter.
+     * Label to create an accessible name for the dismiss icon on the search filter.
      */
     clearSearch: string;
     /**
@@ -35,11 +35,11 @@ export type SingleSelectLabels = {
      */
     filter: string;
     /**
-     * Label for when the filter returns no results.
+     * Value for when the filter returns no results.
      */
     noResults: string;
     /**
-     * Label for the opening component when there are some items selected.
+     * Value for the opening component when there are some items selected.
      */
     someResults: (numOptions: number) => string;
 };
@@ -83,9 +83,9 @@ type DefaultProps = Readonly<{
      */
     light?: boolean;
     /**
-     * The object containing the custom labels used inside this component.
+     * The object containing the custom labels and placeholder values used inside this component.
      */
-    labels?: SingleSelectLabels;
+    labels?: SingleSelectLabelsValues;
     /**
      * When false, the SelectOpener can show a Node as a label. When true, the
      * SelectOpener will use a string as a label. If using custom OptionItems, a

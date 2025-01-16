@@ -28,7 +28,7 @@ import type {
 import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
-export type Labels = {
+export type LabelsValues = {
     /**
      * Label for describing the dismiss icon on the search filter.
      */
@@ -38,7 +38,7 @@ export type Labels = {
      */
     filter: string;
     /**
-     * Label for when the filter returns no results.
+     * Value for when the filter returns no results.
      */
     noResults: string;
     /**
@@ -48,18 +48,17 @@ export type Labels = {
     /**
      * Label for the "select none" shortcut option
      */
-
     selectNoneLabel: string;
     /**
-     * Label for the opening component when there are no items selected.
+     * Value for the opening component when there are no items selected.
      */
     noneSelected: string;
     /**
-     * Label for the opening component when there are some items selected.
+     * Value for the opening component when there are some items selected.
      */
     someSelected: (numOptions: number) => string;
     /**
-     * Label for the opening component when all the items have been selected.
+     * Value for the opening component when all the items have been selected.
      */
     allSelected: string;
 };
@@ -135,9 +134,9 @@ type Props = AriaProps &
          */
         isFilterable?: boolean;
         /**
-         * The object containing the custom labels used inside this component.
+         * The object containing the custom labels and placeholder values used inside this component.
          */
-        labels?: Labels;
+        labels?: LabelsValues;
         /**
          * Callback for when the selection changes. Parameter is an updated array of
          * the values that are now selected.

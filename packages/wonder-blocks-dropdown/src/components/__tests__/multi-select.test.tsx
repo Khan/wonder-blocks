@@ -19,7 +19,7 @@ import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
 import {defaultLabels as builtinLabels} from "../../util/constants";
 
-import type {Labels} from "../multi-select";
+import type {LabelsValues} from "../multi-select";
 
 const doRender = (element: React.ReactElement) => {
     return {
@@ -31,7 +31,7 @@ const doRender = (element: React.ReactElement) => {
     };
 };
 
-const defaultLabels: Labels = {
+const defaultLabels: LabelsValues = {
     ...builtinLabels,
     selectAllLabel: (numOptions: any) => `Select all (${numOptions})`,
     noneSelected: "Choose",
@@ -292,6 +292,43 @@ describe("MultiSelect", () => {
             // Assert
             expect(menuLabel).toBeVisible();
         });
+
+        it("applies an aria-label to the opener", async () => {
+            doRender(
+                <MultiSelect onChange={jest.fn()} aria-label="Select a school">
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Select a school");
+        });
+
+        it("keeps the original aria-label when items are selected", async () => {
+            doRender(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectedValues={["1", "2"]}
+                    labels={defaultLabels}
+                    aria-label="Select a school"
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Select a school");
+        });
     });
 
     describe("Controlled component", () => {
@@ -301,7 +338,7 @@ describe("MultiSelect", () => {
             shortcuts?: boolean;
         };
 
-        const labels: Labels = {
+        const labels: LabelsValues = {
             ...builtinLabels,
             selectAllLabel: (numOptions: any) => `Select all (${numOptions})`,
             allSelected: "All fruits",
@@ -863,7 +900,7 @@ describe("MultiSelect", () => {
 
         it("should find an option after using the search filter", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
                     numOptions <= 1
@@ -897,7 +934,7 @@ describe("MultiSelect", () => {
         // The Venus option is still in the document.
         it.skip("should filter out an option if it's not part of the results", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
                     numOptions <= 1
@@ -1029,9 +1066,9 @@ describe("MultiSelect", () => {
             expect(opener).not.toHaveAttribute("data-testid", "custom-opener");
         });
 
-        it("passes the current label to the custom opener (no items selected)", async () => {
+        it("passes the current value to the custom opener (no items selected)", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 noneSelected: "No items selected",
             };
@@ -1060,7 +1097,7 @@ describe("MultiSelect", () => {
             expect(opener).toHaveTextContent("No items selected");
         });
 
-        it("passes the current label to the custom opener (1 item selected)", async () => {
+        it("passes the current value to the custom opener (1 item selected)", async () => {
             // Arrange
             const ControlledMultiSelect = () => {
                 const [selected, setSelected] = React.useState([]);
@@ -1101,7 +1138,7 @@ describe("MultiSelect", () => {
             expect(opener).toHaveTextContent("item 1");
         });
 
-        it("passes the current label to the custom opener (2 items selected)", async () => {
+        it("passes the current value to the custom opener (2 items selected)", async () => {
             // Arrange
             const ControlledMultiSelect = () => {
                 const [selected, setSelected] = React.useState([]);
@@ -1142,7 +1179,7 @@ describe("MultiSelect", () => {
             expect(opener).toHaveTextContent("2 items");
         });
 
-        it("passes the current label to the custom opener (all items selected)", async () => {
+        it("passes the current value to the custom opener (all items selected)", async () => {
             // Arrange
             const ControlledMultiSelect = () => {
                 const [selected, setSelected] = React.useState([]);
@@ -1185,10 +1222,10 @@ describe("MultiSelect", () => {
         });
     });
 
-    describe("Custom labels", () => {
-        it("passes the custom label to the opener", async () => {
+    describe("Custom labels and values", () => {
+        it("passes the custom value to the opener", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 noneSelected: "0 escuelas",
             };
@@ -1213,7 +1250,7 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the opener (2 items selected)", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 someSelected: (numSelectedValues: any) =>
                     `${numSelectedValues} escuelas`,
@@ -1238,9 +1275,9 @@ describe("MultiSelect", () => {
             expect(opener).toHaveTextContent("2 escuelas");
         });
 
-        it("passes the custom label to the opener (all items selected)", async () => {
+        it("passes the custom value to the opener (all items selected)", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 allSelected: "Todas las escuelas",
             };
@@ -1266,7 +1303,7 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the dismiss icon", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 clearSearch: "Limpiar busqueda",
             };
@@ -1303,7 +1340,7 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the search input field", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 filter: "Filtrar",
             };
@@ -1331,9 +1368,9 @@ describe("MultiSelect", () => {
             expect(searchInput).toBeInTheDocument();
         });
 
-        it("passes the custom label to the no results label", async () => {
+        it("passes the custom value for no results", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 noResults: "No hay resultados",
             };
@@ -1368,7 +1405,7 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the select all shortcut", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 selectAllLabel: (numOptions: any) =>
                     `Seleccionar todas las escuelas (${numOptions})`,
@@ -1400,7 +1437,7 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the select none shortcut", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 selectNoneLabel: "Deseleccionar todas las escuelas",
             };
@@ -1431,12 +1468,12 @@ describe("MultiSelect", () => {
 
         it("verifies a custom label is updated when props change", async () => {
             // Arrange
-            const initialLabels: Labels = {
+            const initialLabels: LabelsValues = {
                 ...defaultLabels,
                 selectNoneLabel: "Deseleccionar todas las escuelas",
             };
 
-            const TranslatedComponent = ({labels}: {labels: Labels}) => (
+            const TranslatedComponent = ({labels}: {labels: LabelsValues}) => (
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
@@ -1454,7 +1491,7 @@ describe("MultiSelect", () => {
             );
 
             // update label value
-            const updatedLabels: Labels = {
+            const updatedLabels: LabelsValues = {
                 ...defaultLabels,
                 selectNoneLabel: "Ninguna seleccionada",
             };
@@ -1511,7 +1548,7 @@ describe("MultiSelect", () => {
     describe("a11y > Live region", () => {
         it("should announce the number of options when the listbox is open", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
                     numOptions <= 1
@@ -1541,7 +1578,7 @@ describe("MultiSelect", () => {
         // output is now: "2 planets0 items".
         it.skip("should change the number of options after using the search filter", async () => {
             // Arrange
-            const labels: Labels = {
+            const labels: LabelsValues = {
                 ...builtinLabels,
                 someSelected: (numOptions: number): string =>
                     numOptions <= 1
@@ -2152,7 +2189,11 @@ describe("MultiSelect", () => {
         it("should not have any violations", async () => {
             // Arrange
             const {container} = doRender(
-                <MultiSelect onChange={jest.fn()} opened={true}>
+                <MultiSelect
+                    onChange={jest.fn()}
+                    opened={true}
+                    aria-label="Item selector"
+                >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
                 </MultiSelect>,
@@ -2173,7 +2214,11 @@ describe("MultiSelect", () => {
         it("should not have any violations when it is open", async () => {
             // Arrange
             const {container} = doRender(
-                <MultiSelect onChange={jest.fn()} opened={true}>
+                <MultiSelect
+                    onChange={jest.fn()}
+                    opened={true}
+                    aria-label="Item selector"
+                >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
                 </MultiSelect>,
