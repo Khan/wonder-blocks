@@ -13,9 +13,8 @@
   "author": "",
   "license": "MIT",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
-  "private": true,
   "dependencies": {
     "@babel/runtime": "^7.18.6",
     "@khanacademy/wonder-blocks-core": "^11.1.0",
@@ -24,6 +23,7 @@
     "@khanacademy/wonder-blocks-typography": "^3.0.5"
   },
   "peerDependencies": {
+    "@phosphor-icons/core": "^2.0.2",
     "aphrodite": "^1.2.5",
     "react": "18.2.0"
   },
