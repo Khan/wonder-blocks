@@ -1,5 +1,7 @@
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
+const {semanticColor} = tokens;
+
 // The underline-offset is the distance between the text baseline and the
 // bottom of the underline. This is necessary to prevent the underline from
 // breaking with descenders.
@@ -7,21 +9,61 @@ const textUnderlineOffset = tokens.spacing.xxxSmall_4;
 
 const theme = {
     color: {
+        progressive: {
+            ...semanticColor.action.progressive,
+            disabled: {
+                background: semanticColor.action.disabled.default,
+                foreground: semanticColor.action.disabled.secondary,
+            },
+        },
+        progressiveInverse: {
+            ...semanticColor.action.progressiveInverse,
+            disabled: {
+                background:
+                    semanticColor.action.progressiveInverse.press.background,
+                foreground:
+                    semanticColor.action.progressiveInverse.press.foreground,
+            },
+        },
+        destructive: {
+            ...semanticColor.action.destructive,
+            disabled: {
+                background: semanticColor.action.disabled.default,
+                foreground: semanticColor.action.disabled.secondary,
+            },
+        },
+        destructiveInverse: {
+            ...semanticColor.action.destructiveInverse,
+            disabled: {
+                background:
+                    semanticColor.action.destructiveInverse.press.background,
+                foreground:
+                    semanticColor.action.destructiveInverse.press.foreground,
+            },
+        },
+        // NOTE: These colors will be removed from WB as soon as we remove the
+        // light variant.
+        light: {
+            border: semanticColor.border.inverse,
+        },
+
         bg: {
             /**
              * Color
              */
             // color="default"
             action: {
-                default: tokens.color.blue,
-                active: tokens.color.activeBlue,
-                inverse: tokens.color.fadedBlue,
+                default: semanticColor.action.progressive.default.background,
+                active: semanticColor.action.progressive.press.background,
+                inverse:
+                    semanticColor.action.progressiveInverse.press.background,
             },
             // color="destructive"
             critical: {
-                default: tokens.color.red,
-                active: tokens.color.activeRed,
-                inverse: tokens.color.fadedRed,
+                default: semanticColor.action.destructive.default.background,
+                active: semanticColor.action.destructive.press.background,
+                inverse:
+                    semanticColor.action.destructiveInverse.press.background,
             },
 
             /**

@@ -344,12 +344,24 @@ export const _generateStyles = (
     theme: ButtonThemeContract,
     themeName: string,
 ) => {
+    const colorToAction = light
+        ? buttonColor === "destructive"
+            ? "destructiveInverse"
+            : "progressiveInverse"
+        : buttonColor === "destructive"
+        ? "destructive"
+        : "progressive";
+    const themeColorAction = theme.color[colorToAction];
     const color: string =
         buttonColor === "destructive"
             ? theme.color.bg.critical.default
             : theme.color.bg.action.default;
 
-    const buttonType = `${color}-${kind}-${light}-${size}-${themeName}`;
+    const bgColor = themeColorAction.default.background;
+    const textColor = themeColorAction.default.foreground;
+    const borderColor = themeColorAction.default.border;
+
+    const buttonType = `${buttonColor}-${kind}-${light}-${size}-${themeName}`;
 
     if (styles[buttonType]) {
         return styles[buttonType];
@@ -369,7 +381,7 @@ export const _generateStyles = (
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
         const focusStyling = {
-            outlineColor: light ? theme.color.bg.primary.default : color,
+            outlineColor: light ? theme.color.light.border : borderColor,
             outlineOffset: theme.border.offset.primary,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
@@ -380,12 +392,18 @@ export const _generateStyles = (
             outlineColor: light ? fadedColor : activeColor,
         };
 
+        const inverseBgColor = themeColorAction.default.background;
+        const inverseTextColor = themeColorAction.default.foreground;
+        const disabledBgColor = themeColorAction.disabled.background;
+        const disabledInverseBgColor = themeColorAction.disabled.background;
+        const disabledFgColor = themeColorAction.disabled.foreground;
+        const disabledInverseFgColor = themeColorAction.disabled.foreground;
+
         newStyles = {
             default: {
-                background: light ? theme.color.bg.primary.default : color,
-                color: light ? color : theme.color.text.inverse,
-                paddingLeft: padding,
-                paddingRight: padding,
+                background: light ? inverseBgColor : bgColor,
+                color: light ? inverseTextColor : textColor,
+                paddingInline: padding,
                 // TODO(WB-1844): Change this when we get final designs for
                 // hover.
                 [":hover:not([aria-disabled=true])" as any]: focusStyling,
@@ -397,16 +415,14 @@ export const _generateStyles = (
             focused: focusStyling,
             pressed: activePressedStyling,
             disabled: {
-                background: light
-                    ? fadedColor
-                    : theme.color.bg.primary.disabled,
-                color: light ? color : theme.color.text.primary.disabled,
+                background: light ? disabledInverseBgColor : disabledBgColor,
+                color: light ? disabledInverseFgColor : disabledFgColor,
                 cursor: "default",
                 ":focus-visible": {
                     ...focusStyling,
                     outlineColor: light
-                        ? fadedColor
-                        : theme.color.bg.primary.disabled,
+                        ? disabledInverseFgColor
+                        : disabledFgColor,
                 },
             },
         };
