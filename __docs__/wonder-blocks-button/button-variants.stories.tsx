@@ -115,13 +115,29 @@ const KindVariants = ({light}: {light: boolean}) => {
             {sizes.map((size) => (
                 <>
                     {colors.map((color) => (
+                        <>
+                            <VariantsGroup
+                                size={size}
+                                color={color}
+                                light={light}
+                            />
+                            {light && (
+                                <VariantsGroup
+                                    size={size}
+                                    color={color}
+                                    disabled={true}
+                                    light={light}
+                                />
+                            )}
+                        </>
+                    ))}
+                    {!light && (
                         <VariantsGroup
                             size={size}
-                            color={color}
+                            disabled={true}
                             light={light}
                         />
-                    ))}
-                    <VariantsGroup size={size} disabled={true} light={light} />
+                    )}
                 </>
             ))}
         </>
