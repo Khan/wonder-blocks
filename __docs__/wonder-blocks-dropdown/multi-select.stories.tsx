@@ -396,6 +396,9 @@ export const ErrorFromValidation: StoryComponentType = {
             </View>
         );
     },
+    args: {
+        shortcuts: true,
+    },
 };
 
 /**
