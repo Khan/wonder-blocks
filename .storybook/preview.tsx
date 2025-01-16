@@ -111,6 +111,7 @@ const withThemeSwitcher: Decorator = (
           }
         };
       }, [addBodyClass]);
+
     if (enableRenderStateRootDecorator) {
         return (
             <RenderStateRoot>
