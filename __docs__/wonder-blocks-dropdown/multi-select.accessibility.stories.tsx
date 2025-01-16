@@ -1,7 +1,7 @@
 import * as React from "react";
 import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Dropdown / MultiSelect / Accessibility",
@@ -25,29 +25,23 @@ export default {
 
 const MultiSelectAccessibility = () => (
     <View>
-        <LabelLarge
-            tag="label"
-            id="label-for-multi-select"
-            htmlFor="unique-multi-select"
-        >
-            Associated label element
-        </LabelLarge>
-        <MultiSelect
-            id="unique-multi-select"
-            selectedValues={["one"]}
-            onChange={() => {}}
-        >
-            <OptionItem
-                label="First element"
-                aria-label="First element, selected"
-                value="one"
-            />
-            <OptionItem
-                label="Second element"
-                aria-label="Second element, unselelected"
-                value="two"
-            />
-        </MultiSelect>
+        <LabeledField
+            label={<strong>Associated label element</strong>}
+            field={
+                <MultiSelect selectedValues={["one"]} onChange={() => {}}>
+                    <OptionItem
+                        label="First element"
+                        aria-label="First element, selected"
+                        value="one"
+                    />
+                    <OptionItem
+                        label="Second element"
+                        aria-label="Second element, unselelected"
+                        value="two"
+                    />
+                </MultiSelect>
+            }
+        />
     </View>
 );
 

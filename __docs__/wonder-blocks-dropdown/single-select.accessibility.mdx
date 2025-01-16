@@ -3,36 +3,32 @@ import * as SingleSelectAccessibilityStories from './single-select.accessibility
 
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 <Meta of={SingleSelectAccessibilityStories} />
 
 export const SingleSelectAccessibility = () => (
     <View>
-        <LabelLarge
-            tag="label"
-            id="label-for-single-select"
-            htmlFor="unique-single-select"
-        >
-            Associated label element
-        </LabelLarge>
-        <SingleSelect
-            aria-labelledby="label-for-single-select"
-            id="unique-single-select"
-            placeholder="Accessible SingleSelect"
-            selectedValue="one"
-        >
-            <OptionItem
-                label="First element"
-                aria-label="First element, selected"
-                value="one"
-            />
-            <OptionItem
-                label="Second element"
-                aria-label="Second element, unselelected"
-                value="two"
-            />
-        </SingleSelect>
+        <LabeledField
+            label={<strong>Associated label element</strong>}
+            field={
+                <SingleSelect
+                    placeholder="Accessible SingleSelect"
+                    selectedValue="one"
+                >
+                    <OptionItem
+                        label="First element"
+                        aria-label="First element, selected"
+                        value="one"
+                    />
+                    <OptionItem
+                        label="Second element"
+                        aria-label="Second element, unselelected"
+                        value="two"
+                    />
+                </SingleSelect>
+            }
+        />
     </View>
 );
 
@@ -57,7 +53,8 @@ receives focus.
 
 ## Using `aria-label` for the opener
 
-For cases where the `SingleSelect` is not paired with a `LabeledField` or other
+A visible label with `<LabeledField>` is preferred. However, for specific cases
+where the `SingleSelect` is not paired with a `LabeledField` or other
 visible `<label>` element, you **must** supply an `aria-label` attribute
 for an accessible name on the opener.
 

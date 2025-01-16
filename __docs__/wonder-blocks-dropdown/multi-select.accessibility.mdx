@@ -3,35 +3,31 @@ import * as MultiSelectAccessibilityStories from './multi-select.accessibility.s
 
 import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 <Meta of={MultiSelectAccessibilityStories} />
 
 export const MultiSelectAccessibility = () => (
     <View>
-        <LabelLarge
-            tag="label"
-            id="label-for-multi-select"
-            htmlFor="unique-multi-select"
-        >
-            Associated label element
-        </LabelLarge>
-        <MultiSelect
-            aria-labelledby="label-for-multi-select"
-            id="unique-multi-select"
-            selectedValues={["one"]}
-        >
-            <OptionItem
-                label="First element"
-                aria-label="First element, selected"
-                value="one"
-            />
-            <OptionItem
-                label="Second element"
-                aria-label="Second element, unselelected"
-                value="two"
-            />
-        </MultiSelect>
+        <LabeledField
+            label={<strong>Associated label element</strong>}
+            field={
+                <MultiSelect
+                    selectedValues={["one"]}
+                >
+                    <OptionItem
+                        label="First element"
+                        aria-label="First element, selected"
+                        value="one"
+                    />
+                    <OptionItem
+                        label="Second element"
+                        aria-label="Second element, unselelected"
+                        value="two"
+                    />
+                </MultiSelect>
+            }
+        />
     </View>
 );
 
@@ -56,9 +52,10 @@ receives focus.
 
 ## Using `aria-label` for the opener
 
-For cases where the `MultiSelect` is not paired with a `LabeledField` or other
-visible `<label>` element, you **must** supply an `aria-label` attribute
-for an accessible name on the opener.
+A visible label with `<LabeledField>` is preferred. However, for specific cases
+where the `MultiSelect` is not paired with a `LabeledField` or other visible
+`<label>` element, you **must** supply an `aria-label` attribute for an
+accessible name on the opener.
 
 This will ensure the `MultiSelect` has a name that describes its purpose.
 
