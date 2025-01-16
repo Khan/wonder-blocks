@@ -59,13 +59,11 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
 
 type DefaultProps = {
     disabled: Props["disabled"];
-    role: Props["role"];
 };
 
 class DropdownOpener extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         disabled: false,
-        role: "combobox",
     };
 
     getTestIdFromProps: (childrenProps?: any) => string = (childrenProps) => {

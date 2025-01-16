@@ -454,6 +454,7 @@ const SingleSelect = (props: Props) => {
                             onClick={handleClick}
                             disabled={isDisabled}
                             ref={handleOpenerRef}
+                            role="combobox"
                             content={menuText}
                             opened={open}
                             error={hasError}

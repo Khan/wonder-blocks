@@ -559,6 +559,7 @@ const MultiSelect = (props: Props) => {
                             onBlur={onOpenerBlurValidation}
                             disabled={isDisabled}
                             ref={handleOpenerRef}
+                            role="combobox"
                             content={menuContent}
                             opened={open}
                         >
