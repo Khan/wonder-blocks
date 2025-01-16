@@ -40,7 +40,6 @@ type SelectOpenerProps = AriaProps & {
     isPlaceholder: boolean;
     /**
      * A label to expose on the opener, in the absence of an associated label element or `aria-labelledby`.
-     * If no `ariaLabel` prop is provided, the opener `aria-label` will fall back to `placeholder` (if present).
      */
     ariaLabel?: string;
     /**
@@ -189,7 +188,9 @@ export default class SelectOpener extends React.Component<
             >
                 <LabelMedium style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
-                                shift for empty selection */}
+                                shift for empty selection.
+                        Note2(marcysutton): aria-hidden prevents "space"
+                                from being read in VoiceOver. */}
                     {children || <span aria-hidden="true">&nbsp;</span>}
                 </LabelMedium>
                 <PhosphorIcon
