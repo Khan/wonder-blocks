@@ -652,15 +652,15 @@ describe("SingleSelect", () => {
             expect(opener).not.toHaveAttribute("data-testid");
         });
 
-        it("passes the placeholder text to the custom opener", async () => {
+        it("passes the placeholder content to the custom opener", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
                     placeholder="Custom placeholder"
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={({text}: any) => (
-                        <button onClick={jest.fn()}>{text}</button>
+                    opener={({content}: any) => (
+                        <button onClick={jest.fn()}>{content}</button>
                     )}
                 >
                     <OptionItem label="Toggle A" value="toggle_a" />
@@ -699,8 +699,10 @@ describe("SingleSelect", () => {
                                 }
                                 selectedValue={this.state.selectedValue}
                                 placeholder="Custom placeholder"
-                                opener={({text}: any) => (
-                                    <button onClick={jest.fn()}>{text}</button>
+                                opener={({content}: any) => (
+                                    <button onClick={jest.fn()}>
+                                        {content}
+                                    </button>
                                 )}
                             >
                                 <OptionItem label="Toggle A" value="toggle_a" />

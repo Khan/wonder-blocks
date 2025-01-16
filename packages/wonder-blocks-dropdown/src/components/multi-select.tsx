@@ -365,7 +365,7 @@ const MultiSelect = (props: Props) => {
         onSelectedValuesChangeValidation();
     };
 
-    const getMenuText = (
+    const getMenuTextOrNode = (
         children: OptionItemComponentArray,
     ): string | JSX.Element => {
         const {noneSelected, someSelected, allSelected} = labels;
@@ -544,7 +544,7 @@ const MultiSelect = (props: Props) => {
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
         const {noneSelected} = labels;
 
-        const menuText = getMenuText(allChildren);
+        const menuContent = getMenuTextOrNode(allChildren);
 
         const dropdownOpener = (
             <Id id={id}>
@@ -559,7 +559,7 @@ const MultiSelect = (props: Props) => {
                             onBlur={onOpenerBlurValidation}
                             disabled={isDisabled}
                             ref={handleOpenerRef}
-                            text={menuText}
+                            content={menuContent}
                             opened={open}
                         >
                             {opener}
@@ -572,7 +572,7 @@ const MultiSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
-                            isPlaceholder={menuText === noneSelected}
+                            isPlaceholder={menuContent === noneSelected}
                             light={light}
                             onOpenChanged={handleOpenChanged}
                             onBlur={onOpenerBlurValidation}
@@ -580,7 +580,7 @@ const MultiSelect = (props: Props) => {
                             ref={handleOpenerRef}
                             testId={testId}
                         >
-                            {menuText}
+                            {menuContent}
                         </SelectOpener>
                     );
                 }}

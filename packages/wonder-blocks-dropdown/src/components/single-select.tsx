@@ -454,7 +454,7 @@ const SingleSelect = (props: Props) => {
                             onClick={handleClick}
                             disabled={isDisabled}
                             ref={handleOpenerRef}
-                            text={menuText}
+                            content={menuText}
                             opened={open}
                             error={hasError}
                             onBlur={onOpenerBlurValidation}

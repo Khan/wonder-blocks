@@ -263,7 +263,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                         aria-haspopup="menu"
                         onClick={this.handleClick}
                         disabled={numItems === 0 || disabled}
-                        text={menuText}
+                        content={menuText}
                         ref={this.handleOpenerRef}
                         testId={opener ? undefined : testId}
                         opened={this.state.opened}
@@ -274,7 +274,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                             : (openerProps) => {
                                   const {
                                       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                                      text,
+                                      content,
                                       opened,
                                       ...eventState
                                   } = openerProps;

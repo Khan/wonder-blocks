@@ -16,7 +16,7 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      * by. This function takes two arguments:
      *
      * - `eventState`: allows the opener element to access pointer event state.
-     * - `text`: Passes the menu's text/label defined in the parent component.
+     * - `content`: Passes the menu's text/label defined in the parent component.
      */
     children: (openerProps: OpenerProps) => React.ReactElement<any>;
     /**
@@ -36,9 +36,9 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     testId?: string;
     /**
-     * Text for the opener that can be passed to the child as an argument.
+     * Content for the opener that can be passed to the child as an argument.
      */
-    text: OptionLabel;
+    content: OptionLabel;
     /**
      * Whether the dropdown is opened.
      */
@@ -79,7 +79,7 @@ class DropdownOpener extends React.Component<Props> {
         const {
             disabled,
             testId,
-            text,
+            content,
             opened,
             "aria-controls": ariaControls,
             "aria-haspopup": ariaHasPopUp,
@@ -90,7 +90,7 @@ class DropdownOpener extends React.Component<Props> {
         } = this.props;
         const renderedChildren = this.props.children({
             ...eventState,
-            text,
+            content,
             opened,
         });
         const childrenProps = renderedChildren.props;

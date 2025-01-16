@@ -523,7 +523,7 @@ describe("ActionMenu", () => {
             expect(opener).not.toHaveAttribute("data-testid");
         });
 
-        it("passes the menu text to the custom opener", async () => {
+        it("passes the menu content to the custom opener", async () => {
             // Arrange
             render(
                 <ActionMenu
@@ -531,9 +531,9 @@ describe("ActionMenu", () => {
                     testId="openTest"
                     onChange={onChange}
                     selectedValues={[]}
-                    opener={({text}: any) => (
+                    opener={({content}: any) => (
                         <button onClick={jest.fn()} data-testid="custom-opener">
-                            {text}
+                            {content}
                         </button>
                     )}
                 >

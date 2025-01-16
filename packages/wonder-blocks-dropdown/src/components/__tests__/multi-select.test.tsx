@@ -1078,9 +1078,9 @@ describe("MultiSelect", () => {
                     labels={labels}
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={({text}: any) => (
+                    opener={({content}: any) => (
                         <button onClick={jest.fn()} data-testid="custom-opener">
-                            {text}
+                            {content}
                         </button>
                     )}
                 >
@@ -1108,12 +1108,12 @@ describe("MultiSelect", () => {
                             setSelected(values);
                         }}
                         selectedValues={selected}
-                        opener={({text}: any) => (
+                        opener={({content}: any) => (
                             <button
                                 onClick={jest.fn()}
                                 data-testid="custom-opener"
                             >
-                                {text}
+                                {content}
                             </button>
                         )}
                     >
@@ -1149,12 +1149,12 @@ describe("MultiSelect", () => {
                             setSelected(values);
                         }}
                         selectedValues={selected}
-                        opener={({text}: any) => (
+                        opener={({content}: any) => (
                             <button
                                 onClick={jest.fn()}
                                 data-testid="custom-opener"
                             >
-                                {text}
+                                {content}
                             </button>
                         )}
                     >
@@ -1190,12 +1190,12 @@ describe("MultiSelect", () => {
                             setSelected(values);
                         }}
                         selectedValues={selected}
-                        opener={({text}: any) => (
+                        opener={({content}: any) => (
                             <button
                                 onClick={jest.fn()}
                                 data-testid="custom-opener"
                             >
-                                {text}
+                                {content}
                             </button>
                         )}
                     >
