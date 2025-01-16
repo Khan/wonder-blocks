@@ -1,0 +1,28 @@
+{
+  "name": "@khanacademy/wonder-blocks-announcer",
+  "version": "0.0.1",
+  "design": "v1",
+  "description": "Live Region Announcer for Wonder Blocks.",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "source": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "types": "dist/index.d.ts",
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-core": "^9.0.0"
+  },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "18.2.0"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+  }
+}
