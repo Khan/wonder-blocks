@@ -573,6 +573,55 @@ describe("SingleSelect", () => {
     });
 
     describe("Custom Opener", () => {
+        it("labels the custom opener with `aria-label` on SingleSelect", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    aria-label="Custom opener"
+                    placeholder="e.g. item 1"
+                    onChange={jest.fn()}
+                    opener={(eventState: any) => <button onClick={jest.fn()} />}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Custom opener");
+        });
+
+        it("prioritizes `aria-label` on the custom opener", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    aria-label="Not winning the label race"
+                    placeholder="Choose an item"
+                    onChange={jest.fn()}
+                    opener={(eventState: any) => (
+                        <button
+                            aria-label="Custom opener button"
+                            onClick={jest.fn()}
+                        />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Custom opener button");
+        });
+
         it("opens the menu when clicking on the custom opener", async () => {
             // Arrange
             const {userEvent} = doRender(

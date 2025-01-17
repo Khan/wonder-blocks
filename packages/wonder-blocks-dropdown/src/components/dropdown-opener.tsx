@@ -94,8 +94,14 @@ class DropdownOpener extends React.Component<Props> {
         const childrenProps = renderedChildren.props;
         const childrenTestId = this.getTestIdFromProps(childrenProps);
 
+        // If custom opener has `aria-label`, prioritize that.
+        // If parent component has `aria-label`, fall back to that next.
+        const renderedAriaLabel =
+            childrenProps["aria-label"] ?? this.props["aria-label"];
+
         return React.cloneElement(renderedChildren, {
             ...clickableChildrenProps,
+            "aria-label": renderedAriaLabel ?? undefined,
             "aria-invalid": this.props.error,
             disabled,
             "aria-controls": ariaControls,

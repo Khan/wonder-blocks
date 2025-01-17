@@ -968,6 +968,53 @@ describe("MultiSelect", () => {
     });
 
     describe("Custom Opener", () => {
+        it("labels the custom opener with `aria-label` on MultiSelect", async () => {
+            // Arrange
+            doRender(
+                <MultiSelect
+                    aria-label="Search"
+                    onChange={jest.fn()}
+                    opener={(eventState: any) => <button onClick={jest.fn()} />}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Search");
+        });
+
+        it("prioritizes `aria-label` on the custom opener", async () => {
+            // Arrange
+            doRender(
+                <MultiSelect
+                    aria-label="Not winning the label race"
+                    onChange={jest.fn()}
+                    opener={(eventState: any) => (
+                        <button
+                            aria-label="Search button"
+                            onClick={jest.fn()}
+                        />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Search button");
+        });
+
         it("opens the menu when clicking on the custom opener", async () => {
             // Arrange
             const {userEvent} = doRender(

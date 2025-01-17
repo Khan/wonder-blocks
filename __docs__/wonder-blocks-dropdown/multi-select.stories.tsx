@@ -596,7 +596,7 @@ export const VirtualizedFilterable: StoryComponentType = {
  * a function with the following arguments:
  *  - `eventState`: lets you customize the style for different states, such as
  *    pressed, hovered and focused.
- *  - `text`: Passes the menu label defined in the parent component. This value
+ *  - `text`: Passes the menu value defined in the parent component. This value
  *  is passed using the placeholder prop set in the `MultiSelect` component.
  *  - `opened`: Whether the dropdown is opened.
  *
@@ -605,11 +605,16 @@ export const VirtualizedFilterable: StoryComponentType = {
  *
  * **Accessibility:** When a custom opener is used, the following attributes are
  * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
+ * With a custom opener, you are still responsible for labeling the `MultiSelect`
+ * by wrapping it in a `<LabeledField>` or using `aria-label` on the parent component
+ * to describe the purpose of the control. Because it is a combobox, the value
+ * can't also be used for the label.
  */
 export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValues: [],
+        "aria-label": "Custom opener",
         opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
             action(JSON.stringify({focused, hovered, pressed, opened}))(
                 "state changed!",

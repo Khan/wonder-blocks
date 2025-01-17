@@ -7,51 +7,28 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 <Meta of={SingleSelectAccessibilityStories} />
 
-export const SingleSelectAccessibility = () => (
-    <View>
-        <LabeledField
-            label={<strong>Associated label element</strong>}
-            field={
-                <SingleSelect
-                    placeholder="Accessible SingleSelect"
-                    selectedValue="one"
-                >
-                    <OptionItem
-                        label="First element"
-                        aria-label="First element, selected"
-                        value="one"
-                    />
-                    <OptionItem
-                        label="Second element"
-                        aria-label="Second element, unselelected"
-                        value="two"
-                    />
-                </SingleSelect>
-            }
-        />
-    </View>
-);
+# Accessibility
 
-# SingleSelect Accessibility
+## Using `LabeledField` with `SingleSelect`
 
-## Labeling the `SingleSelect` opener and option items
+To associate a `SingleSelect` with another visible element (e.g. a `<label>`),
+wrap it in a `LabeledField` component. The label will apply to the `SingleSelect`
+opener. With `LabeledField`, you can supply label text (or a JSX node)
+using the `label` prop to generate a paired `<label>` element. It comes with
+field validation and other features baked in!
 
-If you need to associate this component with another element (e.g. `<label>`),
-make sure to pass the `aria-labelledby` or `id` props to the `SingleSelect` component.
+If for some reason you can't use `LabeledField` for a visible label, you can still
+make `SingleSelect` accessible in a screen reader by associating it with `<label for="">`.
+Pass the `id` of the `SingleSelect` to the `for` attribute.
 
-An `id` on the SingleSelect would pair with `<label for="id">`, while `aria-labelledby`
-on the SingleSelect could associate it with the `id` of any other element. By using
-one of these methods, the `opener` will pair with the associated label and
-expose that label's text for its accessible name.
-
-Also, if you need screen readers to understand relevant information on
-option items, you can use `aria-label` on each item. e.g. You can use it to let
-screen readers know the current selected/unselected status of the item when it
-receives focus.
+Alternatively, you can create an accessible name for `SingleSelect` using `aria-labelledby`.
+Put `aria-labelledby` on `SingleSelect` pointing to the `id` of any other element.
+It won't give you the same enhanced click target as a paired `<label>`, but it still
+helps to create a more accessible experience.
 
 <Canvas of={SingleSelectAccessibilityStories.UsingAriaAttributes} />
 
-## Using `aria-label` for the opener
+## Using `aria-label` for the opener and/or child options
 
 A visible label with `<LabeledField>` is preferred. However, for specific cases
 where the `SingleSelect` is not paired with a `LabeledField` or other
@@ -60,9 +37,15 @@ for an accessible name on the opener.
 
 This will ensure the `SingleSelect` has a name that describes its purpose.
 
-For example, an `aria-label` for `SingleSelect` in a vocabulary quiz could be
-"Adjective 1" while its value would be one of the selected options, such as "happy".
-It might also have a placeholder value of "Select an option", which would go away
+For example, an `aria-label` for `SingleSelect` in a compact UI could be "Division"
+while its value would be one of the selected options, such as specific division names.
+It might also have a placeholder such as "e.g., DHAKA", which would go away
 when the user selected an option.
+
+Also, if you need screen readers to understand relevant information on
+option items, you can use `aria-label` on each item. e.g. You can use it to let
+screen readers know the current selected/unselected status of the item when it
+receives focus. This can be useful when the options contain icons or other information
+that would need to be omitted from the visible label.
 
 <Canvas of={SingleSelectAccessibilityStories.UsingOpenerAriaLabel} />

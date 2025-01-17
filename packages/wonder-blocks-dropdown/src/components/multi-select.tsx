@@ -92,8 +92,8 @@ type DefaultProps = Readonly<{
      */
     shortcuts?: boolean;
     /**
-     * When false, the SelectOpener can show a Node as a label. When true, the
-     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * When false, the SelectOpener can show a Node as a value. When true, the
+     * SelectOpener will use a string as a value. If using custom OptionItems, a
      * plain text label can be provided with the `labelAsText` prop.
      * Defaults to true.
      */
@@ -218,6 +218,9 @@ type Props = AriaProps &
  * multiple options to be selected. Clients are responsible for keeping track
  * of the selected items.
  *
+ * Clients are also responsible for labeling the select using `LabeledField`, or
+ * an `aria-label` attribute or `aria-labelledby` on the select.
+ *
  * The multi select stays open until closed by the user. The onChange callback
  * happens every time there is a change in the selection of the items.
  *
@@ -226,7 +229,7 @@ type Props = AriaProps &
  * ```jsx
  * import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
  *
- * <MultiSelect onChange={setSelectedValues} selectedValues={selectedValues}>
+ * <MultiSelect aria-label="Fruits" onChange={setSelectedValues} selectedValues={selectedValues}>
  *  <OptionItem value="pear">Pear</OptionItem>
  *  <OptionItem value="mango">Mango</OptionItem>
  * </MultiSelect>
@@ -553,6 +556,7 @@ const MultiSelect = (props: Props) => {
                         <DropdownOpener
                             id={uniqueOpenerId}
                             error={hasError}
+                            aria-label={ariaLabel}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
                             onClick={handleClick}

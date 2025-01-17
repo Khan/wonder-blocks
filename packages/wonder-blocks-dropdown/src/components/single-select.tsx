@@ -87,8 +87,8 @@ type DefaultProps = Readonly<{
      */
     labels?: SingleSelectLabelsValues;
     /**
-     * When false, the SelectOpener can show a Node as a label. When true, the
-     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * When false, the SelectOpener can show a Node as a value. When true, the
+     * SelectOpener will use a string as a value. If using custom OptionItems, a
      * plain text label can be provided with the `labelAsText` prop.
      * Defaults to true.
      */
@@ -128,7 +128,8 @@ type Props = AriaProps &
          */
         id?: string;
         /**
-         * Placeholder for the opening component when there are no items selected.
+         * Placeholder value for the opening component when there are no items selected.
+         * Note: a label is still necessary to describe the purpose of the select.
          */
         placeholder: string;
         /**
@@ -210,6 +211,9 @@ type Props = AriaProps &
  * The single select allows the selection of one item. Clients are responsible
  * for keeping track of the selected item in the select.
  *
+ * Clients are also responsible for labeling the select using `LabeledField`, an
+ * `aria-label` attribute, or `aria-labelledby`.
+ *
  * The single select dropdown closes after the selection of an item. If the same
  * item is selected, there is no callback.
  *
@@ -226,7 +230,7 @@ type Props = AriaProps &
  *
  * const [selectedValue, setSelectedValue] = React.useState("");
  *
- * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ * <SingleSelect aria-label="Your Favorite Fruits" placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
  *     <OptionItem label="Pear" value="pear" />
  *     <OptionItem label="Mango" value="mango" />
  * </SingleSelect>
@@ -241,6 +245,7 @@ type Props = AriaProps &
  * const fruitArray = ["Apple", "Banana", "Orange", "Mango", "Pear"];
  *
  * <SingleSelect
+ *     aria-label="Your Favorite Fruits"
  *     placeholder="Choose a fruit"
  *     onChange={setSelectedValue}
  *     selectedValue={selectedValue}
@@ -449,6 +454,7 @@ const SingleSelect = (props: Props) => {
                     return opener ? (
                         <DropdownOpener
                             id={uniqueOpenerId}
+                            aria-label={ariaLabel}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
                             onClick={handleClick}
