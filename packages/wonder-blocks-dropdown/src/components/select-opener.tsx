@@ -39,6 +39,10 @@ type SelectOpenerProps = AriaProps & {
      */
     isPlaceholder: boolean;
     /**
+     * A label to expose on the opener, in the absence of an associated label element or `aria-labelledby`.
+     */
+    ariaLabel?: string;
+    /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
      */
@@ -137,6 +141,7 @@ export default class SelectOpener extends React.Component<
             light,
             open,
             testId,
+            "aria-label": ariaLabel,
             "aria-required": ariaRequired,
             onBlur,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -169,12 +174,13 @@ export default class SelectOpener extends React.Component<
                 aria-disabled={disabled}
                 aria-expanded={open ? "true" : "false"}
                 aria-invalid={error}
+                aria-label={ariaLabel ?? undefined}
                 aria-required={ariaRequired}
                 aria-haspopup="listbox"
                 data-testid={testId}
                 id={id}
+                role="combobox"
                 style={style}
-                type="button"
                 onClick={!disabled ? this.handleClick : undefined}
                 onKeyDown={!disabled ? this.handleKeyDown : undefined}
                 onKeyUp={!disabled ? this.handleKeyUp : undefined}
@@ -182,8 +188,10 @@ export default class SelectOpener extends React.Component<
             >
                 <LabelMedium style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
-                                shift for empty selection */}
-                    {children || "\u00A0"}
+                                shift for empty selection.
+                        Note2(marcysutton): aria-hidden prevents "space"
+                                from being read in VoiceOver. */}
+                    {children || <span aria-hidden="true">&nbsp;</span>}
                 </LabelMedium>
                 <PhosphorIcon
                     icon={caretDownIcon}

@@ -523,7 +523,7 @@ describe("ActionMenu", () => {
             expect(opener).not.toHaveAttribute("data-testid");
         });
 
-        it("passes the menu text to the custom opener", async () => {
+        it("passes the menu content to the custom opener", async () => {
             // Arrange
             render(
                 <ActionMenu

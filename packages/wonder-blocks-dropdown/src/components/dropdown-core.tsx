@@ -38,7 +38,7 @@ const VIRTUALIZE_THRESHOLD = 125;
 
 const StyledSpan = addStyle("span");
 
-type Labels = {
+type LabelsValues = {
     /**
      * Label for describing the dismiss icon on the search filter.
      */
@@ -93,7 +93,7 @@ type DefaultProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
+    labels: LabelsValues;
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
@@ -210,7 +210,7 @@ type ExportProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels?: Labels;
+    labels?: LabelsValues;
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
@@ -241,7 +241,7 @@ type State = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
+    labels: LabelsValues;
     /**
      * Because getDerivedStateFromProps doesn't store previous props (in the
      * spirit of performance), we store the previous items just to be able to
