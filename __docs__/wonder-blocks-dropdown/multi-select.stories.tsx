@@ -596,7 +596,7 @@ export const VirtualizedFilterable: StoryComponentType = {
  * a function with the following arguments:
  *  - `eventState`: lets you customize the style for different states, such as
  *    pressed, hovered and focused.
- *  - `content`: Passes the menu label defined in the parent component. This value
+ *  - `text`: Passes the menu label defined in the parent component. This value
  *  is passed using the placeholder prop set in the `MultiSelect` component.
  *  - `opened`: Whether the dropdown is opened.
  *
@@ -610,7 +610,7 @@ export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValues: [],
-        opener: ({focused, hovered, pressed, content, opened}: OpenerProps) => {
+        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
             action(JSON.stringify({focused, hovered, pressed, opened}))(
                 "state changed!",
             );
@@ -628,7 +628,7 @@ export const CustomOpener: StoryComponentType = {
                         pressed && styles.pressed,
                     ]}
                 >
-                    {content}
+                    {text}
                     {opened ? ": opened" : ""}
                 </HeadingLarge>
             );

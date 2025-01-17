@@ -560,7 +560,7 @@ const MultiSelect = (props: Props) => {
                             disabled={isDisabled}
                             ref={handleOpenerRef}
                             role="combobox"
-                            content={menuContent}
+                            text={menuContent}
                             opened={open}
                         >
                             {opener}

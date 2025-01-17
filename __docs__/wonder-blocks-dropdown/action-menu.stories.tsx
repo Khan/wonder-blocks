@@ -352,7 +352,7 @@ export const Controlled: StoryComponentType = {
  * following arguments:
  *  - `eventState`: lets you customize the style for different states, such as
  *    pressed, hovered and focused.
- *  - `content`: Passes the menu label defined in the parent component. This value
+ *  - `text`: Passes the menu label defined in the parent component. This value
  *    is passed using the placeholder prop set in the ActionMenu component.
  *  - `opened`: Whether the dropdown is opened.
  *
@@ -366,7 +366,7 @@ export const Controlled: StoryComponentType = {
 export const CustomOpener: StoryComponentType = {
     name: "With custom opener",
     args: {
-        opener: ({focused, hovered, pressed, content}: any) => (
+        opener: ({focused, hovered, pressed, text}: any) => (
             <LabelLarge
                 onClick={() => {
                     console.log("custom click!!!!!");
@@ -380,7 +380,7 @@ export const CustomOpener: StoryComponentType = {
                 ]}
                 role="button"
             >
-                {content}
+                {text}
             </LabelLarge>
         ),
     } as Partial<typeof ActionMenu>,

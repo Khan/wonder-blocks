@@ -42,7 +42,7 @@ export type OptionLabel = string | CellProps["title"];
 
 // Custom opener arguments
 export type OpenerProps = ClickableState & {
-    content: OptionLabel;
+    text: OptionLabel;
     opened: boolean;
 };
 

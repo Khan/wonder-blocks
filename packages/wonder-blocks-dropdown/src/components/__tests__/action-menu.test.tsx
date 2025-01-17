@@ -531,9 +531,9 @@ describe("ActionMenu", () => {
                     testId="openTest"
                     onChange={onChange}
                     selectedValues={[]}
-                    opener={({content}: any) => (
+                    opener={({text}: any) => (
                         <button onClick={jest.fn()} data-testid="custom-opener">
-                            {content}
+                            {text}
                         </button>
                     )}
                 >

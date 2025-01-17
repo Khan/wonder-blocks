@@ -769,7 +769,7 @@ export const DropdownInModal: StoryComponentType = {
  * a function with the following arguments:
  *  - `eventState`: lets you customize the style for different states, such as
  *    pressed, hovered and focused.
- *  - `content`: Passes the menu label defined in the parent component. This value
+ *  - `text`: Passes the menu label defined in the parent component. This value
  *   is passed using the placeholder prop set in the `SingleSelect` component.
  *  - `opened`: Whether the dropdown is opened.
  *
@@ -783,7 +783,7 @@ export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValue: "",
-        opener: ({focused, hovered, pressed, content, opened}: OpenerProps) => {
+        opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
             action(JSON.stringify({focused, hovered, pressed, opened}))(
                 "state changed!",
             );
@@ -802,7 +802,7 @@ export const CustomOpener: StoryComponentType = {
                         opened && styles.focused,
                     ]}
                 >
-                    {content}
+                    {text}
                     {opened ? ": opened" : ""}
                 </HeadingLarge>
             );
@@ -908,7 +908,7 @@ export const AutoFocusDisabled: StoryComponentType = {
                     opened={opened}
                     onToggle={setOpened}
                     placeholder="Choose a time"
-                    opener={({focused, hovered, pressed, content}) => (
+                    opener={({focused, hovered, pressed, text}) => (
                         <View style={styles.row}>
                             <TextField
                                 placeholder="Choose a time"

@@ -659,8 +659,8 @@ describe("SingleSelect", () => {
                     placeholder="Custom placeholder"
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={({content}: any) => (
-                        <button onClick={jest.fn()}>{content}</button>
+                    opener={({text}: any) => (
+                        <button onClick={jest.fn()}>{text}</button>
                     )}
                 >
                     <OptionItem label="Toggle A" value="toggle_a" />
@@ -699,10 +699,8 @@ describe("SingleSelect", () => {
                                 }
                                 selectedValue={this.state.selectedValue}
                                 placeholder="Custom placeholder"
-                                opener={({content}: any) => (
-                                    <button onClick={jest.fn()}>
-                                        {content}
-                                    </button>
+                                opener={({text}: any) => (
+                                    <button onClick={jest.fn()}>{text}</button>
                                 )}
                             >
                                 <OptionItem label="Toggle A" value="toggle_a" />
