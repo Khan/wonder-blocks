@@ -451,14 +451,14 @@ describe("SingleSelect", () => {
                 expect(onChange).not.toHaveBeenCalled();
             });
 
-            it("should dismiss the dropdown when pressing {escape}", async () => {
+            it("should dismiss the dropdown when pressing {Escape}", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
                 await userEvent.keyboard("{Enter}"); // open
 
                 // Act
-                await userEvent.keyboard("{escape}");
+                await userEvent.keyboard("{Escape}");
 
                 // Assert
                 expect(onChange).not.toHaveBeenCalled();
@@ -2300,7 +2300,7 @@ describe("SingleSelect", () => {
                     // Act
                     await userEvent.tab();
                     await userEvent.keyboard("{Enter}"); // Open the dropdown
-                    await userEvent.keyboard("{escape}"); // Close the dropdown
+                    await userEvent.keyboard("{Escape}"); // Close the dropdown
 
                     // Assert
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(
@@ -2318,7 +2318,7 @@ describe("SingleSelect", () => {
                     // Act
                     await userEvent.tab();
                     await userEvent.keyboard("{Enter}"); // Open the dropdown
-                    await userEvent.keyboard("{escape}"); // Close the dropdown
+                    await userEvent.keyboard("{Escape}"); // Close the dropdown
 
                     // Assert
                     expect(await screen.findByRole("button")).toHaveAttribute(
