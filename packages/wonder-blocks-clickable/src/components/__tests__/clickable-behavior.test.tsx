@@ -215,7 +215,7 @@ describe("ClickableBehavior", () => {
         const button = await screen.findByRole("button");
         expect(button).not.toHaveTextContent("focused");
         await userEvent.tab();
-        await userEvent.keyboard("{Space}");
+        await userEvent.keyboard(" ");
         // NOTE(kevinb): await userEvent.click() fires other events that we don't want
         // affecting this test case.
         fireEvent.click(button);

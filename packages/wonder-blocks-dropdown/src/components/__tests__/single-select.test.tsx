@@ -287,7 +287,7 @@ describe("SingleSelect", () => {
                 jest.useFakeTimers();
             });
 
-            describe.each([{key: "{Enter}"}, {key: "{Space}"}])(
+            describe.each([{key: "{Enter}"}, {key: " "}])(
                 "$key",
                 ({key}: any) => {
                     it("should open when pressing the key when the default opener is focused", async () => {
@@ -361,7 +361,7 @@ describe("SingleSelect", () => {
                 await userEvent.tab();
 
                 // Act
-                await userEvent.keyboard("{Space}"); // open
+                await userEvent.keyboard(" "); // open
 
                 // Ensure first option is focused, not the opener
                 const firstItem = await screen.findByRole("option", {
@@ -384,7 +384,7 @@ describe("SingleSelect", () => {
                 expect(firstItem).toHaveFocus();
 
                 // Act
-                await userEvent.keyboard("{Space}");
+                await userEvent.keyboard(" ");
 
                 // Assert
                 expect(onChange).toHaveBeenCalledWith("1");
