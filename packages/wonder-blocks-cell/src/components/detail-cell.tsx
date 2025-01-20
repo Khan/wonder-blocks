@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
