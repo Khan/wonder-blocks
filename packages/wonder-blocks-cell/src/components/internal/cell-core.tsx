@@ -330,25 +330,26 @@ const styles = StyleSheet.create({
 
         // hover + enabled
         [":hover[aria-disabled=false]" as any]: {
-            background: color.offBlack8,
+            background: color.fadedBlue8,
         },
 
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
-            background: color.offBlack16,
+            background: color.fadedBlue8,
         },
     },
 
     active: {
         background: color.fadedBlue8,
         color: semanticColor.action.primary.active,
+        cursor: "default",
 
         [":hover[aria-disabled=false]" as any]: {
-            background: color.fadedBlue16,
+            background: color.fadedBlue8,
         },
 
         [":active[aria-disabled=false]" as any]: {
-            background: color.fadedBlue24,
+            background: color.fadedBlue8,
         },
     },
 
