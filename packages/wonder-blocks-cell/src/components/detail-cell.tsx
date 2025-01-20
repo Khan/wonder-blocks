@@ -94,7 +94,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
 
 const styles = StyleSheet.create({
     subtitle: {
-        color: color.offBlack64,
+        color: "#6D6F74", // TODO: use token
     },
 
     // This is to override the default padding of the CellCore innerWrapper.

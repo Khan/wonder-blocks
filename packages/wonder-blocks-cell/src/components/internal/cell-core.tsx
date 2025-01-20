@@ -6,7 +6,12 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
@@ -118,6 +123,7 @@ function CellInner(props: CellCoreProps): React.ReactElement {
                 // custom styles
                 style,
                 horizontalRuleStyles,
+                active && styles.activeInnerWrapper,
             ]}
         >
             {/* Left accessory */}
@@ -244,6 +250,18 @@ const styles = StyleSheet.create({
             }px`,
         },
     },
+    activeInnerWrapper: {
+        position: "relative",
+        ":before": {
+            content: "''",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: border.width.thick,
+            backgroundColor: semanticColor.surface.emphasis,
+        },
+    },
 
     content: {
         alignSelf: "center",
@@ -264,7 +282,7 @@ const styles = StyleSheet.create({
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: color.offBlack64,
+        color: semanticColor.icon.primary,
     },
 
     /**
@@ -309,28 +327,42 @@ const styles = StyleSheet.create({
             border: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
             borderRadius: spacing.xxxSmall_4,
         },
+        [":focus-visible[aria-disabled=true]:after" as any]: {
+            borderColor: semanticColor.action.disabled.default,
+        },
 
         // hover + enabled
         [":hover[aria-disabled=false]" as any]: {
-            background: color.offBlack8,
+            background: color.fadedBlue8,
         },
 
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
-            background: color.offBlack16,
+            background: color.fadedBlue8,
+            position: "relative",
+            ":before": {
+                content: "''",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                bottom: 0,
+                width: border.width.thin,
+                backgroundColor: semanticColor.surface.emphasis,
+            },
         },
     },
 
     active: {
         background: color.fadedBlue8,
-        color: color.blue,
+        color: semanticColor.action.primary.active,
+        cursor: "default",
 
         [":hover[aria-disabled=false]" as any]: {
-            background: color.fadedBlue16,
+            background: color.fadedBlue8,
         },
 
         [":active[aria-disabled=false]" as any]: {
-            background: color.fadedBlue24,
+            background: color.fadedBlue8,
         },
     },
 

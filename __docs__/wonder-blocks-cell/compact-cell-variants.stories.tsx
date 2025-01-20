@@ -37,7 +37,7 @@ const states = [
         props: {disabled: true},
     },
     {
-        label: "Active",
+        label: "Selected using active: true",
         props: {active: true},
     },
 ];
