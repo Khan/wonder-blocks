@@ -6,7 +6,12 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
@@ -118,6 +123,7 @@ function CellInner(props: CellCoreProps): React.ReactElement {
                 // custom styles
                 style,
                 horizontalRuleStyles,
+                active && styles.activeInnerWrapper,
             ]}
         >
             {/* Left accessory */}
@@ -242,6 +248,18 @@ const styles = StyleSheet.create({
             padding: `${CellMeasurements.cellPadding.paddingVertical - 2}px ${
                 CellMeasurements.cellPadding.paddingHorizontal - 2
             }px`,
+        },
+    },
+    activeInnerWrapper: {
+        position: "relative",
+        ":before": {
+            content: "''",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: border.width.thick,
+            backgroundColor: semanticColor.surface.emphasis,
         },
     },
 
