@@ -336,6 +336,16 @@ const styles = StyleSheet.create({
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
             background: color.fadedBlue8,
+            position: "relative",
+            ":before": {
+                content: "''",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                bottom: 0,
+                width: border.width.thin,
+                backgroundColor: semanticColor.surface.emphasis,
+            },
         },
     },
 
