@@ -17,9 +17,6 @@ import Button from "@khanacademy/wonder-blocks-button";
 export default {
     title: "Packages / Button / All Variants",
     parameters: {
-        docs: {
-            autodocs: false,
-        },
         chromatic: {
             // NOTE: This is required to prevent Chromatic from cutting off the
             // dark background in screenshots (accounts for all the space taken
@@ -27,6 +24,7 @@ export default {
             viewports: [1700],
         },
     },
+    tags: ["!autodocs"],
 } as Meta;
 
 type StoryComponentType = StoryObj<typeof Button>;

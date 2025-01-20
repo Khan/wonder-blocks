@@ -357,10 +357,6 @@ export const _generateStyles = (
             ? theme.color.bg.critical.default
             : theme.color.bg.action.default;
 
-    const bgColor = themeColorAction.default.background;
-    const textColor = themeColorAction.default.foreground;
-    const borderColor = themeColorAction.default.border;
-
     const buttonType = `${buttonColor}-${kind}-${light}-${size}-${themeName}`;
 
     if (styles[buttonType]) {
@@ -380,8 +376,13 @@ export const _generateStyles = (
 
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
+        // Default styles
+        const bgColor = themeColorAction.default.background;
+        const textColor = themeColorAction.default.foreground;
+        const outlineColor = themeColorAction.default.background;
+
         const focusStyling = {
-            outlineColor: light ? theme.color.light.border : borderColor,
+            outlineColor: light ? theme.color.light.border : outlineColor,
             outlineOffset: theme.border.offset.primary,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
@@ -421,8 +422,8 @@ export const _generateStyles = (
                 ":focus-visible": {
                     ...focusStyling,
                     outlineColor: light
-                        ? disabledInverseFgColor
-                        : disabledFgColor,
+                        ? disabledInverseBgColor
+                        : disabledBgColor,
                 },
             },
         };
