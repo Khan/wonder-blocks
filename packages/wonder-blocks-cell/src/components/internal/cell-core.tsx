@@ -6,7 +6,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: color.offBlack64,
+        color: semanticColor.icon.primary,
     },
 
     /**
