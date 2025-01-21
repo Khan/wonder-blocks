@@ -111,22 +111,6 @@ export default {
         },
     },
 
-    light: {
-        description:
-            "Change the field’s sub-components to fit a dark background.",
-        table: {
-            type: {
-                summary: "boolean",
-            },
-            defaultValue: {
-                summary: "false",
-            },
-        },
-        control: {
-            type: "boolean",
-        },
-    },
-
     placeholder: {
         description: "Provide hints or examples of what to enter.",
         table: {
