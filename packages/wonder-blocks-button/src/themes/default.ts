@@ -9,42 +9,144 @@ const textUnderlineOffset = tokens.spacing.xxxSmall_4;
 
 const theme = {
     color: {
+        // kind=primary / color=default / light=false
         progressive: {
+            // filled
             ...semanticColor.action.progressive,
             disabled: {
+                border: semanticColor.action.disabled.default,
                 background: semanticColor.action.disabled.default,
                 foreground: semanticColor.action.disabled.secondary,
             },
         },
-        progressiveInverse: {
+        // kind=primary / color=default / light=true
+        progressiveLight: {
             ...semanticColor.action.progressiveInverse,
+            press: {
+                ...semanticColor.action.progressiveInverse.press,
+                border: semanticColor.action.progressiveInverse.press
+                    .background,
+            },
             disabled: {
+                border: semanticColor.action.progressiveInverse.press
+                    .background,
                 background:
                     semanticColor.action.progressiveInverse.press.background,
                 foreground:
-                    semanticColor.action.progressiveInverse.press.foreground,
+                    semanticColor.action.progressiveInverse.default.foreground,
             },
         },
+        // outlined buttons
+        // kind=secondary / color=default / light=false
+        progressiveOutline: {
+            ...semanticColor.action.progressiveInverse,
+            default: {
+                ...semanticColor.action.progressiveInverse.default,
+                // NOTE: This is a special case for the secondary button
+                background: "transparent",
+            },
+            disabled: {
+                border: semanticColor.action.disabled.default,
+                background:
+                    semanticColor.action.progressiveInverse.press.background,
+                foreground: semanticColor.text.disabled,
+            },
+        },
+        // kind=secondary / color=default / light=true
+        progressiveOutlineLight: {
+            default: {
+                border: tokens.color.white64,
+                background: "transparent",
+                foreground: semanticColor.text.inverse,
+            },
+            hover: {
+                border: semanticColor.border.inverse,
+                background: "transparent",
+                foreground: semanticColor.text.inverse,
+            },
+            press: {
+                border: semanticColor.border.inverse,
+                background: semanticColor.action.progressive.press.background,
+                foreground: semanticColor.text.inverse,
+            },
+            disabled: {
+                border: semanticColor.action.progressiveInverse.press
+                    .background,
+                background:
+                    semanticColor.action.progressiveInverse.press.background,
+                foreground: tokens.color.white50,
+            },
+        },
+        // kind=primary / color=destructive / light=false
         destructive: {
             ...semanticColor.action.destructive,
             disabled: {
+                border: semanticColor.action.disabled.default,
                 background: semanticColor.action.disabled.default,
                 foreground: semanticColor.action.disabled.secondary,
             },
         },
-        destructiveInverse: {
+        // kind=primary / color=destructive / light=true
+        destructiveLight: {
             ...semanticColor.action.destructiveInverse,
+            press: {
+                ...semanticColor.action.destructiveInverse.press,
+                border: semanticColor.action.destructiveInverse.press
+                    .background,
+            },
             disabled: {
+                border: semanticColor.action.destructiveInverse.press
+                    .background,
                 background:
                     semanticColor.action.destructiveInverse.press.background,
                 foreground:
-                    semanticColor.action.destructiveInverse.press.foreground,
+                    semanticColor.action.destructiveInverse.default.foreground,
+            },
+        },
+        // outlined buttons
+        // kind=secondary / color=destructive / light=false
+        destructiveOutline: {
+            ...semanticColor.action.destructiveInverse,
+            disabled: {
+                border: semanticColor.action.disabled.default,
+                background:
+                    semanticColor.action.destructiveInverse.press.background,
+                foreground: semanticColor.text.disabled,
+            },
+        },
+        // kind=secondary / color=destructive / light=true
+        destructiveOutlineLight: {
+            default: {
+                border: tokens.color.white64,
+                background: "transparent",
+                foreground: semanticColor.text.inverse,
+            },
+            hover: {
+                border: semanticColor.border.inverse,
+                background: "transparent",
+                foreground: semanticColor.text.inverse,
+            },
+            press: {
+                border: semanticColor.border.inverse,
+                background: semanticColor.action.progressive.press.background,
+                foreground: semanticColor.text.inverse,
+            },
+            disabled: {
+                border: semanticColor.action.destructiveInverse.press
+                    .background,
+                background:
+                    semanticColor.action.destructiveInverse.press.background,
+                foreground: tokens.color.white50,
             },
         },
         // NOTE: These colors will be removed from WB as soon as we remove the
         // light variant.
         light: {
             border: semanticColor.border.inverse,
+            borderSecondary: tokens.color.white64,
+            backgroundSecondary: "none",
+            foregroundSecondary: semanticColor.text.inverse,
+            disabledForegroundSecondary: tokens.color.white50,
         },
 
         bg: {

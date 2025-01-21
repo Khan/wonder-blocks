@@ -344,14 +344,6 @@ export const _generateStyles = (
     theme: ButtonThemeContract,
     themeName: string,
 ) => {
-    const colorToAction = light
-        ? buttonColor === "destructive"
-            ? "destructiveInverse"
-            : "progressiveInverse"
-        : buttonColor === "destructive"
-        ? "destructive"
-        : "progressive";
-    const themeColorAction = theme.color[colorToAction];
     const color: string =
         buttonColor === "destructive"
             ? theme.color.bg.critical.default
@@ -376,34 +368,36 @@ export const _generateStyles = (
 
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
+        const colorToAction = light
+            ? buttonColor === "destructive"
+                ? "destructiveLight"
+                : "progressiveLight"
+            : buttonColor === "destructive"
+            ? "destructive"
+            : "progressive";
+        const themeColorAction = theme.color[colorToAction];
+
         // Default styles
-        const bgColor = themeColorAction.default.background;
-        const textColor = themeColorAction.default.foreground;
-        const outlineColor = themeColorAction.default.background;
 
         const focusStyling = {
-            outlineColor: light ? theme.color.light.border : outlineColor,
+            outlineColor: themeColorAction.default.background,
             outlineOffset: theme.border.offset.primary,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
         };
 
         const activePressedStyling = {
-            background: light ? fadedColor : activeColor,
-            outlineColor: light ? fadedColor : activeColor,
+            background: themeColorAction.press.background,
+            outlineColor: themeColorAction.press.border,
+            outlineOffset: theme.border.offset.primary,
+            outlineStyle: "solid",
+            outlineWidth: theme.border.width.focused,
         };
-
-        const inverseBgColor = themeColorAction.default.background;
-        const inverseTextColor = themeColorAction.default.foreground;
-        const disabledBgColor = themeColorAction.disabled.background;
-        const disabledInverseBgColor = themeColorAction.disabled.background;
-        const disabledFgColor = themeColorAction.disabled.foreground;
-        const disabledInverseFgColor = themeColorAction.disabled.foreground;
 
         newStyles = {
             default: {
-                background: light ? inverseBgColor : bgColor,
-                color: light ? inverseTextColor : textColor,
+                background: themeColorAction.default.background,
+                color: themeColorAction.default.foreground,
                 paddingInline: padding,
                 // TODO(WB-1844): Change this when we get final designs for
                 // hover.
@@ -416,59 +410,50 @@ export const _generateStyles = (
             focused: focusStyling,
             pressed: activePressedStyling,
             disabled: {
-                background: light ? disabledInverseBgColor : disabledBgColor,
-                color: light ? disabledInverseFgColor : disabledFgColor,
+                background: themeColorAction.disabled.background,
+                color: themeColorAction.disabled.foreground,
                 cursor: "default",
                 ":focus-visible": {
                     ...focusStyling,
-                    outlineColor: light
-                        ? disabledInverseBgColor
-                        : disabledBgColor,
+                    outlineColor: themeColorAction.disabled.border,
                 },
             },
         };
     } else if (kind === "secondary") {
-        const secondaryBorderColor =
-            buttonColor === "destructive"
-                ? theme.color.border.secondary.critical
-                : theme.color.border.secondary.action;
-        const secondaryActiveColor =
-            buttonColor === "destructive"
-                ? theme.color.bg.secondary.active.critical
-                : theme.color.bg.secondary.active.action;
+        const colorToAction = !light
+            ? buttonColor === "destructive"
+                ? "destructiveOutline"
+                : "progressiveOutline"
+            : buttonColor === "destructive"
+            ? "destructiveOutlineLight"
+            : "progressiveOutlineLight";
+        const themeColorAction = theme.color[colorToAction];
 
         const focusStyling = {
-            background: light
-                ? theme.color.bg.secondary.inverse
-                : theme.color.bg.secondary.focus,
+            background: themeColorAction.hover.background,
             borderColor: "transparent",
-            outlineColor: light ? theme.color.border.primary.inverse : color,
+            outlineColor: themeColorAction.hover.border,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
         };
 
         const activePressedStyling = {
-            background: light ? activeColor : secondaryActiveColor,
-            color: light ? fadedColor : activeColor,
+            background: themeColorAction.press.background,
+            color: themeColorAction.press.foreground,
             borderColor: "transparent",
-            outlineColor: light ? fadedColor : activeColor,
+            outlineColor: themeColorAction.press.border,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
         };
 
         newStyles = {
             default: {
-                background: light
-                    ? theme.color.bg.secondary.inverse
-                    : theme.color.bg.secondary.default,
-                color: light ? theme.color.text.inverse : color,
-                borderColor: light
-                    ? theme.color.border.secondary.inverse
-                    : secondaryBorderColor,
+                background: themeColorAction.default.background,
+                color: themeColorAction.default.foreground,
+                borderColor: themeColorAction.default.border,
                 borderStyle: "solid",
                 borderWidth: theme.border.width.secondary,
-                paddingLeft: padding,
-                paddingRight: padding,
+                paddingInline: padding,
                 // TODO(WB-1844): Change this when we get final designs for
                 // hover.
                 [":hover:not([aria-disabled=true])" as any]: focusStyling,
@@ -480,15 +465,12 @@ export const _generateStyles = (
             focused: focusStyling,
             pressed: activePressedStyling,
             disabled: {
-                color: light
-                    ? theme.color.text.secondary.inverse
-                    : theme.color.text.disabled,
-                outlineColor: light ? fadedColor : theme.color.border.disabled,
+                color: themeColorAction.disabled.foreground,
+                borderColor: themeColorAction.disabled.border,
                 cursor: "default",
                 ":focus-visible": {
-                    outlineColor: light
-                        ? theme.color.border.secondary.inverse
-                        : theme.color.border.disabled,
+                    borderColor: themeColorAction.disabled.foreground,
+                    outlineColor: themeColorAction.disabled.foreground,
                     outlineStyle: "solid",
                     outlineWidth: theme.border.width.disabled,
                 },
