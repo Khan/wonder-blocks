@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -48,7 +48,7 @@ const States = (props: {
     placeholder?: string;
 }) => {
     return (
-        <View style={[styles.statesContainer]}>
+        <View style={styles.statesContainer}>
             <LabelLarge>{props.label}</LabelLarge>
             <View style={[styles.scenarios]}>
                 {states.map((scenario) => {

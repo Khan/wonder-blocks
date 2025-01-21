@@ -1,11 +1,10 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
@@ -105,40 +104,6 @@ export const Default: StoryComponentType = {
         placeholder: "Search",
     },
     render: Template,
-};
-
-/**
- * SearchField takes a `light` prop, which gives it an extra white ring on focus
- * to make it visible against a dark background.
- */
-export const Light: StoryComponentType = {
-    render: function Render() {
-        const [value, setValue] = React.useState("");
-
-        const handleChange = (newValue: string) => {
-            setValue(newValue);
-        };
-
-        const handleKeyDown = (
-            event: React.KeyboardEvent<HTMLInputElement>,
-        ) => {
-            if (event.key === "Enter") {
-                event.currentTarget.blur();
-            }
-        };
-
-        return (
-            <View style={styles.darkBackground}>
-                <SearchField
-                    value={value}
-                    placeholder="Placeholder"
-                    onChange={handleChange}
-                    onKeyDown={handleKeyDown}
-                    light={true}
-                />
-            </View>
-        );
-    },
 };
 
 /**
@@ -294,10 +259,3 @@ export const Validation: StoryComponentType = {
         },
     },
 };
-
-const styles = StyleSheet.create({
-    darkBackground: {
-        background: color.darkBlue,
-        padding: spacing.medium_16,
-    },
-});

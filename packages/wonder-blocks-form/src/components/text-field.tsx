@@ -221,20 +221,19 @@ const TextField = (props: PropsWithForwardRef) => {
         }
     };
 
-    const baseStyles = [
-        styles.input,
-        typographyStyles.LabelMedium,
-        styles.default,
-        !disabled && styles.defaultFocus,
-        disabled && styles.disabled,
-        hasError && styles.error,
-    ];
-
     return (
         <Id id={id}>
             {(uniqueId) => (
                 <StyledInput
-                    style={[baseStyles, style]}
+                    style={[
+                        styles.input,
+                        typographyStyles.LabelMedium,
+                        styles.default,
+                        !disabled && styles.defaultFocus,
+                        disabled && styles.disabled,
+                        hasError && styles.error,
+                        style,
+                    ]}
                     id={uniqueId}
                     type={type}
                     placeholder={placeholder}
