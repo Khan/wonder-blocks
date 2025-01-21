@@ -6,4 +6,4 @@
 
 - Renamed `primary` to `progressive`.
 
-- Added inverse categories to actions: `progressiveInverse` and  `destructiveInverse`.
+- Added more categories to actions: `filled` and  `outline`.

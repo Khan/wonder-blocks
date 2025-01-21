@@ -5,8 +5,9 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
-import {ColorGroup} from "./components/color";
+import {ColorGroup, ActionColorGroup} from "./components/color";
 
 <Meta
     title="Foundations / Using color"
@@ -32,9 +33,11 @@ export const styles = StyleSheet.create({
         display: "grid",
         gridTemplateColumns: "repeat(3, minmax(100px, auto))",
     },
+
     banner: {
         marginBottom: spacing.xLarge_32,
     },
+
 });
 
 # Color
@@ -82,89 +85,49 @@ how to use these colors depending on the context.
 For buttons, links, and controls to communicate the presence and meaning of
 interaction.
 
+#### Filled
+
+Communicates strong emphasis and primary actions.
+
+##### Progressive
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.filled.progressive}
+        group="action.filled.progressive"
+    />
+</View>
+
+##### Destructive
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.filled.destructive}
+        group="action.filled.destructive"
+    />
+</View>
+
+#### Outlined
+
+Communicates secondary actions and less emphasis.
+
 #### Progressive
 
-<ColorGroup
-    colors={semanticColor.action.progressive.default}
-    group="action.progressive.default"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-<ColorGroup
-    colors={semanticColor.action.progressive.hover}
-    group="action.progressive.hover"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-<ColorGroup
-    colors={semanticColor.action.progressive.press}
-    group="action.progressive.press"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-
-#### Progressive inverse
-
-<ColorGroup
-    colors={semanticColor.action.progressiveInverse.default}
-    group="action.progressiveInverse.default"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-<ColorGroup
-    colors={semanticColor.action.progressiveInverse.hover}
-    group="action.progressiveInverse.hover"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-<ColorGroup
-    colors={semanticColor.action.progressiveInverse.press}
-    group="action.progressiveInverse.press"
-    variant="compact"
-    style={styles.gridCompact}
-/>
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.outlined.progressive}
+        group="action.outlined.progressive"
+    />
+</View>
 
 #### Destructive
 
-<ColorGroup
-    colors={semanticColor.action.destructive.default}
-    group="action.destructive.default"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-<ColorGroup
-    colors={semanticColor.action.destructive.hover}
-    group="action.destructive.hover"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-<ColorGroup
-    colors={semanticColor.action.destructive.press}
-    group="action.destructive.press"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-
-#### Destructive inverse
-
-<ColorGroup
-    colors={semanticColor.action.destructiveInverse.default}
-    group="action.destructiveInverse.default"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-<ColorGroup
-    colors={semanticColor.action.destructiveInverse.hover}
-    group="action.destructiveInverse.hover"
-    variant="compact"
-    style={styles.gridCompact}
-/>
-<ColorGroup
-    colors={semanticColor.action.destructiveInverse.press}
-    group="action.destructiveInverse.press"
-    variant="compact"
-    style={styles.gridCompact}
-/>
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.outlined.destructive}
+        group="action.outlined.destructive"
+    />
+</View>
 
 #### Disabled
 

@@ -13,74 +13,80 @@ export const semanticColor = {
      * of interaction.
      */
     action: {
-        // For primary actions
-        progressive: {
-            default: {
-                border: "transparent",
-                background: color.blue,
-                foreground: color.white,
+        // Filled buttons are meant for primary actions.
+        filled: {
+            progressive: {
+                default: {
+                    border: "transparent",
+                    background: color.blue,
+                    foreground: color.white,
+                },
+                hover: {
+                    border: color.blue,
+                    background: color.blue,
+                    foreground: color.white,
+                },
+                press: {
+                    border: color.activeBlue,
+                    background: color.activeBlue,
+                    foreground: color.white,
+                },
             },
-            hover: {
-                border: color.blue,
-                background: color.blue,
-                foreground: color.white,
-            },
-            press: {
-                border: color.activeBlue,
-                background: color.activeBlue,
-                foreground: color.white,
-            },
-        },
-        // Inverse is meant for use on secondary controls.
-        progressiveInverse: {
-            default: {
-                border: border.strong,
-                background: color.white,
-                foreground: color.blue,
-            },
-            hover: {
-                border: color.blue,
-                background: color.white,
-                foreground: color.blue,
-            },
-            press: {
-                border: color.activeBlue,
-                background: color.fadedBlue,
-                foreground: color.activeBlue,
-            },
-        },
-        destructive: {
-            default: {
-                border: "transparent",
-                background: color.red,
-                foreground: color.white,
-            },
-            hover: {
-                border: color.red,
-                background: color.white,
-                foreground: color.red,
-            },
-            press: {
-                border: color.activeRed,
-                background: color.activeRed,
-                foreground: color.white,
+            destructive: {
+                default: {
+                    border: "transparent",
+                    background: color.red,
+                    foreground: color.white,
+                },
+                hover: {
+                    border: color.red,
+                    background: color.red,
+                    foreground: color.white,
+                },
+                press: {
+                    border: color.activeRed,
+                    background: color.activeRed,
+                    foreground: color.white,
+                },
             },
         },
-        destructiveInverse: {
-            default: {
-                border: border.strong,
-                background: color.white,
-                foreground: color.red,
+
+        // Outlined is meant for use on secondary controls, or controls over
+        // white/transparent backgrounds.
+        outlined: {
+            progressive: {
+                default: {
+                    border: border.strong,
+                    background: color.white,
+                    foreground: color.blue,
+                },
+                hover: {
+                    border: color.blue,
+                    background: color.white,
+                    foreground: color.blue,
+                },
+                press: {
+                    border: color.activeBlue,
+                    background: color.fadedBlue,
+                    foreground: color.activeBlue,
+                },
             },
-            hover: {
-                border: color.red,
-                background: color.white,
-                foreground: color.red,
-            },
-            press: {
-                border: color.activeRed,
-                background: color.fadedRed,
-                foreground: color.activeRed,
+            destructive: {
+                default: {
+                    border: border.strong,
+                    background: color.white,
+                    foreground: color.red,
+                },
+                hover: {
+                    border: color.red,
+                    background: color.white,
+                    foreground: color.red,
+                },
+                press: {
+                    border: color.activeRed,
+                    background: color.fadedRed,
+                    foreground: color.activeRed,
+                },
             },
         },
         disabled: {
