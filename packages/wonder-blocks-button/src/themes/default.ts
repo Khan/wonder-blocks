@@ -158,7 +158,7 @@ const theme = {
             },
             press: {
                 border: semanticColor.border.inverse,
-                background: semanticColor.action.progressive.press.background,
+                background: semanticColor.action.destructive.press.background,
                 foreground: semanticColor.text.inverse,
             },
             disabled: {
