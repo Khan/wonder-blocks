@@ -2,33 +2,43 @@ import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
+const secondaryBgColor = tokens.color.offWhite;
+
 /**
  * The overrides for the Khanmigo theme.
  */
 const theme = mergeTheme(defaultTheme, {
     color: {
-        bg: {
-            secondary: {
-                default: tokens.color.offWhite,
-                active: {
-                    action: tokens.color.fadedBlue8,
-                    critical: tokens.color.fadedRed8,
-                },
-                focus: tokens.color.offWhite,
+        progressiveSecondary: {
+            default: {
+                border: tokens.color.fadedBlue,
+                background: secondaryBgColor,
             },
-            icon: {
-                secondaryHover: tokens.color.fadedBlue16,
+            hover: {
+                background: secondaryBgColor,
+                icon: tokens.color.fadedBlue16,
+                foreground:
+                    tokens.semanticColor.action.progressiveInverse.default
+                        .foreground,
             },
-        },
-        border: {
-            secondary: {
-                action: tokens.color.fadedBlue,
-                critical: tokens.color.fadedRed,
+            press: {
+                background: tokens.color.fadedBlue8,
             },
         },
-        text: {
-            icon: {
-                secondaryHover: tokens.color.blue,
+        destructiveSecondary: {
+            default: {
+                border: tokens.color.fadedRed,
+                background: secondaryBgColor,
+            },
+            hover: {
+                background: secondaryBgColor,
+                icon: tokens.color.fadedRed16,
+                foreground:
+                    tokens.semanticColor.action.destructiveInverse.default
+                        .foreground,
+            },
+            press: {
+                background: tokens.color.fadedRed8,
             },
         },
     },

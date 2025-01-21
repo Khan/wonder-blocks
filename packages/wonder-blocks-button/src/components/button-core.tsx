@@ -182,7 +182,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
                                 sharedStyles.endIconWrapperTertiary,
                             (focused || hovered) &&
                                 kind !== "primary" &&
-                                sharedStyles.iconWrapperSecondaryHovered,
+                                buttonStyles.iconWrapperHovered,
                         ]}
                     >
                         <ButtonIcon
@@ -320,10 +320,6 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         // this by setting the minWidth to auto.
         minWidth: "auto",
     },
-    iconWrapperSecondaryHovered: {
-        backgroundColor: theme.color.bg.icon.secondaryHover,
-        color: theme.color.text.icon.secondaryHover,
-    },
     endIconWrapper: {
         marginLeft: theme.padding.small,
         marginRight: theme.margin.icon.offset,
@@ -409,11 +405,11 @@ export const _generateStyles = (
     } else if (kind === "secondary") {
         const colorToAction = !light
             ? buttonColor === "destructive"
-                ? "destructiveOutline"
-                : "progressiveOutline"
+                ? "destructiveSecondary"
+                : "progressiveSecondary"
             : buttonColor === "destructive"
-            ? "destructiveOutlineLight"
-            : "progressiveOutlineLight";
+            ? "destructiveSecondaryLight"
+            : "progressiveSecondaryLight";
         const themeColorAction = theme.color[colorToAction];
 
         const focusStyling = {
@@ -462,15 +458,19 @@ export const _generateStyles = (
                     outlineWidth: theme.border.width.disabled,
                 },
             },
+            iconWrapperHovered: {
+                backgroundColor: themeColorAction.hover.icon,
+                color: themeColorAction.hover.foreground,
+            },
         };
     } else if (kind === "tertiary") {
         const colorToAction = !light
             ? buttonColor === "destructive"
-                ? "destructiveOutline"
-                : "progressiveOutline"
+                ? "destructiveTertiary"
+                : "progressiveTertiary"
             : buttonColor === "destructive"
-            ? "destructiveOutlineLight"
-            : "progressiveOutlineLight";
+            ? "destructiveTertiaryLight"
+            : "progressiveTertiaryLight";
         const themeColorAction = theme.color[colorToAction];
 
         const focusStyling = {
@@ -482,10 +482,6 @@ export const _generateStyles = (
         };
         const activePressedStyling = {
             color: themeColorAction.press.foreground,
-            borderColor: "transparent",
-            outlineColor: themeColorAction.press.border,
-            outlineStyle: "solid",
-            outlineWidth: theme.border.width.focused,
             textDecoration: "underline",
             textDecorationThickness: theme.size.underline.active,
             textUnderlineOffset: theme.font.offset.default,
@@ -495,7 +491,7 @@ export const _generateStyles = (
             default: {
                 background: themeColorAction.default.background,
                 color: themeColorAction.default.foreground,
-                borderColor: themeColorAction.default.border,
+                // borderColor: themeColorAction.default.border,
                 paddingInline: 0,
                 [":hover:not([aria-disabled=true])" as any]: {
                     textUnderlineOffset: theme.font.offset.default,
