@@ -642,24 +642,6 @@ export const ResizeType: StoryComponentType = {
 };
 
 /**
- * A TextArea with `light` prop set to true and a dark background.
- */
-export const Light: StoryComponentType = {
-    args: {
-        light: true,
-        value: "Text",
-    },
-    parameters: {
-        backgrounds: {
-            default: "darkBlue",
-        },
-        chromatic: {
-            disableSnapshot: true, // Disabling because it's covered in variants stories
-        },
-    },
-};
-
-/**
  * Custom styling can be passed to the TextArea component using the `style`
  * prop.
  */
