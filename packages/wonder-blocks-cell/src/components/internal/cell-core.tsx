@@ -234,6 +234,9 @@ const styles = StyleSheet.create({
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
         width: "100%",
+        // Hide overflow so that if custom styling applies a border radius, the
+        // left visual indicator for press/active states does not overflow
+        overflow: "hidden",
     },
 
     innerWrapper: {

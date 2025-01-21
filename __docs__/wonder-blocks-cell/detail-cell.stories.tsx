@@ -4,7 +4,7 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -467,6 +467,24 @@ export const Scenarios = () => {
             ))}
         </View>
     );
+};
+
+/**
+ * Custom styling can be applied to the root using the `rootStyle` prop.
+ */
+export const CustomRootStyle = {
+    args: {
+        rootStyle: {
+            borderRadius: border.radius.large_6,
+        },
+        active: true,
+        title: "Title for article item",
+        subtitle1: "Subtitle for article item",
+        subtitle2: "Subtitle for article item",
+        leftAccessory: (
+            <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
+        ),
+    },
 };
 
 const styles = StyleSheet.create({
