@@ -8,9 +8,10 @@ import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import ComponentInfo from "../components/component-info";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
-import {LabelSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 import TextAreaArgTypes from "./text-area.argtypes";
 import {validateEmail} from "./form-utilities";
@@ -45,6 +46,7 @@ export default {
 } as Meta<typeof TextArea>;
 
 type StoryComponentType = StoryObj<typeof TextArea>;
+type ControlledStoryComponentType = StoryObj<typeof ControlledTextArea>;
 
 const styles = StyleSheet.create({
     customField: {
@@ -56,12 +58,12 @@ const styles = StyleSheet.create({
             color: color.white64,
         },
     },
-    error: {
-        color: color.red,
-    },
 });
 
-const ControlledTextArea = (args: PropsFor<typeof TextArea>) => {
+const ControlledTextArea = (
+    storyArgs: PropsFor<typeof TextArea> & {label?: string},
+) => {
+    const {label, ...args} = storyArgs;
     const [value, setValue] = React.useState(args.value || "");
     const [error, setError] = React.useState<string | null | undefined>(null);
 
@@ -70,20 +72,18 @@ const ControlledTextArea = (args: PropsFor<typeof TextArea>) => {
     };
 
     return (
-        <View>
-            <TextArea
-                {...args}
-                value={value}
-                onChange={handleChange}
-                onValidate={setError}
-            />
-            <Strut size={spacing.xxSmall_6} />
-            {(error || args.error) && (
-                <LabelSmall style={styles.error}>
-                    {error || "Error from error prop"}
-                </LabelSmall>
-            )}
-        </View>
+        <LabeledField
+            label={label || "Text Area"}
+            errorMessage={error || (args.error && "Error from error prop")}
+            field={
+                <TextArea
+                    {...args}
+                    value={value}
+                    onChange={handleChange}
+                    onValidate={setError}
+                />
+            }
+        />
     );
 };
 
@@ -98,8 +98,11 @@ export const Default: StoryComponentType = {
  * When setting a value and onChange props, you can use it as a controlled
  * component.
  */
-export const Controlled: StoryComponentType = {
+export const Controlled: ControlledStoryComponentType = {
     render: ControlledTextArea,
+    args: {
+        label: "Controlled",
+    },
     parameters: {
         chromatic: {
             // Disabling because this doesn't test anything visual.
@@ -111,10 +114,11 @@ export const Controlled: StoryComponentType = {
 /**
  * When the `value` prop is provided, the value is rendered in the text area.
  */
-export const WithValue: StoryComponentType = {
+export const WithValue: ControlledStoryComponentType = {
     args: {
         value: "Text",
         onChange: () => {},
+        label: "With Value",
     },
     render: ControlledTextArea,
 };
@@ -173,11 +177,12 @@ export const ReadOnly: StoryComponentType = {
  * Note: The `required` and `validate` props can also put the TextArea in an
  * error state.
  */
-export const Error: StoryComponentType = {
+export const Error: ControlledStoryComponentType = {
     render: ControlledTextArea,
     args: {
         value: "With error",
         error: true,
+        label: "Error using error prop",
     },
     parameters: {
         chromatic: {
@@ -198,10 +203,11 @@ export const Error: StoryComponentType = {
  * - `aria-invalid="true"` if there is an error.
  * - `aria-invalid="false"` if there is no error.
  */
-export const ErrorFromValidation: StoryComponentType = {
+export const ErrorFromValidation: ControlledStoryComponentType = {
     args: {
         value: "khan",
         validate: validateEmail,
+        label: "Error from validation",
     },
     render: ControlledTextArea,
     parameters: {
@@ -246,20 +252,21 @@ export const ErrorFromPropAndValidation = (args: PropsFor<typeof TextArea>) => {
     const errorMessage = validationErrorMessage || backendErrorMessage;
 
     return (
-        <View>
-            <TextArea
-                {...args}
-                value={value}
-                onChange={handleChange}
-                validate={validateEmail}
-                onValidate={setValidationErrorMessage}
-                error={!!errorMessage}
+        <View style={{gap: spacing.small_12}}>
+            <LabeledField
+                label="Error from prop and validation"
+                field={
+                    <TextArea
+                        {...args}
+                        value={value}
+                        onChange={handleChange}
+                        validate={validateEmail}
+                        onValidate={setValidationErrorMessage}
+                        error={!!errorMessage}
+                    />
+                }
+                errorMessage={errorMessage}
             />
-            <Strut size={spacing.xxSmall_6} />
-            {errorMessage && (
-                <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
-            )}
-            <Strut size={spacing.xxSmall_6} />
             <Button
                 onClick={() => {
                     if (value === "test@test.com") {
@@ -311,53 +318,39 @@ export const InstantValidation: StoryComponentType = {
     render: (args) => {
         return (
             <View style={{gap: spacing.small_12}}>
-                <LabelSmall htmlFor="instant-validation-true-not-required">
-                    Validation on mount if there is a value
-                </LabelSmall>
                 <ControlledTextArea
                     {...args}
-                    id="instant-validation-true-not-required"
+                    label="Validation on mount if there is a value"
                     value="invalid"
                 />
-                <LabelSmall htmlFor="instant-validation-true-not-required">
-                    Error shown immediately (instantValidation: true, required:
-                    false)
-                </LabelSmall>
                 <ControlledTextArea
                     {...args}
-                    id="instant-validation-true-not-required"
+                    label="Error shown immediately (instantValidation: true, required:
+                    false)"
                     instantValidation={true}
                 />
-                <LabelSmall htmlFor="instant-validation-false-not-required">
-                    Error shown onBlur (instantValidation: false, required:
-                    false)
-                </LabelSmall>
                 <ControlledTextArea
                     {...args}
-                    id="instant-validation-false-not-required"
+                    label="Error shown onBlur (instantValidation: false, required:
+                    false)"
                     instantValidation={false}
                 />
 
-                <LabelSmall htmlFor="instant-validation-true-required">
-                    Error shown immediately after clearing the value
-                    (instantValidation: true, required: true)
-                </LabelSmall>
                 <ControlledTextArea
                     {...args}
                     validate={undefined}
                     value="T"
-                    id="instant-validation-true-required"
+                    label="Error shown immediately after clearing the value
+                    (instantValidation: true, required: true)"
                     instantValidation={true}
                     required="Required"
                 />
-                <LabelSmall htmlFor="instant-validation-false-required">
-                    Error shown on blur if it is empty (instantValidation:
-                    false, required: true)
-                </LabelSmall>
+
                 <ControlledTextArea
                     {...args}
+                    label="Error shown on blur if it is empty (instantValidation:
+                    false, required: true)"
                     validate={undefined}
-                    id="instant-validation-false-required"
                     instantValidation={false}
                     required="Required"
                 />
@@ -550,32 +543,31 @@ export const Wrap: StoryComponentType = {
                     onSubmit={handleSubmit}
                     style={{width: "300px"}}
                 >
-                    <label htmlFor="soft-wrap">Wrap: soft</label>
-                    <TextArea
-                        {...args}
-                        wrap="soft"
-                        id="soft-wrap"
-                        name="soft-wrap"
+                    <LabeledField
+                        label="Wrap: soft"
+                        field={
+                            <TextArea {...args} wrap="soft" name="soft-wrap" />
+                        }
                     />
                     <br />
-                    <label htmlFor="hard-wrap">Wrap: hard</label>
-                    <TextArea
-                        {...args}
-                        wrap="hard"
-                        id="hard-wrap"
-                        name="hard-wrap"
+                    <LabeledField
+                        label="Wrap: hard"
+                        field={
+                            <TextArea {...args} wrap="hard" name="hard-wrap" />
+                        }
                     />
                     <br />
-                    <label htmlFor="off-wrap">Wrap: off</label>
-                    <TextArea
-                        {...args}
-                        wrap="off"
-                        id="off-wrap"
-                        name="off-wrap"
+                    <LabeledField
+                        label="Wrap: off"
+                        field={
+                            <TextArea {...args} wrap="off" name="off-wrap" />
+                        }
                     />
                     <br />
-                    <label htmlFor="default-wrap">Wrap: default (soft)</label>
-                    <TextArea {...args} id="default-wrap" name="default-wrap" />
+                    <LabeledField
+                        label="Wrap: default (soft)"
+                        field={<TextArea {...args} name="default-wrap" />}
+                    />
                     <br />
                     <Button type="submit">Submit</Button>
                 </form>
@@ -599,7 +591,6 @@ export const MinMaxLength: StoryComponentType = {
         maxLength: 4,
         value: "Text",
     },
-    render: ControlledTextArea,
     parameters: {
         chromatic: {
             // Disabling because this doesn't test anything visual.
@@ -621,32 +612,30 @@ export const ResizeType: StoryComponentType = {
     render(args) {
         return (
             <div>
-                <label htmlFor="resize-both">Resize Type: both</label>
-                <TextArea {...args} resizeType="both" id="resize-both" />
-                <br />
-                <label htmlFor="resize-vertical">Resize Type: vertical</label>
-                <TextArea
-                    {...args}
-                    resizeType="vertical"
-                    id="resize-vertical"
+                <LabeledField
+                    label="Resize Type: both"
+                    field={<TextArea {...args} resizeType="both" />}
                 />
                 <br />
-                <label htmlFor="resize-horizontal">
-                    Resize Type: horizontal
-                </label>
-                <TextArea
-                    {...args}
-                    resizeType="horizontal"
-                    id="resize-horizontal"
+                <LabeledField
+                    label="Resize Type: vertical"
+                    field={<TextArea {...args} resizeType="vertical" />}
                 />
                 <br />
-                <label htmlFor="resize-none">Resize Type: none</label>
-                <TextArea {...args} resizeType="none" id="resize-none" />
+                <LabeledField
+                    label="Resize Type: horizontal"
+                    field={<TextArea {...args} resizeType="horizontal" />}
+                />
                 <br />
-                <label htmlFor="resize-default">
-                    Resize Type: default (both)
-                </label>
-                <TextArea {...args} id="resize-default" />
+                <LabeledField
+                    label="Resize Type: none"
+                    field={<TextArea {...args} resizeType="none" />}
+                />
+                <br />
+                <LabeledField
+                    label="Resize Type: default (both)"
+                    field={<TextArea {...args} />}
+                />
             </div>
         );
     },
@@ -660,10 +649,12 @@ export const Light: StoryComponentType = {
         light: true,
         value: "Text",
     },
-    render: ControlledTextArea,
     parameters: {
         backgrounds: {
             default: "darkBlue",
+        },
+        chromatic: {
+            disableSnapshot: true, // Disabling because it's covered in variants stories
         },
     },
 };
