@@ -38,9 +38,7 @@ describe("ActionMenu", () => {
         ).toBeInTheDocument();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("opens the menu on enter", async () => {
+    it("opens the menu on enter", async () => {
         // Arrange
         render(
             <ActionMenu
@@ -57,7 +55,7 @@ describe("ActionMenu", () => {
 
         // Act
         await userEvent.tab();
-        await userEvent.keyboard("{enter}");
+        await userEvent.keyboard("{Enter}");
 
         // Assert
         expect(
@@ -65,9 +63,7 @@ describe("ActionMenu", () => {
         ).toBeInTheDocument();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("closes itself on escape", async () => {
+    it("closes itself on escape", async () => {
         // Arrange
         render(
             <ActionMenu
@@ -83,18 +79,16 @@ describe("ActionMenu", () => {
         );
 
         await userEvent.tab();
-        await userEvent.keyboard("{enter}");
+        await userEvent.keyboard("{Enter}");
 
         // Act
-        await userEvent.keyboard("{escape}");
+        await userEvent.keyboard("{Escape}");
 
         // Assert
         expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
 
-    // TODO(FEI-5533): Key press events aren't working correctly with
-    // user-event v14. We need to investigate and fix this.
-    it.skip("closes itself on tab", async () => {
+    it("closes itself on tab", async () => {
         // Arrange
         render(
             <ActionMenu
@@ -110,7 +104,7 @@ describe("ActionMenu", () => {
         );
 
         await userEvent.tab();
-        await userEvent.keyboard("{enter}");
+        await userEvent.keyboard("{Enter}");
 
         // Act
         await userEvent.tab();

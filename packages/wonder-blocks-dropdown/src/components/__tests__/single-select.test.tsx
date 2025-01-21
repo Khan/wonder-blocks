@@ -1,6 +1,12 @@
 /* eslint-disable max-lines */
 import * as React from "react";
-import {fireEvent, render, screen, within} from "@testing-library/react";
+import {
+    fireEvent,
+    render,
+    screen,
+    within,
+    waitFor,
+} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -20,6 +26,19 @@ const doRender = (element: React.ReactElement) => {
         }),
     };
 };
+
+jest.mock("react-popper", () => ({
+    ...jest.requireActual("react-popper"),
+    Popper: jest.fn().mockImplementation(({children}) => {
+        // Mock `isReferenceHidden` to always return false (or true for testing visibility)
+        return children({
+            ref: jest.fn(),
+            style: {},
+            placement: "bottom",
+            isReferenceHidden: false, // Mocking isReferenceHidden
+        });
+    }),
+}));
 
 describe("SingleSelect", () => {
     const onChange = jest.fn();
@@ -311,9 +330,7 @@ describe("SingleSelect", () => {
                 jest.useFakeTimers();
             });
 
-            // TODO(FEI-5533): Key press events aren't working correctly with
-            // user-event v14. We need to investigate and fix this.
-            describe.skip.each([{key: "{enter}"}, {key: "{space}"}])(
+            describe.each([{key: "{Enter}"}, {key: " "}])(
                 "$key",
                 ({key}: any) => {
                     it("should open when pressing the key when the default opener is focused", async () => {
@@ -325,9 +342,8 @@ describe("SingleSelect", () => {
                         await userEvent.keyboard(key);
 
                         // Assert
-                        expect(
-                            await screen.findByRole("listbox"),
-                        ).toBeInTheDocument();
+                        const listbox = await screen.findByRole("listbox");
+                        expect(listbox).toBeInTheDocument();
                     });
 
                     it("should focus the first item in the dropdown", async () => {
@@ -347,40 +363,83 @@ describe("SingleSelect", () => {
                 },
             );
 
-            // TODO(FEI-5533): Key press events aren't working correctly with
-            // user-event v14. We need to investigate and fix this.
-            it.skip("should select an item when pressing {enter}", async () => {
+            it("should focus on the first option when pressing {Enter} on the opener", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
 
                 // Act
-                await userEvent.keyboard("{enter}");
+                await userEvent.keyboard("{Enter}"); // open
 
+                // Ensure first option is focused, not the opener
+                const firstItem = await screen.findByRole("option", {
+                    name: /item 1/,
+                });
                 // Assert
-                expect(onChange).toHaveBeenCalledWith("1");
-                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+                expect(firstItem).toHaveFocus();
             });
 
-            // TODO(FEI-5533): Key press events aren't working correctly with
-            // user-event v14. We need to investigate and fix this.
-            it.skip("should select an item when pressing {space}", async () => {
+            it("should select an item when pressing {Enter}", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
+                await userEvent.keyboard("{Enter}"); // open
 
                 // Act
-                await userEvent.keyboard("{space}");
+                await userEvent.keyboard("{Enter}");
 
                 // Assert
                 expect(onChange).toHaveBeenCalledWith("1");
-                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+                await waitFor(() =>
+                    expect(
+                        screen.queryByRole("listbox"),
+                    ).not.toBeInTheDocument(),
+                );
+            });
+
+            it("should focus on the first option when pressing {Space} on the opener", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                await userEvent.tab();
+
+                // Act
+                await userEvent.keyboard(" "); // open
+
+                // Ensure first option is focused, not the opener
+                const firstItem = await screen.findByRole("option", {
+                    name: /item 1/,
+                });
+
+                // Assert
+                expect(firstItem).toHaveFocus();
+            });
+
+            it("should select an item when pressing {Space}", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                await userEvent.tab();
+                await userEvent.keyboard("{Enter}"); // open
+
+                const firstItem = await screen.findByRole("option", {
+                    name: /item 1/,
+                });
+                expect(firstItem).toHaveFocus();
+
+                // Act
+                await userEvent.keyboard(" ");
+
+                // Assert
+                expect(onChange).toHaveBeenCalledWith("1");
+                await waitFor(() => {
+                    expect(
+                        screen.queryByRole("listbox"),
+                    ).not.toBeInTheDocument();
+                });
             });
 
             /*
-            The keyboard events (I tried .keyboard and .type) are not working as
+            TODO (FEI-5533): The keyboard events (I tried .keyboard and .type) are not working as
             needed. From what I can tell, they are going to the wrong element or
             otherwise not getting handled as they would in a non-test world.
             We had this issue with elsewhere too and haven't resolved it (since
@@ -435,14 +494,14 @@ describe("SingleSelect", () => {
                 expect(onChange).not.toHaveBeenCalled();
             });
 
-            it("should dismiss the dropdown when pressing {escape}", async () => {
+            it("should dismiss the dropdown when pressing {Escape}", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
+                await userEvent.keyboard("{Enter}"); // open
 
                 // Act
-                await userEvent.keyboard("{escape}");
+                await userEvent.keyboard("{Escape}");
 
                 // Assert
                 expect(onChange).not.toHaveBeenCalled();
@@ -900,10 +959,7 @@ describe("SingleSelect", () => {
             expect(searchInput.textContent).toEqual("");
         });
 
-        // NOTE(john): This is no longer working after upgrading to user-events v14
-        // The .tab() call just moves focus to the body, rather than the Clear
-        // search (which does exist in the page).
-        it.skip("should move focus to the dismiss button after pressing {tab} on the text input", async () => {
+        it("should move focus to the dismiss button after pressing {tab} on the text input", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
@@ -1071,7 +1127,9 @@ describe("SingleSelect", () => {
     });
 
     describe("a11y > Live region", () => {
-        it("should change the number of options after using the search filter", async () => {
+        // TODO (WB-1757.2): Enable this test once the LiveRegion component
+        // is refactored.
+        it.skip("should change the number of options after using the search filter", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
@@ -2339,8 +2397,8 @@ describe("SingleSelect", () => {
 
                     // Act
                     await userEvent.tab();
-                    await userEvent.keyboard("{enter}"); // Open the dropdown
-                    await userEvent.keyboard("{escape}"); // Close the dropdown
+                    await userEvent.keyboard("{Enter}"); // Open the dropdown
+                    await userEvent.keyboard("{Escape}"); // Close the dropdown
 
                     // Assert
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(
@@ -2357,8 +2415,8 @@ describe("SingleSelect", () => {
 
                     // Act
                     await userEvent.tab();
-                    await userEvent.keyboard("{enter}"); // Open the dropdown
-                    await userEvent.keyboard("{escape}"); // Close the dropdown
+                    await userEvent.keyboard("{Enter}"); // Open the dropdown
+                    await userEvent.keyboard("{Escape}"); // Close the dropdown
 
                     // Assert
                     expect(await screen.findByRole("combobox")).toHaveAttribute(

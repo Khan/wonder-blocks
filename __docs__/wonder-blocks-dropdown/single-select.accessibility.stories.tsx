@@ -129,3 +129,29 @@ export const UsingCustomOpenerAriaLabel = {
     render: SingleSelectCustomOpenerLabel.bind({}),
     name: "Using aria-label on custom opener",
 };
+
+// This story exists for debugging automated unit tests.
+const SingleSelectKeyboardSelection = () => {
+    const [selectedValue, setSelectedValue] = React.useState("");
+    return (
+        <View>
+            <SingleSelect
+                placeholder="Choose"
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+            >
+                <OptionItem label="apple" value="apple" />
+                <OptionItem label="orange" value="orange" />
+                <OptionItem label="pear" value="pear" />
+            </SingleSelect>
+        </View>
+    );
+};
+
+export const UsingKeyboardSelection = {
+    render: SingleSelectKeyboardSelection.bind({}),
+    name: "Using the keyboard",
+    parameters: {
+        chromatic: {disableSnapshot: true},
+    },
+};

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import {keys, type AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {mix} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
@@ -111,21 +111,21 @@ export default class SelectOpener extends React.Component<
     };
 
     handleKeyDown: (e: React.KeyboardEvent) => void = (e) => {
-        const keyCode = e.key;
+        const keyName = e.key;
         // Prevent default behavior for Enter key. Without this, the select
         // is only open while the Enter key is pressed.
         // Prevent default behavior for Space key. Without this, Safari stays in
         // active state visually
-        if (keyCode === "Enter" || keyCode === " ") {
+        if (keyName === keys.enter || keyName === keys.space) {
             this.setState({pressed: true});
             e.preventDefault();
         }
     };
 
     handleKeyUp: (e: React.KeyboardEvent) => void = (e) => {
-        const keyCode = e.key;
+        const keyName = e.key;
         // On key up for Enter and Space, trigger the click handler
-        if (keyCode === "Enter" || keyCode === " ") {
+        if (keyName === keys.enter || keyName === keys.space) {
             this.setState({pressed: false});
             this.handleClick(e);
         }
