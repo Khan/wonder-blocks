@@ -20,6 +20,8 @@ const theme = {
             },
         },
         // kind=primary / color=default / light=true
+        // NOTE: These colors will be removed from WB as soon as we remove the
+        // light variant.
         progressiveLight: {
             ...semanticColor.action.progressiveInverse,
             press: {
@@ -53,6 +55,8 @@ const theme = {
             },
         },
         // kind=secondary / color=default / light=true
+        // NOTE: These colors will be removed from WB as soon as we remove the
+        // light variant.
         progressiveOutlineLight: {
             default: {
                 border: tokens.color.white64,
@@ -87,6 +91,8 @@ const theme = {
             },
         },
         // kind=primary / color=destructive / light=true
+        // NOTE: These colors will be removed from WB as soon as we remove the
+        // light variant.
         destructiveLight: {
             ...semanticColor.action.destructiveInverse,
             press: {
@@ -115,6 +121,8 @@ const theme = {
             },
         },
         // kind=secondary / color=destructive / light=true
+        // NOTE: These colors will be removed from WB as soon as we remove the
+        // light variant.
         destructiveOutlineLight: {
             default: {
                 border: tokens.color.white64,
@@ -139,16 +147,6 @@ const theme = {
                 foreground: tokens.color.white50,
             },
         },
-        // NOTE: These colors will be removed from WB as soon as we remove the
-        // light variant.
-        light: {
-            border: semanticColor.border.inverse,
-            borderSecondary: tokens.color.white64,
-            backgroundSecondary: "none",
-            foregroundSecondary: semanticColor.text.inverse,
-            disabledForegroundSecondary: tokens.color.white50,
-        },
-
         bg: {
             /**
              * Color
