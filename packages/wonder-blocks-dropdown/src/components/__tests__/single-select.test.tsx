@@ -685,7 +685,6 @@ describe("SingleSelect", () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
-                    light={true}
                     onChange={onChange}
                     isFilterable={true}
                     placeholder="Choose"

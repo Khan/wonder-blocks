@@ -86,15 +86,6 @@ const argTypes: ArgTypes = {
         },
     },
 
-    light: {
-        description: `Whether to display the "light" version of this component
-            instead, for use when the component is used on a dark background.`,
-        table: {
-            category: "States",
-            defaultValue: {summary: "false"},
-        },
-    },
-
     opened: {
         control: "boolean",
         description:
