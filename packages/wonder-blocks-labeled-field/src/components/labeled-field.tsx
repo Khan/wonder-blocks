@@ -84,10 +84,6 @@ type Props = {
      */
     testId?: string;
     /**
-     * Change the field’s sub-components to fit a dark background.
-     */
-    light?: boolean;
-    /**
      * The object containing the custom labels used inside this component.
      *
      * This is useful for internationalization. Defaults to English.
@@ -118,7 +114,6 @@ export default function LabeledField(props: Props) {
         id,
         required,
         testId,
-        light,
         description,
         errorMessage,
         labels = defaultLabeledFieldLabels,
@@ -133,15 +128,11 @@ export default function LabeledField(props: Props) {
 
     const isRequired = !!required || !!field.props.required;
     const hasError = !!errorMessage || !!field.props.error;
-    const isLight = light || field.props.light;
 
     function renderLabel(): React.ReactNode {
         const requiredIcon = (
             <StyledSpan
-                style={[
-                    styles.textWordBreak,
-                    isLight ? styles.lightRequired : styles.required,
-                ]}
+                style={[styles.textWordBreak, styles.required]}
                 aria-hidden={true}
             >
                 {" "}
@@ -152,10 +143,7 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelMedium
-                    style={[
-                        styles.textWordBreak,
-                        isLight ? styles.lightLabel : styles.label,
-                    ]}
+                    style={[styles.textWordBreak, styles.label]}
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
@@ -177,10 +165,7 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelSmall
-                    style={[
-                        styles.textWordBreak,
-                        isLight ? styles.lightDescription : styles.description,
-                    ]}
+                    style={[styles.textWordBreak, styles.description]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
                 >
@@ -218,10 +203,7 @@ export default function LabeledField(props: Props) {
                         <>
                             <PhosphorIcon
                                 icon={WarningCircle}
-                                style={[
-                                    styles.errorIcon,
-                                    isLight ? styles.lightError : styles.error,
-                                ]}
+                                style={[styles.errorIcon, styles.error]}
                                 role="img"
                                 aria-label={labels.errorIconAriaLabel}
                             />
@@ -229,7 +211,7 @@ export default function LabeledField(props: Props) {
                                 style={[
                                     styles.textWordBreak,
                                     styles.errorMessage,
-                                    isLight ? styles.lightError : styles.error,
+                                    styles.error,
                                 ]}
                             >
                                 {errorMessage}
@@ -253,7 +235,6 @@ export default function LabeledField(props: Props) {
             required: required || field.props.required,
             error: hasError,
             testId: testId ? `${testId}-field` : undefined,
-            light: isLight,
         });
     }
 
@@ -272,14 +253,8 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.text.primary,
     },
-    lightLabel: {
-        color: semanticColor.text.inverse,
-    },
     description: {
         color: semanticColor.text.secondary,
-    },
-    lightDescription: {
-        color: color.white64,
     },
     errorSection: {
         flexDirection: "row",
@@ -291,9 +266,6 @@ const styles = StyleSheet.create({
     error: {
         color: semanticColor.status.critical.foreground,
     },
-    lightError: {
-        color: color.fadedRed,
-    },
     errorIcon: {
         marginTop: "1px", // This vertically aligns the icon with the text
     },
@@ -302,9 +274,6 @@ const styles = StyleSheet.create({
     },
     required: {
         color: semanticColor.status.critical.foreground,
-    },
-    lightRequired: {
-        color: color.fadedRed,
     },
     textWordBreak: {
         overflowWrap: "break-word",
