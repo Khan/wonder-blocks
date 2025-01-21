@@ -4,8 +4,9 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -34,20 +35,34 @@ const AllVariants = ({themeName = "Default"}: {themeName?: string}) => (
         <HeadingLarge>{themeName} theme</HeadingLarge>
         <View style={styles.grid}>
             <View style={[styles.gridRow]}>
-                <LabelMedium>Default</LabelMedium>
-                <MultiSelect {...defaultProps}>{selectItems}</MultiSelect>
+                <LabeledField
+                    label="Default"
+                    field={
+                        <MultiSelect {...defaultProps}>
+                            {selectItems}
+                        </MultiSelect>
+                    }
+                />
             </View>
             <View style={[styles.gridRow]}>
-                <LabelMedium>Disabled</LabelMedium>
-                <MultiSelect {...defaultProps} disabled={true}>
-                    {selectItems}
-                </MultiSelect>
+                <LabeledField
+                    label="Disabled"
+                    field={
+                        <MultiSelect {...defaultProps} disabled={true}>
+                            {selectItems}
+                        </MultiSelect>
+                    }
+                />
             </View>
             <View style={[styles.gridRow]}>
-                <LabelMedium>Error</LabelMedium>
-                <MultiSelect {...defaultProps} error={true}>
-                    {selectItems}
-                </MultiSelect>
+                <LabeledField
+                    label="Error"
+                    field={
+                        <MultiSelect {...defaultProps} error={true}>
+                            {selectItems}
+                        </MultiSelect>
+                    }
+                />
             </View>
         </View>
     </View>
