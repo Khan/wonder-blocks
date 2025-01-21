@@ -17,7 +17,7 @@ import {
 } from "@khanacademy/wonder-blocks-modal";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
 
 const customViewports = {
@@ -106,8 +106,8 @@ est.`}
  * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the
  *   ModalHeader doesn’t have to have the `titleId` prop however this is
  *   recommended. It should match the `aria-labelledby` prop of the
- *   [ModalDialog](/#modaldialog) component. If you want to see an example of
- *   how to generate this ID, check [IDProvider](/#idprovider).
+ *   [ModalDialog](/#modaldialog) component. Identifiers can be generated with
+ *   the `useId` React hook.
  *
  * ### Implementation notes
  *

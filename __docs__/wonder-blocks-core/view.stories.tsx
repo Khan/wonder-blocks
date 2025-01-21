@@ -11,7 +11,7 @@ import {
 import {View} from "@khanacademy/wonder-blocks-core";
 import packageConfig from "../../packages/wonder-blocks-core/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import viewArgTypes from "./view.argtypes";
 
 export default {

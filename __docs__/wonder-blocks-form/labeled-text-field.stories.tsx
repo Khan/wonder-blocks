@@ -11,15 +11,20 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import TextField from "../../packages/wonder-blocks-form/src/components/text-field";
 
 /**
+ * ** DEPRECATED: Please use LabeledField with TextField instead. See [Migration
+ * story](#migration%20to%20labeled%20field) for more details. **
+ *
  * A LabeledTextField is an element used to accept a single line of text from
  * the user paired with a label, description, and error field elements.
  */
 export default {
-    title: "Packages / Form / LabeledTextField",
+    title: "Packages / Form / LabeledTextField (Deprecated)",
     component: LabeledTextField,
     parameters: {
         componentSubtitle: (
@@ -43,7 +48,6 @@ export const Default: StoryComponentType = {
         value: "",
         disabled: false,
         required: false,
-        light: false,
         placeholder: "Placeholder",
         readOnly: false,
         autoComplete: "off",
@@ -53,6 +57,73 @@ export const Default: StoryComponentType = {
         onKeyDown: () => {},
         onFocus: () => {},
         onBlur: () => {},
+    },
+};
+
+/**
+ * Please use the **LabeledField** component with the **TextField** component
+ * instead of the `LabeledTextField` component.
+ *
+ * LabeledField is more flexible since it is decoupled from specific field
+ * components. It also allows use of everything supported by TextField since it
+ * is used directly.
+ *
+ * Note: Validation is now handled by the specific field component and an error
+ * message is passed into LabeledField. For TextField validation, it is preferred
+ * that validation occurs on blur once a user is done interacting with a field.
+ * This can be done using `instantValidation=false` on `TextField`, see TextField
+ * validation docs for more details!
+ *
+ * This example shows how LabeledTextField functionality can be mapped to
+ * LabeledField and TextField components.
+ */
+export const MigrationToLabeledField: StoryComponentType = {
+    render: function Story(args) {
+        const [labeledTextFieldValue, setLabeledTextFieldValue] =
+            React.useState("");
+        const [textFieldValue, setTextFieldValue] = React.useState("");
+        const [textFieldErrorMessage, setTextFieldErrorMessage] =
+            React.useState<string | null | undefined>("");
+
+        const description = "Enter text that is at least 5 characters long.";
+        const placeholder = "Placeholder";
+        const required = "Custom required message";
+        const validate = (value: string) => {
+            if (value.length < 5) {
+                return "Should be 5 or more characters";
+            }
+        };
+        return (
+            <View style={{gap: spacing.xxxLarge_64}}>
+                <LabeledTextField
+                    {...args}
+                    label="Using LabeledTextField"
+                    description={description}
+                    value={labeledTextFieldValue}
+                    onChange={setLabeledTextFieldValue}
+                    required={required}
+                    placeholder={placeholder}
+                    validate={validate}
+                />
+                <LabeledField
+                    label="Using LabeledField with TextField (recommended)"
+                    description={description}
+                    required={required}
+                    errorMessage={textFieldErrorMessage}
+                    field={
+                        <TextField
+                            {...args}
+                            value={textFieldValue}
+                            onChange={setTextFieldValue}
+                            placeholder={placeholder}
+                            validate={validate}
+                            onValidate={setTextFieldErrorMessage}
+                            instantValidation={false}
+                        />
+                    }
+                />
+            </View>
+        );
     },
 };
 
@@ -433,96 +504,6 @@ function ErrorRender() {
  */
 export const Error: StoryComponentType = {
     render: ErrorRender,
-};
-
-/**
- * The `light` prop is intended to be used on a dark background. When the
- * `light` prop is set to `true`:
- * - the underlying `TextField` will have a light border when focused
- * - a specific light styling is used for the error state, as seen in the
- * `ErrorLight` story
- * - the text in the component (label, required indicator, description, and
- * error message) are modified to work on the dark background
- */
-export const Light: StoryComponentType = (args: any) => {
-    const [value, setValue] = React.useState("");
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <LabeledTextField
-            {...args}
-            label="Name"
-            description="Please enter your name"
-            value={value}
-            onChange={setValue}
-            placeholder="Name"
-            light={true}
-            onKeyDown={handleKeyDown}
-            required={true}
-        />
-    );
-};
-
-Light.args = {
-    disabled: false,
-};
-
-Light.parameters = {
-    backgrounds: {
-        default: "darkBlue",
-    },
-};
-
-/**
- * If an input value fails validation and the `light` prop is true,
- * `TextField` will have light error styling.
- */
-export const ErrorLight: StoryComponentType = (args: any) => {
-    const [value, setValue] = React.useState("khan");
-
-    const validate = (value: string) => {
-        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
-        if (!emailRegex.test(value)) {
-            return "Please enter a valid email";
-        }
-    };
-
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <LabeledTextField
-            {...args}
-            label="Email"
-            description="Please provide your personal email"
-            type="email"
-            value={value}
-            light={true}
-            onChange={setValue}
-            placeholder="Email"
-            validate={validate}
-            onKeyDown={handleKeyDown}
-            required={true}
-        />
-    );
-};
-
-ErrorLight.args = {
-    disabled: false,
-};
-
-ErrorLight.parameters = {
-    backgrounds: {
-        default: "darkBlue",
-    },
 };
 
 /**

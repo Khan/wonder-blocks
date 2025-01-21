@@ -8,13 +8,13 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./multi-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
@@ -25,7 +25,7 @@ import {
     chatIcon,
 } from "./option-item-examples";
 import {OpenerProps} from "../../packages/wonder-blocks-dropdown/src/util/types";
-import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 type StoryComponentType = StoryObj<typeof MultiSelect>;
 
@@ -59,7 +59,6 @@ export default {
         error: false,
         opened: false,
         disabled: false,
-        light: false,
         shortcuts: false,
         implicitAllEnabled: false,
         id: "",
@@ -271,7 +270,10 @@ export const CustomStylesOpened: StoryComponentType = {
     ],
 };
 
-const ControlledMultiSelect = (args: PropsFor<typeof MultiSelect>) => {
+const ControlledMultiSelect = (
+    storyArgs: PropsFor<typeof MultiSelect> & {label?: string},
+) => {
+    const {label, ...args} = storyArgs;
     const [opened, setOpened] = React.useState(false);
     const [selectedValues, setSelectedValues] = React.useState<string[]>(
         args.selectedValues || [],
@@ -280,31 +282,29 @@ const ControlledMultiSelect = (args: PropsFor<typeof MultiSelect>) => {
         null | string | void
     >(null);
     return (
-        <View style={{gap: spacing.xSmall_8}}>
-            <MultiSelect
-                {...args}
-                id="multi-select"
-                opened={opened}
-                onToggle={setOpened}
-                selectedValues={selectedValues}
-                onChange={setSelectedValues}
-                validate={(values) => {
-                    if (values.includes("jupiter")) {
-                        return "Don't pick jupiter!";
-                    }
-                }}
-                onValidate={setErrorMessage}
-            >
-                {items}
-            </MultiSelect>
-            {(errorMessage || args.error) && (
-                <LabelMedium
-                    style={{color: semanticColor.status.critical.foreground}}
+        <LabeledField
+            label={label || "MultiSelect"}
+            errorMessage={
+                errorMessage || (args.error && "Error from error prop")
+            }
+            field={
+                <MultiSelect
+                    {...args}
+                    opened={opened}
+                    onToggle={setOpened}
+                    selectedValues={selectedValues}
+                    onChange={setSelectedValues}
+                    validate={(values) => {
+                        if (values.includes("jupiter")) {
+                            return "Don't pick jupiter!";
+                        }
+                    }}
+                    onValidate={setErrorMessage}
                 >
-                    {errorMessage || "Error from error prop"}
-                </LabelMedium>
-            )}
-        </View>
+                    {items}
+                </MultiSelect>
+            }
+        />
     );
 };
 
@@ -378,25 +378,25 @@ export const Required: StoryComponentType = {
 export const ErrorFromValidation: StoryComponentType = {
     render: (args: PropsFor<typeof MultiSelect>) => {
         return (
-            <View style={{gap: spacing.xSmall_8}}>
-                <LabelMedium htmlFor="multi-select" tag="label">
-                    Validation example (try picking jupiter)
-                </LabelMedium>
-                <ControlledMultiSelect {...args} id="multi-select">
-                    {items}
-                </ControlledMultiSelect>
-                <LabelMedium htmlFor="multi-select" tag="label">
-                    Validation example (on mount)
-                </LabelMedium>
+            <View style={{gap: spacing.large_24}}>
                 <ControlledMultiSelect
                     {...args}
+                    label="Validation example (try picking jupiter)"
+                >
+                    {items}
+                </ControlledMultiSelect>
+                <ControlledMultiSelect
+                    {...args}
+                    label="Validation example (on mount)"
                     selectedValues={["jupiter"]}
-                    id="multi-select"
                 >
                     {items}
                 </ControlledMultiSelect>
             </View>
         );
+    },
+    args: {
+        shortcuts: true,
     },
 };
 
@@ -494,27 +494,30 @@ export const DropdownInModal: StoryComponentType = {
  */
 export const Disabled: StoryComponentType = {
     render: () => (
-        <View>
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                Disabled prop is set to true
-            </LabelMedium>
-            <MultiSelect disabled={true} onChange={() => {}}>
-                <OptionItem label="Mercury" value="1" />
-                <OptionItem label="Venus" value="2" />
-            </MultiSelect>
-            <Strut size={spacing.xLarge_32} />
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                No items
-            </LabelMedium>
-            <MultiSelect onChange={() => {}} />
-            <Strut size={spacing.xLarge_32} />
-            <LabelMedium style={{marginBottom: spacing.xSmall_8}}>
-                All items are disabled
-            </LabelMedium>
-            <MultiSelect onChange={() => {}}>
-                <OptionItem label="Mercury" value="1" disabled={true} />
-                <OptionItem label="Venus" value="2" disabled={true} />
-            </MultiSelect>
+        <View style={{gap: spacing.xLarge_32}}>
+            <LabeledField
+                label="Disabled prop is set to true"
+                field={
+                    <MultiSelect disabled={true} onChange={() => {}}>
+                        <OptionItem label="Mercury" value="1" />
+                        <OptionItem label="Venus" value="2" />
+                    </MultiSelect>
+                }
+            />
+            <LabeledField
+                label="No items"
+                field={<MultiSelect onChange={() => {}} />}
+            />
+
+            <LabeledField
+                label="All items are disabled"
+                field={
+                    <MultiSelect onChange={() => {}}>
+                        <OptionItem label="Mercury" value="1" disabled={true} />
+                        <OptionItem label="Venus" value="2" disabled={true} />
+                    </MultiSelect>
+                }
+            />
         </View>
     ),
 };

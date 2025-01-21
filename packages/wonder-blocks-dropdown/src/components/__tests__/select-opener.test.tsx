@@ -17,7 +17,6 @@ describe("SelectOpener", () => {
                     disabled={false}
                     error={false}
                     isPlaceholder={false}
-                    light={false}
                     open={false}
                 >
                     {children}
@@ -42,7 +41,6 @@ describe("SelectOpener", () => {
                     disabled={false}
                     error={false}
                     isPlaceholder={false}
-                    light={false}
                     open={false}
                 >
                     {children}
@@ -78,7 +76,6 @@ describe("SelectOpener", () => {
                     disabled={false}
                     error={false}
                     isPlaceholder={false}
-                    light={false}
                     open={false}
                 >
                     {children}
@@ -122,7 +119,6 @@ describe("SelectOpener", () => {
                     disabled={true}
                     error={false}
                     isPlaceholder={false}
-                    light={false}
                     open={false}
                 >
                     {children}
@@ -147,7 +143,6 @@ describe("SelectOpener", () => {
                     disabled={true}
                     error={false}
                     isPlaceholder={false}
-                    light={false}
                     open={false}
                 >
                     {children}
@@ -183,7 +178,6 @@ describe("SelectOpener", () => {
                     disabled={true}
                     error={false}
                     isPlaceholder={false}
-                    light={false}
                     open={false}
                 >
                     {children}

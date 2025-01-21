@@ -33,11 +33,6 @@ const argTypes: ArgTypes = {
             category: "Visual style",
         },
     },
-    light: {
-        table: {
-            category: "Visual style",
-        },
-    },
 
     /**
      * Events

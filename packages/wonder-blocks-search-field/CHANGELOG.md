@@ -1,5 +1,80 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 4.0.6
+
+### Patch Changes
+
+-   Updated dependencies [d9bc865b]
+-   Updated dependencies [d9bc865b]
+    -   @khanacademy/wonder-blocks-form@6.0.6
+
+## 4.0.5
+
+### Patch Changes
+
+-   Updated dependencies [7516b239]
+    -   @khanacademy/wonder-blocks-core@11.1.0
+    -   @khanacademy/wonder-blocks-form@6.0.5
+    -   @khanacademy/wonder-blocks-icon@5.0.5
+    -   @khanacademy/wonder-blocks-icon-button@6.0.5
+    -   @khanacademy/wonder-blocks-typography@3.0.5
+
+## 4.0.4
+
+### Patch Changes
+
+-   11a0f5c6: No functional changes. Adding prepublishOnly script.
+-   Updated dependencies [11a0f5c6]
+    -   @khanacademy/wonder-blocks-icon-button@6.0.4
+    -   @khanacademy/wonder-blocks-typography@3.0.4
+    -   @khanacademy/wonder-blocks-tokens@3.0.1
+    -   @khanacademy/wonder-blocks-core@11.0.1
+    -   @khanacademy/wonder-blocks-form@6.0.4
+    -   @khanacademy/wonder-blocks-icon@5.0.4
+
+## 4.0.3
+
+### Patch Changes
+
+-   Updated dependencies [53b41970]
+    -   @khanacademy/wonder-blocks-form@6.0.3
+
+## 4.0.2
+
+### Patch Changes
+
+-   Updated dependencies [361cb52b]
+    -   @khanacademy/wonder-blocks-form@6.0.2
+
+## 4.0.1
+
+### Patch Changes
+
+-   Updated dependencies [d23c9c5f]
+    -   @khanacademy/wonder-blocks-core@11.0.0
+    -   @khanacademy/wonder-blocks-form@6.0.1
+    -   @khanacademy/wonder-blocks-icon@5.0.3
+    -   @khanacademy/wonder-blocks-icon-button@6.0.3
+    -   @khanacademy/wonder-blocks-typography@3.0.3
+
+## 4.0.0
+
+### Major Changes
+
+-   56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
+
+### Patch Changes
+
+-   b6009b77: Deprecate the ID provider and unique ID utilities
+-   Updated dependencies [b6009b77]
+-   Updated dependencies [897686bc]
+-   Updated dependencies [56d961f1]
+    -   @khanacademy/wonder-blocks-core@10.0.0
+    -   @khanacademy/wonder-blocks-form@6.0.0
+    -   @khanacademy/wonder-blocks-icon@5.0.2
+    -   @khanacademy/wonder-blocks-icon-button@6.0.2
+    -   @khanacademy/wonder-blocks-typography@3.0.2
+
 ## 3.1.2
 
 ### Patch Changes

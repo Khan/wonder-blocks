@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {
-    IDProvider,
+    Id,
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
@@ -77,11 +77,6 @@ type DefaultProps = Readonly<{
      * Whether or not the input in is an error state. Defaults to false.
      */
     error?: boolean;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the component is used on a dark background.
-     */
-    light?: boolean;
     /**
      * The object containing the custom labels used inside this component.
      */
@@ -258,7 +253,6 @@ const SingleSelect = (props: Props) => {
         error = false,
         id,
         opener,
-        light = false,
         placeholder,
         selectedValue,
         testId,
@@ -443,7 +437,7 @@ const SingleSelect = (props: Props) => {
             : placeholder;
 
         const dropdownOpener = (
-            <IDProvider id={id} scope="single-select-opener">
+            <Id id={id}>
                 {(uniqueOpenerId) => {
                     return opener ? (
                         <DropdownOpener
@@ -468,7 +462,6 @@ const SingleSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             error={hasError}
                             isPlaceholder={!selectedItem}
-                            light={light}
                             onOpenChanged={handleOpenChanged}
                             open={open}
                             ref={handleOpenerRef}
@@ -479,7 +472,7 @@ const SingleSelect = (props: Props) => {
                         </SelectOpener>
                     );
                 }}
-            </IDProvider>
+            </Id>
         );
 
         return dropdownOpener;
@@ -497,7 +490,7 @@ const SingleSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
 
     return (
-        <IDProvider id={dropdownId} scope="single-select-dropdown">
+        <Id id={dropdownId}>
             {(uniqueDropdownId) => (
                 <DropdownCore
                     id={uniqueDropdownId}
@@ -513,7 +506,6 @@ const SingleSelect = (props: Props) => {
                     ]}
                     initialFocusedIndex={selectedIndex.current}
                     items={items}
-                    light={light}
                     onOpenChanged={handleOpenChanged}
                     open={open}
                     opener={renderOpener(isDisabled, uniqueDropdownId)}
@@ -531,7 +523,7 @@ const SingleSelect = (props: Props) => {
                     disabled={isDisabled}
                 />
             )}
-        </IDProvider>
+        </Id>
     );
 };
 

@@ -1,11 +1,11 @@
 import {Meta, Source} from "@storybook/blocks";
 
-import TokenTable from "../../.storybook/components/token-table";
+import TokenTable from "../components/token-table";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 
 <Meta title="Packages / Tokens / Media Query Breakpoints" />
@@ -29,8 +29,8 @@ You can use mediaQuery conditions by importing `breakpoint` from the
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 const styles = {
     [breakpoint.mediaQuery.sm]: {
-        flexDirection: "column"
-    }
+        flexDirection: "column",
+    },
 };
 ```
 
@@ -46,8 +46,8 @@ a string to add the `px` unit like so:
 import {breakpoint} from "@khanacademy/wonder-blocks-tokens";
 const styles = {
     element: {
-        maxWidth: `${breakpoint.width.lg}px`
-    }
+        maxWidth: `${breakpoint.width.lg}px`,
+    },
 };
 ```
 
