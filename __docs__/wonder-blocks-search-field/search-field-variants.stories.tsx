@@ -43,18 +43,13 @@ const states = [
     },
 ];
 const States = (props: {
-    light: boolean;
     label: string;
     value?: string;
     placeholder?: string;
 }) => {
     return (
-        <View
-            style={[props.light && styles.darkDefault, styles.statesContainer]}
-        >
-            <LabelLarge style={props.light && {color: color.white}}>
-                {props.label}
-            </LabelLarge>
+        <View style={styles.statesContainer}>
+            <LabelLarge>{props.label}</LabelLarge>
             <View style={[styles.scenarios]}>
                 {states.map((scenario) => {
                     return (
@@ -80,39 +75,19 @@ const States = (props: {
 
 const AllVariants = () => (
     <View>
-        {[false, true].map((light) => {
-            return (
-                <React.Fragment key={`light-${light}`}>
-                    <States light={light} label="Default" />
-                    <States light={light} label="With Value" value="Text" />
-                    <States
-                        light={light}
-                        label="With Value (long)"
-                        value={longText}
-                    />
-                    <States
-                        light={light}
-                        label="With Value (long, no word breaks)"
-                        value={longTextWithNoWordBreak}
-                    />
-                    <States
-                        light={light}
-                        label="With Placeholder"
-                        placeholder="Placeholder text"
-                    />
-                    <States
-                        light={light}
-                        label="With Placeholder (long)"
-                        placeholder={longText}
-                    />
-                    <States
-                        light={light}
-                        label="With Placeholder (long, no word breaks)"
-                        placeholder={longTextWithNoWordBreak}
-                    />
-                </React.Fragment>
-            );
-        })}
+        <States label="Default" />
+        <States label="With Value" value="Text" />
+        <States label="With Value (long)" value={longText} />
+        <States
+            label="With Value (long, no word breaks)"
+            value={longTextWithNoWordBreak}
+        />
+        <States label="With Placeholder" placeholder="Placeholder text" />
+        <States label="With Placeholder (long)" placeholder={longText} />
+        <States
+            label="With Placeholder (long, no word breaks)"
+            placeholder={longTextWithNoWordBreak}
+        />
     </View>
 );
 

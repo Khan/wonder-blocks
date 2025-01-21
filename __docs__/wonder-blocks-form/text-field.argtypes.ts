@@ -86,22 +86,6 @@ export default {
         },
     },
 
-    light: {
-        description:
-            "Change the default focus ring color to fit a dark background.",
-        table: {
-            type: {
-                summary: "boolean",
-            },
-            defaultValue: {
-                summary: "false",
-            },
-        },
-        control: {
-            type: "boolean",
-        },
-    },
-
     required: {
         description:
             "Whether this field is required to to continue, or the error message to render if this field is left blank. Pass in a message instead of `true` if possible.",
