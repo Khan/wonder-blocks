@@ -6,7 +6,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
@@ -222,8 +222,8 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        background: color.white,
-        color: color.offBlack,
+        background: semanticColor.surface.primary,
+        color: semanticColor.text.primary,
         display: "flex",
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: color.offBlack64,
+        color: semanticColor.text.secondary,
     },
 
     /**
@@ -306,36 +306,43 @@ const styles = StyleSheet.create({
             // that the focus ring is drawn inside the cell.
             width: `calc(100% - ${spacing.xxxSmall_4}px)`,
             height: `calc(100% - ${spacing.xxxSmall_4}px)`,
-            border: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+            // TODO(juan): Figure out if we need a "focused" semantic color.
+            border: `${spacing.xxxxSmall_2}px solid ${semanticColor.action.primary.default}`,
             borderRadius: spacing.xxxSmall_4,
         },
 
         // hover + enabled
         [":hover[aria-disabled=false]" as any]: {
+            // TODO(juan): Figure out these colors
+            // Currently maps to semanticColor.status.neutral.background
             background: color.offBlack8,
         },
 
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
+            // TODO(juan): Figure out these colors
             background: color.offBlack16,
         },
     },
 
     active: {
-        background: color.fadedBlue8,
-        color: color.blue,
+        // TODO(juan): Figure out these colors
+        background: semanticColor.status.notice.background,
+        color: semanticColor.status.notice.foreground,
 
         [":hover[aria-disabled=false]" as any]: {
+            // TODO(juan): Figure out these colors
             background: color.fadedBlue16,
         },
 
         [":active[aria-disabled=false]" as any]: {
+            // TODO(juan): Figure out these colors
             background: color.fadedBlue24,
         },
     },
 
     disabled: {
-        color: color.offBlack32,
+        color: semanticColor.text.disabled,
         ":focus-visible": {
             // Prevent the focus ring from being displayed when the cell is
             // disabled.
@@ -344,11 +351,15 @@ const styles = StyleSheet.create({
     },
 
     accessoryActive: {
-        color: color.blue,
+        // TODO(juan): Should this be a different semantic token?
+        // e.g. semanticColor.text.action
+        color: semanticColor.action.primary.default,
     },
 
     accessoryDisabled: {
-        color: color.offBlack,
+        color: semanticColor.text.primary,
+        // NOTE: We use opacity to support other elements like images that don't
+        // support color changes.
         opacity: 0.32,
     },
 });

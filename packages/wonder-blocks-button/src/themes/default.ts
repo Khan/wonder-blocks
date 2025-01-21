@@ -13,32 +13,32 @@ const theme = {
              */
             // color="default"
             action: {
-                default: tokens.color.blue,
-                active: tokens.color.activeBlue,
-                inverse: tokens.color.fadedBlue,
+                default: tokens.semanticColor.action.primary.default,
+                active: tokens.semanticColor.action.primary.active,
+                inverse: tokens.semanticColor.action.primary.pressing,
             },
             // color="destructive"
             critical: {
-                default: tokens.color.red,
-                active: tokens.color.activeRed,
-                inverse: tokens.color.fadedRed,
+                default: tokens.semanticColor.action.destructive.default,
+                active: tokens.semanticColor.action.destructive.active,
+                inverse: tokens.semanticColor.action.destructive.pressing,
             },
 
             /**
              * Kind
              */
             primary: {
-                default: tokens.color.white,
-                disabled: tokens.color.offBlack32,
+                default: tokens.semanticColor.surface.primary,
+                disabled: tokens.semanticColor.action.disabled.default,
             },
 
             secondary: {
                 default: "none",
                 inverse: "none",
-                focus: tokens.color.white,
+                focus: tokens.semanticColor.surface.primary,
                 active: {
-                    action: tokens.color.fadedBlue,
-                    critical: tokens.color.fadedRed,
+                    action: tokens.semanticColor.action.primary.pressing,
+                    critical: tokens.semanticColor.action.destructive.pressing,
                 },
             },
 
@@ -54,9 +54,9 @@ const theme = {
              * Default
              */
             // kind="secondary, tertiary", disabled=true, light=false
-            disabled: tokens.color.offBlack32,
+            disabled: tokens.semanticColor.text.disabled,
             // kind="primary", light=false | kind="secondary, tertiary", light=true
-            inverse: tokens.color.white,
+            inverse: tokens.semanticColor.text.inverse,
 
             /**
              * Kind
@@ -82,20 +82,20 @@ const theme = {
              * Default
              */
             // kind="secondary", light=false | kind="tertiary", light=false
-            disabled: tokens.color.offBlack32,
+            disabled: tokens.semanticColor.action.disabled.default,
             /**
              * Kind
              */
             primary: {
-                inverse: tokens.color.white,
+                inverse: tokens.semanticColor.border.inverse,
             },
             secondary: {
-                action: tokens.color.offBlack50,
-                critical: tokens.color.offBlack50,
+                action: tokens.semanticColor.border.strong,
+                critical: tokens.semanticColor.border.strong,
                 inverse: tokens.color.white50,
             },
             tertiary: {
-                inverse: tokens.color.white,
+                inverse: tokens.semanticColor.border.inverse,
             },
         },
     },

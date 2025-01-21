@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
@@ -55,7 +55,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             ...restProps
         } = this.props;
 
-        const buttonColor = color.blue;
+        const buttonColor = semanticColor.action.primary.default;
         const buttonStyles = _generateStyles(buttonColor);
         const disabled = disabledProp;
 
@@ -155,8 +155,7 @@ const _generateStyles = (localColor: string) => {
         return styles[buttonType];
     }
 
-    const {offBlack32} = color;
-    const activeColor = color.activeBlue;
+    const activeColor = semanticColor.action.primary.pressing;
 
     let newStyles: Record<string, any> = {};
 
@@ -181,7 +180,7 @@ const _generateStyles = (localColor: string) => {
             color: activeColor,
         },
         disabled: {
-            color: offBlack32,
+            color: semanticColor.text.disabled,
             cursor: "default",
         },
     };

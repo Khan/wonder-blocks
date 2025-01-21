@@ -3,7 +3,7 @@ import * as React from "react";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {color, font, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import xIcon from "@phosphor-icons/core/regular/x.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
         paddingInlineEnd: spacing.xxxSmall_4,
     },
     pillFocused: {
-        outline: `1px solid ${color.blue}`,
+        // TODO(juan): do we need to define a "focused" border color token?
+        outline: `1px solid ${semanticColor.action.primary.default}`,
     },
 });
