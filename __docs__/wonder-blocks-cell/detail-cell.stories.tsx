@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -475,9 +475,8 @@ export const Scenarios = () => {
 export const CustomRootStyle = {
     args: {
         rootStyle: {
-            borderRadius: border.radius.large_6,
+            borderRadius: border.radius.xLarge_12,
         },
-        active: true,
         title: "Title for article item",
         subtitle1: "Subtitle for article item",
         subtitle2: "Subtitle for article item",
@@ -485,6 +484,17 @@ export const CustomRootStyle = {
             <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
         ),
     },
+    render(args: PropsFor<typeof DetailCell>) {
+        return (
+            <View style={{gap: spacing.large_24}}>
+                Active:
+                <DetailCell {...args} active={true} />
+                Pressed:
+                <DetailCell {...args} />
+            </View>
+        );
+    },
+    parameters: {pseudo: {active: true}},
 };
 
 const styles = StyleSheet.create({

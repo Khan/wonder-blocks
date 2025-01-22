@@ -234,9 +234,6 @@ const styles = StyleSheet.create({
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
         width: "100%",
-        // Hide overflow so that if custom styling applies a border radius, the
-        // left visual indicator for press/active states does not overflow
-        overflow: "hidden",
     },
 
     innerWrapper: {
@@ -244,6 +241,10 @@ const styles = StyleSheet.create({
         padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
         flex: 1,
+        borderRadius: "inherit",
+        // Hide overflow so that if custom styling applies a border radius, the
+        // left visual indicator for press/active states does not overflow
+        overflow: "hidden",
 
         // Reduce the padding of the innerWrapper when the focus ring is
         // visible.
@@ -342,17 +343,25 @@ const styles = StyleSheet.create({
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
             background: color.fadedBlue8,
-            position: "relative",
-            ":before": {
-                content: "''",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                bottom: 0,
-                width: border.width.thin,
-                backgroundColor: semanticColor.surface.emphasis,
-            },
         },
+        // press + enabled + not currently selected (active prop: false)
+        // Using the first child to apply the left bar indicator on the pressed
+        // state because setting the styles on the clickable element
+        // directly causes issues since overflow must be hidden for cases where
+        // the border is rounded
+        [":active[aria-disabled=false]:not([aria-current=true]) > *:first-child" as any]:
+            {
+                position: "relative",
+                ":before": {
+                    content: "''",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    width: border.width.thin,
+                    backgroundColor: semanticColor.surface.emphasis,
+                },
+            },
     },
 
     active: {
