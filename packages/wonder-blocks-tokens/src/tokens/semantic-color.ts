@@ -62,7 +62,7 @@ export const semanticColor = {
      */
     text: {
         primary: color.offBlack,
-        secondary: color.fadedOffBlack64,
+        secondary: color.fadedOffBlack72,
         disabled: color.fadedOffBlack32,
         inverse: color.white,
     },
