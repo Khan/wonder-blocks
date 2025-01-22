@@ -82,46 +82,50 @@ export const Default: StoryComponentType = {
  * The `onChange` prop is optional in case the toggle will
  * be wrapped in a larger clickable component.
  */
-export const Controlled: StoryComponentType = () => {
-    const [checkedOne, setCheckedOne] = React.useState(false);
-    const [checkedTwo, setCheckedTwo] = React.useState(false);
+export const Controlled: StoryComponentType = {
+    render: function Render() {
+        const [checkedOne, setCheckedOne] = React.useState(false);
+        const [checkedTwo, setCheckedTwo] = React.useState(false);
 
-    return (
-        <View style={styles.column}>
-            <Switch checked={checkedOne} onChange={setCheckedOne} />
+        return (
+            <View style={styles.column}>
+                <Switch checked={checkedOne} onChange={setCheckedOne} />
+                <Switch
+                    testId="test-switch"
+                    aria-label="test switch"
+                    checked={checkedTwo}
+                    onChange={setCheckedTwo}
+                    icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
+                />
+            </View>
+        );
+    },
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
 
-            <Switch
-                testId="test-switch"
-                aria-label="test switch"
-                checked={checkedTwo}
-                onChange={setCheckedTwo}
-                icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-            />
-        </View>
-    );
-};
+        const switchWithIcon = canvas.getByTestId("test-switch");
+        const switchInput = canvas.getByRole("switch", {name: "test switch"});
 
-Controlled.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
+        await userEvent.tab();
+        await userEvent.tab();
 
-    const switchWithIcon = canvas.getByTestId("test-switch");
-    const switchInput = canvas.getByRole("switch", {name: "test switch"});
+        expect(switchWithIcon).toHaveStyle(
+            "background-color: rgba(33, 36, 44, 0.5)",
+        );
+        expect(switchWithIcon).toHaveStyle(
+            "outline: 2px solid rgb(24, 101, 242)",
+        );
+        expect(switchInput).toHaveProperty("checked", false);
 
-    await userEvent.tab();
-    await userEvent.tab();
+        await userEvent.click(switchWithIcon);
+        // Wait for animations to finish
+        await new Promise((resolve) => setTimeout(resolve, 150));
 
-    expect(switchWithIcon).toHaveStyle(
-        "background-color: rgba(33, 36, 44, 0.5)",
-    );
-    expect(switchWithIcon).toHaveStyle("outline: 2px solid rgb(24, 101, 242)");
-    expect(switchInput).toHaveProperty("checked", false);
-
-    await userEvent.click(switchWithIcon);
-    // Wait for animations to finish
-    await new Promise((resolve) => setTimeout(resolve, 150));
-
-    expect(switchInput).toHaveProperty("checked", true);
-    expect(switchWithIcon).toHaveStyle("background-color: rgb(24, 101, 242)");
+        expect(switchInput).toHaveProperty("checked", true);
+        expect(switchWithIcon).toHaveStyle(
+            "background-color: rgb(24, 101, 242)",
+        );
+    },
 };
 
 /**

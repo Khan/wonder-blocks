@@ -27,7 +27,7 @@ jobs:
     if: |
       github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]' &&
       !startsWith(github.head_ref, 'changeset-release/')
-    name: Chromatic - Build on regular PRs
+    name: Chromatic - Build and test on regular PRs
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'review'

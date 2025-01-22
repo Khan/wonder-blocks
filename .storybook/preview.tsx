@@ -1,6 +1,6 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
-
+import {Decorator} from "@storybook/react";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
@@ -95,32 +95,29 @@ const parameters = {
     },
 };
 
-const decorators = [
-    (Story, context) => {
-        const theme = context.globals.theme;
-        const enableRenderStateRootDecorator =
-            context.parameters.enableRenderStateRootDecorator;
-
-        if (enableRenderStateRootDecorator) {
-            return (
-                <RenderStateRoot>
-                    <ThemeSwitcherContext.Provider value={theme}>
-                        <Story />
-                    </ThemeSwitcherContext.Provider>
-                </RenderStateRoot>
-            );
-        }
+const withThemeSwitcher: Decorator = (
+    Story,
+    {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
+) => {
+    if (enableRenderStateRootDecorator) {
         return (
-            <ThemeSwitcherContext.Provider value={theme}>
-                <Story />
-            </ThemeSwitcherContext.Provider>
+            <RenderStateRoot>
+                <ThemeSwitcherContext.Provider value={theme}>
+                    <Story />
+                </ThemeSwitcherContext.Provider>
+            </RenderStateRoot>
         );
-    },
-];
+    }
+    return (
+        <ThemeSwitcherContext.Provider value={theme}>
+            <Story />
+        </ThemeSwitcherContext.Provider>
+    );
+};
 
 const preview: Preview = {
     parameters,
-    decorators,
+    decorators: [withThemeSwitcher],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
@@ -147,6 +144,8 @@ const preview: Preview = {
             },
         },
     },
+
+    tags: ["autodocs"],
 };
 
 export default preview;
