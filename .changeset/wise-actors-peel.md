@@ -16,5 +16,5 @@ DetailCell and CompactCell: update styling to address accessibility issues (colo
   - Changing the focus outline to `action.disabled.default`
 - Selected state (cells with `active=true`):
   - Adding a thick left border
-  - Changing the text color to `action.primary.active`
+  - Changing the text color to `activeBlue`
   - The styling no longer changes when a selected cell is hovered or pressed on
