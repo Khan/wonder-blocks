@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
 
     active: {
         background: color.fadedBlue8,
-        color: semanticColor.action.primary.active,
+        color: color.activeBlue,
         cursor: "default",
 
         [":hover[aria-disabled=false]" as any]: {
