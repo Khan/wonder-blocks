@@ -6,7 +6,7 @@ import {TextArea} from "@khanacademy/wonder-blocks-form";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../components/component-info";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -50,12 +50,12 @@ type ControlledStoryComponentType = StoryObj<typeof ControlledTextArea>;
 
 const styles = StyleSheet.create({
     customField: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
+        backgroundColor: semanticColor.status.notice.background,
+        color: semanticColor.status.notice.foreground,
         border: "none",
         maxWidth: 250,
         "::placeholder": {
-            color: color.white64,
+            color: semanticColor.text.secondary,
         },
     },
 });

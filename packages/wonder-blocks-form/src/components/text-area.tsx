@@ -7,7 +7,12 @@ import {
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {border, color, font, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {useId} from "react";
 import {useFieldValidation} from "../hooks/use-field-validation";
@@ -312,45 +317,45 @@ const styles = StyleSheet.create({
         }px`,
     },
     default: {
-        background: color.white,
-        border: `1px solid ${color.offBlack50}`,
-        color: color.offBlack,
+        background: semanticColor.surface.primary,
+        border: `${border.width.hairline}px solid ${semanticColor.border.strong}`,
+        color: semanticColor.text.primary,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
     },
     defaultFocus: {
         ":focus-visible": {
-            borderColor: color.blue,
-            outline: `1px solid ${color.blue}`,
+            borderColor: semanticColor.border.focus,
+            outline: `${border.width.hairline}px solid ${semanticColor.border.focus}`,
             // Negative outline offset so it focus outline is not cropped off if
             // an ancestor element has overflow: hidden
-            outlineOffset: "-2px",
+            outlineOffset: -2,
         },
     },
     disabled: {
-        background: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack64,
+        background: semanticColor.action.disabled.secondary,
+        border: `${border.width.hairline}px solid ${semanticColor.border.primary}`,
+        color: semanticColor.text.secondary,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
         cursor: "not-allowed",
         ":focus-visible": {
-            outline: `2px solid ${color.offBlack32}`,
-            outlineOffset: "-3px",
+            outline: `${border.width.thin}px solid ${semanticColor.action.disabled.default}`,
+            outlineOffset: -3,
         },
     },
     error: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.red}`,
-        color: color.offBlack,
+        background: semanticColor.status.critical.background,
+        border: `${border.width.hairline}px solid ${semanticColor.status.critical.foreground}`,
+        color: semanticColor.text.primary,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            outlineColor: color.red,
-            borderColor: color.red,
+            outlineColor: semanticColor.status.critical.foreground,
+            borderColor: semanticColor.status.critical.foreground,
         },
     },
 });

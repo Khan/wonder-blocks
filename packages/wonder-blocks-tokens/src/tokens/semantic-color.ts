@@ -4,6 +4,7 @@ const border = {
     primary: color.fadedOffBlack16,
     subtle: color.fadedOffBlack8,
     strong: color.fadedOffBlack50,
+    focus: color.blue,
     inverse: color.white,
 };
 

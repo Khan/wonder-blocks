@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
 
@@ -828,12 +828,12 @@ AutoComplete.parameters = {
 
 const styles = StyleSheet.create({
     customField: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
+        backgroundColor: semanticColor.status.notice.background,
+        color: semanticColor.status.notice.foreground,
         border: "none",
         maxWidth: 250,
         "::placeholder": {
-            color: color.white64,
+            color: semanticColor.text.secondary,
         },
     },
     button: {
