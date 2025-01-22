@@ -64,7 +64,6 @@ const defaultArgs = {
     placeholder: "Select an item",
     testId: "",
     autoComplete: "none",
-    light: false,
     loading: false,
 };
 
@@ -332,7 +331,7 @@ export const ControlledMultilpleCombobox: Story = {
     ],
 
     play: async ({canvasElement}) => {
-        const canvas = within(canvasElement);
+        const canvas = within(canvasElement.ownerDocument.body);
 
         // Move to second option item
         await userEvent.keyboard("{ArrowDown}");

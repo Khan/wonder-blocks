@@ -36,8 +36,6 @@ import Button from "@khanacademy/wonder-blocks-button";
  * `field` prop component so it doesn't need to be set explicitly. If the `required`
  * prop is set on the `field` component, it will also get set for `LabeledField`
  * so that the required indicator is shown
- * - If the `light` prop is set on either `LabeledField` or the `field` prop,
- * both components will render in light mode
  * - For TextField and TextArea, it is highly recommended that they are
  * configured with `instantValidation=false` so that validation happens on blur.
  * See Validation docs for those components for more details!
@@ -327,9 +325,8 @@ const AllFields = (
  * - `MultiSelect`
  * - `SearchField`
  *
- * LabeledField works best with field components that accept `error`, `light`,
- * and `required` props since these props will get auto-populated by
- * LabeledField.
+ * LabeledField works best with field components that accept `error` and
+ * `required` props since these props will get auto-populated by LabeledField.
  */
 export const Fields: StoryComponentType = {
     args: {
@@ -453,25 +450,6 @@ ChangingErrors.parameters = {
 };
 
 /**
- * If the labeled field is used on a dark background, the `light` prop can be
- * set to `true`. When enabled, the text in the component (label, required
- * indicator, description, and error message) are modified to work on a dark
- * background.
- */
-export const Light: StoryComponentType = {
-    args: {
-        description: "Helpful description text.",
-        errorMessage: "Message about the error",
-        required: "Custom required message",
-        light: true,
-    },
-    parameters: {
-        backgrounds: {default: "darkBlue"},
-    },
-    render: AllFields,
-};
-
-/**
  * The following story shows what the LabeledField looks like when different
  * props are set.
  */
@@ -578,10 +556,10 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
  * - MultiSelect
  *
  * This is recommended because LabeledField will inject WB specific props:
- * `required`, `error`, `light`, and `testId`. The `field` component should
- * handle these props accordingly. This is helpful because for example,
- * if LabeledField has an error message, the field should also be in an error state.
- * If the `field` component doesn't support these props, there will be console warnings.
+ * `required`, `error`, and `testId`. The `field` component should handle these
+ * props accordingly. This is helpful because for example, if LabeledField has
+ * an error message, the field should also be in an error state. If the `field`
+ * component doesn't support these props, there will be console warnings.
  */
 export const WithNonWb = {
     args: {
