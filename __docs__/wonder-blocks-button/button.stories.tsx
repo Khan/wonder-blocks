@@ -187,26 +187,28 @@ WithColor.parameters = {
 };
 
 export const Dark: StoryComponentType = () => (
-    <View style={{backgroundColor: color.darkBlue, padding: spacing.medium_16}}>
-        <View style={{flexDirection: "row"}}>
+    <View
+        style={{
+            backgroundColor: color.darkBlue,
+            gap: spacing.medium_16,
+            padding: spacing.medium_16,
+        }}
+    >
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}} light={true}>
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} light={true} kind="secondary">
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button onClick={() => {}} light={true} kind="tertiary">
                 Hello, world!
             </Button>
         </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}} light={true} disabled={true}>
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 light={true}
@@ -215,7 +217,6 @@ export const Dark: StoryComponentType = () => (
             >
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 light={true}
@@ -225,12 +226,10 @@ export const Dark: StoryComponentType = () => (
                 Hello, world!
             </Button>
         </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
             <Button onClick={() => {}} light={true} color="destructive">
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button
                 onClick={() => {}}
                 light={true}
@@ -239,9 +238,36 @@ export const Dark: StoryComponentType = () => (
             >
                 Hello, world!
             </Button>
-            <Strut size={16} />
             <Button
                 onClick={() => {}}
+                light={true}
+                kind="tertiary"
+                color="destructive"
+            >
+                Hello, world!
+            </Button>
+        </View>
+        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
+            <Button
+                onClick={() => {}}
+                disabled={true}
+                light={true}
+                color="destructive"
+            >
+                Hello, world!
+            </Button>
+            <Button
+                onClick={() => {}}
+                disabled={true}
+                light={true}
+                kind="secondary"
+                color="destructive"
+            >
+                Hello, world!
+            </Button>
+            <Button
+                onClick={() => {}}
+                disabled={true}
                 light={true}
                 kind="tertiary"
                 color="destructive"

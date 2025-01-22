@@ -2,33 +2,45 @@ import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
+const secondaryBgColor = tokens.color.offWhite;
+
 /**
  * The overrides for the Khanmigo theme.
  */
 const theme = mergeTheme(defaultTheme, {
     color: {
-        bg: {
-            secondary: {
-                default: tokens.color.offWhite,
-                active: {
-                    action: tokens.color.fadedBlue8,
-                    critical: tokens.color.fadedRed8,
+        outlined: {
+            progressive: {
+                default: {
+                    border: tokens.color.fadedBlue,
+                    background: secondaryBgColor,
                 },
-                focus: tokens.color.offWhite,
+                hover: {
+                    background: secondaryBgColor,
+                    icon: tokens.color.fadedBlue16,
+                    foreground:
+                        tokens.semanticColor.action.outlined.progressive.default
+                            .foreground,
+                },
+                press: {
+                    background: tokens.color.fadedBlue8,
+                },
             },
-            icon: {
-                secondaryHover: tokens.color.fadedBlue16,
-            },
-        },
-        border: {
-            secondary: {
-                action: tokens.color.fadedBlue,
-                critical: tokens.color.fadedRed,
-            },
-        },
-        text: {
-            icon: {
-                secondaryHover: tokens.color.blue,
+            destructive: {
+                default: {
+                    border: tokens.color.fadedRed,
+                    background: secondaryBgColor,
+                },
+                hover: {
+                    background: secondaryBgColor,
+                    icon: tokens.color.fadedRed16,
+                    foreground:
+                        tokens.semanticColor.action.outlined.destructive.default
+                            .foreground,
+                },
+                press: {
+                    background: tokens.color.fadedRed8,
+                },
             },
         },
     },
