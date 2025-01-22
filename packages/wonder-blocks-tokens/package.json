@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-tokens",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Core primitive design tokens for Web Wonder Blocks",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
