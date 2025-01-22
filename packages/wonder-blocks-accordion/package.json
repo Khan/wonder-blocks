@@ -1,13 +1,14 @@
 {
   "name": "@khanacademy/wonder-blocks-accordion",
-  "version": "2.0.1",
+  "version": "3.0.3",
   "design": "v1",
   "description": "Accordion components for Wonder Blocks.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "source": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "types": "dist/index.d.ts",
   "author": "",
@@ -16,11 +17,11 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-clickable": "^5.0.1",
-    "@khanacademy/wonder-blocks-core": "^9.0.0",
-    "@khanacademy/wonder-blocks-icon": "^5.0.1",
-    "@khanacademy/wonder-blocks-tokens": "^3.0.0",
-    "@khanacademy/wonder-blocks-typography": "^3.0.1"
+    "@khanacademy/wonder-blocks-clickable": "^5.0.5",
+    "@khanacademy/wonder-blocks-core": "^11.1.0",
+    "@khanacademy/wonder-blocks-icon": "^5.0.5",
+    "@khanacademy/wonder-blocks-tokens": "^3.0.1",
+    "@khanacademy/wonder-blocks-typography": "^3.0.5"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",

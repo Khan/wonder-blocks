@@ -1,12 +1,13 @@
 {
   "name": "@khanacademy/wonder-blocks-tokens",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Core primitive design tokens for Web Wonder Blocks",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "author": "",
   "license": "MIT",

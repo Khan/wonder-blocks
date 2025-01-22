@@ -3,9 +3,10 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {TextArea} from "@khanacademy/wonder-blocks-form";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -42,32 +43,27 @@ const states = [
     },
 ];
 const States = (props: {
-    light: boolean;
     label: string;
     value?: string;
     placeholder?: string;
 }) => {
     return (
-        <View
-            style={[props.light && styles.darkDefault, styles.statesContainer]}
-        >
-            <LabelLarge style={props.light && {color: color.white}}>
-                {props.label}
-            </LabelLarge>
+        <View style={styles.statesContainer}>
+            <LabelLarge>{props.label}</LabelLarge>
             <View style={[styles.scenarios]}>
                 {states.map((scenario) => {
                     return (
                         <View style={styles.scenario} key={scenario.label}>
-                            <LabelMedium
-                                style={props.light && {color: color.white}}
-                            >
-                                {scenario.label}
-                            </LabelMedium>
-                            <TextArea
-                                value=""
-                                onChange={() => {}}
-                                {...props}
-                                {...scenario.props}
+                            <LabeledField
+                                label={scenario.label}
+                                field={
+                                    <TextArea
+                                        value=""
+                                        onChange={() => {}}
+                                        {...props}
+                                        {...scenario.props}
+                                    />
+                                }
                             />
                         </View>
                     );
@@ -79,39 +75,19 @@ const States = (props: {
 
 const AllVariants = () => (
     <View>
-        {[false, true].map((light) => {
-            return (
-                <React.Fragment key={`light-${light}`}>
-                    <States light={light} label="Default" />
-                    <States light={light} label="With Value" value="Text" />
-                    <States
-                        light={light}
-                        label="With Value (long)"
-                        value={longText}
-                    />
-                    <States
-                        light={light}
-                        label="With Value (long, no word breaks)"
-                        value={longTextWithNoWordBreak}
-                    />
-                    <States
-                        light={light}
-                        label="With Placeholder"
-                        placeholder="Placeholder text"
-                    />
-                    <States
-                        light={light}
-                        label="With Placeholder (long)"
-                        placeholder={longText}
-                    />
-                    <States
-                        light={light}
-                        label="With Placeholder (long, no word breaks)"
-                        placeholder={longTextWithNoWordBreak}
-                    />
-                </React.Fragment>
-            );
-        })}
+        <States label="Default" />
+        <States label="With Value" value="Text" />
+        <States label="With Value (long)" value={longText} />
+        <States
+            label="With Value (long, no word breaks)"
+            value={longTextWithNoWordBreak}
+        />
+        <States label="With Placeholder" placeholder="Placeholder text" />
+        <States label="With Placeholder (long)" placeholder={longText} />
+        <States
+            label="With Placeholder (long, no word breaks)"
+            placeholder={longTextWithNoWordBreak}
+        />
     </View>
 );
 
@@ -147,9 +123,6 @@ export const Active: StoryComponentType = {
 };
 
 const styles = StyleSheet.create({
-    darkDefault: {
-        backgroundColor: color.darkBlue,
-    },
     statesContainer: {
         padding: spacing.medium_16,
     },

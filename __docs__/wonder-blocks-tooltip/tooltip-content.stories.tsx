@@ -5,7 +5,7 @@ import {Body, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 type StoryComponentType = StoryObj<typeof TooltipContent>;
 

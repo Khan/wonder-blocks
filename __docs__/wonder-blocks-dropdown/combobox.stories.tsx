@@ -18,7 +18,7 @@ import argTypes from "./combobox.argtypes";
 
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 
 const items = [
     <OptionItem label="Banana" value="banana" key={0} />,
@@ -64,7 +64,6 @@ const defaultArgs = {
     placeholder: "Select an item",
     testId: "",
     autoComplete: "none",
-    light: false,
     loading: false,
 };
 

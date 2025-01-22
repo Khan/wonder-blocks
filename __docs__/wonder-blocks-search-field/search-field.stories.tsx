@@ -1,18 +1,18 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 
-import ComponentInfo from "../../.storybook/components/component-info";
+import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 import SearchFieldArgtypes from "./search-field.argtypes";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 /**
  * `SearchField` helps users input text to search for relevant content. It is
@@ -52,7 +52,10 @@ export default {
 
 type StoryComponentType = StoryObj<typeof SearchField>;
 
-const Template = (args: PropsFor<typeof SearchField>) => {
+const Template = (
+    storyArgs: PropsFor<typeof SearchField> & {label?: string},
+) => {
+    const {label, ...args} = storyArgs;
     const [value, setValue] = React.useState(args?.value || "");
     const [errorMessage, setErrorMessage] = React.useState<
         string | null | undefined
@@ -69,22 +72,25 @@ const Template = (args: PropsFor<typeof SearchField>) => {
     };
 
     return (
-        <View style={{gap: spacing.xSmall_8}}>
-            <SearchField
-                {...args}
-                value={value}
-                onChange={handleChange}
-                onKeyDown={(e) => {
-                    action("onKeyDown")(e);
-                    handleKeyDown(e);
-                }}
-                onValidate={setErrorMessage}
+        <View>
+            <LabeledField
+                label={label || "Search Field"}
+                field={
+                    <SearchField
+                        {...args}
+                        value={value}
+                        onChange={handleChange}
+                        onKeyDown={(e) => {
+                            action("onKeyDown")(e);
+                            handleKeyDown(e);
+                        }}
+                        onValidate={setErrorMessage}
+                    />
+                }
+                errorMessage={
+                    errorMessage || (args.error && "Error from error prop")
+                }
             />
-            {(errorMessage || args.error) && (
-                <LabelSmall style={styles.errorMessage}>
-                    {errorMessage || "Error from error prop"}
-                </LabelSmall>
-            )}
         </View>
     );
 };
@@ -98,40 +104,6 @@ export const Default: StoryComponentType = {
         placeholder: "Search",
     },
     render: Template,
-};
-
-/**
- * SearchField takes a `light` prop, which gives it an extra white ring on focus
- * to make it visible against a dark background.
- */
-export const Light: StoryComponentType = {
-    render: function Render() {
-        const [value, setValue] = React.useState("");
-
-        const handleChange = (newValue: string) => {
-            setValue(newValue);
-        };
-
-        const handleKeyDown = (
-            event: React.KeyboardEvent<HTMLInputElement>,
-        ) => {
-            if (event.key === "Enter") {
-                event.currentTarget.blur();
-            }
-        };
-
-        return (
-            <View style={styles.darkBackground}>
-                <SearchField
-                    value={value}
-                    placeholder="Placeholder"
-                    onChange={handleChange}
-                    onKeyDown={handleKeyDown}
-                    light={true}
-                />
-            </View>
-        );
-    },
 };
 
 /**
@@ -262,24 +234,19 @@ export const Validation: StoryComponentType = {
     render: (args) => {
         return (
             <View style={{gap: spacing.small_12}}>
-                <LabelSmall htmlFor="instant-validation-true">
-                    Validation on mount if there is a value
-                </LabelSmall>
-                <Template {...args} id="instant-validation-true" value="T" />
-                <LabelSmall htmlFor="instant-validation-true">
-                    Error shown immediately (instantValidation: true)
-                </LabelSmall>
                 <Template
                     {...args}
-                    id="instant-validation-true"
+                    label="Validation on mount if there is a value"
+                    value="T"
+                />
+                <Template
+                    {...args}
+                    label="Error shown immediately (instantValidation: true)"
                     instantValidation={true}
                 />
-                <LabelSmall htmlFor="instant-validation-false">
-                    Error shown onBlur (instantValidation: false)
-                </LabelSmall>
                 <Template
                     {...args}
-                    id="instant-validation-false"
+                    label="Error shown onBlur (instantValidation: false)"
                     instantValidation={false}
                 />
             </View>
@@ -292,14 +259,3 @@ export const Validation: StoryComponentType = {
         },
     },
 };
-
-const styles = StyleSheet.create({
-    darkBackground: {
-        background: color.darkBlue,
-        padding: spacing.medium_16,
-    },
-    errorMessage: {
-        color: color.red,
-        paddingLeft: spacing.xxxSmall_4,
-    },
-});

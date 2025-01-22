@@ -6,7 +6,6 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {Text as WBText} from "@khanacademy/wonder-blocks-core";
-import type {IIdentifierFactory} from "@khanacademy/wonder-blocks-core";
 
 import ActiveTracker from "../util/active-tracker";
 import {
@@ -54,9 +53,9 @@ type Props = {
      */
     onActiveChanged: (active: boolean) => unknown;
     /**
-     * Optional unique id factory.
+     * Optional unique id.
      */
-    ids?: IIdentifierFactory;
+    id?: string | undefined;
 };
 
 type DefaultProps = {
@@ -320,11 +319,11 @@ export default class TooltipAnchor
         );
     }
 
-    _renderAccessibleChildren(ids: IIdentifierFactory): React.ReactNode {
+    _renderAccessibleChildren(uniqueId: string): React.ReactNode {
         const anchorableChildren = this._renderAnchorableChildren();
 
         return React.cloneElement(anchorableChildren, {
-            "aria-describedby": ids.get(TooltipAnchor.ariaContentId),
+            "aria-describedby": `${uniqueId}-${TooltipAnchor.ariaContentId}`,
         });
     }
 
@@ -333,8 +332,8 @@ export default class TooltipAnchor
         // If the content is just a string, we wrap it in a Text element
         // so as not to affect styling or layout but still have an element
         // to anchor to.
-        if (this.props.ids) {
-            return this._renderAccessibleChildren(this.props.ids);
+        if (this.props.id) {
+            return this._renderAccessibleChildren(this.props.id);
         }
         return this._renderAnchorableChildren();
     }

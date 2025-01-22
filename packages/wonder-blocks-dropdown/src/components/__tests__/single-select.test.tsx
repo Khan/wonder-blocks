@@ -138,6 +138,7 @@ describe("SingleSelect", () => {
                 // Assert
                 expect(opener).toHaveTextContent("Plain Toggle A");
             });
+
             it("can render a Node as a label", async () => {
                 // Arrange
                 doRender(
@@ -684,7 +685,6 @@ describe("SingleSelect", () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
-                    light={true}
                     onChange={onChange}
                     isFilterable={true}
                     placeholder="Choose"
@@ -1396,11 +1396,9 @@ describe("SingleSelect", () => {
             const opener = await screen.findByRole("button");
 
             // Assert
-            expect(opener).toHaveAttribute(
-                "id",
-                expect.stringMatching(/^uid-single-select-opener-\d+-wb-id$/),
-            );
+            expect(opener).toHaveAttribute("id", expect.any(String));
         });
+
         it("Should use the `id` prop if provided", async () => {
             // Arrange
             const id = "test-id";
@@ -1417,6 +1415,7 @@ describe("SingleSelect", () => {
             // Assert
             expect(opener).toHaveAttribute("id", id);
         });
+
         it("Should auto-generate an id for the dropdown if `dropdownId` prop is not provided", async () => {
             // Arrange
             const {userEvent} = doRender(
@@ -1434,11 +1433,9 @@ describe("SingleSelect", () => {
             // Assert
             expect(
                 await screen.findByRole("listbox", {hidden: true}),
-            ).toHaveAttribute(
-                "id",
-                expect.stringMatching(/^uid-single-select-dropdown-\d+-wb-id$/),
-            );
+            ).toHaveAttribute("id", expect.any(String));
         });
+
         it("Should use the `dropdownId` prop if provided", async () => {
             // Arrange
             const dropdownId = "test-id";
@@ -1506,10 +1503,7 @@ describe("SingleSelect", () => {
 
             // Assert
             expect(opener).toHaveAttribute("aria-controls", dropdown.id);
-            expect(opener).toHaveAttribute(
-                "aria-controls",
-                expect.stringMatching(/^uid-single-select-dropdown-\d+-wb-id$/),
-            );
+            expect(opener).toHaveAttribute("aria-controls", expect.any(String));
         });
 
         it("Should set the `aria-controls` attribute on the custom opener to the provided dropdownId prop", async () => {
@@ -1561,10 +1555,7 @@ describe("SingleSelect", () => {
 
             // Assert
             expect(opener).toHaveAttribute("aria-controls", dropdown.id);
-            expect(opener).toHaveAttribute(
-                "aria-controls",
-                expect.stringMatching(/^uid-single-select-dropdown-\d+-wb-id$/),
-            );
+            expect(opener).toHaveAttribute("aria-controls", expect.any(String));
         });
     });
 

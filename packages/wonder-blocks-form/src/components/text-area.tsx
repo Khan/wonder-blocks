@@ -4,18 +4,12 @@ import {StyleSheet} from "aphrodite";
 import {
     AriaProps,
     StyleType,
-    useUniqueIdWithMock,
     addStyle,
     View,
 } from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    color,
-    font,
-    mix,
-    spacing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, font, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {useId} from "react";
 import {useFieldValidation} from "../hooks/use-field-validation";
 
 type TextAreaProps = AriaProps & {
@@ -184,10 +178,6 @@ type TextAreaProps = AriaProps & {
      * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
      */
     resizeType?: "horizontal" | "vertical" | "both" | "none";
-    /**
-     * Change the default focus ring color to fit a dark background.
-     */
-    light?: boolean;
 };
 
 const StyledTextArea = addStyle("textarea");
@@ -224,7 +214,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onValidate,
             required,
             resizeType,
-            light,
             rootStyle,
             error,
             instantValidation = true,
@@ -244,8 +233,8 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         const hasError = error || !!errorMessage;
 
-        const ids = useUniqueIdWithMock("text-area");
-        const uniqueId = id ?? ids.get("id");
+        const generatedUniqueId = useId();
+        const uniqueId = id ?? generatedUniqueId;
 
         const handleChange = (
             event: React.ChangeEvent<HTMLTextAreaElement>,
@@ -263,27 +252,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         };
 
-        const getStyles = (): StyleType => {
-            // Base styles are the styles that apply regardless of light mode
-            const baseStyles = [
-                styles.textarea,
-                typographyStyles.LabelMedium,
-                resizeType && resizeStyles[resizeType],
-            ];
-            const defaultStyles = [
-                styles.default,
-                !disabled && styles.defaultFocus,
-                disabled && styles.disabled,
-                hasError && styles.error,
-            ];
-            const lightStyles = [
-                styles.light,
-                !disabled && styles.lightFocus,
-                disabled && styles.lightDisabled,
-                hasError && styles.lightError,
-            ];
-            return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
-        };
         return (
             <View style={[{width: "100%"}, rootStyle]}>
                 <StyledTextArea
@@ -291,7 +259,16 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     data-testid={testId}
                     ref={ref}
                     className={className}
-                    style={[getStyles(), style]}
+                    style={[
+                        styles.textarea,
+                        typographyStyles.LabelMedium,
+                        resizeType && resizeStyles[resizeType],
+                        styles.default,
+                        !disabled && styles.defaultFocus,
+                        disabled && styles.disabled,
+                        hasError && styles.error,
+                        style,
+                    ]}
                     value={value}
                     onChange={handleChange}
                     placeholder={placeholder}
@@ -305,6 +282,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
                     wrap={wrap}
                     minLength={minLength}
                     maxLength={maxLength}
+                    aria-required={!!required}
                     onClick={disabled ? undefined : onClick}
                     onKeyDown={disabled ? undefined : onKeyDown}
                     onKeyUp={disabled ? undefined : onKeyUp}
@@ -373,49 +351,6 @@ const styles = StyleSheet.create({
         ":focus-visible": {
             outlineColor: color.red,
             borderColor: color.red,
-        },
-    },
-    light: {
-        background: color.white,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-    },
-    lightFocus: {
-        ":focus-visible": {
-            outline: `3px solid ${color.blue}`,
-            outlineOffset: "-4px",
-            borderColor: color.white,
-        },
-    },
-    lightDisabled: {
-        backgroundColor: "transparent",
-        border: `1px solid ${color.white32}`,
-        color: color.white64,
-        "::placeholder": {
-            color: color.white64,
-        },
-        cursor: "not-allowed",
-        ":focus-visible": {
-            borderColor: mix(color.white32, color.blue),
-            outline: `3px solid ${color.fadedBlue}`,
-            outlineOffset: "-4px",
-        },
-    },
-    lightError: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.white}`,
-        outline: `2px solid ${color.red}`,
-        outlineOffset: "-3px",
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-        ":focus-visible": {
-            outline: `3px solid ${color.red}`,
-            outlineOffset: "-4px",
         },
     },
 });

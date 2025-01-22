@@ -2,7 +2,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import {
-    IDProvider,
+    Id,
     type AriaProps,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
@@ -79,11 +79,6 @@ type DefaultProps = Readonly<{
      * Whether this component is in an error state. Defaults to false.
      */
     error?: boolean;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the component is used on a dark background.
-     */
-    light?: boolean;
     /**
      * The values of the items that are currently selected.
      */
@@ -236,7 +231,6 @@ type Props = AriaProps &
 const MultiSelect = (props: Props) => {
     const {
         id,
-        light = false,
         opener,
         testId,
         alignment = "left",
@@ -357,10 +351,12 @@ const MultiSelect = (props: Props) => {
             .filter((option) => !!option && !option.props.disabled)
             .map((option) => option.props.value);
         onChange(selected);
+        onSelectedValuesChangeValidation();
     };
 
     const handleSelectNone = () => {
         onChange([]);
+        onSelectedValuesChangeValidation();
     };
 
     const getMenuText = (
@@ -545,7 +541,7 @@ const MultiSelect = (props: Props) => {
         const menuText = getMenuText(allChildren);
 
         const dropdownOpener = (
-            <IDProvider id={id} scope="multi-select-opener">
+            <Id id={id}>
                 {(uniqueOpenerId) => {
                     return opener ? (
                         <DropdownOpener
@@ -570,7 +566,6 @@ const MultiSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-controls={dropdownId}
                             isPlaceholder={menuText === noneSelected}
-                            light={light}
                             onOpenChanged={handleOpenChanged}
                             onBlur={onOpenerBlurValidation}
                             open={open}
@@ -581,7 +576,7 @@ const MultiSelect = (props: Props) => {
                         </SelectOpener>
                     );
                 }}
-            </IDProvider>
+            </Id>
         );
 
         return dropdownOpener;
@@ -601,7 +596,7 @@ const MultiSelect = (props: Props) => {
     const isDisabled = numEnabledOptions === 0 || disabled;
 
     return (
-        <IDProvider id={dropdownId} scope="multi-select-dropdown">
+        <Id id={dropdownId}>
             {(uniqueDropdownId) => (
                 <DropdownCore
                     id={uniqueDropdownId}
@@ -617,7 +612,6 @@ const MultiSelect = (props: Props) => {
                         ...getShortcuts(numEnabledOptions),
                         ...filteredItems,
                     ]}
-                    light={light}
                     onOpenChanged={handleOpenChanged}
                     open={open}
                     opener={renderOpener(
@@ -644,7 +638,7 @@ const MultiSelect = (props: Props) => {
                     disabled={isDisabled}
                 />
             )}
-        </IDProvider>
+        </Id>
     );
 };
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
+import {Id, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import FieldHeading from "./field-heading";
 import TextField from "./text-field";
@@ -98,10 +98,6 @@ type CommonProps = {
      */
     placeholder?: string;
     /**
-     * Change the field’s sub-components to fit a dark background.
-     */
-    light: boolean;
-    /**
      * Custom styles for the container.
      *
      * Note: This style is passed to the field heading container
@@ -146,7 +142,6 @@ type PropsWithForwardRef = Props & WithForwardRef;
 type DefaultProps = {
     type: PropsWithForwardRef["type"];
     disabled: PropsWithForwardRef["disabled"];
-    light: PropsWithForwardRef["light"];
 };
 
 type State = {
@@ -168,7 +163,6 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
-        light: false,
     };
 
     constructor(props: PropsWithForwardRef) {
@@ -225,7 +219,6 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
             onChange,
             onKeyDown,
             placeholder,
-            light,
             style,
             testId,
             readOnly,
@@ -248,13 +241,12 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
         } = this.props;
 
         return (
-            <IDProvider id={id} scope="labeled-text-field">
+            <Id id={id}>
                 {(uniqueId) => (
                     <FieldHeading
                         id={uniqueId}
                         testId={testId}
                         style={style}
-                        light={light}
                         field={
                             <TextField
                                 id={`${uniqueId}-field`}
@@ -276,7 +268,6 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                                 onKeyDown={onKeyDown}
                                 onFocus={this.handleFocus}
                                 onBlur={this.handleBlur}
-                                light={light}
                                 readOnly={readOnly}
                                 autoComplete={autoComplete}
                                 ref={forwardedRef}
@@ -290,7 +281,7 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
                         error={(!this.state.focused && this.state.error) || ""}
                     />
                 )}
-            </IDProvider>
+            </Id>
         );
     }
 }

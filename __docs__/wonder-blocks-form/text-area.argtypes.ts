@@ -52,11 +52,6 @@ export default {
             category: "Visual style",
         },
     },
-    light: {
-        table: {
-            category: "Visual style",
-        },
-    },
     rootStyle: {
         table: {
             type: {

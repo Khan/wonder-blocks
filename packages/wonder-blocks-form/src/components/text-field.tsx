@@ -1,8 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {IDProvider, addStyle} from "@khanacademy/wonder-blocks-core";
-import {border, color, mix, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
+import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -114,10 +114,6 @@ type CommonProps = AriaProps & {
      */
     required?: boolean | string;
     /**
-     * Change the default focus ring color to fit a dark background.
-     */
-    light?: boolean;
-    /**
      * Custom styles for the input.
      */
     style?: StyleType;
@@ -175,7 +171,6 @@ const TextField = (props: PropsWithForwardRef) => {
         value,
         name,
         disabled = false,
-        light = false,
         error,
         validate,
         onValidate,
@@ -226,35 +221,26 @@ const TextField = (props: PropsWithForwardRef) => {
         }
     };
 
-    const getStyles = (): StyleType => {
-        // Base styles are the styles that apply regardless of light mode
-        const baseStyles = [styles.input, typographyStyles.LabelMedium];
-        const defaultStyles = [
-            styles.default,
-            !disabled && styles.defaultFocus,
-            disabled && styles.disabled,
-            hasError && styles.error,
-        ];
-        const lightStyles = [
-            styles.light,
-            !disabled && styles.lightFocus,
-            disabled && styles.lightDisabled,
-            hasError && styles.lightError,
-        ];
-        return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
-    };
-
     return (
-        <IDProvider id={id} scope="text-field">
+        <Id id={id}>
             {(uniqueId) => (
                 <StyledInput
-                    style={[getStyles(), style]}
+                    style={[
+                        styles.input,
+                        typographyStyles.LabelMedium,
+                        styles.default,
+                        !disabled && styles.defaultFocus,
+                        disabled && styles.disabled,
+                        hasError && styles.error,
+                        style,
+                    ]}
                     id={uniqueId}
                     type={type}
                     placeholder={placeholder}
                     value={value}
                     name={name}
                     aria-disabled={disabled}
+                    aria-required={!!required}
                     onChange={handleChange}
                     onKeyDown={disabled ? undefined : onKeyDown}
                     onFocus={handleFocus} // TextField can be focused if disabled
@@ -268,7 +254,7 @@ const TextField = (props: PropsWithForwardRef) => {
                     {...otherProps}
                 />
             )}
-        </IDProvider>
+        </Id>
     );
 };
 
@@ -321,49 +307,6 @@ const styles = StyleSheet.create({
         ":focus-visible": {
             outline: `2px solid ${color.offBlack32}`,
             outlineOffset: "-3px",
-        },
-    },
-    light: {
-        background: color.white,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-    },
-    lightFocus: {
-        ":focus-visible": {
-            outline: `3px solid ${color.blue}`,
-            outlineOffset: "-4px",
-            borderColor: color.white,
-        },
-    },
-    lightDisabled: {
-        backgroundColor: "transparent",
-        border: `1px solid ${color.white32}`,
-        color: color.white64,
-        "::placeholder": {
-            color: color.white64,
-        },
-        cursor: "not-allowed",
-        ":focus-visible": {
-            borderColor: mix(color.white32, color.blue),
-            outline: `3px solid ${color.fadedBlue}`,
-            outlineOffset: "-4px",
-        },
-    },
-    lightError: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.white}`,
-        outline: `2px solid ${color.red}`,
-        outlineOffset: "-3px",
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-        ":focus-visible": {
-            outline: `3px solid ${color.red}`,
-            outlineOffset: "-4px",
         },
     },
 });
