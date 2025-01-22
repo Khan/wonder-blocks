@@ -349,18 +349,17 @@ export const _generateStyles = (
     const padding =
         size === "large" ? theme.padding.xLarge : theme.padding.large;
 
+    const colorToAction = light
+        ? buttonColor === "destructive"
+            ? "destructiveLight"
+            : "progressiveLight"
+        : buttonColor === "destructive"
+        ? "destructive"
+        : "progressive";
+
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
-        const colorToAction = light
-            ? buttonColor === "destructive"
-                ? "destructiveLight"
-                : "progressiveLight"
-            : buttonColor === "destructive"
-            ? "destructive"
-            : "progressive";
-        const themeColorAction = theme.color[colorToAction];
-
-        // Default styles
+        const themeColorAction = theme.color.filled[colorToAction];
 
         const focusStyling = {
             outlineColor: themeColorAction.default.background,
@@ -403,14 +402,7 @@ export const _generateStyles = (
             },
         };
     } else if (kind === "secondary") {
-        const colorToAction = !light
-            ? buttonColor === "destructive"
-                ? "destructiveSecondary"
-                : "progressiveSecondary"
-            : buttonColor === "destructive"
-            ? "destructiveSecondaryLight"
-            : "progressiveSecondaryLight";
-        const themeColorAction = theme.color[colorToAction];
+        const themeColorAction = theme.color.outlined[colorToAction];
 
         const focusStyling = {
             background: themeColorAction.hover.background,
@@ -464,14 +456,7 @@ export const _generateStyles = (
             },
         };
     } else if (kind === "tertiary") {
-        const colorToAction = !light
-            ? buttonColor === "destructive"
-                ? "destructiveTertiary"
-                : "progressiveTertiary"
-            : buttonColor === "destructive"
-            ? "destructiveTertiaryLight"
-            : "progressiveTertiaryLight";
-        const themeColorAction = theme.color[colorToAction];
+        const themeColorAction = theme.color.text[colorToAction];
 
         const focusStyling = {
             outlineStyle: "solid",
@@ -491,7 +476,6 @@ export const _generateStyles = (
             default: {
                 background: themeColorAction.default.background,
                 color: themeColorAction.default.foreground,
-                // borderColor: themeColorAction.default.border,
                 paddingInline: 0,
                 [":hover:not([aria-disabled=true])" as any]: {
                     textUnderlineOffset: theme.font.offset.default,

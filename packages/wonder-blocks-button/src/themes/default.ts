@@ -12,161 +12,179 @@ const theme = {
         /**
          * Primary
          */
-        // kind=primary / color=default / light=false
-        progressive: {
-            // filled
-            ...semanticColor.action.progressive,
-            disabled: {
-                border: semanticColor.action.disabled.default,
-                background: semanticColor.action.disabled.default,
-                foreground: semanticColor.action.disabled.secondary,
+        filled: {
+            // kind=primary / color=default / light=false
+            progressive: {
+                // filled
+                ...semanticColor.action.filled.progressive,
+                disabled: {
+                    border: semanticColor.action.disabled.default,
+                    background: semanticColor.action.disabled.default,
+                    foreground: semanticColor.action.disabled.secondary,
+                },
+            },
+
+            // kind=primary / color=default / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            progressiveLight: {
+                ...semanticColor.action.outlined.progressive,
+                press: {
+                    ...semanticColor.action.outlined.progressive.press,
+                    border: semanticColor.action.outlined.progressive.press
+                        .background,
+                },
+                disabled: {
+                    border: semanticColor.action.outlined.progressive.press
+                        .background,
+                    background:
+                        semanticColor.action.outlined.progressive.press
+                            .background,
+                    foreground:
+                        semanticColor.action.outlined.progressive.default
+                            .foreground,
+                },
+            },
+            // kind=primary / color=destructive / light=false
+            destructive: {
+                ...semanticColor.action.filled.destructive,
+                disabled: {
+                    border: semanticColor.action.disabled.default,
+                    background: semanticColor.action.disabled.default,
+                    foreground: semanticColor.action.disabled.secondary,
+                },
+            },
+            // kind=primary / color=destructive / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            destructiveLight: {
+                ...semanticColor.action.outlined.destructive,
+                press: {
+                    ...semanticColor.action.outlined.destructive.press,
+                    border: semanticColor.action.outlined.destructive.press
+                        .background,
+                },
+                disabled: {
+                    border: semanticColor.action.outlined.destructive.press
+                        .background,
+                    background:
+                        semanticColor.action.outlined.destructive.press
+                            .background,
+                    foreground:
+                        semanticColor.action.outlined.destructive.default
+                            .foreground,
+                },
             },
         },
-        // kind=primary / color=default / light=true
-        // NOTE: These colors will be removed from WB as soon as we remove the
-        // light variant.
-        progressiveLight: {
-            ...semanticColor.action.progressiveInverse,
-            press: {
-                ...semanticColor.action.progressiveInverse.press,
-                border: semanticColor.action.progressiveInverse.press
-                    .background,
-            },
-            disabled: {
-                border: semanticColor.action.progressiveInverse.press
-                    .background,
-                background:
-                    semanticColor.action.progressiveInverse.press.background,
-                foreground:
-                    semanticColor.action.progressiveInverse.default.foreground,
-            },
-        },
-        // kind=primary / color=destructive / light=false
-        destructive: {
-            ...semanticColor.action.destructive,
-            disabled: {
-                border: semanticColor.action.disabled.default,
-                background: semanticColor.action.disabled.default,
-                foreground: semanticColor.action.disabled.secondary,
-            },
-        },
-        // kind=primary / color=destructive / light=true
-        // NOTE: These colors will be removed from WB as soon as we remove the
-        // light variant.
-        destructiveLight: {
-            ...semanticColor.action.destructiveInverse,
-            press: {
-                ...semanticColor.action.destructiveInverse.press,
-                border: semanticColor.action.destructiveInverse.press
-                    .background,
-            },
-            disabled: {
-                border: semanticColor.action.destructiveInverse.press
-                    .background,
-                background:
-                    semanticColor.action.destructiveInverse.press.background,
-                foreground:
-                    semanticColor.action.destructiveInverse.default.foreground,
-            },
-        },
+
         /**
          * Secondary
          *
          * Outlined buttons
          */
-        // kind=secondary / color=default / light=false
-        progressiveSecondary: {
-            ...semanticColor.action.progressiveInverse,
-            default: {
-                ...semanticColor.action.progressiveInverse.default,
-                // NOTE: This is a special case for the secondary button
-                background: "transparent",
+        outlined: {
+            // kind=secondary / color=default / light=false
+            progressive: {
+                ...semanticColor.action.outlined.progressive,
+                default: {
+                    ...semanticColor.action.outlined.progressive.default,
+                    // NOTE: This is a special case for the secondary button
+                    background: "transparent",
+                },
+                hover: {
+                    ...semanticColor.action.outlined.progressive.hover,
+                    // NOTE: This is a special case for the secondary button
+                    background: "transparent",
+                    icon: "transparent",
+                },
+                disabled: {
+                    border: semanticColor.action.disabled.default,
+                    background:
+                        semanticColor.action.outlined.progressive.press
+                            .background,
+                    foreground: semanticColor.text.disabled,
+                },
             },
-            hover: {
-                ...semanticColor.action.progressiveInverse.hover,
-                // NOTE: This is a special case for the secondary button
-                background: "transparent",
-                icon: "transparent",
+            // kind=secondary / color=default / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            progressiveLight: {
+                default: {
+                    border: tokens.color.white64,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                    // NOTE: Not used, but included for type safety.
+                    icon: "transparent",
+                },
+                press: {
+                    border: semanticColor.border.inverse,
+                    background:
+                        semanticColor.action.filled.progressive.press
+                            .background,
+                    foreground: semanticColor.text.inverse,
+                },
+                disabled: {
+                    border: semanticColor.action.outlined.progressive.press
+                        .background,
+                    background:
+                        semanticColor.action.outlined.progressive.press
+                            .background,
+                    foreground: tokens.color.white50,
+                },
             },
-            disabled: {
-                border: semanticColor.action.disabled.default,
-                background:
-                    semanticColor.action.progressiveInverse.press.background,
-                foreground: semanticColor.text.disabled,
+            // kind=secondary / color=destructive / light=false
+            destructive: {
+                ...semanticColor.action.outlined.destructive,
+                hover: {
+                    ...semanticColor.action.outlined.destructive.hover,
+                    // NOTE: This is a special case for the secondary button
+                    background: "transparent",
+                    icon: "transparent",
+                },
+                disabled: {
+                    border: semanticColor.action.disabled.default,
+                    background:
+                        semanticColor.action.outlined.destructive.press
+                            .background,
+                    foreground: semanticColor.text.disabled,
+                },
             },
-        },
-        // kind=secondary / color=default / light=true
-        // NOTE: These colors will be removed from WB as soon as we remove the
-        // light variant.
-        progressiveSecondaryLight: {
-            default: {
-                border: tokens.color.white64,
-                background: "transparent",
-                foreground: semanticColor.text.inverse,
-            },
-            hover: {
-                border: semanticColor.border.inverse,
-                background: "transparent",
-                foreground: semanticColor.text.inverse,
-                // NOTE: Not used, but included for type safety.
-                icon: "transparent",
-            },
-            press: {
-                border: semanticColor.border.inverse,
-                background: semanticColor.action.progressive.press.background,
-                foreground: semanticColor.text.inverse,
-            },
-            disabled: {
-                border: semanticColor.action.progressiveInverse.press
-                    .background,
-                background:
-                    semanticColor.action.progressiveInverse.press.background,
-                foreground: tokens.color.white50,
-            },
-        },
-        // kind=secondary / color=destructive / light=false
-        destructiveSecondary: {
-            ...semanticColor.action.destructiveInverse,
-            hover: {
-                ...semanticColor.action.destructiveInverse.hover,
-                // NOTE: This is a special case for the secondary button
-                background: "transparent",
-                icon: "transparent",
-            },
-            disabled: {
-                border: semanticColor.action.disabled.default,
-                background:
-                    semanticColor.action.destructiveInverse.press.background,
-                foreground: semanticColor.text.disabled,
-            },
-        },
-        // kind=secondary / color=destructive / light=true
-        // NOTE: These colors will be removed from WB as soon as we remove the
-        // light variant.
-        destructiveSecondaryLight: {
-            default: {
-                border: tokens.color.white64,
-                background: "transparent",
-                foreground: semanticColor.text.inverse,
-            },
-            hover: {
-                border: semanticColor.border.inverse,
-                background: "transparent",
-                foreground: semanticColor.text.inverse,
-                // NOTE: Not used, but included for type safety.
-                icon: "transparent",
-            },
-            press: {
-                border: semanticColor.border.inverse,
-                background: semanticColor.action.destructive.press.background,
-                foreground: semanticColor.text.inverse,
-            },
-            disabled: {
-                border: semanticColor.action.destructiveInverse.press
-                    .background,
-                background:
-                    semanticColor.action.destructiveInverse.press.background,
-                foreground: tokens.color.white50,
+            // kind=secondary / color=destructive / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            destructiveLight: {
+                default: {
+                    border: tokens.color.white64,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                    // NOTE: Not used, but included for type safety.
+                    icon: "transparent",
+                },
+                press: {
+                    border: semanticColor.border.inverse,
+                    background:
+                        semanticColor.action.filled.destructive.press
+                            .background,
+                    foreground: semanticColor.text.inverse,
+                },
+                disabled: {
+                    border: semanticColor.action.outlined.destructive.press
+                        .background,
+                    background:
+                        semanticColor.action.outlined.destructive.press
+                            .background,
+                    foreground: tokens.color.white50,
+                },
             },
         },
         /**
@@ -174,90 +192,98 @@ const theme = {
          *
          * Text buttons
          */
-        // kind=tertiary / color=default / light=false
-        progressiveTertiary: {
-            default: {
-                background: "transparent",
-                foreground:
-                    semanticColor.action.progressiveInverse.default.foreground,
+        text: {
+            // kind=tertiary / color=default / light=false
+            progressive: {
+                default: {
+                    background: "transparent",
+                    foreground:
+                        semanticColor.action.outlined.progressive.default
+                            .foreground,
+                },
+                hover: {
+                    border: semanticColor.action.outlined.progressive.hover
+                        .border,
+                },
+                press: {
+                    foreground:
+                        semanticColor.action.outlined.progressive.press
+                            .foreground,
+                },
+                disabled: {
+                    border: semanticColor.action.disabled.default,
+                    foreground: semanticColor.text.disabled,
+                },
             },
-            hover: {
-                border: semanticColor.action.progressiveInverse.hover.border,
+            // kind=tertiary / color=default / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            progressiveLight: {
+                default: {
+                    border: tokens.color.white64,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                press: {
+                    border: semanticColor.border.inverse,
+                    foreground: semanticColor.text.inverse,
+                },
+                disabled: {
+                    border: semanticColor.action.outlined.progressive.press
+                        .background,
+                    foreground: tokens.color.white50,
+                },
             },
-            press: {
-                foreground:
-                    semanticColor.action.progressiveInverse.press.foreground,
+            // kind=tertiary / color=destructive / light=false
+            destructive: {
+                default: {
+                    background: "transparent",
+                    foreground:
+                        semanticColor.action.outlined.destructive.default
+                            .foreground,
+                },
+                hover: {
+                    border: semanticColor.action.outlined.destructive.hover
+                        .border,
+                },
+                press: {
+                    foreground:
+                        semanticColor.action.outlined.destructive.press
+                            .foreground,
+                },
+                disabled: {
+                    border: semanticColor.action.disabled.default,
+                    foreground: semanticColor.text.disabled,
+                },
             },
-            disabled: {
-                border: semanticColor.action.disabled.default,
-                foreground: semanticColor.text.disabled,
-            },
-        },
-        // kind=tertiary / color=default / light=true
-        // NOTE: These colors will be removed from WB as soon as we remove the
-        // light variant.
-        progressiveTertiaryLight: {
-            default: {
-                border: tokens.color.white64,
-                background: "transparent",
-                foreground: semanticColor.text.inverse,
-            },
-            hover: {
-                border: semanticColor.border.inverse,
-                background: "transparent",
-                foreground: semanticColor.text.inverse,
-            },
-            press: {
-                border: semanticColor.border.inverse,
-                foreground: semanticColor.text.inverse,
-            },
-            disabled: {
-                border: semanticColor.action.progressiveInverse.press
-                    .background,
-                foreground: tokens.color.white50,
-            },
-        },
-        // kind=tertiary / color=destructive / light=false
-        destructiveTertiary: {
-            default: {
-                background: "transparent",
-                foreground:
-                    semanticColor.action.destructiveInverse.default.foreground,
-            },
-            hover: {
-                border: semanticColor.action.destructiveInverse.hover.border,
-            },
-            press: {
-                foreground:
-                    semanticColor.action.destructiveInverse.press.foreground,
-            },
-            disabled: {
-                border: semanticColor.action.disabled.default,
-                foreground: semanticColor.text.disabled,
-            },
-        },
-        // kind=tertiary / color=destructive / light=true
-        // NOTE: These colors will be removed from WB as soon as we remove the
-        // light variant.
-        destructiveTertiaryLight: {
-            default: {
-                border: tokens.color.white64,
-                background: "transparent",
-                foreground: semanticColor.text.inverse,
-            },
-            hover: {
-                border: semanticColor.border.inverse,
-                background: "transparent",
-                foreground: semanticColor.text.inverse,
-            },
-            press: {
-                border: semanticColor.border.inverse,
-                foreground: semanticColor.text.inverse,
-            },
-            disabled: {
-                border: semanticColor.action.destructiveInverse.press
-                    .background,
-                foreground: tokens.color.white50,
+            // kind=tertiary / color=destructive / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            destructiveLight: {
+                default: {
+                    border: tokens.color.white64,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                press: {
+                    border: semanticColor.border.inverse,
+                    foreground: semanticColor.text.inverse,
+                },
+                disabled: {
+                    border: semanticColor.action.outlined.destructive.press
+                        .background,
+                    foreground: tokens.color.white50,
+                },
             },
         },
     },

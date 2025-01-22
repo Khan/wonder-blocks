@@ -9,36 +9,38 @@ const secondaryBgColor = tokens.color.offWhite;
  */
 const theme = mergeTheme(defaultTheme, {
     color: {
-        progressiveSecondary: {
-            default: {
-                border: tokens.color.fadedBlue,
-                background: secondaryBgColor,
+        outlined: {
+            progressive: {
+                default: {
+                    border: tokens.color.fadedBlue,
+                    background: secondaryBgColor,
+                },
+                hover: {
+                    background: secondaryBgColor,
+                    icon: tokens.color.fadedBlue16,
+                    foreground:
+                        tokens.semanticColor.action.outlined.progressive.default
+                            .foreground,
+                },
+                press: {
+                    background: tokens.color.fadedBlue8,
+                },
             },
-            hover: {
-                background: secondaryBgColor,
-                icon: tokens.color.fadedBlue16,
-                foreground:
-                    tokens.semanticColor.action.progressiveInverse.default
-                        .foreground,
-            },
-            press: {
-                background: tokens.color.fadedBlue8,
-            },
-        },
-        destructiveSecondary: {
-            default: {
-                border: tokens.color.fadedRed,
-                background: secondaryBgColor,
-            },
-            hover: {
-                background: secondaryBgColor,
-                icon: tokens.color.fadedRed16,
-                foreground:
-                    tokens.semanticColor.action.destructiveInverse.default
-                        .foreground,
-            },
-            press: {
-                background: tokens.color.fadedRed8,
+            destructive: {
+                default: {
+                    border: tokens.color.fadedRed,
+                    background: secondaryBgColor,
+                },
+                hover: {
+                    background: secondaryBgColor,
+                    icon: tokens.color.fadedRed16,
+                    foreground:
+                        tokens.semanticColor.action.outlined.destructive.default
+                            .foreground,
+                },
+                press: {
+                    background: tokens.color.fadedRed8,
+                },
             },
         },
     },
