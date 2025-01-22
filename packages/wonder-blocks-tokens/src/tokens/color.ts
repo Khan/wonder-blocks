@@ -55,7 +55,7 @@ const baseColors: ColorType = {
     teal: "#14bf96",
 };
 
-export const fadedColorWithWhite = (color: string, alpha: number) =>
+const fadedColorWithWhite = (color: string, alpha: number) =>
     mix(fade(color, alpha), baseColors.white);
 
 export const color = {
@@ -90,7 +90,6 @@ export const color = {
     eggplant: eggplant,
     fadedEggplant8: fadedColorWithWhite(eggplant, 0.08),
     // Faded versions of offBlack
-    // fadedOffBlack72: fadedColorWithWhite(offBlack, 0.72),
     fadedOffBlack64: fadedColorWithWhite(offBlack, 0.64),
     fadedOffBlack50: fadedColorWithWhite(offBlack, 0.5),
     fadedOffBlack32: fadedColorWithWhite(offBlack, 0.32),
