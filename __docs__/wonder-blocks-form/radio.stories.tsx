@@ -22,6 +22,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in radio-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof Radio>;
 
@@ -32,25 +36,12 @@ export const Default: StoryComponentType = {
     },
 };
 
-Default.parameters = {
-    chromatic: {
-        // We already have screenshots of another story that covers
-        // this and more cases.
-        disableSnapshot: true,
-    },
-};
-
 export const Controlled: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
     return <Radio checked={checked} onChange={setChecked} />;
 };
 
 Controlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, it tests
-        // that the `checked` state works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `Use state to keep track of whether

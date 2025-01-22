@@ -1,7 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    spacing,
+    semanticColor,
+} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
@@ -24,8 +28,6 @@ function mapCheckedToAriaChecked(value: Checked): AriaChecked {
             return "mixed";
     }
 }
-
-const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = color;
 
 // The checkbox size
 const size = spacing.medium_16;
@@ -69,7 +71,11 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
 
     const checkboxIcon = (
         <PhosphorIcon
-            color={disabled ? offBlack32 : white}
+            color={
+                disabled
+                    ? semanticColor.action.disabled.default
+                    : semanticColor.icon.inverse
+            }
             icon={checked ? checkIcon : minusIcon}
             size="small"
             style={[
@@ -133,15 +139,15 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: 1,
+        borderWidth: border.width.hairline,
         borderRadius: 3,
     },
 
     disabled: {
         cursor: "auto",
-        backgroundColor: offWhite,
-        borderColor: offBlack16,
-        borderWidth: 1,
+        backgroundColor: semanticColor.action.disabled.secondary,
+        borderColor: semanticColor.border.primary,
+        borderWidth: border.width.hairline,
     },
 
     checkboxIcon: {
@@ -152,24 +158,6 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-const fadedBlue = mix(color.fadedBlue16, white);
-const activeBlue = color.activeBlue;
-const fadedRed = mix(color.fadedRed8, white);
-const activeRed = color.activeRed;
-
-const colors = {
-    default: {
-        faded: fadedBlue,
-        base: blue,
-        active: activeBlue,
-    },
-    error: {
-        faded: fadedRed,
-        base: red,
-        active: activeRed,
-    },
-} as const;
-
 const styles: Record<string, any> = {};
 
 const _generateStyles = (checked: Checked, error: boolean) => {
@@ -179,55 +167,72 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         return styles[styleKey];
     }
 
-    const palette = error ? colors.error : colors.default;
+    const isCheckedOrIndeterminate = checked || checked == null;
+    const actionType = error ? "destructive" : "progressive";
+    const styleType = isCheckedOrIndeterminate ? "filled" : "outlined";
+
+    const colorAction = semanticColor.action[styleType][actionType];
 
     let newStyles: Record<string, any> = {};
-    if (checked || checked == null) {
+
+    if (isCheckedOrIndeterminate) {
         newStyles = {
             default: {
-                backgroundColor: palette.base,
-                borderWidth: 0,
+                backgroundColor: colorAction.default.background,
+                borderColor: colorAction.default.border,
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
                 ":focus-visible": {
-                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
+                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outlineOffset: 1,
                 },
 
                 ":hover": {
-                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
+                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outlineOffset: 1,
                 },
 
                 ":active": {
-                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.active}`,
-                    background: palette.active,
+                    outline: `${border.width.thin}px solid ${colorAction.press.border}`,
+                    outlineOffset: 1,
+                    background: colorAction.press.background,
                 },
             },
         };
+        // Unchecked state
     } else {
         newStyles = {
             default: {
-                backgroundColor: error ? fadedRed : white,
-                borderColor: error ? red : offBlack50,
+                backgroundColor: error
+                    ? semanticColor.status.critical.background
+                    : colorAction.default.background,
+                borderColor: error
+                    ? semanticColor.status.critical.foreground
+                    : colorAction.default.border,
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
                 ":focus-visible": {
-                    backgroundColor: error ? fadedRed : white,
-                    borderColor: palette.base,
-                    borderWidth: 2,
+                    backgroundColor: error
+                        ? semanticColor.status.critical.background
+                        : colorAction.hover.background,
+                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outlineOffset: -1,
                 },
 
                 ":hover": {
-                    backgroundColor: error ? fadedRed : white,
-                    borderColor: palette.base,
-                    borderWidth: 2,
+                    backgroundColor: error
+                        ? semanticColor.status.critical.background
+                        : colorAction.hover.background,
+                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outlineOffset: -1,
                 },
 
                 ":active": {
-                    backgroundColor: palette.faded,
-                    borderColor: error ? activeRed : blue,
-                    borderWidth: 2,
+                    backgroundColor: colorAction.press.background,
+                    outline: `${border.width.thin}px solid ${colorAction.press.border}`,
+                    outlineOffset: -1,
                 },
             },
         };
