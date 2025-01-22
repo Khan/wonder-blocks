@@ -60,7 +60,7 @@ const disabledChecked = {
     height: size / 2,
     width: size / 2,
     borderRadius: "50%",
-    backgroundColor: semanticColor.action.disabled.secondary,
+    backgroundColor: semanticColor.action.disabled.default,
 } as const;
 const sharedStyles = StyleSheet.create({
     // Reset the default styled input element
