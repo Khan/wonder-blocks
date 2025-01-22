@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core";
@@ -94,7 +94,7 @@ const DetailCell = function (props: DetailCellProps): React.ReactElement {
 
 const styles = StyleSheet.create({
     subtitle: {
-        color: "#6D6F74", // TODO: use token
+        color: semanticColor.text.secondary,
     },
 
     // This is to override the default padding of the CellCore innerWrapper.
