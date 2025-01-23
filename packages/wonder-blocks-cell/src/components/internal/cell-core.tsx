@@ -125,6 +125,9 @@ function CellInner(props: CellCoreProps): React.ReactElement {
                 horizontalRuleStyles,
                 active && styles.activeInnerWrapper,
             ]}
+            // Set className so we can set styles on the inner wrapper directly
+            // when the clickable element is pressed
+            className="inner-wrapper"
         >
             {/* Left accessory */}
             <LeftAccessory
@@ -345,11 +348,13 @@ const styles = StyleSheet.create({
             background: color.fadedBlue8,
         },
         // press + enabled + not currently selected (active prop: false)
-        // Using the first child to apply the left bar indicator on the pressed
-        // state because setting the styles on the clickable element
-        // directly causes issues since overflow must be hidden for cases where
-        // the border is rounded
-        [":active[aria-disabled=false]:not([aria-current=true]) > *:first-child" as any]:
+        // We apply the left bar indicator styles on the inner-wrapper element
+        // instead of the clickable element directly because we need to hide the
+        // left bar overflow when custom cell styles apply a border-radius. We
+        // have overflow: hidden on the inner wrapper instead of the clickable element
+        // because setting it on the clickable element causes issues with existing
+        // cases.
+        [":active[aria-disabled=false]:not([aria-current=true]) .inner-wrapper" as any]:
             {
                 position: "relative",
                 ":before": {
