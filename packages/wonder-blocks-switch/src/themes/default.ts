@@ -1,29 +1,35 @@
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
+const {semanticColor} = tokens;
+
+// The color of the switch is based on the action color.
+const action = semanticColor.action.outlined.progressive;
+
 const theme = {
     color: {
         bg: {
             switch: {
-                off: tokens.color.offBlack50,
-                disabledOff: tokens.color.offBlack32,
-                activeOff: tokens.color.offBlack64,
-                on: tokens.color.blue,
-                disabledOn: tokens.color.fadedBlue,
-                activeOn: tokens.color.activeBlue,
+                off: action.default.border,
+                disabledOff: semanticColor.action.disabled.default,
+                activeOff: semanticColor.text.secondary,
+                on: action.default.foreground,
+                disabledOn: action.press.background,
+                activeOn: action.press.foreground,
             },
             slider: {
-                on: tokens.color.white,
-                off: tokens.color.white,
+                on: semanticColor.icon.inverse,
+                off: semanticColor.icon.inverse,
             },
             icon: {
-                on: tokens.color.blue,
-                disabledOn: tokens.color.fadedBlue,
-                off: tokens.color.offBlack50,
-                disabledOff: tokens.color.offBlack32,
+                on: action.default.foreground,
+                disabledOn: action.press.background,
+                off: action.default.border,
+                disabledOff: action.press.background,
             },
         },
         outline: {
-            default: tokens.color.blue,
+            // TODO(WB-1856): Change with global focus token
+            default: action.hover.border,
         },
     },
     border: {
