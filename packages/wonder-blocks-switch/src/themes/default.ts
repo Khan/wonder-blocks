@@ -24,7 +24,7 @@ const theme = {
                 on: action.default.foreground,
                 disabledOn: action.press.background,
                 off: action.default.border,
-                disabledOff: action.press.background,
+                disabledOff: semanticColor.action.disabled.default,
             },
         },
         outline: {
