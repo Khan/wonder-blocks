@@ -43,6 +43,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in switch-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
     argTypes: SwitchArgtypes,
 } as Meta<typeof Switch>;

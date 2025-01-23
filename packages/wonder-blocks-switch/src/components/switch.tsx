@@ -155,6 +155,10 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         ":hover": {
             outline: "none",
         },
+        ":focus-within": {
+            outline: `solid ${theme.size.width.small}px ${theme.color.outline.default}`,
+            outlineOffset: theme.size.offset.default,
+        },
     },
     slider: {
         position: "absolute",
