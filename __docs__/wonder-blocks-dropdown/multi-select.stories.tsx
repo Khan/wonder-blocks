@@ -59,7 +59,6 @@ export default {
         error: false,
         opened: false,
         disabled: false,
-        light: false,
         shortcuts: false,
         implicitAllEnabled: false,
         id: "",

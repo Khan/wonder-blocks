@@ -95,11 +95,6 @@ type DefaultProps = Readonly<{
      */
     labels: LabelsValues;
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean;
-    /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
     selectionType: "single" | "multi";
@@ -212,11 +207,6 @@ type ExportProps = Readonly<{
      */
     labels?: LabelsValues;
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light?: boolean;
-    /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
     selectionType?: "single" | "multi";
@@ -298,7 +288,6 @@ class DropdownCore extends React.Component<Props, State> {
             noResults: defaultLabels.noResults,
             someResults: defaultLabels.someSelected,
         },
-        light: false,
         selectionType: "single",
     };
 
@@ -984,7 +973,6 @@ class DropdownCore extends React.Component<Props, State> {
             "aria-required": ariaRequired,
             dropdownStyle,
             isFilterable,
-            light,
             openerElement,
             role,
             id,
@@ -1005,7 +993,6 @@ class DropdownCore extends React.Component<Props, State> {
                 onMouseUp={this.handleDropdownMouseUp}
                 style={[
                     styles.dropdown,
-                    light && styles.light,
                     isReferenceHidden && styles.hidden,
                     dropdownStyle,
                 ]}
@@ -1114,11 +1101,6 @@ const styles = StyleSheet.create({
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
         maxHeight: "var(--popper-max-height)",
-    },
-
-    light: {
-        // Pretty much just remove the border
-        border: "none",
     },
 
     listboxOrMenu: {

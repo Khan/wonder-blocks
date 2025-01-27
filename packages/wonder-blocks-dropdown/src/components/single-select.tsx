@@ -78,11 +78,6 @@ type DefaultProps = Readonly<{
      */
     error?: boolean;
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the component is used on a dark background.
-     */
-    light?: boolean;
-    /**
      * The object containing the custom labels and placeholder values used inside this component.
      */
     labels?: SingleSelectLabelsValues;
@@ -263,7 +258,6 @@ const SingleSelect = (props: Props) => {
         error = false,
         id,
         opener,
-        light = false,
         placeholder,
         selectedValue,
         testId,
@@ -477,7 +471,6 @@ const SingleSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             error={hasError}
                             isPlaceholder={!selectedItem}
-                            light={light}
                             onOpenChanged={handleOpenChanged}
                             open={open}
                             ref={handleOpenerRef}
@@ -522,7 +515,6 @@ const SingleSelect = (props: Props) => {
                     ]}
                     initialFocusedIndex={selectedIndex.current}
                     items={items}
-                    light={light}
                     onOpenChanged={handleOpenChanged}
                     open={open}
                     opener={renderOpener(isDisabled, uniqueDropdownId)}

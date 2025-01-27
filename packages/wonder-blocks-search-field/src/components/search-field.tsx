@@ -9,7 +9,7 @@ import {View, Id} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants";
@@ -47,10 +47,6 @@ type Props = AriaProps & {
      * Defaults to false.
      */
     disabled?: boolean;
-    /**
-     * Changes the default focus ring color to fit a dark background.
-     */
-    light?: boolean;
     /**
      * Custom styles for the main wrapper.
      */
@@ -141,7 +137,6 @@ const SearchField: React.ForwardRefExoticComponent<
         clearAriaLabel = defaultLabels.clearSearch,
         autoFocus,
         disabled = false,
-        light = false,
         id,
         value,
         placeholder,
@@ -199,9 +194,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         size="small"
                         color={
                             disabled
-                                ? light
-                                    ? color.white32
-                                    : semanticColor.action.disabled.default
+                                ? semanticColor.action.disabled.default
                                 : semanticColor.icon.primary
                         }
                         style={styles.searchIcon}
@@ -212,7 +205,6 @@ const SearchField: React.ForwardRefExoticComponent<
                         type="text"
                         autoFocus={autoFocus}
                         disabled={disabled}
-                        light={light}
                         instantValidation={instantValidation}
                         validate={validate}
                         onValidate={onValidate}
