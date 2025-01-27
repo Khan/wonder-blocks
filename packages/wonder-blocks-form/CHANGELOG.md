@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.0.0
+
+### Major Changes
+
+-   8d26588f: Remove `light` variant from LabeledTextField, TextField and TextArea"
+
+### Patch Changes
+
+-   Updated dependencies [0de25cd8]
+    -   @khanacademy/wonder-blocks-tokens@4.0.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.6
+    -   @khanacademy/wonder-blocks-layout@3.0.6
+
 ## 6.0.6
 
 ### Patch Changes
