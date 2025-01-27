@@ -234,53 +234,75 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         return stateStyles[styleKey];
     }
 
-    const focusHoverStyling = {
-        outlineColor: error
-            ? semanticColor.action.outlined.destructive.hover.border
-            : semanticColor.action.outlined.progressive.hover.border,
-        // Outline sits inside the border (inset)
-        outlineOffset: -border.width.thin,
-        outlineStyle: "solid",
-        outlineWidth: border.width.thin,
+    // The different states that the component can be in.
+    const states = {
+        // Resting state
+        default: {
+            border: semanticColor.border.strong,
+            background: semanticColor.surface.primary,
+            foreground: semanticColor.text.primary,
+        },
+        disabled: {
+            border: semanticColor.border.primary,
+            background: semanticColor.action.disabled.secondary,
+            foreground: semanticColor.text.secondary,
+        },
+        // Form validation error state
+        error: {
+            border: semanticColor.status.critical.foreground,
+            background: semanticColor.status.critical.background,
+            foreground: semanticColor.text.primary,
+        },
     };
-    const pressStyling = {
-        background: error
-            ? semanticColor.action.outlined.destructive.press.background
-            : semanticColor.action.outlined.progressive.press.background,
-        color: placeholder
-            ? error
-                ? semanticColor.text.secondary
-                : semanticColor.action.outlined.progressive.press.foreground
-            : semanticColor.text.primary,
-        outlineColor: error
-            ? semanticColor.action.outlined.destructive.press.border
-            : semanticColor.action.outlined.progressive.press.border,
+
+    // The color is based on the action color.
+    const actionType = error ? "destructive" : "progressive";
+    // NOTE: We are using the outlined action type for all the non-resting
+    // states as the opener is a bit different from a regular button in its
+    // resting/default state.
+    const action = semanticColor.action.outlined[actionType];
+
+    // TODO(WB-1856): Define global semantic outline tokens.
+    const sharedOutlineStyling = {
         // Outline sits inside the border (inset)
         outlineOffset: -border.width.thin,
         outlineStyle: "solid",
         outlineWidth: border.width.thin,
     };
 
+    const focusHoverStyling = {
+        // TODO(WB-1856): Use `border.focus` when we define a global pattern for
+        // focus indicators.
+        outlineColor: action.hover.border,
+        ...sharedOutlineStyling,
+    };
+    const pressStyling = {
+        background: action.press.background,
+        color: placeholder
+            ? error
+                ? semanticColor.text.secondary
+                : semanticColor.action.outlined.progressive.press.foreground
+            : semanticColor.text.primary,
+        outlineColor: action.press.border,
+        ...sharedOutlineStyling,
+    };
+
+    const currentState = error ? states.error : states.default;
+
     const newStyles = {
         default: {
-            background: error
-                ? semanticColor.status.critical.background
-                : semanticColor.surface.primary,
-            borderColor: error
-                ? semanticColor.status.critical.foreground
-                : semanticColor.border.strong,
+            background: currentState.background,
+            borderColor: currentState.border,
             borderWidth: border.width.hairline,
             color: placeholder
                 ? semanticColor.text.secondary
-                : semanticColor.text.primary,
+                : currentState.foreground,
             ":hover:not([aria-disabled=true])": focusHoverStyling,
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
             ["@media not (hover: hover)"]: {
                 ":hover:not([aria-disabled=true])": {
-                    borderColor: error
-                        ? semanticColor.status.critical.foreground
-                        : semanticColor.border.strong,
+                    borderColor: currentState.border,
                     borderWidth: border.width.hairline,
                     paddingLeft: spacing.medium_16,
                     paddingRight: spacing.small_12,
@@ -290,15 +312,15 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             ":active:not([aria-disabled=true])": pressStyling,
         },
         disabled: {
-            background: semanticColor.action.disabled.secondary,
-            borderColor: semanticColor.border.primary,
-            color: semanticColor.text.secondary,
+            background: states.disabled.background,
+            borderColor: states.disabled.border,
+            color: states.disabled.foreground,
             cursor: "not-allowed",
             ":focus-visible": {
+                // TODO(WB-1856): Use `border.focus` when we define a global
+                // pattern for focus indicators.
                 outlineColor: semanticColor.action.disabled.default,
-                outlineOffset: -border.width.thin,
-                outlineStyle: "solid",
-                outlineWidth: border.width.thin,
+                ...sharedOutlineStyling,
             },
         },
         press: pressStyling,
