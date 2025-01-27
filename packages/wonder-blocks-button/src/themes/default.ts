@@ -134,6 +134,8 @@ const theme = {
                     background:
                         semanticColor.action.outlined.progressive.press
                             .background,
+                    // NOTE: Using primitive token, but this will go away once
+                    // we remove the light variant.
                     foreground: tokens.color.white50,
                 },
             },
@@ -298,6 +300,7 @@ const theme = {
         },
         offset: {
             primary: tokens.spacing.xxxxSmall_2,
+            secondary: -tokens.spacing.xxxxSmall_2,
         },
         radius: {
             // default

@@ -362,7 +362,8 @@ export const _generateStyles = (
         const themeColorAction = theme.color.filled[colorToAction];
 
         const focusStyling = {
-            outlineColor: themeColorAction.default.background,
+            // TODO(WB-1856): Change with global focus token
+            outlineColor: themeColorAction.hover.border,
             outlineOffset: theme.border.offset.primary,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
@@ -406,16 +407,15 @@ export const _generateStyles = (
 
         const focusStyling = {
             background: themeColorAction.hover.background,
-            borderColor: "transparent",
             outlineColor: themeColorAction.hover.border,
             outlineStyle: "solid",
+            outlineOffset: theme.border.offset.secondary,
             outlineWidth: theme.border.width.focused,
         };
 
         const activePressedStyling = {
             background: themeColorAction.press.background,
             color: themeColorAction.press.foreground,
-            borderColor: "transparent",
             outlineColor: themeColorAction.press.border,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
@@ -444,8 +444,9 @@ export const _generateStyles = (
                 borderColor: themeColorAction.disabled.border,
                 cursor: "default",
                 ":focus-visible": {
-                    borderColor: themeColorAction.disabled.foreground,
-                    outlineColor: themeColorAction.disabled.foreground,
+                    borderColor: themeColorAction.disabled.border,
+                    outlineColor: themeColorAction.disabled.border,
+                    outlineOffset: theme.border.offset.secondary,
                     outlineStyle: "solid",
                     outlineWidth: theme.border.width.disabled,
                 },
@@ -490,18 +491,16 @@ export const _generateStyles = (
             focused: focusStyling,
             pressed: activePressedStyling,
             disabled: {
-                // NOTE: This is an special case to handle the light color
-                color: themeColorAction.disabled.border,
+                color: themeColorAction.disabled.foreground,
                 cursor: "default",
                 ":focus-visible": {
-                    outlineColor: themeColorAction.disabled.foreground,
+                    outlineColor: themeColorAction.disabled.border,
                     outlineStyle: "solid",
                     outlineWidth: theme.border.width.disabled,
                 },
             },
             disabledFocus: {
-                // NOTE: This is an special case to handle the light color
-                outlineColor: themeColorAction.disabled.foreground,
+                outlineColor: themeColorAction.disabled.border,
             },
         };
     } else {
