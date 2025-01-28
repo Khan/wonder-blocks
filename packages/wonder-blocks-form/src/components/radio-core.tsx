@@ -140,7 +140,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                 // up with keyboard navigation.
                 ":focus-visible": {
                     // TODO(WB-1856): Define global pattern for focus styles
-                    outline: `${border.width.thin}px solid ${semanticColor.border.focus}`,
+                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
                 },
 
@@ -171,7 +171,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                         ? states.error.background
                         : colorAction.hover.background,
                     // TODO(WB-1856): Define global pattern for focus styles
-                    outline: `${border.width.thin}px solid ${semanticColor.border.focus}`,
+                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
                     outlineOffset: -1,
                 },
 
