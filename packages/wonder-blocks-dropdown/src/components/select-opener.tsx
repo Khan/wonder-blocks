@@ -6,7 +6,11 @@ import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import caretDownIcon from "@phosphor-icons/core/bold/caret-down-bold.svg";
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 import {OptionLabel} from "../util/types";
@@ -138,8 +142,8 @@ export default class SelectOpener extends React.Component<
         const stateStyles = _generateStyles(isPlaceholder, error);
 
         const iconColor = disabled
-            ? tokens.color.offBlack32
-            : tokens.color.offBlack64;
+            ? semanticColor.action.disabled.default
+            : semanticColor.icon.primary;
 
         const style = [
             styles.shared,
@@ -189,15 +193,15 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "space-between",
-        color: tokens.color.offBlack,
+        color: semanticColor.text.primary,
         height: DROPDOWN_ITEM_HEIGHT,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.
-        paddingLeft: tokens.spacing.medium_16,
-        paddingRight: tokens.spacing.small_12,
+        paddingLeft: spacing.medium_16,
+        paddingRight: spacing.small_12,
         borderWidth: 0,
-        borderRadius: tokens.border.radius.medium_4,
+        borderRadius: border.radius.medium_4,
         borderStyle: "solid",
         outline: "none",
         textDecoration: "none",
@@ -209,7 +213,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        marginRight: tokens.spacing.xSmall_8,
+        marginRight: spacing.xSmall_8,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",
@@ -221,12 +225,6 @@ const styles = StyleSheet.create({
     },
 });
 
-// These values are default padding (16 and 12) minus 1, because
-// changing the borderWidth to 2 messes up the button width
-// and causes it to move a couple pixels. This fixes that.
-const adjustedPaddingLeft = tokens.spacing.medium_16 - 1;
-const adjustedPaddingRight = tokens.spacing.small_12 - 1;
-
 const stateStyles: Record<string, any> = {};
 
 const _generateStyles = (placeholder: boolean, error: boolean) => {
@@ -236,54 +234,96 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         return stateStyles[styleKey];
     }
 
-    const focusHoverStyling = {
-        borderColor: error ? tokens.color.red : tokens.color.blue,
-        borderWidth: tokens.border.width.thin,
-        paddingLeft: adjustedPaddingLeft,
-        paddingRight: adjustedPaddingRight,
-    };
-    const activePressedStyling = {
-        background: error ? tokens.color.fadedRed : tokens.color.fadedBlue,
-        borderColor: error ? tokens.color.red : tokens.color.activeBlue,
-        borderWidth: tokens.border.width.thin,
-        paddingLeft: adjustedPaddingLeft,
-        paddingRight: adjustedPaddingRight,
+    // The different states that the component can be in.
+    const states = {
+        // Resting state
+        default: {
+            border: semanticColor.border.strong,
+            background: semanticColor.surface.primary,
+            foreground: semanticColor.text.primary,
+        },
+        disabled: {
+            border: semanticColor.border.primary,
+            background: semanticColor.action.disabled.secondary,
+            foreground: semanticColor.text.secondary,
+        },
+        // Form validation error state
+        error: {
+            border: semanticColor.status.critical.foreground,
+            background: semanticColor.status.critical.background,
+            foreground: semanticColor.text.primary,
+        },
     };
 
-    const newStyles: Record<string, any> = {
+    // The color is based on the action color.
+    const actionType = error ? "destructive" : "progressive";
+    // NOTE: We are using the outlined action type for all the non-resting
+    // states as the opener is a bit different from a regular button in its
+    // resting/default state.
+    const action = semanticColor.action.outlined[actionType];
+
+    // TODO(WB-1856): Define global semantic outline tokens.
+    const sharedOutlineStyling = {
+        // Outline sits inside the border (inset)
+        outlineOffset: -border.width.thin,
+        outlineStyle: "solid",
+        outlineWidth: border.width.thin,
+    };
+
+    const focusHoverStyling = {
+        // TODO(WB-1856): Use `border.focus` when we define a global pattern for
+        // focus indicators.
+        outlineColor: action.hover.border,
+        ...sharedOutlineStyling,
+    };
+    const pressStyling = {
+        background: action.press.background,
+        color: placeholder
+            ? error
+                ? semanticColor.text.secondary
+                : semanticColor.action.outlined.progressive.press.foreground
+            : semanticColor.text.primary,
+        outlineColor: action.press.border,
+        ...sharedOutlineStyling,
+    };
+
+    const currentState = error ? states.error : states.default;
+
+    const newStyles = {
         default: {
-            background: error ? tokens.color.fadedRed8 : tokens.color.white,
-            borderColor: error ? tokens.color.red : tokens.color.offBlack50,
-            borderWidth: tokens.border.width.hairline,
+            background: currentState.background,
+            borderColor: currentState.border,
+            borderWidth: border.width.hairline,
             color: placeholder
-                ? tokens.color.offBlack64
-                : tokens.color.offBlack,
+                ? semanticColor.text.secondary
+                : currentState.foreground,
             ":hover:not([aria-disabled=true])": focusHoverStyling,
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
             ["@media not (hover: hover)"]: {
                 ":hover:not([aria-disabled=true])": {
-                    borderColor: error
-                        ? tokens.color.red
-                        : tokens.color.offBlack50,
-                    borderWidth: tokens.border.width.hairline,
-                    paddingLeft: tokens.spacing.medium_16,
-                    paddingRight: tokens.spacing.small_12,
+                    borderColor: currentState.border,
+                    borderWidth: border.width.hairline,
+                    paddingLeft: spacing.medium_16,
+                    paddingRight: spacing.small_12,
                 },
             },
             ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
-            ":active:not([aria-disabled=true])": activePressedStyling,
+            ":active:not([aria-disabled=true])": pressStyling,
         },
         disabled: {
-            background: tokens.color.offWhite,
-            borderColor: tokens.color.offBlack16,
-            color: tokens.color.offBlack64,
+            background: states.disabled.background,
+            borderColor: states.disabled.border,
+            color: states.disabled.foreground,
             cursor: "not-allowed",
             ":focus-visible": {
-                boxShadow: `0 0 0 1px ${tokens.color.white}, 0 0 0 3px ${tokens.color.offBlack32}`,
+                // TODO(WB-1856): Use `border.focus` when we define a global
+                // pattern for focus indicators.
+                outlineColor: semanticColor.action.disabled.default,
+                ...sharedOutlineStyling,
             },
         },
-        press: activePressedStyling,
+        press: pressStyling,
     };
 
     stateStyles[styleKey] = StyleSheet.create(newStyles);
