@@ -180,7 +180,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
     // The different states that the component can be in.
     const states = {
-        // Resting state
+        // Resting state (shared between checked and unchecked)
         default: {
             border: colorAction.default.border,
             background: colorAction.default.background,

@@ -109,8 +109,12 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
     // The different states that the component can be in.
     const states = {
-        // Resting state
-        default: {
+        // Resting state (unchecked)
+        unchecked: {
+            border: semanticColor.border.strong,
+            background: colorAction.default.background,
+        },
+        checked: {
             // NOTE: This is a special case where the border is the same color
             // as the foreground. This should change as soon as we simplify the
             // existing `action` tokens.
@@ -128,8 +132,8 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     if (checked) {
         newStyles = {
             default: {
-                backgroundColor: states.default.background,
-                borderColor: states.default.border,
+                backgroundColor: states.checked.background,
+                borderColor: states.checked.border,
                 borderWidth: size / 4,
 
                 // Focus and hover have the same style. Focus style only shows
@@ -153,7 +157,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
             },
         };
     } else {
-        const currentState = error ? states.error : states.default;
+        const currentState = error ? states.error : states.unchecked;
 
         newStyles = {
             default: {
