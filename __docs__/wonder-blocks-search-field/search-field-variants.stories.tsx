@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
@@ -123,9 +123,6 @@ export const Active: StoryComponentType = {
 };
 
 const styles = StyleSheet.create({
-    darkDefault: {
-        backgroundColor: color.darkBlue,
-    },
     statesContainer: {
         padding: spacing.medium_16,
     },
