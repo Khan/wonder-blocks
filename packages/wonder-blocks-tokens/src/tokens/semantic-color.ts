@@ -156,6 +156,7 @@ export const semanticColor = {
         inverse: color.white,
         action: color.blue,
         destructive: color.red,
+        disabled: color.fadedOffBlack32,
     },
     /**
      * Colors to be used exclusively for Khanmigo or to communicate a
