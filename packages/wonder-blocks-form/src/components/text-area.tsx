@@ -304,6 +304,27 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
 const VERTICAL_SPACING_PX = 10;
 
+// The different states that the component can be in.
+const states = {
+    // Resting state
+    default: {
+        border: semanticColor.border.strong,
+        background: semanticColor.surface.primary,
+        foreground: semanticColor.text.primary,
+    },
+    disabled: {
+        border: semanticColor.border.primary,
+        background: semanticColor.action.disabled.secondary,
+        foreground: semanticColor.text.secondary,
+    },
+    // Form validation error state
+    error: {
+        border: semanticColor.status.critical.foreground,
+        background: semanticColor.status.critical.background,
+        foreground: semanticColor.text.primary,
+    },
+};
+
 const styles = StyleSheet.create({
     textarea: {
         borderRadius: border.radius.medium_4,
@@ -317,9 +338,9 @@ const styles = StyleSheet.create({
         }px`,
     },
     default: {
-        background: semanticColor.surface.primary,
-        border: `${border.width.hairline}px solid ${semanticColor.border.strong}`,
-        color: semanticColor.text.primary,
+        background: states.default.background,
+        border: `${border.width.hairline}px solid ${states.default.border}`,
+        color: states.default.foreground,
         "::placeholder": {
             color: semanticColor.text.secondary,
         },
@@ -334,28 +355,30 @@ const styles = StyleSheet.create({
         },
     },
     disabled: {
-        background: semanticColor.action.disabled.secondary,
-        border: `${border.width.hairline}px solid ${semanticColor.border.primary}`,
-        color: semanticColor.text.secondary,
+        background: states.disabled.background,
+        border: `${border.width.hairline}px solid ${states.disabled.border}`,
+        color: states.disabled.foreground,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: states.disabled.foreground,
         },
         cursor: "not-allowed",
         ":focus-visible": {
+            // TODO(WB-1856): Verify if we can use the global focus color
             outline: `${border.width.thin}px solid ${semanticColor.action.disabled.default}`,
             outlineOffset: -3,
         },
     },
     error: {
-        background: semanticColor.status.critical.background,
-        border: `${border.width.hairline}px solid ${semanticColor.status.critical.foreground}`,
-        color: semanticColor.text.primary,
+        background: states.error.background,
+        border: `${border.width.hairline}px solid ${states.error.border}`,
+        color: states.error.foreground,
         "::placeholder": {
             color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            outlineColor: semanticColor.status.critical.foreground,
-            borderColor: semanticColor.status.critical.foreground,
+            // TODO(WB-1856): Verify if we can use the global focus color
+            outlineColor: states.error.border,
+            borderColor: states.error.border,
         },
     },
 });
