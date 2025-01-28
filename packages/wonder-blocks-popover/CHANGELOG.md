@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-popover
 
+## 5.0.5
+
+### Patch Changes
+
+-   c9b03476: Fixes bug where `focus-manager` overrides all tab indices within popover
+
 ## 5.0.4
 
 ### Patch Changes
