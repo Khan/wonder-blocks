@@ -177,4 +177,50 @@ describe("FocusManager", () => {
         // Assert
         expect(focusableElementInside).toHaveAttribute("tabIndex", "-1");
     });
+
+    it("should keep the original focusability of the internal elements when tabindex is set explicitly", async () => {
+        // Arrange
+        const externalNodes = (
+            <div>
+                <button>Open popover</button>
+            </div>
+        );
+        render(externalNodes);
+
+        // get the anchor reference to be able pass it to the FocusManager
+        const anchorElementNode = await screen.findByRole("button", {
+            name: "Open popover",
+        });
+
+        render(
+            <FocusManager anchorElement={anchorElementNode}>
+                <div>
+                    <button tabIndex={0}>first focusable element inside</button>
+                    <button tabIndex={-1}>
+                        second focusable element inside
+                    </button>
+                    <button>third focusable element inside</button>
+                </div>
+            </FocusManager>,
+        );
+
+        // Act
+        // focus on the previous element before the popover (anchor element)
+        anchorElementNode.focus();
+
+        const firstFocusableElementInside = await screen.findByText(
+            "first focusable element inside",
+        );
+        const secondFocusableElementInside = await screen.findByText(
+            "second focusable element inside",
+        );
+        const thirdFocusableElementInside = await screen.findByText(
+            "third focusable element inside",
+        );
+
+        // Assert
+        expect(firstFocusableElementInside).toHaveAttribute("tabIndex", "0"); // explicit set to 0
+        expect(secondFocusableElementInside).toHaveAttribute("tabIndex", "-1"); // explicit set to -1
+        expect(thirdFocusableElementInside).toHaveAttribute("tabIndex", "0"); // not set, should default to 0
+    });
 });
