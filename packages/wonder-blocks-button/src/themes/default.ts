@@ -15,7 +15,6 @@ const theme = {
         filled: {
             // kind=primary / color=default / light=false
             progressive: {
-                // filled
                 ...semanticColor.action.filled.progressive,
                 disabled: {
                     border: semanticColor.action.disabled.default,
@@ -29,6 +28,10 @@ const theme = {
             // light variant.
             progressiveLight: {
                 ...semanticColor.action.outlined.progressive,
+                hover: {
+                    ...semanticColor.action.outlined.progressive.hover,
+                    border: semanticColor.border.inverse,
+                },
                 press: {
                     ...semanticColor.action.outlined.progressive.press,
                     border: semanticColor.action.outlined.progressive.press
@@ -59,6 +62,10 @@ const theme = {
             // light variant.
             destructiveLight: {
                 ...semanticColor.action.outlined.destructive,
+                hover: {
+                    ...semanticColor.action.outlined.progressive.hover,
+                    border: semanticColor.border.inverse,
+                },
                 press: {
                     ...semanticColor.action.outlined.destructive.press,
                     border: semanticColor.action.outlined.destructive.press
@@ -122,7 +129,7 @@ const theme = {
                     icon: "transparent",
                 },
                 press: {
-                    border: semanticColor.border.inverse,
+                    border: tokens.color.fadedBlue,
                     background:
                         semanticColor.action.filled.progressive.press
                             .background,
@@ -173,7 +180,7 @@ const theme = {
                     icon: "transparent",
                 },
                 press: {
-                    border: semanticColor.border.inverse,
+                    border: tokens.color.fadedRed,
                     background:
                         semanticColor.action.filled.destructive.press
                             .background,
@@ -233,7 +240,7 @@ const theme = {
                 },
                 press: {
                     border: semanticColor.border.inverse,
-                    foreground: semanticColor.text.inverse,
+                    foreground: tokens.color.fadedBlue,
                 },
                 disabled: {
                     border: semanticColor.action.outlined.progressive.press
@@ -279,7 +286,7 @@ const theme = {
                 },
                 press: {
                     border: semanticColor.border.inverse,
-                    foreground: semanticColor.text.inverse,
+                    foreground: tokens.color.fadedRed,
                 },
                 disabled: {
                     border: semanticColor.action.outlined.destructive.press
