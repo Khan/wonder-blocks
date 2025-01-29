@@ -552,7 +552,9 @@ export const CustomRootStyle = {
 
 const styles = StyleSheet.create({
     example: {
+        backgroundColor: color.offWhite,
         padding: spacing.large_24,
+        width: 376,
     },
     navigation: {
         border: `1px dashed ${color.purple}`,
