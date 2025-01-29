@@ -73,7 +73,7 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
         <PhosphorIcon
             color={
                 disabled
-                    ? semanticColor.action.disabled.default
+                    ? semanticColor.icon.disabled
                     : semanticColor.icon.inverse
             }
             icon={checked ? checkIcon : minusIcon}
@@ -122,6 +122,11 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
     );
 });
 
+const disabledState = {
+    border: semanticColor.border.primary,
+    background: semanticColor.action.disabled.secondary,
+};
+
 const sharedStyles = StyleSheet.create({
     // Reset the default styled input element
     inputReset: {
@@ -140,13 +145,13 @@ const sharedStyles = StyleSheet.create({
         boxSizing: "border-box",
         borderStyle: "solid",
         borderWidth: border.width.hairline,
-        borderRadius: 3,
+        borderRadius: border.radius.small_3,
     },
 
     disabled: {
         cursor: "auto",
-        backgroundColor: semanticColor.action.disabled.secondary,
-        borderColor: semanticColor.border.primary,
+        backgroundColor: disabledState.background,
+        borderColor: disabledState.border,
         borderWidth: border.width.hairline,
     },
 
@@ -173,22 +178,30 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
     const colorAction = semanticColor.action[styleType][actionType];
 
+    // The different states that the component can be in.
+    const states = {
+            border: colorAction.default.border,
+            background: colorAction.default.background,
+        },
+        // Form validation error state
+        error: {
+            border: semanticColor.status.critical.foreground,
+            background: semanticColor.status.critical.background,
+        },
+    };
+
     let newStyles: Record<string, any> = {};
 
     if (isCheckedOrIndeterminate) {
-        newStyles = {
             default: {
-                backgroundColor: colorAction.default.background,
-                borderColor: colorAction.default.border,
+                backgroundColor: states.default.background,
+                borderColor: states.default.border,
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
                 ":focus-visible": {
+                    // TODO(WB-1856): Define global pattern for focus styles
                     outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
-                    outlineOffset: 1,
-                },
-
-                ":hover": {
                     outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
                 },
@@ -202,28 +215,27 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         };
         // Unchecked state
     } else {
+        const currentState = error ? states.error : states.default;
+
         newStyles = {
             default: {
-                backgroundColor: error
-                    ? semanticColor.status.critical.background
-                    : colorAction.default.background,
-                borderColor: error
-                    ? semanticColor.status.critical.foreground
-                    : colorAction.default.border,
+                backgroundColor: currentState.background,
+                borderColor: currentState.border,
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
                 ":focus-visible": {
                     backgroundColor: error
-                        ? semanticColor.status.critical.background
+                        ? states.error.background
                         : colorAction.hover.background,
+                    // TODO(WB-1856): Define global pattern for focus styles
                     outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
                     outlineOffset: -1,
                 },
 
                 ":hover": {
                     backgroundColor: error
-                        ? semanticColor.status.critical.background
+                        ? states.error.background
                         : colorAction.hover.background,
                     outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
                     outlineOffset: -1,

@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 8.0.0
+
+### Major Changes
+
+-   d8d41dc9: Removes the `light` prop from wonder-blocks-dropdown. This includes removing that in `SingleSelect` and `MultiSelect`.
+
+### Patch Changes
+
+-   c774f7da: Updates `SelectOpener` (internal component) from `Dropdown` to match Design specs. Also converts `color` tokens to use `semanticColor` tokens.
+-   Updated dependencies [8d26588f]
+-   Updated dependencies [0de25cd8]
+    -   @khanacademy/wonder-blocks-search-field@5.0.0
+    -   @khanacademy/wonder-blocks-tokens@4.0.0
+    -   @khanacademy/wonder-blocks-cell@4.0.6
+    -   @khanacademy/wonder-blocks-clickable@5.0.6
+    -   @khanacademy/wonder-blocks-layout@3.0.6
+    -   @khanacademy/wonder-blocks-modal@7.0.4
+    -   @khanacademy/wonder-blocks-pill@3.0.6
+
 ## 7.0.6
 
 ### Patch Changes

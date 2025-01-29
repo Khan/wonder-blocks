@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 2.0.0
+
+### Major Changes
+
+-   8d26588f: Remove `light` variant/prop from `LabeledField` as it is no longer needed/recommended.
+
+### Patch Changes
+
+-   Updated dependencies [0de25cd8]
+    -   @khanacademy/wonder-blocks-tokens@4.0.0
+    -   @khanacademy/wonder-blocks-layout@3.0.6
+
 ## 1.1.1
 
 ### Patch Changes
