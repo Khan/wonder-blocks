@@ -248,6 +248,8 @@ const styles = StyleSheet.create({
         // Hide overflow so that if custom styling applies a border radius, the
         // left visual indicator for press/active states does not overflow
         overflow: "hidden",
+        // Make sure inner wrapper is always the same height as parent
+        height: "100%",
 
         // Reduce the padding of the innerWrapper when the focus ring is
         // visible.

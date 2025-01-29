@@ -4,7 +4,12 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
@@ -470,13 +475,11 @@ export const Scenarios = () => {
 };
 
 /**
- * Custom styling can be applied to the root using the `rootStyle` prop.
+ * Custom styling can be applied to the component using the `rootStyle` or
+ * `style` props.
  */
 export const CustomRootStyle = {
     args: {
-        rootStyle: {
-            borderRadius: border.radius.xLarge_12,
-        },
         title: "Title for article item",
         subtitle1: "Subtitle for article item",
         subtitle2: "Subtitle for article item",
@@ -487,10 +490,60 @@ export const CustomRootStyle = {
     render(args: PropsFor<typeof DetailCell>) {
         return (
             <View style={{gap: spacing.large_24}}>
-                Active:
-                <DetailCell {...args} active={true} />
-                Pressed:
-                <DetailCell {...args} />
+                Active (with rootStyle prop):
+                <DetailCell
+                    {...args}
+                    rootStyle={{borderRadius: border.radius.xLarge_12}}
+                    active={true}
+                />
+                Pressed (with rootStyle prop):
+                <DetailCell
+                    {...args}
+                    rootStyle={{borderRadius: border.radius.xLarge_12}}
+                />
+                Different content heights (with style prop)
+                <View
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr 1fr",
+                        gap: "16px",
+                    }}
+                >
+                    <DetailCell
+                        title="Title"
+                        subtitle1="Subtitle 1"
+                        subtitle2="Subtitle2"
+                        onClick={() => {}}
+                        style={[
+                            {
+                                border: `1px solid ${semanticColor.border.primary}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                    <DetailCell
+                        title="Title"
+                        onClick={() => {}}
+                        style={[
+                            args.rootStyle,
+                            {
+                                border: `1px solid ${semanticColor.border.primary}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                    <DetailCell
+                        title="Title"
+                        onClick={() => {}}
+                        style={[
+                            args.rootStyle,
+                            {
+                                border: `1px solid ${semanticColor.border.primary}`,
+                            },
+                        ]}
+                        horizontalRule={"none"}
+                    />
+                </View>
             </View>
         );
     },
@@ -499,9 +552,7 @@ export const CustomRootStyle = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: color.offWhite,
         padding: spacing.large_24,
-        width: 376,
     },
     navigation: {
         border: `1px dashed ${color.purple}`,
