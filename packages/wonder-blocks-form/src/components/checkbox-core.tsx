@@ -180,6 +180,8 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
     // The different states that the component can be in.
     const states = {
+        // Resting state (shared between checked and unchecked)
+        default: {
             border: colorAction.default.border,
             background: colorAction.default.background,
         },
@@ -193,6 +195,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     let newStyles: Record<string, any> = {};
 
     if (isCheckedOrIndeterminate) {
+        newStyles = {
             default: {
                 backgroundColor: states.default.background,
                 borderColor: states.default.border,
@@ -202,6 +205,10 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                 ":focus-visible": {
                     // TODO(WB-1856): Define global pattern for focus styles
                     outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outlineOffset: 1,
+                },
+
+                ":hover": {
                     outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
                 },
