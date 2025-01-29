@@ -2,7 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -258,6 +262,27 @@ const TextField = (props: PropsWithForwardRef) => {
     );
 };
 
+// The different states that the component can be in.
+const states = {
+    // Resting state
+    default: {
+        border: semanticColor.border.strong,
+        background: semanticColor.surface.primary,
+        foreground: semanticColor.text.primary,
+    },
+    disabled: {
+        border: semanticColor.border.primary,
+        background: semanticColor.action.disabled.secondary,
+        foreground: semanticColor.text.secondary,
+    },
+    // Form validation error state
+    error: {
+        border: semanticColor.status.critical.foreground,
+        background: semanticColor.status.critical.background,
+        foreground: semanticColor.text.primary,
+    },
+};
+
 const styles = StyleSheet.create({
     input: {
         width: "100%",
@@ -268,45 +293,47 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     default: {
-        background: color.white,
-        border: `1px solid ${color.offBlack50}`,
-        color: color.offBlack,
+        background: states.default.background,
+        border: `${border.width.hairline}px solid ${states.default.border}`,
+        color: states.default.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
     },
     defaultFocus: {
         ":focus-visible": {
-            borderColor: color.blue,
-            outline: `1px solid ${color.blue}`,
+            borderColor: semanticColor.border.focus,
+            outline: `${border.width.hairline}px solid ${semanticColor.border.focus}`,
             // Negative outline offset so it focus outline is not cropped off if
             // an ancestor element has overflow: hidden
-            outlineOffset: "-2px",
+            outlineOffset: -2,
         },
     },
     error: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.red}`,
-        color: color.offBlack,
+        background: states.error.background,
+        border: `${border.width.hairline}px solid ${states.error.border}`,
+        color: states.error.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            outlineColor: color.red,
-            borderColor: color.red,
+            // TODO(WB-1856): Verify if we can use the global focus color
+            outlineColor: states.error.border,
+            borderColor: states.error.border,
         },
     },
     disabled: {
-        background: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack64,
+        background: states.disabled.background,
+        border: `${border.width.hairline}px solid ${states.disabled.border}`,
+        color: states.disabled.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: states.disabled.foreground,
         },
         cursor: "not-allowed",
         ":focus-visible": {
-            outline: `2px solid ${color.offBlack32}`,
-            outlineOffset: "-3px",
+            // TODO(WB-1856): Verify if we can use the global focus color
+            outline: `${border.width.thin}px solid ${semanticColor.action.disabled.default}`,
+            outlineOffset: -3,
         },
     },
 });

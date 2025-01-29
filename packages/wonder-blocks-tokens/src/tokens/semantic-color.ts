@@ -4,6 +4,7 @@ const border = {
     primary: color.fadedOffBlack16,
     subtle: color.fadedOffBlack8,
     strong: color.fadedOffBlack50,
+    focus: color.blue,
     inverse: color.white,
 };
 
@@ -156,6 +157,7 @@ export const semanticColor = {
         inverse: color.white,
         action: color.blue,
         destructive: color.red,
+        disabled: color.fadedOffBlack32,
     },
     /**
      * Colors to be used exclusively for Khanmigo or to communicate a

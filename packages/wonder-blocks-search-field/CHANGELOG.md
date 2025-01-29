@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.0.0
+
+### Major Changes
+
+-   8d26588f: Remove `light` variant from SearchField as it is no longer needed/used.
+
+### Patch Changes
+
+-   Updated dependencies [0de25cd8]
+-   Updated dependencies [8d26588f]
+    -   @khanacademy/wonder-blocks-tokens@4.0.0
+    -   @khanacademy/wonder-blocks-form@7.0.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.6
+
 ## 4.0.6
 
 ### Patch Changes
