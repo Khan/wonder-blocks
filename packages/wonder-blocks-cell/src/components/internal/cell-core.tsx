@@ -229,10 +229,23 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     );
 };
 
+const cellTokens = {
+    hover: {
+        background: color.fadedBlue8,
+    },
+    press: {
+        background: color.fadedBlue8,
+    },
+    selected: {
+        background: color.fadedBlue8,
+        foreground: color.activeBlue,
+    },
+};
+
 const styles = StyleSheet.create({
     wrapper: {
-        background: color.white,
-        color: color.offBlack,
+        background: semanticColor.surface.primary,
+        color: semanticColor.text.primary,
         display: "flex",
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
@@ -333,7 +346,7 @@ const styles = StyleSheet.create({
             // that the focus ring is drawn inside the cell.
             width: `calc(100% - ${spacing.xxxSmall_4}px)`,
             height: `calc(100% - ${spacing.xxxSmall_4}px)`,
-            border: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+            border: `${spacing.xxxxSmall_2}px solid ${semanticColor.border.focus}`,
             borderRadius: spacing.xxxSmall_4,
         },
         [":focus-visible[aria-disabled=true]:after" as any]: {
@@ -342,12 +355,31 @@ const styles = StyleSheet.create({
 
         // hover + enabled
         [":hover[aria-disabled=false]" as any]: {
-            background: color.fadedBlue8,
+            background: cellTokens.hover.background,
         },
 
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
-            background: color.fadedBlue8,
+            background: cellTokens.press.background,
+        },
+        // press + enabled + not currently selected (active prop: false)
+        // Using the first child to apply the left bar indicator on the pressed
+        // state because setting the styles on the clickable element
+        // directly causes issues since overflow must be hidden for cases where
+        // the border is rounded
+        [":active[aria-disabled=false]:not([aria-current=true]) > *:first-child" as any]:
+            {
+                position: "relative",
+                ":before": {
+                    content: "''",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    width: border.width.thin,
+                    backgroundColor: semanticColor.surface.emphasis,
+                },
+            },
         },
         // press + enabled + not currently selected (active prop: false)
         // We apply the left bar indicator styles on the inner-wrapper element
@@ -372,21 +404,13 @@ const styles = StyleSheet.create({
     },
 
     active: {
-        background: color.fadedBlue8,
-        color: color.activeBlue,
+        background: cellTokens.selected.background,
+        color: cellTokens.selected.foreground,
         cursor: "default",
-
-        [":hover[aria-disabled=false]" as any]: {
-            background: color.fadedBlue8,
-        },
-
-        [":active[aria-disabled=false]" as any]: {
-            background: color.fadedBlue8,
-        },
     },
 
     disabled: {
-        color: color.offBlack32,
+        color: semanticColor.text.disabled,
         ":focus-visible": {
             // Prevent the focus ring from being displayed when the cell is
             // disabled.
@@ -395,12 +419,11 @@ const styles = StyleSheet.create({
     },
 
     accessoryActive: {
-        color: color.blue,
+        color: semanticColor.icon.action,
     },
 
     accessoryDisabled: {
-        color: color.offBlack,
-        opacity: 0.32,
+        color: semanticColor.icon.disabled,
     },
 });
 
