@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View, Id} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import CheckboxCore from "./checkbox-core";
@@ -169,13 +169,13 @@ const styles = StyleSheet.create({
         marginTop: -2,
     },
     disabledLabel: {
-        color: color.offBlack32,
+        color: semanticColor.text.disabled,
     },
     description: {
         // 16 for icon + 8 for spacing strut
         marginLeft: spacing.medium_16 + spacing.xSmall_8,
         marginTop: spacing.xxxSmall_4,
-        color: color.offBlack64,
+        color: semanticColor.text.secondary,
     },
 });
 
