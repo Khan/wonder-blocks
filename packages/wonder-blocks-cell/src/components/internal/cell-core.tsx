@@ -230,22 +230,28 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 };
 
 const cellTokens = {
+    default: {
+        background: semanticColor.surface.primary,
+        foreground: semanticColor.text.primary,
+    },
     hover: {
         background: color.fadedBlue8,
     },
     press: {
         background: color.fadedBlue8,
+        border: semanticColor.surface.emphasis,
     },
     selected: {
         background: color.fadedBlue8,
         foreground: color.activeBlue,
+        border: semanticColor.surface.emphasis,
     },
 };
 
 const styles = StyleSheet.create({
     wrapper: {
-        background: semanticColor.surface.primary,
-        color: semanticColor.text.primary,
+        background: cellTokens.default.background,
+        color: cellTokens.default.foreground,
         display: "flex",
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
@@ -275,13 +281,14 @@ const styles = StyleSheet.create({
     activeInnerWrapper: {
         position: "relative",
         ":before": {
+            // Styles for the left bar indicator
             content: "''",
             position: "absolute",
             top: 0,
             left: 0,
             bottom: 0,
             width: border.width.thick,
-            backgroundColor: semanticColor.surface.emphasis,
+            backgroundColor: cellTokens.selected.border,
         },
     },
 
@@ -350,6 +357,7 @@ const styles = StyleSheet.create({
             borderRadius: spacing.xxxSmall_4,
         },
         [":focus-visible[aria-disabled=true]:after" as any]: {
+            // TODO(WB-1856): Verify if we can use the global focus color
             borderColor: semanticColor.action.disabled.default,
         },
 
@@ -373,13 +381,14 @@ const styles = StyleSheet.create({
             {
                 position: "relative",
                 ":before": {
+                    // Styles for the left bar indicator
                     content: "''",
                     position: "absolute",
                     top: 0,
                     left: 0,
                     bottom: 0,
                     width: border.width.thin,
-                    backgroundColor: semanticColor.surface.emphasis,
+                    backgroundColor: cellTokens.press.border,
                 },
             },
     },
