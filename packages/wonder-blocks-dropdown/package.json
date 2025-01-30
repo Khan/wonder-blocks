@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
@@ -17,16 +17,16 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-cell": "^4.0.6",
-    "@khanacademy/wonder-blocks-clickable": "^5.0.6",
+    "@khanacademy/wonder-blocks-cell": "^4.0.7",
+    "@khanacademy/wonder-blocks-clickable": "^5.0.7",
     "@khanacademy/wonder-blocks-core": "^11.1.0",
     "@khanacademy/wonder-blocks-icon": "^5.0.5",
-    "@khanacademy/wonder-blocks-layout": "^3.0.6",
-    "@khanacademy/wonder-blocks-modal": "^7.0.4",
-    "@khanacademy/wonder-blocks-pill": "^3.0.6",
-    "@khanacademy/wonder-blocks-search-field": "^5.0.0",
+    "@khanacademy/wonder-blocks-layout": "^3.0.7",
+    "@khanacademy/wonder-blocks-modal": "^7.0.5",
+    "@khanacademy/wonder-blocks-pill": "^3.0.7",
+    "@khanacademy/wonder-blocks-search-field": "^5.0.1",
     "@khanacademy/wonder-blocks-timing": "^6.0.1",
-    "@khanacademy/wonder-blocks-tokens": "^4.0.0",
+    "@khanacademy/wonder-blocks-tokens": "^4.1.0",
     "@khanacademy/wonder-blocks-typography": "^3.0.5"
   },
   "peerDependencies": {
@@ -41,7 +41,7 @@
     "react-window": "^1.8.10"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^7.0.6",
+    "@khanacademy/wonder-blocks-button": "^7.0.7",
     "@khanacademy/wb-dev-build-settings": "^2.0.0"
   }
 }
