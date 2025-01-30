@@ -230,28 +230,48 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
 };
 
 const cellTokens = {
-    default: {
-        background: semanticColor.surface.primary,
-        foreground: semanticColor.text.primary,
+    root: {
+        default: {
+            background: semanticColor.surface.primary,
+            foreground: semanticColor.text.primary,
+        },
+        hover: {
+            background: color.fadedBlue8,
+        },
+        press: {
+            background: color.fadedBlue8,
+            border: semanticColor.surface.emphasis,
+        },
+        selected: {
+            background: color.fadedBlue8,
+            foreground: color.activeBlue,
+            border: semanticColor.surface.emphasis,
+        },
+        focus: {
+            border: semanticColor.focus.outer,
+        },
+        disabled: {
+            foreground: semanticColor.text.disabled,
+            border: semanticColor.focus.outer,
+        },
     },
-    hover: {
-        background: color.fadedBlue8,
-    },
-    press: {
-        background: color.fadedBlue8,
-        border: semanticColor.surface.emphasis,
-    },
-    selected: {
-        background: color.fadedBlue8,
-        foreground: color.activeBlue,
-        border: semanticColor.surface.emphasis,
+    accessory: {
+        default: {
+            foreground: semanticColor.icon.primary,
+        },
+        selected: {
+            foreground: semanticColor.icon.action,
+        },
+        disabled: {
+            foreground: semanticColor.icon.disabled,
+        },
     },
 };
 
 const styles = StyleSheet.create({
     wrapper: {
-        background: cellTokens.default.background,
-        color: cellTokens.default.foreground,
+        background: cellTokens.root.default.background,
+        color: cellTokens.root.default.foreground,
         display: "flex",
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
@@ -288,7 +308,7 @@ const styles = StyleSheet.create({
             left: 0,
             bottom: 0,
             width: border.width.thick,
-            backgroundColor: cellTokens.selected.border,
+            backgroundColor: cellTokens.root.selected.border,
         },
     },
 
@@ -311,7 +331,7 @@ const styles = StyleSheet.create({
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: semanticColor.icon.primary,
+        color: cellTokens.accessory.default.foreground,
     },
 
     /**
@@ -353,21 +373,21 @@ const styles = StyleSheet.create({
             // that the focus ring is drawn inside the cell.
             width: `calc(100% - ${spacing.xxxSmall_4}px)`,
             height: `calc(100% - ${spacing.xxxSmall_4}px)`,
-            border: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
+            border: `${spacing.xxxxSmall_2}px solid ${cellTokens.root.focus.border}`,
             borderRadius: spacing.xxxSmall_4,
         },
         [":focus-visible[aria-disabled=true]:after" as any]: {
-            borderColor: semanticColor.focus.outer,
+            borderColor: cellTokens.root.disabled.border,
         },
 
         // hover + enabled
         [":hover[aria-disabled=false]" as any]: {
-            background: cellTokens.hover.background,
+            background: cellTokens.root.hover.background,
         },
 
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
-            background: cellTokens.press.background,
+            background: cellTokens.root.press.background,
         },
         // press + enabled + not currently selected (active prop: false)
         // Using the first child to apply the left bar indicator on the pressed
@@ -385,7 +405,7 @@ const styles = StyleSheet.create({
                     left: 0,
                     bottom: 0,
                     width: border.width.thin,
-                    backgroundColor: cellTokens.press.border,
+                    backgroundColor: cellTokens.root.press.border,
                 },
             },
         },
@@ -412,13 +432,13 @@ const styles = StyleSheet.create({
     },
 
     active: {
-        background: cellTokens.selected.background,
-        color: cellTokens.selected.foreground,
+        background: cellTokens.root.selected.background,
+        color: cellTokens.root.selected.foreground,
         cursor: "default",
     },
 
     disabled: {
-        color: semanticColor.text.disabled,
+        color: cellTokens.root.disabled.foreground,
         ":focus-visible": {
             // Prevent the focus ring from being displayed when the cell is
             // disabled.
@@ -427,11 +447,11 @@ const styles = StyleSheet.create({
     },
 
     accessoryActive: {
-        color: semanticColor.icon.action,
+        color: cellTokens.accessory.selected.foreground,
     },
 
     accessoryDisabled: {
-        color: semanticColor.icon.disabled,
+        color: cellTokens.accessory.disabled.foreground,
     },
 });
 
