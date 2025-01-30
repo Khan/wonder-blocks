@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.0.1
+
+### Patch Changes
+
+-   c162abb4: Migrate color instances to use semanticColor internally on TextField and TextArea
+-   8cfaeab0: Migrate Radio and Checkbox to use semanticColor tokens
+-   Updated dependencies [8cfaeab0]
+-   Updated dependencies [c162abb4]
+    -   @khanacademy/wonder-blocks-tokens@4.1.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.7
+    -   @khanacademy/wonder-blocks-layout@3.0.7
+
 ## 7.0.0
 
 ### Major Changes

@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-popover
 
+## 5.0.6
+
+### Patch Changes
+
+-   03bd4c58: Reverts changes to focus manager. Doesn't do what we need it to do, and would require further adjustments or changes to Perseus widgets. Better to just wait for an updated implementation.
+-   Updated dependencies [8cfaeab0]
+-   Updated dependencies [c162abb4]
+    -   @khanacademy/wonder-blocks-tokens@4.1.0
+    -   @khanacademy/wonder-blocks-icon-button@6.0.7
+    -   @khanacademy/wonder-blocks-modal@7.0.5
+    -   @khanacademy/wonder-blocks-tooltip@4.0.5
+
+## 5.0.5
+
+### Patch Changes
+
+-   c9b03476: Fixes bug where `focus-manager` overrides all tab indices within popover
+
 ## 5.0.4
 
 ### Patch Changes
