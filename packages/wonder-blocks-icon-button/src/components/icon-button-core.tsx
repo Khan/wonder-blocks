@@ -18,6 +18,9 @@ import {
     IconButtonThemeContract,
 } from "../themes/themed-icon-button";
 
+type Kind = "primary" | "secondary" | "tertiary";
+type ButtonColor = "default" | "destructive";
+
 /**
  * Returns the phosphor icon component based on the size. This is necessary
  * so we can cast the icon to the correct type.
@@ -101,6 +104,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
     const renderInner = (router: any): React.ReactNode => {
         const buttonStyles = _generateStyles(
             color,
+            !!disabled,
             kind,
             light,
             size,
@@ -186,86 +190,123 @@ const sharedStyles = StyleSheet.create({
 
 const styles: Record<string, any> = {};
 
-function getStylesByKind(
-    kind: "primary" | "secondary" | "tertiary",
-    theme: IconButtonThemeContract,
-    color: string,
-    light: boolean,
-    buttonColor: string,
-) {
-    switch (kind) {
-        case "primary":
-            const primaryHoveredColor =
-                buttonColor === "destructive"
-                    ? theme.color.stroke.primary.critical.hovered
-                    : theme.color.stroke.primary.action.hovered;
+type ActionType =
+    | "progressive"
+    | "destructive"
+    | "disabled"
+    // TODO(WB-1852): Remove light variants.
+    | "progressiveLight"
+    | "destructiveLight"
+    | "disabledLight";
 
-            return {
-                ":hover": {
-                    backgroundColor: theme.color.bg.hovered,
-                    color: light
-                        ? theme.color.stroke.primary.inverse.hovered
-                        : primaryHoveredColor,
-                    outlineColor: light ? theme.color.stroke.inverse : color,
-                    outlineOffset: 1,
-                    outlineStyle: "solid",
-                    outlineWidth: light
-                        ? theme.border.width.hoveredInverse
-                        : theme.border.width.hovered,
-                },
-                ":active": {
-                    backgroundColor: theme.color.bg.active,
-                },
-            };
-        case "secondary":
-        case "tertiary":
-            return {
-                ":hover": {
-                    backgroundColor:
-                        buttonColor === "destructive"
-                            ? theme.color.bg.filled.critical.hovered
-                            : theme.color.bg.filled.action.hovered,
-                    color:
-                        buttonColor === "destructive"
-                            ? theme.color.stroke.filled.critical.hovered
-                            : theme.color.stroke.filled.action.hovered,
-                    outlineWidth: theme.border.width.active,
-                },
-                ":active": {
-                    backgroundColor:
-                        buttonColor === "destructive"
-                            ? theme.color.bg.filled.critical.active
-                            : theme.color.bg.filled.action.active,
-                    color:
-                        buttonColor === "destructive"
-                            ? theme.color.stroke.filled.critical.active
-                            : theme.color.stroke.filled.action.active,
-                    outlineWidth: theme.border.width.active,
-                },
-            };
-        default:
-            return {
-                ":focus-visible": {},
-                ":hover": {},
-                ":active": {},
-            };
+function getActionType(buttonColor: ButtonColor, disabled: boolean) {
+    const actionType =
+        buttonColor === "destructive" ? "destructive" : "progressive";
+
+    if (disabled) {
+        return "disabled";
     }
+
+    return actionType;
+}
+
+function getStylesByKind(
+    buttonColor: ButtonColor,
+    disabled: boolean,
+    kind: Kind,
+    light: boolean,
+    theme: IconButtonThemeContract,
+) {
+    let actionType: ActionType = getActionType(buttonColor, disabled);
+    const themeVariant = theme.color[kind][actionType];
+
+    if (kind === "primary") {
+        // NOTE: Primary is the only kind that supports light variants.
+        if (light) {
+            actionType = `${actionType}Light`;
+        }
+
+        const themeVariant = theme.color[kind][actionType];
+
+        return {
+            default: {
+                background: themeVariant.default.background,
+                color: themeVariant.default.foreground,
+            },
+            ":hover": {
+                background: themeVariant.hover.background,
+                color: themeVariant.hover.foreground,
+                outlineColor: themeVariant.hover.border,
+                outlineOffset: 1,
+                outlineStyle: "solid",
+                outlineWidth: light
+                    ? theme.border.width.hoveredInverse
+                    : theme.border.width.hovered,
+            },
+            ":focus-visible": {
+                outlineColor: themeVariant.hover.border,
+            },
+            ":active": {
+                background: themeVariant.press.background,
+                color: themeVariant.press.foreground,
+                outlineColor: themeVariant.press.border,
+            },
+            disabled: {
+                background: themeVariant.default.background,
+                color: themeVariant.default.foreground,
+                outlineColor: themeVariant.default.border,
+            },
+        };
+    }
+
+    // NOTE: These styles will diverge before we create the new polaris theme.
+    if (kind === "secondary" || kind === "tertiary") {
+        return {
+            default: {
+                background: themeVariant.default.background,
+                color: themeVariant.default.foreground,
+            },
+            ":hover": {
+                background: themeVariant.hover.background,
+                color: themeVariant.hover.foreground,
+                outlineWidth: theme.border.width.active,
+            },
+            ":focus-visible": {
+                outlineColor: themeVariant.hover.border,
+            },
+            ":active": {
+                background: themeVariant.press.background,
+                color: themeVariant.press.foreground,
+                outlineColor: themeVariant.press.border,
+                outlineWidth: theme.border.width.active,
+            },
+            disabled: {
+                background: themeVariant.default.background,
+                color: themeVariant.default.foreground,
+                outlineColor: themeVariant.default.border,
+            },
+        };
+    }
+
+    return {
+        default: {},
+        ":hover": {},
+        ":focus-visible": {},
+        ":active": {},
+        disabled: {},
+    };
 }
 
 const _generateStyles = (
-    buttonColor = "default",
-    kind: "primary" | "secondary" | "tertiary",
+    buttonColor: ButtonColor = "default",
+    disabled: boolean,
+    kind: Kind,
     light: boolean,
     size: IconButtonSize,
     theme: IconButtonThemeContract,
     themeName: string,
 ) => {
-    const color: string =
-        buttonColor === "destructive"
-            ? theme.color.stroke.critical.default
-            : theme.color.stroke.action.default;
-
-    const buttonType = `${color}-${kind}-${light}-${size}-${themeName}`;
+    const buttonType = `${buttonColor}-d_${disabled}-${kind}-l_${light}-${size}-${themeName}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -274,60 +315,26 @@ const _generateStyles = (
         throw new Error("Light is only supported for primary IconButtons");
     }
 
-    const defaultColor = ((): string => {
-        switch (kind) {
-            case "primary":
-                return light
-                    ? theme.color.stroke.primary.inverse.default
-                    : color;
-            case "secondary":
-                return theme.color.stroke.secondary.default;
-            case "tertiary":
-                return theme.color.stroke.tertiary.default;
-            default:
-                throw new Error("IconButton kind not recognized");
-        }
-    })();
     const pixelsForSize = targetPixelsForSize(size);
 
     // Override styles for each kind of button. This is useful for merging
     // pseudo-classes properly.
     const kindOverrides = getStylesByKind(
-        kind,
-        theme,
-        color,
-        light,
         buttonColor,
+        disabled,
+        kind,
+        light,
+        theme,
     );
 
-    const activeInverseColor =
-        buttonColor === "destructive"
-            ? theme.color.stroke.critical.inverse
-            : theme.color.stroke.action.inverse;
-    const activeColor =
-        buttonColor === "destructive"
-            ? theme.color.stroke.critical.active
-            : theme.color.stroke.action.active;
-
-    // Shared by hover and focus states.
-    const defaultStrokeColor = light ? theme.color.stroke.inverse : color;
-
-    const disabledStrokeColor = light
-        ? theme.color.stroke.disabled.inverse
-        : theme.color.stroke.disabled.default;
-
-    const disabledStatesStyles = {
-        backgroundColor: theme.color.bg.disabled,
-        color: disabledStrokeColor,
-        outlineColor: disabledStrokeColor,
-    };
+    const disabledStatesStyles = kindOverrides.disabled;
 
     const newStyles = {
         default: {
             height: pixelsForSize,
             width: pixelsForSize,
-            color: defaultColor,
             borderRadius: theme.border.radius.default,
+            ...kindOverrides.default,
 
             /**
              * States
@@ -336,7 +343,6 @@ const _generateStyles = (
              */
             ":hover": {
                 boxShadow: "none",
-                color: defaultStrokeColor,
                 borderRadius: theme.border.radius.default,
                 outlineWidth: theme.border.width.default,
                 ...kindOverrides[":hover"],
@@ -347,7 +353,6 @@ const _generateStyles = (
                 ":hover": {
                     // reset hover styles on non-touch devices
                     boxShadow: "none",
-                    color: defaultColor,
                     borderRadius: theme.border.radius.default,
                     outline: "none",
                     backgroundColor: "transparent",
@@ -357,16 +362,13 @@ const _generateStyles = (
             // :focus-visible -> Provide focus styles for keyboard users only.
             ":focus-visible": {
                 outlineWidth: theme.border.width.default,
-                outlineColor: defaultStrokeColor,
                 outlineOffset: 1,
                 outlineStyle: "solid",
                 borderRadius: theme.border.radius.default,
                 ...kindOverrides[":focus-visible"],
             },
             ":active": {
-                color: light ? activeInverseColor : activeColor,
                 outlineWidth: theme.border.width.default,
-                outlineColor: light ? activeInverseColor : activeColor,
                 outlineOffset: 1,
                 outlineStyle: "solid",
                 borderRadius: theme.border.radius.default,
@@ -374,8 +376,8 @@ const _generateStyles = (
             },
         },
         disabled: {
-            color: disabledStrokeColor,
             cursor: "not-allowed",
+            ...disabledStatesStyles,
             // NOTE: Even that browsers recommend to specify pseudo-classes in
             // this order: link, visited, focus, hover, active, we need to
             // specify focus after hover to override hover styles. By doing this

@@ -1,75 +1,62 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {border, color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
+
+const primaryState = {
+    hover: {foreground: semanticColor.khanmigo.primary},
+};
+
+const primaryLightState = {
+    hover: {
+        background: semanticColor.surface.primary,
+        foreground: semanticColor.khanmigo.primary,
+    },
+    press: {
+        border: "transparent",
+        background: color.white64,
+        foreground: semanticColor.khanmigo.primary,
+    },
+};
 
 /**
  * The overrides for the Khanmigo theme.
  */
 const theme = mergeTheme(defaultTheme, {
     color: {
-        bg: {
-            hovered: tokens.color.white,
-            active: tokens.color.white64,
-            // Filled icon buttons (secondary, tertiary)
-            filled: {
-                action: {
-                    hovered: tokens.color.blue,
-                    active: tokens.color.activeBlue,
-                },
-                critical: {
-                    hovered: tokens.color.red,
-                    active: tokens.color.activeRed,
-                },
+        primary: {
+            // NOTE: These are shared by action type
+            progressive: primaryState,
+            destructive: primaryState,
+            progressiveLight: primaryLightState,
+            destructiveLight: primaryLightState,
+        },
+
+        secondary: {
+            progressive: {
+                hover: semanticColor.action.filled.progressive.hover,
+                press: semanticColor.action.filled.progressive.press,
+            },
+            destructive: {
+                hover: semanticColor.action.filled.destructive.hover,
+                press: semanticColor.action.filled.destructive.press,
             },
         },
-        stroke: {
-            /**
-             * Color
-             */
-            action: {
-                inverse: tokens.color.eggplant,
+
+        tertiary: {
+            progressive: {
+                hover: semanticColor.action.filled.progressive.hover,
+                press: semanticColor.action.filled.progressive.press,
             },
-            critical: {
-                inverse: tokens.color.eggplant,
-            },
-            /**
-             * Kind
-             */
-            primary: {
-                // primary + action
-                action: {
-                    hovered: tokens.color.eggplant,
-                    active: tokens.color.eggplant,
-                },
-                // primary + critical
-                critical: {
-                    hovered: tokens.color.eggplant,
-                    active: tokens.color.eggplant,
-                },
-                // on dark background
-                inverse: {
-                    hovered: tokens.color.eggplant,
-                },
-            },
-            // Filled icon buttons (secondary, tertiary)
-            filled: {
-                // filled + action
-                action: {
-                    hovered: tokens.color.white,
-                    active: tokens.color.white,
-                },
-                // filled + critical
-                critical: {
-                    hovered: tokens.color.white,
-                    active: tokens.color.white,
-                },
+            destructive: {
+                hover: semanticColor.action.filled.destructive.hover,
+                press: semanticColor.action.filled.destructive.press,
             },
         },
     },
     border: {
         width: {
-            hovered: tokens.border.width.none,
-            hoveredInverse: tokens.border.width.none,
+            hovered: border.width.none,
+            hoveredInverse: border.width.none,
         },
     },
 });

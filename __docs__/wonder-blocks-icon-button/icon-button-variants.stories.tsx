@@ -16,11 +16,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
  */
 export default {
     title: "Packages / IconButton / All Variants",
-    parameters: {
-        docs: {
-            autodocs: false,
-        },
-    },
+    tags: ["!autodocs"],
 } as Meta;
 
 type StoryComponentType = StoryObj<typeof IconButton>;
