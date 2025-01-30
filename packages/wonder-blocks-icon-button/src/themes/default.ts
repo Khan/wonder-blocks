@@ -70,14 +70,14 @@ const theme = {
             // TODO(WB-1852): Remove light variants.
             progressiveLight: {
                 default: {
-                    border: color.white,
+                    border: semanticColor.border.inverse,
                     background: "transparent",
-                    foreground: color.white,
+                    foreground: semanticColor.text.inverse,
                 },
                 hover: {
-                    border: color.white,
+                    border: semanticColor.border.inverse,
                     background: "transparent",
-                    foreground: color.white,
+                    foreground: semanticColor.text.inverse,
                 },
                 press: {
                     border: color.fadedBlue,
@@ -88,14 +88,14 @@ const theme = {
             // TODO(WB-1852): Remove light variants.
             destructiveLight: {
                 default: {
-                    border: color.white,
+                    border: semanticColor.border.inverse,
                     background: "transparent",
-                    foreground: color.white,
+                    foreground: semanticColor.text.inverse,
                 },
                 hover: {
-                    border: color.white,
+                    border: semanticColor.border.inverse,
                     background: "transparent",
-                    foreground: color.white,
+                    foreground: semanticColor.text.inverse,
                 },
                 press: {
                     border: color.fadedRed,
