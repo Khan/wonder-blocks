@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 4.1.0
+
+### Minor Changes
+
+-   8cfaeab0: Add `icon.disabled` token to semanticColor.
+-   c162abb4: Add `border.focus` semantic color token to use for the focus outline
+
 ## 4.0.0
 
 ### Major Changes

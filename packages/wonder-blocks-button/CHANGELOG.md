@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-button
 
+## 7.0.7
+
+### Patch Changes
+
+-   c089d35d: Use `semanticColor` in Button. This replaces the use of `color` primitive tokens in favor of semantic color tokens
+-   Updated dependencies [8cfaeab0]
+-   Updated dependencies [c162abb4]
+    -   @khanacademy/wonder-blocks-tokens@4.1.0
+    -   @khanacademy/wonder-blocks-clickable@5.0.7
+    -   @khanacademy/wonder-blocks-progress-spinner@3.0.7
+
 ## 7.0.6
 
 ### Patch Changes
