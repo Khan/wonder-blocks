@@ -1,6 +1,4 @@
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
-
-const {semanticColor} = tokens;
+import {border, color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 const disabledStates = {
     border: semanticColor.action.disabled.default,
@@ -8,10 +6,11 @@ const disabledStates = {
     foreground: semanticColor.action.disabled.default,
 };
 
+// TODO(WB-1852): Remove light variants.
 const disabledLightStates = {
-    border: tokens.color.white50,
+    border: color.white50,
     background: "transparent",
-    foreground: tokens.color.white50,
+    foreground: color.white50,
 };
 
 /**
@@ -24,6 +23,11 @@ const baseColorStates = {
     ...semanticColor.action.outlined,
     progressive: {
         ...semanticColor.action.outlined.progressive,
+        default: {
+            ...semanticColor.action.outlined.progressive.default,
+            border: "transparent",
+            background: "transparent",
+        },
         press: {
             border: semanticColor.action.outlined.progressive.press.border,
             background: "transparent",
@@ -33,6 +37,11 @@ const baseColorStates = {
     },
     destructive: {
         ...semanticColor.action.outlined.destructive,
+        default: {
+            ...semanticColor.action.outlined.destructive.default,
+            border: "transparent",
+            background: "transparent",
+        },
         press: {
             border: semanticColor.action.outlined.destructive.press.border,
             background: "transparent",
@@ -61,37 +70,37 @@ const theme = {
             // TODO(WB-1852): Remove light variants.
             progressiveLight: {
                 default: {
-                    border: tokens.color.white,
+                    border: color.white,
                     background: "transparent",
-                    foreground: tokens.color.white,
+                    foreground: color.white,
                 },
                 hover: {
-                    border: tokens.color.white,
+                    border: color.white,
                     background: "transparent",
-                    foreground: tokens.color.white,
+                    foreground: color.white,
                 },
                 press: {
-                    border: tokens.color.fadedBlue,
+                    border: color.fadedBlue,
                     background: "transparent",
-                    foreground: tokens.color.fadedBlue,
+                    foreground: color.fadedBlue,
                 },
             },
             // TODO(WB-1852): Remove light variants.
             destructiveLight: {
                 default: {
-                    border: tokens.color.white,
+                    border: color.white,
                     background: "transparent",
-                    foreground: tokens.color.white,
+                    foreground: color.white,
                 },
                 hover: {
-                    border: tokens.color.white,
+                    border: color.white,
                     background: "transparent",
-                    foreground: tokens.color.white,
+                    foreground: color.white,
                 },
                 press: {
-                    border: tokens.color.fadedRed,
+                    border: color.fadedRed,
                     background: "transparent",
-                    foreground: tokens.color.fadedRed,
+                    foreground: color.fadedRed,
                 },
             },
         },
@@ -136,13 +145,13 @@ const theme = {
 
     border: {
         width: {
-            default: tokens.border.width.thin,
-            active: tokens.border.width.none,
-            hovered: tokens.border.width.thin,
-            hoveredInverse: tokens.border.width.thin,
+            default: border.width.thin,
+            active: border.width.none,
+            hovered: border.width.thin,
+            hoveredInverse: border.width.thin,
         },
         radius: {
-            default: tokens.border.radius.medium_4,
+            default: border.radius.medium_4,
         },
     },
 };

@@ -199,6 +199,12 @@ type ActionType =
     | "destructiveLight"
     | "disabledLight";
 
+/**
+ * Returns the action type based on the button color and disabled state.
+ *
+ * This is useful to determine which token variant to use for the button, which
+ * is based on the theme structure.
+ */
 function getActionType(buttonColor: ButtonColor, disabled: boolean) {
     const actionType =
         buttonColor === "destructive" ? "destructive" : "progressive";
@@ -230,6 +236,7 @@ function getStylesByKind(
 
         return {
             default: {
+                borderColor: themeVariant.default.border,
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
             },
@@ -247,6 +254,7 @@ function getStylesByKind(
                 outlineColor: themeVariant.hover.border,
             },
             ":active": {
+                borderColor: themeVariant.press.border,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
                 outlineColor: themeVariant.press.border,
@@ -263,10 +271,12 @@ function getStylesByKind(
     if (kind === "secondary" || kind === "tertiary") {
         return {
             default: {
+                borderColor: themeVariant.default.border,
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
             },
             ":hover": {
+                borderColor: themeVariant.hover.border,
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
                 outlineWidth: theme.border.width.active,
@@ -275,6 +285,7 @@ function getStylesByKind(
                 outlineColor: themeVariant.hover.border,
             },
             ":active": {
+                borderColor: themeVariant.press.border,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
                 outlineColor: themeVariant.press.border,
