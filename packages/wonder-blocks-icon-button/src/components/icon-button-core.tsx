@@ -19,6 +19,14 @@ import {
 } from "../themes/themed-icon-button";
 
 type Kind = "primary" | "secondary" | "tertiary";
+/**
+ * The color/actionType of the button.
+ *
+ * NOTE: `default` maps to `progressive` in the theme.
+ *
+ * TODO(WB-1871): Rename `default` to `progressive` and change `color` to
+ * `actionType`.
+ */
 type ButtonColor = "default" | "destructive";
 
 /**
