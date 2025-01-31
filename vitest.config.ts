@@ -17,7 +17,7 @@ export default mergeConfig(viteConfig, {
             provider: "playwright",
         },
         // Make sure to adjust this pattern to match your stories files.
-        include: ["./__docs__/**/*.stories.@(ts|tsx)"],
+        stories: ["./__docs__/**/*.stories.@(ts|tsx)"],
         setupFiles: [".storybook/vitest.setup.ts"],
     },
 });
