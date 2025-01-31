@@ -6,7 +6,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {spacing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import type {AccordionCornerKindType} from "./accordion";
@@ -125,7 +125,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
                         {collapsible && (
                             <PhosphorIcon
                                 icon={caretDown}
-                                color={tokens.color.offBlack64}
+                                color={semanticColor.icon.primary}
                                 size="small"
                                 style={[
                                     animated && styles.iconWithAnimation,
@@ -150,7 +150,7 @@ const AccordionSectionHeader = React.forwardRef(function AccordionSectionHeader(
 // If we set the inner radius to the same value, there ends up being
 // a 1px gap between the border and the outline. To fix this, we
 // subtract 1 from the border radius.
-const INNER_BORDER_RADIUS = tokens.spacing.small_12 - 1;
+const INNER_BORDER_RADIUS = spacing.small_12 - 1;
 const ANIMATION_LENGTH = "300ms";
 
 const styles = StyleSheet.create({
@@ -176,27 +176,15 @@ const styles = StyleSheet.create({
         zIndex: 1,
 
         ":active": {
-            outline: `2px solid ${tokens.color.activeBlue}`,
+            outline: `2px solid ${semanticColor.action.outlined.progressive.press.border}`,
         },
 
         ":hover": {
-            outline: `2px solid ${tokens.color.blue}`,
-        },
-
-        // Provide basic, default focus styles on older browsers (e.g.
-        // Safari 14)
-        ":focus": {
-            boxShadow: `0 0 0 2px ${tokens.color.blue}`,
-        },
-
-        // Remove default focus styles for mouse users ONLY if
-        // :focus-visible is supported on this platform.
-        ":focus:not(:focus-visible)": {
-            boxShadow: "none",
+            outline: `2px solid ${semanticColor.border.focus}`,
         },
 
         ":focus-visible": {
-            outline: `2px solid ${tokens.color.blue}`,
+            outline: `2px solid ${semanticColor.border.focus}`,
         },
     },
     headerWrapperWithAnimation: {
@@ -222,16 +210,16 @@ const styles = StyleSheet.create({
         textAlign: "start",
     },
     headerString: {
-        paddingTop: tokens.spacing.medium_16,
-        paddingBottom: tokens.spacing.medium_16,
+        paddingTop: spacing.medium_16,
+        paddingBottom: spacing.medium_16,
     },
     headerStringCaretEnd: {
-        paddingInlineEnd: tokens.spacing.small_12,
-        paddingInlineStart: tokens.spacing.medium_16,
+        paddingInlineEnd: spacing.small_12,
+        paddingInlineStart: spacing.medium_16,
     },
     headerStringCaretStart: {
-        paddingInlineEnd: tokens.spacing.medium_16,
-        paddingInlineStart: tokens.spacing.small_12,
+        paddingInlineEnd: spacing.medium_16,
+        paddingInlineStart: spacing.small_12,
     },
     iconWithAnimation: {
         transition: `transform ${ANIMATION_LENGTH}`,
@@ -241,29 +229,18 @@ const styles = StyleSheet.create({
         transform: "rotate(180deg)",
     },
     iconStart: {
-        marginInlineStart: tokens.spacing.medium_16,
+        marginInlineStart: spacing.medium_16,
     },
     iconEnd: {
-        marginInlineEnd: tokens.spacing.medium_16,
+        marginInlineEnd: spacing.medium_16,
     },
     disabled: {
         pointerEvents: "none",
         color: "inherit",
 
-        // Provide basic, default focus styles on older browsers (e.g.
-        // Safari 14)
-        ":focus": {
-            boxShadow: `0 0 0 2px ${tokens.color.offBlack32}`,
-        },
-
-        // Remove default focus styles for mouse users ONLY if
-        // :focus-visible is supported on this platform.
-        ":focus:not(:focus-visible)": {
-            boxShadow: "none",
-        },
-
         ":focus-visible": {
-            outline: `2px solid ${tokens.color.offBlack32}`,
+            // TODO(WB-1856): Verify if we can use the global focus color
+            outline: `2px solid ${semanticColor.action.disabled.default}`,
         },
     },
 });
