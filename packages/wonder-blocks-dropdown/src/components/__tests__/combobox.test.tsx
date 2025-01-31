@@ -280,7 +280,7 @@ describe("Combobox", () => {
         await userEvent.type(screen.getByRole("combobox"), "3");
 
         // Act
-        await userEvent.keyboard("{enter}");
+        await userEvent.keyboard("{Enter}");
 
         // Assert
         expect(screen.getByRole("combobox")).toHaveValue("option 3");

@@ -1,13 +1,13 @@
 import * as React from "react";
-import caretDown from "@phosphor-icons/core/regular/caret-down.svg";
-import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {View} from "@khanacademy/wonder-blocks-core";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
 export default {
-    title: "Packages / Dropdown / SingleSelect / Accessibility",
-    component: SingleSelect,
+    title: "Packages / Dropdown / MultiSelect / Accessibility",
+    component: MultiSelect,
 
     // Disables chromatic testing for these stories.
     parameters: {
@@ -25,35 +25,31 @@ export default {
     },
 };
 
-const SingleSelectAccessibility = () => (
+const MultiSelectAccessibility = () => (
     <View>
         <LabeledField
             label="Associated label element"
             field={
-                <SingleSelect
-                    placeholder="Accessible SingleSelect"
-                    selectedValue="one"
-                    onChange={() => {}}
-                >
+                <MultiSelect selectedValues={["one"]} onChange={() => {}}>
                     <OptionItem label="First element" value="one" />
                     <OptionItem label="Second element" value="two" />
-                </SingleSelect>
+                </MultiSelect>
             }
         />
     </View>
 );
 
 export const UsingAriaAttributes = {
-    render: SingleSelectAccessibility.bind({}),
+    render: MultiSelectAccessibility.bind({}),
     name: "Using LabeledField",
 };
 
-const SingleSelectAriaLabel = () => (
+const MultiSelectAriaLabel = () => (
     <View>
-        <SingleSelect
+        <MultiSelect
             aria-label="Class options"
-            placeholder="Choose"
-            selectedValue="one"
+            id="unique-single-select"
+            selectedValues={["one"]}
             onChange={() => {}}
         >
             <OptionItem
@@ -66,34 +62,36 @@ const SingleSelectAriaLabel = () => (
                 aria-label="Second element, unselelected"
                 value="two"
             />
-        </SingleSelect>
+        </MultiSelect>
     </View>
 );
 
 export const UsingOpenerAriaLabel = {
-    render: SingleSelectAriaLabel.bind({}),
-    name: "Using aria-label for opener",
+    render: MultiSelectAriaLabel.bind({}),
+    name: "Using aria-label attributes",
 };
 
-const SingleSelectCustomOpenerLabeledField = () => {
+const MultiSelectCustomOpenerLabeledField = () => {
     return (
         <View>
             <LabeledField
-                label="Preferences"
+                label="Search"
                 field={
-                    <SingleSelect
-                        placeholder="Choose"
+                    <MultiSelect
                         onChange={() => {}}
                         opener={(eventState: any) => (
                             <button onClick={() => {}}>
-                                <PhosphorIcon icon={caretDown} size="medium" />
+                                <PhosphorIcon
+                                    icon={magnifyingGlassIcon}
+                                    size="medium"
+                                />
                             </button>
                         )}
                     >
                         <OptionItem label="item 1" value="1" />
                         <OptionItem label="item 2" value="2" />
                         <OptionItem label="item 3" value="3" />
-                    </SingleSelect>
+                    </MultiSelect>
                 }
             />
         </View>
@@ -101,57 +99,33 @@ const SingleSelectCustomOpenerLabeledField = () => {
 };
 
 export const UsingCustomOpenerLabeledField = {
-    render: SingleSelectCustomOpenerLabeledField.bind({}),
+    render: MultiSelectCustomOpenerLabeledField.bind({}),
     name: "Using custom opener in a LabeledField",
 };
 
-const SingleSelectCustomOpenerLabel = () => {
+const MultiSelectCustomOpenerLabel = () => {
     return (
         <View>
-            <SingleSelect
-                placeholder="Choose"
+            <MultiSelect
                 onChange={() => {}}
                 opener={(eventState: any) => (
-                    <button aria-label="Preferences" onClick={() => {}}>
-                        <PhosphorIcon icon={caretDown} size="medium" />
+                    <button aria-label="Search button" onClick={() => {}}>
+                        <PhosphorIcon
+                            icon={magnifyingGlassIcon}
+                            size="medium"
+                        />
                     </button>
                 )}
             >
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
                 <OptionItem label="item 3" value="3" />
-            </SingleSelect>
+            </MultiSelect>
         </View>
     );
 };
 
 export const UsingCustomOpenerAriaLabel = {
-    render: SingleSelectCustomOpenerLabel.bind({}),
+    render: MultiSelectCustomOpenerLabel.bind({}),
     name: "Using aria-label on custom opener",
-};
-
-// This story exists for debugging automated unit tests.
-const SingleSelectKeyboardSelection = () => {
-    const [selectedValue, setSelectedValue] = React.useState("");
-    return (
-        <View>
-            <SingleSelect
-                placeholder="Choose"
-                onChange={setSelectedValue}
-                selectedValue={selectedValue}
-            >
-                <OptionItem label="apple" value="apple" />
-                <OptionItem label="orange" value="orange" />
-                <OptionItem label="pear" value="pear" />
-            </SingleSelect>
-        </View>
-    );
-};
-
-export const UsingKeyboardSelection = {
-    render: SingleSelectKeyboardSelection.bind({}),
-    name: "Using the keyboard",
-    parameters: {
-        chromatic: {disableSnapshot: true},
-    },
 };

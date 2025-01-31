@@ -7,8 +7,8 @@ import MultiSelect from "./components/multi-select";
 import Combobox from "./components/combobox";
 import Listbox from "./components/listbox";
 
-import type {Labels} from "./components/multi-select";
-import type {SingleSelectLabels} from "./components/single-select";
+import type {LabelsValues} from "./components/multi-select";
+import type {SingleSelectLabelsValues} from "./components/single-select";
 
 export {
     ActionItem,
@@ -21,4 +21,4 @@ export {
     Listbox,
 };
 
-export type {Labels, SingleSelectLabels};
+export type {LabelsValues, SingleSelectLabelsValues};

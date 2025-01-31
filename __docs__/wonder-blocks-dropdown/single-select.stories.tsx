@@ -21,7 +21,7 @@ import {
     SeparatorItem,
 } from "@khanacademy/wonder-blocks-dropdown";
 
-import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
+import type {SingleSelectLabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import ComponentInfo from "../components/component-info";
@@ -797,7 +797,7 @@ export const CustomLabels: StoryComponentType = {
         const [value, setValue] = React.useState<any>(null);
         const [opened, setOpened] = React.useState(true);
 
-        const translatedLabels: SingleSelectLabels = {
+        const translatedLabels: SingleSelectLabelsValues = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",

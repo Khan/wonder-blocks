@@ -36,7 +36,7 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     testId?: string;
     /**
-     * Text for the opener that can be passed to the child as an argument.
+     * Content for the opener that can be passed to the child as an argument.
      */
     text: OptionLabel;
     /**
@@ -51,6 +51,10 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
      * If the dropdown has an error.
      */
     error?: boolean;
+    /**
+     * The role of the opener.
+     */
+    role: "combobox" | "button";
 };
 
 type DefaultProps = {
@@ -79,6 +83,7 @@ class DropdownOpener extends React.Component<Props> {
             "aria-haspopup": ariaHasPopUp,
             "aria-required": ariaRequired,
             id,
+            role,
             onBlur,
         } = this.props;
         const renderedChildren = this.props.children({
@@ -89,11 +94,18 @@ class DropdownOpener extends React.Component<Props> {
         const childrenProps = renderedChildren.props;
         const childrenTestId = this.getTestIdFromProps(childrenProps);
 
+        // If custom opener has `aria-label`, prioritize that.
+        // If parent component has `aria-label`, fall back to that next.
+        const renderedAriaLabel =
+            childrenProps["aria-label"] ?? this.props["aria-label"];
+
         return React.cloneElement(renderedChildren, {
             ...clickableChildrenProps,
+            "aria-label": renderedAriaLabel ?? undefined,
             "aria-invalid": this.props.error,
             disabled,
             "aria-controls": ariaControls,
+            role,
             id,
             "aria-expanded": opened ? "true" : "false",
             "aria-haspopup": ariaHasPopUp,

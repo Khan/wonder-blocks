@@ -9,7 +9,7 @@ import {VariableSizeList as List} from "react-window";
 
 import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -18,7 +18,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
-import {defaultLabels, keys} from "../util/constants";
+import {defaultLabels} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
@@ -38,7 +38,7 @@ const VIRTUALIZE_THRESHOLD = 125;
 
 const StyledSpan = addStyle("span");
 
-type Labels = {
+type LabelsValues = {
     /**
      * Label for describing the dismiss icon on the search filter.
      */
@@ -93,7 +93,7 @@ type DefaultProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
+    labels: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -205,7 +205,7 @@ type ExportProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels?: Labels;
+    labels?: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -231,7 +231,7 @@ type State = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
+    labels: LabelsValues;
     /**
      * Because getDerivedStateFromProps doesn't store previous props (in the
      * spirit of performance), we store the previous items just to be able to
