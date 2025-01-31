@@ -313,6 +313,8 @@ const styles = StyleSheet.create({
         // the base color needs to be hard-coded as white for the
         // intended pastel background color to show up correctly
         // on dark backgrounds.
+        // TODO(WB-1865): Verify if we can change this to use semanticColor
+        // status tokens.
         backgroundColor: semanticColor.surface.primary,
     },
     containerInner: {
