@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.0.8
+
+### Patch Changes
+
+-   7057fa7c: Replace `color` with `semanticColor` tokens
+-   Updated dependencies [c1f420ad]
+    -   @khanacademy/wonder-blocks-icon-button@6.0.8
+
 ## 4.0.7
 
 ### Patch Changes

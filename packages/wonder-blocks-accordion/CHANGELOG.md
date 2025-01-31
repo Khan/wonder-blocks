@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.0.6
+
+### Patch Changes
+
+-   7057fa7c: Replace `color` with `semanticColor` tokens
+
 ## 3.0.5
 
 ### Patch Changes

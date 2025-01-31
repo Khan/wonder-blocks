@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 6.0.8
+
+### Patch Changes
+
+-   c1f420ad: Migrate to semanticColor tokens
+
 ## 6.0.7
 
 ### Patch Changes
