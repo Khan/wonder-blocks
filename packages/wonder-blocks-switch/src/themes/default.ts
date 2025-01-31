@@ -1,6 +1,9 @@
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
-
-const {semanticColor} = tokens;
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 // The color of the switch is based on the action color.
 const action = semanticColor.action.outlined.progressive;
@@ -11,7 +14,9 @@ const theme = {
             switch: {
                 off: action.default.border,
                 disabledOff: semanticColor.action.disabled.default,
-                activeOff: semanticColor.text.secondary,
+                // NOTE: Adding this as a primitive token b/c we don't have a
+                // semantic token for this background color
+                activeOff: color.fadedOffBlack64,
                 on: action.default.foreground,
                 disabledOn: action.press.background,
                 activeOn: action.press.foreground,
@@ -28,16 +33,15 @@ const theme = {
             },
         },
         outline: {
-            // TODO(WB-1856): Change with global focus token
-            default: action.hover.border,
+            default: semanticColor.border.focus,
         },
     },
     border: {
         radius: {
             // slider
-            small: tokens.spacing.small_12,
+            small: spacing.small_12,
             // switch
-            full: tokens.border.radius.full,
+            full: border.radius.full,
         },
     },
     size: {
@@ -46,11 +50,11 @@ const theme = {
             // switch
             medium: 20,
             // slider
-            large: tokens.spacing.large_24,
+            large: spacing.large_24,
         },
         width: {
             none: 0,
-            small: tokens.spacing.xxxxSmall_2,
+            small: spacing.xxxxSmall_2,
             // NOTE: This token is specific to the Switch component
             // switch
             medium: 20,
@@ -64,13 +68,13 @@ const theme = {
     },
     spacing: {
         slider: {
-            position: tokens.spacing.xxxxSmall_2,
+            position: spacing.xxxxSmall_2,
         },
         icon: {
-            position: tokens.spacing.xxxSmall_4,
+            position: spacing.xxxSmall_4,
         },
         transform: {
-            default: `translateX(${tokens.spacing.medium_16}px)`,
+            default: `translateX(${spacing.medium_16}px)`,
             transition: "transform 0.15s ease-in-out",
         },
     },
