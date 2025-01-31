@@ -6,7 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
@@ -48,7 +48,9 @@ const KindVariants = ({
                                     : styles.darkDefault),
                         ]}
                     >
-                        <LabelMedium style={light && {color: color.white}}>
+                        <LabelMedium
+                            style={light && {color: semanticColor.text.inverse}}
+                        >
                             {kind}-default
                         </LabelMedium>
                         <View style={[styles.iconButtons]}>
@@ -75,7 +77,9 @@ const KindVariants = ({
                                     : styles.darkDefault),
                         ]}
                     >
-                        <LabelMedium style={light && {color: color.white}}>
+                        <LabelMedium
+                            style={light && {color: semanticColor.text.inverse}}
+                        >
                             {kind}-destructive
                         </LabelMedium>
                         <View style={[styles.iconButtons]}>
@@ -102,7 +106,9 @@ const KindVariants = ({
                                     : styles.darkDefault),
                         ]}
                     >
-                        <LabelMedium style={light && {color: color.white}}>
+                        <LabelMedium
+                            style={light && {color: semanticColor.text.inverse}}
+                        >
                             {kind}-disabled
                         </LabelMedium>
                         <View style={[styles.iconButtons]}>
@@ -174,10 +180,10 @@ export const Active: StoryComponentType = {
 
 const styles = StyleSheet.create({
     darkDefault: {
-        backgroundColor: color.darkBlue,
+        backgroundColor: semanticColor.surface.inverse,
     },
     darkKhanmigo: {
-        backgroundColor: color.eggplant,
+        backgroundColor: semanticColor.khanmigo.primary,
     },
     grid: {
         display: "grid",
