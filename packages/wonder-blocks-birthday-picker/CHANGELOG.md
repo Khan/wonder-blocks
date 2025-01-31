@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 3.0.13
+
+### Patch Changes
+
+-   7057fa7c: Replace `color` with `semanticColor` tokens
+    -   @khanacademy/wonder-blocks-dropdown@8.0.2
+
 ## 3.0.12
 
 ### Patch Changes
