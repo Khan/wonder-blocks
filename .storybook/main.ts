@@ -1,3 +1,4 @@
+import remarkGfm from "remark-gfm";
 import type {StorybookConfig} from "@storybook/react-vite";
 
 const config: StorybookConfig = {
@@ -11,6 +12,16 @@ const config: StorybookConfig = {
         "@storybook/addon-designs",
         "storybook-addon-pseudo-states",
         "@storybook/experimental-addon-test",
+        {
+            name: "@storybook/addon-docs",
+            options: {
+                mdxPluginOptions: {
+                    mdxCompileOptions: {
+                        remarkPlugins: [remarkGfm],
+                    },
+                },
+            },
+        },
     ],
     staticDirs: ["../static"],
     core: {
