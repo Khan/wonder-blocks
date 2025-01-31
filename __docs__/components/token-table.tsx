@@ -5,9 +5,9 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 const StyledTable = addStyle("table");
-const StyledTableRow = addStyle("tr");
-const StyledTableHeader = addStyle("th");
-const StyledTableCell = addStyle("td");
+const StyledTr = addStyle("tr");
+const StyledTh = addStyle("th");
+const StyledTd = addStyle("td");
 
 type Column<T> = {
     // The label to display in the table header.
@@ -44,26 +44,26 @@ export default function TokenTable<T>({
     return (
         <StyledTable style={styles.table}>
             <thead>
-                <StyledTableRow style={styles.header}>
+                <StyledTr style={styles.header}>
                     {columns.map((column, i) => (
-                        <StyledTableHeader key={i} style={styles.cell}>
+                        <StyledTh key={i} style={styles.cell}>
                             {column.label}
-                        </StyledTableHeader>
+                        </StyledTh>
                     ))}
-                </StyledTableRow>
+                </StyledTr>
             </thead>
             <tbody>
                 {data.map((row: any, idx) => (
-                    <StyledTableRow key={idx} style={styles.row}>
+                    <StyledTr key={idx} style={styles.row}>
                         {columns.map((column, i) => (
-                            <StyledTableCell key={i} style={styles.cell}>
+                            <StyledTd key={i} style={styles.cell}>
                                 {/* We pass the value directly or via the result of a function call. */}
                                 {typeof column.cell === "string"
                                     ? row[column.cell]
                                     : column.cell(row)}
-                            </StyledTableCell>
+                            </StyledTd>
                         ))}
-                    </StyledTableRow>
+                    </StyledTr>
                 ))}
             </tbody>
         </StyledTable>

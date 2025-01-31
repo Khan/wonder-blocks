@@ -23,7 +23,7 @@ import {ButtonIcon} from "./button-icon";
 
 type Props = SharedProps & ChildrenProps & ClickableState;
 
-const StyledAnchor = addStyle("a");
+const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
@@ -205,13 +205,13 @@ const ButtonCore: React.ForwardRefExoticComponent<
                     {contents}
                 </StyledLink>
             ) : (
-                <StyledAnchor
+                <StyledA
                     {...commonProps}
                     href={href}
                     ref={ref as React.Ref<HTMLAnchorElement>}
                 >
                     {contents}
-                </StyledAnchor>
+                </StyledA>
             );
         } else {
             return (

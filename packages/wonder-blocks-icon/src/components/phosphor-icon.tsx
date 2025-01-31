@@ -8,7 +8,7 @@ import {IconSize, PhosphorIconAsset} from "../types";
 
 // We use a span instead of an img because we want to use the mask-image CSS
 // property.
-const StyledIcon = addStyle("span");
+const StyledSpan = addStyle("span");
 
 type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     /**
@@ -99,7 +99,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
     const iconStyles = _generateStyles(color, pixelSize);
 
     return (
-        <StyledIcon
+        <StyledSpan
             {...sharedProps}
             className={classNames}
             style={[
