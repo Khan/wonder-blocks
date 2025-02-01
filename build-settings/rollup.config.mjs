@@ -41,7 +41,7 @@ const createConfig = (pkgName) => {
                 presets,
                 plugins,
                 exclude: "node_modules/**",
-                runtimeHelpers: true,
+                babelHelpers: true,
                 comments: false,
                 extensions,
             }),
