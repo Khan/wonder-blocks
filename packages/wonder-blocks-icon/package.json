@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@khanacademy/wonder-stuff-core": "^1.4.2",
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",

@@ -42,6 +42,6 @@
   },
   "devDependencies": {
     "@khanacademy/wonder-blocks-button": "^7.0.7",
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

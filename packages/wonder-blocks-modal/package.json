@@ -34,6 +34,6 @@
   },
   "devDependencies": {
     "@khanacademy/wonder-blocks-breadcrumbs": "^3.0.7",
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

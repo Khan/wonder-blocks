@@ -1,4 +1,4 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 import plusCircle from "@phosphor-icons/core/regular/plus-circle.svg";
 import plusCircleBold from "@phosphor-icons/core/bold/plus-circle-bold.svg";
@@ -211,4 +211,4 @@ export default {
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

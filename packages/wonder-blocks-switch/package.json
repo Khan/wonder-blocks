@@ -27,6 +27,6 @@
     "react": "18.2.0"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

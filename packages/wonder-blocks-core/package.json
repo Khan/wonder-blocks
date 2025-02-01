@@ -24,7 +24,7 @@
     "react-router-dom": "5.3.4"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^2.0.0",
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
     "@khanacademy/wonder-blocks-testing-core": "^2.0.1"
   },
   "author": "",
