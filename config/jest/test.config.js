@@ -14,7 +14,7 @@ module.exports = {
     },
     // Allow transforming files imported from @phosphor-icons/core.
     // This is required by the .svg transform above.
-    transformIgnorePatterns: ["/node_modules/(?!(@phosphor-icons/core)/)"],
+    transformIgnorePatterns: ["/node_modules/.pnpm/(?!@phosphor-icons.core@)"],
 
     testEnvironment: "jest-environment-jsdom",
     globals: {
