@@ -248,6 +248,7 @@ export default class FocusManager extends React.Component<Props> {
             return;
         }
 
+        // eslint-disable-next-line import/no-deprecated
         const rootNode: HTMLElement = ReactDOM.findDOMNode(node) as any;
 
         if (!rootNode) {

@@ -51,6 +51,7 @@ export default class FocusTrap extends React.Component<Props> {
             return;
         }
 
+        // eslint-disable-next-line import/no-deprecated
         const modalRoot = ReactDOM.findDOMNode(node);
         if (!modalRoot) {
             throw new Error(

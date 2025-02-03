@@ -40,7 +40,7 @@ class ErrorBoundary extends React.Component<Props, State> {
 
     render() {
         return this.state.renderError
-            ? this.state.lastErrorUx ?? "An error occurred"
+            ? (this.state.lastErrorUx ?? "An error occurred")
             : this.props.children;
     }
 }

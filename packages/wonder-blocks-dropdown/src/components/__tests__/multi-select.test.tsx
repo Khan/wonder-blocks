@@ -1293,9 +1293,8 @@ describe("MultiSelect", () => {
                 "school",
             );
             // get icon instance
-            const dismissIcon = await screen.findByLabelText(
-                "Limpiar busqueda",
-            );
+            const dismissIcon =
+                await screen.findByLabelText("Limpiar busqueda");
 
             // Assert
             expect(dismissIcon).toBeInTheDocument();

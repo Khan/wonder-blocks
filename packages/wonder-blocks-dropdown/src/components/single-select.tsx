@@ -410,6 +410,7 @@ const SingleSelect = (props: Props) => {
     };
 
     const handleOpenerRef: (node?: any) => void = (node) => {
+        // eslint-disable-next-line import/no-deprecated
         const openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
         setOpenerElement(openerElement);
     };

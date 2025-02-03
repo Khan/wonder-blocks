@@ -21,6 +21,7 @@ type Props = {
  */
 export default class InitialFocus extends React.Component<Props> {
     componentDidMount() {
+        // eslint-disable-next-line import/no-deprecated
         const node: HTMLElement = ReactDOM.findDOMNode(this) as any;
 
         if (!node) {

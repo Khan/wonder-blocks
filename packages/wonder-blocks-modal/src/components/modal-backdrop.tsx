@@ -37,6 +37,7 @@ type Props = {
  */
 export default class ModalBackdrop extends React.Component<Props> {
     componentDidMount() {
+        // eslint-disable-next-line import/no-deprecated
         const node: HTMLElement = ReactDOM.findDOMNode(this) as any;
         if (!node) {
             return;
@@ -68,6 +69,7 @@ export default class ModalBackdrop extends React.Component<Props> {
             return null;
         }
 
+        // eslint-disable-next-line import/no-deprecated
         return ReactDOM.findDOMNode(
             node.querySelector(`#${initialFocusId}`),
         ) as any;
@@ -94,6 +96,7 @@ export default class ModalBackdrop extends React.Component<Props> {
     _getDialogElement(node: HTMLElement): HTMLElement {
         // If no focusable elements are found,
         // the dialog content element itself will receive focus.
+        // eslint-disable-next-line import/no-deprecated
         const dialogElement: HTMLElement = ReactDOM.findDOMNode(
             node.querySelector('[role="dialog"]'),
         ) as any;

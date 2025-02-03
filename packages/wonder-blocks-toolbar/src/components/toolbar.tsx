@@ -84,8 +84,8 @@ export default function Toolbar({
                 !title
                     ? sharedStyles.containerWithNoTitle
                     : typeof title === "string"
-                    ? sharedStyles.containerWithTextTitle
-                    : sharedStyles.containerWithNodeTitle,
+                      ? sharedStyles.containerWithTextTitle
+                      : sharedStyles.containerWithNodeTitle,
                 color === "dark" && sharedStyles.dark,
                 size === "small" && sharedStyles.small,
             ]}

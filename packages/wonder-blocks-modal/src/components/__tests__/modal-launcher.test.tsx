@@ -334,9 +334,8 @@ describe("ModalLauncher", () => {
 
         // Act
         // Close modal
-        const modalCloseButton = await screen.findByTestId(
-            "modal-close-button",
-        );
+        const modalCloseButton =
+            await screen.findByTestId("modal-close-button");
         await userEvent.click(modalCloseButton);
 
         // Assert
@@ -401,9 +400,8 @@ describe("ModalLauncher", () => {
 
         // Act
         // Close modal
-        const modalCloseButton = await screen.findByTestId(
-            "modal-close-button",
-        );
+        const modalCloseButton =
+            await screen.findByTestId("modal-close-button");
         await userEvent.click(modalCloseButton);
 
         // Assert

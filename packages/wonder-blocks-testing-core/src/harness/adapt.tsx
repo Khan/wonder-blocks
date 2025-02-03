@@ -26,16 +26,19 @@ export const Adapt = <TAdapters extends TestHarnessAdapters>({
     // Here we reduce the adapters in order, such that each one becomes the
     // child of the next, that way the first adapter in the list is the
     // innermost and the last is the outermost.
-    return Object.entries(adapters).reduce((newChildren, [name, adapter]) => {
-        const theConfig = configs[name];
-        if (theConfig == null) {
-            return newChildren;
-        }
-        const Adapter = getNamedAdapterComponent(name);
-        return (
-            <Adapter key={name} adapter={adapter} config={theConfig}>
-                {newChildren}
-            </Adapter>
-        );
-    }, <>{children}</>);
+    return Object.entries(adapters).reduce(
+        (newChildren, [name, adapter]) => {
+            const theConfig = configs[name];
+            if (theConfig == null) {
+                return newChildren;
+            }
+            const Adapter = getNamedAdapterComponent(name);
+            return (
+                <Adapter key={name} adapter={adapter} config={theConfig}>
+                    {newChildren}
+                </Adapter>
+            );
+        },
+        <>{children}</>,
+    );
 };

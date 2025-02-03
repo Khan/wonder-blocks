@@ -115,7 +115,7 @@ export const PhosphorIcon = React.forwardRef(function PhosphorIcon(
             ]}
             data-testid={testId}
             ref={ref}
-            role={role ?? sharedProps["aria-label"] ? "img" : undefined}
+            role={(role ?? sharedProps["aria-label"]) ? "img" : undefined}
         />
     );
 });
