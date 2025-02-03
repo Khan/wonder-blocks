@@ -28,7 +28,7 @@ import type {
 import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
-export type Labels = {
+export type LabelsValues = {
     /**
      * Label for describing the dismiss icon on the search filter.
      */
@@ -38,7 +38,7 @@ export type Labels = {
      */
     filter: string;
     /**
-     * Label for when the filter returns no results.
+     * Value for when the filter returns no results.
      */
     noResults: string;
     /**
@@ -48,18 +48,17 @@ export type Labels = {
     /**
      * Label for the "select none" shortcut option
      */
-
     selectNoneLabel: string;
     /**
-     * Label for the opening component when there are no items selected.
+     * Value for the opening component when there are no items selected.
      */
     noneSelected: string;
     /**
-     * Label for the opening component when there are some items selected.
+     * Value for the opening component when there are some items selected.
      */
     someSelected: (numOptions: number) => string;
     /**
-     * Label for the opening component when all the items have been selected.
+     * Value for the opening component when all the items have been selected.
      */
     allSelected: string;
 };
@@ -88,8 +87,8 @@ type DefaultProps = Readonly<{
      */
     shortcuts?: boolean;
     /**
-     * When false, the SelectOpener can show a Node as a label. When true, the
-     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * When false, the SelectOpener can show a Node as a value. When true, the
+     * SelectOpener will use a string as a value. If using custom OptionItems, a
      * plain text label can be provided with the `labelAsText` prop.
      * Defaults to true.
      */
@@ -130,9 +129,9 @@ type Props = AriaProps &
          */
         isFilterable?: boolean;
         /**
-         * The object containing the custom labels used inside this component.
+         * The object containing the custom labels and placeholder values used inside this component.
          */
-        labels?: Labels;
+        labels?: LabelsValues;
         /**
          * Callback for when the selection changes. Parameter is an updated array of
          * the values that are now selected.
@@ -214,6 +213,9 @@ type Props = AriaProps &
  * multiple options to be selected. Clients are responsible for keeping track
  * of the selected items.
  *
+ * Clients are also responsible for labeling the select using `LabeledField`, or
+ * an `aria-label` attribute or `aria-labelledby` on the select.
+ *
  * The multi select stays open until closed by the user. The onChange callback
  * happens every time there is a change in the selection of the items.
  *
@@ -222,7 +224,7 @@ type Props = AriaProps &
  * ```jsx
  * import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
  *
- * <MultiSelect onChange={setSelectedValues} selectedValues={selectedValues}>
+ * <MultiSelect aria-label="Fruits" onChange={setSelectedValues} selectedValues={selectedValues}>
  *  <OptionItem value="pear">Pear</OptionItem>
  *  <OptionItem value="mango">Mango</OptionItem>
  * </MultiSelect>
@@ -245,6 +247,7 @@ const MultiSelect = (props: Props) => {
         shortcuts = false,
         style,
         className,
+        "aria-label": ariaLabel,
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
@@ -359,7 +362,7 @@ const MultiSelect = (props: Props) => {
         onSelectedValuesChangeValidation();
     };
 
-    const getMenuText = (
+    const getMenuTextOrNode = (
         children: OptionItemComponentArray,
     ): string | JSX.Element => {
         const {noneSelected, someSelected, allSelected} = labels;
@@ -538,7 +541,7 @@ const MultiSelect = (props: Props) => {
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
         const {noneSelected} = labels;
 
-        const menuText = getMenuText(allChildren);
+        const menuContent = getMenuTextOrNode(allChildren);
 
         const dropdownOpener = (
             <Id id={id}>
@@ -547,13 +550,15 @@ const MultiSelect = (props: Props) => {
                         <DropdownOpener
                             id={uniqueOpenerId}
                             error={hasError}
+                            aria-label={ariaLabel}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
                             onClick={handleClick}
                             onBlur={onOpenerBlurValidation}
                             disabled={isDisabled}
                             ref={handleOpenerRef}
-                            text={menuText}
+                            role="combobox"
+                            text={menuContent}
                             opened={open}
                         >
                             {opener}
@@ -564,15 +569,16 @@ const MultiSelect = (props: Props) => {
                             error={hasError}
                             disabled={isDisabled}
                             id={uniqueOpenerId}
+                            aria-label={ariaLabel}
                             aria-controls={dropdownId}
-                            isPlaceholder={menuText === noneSelected}
+                            isPlaceholder={menuContent === noneSelected}
                             onOpenChanged={handleOpenChanged}
                             onBlur={onOpenerBlurValidation}
                             open={open}
                             ref={handleOpenerRef}
                             testId={testId}
                         >
-                            {menuText}
+                            {menuContent}
                         </SelectOpener>
                     );
                 }}
