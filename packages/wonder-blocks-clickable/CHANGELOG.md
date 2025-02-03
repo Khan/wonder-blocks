@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 6.0.0
+
+### Major Changes
+
+-   0199324d: Fixes keyboard tests in Dropdown and Clickable with specific key events. We now check `event.key` instead of `event.which` or `event.keyCode` to remove deprecated event properties and match the keys returned from Testing Library/userEvent.
+
+### Patch Changes
+
+-   Updated dependencies [0199324d]
+    -   @khanacademy/wonder-blocks-core@12.0.0
+
 ## 5.0.7
 
 ### Patch Changes
