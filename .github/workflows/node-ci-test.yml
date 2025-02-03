@@ -29,7 +29,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       # Testing and coverage
       - name: Run jest tests with coverage
-        run: yarn coverage:ci --shard ${{ matrix.shard }}
+        run: pnpm coverage:ci --shard ${{ matrix.shard }}
       - name: Upload Coverage
         uses: codecov/codecov-action@v4
         with:

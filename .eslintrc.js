@@ -57,12 +57,20 @@ module.exports = {
             files: ["**/*.test.ts", "**/*.test.tsx"],
             rules: {
                 "no-undef": "off",
+                "@typescript-eslint/no-require-imports": "off",
             },
         },
         {
             files: ["**/*.stories.tsx"],
             rules: {
                 "testing-library/no-await-sync-events": "off",
+            },
+        },
+        {
+            files: ["**/*.typestest.*"],
+            rules: {
+                "@typescript-eslint/no-require-imports": "off",
+                "@typescript-eslint/no-unused-expressions": "off",
             },
         },
     ],
@@ -107,7 +115,7 @@ module.exports = {
         "import/no-useless-path-segments": "error",
         "import/no-named-as-default": "error",
         "import/no-named-as-default-member": "error",
-        "import/no-deprecated": "error",
+        "import/no-deprecated": "warn",
         "import/no-commonjs": "error",
         "import/first": "error",
         "import/no-duplicates": "error",

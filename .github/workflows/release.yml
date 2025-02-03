@@ -45,7 +45,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn publish:ci
+          publish: pnpm publish:ci
         env:
           GITHUB_TOKEN: ${{ secrets.KHAN_ACTIONS_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

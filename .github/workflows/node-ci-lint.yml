@@ -43,34 +43,34 @@ jobs:
         name: Files that would trigger a full eslint run
         with:
           changed-files: ${{ steps.changed.outputs.files }}
-          files: '.eslintrc.js,yarn.lock,.eslintignore'
+          files: '.eslintrc.js,pnpm-lock.yaml,.eslintignore'
 
       - id: typecheck-reset
         uses: Khan/actions@filter-files-v1
         name: Files that would trigger a typecheck run
         with:
           changed-files: ${{ steps.changed.outputs.files }}
-          files: '.yarn.lock'
+          files: '.pnpm-lock.yaml'
 
       # Linting / type checking
       - name: Eslint
         uses: Khan/actions@full-or-limited-v0
         with:
           full-trigger: ${{ steps.eslint-reset.outputs.filtered }}
-          full: yarn lint:ci .
+          full: pnpm lint:ci .
           limited-trigger: ${{ steps.js-ts-files.outputs.filtered }}
-          limited: yarn lint:ci {}
+          limited: pnpm lint:ci {}
 
       - name: Typecheck
         if: always() # always run this check until we update the eslint config
         # if: steps.js-ts-files.outputs.filtered != '[]' || steps.typecheck-reset.outputs.filtered != '[]'
-        run: yarn typecheck
+        run: pnpm typecheck
 
       - name: Build .js bundles
-        run: yarn build
+        run: pnpm build
 
       - name: Build .d.ts types
-        run: yarn build:types
+        run: pnpm build:types
 
       - name: Check package.json files
         run: ./utils/publish/pre-publish-check-ci.ts

@@ -215,7 +215,7 @@ jobs:
 
             Packages can also be installed manually by running:
             ```sh
-            yarn add @khanacademy/wonder-blocks-<package-name>@${{
+            pnpm add @khanacademy/wonder-blocks-<package-name>@${{
             steps.publish-snapshot.outputs.npm_snapshot_tag }}
             ```
       - name: Create or update npm snapshot comment - Failure

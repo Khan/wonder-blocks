@@ -464,7 +464,7 @@ export const SingleSection: StoryComponentType = {
         return (
             <Accordion>
                 {[
-                    <AccordionSection header="First section">
+                    <AccordionSection header="First section" key={0}>
                         This is the information present in the first section
                     </AccordionSection>,
                 ]}

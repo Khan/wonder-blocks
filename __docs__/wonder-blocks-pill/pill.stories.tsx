@@ -154,7 +154,7 @@ export const Variants: StoryComponentType = {
             <View style={directionStyle}>
                 <View style={{flexDirection: "row"}}>
                     {sizes.map((size) => (
-                        <View>
+                        <View key={size}>
                             {kinds.map((kind) => (
                                 <View
                                     key={kind}
@@ -177,7 +177,7 @@ export const Variants: StoryComponentType = {
                 </View>
                 <View style={{flexDirection: "row"}}>
                     {sizes.map((size) => (
-                        <View>
+                        <View key={size}>
                             {kinds.map((kind) => (
                                 <View
                                     key={kind}

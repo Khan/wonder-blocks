@@ -7,4 +7,5 @@ storybook-static
 utils/**/*.d.ts
 !.vscode
 .DS_Store
-yarn-error.log
+# Pnpm errors
+pnpm-debug.log

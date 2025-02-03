@@ -25,9 +25,9 @@ const defaultProps = {
 };
 
 const selectItems = [
-    <OptionItem label="item 1" value="1" />,
-    <OptionItem label="item 2" value="2" />,
-    <OptionItem label="item 3" value="3" />,
+    <OptionItem label="item 1" value="1" key="1" />,
+    <OptionItem label="item 2" value="2" key="2" />,
+    <OptionItem label="item 3" value="3" key="3" />,
 ];
 
 const AllVariants = ({themeName = "Default"}: {themeName?: string}) => (
