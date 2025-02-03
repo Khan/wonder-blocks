@@ -23,7 +23,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v2
+        uses: ./.github/actions/shared-node-cache
         with:
           node-version: ${{ matrix.node-version }}
 
