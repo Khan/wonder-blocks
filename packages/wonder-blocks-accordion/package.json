@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-accordion",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "design": "v1",
   "description": "Accordion components for Wonder Blocks.",
   "main": "dist/index.js",

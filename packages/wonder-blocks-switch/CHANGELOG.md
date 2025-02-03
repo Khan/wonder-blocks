@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.0.6
+
+### Patch Changes
+
+-   645fc67b: Migrate the Switch component to use `semanticColor` tokens instead of `color`. This will prepare the component for supporting a more global theming approach in the future.
+
 ## 3.0.5
 
 ### Patch Changes
