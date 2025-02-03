@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.0.3
+
+### Patch Changes
+
+-   Updated dependencies [0199324d]
+    -   @khanacademy/wonder-blocks-core@12.0.0
+    -   @khanacademy/wonder-blocks-form@7.0.2
+    -   @khanacademy/wonder-blocks-icon-button@6.0.9
+    -   @khanacademy/wonder-blocks-icon@5.0.6
+    -   @khanacademy/wonder-blocks-typography@3.0.6
+
 ## 5.0.2
 
 ### Patch Changes
