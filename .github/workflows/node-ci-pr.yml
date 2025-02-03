@@ -49,29 +49,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup node
-        uses: actions/setup-node@v4
+      - uses: Khan/actions@check-for-changeset-v1
+        if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Get changed files
-        uses: Khan/actions@get-changed-files-v2
-        id: changed
-
-      - name: Filter out files that don't need a changeset
-        uses: Khan/actions@filter-files-v1
-        id: match
-        with:
-            changed-files: ${{ steps.changed.outputs.files }}
-            files: packages/ # Only look for changes in packages
-            globs: "!(**/__tests__/**), !(**/dist/*), !(**/*.test.{ts,tsx})" # Ignore test files
-            matchAllGlobs: true # All globs must match (disjunction is the default)
-            conjunctive: true # Only return files that match all of the above
-
-      - name: Verify changeset entries
-        uses: Khan/changeset-per-package@v1.0.2-pre
-        with:
-            changed_files: ${{ steps.match.outputs.filtered }}
+          exclude: .github/,.storybook/
+          exclude_extensions: .test.ts, .test.tsx, .stories.ts, .stories.tsx, .mdx
+          exclude_globs: "**/__tests__/*, **/__docs__/*"
 
   lint:
     name: Lint
