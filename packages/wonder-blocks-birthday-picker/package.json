@@ -14,7 +14,7 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
-    "@babel/runtime": "^7.26.7",
+    "@babel/runtime": "^7.24.5",
     "@khanacademy/wonder-blocks-core": "^12.0.0",
     "@khanacademy/wonder-blocks-dropdown": "^9.0.0",
     "@khanacademy/wonder-blocks-icon": "^5.0.6",
