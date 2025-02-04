@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 3.1.0
+
+### Minor Changes
+
+-   26258733: Exposes aria-label attributes on each field with values from the labels prop.
+
 ## 3.0.14
 
 ### Patch Changes
