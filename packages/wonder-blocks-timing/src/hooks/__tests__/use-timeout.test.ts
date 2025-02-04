@@ -67,7 +67,7 @@ describe("useTimeout", () => {
         expect(result.current.isSet).toBe(true);
     });
 
-    it("should call the action before unmounting", () => {
+    it("should call the action before unmounting if clear policy is ClearPolicy.Resolve", () => {
         // Arrange
         const action = jest.fn();
         const {unmount} = renderHook(() =>
@@ -85,7 +85,7 @@ describe("useTimeout", () => {
         expect(action).toHaveBeenCalled();
     });
 
-    it("should call the current action", () => {
+    it("should call the current action if action is changed after setting", () => {
         // Arrange
         const action1 = jest.fn();
         const action2 = jest.fn();
@@ -362,6 +362,24 @@ describe("useTimeout", () => {
             // Act
             act(() => {
                 result.current.clear(ClearPolicy.Resolve);
+            });
+
+            // Assert
+            expect(action).toHaveBeenCalled();
+        });
+
+        it("should call the action when the timeout is cleared when passing ClearPolicy.Resolve in options", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useTimeout(action, 1000, {
+                    clearPolicy: ClearPolicy.Resolve,
+                }),
+            );
+
+            // Act
+            act(() => {
+                result.current.clear();
             });
 
             // Assert
