@@ -7,5 +7,6 @@ storybook-static
 utils/**/*.d.ts
 !.vscode
 .DS_Store
+changeset-status.json
 # Pnpm errors
 pnpm-debug.log

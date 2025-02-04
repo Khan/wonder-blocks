@@ -84,7 +84,7 @@ check_for_changes() {
 }
 
 pre_publish_check() {
-    SWCRC=true node -r @swc-node/register "$ROOT/utils/publish/pre-publish-check-ci.ts"
+    pnpm publish:check
 
     if ! git diff --stat --exit-code HEAD; then
         echo "Git repo is dirty. This is unexpected when running in CI."
