@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "7.0.6",
+  "version": "7.0.7",
   "design": "v2",
   "publishConfig": {
     "access": "public"
@@ -17,14 +17,14 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.26.7",
-    "@khanacademy/wonder-blocks-breadcrumbs": "^3.0.7",
-    "@khanacademy/wonder-blocks-core": "^11.1.0",
-    "@khanacademy/wonder-blocks-icon-button": "^6.0.8",
-    "@khanacademy/wonder-blocks-layout": "^3.0.7",
+    "@khanacademy/wonder-blocks-breadcrumbs": "^3.0.8",
+    "@khanacademy/wonder-blocks-core": "^12.0.0",
+    "@khanacademy/wonder-blocks-icon-button": "^6.0.9",
+    "@khanacademy/wonder-blocks-layout": "^3.0.8",
     "@khanacademy/wonder-blocks-theming": "^3.0.1",
     "@khanacademy/wonder-blocks-timing": "^6.0.1",
     "@khanacademy/wonder-blocks-tokens": "^4.1.0",
-    "@khanacademy/wonder-blocks-typography": "^3.0.5"
+    "@khanacademy/wonder-blocks-typography": "^3.0.6"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",
@@ -33,7 +33,7 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-breadcrumbs": "^3.0.7",
+    "@khanacademy/wonder-blocks-breadcrumbs": "^3.0.8",
     "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

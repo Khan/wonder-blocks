@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-popover",
-  "version": "5.0.7",
+  "version": "5.0.8",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -17,12 +17,12 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.26.7",
-    "@khanacademy/wonder-blocks-core": "^11.1.0",
-    "@khanacademy/wonder-blocks-icon-button": "^6.0.8",
-    "@khanacademy/wonder-blocks-modal": "^7.0.6",
+    "@khanacademy/wonder-blocks-core": "^12.0.0",
+    "@khanacademy/wonder-blocks-icon-button": "^6.0.9",
+    "@khanacademy/wonder-blocks-modal": "^7.0.7",
     "@khanacademy/wonder-blocks-tokens": "^4.1.0",
-    "@khanacademy/wonder-blocks-tooltip": "^4.0.6",
-    "@khanacademy/wonder-blocks-typography": "^3.0.5"
+    "@khanacademy/wonder-blocks-tooltip": "^4.0.7",
+    "@khanacademy/wonder-blocks-typography": "^3.0.6"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",

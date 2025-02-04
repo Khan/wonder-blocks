@@ -4,16 +4,11 @@ import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
 import {userEvent} from "@testing-library/user-event";
+import {keys} from "@khanacademy/wonder-blocks-core";
 
 import getClickableBehavior from "../../util/get-clickable-behavior";
 import ClickableBehavior from "../clickable-behavior";
 import type {ClickableState} from "../clickable-behavior";
-
-const keyCodes = {
-    tab: 9,
-    enter: 13,
-    space: 32,
-} as const;
 
 const labelForState = (state: ClickableState): string => {
     const labels: Array<any> = [];
@@ -195,8 +190,8 @@ describe("ClickableBehavior", () => {
         );
         const button = await screen.findByRole("button");
         expect(button).not.toHaveTextContent("focused");
-        fireEvent.keyDown(button, {keyCode: keyCodes.space});
-        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        fireEvent.keyDown(button, {key: keys.space});
+        fireEvent.keyUp(button, {key: keys.space});
         // NOTE(kevinb): await userEvent.click() fires other events that we don't want
         // affecting this test case.
         fireEvent.click(button);
@@ -219,8 +214,8 @@ describe("ClickableBehavior", () => {
         );
         const button = await screen.findByRole("button");
         expect(button).not.toHaveTextContent("focused");
-        fireEvent.keyDown(button, {keyCode: keyCodes.space});
-        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        await userEvent.tab();
+        await userEvent.keyboard(" ");
         // NOTE(kevinb): await userEvent.click() fires other events that we don't want
         // affecting this test case.
         fireEvent.click(button);
@@ -244,14 +239,14 @@ describe("ClickableBehavior", () => {
         );
         const button = await screen.findByRole("button");
         expect(button).not.toHaveTextContent("pressed");
-        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        fireEvent.keyDown(button, {key: keys.space});
         expect(button).toHaveTextContent("pressed");
-        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        fireEvent.keyUp(button, {key: keys.space});
         expect(button).not.toHaveTextContent("pressed");
 
-        fireEvent.keyDown(button, {keyCode: keyCodes.enter});
+        fireEvent.keyDown(button, {key: keys.enter});
         expect(button).toHaveTextContent("pressed");
-        fireEvent.keyUp(button, {keyCode: keyCodes.enter});
+        fireEvent.keyUp(button, {key: keys.enter});
         expect(button).not.toHaveTextContent("pressed");
     });
 
@@ -280,14 +275,14 @@ describe("ClickableBehavior", () => {
         );
         const link = await screen.findByRole("link");
         expect(link).not.toHaveTextContent("pressed");
-        fireEvent.keyDown(link, {keyCode: keyCodes.enter});
+        fireEvent.keyDown(link, {key: keys.enter});
         expect(link).toHaveTextContent("pressed");
-        fireEvent.keyUp(link, {keyCode: keyCodes.enter});
+        fireEvent.keyUp(link, {key: keys.enter});
         expect(link).not.toHaveTextContent("pressed");
 
-        fireEvent.keyDown(link, {keyCode: keyCodes.space});
+        fireEvent.keyDown(link, {key: keys.space});
         expect(link).not.toHaveTextContent("pressed");
-        fireEvent.keyUp(link, {keyCode: keyCodes.space});
+        fireEvent.keyUp(link, {key: keys.space});
         expect(link).not.toHaveTextContent("pressed");
     });
 
@@ -462,19 +457,19 @@ describe("ClickableBehavior", () => {
 
         expect(button).not.toHaveTextContent("focused");
         fireEvent.keyUp(button, {
-            keyCode: keyCodes.tab,
+            key: keys.tab,
         });
         expect(button).not.toHaveTextContent("focused");
-        fireEvent.keyDown(button, {keyCode: keyCodes.tab});
+        fireEvent.keyDown(button, {key: keys.tab});
         expect(button).not.toHaveTextContent("focused");
 
         expect(button).not.toHaveTextContent("pressed");
-        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        fireEvent.keyDown(button, {key: keys.space});
         expect(button).not.toHaveTextContent("pressed");
-        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        fireEvent.keyUp(button, {key: keys.space});
         expect(button).not.toHaveTextContent("pressed");
 
-        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        fireEvent.keyDown(button, {key: keys.space});
         fireEvent.blur(button);
         expect(button).not.toHaveTextContent("pressed");
 
@@ -501,9 +496,9 @@ describe("ClickableBehavior", () => {
 
         const anchor = await screen.findByRole("link");
         expect(anchor).not.toHaveTextContent("pressed");
-        fireEvent.keyDown(anchor, {keyCode: keyCodes.enter});
+        fireEvent.keyDown(anchor, {key: keys.enter});
         expect(anchor).not.toHaveTextContent("pressed");
-        fireEvent.keyUp(anchor, {keyCode: keyCodes.enter});
+        fireEvent.keyUp(anchor, {key: keys.enter});
         expect(anchor).not.toHaveTextContent("pressed");
     });
 
@@ -525,16 +520,16 @@ describe("ClickableBehavior", () => {
         await userEvent.click(button);
         expect(onClick).toHaveBeenCalledTimes(1);
 
-        fireEvent.keyDown(button, {keyCode: keyCodes.space});
-        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        fireEvent.keyDown(button, {key: keys.space});
+        fireEvent.keyUp(button, {key: keys.space});
         expect(onClick).toHaveBeenCalledTimes(2);
 
-        fireEvent.keyDown(button, {keyCode: keyCodes.enter});
-        fireEvent.keyUp(button, {keyCode: keyCodes.enter});
+        fireEvent.keyDown(button, {key: keys.enter});
+        fireEvent.keyUp(button, {key: keys.enter});
         expect(onClick).toHaveBeenCalledTimes(3);
 
-        fireEvent.touchStart(button, {keyCode: keyCodes.space});
-        fireEvent.touchEnd(button, {keyCode: keyCodes.space});
+        fireEvent.touchStart(button, {key: keys.space});
+        fireEvent.touchEnd(button, {key: keys.space});
         fireEvent.click(button);
         expect(onClick).toHaveBeenCalledTimes(4);
     });
@@ -600,21 +595,21 @@ describe("ClickableBehavior", () => {
             const link = await screen.findByRole("link");
 
             // Space press should not trigger the onClick
-            fireEvent.keyDown(link, {keyCode: keyCodes.space});
-            fireEvent.keyUp(link, {keyCode: keyCodes.space});
+            fireEvent.keyDown(link, {key: keys.space});
+            fireEvent.keyUp(link, {key: keys.space});
             expect(onClick).toHaveBeenCalledTimes(0);
 
             // Navigation didn't happen with space
             expect(window.location.assign).toHaveBeenCalledTimes(0);
 
             // Enter press should trigger the onClick after keyup
-            fireEvent.keyDown(link, {keyCode: keyCodes.enter});
+            fireEvent.keyDown(link, {key: keys.enter});
             expect(onClick).toHaveBeenCalledTimes(0);
 
             // Navigation doesn't happen until after enter is released
             expect(window.location.assign).toHaveBeenCalledTimes(0);
 
-            fireEvent.keyUp(link, {keyCode: keyCodes.enter});
+            fireEvent.keyUp(link, {key: keys.enter});
             expect(onClick).toHaveBeenCalledTimes(1);
 
             // Navigation happened after enter click
@@ -730,14 +725,14 @@ describe("ClickableBehavior", () => {
 
         // Enter press should not do anything
         const checkbox = await screen.findByRole("checkbox");
-        fireEvent.keyDown(checkbox, {keyCode: keyCodes.enter});
+        fireEvent.keyDown(checkbox, {key: keys.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
-        fireEvent.keyUp(checkbox, {keyCode: keyCodes.enter});
+        fireEvent.keyUp(checkbox, {key: keys.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
 
         // Space press should trigger the onClick
-        fireEvent.keyDown(checkbox, {keyCode: keyCodes.space});
-        fireEvent.keyUp(checkbox, {keyCode: keyCodes.space});
+        fireEvent.keyDown(checkbox, {key: keys.space});
+        fireEvent.keyUp(checkbox, {key: keys.space});
         expect(onClick).toHaveBeenCalledTimes(1);
     });
 
@@ -757,15 +752,15 @@ describe("ClickableBehavior", () => {
 
         // Enter press
         const button = await screen.findByRole("button");
-        fireEvent.keyDown(button, {keyCode: keyCodes.enter});
+        fireEvent.keyDown(button, {key: keys.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
-        fireEvent.keyUp(button, {keyCode: keyCodes.enter});
+        fireEvent.keyUp(button, {key: keys.enter});
         expect(onClick).toHaveBeenCalledTimes(1);
 
         // Space press
-        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        fireEvent.keyDown(button, {key: keys.space});
         expect(onClick).toHaveBeenCalledTimes(1);
-        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        fireEvent.keyUp(button, {key: keys.space});
         expect(onClick).toHaveBeenCalledTimes(2);
     });
 
@@ -794,10 +789,10 @@ describe("ClickableBehavior", () => {
         }
 
         // Enter press on a div
-        fireEvent.keyDown(clickableDiv, {keyCode: keyCodes.enter});
+        fireEvent.keyDown(clickableDiv, {key: keys.enter});
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
         fireEvent.keyUp(clickableDiv, {
-            keyCode: keyCodes.enter,
+            key: keys.enter,
         });
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
@@ -808,9 +803,9 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
 
         // Space press on a div
-        fireEvent.keyDown(clickableDiv, {keyCode: keyCodes.space});
+        fireEvent.keyDown(clickableDiv, {key: keys.space});
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        fireEvent.keyUp(clickableDiv, {keyCode: keyCodes.space});
+        fireEvent.keyUp(clickableDiv, {key: keys.space});
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
 
@@ -885,10 +880,10 @@ describe("ClickableBehavior", () => {
 
         const checkbox = await screen.findByRole("checkbox");
         // Enter press should not do anything
-        fireEvent.keyDown(checkbox, {keyCode: keyCodes.enter});
+        fireEvent.keyDown(checkbox, {key: keys.enter});
         // This element still wants to have a click on enter press
         fireEvent.click(checkbox);
-        fireEvent.keyUp(checkbox, {keyCode: keyCodes.enter});
+        fireEvent.keyUp(checkbox, {key: keys.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
     });
 

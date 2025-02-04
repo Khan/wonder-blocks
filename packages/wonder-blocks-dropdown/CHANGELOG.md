@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 9.0.0
+
+### Major Changes
+
+-   0199324d: Fixes keyboard tests in Dropdown and Clickable with specific key events. We now check `event.key` instead of `event.which` or `event.keyCode` to remove deprecated event properties and match the keys returned from Testing Library/userEvent.
+-   1a18e98a: 1. Updates dropdown openers for SingleSelect and MultiSelect to use `role="combobox"` instead of `button`. 2. SingleSelect and MultiSelect should have a paired `<label>` element or `aria-label` attribute for accessibility. They no longer fall back to text content for labeling, as those contents are now used as combobox values. 3. Changes the type names for custom label objects from `Labels` to `LabelsValues` and `SingleSelectLabels` to `SingleSelectLabelsValues`, respectively.
+
+### Patch Changes
+
+-   Updated dependencies [0199324d]
+    -   @khanacademy/wonder-blocks-clickable@6.0.0
+    -   @khanacademy/wonder-blocks-core@12.0.0
+    -   @khanacademy/wonder-blocks-cell@4.0.8
+    -   @khanacademy/wonder-blocks-pill@3.0.8
+    -   @khanacademy/wonder-blocks-icon@5.0.6
+    -   @khanacademy/wonder-blocks-layout@3.0.8
+    -   @khanacademy/wonder-blocks-modal@7.0.7
+    -   @khanacademy/wonder-blocks-search-field@5.0.3
+    -   @khanacademy/wonder-blocks-typography@3.0.6
+
 ## 8.0.2
 
 ### Patch Changes

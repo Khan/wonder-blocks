@@ -12,7 +12,7 @@ import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
+import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
@@ -220,7 +220,7 @@ export const ControlledOpened: StoryComponentType = {
 };
 
 // Custom MultiSelect labels
-const dropdownLabels: Labels = {
+const dropdownLabels: LabelsValues = {
     ...defaultLabels,
     noneSelected: "Solar system",
     someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
@@ -595,7 +595,7 @@ export const VirtualizedFilterable: StoryComponentType = {
  * a function with the following arguments:
  *  - `eventState`: lets you customize the style for different states, such as
  *    pressed, hovered and focused.
- *  - `text`: Passes the menu label defined in the parent component. This value
+ *  - `text`: Passes the menu value defined in the parent component. This value
  *  is passed using the placeholder prop set in the `MultiSelect` component.
  *  - `opened`: Whether the dropdown is opened.
  *
@@ -604,11 +604,16 @@ export const VirtualizedFilterable: StoryComponentType = {
  *
  * **Accessibility:** When a custom opener is used, the following attributes are
  * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
+ * With a custom opener, you are still responsible for labeling the `MultiSelect`
+ * by wrapping it in a `<LabeledField>` or using `aria-label` on the parent component
+ * to describe the purpose of the control. Because it is a combobox, the value
+ * can't also be used for the label.
  */
 export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValues: [],
+        "aria-label": "Custom opener",
         opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
             action(JSON.stringify({focused, hovered, pressed, opened}))(
                 "state changed!",
@@ -660,7 +665,7 @@ export const CustomLabels: StoryComponentType = {
         >([]);
         const [opened, setOpened] = React.useState(true);
 
-        const labels: Labels = {
+        const labels: LabelsValues = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",

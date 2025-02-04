@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-data",
-  "version": "14.0.6",
+  "version": "14.0.7",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.26.7",
-    "@khanacademy/wonder-blocks-core": "^11.1.0"
+    "@khanacademy/wonder-blocks-core": "^12.0.0"
   },
   "peerDependencies": {
     "@khanacademy/wonder-stuff-core": "^1.2.2",

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import {keys, type AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -41,6 +41,10 @@ type SelectOpenerProps = AriaProps & {
      * of this component. A placeholder has more faded text colors and styles.
      */
     isPlaceholder: boolean;
+    /**
+     * A label to expose on the opener, in the absence of an associated label element or `aria-labelledby`.
+     */
+    ariaLabel?: string;
     /**
      * Callback for when the SelectOpener is pressed.
      */
@@ -103,21 +107,21 @@ export default class SelectOpener extends React.Component<
     };
 
     handleKeyDown: (e: React.KeyboardEvent) => void = (e) => {
-        const keyCode = e.key;
+        const keyName = e.key;
         // Prevent default behavior for Enter key. Without this, the select
         // is only open while the Enter key is pressed.
         // Prevent default behavior for Space key. Without this, Safari stays in
         // active state visually
-        if (keyCode === "Enter" || keyCode === " ") {
+        if (keyName === keys.enter || keyName === keys.space) {
             this.setState({pressed: true});
             e.preventDefault();
         }
     };
 
     handleKeyUp: (e: React.KeyboardEvent) => void = (e) => {
-        const keyCode = e.key;
+        const keyName = e.key;
         // On key up for Enter and Space, trigger the click handler
-        if (keyCode === "Enter" || keyCode === " ") {
+        if (keyName === keys.enter || keyName === keys.space) {
             this.setState({pressed: false});
             this.handleClick(e);
         }
@@ -132,6 +136,7 @@ export default class SelectOpener extends React.Component<
             isPlaceholder,
             open,
             testId,
+            "aria-label": ariaLabel,
             "aria-required": ariaRequired,
             onBlur,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -158,12 +163,13 @@ export default class SelectOpener extends React.Component<
                 aria-disabled={disabled}
                 aria-expanded={open ? "true" : "false"}
                 aria-invalid={error}
+                aria-label={ariaLabel ?? undefined}
                 aria-required={ariaRequired}
                 aria-haspopup="listbox"
                 data-testid={testId}
                 id={id}
+                role="combobox"
                 style={style}
-                type="button"
                 onClick={!disabled ? this.handleClick : undefined}
                 onKeyDown={!disabled ? this.handleKeyDown : undefined}
                 onKeyUp={!disabled ? this.handleKeyUp : undefined}
@@ -171,8 +177,10 @@ export default class SelectOpener extends React.Component<
             >
                 <LabelMedium style={styles.text}>
                     {/* Note(tamarab): Prevents unwanted vertical
-                                shift for empty selection */}
-                    {children || "\u00A0"}
+                                shift for empty selection.
+                        Note2(marcysutton): aria-hidden prevents "space"
+                                from being read in VoiceOver. */}
+                    {children || <span aria-hidden="true">&nbsp;</span>}
                 </LabelMedium>
                 <PhosphorIcon
                     icon={caretDownIcon}

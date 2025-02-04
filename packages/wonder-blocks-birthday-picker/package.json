@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-birthday-picker",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,12 +15,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.26.7",
-    "@khanacademy/wonder-blocks-core": "^11.1.0",
-    "@khanacademy/wonder-blocks-dropdown": "^8.0.2",
-    "@khanacademy/wonder-blocks-icon": "^5.0.5",
-    "@khanacademy/wonder-blocks-layout": "^3.0.7",
+    "@khanacademy/wonder-blocks-core": "^12.0.0",
+    "@khanacademy/wonder-blocks-dropdown": "^9.0.0",
+    "@khanacademy/wonder-blocks-icon": "^5.0.6",
+    "@khanacademy/wonder-blocks-layout": "^3.0.8",
     "@khanacademy/wonder-blocks-tokens": "^4.1.0",
-    "@khanacademy/wonder-blocks-typography": "^3.0.5"
+    "@khanacademy/wonder-blocks-typography": "^3.0.6"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",
