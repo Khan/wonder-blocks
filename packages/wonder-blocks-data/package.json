@@ -18,12 +18,12 @@
     "@khanacademy/wonder-blocks-core": "^12.0.0"
   },
   "peerDependencies": {
-    "@khanacademy/wonder-stuff-core": "^1.2.2",
+    "@khanacademy/wonder-stuff-core": "^1.5.4",
     "react": "18.2.0"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
-    "@khanacademy/wonder-stuff-testing": "^3.0.1",
+    "@khanacademy/wonder-stuff-testing": "^3.0.5",
     "@khanacademy/wonder-blocks-testing-core": "^2.0.1"
   },
   "author": "",

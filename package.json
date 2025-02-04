@@ -57,6 +57,7 @@
     "@storybook/addon-actions": "^8.5.2",
     "@storybook/addon-docs": "^8.5.2",
     "@storybook/addon-essentials": "^8.5.2",
+    "@storybook/builder-vite": "^8.5.2",
     "@storybook/experimental-addon-test": "^8.5.2",
     "@storybook/preview-api": "^8.5.2",
     "@storybook/react": "^8.5.2",

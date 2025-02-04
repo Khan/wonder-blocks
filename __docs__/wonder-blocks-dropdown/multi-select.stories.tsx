@@ -223,7 +223,7 @@ export const ControlledOpened: StoryComponentType = {
 const dropdownLabels: LabelsValues = {
     ...defaultLabels,
     noneSelected: "Solar system",
-    someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
+    someSelected: (numSelectedValues: number) => `${numSelectedValues} planets`,
 };
 
 /**
@@ -669,11 +669,12 @@ export const CustomLabels: StoryComponentType = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",
-            selectAllLabel: (numOptions) => `Seleccionar todas (${numOptions})`,
+            selectAllLabel: (numOptions: number) =>
+                `Seleccionar todas (${numOptions})`,
             selectNoneLabel: "No seleccionar ninguno",
             noneSelected: "0 escuelas seleccionadas",
             allSelected: "Todas las escuelas",
-            someSelected: (numSelectedValues) =>
+            someSelected: (numSelectedValues: number) =>
                 `${numSelectedValues} escuelas seleccionadas`,
         };
 

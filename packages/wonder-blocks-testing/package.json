@@ -20,8 +20,8 @@
     "@khanacademy/wonder-blocks-testing-core": "^2.0.1"
   },
   "peerDependencies": {
-    "@khanacademy/wonder-stuff-core": "^1.2.2",
-    "@storybook/addon-actions": "^8.2.1",
+    "@khanacademy/wonder-stuff-core": "^1.5.4",
+    "@storybook/addon-actions": "^8.5.2",
     "aphrodite": "^1.2.5",
     "node-fetch": "^2.6.7",
     "react": "18.2.0",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
-    "@khanacademy/wonder-stuff-testing": "^3.0.1"
+    "@khanacademy/wonder-stuff-testing": "^3.0.5"
   },
   "author": "",
   "license": "MIT"

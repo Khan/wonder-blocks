@@ -801,7 +801,7 @@ export const CustomLabels: StoryComponentType = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",
-            someResults: (numResults) => `${numResults} frutas`,
+            someResults: (numResults: number) => `${numResults} frutas`,
         };
 
         return (
