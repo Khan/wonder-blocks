@@ -183,34 +183,63 @@ describe("BirthdayPicker", () => {
             expect(await screen.findByRole("alert")).toBeInTheDocument();
         });
 
-        // NOTE(john): After upgrading to user-event v14 this test no longer
-        // works. the findByRole("listbox") is not finding the listbox. Juan
-        // and I tried all sorts of options, but none work. Hopefully this
-        // can be fixed once we upgrade to React 18?
-        it.skip.each(["day", "month", "year"])(
-            "%s > renders the listbox as invalid with an invalid default value",
-            async (fragment) => {
-                // Arrange
-                const defaultValue = "2021-02-31";
+        describe.each(["day", "month", "year"])(
+            "$fragment",
+            (fragment: string) => {
+                it("%s > renders the listbox as invalid with an invalid default value", async () => {
+                    // Arrange
+                    const defaultValue = "2021-02-31";
 
-                render(
-                    <BirthdayPicker
-                        defaultValue={defaultValue}
-                        onChange={() => {}}
-                    />,
-                );
+                    render(
+                        <BirthdayPicker
+                            defaultValue={defaultValue}
+                            onChange={() => {}}
+                        />,
+                    );
 
-                const button = await screen.findByTestId(
-                    `birthday-picker-${fragment}`,
-                );
-                await userEvent.click(button);
+                    const button = await screen.findByTestId(
+                        `birthday-picker-${fragment}`,
+                    );
+                    await userEvent.click(button);
 
-                // Act
-                // wait for the listbox (options list) to appear
-                const listbox = await screen.findByRole("listbox");
+                    // Act
+                    // wait for the listbox (options list) to appear
+                    const listbox = await screen.findByRole("listbox", {
+                        hidden: true,
+                    });
 
-                // Assert
-                expect(listbox).toHaveAttribute("aria-invalid", "true");
+                    // Assert
+                    expect(listbox).toHaveAttribute("aria-invalid", "true");
+                });
+
+                it("$s > labels the opener", async () => {
+                    // Arrange
+                    const defaultValue = "2021-02-31";
+                    const testLabels: Labels = {
+                        month: "Mois",
+                        day: "Jour",
+                        year: "Année",
+                        errorMessage: "There was an error",
+                    };
+
+                    render(
+                        <BirthdayPicker
+                            defaultValue={defaultValue}
+                            onChange={() => {}}
+                            labels={testLabels}
+                        />,
+                    );
+
+                    // Act
+                    const button = await screen.findByTestId(
+                        `birthday-picker-${fragment}`,
+                    );
+
+                    // Assert
+                    expect(button).toHaveAccessibleName(
+                        testLabels[fragment as keyof Labels],
+                    );
+                });
             },
         );
     });
