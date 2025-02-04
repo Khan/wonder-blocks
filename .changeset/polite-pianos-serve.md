@@ -34,4 +34,7 @@
 "@khanacademy/wb-codemod": minor
 ---
 
-Tooling: switching to pnpm, Upgrading rollup to v4 and @babel/runtime bump to match the current webapp version.
+Tooling:
+
+- Switching to `pnpm`.
+- Upgrading `rollup` to v4 and `@babel/runtime` to match the current webapp version.
