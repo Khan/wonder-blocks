@@ -306,6 +306,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         const minWidth = this.getMonthYearWidth(monthYearOnly);
         return (
             <SingleSelect
+                aria-label={this.labels.month}
                 aria-invalid={!!this.state.error}
                 error={!!this.state.error}
                 disabled={disabled}
@@ -336,6 +337,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             <>
                 <Strut size={spacing.xSmall_8} />
                 <SingleSelect
+                    aria-label={this.labels.day}
                     aria-invalid={!!this.state.error}
                     error={!!this.state.error}
                     disabled={disabled}
@@ -377,6 +379,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <SingleSelect
+                aria-label={this.labels.year}
                 aria-invalid={!!this.state.error}
                 error={!!this.state.error}
                 disabled={disabled}
