@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.24.5",
-    "@khanacademy/wonder-blocks-core": "^12.0.0"
+    "@khanacademy/wonder-blocks-core": "workspace:*"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",

@@ -17,17 +17,17 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.24.5",
-    "@khanacademy/wonder-blocks-cell": "^4.0.8",
-    "@khanacademy/wonder-blocks-clickable": "^6.0.0",
-    "@khanacademy/wonder-blocks-core": "^12.0.0",
-    "@khanacademy/wonder-blocks-icon": "^5.0.6",
-    "@khanacademy/wonder-blocks-layout": "^3.0.8",
-    "@khanacademy/wonder-blocks-modal": "^7.0.7",
-    "@khanacademy/wonder-blocks-pill": "^3.0.8",
-    "@khanacademy/wonder-blocks-search-field": "^5.0.3",
-    "@khanacademy/wonder-blocks-timing": "^6.0.1",
-    "@khanacademy/wonder-blocks-tokens": "^4.1.0",
-    "@khanacademy/wonder-blocks-typography": "^3.0.6"
+    "@khanacademy/wonder-blocks-cell": "workspace:*",
+    "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-icon": "workspace:*",
+    "@khanacademy/wonder-blocks-layout": "workspace:*",
+    "@khanacademy/wonder-blocks-modal": "workspace:*",
+    "@khanacademy/wonder-blocks-pill": "workspace:*",
+    "@khanacademy/wonder-blocks-search-field": "workspace:*",
+    "@khanacademy/wonder-blocks-timing": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",

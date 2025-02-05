@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
-    "@khanacademy/wonder-blocks-testing-core": "^2.0.1"
+    "@khanacademy/wonder-blocks-testing-core": "workspace:*"
   },
   "author": "",
   "license": "MIT"
