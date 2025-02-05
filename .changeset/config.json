@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2/schema.json",
-  "changelog": ["@changesets/changelog-github", {"repo": "Khan/wonder-blocks"}],
+  "changelog": "@changesets/cli/changelog",
   "commit": ["@changesets/cli/commit", { "skipCI": false }],
   "linked": [],
   "access": "public",
