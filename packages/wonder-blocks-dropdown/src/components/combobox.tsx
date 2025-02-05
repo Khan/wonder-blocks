@@ -499,8 +499,10 @@ export default function Combobox({
             color: disabled
                 ? color.offBlack32
                 : // Use the color passed in, otherwise use the default color.
-                  startIcon.props.color ?? semanticColor.icon.primary,
-        } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
+                  (startIcon.props.color ?? semanticColor.icon.primary),
+        } as Partial<
+            React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+        >);
 
         return <View style={styles.iconWrapper}>{startIconElement}</View>;
     };
@@ -510,18 +512,18 @@ export default function Combobox({
     const currentActiveDescendant = !openState
         ? undefined
         : focusedIndex >= 0
-        ? // listbox is focused
-          renderList[focusedIndex]?.props?.id
-        : // pills are focused (multiple values selected)
-          pillIdPrefix + focusedMultiSelectIndex;
+          ? // listbox is focused
+            renderList[focusedIndex]?.props?.id
+          : // pills are focused (multiple values selected)
+            pillIdPrefix + focusedMultiSelectIndex;
 
     // Determine which widget will be controlled by the combobox (listbox or
     // pills group).
     const controlledWidget = !openState
         ? undefined
         : focusedIndex >= 0
-        ? uniqueId
-        : pillIdPrefix;
+          ? uniqueId
+          : pillIdPrefix;
 
     return (
         <>

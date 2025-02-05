@@ -38,7 +38,7 @@ export default function TokenTable<T>({
 }: Props<T>): React.ReactElement {
     // Convert the tokens object into an array of objects.
     const data = Object.entries(tokens).map(
-        ([key, value]) => ({label: key, value} as T),
+        ([key, value]) => ({label: key, value}) as T,
     );
 
     return (

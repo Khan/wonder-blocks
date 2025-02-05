@@ -37,6 +37,7 @@ type Props = AriaProps & {
  */
 export default class PopoverAnchor extends React.Component<Props> {
     componentDidMount() {
+        // eslint-disable-next-line import/no-deprecated
         const anchorNode = ReactDOM.findDOMNode(this) as HTMLElement;
 
         if (anchorNode) {

@@ -17,6 +17,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@babel/runtime": "^7.24.5",
     "@khanacademy/wonder-blocks-clickable": "^6.0.0",
     "@khanacademy/wonder-blocks-core": "^12.0.0",
     "@khanacademy/wonder-blocks-icon": "^5.0.6",
@@ -29,6 +30,6 @@
     "react": "18.2.0"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

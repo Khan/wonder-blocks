@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -214,4 +214,4 @@ export default {
             type: {summary: "(e: SyntheticKeyboardEvent<>) => mixed"},
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

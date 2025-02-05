@@ -29,20 +29,20 @@ import type {
  */
 
 //>  should work for empty case
-({} as TestHarnessAdapters);
+({}) as TestHarnessAdapters;
 //<
 
 //>  should assert if adapter is not Adapter<TConfig>
 // @ts-expect-error  String is not a adapter function
 ({
     adapterString: "string",
-} as TestHarnessAdapters);
+}) as TestHarnessAdapters;
 //<
 
 //>  should work for a function matching Adapter<TConfig>
 ({
     adapterA: (children, config) => <div>test</div>,
-} as TestHarnessAdapters);
+}) as TestHarnessAdapters;
 //<
 
 /**
@@ -84,14 +84,14 @@ const adapters = {
 //>  should assert if parameterized type is not valid Adapters
 // string is not a valid Adapter
 // @ts-expect-error: Type 'string' does not satisfy the constraint 'TestHarnessAdapters'
-({} as TestHarnessConfigs<typeof notadapters>);
+({}) as TestHarnessConfigs<typeof notadapters>;
 //<
 
 //>  should expect one config per adapter
 // both adapter configs missing
-({} as TestHarnessConfigs<typeof adapters>);
+({}) as TestHarnessConfigs<typeof adapters>;
 // adapterB config missing
-({adapterA: "test"} as TestHarnessConfigs<typeof adapters>);
+({adapterA: "test"}) as TestHarnessConfigs<typeof adapters>;
 //<
 
 //>  should assert if config does not match adapter config
@@ -99,5 +99,5 @@ const adapters = {
 ({
     adapterA: "a string, this is correct",
     adapterB: "a string, but it should be a number",
-} as TestHarnessConfigs<typeof adapters>);
+}) as TestHarnessConfigs<typeof adapters>;
 //<

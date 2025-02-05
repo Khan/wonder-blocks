@@ -16,7 +16,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.6",
+    "@babel/runtime": "^7.24.5",
     "@khanacademy/wonder-blocks-cell": "^4.0.8",
     "@khanacademy/wonder-blocks-clickable": "^6.0.0",
     "@khanacademy/wonder-blocks-core": "^12.0.0",
@@ -38,10 +38,9 @@
     "react-popper": "^2.0.0",
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4",
-    "react-window": "^1.8.10"
+    "react-window": "^1.8.11"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^7.0.8",
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

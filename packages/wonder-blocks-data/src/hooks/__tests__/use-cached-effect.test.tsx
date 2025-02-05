@@ -24,7 +24,7 @@ jest.mock("../use-shared-cache");
 
 const allPolicies = Array.from(values(FetchPolicy));
 const allPoliciesBut = (
-    ...policies: Array<typeof FetchPolicy[keyof typeof FetchPolicy]>
+    ...policies: Array<(typeof FetchPolicy)[keyof typeof FetchPolicy]>
 ) => allPolicies.filter((p: any) => !policies.includes(p));
 
 describe("#useCachedEffect", () => {

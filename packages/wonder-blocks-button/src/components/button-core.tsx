@@ -354,8 +354,8 @@ export const _generateStyles = (
             ? "destructiveLight"
             : "progressiveLight"
         : buttonColor === "destructive"
-        ? "destructive"
-        : "progressive";
+          ? "destructive"
+          : "progressive";
 
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {

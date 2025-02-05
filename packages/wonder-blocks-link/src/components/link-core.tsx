@@ -100,7 +100,9 @@ const LinkCore = React.forwardRef(function LinkCore(
                 testId: "start-icon",
                 "aria-hidden": "true",
                 ...startIcon.props,
-            } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
+            } as Partial<
+                React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+            >);
         }
 
         if (endIcon) {
@@ -109,7 +111,9 @@ const LinkCore = React.forwardRef(function LinkCore(
                 testId: "end-icon",
                 "aria-hidden": "true",
                 ...endIcon.props,
-            } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
+            } as Partial<
+                React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+            >);
         }
 
         const linkContent = (

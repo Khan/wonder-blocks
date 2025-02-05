@@ -22,3 +22,5 @@ CODEOWNERS
 **/*.jpg
 **/*.png
 **/*.svg
+
+types/

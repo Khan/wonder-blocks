@@ -485,6 +485,7 @@ class DropdownCore extends React.Component<Props, State> {
     handleInteract: (event: Event) => void = (event) => {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target as any;
+        // eslint-disable-next-line import/no-deprecated
         const thisElement = ReactDOM.findDOMNode(this);
         if (
             open &&
@@ -542,6 +543,7 @@ class DropdownCore extends React.Component<Props, State> {
             const currentFocusedItemRef =
                 this.state.itemRefs[this.focusedIndex];
 
+            // eslint-disable-next-line import/no-deprecated
             const node = ReactDOM.findDOMNode(
                 currentFocusedItemRef.ref.current,
             ) as HTMLElement;

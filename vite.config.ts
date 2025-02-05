@@ -4,6 +4,9 @@ import {defineConfig} from "vite";
 
 export default defineConfig({
     plugins: [react()],
+    build: {
+        assetsInlineLimit: 0,
+    },
     resolve: {
         alias: [
             // Allow us to detect changes from local wonder-blocks packages.

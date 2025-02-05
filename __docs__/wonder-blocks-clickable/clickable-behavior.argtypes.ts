@@ -1,4 +1,4 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 import clickableArgtypes from "./clickable.argtypes";
 
@@ -67,4 +67,4 @@ export default {
      * Accessibility
      */
     role: clickableArgtypes.role,
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

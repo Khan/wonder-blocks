@@ -1,5 +1,5 @@
+import type {ArgTypes} from "@storybook/react";
 import * as React from "react";
-import type {InputType} from "@storybook/csf";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
@@ -152,4 +152,4 @@ export default {
         description: `When true, changes the popover dialog background to blue; otherwise, the popover dialog background is not modified. It can be used only with Text-only popovers. It cannot be used with icon or image.`,
         control: {type: "boolean"},
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

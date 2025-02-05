@@ -87,6 +87,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
      * Update container width
      */
     setWidth() {
+        // eslint-disable-next-line import/no-deprecated
         const rootNode = ReactDOM.findDOMNode(this) as
             | HTMLElement
             | null

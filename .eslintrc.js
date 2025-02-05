@@ -54,15 +54,25 @@ module.exports = {
             },
         },
         {
-            files: ["**/*.test.ts", "**/*.test.tsx"],
+            files: ["**/*.test.*"],
             rules: {
                 "no-undef": "off",
+                "import/no-deprecated": "off",
+                "@typescript-eslint/no-require-imports": "off",
             },
         },
         {
             files: ["**/*.stories.tsx"],
             rules: {
                 "testing-library/no-await-sync-events": "off",
+            },
+        },
+        {
+            files: ["**/*.typestest.*"],
+            rules: {
+                "@typescript-eslint/no-unused-vars": "off",
+                "@typescript-eslint/no-require-imports": "off",
+                "@typescript-eslint/no-unused-expressions": "off",
             },
         },
     ],

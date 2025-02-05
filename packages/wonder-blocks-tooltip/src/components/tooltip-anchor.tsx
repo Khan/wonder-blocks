@@ -98,6 +98,7 @@ export default class TooltipAnchor
     }
 
     componentDidMount() {
+        // eslint-disable-next-line import/no-deprecated
         const anchorNode = ReactDOM.findDOMNode(this);
 
         // This should never happen, but we have this check here to make TypeScript

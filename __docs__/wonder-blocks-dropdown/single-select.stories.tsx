@@ -777,15 +777,15 @@ export const CustomOpener: StoryComponentType = {
  * Custom labels
  */
 const translatedItems = [
-    <OptionItem label="Banano" value="banano" />,
-    <OptionItem label="Fresa" value="fresa" disabled />,
-    <OptionItem label="Pera" value="pera" />,
-    <OptionItem label="Naranja" value="naranja" />,
-    <OptionItem label="Sandia" value="sandia" />,
-    <OptionItem label="Manzana" value="manzana" />,
-    <OptionItem label="Uva" value="uva" />,
-    <OptionItem label="Limon" value="limon" />,
-    <OptionItem label="Mango" value="mango" />,
+    <OptionItem label="Banano" value="banano" key={0} />,
+    <OptionItem label="Fresa" value="fresa" disabled key={1} />,
+    <OptionItem label="Pera" value="pera" key={2} />,
+    <OptionItem label="Naranja" value="naranja" key={3} />,
+    <OptionItem label="Sandia" value="sandia" key={4} />,
+    <OptionItem label="Manzana" value="manzana" key={5} />,
+    <OptionItem label="Uva" value="uva" key={6} />,
+    <OptionItem label="Limon" value="limon" key={7} />,
+    <OptionItem label="Mango" value="mango" key={8} />,
 ];
 
 /**
@@ -801,7 +801,7 @@ export const CustomLabels: StoryComponentType = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",
-            someResults: (numResults) => `${numResults} frutas`,
+            someResults: (numResults: number) => `${numResults} frutas`,
         };
 
         return (
@@ -841,8 +841,8 @@ const timeSlots = [
     "11:59 PM",
 ];
 
-const timeSlotOptions = timeSlots.map((timeSlot) => (
-    <OptionItem label={timeSlot} value={timeSlot} />
+const timeSlotOptions = timeSlots.map((timeSlot, index) => (
+    <OptionItem label={timeSlot} value={timeSlot} key={index} />
 ));
 
 /**

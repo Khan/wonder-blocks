@@ -518,6 +518,7 @@ const MultiSelect = (props: Props) => {
     };
 
     const handleOpenerRef = (node?: any) => {
+        // eslint-disable-next-line import/no-deprecated
         const openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
         setOpenerElement(openerElement);
     };

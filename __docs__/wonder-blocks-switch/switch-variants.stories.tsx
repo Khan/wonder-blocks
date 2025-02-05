@@ -59,8 +59,8 @@ const meta = {
     component: Switch,
     render: (args) => (
         <View style={styles.container}>
-            {themes.map((theme) => (
-                <ThemeSwitcherContext.Provider value={theme}>
+            {themes.map((theme, idx) => (
+                <ThemeSwitcherContext.Provider value={theme} key={idx}>
                     <View style={[styles.theme, styles[theme]]}>
                         <HeadingLarge style={styles.title}>
                             {theme} theme

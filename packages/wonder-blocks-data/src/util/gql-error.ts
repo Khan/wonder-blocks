@@ -31,7 +31,7 @@ export const GqlErrors = Object.freeze({
 export class GqlError extends KindError {
     constructor(
         message: string,
-        kind: typeof GqlErrors[keyof typeof GqlErrors],
+        kind: (typeof GqlErrors)[keyof typeof GqlErrors],
         {metadata, cause}: ErrorOptions = {} as Partial<ErrorOptions>,
     ) {
         super(message, kind, {

@@ -17,7 +17,7 @@
                 "isDefault": true
             }
         },
-        // This is the "yarn start" task
+        // This is the "pnpm start" task
         {
             "label": "start",
             "type": "npm",
@@ -34,7 +34,7 @@
         },
 
         // This is the default test task.
-        // This runs "yarn test"
+        // This runs "pnpm test"
         {
             "label": "run tests",
             "type": "npm",

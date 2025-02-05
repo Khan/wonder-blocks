@@ -1,4 +1,4 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -253,4 +253,4 @@ export default {
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

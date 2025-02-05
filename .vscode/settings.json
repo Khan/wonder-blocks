@@ -14,5 +14,5 @@
         "*.flow": "plaintext",
     },
     "flow.enabled": false,
-    "jest.jestCommandLine": "yarn jest"
+    "jest.jestCommandLine": "pnpm jest"
 }
