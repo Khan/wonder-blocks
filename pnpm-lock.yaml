@@ -568,7 +568,7 @@ importers:
   packages/wonder-blocks-core:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.18.6
+        specifier: ^7.24.5
         version: 7.26.7
       aphrodite:
         specifier: ^1.2.5
@@ -1152,7 +1152,7 @@ importers:
   packages/wonder-blocks-testing-core:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.18.6
+        specifier: ^7.24.5
         version: 7.26.7
       '@khanacademy/wonder-stuff-core':
         specifier: ^1.5.4
