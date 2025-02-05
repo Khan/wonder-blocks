@@ -17,12 +17,12 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.24.5",
-    "@khanacademy/wonder-blocks-core": "^12.0.0",
-    "@khanacademy/wonder-blocks-icon-button": "^6.0.9",
-    "@khanacademy/wonder-blocks-modal": "^7.0.7",
-    "@khanacademy/wonder-blocks-tokens": "^4.1.0",
-    "@khanacademy/wonder-blocks-tooltip": "^4.0.7",
-    "@khanacademy/wonder-blocks-typography": "^3.0.6"
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-icon-button": "workspace:*",
+    "@khanacademy/wonder-blocks-modal": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-tooltip": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
     "@phosphor-icons/core": "^2.0.2",

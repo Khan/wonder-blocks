@@ -17,11 +17,12 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-clickable": "^6.0.0",
-    "@khanacademy/wonder-blocks-core": "^12.0.0",
-    "@khanacademy/wonder-blocks-link": "^7.0.8",
-    "@khanacademy/wonder-blocks-tokens": "^4.1.0",
-    "@khanacademy/wonder-blocks-typography": "^3.0.6"
+    "@babel/runtime": "^7.24.5",
+    "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-link": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
