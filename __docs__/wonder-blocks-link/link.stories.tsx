@@ -40,24 +40,13 @@ export default {
 type StoryComponentType = StoryObj<typeof Link>;
 
 /**
- * By default the link is a `primary` link.
+ * By default the link uses a blue color.
  */
 export const Default: StoryComponentType = {
     args: {
         href: "/",
         children: "The quick brown fox jumps over the lazy dog.",
     },
-};
-
-/**
- * This is a `secondary` link. This links to the top of the page.
- */
-export const Secondary: StoryComponentType = {
-    render: () => (
-        <Link href="#" kind="secondary">
-            The quick brown fox jumps over the lazy dog.
-        </Link>
-    ),
 };
 
 /**
@@ -117,14 +106,7 @@ export const OpensInANewTab: StoryComponentType = {
     render: () => (
         <View>
             <Link href="https://cat-bounce.com/" target="_blank">
-                This is a Primary link that opens in a new tab
-            </Link>
-            <Link
-                href="https://cat-bounce.com/"
-                kind="secondary"
-                target="_blank"
-            >
-                This is a Secondary link that opens in a new tab
+                This is a link that opens in a new tab
             </Link>
         </View>
     ),
@@ -154,7 +136,6 @@ export const StartAndEndIcons: StoryComponentType = {
                     endIcon={
                         <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />
                     }
-                    kind="secondary"
                     style={styles.standaloneLinkWrapper}
                 >
                     This link has an end icon
@@ -176,7 +157,6 @@ export const StartAndEndIcons: StoryComponentType = {
                     endIcon={
                         <PhosphorIcon icon={IconMappings.caretRightBold} />
                     }
-                    kind="secondary"
                     style={styles.standaloneLinkWrapper}
                 >
                     This link has a start icon and an end icon
@@ -322,7 +302,7 @@ export const Inline: StoryComponentType = {
         <Body>
             This is an inline{" "}
             <Link href="#" inline={true}>
-                Primary link
+                link
             </Link>{" "}
             and an inline{" "}
             <Link
@@ -330,24 +310,11 @@ export const Inline: StoryComponentType = {
                 inline={true}
                 target="_blank"
             >
-                external Primary link
-            </Link>
-            , whereas this is an inline{" "}
-            <Link href="#" kind="secondary" inline={true}>
-                Secondary link
-            </Link>
-            , and an inline{" "}
-            <Link
-                href="https://www.procatinator.com/"
-                kind="secondary"
-                inline={true}
-                target="_blank"
-            >
-                external Secondary link
+                external link
             </Link>
             , and this is an inline{" "}
             <Link href="#" visitable={true} inline={true}>
-                Visitable link (Primary only)
+                Visitable link
             </Link>{" "}
             and an inline{" "}
             <Link
@@ -356,7 +323,7 @@ export const Inline: StoryComponentType = {
                 inline={true}
                 target="_blank"
             >
-                external Visitable link (Primary only)
+                external Visitable link
             </Link>
             .
         </Body>

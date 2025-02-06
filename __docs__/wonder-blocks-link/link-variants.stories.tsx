@@ -27,10 +27,6 @@ const columns = [
         props: {},
     },
     {
-        name: "Secondary",
-        props: {kind: "secondary"},
-    },
-    {
         name: "Visitable",
         props: {visitable: true},
     },
