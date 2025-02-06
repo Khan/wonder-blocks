@@ -556,4 +556,19 @@ describe("Link", () => {
             expect(icon).toHaveStyle({maskImage: "url(plus-bold.svg)"});
         });
     });
+
+    test("should have title attribute", () => {
+        // Arrange
+        render(
+            <Link href="https://www.khanacademy.org/" title="Click me!">
+                Click me!
+            </Link>,
+        );
+
+        // Act
+        const link = screen.getByRole("link");
+
+        // Assert
+        expect(link).toHaveAttribute("title", "Click me!");
+    });
 });

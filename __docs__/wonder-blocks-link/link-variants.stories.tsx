@@ -70,7 +70,7 @@ const meta = {
         </View>
     ),
     args: {
-        children: "Label",
+        children: "This is a Link",
         href: "https://www.khanacademy.org",
     },
     tags: ["!autodocs"],
