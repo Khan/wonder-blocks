@@ -85,6 +85,43 @@ describe("MultiSelect", () => {
             ).toBeInTheDocument();
         });
 
+        it("should not submit a surrounding form when clicked", async () => {
+            // Arrange
+            const submit = jest.fn();
+            const {userEvent} = doRender(
+                <form
+                    onSubmit={() => {
+                        submit();
+                    }}
+                >
+                    <MultiSelect
+                        aria-label="Choose"
+                        onChange={jest.fn()}
+                        selectedValues={["toggle_a"]}
+                        showOpenerLabelAsText={false}
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </MultiSelect>
+                </form>,
+            );
+            const opener = await screen.findByRole("combobox");
+
+            // Act
+            await userEvent.click(opener);
+
+            // Assert
+            expect(submit).not.toHaveBeenCalled();
+        });
+
         it("closes the select on {Escape}", async () => {
             // Arrange
             const {userEvent} = doRender(uncontrolledMultiSelect);
@@ -1036,6 +1073,46 @@ describe("MultiSelect", () => {
             expect(
                 await screen.findByRole("listbox", {hidden: true}),
             ).toBeInTheDocument();
+        });
+
+        it("should not submit a surrounding form when a custom opener is clicked", async () => {
+            // Arrange
+            const submit = jest.fn();
+            const {userEvent} = doRender(
+                <form
+                    onSubmit={() => {
+                        submit();
+                    }}
+                >
+                    <MultiSelect
+                        aria-label="Choose"
+                        onChange={jest.fn()}
+                        selectedValues={["toggle_a"]}
+                        showOpenerLabelAsText={false}
+                        opener={(eventState: any) => (
+                            <button aria-label="Search" onClick={jest.fn()} />
+                        )}
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </MultiSelect>
+                </form>,
+            );
+            const opener = await screen.findByRole("combobox");
+
+            // Act
+            await userEvent.click(opener);
+
+            // Assert
+            expect(submit).not.toHaveBeenCalled();
         });
 
         it("calls the custom onClick handler", async () => {

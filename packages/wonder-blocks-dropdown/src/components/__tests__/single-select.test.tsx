@@ -247,6 +247,44 @@ describe("SingleSelect", () => {
                 ).toBeInTheDocument();
             });
 
+            it("should not submit a surrounding form when clicked", async () => {
+                // Arrange
+                const submit = jest.fn();
+                const {userEvent} = doRender(
+                    <form
+                        onSubmit={() => {
+                            submit();
+                        }}
+                    >
+                        <SingleSelect
+                            aria-label="Choose"
+                            placeholder="Default placeholder"
+                            onChange={jest.fn()}
+                            selectedValue="toggle_a"
+                            showOpenerLabelAsText={false}
+                        >
+                            <OptionItem
+                                label={<div>custom item A</div>}
+                                value="toggle_a"
+                                labelAsText="Plain Toggle A"
+                            />
+                            <OptionItem
+                                label={<div>custom item B</div>}
+                                value="toggle_b"
+                                labelAsText="Plain Toggle B"
+                            />
+                        </SingleSelect>
+                    </form>,
+                );
+                const opener = await screen.findByRole("combobox");
+
+                // Act
+                await userEvent.click(opener);
+
+                // Assert
+                expect(submit).not.toHaveBeenCalled();
+            });
+
             it("should focus the first item in the dropdown", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
@@ -708,6 +746,47 @@ describe("SingleSelect", () => {
             expect(
                 await screen.findByRole("listbox", {hidden: true}),
             ).toBeInTheDocument();
+        });
+
+        it("should not submit a surrounding form when a custom opener is clicked", async () => {
+            // Arrange
+            const submit = jest.fn();
+            const {userEvent} = doRender(
+                <form
+                    onSubmit={() => {
+                        submit();
+                    }}
+                >
+                    <SingleSelect
+                        aria-label="Choose"
+                        placeholder="Select an option"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                        showOpenerLabelAsText={false}
+                        opener={(eventState: any) => (
+                            <button aria-label="Search">Search</button>
+                        )}
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </SingleSelect>
+                </form>,
+            );
+            const opener = await screen.findByRole("combobox");
+
+            // Act
+            await userEvent.click(opener);
+
+            // Assert
+            expect(submit).not.toHaveBeenCalled();
         });
 
         it("calls the custom onClick handler", async () => {

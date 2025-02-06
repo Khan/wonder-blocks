@@ -169,6 +169,8 @@ export default class SelectOpener extends React.Component<
                 data-testid={testId}
                 id={id}
                 role="combobox"
+                /* Note(marcysutton): type=button prevents form submits on click */
+                type="button"
                 style={style}
                 onClick={!disabled ? this.handleClick : undefined}
                 onKeyDown={!disabled ? this.handleKeyDown : undefined}
