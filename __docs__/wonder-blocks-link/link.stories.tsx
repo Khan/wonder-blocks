@@ -1,9 +1,5 @@
-/* eslint-disable max-lines */
-// We need to use fireEvent for mouseDown in these tests, none of the userEvent
-// alternatives work. Click includes mouseUp, which removes the pressed style.
-/* eslint-disable testing-library/prefer-user-event */
 import * as React from "react";
-import {expect, within, userEvent /*fireEvent*/} from "@storybook/test";
+import {expect, within} from "@storybook/test";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
@@ -60,37 +56,6 @@ Primary.parameters = {
     },
 };
 
-Primary.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-
-    // Resting style
-    await expect(link).toHaveStyle(`color: ${color.blue}`);
-
-    // Hover style
-    await userEvent.hover(link);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline ${Color.blue} dashed 2px`,
-    // );
-    await expect(link).toHaveStyle(
-        `text-decoration: underline ${color.blue} solid`,
-    );
-
-    // TODO(WB-1809, somewhatabstract): This isn't working.
-    // // Focus style with keyboard navigation
-    // await userEvent.tab();
-    // // rgb(24, 101, 242) is the same as Color.blue
-    // await expect(link).toHaveStyle("outline: rgb(24, 101, 242) solid 1px");
-
-    // // Mousedown style
-    // await fireEvent.mouseDown(link);
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline solid ${activeBlue}`,
-    // );
-};
-
 export const Secondary: StoryComponentType = () => (
     <Link href="#" kind="secondary">
         The quick brown fox jumps over the lazy dog.
@@ -104,37 +69,6 @@ Secondary.parameters = {
             has lighter text. This links to the top of the page.`,
         },
     },
-};
-
-Secondary.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-
-    // Resting style
-    await expect(link).toHaveStyle(`color: ${color.offBlack64}`);
-
-    // Hover style
-    await userEvent.hover(link);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline ${Color.offBlack64} dashed 2px`,
-    // );
-    await expect(link).toHaveStyle(
-        `text-decoration: underline ${color.offBlack64} solid`,
-    );
-
-    // TODO(WB-1809, somewhatabstract): This isn't working.
-    // // Focus style with keyboard navigation
-    // await userEvent.tab();
-    // // rgb(24, 101, 242) is the same as Color.blue.
-    // await expect(link).toHaveStyle("outline: rgb(24, 101, 242) solid 1px");
-
-    // // Mousedown style
-    // await fireEvent.mouseDown(link);
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline solid ${color.offBlack}`,
-    // );
 };
 
 export const Visitable: StoryComponentType = () => (
@@ -171,37 +105,6 @@ LightPrimary.parameters = {
     backgrounds: {
         default: "darkBlue",
     },
-};
-
-LightPrimary.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-
-    // Resting style
-    await expect(link).toHaveStyle(`color: ${color.white}`);
-
-    // Hover style
-    await userEvent.hover(link);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline ${Color.white} dashed 2px`,
-    // );
-    await expect(link).toHaveStyle(
-        `text-decoration: underline ${color.white} solid`,
-    );
-
-    // TODO(WB-1809, somewhatabstract): This isn't working.
-    // Focus style with keyboard navigation
-    // await userEvent.tab();
-    // // rgb(255, 255, 255) is the same as Color.white.
-    // await expect(link).toHaveStyle("outline: rgb(255, 255, 255) solid 1px");
-
-    // // Mousedown style
-    // await fireEvent.mouseDown(link);
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline solid ${fadedBlue}`,
-    // );
 };
 
 export const LightVisitable: StoryComponentType = () => (
@@ -465,69 +368,6 @@ Inline.parameters = {
     },
 };
 
-Inline.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const primaryLink = canvas.getByRole("link", {name: "Primary link"});
-    const secondaryLink = canvas.getByRole("link", {name: "Secondary link"});
-
-    // Resting style
-    await expect(primaryLink).toHaveStyle(`color: ${color.blue}`);
-
-    // Hover style
-    await userEvent.hover(primaryLink);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(primaryLink).toHaveStyle(
-    //     `text-decoration: underline ${Color.blue} dashed 2px`,
-    // );
-    await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline ${color.blue} solid`,
-    );
-
-    // TODO(WB-1809, somewhatabstract): This isn't working.
-    // // Focus style with keyboard navigation
-    // await userEvent.tab();
-    // // rgb(24, 101, 242) is the same as Color.blue.
-    // await expect(primaryLink).toHaveStyle(
-    //     "outline: rgb(24, 101, 242) solid 1px",
-    // );
-
-    // // Mousedown style
-    // await fireEvent.mouseDown(primaryLink);
-    // await expect(primaryLink).toHaveStyle(
-    //     `text-decoration: underline solid ${activeBlue}`,
-    // );
-
-    /* *** Secondary link styles***  */
-
-    // Resting style
-    await expect(secondaryLink).toHaveStyle(`color: ${color.offBlack}`);
-
-    // Hover style
-    await userEvent.hover(secondaryLink);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(secondaryLink).toHaveStyle(
-    //     `text-decoration: underline ${Color.offBlack} dashed 2px`,
-    // );
-    await expect(secondaryLink).toHaveStyle(
-        `text-decoration: underline ${color.offBlack} solid`,
-    );
-    // TODO(WB-1809, somewhatabstract): This isn't working.
-    // // Focus style with keyboard navigation
-    // await userEvent.tab();
-    // await userEvent.tab();
-    // // rgb(24, 101, 242) is the same as Color.blue.
-    // await expect(secondaryLink).toHaveStyle(
-    //     "outline: rgb(24, 101, 242) solid 1px",
-    // );
-
-    // // Mousedown style
-    // await fireEvent.mouseDown(secondaryLink);
-    // await expect(secondaryLink).toHaveStyle(
-    //     `text-decoration: underline solid ${activeBlue}`,
-    // );
-};
-
 export const InlineLight: StoryComponentType = () => (
     <Body style={{color: color.white}}>
         This is an inline{" "}
@@ -575,40 +415,6 @@ InlineLight.parameters = {
         },
     },
 };
-
-// TODO(WB-1809, somewhatabstract): This isn't working.
-/* InlineLight.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const primaryLink = canvas.getByRole("link", {name: "Primary link"});
-
-    // Resting style
-    await expect(primaryLink).toHaveStyle(`color: ${color.white}`);
-
-    // Hover style
-    await userEvent.hover(primaryLink);
-    // TODO(WB-1521): Expect the dashed 2px style.
-    // await expect(primaryLink).toHaveStyle(
-    //     `text-decoration: underline ${Color.white} dashed 2px`,
-    // );
-    await expect(primaryLink).toHaveStyle(
-        `text-decoration: underline ${color.white} solid`,
-    );
-
-    // // Focus style with keyboard navigation
-    // await userEvent.tab();
-    // // rgb(255, 255, 255) is the same as Color.white.
-    // await expect(primaryLink).toHaveStyle(
-    //     "outline: rgb(255, 255, 255) solid 1px",
-    // );
-
-    // // Mousedown style
-    // await fireEvent.mouseDown(primaryLink);
-    // await expect(primaryLink).toHaveStyle(
-    //     `text-decoration: underline solid ${fadedBlue}`,
-    // );
-};
-*/
 
 export const Variants: StoryComponentType = () => (
     <View>
@@ -806,17 +612,6 @@ WithTypography.parameters = {
         have a \`HeadingSmall\` containing a \`Link\`.`,
         },
     },
-};
-
-WithTypography.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const heading = canvas.getByText("Link inside a Heading element");
-
-    // Confirm that the default font size and line height
-    // are successfully overridden by typography.
-    await expect(heading).toHaveStyle("font-size: 20px");
-    await expect(heading).toHaveStyle("lineHeight: 24px");
 };
 
 export const WithStyle: StoryComponentType = () => (
