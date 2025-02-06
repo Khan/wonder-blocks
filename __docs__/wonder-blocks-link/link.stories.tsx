@@ -38,9 +38,6 @@ export default {
     argTypes: LinkArgTypes,
 } as Meta<typeof Link>;
 
-// const activeBlue = "#1b50b3";
-// const fadedBlue = "#b5cefb";
-
 type StoryComponentType = StoryObj<typeof Link>;
 
 export const Default: StoryComponentType = {
