@@ -30,6 +30,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in link-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
     argTypes: LinkArgTypes,
 } as Meta<typeof Link>;
@@ -740,6 +744,10 @@ RightToLeftWithIcons.parameters = {
         and \`endIcon\` are flipped. This example has text in Arabic, a
         right-to-left language.`,
         },
+    },
+    chromatic: {
+        // Re-enable snapshots for this story since it's RTL
+        disableSnapshot: false,
     },
 };
 
