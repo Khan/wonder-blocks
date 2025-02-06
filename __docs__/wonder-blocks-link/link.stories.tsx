@@ -6,7 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -202,7 +202,7 @@ export const StartAndEndIcons: StoryComponentType = {
             {/* Light */}
             <View
                 style={{
-                    backgroundColor: color.darkBlue,
+                    backgroundColor: semanticColor.surface.inverse,
                     padding: spacing.large_24,
                 }}
             >
@@ -262,7 +262,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body style={{color: color.white}}>
+                <Body style={{color: semanticColor.text.inverse}}>
                     This is an inline{" "}
                     <Link
                         href="#link"
@@ -340,7 +340,7 @@ export const Inline: StoryComponentType = {
  */
 export const InlineLight: StoryComponentType = {
     render: () => (
-        <Body style={{color: color.white}}>
+        <Body style={{color: semanticColor.text.inverse}}>
             This is an inline{" "}
             <Link href="#link" inline={true} light={true}>
                 regular link
@@ -395,7 +395,7 @@ export const WithTypography: StoryComponentType = {
 
 /**
  * Link can take a `style` prop. Here, the Link has been given a style in which
- * the `color` field has been set to `color.red`.
+ * the `color` field has been set to `semanticColor.status.critical.foreground`.
  */
 export const WithStyle: StoryComponentType = {
     render: () => (
@@ -517,21 +517,16 @@ export const RightToLeftWithIcons: StoryComponentType = {
 };
 
 const styles = StyleSheet.create({
-    darkBackground: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
-        padding: 10,
-    },
     heading: {
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${color.purple}`,
+        border: `1px dashed ${semanticColor.border.primary}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },
     customLink: {
-        color: color.red,
+        color: semanticColor.status.critical.foreground,
     },
     row: {
         flexDirection: "row",
