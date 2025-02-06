@@ -24,7 +24,7 @@ type Props = AriaProps & {
     testId?: string;
 };
 
-const StyledList = addStyle("ol");
+const StyledOl = addStyle("ol");
 
 /**
  * A breadcrumb trail consists of a list of links to the parent pages
@@ -85,7 +85,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(
             data-testid={testId}
             ref={ref}
         >
-            <StyledList style={styles.container}>
+            <StyledOl style={styles.container}>
                 {React.Children.map(children, (item, index) => {
                     const isLastChild = index === lastChildIndex;
 
@@ -95,7 +95,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(
                         ["aria-current"]: isLastChild ? "page" : undefined,
                     });
                 })}
-            </StyledList>
+            </StyledOl>
         </nav>
     );
 });

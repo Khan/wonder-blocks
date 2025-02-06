@@ -22,7 +22,7 @@ type Props = SharedProps &
         href: string;
     };
 
-const StyledAnchor = addStyle("a");
+const StyledA = addStyle("a");
 const StyledLink = addStyle(Link);
 
 const LinkCore = React.forwardRef(function LinkCore(
@@ -135,13 +135,13 @@ const LinkCore = React.forwardRef(function LinkCore(
                 {linkContent}
             </StyledLink>
         ) : (
-            <StyledAnchor
+            <StyledA
                 {...commonProps}
                 href={href}
                 ref={ref as React.ForwardedRef<HTMLAnchorElement>}
             >
                 {linkContent}
-            </StyledAnchor>
+            </StyledA>
         );
     };
 

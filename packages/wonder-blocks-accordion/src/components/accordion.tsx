@@ -6,7 +6,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import AccordionSection from "./accordion-section";
 
-const StyledUnorderedList = addStyle("ul");
+const StyledUl = addStyle("ul");
 
 export type AccordionCornerKindType =
     | "square"
@@ -231,7 +231,7 @@ const Accordion = React.forwardRef(function Accordion(
     };
 
     return (
-        <StyledUnorderedList
+        <StyledUl
             style={[styles.wrapper, style]}
             onKeyDown={handleKeyDown}
             {...ariaProps}
@@ -278,7 +278,7 @@ const Accordion = React.forwardRef(function Accordion(
                     </li>
                 );
             })}
-        </StyledUnorderedList>
+        </StyledUl>
     );
 });
 
