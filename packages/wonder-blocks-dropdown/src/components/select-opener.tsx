@@ -169,6 +169,7 @@ export default class SelectOpener extends React.Component<
                 data-testid={testId}
                 id={id}
                 role="combobox"
+                type="button"
                 style={style}
                 onClick={!disabled ? this.handleClick : undefined}
                 onKeyDown={!disabled ? this.handleKeyDown : undefined}
