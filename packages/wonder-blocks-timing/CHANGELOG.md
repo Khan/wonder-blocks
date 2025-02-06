@@ -1,120 +1,137 @@
 # @khanacademy/wonder-blocks-timing
 
+## 7.0.0
+
+### Major Changes
+
+- ae9b619: Fix bug with `useTimeout` and `useInterval` `clear` function where it didn't use the provided ClearPolicy
+
+### Minor Changes
+
+- f03298f: Tooling:
+
+    - Switching to `pnpm`.
+    - Upgrading `rollup` to v4 and `@babel/runtime` to match the current webapp version.
+
+### Patch Changes
+
+- bb2a026: pnpm: Switch to workspace protocol to handle dependency versions with changesets on monorepo setup"
+
 ## 6.0.1
 
 ### Patch Changes
 
--   11a0f5c6: No functional changes. Adding prepublishOnly script.
+- 11a0f5c6: No functional changes. Adding prepublishOnly script.
 
 ## 6.0.0
 
 ### Major Changes
 
--   e6abdd17: Upgrade to React 18
+- e6abdd17: Upgrade to React 18
 
 ## 5.0.2
 
 ### Patch Changes
 
--   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+- 02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
 
 ## 5.0.1
 
 ### Patch Changes
 
--   559e82d5: Update to build tooling, generating smaller output
+- 559e82d5: Update to build tooling, generating smaller output
 
 ## 5.0.0
 
 ### Major Changes
 
--   f72f7dd4: - **[BREAKING CHANGE]** Policy types are now using enums across all APIs
-    -   **[BREAKING CHANGE]** `useScheduledTimeout` has been renamed to `useTimeout` and the original `useTimeout` has been removed. To update existing uses of `useTimeout` to the new API: if `active` was `true` just delete that argument or replace it with `{schedulingPolicy: SchedulingPolicy.Immediately}`; if `active` was `false` replace it with `{schedulingPolicy: SchedulingPolicy.OnDemand}`.
-    -   **[BREAKING CHANGE]** `useScheduledInterval` has been renamed to `useInterval` and the original `useInterval` has been removed. To update existing uses of `useInterval` to the new API: if `active` was `true` just delete that argument or replace it with `{schedulingPolicy: SchedulingPolicy.Immediately}`; if `active` was `false` replace it with `{schedulingPolicy: SchedulingPolicy.OnDemand}`.
-    -   **[NEW]** `useTimeout` now supports an optional `ActionPolicy` in the options. The default is to not reset the timeout when the `action` callback changes. This can be changed to `ActionPolicy.Reset` to reset the timeout when the `action` callback changes (it is recommended that you use `useCallback` on your `action` callback to avoid resetting the timeout everytime a component renders when using the `Reset` policy).
-    -   **[NEW]** `useInterval` now supports an optional `ActionPolicy` in the options. The default is to not reset the interval when the `action` callback changes. This can be changed to `ActionPolicy.Reset` to reset the interval when the `action` callback changes (it is recommended that you use `useCallback` on your `action` callback to avoid resetting the interval everytime a component renders when using the `Reset` policy).
-    -   **[BUGFIX]** `useTimeout` will now correctly reset the timeout when the `set` method is called, as intended.
-    -   **[BUGFIX]** `useInterval` will now correctly reset the interval when the `set` method is called, as intended.
+- f72f7dd4: - **[BREAKING CHANGE]** Policy types are now using enums across all APIs
+    - **[BREAKING CHANGE]** `useScheduledTimeout` has been renamed to `useTimeout` and the original `useTimeout` has been removed. To update existing uses of `useTimeout` to the new API: if `active` was `true` just delete that argument or replace it with `{schedulingPolicy: SchedulingPolicy.Immediately}`; if `active` was `false` replace it with `{schedulingPolicy: SchedulingPolicy.OnDemand}`.
+    - **[BREAKING CHANGE]** `useScheduledInterval` has been renamed to `useInterval` and the original `useInterval` has been removed. To update existing uses of `useInterval` to the new API: if `active` was `true` just delete that argument or replace it with `{schedulingPolicy: SchedulingPolicy.Immediately}`; if `active` was `false` replace it with `{schedulingPolicy: SchedulingPolicy.OnDemand}`.
+    - **[NEW]** `useTimeout` now supports an optional `ActionPolicy` in the options. The default is to not reset the timeout when the `action` callback changes. This can be changed to `ActionPolicy.Reset` to reset the timeout when the `action` callback changes (it is recommended that you use `useCallback` on your `action` callback to avoid resetting the timeout everytime a component renders when using the `Reset` policy).
+    - **[NEW]** `useInterval` now supports an optional `ActionPolicy` in the options. The default is to not reset the interval when the `action` callback changes. This can be changed to `ActionPolicy.Reset` to reset the interval when the `action` callback changes (it is recommended that you use `useCallback` on your `action` callback to avoid resetting the interval everytime a component renders when using the `Reset` policy).
+    - **[BUGFIX]** `useTimeout` will now correctly reset the timeout when the `set` method is called, as intended.
+    - **[BUGFIX]** `useInterval` will now correctly reset the interval when the `set` method is called, as intended.
 
 ## 4.0.2
 
 ### Patch Changes
 
--   695f2567: Provide a friendly name (for dev tools) for withActionScheduler
+- 695f2567: Provide a friendly name (for dev tools) for withActionScheduler
 
 ## 4.0.1
 
 ### Patch Changes
 
--   df9a10aa: Update state and props to be readonly in components using getDerivedStateFromProps()
+- df9a10aa: Update state and props to be readonly in components using getDerivedStateFromProps()
 
 ## 4.0.0
 
 ### Major Changes
 
--   0c2607e6: Remove ref-forwarding from withActionScheduler
+- 0c2607e6: Remove ref-forwarding from withActionScheduler
 
 ## 3.0.3
 
 ### Patch Changes
 
--   a6164ed0: Don't use React.FC<> for functional components
+- a6164ed0: Don't use React.FC<> for functional components
 
 ## 3.0.2
 
 ### Patch Changes
 
--   c20f48f3: Don't transpile classes when building bundles
+- c20f48f3: Don't transpile classes when building bundles
 
 ## 3.0.1
 
 ### Patch Changes
 
--   ccb6fe00: Miscellaneous TS type fixes
--   d4c2b18c: Fix a variety of issues with Flow types generated by flowgen
+- ccb6fe00: Miscellaneous TS type fixes
+- d4c2b18c: Fix a variety of issues with Flow types generated by flowgen
 
 ## 3.0.0
 
 ### Major Changes
 
--   1ca4d7e3: Fix minor issue with generate Flow types (this is a major bump b/c I forgot to do one after doing the TS conversion)
+- 1ca4d7e3: Fix minor issue with generate Flow types (this is a major bump b/c I forgot to do one after doing the TS conversion)
 
 ### Minor Changes
 
--   ef661acf: Export ActionScheduler
+- ef661acf: Export ActionScheduler
 
 ## 2.1.3
 
 ### Patch Changes
 
--   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+- b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
 
 ## 2.1.2
 
 ### Patch Changes
 
--   d816af08: Update build and test configs use TypeScript
--   3891f544: Update babel config to include plugins that Storybook needed
--   0d28bb1c: Configured TypeScript
--   3d05f764: Fix HOCs and other type errors
--   c2ec4902: Update eslint configuration, fix lint
--   2983c05b: Include 'types' field in package.json
--   77ff6a66: Generate Flow types from TypeScript types
--   ec8d4b7f: Fix miscellaneous TypeScript errors
+- d816af08: Update build and test configs use TypeScript
+- 3891f544: Update babel config to include plugins that Storybook needed
+- 0d28bb1c: Configured TypeScript
+- 3d05f764: Fix HOCs and other type errors
+- c2ec4902: Update eslint configuration, fix lint
+- 2983c05b: Include 'types' field in package.json
+- 77ff6a66: Generate Flow types from TypeScript types
+- ec8d4b7f: Fix miscellaneous TypeScript errors
 
 ## 2.1.1
 
 ### Patch Changes
 
--   91cb727c: Remove file extensions from imports
+- 91cb727c: Remove file extensions from imports
 
 ## 2.1.0
 
 ### Minor Changes
 
--   029b4810: Adds `useInterval()` hook that mimics the behavior of `ActionScheduler`'s
-    `interval()` method.
--   c57cd770: Rename `useInterval` and `useTimeout` to `useScheduledInterval`
-    and `useScheduledTimeout` respectively.
--   29766c8e: Add `useInterval` and `useTimeout` hooks to provide an API for
-    using intervals and timeouts.
+- 029b4810: Adds `useInterval()` hook that mimics the behavior of `ActionScheduler`'s
+  `interval()` method.
+- c57cd770: Rename `useInterval` and `useTimeout` to `useScheduledInterval`
+  and `useScheduledTimeout` respectively.
+- 29766c8e: Add `useInterval` and `useTimeout` hooks to provide an API for
+  using intervals and timeouts.
