@@ -188,23 +188,18 @@ const _generateStyles = (
     const fadedBlue = color.fadedBlue;
     // Light pink
     const activeLightVisited = mix(fade(white, 0.32), pink);
-    // Dark blue
-    const activeDefaultPrimary = color.activeBlue;
 
-    const primaryDefaultTextColor = light ? white : blue;
-    const defaultTextColor = primaryDefaultTextColor;
+    const restTextColor = light ? white : blue;
+    const pressTextColor = light ? fadedBlue : color.activeBlue;
 
-    const primaryActiveColor = light ? fadedBlue : activeDefaultPrimary;
-    const activeColor = primaryActiveColor;
-
-    const defaultVisited = visitable
+    const restVisited = visitable
         ? {
               ":visited": {
                   color: light ? pink : linkPurple,
               },
           }
         : Object.freeze({});
-    const activeVisited = visitable
+    const pressVisited = visitable
         ? {
               ":visited": {
                   color: light
@@ -215,35 +210,35 @@ const _generateStyles = (
         : Object.freeze({});
 
     const focusStyling = {
-        color: defaultTextColor,
+        color: restTextColor,
         outline: `1px solid ${light ? white : blue}`,
         borderRadius: 3,
-        ...defaultVisited,
+        ...restVisited,
     };
 
     const pressStyling = {
-        color: activeColor,
+        color: pressTextColor,
         textDecoration: "underline currentcolor solid",
         // TODO(WB-1521): Update the underline offset to be 4px after
         // the Link audit.
         // textUnderlineOffset: 4,
-        ...activeVisited,
+        ...pressVisited,
     };
 
     const newStyles: StyleDeclaration = {
         rest: {
-            color: defaultTextColor,
-            ...defaultVisited,
+            color: restTextColor,
+            ...restVisited,
             ":hover": {
                 // TODO(WB-1521): Update text decoration to the 1px dashed
                 // underline after the Link audit.
                 // textDecoration: "underline currentcolor dashed 2px",
                 textDecoration: "underline currentcolor solid",
-                color: defaultTextColor,
+                color: restTextColor,
                 // TODO(WB-1521): Update the underline offset to be 4px after
                 // the Link audit.
                 // textUnderlineOffset: 4,
-                ...defaultVisited,
+                ...restVisited,
             },
             // Focus styles only show up with keyboard navigation.
             // Mouse users don't see focus styles.
