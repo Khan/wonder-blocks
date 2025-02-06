@@ -1,418 +1,440 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.1.0
+
+### Minor Changes
+
+- f03298f: Tooling:
+
+    - Switching to `pnpm`.
+    - Upgrading `rollup` to v4 and `@babel/runtime` to match the current webapp version.
+
+### Patch Changes
+
+- 969864b: Update internal addStyle variable name to address aphrodite-add-style-variable-name linting rule
+- bb2a026: pnpm: Switch to workspace protocol to handle dependency versions with changesets on monorepo setup"
+- Updated dependencies [969864b]
+- Updated dependencies [bb2a026]
+- Updated dependencies [f03298f]
+    - @khanacademy/wonder-blocks-clickable@6.1.0
+    - @khanacademy/wonder-blocks-core@12.1.0
+    - @khanacademy/wonder-blocks-icon@5.1.0
+    - @khanacademy/wonder-blocks-typography@3.1.0
+    - @khanacademy/wonder-blocks-tokens@4.2.0
+
 ## 3.0.7
 
 ### Patch Changes
 
--   Updated dependencies [0199324d]
-    -   @khanacademy/wonder-blocks-clickable@6.0.0
-    -   @khanacademy/wonder-blocks-core@12.0.0
-    -   @khanacademy/wonder-blocks-icon@5.0.6
-    -   @khanacademy/wonder-blocks-typography@3.0.6
+- Updated dependencies [0199324d]
+    - @khanacademy/wonder-blocks-clickable@6.0.0
+    - @khanacademy/wonder-blocks-core@12.0.0
+    - @khanacademy/wonder-blocks-icon@5.0.6
+    - @khanacademy/wonder-blocks-typography@3.0.6
 
 ## 3.0.6
 
 ### Patch Changes
 
--   7057fa7c: Replace `color` with `semanticColor` tokens
+- 7057fa7c: Replace `color` with `semanticColor` tokens
 
 ## 3.0.5
 
 ### Patch Changes
 
--   Updated dependencies [8cfaeab0]
--   Updated dependencies [c162abb4]
-    -   @khanacademy/wonder-blocks-tokens@4.1.0
-    -   @khanacademy/wonder-blocks-clickable@5.0.7
+- Updated dependencies [8cfaeab0]
+- Updated dependencies [c162abb4]
+    - @khanacademy/wonder-blocks-tokens@4.1.0
+    - @khanacademy/wonder-blocks-clickable@5.0.7
 
 ## 3.0.4
 
 ### Patch Changes
 
--   Updated dependencies [0de25cd8]
-    -   @khanacademy/wonder-blocks-tokens@4.0.0
-    -   @khanacademy/wonder-blocks-clickable@5.0.6
+- Updated dependencies [0de25cd8]
+    - @khanacademy/wonder-blocks-tokens@4.0.0
+    - @khanacademy/wonder-blocks-clickable@5.0.6
 
 ## 3.0.3
 
 ### Patch Changes
 
--   Updated dependencies [7516b239]
-    -   @khanacademy/wonder-blocks-core@11.1.0
-    -   @khanacademy/wonder-blocks-clickable@5.0.5
-    -   @khanacademy/wonder-blocks-icon@5.0.5
-    -   @khanacademy/wonder-blocks-typography@3.0.5
+- Updated dependencies [7516b239]
+    - @khanacademy/wonder-blocks-core@11.1.0
+    - @khanacademy/wonder-blocks-clickable@5.0.5
+    - @khanacademy/wonder-blocks-icon@5.0.5
+    - @khanacademy/wonder-blocks-typography@3.0.5
 
 ## 3.0.2
 
 ### Patch Changes
 
--   11a0f5c6: No functional changes. Adding prepublishOnly script.
--   Updated dependencies [11a0f5c6]
-    -   @khanacademy/wonder-blocks-typography@3.0.4
-    -   @khanacademy/wonder-blocks-clickable@5.0.4
-    -   @khanacademy/wonder-blocks-tokens@3.0.1
-    -   @khanacademy/wonder-blocks-core@11.0.1
-    -   @khanacademy/wonder-blocks-icon@5.0.4
+- 11a0f5c6: No functional changes. Adding prepublishOnly script.
+- Updated dependencies [11a0f5c6]
+    - @khanacademy/wonder-blocks-typography@3.0.4
+    - @khanacademy/wonder-blocks-clickable@5.0.4
+    - @khanacademy/wonder-blocks-tokens@3.0.1
+    - @khanacademy/wonder-blocks-core@11.0.1
+    - @khanacademy/wonder-blocks-icon@5.0.4
 
 ## 3.0.1
 
 ### Patch Changes
 
--   Updated dependencies [d23c9c5f]
-    -   @khanacademy/wonder-blocks-core@11.0.0
-    -   @khanacademy/wonder-blocks-clickable@5.0.3
-    -   @khanacademy/wonder-blocks-icon@5.0.3
-    -   @khanacademy/wonder-blocks-typography@3.0.3
+- Updated dependencies [d23c9c5f]
+    - @khanacademy/wonder-blocks-core@11.0.0
+    - @khanacademy/wonder-blocks-clickable@5.0.3
+    - @khanacademy/wonder-blocks-icon@5.0.3
+    - @khanacademy/wonder-blocks-typography@3.0.3
 
 ## 3.0.0
 
 ### Major Changes
 
--   56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
+- 56d961f1: - Migrate Wonder Blocks components off old id providers and onto new `Id` component
 
 ### Patch Changes
 
--   b6009b77: Deprecate the ID provider and unique ID utilities
--   Updated dependencies [b6009b77]
--   Updated dependencies [897686bc]
--   Updated dependencies [56d961f1]
-    -   @khanacademy/wonder-blocks-core@10.0.0
-    -   @khanacademy/wonder-blocks-clickable@5.0.2
-    -   @khanacademy/wonder-blocks-icon@5.0.2
-    -   @khanacademy/wonder-blocks-typography@3.0.2
+- b6009b77: Deprecate the ID provider and unique ID utilities
+- Updated dependencies [b6009b77]
+- Updated dependencies [897686bc]
+- Updated dependencies [56d961f1]
+    - @khanacademy/wonder-blocks-core@10.0.0
+    - @khanacademy/wonder-blocks-clickable@5.0.2
+    - @khanacademy/wonder-blocks-icon@5.0.2
+    - @khanacademy/wonder-blocks-typography@3.0.2
 
 ## 2.0.1
 
 ### Patch Changes
 
--   Updated dependencies [f4abd572]
-    -   @khanacademy/wonder-blocks-core@9.0.0
-    -   @khanacademy/wonder-blocks-clickable@5.0.1
-    -   @khanacademy/wonder-blocks-icon@5.0.1
-    -   @khanacademy/wonder-blocks-typography@3.0.1
+- Updated dependencies [f4abd572]
+    - @khanacademy/wonder-blocks-core@9.0.0
+    - @khanacademy/wonder-blocks-clickable@5.0.1
+    - @khanacademy/wonder-blocks-icon@5.0.1
+    - @khanacademy/wonder-blocks-typography@3.0.1
 
 ## 2.0.0
 
 ### Major Changes
 
--   e6abdd17: Upgrade to React 18
+- e6abdd17: Upgrade to React 18
 
 ### Patch Changes
 
--   Updated dependencies [e6abdd17]
-    -   @khanacademy/wonder-blocks-core@8.0.0
-    -   @khanacademy/wonder-blocks-clickable@5.0.0
-    -   @khanacademy/wonder-blocks-icon@5.0.0
-    -   @khanacademy/wonder-blocks-tokens@3.0.0
-    -   @khanacademy/wonder-blocks-typography@3.0.0
+- Updated dependencies [e6abdd17]
+    - @khanacademy/wonder-blocks-core@8.0.0
+    - @khanacademy/wonder-blocks-clickable@5.0.0
+    - @khanacademy/wonder-blocks-icon@5.0.0
+    - @khanacademy/wonder-blocks-tokens@3.0.0
+    - @khanacademy/wonder-blocks-typography@3.0.0
 
 ## 1.3.10
 
 ### Patch Changes
 
--   Updated dependencies [c1110599]
-    -   @khanacademy/wonder-blocks-icon@4.2.0
+- Updated dependencies [c1110599]
+    - @khanacademy/wonder-blocks-icon@4.2.0
 
 ## 1.3.9
 
 ### Patch Changes
 
--   Updated dependencies [6999fd39]
-    -   @khanacademy/wonder-blocks-tokens@2.1.0
-    -   @khanacademy/wonder-blocks-clickable@4.2.9
+- Updated dependencies [6999fd39]
+    - @khanacademy/wonder-blocks-tokens@2.1.0
+    - @khanacademy/wonder-blocks-clickable@4.2.9
 
 ## 1.3.8
 
 ### Patch Changes
 
--   02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
--   Updated dependencies [02a1b298]
-    -   @khanacademy/wonder-blocks-clickable@4.2.8
-    -   @khanacademy/wonder-blocks-core@7.0.1
-    -   @khanacademy/wonder-blocks-icon@4.1.5
-    -   @khanacademy/wonder-blocks-tokens@2.0.1
-    -   @khanacademy/wonder-blocks-typography@2.1.16
+- 02a1b298: Make sure we don't package tsconfig and tsbuildinfo files
+- Updated dependencies [02a1b298]
+    - @khanacademy/wonder-blocks-clickable@4.2.8
+    - @khanacademy/wonder-blocks-core@7.0.1
+    - @khanacademy/wonder-blocks-icon@4.1.5
+    - @khanacademy/wonder-blocks-tokens@2.0.1
+    - @khanacademy/wonder-blocks-typography@2.1.16
 
 ## 1.3.7
 
 ### Patch Changes
 
--   Updated dependencies [07f7f407]
-    -   @khanacademy/wonder-blocks-core@7.0.0
-    -   @khanacademy/wonder-blocks-clickable@4.2.7
-    -   @khanacademy/wonder-blocks-icon@4.1.4
-    -   @khanacademy/wonder-blocks-typography@2.1.15
+- Updated dependencies [07f7f407]
+    - @khanacademy/wonder-blocks-core@7.0.0
+    - @khanacademy/wonder-blocks-clickable@4.2.7
+    - @khanacademy/wonder-blocks-icon@4.1.4
+    - @khanacademy/wonder-blocks-typography@2.1.15
 
 ## 1.3.6
 
 ### Patch Changes
 
--   Updated dependencies [f17dc1ee]
--   Updated dependencies [991eb43f]
-    -   @khanacademy/wonder-blocks-tokens@2.0.0
-    -   @khanacademy/wonder-blocks-clickable@4.2.6
+- Updated dependencies [f17dc1ee]
+- Updated dependencies [991eb43f]
+    - @khanacademy/wonder-blocks-tokens@2.0.0
+    - @khanacademy/wonder-blocks-clickable@4.2.6
 
 ## 1.3.5
 
 ### Patch Changes
 
--   559e82d5: Update to build tooling, generating smaller output
--   Updated dependencies [559e82d5]
-    -   @khanacademy/wonder-blocks-clickable@4.2.5
-    -   @khanacademy/wonder-blocks-core@6.4.3
-    -   @khanacademy/wonder-blocks-icon@4.1.3
-    -   @khanacademy/wonder-blocks-tokens@1.3.1
-    -   @khanacademy/wonder-blocks-typography@2.1.14
+- 559e82d5: Update to build tooling, generating smaller output
+- Updated dependencies [559e82d5]
+    - @khanacademy/wonder-blocks-clickable@4.2.5
+    - @khanacademy/wonder-blocks-core@6.4.3
+    - @khanacademy/wonder-blocks-icon@4.1.3
+    - @khanacademy/wonder-blocks-tokens@1.3.1
+    - @khanacademy/wonder-blocks-typography@2.1.14
 
 ## 1.3.4
 
 ### Patch Changes
 
--   Updated dependencies [eab37b8b]
-    -   @khanacademy/wonder-blocks-core@6.4.2
-    -   @khanacademy/wonder-blocks-clickable@4.2.4
-    -   @khanacademy/wonder-blocks-icon@4.1.2
-    -   @khanacademy/wonder-blocks-typography@2.1.13
+- Updated dependencies [eab37b8b]
+    - @khanacademy/wonder-blocks-core@6.4.2
+    - @khanacademy/wonder-blocks-clickable@4.2.4
+    - @khanacademy/wonder-blocks-icon@4.1.2
+    - @khanacademy/wonder-blocks-typography@2.1.13
 
 ## 1.3.3
 
 ### Patch Changes
 
--   Updated dependencies [f099cf87]
-    -   @khanacademy/wonder-blocks-clickable@4.2.3
+- Updated dependencies [f099cf87]
+    - @khanacademy/wonder-blocks-clickable@4.2.3
 
 ## 1.3.2
 
 ### Patch Changes
 
--   Updated dependencies [5dfac06e]
-    -   @khanacademy/wonder-blocks-core@6.4.1
-    -   @khanacademy/wonder-blocks-clickable@4.2.2
-    -   @khanacademy/wonder-blocks-icon@4.1.1
-    -   @khanacademy/wonder-blocks-typography@2.1.12
+- Updated dependencies [5dfac06e]
+    - @khanacademy/wonder-blocks-core@6.4.1
+    - @khanacademy/wonder-blocks-clickable@4.2.2
+    - @khanacademy/wonder-blocks-icon@4.1.1
+    - @khanacademy/wonder-blocks-typography@2.1.12
 
 ## 1.3.1
 
 ### Patch Changes
 
--   Updated dependencies [9bfeead9]
-    -   @khanacademy/wonder-blocks-tokens@1.3.0
-    -   @khanacademy/wonder-blocks-clickable@4.2.1
+- Updated dependencies [9bfeead9]
+    - @khanacademy/wonder-blocks-tokens@1.3.0
+    - @khanacademy/wonder-blocks-clickable@4.2.1
 
 ## 1.3.0
 
 ### Minor Changes
 
--   58075352: Change testId to render the default Testing Library HTML attribute: data-testid (was data-test-id)
+- 58075352: Change testId to render the default Testing Library HTML attribute: data-testid (was data-test-id)
 
 ### Patch Changes
 
--   Updated dependencies [58075352]
-    -   @khanacademy/wonder-blocks-clickable@4.2.0
-    -   @khanacademy/wonder-blocks-core@6.4.0
-    -   @khanacademy/wonder-blocks-icon@4.1.0
-    -   @khanacademy/wonder-blocks-typography@2.1.11
+- Updated dependencies [58075352]
+    - @khanacademy/wonder-blocks-clickable@4.2.0
+    - @khanacademy/wonder-blocks-core@6.4.0
+    - @khanacademy/wonder-blocks-icon@4.1.0
+    - @khanacademy/wonder-blocks-typography@2.1.11
 
 ## 1.2.16
 
 ### Patch Changes
 
--   Updated dependencies [874081aa]
--   Updated dependencies [874081aa]
--   Updated dependencies [a9bf603a]
-    -   @khanacademy/wonder-blocks-tokens@1.2.0
-    -   @khanacademy/wonder-blocks-clickable@4.1.3
+- Updated dependencies [874081aa]
+- Updated dependencies [874081aa]
+- Updated dependencies [a9bf603a]
+    - @khanacademy/wonder-blocks-tokens@1.2.0
+    - @khanacademy/wonder-blocks-clickable@4.1.3
 
 ## 1.2.15
 
 ### Patch Changes
 
--   Updated dependencies [e6433bee]
-    -   @khanacademy/wonder-blocks-clickable@4.1.2
+- Updated dependencies [e6433bee]
+    - @khanacademy/wonder-blocks-clickable@4.1.2
 
 ## 1.2.14
 
 ### Patch Changes
 
--   Updated dependencies [4cfb4977]
-    -   @khanacademy/wonder-blocks-tokens@1.1.0
-    -   @khanacademy/wonder-blocks-clickable@4.1.1
+- Updated dependencies [4cfb4977]
+    - @khanacademy/wonder-blocks-tokens@1.1.0
+    - @khanacademy/wonder-blocks-clickable@4.1.1
 
 ## 1.2.13
 
 ### Patch Changes
 
--   Updated dependencies [60fdac1c]
-    -   @khanacademy/wonder-blocks-clickable@4.1.0
+- Updated dependencies [60fdac1c]
+    - @khanacademy/wonder-blocks-clickable@4.1.0
 
 ## 1.2.12
 
 ### Patch Changes
 
--   Updated dependencies [e83f8991]
-    -   @khanacademy/wonder-blocks-tokens@1.0.0
-    -   @khanacademy/wonder-blocks-clickable@4.0.14
+- Updated dependencies [e83f8991]
+    - @khanacademy/wonder-blocks-tokens@1.0.0
+    - @khanacademy/wonder-blocks-clickable@4.0.14
 
 ## 1.2.11
 
 ### Patch Changes
 
--   7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
--   Updated dependencies [7cd7f6cc]
--   Updated dependencies [7c51f377]
--   Updated dependencies [7c51f377]
-    -   @khanacademy/wonder-blocks-tokens@0.2.0
-    -   @khanacademy/wonder-blocks-clickable@4.0.13
+- 7cd7f6cc: Replace theming.tokens with wb-tokens and update callsites to use the new export
+- Updated dependencies [7cd7f6cc]
+- Updated dependencies [7c51f377]
+- Updated dependencies [7c51f377]
+    - @khanacademy/wonder-blocks-tokens@0.2.0
+    - @khanacademy/wonder-blocks-clickable@4.0.13
 
 ## 1.2.10
 
 ### Patch Changes
 
--   fafa8a69: Prevent default in home, end, and arrow keys
+- fafa8a69: Prevent default in home, end, and arrow keys
 
 ## 1.2.9
 
 ### Patch Changes
 
--   Updated dependencies [80592e75]
-    -   @khanacademy/wonder-blocks-theming@1.3.0
+- Updated dependencies [80592e75]
+    - @khanacademy/wonder-blocks-theming@1.3.0
 
 ## 1.2.8
 
 ### Patch Changes
 
--   5cf814ce: Fix focus handling for Accordion headers
+- 5cf814ce: Fix focus handling for Accordion headers
 
 ## 1.2.7
 
 ### Patch Changes
 
--   d0d567a5: Use minWidth: 0 in the header to prevent overflow issues
+- d0d567a5: Use minWidth: 0 in the header to prevent overflow issues
 
 ## 1.2.6
 
 ### Patch Changes
 
--   48e939d0: Use z-index to put the header outline in front of the content panel instead of adding a 2px margin that can cause weird spacing issues
+- 48e939d0: Use z-index to put the header outline in front of the content panel instead of adding a 2px margin that can cause weird spacing issues
 
 ## 1.2.5
 
 ### Patch Changes
 
--   Updated dependencies [23ab9f8c]
--   Updated dependencies [6df21f71]
-    -   @khanacademy/wonder-blocks-icon@4.0.1
-    -   @khanacademy/wonder-blocks-core@6.3.1
-    -   @khanacademy/wonder-blocks-clickable@4.0.12
-    -   @khanacademy/wonder-blocks-typography@2.1.10
+- Updated dependencies [23ab9f8c]
+- Updated dependencies [6df21f71]
+    - @khanacademy/wonder-blocks-icon@4.0.1
+    - @khanacademy/wonder-blocks-core@6.3.1
+    - @khanacademy/wonder-blocks-clickable@4.0.12
+    - @khanacademy/wonder-blocks-typography@2.1.10
 
 ## 1.2.4
 
 ### Patch Changes
 
--   138d25c5: Give AccordionSection static position to fix outline overlap issue
+- 138d25c5: Give AccordionSection static position to fix outline overlap issue
 
 ## 1.2.3
 
 ### Patch Changes
 
--   Updated dependencies [171e3b01]
-    -   @khanacademy/wonder-blocks-icon@4.0.0
+- Updated dependencies [171e3b01]
+    - @khanacademy/wonder-blocks-icon@4.0.0
 
 ## 1.2.2
 
 ### Patch Changes
 
--   Updated dependencies [96f675d2]
-    -   @khanacademy/wonder-blocks-icon@3.0.0
+- Updated dependencies [96f675d2]
+    - @khanacademy/wonder-blocks-icon@3.0.0
 
 ## 1.2.1
 
 ### Patch Changes
 
--   Updated dependencies [edcfbe14]
-    -   @khanacademy/wonder-blocks-theming@1.2.1
+- Updated dependencies [edcfbe14]
+    - @khanacademy/wonder-blocks-theming@1.2.1
 
 ## 1.2.0
 
 ### Minor Changes
 
--   b13d4321: Cleanup: prioritize all children overloaded props, fix typos, update documentation, make the accordion component public
+- b13d4321: Cleanup: prioritize all children overloaded props, fix typos, update documentation, make the accordion component public
 
 ## 1.1.2
 
 ### Patch Changes
 
--   16d99bde: Add region and aria-labelledby to accordion
--   Updated dependencies [6b8bf8d5]
-    -   @khanacademy/wonder-blocks-clickable@4.0.11
+- 16d99bde: Add region and aria-labelledby to accordion
+- Updated dependencies [6b8bf8d5]
+    - @khanacademy/wonder-blocks-clickable@4.0.11
 
 ## 1.1.1
 
 ### Patch Changes
 
--   7b24db93: Add support for up arrow, down arrow, home, and end keys
--   Updated dependencies [7b24db93]
-    -   @khanacademy/wonder-blocks-clickable@4.0.10
+- 7b24db93: Add support for up arrow, down arrow, home, and end keys
+- Updated dependencies [7b24db93]
+    - @khanacademy/wonder-blocks-clickable@4.0.10
 
 ## 1.1.0
 
 ### Minor Changes
 
--   2f0b77f2: Add animations to Accordion
--   1424a2c3: Add `collapsible` prop to AccordionSection
+- 2f0b77f2: Add animations to Accordion
+- 1424a2c3: Add `collapsible` prop to AccordionSection
 
 ## 1.0.1
 
 ### Patch Changes
 
--   Updated dependencies [3f854fe8]
-    -   @khanacademy/wonder-blocks-theming@1.2.0
+- Updated dependencies [3f854fe8]
+    - @khanacademy/wonder-blocks-theming@1.2.0
 
 ## 1.0.0
 
 ### Major Changes
 
--   ff34408e: Create Accordion and AccordionSection components
+- ff34408e: Create Accordion and AccordionSection components
 
 ### Patch Changes
 
--   Updated dependencies [7055ca94]
-    -   @khanacademy/wonder-blocks-core@6.3.0
-    -   @khanacademy/wonder-blocks-clickable@4.0.9
-    -   @khanacademy/wonder-blocks-icon@2.2.1
-    -   @khanacademy/wonder-blocks-typography@2.1.9
+- Updated dependencies [7055ca94]
+    - @khanacademy/wonder-blocks-core@6.3.0
+    - @khanacademy/wonder-blocks-clickable@4.0.9
+    - @khanacademy/wonder-blocks-icon@2.2.1
+    - @khanacademy/wonder-blocks-typography@2.1.9
 
 ## 0.0.5
 
 ### Patch Changes
 
--   Updated dependencies [ea0e7c02]
-    -   @khanacademy/wonder-blocks-icon@2.2.0
+- Updated dependencies [ea0e7c02]
+    - @khanacademy/wonder-blocks-icon@2.2.0
 
 ## 0.0.4
 
 ### Patch Changes
 
--   Updated dependencies [48d3c7e9]
-    -   @khanacademy/wonder-blocks-color@3.0.0
-    -   @khanacademy/wonder-blocks-clickable@4.0.8
+- Updated dependencies [48d3c7e9]
+    - @khanacademy/wonder-blocks-color@3.0.0
+    - @khanacademy/wonder-blocks-clickable@4.0.8
 
 ## 0.0.3
 
 ### Patch Changes
 
--   Updated dependencies [80cab317]
-    -   @khanacademy/wonder-blocks-clickable@4.0.7
+- Updated dependencies [80cab317]
+    - @khanacademy/wonder-blocks-clickable@4.0.7
 
 ## 0.0.2
 
 ### Patch Changes
 
--   cde5377f: Create `wonder-blocks-accordion` package
--   Updated dependencies [4b97b9a2]
-    -   @khanacademy/wonder-blocks-core@6.2.0
-    -   @khanacademy/wonder-blocks-clickable@4.0.6
-    -   @khanacademy/wonder-blocks-icon@2.1.6
-    -   @khanacademy/wonder-blocks-typography@2.1.8
+- cde5377f: Create `wonder-blocks-accordion` package
+- Updated dependencies [4b97b9a2]
+    - @khanacademy/wonder-blocks-core@6.2.0
+    - @khanacademy/wonder-blocks-clickable@4.0.6
+    - @khanacademy/wonder-blocks-icon@2.1.6
+    - @khanacademy/wonder-blocks-typography@2.1.8
