@@ -329,6 +329,13 @@ export const Inline: StoryComponentType = {
             .
         </Body>
     ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it shows the links in
+            // the context of paragraphs.
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
@@ -391,6 +398,13 @@ export const WithTypography: StoryComponentType = {
             </Link>
         </HeadingSmall>
     ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it's verifying that
+            // the styles on typography elements are applied
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
