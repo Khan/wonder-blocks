@@ -37,7 +37,6 @@ const LinkCore = React.forwardRef(function LinkCore(
             hovered, // eslint-disable-line @typescript-eslint/no-unused-vars
             href,
             inline = false,
-            kind = "primary",
             light = false,
             visitable = false,
             pressed,
@@ -50,7 +49,7 @@ const LinkCore = React.forwardRef(function LinkCore(
             ...restProps
         } = props;
 
-        const linkStyles = _generateStyles(inline, kind, light, visitable);
+        const linkStyles = _generateStyles(inline, light, visitable);
 
         const defaultStyles = [
             sharedStyles.shared,
@@ -170,24 +169,15 @@ const sharedStyles = StyleSheet.create({
 
 const _generateStyles = (
     inline: boolean,
-    kind: "primary" | "secondary",
     light: boolean,
     visitable: boolean,
 ) => {
-    const buttonType = `${kind}-${inline.toString()}-${light.toString()}-${visitable.toString()}`;
+    const buttonType = `${inline.toString()}-${light.toString()}-${visitable.toString()}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
-    if (kind === "secondary" && light) {
-        throw new Error("Secondary Light links are not supported");
-    }
-
-    if (visitable && kind !== "primary") {
-        throw new Error("Only primary link is visitable");
-    }
-
-    const {blue, purple, white, offBlack, offBlack32, offBlack64} = color;
+    const {blue, purple, white, offBlack, offBlack32} = color;
 
     // NOTE: This color is only used here.
     const pink = "#fa50ae";
@@ -202,16 +192,10 @@ const _generateStyles = (
     const activeDefaultPrimary = color.activeBlue;
 
     const primaryDefaultTextColor = light ? white : blue;
-    const secondaryDefaultTextColor = inline ? offBlack : offBlack64;
-    const defaultTextColor =
-        kind === "primary"
-            ? primaryDefaultTextColor
-            : secondaryDefaultTextColor;
+    const defaultTextColor = primaryDefaultTextColor;
 
     const primaryActiveColor = light ? fadedBlue : activeDefaultPrimary;
-    const secondaryActiveColor = inline ? activeDefaultPrimary : offBlack;
-    const activeColor =
-        kind === "primary" ? primaryActiveColor : secondaryActiveColor;
+    const activeColor = primaryActiveColor;
 
     const defaultVisited = visitable
         ? {

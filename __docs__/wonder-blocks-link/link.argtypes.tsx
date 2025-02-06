@@ -55,17 +55,6 @@ export default {
         type: {name: "boolean", required: false},
     },
 
-    kind: {
-        control: {type: "select"},
-        description:
-            "Kind of Link. Note: Secondary light Links are not supported.",
-        options: ["primary", "secondary"],
-        table: {
-            type: {summary: `"primary" | "secondary"`},
-        },
-        type: {name: "enum", value: ["primary", "secondary"], required: false},
-    },
-
     light: {
         control: {type: "boolean"},
         description: "Whether the button is on a dark/colored background.",
