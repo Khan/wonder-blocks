@@ -215,7 +215,6 @@ const Banner = (props: Props): React.ReactElement => {
                 return (
                     <View style={styles.action} key={action.title}>
                         <Link
-                            kind="primary"
                             href={action.href}
                             onClick={handleClick}
                             aria-label={action.ariaLabel ?? action.title}

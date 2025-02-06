@@ -37,7 +37,6 @@ const LinkCore = React.forwardRef(function LinkCore(
             hovered, // eslint-disable-line @typescript-eslint/no-unused-vars
             href,
             inline = false,
-            kind = "primary",
             light = false,
             visitable = false,
             pressed,
@@ -50,7 +49,7 @@ const LinkCore = React.forwardRef(function LinkCore(
             ...restProps
         } = props;
 
-        const linkStyles = _generateStyles(inline, kind, light, visitable);
+        const linkStyles = _generateStyles(inline, light, visitable);
 
         const defaultStyles = [
             sharedStyles.shared,
@@ -170,24 +169,15 @@ const sharedStyles = StyleSheet.create({
 
 const _generateStyles = (
     inline: boolean,
-    kind: "primary" | "secondary",
     light: boolean,
     visitable: boolean,
 ) => {
-    const buttonType = `${kind}-${inline.toString()}-${light.toString()}-${visitable.toString()}`;
+    const buttonType = `${inline.toString()}-${light.toString()}-${visitable.toString()}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
-    if (kind === "secondary" && light) {
-        throw new Error("Secondary Light links are not supported");
-    }
-
-    if (visitable && kind !== "primary") {
-        throw new Error("Only primary link is visitable");
-    }
-
-    const {blue, purple, white, offBlack, offBlack32, offBlack64} = color;
+    const {blue, purple, white, offBlack, offBlack32} = color;
 
     // NOTE: This color is only used here.
     const pink = "#fa50ae";
@@ -198,29 +188,18 @@ const _generateStyles = (
     const fadedBlue = color.fadedBlue;
     // Light pink
     const activeLightVisited = mix(fade(white, 0.32), pink);
-    // Dark blue
-    const activeDefaultPrimary = color.activeBlue;
 
-    const primaryDefaultTextColor = light ? white : blue;
-    const secondaryDefaultTextColor = inline ? offBlack : offBlack64;
-    const defaultTextColor =
-        kind === "primary"
-            ? primaryDefaultTextColor
-            : secondaryDefaultTextColor;
+    const restTextColor = light ? white : blue;
+    const pressTextColor = light ? fadedBlue : color.activeBlue;
 
-    const primaryActiveColor = light ? fadedBlue : activeDefaultPrimary;
-    const secondaryActiveColor = inline ? activeDefaultPrimary : offBlack;
-    const activeColor =
-        kind === "primary" ? primaryActiveColor : secondaryActiveColor;
-
-    const defaultVisited = visitable
+    const restVisited = visitable
         ? {
               ":visited": {
                   color: light ? pink : linkPurple,
               },
           }
         : Object.freeze({});
-    const activeVisited = visitable
+    const pressVisited = visitable
         ? {
               ":visited": {
                   color: light
@@ -231,35 +210,35 @@ const _generateStyles = (
         : Object.freeze({});
 
     const focusStyling = {
-        color: defaultTextColor,
+        color: restTextColor,
         outline: `1px solid ${light ? white : blue}`,
         borderRadius: 3,
-        ...defaultVisited,
+        ...restVisited,
     };
 
     const pressStyling = {
-        color: activeColor,
+        color: pressTextColor,
         textDecoration: "underline currentcolor solid",
         // TODO(WB-1521): Update the underline offset to be 4px after
         // the Link audit.
         // textUnderlineOffset: 4,
-        ...activeVisited,
+        ...pressVisited,
     };
 
     const newStyles: StyleDeclaration = {
         rest: {
-            color: defaultTextColor,
-            ...defaultVisited,
+            color: restTextColor,
+            ...restVisited,
             ":hover": {
                 // TODO(WB-1521): Update text decoration to the 1px dashed
                 // underline after the Link audit.
                 // textDecoration: "underline currentcolor dashed 2px",
                 textDecoration: "underline currentcolor solid",
-                color: defaultTextColor,
+                color: restTextColor,
                 // TODO(WB-1521): Update the underline offset to be 4px after
                 // the Link audit.
                 // textUnderlineOffset: 4,
-                ...defaultVisited,
+                ...restVisited,
             },
             // Focus styles only show up with keyboard navigation.
             // Mouse users don't see focus styles.
