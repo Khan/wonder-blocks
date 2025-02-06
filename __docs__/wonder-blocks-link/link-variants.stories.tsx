@@ -12,6 +12,8 @@ import {
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {AllVariants} from "../components/all-variants";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 const rows = [
     {name: "Default", props: {}},
@@ -27,12 +29,35 @@ const columns = [
         props: {},
     },
     {
+        name: "startIcon",
+        props: {
+            children: "With startIcon",
+            startIcon: <PhosphorIcon icon={IconMappings.plusCircleBold} />,
+        },
+    },
+    {
+        name: "endIcon",
+        props: {
+            children: "With endIcon",
+            endIcon: <PhosphorIcon icon={IconMappings.magnifyingGlassBold} />,
+            target: "_blank",
+        },
+    },
+    {
+        name: "External",
+        props: {
+            children: "External link",
+            href: "https://www.khanacademy.org",
+            target: "_blank",
+        },
+    },
+    {
         name: "Visitable",
         props: {visitable: true},
     },
 ];
 
-const themes: Array<string> = ["default", "dark"];
+const themes: Array<string> = ["default", "dark", "rtl"];
 
 type Story = StoryObj<typeof Link>;
 
@@ -50,14 +75,15 @@ const meta = {
                     <AllVariants rows={rows} columns={columns}>
                         {(props) => (
                             <>
-                                {theme === "dark" &&
-                                props.kind === "secondary" ? null : (
-                                    <Link
-                                        {...args}
-                                        {...props}
-                                        light={theme === "dark"}
-                                    />
-                                )}
+                                <Link
+                                    {...args}
+                                    {...props}
+                                    light={theme === "dark"}
+                                    {...(theme === "rtl" && {
+                                        children:
+                                            "هذا الرابط مكتوب باللغة العربية",
+                                    })}
+                                />
                             </>
                         )}
                     </AllVariants>
@@ -110,7 +136,7 @@ export const PressVisited: Story = {
 
 const styles = StyleSheet.create({
     container: {
-        maxWidth: 700,
+        maxWidth: 1000,
         gap: spacing.medium_16,
     },
     theme: {
@@ -121,6 +147,9 @@ const styles = StyleSheet.create({
     dark: {
         backgroundColor: semanticColor.surface.inverse,
         color: semanticColor.text.inverse,
+    },
+    rtl: {
+        direction: "rtl",
     },
     title: {
         textTransform: "capitalize",
