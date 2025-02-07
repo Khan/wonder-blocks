@@ -42,8 +42,8 @@ export default function addStyle<
 
         return (
             <Component
-                {...otherProps}
                 ref={ref}
+                {...otherProps} // Move otherProps after ref but before style
                 className={[aphroditeClassName, className]
                     .filter(Boolean)
                     .join(" ")}
