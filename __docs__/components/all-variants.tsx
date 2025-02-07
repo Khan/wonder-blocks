@@ -54,6 +54,7 @@ export function AllVariants({children, columns, rows}: Props) {
             <tbody>
                 {rows.map((row, idx) => (
                     <tr key={idx}>
+                        {/* eslint-disable-next-line jsx-a11y/scope -- TODO: Address a11y error */}
                         <StyledTd scope="row" style={styles.cell}>
                             <LabelLarge>{row.name}</LabelLarge>
                         </StyledTd>
