@@ -300,7 +300,7 @@ export const StartAndEndIcons: StoryComponentType = {
  */
 export const Inline: StoryComponentType = {
     render: () => (
-        <Body>
+        <Body style={{width: 530}}>
             This is an inline{" "}
             <Link href="#link" inline={true}>
                 regular link
@@ -335,6 +335,7 @@ export const Inline: StoryComponentType = {
             // the context of paragraphs.
             disableSnapshot: false,
         },
+        pseudo: {visited: true},
     },
 };
 
@@ -347,7 +348,7 @@ export const Inline: StoryComponentType = {
  */
 export const InlineLight: StoryComponentType = {
     render: () => (
-        <Body style={{color: semanticColor.text.inverse}}>
+        <Body style={{color: semanticColor.text.inverse, width: 530}}>
             This is an inline{" "}
             <Link href="#link" inline={true} light={true}>
                 regular link
@@ -382,6 +383,12 @@ export const InlineLight: StoryComponentType = {
         backgrounds: {
             default: "darkBlue",
         },
+        chromatic: {
+            // Re-enable snapshots for this story since it shows the links in
+            // the context of paragraphs.
+            disableSnapshot: false,
+        },
+        pseudo: {visited: true},
     },
 };
 
