@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wb-codemod",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "MIT",
   "dependencies": {
     "jscodeshift": "^0.15.1"

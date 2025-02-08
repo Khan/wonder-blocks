@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 9.1.1
+
+### Patch Changes
+
+- ee8d95a: Rollback rollup version from v4 to v2 to prevent an issue with CJS builds in unit tests
+- Updated dependencies [ee8d95a]
+    - @khanacademy/wonder-blocks-cell@4.1.1
+    - @khanacademy/wonder-blocks-clickable@6.1.1
+    - @khanacademy/wonder-blocks-core@12.1.1
+    - @khanacademy/wonder-blocks-icon@5.1.1
+    - @khanacademy/wonder-blocks-layout@3.1.1
+    - @khanacademy/wonder-blocks-modal@7.1.1
+    - @khanacademy/wonder-blocks-pill@3.1.1
+    - @khanacademy/wonder-blocks-search-field@5.1.1
+    - @khanacademy/wonder-blocks-timing@7.0.1
+    - @khanacademy/wonder-blocks-tokens@4.2.1
+    - @khanacademy/wonder-blocks-typography@3.1.1
+
 ## 9.1.0
 
 ### Minor Changes
