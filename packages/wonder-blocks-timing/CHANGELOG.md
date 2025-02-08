@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 7.0.1
+
+### Patch Changes
+
+- ee8d95a: Rollback rollup version from v4 to v2 to prevent an issue with CJS builds in unit tests
+
 ## 7.0.0
 
 ### Major Changes
