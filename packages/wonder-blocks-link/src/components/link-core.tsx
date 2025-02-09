@@ -34,7 +34,7 @@ const LinkCore = React.forwardRef(function LinkCore(
             children,
             skipClientNav,
             focused,
-            hovered,
+            hovered, // eslint-disable-line @typescript-eslint/no-unused-vars
             href,
             inline = false,
             kind = "primary",
@@ -51,20 +51,12 @@ const LinkCore = React.forwardRef(function LinkCore(
         } = props;
 
         const linkStyles = _generateStyles(inline, kind, light, visitable);
-        const restingStyles = inline
-            ? linkStyles.restingInline
-            : linkStyles.resting;
 
         const defaultStyles = [
             sharedStyles.shared,
-            restingStyles,
-            pressed && linkStyles.active,
-            // A11y: The focus ring should always be present when the
-            // the link has focus, even the link is being hovered over.
-            // TODO(WB-1498): Udpate ClickableBehavior so that focus doesn't
-            // stop on mouseleave. We want the focus ring to remain on a
-            // focused link even after hovering and un-hovering on it.
-            !pressed && hovered && linkStyles.hover,
+            linkStyles.rest,
+            inline && linkStyles.restInline,
+            // focused is preserved to allow for programmatic focus.
             !pressed && focused && linkStyles.focus,
         ];
 
@@ -238,13 +230,43 @@ const _generateStyles = (
           }
         : Object.freeze({});
 
+    const focusStyling = {
+        color: defaultTextColor,
+        outline: `1px solid ${light ? white : blue}`,
+        borderRadius: 3,
+        ...defaultVisited,
+    };
+
+    const pressStyling = {
+        color: activeColor,
+        textDecoration: "underline currentcolor solid",
+        // TODO(WB-1521): Update the underline offset to be 4px after
+        // the Link audit.
+        // textUnderlineOffset: 4,
+        ...activeVisited,
+    };
+
     const newStyles: StyleDeclaration = {
-        resting: {
+        rest: {
             color: defaultTextColor,
             ...defaultVisited,
+            ":hover": {
+                // TODO(WB-1521): Update text decoration to the 1px dashed
+                // underline after the Link audit.
+                // textDecoration: "underline currentcolor dashed 2px",
+                textDecoration: "underline currentcolor solid",
+                color: defaultTextColor,
+                // TODO(WB-1521): Update the underline offset to be 4px after
+                // the Link audit.
+                // textUnderlineOffset: 4,
+                ...defaultVisited,
+            },
+            // Focus styles only show up with keyboard navigation.
+            // Mouse users don't see focus styles.
+            ":focus-visible": focusStyling,
+            ":active": pressStyling,
         },
-        restingInline: {
-            color: defaultTextColor,
+        restInline: {
             // TODO(WB-1521): Update text decoration to the 1px dashed
             // underline after the Link audit.
             // textDecoration: "underline currentcolor solid 1px",
@@ -253,37 +275,9 @@ const _generateStyles = (
             // the Link audit.
             // textUnderlineOffset: 4,
             textUnderlineOffset: 2,
-            ...defaultVisited,
         },
-        hover: {
-            // TODO(WB-1521): Update text decoration to the 1px dashed
-            // underline after the Link audit.
-            // textDecoration: "underline currentcolor dashed 2px",
-            textDecoration: "underline currentcolor solid",
-            color: defaultTextColor,
-            // TODO(WB-1521): Update the underline offset to be 4px after
-            // the Link audit.
-            // textUnderlineOffset: 4,
-            ...defaultVisited,
-        },
-        focus: {
-            // Focus styles only show up with keyboard navigation.
-            // Mouse users don't see focus styles.
-            ":focus-visible": {
-                color: defaultTextColor,
-                outline: `1px solid ${light ? white : blue}`,
-                borderRadius: 3,
-                ...defaultVisited,
-            },
-        },
-        active: {
-            color: activeColor,
-            textDecoration: "underline currentcolor solid",
-            // TODO(WB-1521): Update the underline offset to be 4px after
-            // the Link audit.
-            // textUnderlineOffset: 4,
-            ...activeVisited,
-        },
+        focus: focusStyling,
+        press: pressStyling,
     };
 
     styles[buttonType] = StyleSheet.create(newStyles);
