@@ -272,7 +272,7 @@ export default class OptionItem extends React.Component<OptionProps> {
         // Only used for Combobox component, not SingleSelect/MultiSelect
         if (parentComponent === "listbox") {
             return (
-                // eslint-disable-next-line jsx-a11y/click-events-have-key-events -- TODO: Address a11y error
+                // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- TODO: Address a11y error
                 <StyledLi
                     onMouseDown={(e) => {
                         // Prevents the combobox from losing focus when clicking
