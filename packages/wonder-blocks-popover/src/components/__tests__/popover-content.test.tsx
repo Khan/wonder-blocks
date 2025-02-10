@@ -37,6 +37,7 @@ describe("PopoverContent", () => {
             <PopoverContent
                 title="illustration"
                 content="content"
+                // eslint-disable-next-line jsx-a11y/img-redundant-alt -- TODO: Address a11y error
                 image={<img src="/dummy-image.png" alt="popover image" />}
                 icon={<img src="/dummy-icon.png" alt="popover icon" />}
             />
