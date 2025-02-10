@@ -324,7 +324,7 @@ export default class FocusManager extends React.Component<Props> {
         const {children} = this.props;
 
         return (
-            // eslint-disable-next-line jsx-a11y/click-events-have-key-events -- TODO: Address a11y error
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- TODO: Address a11y error
             <div
                 ref={this.getComponentRootNode}
                 onClick={() => {
