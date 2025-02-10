@@ -79,6 +79,7 @@ export const rightContentMappings: Mappings = {
         </Button>
     ),
     link: (
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
         <Link href="#">
             <LabelLarge>Go to exercise</LabelLarge>
         </Link>
