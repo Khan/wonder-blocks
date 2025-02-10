@@ -350,7 +350,7 @@ export const InlineLight: StoryComponentType = {
         <Body style={{color: semanticColor.text.inverse, width: 530}}>
             This is an inline{" "}
             <Link href="#" inline={true} light={true}>
-                Primary link
+                link
             </Link>{" "}
             and an{" "}
             <Link
@@ -359,11 +359,11 @@ export const InlineLight: StoryComponentType = {
                 light={true}
                 target="_blank"
             >
-                external Primary link
+                external link
             </Link>
             , whereas this is an inline{" "}
             <Link href="#" visitable={true} inline={true} light={true}>
-                Visitable link (Primary only)
+                Visitable link
             </Link>{" "}
             and an{" "}
             <Link
@@ -373,9 +373,9 @@ export const InlineLight: StoryComponentType = {
                 light={true}
                 target="_blank"
             >
-                external Visitable link (Primary only)
+                external Visitable link
             </Link>
-            . Secondary light links are not supported.
+            .
         </Body>
     ),
     parameters: {
