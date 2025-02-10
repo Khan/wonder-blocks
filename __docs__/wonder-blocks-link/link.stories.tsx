@@ -6,7 +6,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -201,7 +201,7 @@ export const StartAndEndIcons: StoryComponentType = {
             {/* Light */}
             <View
                 style={{
-                    backgroundColor: color.darkBlue,
+                    backgroundColor: semanticColor.surface.inverse,
                     padding: spacing.large_24,
                 }}
             >
@@ -261,7 +261,7 @@ export const StartAndEndIcons: StoryComponentType = {
                 >
                     This is a multi-line link with start and end icons
                 </Link>
-                <Body style={{color: color.white}}>
+                <Body style={{color: semanticColor.text.inverse}}>
                     This is an inline{" "}
                     <Link
                         href="#"
@@ -299,7 +299,7 @@ export const StartAndEndIcons: StoryComponentType = {
  */
 export const Inline: StoryComponentType = {
     render: () => (
-        <Body>
+        <Body style={{width: 530}}>
             This is an inline{" "}
             <Link href="#" inline={true}>
                 link
@@ -328,6 +328,14 @@ export const Inline: StoryComponentType = {
             .
         </Body>
     ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it shows the links in
+            // the context of paragraphs.
+            disableSnapshot: false,
+        },
+        pseudo: {visited: true},
+    },
 };
 
 /**
@@ -339,10 +347,10 @@ export const Inline: StoryComponentType = {
  */
 export const InlineLight: StoryComponentType = {
     render: () => (
-        <Body style={{color: color.white}}>
+        <Body style={{color: semanticColor.text.inverse, width: 530}}>
             This is an inline{" "}
             <Link href="#" inline={true} light={true}>
-                Primary link
+                link
             </Link>{" "}
             and an{" "}
             <Link
@@ -351,11 +359,11 @@ export const InlineLight: StoryComponentType = {
                 light={true}
                 target="_blank"
             >
-                external Primary link
+                external link
             </Link>
             , whereas this is an inline{" "}
             <Link href="#" visitable={true} inline={true} light={true}>
-                Visitable link (Primary only)
+                Visitable link
             </Link>{" "}
             and an{" "}
             <Link
@@ -365,15 +373,21 @@ export const InlineLight: StoryComponentType = {
                 light={true}
                 target="_blank"
             >
-                external Visitable link (Primary only)
+                external Visitable link
             </Link>
-            . Secondary light links are not supported.
+            .
         </Body>
     ),
     parameters: {
         backgrounds: {
             default: "darkBlue",
         },
+        chromatic: {
+            // Re-enable snapshots for this story since it shows the links in
+            // the context of paragraphs.
+            disableSnapshot: false,
+        },
+        pseudo: {visited: true},
     },
 };
 
@@ -390,11 +404,18 @@ export const WithTypography: StoryComponentType = {
             </Link>
         </HeadingSmall>
     ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it's verifying that
+            // the styles on typography elements are applied
+            disableSnapshot: false,
+        },
+    },
 };
 
 /**
  * Link can take a `style` prop. Here, the Link has been given a style in which
- * the `color` field has been set to `color.red`.
+ * the `color` field has been set to `semanticColor.status.critical.foreground`.
  */
 export const WithStyle: StoryComponentType = {
     render: () => (
@@ -402,43 +423,14 @@ export const WithStyle: StoryComponentType = {
             This link has a style.
         </Link>
     ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it's verifying that
+            // custom styles are applied (one-off)
+            disableSnapshot: false,
+        },
+    },
 };
-
-export const Navigation: StoryComponentType = () => (
-    <MemoryRouter>
-        <View>
-            <View style={styles.row}>
-                <Link
-                    href="/foo"
-                    style={styles.heading}
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("I'm still on the same page!");
-                    }}
-                >
-                    <LabelLarge>Uses Client-side Nav</LabelLarge>
-                </Link>
-                <Link
-                    href="/iframe.html?id=link--default&viewMode=story"
-                    style={styles.heading}
-                    skipClientNav
-                >
-                    <LabelLarge>Avoids Client-side Nav</LabelLarge>
-                </Link>
-            </View>
-            <View style={styles.navigation}>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">
-                            The first link does client-side navigation here.
-                        </View>
-                    </Route>
-                    <Route path="*">See navigation changes here</Route>
-                </Switch>
-            </View>
-        </View>
-    </MemoryRouter>
-);
 
 /**
  * If you want to navigate to an external URL and/or reload the window, make
@@ -449,12 +441,42 @@ export const Navigation: StoryComponentType = () => (
  * documentation](/story/button-navigation-callbacks--before-nav-callbacks&viewMode=docs)
  * for details.
  */
-Navigation.parameters = {
-    docs: {
-        description: {
-            story: ``,
-        },
-    },
+export const Navigation: StoryComponentType = {
+    render: () => (
+        <MemoryRouter>
+            <View>
+                <View style={styles.row}>
+                    <Link
+                        href="/foo"
+                        style={styles.heading}
+                        onClick={() => {
+                            // eslint-disable-next-line no-console
+                            console.log("I'm still on the same page!");
+                        }}
+                    >
+                        <LabelLarge>Uses Client-side Nav</LabelLarge>
+                    </Link>
+                    <Link
+                        href="/iframe.html?id=link--default&viewMode=story"
+                        style={styles.heading}
+                        skipClientNav
+                    >
+                        <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                    </Link>
+                </View>
+                <View style={styles.navigation}>
+                    <Switch>
+                        <Route path="/foo">
+                            <View id="foo">
+                                The first link does client-side navigation here.
+                            </View>
+                        </Route>
+                        <Route path="*">See navigation changes here</Route>
+                    </Switch>
+                </View>
+            </View>
+        </MemoryRouter>
+    ),
 };
 
 /**
@@ -516,21 +538,16 @@ export const RightToLeftWithIcons: StoryComponentType = {
 };
 
 const styles = StyleSheet.create({
-    darkBackground: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
-        padding: 10,
-    },
     heading: {
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${color.purple}`,
+        border: `1px dashed ${semanticColor.border.primary}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },
     customLink: {
-        color: color.red,
+        color: semanticColor.status.critical.foreground,
     },
     row: {
         flexDirection: "row",

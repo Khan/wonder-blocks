@@ -4,7 +4,13 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {mix, fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    mix,
+    color,
+    spacing,
+    semanticColor,
+    border,
+} from "@khanacademy/wonder-blocks-tokens";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import externalLinkIcon from "@phosphor-icons/core/bold/arrow-square-out-bold.svg";
@@ -167,6 +173,63 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
+const action = semanticColor.action.outlined.progressive;
+
+// NOTE: This color is only used here.
+const pink = "#fa50ae";
+
+/**
+ * TODO(WB-1862): Move this to a shared theme file.
+ */
+const theme = {
+    color: {
+        // Primary link color
+        default: {
+            rest: {
+                foreground: action.default.foreground,
+            },
+            hover: {
+                foreground: action.hover.foreground,
+            },
+            focus: {
+                border: semanticColor.border.focus,
+                foreground: action.hover.foreground,
+            },
+            press: {
+                foreground: action.press.foreground,
+            },
+            restVisited: {
+                foreground: color.purple,
+            },
+            pressVisited: {
+                foreground: mix(color.offBlack32, color.purple),
+            },
+        },
+        // Over dark backgrounds
+        inverse: {
+            rest: {
+                foreground: semanticColor.text.inverse,
+            },
+            hover: {
+                foreground: semanticColor.text.inverse,
+            },
+            focus: {
+                border: semanticColor.border.inverse,
+                foreground: semanticColor.text.inverse,
+            },
+            press: {
+                foreground: color.fadedBlue,
+            },
+            restVisited: {
+                foreground: pink,
+            },
+            pressVisited: {
+                foreground: mix(color.white50, pink),
+            },
+        },
+    },
+};
+
 const _generateStyles = (
     inline: boolean,
     light: boolean,
@@ -177,47 +240,32 @@ const _generateStyles = (
         return styles[buttonType];
     }
 
-    const {blue, purple, white, offBlack, offBlack32} = color;
-
-    // NOTE: This color is only used here.
-    const pink = "#fa50ae";
-
-    // Standard purple
-    const linkPurple = mix(fade(offBlack, 0.08), purple);
-    // Light blue
-    const fadedBlue = color.fadedBlue;
-    // Light pink
-    const activeLightVisited = mix(fade(white, 0.32), pink);
-
-    const restTextColor = light ? white : blue;
-    const pressTextColor = light ? fadedBlue : color.activeBlue;
+    const variant = light ? theme.color.inverse : theme.color.default;
 
     const restVisited = visitable
         ? {
               ":visited": {
-                  color: light ? pink : linkPurple,
+                  color: variant.restVisited.foreground,
               },
           }
         : Object.freeze({});
     const pressVisited = visitable
         ? {
               ":visited": {
-                  color: light
-                      ? activeLightVisited
-                      : mix(offBlack32, linkPurple),
+                  color: variant.pressVisited.foreground,
               },
           }
         : Object.freeze({});
 
     const focusStyling = {
-        color: restTextColor,
-        outline: `1px solid ${light ? white : blue}`,
-        borderRadius: 3,
+        color: variant.focus.foreground,
+        outline: `${border.width.hairline}px solid ${variant.focus.border}`,
+        borderRadius: border.radius.small_3,
         ...restVisited,
     };
 
     const pressStyling = {
-        color: pressTextColor,
+        color: variant.press.foreground,
         textDecoration: "underline currentcolor solid",
         // TODO(WB-1521): Update the underline offset to be 4px after
         // the Link audit.
@@ -227,14 +275,14 @@ const _generateStyles = (
 
     const newStyles: StyleDeclaration = {
         rest: {
-            color: restTextColor,
+            color: variant.rest.foreground,
             ...restVisited,
             ":hover": {
                 // TODO(WB-1521): Update text decoration to the 1px dashed
                 // underline after the Link audit.
                 // textDecoration: "underline currentcolor dashed 2px",
                 textDecoration: "underline currentcolor solid",
-                color: restTextColor,
+                color: variant.hover.foreground,
                 // TODO(WB-1521): Update the underline offset to be 4px after
                 // the Link audit.
                 // textUnderlineOffset: 4,
