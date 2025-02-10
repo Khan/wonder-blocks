@@ -130,6 +130,7 @@ export default class FocusTrap extends React.Component<Props> {
                  * tabbing. */}
                 {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: Address a11y error */}
                 <div
+                    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO: Address a11y error
                     tabIndex={0}
                     className="modal-focus-trap-first"
                     onFocus={this.handleFocusMoveToLast}
@@ -140,6 +141,7 @@ export default class FocusTrap extends React.Component<Props> {
                 </View>
                 {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions -- TODO: Address a11y error */}
                 <div
+                    // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO: Address a11y error
                     tabIndex={0}
                     className="modal-focus-trap-last"
                     onFocus={this.handleFocusMoveToFirst}
