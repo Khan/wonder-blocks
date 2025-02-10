@@ -354,6 +354,7 @@ export const Variants: StoryComponentType = {
 export const WithTypography: StoryComponentType = () => (
     <Pill size="large">
         <BodySerif>
+            {/* eslint-disable-next-line jsx-a11y/anchor-ambiguous-text -- TODO: Address a11y error */}
             This is a {<Link href="#">link</Link>} inside the text of a pill.
         </BodySerif>
     </Pill>
