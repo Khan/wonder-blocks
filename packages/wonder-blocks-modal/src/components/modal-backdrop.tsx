@@ -1,20 +1,20 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
 import {View} from "@khanacademy/wonder-blocks-core";
-import {ModalLauncherPortalAttributeName} from "../util/constants";
-
-import {findFocusableNodes} from "../util/find-focusable-nodes";
-
-import type {ModalElement} from "../util/types";
 import {
     ThemedStylesFn,
     withScopedTheme,
     WithThemeProps,
 } from "@khanacademy/wonder-blocks-theming";
+
 import {
     ModalDialogThemeContext,
     ModalDialogThemeContract,
 } from "../themes/themed-modal-dialog";
+import {ModalLauncherPortalAttributeName} from "../util/constants";
+import {findFocusableNodes} from "../util/find-focusable-nodes";
+import type {ModalElement} from "../util/types";
 
 type Props = {
     children: ModalElement;
