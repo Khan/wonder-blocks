@@ -1,14 +1,20 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {StyleSheet} from "aphrodite";
-
-import {color} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ModalLauncherPortalAttributeName} from "../util/constants";
 
 import {findFocusableNodes} from "../util/find-focusable-nodes";
 
 import type {ModalElement} from "../util/types";
+import {
+    ThemedStylesFn,
+    withScopedTheme,
+    WithThemeProps,
+} from "@khanacademy/wonder-blocks-theming";
+import {
+    ModalDialogThemeContext,
+    ModalDialogThemeContract,
+} from "../themes/themed-modal-dialog";
 
 type Props = {
     children: ModalElement;
@@ -23,7 +29,7 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
+} & WithThemeProps;
 
 /**
  * A private component used by ModalLauncher. This is the fixed-position
@@ -35,7 +41,7 @@ type Props = {
  * and adding an `onClose` prop that will call `onCloseModal`. If an
  * `onClose` prop is already provided, the two are merged.
  */
-export default class ModalBackdrop extends React.Component<Props> {
+class ModalBackdrop extends React.Component<Props> {
     componentDidMount() {
         // eslint-disable-next-line import/no-deprecated
         const node: HTMLElement = ReactDOM.findDOMNode(this) as any;
@@ -137,7 +143,7 @@ export default class ModalBackdrop extends React.Component<Props> {
 
         return (
             <View
-                style={styles.modalPositioner}
+                style={this.props.wbThemeStyles.modalPositioner}
                 onMouseDown={this.handleMouseDown}
                 onMouseUp={this.handleMouseUp}
                 testId={testId}
@@ -149,7 +155,7 @@ export default class ModalBackdrop extends React.Component<Props> {
     }
 }
 
-const styles = StyleSheet.create({
+const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     modalPositioner: {
         position: "fixed",
         left: 0,
@@ -171,6 +177,11 @@ const styles = StyleSheet.create({
         //     now!
         overflow: "auto",
 
-        background: color.offBlack64,
+        background: theme.backdrop.color.background,
     },
 });
+
+export default withScopedTheme(
+    themedStylesFn,
+    ModalDialogThemeContext,
+)(ModalBackdrop);

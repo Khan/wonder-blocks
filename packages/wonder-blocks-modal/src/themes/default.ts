@@ -1,36 +1,69 @@
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
-    color: {
-        bg: {
-            inverse: tokens.color.darkBlue,
+    /**
+     * Shared tokens
+     */
+    root: {
+        // TODO(WB-1852): Remove light variant.
+        color: {
+            inverse: {
+                background: semanticColor.surface.inverse,
+                foreground: semanticColor.text.inverse,
+            },
         },
-        text: {
-            inverse: tokens.color.white,
-            secondary: tokens.color.offBlack64,
-        },
-        shadow: {
-            default: tokens.color.offBlack16,
+        border: {
+            radius: border.radius.medium_4,
+            width: border.width.thin,
         },
     },
-    border: {
-        radius: tokens.border.radius.medium_4,
-        width: tokens.border.width.thin,
-        color: tokens.color.blue,
+    /**
+     * Building blocks
+     */
+    backdrop: {
+        color: {
+            background: semanticColor.surface.overlay,
+        },
     },
-    spacing: {
-        dialog: {
-            small: tokens.spacing.medium_16,
+    dialog: {
+        spacing: {
+            padding: spacing.medium_16,
         },
-        panel: {
-            closeButton: tokens.spacing.medium_16,
-            footer: tokens.spacing.xLarge_32,
+    },
+    footer: {
+        color: {
+            border: semanticColor.border.primary,
         },
-        header: {
-            xsmall: tokens.spacing.xSmall_8,
-            small: tokens.spacing.medium_16,
-            medium: tokens.spacing.large_24,
-            large: tokens.spacing.xLarge_32,
+    },
+    header: {
+        color: {
+            border: semanticColor.border.subtle,
+            secondary: semanticColor.text.secondary,
+        },
+        spacing: {
+            paddingBlockMd: spacing.large_24,
+            paddingInlineMd: spacing.xLarge_32,
+            paddingInlineSm: spacing.medium_16,
+            gap: spacing.xSmall_8,
+            titlePaddingRightMd: spacing.medium_16,
+            titlePaddingRightSm: spacing.xLarge_32,
+        },
+    },
+    panel: {
+        color: {
+            border: semanticColor.border.focus,
+        },
+        spacing: {
+            paddingBlockEnd: spacing.xLarge_32,
+        },
+    },
+    closeButton: {
+        spacing: {
+            gap: spacing.medium_16,
         },
     },
 };

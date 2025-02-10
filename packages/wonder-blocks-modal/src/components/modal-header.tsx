@@ -153,41 +153,40 @@ const small = "@media (max-width: 767px)";
 
 const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     header: {
-        boxShadow: `0px 1px 0px ${theme.color.shadow.default}`,
+        boxShadow: `0px 1px 0px ${theme.header.color.border}`,
         display: "flex",
         flexDirection: "column",
         minHeight: 66,
-        padding: `${theme.spacing.header.medium}px ${theme.spacing.header.large}px`,
+        padding: `${theme.header.spacing.paddingBlockMd}px ${theme.header.spacing.paddingInlineMd}px`,
         position: "relative",
         width: "100%",
 
         [small]: {
-            paddingLeft: theme.spacing.header.small,
-            paddingRight: theme.spacing.header.small,
+            paddingInline: theme.header.spacing.paddingInlineSm,
         },
     },
 
     dark: {
-        background: theme.color.bg.inverse,
-        color: theme.color.text.inverse,
+        background: theme.root.color.inverse.background,
+        color: theme.root.color.inverse.foreground,
     },
 
     breadcrumbs: {
-        color: theme.color.text.secondary,
-        marginBottom: theme.spacing.header.xsmall,
+        color: theme.header.color.secondary,
+        marginBottom: theme.header.spacing.gap,
     },
 
     title: {
         // Prevent title from overlapping the close button
-        paddingRight: theme.spacing.header.small,
+        paddingRight: theme.header.spacing.titlePaddingRightMd,
         [small]: {
-            paddingRight: theme.spacing.header.large,
+            paddingRight: theme.header.spacing.titlePaddingRightSm,
         },
     },
 
     subtitle: {
-        color: theme.color.text.secondary,
-        marginTop: theme.spacing.header.xsmall,
+        color: theme.header.color.secondary,
+        marginTop: theme.header.spacing.gap,
     },
 });
 

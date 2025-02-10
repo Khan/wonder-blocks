@@ -170,8 +170,8 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
 
     closeButton: {
         position: "absolute",
-        right: theme.spacing.panel.closeButton,
-        top: theme.spacing.panel.closeButton,
+        right: theme.closeButton.spacing.gap,
+        top: theme.closeButton.spacing.gap,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.
         zIndex: 1,
@@ -180,20 +180,20 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         // programmatic focus. This is a workaround to make sure the focus
         // outline is visible when this control is focused.
         ":focus": {
-            outlineWidth: theme.border.width,
-            outlineColor: theme.border.color,
+            outlineWidth: theme.root.border.width,
+            outlineColor: theme.panel.color.border,
             outlineOffset: 1,
             outlineStyle: "solid",
-            borderRadius: theme.border.radius,
+            borderRadius: theme.root.border.radius,
         },
     },
 
     dark: {
-        background: theme.color.bg.inverse,
-        color: theme.color.text.inverse,
+        background: theme.root.color.inverse.background,
+        color: theme.root.color.inverse.foreground,
     },
 
     hasFooter: {
-        paddingBottom: theme.spacing.panel.footer,
+        paddingBlockEnd: theme.panel.spacing.paddingBlockEnd,
     },
 });
