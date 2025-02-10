@@ -41,7 +41,7 @@ const theme = {
     },
     header: {
         color: {
-            border: semanticColor.border.subtle,
+            border: semanticColor.border.primary,
             secondary: semanticColor.text.secondary,
         },
         spacing: {
