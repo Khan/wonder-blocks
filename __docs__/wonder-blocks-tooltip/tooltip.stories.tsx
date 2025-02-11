@@ -12,7 +12,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -313,7 +313,7 @@ export const WithStyle: StoryComponentType = () => {
         <View style={[styles.centered, styles.row]}>
             <Tooltip
                 contentStyle={{
-                    color: color.white,
+                    color: semanticColor.text.inverse,
                     padding: spacing.xLarge_32,
                 }}
                 content={`This is a styled tooltip.`}
@@ -474,7 +474,7 @@ const styles = StyleSheet.create({
         height: "200vh",
     },
     block: {
-        border: `solid 1px ${color.purple}`,
+        border: `solid 1px ${semanticColor.mastery.primary}`,
         width: spacing.xLarge_32,
         height: spacing.xLarge_32,
         alignItems: "center",
@@ -506,7 +506,12 @@ export const InTopCorner = {
                     icon={info}
                     size="small"
                     aria-hidden
-                    style={{":hover": {backgroundColor: color.red}}}
+                    style={{
+                        ":hover": {
+                            backgroundColor:
+                                semanticColor.status.critical.foreground,
+                        },
+                    }}
                 />
             </Tooltip>
         </View>

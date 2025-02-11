@@ -2,7 +2,7 @@ import * as React from "react";
 import {css, StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -182,6 +182,7 @@ export default class TooltipTail extends React.Component<Props> {
      */
     _maybeRenderDropshadow(points: [string, string, string]): React.ReactNode {
         const position = this._getFilterPositioning();
+        console.log("position", position);
         if (!position) {
             return null;
         }
@@ -239,9 +240,9 @@ export default class TooltipTail extends React.Component<Props> {
              */
             <g key="dropshadow" transform={`translate(${offsetShadowX},5.5)`}>
                 <polyline
-                    fill={color.offBlack16}
+                    fill={semanticColor.border.primary}
                     points={points.join(" ")}
-                    stroke={color.offBlack32}
+                    stroke={semanticColor.border.strong}
                     filter={`url(#${dropShadowFilterId})`}
                 />
             </g>,
@@ -384,7 +385,7 @@ export default class TooltipTail extends React.Component<Props> {
                     // the border of the tooltip.
                     fill={color[arrowColor]}
                     points={points.join(" ")}
-                    stroke={color.offBlack16}
+                    stroke={semanticColor.border.primary}
                 />
                 {/* Draw a trimline to make the arrow appear flush */}
                 <polyline
