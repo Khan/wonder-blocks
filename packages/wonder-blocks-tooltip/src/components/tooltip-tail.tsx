@@ -182,7 +182,7 @@ export default class TooltipTail extends React.Component<Props> {
      */
     _maybeRenderDropshadow(points: [string, string, string]): React.ReactNode {
         const position = this._getFilterPositioning();
-        console.log("position", position);
+
         if (!position) {
             return null;
         }
