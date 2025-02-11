@@ -194,6 +194,7 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     },
 
     hasFooter: {
-        paddingBlockEnd: theme.panel.spacing.paddingBlockEnd,
+        // The space between the content and the footer
+        paddingBlockEnd: theme.panel.spacing.gap,
     },
 });

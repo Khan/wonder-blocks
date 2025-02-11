@@ -153,11 +153,13 @@ const small = "@media (max-width: 767px)";
 
 const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     header: {
+        // TODO(WB-1878): Move this to an `elevation` theme token.
         boxShadow: `0px 1px 0px ${theme.header.color.border}`,
         display: "flex",
         flexDirection: "column",
         minHeight: 66,
-        padding: `${theme.header.spacing.paddingBlockMd}px ${theme.header.spacing.paddingInlineMd}px`,
+        paddingBlock: theme.header.spacing.paddingBlockMd,
+        paddingInline: theme.header.spacing.paddingInlineMd,
         position: "relative",
         width: "100%",
 
@@ -178,9 +180,9 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
 
     title: {
         // Prevent title from overlapping the close button
-        paddingRight: theme.header.spacing.titlePaddingRightMd,
+        paddingRight: theme.header.spacing.titleGapMd,
         [small]: {
-            paddingRight: theme.header.spacing.titlePaddingRightSm,
+            paddingRight: theme.header.spacing.titleGapSm,
         },
     },
 

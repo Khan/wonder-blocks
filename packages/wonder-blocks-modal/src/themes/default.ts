@@ -49,8 +49,9 @@ const theme = {
             paddingInlineMd: spacing.xLarge_32,
             paddingInlineSm: spacing.medium_16,
             gap: spacing.xSmall_8,
-            titlePaddingRightMd: spacing.medium_16,
-            titlePaddingRightSm: spacing.xLarge_32,
+            // The space between the title and dismiss button.
+            titleGapMd: spacing.medium_16,
+            titleGapSm: spacing.xLarge_32,
         },
     },
     panel: {
@@ -58,7 +59,7 @@ const theme = {
             border: semanticColor.border.focus,
         },
         spacing: {
-            paddingBlockEnd: spacing.xLarge_32,
+            gap: spacing.xLarge_32,
         },
     },
     closeButton: {
