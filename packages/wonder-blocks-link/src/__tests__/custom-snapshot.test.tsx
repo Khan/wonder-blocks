@@ -28,8 +28,7 @@ describe("Link", () => {
         ${1}
     `("<Link tabIndex={$tabIndex}>", ({tabIndex}: any) => {
         const {container} = render(
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
-            <Link href="#" tabIndex={tabIndex}>
+            <Link href="/#" tabIndex={tabIndex}>
                 Click me
             </Link>,
         );
