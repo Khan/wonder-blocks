@@ -177,6 +177,7 @@ export default class PopoverContent extends React.Component<Props> {
                 {typeof icon !== "string" ? (
                     icon
                 ) : (
+                    // eslint-disable-next-line jsx-a11y/alt-text -- TODO: Address a11y error
                     <StyledImg src={icon} style={styles.icon} />
                 )}
             </View>
