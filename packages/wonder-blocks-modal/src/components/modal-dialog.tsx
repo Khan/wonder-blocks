@@ -123,7 +123,7 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         height: "100%",
         position: "relative",
         [small]: {
-            padding: theme.spacing.dialog.small,
+            padding: theme.dialog.spacing.padding,
             flexDirection: "column",
         },
     },
@@ -134,7 +134,7 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     dialog: {
         width: "100%",
         height: "100%",
-        borderRadius: theme.border.radius,
+        borderRadius: theme.root.border.radius,
         overflow: "hidden",
     },
 

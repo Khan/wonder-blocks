@@ -153,41 +153,42 @@ const small = "@media (max-width: 767px)";
 
 const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
     header: {
-        boxShadow: `0px 1px 0px ${theme.color.shadow.default}`,
+        // TODO(WB-1878): Move this to an `elevation` theme token.
+        boxShadow: `0px 1px 0px ${theme.header.color.border}`,
         display: "flex",
         flexDirection: "column",
         minHeight: 66,
-        padding: `${theme.spacing.header.medium}px ${theme.spacing.header.large}px`,
+        paddingBlock: theme.header.spacing.paddingBlockMd,
+        paddingInline: theme.header.spacing.paddingInlineMd,
         position: "relative",
         width: "100%",
 
         [small]: {
-            paddingLeft: theme.spacing.header.small,
-            paddingRight: theme.spacing.header.small,
+            paddingInline: theme.header.spacing.paddingInlineSm,
         },
     },
 
     dark: {
-        background: theme.color.bg.inverse,
-        color: theme.color.text.inverse,
+        background: theme.root.color.inverse.background,
+        color: theme.root.color.inverse.foreground,
     },
 
     breadcrumbs: {
-        color: theme.color.text.secondary,
-        marginBottom: theme.spacing.header.xsmall,
+        color: theme.header.color.secondary,
+        marginBottom: theme.header.spacing.gap,
     },
 
     title: {
         // Prevent title from overlapping the close button
-        paddingRight: theme.spacing.header.small,
+        paddingRight: theme.header.spacing.titleGapMd,
         [small]: {
-            paddingRight: theme.spacing.header.large,
+            paddingRight: theme.header.spacing.titleGapSm,
         },
     },
 
     subtitle: {
-        color: theme.color.text.secondary,
-        marginTop: theme.spacing.header.xsmall,
+        color: theme.header.color.secondary,
+        marginTop: theme.header.spacing.gap,
     },
 });
 
