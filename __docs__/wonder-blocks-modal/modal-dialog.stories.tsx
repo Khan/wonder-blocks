@@ -275,7 +275,7 @@ export const WithDarkPanel: StoryComponentType = {
                                 <img
                                     width="100%"
                                     src="https://cdn.kastatic.org/images/lohp/laptop_collage@2x.png"
-                                    alt="A modal image"
+                                    alt=""
                                 />
                                 <View
                                     style={{
