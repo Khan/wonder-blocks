@@ -5,7 +5,7 @@ import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";
@@ -410,20 +410,23 @@ const styles = StyleSheet.create({
     },
     focused: {
         ":focus": {
-            outline: `solid 2px ${color.blue}`,
+            // TODO(WB-1856): Verify if we can set global focus styles
+            outline: `solid ${border.width.thin}px ${semanticColor.border.focus}`,
         },
     },
+    // TODO(WB-1852): Remove light variant.
     focusedLight: {
-        outline: `solid 2px ${color.white}`,
+        outline: `solid ${border.width.thin}px ${semanticColor.border.inverse}`,
     },
     disabled: {
-        color: color.offBlack32,
+        color: semanticColor.text.disabled,
         cursor: "not-allowed",
         ":focus": {
             outline: "none",
         },
         ":focus-visible": {
-            outline: `solid 2px ${color.blue}`,
+            // TODO(WB-1856): Verify if we can set global focus styles
+            outline: `solid ${border.width.thin}px ${semanticColor.border.focus}`,
         },
     },
 });
