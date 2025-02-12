@@ -66,6 +66,10 @@ type Props =
               | React.ReactElement<React.ComponentProps<"img">>
               | React.ReactElement<React.ComponentProps<"svg">>;
           /**
+           * Alt text for the icon.
+           */
+          iconAlt?: string;
+          /**
            * Decorate the popover with a full-bleed illustration. It cannot be used at
            * the same time with icon.
            */
@@ -166,7 +170,7 @@ export default class PopoverContent extends React.Component<Props> {
 
     // @ts-expect-error [FEI-5019] - TS2322 - Type '() => JSX.Element | null' is not assignable to type '() => ReactElement<any, string | JSXElementConstructor<any>>'.
     maybeRenderIcon: () => React.ReactElement = () => {
-        const {icon} = this.props;
+        const {icon, iconAlt} = this.props;
 
         if (!icon) {
             return null;
@@ -177,8 +181,11 @@ export default class PopoverContent extends React.Component<Props> {
                 {typeof icon !== "string" ? (
                     icon
                 ) : (
-                    // eslint-disable-next-line jsx-a11y/alt-text -- TODO: Address a11y error
-                    <StyledImg src={icon} style={styles.icon} />
+                    <StyledImg
+                        src={icon}
+                        style={styles.icon}
+                        alt={iconAlt || ""}
+                    />
                 )}
             </View>
         );
