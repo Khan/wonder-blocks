@@ -233,18 +233,18 @@ WithTypography.parameters = {
 
 export const WithStyle: StoryComponentType = () => {
     const customStyle = {
-        backgroundColor: tokens.color.offBlack,
-        color: tokens.color.white,
+        backgroundColor: tokens.semanticColor.surface.inverse,
+        color: tokens.semanticColor.text.inverse,
         paddingLeft: tokens.spacing.xxLarge_48,
         paddingRight: tokens.spacing.xxLarge_48,
 
         ":hover": {
-            outlineColor: tokens.color.offBlack,
+            outlineColor: tokens.semanticColor.border.strong,
         },
 
         ":active": {
-            outlineColor: tokens.color.offBlack64,
-            backgroundColor: tokens.color.offBlack64,
+            outlineColor: tokens.semanticColor.border.primary,
+            backgroundColor: tokens.semanticColor.surface.overlay,
         },
     };
 
