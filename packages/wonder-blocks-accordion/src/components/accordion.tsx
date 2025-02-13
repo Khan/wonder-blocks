@@ -231,7 +231,7 @@ const Accordion = React.forwardRef(function Accordion(
     };
 
     return (
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- TODO: Address a11y error
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- TODO(WB-1881): Address a11y error
         <StyledUl
             style={[styles.wrapper, style]}
             onKeyDown={handleKeyDown}
