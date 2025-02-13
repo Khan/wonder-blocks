@@ -66,7 +66,8 @@ type Props =
               | React.ReactElement<React.ComponentProps<"img">>
               | React.ReactElement<React.ComponentProps<"svg">>;
           /**
-           * Alt text for the icon.
+           * Alt text for the icon. This prop is only used if the `icon` prop
+           * is passed a url (instead of a svg or img element).
            */
           iconAlt?: string;
           /**

@@ -99,8 +99,8 @@ export const Emphasized: StoryComponentType = {
  * - string: The URL of the icon asset
  * - `<img>` or `<svg>`: Make sure to define a width
  *
- * Use the `iconAlt` prop to provide alternative text for the icon if it
- * communicates meaning.
+ * When passing in a url for the `icon` prop, use the `iconAlt` prop to provide
+ * alternative text for the icon if it communicates meaning.
  */
 export const WithIcon: StoryComponentType = {
     args: {
