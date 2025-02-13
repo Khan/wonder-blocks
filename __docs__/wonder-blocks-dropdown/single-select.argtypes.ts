@@ -35,8 +35,8 @@ const argTypes: ArgTypes = {
     },
     showOpenerLabelAsText: {
         control: {type: "boolean"},
-        description: `When false, the SelectOpener can show a Node as a value. When true, the
-         SelectOpener will use a string as a value. If using custom OptionItems, a
+        description: `When false, the SelectOpener can show a Node as the selected value. When true, the
+         SelectOpener will use a string as the selected value. If using custom OptionItems, a
          plain text label can be provided with the \`labelAsText\` prop.
          Defaults to true.`,
 
