@@ -136,6 +136,11 @@ export default {
         options: Object.keys(IconMappings) as Array<React.ReactNode>,
         mapping: IconMappings,
     },
+    iconAlt: {
+        description:
+            "Alt text for the icon. This prop is only used if the `icon` prop is passed a url (instead of a svg or img element).",
+        type: "string",
+    },
     image: {
         description: `Decorate the popover with a full-bleed illustration. It cannot be used at the same time with icon.`,
         type: {
