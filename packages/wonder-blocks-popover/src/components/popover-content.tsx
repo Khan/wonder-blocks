@@ -88,6 +88,7 @@ type Props =
           emphasized?: boolean;
 
           icon?: never;
+          iconAlt?: never;
           image?: never;
       });
 
