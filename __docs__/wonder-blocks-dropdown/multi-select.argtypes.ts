@@ -29,7 +29,7 @@ const argTypes: ArgTypes = {
     labels: {
         control: {type: "object"},
         description:
-            "The object containing the custom values used inside this component.",
+            "The object containing the custom label values used inside this component.",
         table: {
             type: {summary: "Labels"},
         },
