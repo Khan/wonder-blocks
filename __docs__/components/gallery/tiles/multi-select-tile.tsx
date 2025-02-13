@@ -20,6 +20,7 @@ export default function MultiSelectTile(props: CommonTileProps) {
         >
             <View style={styles.centerContent}>
                 <MultiSelect
+                    aria-label="Planets"
                     id=""
                     onChange={(values) => setSelectedValues(values)}
                     onToggle={() => {}}

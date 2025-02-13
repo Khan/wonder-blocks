@@ -19,6 +19,7 @@ export default function SwitchTile(props: CommonTileProps) {
         >
             <View style={styles.centerContent}>
                 <Switch
+                    aria-label="Toggle state"
                     checked={checked}
                     onChange={() => setChecked(!checked)}
                 />

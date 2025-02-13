@@ -60,7 +60,7 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  *
  * const [selectedValue, setSelectedValue] = React.useState("");
  *
- * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ * <SingleSelect aria-label="Fruit" placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
  *     <OptionItem label="Pear" value="pear" />
  *     <OptionItem label="Mango" value="mango" />
  * </SingleSelect>
@@ -81,6 +81,7 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
+        "aria-label": "Fruit",
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
@@ -192,6 +193,7 @@ const Template = (args: any) => {
     return (
         <SingleSelect
             {...args}
+            aria-label={args["aria-label"]}
             onChange={setSelectedValue}
             selectedValue={selectedValue}
             opened={opened}
@@ -268,6 +270,7 @@ export const LongOptionLabels: StoryComponentType = {
 
         return (
             <SingleSelect
+                aria-label="Fruit"
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
                 opened={opened}
@@ -592,6 +595,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
     return (
         <View style={styles.wrapper}>
             <SingleSelect
+                aria-label="Country"
                 onChange={setSelectedValue}
                 isFilterable={true}
                 opened={opened}
@@ -807,6 +811,7 @@ export const CustomLabels: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Fruta"
                     isFilterable={true}
                     onChange={setValue}
                     selectedValue={value}
@@ -934,6 +939,7 @@ export const CustomOptionItems: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Profile"
                     placeholder="Select a profile"
                     onChange={handleChange}
                     selectedValue={selectedValue}
@@ -982,6 +988,7 @@ export const CustomOptionItemWithNodeLabel: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Currency"
                     placeholder="Select your currency"
                     onChange={handleChange}
                     selectedValue={selectedValue}
@@ -1041,6 +1048,7 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
 
         return (
             <SingleSelect
+                aria-label="Country"
                 placeholder="Select a country"
                 isFilterable={true}
                 onChange={handleChange}
