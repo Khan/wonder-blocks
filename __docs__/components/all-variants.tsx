@@ -54,7 +54,7 @@ export function AllVariants({children, columns, rows}: Props) {
             <tbody>
                 {rows.map((row, idx) => (
                     <tr key={idx}>
-                        <StyledTh scope="col" style={styles.cell}>
+                        <StyledTh scope="row" style={styles.cell}>
                             <LabelLarge>{row.name}</LabelLarge>
                         </StyledTh>
                         {columns.map((col) => (
