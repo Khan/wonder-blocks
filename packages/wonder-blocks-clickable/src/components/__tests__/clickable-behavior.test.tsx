@@ -350,7 +350,7 @@ describe("ClickableBehavior", () => {
             <ClickableBehavior
                 disabled={false}
                 onClick={(e: any) => {}}
-                // eslint-disable-next-line jsx-a11y/tabindex-no-positive -- TODO: Address a11y error
+                // eslint-disable-next-line jsx-a11y/tabindex-no-positive -- Explicitly testing tabIndex value
                 tabIndex={1}
             >
                 {(state: any, childrenProps: any) => {
@@ -375,7 +375,7 @@ describe("ClickableBehavior", () => {
             <ClickableBehavior
                 disabled={true}
                 onClick={(e: any) => {}}
-                // eslint-disable-next-line jsx-a11y/tabindex-no-positive -- TODO: Address a11y error
+                // eslint-disable-next-line jsx-a11y/tabindex-no-positive -- Explicitly testing tabIndex value
                 tabIndex={1}
             >
                 {(state: any, childrenProps: any) => {
@@ -399,7 +399,7 @@ describe("ClickableBehavior", () => {
             <ClickableBehavior
                 disabled={false}
                 onClick={(e: any) => {}}
-                // eslint-disable-next-line jsx-a11y/tabindex-no-positive -- TODO: Address a11y error
+                // eslint-disable-next-line jsx-a11y/tabindex-no-positive -- Explicitly testing tabIndex value
                 tabIndex={1}
             >
                 {(state: any, childrenProps: any) => {

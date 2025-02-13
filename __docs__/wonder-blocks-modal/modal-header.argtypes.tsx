@@ -12,12 +12,10 @@ const BreadcrumbsMappings: {
     "lesson path": (
         <Breadcrumbs>
             <BreadcrumbsItem>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
-                <Link href="">Course</Link>
+                <Link href="#course">Course</Link>
             </BreadcrumbsItem>
             <BreadcrumbsItem>
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
-                <Link href="">Unit</Link>
+                <Link href="#unit">Unit</Link>
             </BreadcrumbsItem>
             <BreadcrumbsItem>Lesson</BreadcrumbsItem>
         </Breadcrumbs>

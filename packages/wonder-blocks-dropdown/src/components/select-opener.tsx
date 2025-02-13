@@ -138,6 +138,7 @@ export default class SelectOpener extends React.Component<
             testId,
             "aria-label": ariaLabel,
             "aria-required": ariaRequired,
+            "aria-controls": ariaControls,
             onBlur,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onOpenChanged,
@@ -166,9 +167,9 @@ export default class SelectOpener extends React.Component<
                 aria-label={ariaLabel ?? undefined}
                 aria-required={ariaRequired}
                 aria-haspopup="listbox"
+                aria-controls={ariaControls}
                 data-testid={testId}
                 id={id}
-                // eslint-disable-next-line jsx-a11y/role-has-required-aria-props -- TODO: Address a11y error
                 role="combobox"
                 /* Note(marcysutton): type=button prevents form submits on click */
                 type="button"
