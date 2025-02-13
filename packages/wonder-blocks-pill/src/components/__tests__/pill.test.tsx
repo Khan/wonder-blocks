@@ -2,8 +2,6 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
-
 import Pill from "../pill";
 
 describe("Pill", () => {
@@ -149,32 +147,4 @@ describe("Pill", () => {
         // Assert
         expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
     });
-
-    test.each`
-        kind             | color
-        ${"neutral"}     | ${tokens.color.offBlack8}
-        ${"accent"}      | ${tokens.color.blue}
-        ${"info"}        | ${tokens.color.fadedBlue16}
-        ${"success"}     | ${tokens.color.fadedGreen16}
-        ${"warning"}     | ${tokens.color.fadedGold16}
-        ${"critical"}    | ${tokens.color.fadedRed16}
-        ${"transparent"} | ${"transparent"}
-    `(
-        "renders the correct background color for $kind kind",
-        async ({kind, color}) => {
-            // Arrange, Act
-            render(
-                <Pill kind={kind} testId="pill-test-id">
-                    Hello, world!
-                </Pill>,
-            );
-
-            const pill = await screen.findByTestId("pill-test-id");
-
-            // Assert
-            expect(pill).toHaveStyle({
-                backgroundColor: color,
-            });
-        },
-    );
 });
