@@ -32,13 +32,13 @@ const columns = [
 type Story = StoryObj<typeof Pill>;
 
 const kinds: Array<PillKind> = [
+    "transparent",
     "neutral",
     "accent",
     "info",
     "success",
     "warning",
     "critical",
-    "transparent",
 ];
 
 /**
