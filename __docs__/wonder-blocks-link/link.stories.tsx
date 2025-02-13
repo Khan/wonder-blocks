@@ -252,7 +252,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
     <View>
         {/* Default (dark) */}
         <View style={{padding: spacing.large_24}}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#link"
                 startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
@@ -260,7 +259,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This link has a start icon
             </Link>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#link"
                 endIcon={
@@ -280,7 +278,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This external link has an end icon that is overrides the default
                 external icon
             </Link>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#link"
                 startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
@@ -290,7 +287,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This link has a start icon and an end icon
             </Link>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#link"
                 startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
@@ -301,7 +297,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Body>
                 This is an inline{" "}
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link
                     href="#link"
                     inline={true}
@@ -312,7 +307,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
                     link with a start icon
                 </Link>{" "}
                 and an inline{" "}
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link
                     href="#link"
                     inline={true}
@@ -333,7 +327,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 padding: spacing.large_24,
             }}
         >
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#link"
                 startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
@@ -342,7 +335,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This link has a start icon
             </Link>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#link"
                 endIcon={
@@ -363,7 +355,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This external link has an end icon that is overrides the default
                 external icon
             </Link>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#link"
                 startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
@@ -373,7 +364,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This link has a start icon and an end icon
             </Link>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#link"
                 startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
@@ -385,7 +375,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Body style={{color: color.white}}>
                 This is an inline{" "}
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link
                     href="#link"
                     startIcon={
@@ -397,7 +386,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
                     link with a start icon
                 </Link>{" "}
                 and an inline{" "}
-                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link
                     href="#link"
                     endIcon={

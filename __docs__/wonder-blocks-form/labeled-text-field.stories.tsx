@@ -590,7 +590,6 @@ export const WithMarkup: StoryComponentType = {
                 description={
                     <span>
                         Description with <strong>strong</strong> text and a{" "}
-                        {/* eslint-disable-next-line jsx-a11y/anchor-ambiguous-text -- TODO: Address a11y error */}
                         <Link href="/path/to/resource" inline={true}>
                             link example
                         </Link>
