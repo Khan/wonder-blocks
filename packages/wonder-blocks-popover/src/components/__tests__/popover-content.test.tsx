@@ -73,4 +73,21 @@ describe("PopoverContent", () => {
             `"'image' can only be vertically placed. You can fix this by either changing \`placement\` to \`top\` or \`bottom\` or removing the \`image\` prop inside \`content\`."`,
         );
     });
+
+    it("should use the iconAlt prop when the prop is used with the icon prop", () => {
+        // Arrange
+        const iconAlt = "icon alt text";
+        // Act
+        render(
+            <PopoverContent
+                title="Title"
+                content="content"
+                icon="/icon.png"
+                iconAlt={iconAlt}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("img")).toHaveAttribute("alt", iconAlt);
+    });
 });
