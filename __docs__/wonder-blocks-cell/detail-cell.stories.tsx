@@ -18,12 +18,7 @@ import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 export default {
     title: "Packages / Cell / DetailCell",
     component: DetailCell,
-    // TODO(FEI-5000):
-    argTypes: DetailCellArgTypes as any,
-    design: {
-        type: "figma",
-        url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/%F0%9F%92%A0-Main-Components?type=design&node-id=4337-2033&mode=design&t=h4nok7uwaPYDOkz6-4",
-    },
+    argTypes: DetailCellArgTypes,
     parameters: {
         componentSubtitle: (
             <ComponentInfo

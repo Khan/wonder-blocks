@@ -154,7 +154,7 @@ export const Variants: StoryComponentType = {
             <View style={directionStyle}>
                 <View style={{flexDirection: "row"}}>
                     {sizes.map((size) => (
-                        <View>
+                        <View key={size}>
                             {kinds.map((kind) => (
                                 <View
                                     key={kind}
@@ -177,7 +177,7 @@ export const Variants: StoryComponentType = {
                 </View>
                 <View style={{flexDirection: "row"}}>
                     {sizes.map((size) => (
-                        <View>
+                        <View key={size}>
                             {kinds.map((kind) => (
                                 <View
                                     key={kind}
@@ -354,6 +354,7 @@ export const Variants: StoryComponentType = {
 export const WithTypography: StoryComponentType = () => (
     <Pill size="large">
         <BodySerif>
+            {/* eslint-disable-next-line jsx-a11y/anchor-ambiguous-text, jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             This is a {<Link href="#">link</Link>} inside the text of a pill.
         </BodySerif>
     </Pill>

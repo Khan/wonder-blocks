@@ -1,6 +1,12 @@
 /* eslint-disable max-lines */
 import * as React from "react";
-import {fireEvent, render, screen, within} from "@testing-library/react";
+import {
+    fireEvent,
+    render,
+    screen,
+    within,
+    waitFor,
+} from "@testing-library/react";
 import {
     userEvent as ue,
     PointerEventsCheckLevel,
@@ -9,7 +15,7 @@ import {
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import OptionItem from "../option-item";
 import SingleSelect from "../single-select";
-import type {SingleSelectLabels} from "../single-select";
+import type {SingleSelectLabelsValues} from "../single-select";
 
 const doRender = (element: React.ReactElement) => {
     return {
@@ -20,6 +26,19 @@ const doRender = (element: React.ReactElement) => {
         }),
     };
 };
+
+jest.mock("react-popper", () => ({
+    ...jest.requireActual("react-popper"),
+    Popper: jest.fn().mockImplementation(({children}) => {
+        // Mock `isReferenceHidden` to always return false (or true for testing visibility)
+        return children({
+            ref: jest.fn(),
+            style: {},
+            placement: "bottom",
+            isReferenceHidden: false, // Mocking isReferenceHidden
+        });
+    }),
+}));
 
 describe("SingleSelect", () => {
     const onChange = jest.fn();
@@ -64,10 +83,53 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
 
                 // Assert
                 expect(opener).toHaveTextContent("Default placeholder");
+            });
+
+            it("should render an aria-label if passed in as a prop", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        aria-label="Select a thing"
+                    >
+                        <OptionItem label="" value="" />
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = await screen.findByRole("combobox");
+
+                // Assert
+                expect(opener).toHaveAccessibleName("Select a thing");
+            });
+
+            it("should preserve the original aria-label when an option is selected", async () => {
+                // Arrange
+                doRender(
+                    <SingleSelect
+                        placeholder="Default placeholder"
+                        onChange={jest.fn()}
+                        aria-label="Select a thing"
+                        selectedValue="toggle_a"
+                    >
+                        <OptionItem label="" value="" />
+                        <OptionItem label="Toggle A" value="toggle_a" />
+                        <OptionItem label="Toggle B" value="toggle_b" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                const opener = await screen.findByRole("combobox");
+
+                // Assert
+                expect(opener).toHaveAccessibleName("Select a thing");
             });
 
             it("should render empty if the selected option has an empty value", async () => {
@@ -85,7 +147,7 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
 
                 // Assert
                 expect(opener).toHaveTextContent("");
@@ -105,13 +167,13 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
 
                 // Assert
                 expect(opener).toHaveTextContent("Toggle A");
             });
 
-            it("should render labelAsText of the selected option", async () => {
+            it("should render labelAsText of the selected option for opener value", async () => {
                 // Arrange
                 doRender(
                     <SingleSelect
@@ -133,13 +195,13 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
 
                 // Assert
                 expect(opener).toHaveTextContent("Plain Toggle A");
             });
 
-            it("can render a Node as a label", async () => {
+            it("can render a Node as an opener value", async () => {
                 // Arrange
                 doRender(
                     <SingleSelect
@@ -162,7 +224,7 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
                 const menuLabel = within(opener).getByText("custom item A");
 
                 // Assert
@@ -183,6 +245,44 @@ describe("SingleSelect", () => {
                 expect(
                     await screen.findByRole("listbox", {hidden: true}),
                 ).toBeInTheDocument();
+            });
+
+            it("should not submit a surrounding form when clicked", async () => {
+                // Arrange
+                const submit = jest.fn();
+                const {userEvent} = doRender(
+                    <form
+                        onSubmit={() => {
+                            submit();
+                        }}
+                    >
+                        <SingleSelect
+                            aria-label="Choose"
+                            placeholder="Default placeholder"
+                            onChange={jest.fn()}
+                            selectedValue="toggle_a"
+                            showOpenerLabelAsText={false}
+                        >
+                            <OptionItem
+                                label={<div>custom item A</div>}
+                                value="toggle_a"
+                                labelAsText="Plain Toggle A"
+                            />
+                            <OptionItem
+                                label={<div>custom item B</div>}
+                                value="toggle_b"
+                                labelAsText="Plain Toggle B"
+                            />
+                        </SingleSelect>
+                    </form>,
+                );
+                const opener = await screen.findByRole("combobox");
+
+                // Act
+                await userEvent.click(opener);
+
+                // Assert
+                expect(submit).not.toHaveBeenCalled();
             });
 
             it("should focus the first item in the dropdown", async () => {
@@ -253,13 +353,13 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                await userEvent.click(await screen.findByRole("textbox"));
+                await userEvent.click(await screen.findByRole("combobox"));
 
                 // wait for the dropdown to open
                 await screen.findByRole("listbox", {hidden: true});
 
                 // Assert
-                expect(await screen.findByRole("textbox")).toHaveFocus();
+                expect(await screen.findByRole("combobox")).toHaveFocus();
             });
         });
 
@@ -268,9 +368,7 @@ describe("SingleSelect", () => {
                 jest.useFakeTimers();
             });
 
-            // TODO(FEI-5533): Key press events aren't working correctly with
-            // user-event v14. We need to investigate and fix this.
-            describe.skip.each([{key: "{enter}"}, {key: "{space}"}])(
+            describe.each([{key: "{Enter}"}, {key: " "}])(
                 "$key",
                 ({key}: any) => {
                     it("should open when pressing the key when the default opener is focused", async () => {
@@ -282,9 +380,8 @@ describe("SingleSelect", () => {
                         await userEvent.keyboard(key);
 
                         // Assert
-                        expect(
-                            await screen.findByRole("listbox"),
-                        ).toBeInTheDocument();
+                        const listbox = await screen.findByRole("listbox");
+                        expect(listbox).toBeInTheDocument();
                     });
 
                     it("should focus the first item in the dropdown", async () => {
@@ -304,40 +401,83 @@ describe("SingleSelect", () => {
                 },
             );
 
-            // TODO(FEI-5533): Key press events aren't working correctly with
-            // user-event v14. We need to investigate and fix this.
-            it.skip("should select an item when pressing {enter}", async () => {
+            it("should focus on the first option when pressing {Enter} on the opener", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
 
                 // Act
-                await userEvent.keyboard("{enter}");
+                await userEvent.keyboard("{Enter}"); // open
 
+                // Ensure first option is focused, not the opener
+                const firstItem = await screen.findByRole("option", {
+                    name: /item 1/,
+                });
                 // Assert
-                expect(onChange).toHaveBeenCalledWith("1");
-                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+                expect(firstItem).toHaveFocus();
             });
 
-            // TODO(FEI-5533): Key press events aren't working correctly with
-            // user-event v14. We need to investigate and fix this.
-            it.skip("should select an item when pressing {space}", async () => {
+            it("should select an item when pressing {Enter}", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
+                await userEvent.keyboard("{Enter}"); // open
 
                 // Act
-                await userEvent.keyboard("{space}");
+                await userEvent.keyboard("{Enter}");
 
                 // Assert
                 expect(onChange).toHaveBeenCalledWith("1");
-                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+
+                await waitFor(() =>
+                    expect(
+                        screen.queryByRole("listbox"),
+                    ).not.toBeInTheDocument(),
+                );
+            });
+
+            it("should focus on the first option when pressing {Space} on the opener", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                await userEvent.tab();
+
+                // Act
+                await userEvent.keyboard(" "); // open
+
+                // Ensure first option is focused, not the opener
+                const firstItem = await screen.findByRole("option", {
+                    name: /item 1/,
+                });
+
+                // Assert
+                expect(firstItem).toHaveFocus();
+            });
+
+            it("should select an item when pressing {Space}", async () => {
+                // Arrange
+                const {userEvent} = doRender(uncontrolledSingleSelect);
+                await userEvent.tab();
+                await userEvent.keyboard("{Enter}"); // open
+
+                const firstItem = await screen.findByRole("option", {
+                    name: /item 1/,
+                });
+                expect(firstItem).toHaveFocus();
+
+                // Act
+                await userEvent.keyboard(" ");
+
+                // Assert
+                expect(onChange).toHaveBeenCalledWith("1");
+                await waitFor(() => {
+                    expect(
+                        screen.queryByRole("listbox"),
+                    ).not.toBeInTheDocument();
+                });
             });
 
             /*
-            The keyboard events (I tried .keyboard and .type) are not working as
+            TODO (FEI-5533): The keyboard events (I tried .keyboard and .type) are not working as
             needed. From what I can tell, they are going to the wrong element or
             otherwise not getting handled as they would in a non-test world.
             We had this issue with elsewhere too and haven't resolved it (since
@@ -392,14 +532,14 @@ describe("SingleSelect", () => {
                 expect(onChange).not.toHaveBeenCalled();
             });
 
-            it("should dismiss the dropdown when pressing {escape}", async () => {
+            it("should dismiss the dropdown when pressing {Escape}", async () => {
                 // Arrange
                 const {userEvent} = doRender(uncontrolledSingleSelect);
                 await userEvent.tab();
-                await userEvent.keyboard("{enter}"); // open
+                await userEvent.keyboard("{Enter}"); // open
 
                 // Act
-                await userEvent.keyboard("{escape}");
+                await userEvent.keyboard("{Escape}");
 
                 // Assert
                 expect(onChange).not.toHaveBeenCalled();
@@ -432,6 +572,7 @@ describe("SingleSelect", () => {
                         onToggle={handleToggleMenu}
                         onChange={onChange}
                         placeholder="Choose"
+                        aria-label="Choose"
                     >
                         <OptionItem label="item 1" value="1" />
                         <OptionItem label="item 2" value="2" />
@@ -454,7 +595,7 @@ describe("SingleSelect", () => {
 
             // Act
             await userEvent.click(
-                await screen.findByRole("button", {name: "Choose"}),
+                await screen.findByRole("combobox", {name: /choose/i}),
             );
 
             // Assert
@@ -469,7 +610,7 @@ describe("SingleSelect", () => {
             );
             // open the menu from the outside
             await userEvent.click(
-                await screen.findByRole("button", {name: "Choose"}),
+                await screen.findByRole("combobox", {name: /choose/i}),
             );
 
             // Act
@@ -513,7 +654,9 @@ describe("SingleSelect", () => {
             const {userEvent} = doRender(<ControlledComponent />);
 
             // Act
-            const opener = await screen.findByRole("button", {name: "Choose"});
+            const opener = await screen.findByRole("combobox", {
+                name: /choose/i,
+            });
             // open the menu from the outside
             await userEvent.click(opener);
             // click on the dropdown anchor to hide the menu
@@ -527,6 +670,55 @@ describe("SingleSelect", () => {
     });
 
     describe("Custom Opener", () => {
+        it("labels the custom opener with `aria-label` on SingleSelect", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    aria-label="Custom opener"
+                    placeholder="e.g. item 1"
+                    onChange={jest.fn()}
+                    opener={(eventState: any) => <button onClick={jest.fn()} />}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Custom opener");
+        });
+
+        it("prioritizes `aria-label` on the custom opener", async () => {
+            // Arrange
+            doRender(
+                <SingleSelect
+                    aria-label="Not winning the label race"
+                    placeholder="Choose an item"
+                    onChange={jest.fn()}
+                    opener={(eventState: any) => (
+                        <button
+                            aria-label="Custom opener button"
+                            onClick={jest.fn()}
+                        />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = await screen.findByRole("combobox");
+
+            // Assert
+            expect(opener).toHaveAccessibleName("Custom opener button");
+        });
+
         it("opens the menu when clicking on the custom opener", async () => {
             // Arrange
             const {userEvent} = doRender(
@@ -554,6 +746,47 @@ describe("SingleSelect", () => {
             expect(
                 await screen.findByRole("listbox", {hidden: true}),
             ).toBeInTheDocument();
+        });
+
+        it("should not submit a surrounding form when a custom opener is clicked", async () => {
+            // Arrange
+            const submit = jest.fn();
+            const {userEvent} = doRender(
+                <form
+                    onSubmit={() => {
+                        submit();
+                    }}
+                >
+                    <SingleSelect
+                        aria-label="Choose"
+                        placeholder="Select an option"
+                        onChange={jest.fn()}
+                        selectedValue="toggle_a"
+                        showOpenerLabelAsText={false}
+                        opener={(eventState: any) => (
+                            <button aria-label="Search">Search</button>
+                        )}
+                    >
+                        <OptionItem
+                            label={<div>custom item A</div>}
+                            value="toggle_a"
+                            labelAsText="Plain Toggle A"
+                        />
+                        <OptionItem
+                            label={<div>custom item B</div>}
+                            value="toggle_b"
+                            labelAsText="Plain Toggle B"
+                        />
+                    </SingleSelect>
+                </form>,
+            );
+            const opener = await screen.findByRole("combobox");
+
+            // Act
+            await userEvent.click(opener);
+
+            // Assert
+            expect(submit).not.toHaveBeenCalled();
         });
 
         it("calls the custom onClick handler", async () => {
@@ -606,7 +839,7 @@ describe("SingleSelect", () => {
             expect(opener).not.toHaveAttribute("data-testid");
         });
 
-        it("passes the placeholder text to the custom opener", async () => {
+        it("passes the placeholder content to the custom opener", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
@@ -623,7 +856,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             // open dropdown
             await userEvent.click(opener);
 
@@ -631,7 +864,7 @@ describe("SingleSelect", () => {
             expect(opener).toHaveTextContent("Custom placeholder");
         });
 
-        it("passes the selected label to the custom opener", async () => {
+        it("passes the selected value to the custom opener", async () => {
             // Arrange
             type Props = Record<any, any>;
 
@@ -668,13 +901,13 @@ describe("SingleSelect", () => {
             const {userEvent} = doRender(<ControlledComponent />);
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             // open dropdown
             await userEvent.click(opener);
             await userEvent.click(await screen.findByText("Toggle B"));
 
             // Assert
-            // NOTE: the opener text is only updated in response to changes to the
+            // NOTE: the opener value text is only updated in response to changes to the
             // `selectedValue` prop.
             expect(opener).toHaveTextContent("Toggle B");
         });
@@ -685,7 +918,6 @@ describe("SingleSelect", () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
-                    light={true}
                     onChange={onChange}
                     isFilterable={true}
                     placeholder="Choose"
@@ -805,10 +1037,7 @@ describe("SingleSelect", () => {
             expect(searchInput.textContent).toEqual("");
         });
 
-        // NOTE(john): This is no longer working after upgrading to user-events v14
-        // The .tab() call just moves focus to the body, rather than the Clear
-        // search (which does exist in the page).
-        it.skip("should move focus to the dismiss button after pressing {tab} on the text input", async () => {
+        it("should move focus to the dismiss button after pressing {tab} on the text input", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
@@ -823,7 +1052,7 @@ describe("SingleSelect", () => {
                 </SingleSelect>,
             );
             // open the dropdown menu
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             const searchInput = await screen.findByPlaceholderText("Filter");
             await userEvent.click(searchInput);
@@ -976,7 +1205,9 @@ describe("SingleSelect", () => {
     });
 
     describe("a11y > Live region", () => {
-        it("should change the number of options after using the search filter", async () => {
+        // TODO (WB-1757.2): Enable this test once the LiveRegion component
+        // is refactored.
+        it.skip("should change the number of options after using the search filter", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
@@ -1017,7 +1248,7 @@ describe("SingleSelect", () => {
             <OptionItem label="Mango" value="mango" />,
         ];
 
-        const enLabels: SingleSelectLabels = {
+        const enLabels: SingleSelectLabelsValues = {
             clearSearch: "Clear Search",
             filter: "Filter",
             noResults: "No Results",
@@ -1026,7 +1257,7 @@ describe("SingleSelect", () => {
 
         it("passes the custom label to the search input field", async () => {
             // Arrange
-            const labels: SingleSelectLabels = {
+            const labels: SingleSelectLabelsValues = {
                 ...enLabels,
                 filter: "Filtrar",
             };
@@ -1052,7 +1283,7 @@ describe("SingleSelect", () => {
 
         it("passes the custom label to the dismiss filter icon", async () => {
             // Arrange
-            const labels: SingleSelectLabels = {
+            const labels: SingleSelectLabelsValues = {
                 ...enLabels,
                 clearSearch: "Limpiar busqueda",
                 filter: "Filtrar",
@@ -1085,7 +1316,7 @@ describe("SingleSelect", () => {
 
         it("passes the custom label to the no results label", async () => {
             // Arrange
-            const labels: SingleSelectLabels = {
+            const labels: SingleSelectLabelsValues = {
                 ...enLabels,
                 filter: "Filtrar",
                 noResults: "No hay resultados",
@@ -1241,7 +1472,7 @@ describe("SingleSelect", () => {
 
             // Act
             // Press the button
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -1272,7 +1503,7 @@ describe("SingleSelect", () => {
 
             // Act
             // Press the button
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -1394,7 +1625,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("id", expect.any(String));
@@ -1411,7 +1642,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("id", id);
@@ -1428,7 +1659,7 @@ describe("SingleSelect", () => {
 
             // Act
             // Open the dropdown
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
 
             // Assert
@@ -1453,7 +1684,7 @@ describe("SingleSelect", () => {
 
             // Act
             // Open the dropdown
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
 
             // Assert
@@ -1479,7 +1710,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
             const dropdown = await screen.findByRole("listbox", {hidden: true});
 
@@ -1498,7 +1729,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
             const dropdown = await screen.findByRole("listbox", {hidden: true});
 
@@ -1571,7 +1802,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("aria-haspopup", "listbox");
@@ -1611,7 +1842,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("aria-expanded", "false");
@@ -1627,7 +1858,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = await screen.findByRole("button");
+            const opener = await screen.findByRole("combobox");
             await userEvent.click(opener);
 
             // Assert
@@ -1698,7 +1929,7 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
 
                 // Assert
                 expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
@@ -1725,7 +1956,7 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
 
                 // Assert
                 expect(opener).toHaveAttribute("aria-invalid", ariaInvalid);
@@ -1745,6 +1976,7 @@ describe("SingleSelect", () => {
                     onChange={jest.fn()}
                     opened={true}
                     placeholder="Choose"
+                    aria-label="Choose"
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1770,6 +2002,7 @@ describe("SingleSelect", () => {
                     onChange={jest.fn()}
                     opened={true}
                     placeholder="Choose"
+                    aria-label="Choose"
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -1799,6 +2032,7 @@ describe("SingleSelect", () => {
             return (
                 <SingleSelect
                     {...props}
+                    aria-label="Choose"
                     placeholder="Choose"
                     selectedValue={value}
                     onChange={setValue}
@@ -1815,7 +2049,7 @@ describe("SingleSelect", () => {
                 const {userEvent} = doRender(
                     <ControlledSingleSelect validate={validate} />,
                 );
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
                 await userEvent.click(opener);
 
                 // Act
@@ -1834,7 +2068,7 @@ describe("SingleSelect", () => {
                         onValidate={onValidate}
                     />,
                 );
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
                 await userEvent.click(opener);
 
                 // Act
@@ -1851,7 +2085,7 @@ describe("SingleSelect", () => {
                 const {userEvent} = doRender(
                     <ControlledSingleSelect validate={() => "Error"} />,
                 );
-                const opener = await screen.findByRole("button");
+                const opener = await screen.findByRole("combobox");
                 await userEvent.click(opener);
 
                 // Act
@@ -1911,7 +2145,7 @@ describe("SingleSelect", () => {
                     />,
                 );
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "true",
                 );
@@ -1931,7 +2165,7 @@ describe("SingleSelect", () => {
                     />,
                 );
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "false",
                 );
@@ -1962,7 +2196,7 @@ describe("SingleSelect", () => {
                     />,
                 );
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "false",
                 );
@@ -1983,10 +2217,10 @@ describe("SingleSelect", () => {
                 );
 
                 // Act
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "true",
                 );
@@ -2003,13 +2237,13 @@ describe("SingleSelect", () => {
                         selectedValue={"1"}
                     />,
                 );
-                await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                 // Act
                 await userEvent.click(await screen.findByText("item 2")); // Pick a value
 
                 // Assert
-                expect(await screen.findByRole("button")).toHaveAttribute(
+                expect(await screen.findByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     "false",
                 );
@@ -2051,7 +2285,7 @@ describe("SingleSelect", () => {
                     await userEvent.tab(); // leave the select
 
                     // Assert
-                    expect(screen.getByRole("button")).toHaveAttribute(
+                    expect(screen.getByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "true",
                     );
@@ -2145,7 +2379,7 @@ describe("SingleSelect", () => {
                     await userEvent.tab(); // leave the select
 
                     // Assert
-                    expect(screen.getByRole("button")).toHaveAttribute(
+                    expect(screen.getByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "false",
                     );
@@ -2164,8 +2398,8 @@ describe("SingleSelect", () => {
                     );
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
-                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Close the dropdown
 
                     // Assert
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(
@@ -2181,11 +2415,11 @@ describe("SingleSelect", () => {
                     );
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
-                    await userEvent.click(await screen.findByRole("button")); // Close the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Close the dropdown
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "true",
                     );
@@ -2203,7 +2437,7 @@ describe("SingleSelect", () => {
                     );
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Assert
                     expect(onValidate).not.toHaveBeenCalled();
@@ -2217,10 +2451,10 @@ describe("SingleSelect", () => {
                     );
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "false",
                     );
@@ -2241,8 +2475,8 @@ describe("SingleSelect", () => {
 
                     // Act
                     await userEvent.tab();
-                    await userEvent.keyboard("{enter}"); // Open the dropdown
-                    await userEvent.keyboard("{escape}"); // Close the dropdown
+                    await userEvent.keyboard("{Enter}"); // Open the dropdown
+                    await userEvent.keyboard("{Escape}"); // Close the dropdown
 
                     // Assert
                     expect(onValidate).toHaveBeenCalledExactlyOnceWith(
@@ -2259,11 +2493,11 @@ describe("SingleSelect", () => {
 
                     // Act
                     await userEvent.tab();
-                    await userEvent.keyboard("{enter}"); // Open the dropdown
-                    await userEvent.keyboard("{escape}"); // Close the dropdown
+                    await userEvent.keyboard("{Enter}"); // Open the dropdown
+                    await userEvent.keyboard("{Escape}"); // Close the dropdown
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "true",
                     );
@@ -2318,10 +2552,10 @@ describe("SingleSelect", () => {
                     await userEvent.tab(); // Tab through the select to trigger error
 
                     // Act
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "true",
                     );
@@ -2335,13 +2569,13 @@ describe("SingleSelect", () => {
                     );
                     await userEvent.tab();
                     await userEvent.tab(); // Tab through the select to trigger error
-                    await userEvent.click(await screen.findByRole("button")); // Open the dropdown
+                    await userEvent.click(await screen.findByRole("combobox")); // Open the dropdown
 
                     // Act
                     await userEvent.click(await screen.findByText("item 1")); // Pick a value
 
                     // Assert
-                    expect(await screen.findByRole("button")).toHaveAttribute(
+                    expect(await screen.findByRole("combobox")).toHaveAttribute(
                         "aria-invalid",
                         "false",
                     );

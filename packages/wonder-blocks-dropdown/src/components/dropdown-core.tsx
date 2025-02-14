@@ -9,7 +9,7 @@ import {VariableSizeList as List} from "react-window";
 
 import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 
-import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -18,7 +18,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
-import {defaultLabels, keys} from "../util/constants";
+import {defaultLabels} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
@@ -38,7 +38,7 @@ const VIRTUALIZE_THRESHOLD = 125;
 
 const StyledSpan = addStyle("span");
 
-type Labels = {
+type LabelsValues = {
     /**
      * Label for describing the dismiss icon on the search filter.
      */
@@ -93,12 +93,7 @@ type DefaultProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean;
+    labels: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -210,12 +205,7 @@ type ExportProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels?: Labels;
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light?: boolean;
+    labels?: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -241,7 +231,7 @@ type State = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
+    labels: LabelsValues;
     /**
      * Because getDerivedStateFromProps doesn't store previous props (in the
      * spirit of performance), we store the previous items just to be able to
@@ -298,7 +288,6 @@ class DropdownCore extends React.Component<Props, State> {
             noResults: defaultLabels.noResults,
             someResults: defaultLabels.someSelected,
         },
-        light: false,
         selectionType: "single",
     };
 
@@ -496,6 +485,7 @@ class DropdownCore extends React.Component<Props, State> {
     handleInteract: (event: Event) => void = (event) => {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target as any;
+        // eslint-disable-next-line import/no-deprecated
         const thisElement = ReactDOM.findDOMNode(this);
         if (
             open &&
@@ -553,6 +543,7 @@ class DropdownCore extends React.Component<Props, State> {
             const currentFocusedItemRef =
                 this.state.itemRefs[this.focusedIndex];
 
+            // eslint-disable-next-line import/no-deprecated
             const node = ReactDOM.findDOMNode(
                 currentFocusedItemRef.ref.current,
             ) as HTMLElement;
@@ -984,7 +975,6 @@ class DropdownCore extends React.Component<Props, State> {
             "aria-required": ariaRequired,
             dropdownStyle,
             isFilterable,
-            light,
             openerElement,
             role,
             id,
@@ -1005,7 +995,6 @@ class DropdownCore extends React.Component<Props, State> {
                 onMouseUp={this.handleDropdownMouseUp}
                 style={[
                     styles.dropdown,
-                    light && styles.light,
                     isReferenceHidden && styles.hidden,
                     dropdownStyle,
                 ]}
@@ -1114,11 +1103,6 @@ const styles = StyleSheet.create({
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
         maxHeight: "var(--popper-max-height)",
-    },
-
-    light: {
-        // Pretty much just remove the border
-        border: "none",
     },
 
     listboxOrMenu: {

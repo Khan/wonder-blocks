@@ -11,7 +11,7 @@ export const DocumentTypes = Object.freeze({
     mutation: "mutation",
 });
 
-export type DocumentType = typeof DocumentTypes[keyof typeof DocumentTypes];
+export type DocumentType = (typeof DocumentTypes)[keyof typeof DocumentTypes];
 
 export interface IDocumentDefinition {
     type: DocumentType;

@@ -51,6 +51,7 @@ export const Default: StoryComponentType = {
 };
 
 export const Primary: StoryComponentType = () => (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
     <Link href="#">The quick brown fox jumps over the lazy dog.</Link>
 );
 
@@ -95,6 +96,7 @@ Primary.play = async ({canvasElement}) => {
 };
 
 export const Secondary: StoryComponentType = () => (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
     <Link href="#" kind="secondary">
         The quick brown fox jumps over the lazy dog.
     </Link>
@@ -141,6 +143,7 @@ Secondary.play = async ({canvasElement}) => {
 };
 
 export const Visitable: StoryComponentType = () => (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
     <Link href="#" visitable={true}>
         The quick brown fox jumps over the lazy dog.
     </Link>
@@ -158,6 +161,7 @@ Visitable.parameters = {
 };
 
 export const LightPrimary: StoryComponentType = () => (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
     <Link href="#" light={true}>
         The quick brown fox jumps over the lazy dog.
     </Link>
@@ -208,6 +212,7 @@ LightPrimary.play = async ({canvasElement}) => {
 };
 
 export const LightVisitable: StoryComponentType = () => (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
     <Link href="#" light={true} visitable={true}>
         The quick brown fox jumps over the lazy dog.
     </Link>
@@ -252,6 +257,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
     <View>
         {/* Default (dark) */}
         <View style={{padding: spacing.large_24}}>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#"
                 startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
@@ -259,6 +265,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This link has a start icon
             </Link>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#"
                 endIcon={
@@ -278,6 +285,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This external link has an end icon that is overrides the default
                 external icon
             </Link>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#"
                 startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
@@ -287,6 +295,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This link has a start icon and an end icon
             </Link>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#"
                 startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
@@ -297,6 +306,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Body>
                 This is an inline{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link
                     href="#"
                     inline={true}
@@ -307,6 +317,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                     link with a start icon
                 </Link>{" "}
                 and an inline{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link
                     href="#"
                     inline={true}
@@ -327,6 +338,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 padding: spacing.large_24,
             }}
         >
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#"
                 startIcon={<PhosphorIcon icon={IconMappings.plusCircleBold} />}
@@ -335,6 +347,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This link has a start icon
             </Link>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#"
                 endIcon={
@@ -355,6 +368,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This external link has an end icon that is overrides the default
                 external icon
             </Link>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#"
                 startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
@@ -364,6 +378,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This link has a start icon and an end icon
             </Link>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
             <Link
                 href="#"
                 startIcon={<PhosphorIcon icon={IconMappings.caretLeftBold} />}
@@ -375,6 +390,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Body style={{color: color.white}}>
                 This is an inline{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link
                     href="#"
                     startIcon={
@@ -386,6 +402,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                     link with a start icon
                 </Link>{" "}
                 and an inline{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link
                     href="#"
                     endIcon={
@@ -416,6 +433,7 @@ StartAndEndIcons.parameters = {
 export const Inline: StoryComponentType = () => (
     <Body>
         This is an inline{" "}
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
         <Link href="#" inline={true}>
             Primary link
         </Link>{" "}
@@ -428,6 +446,7 @@ export const Inline: StoryComponentType = () => (
             external Primary link
         </Link>
         , whereas this is an inline{" "}
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
         <Link href="#" kind="secondary" inline={true}>
             Secondary link
         </Link>
@@ -441,6 +460,7 @@ export const Inline: StoryComponentType = () => (
             external Secondary link
         </Link>
         , and this is an inline{" "}
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
         <Link href="#" visitable={true} inline={true}>
             Visitable link (Primary only)
         </Link>{" "}
@@ -534,6 +554,7 @@ Inline.play = async ({canvasElement}) => {
 export const InlineLight: StoryComponentType = () => (
     <Body style={{color: color.white}}>
         This is an inline{" "}
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
         <Link href="#" inline={true} light={true}>
             Primary link
         </Link>{" "}
@@ -547,6 +568,7 @@ export const InlineLight: StoryComponentType = () => (
             external Primary link
         </Link>
         , whereas this is an inline{" "}
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
         <Link href="#" visitable={true} inline={true} light={true}>
             Visitable link (Primary only)
         </Link>{" "}
@@ -644,6 +666,7 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                     <Link href="#" visitable={true}>
                         Standalone Visitable Link (Primary only)
                     </Link>
@@ -662,6 +685,7 @@ export const Variants: StoryComponentType = () => (
             {/* Inline */}
             <Body>
                 This is an{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link href="#" inline={true}>
                     Inline Primary link
                 </Link>{" "}
@@ -674,6 +698,7 @@ export const Variants: StoryComponentType = () => (
                     Inline External Primary link
                 </Link>
                 , whereas this is an{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link href="#" kind="secondary" inline={true}>
                     Inline Secondary link
                 </Link>{" "}
@@ -687,6 +712,7 @@ export const Variants: StoryComponentType = () => (
                     Inline External Secondary link
                 </Link>
                 , and this is an{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link href="#" visitable={true} inline={true}>
                     Inline Visitable link (Primary only)
                 </Link>{" "}
@@ -726,6 +752,7 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
+                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                     <Link href="#" visitable={true} light={true}>
                         Standalone Light Visitable Link (Primary only)
                     </Link>
@@ -745,6 +772,7 @@ export const Variants: StoryComponentType = () => (
             {/* Inline */}
             <Body style={{color: color.white}}>
                 This is an{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link href="#" inline={true} light={true}>
                     Inline Primary link
                 </Link>{" "}
@@ -758,6 +786,7 @@ export const Variants: StoryComponentType = () => (
                     Inline External Primary link
                 </Link>
                 , whereas this is an{" "}
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
                 <Link href="#" visitable={true} inline={true} light={true}>
                     Inline Visitable link (Primary only)
                 </Link>{" "}
@@ -823,6 +852,7 @@ WithTypography.play = async ({canvasElement}) => {
 };
 
 export const WithStyle: StoryComponentType = () => (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
     <Link href="#" style={styles.customLink}>
         This link has a style.
     </Link>
@@ -889,6 +919,7 @@ Navigation.parameters = {
 
 export const WithTitle: StoryComponentType = () => (
     <Body>
+        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error */}
         <Link href="#" title="I am a title 😎">
             This link has a title.
         </Link>

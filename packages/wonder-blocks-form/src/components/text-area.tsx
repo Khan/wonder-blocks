@@ -9,9 +9,8 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 import {
     border,
-    color,
     font,
-    mix,
+    semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -184,13 +183,9 @@ type TextAreaProps = AriaProps & {
      * behaviour. For more details, see the [CSS resize property values MDN docs](https://developer.mozilla.org/en-US/docs/Web/CSS/resize#values)
      */
     resizeType?: "horizontal" | "vertical" | "both" | "none";
-    /**
-     * Change the default focus ring color to fit a dark background.
-     */
-    light?: boolean;
 };
 
-const StyledTextArea = addStyle("textarea");
+const StyledTextarea = addStyle("textarea");
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     function TextArea(
@@ -224,7 +219,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             onValidate,
             required,
             resizeType,
-            light,
             rootStyle,
             error,
             instantValidation = true,
@@ -263,35 +257,23 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             }
         };
 
-        const getStyles = (): StyleType => {
-            // Base styles are the styles that apply regardless of light mode
-            const baseStyles = [
-                styles.textarea,
-                typographyStyles.LabelMedium,
-                resizeType && resizeStyles[resizeType],
-            ];
-            const defaultStyles = [
-                styles.default,
-                !disabled && styles.defaultFocus,
-                disabled && styles.disabled,
-                hasError && styles.error,
-            ];
-            const lightStyles = [
-                styles.light,
-                !disabled && styles.lightFocus,
-                disabled && styles.lightDisabled,
-                hasError && styles.lightError,
-            ];
-            return [...baseStyles, ...(light ? lightStyles : defaultStyles)];
-        };
         return (
             <View style={[{width: "100%"}, rootStyle]}>
-                <StyledTextArea
+                <StyledTextarea
                     id={uniqueId}
                     data-testid={testId}
                     ref={ref}
                     className={className}
-                    style={[getStyles(), style]}
+                    style={[
+                        styles.textarea,
+                        typographyStyles.LabelMedium,
+                        resizeType && resizeStyles[resizeType],
+                        styles.default,
+                        !disabled && styles.defaultFocus,
+                        disabled && styles.disabled,
+                        hasError && styles.error,
+                        style,
+                    ]}
                     value={value}
                     onChange={handleChange}
                     placeholder={placeholder}
@@ -322,6 +304,27 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
 const VERTICAL_SPACING_PX = 10;
 
+// The different states that the component can be in.
+const states = {
+    // Resting state
+    default: {
+        border: semanticColor.border.strong,
+        background: semanticColor.surface.primary,
+        foreground: semanticColor.text.primary,
+    },
+    disabled: {
+        border: semanticColor.border.primary,
+        background: semanticColor.action.disabled.secondary,
+        foreground: semanticColor.text.secondary,
+    },
+    // Form validation error state
+    error: {
+        border: semanticColor.status.critical.foreground,
+        background: semanticColor.status.critical.background,
+        foreground: semanticColor.text.primary,
+    },
+};
+
 const styles = StyleSheet.create({
     textarea: {
         borderRadius: border.radius.medium_4,
@@ -335,88 +338,47 @@ const styles = StyleSheet.create({
         }px`,
     },
     default: {
-        background: color.white,
-        border: `1px solid ${color.offBlack50}`,
-        color: color.offBlack,
+        background: states.default.background,
+        border: `${border.width.hairline}px solid ${states.default.border}`,
+        color: states.default.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
     },
     defaultFocus: {
         ":focus-visible": {
-            borderColor: color.blue,
-            outline: `1px solid ${color.blue}`,
+            borderColor: semanticColor.border.focus,
+            outline: `${border.width.hairline}px solid ${semanticColor.border.focus}`,
             // Negative outline offset so it focus outline is not cropped off if
             // an ancestor element has overflow: hidden
-            outlineOffset: "-2px",
+            outlineOffset: -2,
         },
     },
     disabled: {
-        background: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack64,
+        background: states.disabled.background,
+        border: `${border.width.hairline}px solid ${states.disabled.border}`,
+        color: states.disabled.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: states.disabled.foreground,
         },
         cursor: "not-allowed",
         ":focus-visible": {
-            outline: `2px solid ${color.offBlack32}`,
-            outlineOffset: "-3px",
+            // TODO(WB-1856): Verify if we can use the global focus color
+            outline: `${border.width.thin}px solid ${semanticColor.action.disabled.default}`,
+            outlineOffset: -3,
         },
     },
     error: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.red}`,
-        color: color.offBlack,
+        background: states.error.background,
+        border: `${border.width.hairline}px solid ${states.error.border}`,
+        color: states.error.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            outlineColor: color.red,
-            borderColor: color.red,
-        },
-    },
-    light: {
-        background: color.white,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-    },
-    lightFocus: {
-        ":focus-visible": {
-            outline: `3px solid ${color.blue}`,
-            outlineOffset: "-4px",
-            borderColor: color.white,
-        },
-    },
-    lightDisabled: {
-        backgroundColor: "transparent",
-        border: `1px solid ${color.white32}`,
-        color: color.white64,
-        "::placeholder": {
-            color: color.white64,
-        },
-        cursor: "not-allowed",
-        ":focus-visible": {
-            borderColor: mix(color.white32, color.blue),
-            outline: `3px solid ${color.fadedBlue}`,
-            outlineOffset: "-4px",
-        },
-    },
-    lightError: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.white}`,
-        outline: `2px solid ${color.red}`,
-        outlineOffset: "-3px",
-        color: color.offBlack,
-        "::placeholder": {
-            color: color.offBlack64,
-        },
-        ":focus-visible": {
-            outline: `3px solid ${color.red}`,
-            outlineOffset: "-4px",
+            // TODO(WB-1856): Verify if we can use the global focus color
+            outlineColor: states.error.border,
+            borderColor: states.error.border,
         },
     },
 });

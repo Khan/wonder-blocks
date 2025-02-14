@@ -31,7 +31,9 @@ import Timeout from "../util/timeout";
  * scheduling the timeout, use `SchedulePolicy.OnDemand`.
  * @returns An `ITimeout` API for interacting with the given timeout. This
  * API is a no-op if called when not mounted. This means that any calls prior
- * to mounting or after unmounting will not have any effect.
+ * to mounting or after unmounting will not have any effect. This API is
+ * not reactive, so do not deconstruct the return value, but instead
+ * dereference it at the time of use.
  */
 export function useTimeout(
     action: () => unknown,
@@ -87,14 +89,16 @@ export function useTimeout(
             set: () => {
                 timeoutRef.current?.set();
             },
-            clear: (policy?: ClearPolicy) => {
+            clear: (policy: ClearPolicy | undefined = clearPolicy) => {
+                // Note that we default to the clear policy passed to the hook
+                // so that this works as folks might expect.
                 timeoutRef.current?.clear(policy);
             },
             get isSet() {
                 return timeoutRef.current?.isSet ?? false;
             },
         }),
-        [],
+        [clearPolicy],
     );
 
     return externalApi;

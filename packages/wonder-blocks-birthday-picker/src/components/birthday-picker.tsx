@@ -3,7 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -284,11 +284,17 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     <PhosphorIcon
                         size="small"
                         icon={infoIcon}
-                        color={color.red}
+                        color={semanticColor.icon.destructive}
                         aria-hidden="true"
                     />
                     <Strut size={spacing.xxxSmall_4} />
-                    <Body style={{color: color.red}}>{error}</Body>
+                    <Body
+                        style={{
+                            color: semanticColor.status.critical.foreground,
+                        }}
+                    >
+                        {error}
+                    </Body>
                 </View>
             </>
         );
@@ -300,6 +306,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         const minWidth = this.getMonthYearWidth(monthYearOnly);
         return (
             <SingleSelect
+                aria-label={this.labels.month}
                 aria-invalid={!!this.state.error}
                 error={!!this.state.error}
                 disabled={disabled}
@@ -330,6 +337,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             <>
                 <Strut size={spacing.xSmall_8} />
                 <SingleSelect
+                    aria-label={this.labels.day}
                     aria-invalid={!!this.state.error}
                     error={!!this.state.error}
                     disabled={disabled}
@@ -371,6 +379,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         return (
             <SingleSelect
+                aria-label={this.labels.year}
                 aria-invalid={!!this.state.error}
                 error={!!this.state.error}
                 disabled={disabled}

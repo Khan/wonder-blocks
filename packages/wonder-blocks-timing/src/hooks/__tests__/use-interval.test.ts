@@ -425,7 +425,31 @@ describe("useInterval", () => {
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should invoke the action if clear policy is ClearPolicy.Resolve", () => {
+        it("should invoke the action if clear policy is ClearPolicy.Resolve from hook options", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    clearPolicy: ClearPolicy.Resolve,
+                }),
+            );
+            act(() => {
+                result.current.set();
+            });
+
+            // Act
+            act(() => {
+                result.current.clear();
+            });
+            act(() => {
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).toHaveBeenCalledTimes(1);
+        });
+
+        it("should invoke the action if clear policy is explicitly ClearPolicy.Resolve", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() => useInterval(action, 500));
@@ -445,21 +469,18 @@ describe("useInterval", () => {
             expect(action).toHaveBeenCalledTimes(1);
         });
 
-        it("should not invoke the action if clear policy is ClearPolicy.Cancel", () => {
+        it("should not invoke the action if clear policy is ClearPolicy.Cancel from hook options", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
                 useInterval(action, 500, {
-                    schedulePolicy: SchedulePolicy.Immediately,
+                    clearPolicy: ClearPolicy.Cancel,
                 }),
             );
-            act(() => {
-                result.current.set();
-            });
 
             // Act
             act(() => {
-                result.current.clear(ClearPolicy.Cancel);
+                result.current.clear();
             });
             act(() => {
                 jest.advanceTimersByTime(501);
@@ -469,7 +490,28 @@ describe("useInterval", () => {
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should not invoke the action if interval is inactive and clear policy is ClearPolicy.Resolve", () => {
+        it("should not invoke the action if clear policy is explicitly ClearPolicy.Cancel", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useInterval(action, 500, {
+                    clearPolicy: ClearPolicy.Cancel,
+                }),
+            );
+
+            // Act
+            act(() => {
+                result.current.clear();
+            });
+            act(() => {
+                jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).not.toHaveBeenCalled();
+        });
+
+        it("should not invoke the action if interval is inactive and clear policy is explicitly ClearPolicy.Resolve", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
@@ -491,16 +533,14 @@ describe("useInterval", () => {
         it("should not call the action on unmount if the interval is not running when the clearPolicy is ClearPolicy.Resolve", async () => {
             // Arrange
             const action = jest.fn();
-            const {result, unmount} = renderHook(() =>
+            const {unmount} = renderHook(() =>
                 useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
                     clearPolicy: ClearPolicy.Resolve,
                 }),
             );
 
             // Act
-            act(() => {
-                result.current.clear();
-            });
             act(() => {
                 unmount();
             });

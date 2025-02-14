@@ -1,6 +1,6 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
-
+import {Decorator} from "@storybook/react";
 import {color} from "@khanacademy/wonder-blocks-tokens";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
@@ -95,45 +95,41 @@ const parameters = {
     },
 };
 
-const decorators = [
-    (Story, context) => {
-        const theme = context.globals.theme;
-        const enableRenderStateRootDecorator =
-            context.parameters.enableRenderStateRootDecorator;
-
-        // Allow stories to specify a CSS body class
-        if (context.parameters.addBodyClass) {
-            document.body.classList.add(context.parameters.addBodyClass);
-        }
-        // Remove body class when changing stories
-        React.useEffect(() => {
-            return () => {
-              if (context.parameters.addBodyClass) {
-                document.body.classList.remove(context.parameters.addBodyClass);
-              }
-            };
-          }, [context.parameters.addBodyClass]);
-
-        if (enableRenderStateRootDecorator) {
-            return (
-                <RenderStateRoot>
-                    <ThemeSwitcherContext.Provider value={theme}>
-                        <Story />
-                    </ThemeSwitcherContext.Provider>
-                </RenderStateRoot>
-            );
-        }
+const withThemeSwitcher: Decorator = (
+    Story,
+    {globals: {theme}, parameters: {enableRenderStateRootDecorator, addBodyClass}},
+) => {
+    // Allow stories to specify a CSS body class
+    if (addBodyClass) {
+        document.body.classList.add(addBodyClass);
+    }
+    // Remove body class when changing stories
+    React.useEffect(() => {
+        return () => {
+          if (addBodyClass) {
+            document.body.classList.remove(addBodyClass);
+          }
+        };
+      }, [addBodyClass]);
+    if (enableRenderStateRootDecorator) {
         return (
-            <ThemeSwitcherContext.Provider value={theme}>
-                <Story />
-            </ThemeSwitcherContext.Provider>
+            <RenderStateRoot>
+                <ThemeSwitcherContext.Provider value={theme}>
+                    <Story />
+                </ThemeSwitcherContext.Provider>
+            </RenderStateRoot>
         );
-    },
-];
+    }
+    return (
+        <ThemeSwitcherContext.Provider value={theme}>
+            <Story />
+        </ThemeSwitcherContext.Provider>
+    );
+};
 
 const preview: Preview = {
     parameters,
-    decorators,
+    decorators: [withThemeSwitcher],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
@@ -160,6 +156,8 @@ const preview: Preview = {
             },
         },
     },
+
+    tags: ["autodocs"],
 };
 
 export default preview;

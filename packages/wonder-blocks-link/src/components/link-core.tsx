@@ -22,7 +22,7 @@ type Props = SharedProps &
         href: string;
     };
 
-const StyledAnchor = addStyle("a");
+const StyledA = addStyle("a");
 const StyledLink = addStyle(Link);
 
 const LinkCore = React.forwardRef(function LinkCore(
@@ -100,7 +100,9 @@ const LinkCore = React.forwardRef(function LinkCore(
                 testId: "start-icon",
                 "aria-hidden": "true",
                 ...startIcon.props,
-            } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
+            } as Partial<
+                React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+            >);
         }
 
         if (endIcon) {
@@ -109,7 +111,9 @@ const LinkCore = React.forwardRef(function LinkCore(
                 testId: "end-icon",
                 "aria-hidden": "true",
                 ...endIcon.props,
-            } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
+            } as Partial<
+                React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+            >);
         }
 
         const linkContent = (
@@ -131,13 +135,13 @@ const LinkCore = React.forwardRef(function LinkCore(
                 {linkContent}
             </StyledLink>
         ) : (
-            <StyledAnchor
+            <StyledA
                 {...commonProps}
                 href={href}
                 ref={ref as React.ForwardedRef<HTMLAnchorElement>}
             >
                 {linkContent}
-            </StyledAnchor>
+            </StyledA>
         );
     };
 

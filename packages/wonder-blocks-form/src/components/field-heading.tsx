@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {
@@ -42,10 +42,6 @@ type Props = {
      * Optional test ID for e2e testing.
      */
     testId?: string;
-    /**
-     * Change the field’s sub-components to fit a dark background.
-     */
-    light?: boolean;
 };
 
 const StyledSpan = addStyle("span");
@@ -56,13 +52,10 @@ const StyledSpan = addStyle("span");
  */
 export default class FieldHeading extends React.Component<Props> {
     renderLabel(): React.ReactNode {
-        const {label, id, required, testId, light} = this.props;
+        const {label, id, required, testId} = this.props;
 
         const requiredIcon = (
-            <StyledSpan
-                style={light ? styles.lightRequired : styles.required}
-                aria-hidden={true}
-            >
+            <StyledSpan style={styles.required} aria-hidden={true}>
                 {" "}
                 *
             </StyledSpan>
@@ -71,7 +64,7 @@ export default class FieldHeading extends React.Component<Props> {
         return (
             <React.Fragment>
                 <LabelMedium
-                    style={light ? styles.lightLabel : styles.label}
+                    style={styles.label}
                     tag="label"
                     htmlFor={id && `${id}-field`}
                     testId={testId && `${testId}-label`}
@@ -85,7 +78,7 @@ export default class FieldHeading extends React.Component<Props> {
     }
 
     maybeRenderDescription(): React.ReactNode | null | undefined {
-        const {description, testId, light} = this.props;
+        const {description, testId} = this.props;
 
         if (!description) {
             return null;
@@ -94,7 +87,7 @@ export default class FieldHeading extends React.Component<Props> {
         return (
             <React.Fragment>
                 <LabelSmall
-                    style={light ? styles.lightDescription : styles.description}
+                    style={styles.description}
                     testId={testId && `${testId}-description`}
                 >
                     {description}
@@ -105,7 +98,7 @@ export default class FieldHeading extends React.Component<Props> {
     }
 
     maybeRenderError(): React.ReactNode | null | undefined {
-        const {error, id, testId, light} = this.props;
+        const {error, id, testId} = this.props;
 
         if (!error) {
             return null;
@@ -115,7 +108,7 @@ export default class FieldHeading extends React.Component<Props> {
             <React.Fragment>
                 <Strut size={spacing.small_12} />
                 <LabelSmall
-                    style={light ? styles.lightError : styles.error}
+                    style={styles.error}
                     role="alert"
                     id={id && `${id}-error`}
                     testId={testId && `${testId}-error`}
@@ -143,27 +136,15 @@ export default class FieldHeading extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     label: {
-        color: color.offBlack,
-    },
-    lightLabel: {
-        color: color.white,
+        color: semanticColor.text.primary,
     },
     description: {
-        color: color.offBlack64,
-    },
-    lightDescription: {
-        color: color.white64,
+        color: semanticColor.text.secondary,
     },
     error: {
-        color: color.red,
-    },
-    lightError: {
-        color: color.fadedRed,
+        color: semanticColor.status.critical.foreground,
     },
     required: {
-        color: color.red,
-    },
-    lightRequired: {
-        color: color.fadedRed,
+        color: semanticColor.status.critical.foreground,
     },
 });

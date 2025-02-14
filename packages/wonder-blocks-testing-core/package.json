@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-testing-core",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -14,11 +14,11 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.6"
+    "@babel/runtime": "^7.24.5"
   },
   "peerDependencies": {
-    "@khanacademy/wonder-stuff-core": "^1.2.2",
-    "@storybook/addon-actions": "^8.2.1",
+    "@khanacademy/wonder-stuff-core": "^1.5.4",
+    "@storybook/addon-actions": "^8.5.2",
     "aphrodite": "^1.2.5",
     "node-fetch": "^2.6.7",
     "react": "18.2.0",
@@ -26,7 +26,7 @@
     "react-router-dom": "5.3.4"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^2.0.0",
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
     "@khanacademy/wonder-stuff-testing": "^3.0.1"
   },
   "author": "",

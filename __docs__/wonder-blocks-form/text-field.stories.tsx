@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge, Body} from "@khanacademy/wonder-blocks-typography";
 
@@ -44,7 +44,6 @@ export const Default: StoryComponentType = {
         disabled: false,
         placeholder: "",
         required: false,
-        light: false,
         testId: "",
         readOnly: false,
         autoComplete: "off",
@@ -549,49 +548,6 @@ export const InstantValidation: StoryComponentType = {
     },
 };
 
-export const Light: StoryComponentType = {
-    args: {
-        light: true,
-    },
-    parameters: {
-        backgrounds: {
-            default: "darkBlue",
-        },
-        description: {
-            story: `If the \`light\` prop is set to true,
-        \`TextField\` will have light styling. This is intended to be used
-        on a dark background. There is also a specific light styling for the
-        error state, as seen in the \`ErrorLight\` story.`,
-        },
-        chromatic: {
-            disableSnapshot: true, // Disable snapshot because it's covered by variants stories
-        },
-    },
-};
-
-export const ErrorLight: StoryComponentType = {
-    args: {
-        light: true,
-        error: true,
-        value: "khan",
-    },
-    parameters: {
-        backgrounds: {
-            default: "darkBlue",
-        },
-        docs: {
-            description: {
-                story: `If an input value fails validation and the
-        \`light\` prop is true, \`TextField\` will have light error styling.`,
-            },
-        },
-        chromatic: {
-            // Disabling because this doesn't test anything visual.
-            disableSnapshot: true,
-        },
-    },
-};
-
 /**
  * If the disabled prop is set to `true`, TextField will have disabled styling
  * and will not be interactable.
@@ -872,12 +828,12 @@ AutoComplete.parameters = {
 
 const styles = StyleSheet.create({
     customField: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
+        backgroundColor: semanticColor.status.notice.background,
+        color: semanticColor.status.notice.foreground,
         border: "none",
         maxWidth: 250,
         "::placeholder": {
-            color: color.white64,
+            color: semanticColor.text.secondary,
         },
     },
     button: {

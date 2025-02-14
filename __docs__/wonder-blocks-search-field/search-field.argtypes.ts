@@ -81,20 +81,6 @@ export default {
             type: "boolean",
         },
     },
-    light: {
-        type: {name: "boolean", required: false},
-        table: {
-            type: {
-                summary: "boolean",
-            },
-            defaultValue: {
-                summary: "false",
-            },
-        },
-        control: {
-            type: "boolean",
-        },
-    },
     style: {
         table: {
             type: {

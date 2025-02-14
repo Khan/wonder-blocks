@@ -1,4 +1,4 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 export default {
     content: {
@@ -118,4 +118,4 @@ export default {
             "The ID of the content describing this dialog, if applicable",
         table: {type: {summary: "string"}},
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

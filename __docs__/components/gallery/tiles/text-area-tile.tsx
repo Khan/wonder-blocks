@@ -19,7 +19,11 @@ export default function TextAreaTile(props: CommonTileProps) {
             {...props}
         >
             <View style={styles.centerContent}>
-                <TextArea value={value} onChange={setValue} />
+                <TextArea
+                    aria-label="Description"
+                    value={value}
+                    onChange={setValue}
+                />
             </View>
         </ComponentTile>
     );

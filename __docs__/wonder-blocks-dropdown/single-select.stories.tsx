@@ -21,7 +21,7 @@ import {
     SeparatorItem,
 } from "@khanacademy/wonder-blocks-dropdown";
 
-import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
+import type {SingleSelectLabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import ComponentInfo from "../components/component-info";
@@ -60,7 +60,7 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  *
  * const [selectedValue, setSelectedValue] = React.useState("");
  *
- * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ * <SingleSelect aria-label="Fruit" placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
  *     <OptionItem label="Pear" value="pear" />
  *     <OptionItem label="Mango" value="mango" />
  * </SingleSelect>
@@ -81,7 +81,7 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
-        light: false,
+        "aria-label": "Fruit",
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
@@ -193,6 +193,7 @@ const Template = (args: any) => {
     return (
         <SingleSelect
             {...args}
+            aria-label={args["aria-label"]}
             onChange={setSelectedValue}
             selectedValue={selectedValue}
             opened={opened}
@@ -269,6 +270,7 @@ export const LongOptionLabels: StoryComponentType = {
 
         return (
             <SingleSelect
+                aria-label="Fruit"
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
                 opened={opened}
@@ -574,43 +576,6 @@ export const TwoWithText: StoryComponentType = {
     },
 };
 
-/**
- * "This single select is on a dark background and is also right-aligned.
- */
-export const Light: StoryComponentType = {
-    render: function Render(args: any) {
-        const [selectedValue, setSelectedValue] = React.useState("pear");
-
-        return (
-            <View style={styles.row}>
-                <View style={styles.darkBackgroundWrapper}>
-                    <SingleSelect
-                        {...args}
-                        alignment="right"
-                        light={true}
-                        onChange={setSelectedValue}
-                        placeholder="Choose a drink"
-                        selectedValue={selectedValue}
-                    >
-                        <OptionItem
-                            label="Regular milk tea with boba"
-                            value="regular"
-                        />
-                        <OptionItem
-                            label="Wintermelon milk tea with boba"
-                            value="wintermelon"
-                        />
-                        <OptionItem
-                            label="Taro milk tea, half sugar"
-                            value="taro"
-                        />
-                    </SingleSelect>
-                </View>
-            </View>
-        );
-    },
-};
-
 const optionItems = allCountries.map(([code, translatedName]) => (
     <OptionItem key={code} value={code} label={translatedName} />
 ));
@@ -630,6 +595,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
     return (
         <View style={styles.wrapper}>
             <SingleSelect
+                aria-label="Country"
                 onChange={setSelectedValue}
                 isFilterable={true}
                 opened={opened}
@@ -815,15 +781,15 @@ export const CustomOpener: StoryComponentType = {
  * Custom labels
  */
 const translatedItems = [
-    <OptionItem label="Banano" value="banano" />,
-    <OptionItem label="Fresa" value="fresa" disabled />,
-    <OptionItem label="Pera" value="pera" />,
-    <OptionItem label="Naranja" value="naranja" />,
-    <OptionItem label="Sandia" value="sandia" />,
-    <OptionItem label="Manzana" value="manzana" />,
-    <OptionItem label="Uva" value="uva" />,
-    <OptionItem label="Limon" value="limon" />,
-    <OptionItem label="Mango" value="mango" />,
+    <OptionItem label="Banano" value="banano" key={0} />,
+    <OptionItem label="Fresa" value="fresa" disabled key={1} />,
+    <OptionItem label="Pera" value="pera" key={2} />,
+    <OptionItem label="Naranja" value="naranja" key={3} />,
+    <OptionItem label="Sandia" value="sandia" key={4} />,
+    <OptionItem label="Manzana" value="manzana" key={5} />,
+    <OptionItem label="Uva" value="uva" key={6} />,
+    <OptionItem label="Limon" value="limon" key={7} />,
+    <OptionItem label="Mango" value="mango" key={8} />,
 ];
 
 /**
@@ -835,16 +801,17 @@ export const CustomLabels: StoryComponentType = {
         const [value, setValue] = React.useState<any>(null);
         const [opened, setOpened] = React.useState(true);
 
-        const translatedLabels: SingleSelectLabels = {
+        const translatedLabels: SingleSelectLabelsValues = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",
-            someResults: (numResults) => `${numResults} frutas`,
+            someResults: (numResults: number) => `${numResults} frutas`,
         };
 
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Fruta"
                     isFilterable={true}
                     onChange={setValue}
                     selectedValue={value}
@@ -879,8 +846,8 @@ const timeSlots = [
     "11:59 PM",
 ];
 
-const timeSlotOptions = timeSlots.map((timeSlot) => (
-    <OptionItem label={timeSlot} value={timeSlot} />
+const timeSlotOptions = timeSlots.map((timeSlot, index) => (
+    <OptionItem label={timeSlot} value={timeSlot} key={index} />
 ));
 
 /**
@@ -972,6 +939,7 @@ export const CustomOptionItems: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Profile"
                     placeholder="Select a profile"
                     onChange={handleChange}
                     selectedValue={selectedValue}
@@ -1020,6 +988,7 @@ export const CustomOptionItemWithNodeLabel: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Currency"
                     placeholder="Select your currency"
                     onChange={handleChange}
                     selectedValue={selectedValue}
@@ -1079,6 +1048,7 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
 
         return (
             <SingleSelect
+                aria-label="Country"
                 placeholder="Select a country"
                 isFilterable={true}
                 onChange={handleChange}

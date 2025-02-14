@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable import/no-commonjs */
 
 // Returns the preset-env `targets` configuration object for the environment

@@ -27,10 +27,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        design: {
-            type: "figma",
-            url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/%F0%9F%92%A0-Main-Components?type=design&node-id=4337-2487&mode=design&t=h4nok7uwaPYDOkz6-4",
-        },
         docs: {
             description: {
                 component: null,

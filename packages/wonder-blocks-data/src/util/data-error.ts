@@ -51,7 +51,7 @@ export const DataErrors = Object.freeze({
 export class DataError extends KindError {
     constructor(
         message: string,
-        kind: typeof DataErrors[keyof typeof DataErrors],
+        kind: (typeof DataErrors)[keyof typeof DataErrors],
         {metadata, cause}: ErrorOptions = {} as Partial<ErrorOptions>,
     ) {
         super(message, kind, {

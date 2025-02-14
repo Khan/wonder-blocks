@@ -8,7 +8,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon, PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import infoIcon from "@phosphor-icons/core/regular/info.svg";
@@ -131,26 +131,26 @@ const getValuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
         case "success":
             return {
-                color: color.green,
+                color: semanticColor.status.success.foreground,
                 icon: successIcon,
                 role: "status",
             };
         case "warning":
             return {
-                color: color.gold,
+                color: semanticColor.status.warning.foreground,
                 icon: warningIcon,
                 role: "alert",
                 ariaLive: "polite",
             };
         case "critical":
             return {
-                color: color.red,
+                color: semanticColor.status.critical.foreground,
                 icon: criticalIcon,
                 role: "alert",
             };
         default:
             return {
-                color: color.blue,
+                color: semanticColor.status.notice.foreground,
                 icon: infoIcon,
                 role: "status",
             };
@@ -313,7 +313,9 @@ const styles = StyleSheet.create({
         // the base color needs to be hard-coded as white for the
         // intended pastel background color to show up correctly
         // on dark backgrounds.
-        backgroundColor: color.white,
+        // TODO(WB-1865): Verify if we can change this to use semanticColor
+        // status tokens.
+        backgroundColor: semanticColor.surface.primary,
     },
     containerInner: {
         flexDirection: "row",
@@ -328,7 +330,7 @@ const styles = StyleSheet.create({
         marginInlineStart: spacing.xxxxSmall_2,
         marginInlineEnd: spacing.xSmall_8,
         alignSelf: "flex-start",
-        color: color.offBlack64,
+        color: semanticColor.icon.primary,
     },
     labelAndButtonsContainer: {
         flex: 1,
@@ -359,7 +361,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     link: {
-        fontSize: 14,
+        fontSize: font.size.small,
     },
     dismiss: {
         flexShrink: 1,

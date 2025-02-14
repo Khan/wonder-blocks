@@ -529,6 +529,7 @@ describe("Clickable", () => {
 
         // Act
         render(
+            // eslint-disable-next-line jsx-a11y/tabindex-no-positive -- TODO: Address a11y error
             <Clickable testId="clickable-button" tabIndex={1}>
                 {(eventState: any) => <h1>Click Me!</h1>}
             </Clickable>,

@@ -22,6 +22,7 @@ export default function ListboxTile(props: CommonTileProps) {
         >
             <View>
                 <Listbox
+                    aria-label="Fruit"
                     value={currentValue}
                     selectionType="single"
                     onChange={(newValue: MaybeValueOrValues) => {

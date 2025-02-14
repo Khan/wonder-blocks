@@ -169,7 +169,7 @@ type Props =
           target?: never;
       });
 
-const StyledAnchor = addStyle("a");
+const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
@@ -241,7 +241,7 @@ const Clickable = React.forwardRef(function Clickable(
             );
         } else if (activeHref && !useClient) {
             return (
-                <StyledAnchor
+                <StyledA
                     {...commonProps}
                     href={props.href}
                     role={props.role}
@@ -250,7 +250,7 @@ const Clickable = React.forwardRef(function Clickable(
                     ref={ref as React.Ref<HTMLAnchorElement>}
                 >
                     {props.children(clickableState)}
-                </StyledAnchor>
+                </StyledA>
             );
         } else {
             return (

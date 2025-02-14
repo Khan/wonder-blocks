@@ -93,7 +93,7 @@ const View: React.ForwardRefExoticComponent<
                 />
             );
         default:
-            // eslint-disable-next-line no-unused-expressions
+            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
             tag as never;
             throw Error(`${tag} is not an allowed value for the 'tag' prop`);
     }

@@ -14,7 +14,7 @@ module.exports = {
     },
     // Allow transforming files imported from @phosphor-icons/core.
     // This is required by the .svg transform above.
-    transformIgnorePatterns: ["/node_modules/(?!(@phosphor-icons/core)/)"],
+    transformIgnorePatterns: ["/node_modules/.pnpm/(?!@phosphor-icons.core@)"],
 
     testEnvironment: "jest-environment-jsdom",
     globals: {
@@ -55,4 +55,8 @@ module.exports = {
         "<rootDir>/config/jest/log-on-fail-reporter.js",
         "github-actions",
     ],
+    // We turn off Prettier as Prettier v3 is incompatible with Jest v29.
+    // Once they release Jest v30 we can switch to that:
+    // https://github.com/jestjs/jest/issues/14305
+    prettierPath: null,
 };

@@ -1,5 +1,5 @@
+import type {ArgTypes} from "@storybook/react";
 import * as React from "react";
-import type {InputType} from "@storybook/csf";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {LabelSmall, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
@@ -261,4 +261,4 @@ export default {
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

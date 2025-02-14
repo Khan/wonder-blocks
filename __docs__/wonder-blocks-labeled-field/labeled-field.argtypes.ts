@@ -48,9 +48,4 @@ export default {
             type: "null",
         },
     },
-    light: {
-        table: {
-            category: "Visual style",
-        },
-    },
 };

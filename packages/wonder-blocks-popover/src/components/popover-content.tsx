@@ -92,7 +92,7 @@ type DefaultProps = {
 };
 
 // Created to add custom styles to the icon or image elements
-const StyledImage = addStyle("img");
+const StyledImg = addStyle("img");
 
 /**
  * This is the container that is consumed by all the predefined variations. Its
@@ -177,7 +177,8 @@ export default class PopoverContent extends React.Component<Props> {
                 {typeof icon !== "string" ? (
                     icon
                 ) : (
-                    <StyledImage src={icon} style={styles.icon} />
+                    // eslint-disable-next-line jsx-a11y/alt-text -- TODO: Address a11y error
+                    <StyledImg src={icon} style={styles.icon} />
                 )}
             </View>
         );

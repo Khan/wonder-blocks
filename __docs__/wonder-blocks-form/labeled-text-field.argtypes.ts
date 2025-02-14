@@ -1,4 +1,4 @@
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 
 export default {
     id: {
@@ -98,22 +98,6 @@ export default {
         description: `Whether the input should be disabled. Defaults to false.
             If the disabled prop is set to \`true\`, LabeledTextField will have disabled
             styling and will not be interactable.`,
-        table: {
-            type: {
-                summary: "boolean",
-            },
-            defaultValue: {
-                summary: "false",
-            },
-        },
-        control: {
-            type: "boolean",
-        },
-    },
-
-    light: {
-        description:
-            "Change the field’s sub-components to fit a dark background.",
         table: {
             type: {
                 summary: "boolean",
@@ -320,4 +304,4 @@ export default {
             },
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

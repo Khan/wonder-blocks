@@ -241,6 +241,7 @@ export default class ActionMenu extends React.Component<Props, State> {
     }
 
     handleOpenerRef: (node?: any) => void = (node) => {
+        // eslint-disable-next-line import/no-deprecated
         this.openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
     };
 
@@ -267,6 +268,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                         ref={this.handleOpenerRef}
                         testId={opener ? undefined : testId}
                         opened={this.state.opened}
+                        role="button"
                     >
                         {opener
                             ? opener
