@@ -497,7 +497,7 @@ export default function Combobox({
             // Override the disabled state of the icon to match the combobox
             // state.
             color: disabled
-                ? color.offBlack32
+                ? semanticColor.icon.disabled
                 : // Use the color passed in, otherwise use the default color.
                   (startIcon.props.color ?? semanticColor.icon.primary),
         } as Partial<
@@ -695,24 +695,24 @@ const styles = StyleSheet.create({
         maxWidth: "100%",
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
-        background: color.white,
+        background: semanticColor.surface.primary,
         borderRadius: border.radius.medium_4,
-        border: `solid 1px ${color.offBlack50}`,
+        border: `solid 1px ${semanticColor.border.strong}`,
         paddingInline: spacing.xSmall_8,
     },
     focused: {
-        background: color.white,
-        border: `1px solid ${color.blue}`,
+        background: semanticColor.surface.primary,
+        border: `1px solid ${semanticColor.border.focus}`,
     },
     disabled: {
-        background: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack64,
+        background: semanticColor.action.disabled.secondary,
+        border: `1px solid ${semanticColor.border.primary}`,
+        color: semanticColor.text.secondary,
     },
     error: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.red}`,
-        color: color.offBlack,
+        background: semanticColor.status.critical.background,
+        border: `1px solid ${semanticColor.status.critical.foreground}`,
+        color: semanticColor.text.primary,
     },
     /**
      * Combobox input styles
@@ -737,9 +737,10 @@ const styles = StyleSheet.create({
      * Listbox custom styles
      */
     listbox: {
-        backgroundColor: color.white,
+        backgroundColor: semanticColor.surface.primary,
         borderRadius: border.radius.medium_4,
-        border: `solid 1px ${color.offBlack16}`,
+        border: `solid 1px ${semanticColor.border.primary}`,
+        // TODO(WB-1878): Move to elevation tokens.
         boxShadow: `0px ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0px ${color.offBlack8}`,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.

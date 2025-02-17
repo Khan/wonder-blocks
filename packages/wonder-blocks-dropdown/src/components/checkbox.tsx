@@ -3,10 +3,8 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
-
-const {offBlack16, offBlack50, offWhite} = color;
 
 /**
  * Props describing the state of the OptionItem, shared by the check
@@ -69,7 +67,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         borderWidth: 1,
         borderStyle: "solid",
-        borderColor: offBlack50,
+        borderColor: semanticColor.border.strong,
     },
 
     noBorder: {
@@ -77,8 +75,8 @@ const styles = StyleSheet.create({
     },
 
     disabledCheckbox: {
-        borderColor: offBlack16,
-        backgroundColor: offWhite,
+        borderColor: semanticColor.border.primary,
+        backgroundColor: semanticColor.action.disabled.secondary,
     },
 
     // The border of 1px on the selected, disabled checkbox pushes the check out

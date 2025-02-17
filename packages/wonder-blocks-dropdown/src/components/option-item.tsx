@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {mix, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -301,13 +301,11 @@ export default class OptionItem extends React.Component<OptionProps> {
     }
 }
 
-const {blue, white, offBlack} = color;
-
 const focusedStyle = {
     // Override the default focus state for the cell element, so that it
     // can be added programmatically to the button element.
     borderRadius: spacing.xxxSmall_4,
-    outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+    outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.border.focus}`,
     outlineOffset: -spacing.xxxxSmall_2,
 };
 
@@ -330,7 +328,7 @@ const styles = StyleSheet.create({
         color: "inherit",
     },
     item: {
-        backgroundColor: color.white,
+        backgroundColor: semanticColor.surface.primary,
         // Reset the default styles for the cell element so it can grow
         // vertically.
         minHeight: "unset",
@@ -349,8 +347,9 @@ const styles = StyleSheet.create({
 
         // Overrides the default cell state for the button element.
         [":hover[aria-disabled=false]" as any]: {
-            color: white,
-            background: blue,
+            color: semanticColor.action.filled.progressive.hover.foreground,
+            background:
+                semanticColor.action.filled.progressive.hover.background,
         },
 
         [":active[aria-selected=false]" as any]: {},
@@ -361,7 +360,7 @@ const styles = StyleSheet.create({
         },
 
         [":is([aria-disabled=true])" as any]: {
-            color: color.offBlack32,
+            color: semanticColor.text.disabled,
             ":focus-visible": {
                 // Prevent the focus ring from being displayed when the cell is
                 // disabled.
@@ -375,56 +374,60 @@ const styles = StyleSheet.create({
             // Revert the hover styles to the default/resting state (mobile
             // only).
             [":hover[aria-disabled=false]" as any]: {
-                color: white,
-                background: offBlack,
+                color: semanticColor.action.filled.progressive.default
+                    .foreground,
+                background:
+                    semanticColor.action.filled.progressive.default.background,
             },
         },
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: color.fadedBlue,
-            background: color.activeBlue,
+            color: semanticColor.action.filled.progressive.press.foreground,
+            background:
+                semanticColor.action.filled.progressive.press.background,
         },
 
         // checkbox states (see checkbox.tsx)
         [":hover[aria-disabled=false] .checkbox" as any]: {
-            background: white,
+            background: semanticColor.surface.primary,
         },
         [":active[aria-disabled=false] .checkbox" as any]: {
-            background: color.white,
+            background: semanticColor.surface.primary,
         },
         [":hover[aria-disabled=false] .check" as any]: {
-            color: blue,
+            color: semanticColor.action.outlined.progressive.hover.foreground,
         },
         [":active[aria-disabled=false] .check" as any]: {
-            color: color.activeBlue,
+            color: semanticColor.action.outlined.progressive.press.foreground,
         },
 
         [":is([aria-selected=true]) .checkbox" as any]: {
-            background: blue,
+            background:
+                semanticColor.action.filled.progressive.default.background,
         },
 
         [":is([aria-selected=true]) .check" as any]: {
-            color: white,
+            color: semanticColor.text.inverse,
         },
 
         /**
          * Cell states
          */
         [":is([aria-disabled=false]) .subtitle" as any]: {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
 
         [":hover[aria-disabled=false] .subtitle" as any]: {
-            color: color.offWhite,
+            color: semanticColor.text.inverse,
         },
         [":active[aria-disabled=false] .subtitle" as any]: {
-            color: mix(color.fadedBlue16, white),
+            color: semanticColor.text.inverse,
         },
     },
     itemFocused: focusedStyle,
     itemDisabled: {
-        outlineColor: color.offBlack32,
+        outlineColor: semanticColor.border.focus,
     },
     itemContainer: {
         minHeight: "unset",

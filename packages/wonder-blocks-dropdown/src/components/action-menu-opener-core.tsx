@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
@@ -55,16 +55,13 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             ...restProps
         } = this.props;
 
-        const buttonColor = color.blue;
-        const buttonStyles = _generateStyles(buttonColor);
         const disabled = disabledProp;
 
         const defaultStyle = [
             sharedStyles.shared,
+            sharedStyles.default,
             disabled && sharedStyles.disabled,
-            buttonStyles.default,
-            disabled && buttonStyles.disabled,
-            !disabled && pressed && buttonStyles.active,
+            !disabled && pressed && sharedStyles.press,
         ];
 
         const label = (
@@ -84,7 +81,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             >
                 <View
                     style={
-                        !disabled && (hovered || focused) && buttonStyles.focus
+                        !disabled && (hovered || focused) && sharedStyles.focus
                     }
                 >
                     {label}
@@ -122,8 +119,13 @@ const sharedStyles = StyleSheet.create({
             WebkitTapHighlightColor: "rgba(0,0,0,0)",
         },
     },
+    default: {
+        background: "none",
+        color: semanticColor.action.outlined.progressive.default.foreground,
+    },
     disabled: {
-        cursor: "auto",
+        color: semanticColor.action.disabled.default,
+        cursor: "default",
     },
     small: {
         height: spacing.xLarge_32,
@@ -139,53 +141,19 @@ const sharedStyles = StyleSheet.create({
         textOverflow: "ellipsis",
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
-    hiddenText: {
-        visibility: "hidden",
+    focus: {
+        ":after": {
+            content: "''",
+            position: "absolute",
+            height: 2,
+            left: 0,
+            right: 0,
+            bottom: -1,
+            background: "currentColor",
+            borderRadius: 2,
+        },
     },
-    spinner: {
-        position: "absolute",
+    press: {
+        color: semanticColor.action.outlined.progressive.press.foreground,
     },
 });
-
-const styles: Record<string, any> = {};
-
-const _generateStyles = (localColor: string) => {
-    const buttonType = localColor;
-    if (styles[buttonType]) {
-        return styles[buttonType];
-    }
-
-    const {offBlack32} = color;
-    const activeColor = color.activeBlue;
-
-    let newStyles: Record<string, any> = {};
-
-    newStyles = {
-        default: {
-            background: "none",
-            color: localColor,
-        },
-        focus: {
-            ":after": {
-                content: "''",
-                position: "absolute",
-                height: 2,
-                left: 0,
-                right: 0,
-                bottom: -1,
-                background: "currentColor",
-                borderRadius: 2,
-            },
-        },
-        active: {
-            color: activeColor,
-        },
-        disabled: {
-            color: offBlack32,
-            cursor: "default",
-        },
-    };
-
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
-};

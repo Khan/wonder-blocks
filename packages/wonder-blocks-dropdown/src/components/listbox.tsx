@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import {useId} from "react";
 import {useListbox} from "../hooks/use-listbox";
@@ -212,6 +212,6 @@ const styles = StyleSheet.create({
         outline: "none",
     },
     disabled: {
-        color: color.offBlack64,
+        color: semanticColor.text.disabled,
     },
 });

@@ -6,7 +6,7 @@ import * as React from "react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Listbox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {allProfilesWithPictures} from "./option-item-examples";
 
@@ -27,12 +27,12 @@ const items = [
 
 const styles = StyleSheet.create({
     example: {
-        background: color.offWhite,
+        background: semanticColor.surface.secondary,
         padding: spacing.medium_16,
         width: 360,
     },
     customListbox: {
-        border: `5px solid ${color.offBlack16}`,
+        border: `5px solid ${semanticColor.border.primary}`,
         width: 250,
     },
 });

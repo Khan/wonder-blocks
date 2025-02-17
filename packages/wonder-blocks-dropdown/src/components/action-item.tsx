@@ -2,14 +2,12 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
-
-const {blue, white, offBlack} = color;
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
 
@@ -189,14 +187,15 @@ const styles = StyleSheet.create({
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
             borderRadius: spacing.xxxSmall_4,
-            outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+            outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.border.focus}`,
             outlineOffset: -spacing.xxxxSmall_2,
         },
 
         // Overrides the default cell state for the button element.
         [":hover[aria-disabled=false]" as any]: {
-            color: white,
-            background: blue,
+            color: semanticColor.action.filled.progressive.hover.foreground,
+            background:
+                semanticColor.action.filled.progressive.hover.background,
         },
         // Allow hover styles on non-touch devices only. This prevents an
         // issue with hover being sticky on touch devices (e.g. mobile).
@@ -204,15 +203,18 @@ const styles = StyleSheet.create({
             // Revert the hover styles to the default/resting state (mobile
             // only).
             [":hover[aria-disabled=false]" as any]: {
-                color: white,
-                background: offBlack,
+                color: semanticColor.action.filled.progressive.default
+                    .foreground,
+                background:
+                    semanticColor.action.filled.progressive.default.background,
             },
         },
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: color.fadedBlue,
-            background: color.activeBlue,
+            color: semanticColor.action.filled.progressive.press.foreground,
+            background:
+                semanticColor.action.filled.progressive.press.background,
         },
     },
     shared: {

@@ -7,7 +7,12 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    color,
+    spacing,
+    semanticColor,
+    border,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import {addStyle, PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
@@ -1093,12 +1098,13 @@ const styles = StyleSheet.create({
     },
 
     dropdown: {
-        backgroundColor: color.white,
-        borderRadius: 4,
+        backgroundColor: semanticColor.surface.primary,
+        borderRadius: border.radius.medium_4,
         paddingTop: spacing.xxxSmall_4,
         paddingBottom: spacing.xxxSmall_4,
-        border: `solid 1px ${color.offBlack16}`,
-        boxShadow: `0px 8px 8px 0px ${fade(color.offBlack, 0.1)}`,
+        border: `solid 1px ${semanticColor.border.primary}`,
+        // TODO(WB-1878): Move to elevation tokens.
+        boxShadow: `0px 8px 8px 0px ${color.offBlack8}`,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
@@ -1115,7 +1121,7 @@ const styles = StyleSheet.create({
     },
 
     noResult: {
-        color: color.offBlack64,
+        color: semanticColor.text.secondary,
         alignSelf: "center",
         marginTop: spacing.xxSmall_6,
     },
