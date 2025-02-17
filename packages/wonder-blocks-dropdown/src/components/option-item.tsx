@@ -390,6 +390,9 @@ const styles = StyleSheet.create({
         [":hover[aria-disabled=false] .checkbox" as any]: {
             background: white,
         },
+        [":active[aria-disabled=false] .checkbox" as any]: {
+            background: color.white,
+        },
         [":hover[aria-disabled=false] .check" as any]: {
             color: blue,
         },

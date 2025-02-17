@@ -66,6 +66,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        // These stories are being tested in option-item-variants.stories.tsx
+        chromatic: {
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof OptionItem>;
 
@@ -140,4 +144,10 @@ export const HorizontalRule = {
             <OptionItem {...args} />
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Enabling to test how the horizontal rule looks.
+            disableSnapshot: false,
+        },
+    },
 };

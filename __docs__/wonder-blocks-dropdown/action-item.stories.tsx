@@ -69,6 +69,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        // These stories are being tested in action-item-variants.stories.tsx
+        chromatic: {
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof ActionItem>;
 
@@ -154,4 +158,10 @@ export const HorizontalRule = {
             <ActionItem {...args} />
         </View>
     ),
+    parameters: {
+        chromatic: {
+            // Enabling to test how the horizontal rule looks.
+            disableSnapshot: false,
+        },
+    },
 };
