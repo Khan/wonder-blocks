@@ -49,7 +49,7 @@ const theme = {
 
 const styles = StyleSheet.create({
     separator: {
-        borderBottom: `1px solid ${theme.separator.color.border}`,
+        borderTop: `1px solid ${theme.separator.color.border}`,
         height: 1,
         minHeight: 1,
         marginTop: spacing.xxxSmall_4,
