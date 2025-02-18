@@ -8,7 +8,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
@@ -109,14 +109,14 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.fadedPurple24,
-        color: color.offBlack,
+        background: semanticColor.status.warning.background,
+        color: semanticColor.text.primary,
         padding: spacing.medium_16,
     },
     focused: {
-        outlineColor: color.purple,
+        outlineColor: semanticColor.border.focus,
         outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     pressed: {
-        color: color.blue,
+        color: semanticColor.status.warning.foreground,
     },
 });
 

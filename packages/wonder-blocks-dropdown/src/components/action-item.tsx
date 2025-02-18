@@ -173,6 +173,17 @@ export default class ActionItem extends React.Component<ActionProps> {
     }
 }
 
+const theme = {
+    hover: {
+        background: semanticColor.action.filled.progressive.hover.background,
+        foreground: semanticColor.action.filled.progressive.hover.foreground,
+    },
+    press: {
+        background: semanticColor.action.filled.progressive.press.background,
+        foreground: semanticColor.action.filled.progressive.press.foreground,
+    },
+};
+
 const styles = StyleSheet.create({
     wrapper: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
@@ -193,28 +204,14 @@ const styles = StyleSheet.create({
 
         // Overrides the default cell state for the button element.
         [":hover[aria-disabled=false]" as any]: {
-            color: semanticColor.action.filled.progressive.hover.foreground,
-            background:
-                semanticColor.action.filled.progressive.hover.background,
-        },
-        // Allow hover styles on non-touch devices only. This prevents an
-        // issue with hover being sticky on touch devices (e.g. mobile).
-        ["@media not (hover: hover)" as any]: {
-            // Revert the hover styles to the default/resting state (mobile
-            // only).
-            [":hover[aria-disabled=false]" as any]: {
-                color: semanticColor.action.filled.progressive.default
-                    .foreground,
-                background:
-                    semanticColor.action.filled.progressive.default.background,
-            },
+            color: theme.hover.foreground,
+            background: theme.hover.background,
         },
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: semanticColor.action.filled.progressive.press.foreground,
-            background:
-                semanticColor.action.filled.progressive.press.background,
+            color: theme.press.foreground,
+            background: theme.press.background,
         },
     },
     shared: {

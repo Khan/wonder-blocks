@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     pressed: {
-        color: semanticColor.text.secondary,
+        color: semanticColor.status.warning.foreground,
     },
 });
 

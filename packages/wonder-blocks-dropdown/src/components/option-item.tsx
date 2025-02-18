@@ -309,6 +309,57 @@ const focusedStyle = {
     outlineOffset: -spacing.xxxxSmall_2,
 };
 
+const theme = {
+    root: {
+        default: {
+            background: semanticColor.surface.primary,
+            foreground: semanticColor.text.primary,
+        },
+        hover: {
+            background:
+                semanticColor.action.filled.progressive.hover.background,
+            foreground:
+                semanticColor.action.filled.progressive.hover.foreground,
+        },
+        press: {
+            background:
+                semanticColor.action.filled.progressive.press.background,
+            foreground:
+                semanticColor.action.filled.progressive.press.foreground,
+        },
+        disabled: {
+            background: "transparent",
+            foreground: semanticColor.text.disabled,
+        },
+    },
+    checkbox: {
+        default: {},
+        hover: {
+            background:
+                semanticColor.action.outlined.progressive.hover.background,
+            foreground:
+                semanticColor.action.outlined.progressive.hover.foreground,
+        },
+        press: {
+            // NOTE: The checkbox press state uses white as the background
+            background: semanticColor.surface.primary,
+            foreground:
+                semanticColor.action.outlined.progressive.press.foreground,
+        },
+        selected: {
+            background:
+                semanticColor.action.filled.progressive.default.background,
+            foreground:
+                semanticColor.action.filled.progressive.default.foreground,
+        },
+    },
+    subtitle: {
+        default: semanticColor.text.secondary,
+        hover: semanticColor.text.inverse,
+        press: semanticColor.text.inverse,
+    },
+};
+
 const styles = StyleSheet.create({
     reset: {
         margin: 0,
@@ -328,7 +379,8 @@ const styles = StyleSheet.create({
         color: "inherit",
     },
     item: {
-        backgroundColor: semanticColor.surface.primary,
+        background: theme.root.default.background,
+        color: theme.root.default.foreground,
         // Reset the default styles for the cell element so it can grow
         // vertically.
         minHeight: "unset",
@@ -347,9 +399,8 @@ const styles = StyleSheet.create({
 
         // Overrides the default cell state for the button element.
         [":hover[aria-disabled=false]" as any]: {
-            color: semanticColor.action.filled.progressive.hover.foreground,
-            background:
-                semanticColor.action.filled.progressive.hover.background,
+            color: theme.root.hover.foreground,
+            background: theme.root.hover.background,
         },
 
         [":active[aria-selected=false]" as any]: {},
@@ -360,7 +411,7 @@ const styles = StyleSheet.create({
         },
 
         [":is([aria-disabled=true])" as any]: {
-            color: semanticColor.text.disabled,
+            color: theme.root.disabled.foreground,
             ":focus-visible": {
                 // Prevent the focus ring from being displayed when the cell is
                 // disabled.
@@ -368,61 +419,46 @@ const styles = StyleSheet.create({
             },
         },
 
-        // Allow hover styles on non-touch devices only. This prevents an
-        // issue with hover being sticky on touch devices (e.g. mobile).
-        ["@media not (hover: hover)" as any]: {
-            // Revert the hover styles to the default/resting state (mobile
-            // only).
-            [":hover[aria-disabled=false]" as any]: {
-                color: semanticColor.action.filled.progressive.default
-                    .foreground,
-                background:
-                    semanticColor.action.filled.progressive.default.background,
-            },
-        },
-
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: semanticColor.action.filled.progressive.press.foreground,
-            background:
-                semanticColor.action.filled.progressive.press.background,
+            color: theme.root.press.foreground,
+            background: theme.root.press.background,
         },
 
         // checkbox states (see checkbox.tsx)
         [":hover[aria-disabled=false] .checkbox" as any]: {
-            background: semanticColor.surface.primary,
+            background: theme.checkbox.hover.background,
         },
         [":active[aria-disabled=false] .checkbox" as any]: {
-            background: semanticColor.surface.primary,
+            background: theme.checkbox.press.background,
         },
         [":hover[aria-disabled=false] .check" as any]: {
-            color: semanticColor.action.outlined.progressive.hover.foreground,
+            color: theme.checkbox.hover.foreground,
         },
         [":active[aria-disabled=false] .check" as any]: {
-            color: semanticColor.action.outlined.progressive.press.foreground,
+            color: theme.checkbox.press.foreground,
         },
 
         [":is([aria-selected=true]) .checkbox" as any]: {
-            background:
-                semanticColor.action.filled.progressive.default.background,
+            background: theme.checkbox.selected.background,
         },
 
         [":is([aria-selected=true]) .check" as any]: {
-            color: semanticColor.text.inverse,
+            color: theme.checkbox.selected.foreground,
         },
 
         /**
          * Cell states
          */
         [":is([aria-disabled=false]) .subtitle" as any]: {
-            color: semanticColor.text.secondary,
+            color: theme.subtitle.default,
         },
 
         [":hover[aria-disabled=false] .subtitle" as any]: {
-            color: semanticColor.text.inverse,
+            color: theme.subtitle.hover,
         },
         [":active[aria-disabled=false] .subtitle" as any]: {
-            color: semanticColor.text.inverse,
+            color: theme.subtitle.press,
         },
     },
     itemFocused: focusedStyle,
