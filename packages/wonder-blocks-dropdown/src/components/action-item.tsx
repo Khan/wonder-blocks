@@ -173,14 +173,23 @@ export default class ActionItem extends React.Component<ActionProps> {
     }
 }
 
+// TODO(WB-1868): Move this to a shared theme file.
 const theme = {
-    hover: {
-        background: semanticColor.action.filled.progressive.hover.background,
-        foreground: semanticColor.action.filled.progressive.hover.foreground,
-    },
-    press: {
-        background: semanticColor.action.filled.progressive.press.background,
-        foreground: semanticColor.action.filled.progressive.press.foreground,
+    actionItem: {
+        color: {
+            hover: {
+                background:
+                    semanticColor.action.filled.progressive.hover.background,
+                foreground:
+                    semanticColor.action.filled.progressive.hover.foreground,
+            },
+            press: {
+                background:
+                    semanticColor.action.filled.progressive.press.background,
+                foreground:
+                    semanticColor.action.filled.progressive.press.foreground,
+            },
+        },
     },
 };
 
@@ -204,14 +213,14 @@ const styles = StyleSheet.create({
 
         // Overrides the default cell state for the button element.
         [":hover[aria-disabled=false]" as any]: {
-            color: theme.hover.foreground,
-            background: theme.hover.background,
+            color: theme.actionItem.color.hover.foreground,
+            background: theme.actionItem.color.hover.background,
         },
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: theme.press.foreground,
-            background: theme.press.background,
+            color: theme.actionItem.color.press.foreground,
+            background: theme.actionItem.color.press.background,
         },
     },
     shared: {

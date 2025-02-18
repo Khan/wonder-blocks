@@ -3,7 +3,11 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import checkIcon from "@phosphor-icons/core/bold/check-bold.svg";
 
 /**
@@ -57,6 +61,22 @@ const Checkbox = function (props: CheckProps): React.ReactElement {
 
 export default Checkbox;
 
+// TODO(WB-1868): Move this to a theme file.
+const theme = {
+    // Merge this with the `checkbox` key in `option-item.tsx`.
+    checkbox: {
+        color: {
+            default: {
+                border: semanticColor.border.strong,
+            },
+            disabled: {
+                border: semanticColor.border.primary,
+                background: semanticColor.action.disabled.secondary,
+            },
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     checkbox: {
         alignSelf: "center",
@@ -64,10 +84,10 @@ const styles = StyleSheet.create({
         minHeight: spacing.medium_16,
         minWidth: spacing.medium_16,
         height: spacing.medium_16,
-        borderRadius: 3,
-        borderWidth: 1,
+        borderRadius: border.radius.small_3,
+        borderWidth: border.width.hairline,
         borderStyle: "solid",
-        borderColor: semanticColor.border.strong,
+        borderColor: theme.checkbox.color.default.border,
     },
 
     noBorder: {
@@ -75,8 +95,8 @@ const styles = StyleSheet.create({
     },
 
     disabledCheckbox: {
-        borderColor: semanticColor.border.primary,
-        backgroundColor: semanticColor.action.disabled.secondary,
+        borderColor: theme.checkbox.color.disabled.border,
+        backgroundColor: theme.checkbox.color.disabled.background,
     },
 
     // The border of 1px on the selected, disabled checkbox pushes the check out

@@ -6,7 +6,6 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 const rows = [
     {name: "Unchecked", props: {checked: false}},
@@ -24,7 +23,7 @@ const columns = [
         props: {disabled: true},
     },
     {
-        name: "Custon label",
+        name: "Custom label",
         props: {
             label: "Action Item",
             onClick: () => {},
@@ -66,16 +65,16 @@ const meta = {
     },
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
-            <View
-                style={{
-                    background: semanticColor.surface.secondary,
-                    width: 800,
-                }}
-            >
+            <View style={{width: 800}}>
                 <Story />
             </View>
         ),
     ],
+    parameters: {
+        backgrounds: {
+            default: "offWhite",
+        },
+    },
     tags: ["!autodocs"],
 } satisfies Meta<typeof ActionItem>;
 

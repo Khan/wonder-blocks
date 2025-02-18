@@ -207,11 +207,23 @@ export default function Listbox(props: Props) {
     );
 }
 
+// TODO(WB-1868): Move this to a theme file.
+const theme = {
+    // Merge with the `listbox` key in `combobox.tsx`.
+    listbox: {
+        color: {
+            disabled: {
+                foreground: semanticColor.text.disabled,
+            },
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     listbox: {
         outline: "none",
     },
     disabled: {
-        color: semanticColor.text.disabled,
+        color: theme.listbox.color.disabled.foreground,
     },
 });

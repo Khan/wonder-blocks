@@ -309,54 +309,66 @@ const focusedStyle = {
     outlineOffset: -spacing.xxxxSmall_2,
 };
 
+// TODO(WB-1868): Move this to a theme file.
 const theme = {
-    root: {
-        default: {
-            background: semanticColor.surface.primary,
-            foreground: semanticColor.text.primary,
-        },
-        hover: {
-            background:
-                semanticColor.action.filled.progressive.hover.background,
-            foreground:
-                semanticColor.action.filled.progressive.hover.foreground,
-        },
-        press: {
-            background:
-                semanticColor.action.filled.progressive.press.background,
-            foreground:
-                semanticColor.action.filled.progressive.press.foreground,
-        },
-        disabled: {
-            background: "transparent",
-            foreground: semanticColor.text.disabled,
+    optionItem: {
+        color: {
+            default: {
+                background: semanticColor.surface.primary,
+                foreground: semanticColor.text.primary,
+            },
+            hover: {
+                background:
+                    semanticColor.action.filled.progressive.hover.background,
+                foreground:
+                    semanticColor.action.filled.progressive.hover.foreground,
+            },
+            press: {
+                background:
+                    semanticColor.action.filled.progressive.press.background,
+                foreground:
+                    semanticColor.action.filled.progressive.press.foreground,
+            },
+            disabled: {
+                background: "transparent",
+                foreground: semanticColor.text.disabled,
+            },
         },
     },
     checkbox: {
-        default: {},
-        hover: {
-            background:
-                semanticColor.action.outlined.progressive.hover.background,
-            foreground:
-                semanticColor.action.outlined.progressive.hover.foreground,
-        },
-        press: {
-            // NOTE: The checkbox press state uses white as the background
-            background: semanticColor.surface.primary,
-            foreground:
-                semanticColor.action.outlined.progressive.press.foreground,
-        },
-        selected: {
-            background:
-                semanticColor.action.filled.progressive.default.background,
-            foreground:
-                semanticColor.action.filled.progressive.default.foreground,
+        color: {
+            hover: {
+                background:
+                    semanticColor.action.outlined.progressive.hover.background,
+                foreground:
+                    semanticColor.action.outlined.progressive.hover.foreground,
+            },
+            press: {
+                // NOTE: The checkbox press state uses white as the background
+                background: semanticColor.surface.primary,
+                foreground:
+                    semanticColor.action.outlined.progressive.press.foreground,
+            },
+            selected: {
+                background:
+                    semanticColor.action.filled.progressive.default.background,
+                foreground:
+                    semanticColor.action.filled.progressive.default.foreground,
+            },
         },
     },
     subtitle: {
-        default: semanticColor.text.secondary,
-        hover: semanticColor.text.inverse,
-        press: semanticColor.text.inverse,
+        color: {
+            default: {
+                foreground: semanticColor.text.secondary,
+            },
+            hover: {
+                foreground: semanticColor.text.inverse,
+            },
+            press: {
+                foreground: semanticColor.text.inverse,
+            },
+        },
     },
 };
 
@@ -379,8 +391,8 @@ const styles = StyleSheet.create({
         color: "inherit",
     },
     item: {
-        background: theme.root.default.background,
-        color: theme.root.default.foreground,
+        background: theme.optionItem.color.default.background,
+        color: theme.optionItem.color.default.foreground,
         // Reset the default styles for the cell element so it can grow
         // vertically.
         minHeight: "unset",
@@ -399,8 +411,8 @@ const styles = StyleSheet.create({
 
         // Overrides the default cell state for the button element.
         [":hover[aria-disabled=false]" as any]: {
-            color: theme.root.hover.foreground,
-            background: theme.root.hover.background,
+            color: theme.optionItem.color.hover.foreground,
+            background: theme.optionItem.color.hover.background,
         },
 
         [":active[aria-selected=false]" as any]: {},
@@ -411,7 +423,7 @@ const styles = StyleSheet.create({
         },
 
         [":is([aria-disabled=true])" as any]: {
-            color: theme.root.disabled.foreground,
+            color: theme.optionItem.color.disabled.foreground,
             ":focus-visible": {
                 // Prevent the focus ring from being displayed when the cell is
                 // disabled.
@@ -421,44 +433,44 @@ const styles = StyleSheet.create({
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: theme.root.press.foreground,
-            background: theme.root.press.background,
+            color: theme.optionItem.color.press.foreground,
+            background: theme.optionItem.color.press.background,
         },
 
         // checkbox states (see checkbox.tsx)
         [":hover[aria-disabled=false] .checkbox" as any]: {
-            background: theme.checkbox.hover.background,
+            background: theme.checkbox.color.hover.background,
         },
         [":active[aria-disabled=false] .checkbox" as any]: {
-            background: theme.checkbox.press.background,
+            background: theme.checkbox.color.press.background,
         },
         [":hover[aria-disabled=false] .check" as any]: {
-            color: theme.checkbox.hover.foreground,
+            color: theme.checkbox.color.hover.foreground,
         },
         [":active[aria-disabled=false] .check" as any]: {
-            color: theme.checkbox.press.foreground,
+            color: theme.checkbox.color.press.foreground,
         },
 
         [":is([aria-selected=true]) .checkbox" as any]: {
-            background: theme.checkbox.selected.background,
+            background: theme.checkbox.color.selected.background,
         },
 
         [":is([aria-selected=true]) .check" as any]: {
-            color: theme.checkbox.selected.foreground,
+            color: theme.checkbox.color.selected.foreground,
         },
 
         /**
          * Cell states
          */
         [":is([aria-disabled=false]) .subtitle" as any]: {
-            color: theme.subtitle.default,
+            color: theme.subtitle.color.default.foreground,
         },
 
         [":hover[aria-disabled=false] .subtitle" as any]: {
-            color: theme.subtitle.hover,
+            color: theme.subtitle.color.hover.foreground,
         },
         [":active[aria-disabled=false] .subtitle" as any]: {
-            color: theme.subtitle.press,
+            color: theme.subtitle.color.press.foreground,
         },
     },
     itemFocused: focusedStyle,
@@ -468,10 +480,9 @@ const styles = StyleSheet.create({
     itemContainer: {
         minHeight: "unset",
         // Make sure that the item is always at least as tall as 40px.
-        padding: `${spacing.xSmall_8 + spacing.xxxxSmall_2}px ${
-            spacing.xSmall_8
-        }px`,
-        paddingRight: spacing.medium_16,
+        paddingBlock: spacing.xSmall_8 + spacing.xxxxSmall_2,
+        paddingInlineStart: spacing.xSmall_8,
+        paddingInlineEnd: spacing.medium_16,
         whiteSpace: "nowrap",
     },
 

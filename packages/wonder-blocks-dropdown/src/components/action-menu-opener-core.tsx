@@ -4,7 +4,11 @@ import {StyleSheet} from "aphrodite";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
@@ -98,6 +102,27 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
     }
 }
 
+// TODO(WB-1868): Move this to a shared theme file.
+const theme = {
+    actionMenuOpener: {
+        color: {
+            default: {
+                background: "none",
+                foreground:
+                    semanticColor.action.outlined.progressive.default
+                        .foreground,
+            },
+            disabled: {
+                foreground: semanticColor.action.disabled.default,
+            },
+            press: {
+                foreground:
+                    semanticColor.action.outlined.progressive.press.foreground,
+            },
+        },
+    },
+};
+
 const sharedStyles = StyleSheet.create({
     shared: {
         position: "relative",
@@ -120,12 +145,12 @@ const sharedStyles = StyleSheet.create({
         },
     },
     default: {
-        background: "none",
-        color: semanticColor.action.outlined.progressive.default.foreground,
+        background: theme.actionMenuOpener.color.default.background,
+        color: theme.actionMenuOpener.color.default.foreground,
     },
     disabled: {
-        color: semanticColor.action.disabled.default,
-        cursor: "default",
+        color: theme.actionMenuOpener.color.disabled.foreground,
+        cursor: "not-allowed",
     },
     small: {
         height: spacing.xLarge_32,
@@ -150,10 +175,10 @@ const sharedStyles = StyleSheet.create({
             right: 0,
             bottom: -1,
             background: "currentColor",
-            borderRadius: 2,
+            borderRadius: border.radius.xSmall_2,
         },
     },
     press: {
-        color: semanticColor.action.outlined.progressive.press.foreground,
+        color: theme.actionMenuOpener.color.press.foreground,
     },
 });

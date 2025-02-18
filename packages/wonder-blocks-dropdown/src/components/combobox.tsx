@@ -687,6 +687,40 @@ export default function Combobox({
     );
 }
 
+// TODO(WB-1868): Move this to a theme file.
+const theme = {
+    combobox: {
+        color: {
+            default: {
+                border: semanticColor.border.strong,
+                background: semanticColor.surface.primary,
+            },
+            focus: {
+                border: semanticColor.border.focus,
+                background: semanticColor.surface.primary,
+            },
+            disabled: {
+                border: semanticColor.border.primary,
+                background: semanticColor.action.disabled.secondary,
+                foreground: semanticColor.text.secondary,
+            },
+            error: {
+                border: semanticColor.status.critical.foreground,
+                background: semanticColor.status.critical.background,
+                foreground: semanticColor.text.primary,
+            },
+        },
+    },
+    listbox: {
+        color: {
+            default: {
+                background: semanticColor.surface.primary,
+                border: semanticColor.border.primary,
+            },
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
@@ -695,24 +729,24 @@ const styles = StyleSheet.create({
         maxWidth: "100%",
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
-        background: semanticColor.surface.primary,
+        background: theme.combobox.color.default.background,
         borderRadius: border.radius.medium_4,
-        border: `solid 1px ${semanticColor.border.strong}`,
+        border: `solid 1px ${theme.combobox.color.default.border}`,
         paddingInline: spacing.xSmall_8,
     },
     focused: {
-        background: semanticColor.surface.primary,
-        border: `1px solid ${semanticColor.border.focus}`,
+        background: theme.combobox.color.focus.background,
+        border: `1px solid ${theme.combobox.color.focus.border}`,
     },
     disabled: {
-        background: semanticColor.action.disabled.secondary,
-        border: `1px solid ${semanticColor.border.primary}`,
-        color: semanticColor.text.secondary,
+        background: theme.combobox.color.disabled.background,
+        border: `1px solid ${theme.combobox.color.disabled.border}`,
+        color: theme.combobox.color.disabled.foreground,
     },
     error: {
-        background: semanticColor.status.critical.background,
-        border: `1px solid ${semanticColor.status.critical.foreground}`,
-        color: semanticColor.text.primary,
+        background: theme.combobox.color.error.background,
+        border: `1px solid ${theme.combobox.color.error.border}`,
+        color: theme.combobox.color.error.foreground,
     },
     /**
      * Combobox input styles
@@ -737,9 +771,9 @@ const styles = StyleSheet.create({
      * Listbox custom styles
      */
     listbox: {
-        backgroundColor: semanticColor.surface.primary,
+        backgroundColor: theme.listbox.color.default.background,
         borderRadius: border.radius.medium_4,
-        border: `solid 1px ${semanticColor.border.primary}`,
+        border: `solid ${border.width.hairline}px ${theme.listbox.color.default.border}`,
         // TODO(WB-1878): Move to elevation tokens.
         boxShadow: `0px ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0px ${color.offBlack8}`,
         // We use a custom property to set the max height of the dropdown.
