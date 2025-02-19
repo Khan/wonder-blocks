@@ -156,12 +156,8 @@ type State = {
 };
 
 /**
- * **DEPRECATED**: Please use `LabeledField` with `TextField` instead.
- *
  * A LabeledTextField is an element used to accept a single line of text
  * from the user paired with a label, description, and error field elements.
- *
- * @deprecated
  */
 class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
     static defaultProps: DefaultProps = {
@@ -299,8 +295,12 @@ type ExportProps = OmitConstrained<
 >;
 
 /**
+ * **DEPRECATED**: Please use `LabeledField` with `TextField` instead.
+ *
  * A LabeledTextField is an element used to accept a single line of text
  * from the user paired with a label, description, and error field elements.
+ *
+ * @deprecated
  *
  * ### Usage
  *
