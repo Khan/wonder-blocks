@@ -271,6 +271,7 @@ export const WithDarkPanel: StoryComponentType = {
                     <ModalPanel
                         content={
                             <>
+                                {/* eslint-disable-next-line jsx-a11y/img-redundant-alt -- TODO: Address a11y error */}
                                 <img
                                     width="100%"
                                     src="https://cdn.kastatic.org/images/lohp/laptop_collage@2x.png"

@@ -44,7 +44,7 @@ type MultiSelectArgs = Partial<typeof MultiSelect>;
  * ```tsx
  * import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
  *
- * <MultiSelect onChange={setSelectedValues} selectedValues={selectedValues}>
+ * <MultiSelect aria-label="Fruits" onChange={setSelectedValues} selectedValues={selectedValues}>
  *  <OptionItem value="pear">Pear</OptionItem>
  *  <OptionItem value="mango">Mango</OptionItem>
  * </MultiSelect>
@@ -63,6 +63,7 @@ export default {
         implicitAllEnabled: false,
         id: "",
         testId: "",
+        "aria-label": "Planets",
     },
     parameters: {
         componentSubtitle: (
@@ -152,6 +153,7 @@ const Template = (args: any) => {
     return (
         <MultiSelect
             {...args}
+            aria-label={args["aria-label"]}
             onChange={setSelectedValues}
             selectedValues={selectedValues}
             opened={opened}
@@ -565,6 +567,7 @@ const VirtualizedMultiSelect = function (props: Props): React.ReactElement {
     return (
         <View style={styles.wrapper}>
             <MultiSelect
+                aria-label="Countries"
                 onChange={setSelectedValues}
                 shortcuts={true}
                 isFilterable={true}
@@ -681,6 +684,7 @@ export const CustomLabels: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <MultiSelect
+                    aria-label="Escuelas"
                     shortcuts={true}
                     isFilterable={true}
                     onChange={setSelectedValues}
@@ -727,6 +731,7 @@ export const CustomOptionItems: StoryComponentType = {
 
         return (
             <MultiSelect
+                aria-label="Users"
                 onChange={handleChange}
                 selectedValues={selectedValues}
                 onToggle={handleToggle}
@@ -778,6 +783,7 @@ export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
 
         return (
             <MultiSelect
+                aria-label="Languages"
                 onChange={handleChange}
                 selectedValues={selectedValues}
                 onToggle={handleToggle}

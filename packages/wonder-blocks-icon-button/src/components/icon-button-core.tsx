@@ -82,7 +82,7 @@ type Props = SharedProps & {
     onKeyUp?: (e: React.KeyboardEvent) => unknown;
 };
 
-const StyledAnchor = addStyle("a");
+const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
@@ -144,13 +144,13 @@ const IconButtonCore: React.ForwardRefExoticComponent<
                     {child}
                 </StyledLink>
             ) : (
-                <StyledAnchor
+                <StyledA
                     {...commonProps}
                     href={href}
                     ref={ref as React.Ref<HTMLAnchorElement>}
                 >
                     {child}
-                </StyledAnchor>
+                </StyledA>
             );
         } else {
             return (

@@ -3,9 +3,11 @@ import * as React from "react";
 import Link from "../link";
 
 // @ts-expect-error - href must be used with safeWithNav
+// eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
 <Link beforeNav={() => Promise.resolve()}>Hello, world!</Link>;
 
 // @ts-expect-error - href must be used with safeWithNav
+// eslint-disable-next-line jsx-a11y/anchor-is-valid -- TODO: Address a11y error
 <Link safeWithNav={() => Promise.resolve()}>Hello, world!</Link>;
 
 // It's okay to use onClick with href

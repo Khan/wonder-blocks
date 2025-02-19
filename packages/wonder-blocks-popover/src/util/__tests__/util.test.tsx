@@ -27,6 +27,7 @@ describe("isFocusable", () => {
 
     it("should mark a div with tabIndex greater than -1 as focusable", () => {
         // Arrange
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- TODO: Address a11y error
         render(<div tabIndex={0}>placeholder</div>);
 
         // Act

@@ -168,7 +168,10 @@ export default class SelectOpener extends React.Component<
                 aria-haspopup="listbox"
                 data-testid={testId}
                 id={id}
+                // eslint-disable-next-line jsx-a11y/role-has-required-aria-props -- TODO: Address a11y error
                 role="combobox"
+                /* Note(marcysutton): type=button prevents form submits on click */
+                type="button"
                 style={style}
                 onClick={!disabled ? this.handleClick : undefined}
                 onKeyDown={!disabled ? this.handleKeyDown : undefined}

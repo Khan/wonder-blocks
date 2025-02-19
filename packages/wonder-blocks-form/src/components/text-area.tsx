@@ -185,7 +185,7 @@ type TextAreaProps = AriaProps & {
     resizeType?: "horizontal" | "vertical" | "both" | "none";
 };
 
-const StyledTextArea = addStyle("textarea");
+const StyledTextarea = addStyle("textarea");
 
 const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     function TextArea(
@@ -259,7 +259,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
         return (
             <View style={[{width: "100%"}, rootStyle]}>
-                <StyledTextArea
+                <StyledTextarea
                     id={uniqueId}
                     data-testid={testId}
                     ref={ref}

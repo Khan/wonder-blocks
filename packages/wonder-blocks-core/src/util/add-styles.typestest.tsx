@@ -12,10 +12,10 @@ const styles = StyleSheet.create({
     },
 });
 
-const StyledList = addStyle("ul", styles.list);
+const StyledUl = addStyle("ul", styles.list);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const list1 = <StyledList />;
+const list1 = <StyledUl />;
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const list2 = <StyledList style={styles.customList} />;
+const list2 = <StyledUl style={styles.customList} />;

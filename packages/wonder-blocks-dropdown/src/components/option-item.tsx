@@ -138,7 +138,7 @@ type DefaultProps = {
     selected: OptionProps["selected"];
 };
 
-const StyledListItem = addStyle("li");
+const StyledLi = addStyle("li");
 
 /**
  * For option items that can be selected in a dropdown, selection denoted either
@@ -272,7 +272,8 @@ export default class OptionItem extends React.Component<OptionProps> {
         // Only used for Combobox component, not SingleSelect/MultiSelect
         if (parentComponent === "listbox") {
             return (
-                <StyledListItem
+                // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions -- TODO: Address a11y error
+                <StyledLi
                     onMouseDown={(e) => {
                         // Prevents the combobox from losing focus when clicking
                         // on the option item.
@@ -292,7 +293,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                     tabIndex={-1}
                 >
                     {this.renderCell()}
-                </StyledListItem>
+                </StyledLi>
             );
         }
 

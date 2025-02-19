@@ -2,6 +2,7 @@
 module.exports = {
     extends: [
         "@khanacademy",
+        "@khanacademy/eslint-config/a11y",
         // This config includes rules from @testing-library/jest-dom as well
         "plugin:testing-library/react",
         // This config includes rules from storybook to enforce story best
