@@ -5,7 +5,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
     HeadingSmall,
@@ -132,7 +132,7 @@ const CustomPopoverContent = (
                     <>
                         <PhosphorIcon
                             icon={IconMappings.pencilSimple}
-                            color={color.gold}
+                            color={semanticColor.status.warning.foreground}
                             size="large"
                         />
                         <LabelLarge>Option 1</LabelLarge>
@@ -144,7 +144,7 @@ const CustomPopoverContent = (
                     <>
                         <PhosphorIcon
                             icon={IconMappings.pencilSimple}
-                            color={color.green}
+                            color={semanticColor.status.success.foreground}
                             size="large"
                         />
                         <LabelLarge>Option 2</LabelLarge>
@@ -156,7 +156,7 @@ const CustomPopoverContent = (
                     <>
                         <PhosphorIcon
                             icon={IconMappings.pencilSimple}
-                            color={color.blue}
+                            color={semanticColor.status.notice.foreground}
                             size="large"
                         />
                         <LabelLarge>Option 3</LabelLarge>

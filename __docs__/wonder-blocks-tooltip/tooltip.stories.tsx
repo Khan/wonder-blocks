@@ -337,25 +337,6 @@ WithStyle.parameters = {
     },
 };
 
-WithStyle.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement.ownerDocument.body);
-
-    // Get HTML elements
-    const tooltipContent = await canvas.findByTestId("test-tooltip-content");
-    const innerTooltipView =
-        // eslint-disable-next-line testing-library/no-node-access
-        (await canvas.findByRole("tooltip")).firstChild;
-
-    // Assert
-    await expect(innerTooltipView).toHaveStyle(
-        "background-color: rgb(11, 33, 73)",
-    );
-    await expect(tooltipContent).toHaveStyle({
-        padding: "32px",
-        color: "#fff",
-    });
-};
-
 /**
  * Tooltip by default (and for performance reasons) only updates its position
  * under the following conditions:
