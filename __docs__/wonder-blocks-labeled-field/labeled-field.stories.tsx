@@ -5,7 +5,7 @@ import packageConfig from "../../packages/wonder-blocks-labeled-field/package.js
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {TextArea, TextField} from "@khanacademy/wonder-blocks-form";
 import LabeledFieldArgTypes from "./labeled-field.argtypes";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     MultiSelect,
@@ -67,6 +67,8 @@ export const Default: StoryComponentType = {
         required: "Custom required message",
     },
 };
+
+const StyledForm = addStyle("form");
 
 const AllFields = (
     storyArgs: PropsFor<typeof LabeledField> & {
@@ -208,7 +210,14 @@ const AllFields = (
     };
 
     return (
-        <View style={{gap: spacing.large_24}}>
+        <StyledForm
+            onSubmit={handleSubmit}
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: spacing.large_24,
+            }}
+        >
             <LabeledField
                 {...args}
                 errorMessage={textFieldErrorMessage}
@@ -310,10 +319,8 @@ const AllFields = (
                 }
             />
 
-            {showSubmitButtonInStory && (
-                <Button onClick={handleSubmit}>Submit</Button>
-            )}
-        </View>
+            {showSubmitButtonInStory && <Button type="submit">Submit</Button>}
+        </StyledForm>
     );
 };
 
