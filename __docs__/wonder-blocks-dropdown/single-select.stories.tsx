@@ -51,6 +51,14 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  * performance when rendering these elements and is capable of handling many
  * hundreds of items without performance problems.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
+ *
  * ### Usage
  *
  * #### General usage

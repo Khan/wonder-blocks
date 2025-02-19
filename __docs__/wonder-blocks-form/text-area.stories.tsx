@@ -18,6 +18,14 @@ import {validateEmail} from "./form-utilities";
 
 /**
  * A TextArea is an element used to accept text from the user.
+ *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
  */
 export default {
     title: "Packages / Form / TextArea",

@@ -18,6 +18,14 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
  * `SearchField` helps users input text to search for relevant content. It is
  * commonly used in search bars and search forms.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
+ *
  * ### Usage
  *
  * ```tsx
