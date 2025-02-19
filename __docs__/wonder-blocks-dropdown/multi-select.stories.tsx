@@ -182,6 +182,47 @@ export const Default: StoryComponentType = {
     },
 };
 
+/**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relavent accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.selectedValues || []);
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <MultiSelect
+                        {...args}
+                        selectedValues={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    >
+                        {optionItems}
+                    </MultiSelect>
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
+            disableSnapshot: true,
+        },
+    },
+};
+
 const ControlledWrapper = (args: any) => {
     const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
         [],

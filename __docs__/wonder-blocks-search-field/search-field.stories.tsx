@@ -115,6 +115,45 @@ export const Default: StoryComponentType = {
 };
 
 /**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relavent accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.value || "");
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <SearchField
+                        {...args}
+                        value={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    />
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
  * SearchField takes a `disabled` prop, which makes it unusable. Try to avoid
  * using this if possible as it is bad for accessibility.
  */

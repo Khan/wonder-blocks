@@ -217,6 +217,47 @@ export const Default: StoryComponentType = {
 };
 
 /**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relavent accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.selectedValue || "");
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <SingleSelect
+                        {...args}
+                        selectedValue={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    >
+                        {optionItems}
+                    </SingleSelect>
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
  * Controlled SingleSelect
  */
 const ControlledOpenedWrapper = (args: any) => {
