@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import CloseButton from "./close-button";
 
@@ -107,8 +107,9 @@ export default class PopoverContentCore extends React.Component<Props> {
 const styles = StyleSheet.create({
     content: {
         borderRadius: spacing.xxxSmall_4,
-        border: `solid 1px ${color.offBlack16}`,
-        backgroundColor: color.white,
+        border: `solid 1px ${semanticColor.border.primary}`,
+        backgroundColor: semanticColor.surface.primary,
+        // TODO(WB-1878): Use `elevation` token.
         boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
         margin: 0,
         maxWidth: spacing.medium_16 * 18, // 288px
@@ -120,13 +121,13 @@ const styles = StyleSheet.create({
      * Theming
      */
     blue: {
-        backgroundColor: color.blue,
-        color: color.white,
+        backgroundColor: semanticColor.surface.emphasis,
+        color: semanticColor.text.inverse,
     },
 
     darkBlue: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
+        backgroundColor: semanticColor.surface.inverse,
+        color: semanticColor.text.inverse,
     },
 
     /**

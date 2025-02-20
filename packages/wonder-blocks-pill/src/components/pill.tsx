@@ -15,6 +15,8 @@ import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
+const {semanticColor} = tokens;
+
 export type PillKind =
     | "neutral"
     | "accent"
@@ -218,67 +220,82 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
 
     switch (kind) {
         case "accent":
-            backgroundColor = tokens.color.blue;
+            backgroundColor = semanticColor.status.notice.foreground;
             break;
         case "info":
-            backgroundColor = tokens.color.fadedBlue16;
+            backgroundColor = semanticColor.status.notice.background;
             break;
         case "success":
-            backgroundColor = tokens.color.fadedGreen16;
+            backgroundColor = semanticColor.status.success.background;
             break;
         case "warning":
-            backgroundColor = tokens.color.fadedGold16;
+            backgroundColor = semanticColor.status.warning.background;
             break;
         case "critical":
-            backgroundColor = tokens.color.fadedRed16;
+            backgroundColor = semanticColor.status.critical.background;
             break;
         case "transparent":
             backgroundColor = "transparent";
             break;
         case "neutral":
         default:
-            backgroundColor = tokens.color.offBlack8;
+            backgroundColor = semanticColor.status.neutral.background;
     }
 
-    const activeColor =
-        kind === "neutral" || kind === "transparent"
-            ? tokens.color.offBlack16
-            : mix(tokens.color.offBlack32, backgroundColor);
+    const pressColor =
+        kind === "transparent"
+            ? semanticColor.status.neutral.background
+            : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
+              mix(tokens.color.offBlack32, backgroundColor);
 
     const textColor =
-        kind === "accent" ? tokens.color.white : tokens.color.offBlack;
-    const outlineColor =
-        kind === "critical" ? tokens.color.red : tokens.color.blue;
-    const activeOutlineColor =
-        kind === "critical" ? tokens.color.activeRed : tokens.color.activeBlue;
+        kind === "accent"
+            ? semanticColor.text.inverse
+            : semanticColor.text.primary;
 
-    const outline =
-        kind === "transparent"
-            ? `1px solid ${tokens.color.offBlack16}`
-            : "none";
+    const theme = {
+        default: {
+            border:
+                kind === "transparent"
+                    ? `1px solid ${semanticColor.border.primary}`
+                    : "none",
+            background: backgroundColor,
+            foreground: textColor,
+        },
+        focus: {
+            border: semanticColor.border.focus,
+        },
+        hover: {
+            border: semanticColor.border.focus,
+        },
+        press: {
+            border: semanticColor.action.filled.progressive.press.border,
+            background: pressColor,
+        },
+    };
 
     const colorStyles: StyleDeclaration = {
         pill: {
-            backgroundColor: backgroundColor,
-            outline,
-            color: textColor,
+            backgroundColor: theme.default.background,
+            outline: theme.default.border,
+            color: theme.default.foreground,
             alignItems: "center",
             justifyContent: "center",
         },
         clickableWrapper: {
-            outline,
+            outline: theme.default.border,
 
             ":hover": {
-                outline: `2px solid ${outlineColor}`,
+                outline: `2px solid ${theme.hover.border}`,
                 outlineOffset: tokens.spacing.xxxxSmall_2,
             },
             ":active": {
-                backgroundColor: activeColor,
-                outline: `2px solid ${activeOutlineColor}`,
+                backgroundColor: theme.press.background,
+                outline: `2px solid ${theme.press.border}`,
                 outlineOffset: tokens.spacing.xxxxSmall_2,
             },
             ":focus-visible": {
-                outline: `2px solid ${outlineColor}`,
+                outline: `2px solid ${theme.focus.border}`,
                 outlineOffset: tokens.spacing.xxxxSmall_2,
             },
         },

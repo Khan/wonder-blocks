@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import packageConfig from "../../packages/wonder-blocks-clickable/package.json";
@@ -52,9 +52,9 @@ export const Default: StoryComponentType = (args: any) => {
                     <View
                         style={[
                             styles.clickable,
-                            hovered && styles.hovered,
-                            focused && styles.focused,
-                            pressed && styles.pressed,
+                            hovered && styles.hover,
+                            focused && styles.focus,
+                            pressed && styles.press,
                         ]}
                         {...childrenProps}
                     >
@@ -92,9 +92,9 @@ export const WrappingButton: StoryComponentType = (args: any) => {
                         style={[
                             styles.clickable,
                             styles.newButton,
-                            hovered && styles.hovered,
-                            focused && styles.focused,
-                            pressed && styles.pressed,
+                            hovered && styles.hover,
+                            focused && styles.focus,
+                            pressed && styles.press,
                         ]}
                         {...childrenProps}
                     >
@@ -125,9 +125,9 @@ export const WithTabIndex: StoryComponentType = () => {
                     <View
                         style={[
                             styles.clickable,
-                            hovered && styles.hovered,
-                            focused && styles.focused,
-                            pressed && styles.pressed,
+                            hovered && styles.hover,
+                            focused && styles.focus,
+                            pressed && styles.press,
                         ]}
                         {...childrenProps}
                     >
@@ -156,6 +156,8 @@ WithTabIndex.parameters = {
     },
 };
 
+const actionCategory = semanticColor.action.outlined.progressive;
+
 const styles = StyleSheet.create({
     clickable: {
         cursor: "pointer",
@@ -164,18 +166,19 @@ const styles = StyleSheet.create({
     },
     newButton: {
         border: "none",
-        backgroundColor: color.white,
+        backgroundColor: actionCategory.default.background,
         width: "100%",
     },
-    hovered: {
+    hover: {
         textDecoration: "underline",
-        backgroundColor: color.blue,
-        color: color.white,
+        backgroundColor: actionCategory.hover.background,
+        color: actionCategory.hover.foreground,
     },
-    pressed: {
-        backgroundColor: color.darkBlue,
+    press: {
+        backgroundColor: actionCategory.press.background,
     },
-    focused: {
-        outline: `solid 4px ${color.purple}`,
+    focus: {
+        outline: `solid 1px ${semanticColor.border.focus}`,
+        outlineOffset: spacing.xxxxSmall_2,
     },
 });
