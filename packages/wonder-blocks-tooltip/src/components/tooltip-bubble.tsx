@@ -1,7 +1,7 @@
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import TooltipContent from "./tooltip-content";
 import TooltipTail from "./tooltip-tail";
@@ -124,8 +124,9 @@ const styles = StyleSheet.create({
     content: {
         maxWidth: 472,
         borderRadius: spacing.xxxSmall_4,
-        border: `solid 1px ${color.offBlack16}`,
-        backgroundColor: color.white,
+        border: `solid 1px ${semanticColor.border.primary}`,
+        backgroundColor: semanticColor.surface.primary,
+        // TODO(WB-1878): Use `elevation` token.
         boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
         justifyContent: "center",
     },
