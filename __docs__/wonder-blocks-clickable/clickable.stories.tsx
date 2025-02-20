@@ -4,7 +4,7 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
@@ -305,6 +305,8 @@ Ref.parameters = {
     },
 };
 
+const progressive = semanticColor.action.outlined.progressive;
+
 const styles = StyleSheet.create({
     clickable: {
         borderWidth: 1,
@@ -312,21 +314,21 @@ const styles = StyleSheet.create({
     },
     hovered: {
         textDecoration: "underline",
-        backgroundColor: color.teal,
+        backgroundColor: progressive.hover.background,
     },
     pressed: {
-        color: color.blue,
+        color: progressive.press.foreground,
     },
     focused: {
-        outline: `solid 4px ${color.purple}`,
+        outline: `solid 4px ${semanticColor.border.focus}`,
     },
     centerText: {
         gap: spacing.medium_16,
         textAlign: "center",
     },
     dark: {
-        backgroundColor: color.darkBlue,
-        color: color.white,
+        backgroundColor: semanticColor.surface.inverse,
+        color: semanticColor.text.inverse,
         padding: spacing.xSmall_8,
     },
     row: {
@@ -337,13 +339,13 @@ const styles = StyleSheet.create({
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${color.purple}`,
+        border: `1px dashed ${semanticColor.border.primary}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },
     disabled: {
-        color: color.white,
-        backgroundColor: color.offBlack64,
+        color: semanticColor.text.inverse,
+        backgroundColor: semanticColor.surface.overlay,
     },
     button: {
         maxWidth: 150,
