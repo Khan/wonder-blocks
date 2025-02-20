@@ -148,7 +148,7 @@ export default class SelectOpener extends React.Component<
         const stateStyles = _generateStyles(isPlaceholder, error);
 
         const iconColor = disabled
-            ? semanticColor.action.disabled.default
+            ? semanticColor.icon.disabled
             : semanticColor.icon.primary;
 
         const style = [

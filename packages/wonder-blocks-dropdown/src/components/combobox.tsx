@@ -700,6 +700,7 @@ const theme = {
                 background: semanticColor.surface.primary,
             },
             disabled: {
+                // TODO(WB-1889): Use the new disabled color tokens.
                 border: semanticColor.border.primary,
                 background: semanticColor.action.disabled.secondary,
                 foreground: semanticColor.text.secondary,

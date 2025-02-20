@@ -113,6 +113,7 @@ const theme = {
                         .foreground,
             },
             disabled: {
+                // TODO(WB-1889): Use the new disabled color tokens.
                 foreground: semanticColor.action.disabled.default,
             },
             press: {
