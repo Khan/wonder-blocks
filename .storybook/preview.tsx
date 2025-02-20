@@ -1,7 +1,7 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
@@ -50,19 +50,19 @@ const parameters = {
         values: [
             {
                 name: "light",
-                value: color.white,
+                value: semanticColor.surface.primary,
             },
             {
                 name: "darkBlue",
-                value: color.darkBlue,
+                value: semanticColor.surface.inverse,
             },
             {
                 name: "khanmigo",
-                value: color.eggplant,
+                value: semanticColor.khanmigo.primary,
             },
             {
                 name: "offWhite",
-                value: color.offWhite,
+                value: semanticColor.surface.secondary,
             },
         ],
     },

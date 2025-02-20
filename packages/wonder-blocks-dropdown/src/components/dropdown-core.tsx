@@ -7,7 +7,12 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    color,
+    spacing,
+    semanticColor,
+    border,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import {addStyle, PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
@@ -1087,18 +1092,36 @@ class DropdownCore extends React.Component<Props, State> {
     }
 }
 
+// TODO(WB-1868): Move this to a theme file.
+const theme = {
+    dropdown: {
+        color: {
+            default: {
+                background: semanticColor.surface.primary,
+                border: semanticColor.border.primary,
+            },
+        },
+    },
+    noResults: {
+        color: {
+            foreground: semanticColor.text.secondary,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     menuWrapper: {
         width: "fit-content",
     },
 
     dropdown: {
-        backgroundColor: color.white,
-        borderRadius: 4,
+        backgroundColor: theme.dropdown.color.default.background,
+        borderRadius: border.radius.medium_4,
         paddingTop: spacing.xxxSmall_4,
         paddingBottom: spacing.xxxSmall_4,
-        border: `solid 1px ${color.offBlack16}`,
-        boxShadow: `0px 8px 8px 0px ${fade(color.offBlack, 0.1)}`,
+        border: `solid 1px ${theme.dropdown.color.default.border}`,
+        // TODO(WB-1878): Move to elevation tokens.
+        boxShadow: `0px 8px 8px 0px ${color.offBlack8}`,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
@@ -1115,7 +1138,7 @@ const styles = StyleSheet.create({
     },
 
     noResult: {
-        color: color.offBlack64,
+        color: theme.noResults.color.foreground,
         alignSelf: "center",
         marginTop: spacing.xxSmall_6,
     },

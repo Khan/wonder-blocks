@@ -4,7 +4,11 @@ import {StyleSheet} from "aphrodite";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
@@ -55,16 +59,13 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             ...restProps
         } = this.props;
 
-        const buttonColor = color.blue;
-        const buttonStyles = _generateStyles(buttonColor);
         const disabled = disabledProp;
 
         const defaultStyle = [
             sharedStyles.shared,
+            sharedStyles.default,
             disabled && sharedStyles.disabled,
-            buttonStyles.default,
-            disabled && buttonStyles.disabled,
-            !disabled && pressed && buttonStyles.active,
+            !disabled && pressed && sharedStyles.press,
         ];
 
         const label = (
@@ -84,7 +85,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             >
                 <View
                     style={
-                        !disabled && (hovered || focused) && buttonStyles.focus
+                        !disabled && (hovered || focused) && sharedStyles.focus
                     }
                 >
                     {label}
@@ -100,6 +101,28 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
         );
     }
 }
+
+// TODO(WB-1868): Move this to a shared theme file.
+const theme = {
+    actionMenuOpener: {
+        color: {
+            default: {
+                background: "none",
+                foreground:
+                    semanticColor.action.outlined.progressive.default
+                        .foreground,
+            },
+            disabled: {
+                // TODO(WB-1889): Use the new disabled color tokens.
+                foreground: semanticColor.action.disabled.default,
+            },
+            press: {
+                foreground:
+                    semanticColor.action.outlined.progressive.press.foreground,
+            },
+        },
+    },
+};
 
 const sharedStyles = StyleSheet.create({
     shared: {
@@ -122,8 +145,13 @@ const sharedStyles = StyleSheet.create({
             WebkitTapHighlightColor: "rgba(0,0,0,0)",
         },
     },
+    default: {
+        background: theme.actionMenuOpener.color.default.background,
+        color: theme.actionMenuOpener.color.default.foreground,
+    },
     disabled: {
-        cursor: "auto",
+        color: theme.actionMenuOpener.color.disabled.foreground,
+        cursor: "not-allowed",
     },
     small: {
         height: spacing.xLarge_32,
@@ -139,53 +167,19 @@ const sharedStyles = StyleSheet.create({
         textOverflow: "ellipsis",
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
-    hiddenText: {
-        visibility: "hidden",
+    focus: {
+        ":after": {
+            content: "''",
+            position: "absolute",
+            height: 2,
+            left: 0,
+            right: 0,
+            bottom: -1,
+            background: "currentColor",
+            borderRadius: border.radius.xSmall_2,
+        },
     },
-    spinner: {
-        position: "absolute",
+    press: {
+        color: theme.actionMenuOpener.color.press.foreground,
     },
 });
-
-const styles: Record<string, any> = {};
-
-const _generateStyles = (localColor: string) => {
-    const buttonType = localColor;
-    if (styles[buttonType]) {
-        return styles[buttonType];
-    }
-
-    const {offBlack32} = color;
-    const activeColor = color.activeBlue;
-
-    let newStyles: Record<string, any> = {};
-
-    newStyles = {
-        default: {
-            background: "none",
-            color: localColor,
-        },
-        focus: {
-            ":after": {
-                content: "''",
-                position: "absolute",
-                height: 2,
-                left: 0,
-                right: 0,
-                bottom: -1,
-                background: "currentColor",
-                borderRadius: 2,
-            },
-        },
-        active: {
-            color: activeColor,
-        },
-        disabled: {
-            color: offBlack32,
-            cursor: "default",
-        },
-    };
-
-    styles[buttonType] = StyleSheet.create(newStyles);
-    return styles[buttonType];
-};

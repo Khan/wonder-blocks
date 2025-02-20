@@ -7,7 +7,7 @@ import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 
 import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {Combobox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -49,7 +49,7 @@ const customItems = allProfilesWithPictures.map((user, index) => (
 
 const styles = StyleSheet.create({
     example: {
-        background: color.offWhite,
+        background: semanticColor.surface.secondary,
         padding: spacing.medium_16,
         width: 300,
     },

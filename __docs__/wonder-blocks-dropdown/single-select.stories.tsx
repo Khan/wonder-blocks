@@ -7,7 +7,7 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -115,14 +115,14 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.fadedPurple24,
-        color: color.offBlack,
+        background: semanticColor.status.warning.background,
+        color: semanticColor.text.primary,
         padding: spacing.medium_16,
     },
     focused: {
-        outlineColor: color.purple,
+        outlineColor: semanticColor.border.focus,
         outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     pressed: {
-        backgroundColor: color.blue,
+        color: semanticColor.status.warning.foreground,
     },
 
     fullBleed: {
@@ -147,18 +147,6 @@ const styles = StyleSheet.create({
     },
     scrollableArea: {
         height: "200vh",
-    },
-    /**
-     * Dark
-     */
-    darkBackgroundWrapper: {
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        backgroundColor: color.darkBlue,
-        width: "100%",
-        height: 200,
-        paddingRight: spacing.medium_16,
-        paddingTop: spacing.medium_16,
     },
     // AutoFocus
     icon: {
@@ -887,7 +875,7 @@ export const AutoFocusDisabled: StoryComponentType = {
                                 style={styles.fullBleed}
                             />
                             <PhosphorIcon
-                                color={color.blue}
+                                color={semanticColor.status.notice.foreground}
                                 icon={IconMappings.clockBold}
                                 size="small"
                                 style={styles.icon}

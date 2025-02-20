@@ -2,14 +2,12 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
-
-const {blue, white, offBlack} = color;
 
 type CompactCellProps = PropsFor<typeof CompactCell>;
 
@@ -175,6 +173,26 @@ export default class ActionItem extends React.Component<ActionProps> {
     }
 }
 
+// TODO(WB-1868): Move this to a shared theme file.
+const theme = {
+    actionItem: {
+        color: {
+            hover: {
+                background:
+                    semanticColor.action.filled.progressive.hover.background,
+                foreground:
+                    semanticColor.action.filled.progressive.hover.foreground,
+            },
+            press: {
+                background:
+                    semanticColor.action.filled.progressive.press.background,
+                foreground:
+                    semanticColor.action.filled.progressive.press.foreground,
+            },
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     wrapper: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
@@ -189,30 +207,20 @@ const styles = StyleSheet.create({
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
             borderRadius: spacing.xxxSmall_4,
-            outline: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+            outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.border.focus}`,
             outlineOffset: -spacing.xxxxSmall_2,
         },
 
         // Overrides the default cell state for the button element.
         [":hover[aria-disabled=false]" as any]: {
-            color: white,
-            background: blue,
-        },
-        // Allow hover styles on non-touch devices only. This prevents an
-        // issue with hover being sticky on touch devices (e.g. mobile).
-        ["@media not (hover: hover)" as any]: {
-            // Revert the hover styles to the default/resting state (mobile
-            // only).
-            [":hover[aria-disabled=false]" as any]: {
-                color: white,
-                background: offBlack,
-            },
+            color: theme.actionItem.color.hover.foreground,
+            background: theme.actionItem.color.hover.background,
         },
 
         // active and pressed states
         [":active[aria-disabled=false]" as any]: {
-            color: color.fadedBlue,
-            background: color.activeBlue,
+            color: theme.actionItem.color.press.foreground,
+            background: theme.actionItem.color.press.background,
         },
     },
     shared: {
