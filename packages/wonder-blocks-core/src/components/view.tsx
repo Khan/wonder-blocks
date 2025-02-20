@@ -2,6 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {useMemo} from "react";
 import addStyle from "../util/add-style";
 
 import type {TextViewSharedProps} from "../util/types";
@@ -25,19 +26,12 @@ const styles = StyleSheet.create({
     },
 });
 
-type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
 type Props = TextViewSharedProps & {
     /**
      * The HTML tag to render.
      */
-    tag?: ValidViewTags;
+    tag?: keyof JSX.IntrinsicElements;
 };
-
-const StyledDiv = addStyle("div", styles.default);
-const StyledArticle = addStyle("article", styles.default);
-const StyledAside = addStyle("aside", styles.default);
-const StyledNav = addStyle("nav", styles.default);
-const StyledSection = addStyle("section", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly
@@ -76,27 +70,9 @@ const View: React.ForwardRefExoticComponent<
         "data-testid": testId,
     } as const;
 
-    switch (tag) {
-        case "article":
-            return <StyledArticle {...commonProps} ref={ref} />;
-        case "aside":
-            return <StyledAside {...commonProps} ref={ref} />;
-        case "nav":
-            return <StyledNav {...commonProps} ref={ref} />;
-        case "section":
-            return <StyledSection {...commonProps} ref={ref} />;
-        case "div":
-            return (
-                <StyledDiv
-                    {...commonProps}
-                    ref={ref as React.Ref<HTMLDivElement>}
-                />
-            );
-        default:
-            // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-            tag as never;
-            throw Error(`${tag} is not an allowed value for the 'tag' prop`);
-    }
+    const StyledTag = useMemo(() => addStyle(tag, styles.default), [tag]);
+
+    return <StyledTag {...commonProps} ref={ref} />;
 });
 
 export default View;
