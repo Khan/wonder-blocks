@@ -403,43 +403,14 @@ export const WithStyle: StoryComponentType = {
             This link has a style.
         </Link>
     ),
+    parameters: {
+        chromatic: {
+            // Re-enable snapshots for this story since it's verifying that
+            // custom styles are applied (one-off)
+            disableSnapshot: false,
+        },
+    },
 };
-
-export const Navigation: StoryComponentType = () => (
-    <MemoryRouter>
-        <View>
-            <View style={styles.row}>
-                <Link
-                    href="/foo"
-                    style={styles.heading}
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("I'm still on the same page!");
-                    }}
-                >
-                    <LabelLarge>Uses Client-side Nav</LabelLarge>
-                </Link>
-                <Link
-                    href="/iframe.html?id=link--default&viewMode=story"
-                    style={styles.heading}
-                    skipClientNav
-                >
-                    <LabelLarge>Avoids Client-side Nav</LabelLarge>
-                </Link>
-            </View>
-            <View style={styles.navigation}>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">
-                            The first link does client-side navigation here.
-                        </View>
-                    </Route>
-                    <Route path="*">See navigation changes here</Route>
-                </Switch>
-            </View>
-        </View>
-    </MemoryRouter>
-);
 
 /**
  * If you want to navigate to an external URL and/or reload the window, make
@@ -450,12 +421,42 @@ export const Navigation: StoryComponentType = () => (
  * documentation](/story/button-navigation-callbacks--before-nav-callbacks&viewMode=docs)
  * for details.
  */
-Navigation.parameters = {
-    docs: {
-        description: {
-            story: ``,
-        },
-    },
+export const Navigation: StoryComponentType = {
+    render: () => (
+        <MemoryRouter>
+            <View>
+                <View style={styles.row}>
+                    <Link
+                        href="/foo"
+                        style={styles.heading}
+                        onClick={() => {
+                            // eslint-disable-next-line no-console
+                            console.log("I'm still on the same page!");
+                        }}
+                    >
+                        <LabelLarge>Uses Client-side Nav</LabelLarge>
+                    </Link>
+                    <Link
+                        href="/iframe.html?id=link--default&viewMode=story"
+                        style={styles.heading}
+                        skipClientNav
+                    >
+                        <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                    </Link>
+                </View>
+                <View style={styles.navigation}>
+                    <Switch>
+                        <Route path="/foo">
+                            <View id="foo">
+                                The first link does client-side navigation here.
+                            </View>
+                        </Route>
+                        <Route path="*">See navigation changes here</Route>
+                    </Switch>
+                </View>
+            </View>
+        </MemoryRouter>
+    ),
 };
 
 /**
