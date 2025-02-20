@@ -364,7 +364,7 @@ export const InlineLight: StoryComponentType = {
             </Link>
             , whereas this is an inline{" "}
             <Link href="#link" visitable={true} inline={true} light={true}>
-                Visitable link (Primary only)
+                Visitable link
             </Link>{" "}
             and an{" "}
             <Link
@@ -374,9 +374,9 @@ export const InlineLight: StoryComponentType = {
                 light={true}
                 target="_blank"
             >
-                external Visitable link (Primary only)
+                external Visitable link
             </Link>
-            . Secondary light links are not supported.
+            .
         </Body>
     ),
     parameters: {
