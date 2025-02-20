@@ -2,6 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {useMemo} from "react";
 import addStyle from "../util/add-style";
 
 import type {TextViewSharedProps} from "../util/types";
@@ -69,7 +70,8 @@ const View: React.ForwardRefExoticComponent<
         "data-testid": testId,
     } as const;
 
-    const StyledTag = addStyle(tag, styles.default);
+    const StyledTag = useMemo(() => addStyle(tag, styles.default), [tag]);
+
     return <StyledTag {...commonProps} ref={ref} />;
 });
 
