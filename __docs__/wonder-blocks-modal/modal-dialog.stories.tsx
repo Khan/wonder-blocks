@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {
     ModalLauncher,
@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
     squareDialog: {
         maxHeight: 500,
         maxWidth: 500,
-        backgroundColor: color.darkBlue,
+        backgroundColor: semanticColor.surface.inverse,
     },
     smallSquarePanel: {
         maxHeight: 400,
