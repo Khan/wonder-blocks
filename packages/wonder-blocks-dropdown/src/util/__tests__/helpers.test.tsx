@@ -6,6 +6,7 @@ import {
     getLabel,
     getSelectOpenerLabel,
     getStringForKey,
+    maybeExtractStringFromNode,
 } from "../helpers";
 
 describe("getStringForKey", () => {
@@ -126,7 +127,7 @@ describe("getLabel", () => {
 });
 
 describe("getSelectOpenerLabel", () => {
-    it("should return the label if the label is a Node and showOpenerLabelAsText is true", () => {
+    it("should return an object if the label is a Node and showOpenerLabelAsText is true", () => {
         // Arrange
         const props: PropsFor<typeof OptionItem> = {
             label: <div>a custom node</div>,
@@ -135,10 +136,27 @@ describe("getSelectOpenerLabel", () => {
         };
 
         // Act
-        const label = getSelectOpenerLabel(false, props);
+        const labelObj = getSelectOpenerLabel(false, props);
+        const label = Object.values(labelObj)[0];
 
         // Assert
         expect(label).toStrictEqual(<div>a custom node</div>);
+    });
+
+    it("should return a string as an object key if label is a Node and labelAsText is populated", () => {
+        // Arrange
+        const props: PropsFor<typeof OptionItem> = {
+            label: <div>a custom node</div>,
+            labelAsText: "plain text",
+            value: "foo",
+        };
+
+        // Act
+        const labelObj = getSelectOpenerLabel(false, props);
+        const label = Object.keys(labelObj)[0];
+
+        // Assert
+        expect(label).toStrictEqual("plain text");
     });
 
     it("should return a string if the label is a Node and showOpenerLabelAsText is false", () => {
@@ -154,5 +172,34 @@ describe("getSelectOpenerLabel", () => {
 
         // Assert
         expect(label).toBe("plain text");
+    });
+});
+
+describe("maybeExtractStringFromNode", () => {
+    it("should return an array with two strings if opener content is a string", () => {
+        // Arrange
+        const input = "a string";
+
+        // Act
+        const [definitelyALabel, theSameLabel] =
+            maybeExtractStringFromNode(input);
+
+        // Assert
+        expect(definitelyALabel).toStrictEqual("a string");
+        expect(theSameLabel).toStrictEqual("a string");
+    });
+
+    it("should return an array with a string and node if opener content is a node", () => {
+        // Arrange
+        const input = {
+            "a string": <div>a custom node</div>,
+        };
+
+        // Act
+        const [label, node] = maybeExtractStringFromNode(input);
+
+        // Assert
+        expect(label).toStrictEqual("a string");
+        expect(node).toStrictEqual(<div>a custom node</div>);
     });
 });

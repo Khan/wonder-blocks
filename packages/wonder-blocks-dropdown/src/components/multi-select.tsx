@@ -7,6 +7,7 @@ import {
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
 
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import ActionItem from "./action-item";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
@@ -25,7 +26,11 @@ import type {
     OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {
+    getLabel,
+    getSelectOpenerLabel,
+    maybeExtractStringFromNode,
+} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type LabelsValues = {
@@ -364,7 +369,7 @@ const MultiSelect = (props: Props) => {
 
     const getMenuTextOrNode = (
         children: OptionItemComponentArray,
-    ): string | JSX.Element => {
+    ): string | {[key: string]: string | JSX.Element} => {
         const {noneSelected, someSelected, allSelected} = labels;
         const numSelectedAll = children.filter(
             (option) => !option.props.disabled,
@@ -399,7 +404,6 @@ const MultiSelect = (props: Props) => {
                         return someSelected(1);
                     }
                 }
-
                 return noSelectionText;
             case numSelectedAll:
                 return allSelected;
@@ -531,6 +535,12 @@ const MultiSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
+    const handleAnnouncement = (message: string) => {
+        announceMessage({
+            message,
+        });
+    };
+
     const renderOpener = (
         allChildren: React.ReactElement<
             React.ComponentProps<typeof OptionItem>
@@ -542,7 +552,11 @@ const MultiSelect = (props: Props) => {
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
         const {noneSelected} = labels;
 
-        const menuContent = getMenuTextOrNode(allChildren);
+        const menuTextOrNode = getMenuTextOrNode(allChildren);
+        const [menuStringLabel, menuContent] =
+            maybeExtractStringFromNode(menuTextOrNode);
+
+        handleAnnouncement(menuStringLabel);
 
         const dropdownOpener = (
             <Id id={id}>

@@ -1,7 +1,4 @@
-import {
-    type PolitenessLevel,
-    RegionDictionary,
-} from "../../types/announcer.types";
+import {type PolitenessLevel, RegionDictionary} from "../types/announcer.types";
 
 /**
  * Create a wrapper element to group regions for a given level
