@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.1.2
+
+### Patch Changes
+
+- 7bb37a2: Update component docs to include labelling guidelines
+- 7bb37a2: Marking LabeledTextField with `@deprecated` in favour of LabeledField + TextField
+- Updated dependencies [ed26d66]
+- Updated dependencies [8fc65a9]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-clickable@6.1.2
+    - @khanacademy/wonder-blocks-icon@5.1.2
+    - @khanacademy/wonder-blocks-layout@3.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 7.1.1
 
 ### Patch Changes
