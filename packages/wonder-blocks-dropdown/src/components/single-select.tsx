@@ -7,6 +7,7 @@ import {
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
 
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
 import SelectOpener from "./select-opener";
@@ -22,7 +23,11 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {
+    getLabel,
+    getSelectOpenerLabel,
+    OpenerStringOrNode,
+} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type SingleSelectLabelsValues = {
@@ -430,6 +435,20 @@ const SingleSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
+    const maybeExtractStringFromNode = (
+        openerContent: OpenerStringOrNode,
+    ): [string, string | JSX.Element] => {
+        // For a selected Custom Option Item with Node Label,
+        // we have to extract a string to announce
+        if (typeof openerContent === "object") {
+            const [label, node] = Object.entries(openerContent)[0];
+            return [label, node];
+        } else {
+            // For other cases, we can use the string content passed through
+            return [openerContent, openerContent];
+        }
+    };
+
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -444,9 +463,23 @@ const SingleSelect = (props: Props) => {
         );
         // If nothing is selected, or if the selectedValue doesn't match any
         // item in the menu, use the placeholder.
-        const menuText = selectedItem
-            ? getSelectOpenerLabel(showOpenerLabelAsText, selectedItem.props)
-            : placeholder;
+
+        let menuContent;
+
+        if (selectedItem) {
+            const menuOpenerLabel = getSelectOpenerLabel(
+                showOpenerLabelAsText,
+                selectedItem.props,
+            );
+            // For Custom Option Items with Node Labels, we have to extract
+            // strings to announce
+            const [label, node] = maybeExtractStringFromNode(menuOpenerLabel);
+            menuContent = node;
+
+            announceMessage({message: label});
+        } else {
+            menuContent = placeholder;
+        }
 
         const dropdownOpener = (
             <Id id={id}>
@@ -461,7 +494,7 @@ const SingleSelect = (props: Props) => {
                             disabled={isDisabled}
                             ref={handleOpenerRef}
                             role="combobox"
-                            text={menuText}
+                            text={menuContent}
                             opened={open}
                             error={hasError}
                             onBlur={onOpenerBlurValidation}
@@ -483,7 +516,7 @@ const SingleSelect = (props: Props) => {
                             testId={testId}
                             onBlur={onOpenerBlurValidation}
                         >
-                            {menuText}
+                            {menuContent}
                         </SelectOpener>
                     );
                 }}
