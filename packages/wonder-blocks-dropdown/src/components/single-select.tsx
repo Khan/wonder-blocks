@@ -206,11 +206,16 @@ type Props = AriaProps &
  * The single select allows the selection of one item. Clients are responsible
  * for keeping track of the selected item in the select.
  *
- * Clients are also responsible for labeling the select using `LabeledField`, an
- * `aria-label` attribute, or `aria-labelledby`.
- *
  * The single select dropdown closes after the selection of an item. If the same
  * item is selected, there is no callback.
+ *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
  *
  * **NOTE:** If there are more than 125 items, the component automatically uses
  * [react-window](https://github.com/bvaughn/react-window) to improve
