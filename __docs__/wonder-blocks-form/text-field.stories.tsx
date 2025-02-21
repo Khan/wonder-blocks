@@ -69,7 +69,7 @@ export const Default: StoryComponentType = {
  * description, required indicator, and/or error message for the field.
  *
  * Using the field with the LabeledField component will ensure that the field
- * has the relavent accessibility attributes set.
+ * has the relevant accessibility attributes set.
  */
 export const WithLabeledField: StoryComponentType = {
     render: function LabeledFieldStory(args) {
