@@ -6,6 +6,7 @@ import {
     getLabel,
     getSelectOpenerLabel,
     getStringForKey,
+    maybeExtractStringFromNode,
 } from "../helpers";
 
 describe("getStringForKey", () => {
@@ -171,5 +172,34 @@ describe("getSelectOpenerLabel", () => {
 
         // Assert
         expect(label).toBe("plain text");
+    });
+});
+
+describe("maybeExtractStringFromNode", () => {
+    it("should return an array with two strings if opener content is a string", () => {
+        // Arrange
+        const input = "a string";
+
+        // Act
+        const [definitelyALabel, theSameLabel] =
+            maybeExtractStringFromNode(input);
+
+        // Assert
+        expect(definitelyALabel).toStrictEqual("a string");
+        expect(theSameLabel).toStrictEqual("a string");
+    });
+
+    it("should return an array with a string and node if opener content is a node", () => {
+        // Arrange
+        const input = {
+            "a string": <div>a custom node</div>,
+        };
+
+        // Act
+        const [label, node] = maybeExtractStringFromNode(input);
+
+        // Assert
+        expect(label).toStrictEqual("a string");
+        expect(node).toStrictEqual(<div>a custom node</div>);
     });
 });

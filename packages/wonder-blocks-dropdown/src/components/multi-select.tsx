@@ -29,7 +29,7 @@ import type {
 import {
     getLabel,
     getSelectOpenerLabel,
-    type OpenerStringOrNode,
+    maybeExtractStringFromNode,
 } from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
@@ -544,20 +544,6 @@ const MultiSelect = (props: Props) => {
         announceMessage({
             message,
         });
-    };
-
-    const maybeExtractStringFromNode = (
-        openerContent: OpenerStringOrNode,
-    ): [string, string | JSX.Element] => {
-        // For a selected Custom Option Item with Node Label,
-        // we have to extract a string to announce
-        if (typeof openerContent === "object") {
-            const [label, node] = Object.entries(openerContent)[0];
-            return [label, node];
-        } else {
-            // For other cases, we can use the string content passed through
-            return [openerContent, openerContent];
-        }
     };
 
     const renderOpener = (
