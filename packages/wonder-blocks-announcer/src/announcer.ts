@@ -3,7 +3,7 @@ import {
     RegionFactory,
     RegionDictionary,
     RegionDef,
-} from "../types/announcer.types";
+} from "./types/announcer.types";
 
 import {
     createRegionWrapper,
