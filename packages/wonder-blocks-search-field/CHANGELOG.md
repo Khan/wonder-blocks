@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.1.2
+
+### Patch Changes
+
+- 7bb37a2: Update component docs to include labelling guidelines
+- Updated dependencies [ed26d66]
+- Updated dependencies [7bb37a2]
+- Updated dependencies [7bb37a2]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-form@7.1.2
+    - @khanacademy/wonder-blocks-icon@5.1.2
+    - @khanacademy/wonder-blocks-icon-button@6.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 5.1.1
 
 ### Patch Changes

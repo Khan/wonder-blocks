@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 12.2.0
+
+### Minor Changes
+
+- ed26d66: Enables View to accept all tag names
+
 ## 12.1.1
 
 ### Patch Changes
