@@ -5,7 +5,6 @@ import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
-    mix,
     color,
     spacing,
     semanticColor,
@@ -44,7 +43,6 @@ const LinkCore = React.forwardRef(function LinkCore(
             href,
             inline = false,
             light = false,
-            visitable = false,
             pressed,
             style,
             testId,
@@ -55,7 +53,7 @@ const LinkCore = React.forwardRef(function LinkCore(
             ...restProps
         } = props;
 
-        const linkStyles = _generateStyles(inline, light, visitable);
+        const linkStyles = _generateStyles(inline, light);
 
         const defaultStyles = [
             sharedStyles.shared,
@@ -175,9 +173,6 @@ const sharedStyles = StyleSheet.create({
 
 const action = semanticColor.action.outlined.progressive;
 
-// NOTE: This color is only used here.
-const pink = "#fa50ae";
-
 /**
  * TODO(WB-1862): Move this to a shared theme file.
  */
@@ -198,12 +193,6 @@ const theme = {
             press: {
                 foreground: action.press.foreground,
             },
-            restVisited: {
-                foreground: color.purple,
-            },
-            pressVisited: {
-                foreground: mix(color.offBlack32, color.purple),
-            },
         },
         // Over dark backgrounds
         inverse: {
@@ -220,48 +209,22 @@ const theme = {
             press: {
                 foreground: color.fadedBlue,
             },
-            restVisited: {
-                foreground: pink,
-            },
-            pressVisited: {
-                foreground: mix(color.white50, pink),
-            },
         },
     },
 };
 
-const _generateStyles = (
-    inline: boolean,
-    light: boolean,
-    visitable: boolean,
-) => {
-    const buttonType = `${inline.toString()}-${light.toString()}-${visitable.toString()}`;
+const _generateStyles = (inline: boolean, light: boolean) => {
+    const buttonType = `${inline.toString()}-${light.toString()}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
     const variant = light ? theme.color.inverse : theme.color.default;
 
-    const restVisited = visitable
-        ? {
-              ":visited": {
-                  color: variant.restVisited.foreground,
-              },
-          }
-        : Object.freeze({});
-    const pressVisited = visitable
-        ? {
-              ":visited": {
-                  color: variant.pressVisited.foreground,
-              },
-          }
-        : Object.freeze({});
-
     const focusStyling = {
         color: variant.focus.foreground,
         outline: `${border.width.hairline}px solid ${variant.focus.border}`,
         borderRadius: border.radius.small_3,
-        ...restVisited,
     };
 
     const pressStyling = {
@@ -270,13 +233,11 @@ const _generateStyles = (
         // TODO(WB-1521): Update the underline offset to be 4px after
         // the Link audit.
         // textUnderlineOffset: 4,
-        ...pressVisited,
     };
 
     const newStyles: StyleDeclaration = {
         rest: {
             color: variant.rest.foreground,
-            ...restVisited,
             ":hover": {
                 // TODO(WB-1521): Update text decoration to the 1px dashed
                 // underline after the Link audit.
@@ -286,7 +247,6 @@ const _generateStyles = (
                 // TODO(WB-1521): Update the underline offset to be 4px after
                 // the Link audit.
                 // textUnderlineOffset: 4,
-                ...restVisited,
             },
             // Focus styles only show up with keyboard navigation.
             // Mouse users don't see focus styles.

@@ -51,43 +51,12 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * This is a visitable link. It changes color after it has been clicked on to
- * indicate that it's been visited before. This link's `visitable` prop is set
- * to true. It links to the top of the page.
- */
-export const Visitable: StoryComponentType = {
-    render: () => (
-        <Link href="#link" visitable={true}>
-            The quick brown fox jumps over the lazy dog.
-        </Link>
-    ),
-};
-
-/**
  * Minimal link usage on a dark background. This link has its `light` prop set
  * to true. It links to the top of the page.
  */
 export const LightPrimary: StoryComponentType = {
     render: () => (
         <Link href="#link" light={true}>
-            The quick brown fox jumps over the lazy dog.
-        </Link>
-    ),
-    parameters: {
-        backgrounds: {
-            default: "darkBlue",
-        },
-    },
-};
-
-/**
- * This is a visitable link on a dark background. It changes color after it has
- * been clicked on to indicate that it's been visited before. This link's
- * `visitable` prop is set to true. It links to the top of the page.
- */
-export const LightVisitable: StoryComponentType = {
-    render: () => (
-        <Link href="#link" light={true} visitable={true}>
             The quick brown fox jumps over the lazy dog.
         </Link>
     ),
@@ -304,27 +273,14 @@ export const Inline: StoryComponentType = {
             This is an inline{" "}
             <Link href="#link" inline={true}>
                 regular link
-            </Link>{" "}
-            and an inline{" "}
+            </Link>
+            . In this sentence, there is also an inline{" "}
             <Link
                 href="https://www.procatinator.com/"
                 inline={true}
                 target="_blank"
             >
                 external link
-            </Link>
-            , and this is an inline{" "}
-            <Link href="#link" visitable={true} inline={true}>
-                Visitable link
-            </Link>{" "}
-            and an inline{" "}
-            <Link
-                href="https://www.procatinator.com/"
-                visitable={true}
-                inline={true}
-                target="_blank"
-            >
-                external Visitable link
             </Link>
             .
         </Body>
@@ -352,8 +308,8 @@ export const InlineLight: StoryComponentType = {
             This is an inline{" "}
             <Link href="#link" inline={true} light={true}>
                 regular link
-            </Link>{" "}
-            and an{" "}
+            </Link>
+            . In this sentence, there is also an inline{" "}
             <Link
                 href="https://cat-bounce.com/"
                 inline={true}
@@ -361,20 +317,6 @@ export const InlineLight: StoryComponentType = {
                 target="_blank"
             >
                 external link
-            </Link>
-            , whereas this is an inline{" "}
-            <Link href="#link" visitable={true} inline={true} light={true}>
-                Visitable link
-            </Link>{" "}
-            and an{" "}
-            <Link
-                href="https://cat-bounce.com/"
-                visitable={true}
-                inline={true}
-                light={true}
-                target="_blank"
-            >
-                external Visitable link
             </Link>
             .
         </Body>
