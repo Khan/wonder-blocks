@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         backgroundColor: actionCategory.press.background,
     },
     focus: {
-        outline: `solid 1px ${semanticColor.border.focus}`,
+        outline: `solid 1px ${semanticColor.focus.outer}`,
         outlineOffset: spacing.xxxxSmall_2,
     },
 });

@@ -696,7 +696,7 @@ const theme = {
                 background: semanticColor.surface.primary,
             },
             focus: {
-                border: semanticColor.border.focus,
+                border: semanticColor.focus.outer,
                 background: semanticColor.surface.primary,
             },
             disabled: {

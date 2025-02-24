@@ -362,8 +362,7 @@ export const _generateStyles = (
         const themeColorAction = theme.color.filled[colorToAction];
 
         const focusStyling = {
-            // TODO(WB-1856): Change with global focus token
-            outlineColor: themeColorAction.hover.border,
+            outlineColor: themeColorAction.focus.border,
             outlineOffset: theme.border.offset.primary,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
@@ -407,7 +406,7 @@ export const _generateStyles = (
 
         const focusStyling = {
             background: themeColorAction.hover.background,
-            outlineColor: themeColorAction.hover.border,
+            outlineColor: themeColorAction.focus.border,
             outlineStyle: "solid",
             outlineOffset: theme.border.offset.secondary,
             outlineWidth: theme.border.width.focused,
@@ -462,7 +461,7 @@ export const _generateStyles = (
         const focusStyling = {
             outlineStyle: "solid",
             borderColor: "transparent",
-            outlineColor: themeColorAction.hover.border,
+            outlineColor: themeColorAction.focus.border,
             outlineWidth: theme.border.width.focused,
             borderRadius: theme.border.radius.default,
         };

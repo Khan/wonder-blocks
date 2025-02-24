@@ -302,8 +302,8 @@ const styles = StyleSheet.create({
     },
     defaultFocus: {
         ":focus-visible": {
-            borderColor: semanticColor.border.focus,
-            outline: `${border.width.hairline}px solid ${semanticColor.border.focus}`,
+            borderColor: semanticColor.focus.outer,
+            outline: `${border.width.hairline}px solid ${semanticColor.focus.outer}`,
             // Negative outline offset so it focus outline is not cropped off if
             // an ancestor element has overflow: hidden
             outlineOffset: -2,
@@ -317,8 +317,7 @@ const styles = StyleSheet.create({
             color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            // TODO(WB-1856): Verify if we can use the global focus color
-            outlineColor: states.error.border,
+            outlineColor: semanticColor.focus.outer,
             borderColor: states.error.border,
         },
     },
