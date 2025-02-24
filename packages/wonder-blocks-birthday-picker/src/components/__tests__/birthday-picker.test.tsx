@@ -255,7 +255,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-month"),
             );
-            const monthOption = await screen.findByText("Jul");
+            const monthOption = await screen.findByRole("combobox", {
+                name: "Month",
+            });
             await userEvent.click(monthOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -263,7 +265,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-day"),
             );
-            const dayOption = await screen.findByText("5");
+            const dayOption = await screen.findByRole("combobox", {
+                name: "Day",
+            });
             await userEvent.click(dayOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -271,7 +275,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-year"),
             );
-            const yearOption = await screen.findByText("2021");
+            const yearOption = await screen.findByRole("combobox", {
+                name: "Year",
+            });
             await userEvent.click(yearOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -288,7 +294,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-month"),
             );
-            const monthOption = await screen.findByText("Jul");
+            const monthOption = await screen.findByRole("combobox", {
+                name: "Month",
+            });
             await userEvent.click(monthOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -296,7 +304,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-day"),
             );
-            const dayOption = await screen.findByText("5");
+            const dayOption = await screen.findByRole("combobox", {
+                name: "Day",
+            });
 
             await userEvent.click(dayOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
@@ -305,7 +315,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-year"),
             );
-            const yearOption = await screen.findByText("2021");
+            const yearOption = await screen.findByRole("combobox", {
+                name: "Year",
+            });
             await userEvent.click(yearOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
