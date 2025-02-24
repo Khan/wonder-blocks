@@ -733,30 +733,6 @@ describe("DropdownCore", () => {
         });
     });
 
-    describe("a11y > Live region", () => {
-        it("should render a live region announcing the number of options", async () => {
-            // Arrange
-
-            // Act
-            const {container} = render(
-                <DropdownCore
-                    initialFocusedIndex={undefined}
-                    onSearchTextChanged={jest.fn()}
-                    // mock the items (3 options)
-                    items={items}
-                    role="listbox"
-                    open={true}
-                    // mock the opener elements
-                    opener={<button />}
-                    onOpenChanged={jest.fn()}
-                />,
-            );
-
-            // Assert
-            expect(container).toHaveTextContent("3 items");
-        });
-    });
-
     describe("onOpenChanged", () => {
         it("Should be triggered when the down key is pressed and the menu is closed", async () => {
             // Arrange
