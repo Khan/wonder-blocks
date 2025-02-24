@@ -1,9 +1,9 @@
-import {
+import type {
     PolitenessLevel,
     RegionFactory,
     RegionDictionary,
     RegionDef,
-} from "./types/announcer.types";
+} from "./util/announcer.types";
 
 import {
     createRegionWrapper,
