@@ -51,10 +51,6 @@ const columns = [
             target: "_blank",
         },
     },
-    {
-        name: "Visitable",
-        props: {visitable: true},
-    },
 ];
 
 const themes: Array<string> = ["default", "dark", "rtl"];

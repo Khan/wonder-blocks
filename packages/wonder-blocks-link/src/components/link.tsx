@@ -32,11 +32,6 @@ type CommonProps = AriaProps & {
      */
     light?: boolean;
     /**
-     * Whether the link should change color once it's visited.
-     * secondary or primary (light) links are not allowed to be visitable.
-     */
-    visitable?: boolean;
-    /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified. This
      * defaults to "noopener noreferrer" when `target="_blank"`, but can be
@@ -194,7 +189,6 @@ const Link = React.forwardRef(function Link(
         target = undefined,
         inline = false,
         light = false,
-        visitable = false,
         ...sharedProps
     } = props;
 
@@ -229,7 +223,6 @@ const Link = React.forwardRef(function Link(
                                 tabIndex={tabIndex}
                                 inline={inline}
                                 light={light}
-                                visitable={visitable}
                                 ref={ref}
                             >
                                 {children}
@@ -262,7 +255,6 @@ const Link = React.forwardRef(function Link(
                                 tabIndex={tabIndex}
                                 inline={inline}
                                 light={light}
-                                visitable={visitable}
                                 ref={ref}
                             >
                                 {children}

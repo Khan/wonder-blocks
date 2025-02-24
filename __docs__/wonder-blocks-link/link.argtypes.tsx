@@ -63,15 +63,6 @@ export default {
         },
     },
 
-    visitable: {
-        control: {type: "boolean"},
-        description:
-            "Whether the link should change color once it's visited. Secondary or primary (light) links are not allowed to be visitable.",
-        table: {
-            type: {summary: "boolean"},
-        },
-    },
-
     rel: {
         control: {type: "text"},
         description: `Specifies the type of relationship between the current
