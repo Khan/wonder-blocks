@@ -1,0 +1,31 @@
+{
+  "name": "@khanacademy/wonder-blocks-tabs",
+  "version": "0.0.0",
+  "design": "v1",
+  "description": "Tabs are used to control what content is shown",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.24.5",
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
+  },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "18.2.0"
+  },
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
+  }
+}
