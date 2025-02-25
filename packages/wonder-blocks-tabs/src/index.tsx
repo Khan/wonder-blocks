@@ -1,5 +1,9 @@
 import * as React from "react";
 import Link from "@khanacademy/wonder-blocks-link";
+import {CSSProperties, StyleSheet} from "aphrodite";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {styles} from "@khanacademy/wonder-blocks-typography";
 
 type AriaLabelOrAriaLabelledby =
     | {"aria-label": string; "aria-labelledby"?: never}
@@ -134,6 +138,8 @@ type NavTabsProps = {
     children: React.ReactNode;
 } & AriaLabelOrAriaLabelledby;
 
+const StyledNav = addStyle("nav");
+const StyledUl = addStyle("ul");
 export const NavTabs = (props: NavTabsProps) => {
     const {
         "aria-label": ariaLabel,
@@ -141,29 +147,79 @@ export const NavTabs = (props: NavTabsProps) => {
         children,
     } = props;
     return (
-        <nav aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
-            {children}
-        </nav>
+        <StyledNav aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
+            <StyledUl style={navTabsStyles.ul}>{children}</StyledUl>
+        </StyledNav>
     );
 };
 
+const navTabsStyles = StyleSheet.create({
+    ul: {
+        display: "flex",
+        listStyle: "none",
+        padding: 0,
+        gap: spacing.large_24,
+    },
+});
+
 type NavTabItemProps = {
     selected?: boolean;
-    children: React.ReactNode;
+    children: React.ReactElement<React.ComponentProps<typeof Link>>;
 };
 
 export const NavTabItem = (props: NavTabItemProps) => {
     const {children, selected} = props;
-    return (
-        <li style={{backgroundColor: selected ? "lightblue" : undefined}}>
-            {children}
-        </li>
-    );
+    function renderChildren() {
+        return React.cloneElement(children, {
+            "aria-current": selected ? "page" : undefined,
+            style: [
+                navTabItemStyles.link,
+                selected && navTabItemStyles.selected,
+            ],
+        });
+    }
+    return <li>{renderChildren()}</li>;
 };
 
+const underlineStyles: CSSProperties = {
+    content: '""',
+    display: "block",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: spacing.xxxSmall_4,
+};
+
+const navTabItemStyles = StyleSheet.create({
+    link: {
+        ...styles.Body,
+        paddingTop: spacing.xSmall_8,
+        paddingBottom: spacing.xSmall_8,
+        boxSizing: "border-box",
+        ":hover": {
+            textDecoration: "none",
+            [":after" as any]: {
+                ...underlineStyles,
+                backgroundColor:
+                    semanticColor.action.outlined.progressive.hover.foreground, // TODO semantics look correct but is the same value as default
+            },
+        },
+        position: "relative",
+    },
+
+    selected: {
+        fontWeight: "bold",
+        ":after": {
+            ...underlineStyles,
+            backgroundColor:
+                semanticColor.action.outlined.progressive.default.foreground,
+        },
+    },
+});
 export const Test = () => {
     const [selectedTab, setSelectedTab] = React.useState("tab-1");
-
+    const [selectedNavTab, setSelectedNavTab] = React.useState("tab-1");
     return (
         <div>
             --- manual wiring of tab components ---
@@ -201,11 +257,21 @@ export const Test = () => {
             />
             --- NavTabs ---
             <NavTabs aria-label="Secondary navigation">
-                <NavTabItem>
-                    <Link href="#tab1">Tab 1</Link>
+                <NavTabItem selected={selectedNavTab === "tab-1"}>
+                    <Link
+                        href="#tab1"
+                        onClick={() => setSelectedNavTab("tab-1")}
+                    >
+                        Tab 1
+                    </Link>
                 </NavTabItem>
-                <NavTabItem selected={true}>
-                    <Link href="#tab2">Tab 2</Link>
+                <NavTabItem selected={selectedNavTab === "tab-2"}>
+                    <Link
+                        href="#tab2"
+                        onClick={() => setSelectedNavTab("tab-2")}
+                    >
+                        Tab 2
+                    </Link>
                 </NavTabItem>
             </NavTabs>
         </div>
