@@ -1,6 +1,7 @@
 import * as React from "react";
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
 import ComponentInfo from "../components/component-info";
+import {Test} from "../../packages/wonder-blocks-tabs/src/index";
 
 export default {
     title: "Packages / Tabs",
@@ -15,5 +16,5 @@ export default {
 };
 
 export const Default = () => {
-    return <div>Default</div>;
+    return <Test />;
 };
