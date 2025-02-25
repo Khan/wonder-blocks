@@ -28,6 +28,7 @@ type TabPanelProps = {
     "aria-labelledby": string;
 };
 
+const StyledDiv = addStyle("div");
 export const Tablist = (props: TablistProps) => {
     const {
         children,
@@ -35,15 +36,18 @@ export const Tablist = (props: TablistProps) => {
         "aria-labelledby": ariaLabelledby,
     } = props;
     return (
-        <div
+        <StyledDiv
             role="tablist"
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
+            style={tabStyles.list}
         >
             {children}
-        </div>
+        </StyledDiv>
     );
 };
+
+const StyledButton = addStyle("button");
 
 export const Tab = (props: TabProps) => {
     const {
@@ -52,18 +56,20 @@ export const Tab = (props: TabProps) => {
         selected,
         onClick,
         tabIndex,
+        id,
     } = props;
     return (
-        <button
+        <StyledButton
+            id={id}
+            style={[styles.Body, tabStyles.tab, selected && tabStyles.selected]}
             role="tab"
             aria-controls={ariaControls}
             aria-selected={selected}
             onClick={onClick}
-            style={{backgroundColor: selected ? "lightblue" : undefined}}
             tabIndex={tabIndex}
         >
             {children}
-        </button>
+        </StyledButton>
     );
 };
 
@@ -148,19 +154,10 @@ export const NavTabs = (props: NavTabsProps) => {
     } = props;
     return (
         <StyledNav aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
-            <StyledUl style={navTabsStyles.ul}>{children}</StyledUl>
+            <StyledUl style={tabStyles.list}>{children}</StyledUl>
         </StyledNav>
     );
 };
-
-const navTabsStyles = StyleSheet.create({
-    ul: {
-        display: "flex",
-        listStyle: "none",
-        padding: 0,
-        gap: spacing.large_24,
-    },
-});
 
 type NavTabItemProps = {
     selected?: boolean;
@@ -172,10 +169,7 @@ export const NavTabItem = (props: NavTabItemProps) => {
     function renderChildren() {
         return React.cloneElement(children, {
             "aria-current": selected ? "page" : undefined,
-            style: [
-                navTabItemStyles.link,
-                selected && navTabItemStyles.selected,
-            ],
+            style: [styles.Body, tabStyles.tab, selected && tabStyles.selected],
         });
     }
     return <li>{renderChildren()}</li>;
@@ -191,9 +185,19 @@ const underlineStyles: CSSProperties = {
     height: spacing.xxxSmall_4,
 };
 
-const navTabItemStyles = StyleSheet.create({
-    link: {
-        ...styles.Body,
+const tabStyles = StyleSheet.create({
+    list: {
+        display: "flex",
+        listStyle: "none",
+        padding: 0,
+        gap: spacing.large_24,
+    },
+    tab: {
+        backgroundColor: semanticColor.surface.primary,
+        color: semanticColor.action.outlined.progressive.default.foreground,
+        border: "none",
+        cursor: "pointer",
+        padding: 0,
         paddingTop: spacing.xSmall_8,
         paddingBottom: spacing.xSmall_8,
         boxSizing: "border-box",
@@ -222,21 +226,6 @@ export const Test = () => {
     const [selectedNavTab, setSelectedNavTab] = React.useState("tab-1");
     return (
         <div>
-            --- manual wiring of tab components ---
-            <Tablist aria-label="Tool tabs">
-                <Tab aria-controls="tab-panel-1" id="tab-1">
-                    Tab 1
-                </Tab>
-                <Tab aria-controls="tab-panel-2" id="tab-2">
-                    Tab 2
-                </Tab>
-            </Tablist>
-            <TabPanel id="tab-panel-1" aria-labelledby="tab-1">
-                Panel 1
-            </TabPanel>
-            <TabPanel id="tab-panel-2" aria-labelledby="tab-2">
-                Panel 2
-            </TabPanel>
             --- tabs configuration component ---
             <Tabs
                 aria-label="Tools"
