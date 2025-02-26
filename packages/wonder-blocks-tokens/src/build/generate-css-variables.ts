@@ -49,6 +49,7 @@ const packageDir = ancesdir(__dirname, "CHANGELOG.md");
 fs.writeFileSync(
     path.resolve(packageDir, "./dist/css/index.css"),
     generateCssVariablesDefinitions(),
+    {flag: "w"},
 );
 
 // eslint-disable-next-line no-console
