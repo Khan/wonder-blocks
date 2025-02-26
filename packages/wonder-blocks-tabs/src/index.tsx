@@ -90,8 +90,9 @@ export const TabPanel = (props: TabPanelProps) => {
 
 type TabItem = {
     id: string;
-    label: React.ReactNode;
-    panel: React.ReactNode;
+    label: React.ReactElement;
+    panel: React.ReactElement;
+    keepPanelMounted?: boolean;
 };
 
 type TabsProps = {
