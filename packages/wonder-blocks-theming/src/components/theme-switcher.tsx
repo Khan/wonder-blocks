@@ -17,6 +17,11 @@ type Props = {
  * ThemeSwitcher is a component that allows users to switch between themes.
  */
 export default function ThemeSwitcher({theme, children}: Props) {
+    // If no theme is provided, return the children as is
+    if (!theme) {
+        return children;
+    }
+
     // Attach the CSS variables to a local scope so that they only work within
     // this component
     return <div className={`wb-theme-${theme}`}>{children}</div>;
