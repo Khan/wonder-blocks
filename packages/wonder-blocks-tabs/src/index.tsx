@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "@khanacademy/wonder-blocks-link";
 import {CSSProperties, StyleSheet} from "aphrodite";
-import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles} from "@khanacademy/wonder-blocks-typography";
 
@@ -120,7 +120,7 @@ export const Tabs = (props: TabsProps) => {
     const currentTab = tabs.find((tab) => tab.id === selectedTab) || tabs[0];
 
     return (
-        <div>
+        <View style={tabStyles.tabs}>
             <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
                 {tabs.map((tab) => (
                     <Tab
@@ -139,11 +139,10 @@ export const Tabs = (props: TabsProps) => {
                 key={currentTab.id}
                 id={getPanelId(currentTab.id)}
                 aria-labelledby={getTabId(currentTab.id)}
-                style={tabStyles.panel}
             >
                 {currentTab.panel}
             </TabPanel>
-        </div>
+        </View>
     );
 };
 
@@ -227,8 +226,8 @@ const tabStyles = StyleSheet.create({
                 semanticColor.action.outlined.progressive.default.foreground,
         },
     },
-    panel: {
-        paddingTop: spacing.small_12,
+    tabs: {
+        gap: spacing.xSmall_8,
     },
 });
 
