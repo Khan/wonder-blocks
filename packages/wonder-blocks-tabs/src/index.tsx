@@ -19,7 +19,6 @@ type TabProps = {
     selected?: boolean;
     id: string;
     onClick?: (event: React.MouseEvent) => unknown;
-    tabIndex?: number;
 };
 
 type TabPanelProps = {
@@ -56,7 +55,6 @@ export const Tab = (props: TabProps) => {
         "aria-controls": ariaControls,
         selected,
         onClick,
-        tabIndex,
         id,
     } = props;
     return (
@@ -67,7 +65,7 @@ export const Tab = (props: TabProps) => {
             aria-controls={ariaControls}
             aria-selected={selected}
             onClick={onClick}
-            tabIndex={tabIndex}
+            tabIndex={selected ? undefined : -1}
         >
             {children}
         </StyledButton>
@@ -130,7 +128,6 @@ export const Tabs = (props: TabsProps) => {
                         id={getTabId(tab.id)}
                         selected={selectedTab === tab.id}
                         onClick={() => onTabChange(tab.id)}
-                        tabIndex={selectedTab === tab.id ? undefined : -1}
                     >
                         {tab.label}
                     </Tab>
@@ -267,7 +264,6 @@ export const Test = () => {
                         id: "tab-3",
                         label: <div>Tab 3</div>,
                         panel: <TestTabPanel num={3} />,
-                        keepPanelMounted: true,
                     },
                 ]}
                 selectedTab={selectedTab}
