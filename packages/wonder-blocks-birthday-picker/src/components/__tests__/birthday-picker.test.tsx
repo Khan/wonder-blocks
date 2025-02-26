@@ -1,12 +1,25 @@
 import * as React from "react";
 import moment from "moment";
-import {render, screen, waitFor} from "@testing-library/react";
+import {render, act, screen, waitFor} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 
 import BirthdayPicker, {defaultLabels} from "../birthday-picker";
 
 import type {Labels} from "../birthday-picker";
+
+jest.mock("react-popper", () => ({
+    ...jest.requireActual("react-popper"),
+    Popper: jest.fn().mockImplementation(({children}) => {
+        // Mock `isReferenceHidden` to always return false (or true for testing visibility)
+        return children({
+            ref: jest.fn(),
+            style: {},
+            placement: "bottom",
+            isReferenceHidden: false, // Mocking isReferenceHidden
+        });
+    }),
+}));
 
 describe("BirthdayPicker", () => {
     const today = new Date("2021-07-19T09:30:00Z");
@@ -251,11 +264,15 @@ describe("BirthdayPicker", () => {
 
             render(<BirthdayPicker onChange={onChange} />);
 
-            // Act
-            await userEvent.click(
-                await screen.findByTestId("birthday-picker-month"),
+            const monthDropdown = await screen.findByTestId(
+                "birthday-picker-month",
             );
-            const monthOption = await screen.findByText("Jul");
+            // Act
+            await userEvent.click(monthDropdown);
+
+            const monthOption = await screen.findByRole("option", {
+                name: "Jul",
+            });
             await userEvent.click(monthOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -263,7 +280,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-day"),
             );
-            const dayOption = await screen.findByText("5");
+            const dayOption = await screen.findByRole("option", {
+                name: "5",
+            });
             await userEvent.click(dayOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -271,7 +290,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-year"),
             );
-            const yearOption = await screen.findByText("2021");
+            const yearOption = await screen.findByRole("option", {
+                name: "2021",
+            });
             await userEvent.click(yearOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -288,7 +309,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-month"),
             );
-            const monthOption = await screen.findByText("Jul");
+            const monthOption = await screen.findByRole("option", {
+                name: "Jul",
+            });
             await userEvent.click(monthOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -296,7 +319,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-day"),
             );
-            const dayOption = await screen.findByText("5");
+            const dayOption = await screen.findByRole("option", {
+                name: "5",
+            });
 
             await userEvent.click(dayOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
@@ -305,7 +330,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-year"),
             );
-            const yearOption = await screen.findByText("2021");
+            const yearOption = await screen.findByRole("option", {
+                name: "2021",
+            });
             await userEvent.click(yearOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -315,7 +342,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-month"),
             );
-            const monthOptionNew = await screen.findByText("Aug");
+            const monthOptionNew = await screen.findByRole("option", {
+                name: "Aug",
+            });
             await userEvent.click(monthOptionNew, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -323,7 +352,7 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-day"),
             );
-            const dayOptionNew = await screen.findByText("9");
+            const dayOptionNew = await screen.findByRole("option", {name: "9"});
             await userEvent.click(dayOptionNew, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -331,7 +360,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-year"),
             );
-            const yearOptionNew = await screen.findByText("2020");
+            const yearOptionNew = await screen.findByRole("option", {
+                name: "2020",
+            });
             await userEvent.click(yearOptionNew, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -403,9 +434,9 @@ describe("BirthdayPicker", () => {
             // This test was written by calling methods on the instance because
             // react-window (used by SingleSelect) doesn't show all of the items
             // in the dropdown.
-            instance.handleMonthChange("1");
-            instance.handleDayChange("31");
-            instance.handleYearChange("2021");
+            await act(() => instance.handleMonthChange("1"));
+            await act(() => instance.handleDayChange("31"));
+            await act(() => instance.handleYearChange("2021"));
 
             // Assert
             await waitFor(() => expect(onChange).toHaveBeenCalledWith(null));
