@@ -109,6 +109,8 @@ export const Tabs = (props: TabsProps) => {
         selectedTab,
         onTabChange,
     } = props;
+    const visitedTabsRef = React.useRef(new Set<string>());
+    visitedTabsRef.current.add(selectedTab);
 
     function getPanelId(tabId: string) {
         return `${tabId}__panel`;
@@ -118,9 +120,6 @@ export const Tabs = (props: TabsProps) => {
         return `${tabId}__tab`;
     }
 
-    function shouldRenderPanel(tab: TabItem) {
-        return tab.keepPanelMounted || selectedTab === tab.id;
-    }
     return (
         <View style={tabStyles.tabs}>
             <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
@@ -137,7 +136,7 @@ export const Tabs = (props: TabsProps) => {
                     </Tab>
                 ))}
             </Tablist>
-            {tabs.filter(shouldRenderPanel).map((tab) => (
+            {tabs.map((tab) => (
                 <TabPanel
                     key={tab.id}
                     id={getPanelId(tab.id)}
@@ -146,7 +145,7 @@ export const Tabs = (props: TabsProps) => {
                         selectedTab === tab.id ? undefined : {display: "none"}
                     }
                 >
-                    {tab.panel}
+                    {visitedTabsRef.current.has(tab.id) && tab.panel}
                 </TabPanel>
             ))}
         </View>
