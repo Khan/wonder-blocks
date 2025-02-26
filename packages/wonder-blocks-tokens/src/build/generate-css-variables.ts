@@ -42,15 +42,29 @@ function generateCssVariablesDefinitions() {
         .join("\n");
 }
 
-// Get the root package folder; use the CHANGELOG.md file as our root anchor.
-const packageDir = ancesdir(__dirname, "CHANGELOG.md");
+/**
+ * Create the CSS file containing the CSS variables for each theme.
+ */
+function createCssFile() {
+    // Get the root package folder; use the CHANGELOG.md file as our root
+    // anchor.
+    const packageDir = ancesdir(__dirname, "CHANGELOG.md");
 
-// Generate the output inside dist/index.css
-fs.writeFileSync(
-    path.resolve(packageDir, "./dist/css/index.css"),
-    generateCssVariablesDefinitions(),
-    {flag: "w"},
-);
+    const dir = path.resolve(packageDir, "./dist/css");
+
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    }
+
+    // Generate the output inside dist/css/index.css
+    fs.writeFileSync(
+        path.resolve(packageDir, `${dir}/index.css`),
+        generateCssVariablesDefinitions(),
+        {flag: "w+"},
+    );
+}
+
+createCssFile();
 
 // eslint-disable-next-line no-console
 console.log("CSS variables generated successfully!!");
