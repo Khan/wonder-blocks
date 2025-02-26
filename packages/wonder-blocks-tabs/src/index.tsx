@@ -118,8 +118,9 @@ export const Tabs = (props: TabsProps) => {
         return `${tabId}__tab`;
     }
 
-    const currentTab = tabs.find((tab) => tab.id === selectedTab) || tabs[0];
-
+    function shouldRenderPanel(tab: TabItem) {
+        return tab.keepPanelMounted || selectedTab === tab.id;
+    }
     return (
         <View style={tabStyles.tabs}>
             <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
@@ -136,13 +137,18 @@ export const Tabs = (props: TabsProps) => {
                     </Tab>
                 ))}
             </Tablist>
-            <TabPanel
-                key={currentTab.id}
-                id={getPanelId(currentTab.id)}
-                aria-labelledby={getTabId(currentTab.id)}
-            >
-                {currentTab.panel}
-            </TabPanel>
+            {tabs.filter(shouldRenderPanel).map((tab) => (
+                <TabPanel
+                    key={tab.id}
+                    id={getPanelId(tab.id)}
+                    aria-labelledby={getTabId(tab.id)}
+                    style={
+                        selectedTab === tab.id ? undefined : {display: "none"}
+                    }
+                >
+                    {tab.panel}
+                </TabPanel>
+            ))}
         </View>
     );
 };
@@ -232,6 +238,13 @@ const tabStyles = StyleSheet.create({
     },
 });
 
+const TestTabPanel = (props: {num: number}) => {
+    React.useEffect(() => {
+        console.log("mounted TabPanel", props.num);
+    }, []);
+    return <div>TabPanel{props.num}</div>;
+};
+
 export const Test = () => {
     const [selectedTab, setSelectedTab] = React.useState("tab-1");
     const [selectedNavTab, setSelectedNavTab] = React.useState("tab-1");
@@ -244,12 +257,18 @@ export const Test = () => {
                     {
                         id: "tab-1",
                         label: <div>Tab 1</div>,
-                        panel: <div>contents 1</div>,
+                        panel: <TestTabPanel num={1} />,
                     },
                     {
                         id: "tab-2",
                         label: <div>Tab 2</div>,
-                        panel: <div>contents 2</div>,
+                        panel: <TestTabPanel num={2} />,
+                    },
+                    {
+                        id: "tab-3",
+                        label: <div>Tab 3</div>,
+                        panel: <TestTabPanel num={3} />,
+                        keepPanelMounted: true,
                     },
                 ]}
                 selectedTab={selectedTab}
