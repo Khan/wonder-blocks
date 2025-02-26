@@ -93,6 +93,15 @@ importers:
       '@khanacademy/eslint-plugin':
         specifier: ^3.1.1
         version: 3.1.1(eslint@8.57.1)(typescript@5.7.3)
+      '@khanacademy/wonder-blocks-link':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-link
+      '@khanacademy/wonder-blocks-theming':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-theming
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-tokens
       '@khanacademy/wonder-stuff-testing':
         specifier: ^3.0.5
         version: 3.0.5(jest@29.7.0(@types/node@22.13.0))

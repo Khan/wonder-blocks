@@ -3,9 +3,18 @@ import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import Link from "@khanacademy/wonder-blocks-link";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {
+    ThemeSwitcherContext,
+    ThemeSwitcher,
+} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
 import {Preview} from "@storybook/react";
+
+// Import the Wonder Blocks CSS variables
+// NOTE: External consumers should import the CSS variables from the
+// wonder-blocks-tokens package directly.
+// e.g. import "@khanacademy/wonder-blocks-tokens/styles.css";
+import "../node_modules/@khanacademy/wonder-blocks-tokens/dist/css/index.css";
 
 /**
  * WB Official breakpoints
@@ -103,14 +112,18 @@ const withThemeSwitcher: Decorator = (
         return (
             <RenderStateRoot>
                 <ThemeSwitcherContext.Provider value={theme}>
-                    <Story />
+                    <ThemeSwitcher theme={theme}>
+                        <Story />
+                    </ThemeSwitcher>
                 </ThemeSwitcherContext.Provider>
             </RenderStateRoot>
         );
     }
     return (
         <ThemeSwitcherContext.Provider value={theme}>
-            <Story />
+            <ThemeSwitcher theme={theme}>
+                <Story />
+            </ThemeSwitcher>
         </ThemeSwitcherContext.Provider>
     );
 };
@@ -135,8 +148,13 @@ const preview: Preview = {
                     },
                     {
                         value: "khanmigo",
-                        icon: "circle",
+                        icon: "comment",
                         title: "Khanmigo",
+                    },
+                    {
+                        value: "classroom",
+                        icon: "lightning",
+                        title: "Classroom",
                     },
                 ],
                 // Change title based on selected value
