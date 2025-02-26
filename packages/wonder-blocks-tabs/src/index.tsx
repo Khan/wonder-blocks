@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "@khanacademy/wonder-blocks-link";
 import {CSSProperties, StyleSheet} from "aphrodite";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles} from "@khanacademy/wonder-blocks-typography";
 
@@ -26,6 +26,7 @@ type TabPanelProps = {
     children: React.ReactNode;
     id: string;
     "aria-labelledby": string;
+    style?: StyleType;
 };
 
 const StyledDiv = addStyle("div");
@@ -74,11 +75,16 @@ export const Tab = (props: TabProps) => {
 };
 
 export const TabPanel = (props: TabPanelProps) => {
-    const {children, id, "aria-labelledby": ariaLabelledby} = props;
+    const {children, id, "aria-labelledby": ariaLabelledby, style} = props;
     return (
-        <div role="tabpanel" id={id} aria-labelledby={ariaLabelledby}>
+        <StyledDiv
+            style={style}
+            role="tabpanel"
+            id={id}
+            aria-labelledby={ariaLabelledby}
+        >
             {children}
-        </div>
+        </StyledDiv>
     );
 };
 
@@ -133,6 +139,7 @@ export const Tabs = (props: TabsProps) => {
                 key={currentTab.id}
                 id={getPanelId(currentTab.id)}
                 aria-labelledby={getTabId(currentTab.id)}
+                style={tabStyles.panel}
             >
                 {currentTab.panel}
             </TabPanel>
@@ -220,7 +227,11 @@ const tabStyles = StyleSheet.create({
                 semanticColor.action.outlined.progressive.default.foreground,
         },
     },
+    panel: {
+        paddingTop: spacing.small_12,
+    },
 });
+
 export const Test = () => {
     const [selectedTab, setSelectedTab] = React.useState("tab-1");
     const [selectedNavTab, setSelectedNavTab] = React.useState("tab-1");
