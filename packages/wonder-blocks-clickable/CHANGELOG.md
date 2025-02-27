@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 6.1.2
+
+### Patch Changes
+
+- 8fc65a9: Migrate Clickable to `semanticColor`
+- Updated dependencies [ed26d66]
+    - @khanacademy/wonder-blocks-core@12.2.0
+
 ## 6.1.1
 
 ### Patch Changes

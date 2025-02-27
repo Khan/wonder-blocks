@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.2
+
+### Patch Changes
+
+- 8fc65a9: - Migrate to `semanticColor`.
+    - Update background from 16% to 8%.
+    - Update focus outline to always be `blue` (using global focus color).
+- Updated dependencies [ed26d66]
+- Updated dependencies [beb09cd]
+- Updated dependencies [5bd2a95]
+- Updated dependencies [762f749]
+- Updated dependencies [b6d77dc]
+- Updated dependencies [8fc65a9]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-link@8.0.0
+    - @khanacademy/wonder-blocks-clickable@6.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 3.1.1
 
 ### Patch Changes

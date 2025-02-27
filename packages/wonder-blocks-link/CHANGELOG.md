@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-link
 
+## 8.0.0
+
+### Major Changes
+
+- 762f749: Remove `kind` prop as the `secondary` variant is now dropped.
+- b6d77dc: Removes the `visitable` prop as it is not used. Also, removed as per design recommendation for privacy purposes.
+
+### Patch Changes
+
+- beb09cd: Update Link to use CSS pseudo-classes (:hover, :focus-visible, :active) instead of JS driven states (hovered, focused, pressed).
+- 5bd2a95: Internal `Link` refactor to use `semanticColor` tokens intead of `color`. Also moved the link colors to an object to prepare this for an upcoming theme integration"
+- Updated dependencies [ed26d66]
+- Updated dependencies [8fc65a9]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-clickable@6.1.2
+    - @khanacademy/wonder-blocks-icon@5.1.2
+
 ## 7.1.1
 
 ### Patch Changes
