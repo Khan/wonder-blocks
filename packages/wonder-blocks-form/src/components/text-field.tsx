@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
         },
         ":focus-visible": {
             // TODO(WB-1856): Verify if we can use the global focus color
-            outlineColor: states.error.border,
+            outline: `${border.width.thin}px solid ${states.error.border}`,
             borderColor: states.error.border,
         },
     },
