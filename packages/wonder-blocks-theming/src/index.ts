@@ -10,4 +10,4 @@ export {
 export {type ThemedStylesFn, type SupportedThemes, type Themes} from "./types";
 export {default as useStyles} from "./hooks/use-styles";
 export {ThemeSwitcherContext} from "./utils/theme-switcher-context";
-export {default as ThemeSwitcher} from "./components/theme-switcher";
+export {ThemeSwitcher} from "./components/theme-switcher";

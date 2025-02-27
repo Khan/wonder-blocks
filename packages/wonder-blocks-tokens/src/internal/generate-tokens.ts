@@ -1,5 +1,5 @@
-import {CSS_VAR_COLOR_PREFIX} from "../constants";
-import {RecursivePartial} from "../types";
+import {CSS_VAR_COLOR_PREFIX} from "../util/constants";
+import {RecursivePartial} from "../util/types";
 
 /**
  * Generate CSS variables from a valid theme object.

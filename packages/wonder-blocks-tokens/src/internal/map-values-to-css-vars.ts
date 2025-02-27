@@ -1,4 +1,4 @@
-import {RecursivePartial} from "../types";
+import {RecursivePartial} from "../util/types";
 
 /**
  * From a given object, create a new object where each value is a CSS variable
