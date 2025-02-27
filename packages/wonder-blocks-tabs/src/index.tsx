@@ -56,6 +56,7 @@ export const Tab = (props: TabProps) => {
         selected,
         onClick,
         id,
+        ...otherProps
     } = props;
     return (
         <StyledButton
@@ -66,6 +67,7 @@ export const Tab = (props: TabProps) => {
             aria-selected={selected}
             onClick={onClick}
             tabIndex={selected ? undefined : -1}
+            {...otherProps}
         >
             {children}
         </StyledButton>
@@ -86,12 +88,20 @@ export const TabPanel = (props: TabPanelProps) => {
     );
 };
 
-type TabItem = {
+type TabLabel =
+    | {
+          label: React.ReactElement;
+          renderTab?: never;
+      }
+    | {
+          label?: never;
+          renderTab(tabProps: Omit<TabProps, "children">): React.ReactElement;
+      };
+export type TabItem = {
     id: string;
-    label: React.ReactElement;
     panel: React.ReactElement;
     keepPanelMounted?: boolean;
-};
+} & TabLabel;
 
 type TabsProps = {
     tabs: Array<TabItem>;
@@ -119,19 +129,22 @@ export const Tabs = (props: TabsProps) => {
     }
 
     return (
-        <View style={tabStyles.tabs}>
+        <View style={[tabStyles.tabs]}>
             <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
-                {tabs.map((tab) => (
-                    <Tab
-                        key={tab.id}
-                        aria-controls={getPanelId(tab.id)}
-                        id={getTabId(tab.id)}
-                        selected={selectedTabId === tab.id}
-                        onClick={() => onTabChange(tab.id)}
-                    >
-                        {tab.label}
-                    </Tab>
-                ))}
+                {tabs.map((tab) => {
+                    const tabProps = {
+                        key: tab.id,
+                        "aria-controls": getPanelId(tab.id),
+                        id: getTabId(tab.id),
+                        selected: selectedTabId === tab.id,
+                        onClick: () => onTabChange(tab.id),
+                    };
+                    return tab.label ? (
+                        <Tab {...tabProps}>{tab.label}</Tab>
+                    ) : (
+                        tab.renderTab(tabProps)
+                    );
+                })}
             </Tablist>
             {tabs.map((tab) => (
                 <TabPanel
