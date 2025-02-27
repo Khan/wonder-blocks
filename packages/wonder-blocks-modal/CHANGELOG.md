@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-modal
 
+## 7.1.2
+
+### Patch Changes
+
+- 6d37702: Refactor Modal package to use semanticColors. Restructure theme contract.
+- Updated dependencies [ed26d66]
+- Updated dependencies [6d37702]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-theming@3.2.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.2
+    - @khanacademy/wonder-blocks-icon-button@6.1.2
+    - @khanacademy/wonder-blocks-layout@3.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 7.1.1
 
 ### Patch Changes
