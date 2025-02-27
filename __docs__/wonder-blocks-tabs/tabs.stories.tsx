@@ -17,7 +17,7 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Tabs",
+    title: "Packages / Tabs / Tabs",
     parameters: {
         componentSubtitle: (
             <ComponentInfo
