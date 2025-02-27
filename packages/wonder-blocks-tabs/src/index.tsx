@@ -19,6 +19,8 @@ type TabProps = {
     selected?: boolean;
     id: string;
     onClick?: (event: React.MouseEvent) => unknown;
+
+    key?: string;
 };
 
 type TabPanelProps = {
@@ -86,10 +88,12 @@ export const TabPanel = (props: TabPanelProps) => {
     );
 };
 
-type TabItem = {
+export type TabItem = {
     id: string;
-    label: React.ReactElement;
-    panel: React.ReactElement;
+    renderTab(tabProps: Omit<TabProps, "children">): React.ReactElement;
+    renderPanel(
+        panelProps: Omit<TabPanelProps, "children">,
+    ): React.ReactElement;
     keepPanelMounted?: boolean;
 };
 
@@ -121,30 +125,33 @@ export const Tabs = (props: TabsProps) => {
     return (
         <View style={tabStyles.tabs}>
             <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
-                {tabs.map((tab) => (
-                    <Tab
-                        key={tab.id}
-                        aria-controls={getPanelId(tab.id)}
-                        id={getTabId(tab.id)}
-                        selected={selectedTabId === tab.id}
-                        onClick={() => onTabChange(tab.id)}
-                    >
-                        {tab.label}
-                    </Tab>
-                ))}
+                {tabs.map((tab) =>
+                    tab.renderTab({
+                        key: tab.id,
+                        "aria-controls": getPanelId(tab.id),
+                        id: getTabId(tab.id),
+                        selected: selectedTabId === tab.id,
+                        onClick: () => onTabChange(tab.id),
+                    }),
+                )}
             </Tablist>
-            {tabs.map((tab) => (
-                <TabPanel
-                    key={tab.id}
-                    id={getPanelId(tab.id)}
-                    aria-labelledby={getTabId(tab.id)}
-                    style={
-                        selectedTabId === tab.id ? undefined : {display: "none"}
-                    }
-                >
-                    {visitedTabsRef.current.has(tab.id) && tab.panel}
-                </TabPanel>
-            ))}
+            {tabs.map((tab) => {
+                const attrs = {
+                    key: tab.id,
+                    id: getPanelId(tab.id),
+                    "aria-labelledby": getTabId(tab.id),
+                    style:
+                        selectedTabId === tab.id
+                            ? undefined
+                            : {display: "none"},
+                };
+
+                return visitedTabsRef.current.has(tab.id) ? (
+                    tab.renderPanel(attrs)
+                ) : (
+                    <React.Fragment />
+                );
+            })}
         </View>
     );
 };
@@ -252,18 +259,42 @@ export const Test = () => {
                 tabs={[
                     {
                         id: "tab-1",
-                        label: <div>Tab 1</div>,
-                        panel: <TestTabPanel num={1} />,
+                        renderTab(tabProps) {
+                            return <Tab {...tabProps}>Tab 1</Tab>;
+                        },
+                        renderPanel(panelProps) {
+                            return (
+                                <TabPanel {...panelProps}>
+                                    <TestTabPanel num={1} />
+                                </TabPanel>
+                            );
+                        },
                     },
                     {
                         id: "tab-2",
-                        label: <div>Tab 2</div>,
-                        panel: <TestTabPanel num={2} />,
+                        renderTab(tabProps) {
+                            return <Tab {...tabProps}>Tab 2</Tab>;
+                        },
+                        renderPanel(panelProps) {
+                            return (
+                                <TabPanel {...panelProps}>
+                                    <TestTabPanel num={2} />
+                                </TabPanel>
+                            );
+                        },
                     },
                     {
                         id: "tab-3",
-                        label: <div>Tab 3</div>,
-                        panel: <TestTabPanel num={3} />,
+                        renderTab(tabProps) {
+                            return <Tab {...tabProps}>Tab 3</Tab>;
+                        },
+                        renderPanel(panelProps) {
+                            return (
+                                <TabPanel {...panelProps}>
+                                    <TestTabPanel num={3} />
+                                </TabPanel>
+                            );
+                        },
                     },
                 ]}
                 selectedTabId={selectedTabId}
