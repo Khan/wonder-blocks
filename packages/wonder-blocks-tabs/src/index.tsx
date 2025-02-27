@@ -95,7 +95,7 @@ type TabItem = {
 
 type TabsProps = {
     tabs: Array<TabItem>;
-    selectedTab: string;
+    selectedTabId: string;
     onTabChange: (tabId: string) => void;
 } & AriaLabelOrAriaLabelledby;
 
@@ -104,11 +104,11 @@ export const Tabs = (props: TabsProps) => {
         tabs,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
-        selectedTab,
+        selectedTabId,
         onTabChange,
     } = props;
     const visitedTabsRef = React.useRef(new Set<string>());
-    visitedTabsRef.current.add(selectedTab);
+    visitedTabsRef.current.add(selectedTabId);
 
     function getPanelId(tabId: string) {
         return `${tabId}__panel`;
@@ -126,7 +126,7 @@ export const Tabs = (props: TabsProps) => {
                         key={tab.id}
                         aria-controls={getPanelId(tab.id)}
                         id={getTabId(tab.id)}
-                        selected={selectedTab === tab.id}
+                        selected={selectedTabId === tab.id}
                         onClick={() => onTabChange(tab.id)}
                     >
                         {tab.label}
@@ -139,7 +139,7 @@ export const Tabs = (props: TabsProps) => {
                     id={getPanelId(tab.id)}
                     aria-labelledby={getTabId(tab.id)}
                     style={
-                        selectedTab === tab.id ? undefined : {display: "none"}
+                        selectedTabId === tab.id ? undefined : {display: "none"}
                     }
                 >
                     {visitedTabsRef.current.has(tab.id) && tab.panel}
@@ -242,7 +242,7 @@ const TestTabPanel = (props: {num: number}) => {
 };
 
 export const Test = () => {
-    const [selectedTab, setSelectedTab] = React.useState("tab-1");
+    const [selectedTabId, setSelectedTabId] = React.useState("tab-1");
     const [selectedNavTab, setSelectedNavTab] = React.useState("tab-1");
     return (
         <div>
@@ -266,8 +266,8 @@ export const Test = () => {
                         panel: <TestTabPanel num={3} />,
                     },
                 ]}
-                selectedTab={selectedTab}
-                onTabChange={setSelectedTab}
+                selectedTabId={selectedTabId}
+                onTabChange={setSelectedTabId}
             />
             --- NavTabs ---
             <NavTabs aria-label="Secondary navigation">
