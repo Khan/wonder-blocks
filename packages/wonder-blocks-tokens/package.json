@@ -23,7 +23,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@khanacademy/wonder-blocks-theming": "workspace:*"
+  },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
