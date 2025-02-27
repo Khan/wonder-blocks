@@ -1225,6 +1225,10 @@ importers:
         version: link:../wonder-blocks-testing-core
 
   packages/wonder-blocks-tokens:
+    dependencies:
+      '@khanacademy/wonder-blocks-theming':
+        specifier: workspace:*
+        version: link:../wonder-blocks-theming
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
