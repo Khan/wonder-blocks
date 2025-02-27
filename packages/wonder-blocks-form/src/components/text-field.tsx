@@ -318,7 +318,7 @@ const styles = StyleSheet.create({
         },
         ":focus-visible": {
             outlineColor: semanticColor.focus.outer,
-            borderColor: states.error.border,
+            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
         },
     },
     disabled: {
@@ -330,8 +330,7 @@ const styles = StyleSheet.create({
         },
         cursor: "not-allowed",
         ":focus-visible": {
-            // TODO(WB-1856): Verify if we can use the global focus color
-            outline: `${border.width.thin}px solid ${semanticColor.action.disabled.default}`,
+            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
             outlineOffset: -3,
         },
     },

@@ -270,7 +270,7 @@ function getStylesByKind(
             disabled: {
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
-                outlineColor: themeVariant.default.border,
+                outlineColor: themeVariant.focus.border,
             },
         };
     }
@@ -302,7 +302,7 @@ function getStylesByKind(
             disabled: {
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
-                outlineColor: themeVariant.default.border,
+                outlineColor: themeVariant.focus.border,
             },
         };
     }

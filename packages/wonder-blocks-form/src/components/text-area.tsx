@@ -386,8 +386,7 @@ const styles = StyleSheet.create({
             color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            // TODO(WB-1856): Verify if we can use the global focus color
-            outlineColor: states.error.border,
+            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
             borderColor: states.error.border,
         },
     },
