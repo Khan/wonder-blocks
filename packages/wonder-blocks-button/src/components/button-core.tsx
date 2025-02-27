@@ -361,12 +361,20 @@ export const _generateStyles = (
     if (kind === "primary") {
         const themeColorAction = theme.color.filled[colorToAction];
 
-        const focusStyling = {
-            // TODO(WB-1856): Change with global focus token
-            outlineColor: themeColorAction.hover.border,
+        const sharedFocusHoverStyling = {
             outlineOffset: theme.border.offset.primary,
             outlineStyle: "solid",
             outlineWidth: theme.border.width.focused,
+        };
+
+        const focusStyling = {
+            ...sharedFocusHoverStyling,
+            outlineColor: themeColorAction.focus.border,
+        };
+
+        const hoverStyling = {
+            ...sharedFocusHoverStyling,
+            outlineColor: themeColorAction.hover.border,
         };
 
         const activePressedStyling = {
@@ -382,9 +390,7 @@ export const _generateStyles = (
                 background: themeColorAction.default.background,
                 color: themeColorAction.default.foreground,
                 paddingInline: padding,
-                // TODO(WB-1844): Change this when we get final designs for
-                // hover.
-                [":hover:not([aria-disabled=true])" as any]: focusStyling,
+                [":hover:not([aria-disabled=true])" as any]: hoverStyling,
                 [":focus-visible:not([aria-disabled=true])" as any]:
                     focusStyling,
                 [":active:not([aria-disabled=true])" as any]:
@@ -396,21 +402,27 @@ export const _generateStyles = (
                 background: themeColorAction.disabled.background,
                 color: themeColorAction.disabled.foreground,
                 cursor: "default",
-                ":focus-visible": {
-                    ...focusStyling,
-                    outlineColor: themeColorAction.disabled.border,
-                },
+                ":focus-visible": focusStyling,
             },
         };
     } else if (kind === "secondary") {
         const themeColorAction = theme.color.outlined[colorToAction];
 
-        const focusStyling = {
+        const sharedFocusHoverStyling = {
             background: themeColorAction.hover.background,
-            outlineColor: themeColorAction.hover.border,
             outlineStyle: "solid",
             outlineOffset: theme.border.offset.secondary,
             outlineWidth: theme.border.width.focused,
+        };
+
+        const focusStyling = {
+            ...sharedFocusHoverStyling,
+            outlineColor: themeColorAction.focus.border,
+        };
+
+        const hoverStyling = {
+            ...sharedFocusHoverStyling,
+            outlineColor: themeColorAction.hover.border,
         };
 
         const activePressedStyling = {
@@ -429,9 +441,7 @@ export const _generateStyles = (
                 borderStyle: "solid",
                 borderWidth: theme.border.width.secondary,
                 paddingInline: padding,
-                // TODO(WB-1844): Change this when we get final designs for
-                // hover.
-                [":hover:not([aria-disabled=true])" as any]: focusStyling,
+                [":hover:not([aria-disabled=true])" as any]: hoverStyling,
                 [":focus-visible:not([aria-disabled=true])" as any]:
                     focusStyling,
                 [":active:not([aria-disabled=true])" as any]:
@@ -443,13 +453,7 @@ export const _generateStyles = (
                 color: themeColorAction.disabled.foreground,
                 borderColor: themeColorAction.disabled.border,
                 cursor: "default",
-                ":focus-visible": {
-                    borderColor: themeColorAction.disabled.border,
-                    outlineColor: themeColorAction.disabled.border,
-                    outlineOffset: theme.border.offset.secondary,
-                    outlineStyle: "solid",
-                    outlineWidth: theme.border.width.disabled,
-                },
+                ":focus-visible": focusStyling,
             },
             iconWrapperHovered: {
                 backgroundColor: themeColorAction.hover.icon,
@@ -462,7 +466,7 @@ export const _generateStyles = (
         const focusStyling = {
             outlineStyle: "solid",
             borderColor: "transparent",
-            outlineColor: themeColorAction.hover.border,
+            outlineColor: themeColorAction.focus.border,
             outlineWidth: theme.border.width.focused,
             borderRadius: theme.border.radius.default,
         };
@@ -493,15 +497,9 @@ export const _generateStyles = (
             disabled: {
                 color: themeColorAction.disabled.foreground,
                 cursor: "default",
-                ":focus-visible": {
-                    outlineColor: themeColorAction.disabled.border,
-                    outlineStyle: "solid",
-                    outlineWidth: theme.border.width.disabled,
-                },
+                ":focus-visible": focusStyling,
             },
-            disabledFocus: {
-                outlineColor: themeColorAction.disabled.border,
-            },
+            disabledFocus: focusStyling,
         };
     } else {
         throw new Error("Button kind not recognized");
