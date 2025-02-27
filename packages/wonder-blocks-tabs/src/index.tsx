@@ -162,13 +162,13 @@ export const Tabs = (props: TabsProps) => {
     );
 };
 
-type NavTabsProps = {
+type NavigationTabsProps = {
     children: React.ReactNode;
 } & AriaLabelOrAriaLabelledby;
 
 const StyledNav = addStyle("nav");
 const StyledUl = addStyle("ul");
-export const NavTabs = (props: NavTabsProps) => {
+export const NavigationTabs = (props: NavigationTabsProps) => {
     const {
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
@@ -181,12 +181,12 @@ export const NavTabs = (props: NavTabsProps) => {
     );
 };
 
-type NavTabItemProps = {
+type NavigationTabItemProps = {
     selected?: boolean;
     children: React.ReactElement<React.ComponentProps<typeof Link>>;
 };
 
-export const NavTabItem = (props: NavTabItemProps) => {
+export const NavigationTabItem = (props: NavigationTabItemProps) => {
     const {children, selected} = props;
     function renderChildren() {
         return React.cloneElement(children, {
@@ -282,25 +282,25 @@ export const Test = () => {
                 selectedTabId={selectedTabId}
                 onTabChange={setSelectedTabId}
             />
-            --- NavTabs ---
-            <NavTabs aria-label="Secondary navigation">
-                <NavTabItem selected={selectedNavTab === "tab-1"}>
+            --- NavigationTabs ---
+            <NavigationTabs aria-label="Secondary navigation">
+                <NavigationTabItem selected={selectedNavTab === "tab-1"}>
                     <Link
                         href="#tab1"
                         onClick={() => setSelectedNavTab("tab-1")}
                     >
                         Tab 1
                     </Link>
-                </NavTabItem>
-                <NavTabItem selected={selectedNavTab === "tab-2"}>
+                </NavigationTabItem>
+                <NavigationTabItem selected={selectedNavTab === "tab-2"}>
                     <Link
                         href="#tab2"
                         onClick={() => setSelectedNavTab("tab-2")}
                     >
                         Tab 2
                     </Link>
-                </NavTabItem>
-            </NavTabs>
+                </NavigationTabItem>
+            </NavigationTabs>
         </div>
     );
 };
