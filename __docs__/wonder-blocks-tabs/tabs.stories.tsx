@@ -1,13 +1,7 @@
 import * as React from "react";
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
 import ComponentInfo from "../components/component-info";
-import {
-    Tab,
-    TabItem,
-    TabPanel,
-    Tabs,
-    Test,
-} from "../../packages/wonder-blocks-tabs/src/index";
+import {Tabs, Test} from "../../packages/wonder-blocks-tabs/src/index";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -29,33 +23,21 @@ export default {
 export const Default = () => {
     return <Test />;
 };
-const tabs: Array<TabItem> = [
+const tabs = [
     {
         id: "tab-1",
-        renderTab(tabProps) {
-            return <Tab {...tabProps}>Tab 1</Tab>;
-        },
-        renderPanel(panelProps) {
-            return <TabPanel {...panelProps}>Panel 1</TabPanel>;
-        },
+        label: <div>Tab 1</div>,
+        panel: <div>Panel 1</div>,
     },
     {
         id: "tab-2",
-        renderTab(tabProps) {
-            return <Tab {...tabProps}>Tab 2</Tab>;
-        },
-        renderPanel(panelProps) {
-            return <TabPanel {...panelProps}>Panel 2</TabPanel>;
-        },
+        label: <div>Tab 2</div>,
+        panel: <div>Panel 2</div>,
     },
     {
         id: "tab-3",
-        renderTab(tabProps) {
-            return <Tab {...tabProps}>Tab 3</Tab>;
-        },
-        renderPanel(panelProps) {
-            return <TabPanel {...panelProps}>Panel 3</TabPanel>;
-        },
+        label: <div>Tab 3</div>,
+        panel: <div>Panel 3</div>,
     },
 ];
 
@@ -76,7 +58,6 @@ export const TabsWithFlexibleContent = () => {
     const tabsWithFlexibleContent = [
         {
             id: "tab-1",
-            renderTab(tabProps) {},
             label: (
                 <div
                     style={{
