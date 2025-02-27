@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
         padding: spacing.medium_16,
     },
     focused: {
-        outlineColor: semanticColor.border.focus,
+        outlineColor: semanticColor.focus.outer,
         outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {

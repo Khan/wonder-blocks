@@ -4,7 +4,6 @@ const border = {
     primary: color.fadedOffBlack16,
     subtle: color.fadedOffBlack8,
     strong: color.fadedOffBlack50,
-    focus: color.blue,
     inverse: color.white,
 };
 
@@ -148,6 +147,11 @@ export const semanticColor = {
      * -Strong for when 3:1 contrast is a priority (ex. form elements)
      */
     border: border,
+
+    focus: {
+        outer: color.blue,
+        inner: color.white,
+    },
     /**
      * Default icon colors that change in context (like actions).
      */

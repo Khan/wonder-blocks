@@ -305,7 +305,7 @@ const focusedStyle = {
     // Override the default focus state for the cell element, so that it
     // can be added programmatically to the button element.
     borderRadius: spacing.xxxSmall_4,
-    outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.border.focus}`,
+    outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
     outlineOffset: -spacing.xxxxSmall_2,
 };
 
@@ -475,7 +475,7 @@ const styles = StyleSheet.create({
     },
     itemFocused: focusedStyle,
     itemDisabled: {
-        outlineColor: semanticColor.border.focus,
+        outlineColor: semanticColor.focus.outer,
     },
     itemContainer: {
         minHeight: "unset",

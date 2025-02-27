@@ -283,9 +283,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     };
 
     const focusHoverStyling = {
-        // TODO(WB-1856): Use `border.focus` when we define a global pattern for
-        // focus indicators.
-        outlineColor: action.hover.border,
+        outlineColor: semanticColor.focus.outer,
         ...sharedOutlineStyling,
     };
     const pressStyling = {
@@ -329,9 +327,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             color: states.disabled.foreground,
             cursor: "not-allowed",
             ":focus-visible": {
-                // TODO(WB-1856): Use `border.focus` when we define a global
-                // pattern for focus indicators.
-                outlineColor: semanticColor.action.disabled.default,
+                outlineColor: semanticColor.focus.outer,
                 ...sharedOutlineStyling,
             },
         },

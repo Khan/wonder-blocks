@@ -103,6 +103,6 @@ const styles = StyleSheet.create({
         paddingInlineEnd: spacing.xxxSmall_4,
     },
     pillFocused: {
-        outline: `1px solid ${semanticColor.border.focus}`,
+        outline: `1px solid ${semanticColor.focus.outer}`,
     },
 });

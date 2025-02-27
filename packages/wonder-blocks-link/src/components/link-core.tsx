@@ -187,7 +187,7 @@ const theme = {
                 foreground: action.hover.foreground,
             },
             focus: {
-                border: semanticColor.border.focus,
+                border: semanticColor.focus.outer,
                 foreground: action.hover.foreground,
             },
             press: {

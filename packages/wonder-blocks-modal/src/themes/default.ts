@@ -56,7 +56,7 @@ const theme = {
     },
     panel: {
         color: {
-            border: semanticColor.border.focus,
+            border: semanticColor.focus.outer,
         },
         spacing: {
             gap: spacing.xLarge_32,

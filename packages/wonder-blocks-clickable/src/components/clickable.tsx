@@ -410,8 +410,7 @@ const styles = StyleSheet.create({
     },
     focused: {
         ":focus": {
-            // TODO(WB-1856): Verify if we can set global focus styles
-            outline: `solid ${border.width.thin}px ${semanticColor.border.focus}`,
+            outline: `solid ${border.width.thin}px ${semanticColor.focus.outer}`,
         },
     },
     // TODO(WB-1852): Remove light variant.
@@ -425,8 +424,7 @@ const styles = StyleSheet.create({
             outline: "none",
         },
         ":focus-visible": {
-            // TODO(WB-1856): Verify if we can set global focus styles
-            outline: `solid ${border.width.thin}px ${semanticColor.border.focus}`,
+            outline: `solid ${border.width.thin}px ${semanticColor.focus.outer}`,
         },
     },
 });

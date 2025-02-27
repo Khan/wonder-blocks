@@ -180,11 +180,11 @@ const styles = StyleSheet.create({
         },
 
         ":hover": {
-            outline: `2px solid ${semanticColor.border.focus}`,
+            outline: `2px solid ${semanticColor.action.outlined.progressive.hover.border}`,
         },
 
         ":focus-visible": {
-            outline: `2px solid ${semanticColor.border.focus}`,
+            outline: `2px solid ${semanticColor.focus.outer}`,
         },
     },
     headerWrapperWithAnimation: {
