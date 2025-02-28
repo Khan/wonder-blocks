@@ -258,7 +258,7 @@ const tabStyles = StyleSheet.create({
 
     navTab: {
         color: semanticColor.text.primary,
-        padding: `${spacing.small_12} 0`,
+        padding: `${spacing.small_12}px 0`,
     },
     selected: {
         fontWeight: "bold",
