@@ -274,7 +274,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     // resting/default state.
     const action = semanticColor.action.outlined[actionType];
 
-    // TODO(WB-1856): Define global semantic outline tokens.
+    // TODO(WB-1868): Address outlineOffset to include hover and focus states
     const sharedOutlineStyling = {
         // Outline sits inside the border (inset)
         outlineOffset: -border.width.thin,
@@ -282,9 +282,9 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         outlineWidth: border.width.thin,
     };
 
-    const focusHoverStyling = {
-        outlineColor: semanticColor.focus.outer,
+    const focusStyling = {
         ...sharedOutlineStyling,
+        outlineColor: semanticColor.focus.outer,
     };
     const pressStyling = {
         background: action.press.background,
@@ -299,6 +299,11 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
 
     const currentState = error ? states.error : states.default;
 
+    const hoverStyling = {
+        ...sharedOutlineStyling,
+        outlineColor: currentState.border,
+    };
+
     const newStyles = {
         default: {
             background: currentState.background,
@@ -307,7 +312,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             color: placeholder
                 ? semanticColor.text.secondary
                 : currentState.foreground,
-            ":hover:not([aria-disabled=true])": focusHoverStyling,
+            ":hover:not([aria-disabled=true])": hoverStyling,
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
             ["@media not (hover: hover)"]: {
@@ -318,7 +323,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
                     paddingRight: spacing.small_12,
                 },
             },
-            ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
+            ":focus-visible:not([aria-disabled=true])": focusStyling,
             ":active:not([aria-disabled=true])": pressStyling,
         },
         disabled: {
