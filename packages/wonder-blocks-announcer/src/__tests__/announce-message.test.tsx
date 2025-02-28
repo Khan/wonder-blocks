@@ -19,7 +19,7 @@ describe("Announcer.announceMessage", () => {
         const message1 = "One Fish Two Fish";
 
         // ACT
-        const announcement1Id = await announceMessage({
+        const announcement1Id = announceMessage({
             message: message1,
             initialTimeout: 0,
             debounceThreshold: 0,
@@ -27,7 +27,7 @@ describe("Announcer.announceMessage", () => {
         jest.advanceTimersByTime(500);
 
         // ASSERT
-        expect(announcement1Id).toBe("wbARegion-polite1");
+        await expect(announcement1Id).resolves.toBe("wbARegion-polite1");
     });
 
     test("creates the live region elements when called", () => {
@@ -159,7 +159,7 @@ describe("Announcer.announceMessage", () => {
         expect(message1Region).toHaveTextContent(message1);
 
         expect(setTimeout).toHaveBeenNthCalledWith(
-            1,
+            2,
             expect.any(Function),
             5250,
         );
