@@ -28,22 +28,18 @@ export function createDebounceFunction(
     updateWaitTime: (time: number) => void;
 } {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
-    let executed = false;
-    let lastExecutionTime = 0;
 
     const debouncedFn = (...args: []) => {
         return new Promise<string>((resolve) => {
-            const now = Date.now();
-            const timeSinceLastExecution = now - lastExecutionTime;
-            if (timeSinceLastExecution >= debounceThreshold) {
-                lastExecutionTime = now;
-                // Leading edge: Execute the callback immediately
-                if (!executed) {
-                    executed = true;
-                    const result = callback.apply(context, args);
-                    resolve(result);
+            console.log("debounceFn", args);
+            const later = () => {
+                const result = callback.apply(context, args);
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
                 }
-            }
+                console.log("later", args);
+                return resolve(result);
+            };
 
             // If the timeout exists, clear it
             if (timeoutId !== null) {
@@ -52,7 +48,7 @@ export function createDebounceFunction(
 
             // Trailing edge: Set the timeout for the next allowed execution
             timeoutId = setTimeout(() => {
-                executed = false;
+                later();
             }, debounceThreshold);
         });
     };

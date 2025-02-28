@@ -565,10 +565,13 @@ const MultiSelect = (props: Props) => {
         const {noneSelected} = labels;
 
         const menuTextOrNode = getMenuTextOrNode(allChildren);
-        const [menuStringLabel, menuContent] =
+        const [openerStringValue, openerContent] =
             maybeExtractStringFromNode(menuTextOrNode);
 
-        handleAnnouncement(menuStringLabel);
+        if (openerStringValue) {
+            // opener value changed, so let's announce it
+            handleAnnouncement(openerStringValue);
+        }
 
         const dropdownOpener = (
             <Id id={id}>
@@ -585,7 +588,7 @@ const MultiSelect = (props: Props) => {
                             disabled={isDisabled}
                             ref={handleOpenerRef}
                             role="combobox"
-                            text={menuContent}
+                            text={openerContent}
                             opened={open}
                         >
                             {opener}
@@ -598,14 +601,14 @@ const MultiSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
-                            isPlaceholder={menuContent === noneSelected}
+                            isPlaceholder={openerContent === noneSelected}
                             onOpenChanged={handleOpenChanged}
                             onBlur={onOpenerBlurValidation}
                             open={open}
                             ref={handleOpenerRef}
                             testId={testId}
                         >
-                            {menuContent}
+                            {openerContent}
                         </SelectOpener>
                     );
                 }}
@@ -627,6 +630,10 @@ const MultiSelect = (props: Props) => {
     ).length;
     const filteredItems = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
+
+    if (open && isFilterable) {
+        handleAnnouncement(labels.someSelected(filteredItems.length));
+    }
 
     return (
         <Id id={dropdownId}>
