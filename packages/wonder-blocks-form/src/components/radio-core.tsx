@@ -103,9 +103,9 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         return styles[styleKey];
     }
     const actionType = error ? "destructive" : "progressive";
-    // NOTE: Radio buttons use the outlined style regardless of the checked
+    // NOTE: Radio buttons use the secondary style regardless of the checked
     // state.
-    const colorAction = semanticColor.action.outlined[actionType];
+    const colorAction = semanticColor.action.secondary[actionType];
 
     // The different states that the component can be in.
     const states = {

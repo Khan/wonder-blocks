@@ -176,11 +176,11 @@ const styles = StyleSheet.create({
         zIndex: 1,
 
         ":active": {
-            outline: `2px solid ${semanticColor.action.outlined.progressive.press.border}`,
+            outline: `2px solid ${semanticColor.action.secondary.progressive.press.border}`,
         },
 
         ":hover": {
-            outline: `2px solid ${semanticColor.action.outlined.progressive.hover.border}`,
+            outline: `2px solid ${semanticColor.action.secondary.progressive.hover.border}`,
         },
 
         ":focus-visible": {

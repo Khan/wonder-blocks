@@ -359,7 +359,7 @@ export const _generateStyles = (
 
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
-        const themeColorAction = theme.color.filled[colorToAction];
+        const themeColorAction = theme.color.primary[colorToAction];
 
         const sharedFocusHoverStyling = {
             outlineOffset: theme.border.offset.primary,
@@ -406,7 +406,7 @@ export const _generateStyles = (
             },
         };
     } else if (kind === "secondary") {
-        const themeColorAction = theme.color.outlined[colorToAction];
+        const themeColorAction = theme.color.secondary[colorToAction];
 
         const sharedFocusHoverStyling = {
             background: themeColorAction.hover.background,

@@ -174,7 +174,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
     const isCheckedOrIndeterminate = checked || checked == null;
     const actionType = error ? "destructive" : "progressive";
-    const styleType = isCheckedOrIndeterminate ? "filled" : "outlined";
+    const styleType = isCheckedOrIndeterminate ? "primary" : "secondary";
 
     const colorAction = semanticColor.action[styleType][actionType];
 

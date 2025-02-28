@@ -266,10 +266,10 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             border: semanticColor.focus.outer,
         },
         hover: {
-            border: semanticColor.action.filled.progressive.hover.border,
+            border: semanticColor.action.primary.progressive.hover.border,
         },
         press: {
-            border: semanticColor.action.filled.progressive.press.border,
+            border: semanticColor.action.primary.progressive.press.border,
             background: pressColor,
         },
     };

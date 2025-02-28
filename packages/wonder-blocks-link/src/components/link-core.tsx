@@ -171,7 +171,7 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-const action = semanticColor.action.outlined.progressive;
+const action = semanticColor.action.secondary.progressive;
 
 /**
  * TODO(WB-1862): Move this to a shared theme file.

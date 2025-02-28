@@ -305,7 +305,7 @@ Ref.parameters = {
     },
 };
 
-const progressive = semanticColor.action.outlined.progressive;
+const progressive = semanticColor.action.secondary.progressive;
 
 const styles = StyleSheet.create({
     clickable: {
