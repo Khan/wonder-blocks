@@ -8,7 +8,7 @@ describe("Announcer.clearMessages", () => {
     test("empties a targeted live region element by IDREF", async () => {
         // ARRANGE
         const message1 = "Shine a million stars";
-        const message2 = "Dull no stars";
+        // const message2 = "Dull no stars";
 
         // ACT
         const announcement1Id = await announceMessage({
@@ -19,12 +19,12 @@ describe("Announcer.clearMessages", () => {
 
         const region1 = screen.getByTestId("wbARegion-polite1");
 
-        // jest.advanceTimersByTime(250);
+        jest.advanceTimersByTime(250);
 
-        // await waitFor(() => {
-        //     expect(region1).toHaveTextContent(message1);
-        //     clearMessages(announcement1Id);
-        // });
+        await waitFor(() => {
+            expect(region1).toHaveTextContent(message1);
+            clearMessages(announcement1Id);
+        });
 
         // announceMessage({
         //     message: message2,
