@@ -81,25 +81,30 @@ export const LinkCapabilities = () => {
 };
 
 export const PartOfNav = () => {
+    const pageStyle = {
+        backgroundColor: semanticColor.surface.secondary,
+        height: "100vh",
+        width: "100%",
+    };
+    const navStyle = {
+        backgroundColor: semanticColor.surface.primary,
+        display: "flex",
+        alignItems: "center",
+        borderBottom: `1px solid ${semanticColor.border.primary}`,
+        width: "100%",
+        gap: spacing.large_24,
+        padding: `${spacing.small_12}px ${spacing.large_24}px`,
+    };
+    const navTabItemStyles = {
+        root: {
+            // Increase padding on tab items for the navigation header
+            paddingTop: spacing.large_24,
+            paddingBottom: spacing.large_24,
+        },
+    };
     return (
-        <div
-            style={{
-                backgroundColor: semanticColor.surface.secondary,
-                height: "100vh",
-                width: "100%",
-            }}
-        >
-            <nav
-                style={{
-                    backgroundColor: semanticColor.surface.primary,
-                    display: "flex",
-                    alignItems: "center",
-                    borderBottom: `1px solid ${semanticColor.border.primary}`,
-                    width: "100%",
-                    gap: spacing.large_24,
-                    padding: `${spacing.small_12}px ${spacing.large_24}px`,
-                }}
-            >
+        <div style={pageStyle}>
+            <nav style={navStyle}>
                 <img src="/logo.svg" width="40px" alt="Wonder Blocks logo" />
                 <SingleSelect
                     placeholder="Placeholder"
@@ -114,19 +119,21 @@ export const PartOfNav = () => {
                     aria-label="Secondary navigation"
                     styles={{
                         root: {
+                            // set negative margin so that selected indicator lines up with nav border
                             margin: `-${spacing.small_12}px 0`,
                         },
                     }}
                 >
                     <NavigationTabItem
                         selected={true} // replace with logic checking if this is the current route
+                        styles={navTabItemStyles}
                     >
                         <Link href="#link-1">Tab link 1</Link>
                     </NavigationTabItem>
-                    <NavigationTabItem>
+                    <NavigationTabItem styles={navTabItemStyles}>
                         <Link href="#link-2">Tab link 2</Link>
                     </NavigationTabItem>
-                    <NavigationTabItem>
+                    <NavigationTabItem styles={navTabItemStyles}>
                         <Link href="#link-3">Tab link 3</Link>
                     </NavigationTabItem>
                 </NavigationTabs>

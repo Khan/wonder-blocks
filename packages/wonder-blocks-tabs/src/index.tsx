@@ -3,7 +3,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {CSSProperties, StyleSheet} from "aphrodite";
 import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {styles} from "@khanacademy/wonder-blocks-typography";
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 type AriaLabelOrAriaLabelledby =
     | {"aria-label": string; "aria-labelledby"?: never}
@@ -61,7 +61,11 @@ export const Tab = (props: TabProps) => {
     return (
         <StyledButton
             id={id}
-            style={[styles.Body, tabStyles.tab, selected && tabStyles.selected]}
+            style={[
+                typographyStyles.Body,
+                tabStyles.tab,
+                selected && tabStyles.selected,
+            ]}
             role="tab"
             aria-controls={ariaControls}
             aria-selected={selected}
@@ -192,18 +196,22 @@ export const NavigationTabs = (props: NavigationTabsProps) => {
 type NavigationTabItemProps = {
     selected?: boolean;
     children: React.ReactElement<React.ComponentProps<typeof Link>>;
+    styles?: {
+        root?: StyleType;
+    };
 };
 
 export const NavigationTabItem = (props: NavigationTabItemProps) => {
-    const {children, selected} = props;
+    const {children, selected, styles} = props;
     function renderChildren() {
         return React.cloneElement(children, {
             "aria-current": selected ? "page" : undefined,
             style: [
-                styles.Body,
+                typographyStyles.Body,
                 tabStyles.tab,
                 tabStyles.navTab,
                 selected && tabStyles.selected,
+                styles?.root,
             ],
         });
     }
@@ -250,8 +258,7 @@ const tabStyles = StyleSheet.create({
 
     navTab: {
         color: semanticColor.text.primary,
-        paddingTop: spacing.large_24,
-        paddingBottom: spacing.large_24,
+        padding: `${spacing.small_12} 0`,
     },
     selected: {
         fontWeight: "bold",
