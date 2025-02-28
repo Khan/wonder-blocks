@@ -286,6 +286,10 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         ...sharedOutlineStyling,
         outlineColor: semanticColor.focus.outer,
     };
+    const hoverStyling = {
+        ...sharedOutlineStyling,
+        outlineColor: action.hover.border,
+    };
     const pressStyling = {
         background: action.press.background,
         color: placeholder
@@ -298,11 +302,6 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     };
 
     const currentState = error ? states.error : states.default;
-
-    const hoverStyling = {
-        ...sharedOutlineStyling,
-        outlineColor: currentState.border,
-    };
 
     const newStyles = {
         default: {
