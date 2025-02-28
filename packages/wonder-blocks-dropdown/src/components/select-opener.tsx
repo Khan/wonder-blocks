@@ -274,7 +274,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     // resting/default state.
     const action = semanticColor.action.outlined[actionType];
 
-    // TODO(WB-1856): Define global semantic outline tokens.
+    // TODO(WB-1868): Address outlineOffset to include hover and focus states
     const sharedOutlineStyling = {
         // Outline sits inside the border (inset)
         outlineOffset: -border.width.thin,
@@ -282,11 +282,13 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         outlineWidth: border.width.thin,
     };
 
-    const focusHoverStyling = {
-        // TODO(WB-1856): Use `border.focus` when we define a global pattern for
-        // focus indicators.
-        outlineColor: action.hover.border,
+    const focusStyling = {
         ...sharedOutlineStyling,
+        outlineColor: semanticColor.focus.outer,
+    };
+    const hoverStyling = {
+        ...sharedOutlineStyling,
+        outlineColor: action.hover.border,
     };
     const pressStyling = {
         background: action.press.background,
@@ -309,7 +311,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             color: placeholder
                 ? semanticColor.text.secondary
                 : currentState.foreground,
-            ":hover:not([aria-disabled=true])": focusHoverStyling,
+            ":hover:not([aria-disabled=true])": hoverStyling,
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
             ["@media not (hover: hover)"]: {
@@ -320,7 +322,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
                     paddingRight: spacing.small_12,
                 },
             },
-            ":focus-visible:not([aria-disabled=true])": focusHoverStyling,
+            ":focus-visible:not([aria-disabled=true])": focusStyling,
             ":active:not([aria-disabled=true])": pressStyling,
         },
         disabled: {
@@ -329,9 +331,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             color: states.disabled.foreground,
             cursor: "not-allowed",
             ":focus-visible": {
-                // TODO(WB-1856): Use `border.focus` when we define a global
-                // pattern for focus indicators.
-                outlineColor: semanticColor.action.disabled.default,
+                outlineColor: semanticColor.focus.outer,
                 ...sharedOutlineStyling,
             },
         },

@@ -48,8 +48,8 @@ in our product and how these are reflected in our primitive tokens.
 
 Colors are defined into two categories:
 
--   <Link href="#semantic-colors">Semantic Colors</Link>
--   <Link href="#primitive-colors">Primitive Colors</Link>
+- <Link href="#semantic-colors">Semantic Colors</Link>
+- <Link href="#primitive-colors">Primitive Colors</Link>
 
 ## Semantic Colors
 
@@ -215,6 +215,16 @@ would use `border.primary`, rows and layout elements use
 contrast is a priority (ex. form elements)
 
 <ColorGroup colors={semanticColor.border} group="border" />
+
+### Focus
+
+For focus states on interactive elements. This is meant to be used globally for
+all interactive elements regardless of the state (disabled, error, etc).
+
+- `outer`: The outer ring of the focus state.
+- `inner`: The inner ring of the focus state.
+
+<ColorGroup colors={semanticColor.focus} group="focus" />
 
 ### Icon
 
@@ -437,12 +447,12 @@ content is accessible to all users.
 
 For more detail, you can check the following Success Criteria documents:
 
--   <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">
-        Use of Color
-    </a>
--   <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
-        Contrast (minimum)
-    </a>
--   <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">
-        Non-text Contrast (Level AA)
-    </a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">
+      Use of Color
+  </a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
+      Contrast (minimum)
+  </a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">
+      Non-text Contrast (Level AA)
+  </a>

@@ -33,7 +33,7 @@ const theme = {
             },
         },
         outline: {
-            default: semanticColor.border.focus,
+            default: semanticColor.focus.outer,
         },
     },
     border: {

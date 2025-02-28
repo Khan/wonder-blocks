@@ -13,6 +13,14 @@ const disabledLightStates = {
     foreground: color.white50,
 };
 
+const focusOutline = {
+    border: semanticColor.focus.outer,
+};
+
+const focusOutlineLight = {
+    border: semanticColor.border.inverse,
+};
+
 /**
  * The color styles shared between all the button kinds.
  *
@@ -28,6 +36,7 @@ const baseColorStates = {
             border: "transparent",
             background: "transparent",
         },
+        focus: focusOutline,
         press: {
             border: semanticColor.action.outlined.progressive.press.border,
             background: "transparent",
@@ -42,6 +51,7 @@ const baseColorStates = {
             border: "transparent",
             background: "transparent",
         },
+        focus: focusOutline,
         press: {
             border: semanticColor.action.outlined.destructive.press.border,
             background: "transparent",
@@ -51,12 +61,14 @@ const baseColorStates = {
     },
     disabled: {
         default: disabledStates,
+        focus: focusOutline,
         hover: disabledStates,
         press: disabledStates,
     },
     // TODO(WB-1852): Remove light variants.
     disabledLight: {
         default: disabledLightStates,
+        focus: focusOutlineLight,
         hover: disabledLightStates,
         press: disabledLightStates,
     },
@@ -79,6 +91,7 @@ const theme = {
                     background: "transparent",
                     foreground: semanticColor.text.inverse,
                 },
+                focus: focusOutlineLight,
                 press: {
                     border: color.fadedBlue,
                     background: "transparent",
@@ -97,6 +110,7 @@ const theme = {
                     background: "transparent",
                     foreground: semanticColor.text.inverse,
                 },
+                focus: focusOutlineLight,
                 press: {
                     border: color.fadedRed,
                     background: "transparent",

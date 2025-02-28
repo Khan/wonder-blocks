@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         color: actionCategory.press.foreground,
     },
     focus: {
-        outline: `solid 1px ${semanticColor.border.focus}`,
+        outline: `solid 1px ${semanticColor.focus.outer}`,
         outlineOffset: spacing.xxxxSmall_2,
     },
     panel: {

@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
         color: progressive.press.foreground,
     },
     focused: {
-        outline: `solid 4px ${semanticColor.border.focus}`,
+        outline: `solid 4px ${semanticColor.focus.outer}`,
     },
     centerText: {
         gap: spacing.medium_16,

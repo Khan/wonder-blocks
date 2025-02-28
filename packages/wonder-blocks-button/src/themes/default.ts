@@ -8,7 +8,7 @@ const {semanticColor} = tokens;
 const textUnderlineOffset = tokens.spacing.xxxSmall_4;
 
 const focusOutline = {
-    border: semanticColor.border.focus,
+    border: semanticColor.focus.outer,
 };
 
 const focusOutlineLight = {
