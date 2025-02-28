@@ -20,6 +20,7 @@ export const DEFAULT_WAIT_THRESHOLD = 250;
  */
 class Announcer {
     private static _instance: Announcer | null;
+    topLevelId: string = `wbAnnounce`;
     node: HTMLElement | null = null;
     regionFactory: RegionFactory = {
         count: 2,
@@ -36,13 +37,12 @@ class Announcer {
 
     private constructor() {
         if (typeof document !== "undefined") {
-            const topLevelId = `wbAnnounce`;
             // Check if our top level element already exists
-            const announcerCheck = document.getElementById(topLevelId);
+            const announcerCheck = document.getElementById(this.topLevelId);
 
             // Init new structure if the coast is clear
             if (announcerCheck === null) {
-                this.init(topLevelId);
+                this.init(this.topLevelId);
             }
             // The structure exists but references are lost, so help HMR recover
             else {
@@ -109,7 +109,7 @@ class Announcer {
      * Announcer exists, but it loses the connection to DOM element Refs
      */
     reattachNodes() {
-        const announcerCheck = document.getElementById(`wbAnnounce`);
+        const announcerCheck = document.getElementById(this.topLevelId);
         if (announcerCheck !== null) {
             this.node = announcerCheck;
             const regions = Array.from(
