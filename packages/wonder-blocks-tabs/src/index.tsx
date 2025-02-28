@@ -164,6 +164,9 @@ export const Tabs = (props: TabsProps) => {
 
 type NavigationTabsProps = {
     children: React.ReactNode;
+    styles?: {
+        root?: StyleType;
+    };
 } & AriaLabelOrAriaLabelledby;
 
 const StyledNav = addStyle("nav");
@@ -173,9 +176,14 @@ export const NavigationTabs = (props: NavigationTabsProps) => {
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         children,
+        styles,
     } = props;
     return (
-        <StyledNav aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
+        <StyledNav
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+            style={[styles?.root]}
+        >
             <StyledUl style={tabStyles.list}>{children}</StyledUl>
         </StyledNav>
     );
@@ -191,7 +199,12 @@ export const NavigationTabItem = (props: NavigationTabItemProps) => {
     function renderChildren() {
         return React.cloneElement(children, {
             "aria-current": selected ? "page" : undefined,
-            style: [styles.Body, tabStyles.tab, selected && tabStyles.selected],
+            style: [
+                styles.Body,
+                tabStyles.tab,
+                tabStyles.navTab,
+                selected && tabStyles.selected,
+            ],
         });
     }
     return <li>{renderChildren()}</li>;
@@ -212,7 +225,8 @@ const tabStyles = StyleSheet.create({
         display: "flex",
         listStyle: "none",
         padding: 0,
-        gap: spacing.large_24,
+        margin: 0,
+        gap: spacing.medium_16,
     },
     tab: {
         backgroundColor: semanticColor.surface.primary,
@@ -234,8 +248,14 @@ const tabStyles = StyleSheet.create({
         position: "relative",
     },
 
+    navTab: {
+        color: semanticColor.text.primary,
+        paddingTop: spacing.large_24,
+        paddingBottom: spacing.large_24,
+    },
     selected: {
         fontWeight: "bold",
+        color: semanticColor.action.outlined.progressive.default.foreground, // TODO use selected token
         ":after": {
             ...underlineStyles,
             backgroundColor:
