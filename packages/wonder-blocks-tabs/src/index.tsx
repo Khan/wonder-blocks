@@ -97,20 +97,16 @@ export const TabPanel = (props: TabPanelProps) => {
     );
 };
 
-type TabLabel =
-    | {
-          label: React.ReactElement;
-          renderTab?: never;
-      }
-    | {
-          label?: never;
-          renderTab(tabProps: Omit<TabProps, "children">): React.ReactElement;
-      };
 export type TabItem = {
     id: string;
+    // TODO make type more strict to make sure direct child is a Tab component
+    label:
+        | React.ReactElement
+        | ((
+              tabProps: Omit<PropsFor<typeof Tab>, "children">,
+          ) => React.ReactElement);
     panel: React.ReactElement;
-    keepPanelMounted?: boolean;
-} & TabLabel;
+};
 
 type TabsProps = {
     tabs: Array<TabItem>;
@@ -148,10 +144,10 @@ export const Tabs = (props: TabsProps) => {
                         selected: selectedTabId === tab.id,
                         onClick: () => onTabChange(tab.id),
                     };
-                    return tab.label ? (
-                        <Tab {...tabProps}>{tab.label}</Tab>
+                    return typeof tab.label === "function" ? (
+                        tab.label(tabProps)
                     ) : (
-                        tab.renderTab(tabProps)
+                        <Tab {...tabProps}>{tab.label}</Tab>
                     );
                 })}
             </Tablist>

@@ -187,11 +187,11 @@ export const CustomTypography = () => {
     );
 };
 
-export const UsingRenderTab = () => {
+export const UsingRenderProps = () => {
     const tabs: Array<TabItem> = [
         {
             id: "tab-1",
-            renderTab(tabProps) {
+            label(tabProps) {
                 return (
                     <Tooltip content="This is a text tooltip">
                         <Tab {...tabProps}>Tab with Tooltip</Tab>
@@ -202,7 +202,7 @@ export const UsingRenderTab = () => {
         },
         {
             id: "tab-2",
-            renderTab(tabProps) {
+            label(tabProps) {
                 return (
                     <Popover
                         content={

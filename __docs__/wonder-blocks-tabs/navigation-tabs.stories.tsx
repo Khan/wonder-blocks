@@ -80,7 +80,7 @@ export const LinkCapabilities = () => {
     );
 };
 
-export const WithOtherComponents = () => {
+export const UsingRenderProps = () => {
     return (
         <NavigationTabs aria-label="Secondary navigation">
             <NavigationTabItem
