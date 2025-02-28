@@ -74,6 +74,7 @@ export default {
         "aria-label": "Planets",
     },
     parameters: {
+        addBodyClass: "showAnnouncer",
         componentSubtitle: (
             <ComponentInfo
                 name={packageConfig.name}
@@ -611,7 +612,7 @@ const VirtualizedMultiSelect = function (props: Props): React.ReactElement {
     const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
         [],
     );
-    const [opened, setOpened] = React.useState(props.opened || false);
+    const [opened, setOpened] = React.useState(false);
 
     return (
         <View style={styles.wrapper}>
