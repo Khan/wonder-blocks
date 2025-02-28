@@ -109,7 +109,7 @@ const theme = {
             default: {
                 background: "none",
                 foreground:
-                    semanticColor.action.outlined.progressive.default
+                    semanticColor.action.secondary.progressive.default
                         .foreground,
             },
             disabled: {
@@ -118,7 +118,7 @@ const theme = {
             },
             press: {
                 foreground:
-                    semanticColor.action.outlined.progressive.press.foreground,
+                    semanticColor.action.secondary.progressive.press.foreground,
             },
         },
     },

@@ -28,35 +28,35 @@ const focusOutlineLight = {
  * will apply the same styles as Button.
  */
 const baseColorStates = {
-    ...semanticColor.action.outlined,
+    ...semanticColor.action.secondary,
     progressive: {
-        ...semanticColor.action.outlined.progressive,
+        ...semanticColor.action.secondary.progressive,
         default: {
-            ...semanticColor.action.outlined.progressive.default,
+            ...semanticColor.action.secondary.progressive.default,
             border: "transparent",
             background: "transparent",
         },
         focus: focusOutline,
         press: {
-            border: semanticColor.action.outlined.progressive.press.border,
+            border: semanticColor.action.secondary.progressive.press.border,
             background: "transparent",
             foreground:
-                semanticColor.action.outlined.progressive.press.foreground,
+                semanticColor.action.secondary.progressive.press.foreground,
         },
     },
     destructive: {
-        ...semanticColor.action.outlined.destructive,
+        ...semanticColor.action.secondary.destructive,
         default: {
-            ...semanticColor.action.outlined.destructive.default,
+            ...semanticColor.action.secondary.destructive.default,
             border: "transparent",
             background: "transparent",
         },
         focus: focusOutline,
         press: {
-            border: semanticColor.action.outlined.destructive.press.border,
+            border: semanticColor.action.secondary.destructive.press.border,
             background: "transparent",
             foreground:
-                semanticColor.action.outlined.destructive.press.foreground,
+                semanticColor.action.secondary.destructive.press.foreground,
         },
     },
     disabled: {

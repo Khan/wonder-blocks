@@ -13,8 +13,7 @@ export const semanticColor = {
      * of interaction.
      */
     action: {
-        // Filled buttons are meant for primary actions.
-        filled: {
+        primary: {
             progressive: {
                 default: {
                     border: "transparent",
@@ -51,9 +50,7 @@ export const semanticColor = {
             },
         },
 
-        // Outlined is meant for use on secondary controls, or controls over
-        // white/transparent backgrounds.
-        outlined: {
+        secondary: {
             progressive: {
                 default: {
                     border: border.strong,

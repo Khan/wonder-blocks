@@ -6,7 +6,7 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 
 // The color of the switch is based on the action color.
-const action = semanticColor.action.outlined.progressive;
+const action = semanticColor.action.secondary.progressive;
 
 const theme = {
     color: {

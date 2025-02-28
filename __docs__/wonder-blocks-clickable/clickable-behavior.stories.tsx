@@ -156,7 +156,7 @@ WithTabIndex.parameters = {
     },
 };
 
-const actionCategory = semanticColor.action.outlined.progressive;
+const actionCategory = semanticColor.action.secondary.progressive;
 
 const styles = StyleSheet.create({
     clickable: {

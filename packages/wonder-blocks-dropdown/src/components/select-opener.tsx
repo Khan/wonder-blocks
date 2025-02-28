@@ -269,10 +269,10 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
 
     // The color is based on the action color.
     const actionType = error ? "destructive" : "progressive";
-    // NOTE: We are using the outlined action type for all the non-resting
+    // NOTE: We are using the secondary action type for all the non-resting
     // states as the opener is a bit different from a regular button in its
     // resting/default state.
-    const action = semanticColor.action.outlined[actionType];
+    const action = semanticColor.action.secondary[actionType];
 
     // TODO(WB-1868): Address outlineOffset to include hover and focus states
     const sharedOutlineStyling = {
@@ -295,7 +295,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         color: placeholder
             ? error
                 ? semanticColor.text.secondary
-                : semanticColor.action.outlined.progressive.press.foreground
+                : semanticColor.action.secondary.progressive.press.foreground
             : semanticColor.text.primary,
         outlineColor: action.press.border,
         ...sharedOutlineStyling,

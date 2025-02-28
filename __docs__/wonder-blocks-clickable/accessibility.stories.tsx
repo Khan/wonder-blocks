@@ -9,7 +9,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
-const actionCategory = semanticColor.action.outlined.progressive;
+const actionCategory = semanticColor.action.secondary.progressive;
 
 const styles = StyleSheet.create({
     rest: {
