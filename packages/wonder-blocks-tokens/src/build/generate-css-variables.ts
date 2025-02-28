@@ -17,7 +17,7 @@ function processThemeCollection() {
         // Remove the file extension
         const filename = file.split(".")[0];
         // eslint-disable-next-line @typescript-eslint/no-require-imports
-        const {default: themeObject} = require(`../theme/color/${filename}`);
+        const {default: themeObject} = require(`${THEMES_DIR}/${filename}`);
 
         return {name: filename, tokens: generateTokens(themeObject)};
     });
