@@ -80,6 +80,48 @@ export const LinkCapabilities = () => {
     );
 };
 
+export const WithOtherComponents = () => {
+    return (
+        <NavigationTabs aria-label="Secondary navigation">
+            <NavigationTabItem
+                selected={true} // replace with logic checking if this is the current route
+            >
+                {(linkProps) => (
+                    <Tooltip content="This is a tooltip">
+                        <Link href="#link-1" {...linkProps}>
+                            Tab link 1
+                        </Link>
+                    </Tooltip>
+                )}
+            </NavigationTabItem>
+            <NavigationTabItem>
+                {(linkProps) => (
+                    <Popover
+                        content={
+                            <PopoverContent
+                                title="Popover title"
+                                content="Content"
+                            />
+                        }
+                        opened={true}
+                    >
+                        <Link href="#link-2" {...linkProps}>
+                            Tab link 2
+                        </Link>
+                    </Popover>
+                )}
+            </NavigationTabItem>
+            <NavigationTabItem>
+                {(linkProps) => (
+                    <Link href="#link-3" {...linkProps}>
+                        Tab link 3
+                    </Link>
+                )}
+            </NavigationTabItem>
+        </NavigationTabs>
+    );
+};
+
 export const PartOfNav = () => {
     const pageStyle = {
         backgroundColor: semanticColor.surface.secondary,

@@ -1,7 +1,12 @@
 import * as React from "react";
 import Link from "@khanacademy/wonder-blocks-link";
 import {CSSProperties, StyleSheet} from "aphrodite";
-import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    PropsFor,
+    StyleType,
+    View,
+} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
@@ -195,7 +200,9 @@ export const NavigationTabs = (props: NavigationTabsProps) => {
 
 type NavigationTabItemProps = {
     selected?: boolean;
-    children: React.ReactElement<React.ComponentProps<typeof Link>>;
+    children:
+        | React.ReactElement<PropsFor<typeof Link>> // TODO figure out the type that makes sure direct children are links
+        | ((linkProps: Partial<PropsFor<typeof Link>>) => React.ReactElement);
     styles?: {
         root?: StyleType;
     };
@@ -204,7 +211,7 @@ type NavigationTabItemProps = {
 export const NavigationTabItem = (props: NavigationTabItemProps) => {
     const {children, selected, styles} = props;
     function renderChildren() {
-        return React.cloneElement(children, {
+        const linkProps: Partial<PropsFor<typeof Link>> = {
             "aria-current": selected ? "page" : undefined,
             style: [
                 typographyStyles.Body,
@@ -213,7 +220,12 @@ export const NavigationTabItem = (props: NavigationTabItemProps) => {
                 selected && tabStyles.selected,
                 styles?.root,
             ],
-        });
+        };
+        if (typeof children === "function") {
+            return children(linkProps);
+        } else {
+            return React.cloneElement(children, linkProps);
+        }
     }
     return <li>{renderChildren()}</li>;
 };
