@@ -18,7 +18,12 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
-import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {
+    ActionItem,
+    ActionMenu,
+    OptionItem,
+    SingleSelect,
+} from "@khanacademy/wonder-blocks-dropdown";
 
 export default {
     title: "Packages / Tabs / NavigationTabs",
@@ -45,6 +50,15 @@ export const Default = () => {
             </NavigationTabItem>
             <NavigationTabItem>
                 <Link href="#link-3">Tab link 3</Link>
+            </NavigationTabItem>
+            <NavigationTabItem>
+                {(linkProps) => {
+                    return (
+                        <ActionMenu menuText="More links" {...linkProps.style}>
+                            <ActionItem href="#link" label="Item 1" />
+                        </ActionMenu>
+                    );
+                }}
             </NavigationTabItem>
         </NavigationTabs>
     );
