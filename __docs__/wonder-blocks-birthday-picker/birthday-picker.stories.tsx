@@ -140,6 +140,24 @@ export const BirthdayPickerWithYearAndMonthOnly: StoryComponentType = {
     },
 };
 
+export const BirthdayPickerWithUseLastOfMonth: StoryComponentType = {
+    args: {
+        monthYearOnly: true,
+        useLastDayOfMonth: true,
+        onChange: (date?: string | null) => {
+            // eslint-disable-next-line no-console
+            console.log("Date selected: ", date);
+        },
+    },
+    parameters: {
+        docs: {
+            description: {
+                story: "A BirthdayPicker can be configured to use the last day of the month when monthYearOnly is true. This can be useful when we want to display and collect a birthday that doesn't require the full DOB for privacy reasons, and you want to be cautious about the users age.",
+            },
+        },
+    },
+};
+
 export const BirthdayPickerVertical: StoryComponentType = {
     args: {
         style: {flexDirection: "column"},

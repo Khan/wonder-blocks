@@ -65,6 +65,11 @@ type Props = {
      * Additional styles applied to the dropdowns.
      */
     dropdownStyle?: StyleType;
+    /**
+     * Use the last day of the month as the day value instead of the first
+     * when `monthYearOnly` is true
+     */
+    useLastDayOfMonth?: boolean;
 };
 
 type State = {
@@ -175,7 +180,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
      * Calculates the initial state values based on the default value.
      */
     getStateFromDefault(): State {
-        const {defaultValue, monthYearOnly} = this.props;
+        const {defaultValue, monthYearOnly, useLastDayOfMonth} = this.props;
         const initialState: State = {
             month: null,
             day: monthYearOnly ? "1" : null,
@@ -189,9 +194,13 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         // If a default value was provided then we use moment to convert it
         // into a date that we can use to populate the
         if (defaultValue) {
-            const date = moment(defaultValue);
+            let date = moment(defaultValue);
 
             if (date.isValid()) {
+                if (monthYearOnly && useLastDayOfMonth) {
+                    date = date.endOf("month");
+                }
+
                 initialState.month = String(date.month());
                 initialState.day = String(date.date());
                 initialState.year = String(date.year());
@@ -240,7 +249,10 @@ export default class BirthdayPicker extends React.Component<Props, State> {
 
         // This is a legal call to Moment, but our Moment types don't
         // recognize it.
-        const date = moment([year, month, day]);
+        let date = moment([year, month, day]);
+        if (this.props.monthYearOnly && this.props.useLastDayOfMonth) {
+            date = date.endOf("month");
+        }
 
         // If the date is in the future or is invalid then we want to show
         // an error to the user and return a null value.
