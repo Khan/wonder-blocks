@@ -2,45 +2,52 @@ import {screen, waitFor} from "@testing-library/react";
 import {announceMessage} from "../announce-message";
 import {clearMessages} from "../clear-messages";
 
-jest.useFakeTimers();
-
 describe("Announcer.clearMessages", () => {
+    beforeAll(() => {
+        jest.useFakeTimers();
+    });
+    afterAll(() => {
+        jest.useRealTimers();
+    });
     test("empties a targeted live region element by IDREF", async () => {
         // ARRANGE
         const message1 = "Shine a million stars";
-        // const message2 = "Dull no stars";
+        const message2 = "Dull no stars";
 
         // ACT
-        const announcement1Id = await announceMessage({
+        const announcement1IdPromise = announceMessage({
             message: message1,
             initialTimeout: 0,
             debounceThreshold: 0,
         });
+        jest.advanceTimersByTime(0);
+        await Promise.resolve();
 
         const region1 = screen.getByTestId("wbARegion-polite1");
 
-        jest.advanceTimersByTime(250);
+        const announcement1Id = await announcement1IdPromise;
 
-        await waitFor(() => {
-            expect(region1).toHaveTextContent(message1);
-            clearMessages(announcement1Id);
+        jest.advanceTimersByTime(0);
+        await Promise.resolve();
+
+        expect(region1).toHaveTextContent(message1);
+        clearMessages(announcement1Id);
+
+        announceMessage({
+            message: message2,
+            initialTimeout: 0,
+            debounceThreshold: 0,
         });
 
-        // announceMessage({
-        //     message: message2,
-        //     initialTimeout: 0,
-        //     debounceThreshold: 0,
-        // });
+        const region2 = screen.getByTestId("wbARegion-polite0");
 
-        // const region2 = screen.getByTestId("wbARegion-polite0");
-
-        // jest.advanceTimersByTime(250);
+        jest.advanceTimersByTime(0);
 
         // ASSERT
         await waitFor(() => {
             expect(region1).toBeEmptyDOMElement();
         });
-        // expect(region2).toHaveTextContent(message2);
+        expect(region2).toHaveTextContent(message2);
     });
 
     test("empties all live region elements by default", async () => {
