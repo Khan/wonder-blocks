@@ -16,7 +16,9 @@ type AriaLabelOrAriaLabelledby =
 
 type TablistProps = {
     children: React.ReactNode;
-} & AriaLabelOrAriaLabelledby;
+    "aria-label"?: string;
+    "aria-labelledby"?: string;
+};
 
 type TabProps = {
     children: React.ReactNode;
