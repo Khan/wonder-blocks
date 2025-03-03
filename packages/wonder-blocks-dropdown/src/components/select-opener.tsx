@@ -257,7 +257,8 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         disabled: {
             border: semanticColor.action.secondary.disabled.border,
             background: semanticColor.action.secondary.disabled.background,
-            foreground: semanticColor.action.secondary.disabled.foreground,
+            // NOTE: This color is specific for form fields.
+            foreground: semanticColor.text.secondary,
         },
         // Form validation error state
         error: {
