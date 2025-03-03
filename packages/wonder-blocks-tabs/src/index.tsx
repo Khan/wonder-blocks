@@ -284,7 +284,8 @@ const tabStyles = StyleSheet.create({
 
 const TestTabPanel = (props: {num: number}) => {
     React.useEffect(() => {
-        console.log("mounted TabPanel", props.num);
+        // eslint-disable-next-line no-console
+        console.log("mounted TabPanel");
     }, []);
     return <div>TabPanel{props.num}</div>;
 };

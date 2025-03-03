@@ -4,19 +4,12 @@ import ComponentInfo from "../components/component-info";
 import {
     NavigationTabItem,
     NavigationTabs,
-    Tab,
-    TabItem,
-    Tablist,
-    TabPanel,
-    Tabs,
-    Test,
 } from "../../packages/wonder-blocks-tabs/src/index";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 
