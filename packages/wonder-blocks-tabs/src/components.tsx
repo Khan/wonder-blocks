@@ -248,7 +248,7 @@ const tabStyles = StyleSheet.create({
     },
     tab: {
         backgroundColor: semanticColor.surface.primary,
-        color: semanticColor.action.outlined.progressive.default.foreground,
+        color: semanticColor.action.secondary.progressive.default.foreground,
         border: "none",
         cursor: "pointer",
         padding: 0,
@@ -260,7 +260,7 @@ const tabStyles = StyleSheet.create({
             [":after" as any]: {
                 ...underlineStyles,
                 backgroundColor:
-                    semanticColor.action.outlined.progressive.hover.foreground, // TODO semantics look correct but is the same value as default
+                    semanticColor.action.secondary.progressive.hover.foreground, // TODO semantics look correct but is the same value as default
             },
         },
         position: "relative",
@@ -272,11 +272,11 @@ const tabStyles = StyleSheet.create({
     },
     selected: {
         fontWeight: "bold",
-        color: semanticColor.action.outlined.progressive.default.foreground, // TODO use selected token
+        color: semanticColor.action.secondary.progressive.default.foreground, // TODO use selected token
         ":after": {
             ...underlineStyles,
             backgroundColor:
-                semanticColor.action.outlined.progressive.default.foreground,
+                semanticColor.action.secondary.progressive.default.foreground,
         },
     },
     tabs: {
