@@ -31,13 +31,11 @@ export function createDebounceFunction(
 
     const debouncedFn = (...args: []) => {
         return new Promise<string>((resolve) => {
-            // console.log("debounceFn", args);
             const later = () => {
                 const result = callback.apply(context, args);
                 if (timeoutId) {
                     clearTimeout(timeoutId);
                 }
-                // console.log("later", args);
                 return resolve(result);
             };
 
