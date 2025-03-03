@@ -213,7 +213,7 @@ const theme = {
     listbox: {
         color: {
             disabled: {
-                foreground: semanticColor.text.disabled,
+                foreground: semanticColor.action.secondary.disabled.foreground,
             },
         },
     },

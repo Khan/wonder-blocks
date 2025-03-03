@@ -4,7 +4,7 @@ const disabledStates = {
     // NOTE: This is a special case for the button
     border: semanticColor.action.primary.disabled.border,
     background: "transparent",
-    foreground: semanticColor.text.disabled,
+    foreground: semanticColor.action.secondary.disabled.foreground,
 };
 
 // TODO(WB-1852): Remove light variants.

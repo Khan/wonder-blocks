@@ -118,7 +118,8 @@ const theme = {
                 disabled: {
                     // NOTE: This is a special case for the secondary button
                     border: semanticColor.action.primary.disabled.border,
-                    foreground: semanticColor.text.disabled,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=secondary / color=default / light=true
@@ -169,7 +170,8 @@ const theme = {
                 disabled: {
                     // NOTE: This is a special case for the secondary button
                     border: semanticColor.action.primary.disabled.border,
-                    foreground: semanticColor.text.disabled,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=secondary / color=destructive / light=true
@@ -231,7 +233,8 @@ const theme = {
                             .foreground,
                 },
                 disabled: {
-                    foreground: semanticColor.text.disabled,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=default / light=true
@@ -276,7 +279,8 @@ const theme = {
                             .foreground,
                 },
                 disabled: {
-                    foreground: semanticColor.text.disabled,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=destructive / light=true

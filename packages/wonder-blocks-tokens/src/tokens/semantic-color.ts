@@ -95,7 +95,7 @@ export const semanticColor = {
             disabled: {
                 border: border.primary,
                 background: color.offWhite,
-                foreground: color.fadedOffBlack64,
+                foreground: color.fadedOffBlack32,
             },
         },
     },
