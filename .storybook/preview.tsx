@@ -78,6 +78,7 @@ const parameters = {
     },
     docs: {
         toc: {
+            // contentsSelector: "sbdocs-content",
             // Useful for MDX pages like "Using color".
             headingSelector: "h2, h3",
             // Prevents including generic headings like "Stories" and "Usage".

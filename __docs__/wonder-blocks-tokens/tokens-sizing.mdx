@@ -1,0 +1,71 @@
+import {Meta, Source} from "@storybook/blocks";
+
+import TokenTable from "../components/token-table";
+
+import {View} from "@khanacademy/wonder-blocks-core";
+import * as tokens from "@khanacademy/wonder-blocks-tokens";
+
+import ComponentInfo from "../components/component-info";
+import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
+
+<Meta title="Packages / Tokens / Sizing" />
+
+# Sizing
+
+<ComponentInfo name={packageConfig.name} version={packageConfig.version} />
+
+All the available sizing values that can be used for margin, padding, width,
+height, border-width, etc.
+
+## Usage
+
+You can use these sizes directly by importing `sizing` from the
+`wonder-blocks-tokens` package and accessing the named property like so:
+`sizing.size_200`.
+
+Note that these values are represented in rem units. Using rem units allows the
+sizes to scale with the font size of the root element, which is set to 50%/8px
+in our Design System. This means that the sizes will scale with the user's
+browser settings.
+
+```js
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+const styles = {padding: spacing.size_200};
+```
+
+## Tokens
+
+<TokenTable
+    columns={[
+        {
+            label: "Token",
+            cell: (row) => <code>sizing.{row.label}</code>,
+        },
+        {
+            label: "Base unit multiplier",
+            cell: (row) => row.value.replace("rem", "x"),
+        },
+        {
+            label: "Value",
+            cell: "value",
+        },
+        {
+            label: "Pixels (equivalent)",
+            cell: (row) => parseFloat(row.value.replace("rem", "") * 8),
+        },
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        backgroundColor: tokens.color.purple,
+                        height: row.value,
+                    }}
+                >
+                    &nbsp;
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.sizing}
+/>

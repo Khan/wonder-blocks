@@ -6,7 +6,7 @@
      * Typography
      */
     --typography-font-family: 'Source Serif Pro', sans-serif;
-    --typography-base-size: clamp(0.88rem, 3vw, 1rem);
+    --typography-base-size: clamp(0.88rem, 3vw, 2rem);
     --typography-base-line-height: 1.6;
     --typography-heading-size-xxl: calc(var(--typography-base-size) * 3.75); /* 60px */
     --typography-heading-line-height-xxl: calc(var(--typography-heading-size-xxl) * 1.1333333);
