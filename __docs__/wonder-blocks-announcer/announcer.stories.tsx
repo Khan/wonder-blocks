@@ -114,14 +114,4 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
     },
-    container: {
-        width: "100%",
-    },
-    narrowBanner: {
-        maxWidth: 400,
-    },
-    rightToLeft: {
-        width: "100%",
-        direction: "rtl",
-    },
 });
