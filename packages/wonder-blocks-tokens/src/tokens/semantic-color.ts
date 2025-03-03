@@ -48,6 +48,12 @@ export const semanticColor = {
                     foreground: color.white,
                 },
             },
+
+            disabled: {
+                border: color.fadedOffBlack32,
+                background: color.fadedOffBlack32,
+                foreground: color.offWhite,
+            },
         },
 
         secondary: {
@@ -85,10 +91,12 @@ export const semanticColor = {
                     foreground: color.activeRed,
                 },
             },
-        },
-        disabled: {
-            default: color.fadedOffBlack32,
-            secondary: color.offWhite,
+
+            disabled: {
+                border: border.primary,
+                background: color.offWhite,
+                foreground: color.fadedOffBlack64,
+            },
         },
     },
     /**

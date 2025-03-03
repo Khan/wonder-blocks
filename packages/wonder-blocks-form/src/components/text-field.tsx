@@ -271,9 +271,9 @@ const states = {
         foreground: semanticColor.text.primary,
     },
     disabled: {
-        border: semanticColor.border.primary,
-        background: semanticColor.action.disabled.secondary,
-        foreground: semanticColor.text.secondary,
+        border: semanticColor.action.secondary.disabled.border,
+        background: semanticColor.action.secondary.disabled.background,
+        foreground: semanticColor.action.secondary.disabled.foreground,
     },
     // Form validation error state
     error: {

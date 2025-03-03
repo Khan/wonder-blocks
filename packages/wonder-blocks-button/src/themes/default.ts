@@ -26,8 +26,10 @@ const theme = {
                 ...semanticColor.action.primary.progressive,
                 focus: focusOutline,
                 disabled: {
-                    background: semanticColor.action.disabled.default,
-                    foreground: semanticColor.action.disabled.secondary,
+                    background:
+                        semanticColor.action.primary.disabled.background,
+                    foreground:
+                        semanticColor.action.primary.disabled.foreground,
                 },
             },
 
@@ -60,8 +62,10 @@ const theme = {
                 ...semanticColor.action.primary.destructive,
                 focus: focusOutline,
                 disabled: {
-                    background: semanticColor.action.disabled.default,
-                    foreground: semanticColor.action.disabled.secondary,
+                    background:
+                        semanticColor.action.primary.disabled.background,
+                    foreground:
+                        semanticColor.action.primary.disabled.foreground,
                 },
             },
             // kind=primary / color=destructive / light=true
@@ -112,10 +116,8 @@ const theme = {
                     icon: "transparent",
                 },
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    background:
-                        semanticColor.action.secondary.progressive.press
-                            .background,
+                    // NOTE: This is a special case for the secondary button
+                    border: semanticColor.action.primary.disabled.border,
                     foreground: semanticColor.text.disabled,
                 },
             },
@@ -165,10 +167,8 @@ const theme = {
                     icon: "transparent",
                 },
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    background:
-                        semanticColor.action.secondary.destructive.press
-                            .background,
+                    // NOTE: This is a special case for the secondary button
+                    border: semanticColor.action.primary.disabled.border,
                     foreground: semanticColor.text.disabled,
                 },
             },

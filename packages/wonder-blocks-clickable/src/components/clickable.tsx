@@ -418,7 +418,7 @@ const styles = StyleSheet.create({
         outline: `solid ${border.width.thin}px ${semanticColor.border.inverse}`,
     },
     disabled: {
-        color: semanticColor.text.disabled,
+        color: semanticColor.action.secondary.disabled.foreground,
         cursor: "not-allowed",
         ":focus": {
             outline: "none",

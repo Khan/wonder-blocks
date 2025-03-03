@@ -202,7 +202,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         size="small"
                         color={
                             disabled
-                                ? semanticColor.action.disabled.default
+                                ? semanticColor.icon.disabled
                                 : semanticColor.icon.primary
                         }
                         style={styles.searchIcon}

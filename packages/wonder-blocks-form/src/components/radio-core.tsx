@@ -53,8 +53,8 @@ const StyledInput = addStyle("input");
 });
 
 const disabledState = {
-    border: semanticColor.border.primary,
-    background: semanticColor.action.disabled.secondary,
+    border: semanticColor.action.secondary.disabled.border,
+    background: semanticColor.action.secondary.disabled.background,
 };
 
 const size = 16; // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
@@ -65,7 +65,7 @@ const disabledChecked = {
     height: size / 2,
     width: size / 2,
     borderRadius: "50%",
-    backgroundColor: semanticColor.action.disabled.default,
+    backgroundColor: semanticColor.action.primary.disabled.background,
 } as const;
 
 const sharedStyles = StyleSheet.create({

@@ -123,8 +123,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
 });
 
 const disabledState = {
-    border: semanticColor.border.primary,
-    background: semanticColor.action.disabled.secondary,
+    border: semanticColor.action.secondary.disabled.border,
+    background: semanticColor.action.secondary.disabled.background,
 };
 
 const sharedStyles = StyleSheet.create({
