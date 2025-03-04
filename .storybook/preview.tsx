@@ -93,10 +93,6 @@ const parameters = {
     viewport: {
         viewports: wbViewports,
     },
-    // Setting the default viewport width for Chromatic
-    chromatic: {
-        viewports: [1184],
-    },
 };
 
 const withThemeSwitcher: Decorator = (
