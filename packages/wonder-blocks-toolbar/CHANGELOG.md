@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 5.1.2
+
+### Patch Changes
+
+- fff5da0: Migrate to semanticColor tokens
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [051f0f8]
+- Updated dependencies [e1b78db]
+- Updated dependencies [051f0f8]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 5.1.1
 
 ### Patch Changes

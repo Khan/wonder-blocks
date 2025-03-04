@@ -1,5 +1,30 @@
 # @khanacademy/wonder-blocks-button
 
+## 7.1.2
+
+### Patch Changes
+
+- 5655b9f: Switch to use `focus.outer` semanticColor token
+- 8f53293: Rename action tokens: `filled` -> `primary`, `outlined` -> `secondary`.
+- 051f0f8: Rework action.disabled tokens to include properties per kind (border, background, foreground).
+- ca57826: Split hover and focus into separate styles. Use default outline ring color for all variants (blue)
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [6d37702]
+- Updated dependencies [051f0f8]
+- Updated dependencies [8fc65a9]
+- Updated dependencies [e1b78db]
+- Updated dependencies [051f0f8]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-clickable@6.1.2
+    - @khanacademy/wonder-blocks-theming@3.2.0
+    - @khanacademy/wonder-blocks-icon@5.1.2
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 7.1.1
 
 ### Patch Changes
