@@ -127,10 +127,10 @@ const MaybeWithRoute = ({
                 path="*"
                 render={() => {
                     throw new Error(
-                        `The current location ${actualLocation.pathname} ` +
-                            `does not match the configured path ${path}. ` +
+                        `The current location '${actualLocation.pathname}' ` +
+                            `does not match the configured path '${path}'. ` +
                             `Did you provide the correct configured ` +
-                            `location, ${configuredLocation}, or did the ` +
+                            `location, '${configuredLocation}', or did the ` +
                             `routing lead to a different place than you ` +
                             `expected?`,
                     );
@@ -235,7 +235,7 @@ export const adapter: TestHarnessAdapter<Config> = (
         <MemoryRouter {...routerProps}>
             <MaybeWithRoute
                 path={config.path}
-                configLocation={config.initialEntries[config.initialIndex ?? 0]}
+                configLocation={entries[config.initialIndex ?? 0]}
             >
                 {children}
             </MaybeWithRoute>
