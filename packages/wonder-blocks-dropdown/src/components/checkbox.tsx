@@ -70,9 +70,8 @@ const theme = {
                 border: semanticColor.border.strong,
             },
             disabled: {
-                // TODO(WB-1889): Use the new disabled color tokens.
-                border: semanticColor.border.primary,
-                background: semanticColor.action.disabled.secondary,
+                border: semanticColor.action.secondary.disabled.border,
+                background: semanticColor.action.secondary.disabled.background,
             },
         },
     },

@@ -1,9 +1,10 @@
 import {border, color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 const disabledStates = {
-    border: semanticColor.action.disabled.default,
+    // NOTE: This is a special case for the button
+    border: semanticColor.action.primary.disabled.border,
     background: "transparent",
-    foreground: semanticColor.action.disabled.default,
+    foreground: semanticColor.action.secondary.disabled.foreground,
 };
 
 // TODO(WB-1852): Remove light variants.

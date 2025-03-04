@@ -26,8 +26,10 @@ const theme = {
                 ...semanticColor.action.primary.progressive,
                 focus: focusOutline,
                 disabled: {
-                    background: semanticColor.action.disabled.default,
-                    foreground: semanticColor.action.disabled.secondary,
+                    background:
+                        semanticColor.action.primary.disabled.background,
+                    foreground:
+                        semanticColor.action.primary.disabled.foreground,
                 },
             },
 
@@ -60,8 +62,10 @@ const theme = {
                 ...semanticColor.action.primary.destructive,
                 focus: focusOutline,
                 disabled: {
-                    background: semanticColor.action.disabled.default,
-                    foreground: semanticColor.action.disabled.secondary,
+                    background:
+                        semanticColor.action.primary.disabled.background,
+                    foreground:
+                        semanticColor.action.primary.disabled.foreground,
                 },
             },
             // kind=primary / color=destructive / light=true
@@ -112,11 +116,11 @@ const theme = {
                     icon: "transparent",
                 },
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    background:
-                        semanticColor.action.secondary.progressive.press
-                            .background,
-                    foreground: semanticColor.text.disabled,
+                    // NOTE: This is a special case for the secondary button
+                    // TODO(WB-1895): Revisit disabled styles.
+                    border: semanticColor.action.primary.disabled.border,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=secondary / color=default / light=true
@@ -165,11 +169,11 @@ const theme = {
                     icon: "transparent",
                 },
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    background:
-                        semanticColor.action.secondary.destructive.press
-                            .background,
-                    foreground: semanticColor.text.disabled,
+                    // NOTE: This is a special case for the secondary button
+                    // TODO(WB-1895): Revisit disabled styles.
+                    border: semanticColor.action.primary.disabled.border,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=secondary / color=destructive / light=true
@@ -231,7 +235,8 @@ const theme = {
                             .foreground,
                 },
                 disabled: {
-                    foreground: semanticColor.text.disabled,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=default / light=true
@@ -276,7 +281,8 @@ const theme = {
                             .foreground,
                 },
                 disabled: {
-                    foreground: semanticColor.text.disabled,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=destructive / light=true

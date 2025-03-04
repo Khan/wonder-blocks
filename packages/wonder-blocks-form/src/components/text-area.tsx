@@ -324,8 +324,10 @@ const states = {
         foreground: semanticColor.text.primary,
     },
     disabled: {
-        border: semanticColor.border.primary,
-        background: semanticColor.action.disabled.secondary,
+        border: semanticColor.action.secondary.disabled.border,
+        background: semanticColor.action.secondary.disabled.background,
+        // NOTE: This color is specific for form fields.
+        // TODO(WB-1895): Revisit disabled styles.
         foreground: semanticColor.text.secondary,
     },
     // Form validation error state

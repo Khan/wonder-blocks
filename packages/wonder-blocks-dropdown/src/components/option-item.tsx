@@ -329,7 +329,7 @@ const theme = {
             },
             disabled: {
                 background: "transparent",
-                foreground: semanticColor.text.disabled,
+                foreground: semanticColor.action.secondary.disabled.foreground,
             },
         },
     },
