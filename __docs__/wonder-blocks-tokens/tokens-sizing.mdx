@@ -81,8 +81,17 @@ easily migrate to `sizing` by replacing the following tokens:
 // Before
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
+{
+    padding: `${spacing.medium_16}px ${spacing.large_24}px`,
+}
+
 // After
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+
+// Now you don't need to add the unit here as it's already included in the token
+{
+    padding: `${sizing.size_200} ${sizing.size_300}`,
+}
 ```
 
 The mapping of the tokens is as follows:
