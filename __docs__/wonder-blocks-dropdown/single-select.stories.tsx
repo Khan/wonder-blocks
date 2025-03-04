@@ -1116,3 +1116,40 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
         ),
     ],
 };
+
+export const Testing = (args: any) => {
+    const [selectedValue, setSelectedValue] = React.useState(
+        args.selectedValue,
+    );
+    const [opened, setOpened] = React.useState(args.opened);
+    React.useEffect(() => {
+        // Only update opened if the args.opened prop changes (using the
+        // controls panel).
+        setOpened(args.opened);
+    }, [args.opened]);
+
+    return (
+        <div
+            style={{
+                height: "100vh",
+                display: "flex",
+                flexDirection: "column-reverse",
+            }}
+        >
+            <SingleSelect
+                {...args}
+                aria-label={args["aria-label"]}
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+                opened={opened}
+                onToggle={setOpened}
+            >
+                {items}
+            </SingleSelect>
+        </div>
+    );
+};
+
+Testing.parameters = {
+    layout: "fullscreen",
+};
