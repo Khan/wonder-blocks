@@ -1,5 +1,39 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 9.1.2
+
+### Patch Changes
+
+- 5655b9f: Switch to use `focus.outer` semanticColor token
+- a42d9f3: Explicitly set aria-controls on the SelectOpener
+- 7bb37a2: Update component docs to include labelling guidelines
+- 4ab523b: Migrate Dropdown components to semanticColor. Simplify ActionMenuOpenerCore styles
+- 8f53293: Rename action tokens: `filled` -> `primary`, `outlined` -> `secondary`.
+- 051f0f8: Rework action.disabled tokens to include properties per kind (border, background, foreground).
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8fc65a9]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [7bb37a2]
+- Updated dependencies [6d37702]
+- Updated dependencies [051f0f8]
+- Updated dependencies [8fc65a9]
+- Updated dependencies [e1b78db]
+- Updated dependencies [8f53293]
+- Updated dependencies [051f0f8]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-pill@3.1.2
+    - @khanacademy/wonder-blocks-clickable@6.1.2
+    - @khanacademy/wonder-blocks-modal@7.1.2
+    - @khanacademy/wonder-blocks-search-field@5.1.2
+    - @khanacademy/wonder-blocks-cell@4.1.2
+    - @khanacademy/wonder-blocks-icon@5.1.2
+    - @khanacademy/wonder-blocks-layout@3.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+    - @khanacademy/wonder-blocks-timing@7.0.1
+
 ## 9.1.1
 
 ### Patch Changes

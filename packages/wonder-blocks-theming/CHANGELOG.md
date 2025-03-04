@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 3.2.0
+
+### Minor Changes
+
+- 6d37702: Expose WithoutTheme type for use in withScopedTheme HOC.
+
 ## 3.1.1
 
 ### Patch Changes

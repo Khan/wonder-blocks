@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 3.2.2
+
+### Patch Changes
+
+- 7d3f67e: Revert BirthdayPicker to use again the first day of the month when `monthYearOnly` is set
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [a42d9f3]
+- Updated dependencies [7bb37a2]
+- Updated dependencies [051f0f8]
+- Updated dependencies [4ab523b]
+- Updated dependencies [e1b78db]
+- Updated dependencies [8f53293]
+- Updated dependencies [051f0f8]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-dropdown@9.1.2
+    - @khanacademy/wonder-blocks-icon@5.1.2
+    - @khanacademy/wonder-blocks-layout@3.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 3.2.1
 
 ### Patch Changes
