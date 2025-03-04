@@ -15,18 +15,18 @@ import packageConfig from "../../packages/wonder-blocks-tokens/package.json";
 <ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
 All the available sizing values that can be used for margin, padding, width,
-height, border-width, etc.
+height, border-width, font-size, line-height, etc.
+
+Note that these values are represented in `rem` units. Using rem units allows
+the sizes to scale with the font size of the root element, which is set to
+50%/8px in our Design System. This means that the sizes will scale with the
+user's browser settings.
 
 ## Usage
 
 You can use these sizes directly by importing `sizing` from the
 `wonder-blocks-tokens` package and accessing the named property like so:
 `sizing.size_200`.
-
-Note that these values are represented in rem units. Using rem units allows the
-sizes to scale with the font size of the root element, which is set to 50%/8px
-in our Design System. This means that the sizes will scale with the user's
-browser settings.
 
 ```js
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
