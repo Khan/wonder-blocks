@@ -117,6 +117,7 @@ const theme = {
                 },
                 disabled: {
                     // NOTE: This is a special case for the secondary button
+                    // TODO(WB-1895): Revisit disabled styles.
                     border: semanticColor.action.primary.disabled.border,
                     foreground:
                         semanticColor.action.secondary.disabled.foreground,
@@ -169,6 +170,7 @@ const theme = {
                 },
                 disabled: {
                     // NOTE: This is a special case for the secondary button
+                    // TODO(WB-1895): Revisit disabled styles.
                     border: semanticColor.action.primary.disabled.border,
                     foreground:
                         semanticColor.action.secondary.disabled.foreground,
