@@ -78,7 +78,6 @@ const parameters = {
     },
     docs: {
         toc: {
-            // contentsSelector: "sbdocs-content",
             // Useful for MDX pages like "Using color".
             headingSelector: "h2, h3",
             // Prevents including generic headings like "Stories" and "Usage".
@@ -93,6 +92,10 @@ const parameters = {
     },
     viewport: {
         viewports: wbViewports,
+    },
+    // Setting the default viewport width for Chromatic
+    chromatic: {
+        viewports: [1184],
     },
 };
 
