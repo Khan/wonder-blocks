@@ -435,7 +435,7 @@ describe("BirthdayPicker", () => {
             expect(onChange).toHaveBeenCalledTimes(1);
         });
 
-        it("onChange triggers the first day of the month when monthYearOnly is set", async () => {
+        it("onChange triggers the last day of the month when monthYearOnly is set", async () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -460,10 +460,10 @@ describe("BirthdayPicker", () => {
 
             // Assert
             // Verify that we passed the first day of the month
-            expect(onChange).toHaveBeenCalledWith("2018-08-01");
+            expect(onChange).toHaveBeenCalledWith("2018-08-31");
         });
 
-        it("onChange triggers the passed-in day intact when defaultValue and monthYearOnly are set", async () => {
+        it("onChange triggers uses last of month when defaultValue and monthYearOnly are set", async () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -494,40 +494,6 @@ describe("BirthdayPicker", () => {
 
             // Assert
             // Verify that we passed the same day originally passed in.
-            expect(onChange).toHaveBeenCalledWith("2018-08-17");
-        });
-
-        it("onChange triggers the last day of the month when monthYearOnly and useLastOfMonth is set", async () => {
-            // Arrange
-            const onChange = jest.fn();
-
-            render(
-                <BirthdayPicker
-                    monthYearOnly={true}
-                    useLastDayOfMonth={true}
-                    onChange={onChange}
-                />,
-            );
-
-            // Act
-            await userEvent.click(
-                await screen.findByTestId("birthday-picker-month"),
-            );
-            const monthOption = await screen.findByText("Aug");
-            await userEvent.click(monthOption, {
-                pointerEventsCheck: PointerEventsCheckLevel.Never,
-            });
-
-            await userEvent.click(
-                await screen.findByTestId("birthday-picker-year"),
-            );
-            const yearOption = await screen.findByText("2018");
-            await userEvent.click(yearOption, {
-                pointerEventsCheck: PointerEventsCheckLevel.Never,
-            });
-
-            // Assert
-            // Verify that we passed the first day of the month
             expect(onChange).toHaveBeenCalledWith("2018-08-31");
         });
     });

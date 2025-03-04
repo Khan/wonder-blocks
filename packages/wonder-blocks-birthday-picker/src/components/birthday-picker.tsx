@@ -46,9 +46,9 @@ type Props = {
     /**
      * Whether we want to hide the day field.
      *
-     * **NOTE:** We will set the day to the _first_ day of the _selected_ month
+     * **NOTE:** We will set the day to the _last_ day of the _selected_ month
      * if the day field is hidden. Please make sure to modify the passed date
-     * value to fit different needs (e.g. if you want to set the _first_ day of
+     * value to fit different needs (e.g. if you want to set the _last_ day of
      * the _following_ month instead).
      */
     monthYearOnly?: boolean;
@@ -65,11 +65,6 @@ type Props = {
      * Additional styles applied to the dropdowns.
      */
     dropdownStyle?: StyleType;
-    /**
-     * Use the last day of the month as the day value instead of the first
-     * when `monthYearOnly` is true
-     */
-    useLastDayOfMonth?: boolean;
 };
 
 type State = {
@@ -180,10 +175,10 @@ export default class BirthdayPicker extends React.Component<Props, State> {
      * Calculates the initial state values based on the default value.
      */
     getStateFromDefault(): State {
-        const {defaultValue, monthYearOnly, useLastDayOfMonth} = this.props;
+        const {defaultValue, monthYearOnly} = this.props;
         const initialState: State = {
             month: null,
-            day: monthYearOnly ? "1" : null,
+            day: null,
             year: null,
             error: null,
         };
@@ -197,7 +192,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             let date = moment(defaultValue);
 
             if (date.isValid()) {
-                if (monthYearOnly && useLastDayOfMonth) {
+                if (monthYearOnly) {
                     date = date.endOf("month");
                 }
 
@@ -239,18 +234,26 @@ export default class BirthdayPicker extends React.Component<Props, State> {
      */
     handleChange: () => void = (): void => {
         const {month, day, year} = this.state;
+        const {monthYearOnly} = this.props;
+
+        const dateFields = [year, month];
+        if (!monthYearOnly) {
+            dateFields.push(day);
+        }
 
         // If any of the values haven't been set then our overall value is
         // equal to null
-        if (month === null || day === null || year === null) {
+        if (dateFields.some((field) => field === null)) {
             this.reportChange(null);
             return;
         }
 
-        // This is a legal call to Moment, but our Moment types don't
-        // recognize it.
-        let date = moment([year, month, day]);
-        if (this.props.monthYearOnly && this.props.useLastDayOfMonth) {
+        // If the month/year only mode is enabled, we set the day to the
+        // last day of the selected month.
+        // NOTE: at this point dateFields is guaranteed to have non-null values
+        // because of the .some() check above.
+        let date = moment(dateFields as Array<string>);
+        if (monthYearOnly) {
             date = date.endOf("month");
         }
 
