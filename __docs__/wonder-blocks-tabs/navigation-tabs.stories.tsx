@@ -2,7 +2,11 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import {NavigationTabs} from "@khanacademy/wonder-blocks-tabs";
+import {
+    NavigationTabItem,
+    NavigationTabs,
+} from "@khanacademy/wonder-blocks-tabs";
+import Link from "@khanacademy/wonder-blocks-link";
 
 /**
  *
@@ -22,6 +26,17 @@ export default {
 
 type StoryComponentType = StoryObj<typeof NavigationTabs>;
 
+const navigationTabItems = [
+    <NavigationTabItem>
+        <Link href="#link-1">Nav tab item 1</Link>
+    </NavigationTabItem>,
+    <NavigationTabItem>
+        <Link href="#link-2">Nav tab item 2</Link>
+    </NavigationTabItem>,
+];
+
 export const Default: StoryComponentType = {
-    args: {},
+    args: {
+        children: navigationTabItems,
+    },
 };

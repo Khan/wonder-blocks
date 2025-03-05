@@ -1,7 +1,14 @@
 import * as React from "react";
 
-type Props = {};
+type Props = {
+    children: React.ReactElement | Array<React.ReactElement>;
+};
 
 export const NavigationTabs = (props: Props) => {
-    return <div>NavigationTabs</div>;
+    const {children} = props;
+    return (
+        <nav>
+            <ul>{children}</ul>
+        </nav>
+    );
 };
