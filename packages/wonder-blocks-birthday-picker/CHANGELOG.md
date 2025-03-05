@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 3.3.0
+
+### Minor Changes
+
+- 3ef7032: Updated BirthdayPicker to use last day of month when monthYearOnly is true
+
 ## 3.2.2
 
 ### Patch Changes
