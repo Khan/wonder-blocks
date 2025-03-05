@@ -8,7 +8,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
@@ -38,6 +38,14 @@ type MultiSelectArgs = Partial<typeof MultiSelect>;
  *
  * The multi select stays open until closed by the user. The onChange callback
  * happens every time there is a change in the selection of the items.
+ *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
  *
  * ### Usage
  *
@@ -109,14 +117,14 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.fadedPurple24,
-        color: color.offBlack,
+        background: semanticColor.status.warning.background,
+        color: semanticColor.text.primary,
         padding: spacing.medium_16,
     },
     focused: {
-        outlineColor: color.purple,
+        outlineColor: semanticColor.focus.outer,
         outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
@@ -124,7 +132,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     pressed: {
-        color: color.blue,
+        color: semanticColor.status.warning.foreground,
     },
 });
 
@@ -169,6 +177,47 @@ export const Default: StoryComponentType = {
     parameters: {
         chromatic: {
             // We don't need screenshots b/c the dropdown is initially closed.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relevant accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.selectedValues || []);
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <MultiSelect
+                        {...args}
+                        selectedValues={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    >
+                        {optionItems}
+                    </MultiSelect>
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
             disableSnapshot: true,
         },
     },

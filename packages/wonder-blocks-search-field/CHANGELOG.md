@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.1.2
+
+### Patch Changes
+
+- 7bb37a2: Update component docs to include labelling guidelines
+- 051f0f8: Rework action.disabled tokens to include properties per kind (border, background, foreground).
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [7bb37a2]
+- Updated dependencies [051f0f8]
+- Updated dependencies [e1b78db]
+- Updated dependencies [8f53293]
+- Updated dependencies [051f0f8]
+- Updated dependencies [7bb37a2]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-icon-button@6.1.2
+    - @khanacademy/wonder-blocks-form@7.1.2
+    - @khanacademy/wonder-blocks-icon@5.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 5.1.1
 
 ### Patch Changes

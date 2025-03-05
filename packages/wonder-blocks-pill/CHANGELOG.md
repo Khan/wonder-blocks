@@ -1,5 +1,33 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.2
+
+### Patch Changes
+
+- 8fc65a9: - Migrate to `semanticColor`.
+    - Update background from 16% to 8%.
+    - Update focus outline to always be `blue` (using global focus color).
+- 5655b9f: Switch to use `focus.outer` semanticColor token
+- 8f53293: Rename action tokens: `filled` -> `primary`, `outlined` -> `secondary`.
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [beb09cd]
+- Updated dependencies [5bd2a95]
+- Updated dependencies [762f749]
+- Updated dependencies [051f0f8]
+- Updated dependencies [b6d77dc]
+- Updated dependencies [8fc65a9]
+- Updated dependencies [e1b78db]
+- Updated dependencies [8f53293]
+- Updated dependencies [051f0f8]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-clickable@6.1.2
+    - @khanacademy/wonder-blocks-link@8.0.0
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 3.1.1
 
 ### Patch Changes

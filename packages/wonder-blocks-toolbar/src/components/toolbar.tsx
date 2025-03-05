@@ -5,7 +5,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     HeadingSmall,
     LabelLarge,
@@ -120,13 +120,13 @@ export default function Toolbar({
 
 const sharedStyles = StyleSheet.create({
     container: {
-        border: `1px solid ${color.offBlack16}`,
+        background: semanticColor.surface.primary,
+        border: `1px solid ${semanticColor.border.primary}`,
         flex: 1,
         display: "grid",
         alignItems: "center",
         minHeight: 66,
-        paddingLeft: spacing.medium_16,
-        paddingRight: spacing.medium_16,
+        paddingInline: spacing.medium_16,
         width: "100%",
     },
     containerWithTextTitle: {
@@ -142,10 +142,11 @@ const sharedStyles = StyleSheet.create({
     small: {
         minHeight: 50,
     },
+    // TODO(WB-1852): Remove light variant.
     dark: {
-        backgroundColor: color.darkBlue,
+        background: semanticColor.surface.inverse,
         boxShadow: `0 1px 0 0 ${color.white64}`,
-        color: "white",
+        color: semanticColor.text.inverse,
     },
     leftColumn: {
         alignItems: "center",
@@ -159,7 +160,7 @@ const sharedStyles = StyleSheet.create({
         flexGrow: 1,
     },
     subtitle: {
-        color: color.offBlack64,
+        color: semanticColor.text.secondary,
     },
     titles: {
         padding: spacing.small_12,

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing-core
 
+## 2.2.0
+
+### Minor Changes
+
+- eb47d37: Improve error messaging for the router test harness adapter
+
 ## 2.1.1
 
 ### Patch Changes

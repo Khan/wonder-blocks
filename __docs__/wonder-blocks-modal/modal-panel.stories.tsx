@@ -5,7 +5,11 @@ import type {Meta, StoryObj} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -352,8 +356,9 @@ export const TwoPanels: StoryComponentType = {
 export const WithStyle: StoryComponentType = {
     render: () => {
         const modalStyles = {
-            color: color.blue,
-            border: `2px solid ${color.darkBlue}`,
+            color: semanticColor.status.notice.foreground,
+            background: semanticColor.status.notice.background,
+            border: `${border.width.thin}px solid ${semanticColor.status.notice.foreground}`,
             borderRadius: 20,
         } as const;
 

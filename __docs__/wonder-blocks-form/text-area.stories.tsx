@@ -18,6 +18,14 @@ import {validateEmail} from "./form-utilities";
 
 /**
  * A TextArea is an element used to accept text from the user.
+ *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
  */
 export default {
     title: "Packages / Form / TextArea",
@@ -91,6 +99,45 @@ export const Default: StoryComponentType = {
     args: {
         value: "",
         onChange: () => {},
+    },
+};
+
+/**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relevant accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.value || "");
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <TextArea
+                        {...args}
+                        value={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    />
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
+            disableSnapshot: true,
+        },
     },
 };
 

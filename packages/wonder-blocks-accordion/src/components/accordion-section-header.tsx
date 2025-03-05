@@ -176,15 +176,15 @@ const styles = StyleSheet.create({
         zIndex: 1,
 
         ":active": {
-            outline: `2px solid ${semanticColor.action.outlined.progressive.press.border}`,
+            outline: `2px solid ${semanticColor.action.secondary.progressive.press.border}`,
         },
 
         ":hover": {
-            outline: `2px solid ${semanticColor.border.focus}`,
+            outline: `2px solid ${semanticColor.action.secondary.progressive.hover.border}`,
         },
 
         ":focus-visible": {
-            outline: `2px solid ${semanticColor.border.focus}`,
+            outline: `2px solid ${semanticColor.focus.outer}`,
         },
     },
     headerWrapperWithAnimation: {
@@ -239,8 +239,7 @@ const styles = StyleSheet.create({
         color: "inherit",
 
         ":focus-visible": {
-            // TODO(WB-1856): Verify if we can use the global focus color
-            outline: `2px solid ${semanticColor.action.disabled.default}`,
+            outline: `2px solid ${semanticColor.focus.outer}`,
         },
     },
 });
