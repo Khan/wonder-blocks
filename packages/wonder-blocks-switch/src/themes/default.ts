@@ -6,14 +6,14 @@ import {
 } from "@khanacademy/wonder-blocks-tokens";
 
 // The color of the switch is based on the action color.
-const action = semanticColor.action.outlined.progressive;
+const action = semanticColor.action.secondary.progressive;
 
 const theme = {
     color: {
         bg: {
             switch: {
                 off: action.default.border,
-                disabledOff: semanticColor.action.disabled.default,
+                disabledOff: semanticColor.action.primary.disabled.background,
                 // NOTE: Adding this as a primitive token b/c we don't have a
                 // semantic token for this background color
                 activeOff: color.fadedOffBlack64,
@@ -29,11 +29,11 @@ const theme = {
                 on: action.default.foreground,
                 disabledOn: action.press.background,
                 off: action.default.border,
-                disabledOff: semanticColor.action.disabled.default,
+                disabledOff: semanticColor.icon.disabled,
             },
         },
         outline: {
-            default: semanticColor.border.focus,
+            default: semanticColor.focus.outer,
         },
     },
     border: {

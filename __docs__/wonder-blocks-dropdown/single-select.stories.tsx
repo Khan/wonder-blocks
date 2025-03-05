@@ -7,7 +7,7 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -50,6 +50,14 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  * [react-window](https://github.com/bvaughn/react-window) to improve
  * performance when rendering these elements and is capable of handling many
  * hundreds of items without performance problems.
+ *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
  *
  * ### Usage
  *
@@ -115,14 +123,14 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.fadedPurple24,
-        color: color.offBlack,
+        background: semanticColor.status.warning.background,
+        color: semanticColor.text.primary,
         padding: spacing.medium_16,
     },
     focused: {
-        outlineColor: color.purple,
+        outlineColor: semanticColor.focus.outer,
         outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
@@ -130,7 +138,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     pressed: {
-        backgroundColor: color.blue,
+        color: semanticColor.status.warning.foreground,
     },
 
     fullBleed: {
@@ -147,18 +155,6 @@ const styles = StyleSheet.create({
     },
     scrollableArea: {
         height: "200vh",
-    },
-    /**
-     * Dark
-     */
-    darkBackgroundWrapper: {
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        backgroundColor: color.darkBlue,
-        width: "100%",
-        height: 200,
-        paddingRight: spacing.medium_16,
-        paddingTop: spacing.medium_16,
     },
     // AutoFocus
     icon: {
@@ -206,6 +202,47 @@ const Template = (args: any) => {
 
 export const Default: StoryComponentType = {
     render: Template,
+};
+
+/**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relevant accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.selectedValue || "");
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <SingleSelect
+                        {...args}
+                        selectedValue={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    >
+                        {optionItems}
+                    </SingleSelect>
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -887,7 +924,7 @@ export const AutoFocusDisabled: StoryComponentType = {
                                 style={styles.fullBleed}
                             />
                             <PhosphorIcon
-                                color={color.blue}
+                                color={semanticColor.status.notice.foreground}
                                 icon={IconMappings.clockBold}
                                 size="small"
                                 style={styles.icon}

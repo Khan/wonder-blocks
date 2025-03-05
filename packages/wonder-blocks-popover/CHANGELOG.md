@@ -1,5 +1,31 @@
 # @khanacademy/wonder-blocks-popover
 
+## 5.2.0
+
+### Minor Changes
+
+- a42d9f3: PopoverContent: Add `iconAlt` prop so alt text can be set on the icon
+
+### Patch Changes
+
+- fff5da0: Migrate to semanticColor tokens
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [fff5da0]
+- Updated dependencies [6d37702]
+- Updated dependencies [051f0f8]
+- Updated dependencies [e1b78db]
+- Updated dependencies [8f53293]
+- Updated dependencies [051f0f8]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-icon-button@6.1.2
+    - @khanacademy/wonder-blocks-modal@7.1.2
+    - @khanacademy/wonder-blocks-tooltip@4.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 5.1.1
 
 ### Patch Changes

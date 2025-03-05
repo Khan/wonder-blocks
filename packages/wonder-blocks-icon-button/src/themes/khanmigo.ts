@@ -18,6 +18,8 @@ const primaryLightState = {
     },
 };
 
+const actionType = semanticColor.action.primary;
+
 /**
  * The overrides for the Khanmigo theme.
  */
@@ -33,23 +35,23 @@ const theme = mergeTheme(defaultTheme, {
 
         secondary: {
             progressive: {
-                hover: semanticColor.action.filled.progressive.hover,
-                press: semanticColor.action.filled.progressive.press,
+                hover: actionType.progressive.hover,
+                press: actionType.progressive.press,
             },
             destructive: {
-                hover: semanticColor.action.filled.destructive.hover,
-                press: semanticColor.action.filled.destructive.press,
+                hover: actionType.destructive.hover,
+                press: actionType.destructive.press,
             },
         },
 
         tertiary: {
             progressive: {
-                hover: semanticColor.action.filled.progressive.hover,
-                press: semanticColor.action.filled.progressive.press,
+                hover: actionType.progressive.hover,
+                press: actionType.progressive.press,
             },
             destructive: {
-                hover: semanticColor.action.filled.destructive.hover,
-                press: semanticColor.action.filled.destructive.press,
+                hover: actionType.destructive.hover,
+                press: actionType.destructive.press,
             },
         },
     },

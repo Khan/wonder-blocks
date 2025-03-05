@@ -259,7 +259,7 @@ function getStylesByKind(
                     : theme.border.width.hovered,
             },
             ":focus-visible": {
-                outlineColor: themeVariant.hover.border,
+                outlineColor: themeVariant.focus.border,
             },
             ":active": {
                 borderColor: themeVariant.press.border,
@@ -270,7 +270,7 @@ function getStylesByKind(
             disabled: {
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
-                outlineColor: themeVariant.default.border,
+                outlineColor: themeVariant.focus.border,
             },
         };
     }
@@ -290,7 +290,7 @@ function getStylesByKind(
                 outlineWidth: theme.border.width.active,
             },
             ":focus-visible": {
-                outlineColor: themeVariant.hover.border,
+                outlineColor: themeVariant.focus.border,
             },
             ":active": {
                 borderColor: themeVariant.press.border,
@@ -302,7 +302,7 @@ function getStylesByKind(
             disabled: {
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
-                outlineColor: themeVariant.default.border,
+                outlineColor: themeVariant.focus.border,
             },
         };
     }

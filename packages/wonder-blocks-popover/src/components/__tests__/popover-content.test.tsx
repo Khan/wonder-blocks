@@ -37,8 +37,7 @@ describe("PopoverContent", () => {
             <PopoverContent
                 title="illustration"
                 content="content"
-                // eslint-disable-next-line jsx-a11y/img-redundant-alt -- TODO: Address a11y error
-                image={<img src="/dummy-image.png" alt="popover image" />}
+                image={<img src="/dummy-image.png" alt="popover alt text" />}
                 icon={<img src="/dummy-icon.png" alt="popover icon" />}
             />
         );
@@ -73,5 +72,22 @@ describe("PopoverContent", () => {
         expect(underTest).toThrowErrorMatchingInlineSnapshot(
             `"'image' can only be vertically placed. You can fix this by either changing \`placement\` to \`top\` or \`bottom\` or removing the \`image\` prop inside \`content\`."`,
         );
+    });
+
+    it("should use the iconAlt prop when the prop is used with the icon prop", () => {
+        // Arrange
+        const iconAlt = "icon alt text";
+        // Act
+        render(
+            <PopoverContent
+                title="Title"
+                content="content"
+                icon="/icon.png"
+                iconAlt={iconAlt}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByRole("img")).toHaveAttribute("alt", iconAlt);
     });
 });

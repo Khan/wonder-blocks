@@ -274,9 +274,8 @@ export const WithInlineLinks: StoryComponentType = {
                     <LabelSmall>
                         Use inline links in the body of the text instead. Click{" "}
                         {
-                            // eslint-disable-next-line jsx-a11y/anchor-ambiguous-text, jsx-a11y/anchor-is-valid -- TODO: Address a11y error
-                            <Link href="" inline={true}>
-                                here
+                            <Link href="#link" inline={true}>
+                                link example
                             </Link>
                         }{" "}
                         to go to some other page.

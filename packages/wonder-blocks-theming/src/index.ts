@@ -5,6 +5,7 @@ export {default as useScopedTheme} from "./hooks/use-scoped-theme";
 export {
     default as withScopedTheme,
     type WithThemeProps,
+    type WithoutTheme,
 } from "./components/with-scoped-theme";
 export {type ThemedStylesFn, type SupportedThemes, type Themes} from "./types";
 export {default as useStyles} from "./hooks/use-styles";
