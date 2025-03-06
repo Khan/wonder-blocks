@@ -6,7 +6,8 @@ import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
 import Link from "@khanacademy/wonder-blocks-link";
 
 /**
- *
+ * A component for a tab item in NavigationTabs. It is used with a Link
+ * component.
  */
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem",
@@ -18,6 +19,16 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling warning: "List item does not have a <ul>, <ol> parent element"
+                    // This is intentional because NavigationTabs provides the ul element and it
+                    // is outside of this component
+                    {id: "listitem", enabled: false},
+                ],
+            },
+        },
     },
 } as Meta<typeof NavigationTabItem>;
 

@@ -9,7 +9,11 @@ import {
 import Link from "@khanacademy/wonder-blocks-link";
 
 /**
- *
+ * The NavigationTabs component is a tabbed interface for link navigation.
+ * The tabs are links and keyboard users can change tabs using tab.
+ * The NavigationTabs component is used with NavigationTabItem and Link
+ * components. If the tabs should not be links, see the Tabs component,
+ * which implements different semantics and keyboard interactions.
  */
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs",
@@ -32,6 +36,9 @@ const navigationTabItems = [
     </NavigationTabItem>,
     <NavigationTabItem>
         <Link href="#link-2">Navigation tab item 2</Link>
+    </NavigationTabItem>,
+    <NavigationTabItem>
+        <Link href="#link-3">Navigation tab item 3</Link>
     </NavigationTabItem>,
 ];
 

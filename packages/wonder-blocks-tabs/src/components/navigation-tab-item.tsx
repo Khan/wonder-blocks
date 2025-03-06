@@ -5,6 +5,9 @@ import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography"
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
+    /**
+     * The contents of the NavigationTabItem (usually a Link component)
+     */
     children: React.ReactElement;
 };
 

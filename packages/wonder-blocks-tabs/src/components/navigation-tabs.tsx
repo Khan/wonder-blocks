@@ -4,6 +4,9 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 type Props = {
+    /**
+     * The NavigationTabItem components to render.
+     */
     children: React.ReactElement | Array<React.ReactElement>;
 };
 
