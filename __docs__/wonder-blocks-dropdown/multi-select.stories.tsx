@@ -74,7 +74,6 @@ export default {
         "aria-label": "Planets",
     },
     parameters: {
-        addBodyClass: "showAnnouncer",
         componentSubtitle: (
             <ComponentInfo
                 name={packageConfig.name}
