@@ -1673,9 +1673,6 @@ describe("MultiSelect", () => {
         });
 
         it("should announce the number of options when the listbox is open", async () => {
-            // const mockDateNow = jest.spyOn(Date, "now");
-            // mockDateNow.mockImplementation(() => 0);
-
             // Arrange
             const labels: LabelsValues = {
                 ...builtinLabels,
@@ -1700,7 +1697,6 @@ describe("MultiSelect", () => {
             const opener = await screen.findByRole("combobox");
 
             jest.advanceTimersByTime(10);
-            // mockDateNow.mockImplementation(() => 150);
 
             // Act
             await userEvent.click(opener);
@@ -1711,8 +1707,6 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(announcementText).toBeInTheDocument();
-
-            // mockDateNow.mockRestore();
         });
 
         it("should change the number of options after using the search filter", async () => {
