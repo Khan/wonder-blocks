@@ -6,7 +6,12 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
@@ -118,7 +123,11 @@ function CellInner(props: CellCoreProps): React.ReactElement {
                 // custom styles
                 style,
                 horizontalRuleStyles,
+                active && styles.activeInnerWrapper,
             ]}
+            // Set className so we can set styles on the inner wrapper directly
+            // when the clickable element is pressed
+            className="inner-wrapper"
         >
             {/* Left accessory */}
             <LeftAccessory
@@ -235,6 +244,12 @@ const styles = StyleSheet.create({
         padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
         flex: 1,
+        borderRadius: "inherit",
+        // Hide overflow so that if custom styling applies a border radius, the
+        // left visual indicator for press/active states does not overflow
+        overflow: "hidden",
+        // Make sure inner wrapper is always the same height as parent
+        height: "100%",
 
         // Reduce the padding of the innerWrapper when the focus ring is
         // visible.
@@ -242,6 +257,18 @@ const styles = StyleSheet.create({
             padding: `${CellMeasurements.cellPadding.paddingVertical - 2}px ${
                 CellMeasurements.cellPadding.paddingHorizontal - 2
             }px`,
+        },
+    },
+    activeInnerWrapper: {
+        position: "relative",
+        ":before": {
+            content: "''",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            bottom: 0,
+            width: border.width.thick,
+            backgroundColor: semanticColor.surface.emphasis,
         },
     },
 
@@ -264,7 +291,7 @@ const styles = StyleSheet.create({
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: color.offBlack64,
+        color: semanticColor.icon.primary,
     },
 
     /**
@@ -309,28 +336,52 @@ const styles = StyleSheet.create({
             border: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
             borderRadius: spacing.xxxSmall_4,
         },
+        [":focus-visible[aria-disabled=true]:after" as any]: {
+            borderColor: semanticColor.focus.outer,
+        },
 
         // hover + enabled
         [":hover[aria-disabled=false]" as any]: {
-            background: color.offBlack8,
+            background: color.fadedBlue8,
         },
 
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
-            background: color.offBlack16,
+            background: color.fadedBlue8,
         },
+        // press + enabled + not currently selected (active prop: false)
+        // We apply the left bar indicator styles on the inner-wrapper element
+        // instead of the clickable element directly because we need to hide the
+        // left bar overflow when custom cell styles apply a border-radius. We
+        // have overflow: hidden on the inner wrapper instead of the clickable element
+        // because setting it on the clickable element causes issues with existing
+        // cases.
+        [":active[aria-disabled=false]:not([aria-current=true]) .inner-wrapper" as any]:
+            {
+                position: "relative",
+                ":before": {
+                    content: "''",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    width: border.width.thin,
+                    backgroundColor: semanticColor.surface.emphasis,
+                },
+            },
     },
 
     active: {
         background: color.fadedBlue8,
-        color: color.blue,
+        color: color.activeBlue,
+        cursor: "default",
 
         [":hover[aria-disabled=false]" as any]: {
-            background: color.fadedBlue16,
+            background: color.fadedBlue8,
         },
 
         [":active[aria-disabled=false]" as any]: {
-            background: color.fadedBlue24,
+            background: color.fadedBlue8,
         },
     },
 

@@ -4,17 +4,17 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {DetailCell} from "@khanacademy/wonder-blocks-cell";
+import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 /**
  * The following stories are used to generate the pseudo states for the
- * DetailCell component. This is only used for visual testing in Chromatic.
+ * CompactCell component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / Cell / DetailCell / All Variants",
+    title: "Packages / Cell / CompactCell / All Variants",
     parameters: {
         docs: {
             autodocs: false,
@@ -25,7 +25,7 @@ export default {
     },
 } as Meta;
 
-type StoryComponentType = StoryObj<typeof DetailCell>;
+type StoryComponentType = StoryObj<typeof CompactCell>;
 
 const states = [
     {
@@ -44,15 +44,13 @@ const states = [
 
 const defaultProps = {
     title: "Title for article item",
-    subtitle1: "Subtitle 1 for article item",
-    subtitle2: "Subtitle 2 for article item",
     leftAccessory: (
         <PhosphorIcon icon={IconMappings.playCircle} size="medium" />
     ),
     rightAccessory: <PhosphorIcon icon={IconMappings.caretRight} />,
 };
 
-const States = (props: {label: string} & PropsFor<typeof DetailCell>) => {
+const States = (props: {label: string} & PropsFor<typeof CompactCell>) => {
     return (
         <View>
             <View style={[styles.scenarios]}>
@@ -62,7 +60,7 @@ const States = (props: {label: string} & PropsFor<typeof DetailCell>) => {
                             <LabelSmall>
                                 {props.label} ({scenario.label})
                             </LabelSmall>
-                            <DetailCell {...props} {...scenario.props} />
+                            <CompactCell {...props} {...scenario.props} />
                         </View>
                     );
                 })}
