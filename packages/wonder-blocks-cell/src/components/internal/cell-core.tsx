@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
             borderRadius: spacing.xxxSmall_4,
         },
         [":focus-visible[aria-disabled=true]:after" as any]: {
-            borderColor: semanticColor.action.disabled.default,
+            borderColor: semanticColor.focus.outer,
         },
 
         // hover + enabled
