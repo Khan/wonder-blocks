@@ -442,6 +442,12 @@ const SingleSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
+    const handleAnnouncement = (message: string) => {
+        announceMessage({
+            message,
+        });
+    };
+
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -469,7 +475,7 @@ const SingleSelect = (props: Props) => {
             const [label, node] = maybeExtractStringFromNode(menuOpenerLabel);
             menuContent = node;
 
-            announceMessage({message: label});
+            handleAnnouncement(label);
         } else {
             menuContent = placeholder;
         }
@@ -529,6 +535,10 @@ const SingleSelect = (props: Props) => {
     ).length;
     const items = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
+
+    if (open && isFilterable) {
+        handleAnnouncement(labels.someResults(items.length));
+    }
 
     return (
         <Id id={dropdownId}>

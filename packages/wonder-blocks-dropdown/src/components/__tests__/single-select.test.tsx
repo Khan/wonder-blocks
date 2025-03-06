@@ -13,6 +13,7 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import OptionItem from "../option-item";
 import SingleSelect from "../single-select";
 import type {SingleSelectLabelsValues} from "../single-select";
@@ -1205,9 +1206,10 @@ describe("SingleSelect", () => {
     });
 
     describe("a11y > Live region", () => {
-        // TODO (WB-1757.2): Enable this test once the LiveRegion component
-        // is refactored.
-        it.skip("should change the number of options after using the search filter", async () => {
+        beforeEach(() => {
+            initAnnouncer({debounceThreshold: 0});
+        });
+        it("should change the number of options after using the search filter", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
@@ -1225,13 +1227,15 @@ describe("SingleSelect", () => {
             // Act
             // NOTE: We search using the lowercased version of the label.
             await userEvent.type(await screen.findByRole("textbox"), "item 0");
+            jest.advanceTimersByTime(10);
 
             // Assert
-            const liveRegionText = (
-                await screen.findByTestId("dropdown-live-region")
-            ).textContent;
+            const liveRegion = screen.getByTestId("wbAnnounce");
+            const announcementText =
+                await within(liveRegion).findByText("1 item");
 
-            expect(liveRegionText).toEqual("1 item");
+            // Assert
+            expect(announcementText).toBeInTheDocument();
         });
     });
 
