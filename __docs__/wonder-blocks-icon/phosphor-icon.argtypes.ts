@@ -47,6 +47,8 @@ import playBold from "@phosphor-icons/core/bold/play-bold.svg";
 import playCircle from "@phosphor-icons/core/regular/play-circle.svg";
 import playCircleBold from "@phosphor-icons/core/bold/play-circle-bold.svg";
 import gear from "@phosphor-icons/core/regular/gear.svg";
+import cookie from "@phosphor-icons/core/regular/cookie.svg";
+import iceCream from "@phosphor-icons/core/regular/ice-cream.svg";
 
 import {color} from "@khanacademy/wonder-blocks-tokens";
 
@@ -101,6 +103,8 @@ export const IconMappings = {
     playCircle,
     playCircleBold,
     gear,
+    cookie,
+    iceCream,
 } as const;
 
 export default {
