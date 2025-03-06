@@ -43,6 +43,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in switch-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
     argTypes: SwitchArgtypes,
 } as Meta<typeof Switch>;
@@ -109,12 +113,6 @@ export const Controlled: StoryComponentType = {
         await userEvent.tab();
         await userEvent.tab();
 
-        expect(switchWithIcon).toHaveStyle(
-            "background-color: rgba(33, 36, 44, 0.5)",
-        );
-        expect(switchWithIcon).toHaveStyle(
-            "outline: 2px solid rgb(24, 101, 242)",
-        );
         expect(switchInput).toHaveProperty("checked", false);
 
         await userEvent.click(switchWithIcon);
@@ -122,9 +120,6 @@ export const Controlled: StoryComponentType = {
         await new Promise((resolve) => setTimeout(resolve, 150));
 
         expect(switchInput).toHaveProperty("checked", true);
-        expect(switchWithIcon).toHaveStyle(
-            "background-color: rgb(24, 101, 242)",
-        );
     },
 };
 

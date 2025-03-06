@@ -1,4 +1,3 @@
-import * as WSCore from "@khanacademy/wonder-stuff-core";
 import {SerializableInMemoryCache} from "../serializable-in-memory-cache";
 
 describe("SerializableInMemoryCache", () => {
@@ -23,6 +22,7 @@ describe("SerializableInMemoryCache", () => {
 
         it("should throw if the cloning fails", () => {
             // Arrange
+            const WSCore = require("@khanacademy/wonder-stuff-core");
             jest.spyOn(WSCore, "clone").mockImplementationOnce(() => {
                 throw new Error("BANG!");
             });
@@ -341,6 +341,7 @@ describe("SerializableInMemoryCache", () => {
 
         it("should throw if there is an error during cloning", () => {
             // Arrange
+            const WSCore = require("@khanacademy/wonder-stuff-core");
             const cache = new SerializableInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},

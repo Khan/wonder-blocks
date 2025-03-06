@@ -53,8 +53,8 @@ const StyledInput = addStyle("input");
 });
 
 const disabledState = {
-    border: semanticColor.border.primary,
-    background: semanticColor.action.disabled.secondary,
+    border: semanticColor.action.secondary.disabled.border,
+    background: semanticColor.action.secondary.disabled.background,
 };
 
 const size = 16; // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
@@ -65,7 +65,7 @@ const disabledChecked = {
     height: size / 2,
     width: size / 2,
     borderRadius: "50%",
-    backgroundColor: semanticColor.action.disabled.default,
+    backgroundColor: semanticColor.action.primary.disabled.background,
 } as const;
 
 const sharedStyles = StyleSheet.create({
@@ -103,9 +103,9 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         return styles[styleKey];
     }
     const actionType = error ? "destructive" : "progressive";
-    // NOTE: Radio buttons use the outlined style regardless of the checked
+    // NOTE: Radio buttons use the secondary style regardless of the checked
     // state.
-    const colorAction = semanticColor.action.outlined[actionType];
+    const colorAction = semanticColor.action.secondary[actionType];
 
     // The different states that the component can be in.
     const states = {
@@ -139,8 +139,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
                 ":focus-visible": {
-                    // TODO(WB-1856): Define global pattern for focus styles
-                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
                     outlineOffset: 1,
                 },
 
@@ -170,8 +169,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     backgroundColor: error
                         ? states.error.background
                         : colorAction.hover.background,
-                    // TODO(WB-1856): Define global pattern for focus styles
-                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,
                 },
 

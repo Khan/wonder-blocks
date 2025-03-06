@@ -16,13 +16,13 @@ module.exports = {
     ...config,
     plugins: [
         ...config.plugins,
-        // NOTE(kevinb): `plugin-proposal-class-properties` must come before
+        // NOTE(kevinb): `plugin-transform-class-properties` must come before
         // `plugin-transform-classes`.
-        ["@babel/plugin-proposal-class-properties", {loose: true}],
+        ["@babel/plugin-transform-class-properties", {loose: true}],
         ["@babel/plugin-transform-classes", {loose: true}],
         // NOTE(kevinb): these are here just to quiet warnings about these
         // plugins not using `loose: true`.
-        ["@babel/plugin-proposal-private-property-in-object", {loose: true}],
-        ["@babel/plugin-proposal-private-methods", {loose: true}],
+        ["@babel/plugin-transform-private-property-in-object", {loose: true}],
+        ["@babel/plugin-transform-private-methods", {loose: true}],
     ],
 };

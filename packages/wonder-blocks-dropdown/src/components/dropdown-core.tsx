@@ -7,9 +7,14 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
-import {fade, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    color,
+    spacing,
+    semanticColor,
+    border,
+} from "@khanacademy/wonder-blocks-tokens";
 
-import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -18,7 +23,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
-import {defaultLabels, keys} from "../util/constants";
+import {defaultLabels} from "../util/constants";
 import type {DropdownItem} from "../util/types";
 import DropdownPopper from "./dropdown-popper";
 import {debounce, getLabel, getStringForKey} from "../util/helpers";
@@ -38,7 +43,7 @@ const VIRTUALIZE_THRESHOLD = 125;
 
 const StyledSpan = addStyle("span");
 
-type Labels = {
+type LabelsValues = {
     /**
      * Label for describing the dismiss icon on the search filter.
      */
@@ -93,7 +98,7 @@ type DefaultProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
+    labels: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -205,7 +210,7 @@ type ExportProps = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels?: Labels;
+    labels?: LabelsValues;
     /**
      * Used to determine if we can automatically select an item using the keyboard.
      */
@@ -231,7 +236,7 @@ type State = Readonly<{
     /**
      * The object containing the custom labels used inside this component.
      */
-    labels: Labels;
+    labels: LabelsValues;
     /**
      * Because getDerivedStateFromProps doesn't store previous props (in the
      * spirit of performance), we store the previous items just to be able to
@@ -485,6 +490,7 @@ class DropdownCore extends React.Component<Props, State> {
     handleInteract: (event: Event) => void = (event) => {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target as any;
+        // eslint-disable-next-line import/no-deprecated
         const thisElement = ReactDOM.findDOMNode(this);
         if (
             open &&
@@ -542,6 +548,7 @@ class DropdownCore extends React.Component<Props, State> {
             const currentFocusedItemRef =
                 this.state.itemRefs[this.focusedIndex];
 
+            // eslint-disable-next-line import/no-deprecated
             const node = ReactDOM.findDOMNode(
                 currentFocusedItemRef.ref.current,
             ) as HTMLElement;
@@ -1085,18 +1092,36 @@ class DropdownCore extends React.Component<Props, State> {
     }
 }
 
+// TODO(WB-1868): Move this to a theme file.
+const theme = {
+    dropdown: {
+        color: {
+            default: {
+                background: semanticColor.surface.primary,
+                border: semanticColor.border.primary,
+            },
+        },
+    },
+    noResults: {
+        color: {
+            foreground: semanticColor.text.secondary,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     menuWrapper: {
         width: "fit-content",
     },
 
     dropdown: {
-        backgroundColor: color.white,
-        borderRadius: 4,
+        backgroundColor: theme.dropdown.color.default.background,
+        borderRadius: border.radius.medium_4,
         paddingTop: spacing.xxxSmall_4,
         paddingBottom: spacing.xxxSmall_4,
-        border: `solid 1px ${color.offBlack16}`,
-        boxShadow: `0px 8px 8px 0px ${fade(color.offBlack, 0.1)}`,
+        border: `solid 1px ${theme.dropdown.color.default.border}`,
+        // TODO(WB-1878): Move to elevation tokens.
+        boxShadow: `0px 8px 8px 0px ${color.offBlack8}`,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.
         // @see ../util/popper-max-height-modifier.ts
@@ -1113,7 +1138,7 @@ const styles = StyleSheet.create({
     },
 
     noResult: {
-        color: color.offBlack64,
+        color: theme.noResults.color.foreground,
         alignSelf: "center",
         marginTop: spacing.xxSmall_6,
     },

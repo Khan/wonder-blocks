@@ -1,109 +1,172 @@
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {border, color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+const disabledStates = {
+    // NOTE: This is a special case for the button
+    border: semanticColor.action.primary.disabled.border,
+    background: "transparent",
+    foreground: semanticColor.action.secondary.disabled.foreground,
+};
+
+// TODO(WB-1852): Remove light variants.
+const disabledLightStates = {
+    border: color.white50,
+    background: "transparent",
+    foreground: color.white50,
+};
+
+const focusOutline = {
+    border: semanticColor.focus.outer,
+};
+
+const focusOutlineLight = {
+    border: semanticColor.border.inverse,
+};
+
+/**
+ * The color styles shared between all the button kinds.
+ *
+ * NOTE: This will change when we create the new polaris theme as IconButton
+ * will apply the same styles as Button.
+ */
+const baseColorStates = {
+    ...semanticColor.action.secondary,
+    progressive: {
+        ...semanticColor.action.secondary.progressive,
+        default: {
+            ...semanticColor.action.secondary.progressive.default,
+            border: "transparent",
+            background: "transparent",
+        },
+        focus: focusOutline,
+        press: {
+            border: semanticColor.action.secondary.progressive.press.border,
+            background: "transparent",
+            foreground:
+                semanticColor.action.secondary.progressive.press.foreground,
+        },
+    },
+    destructive: {
+        ...semanticColor.action.secondary.destructive,
+        default: {
+            ...semanticColor.action.secondary.destructive.default,
+            border: "transparent",
+            background: "transparent",
+        },
+        focus: focusOutline,
+        press: {
+            border: semanticColor.action.secondary.destructive.press.border,
+            background: "transparent",
+            foreground:
+                semanticColor.action.secondary.destructive.press.foreground,
+        },
+    },
+    disabled: {
+        default: disabledStates,
+        focus: focusOutline,
+        hover: disabledStates,
+        press: disabledStates,
+    },
+    // TODO(WB-1852): Remove light variants.
+    disabledLight: {
+        default: disabledLightStates,
+        focus: focusOutlineLight,
+        hover: disabledLightStates,
+        press: disabledLightStates,
+    },
+};
 
 const theme = {
     color: {
-        bg: {
-            /**
-             * Default
-             */
-            hovered: "transparent",
-            active: "transparent",
-            disabled: "transparent",
-            /**
-             * Kind
-             */
-            // Filled icon buttons (secondary, tertiary)
-            // NOTE: Transparent in the default theme, but we want to use the
-            // filled colors for Khanmigo.
-            filled: {
-                action: {
-                    hovered: "transparent",
-                    active: "transparent",
+        primary: {
+            ...baseColorStates,
+            // Only primary supports the light variants.
+            // TODO(WB-1852): Remove light variants.
+            progressiveLight: {
+                default: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
                 },
-                critical: {
-                    hovered: "transparent",
-                    active: "transparent",
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                focus: focusOutlineLight,
+                press: {
+                    border: color.fadedBlue,
+                    background: "transparent",
+                    foreground: color.fadedBlue,
+                },
+            },
+            // TODO(WB-1852): Remove light variants.
+            destructiveLight: {
+                default: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                focus: focusOutlineLight,
+                press: {
+                    border: color.fadedRed,
+                    background: "transparent",
+                    foreground: color.fadedRed,
                 },
             },
         },
-        // Shared colors for icon and borders
-        stroke: {
-            /**
-             * Default
-             */
-            disabled: {
-                default: tokens.color.offBlack32,
-                inverse: tokens.color.white50,
-            },
-            // focus, hover
-            inverse: tokens.color.white,
 
-            /**
-             * Color
-             */
-            // color="default"
-            action: {
-                default: tokens.color.blue,
-                active: tokens.color.activeBlue,
-                inverse: tokens.color.fadedBlue,
-            },
-            // color="destructive"
-            critical: {
-                default: tokens.color.red,
-                active: tokens.color.activeRed,
-                inverse: tokens.color.fadedRed,
-            },
-
-            /**
-             * Kind
-             */
-            primary: {
-                // primary + action
-                action: {
-                    hovered: tokens.color.blue,
-                    active: tokens.color.activeBlue,
-                },
-                // primary + critical
-                critical: {
-                    hovered: tokens.color.red,
-                    active: tokens.color.activeRed,
-                },
-                // on dark background
-                inverse: {
-                    default: tokens.color.white,
-                    hovered: tokens.color.white,
+        // secondary
+        secondary: {
+            ...baseColorStates,
+            progressive: {
+                ...baseColorStates.progressive,
+                default: {
+                    ...baseColorStates.progressive.default,
+                    foreground: semanticColor.text.primary,
                 },
             },
-            secondary: {
-                default: tokens.color.offBlack,
-            },
-            tertiary: {
-                default: tokens.color.offBlack64,
-            },
-            // Filled icon buttons (secondary, tertiary)
-            filled: {
-                // filled + action
-                action: {
-                    hovered: tokens.color.blue,
-                    active: tokens.color.activeBlue,
+            destructive: {
+                ...baseColorStates.destructive,
+                default: {
+                    ...baseColorStates.destructive.default,
+                    foreground: semanticColor.text.primary,
                 },
-                // filled + critical
-                critical: {
-                    hovered: tokens.color.red,
-                    active: tokens.color.activeRed,
+            },
+        },
+        // tertiary
+        tertiary: {
+            ...baseColorStates,
+            progressive: {
+                ...baseColorStates.progressive,
+                default: {
+                    ...baseColorStates.progressive.default,
+                    foreground: semanticColor.text.secondary,
+                },
+            },
+            destructive: {
+                ...baseColorStates.destructive,
+                default: {
+                    ...baseColorStates.destructive.default,
+                    foreground: semanticColor.text.secondary,
                 },
             },
         },
     },
+
     border: {
         width: {
-            default: tokens.border.width.thin,
-            active: tokens.border.width.none,
-            hovered: tokens.border.width.thin,
-            hoveredInverse: tokens.border.width.thin,
+            default: border.width.thin,
+            active: border.width.none,
+            hovered: border.width.thin,
+            hoveredInverse: border.width.thin,
         },
         radius: {
-            default: tokens.border.radius.medium_4,
+            default: border.radius.medium_4,
         },
     },
 };

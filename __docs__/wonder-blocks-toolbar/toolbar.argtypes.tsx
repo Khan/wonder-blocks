@@ -79,7 +79,7 @@ export const rightContentMappings: Mappings = {
         </Button>
     ),
     link: (
-        <Link href="#">
+        <Link href="#exercise">
             <LabelLarge>Go to exercise</LabelLarge>
         </Link>
     ),

@@ -31,7 +31,9 @@ import Interval from "../util/interval";
  * scheduling the interval, use `SchedulePolicy.OnDemand`.
  * @returns An `IInterval` API for interacting with the given interval. This
  * API is a no-op if called when not mounted. This means that any calls prior
- * to mounting or after unmounting will not have any effect.
+ * to mounting or after unmounting will not have any effect. This API is
+ * not reactive, so do not deconstruct the return value, but instead
+ * dereference it at the time of use.
  */
 export function useInterval(
     action: () => unknown,
@@ -87,14 +89,14 @@ export function useInterval(
             set: () => {
                 intervalRef.current?.set();
             },
-            clear: (policy?: ClearPolicy) => {
+            clear: (policy: ClearPolicy | undefined = clearPolicy) => {
                 intervalRef.current?.clear(policy);
             },
             get isSet() {
                 return intervalRef.current?.isSet ?? false;
             },
         }),
-        [],
+        [clearPolicy],
     );
 
     return externalApi;

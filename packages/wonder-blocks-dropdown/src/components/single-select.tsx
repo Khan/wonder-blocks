@@ -25,9 +25,9 @@ import type {
 import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
-export type SingleSelectLabels = {
+export type SingleSelectLabelsValues = {
     /**
-     * Label for describing the dismiss icon on the search filter.
+     * Label to create an accessible name for the dismiss icon on the search filter.
      */
     clearSearch: string;
     /**
@@ -35,11 +35,11 @@ export type SingleSelectLabels = {
      */
     filter: string;
     /**
-     * Label for when the filter returns no results.
+     * Value for when the filter returns no results.
      */
     noResults: string;
     /**
-     * Label for the opening component when there are some items selected.
+     * Value for the opening component when there are some items selected.
      */
     someResults: (numOptions: number) => string;
 };
@@ -78,12 +78,12 @@ type DefaultProps = Readonly<{
      */
     error?: boolean;
     /**
-     * The object containing the custom labels used inside this component.
+     * The object containing the custom labels and placeholder values used inside this component.
      */
-    labels?: SingleSelectLabels;
+    labels?: SingleSelectLabelsValues;
     /**
-     * When false, the SelectOpener can show a Node as a label. When true, the
-     * SelectOpener will use a string as a label. If using custom OptionItems, a
+     * When false, the SelectOpener can show a Node as a value. When true, the
+     * SelectOpener will use a string as a value. If using custom OptionItems, a
      * plain text label can be provided with the `labelAsText` prop.
      * Defaults to true.
      */
@@ -123,7 +123,8 @@ type Props = AriaProps &
          */
         id?: string;
         /**
-         * Placeholder for the opening component when there are no items selected.
+         * Placeholder value for the opening component when there are no items selected.
+         * Note: a label is still necessary to describe the purpose of the select.
          */
         placeholder: string;
         /**
@@ -208,6 +209,14 @@ type Props = AriaProps &
  * The single select dropdown closes after the selection of an item. If the same
  * item is selected, there is no callback.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
+ *
  * **NOTE:** If there are more than 125 items, the component automatically uses
  * [react-window](https://github.com/bvaughn/react-window) to improve
  * performance when rendering these elements and is capable of handling many
@@ -221,7 +230,7 @@ type Props = AriaProps &
  *
  * const [selectedValue, setSelectedValue] = React.useState("");
  *
- * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ * <SingleSelect aria-label="Your Favorite Fruits" placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
  *     <OptionItem label="Pear" value="pear" />
  *     <OptionItem label="Mango" value="mango" />
  * </SingleSelect>
@@ -236,6 +245,7 @@ type Props = AriaProps &
  * const fruitArray = ["Apple", "Banana", "Orange", "Mango", "Pear"];
  *
  * <SingleSelect
+ *     aria-label="Your Favorite Fruits"
  *     placeholder="Choose a fruit"
  *     onChange={setSelectedValue}
  *     selectedValue={selectedValue}
@@ -272,6 +282,7 @@ const SingleSelect = (props: Props) => {
         opened,
         style,
         className,
+        "aria-label": ariaLabel,
         "aria-invalid": ariaInvalid,
         "aria-required": ariaRequired,
         disabled = false,
@@ -410,6 +421,7 @@ const SingleSelect = (props: Props) => {
     };
 
     const handleOpenerRef: (node?: any) => void = (node) => {
+        // eslint-disable-next-line import/no-deprecated
         const openerElement = ReactDOM.findDOMNode(node) as HTMLElement;
         setOpenerElement(openerElement);
     };
@@ -442,11 +454,13 @@ const SingleSelect = (props: Props) => {
                     return opener ? (
                         <DropdownOpener
                             id={uniqueOpenerId}
+                            aria-label={ariaLabel}
                             aria-controls={dropdownId}
                             aria-haspopup="listbox"
                             onClick={handleClick}
                             disabled={isDisabled}
                             ref={handleOpenerRef}
+                            role="combobox"
                             text={menuText}
                             opened={open}
                             error={hasError}
@@ -457,6 +471,7 @@ const SingleSelect = (props: Props) => {
                     ) : (
                         <SelectOpener
                             {...sharedProps}
+                            aria-label={ariaLabel}
                             aria-controls={dropdownId}
                             disabled={isDisabled}
                             id={uniqueOpenerId}

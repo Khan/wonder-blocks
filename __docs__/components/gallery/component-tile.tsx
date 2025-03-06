@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
 
         ":focus": {
             border: `1px solid ${tokens.color.blue}`,
-            outline: `1px solid ${tokens.color.blue}`,
+            outline: `1px solid ${tokens.semanticColor.focus.outer}`,
         },
     },
     descriptionWithDetails: {

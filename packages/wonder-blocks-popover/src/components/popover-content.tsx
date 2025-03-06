@@ -66,6 +66,11 @@ type Props =
               | React.ReactElement<React.ComponentProps<"img">>
               | React.ReactElement<React.ComponentProps<"svg">>;
           /**
+           * Alt text for the icon. This prop is only used if the `icon` prop
+           * is passed a url (instead of a svg or img element).
+           */
+          iconAlt?: string;
+          /**
            * Decorate the popover with a full-bleed illustration. It cannot be used at
            * the same time with icon.
            */
@@ -84,6 +89,7 @@ type Props =
           emphasized?: boolean;
 
           icon?: never;
+          iconAlt?: never;
           image?: never;
       });
 
@@ -92,7 +98,7 @@ type DefaultProps = {
 };
 
 // Created to add custom styles to the icon or image elements
-const StyledImage = addStyle("img");
+const StyledImg = addStyle("img");
 
 /**
  * This is the container that is consumed by all the predefined variations. Its
@@ -166,7 +172,7 @@ export default class PopoverContent extends React.Component<Props> {
 
     // @ts-expect-error [FEI-5019] - TS2322 - Type '() => JSX.Element | null' is not assignable to type '() => ReactElement<any, string | JSXElementConstructor<any>>'.
     maybeRenderIcon: () => React.ReactElement = () => {
-        const {icon} = this.props;
+        const {icon, iconAlt} = this.props;
 
         if (!icon) {
             return null;
@@ -177,7 +183,11 @@ export default class PopoverContent extends React.Component<Props> {
                 {typeof icon !== "string" ? (
                     icon
                 ) : (
-                    <StyledImage src={icon} style={styles.icon} />
+                    <StyledImg
+                        src={icon}
+                        style={styles.icon}
+                        alt={iconAlt || ""}
+                    />
                 )}
             </View>
         );

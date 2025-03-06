@@ -1,0 +1,7 @@
+packages:
+  # All WB packages
+  - 'packages/*'
+  # Required for building WB packages
+  - "build-settings"
+  # AST transforms
+  - "wb-codemod"

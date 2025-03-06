@@ -16,7 +16,7 @@ import {MemoryRouter, Route, Switch} from "react-router";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -397,7 +397,7 @@ export const SubmittingForms: StoryComponentType = {
 
 const styles = StyleSheet.create({
     dark: {
-        backgroundColor: color.darkBlue,
+        backgroundColor: semanticColor.surface.inverse,
         padding: spacing.medium_16,
     },
     arrowsWrapper: {

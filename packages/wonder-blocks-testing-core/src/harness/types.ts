@@ -27,11 +27,8 @@ export type TestHarnessAdapters = {
 /**
  * Type for easily defining an adapter's config type.
  */
-export type TestHarnessConfig<TAdapter> = TAdapter extends TestHarnessAdapter<
-    infer TConfig
->
-    ? TConfig
-    : never;
+export type TestHarnessConfig<TAdapter> =
+    TAdapter extends TestHarnessAdapter<infer TConfig> ? TConfig : never;
 
 /**
  * The `TestHarnessConfigs` type as defined by parsing a given set of adapters.

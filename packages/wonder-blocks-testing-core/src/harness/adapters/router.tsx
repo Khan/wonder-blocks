@@ -1,6 +1,12 @@
 import * as React from "react";
 
-import {StaticRouter, MemoryRouter, Route, Switch} from "react-router-dom";
+import {
+    StaticRouter,
+    MemoryRouter,
+    Route,
+    Switch,
+    useLocation,
+} from "react-router-dom";
 
 import type {LocationDescriptor} from "history";
 import type {TestHarnessAdapter} from "../types";
@@ -13,90 +19,101 @@ type MemoryRouterProps = JSX.LibraryManagedAttributes<
 /**
  * Configuration for the withLocation test harness adapter.
  */
-type Config = // The initial location to use.
-
-        | Readonly<
-              | {
-                    /**
-                     * See MemoryRouter prop for initialEntries.
-                     */
-                    initialEntries: MemoryRouterProps["initialEntries"];
-                    /**
-                     * See MemoryRouter prop for initialIndex.
-                     */
-                    initialIndex?: MemoryRouterProps["initialIndex"];
-                    /**
-                     * See MemoryRouter prop for getUserConfirmation.
-                     */
-                    getUserConfirmation?: MemoryRouterProps["getUserConfirmation"];
-                    /**
-                     * A path match to use.
-                     *
-                     * When this is specified, the harnessed component will be
-                     * rendered inside a `Route` handler with this path.
-                     *
-                     * If the path matches the location, then the route will
-                     * render the component.
-                     *
-                     * If the path does not match the location, then the route
-                     * will not render the component.
-                     */
-                    path?: string;
-                }
-              | {
-                    /**
-                     * The location to use.
-                     */
-                    location: LocationDescriptor;
-                    /**
-                     * Force the use of a StaticRouter, instead of MemoryRouter.
-                     */
-                    forceStatic: true;
-                    /**
-                     * A path match to use.
-                     *
-                     * When this is specified, the harnessed component will be
-                     * rendered inside a `Route` handler with this path.
-                     *
-                     * If the path matches the location, then the route will
-                     * render the component.
-                     *
-                     * If the path does not match the location, then the route
-                     * will not render the component.
-                     */
-                    path?: string;
-                }
-              | {
-                    /**
-                     * The initial location to use.
-                     */
-                    location: LocationDescriptor;
-                    /**
-                     * A path match to use.
-                     *
-                     * When this is specified, the harnessed component will be
-                     * rendered inside a `Route` handler with this path.
-                     *
-                     * If the path matches the location, then the route will
-                     * render the component.
-                     *
-                     * If the path does not match the location, then the route
-                     * will not render the component.
-                     */
-                    path?: string;
-                }
-          >
-        | string;
+type Config =
+    | Readonly<
+          | {
+                /**
+                 * See MemoryRouter prop for initialEntries.
+                 */
+                initialEntries: MemoryRouterProps["initialEntries"];
+                /**
+                 * See MemoryRouter prop for initialIndex.
+                 */
+                initialIndex?: MemoryRouterProps["initialIndex"];
+                /**
+                 * See MemoryRouter prop for getUserConfirmation.
+                 */
+                getUserConfirmation?: MemoryRouterProps["getUserConfirmation"];
+                /**
+                 * A path match to use.
+                 *
+                 * When this is specified, the harnessed component will be
+                 * rendered inside a `Route` handler with this path.
+                 *
+                 * If the path matches the location, then the route will
+                 * render the component.
+                 *
+                 * If the path does not match the location, then the route
+                 * will not render the component.
+                 */
+                path?: string;
+            }
+          | {
+                /**
+                 * The location to use.
+                 */
+                location: LocationDescriptor;
+                /**
+                 * Force the use of a StaticRouter, instead of MemoryRouter.
+                 */
+                forceStatic: true;
+                /**
+                 * A path match to use.
+                 *
+                 * When this is specified, the harnessed component will be
+                 * rendered inside a `Route` handler with this path.
+                 *
+                 * If the path matches the location, then the route will
+                 * render the component.
+                 *
+                 * If the path does not match the location, then the route
+                 * will not render the component.
+                 */
+                path?: string;
+            }
+          | {
+                /**
+                 * The initial location to use.
+                 */
+                location: LocationDescriptor;
+                /**
+                 * A path match to use.
+                 *
+                 * When this is specified, the harnessed component will be
+                 * rendered inside a `Route` handler with this path.
+                 *
+                 * If the path matches the location, then the route will
+                 * render the component.
+                 *
+                 * If the path does not match the location, then the route
+                 * will not render the component.
+                 */
+                path?: string;
+            }
+      >
+    // The initial location to use.
+    | string;
 
 /**
  * The default configuration for this adapter.
  */
 export const defaultConfig = {location: "/"} as const;
 
-const maybeWithRoute = (
-    children: React.ReactNode,
-    path?: string | null,
-): React.ReactElement => {
+const MaybeWithRoute = ({
+    children,
+    path,
+    configLocation,
+}: {
+    children: React.ReactNode;
+    path: string | null | undefined;
+    configLocation: LocationDescriptor;
+}): React.ReactElement => {
+    const actualLocation = useLocation();
+    const configuredLocation =
+        typeof configLocation === "string"
+            ? configLocation
+            : configLocation.pathname;
+
     if (path == null) {
         return <>{children}</>;
     }
@@ -110,7 +127,12 @@ const maybeWithRoute = (
                 path="*"
                 render={() => {
                     throw new Error(
-                        "The configured path must match the configured location or your harnessed component will not render.",
+                        `The current location '${actualLocation.pathname}' ` +
+                            `does not match the configured path '${path}'. ` +
+                            `Did you provide the correct configured ` +
+                            `location, '${configuredLocation}', or did the ` +
+                            `routing lead to a different place than you ` +
+                            `expected?`,
                     );
                 }}
             />
@@ -139,8 +161,6 @@ export const adapter: TestHarnessAdapter<Config> = (
         };
     }
 
-    // Wrap children with the various contexts and routes, as per the config.
-    const wrappedWithRoute = maybeWithRoute(children, config.path);
     if ("forceStatic" in config && config.forceStatic) {
         /**
          * There may be times (SSR testing comes to mind) where we will be
@@ -148,7 +168,12 @@ export const adapter: TestHarnessAdapter<Config> = (
          */
         return (
             <StaticRouter location={config.location} context={{}}>
-                {wrappedWithRoute}
+                <MaybeWithRoute
+                    path={config.path}
+                    configLocation={config.location}
+                >
+                    {children}
+                </MaybeWithRoute>
             </StaticRouter>
         );
     }
@@ -164,7 +189,12 @@ export const adapter: TestHarnessAdapter<Config> = (
     if ("location" in config && config.location !== undefined) {
         return (
             <MemoryRouter initialEntries={[config.location]}>
-                {wrappedWithRoute}
+                <MaybeWithRoute
+                    path={config.path}
+                    configLocation={config.location}
+                >
+                    {children}
+                </MaybeWithRoute>
             </MemoryRouter>
         );
     }
@@ -201,5 +231,14 @@ export const adapter: TestHarnessAdapter<Config> = (
         routerProps.getUserConfirmation = config.getUserConfirmation;
     }
 
-    return <MemoryRouter {...routerProps}>{wrappedWithRoute}</MemoryRouter>;
+    return (
+        <MemoryRouter {...routerProps}>
+            <MaybeWithRoute
+                path={config.path}
+                configLocation={entries[config.initialIndex ?? 0]}
+            >
+                {children}
+            </MaybeWithRoute>
+        </MemoryRouter>
+    );
 };

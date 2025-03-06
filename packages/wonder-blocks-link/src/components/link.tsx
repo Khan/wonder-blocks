@@ -28,18 +28,9 @@ type CommonProps = AriaProps & {
      */
     inline?: boolean;
     /**
-     * Kind of Link. Note: Secondary light Links are not supported.
-     */
-    kind?: "primary" | "secondary";
-    /**
      * Whether the button is on a dark/colored background.
      */
     light?: boolean;
-    /**
-     * Whether the link should change color once it's visited.
-     * secondary or primary (light) links are not allowed to be visitable.
-     */
-    visitable?: boolean;
     /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified. This
@@ -197,9 +188,7 @@ const Link = React.forwardRef(function Link(
         onKeyUp,
         target = undefined,
         inline = false,
-        kind = "primary",
         light = false,
-        visitable = false,
         ...sharedProps
     } = props;
 
@@ -233,9 +222,7 @@ const Link = React.forwardRef(function Link(
                                 target={target}
                                 tabIndex={tabIndex}
                                 inline={inline}
-                                kind={kind}
                                 light={light}
-                                visitable={visitable}
                                 ref={ref}
                             >
                                 {children}
@@ -267,9 +254,7 @@ const Link = React.forwardRef(function Link(
                                 target={target}
                                 tabIndex={tabIndex}
                                 inline={inline}
-                                kind={kind}
                                 light={light}
-                                visitable={visitable}
                                 ref={ref}
                             >
                                 {children}

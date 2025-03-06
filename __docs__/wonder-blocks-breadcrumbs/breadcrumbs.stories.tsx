@@ -38,10 +38,10 @@ export const Default: StoryComponentType = {
     args: {
         children: [
             <BreadcrumbsItem>
-                <Link href="">Course</Link>
+                <Link href="#course">Course</Link>
             </BreadcrumbsItem>,
             <BreadcrumbsItem>
-                <Link href="">Unit</Link>
+                <Link href="#unit">Unit</Link>
             </BreadcrumbsItem>,
             <BreadcrumbsItem>Lesson</BreadcrumbsItem>,
         ],

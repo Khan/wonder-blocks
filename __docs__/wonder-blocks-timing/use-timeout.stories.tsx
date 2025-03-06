@@ -7,7 +7,8 @@ import {
     ClearPolicy,
     SchedulePolicy,
 } from "../../packages/wonder-blocks-timing/src/util/policies";
-import {useTimeout} from "@khanacademy/wonder-blocks-timing";
+import {useTimeout, useInterval} from "@khanacademy/wonder-blocks-timing";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "Packages / Timing / useTimeout",
@@ -21,21 +22,30 @@ export default {
 
 export const Immediately = () => {
     const [callCount, setCallCount] = React.useState(0);
+    const [timeoutSet, setTimeoutSet] = React.useState(false);
     const callback = React.useCallback(() => {
+        // eslint-disable-next-line no-console
+        console.log("action called");
         setCallCount((callCount) => callCount + 1);
     }, []);
-    const {isSet, set, clear} = useTimeout(callback, 1000);
+    const timeout = useTimeout(callback, 5000);
+    useInterval(() => {
+        // Need to update on an interval as the returned `isSet` value is not
+        // driven by React state.
+        setTimeoutSet(timeout.isSet);
+    }, 100);
     return (
         <View>
-            <View>isSet = {isSet.toString()}</View>
+            <Body>
+                Timeout should fire in 5 seconds unless set again or cleared
+            </Body>
+            <View>isSet = {String(timeoutSet)}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
-                <Button onClick={set}>Set timeout</Button>
+                <Button onClick={() => timeout.set()}>Set timeout</Button>
                 <Button
                     onClick={() => {
-                        if (clear) {
-                            clear();
-                        }
+                        timeout.clear();
                     }}
                 >
                     Clear timeout
@@ -47,22 +57,32 @@ export const Immediately = () => {
 
 export const OnDemandAndResolveOnClear = () => {
     const [callCount, setCallCount] = React.useState(0);
+    const [timeoutSet, setTimeoutSet] = React.useState(false);
     const callback = React.useCallback(() => {
         // eslint-disable-next-line no-console
         console.log("action called");
         setCallCount((callCount) => callCount + 1);
     }, []);
-    const {isSet, set, clear} = useTimeout(callback, 1000, {
+    const timeout = useTimeout(callback, 5000, {
         clearPolicy: ClearPolicy.Resolve,
         schedulePolicy: SchedulePolicy.OnDemand,
     });
+    useInterval(() => {
+        // Need to update on an interval as the returned `isSet` value is not
+        // driven by React state.
+        setTimeoutSet(timeout.isSet);
+    }, 100);
     return (
         <View>
-            <View>isSet = {isSet.toString()}</View>
+            <Body>
+                Timeout should fire in 5 seconds or when cleared unless set
+                again
+            </Body>
+            <View>isSet = {String(timeoutSet)}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
-                <Button onClick={() => set()}>Set timeout</Button>
-                <Button onClick={() => clear()}>Clear timeout</Button>
+                <Button onClick={() => timeout.set()}>Set timeout</Button>
+                <Button onClick={() => timeout.clear()}>Clear timeout</Button>
             </View>
         </View>
     );

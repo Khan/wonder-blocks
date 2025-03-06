@@ -4,6 +4,10 @@ import defaultTheme from "./default";
 
 /**
  * The overrides for khanmigo theme for a switch.
+ *
+ * NOTE: Leaving `color` tokens as is for now, as this theme is not currently
+ * used in webapp. Also, this most likely change once we migrate to the new
+ * theme.
  */
 const theme = mergeTheme(defaultTheme, {
     color: {

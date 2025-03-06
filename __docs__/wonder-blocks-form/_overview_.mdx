@@ -49,6 +49,12 @@ user is done interacting with a field.
 button is for one field.
 - If there are errors after a form is submitted, programatically move the user's
 focus to the first field with an error.
+- Accessibility: When using a `<form>` element to wrap form fields, avoid using
+event handlers (such as key events) directly on the `<form>` element since it
+is non-interactive. To submit a form when the `Enter` key is pressed,
+include a `Button` with `type="submit"` inside the form and handle submission
+using the `onSubmit` prop on the `<form>` element. The "Enter to submit" functionality
+is handled by the browser.
 
 Here is an example of validation behaviour in a form. It validates when a
 user is done filling out a field and also shows a validation error once

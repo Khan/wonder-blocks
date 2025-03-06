@@ -111,9 +111,9 @@ const KindVariants = ({light}: {light: boolean}) => {
     return (
         <>
             {sizes.map((size) => (
-                <>
+                <React.Fragment key={size}>
                     {colors.map((color) => (
-                        <>
+                        <React.Fragment key={color}>
                             <VariantsGroup
                                 size={size}
                                 color={color}
@@ -127,7 +127,7 @@ const KindVariants = ({light}: {light: boolean}) => {
                                     light={light}
                                 />
                             )}
-                        </>
+                        </React.Fragment>
                     ))}
                     {!light && (
                         <VariantsGroup
@@ -136,7 +136,7 @@ const KindVariants = ({light}: {light: boolean}) => {
                             light={light}
                         />
                     )}
-                </>
+                </React.Fragment>
             ))}
         </>
     );

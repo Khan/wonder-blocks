@@ -464,7 +464,7 @@ export const SingleSection: StoryComponentType = {
         return (
             <Accordion>
                 {[
-                    <AccordionSection header="First section">
+                    <AccordionSection header="First section" key={0}>
                         This is the information present in the first section
                     </AccordionSection>,
                 ]}
@@ -611,6 +611,10 @@ export const BackgroundColorExample: StoryComponentType = {
     render: () => {
         const accordionSectionStyle = {
             backgroundColor: tokens.color.fadedBlue,
+            // NOTE: This border color uses the opacity token to match the
+            // background color. By default, the border color is
+            // `fadedOffBlack16`, which is the HEX value of `offBlack16`.
+            borderColor: tokens.color.offBlack16,
         };
 
         const sections = [

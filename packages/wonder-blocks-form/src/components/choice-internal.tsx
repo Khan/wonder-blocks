@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
         marginTop: -2,
     },
     disabledLabel: {
-        color: semanticColor.text.disabled,
+        color: semanticColor.action.secondary.disabled.foreground,
     },
     description: {
         // 16 for icon + 8 for spacing strut

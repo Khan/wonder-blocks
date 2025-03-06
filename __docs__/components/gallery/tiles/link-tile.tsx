@@ -17,7 +17,7 @@ export default function LinkTile(props: CommonTileProps) {
             {...props}
         >
             <View style={styles.centerContent}>
-                <Link href="#">This is a link</Link>
+                <Link href="#link">This is a link</Link>
             </View>
         </ComponentTile>
     );

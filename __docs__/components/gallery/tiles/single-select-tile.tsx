@@ -20,6 +20,7 @@ export default function SingleSelectTile(props: CommonTileProps) {
         >
             <View style={styles.centerContent}>
                 <SingleSelect
+                    aria-label="Fruit"
                     isFilterable
                     onChange={(value) => setSelectedValue(value)}
                     onToggle={() => {}}

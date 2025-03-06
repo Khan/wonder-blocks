@@ -1,0 +1,46 @@
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as MultiSelectAccessibilityStories from './multi-select.accessibility.stories';
+
+import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
+
+<Meta of={MultiSelectAccessibilityStories} />
+
+# Accessibility
+
+## Using `LabeledField` with `MultiSelect`
+
+To associate a `MultiSelect` with another visible element (e.g. a `<label>`),
+wrap it in a `LabeledField` component. The label will apply to the `MultiSelect`
+opener. With `LabeledField`, you can supply label text (or a JSX node)
+using the `label` prop to generate a paired `<label>` element. It comes with
+field validation and other features baked in!
+
+If for some reason you can't use `LabeledField` for a visible label, you can still
+make `MultiSelect` accessible in a screen reader by associating it with `<label for="">`.
+Pass the `id` of the `MultiSelect` to the `for` attribute.
+
+Alternatively, you can create an accessible name for `MultiSelect` using `aria-labelledby`.
+Put `aria-labelledby` on `MultiSelect` pointing to the `id` of any other element.
+It won't give you the same enhanced click target as a paired `<label>`, but it still
+helps to create a more accessible experience.
+
+<Canvas of={MultiSelectAccessibilityStories.UsingAriaAttributes} />
+
+## Using `aria-label` for the opener and/or child options
+
+A visible label with `<LabeledField>` is preferred. However, for specific cases
+where the `MultiSelect` is not paired with a `LabeledField` or other visible
+`<label>` element, you **must** supply an `aria-label` attribute for an
+accessible name on the opener.
+
+This will ensure the `MultiSelect` as a whole has a name that describes its purpose.
+
+Also, if you need screen readers to understand relevant information on
+option items, you can use `aria-label` on each item. e.g. You can use it to let
+screen readers know the current selected/unselected status of the item when it
+receives focus. This can be useful when the options contain icons or other information
+that would need to be omitted from the visible label.
+
+<Canvas of={MultiSelectAccessibilityStories.UsingOpenerAriaLabel} />

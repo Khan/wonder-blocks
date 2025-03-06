@@ -70,7 +70,7 @@ const textResponse = <TData>(
                 statusCode,
                 signal,
             }),
-    } as MockResponse<TData>);
+    }) as MockResponse<TData>;
 
 /**
  * Helper for creating a rejected mock response.
@@ -86,7 +86,7 @@ const rejectResponse = (
                 error,
                 signal,
             }),
-    } as MockResponse<never>);
+    }) as MockResponse<never>;
 
 /**
  * Helpers to define mock responses for mocked requests.
