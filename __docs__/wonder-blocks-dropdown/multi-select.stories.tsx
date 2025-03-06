@@ -611,7 +611,7 @@ const VirtualizedMultiSelect = function (props: Props): React.ReactElement {
     const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
         [],
     );
-    const [opened, setOpened] = React.useState(false);
+    const [opened, setOpened] = React.useState(props.opened || false);
 
     return (
         <View style={styles.wrapper}>
