@@ -28,10 +28,10 @@ type StoryComponentType = StoryObj<typeof NavigationTabs>;
 
 const navigationTabItems = [
     <NavigationTabItem>
-        <Link href="#link-1">Nav tab item 1</Link>
+        <Link href="#link-1">Navigation tab item 1</Link>
     </NavigationTabItem>,
     <NavigationTabItem>
-        <Link href="#link-2">Nav tab item 2</Link>
+        <Link href="#link-2">Navigation tab item 2</Link>
     </NavigationTabItem>,
 ];
 
