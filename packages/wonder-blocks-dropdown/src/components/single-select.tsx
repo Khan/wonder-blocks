@@ -448,6 +448,22 @@ const SingleSelect = (props: Props) => {
         });
     };
 
+    React.useEffect(() => {
+        const optionItems = React.Children.toArray(
+            children,
+        ) as OptionItemComponentArray;
+        const selectedItem = optionItems.find(
+            (option) => option.props.value === selectedValue,
+        );
+        if (selectedItem) {
+            const label = getLabel(selectedItem.props);
+            if (label) {
+                console.log("calling handleAnnouncement", label);
+                handleAnnouncement(label);
+            }
+        }
+    }, [selectedValue, children]);
+
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -474,8 +490,6 @@ const SingleSelect = (props: Props) => {
             // strings to announce
             const [label, node] = maybeExtractStringFromNode(menuOpenerLabel);
             menuContent = node;
-
-            handleAnnouncement(label);
         } else {
             menuContent = placeholder;
         }
