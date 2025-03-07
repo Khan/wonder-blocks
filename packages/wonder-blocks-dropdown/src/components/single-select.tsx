@@ -459,6 +459,7 @@ const SingleSelect = (props: Props) => {
         if (selectedItem) {
             const label = getLabel(selectedItem.props);
             if (label) {
+                // eslint-disable-next-line no-console
                 console.log(
                     "selectedValue or children changed, announcing:",
                     label,
@@ -492,7 +493,7 @@ const SingleSelect = (props: Props) => {
             );
             // For Custom Option Items with Node Labels, we have to extract
             // strings to announce
-            const [label, node] = maybeExtractStringFromNode(menuOpenerLabel);
+            const [_, node] = maybeExtractStringFromNode(menuOpenerLabel);
             menuContent = node;
         } else {
             menuContent = placeholder;
@@ -560,6 +561,7 @@ const SingleSelect = (props: Props) => {
     const {someResults} = labels;
 
     React.useEffect(() => {
+        // eslint-disable-next-line no-console
         console.log(
             "items.length or someResults changed, announcing:",
             someResults(items.length),
