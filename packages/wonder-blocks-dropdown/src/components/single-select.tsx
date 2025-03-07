@@ -448,6 +448,7 @@ const SingleSelect = (props: Props) => {
         });
     };
 
+    // Announce when selectedValue or children changes
     React.useEffect(() => {
         const optionItems = React.Children.toArray(
             children,
@@ -458,7 +459,10 @@ const SingleSelect = (props: Props) => {
         if (selectedItem) {
             const label = getLabel(selectedItem.props);
             if (label) {
-                console.log("calling handleAnnouncement", label);
+                console.log(
+                    "selectedValue or children changed, announcing:",
+                    label,
+                );
                 handleAnnouncement(label);
             }
         }
@@ -550,9 +554,18 @@ const SingleSelect = (props: Props) => {
     const items = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
 
-    if (open && isFilterable) {
-        handleAnnouncement(labels.someResults(items.length));
-    }
+    // Extract out someResults. When we put labels in the dependency array,
+    // useEffect happens on every render (I think because labels is a new object)
+    // each time so it thinks it has changed
+    const {someResults} = labels;
+
+    React.useEffect(() => {
+        console.log(
+            "items.length or someResults changed, announcing:",
+            someResults(items.length),
+        );
+        handleAnnouncement(someResults(items.length));
+    }, [items.length, someResults]);
 
     return (
         <Id id={dropdownId}>
