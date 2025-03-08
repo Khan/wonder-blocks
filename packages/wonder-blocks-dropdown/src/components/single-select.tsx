@@ -448,6 +448,22 @@ const SingleSelect = (props: Props) => {
         });
     };
 
+    // Announce when selectedValue or children changes in the opener
+    React.useEffect(() => {
+        const optionItems = React.Children.toArray(
+            children,
+        ) as OptionItemComponentArray;
+        const selectedItem = optionItems.find(
+            (option) => option.props.value === selectedValue,
+        );
+        if (selectedItem) {
+            const label = getLabel(selectedItem.props);
+            if (label) {
+                handleAnnouncement(label);
+            }
+        }
+    }, [selectedValue, children]);
+
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -460,23 +476,20 @@ const SingleSelect = (props: Props) => {
         const selectedItem = items.find(
             (option) => option.props.value === selectedValue,
         );
-        // If nothing is selected, or if the selectedValue doesn't match any
-        // item in the menu, use the placeholder.
 
         let menuContent;
-
         if (selectedItem) {
-            const menuOpenerLabel = getSelectOpenerLabel(
+            const menuStringOrNode = getSelectOpenerLabel(
                 showOpenerLabelAsText,
                 selectedItem.props,
             );
-            // For Custom Option Items with Node Labels, we have to extract
-            // strings to announce
-            const [label, node] = maybeExtractStringFromNode(menuOpenerLabel);
+            // We only need the guaranteed node for SingleSelect here
+            // As the string label for the Announcer is in a useEffect above
+            const [, node] = maybeExtractStringFromNode(menuStringOrNode);
             menuContent = node;
-
-            handleAnnouncement(label);
         } else {
+            // If nothing is selected, or if the selectedValue doesn't match any
+            // item in the menu, use the placeholder.
             menuContent = placeholder;
         }
 
@@ -536,9 +549,15 @@ const SingleSelect = (props: Props) => {
     const items = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
 
-    if (open && isFilterable) {
-        handleAnnouncement(labels.someResults(items.length));
-    }
+    // Extract out someResults. When we put labels in the dependency array,
+    // useEffect happens on every render (I think because labels is a new object)
+    // each time so it thinks it has changed
+    const {someResults} = labels;
+
+    // Announce in a screen reader when the number of filtered items changes
+    React.useEffect(() => {
+        handleAnnouncement(someResults(items.length));
+    }, [items.length, someResults]);
 
     return (
         <Id id={dropdownId}>

@@ -144,7 +144,7 @@ describe("Announcer.announceMessage", () => {
     test("removes messages after a length of time", async () => {
         const message1 = "A Thing";
 
-        // default timeout is 5000ms + 250ms (removalDelay + debounceThreshold)
+        // default debounced content timeout is 5000ms + 250ms (removalDelay + debounceThreshold)
         render(
             <AnnounceMessageButton message={message1} debounceThreshold={1} />,
         );
@@ -158,6 +158,8 @@ describe("Announcer.announceMessage", () => {
         jest.advanceTimersByTime(500);
         expect(message1Region).toHaveTextContent(message1);
 
+        // This functional setTimeout (2) for the debounce comes after an initialTimeout
+        // for Safari/VO in the announceMessage function (1).
         expect(setTimeout).toHaveBeenNthCalledWith(
             2,
             expect.any(Function),

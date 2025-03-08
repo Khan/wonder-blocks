@@ -631,9 +631,11 @@ const MultiSelect = (props: Props) => {
     const filteredItems = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
 
-    if (open && isFilterable) {
-        handleAnnouncement(labels.someSelected(filteredItems.length));
-    }
+    React.useEffect(() => {
+        if (open) {
+            handleAnnouncement(someSelected(filteredItems.length));
+        }
+    }, [filteredItems.length, someSelected, open]);
 
     return (
         <Id id={dropdownId}>

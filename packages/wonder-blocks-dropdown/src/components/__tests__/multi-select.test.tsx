@@ -1683,12 +1683,7 @@ describe("MultiSelect", () => {
             };
 
             const {userEvent} = doRender(
-                <MultiSelect
-                    onChange={jest.fn()}
-                    isFilterable={true}
-                    labels={labels}
-                    opened={true}
-                >
+                <MultiSelect onChange={jest.fn()} labels={labels} opened={true}>
                     <OptionItem label="school 1" value="1" />
                     <OptionItem label="school 2" value="2" />
                     <OptionItem label="school 3" value="3" />
