@@ -8,17 +8,17 @@ describe("Debouncing messages", () => {
         // ARRANGE
         const announcer = Announcer.getInstance();
         const callback = jest.fn((message: string) => message);
-        const debounced = createDebounceFunction(announcer, callback, 100);
+        const debounced = createDebounceFunction(announcer, callback, 10);
 
         // ACT
-        const result = await debounced("Hello, World!");
+        const result = debounced("Hello, World!");
         jest.advanceTimersByTime(100);
 
         // ASSERT
-        expect(result).toBe("Hello, World!");
+        await expect(result).resolves.toBe("Hello, World!");
     });
 
-    test("resolving with the first argument passed if debounced multiple times", async () => {
+    test("resolving with the last argument passed if debounced multiple times", async () => {
         // ARRANGE
         const announcer = Announcer.getInstance();
         const callback = jest.fn((message: string) => message);
@@ -34,6 +34,6 @@ describe("Debouncing messages", () => {
         expect(callback).toHaveBeenCalledTimes(1);
 
         // ASSERT
-        expect(callback).toHaveBeenCalledWith("First message");
+        expect(callback).toHaveBeenCalledWith("Third message");
     });
 });

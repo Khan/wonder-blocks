@@ -19,7 +19,7 @@ describe("Announcer.announceMessage", () => {
         const message1 = "One Fish Two Fish";
 
         // ACT
-        const announcement1Id = await announceMessage({
+        const announcement1Id = announceMessage({
             message: message1,
             initialTimeout: 0,
             debounceThreshold: 0,
@@ -27,7 +27,7 @@ describe("Announcer.announceMessage", () => {
         jest.advanceTimersByTime(500);
 
         // ASSERT
-        expect(announcement1Id).toBe("wbARegion-polite1");
+        await expect(announcement1Id).resolves.toBe("wbARegion-polite1");
     });
 
     test("creates the live region elements when called", () => {
@@ -144,7 +144,7 @@ describe("Announcer.announceMessage", () => {
     test("removes messages after a length of time", async () => {
         const message1 = "A Thing";
 
-        // default timeout is 5000ms + 250ms (removalDelay + debounceThreshold)
+        // default debounced content timeout is 5000ms + 250ms (removalDelay + debounceThreshold)
         render(
             <AnnounceMessageButton message={message1} debounceThreshold={1} />,
         );
@@ -158,8 +158,10 @@ describe("Announcer.announceMessage", () => {
         jest.advanceTimersByTime(500);
         expect(message1Region).toHaveTextContent(message1);
 
+        // This functional setTimeout (2) for the debounce comes after an initialTimeout
+        // for Safari/VO in the announceMessage function (1).
         expect(setTimeout).toHaveBeenNthCalledWith(
-            1,
+            2,
             expect.any(Function),
             5250,
         );

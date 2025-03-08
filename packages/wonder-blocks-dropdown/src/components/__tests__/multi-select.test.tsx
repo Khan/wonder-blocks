@@ -15,6 +15,7 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
 import {defaultLabels as builtinLabels} from "../../util/constants";
@@ -39,6 +40,8 @@ const defaultLabels: LabelsValues = {
         numSelectedValues > 1 ? `${numSelectedValues} students` : "1 student",
     allSelected: "All students",
 };
+
+jest.useFakeTimers();
 
 describe("MultiSelect", () => {
     beforeEach(() => {
@@ -965,9 +968,7 @@ describe("MultiSelect", () => {
             expect(filteredOption).toBeInTheDocument();
         });
 
-        // NOTE(john) FEI-5533: After upgrading to user-event v14, this test is failing.
-        // The Venus option is still in the document.
-        it.skip("should filter out an option if it's not part of the results", async () => {
+        it("should filter out an option if it's not part of the results", async () => {
             // Arrange
             const labels: LabelsValues = {
                 ...builtinLabels,
@@ -1667,6 +1668,10 @@ describe("MultiSelect", () => {
     });
 
     describe("a11y > Live region", () => {
+        beforeEach(() => {
+            initAnnouncer({debounceThreshold: 0});
+        });
+
         it("should announce the number of options when the listbox is open", async () => {
             // Arrange
             const labels: LabelsValues = {
@@ -1677,35 +1682,40 @@ describe("MultiSelect", () => {
                         : `${numOptions} schools`,
             };
 
-            // Act
-            const {container} = doRender(
-                <MultiSelect
-                    onChange={jest.fn()}
-                    isFilterable={true}
-                    labels={labels}
-                    opened={true}
-                >
+            const {userEvent} = doRender(
+                <MultiSelect onChange={jest.fn()} labels={labels} opened={true}>
                     <OptionItem label="school 1" value="1" />
                     <OptionItem label="school 2" value="2" />
                     <OptionItem label="school 3" value="3" />
                 </MultiSelect>,
             );
+            const opener = await screen.findByRole("combobox");
+
+            jest.advanceTimersByTime(10);
+
+            // Act
+            await userEvent.click(opener);
+
+            const announcer = screen.getByTestId("wbAnnounce");
+            const announcementText =
+                await within(announcer).findByText("3 schools");
 
             // Assert
-            expect(container).toHaveTextContent("3 schools");
+            expect(announcementText).toBeInTheDocument();
         });
 
         it("should change the number of options after using the search filter", async () => {
             // Arrange
             const labels: LabelsValues = {
                 ...builtinLabels,
+                noneSelected: "0 planets",
                 someSelected: (numOptions: number): string =>
                     numOptions <= 1
                         ? `${numOptions} planet`
                         : `${numOptions} planets`,
             };
 
-            const {container, userEvent} = doRender(
+            const {userEvent} = doRender(
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
@@ -1724,9 +1734,15 @@ describe("MultiSelect", () => {
             await userEvent.click(textbox);
             await userEvent.paste("ear");
 
+            // wait to avoid getting caught in the Announcer debounce
+            jest.advanceTimersByTime(250);
+
+            const announcer = await screen.findByTestId("wbAnnounce");
+            const announcementText =
+                await within(announcer).findByText("1 planet");
             // Assert
             await waitFor(() => {
-                expect(container).toHaveTextContent("1 planet");
+                expect(announcementText).toBeInTheDocument();
             });
         });
     });

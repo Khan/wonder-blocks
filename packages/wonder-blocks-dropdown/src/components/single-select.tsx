@@ -7,6 +7,10 @@ import {
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
 
+import {
+    initAnnouncer,
+    announceMessage,
+} from "@khanacademy/wonder-blocks-announcer";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
 import SelectOpener from "./select-opener";
@@ -22,7 +26,11 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {
+    getLabel,
+    getSelectOpenerLabel,
+    maybeExtractStringFromNode,
+} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type SingleSelectLabelsValues = {
@@ -317,6 +325,10 @@ const SingleSelect = (props: Props) => {
     const hasError = error || !!errorMessage;
 
     React.useEffect(() => {
+        initAnnouncer();
+    }, []);
+
+    React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled
         if (disabled) {
             // open should always be false if select is disabled
@@ -430,6 +442,28 @@ const SingleSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
+    const handleAnnouncement = (message: string) => {
+        announceMessage({
+            message,
+        });
+    };
+
+    // Announce when selectedValue or children changes in the opener
+    React.useEffect(() => {
+        const optionItems = React.Children.toArray(
+            children,
+        ) as OptionItemComponentArray;
+        const selectedItem = optionItems.find(
+            (option) => option.props.value === selectedValue,
+        );
+        if (selectedItem) {
+            const label = getLabel(selectedItem.props);
+            if (label) {
+                handleAnnouncement(label);
+            }
+        }
+    }, [selectedValue, children]);
+
     const renderOpener = (
         isDisabled: boolean,
         dropdownId: string,
@@ -442,11 +476,22 @@ const SingleSelect = (props: Props) => {
         const selectedItem = items.find(
             (option) => option.props.value === selectedValue,
         );
-        // If nothing is selected, or if the selectedValue doesn't match any
-        // item in the menu, use the placeholder.
-        const menuText = selectedItem
-            ? getSelectOpenerLabel(showOpenerLabelAsText, selectedItem.props)
-            : placeholder;
+
+        let menuContent;
+        if (selectedItem) {
+            const menuStringOrNode = getSelectOpenerLabel(
+                showOpenerLabelAsText,
+                selectedItem.props,
+            );
+            // We only need the guaranteed node for SingleSelect here
+            // As the string label for the Announcer is in a useEffect above
+            const [, node] = maybeExtractStringFromNode(menuStringOrNode);
+            menuContent = node;
+        } else {
+            // If nothing is selected, or if the selectedValue doesn't match any
+            // item in the menu, use the placeholder.
+            menuContent = placeholder;
+        }
 
         const dropdownOpener = (
             <Id id={id}>
@@ -461,7 +506,7 @@ const SingleSelect = (props: Props) => {
                             disabled={isDisabled}
                             ref={handleOpenerRef}
                             role="combobox"
-                            text={menuText}
+                            text={menuContent}
                             opened={open}
                             error={hasError}
                             onBlur={onOpenerBlurValidation}
@@ -483,7 +528,7 @@ const SingleSelect = (props: Props) => {
                             testId={testId}
                             onBlur={onOpenerBlurValidation}
                         >
-                            {menuText}
+                            {menuContent}
                         </SelectOpener>
                     );
                 }}
@@ -503,6 +548,16 @@ const SingleSelect = (props: Props) => {
     ).length;
     const items = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
+
+    // Extract out someResults. When we put labels in the dependency array,
+    // useEffect happens on every render (I think because labels is a new object)
+    // each time so it thinks it has changed
+    const {someResults} = labels;
+
+    // Announce in a screen reader when the number of filtered items changes
+    React.useEffect(() => {
+        handleAnnouncement(someResults(items.length));
+    }, [items.length, someResults]);
 
     return (
         <Id id={dropdownId}>

@@ -1,9 +1,11 @@
 import * as React from "react";
 import caretDown from "@phosphor-icons/core/regular/caret-down.svg";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+// import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {allCountries} from "./option-item-examples";
 
 export default {
     title: "Packages / Dropdown / SingleSelect / Accessibility",
@@ -128,6 +130,44 @@ const SingleSelectCustomOpenerLabel = () => {
 export const UsingCustomOpenerAriaLabel = {
     render: SingleSelectCustomOpenerLabel.bind({}),
     name: "Using aria-label on custom opener",
+};
+
+const optionItems = allCountries.map(([code, translatedName]) => (
+    <OptionItem key={code} value={code} label={translatedName} />
+));
+
+const SingleSelectWithVisibleAnnouncer = () => {
+    // React.useEffect(() => {
+    //     // Inject Announcer into the Storybook iframe instead of body
+    //     const storybookRoot = document.getElementById("storybook-docs");
+    //     if (storybookRoot) {
+    //         console.log("announcer init");
+    //         initAnnouncer({targetNode: storybookRoot});
+    //     }
+    // }, []);
+    const [selectedValue, setSelectedValue] = React.useState("");
+    return (
+        <View>
+            <SingleSelect
+                aria-label="Country"
+                onChange={setSelectedValue}
+                isFilterable={true}
+                placeholder="Select a country"
+                selectedValue={selectedValue}
+            >
+                {optionItems}
+            </SingleSelect>
+        </View>
+    );
+};
+
+export const WithVisibleAnnouncer = {
+    render: SingleSelectWithVisibleAnnouncer.bind({}),
+    name: "With visible Announcer",
+    parameters: {
+        addBodyClass: "showAnnouncer",
+        chromatic: {disableSnapshot: true},
+    },
 };
 
 // This story exists for debugging automated unit tests.

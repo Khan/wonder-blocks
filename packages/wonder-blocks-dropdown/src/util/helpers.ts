@@ -71,6 +71,8 @@ export function getLabel(props: OptionItemProps): string {
     return "";
 }
 
+type OpenerStringOrNode = string | {[key: string]: string | JSX.Element};
+
 /**
  * Returns the label for the SelectOpener in the SingleSelect and MultiSelect.
  * If the label is a Node, and `labelAsText` is undefined, returns the label.
@@ -78,9 +80,30 @@ export function getLabel(props: OptionItemProps): string {
 export function getSelectOpenerLabel(
     showOpenerLabelAsText: boolean,
     props: OptionItemProps,
-): string | JSX.Element {
+): OpenerStringOrNode {
+    const stringLabel = getLabel(props);
     if (showOpenerLabelAsText) {
-        return getLabel(props);
+        return stringLabel;
     }
-    return props.label;
+    return {
+        [stringLabel]: props.label,
+    };
 }
+
+/**
+ * Returns a normalized structure for Opener content when Options can be either
+ * strings OR nodes with various label props
+ */
+export const maybeExtractStringFromNode = (
+    openerContent: OpenerStringOrNode,
+): [string, string | JSX.Element] => {
+    // For a selected Custom Option Item with Node Label,
+    // we have to extract a string to announce
+    if (typeof openerContent === "object") {
+        const [label, node] = Object.entries(openerContent)[0];
+        return [label, node];
+    } else {
+        // For other cases, we can use the string content passed through
+        return [openerContent, openerContent];
+    }
+};

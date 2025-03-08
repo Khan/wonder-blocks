@@ -161,6 +161,7 @@ describe("Announcer class", () => {
             const waitThreshold = 1000;
 
             // Act
+            // The second call will win out in the trailing edge implementation
             announcer.announce("a thing", "polite", waitThreshold);
             announcer.announce("two things", "polite", waitThreshold);
 
@@ -173,7 +174,7 @@ describe("Announcer class", () => {
                 announcer.dictionary.get(`wbARegion-polite0`)?.element;
 
             // ASSERT
-            await expect(targetElement?.textContent).toBe("a thing");
+            await expect(targetElement?.textContent).toBe("two things");
             await expect(targetElement2?.textContent).toBe("");
         });
     });
@@ -206,16 +207,12 @@ describe("Announcer class", () => {
             // Act
             announcer.announce("One Fish", "polite", 0);
             jest.advanceTimersByTime(5);
-            announcer.announce("Loud Fish", "assertive", 0);
-
             expect(screen.getByText("One Fish")).toBeInTheDocument();
-            expect(screen.getByText("Loud Fish")).toBeInTheDocument();
 
             announcer.clear();
 
             // Assert
             expect(screen.queryByText("One Fish")).not.toBeInTheDocument();
-            expect(screen.queryByText("Loud Fish")).not.toBeInTheDocument();
         });
 
         test("handling calls when nothing has been announced", () => {

@@ -7,6 +7,10 @@ import {
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
 
+import {
+    announceMessage,
+    initAnnouncer,
+} from "@khanacademy/wonder-blocks-announcer";
 import ActionItem from "./action-item";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
@@ -25,7 +29,11 @@ import type {
     OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {getLabel, getSelectOpenerLabel} from "../util/helpers";
+import {
+    getLabel,
+    getSelectOpenerLabel,
+    maybeExtractStringFromNode,
+} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type LabelsValues = {
@@ -304,6 +312,10 @@ const MultiSelect = (props: Props) => {
     const hasError = error || !!errorMessage;
 
     React.useEffect(() => {
+        initAnnouncer();
+    }, []);
+
+    React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled component
         if (disabled) {
             // open should always be false if select is disabled
@@ -369,7 +381,7 @@ const MultiSelect = (props: Props) => {
 
     const getMenuTextOrNode = (
         children: OptionItemComponentArray,
-    ): string | JSX.Element => {
+    ): string | {[key: string]: string | JSX.Element} => {
         const {noneSelected, someSelected, allSelected} = labels;
         const numSelectedAll = children.filter(
             (option) => !option.props.disabled,
@@ -404,7 +416,6 @@ const MultiSelect = (props: Props) => {
                         return someSelected(1);
                     }
                 }
-
                 return noSelectionText;
             case numSelectedAll:
                 return allSelected;
@@ -536,6 +547,12 @@ const MultiSelect = (props: Props) => {
         handleOpenChanged(!open);
     };
 
+    const handleAnnouncement = (message: string) => {
+        announceMessage({
+            message,
+        });
+    };
+
     const renderOpener = (
         allChildren: React.ReactElement<
             React.ComponentProps<typeof OptionItem>
@@ -547,7 +564,14 @@ const MultiSelect = (props: Props) => {
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
         const {noneSelected} = labels;
 
-        const menuContent = getMenuTextOrNode(allChildren);
+        const menuTextOrNode = getMenuTextOrNode(allChildren);
+        const [openerStringValue, openerContent] =
+            maybeExtractStringFromNode(menuTextOrNode);
+
+        if (openerStringValue) {
+            // opener value changed, so let's announce it
+            handleAnnouncement(openerStringValue);
+        }
 
         const dropdownOpener = (
             <Id id={id}>
@@ -564,7 +588,7 @@ const MultiSelect = (props: Props) => {
                             disabled={isDisabled}
                             ref={handleOpenerRef}
                             role="combobox"
-                            text={menuContent}
+                            text={openerContent}
                             opened={open}
                         >
                             {opener}
@@ -577,14 +601,14 @@ const MultiSelect = (props: Props) => {
                             id={uniqueOpenerId}
                             aria-label={ariaLabel}
                             aria-controls={dropdownId}
-                            isPlaceholder={menuContent === noneSelected}
+                            isPlaceholder={openerContent === noneSelected}
                             onOpenChanged={handleOpenChanged}
                             onBlur={onOpenerBlurValidation}
                             open={open}
                             ref={handleOpenerRef}
                             testId={testId}
                         >
-                            {menuContent}
+                            {openerContent}
                         </SelectOpener>
                     );
                 }}
@@ -606,6 +630,12 @@ const MultiSelect = (props: Props) => {
     ).length;
     const filteredItems = getMenuItems(allChildren);
     const isDisabled = numEnabledOptions === 0 || disabled;
+
+    React.useEffect(() => {
+        if (open) {
+            handleAnnouncement(someSelected(filteredItems.length));
+        }
+    }, [filteredItems.length, someSelected, open]);
 
     return (
         <Id id={dropdownId}>

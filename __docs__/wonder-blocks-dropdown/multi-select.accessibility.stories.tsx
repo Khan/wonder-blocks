@@ -1,9 +1,11 @@
 import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
+// import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {allCountries} from "./option-item-examples";
 
 export default {
     title: "Packages / Dropdown / MultiSelect / Accessibility",
@@ -48,7 +50,7 @@ const MultiSelectAriaLabel = () => (
     <View>
         <MultiSelect
             aria-label="Class options"
-            id="unique-single-select"
+            id="unique-multi-select"
             selectedValues={["one"]}
             onChange={() => {}}
         >
@@ -128,4 +130,43 @@ const MultiSelectCustomOpenerLabel = () => {
 export const UsingCustomOpenerAriaLabel = {
     render: MultiSelectCustomOpenerLabel.bind({}),
     name: "Using aria-label on custom opener",
+};
+
+const optionItems = allCountries.map(([code, translatedName]) => (
+    <OptionItem key={code} value={code} label={translatedName} />
+));
+
+const MultiSelectWithVisibleAnnouncer = () => {
+    // React.useEffect(() => {
+    //     // Inject Announcer into the Storybook iframe instead of body
+    //     const storybookRoot = document.getElementById("storybook-docs");
+    //     if (storybookRoot) {
+    //         console.log("announcer init");
+    //         // initAnnouncer({targetNode: storybookRoot});
+    //     }
+    // }, []);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
+    return (
+        <View>
+            <MultiSelect
+                aria-label="Country"
+                onChange={setSelectedValues}
+                isFilterable={true}
+                selectedValues={selectedValues}
+            >
+                {optionItems}
+            </MultiSelect>
+        </View>
+    );
+};
+
+export const WithVisibleAnnouncer = {
+    render: MultiSelectWithVisibleAnnouncer.bind({}),
+    name: "With visible Announcer",
+    parameters: {
+        addBodyClass: "showAnnouncer",
+        chromatic: {disableSnapshot: true},
+    },
 };
