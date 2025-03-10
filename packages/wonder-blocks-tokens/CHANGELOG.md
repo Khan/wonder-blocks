@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 5.1.0
+
+### Minor Changes
+
+- 507cf2f: Adds `fadedOffBlack72` color primitive token and sets the `semanticColor.text.secondary` token to this primitive. The slightly darker gray has better color contrast on a variety of backgrounds, including the fadedBlue8 background
+
 ## 5.0.0
 
 ### Major Changes
