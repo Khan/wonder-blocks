@@ -229,10 +229,52 @@ const CellCore = (props: CellCoreProps): React.ReactElement => {
     );
 };
 
+const cellTokens = {
+    root: {
+        default: {
+            background: semanticColor.surface.primary,
+            foreground: semanticColor.text.primary,
+        },
+        hover: {
+            background: color.fadedBlue8,
+        },
+        press: {
+            background: color.fadedBlue8,
+            border: semanticColor.surface.emphasis,
+        },
+        selected: {
+            background: color.fadedBlue8,
+            foreground: color.activeBlue,
+            border: semanticColor.surface.emphasis,
+        },
+        focus: {
+            border: semanticColor.focus.outer,
+        },
+        disabled: {
+            foreground: semanticColor.text.disabled,
+            border: semanticColor.focus.outer,
+        },
+    },
+    accessory: {
+        default: {
+            foreground: semanticColor.icon.primary,
+        },
+        selected: {
+            foreground: semanticColor.icon.action,
+        },
+        disabled: {
+            // Use secondary icon color for disabled state because opacity is
+            // also applied to the accessory. Opacity is used so it is applied
+            // to images also
+            foreground: semanticColor.icon.secondary,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     wrapper: {
-        background: color.white,
-        color: color.offBlack,
+        background: cellTokens.root.default.background,
+        color: cellTokens.root.default.foreground,
         display: "flex",
         minHeight: CellMeasurements.cellMinHeight,
         textAlign: "left",
@@ -262,13 +304,14 @@ const styles = StyleSheet.create({
     activeInnerWrapper: {
         position: "relative",
         ":before": {
+            // Styles for the left bar indicator
             content: "''",
             position: "absolute",
             top: 0,
             left: 0,
             bottom: 0,
             width: border.width.thick,
-            backgroundColor: semanticColor.surface.emphasis,
+            backgroundColor: cellTokens.root.selected.border,
         },
     },
 
@@ -291,7 +334,7 @@ const styles = StyleSheet.create({
     accessoryRight: {
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
-        color: semanticColor.icon.primary,
+        color: cellTokens.accessory.default.foreground,
     },
 
     /**
@@ -333,21 +376,21 @@ const styles = StyleSheet.create({
             // that the focus ring is drawn inside the cell.
             width: `calc(100% - ${spacing.xxxSmall_4}px)`,
             height: `calc(100% - ${spacing.xxxSmall_4}px)`,
-            border: `${spacing.xxxxSmall_2}px solid ${color.blue}`,
+            border: `${spacing.xxxxSmall_2}px solid ${cellTokens.root.focus.border}`,
             borderRadius: spacing.xxxSmall_4,
         },
         [":focus-visible[aria-disabled=true]:after" as any]: {
-            borderColor: semanticColor.focus.outer,
+            borderColor: cellTokens.root.disabled.border,
         },
 
         // hover + enabled
         [":hover[aria-disabled=false]" as any]: {
-            background: color.fadedBlue8,
+            background: cellTokens.root.hover.background,
         },
 
         // pressed + enabled
         [":active[aria-disabled=false]" as any]: {
-            background: color.fadedBlue8,
+            background: cellTokens.root.press.background,
         },
         // press + enabled + not currently selected (active prop: false)
         // We apply the left bar indicator styles on the inner-wrapper element
@@ -372,21 +415,13 @@ const styles = StyleSheet.create({
     },
 
     active: {
-        background: color.fadedBlue8,
-        color: color.activeBlue,
+        background: cellTokens.root.selected.background,
+        color: cellTokens.root.selected.foreground,
         cursor: "default",
-
-        [":hover[aria-disabled=false]" as any]: {
-            background: color.fadedBlue8,
-        },
-
-        [":active[aria-disabled=false]" as any]: {
-            background: color.fadedBlue8,
-        },
     },
 
     disabled: {
-        color: color.offBlack32,
+        color: cellTokens.root.disabled.foreground,
         ":focus-visible": {
             // Prevent the focus ring from being displayed when the cell is
             // disabled.
@@ -395,11 +430,11 @@ const styles = StyleSheet.create({
     },
 
     accessoryActive: {
-        color: color.blue,
+        color: cellTokens.accessory.selected.foreground,
     },
 
     accessoryDisabled: {
-        color: color.offBlack,
+        color: cellTokens.accessory.disabled.foreground,
         opacity: 0.32,
     },
 });
