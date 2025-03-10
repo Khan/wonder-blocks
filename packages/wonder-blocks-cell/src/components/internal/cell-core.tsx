@@ -393,45 +393,26 @@ const styles = StyleSheet.create({
             background: cellTokens.root.press.background,
         },
         // press + enabled + not currently selected (active prop: false)
-        // Using the first child to apply the left bar indicator on the pressed
-        // state because setting the styles on the clickable element
-        // directly causes issues since overflow must be hidden for cases where
-        // the border is rounded
-        [":active[aria-disabled=false]:not([aria-current=true]) > *:first-child" as any]:
+        // We apply the left bar indicator styles on the inner-wrapper element
+        // instead of the clickable element directly because we need to hide the
+        // left bar overflow when custom cell styles apply a border-radius. We
+        // have overflow: hidden on the inner wrapper instead of the clickable element
+        // because setting it on the clickable element causes issues with existing
+        // cases.
+        [":active[aria-disabled=false]:not([aria-current=true]) .inner-wrapper" as any]:
             {
                 position: "relative",
                 ":before": {
-                    // Styles for the left bar indicator
                     content: "''",
                     position: "absolute",
                     top: 0,
                     left: 0,
                     bottom: 0,
                     width: border.width.thin,
-                    backgroundColor: cellTokens.root.press.border,
+                    backgroundColor: semanticColor.surface.emphasis,
                 },
             },
     },
-    // press + enabled + not currently selected (active prop: false)
-    // We apply the left bar indicator styles on the inner-wrapper element
-    // instead of the clickable element directly because we need to hide the
-    // left bar overflow when custom cell styles apply a border-radius. We
-    // have overflow: hidden on the inner wrapper instead of the clickable element
-    // because setting it on the clickable element causes issues with existing
-    // cases.
-    [":active[aria-disabled=false]:not([aria-current=true]) .inner-wrapper" as any]:
-        {
-            position: "relative",
-            ":before": {
-                content: "''",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                bottom: 0,
-                width: border.width.thin,
-                backgroundColor: semanticColor.surface.emphasis,
-            },
-        },
 
     active: {
         background: cellTokens.root.selected.background,
