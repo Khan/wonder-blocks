@@ -263,7 +263,10 @@ const cellTokens = {
             foreground: semanticColor.icon.action,
         },
         disabled: {
-            foreground: semanticColor.icon.disabled,
+            // Use secondary icon color for disabled state because opacity is
+            // also applied to the accessory. Opacity is used so it is applied
+            // to images also
+            foreground: semanticColor.icon.secondary,
         },
     },
 };
@@ -452,6 +455,7 @@ const styles = StyleSheet.create({
 
     accessoryDisabled: {
         color: cellTokens.accessory.disabled.foreground,
+        opacity: 0.32,
     },
 });
 
