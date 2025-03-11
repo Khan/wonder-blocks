@@ -134,7 +134,7 @@ const theme = {
                 ...baseColorStates.destructive,
                 default: {
                     ...baseColorStates.destructive.default,
-                    foreground: semanticColor.text.primary,
+                    foreground: semanticColor.icon.secondary,
                 },
             },
         },
@@ -145,14 +145,22 @@ const theme = {
                 ...baseColorStates.progressive,
                 default: {
                     ...baseColorStates.progressive.default,
-                    foreground: semanticColor.text.secondary,
+                    foreground: semanticColor.icon.primary,
+                },
+                hover: {
+                    ...baseColorStates.progressive.default,
+                    background: "transparent",
                 },
             },
             destructive: {
                 ...baseColorStates.destructive,
                 default: {
                     ...baseColorStates.destructive.default,
-                    foreground: semanticColor.text.secondary,
+                    foreground: semanticColor.icon.primary,
+                },
+                hover: {
+                    ...baseColorStates.destructive.default,
+                    background: "transparent",
                 },
             },
         },
