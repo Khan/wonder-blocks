@@ -305,7 +305,7 @@ Ref.parameters = {
     },
 };
 
-const progressive = semanticColor.action.outlined.progressive;
+const progressive = semanticColor.action.secondary.progressive;
 
 const styles = StyleSheet.create({
     clickable: {
@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
         color: progressive.press.foreground,
     },
     focused: {
-        outline: `solid 4px ${semanticColor.border.focus}`,
+        outline: `solid 4px ${semanticColor.focus.outer}`,
     },
     centerText: {
         gap: spacing.medium_16,

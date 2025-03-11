@@ -7,19 +7,29 @@ const {semanticColor} = tokens;
 // breaking with descenders.
 const textUnderlineOffset = tokens.spacing.xxxSmall_4;
 
+const focusOutline = {
+    border: semanticColor.focus.outer,
+};
+
+const focusOutlineLight = {
+    border: semanticColor.border.inverse,
+};
+
 const theme = {
     color: {
         /**
          * Primary
          */
-        filled: {
+        primary: {
             // kind=primary / color=default / light=false
             progressive: {
-                ...semanticColor.action.filled.progressive,
+                ...semanticColor.action.primary.progressive,
+                focus: focusOutline,
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    background: semanticColor.action.disabled.default,
-                    foreground: semanticColor.action.disabled.secondary,
+                    background:
+                        semanticColor.action.primary.disabled.background,
+                    foreground:
+                        semanticColor.action.primary.disabled.foreground,
                 },
             },
 
@@ -27,58 +37,58 @@ const theme = {
             // NOTE: These colors will be removed from WB as soon as we remove the
             // light variant.
             progressiveLight: {
-                ...semanticColor.action.outlined.progressive,
+                ...semanticColor.action.secondary.progressive,
+                focus: focusOutlineLight,
                 hover: {
-                    ...semanticColor.action.outlined.progressive.hover,
+                    ...semanticColor.action.secondary.progressive.hover,
                     border: semanticColor.border.inverse,
                 },
                 press: {
-                    ...semanticColor.action.outlined.progressive.press,
-                    border: semanticColor.action.outlined.progressive.press
+                    ...semanticColor.action.secondary.progressive.press,
+                    border: semanticColor.action.secondary.progressive.press
                         .background,
                 },
                 disabled: {
-                    border: semanticColor.action.outlined.progressive.press
-                        .background,
                     background:
-                        semanticColor.action.outlined.progressive.press
+                        semanticColor.action.secondary.progressive.press
                             .background,
                     foreground:
-                        semanticColor.action.outlined.progressive.default
+                        semanticColor.action.secondary.progressive.default
                             .foreground,
                 },
             },
             // kind=primary / color=destructive / light=false
             destructive: {
-                ...semanticColor.action.filled.destructive,
+                ...semanticColor.action.primary.destructive,
+                focus: focusOutline,
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    background: semanticColor.action.disabled.default,
-                    foreground: semanticColor.action.disabled.secondary,
+                    background:
+                        semanticColor.action.primary.disabled.background,
+                    foreground:
+                        semanticColor.action.primary.disabled.foreground,
                 },
             },
             // kind=primary / color=destructive / light=true
             // NOTE: These colors will be removed from WB as soon as we remove the
             // light variant.
             destructiveLight: {
-                ...semanticColor.action.outlined.destructive,
+                ...semanticColor.action.secondary.destructive,
+                focus: focusOutlineLight,
                 hover: {
-                    ...semanticColor.action.outlined.progressive.hover,
+                    ...semanticColor.action.secondary.progressive.hover,
                     border: semanticColor.border.inverse,
                 },
                 press: {
-                    ...semanticColor.action.outlined.destructive.press,
-                    border: semanticColor.action.outlined.destructive.press
+                    ...semanticColor.action.secondary.destructive.press,
+                    border: semanticColor.action.secondary.destructive.press
                         .background,
                 },
                 disabled: {
-                    border: semanticColor.action.outlined.destructive.press
-                        .background,
                     background:
-                        semanticColor.action.outlined.destructive.press
+                        semanticColor.action.secondary.destructive.press
                             .background,
                     foreground:
-                        semanticColor.action.outlined.destructive.default
+                        semanticColor.action.secondary.destructive.default
                             .foreground,
                 },
             },
@@ -89,27 +99,28 @@ const theme = {
          *
          * Outlined buttons
          */
-        outlined: {
+        secondary: {
             // kind=secondary / color=default / light=false
             progressive: {
-                ...semanticColor.action.outlined.progressive,
+                ...semanticColor.action.secondary.progressive,
                 default: {
-                    ...semanticColor.action.outlined.progressive.default,
+                    ...semanticColor.action.secondary.progressive.default,
                     // NOTE: This is a special case for the secondary button
                     background: "transparent",
                 },
+                focus: focusOutline,
                 hover: {
-                    ...semanticColor.action.outlined.progressive.hover,
+                    ...semanticColor.action.secondary.progressive.hover,
                     // NOTE: This is a special case for the secondary button
                     background: "transparent",
                     icon: "transparent",
                 },
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    background:
-                        semanticColor.action.outlined.progressive.press
-                            .background,
-                    foreground: semanticColor.text.disabled,
+                    // NOTE: This is a special case for the secondary button
+                    // TODO(WB-1895): Revisit disabled styles.
+                    border: semanticColor.action.primary.disabled.border,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=secondary / color=default / light=true
@@ -121,6 +132,7 @@ const theme = {
                     background: "transparent",
                     foreground: semanticColor.text.inverse,
                 },
+                focus: focusOutlineLight,
                 hover: {
                     border: semanticColor.border.inverse,
                     background: "transparent",
@@ -131,15 +143,15 @@ const theme = {
                 press: {
                     border: tokens.color.fadedBlue,
                     background:
-                        semanticColor.action.filled.progressive.press
+                        semanticColor.action.primary.progressive.press
                             .background,
                     foreground: semanticColor.text.inverse,
                 },
                 disabled: {
-                    border: semanticColor.action.outlined.progressive.press
+                    border: semanticColor.action.secondary.progressive.press
                         .background,
                     background:
-                        semanticColor.action.outlined.progressive.press
+                        semanticColor.action.secondary.progressive.press
                             .background,
                     // NOTE: Using primitive token, but this will go away once
                     // we remove the light variant.
@@ -148,19 +160,20 @@ const theme = {
             },
             // kind=secondary / color=destructive / light=false
             destructive: {
-                ...semanticColor.action.outlined.destructive,
+                ...semanticColor.action.secondary.destructive,
+                focus: focusOutline,
                 hover: {
-                    ...semanticColor.action.outlined.destructive.hover,
+                    ...semanticColor.action.secondary.destructive.hover,
                     // NOTE: This is a special case for the secondary button
                     background: "transparent",
                     icon: "transparent",
                 },
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    background:
-                        semanticColor.action.outlined.destructive.press
-                            .background,
-                    foreground: semanticColor.text.disabled,
+                    // NOTE: This is a special case for the secondary button
+                    // TODO(WB-1895): Revisit disabled styles.
+                    border: semanticColor.action.primary.disabled.border,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=secondary / color=destructive / light=true
@@ -172,6 +185,7 @@ const theme = {
                     background: "transparent",
                     foreground: semanticColor.text.inverse,
                 },
+                focus: focusOutlineLight,
                 hover: {
                     border: semanticColor.border.inverse,
                     background: "transparent",
@@ -182,15 +196,15 @@ const theme = {
                 press: {
                     border: tokens.color.fadedRed,
                     background:
-                        semanticColor.action.filled.destructive.press
+                        semanticColor.action.primary.destructive.press
                             .background,
                     foreground: semanticColor.text.inverse,
                 },
                 disabled: {
-                    border: semanticColor.action.outlined.destructive.press
+                    border: semanticColor.action.secondary.destructive.press
                         .background,
                     background:
-                        semanticColor.action.outlined.destructive.press
+                        semanticColor.action.secondary.destructive.press
                             .background,
                     foreground: tokens.color.white50,
                 },
@@ -207,21 +221,22 @@ const theme = {
                 default: {
                     background: "transparent",
                     foreground:
-                        semanticColor.action.outlined.progressive.default
+                        semanticColor.action.secondary.progressive.default
                             .foreground,
                 },
+                focus: focusOutline,
                 hover: {
-                    border: semanticColor.action.outlined.progressive.hover
+                    border: semanticColor.action.secondary.progressive.hover
                         .border,
                 },
                 press: {
                     foreground:
-                        semanticColor.action.outlined.progressive.press
+                        semanticColor.action.secondary.progressive.press
                             .foreground,
                 },
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    foreground: semanticColor.text.disabled,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=default / light=true
@@ -233,6 +248,7 @@ const theme = {
                     background: "transparent",
                     foreground: semanticColor.text.inverse,
                 },
+                focus: focusOutlineLight,
                 hover: {
                     border: semanticColor.border.inverse,
                     background: "transparent",
@@ -243,8 +259,6 @@ const theme = {
                     foreground: tokens.color.fadedBlue,
                 },
                 disabled: {
-                    border: semanticColor.action.outlined.progressive.press
-                        .background,
                     foreground: tokens.color.white50,
                 },
             },
@@ -253,21 +267,22 @@ const theme = {
                 default: {
                     background: "transparent",
                     foreground:
-                        semanticColor.action.outlined.destructive.default
+                        semanticColor.action.secondary.destructive.default
                             .foreground,
                 },
+                focus: focusOutline,
                 hover: {
-                    border: semanticColor.action.outlined.destructive.hover
+                    border: semanticColor.action.secondary.destructive.hover
                         .border,
                 },
                 press: {
                     foreground:
-                        semanticColor.action.outlined.destructive.press
+                        semanticColor.action.secondary.destructive.press
                             .foreground,
                 },
                 disabled: {
-                    border: semanticColor.action.disabled.default,
-                    foreground: semanticColor.text.disabled,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=destructive / light=true
@@ -279,6 +294,7 @@ const theme = {
                     background: "transparent",
                     foreground: semanticColor.text.inverse,
                 },
+                focus: focusOutlineLight,
                 hover: {
                     border: semanticColor.border.inverse,
                     background: "transparent",
@@ -289,8 +305,6 @@ const theme = {
                     foreground: tokens.color.fadedRed,
                 },
                 disabled: {
-                    border: semanticColor.action.outlined.destructive.press
-                        .background,
                     foreground: tokens.color.white50,
                 },
             },

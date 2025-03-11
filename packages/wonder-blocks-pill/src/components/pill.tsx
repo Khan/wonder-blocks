@@ -264,13 +264,13 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             foreground: textColor,
         },
         focus: {
-            border: semanticColor.border.focus,
+            border: semanticColor.focus.outer,
         },
         hover: {
-            border: semanticColor.border.focus,
+            border: semanticColor.action.primary.progressive.hover.border,
         },
         press: {
-            border: semanticColor.action.filled.progressive.press.border,
+            border: semanticColor.action.primary.progressive.press.border,
             background: pressColor,
         },
     };

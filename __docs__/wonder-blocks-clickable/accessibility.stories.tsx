@@ -9,7 +9,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
-const actionCategory = semanticColor.action.outlined.progressive;
+const actionCategory = semanticColor.action.secondary.progressive;
 
 const styles = StyleSheet.create({
     rest: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         color: actionCategory.press.foreground,
     },
     focus: {
-        outline: `solid 1px ${semanticColor.border.focus}`,
+        outline: `solid 1px ${semanticColor.focus.outer}`,
         outlineOffset: spacing.xxxxSmall_2,
     },
     panel: {

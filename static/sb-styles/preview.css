@@ -1,6 +1,10 @@
 /**
  * Overrides for the Storybook preview iframe.
  */
+html {
+    font-size: 50%;
+}
+
 .sbdocs ul,
 .sbdocs li,
 .sbdocs p,
@@ -59,7 +63,7 @@
 }
 
 /* only include the counter to the stories titles */
-.sb-anchor > h3::before {
+.sb-anchor>h3::before {
     counter-increment: story;
     color: var(--color-text-64);
     content: counter(story) ".";
@@ -78,4 +82,15 @@
 .sbdocs h6 {
     font-size: var(--typography-heading-size-xs);
     line-height: var(--typography-heading-line-height-xs);
+}
+
+/* TOC wrapper */
+.sbdocs-content+div {
+    width: 20rem;
+}
+
+.sbdocs-content+div>* {
+    width: 20rem;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
 }

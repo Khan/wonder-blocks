@@ -174,20 +174,18 @@ export default class ActionItem extends React.Component<ActionProps> {
 }
 
 // TODO(WB-1868): Move this to a shared theme file.
+const actionType = semanticColor.action.primary.progressive;
+
 const theme = {
     actionItem: {
         color: {
             hover: {
-                background:
-                    semanticColor.action.filled.progressive.hover.background,
-                foreground:
-                    semanticColor.action.filled.progressive.hover.foreground,
+                background: actionType.hover.background,
+                foreground: actionType.hover.foreground,
             },
             press: {
-                background:
-                    semanticColor.action.filled.progressive.press.background,
-                foreground:
-                    semanticColor.action.filled.progressive.press.foreground,
+                background: actionType.press.background,
+                foreground: actionType.press.foreground,
             },
         },
     },
@@ -207,7 +205,7 @@ const styles = StyleSheet.create({
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
             borderRadius: spacing.xxxSmall_4,
-            outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.border.focus}`,
+            outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
             outlineOffset: -spacing.xxxxSmall_2,
         },
 

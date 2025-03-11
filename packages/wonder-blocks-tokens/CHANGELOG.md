@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 5.1.0
+
+### Minor Changes
+
+- 507cf2f: Adds `fadedOffBlack72` color primitive token and sets the `semanticColor.text.secondary` token to this primitive. The slightly darker gray has better color contrast on a variety of backgrounds, including the fadedBlue8 background
+
+## 5.0.0
+
+### Major Changes
+
+- 5655b9f: Rename `semanticColor.border.focus` to `semanticColor.focus.outer`, and add `focus.inner`.
+- 8f53293: Rename action tokens: `filled` -> `primary`, `outlined` -> `secondary`.
+- 051f0f8: Remove `action.disabled` object in favor of `action.primary.disabled` and `action.secondary.disabled`
+
+### Minor Changes
+
+- e1b78db: Add sizing primitive tokens to support the new tokens with rem units that will be used by the thunderblocks/classroom theme
+
+### Patch Changes
+
+- 5655b9f: Switch to use `focus.outer` semanticColor token
+- 051f0f8: Rework action.disabled tokens to include properties per kind (border, background, foreground).
+
 ## 4.2.1
 
 ### Patch Changes

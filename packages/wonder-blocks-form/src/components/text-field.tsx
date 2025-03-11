@@ -271,8 +271,10 @@ const states = {
         foreground: semanticColor.text.primary,
     },
     disabled: {
-        border: semanticColor.border.primary,
-        background: semanticColor.action.disabled.secondary,
+        border: semanticColor.action.secondary.disabled.border,
+        background: semanticColor.action.secondary.disabled.background,
+        // NOTE: This color is specific for form fields.
+        // TODO(WB-1895): Revisit disabled styles.
         foreground: semanticColor.text.secondary,
     },
     // Form validation error state
@@ -302,8 +304,8 @@ const styles = StyleSheet.create({
     },
     defaultFocus: {
         ":focus-visible": {
-            borderColor: semanticColor.border.focus,
-            outline: `${border.width.hairline}px solid ${semanticColor.border.focus}`,
+            borderColor: semanticColor.focus.outer,
+            outline: `${border.width.hairline}px solid ${semanticColor.focus.outer}`,
             // Negative outline offset so it focus outline is not cropped off if
             // an ancestor element has overflow: hidden
             outlineOffset: -2,
@@ -317,9 +319,8 @@ const styles = StyleSheet.create({
             color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            // TODO(WB-1856): Verify if we can use the global focus color
-            outline: `${border.width.thin}px solid ${states.error.border}`,
-            borderColor: states.error.border,
+            outlineColor: semanticColor.focus.outer,
+            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
         },
     },
     disabled: {
@@ -331,8 +332,7 @@ const styles = StyleSheet.create({
         },
         cursor: "not-allowed",
         ":focus-visible": {
-            // TODO(WB-1856): Verify if we can use the global focus color
-            outline: `${border.width.thin}px solid ${semanticColor.action.disabled.default}`,
+            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
             outlineOffset: -3,
         },
     },

@@ -123,8 +123,8 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
 });
 
 const disabledState = {
-    border: semanticColor.border.primary,
-    background: semanticColor.action.disabled.secondary,
+    border: semanticColor.action.secondary.disabled.border,
+    background: semanticColor.action.secondary.disabled.background,
 };
 
 const sharedStyles = StyleSheet.create({
@@ -174,7 +174,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
     const isCheckedOrIndeterminate = checked || checked == null;
     const actionType = error ? "destructive" : "progressive";
-    const styleType = isCheckedOrIndeterminate ? "filled" : "outlined";
+    const styleType = isCheckedOrIndeterminate ? "primary" : "secondary";
 
     const colorAction = semanticColor.action[styleType][actionType];
 
@@ -203,8 +203,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
                 ":focus-visible": {
-                    // TODO(WB-1856): Define global pattern for focus styles
-                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
                     outlineOffset: 1,
                 },
 
@@ -235,8 +234,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     backgroundColor: error
                         ? states.error.background
                         : colorAction.hover.background,
-                    // TODO(WB-1856): Define global pattern for focus styles
-                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,
                 },
 

@@ -1,5 +1,38 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.1.3
+
+### Patch Changes
+
+- Updated dependencies [507cf2f]
+    - @khanacademy/wonder-blocks-tokens@5.1.0
+    - @khanacademy/wonder-blocks-clickable@6.1.3
+    - @khanacademy/wonder-blocks-layout@3.1.3
+
+## 7.1.2
+
+### Patch Changes
+
+- 5655b9f: Switch to use `focus.outer` semanticColor token
+- 7bb37a2: Update component docs to include labelling guidelines
+- 8f53293: Rename action tokens: `filled` -> `primary`, `outlined` -> `secondary`.
+- 051f0f8: Rework action.disabled tokens to include properties per kind (border, background, foreground).
+- 7bb37a2: Marking LabeledTextField with `@deprecated` in favour of LabeledField + TextField
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [051f0f8]
+- Updated dependencies [8fc65a9]
+- Updated dependencies [e1b78db]
+- Updated dependencies [051f0f8]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-clickable@6.1.2
+    - @khanacademy/wonder-blocks-icon@5.1.2
+    - @khanacademy/wonder-blocks-layout@3.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 7.1.1
 
 ### Patch Changes

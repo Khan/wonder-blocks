@@ -696,14 +696,13 @@ const theme = {
                 background: semanticColor.surface.primary,
             },
             focus: {
-                border: semanticColor.border.focus,
+                border: semanticColor.focus.outer,
                 background: semanticColor.surface.primary,
             },
             disabled: {
-                // TODO(WB-1889): Use the new disabled color tokens.
-                border: semanticColor.border.primary,
-                background: semanticColor.action.disabled.secondary,
-                foreground: semanticColor.text.secondary,
+                border: semanticColor.action.secondary.disabled.border,
+                background: semanticColor.action.secondary.disabled.background,
+                foreground: semanticColor.action.secondary.disabled.foreground,
             },
             error: {
                 border: semanticColor.status.critical.foreground,

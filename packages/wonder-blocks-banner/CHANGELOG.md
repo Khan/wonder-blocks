@@ -1,5 +1,42 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.1.3
+
+### Patch Changes
+
+- Updated dependencies [507cf2f]
+    - @khanacademy/wonder-blocks-tokens@5.1.0
+    - @khanacademy/wonder-blocks-button@7.1.3
+    - @khanacademy/wonder-blocks-icon-button@6.1.3
+    - @khanacademy/wonder-blocks-link@8.0.1
+
+## 4.1.2
+
+### Patch Changes
+
+- 762f749: Remove `kind="primary"` from Link instance"
+- 5bd2a95: Internal `Link` refactor to use `semanticColor` tokens intead of `color`. Also moved the link colors to an object to prepare this for an upcoming theme integration"
+- Updated dependencies [ed26d66]
+- Updated dependencies [5655b9f]
+- Updated dependencies [5655b9f]
+- Updated dependencies [8f53293]
+- Updated dependencies [beb09cd]
+- Updated dependencies [5bd2a95]
+- Updated dependencies [762f749]
+- Updated dependencies [051f0f8]
+- Updated dependencies [b6d77dc]
+- Updated dependencies [e1b78db]
+- Updated dependencies [8f53293]
+- Updated dependencies [051f0f8]
+- Updated dependencies [ca57826]
+    - @khanacademy/wonder-blocks-core@12.2.0
+    - @khanacademy/wonder-blocks-tokens@5.0.0
+    - @khanacademy/wonder-blocks-icon-button@6.1.2
+    - @khanacademy/wonder-blocks-button@7.1.2
+    - @khanacademy/wonder-blocks-link@8.0.0
+    - @khanacademy/wonder-blocks-icon@5.1.2
+    - @khanacademy/wonder-blocks-typography@3.1.2
+
 ## 4.1.1
 
 ### Patch Changes

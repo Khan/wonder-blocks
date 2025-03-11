@@ -305,11 +305,13 @@ const focusedStyle = {
     // Override the default focus state for the cell element, so that it
     // can be added programmatically to the button element.
     borderRadius: spacing.xxxSmall_4,
-    outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.border.focus}`,
+    outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
     outlineOffset: -spacing.xxxxSmall_2,
 };
 
 // TODO(WB-1868): Move this to a theme file.
+const actionType = semanticColor.action.primary.progressive;
+
 const theme = {
     optionItem: {
         color: {
@@ -318,20 +320,16 @@ const theme = {
                 foreground: semanticColor.text.primary,
             },
             hover: {
-                background:
-                    semanticColor.action.filled.progressive.hover.background,
-                foreground:
-                    semanticColor.action.filled.progressive.hover.foreground,
+                background: actionType.hover.background,
+                foreground: actionType.hover.foreground,
             },
             press: {
-                background:
-                    semanticColor.action.filled.progressive.press.background,
-                foreground:
-                    semanticColor.action.filled.progressive.press.foreground,
+                background: actionType.press.background,
+                foreground: actionType.press.foreground,
             },
             disabled: {
                 background: "transparent",
-                foreground: semanticColor.text.disabled,
+                foreground: semanticColor.action.secondary.disabled.foreground,
             },
         },
     },
@@ -339,21 +337,19 @@ const theme = {
         color: {
             hover: {
                 background:
-                    semanticColor.action.outlined.progressive.hover.background,
+                    semanticColor.action.secondary.progressive.hover.background,
                 foreground:
-                    semanticColor.action.outlined.progressive.hover.foreground,
+                    semanticColor.action.secondary.progressive.hover.foreground,
             },
             press: {
                 // NOTE: The checkbox press state uses white as the background
                 background: semanticColor.surface.primary,
                 foreground:
-                    semanticColor.action.outlined.progressive.press.foreground,
+                    semanticColor.action.secondary.progressive.press.foreground,
             },
             selected: {
-                background:
-                    semanticColor.action.filled.progressive.default.background,
-                foreground:
-                    semanticColor.action.filled.progressive.default.foreground,
+                background: actionType.default.background,
+                foreground: actionType.default.foreground,
             },
         },
     },
@@ -475,7 +471,7 @@ const styles = StyleSheet.create({
     },
     itemFocused: focusedStyle,
     itemDisabled: {
-        outlineColor: semanticColor.border.focus,
+        outlineColor: semanticColor.focus.outer,
     },
     itemContainer: {
         minHeight: "unset",

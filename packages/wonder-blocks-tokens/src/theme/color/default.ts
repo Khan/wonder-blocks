@@ -4,7 +4,6 @@ const border = {
     primary: color.fadedOffBlack16,
     subtle: color.fadedOffBlack8,
     strong: color.fadedOffBlack50,
-    focus: color.blue,
     inverse: color.white,
 };
 
@@ -14,8 +13,7 @@ export default {
      * of interaction.
      */
     action: {
-        // Filled buttons are meant for primary actions.
-        filled: {
+        primary: {
             progressive: {
                 default: {
                     border: "transparent",
@@ -50,11 +48,15 @@ export default {
                     foreground: color.white,
                 },
             },
+
+            disabled: {
+                border: color.fadedOffBlack32,
+                background: color.fadedOffBlack32,
+                foreground: color.offWhite,
+            },
         },
 
-        // Outlined is meant for use on secondary controls, or controls over
-        // white/transparent backgrounds.
-        outlined: {
+        secondary: {
             progressive: {
                 default: {
                     border: border.strong,
@@ -89,10 +91,12 @@ export default {
                     foreground: color.activeRed,
                 },
             },
-        },
-        disabled: {
-            default: color.fadedOffBlack32,
-            secondary: color.offWhite,
+
+            disabled: {
+                border: border.primary,
+                background: color.offWhite,
+                foreground: color.fadedOffBlack32,
+            },
         },
     },
     /**
@@ -138,7 +142,7 @@ export default {
      */
     text: {
         primary: color.offBlack,
-        secondary: color.fadedOffBlack64,
+        secondary: color.fadedOffBlack72,
         disabled: color.fadedOffBlack32,
         inverse: color.white,
     },
@@ -148,6 +152,11 @@ export default {
      * -Strong for when 3:1 contrast is a priority (ex. form elements)
      */
     border: border,
+
+    focus: {
+        outer: color.blue,
+        inner: color.white,
+    },
     /**
      * Default icon colors that change in context (like actions).
      */

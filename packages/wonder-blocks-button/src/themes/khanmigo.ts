@@ -9,7 +9,7 @@ const secondaryBgColor = tokens.color.offWhite;
  */
 const theme = mergeTheme(defaultTheme, {
     color: {
-        outlined: {
+        secondary: {
             progressive: {
                 default: {
                     border: tokens.color.fadedBlue,
@@ -19,8 +19,8 @@ const theme = mergeTheme(defaultTheme, {
                     background: secondaryBgColor,
                     icon: tokens.color.fadedBlue16,
                     foreground:
-                        tokens.semanticColor.action.outlined.progressive.default
-                            .foreground,
+                        tokens.semanticColor.action.secondary.progressive
+                            .default.foreground,
                 },
                 press: {
                     background: tokens.color.fadedBlue8,
@@ -35,8 +35,8 @@ const theme = mergeTheme(defaultTheme, {
                     background: secondaryBgColor,
                     icon: tokens.color.fadedRed16,
                     foreground:
-                        tokens.semanticColor.action.outlined.destructive.default
-                            .foreground,
+                        tokens.semanticColor.action.secondary.destructive
+                            .default.foreground,
                 },
                 press: {
                     background: tokens.color.fadedRed8,

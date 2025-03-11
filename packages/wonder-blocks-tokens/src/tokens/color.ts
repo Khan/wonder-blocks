@@ -90,6 +90,7 @@ export const color = {
     eggplant: eggplant,
     fadedEggplant8: fadedColorWithWhite(eggplant, 0.08),
     // Faded versions of offBlack
+    fadedOffBlack72: fadedColorWithWhite(offBlack, 0.72),
     fadedOffBlack64: fadedColorWithWhite(offBlack, 0.64),
     fadedOffBlack50: fadedColorWithWhite(offBlack, 0.5),
     fadedOffBlack32: fadedColorWithWhite(offBlack, 0.32),

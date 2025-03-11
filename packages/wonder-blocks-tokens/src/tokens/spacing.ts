@@ -1,3 +1,7 @@
+/**
+ * NOTE: These tokens are going to be deprecated in favor of the new `sizing`
+ * tokens.
+ */
 export const spacing = {
     // Named
     xxxxSmall_2: 2,

@@ -109,16 +109,15 @@ const theme = {
             default: {
                 background: "none",
                 foreground:
-                    semanticColor.action.outlined.progressive.default
+                    semanticColor.action.secondary.progressive.default
                         .foreground,
             },
             disabled: {
-                // TODO(WB-1889): Use the new disabled color tokens.
-                foreground: semanticColor.action.disabled.default,
+                foreground: semanticColor.action.secondary.disabled.foreground,
             },
             press: {
                 foreground:
-                    semanticColor.action.outlined.progressive.press.foreground,
+                    semanticColor.action.secondary.progressive.press.foreground,
             },
         },
     },
