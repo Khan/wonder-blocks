@@ -223,7 +223,6 @@ const styles = StyleSheet.create({
     },
     shared: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
-        height: DROPDOWN_ITEM_HEIGHT,
     },
 
     label: {
