@@ -88,6 +88,18 @@ describe("NavigationTabs", () => {
             // Assert
             expect(nav).toHaveAttribute("id", id);
         });
+
+        it("should use the testId prop for the nav element", async () => {
+            // Arrange
+            const testId = "test-id";
+            render(<NavigationTabs testId={testId}>{children}</NavigationTabs>);
+
+            // Act
+            const nav = await screen.findByRole("navigation");
+
+            // Assert
+            expect(nav).toHaveAttribute("data-testid", testId);
+        });
     });
 
     describe("a11y", () => {

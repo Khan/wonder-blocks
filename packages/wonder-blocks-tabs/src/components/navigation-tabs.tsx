@@ -12,6 +12,10 @@ type Props = {
      * An id for the navigation element.
      */
     id?: string;
+    /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string;
 };
 
 const StyledUl = addStyle("ul");
@@ -40,9 +44,9 @@ const StyledUl = addStyle("ul");
  * ```
  */
 export const NavigationTabs = (props: Props) => {
-    const {id, children} = props;
+    const {id, testId, children} = props;
     return (
-        <nav id={id}>
+        <nav id={id} data-testid={testId}>
             <StyledUl style={styles.list}>{children}</StyledUl>
         </nav>
     );
