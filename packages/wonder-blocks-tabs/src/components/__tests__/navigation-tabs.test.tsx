@@ -142,6 +142,22 @@ describe("NavigationTabs", () => {
                     ariaDescribedBy,
                 );
             });
+
+            it("should set aria-label on the navigation element", async () => {
+                // Arrange
+                const ariaLabel = "Secondary navigation";
+                render(
+                    <NavigationTabs aria-label={ariaLabel}>
+                        {children}
+                    </NavigationTabs>,
+                );
+
+                // Act
+                const nav = await screen.findByRole("navigation");
+
+                // Assert
+                expect(nav).toHaveAttribute("aria-label", ariaLabel);
+            });
         });
     });
 });

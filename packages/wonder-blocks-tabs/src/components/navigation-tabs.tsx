@@ -16,6 +16,10 @@ type Props = AriaProps & {
      * Optional test ID for e2e testing.
      */
     testId?: string;
+    /**
+     * Accessible label for the navigation tabs.
+     */
+    "aria-label"?: string;
 };
 
 const StyledUl = addStyle("ul");
@@ -44,9 +48,20 @@ const StyledUl = addStyle("ul");
  * ```
  */
 export const NavigationTabs = (props: Props) => {
-    const {id, testId, children, ...otherProps} = props;
+    const {
+        id,
+        testId,
+        children,
+        "aria-label": ariaLabel,
+        ...otherProps
+    } = props;
     return (
-        <nav id={id} data-testid={testId} {...otherProps}>
+        <nav
+            id={id}
+            data-testid={testId}
+            aria-label={ariaLabel}
+            {...otherProps}
+        >
             <StyledUl style={styles.list}>{children}</StyledUl>
         </nav>
     );
