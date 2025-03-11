@@ -5,6 +5,15 @@ import {NavigationTabs} from "../navigation-tabs";
 import {NavigationTabItem} from "../navigation-tab-item";
 
 describe("NavigationTabs", () => {
+    const children = [
+        <NavigationTabItem key="link-1">
+            <Link href="/link-1">Link 1</Link>
+        </NavigationTabItem>,
+        <NavigationTabItem key="link-2">
+            <Link href="/link-2">Link 2</Link>
+        </NavigationTabItem>,
+    ];
+
     it("should render a navigation element", async () => {
         // Arrange
         render(
@@ -65,6 +74,20 @@ describe("NavigationTabs", () => {
         // Assert
         expect(link1).toBeInTheDocument();
         expect(link2).toBeInTheDocument();
+    });
+
+    describe("props", () => {
+        it("should use the id prop for the nav element", async () => {
+            // Arrange
+            const id = "unique-id";
+            render(<NavigationTabs id={id}>{children}</NavigationTabs>);
+
+            // Act
+            const nav = await screen.findByRole("navigation");
+
+            // Assert
+            expect(nav).toHaveAttribute("id", id);
+        });
     });
 
     describe("a11y", () => {

@@ -8,6 +8,10 @@ type Props = {
      * The NavigationTabItem components to render.
      */
     children: React.ReactElement | Array<React.ReactElement>;
+    /**
+     * An id for the navigation element.
+     */
+    id?: string;
 };
 
 const StyledUl = addStyle("ul");
@@ -36,9 +40,9 @@ const StyledUl = addStyle("ul");
  * ```
  */
 export const NavigationTabs = (props: Props) => {
-    const {children} = props;
+    const {id, children} = props;
     return (
-        <nav>
+        <nav id={id}>
             <StyledUl style={styles.list}>{children}</StyledUl>
         </nav>
     );
