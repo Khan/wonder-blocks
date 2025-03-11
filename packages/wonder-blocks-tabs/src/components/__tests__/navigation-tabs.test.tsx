@@ -158,6 +158,25 @@ describe("NavigationTabs", () => {
                 // Assert
                 expect(nav).toHaveAttribute("aria-label", ariaLabel);
             });
+
+            it("should set aria-labelledby on the navigation element", async () => {
+                // Arrange
+                const ariaLabelledBy = "label-id";
+                render(
+                    <>
+                        <div id="label-id">Label for navigation tabs</div>
+                        <NavigationTabs aria-labelledby={ariaLabelledBy}>
+                            {children}
+                        </NavigationTabs>
+                    </>,
+                );
+
+                // Act
+                const nav = await screen.findByRole("navigation");
+
+                // Assert
+                expect(nav).toHaveAttribute("aria-labelledby", ariaLabelledBy);
+            });
         });
     });
 });
