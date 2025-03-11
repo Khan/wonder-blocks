@@ -122,5 +122,26 @@ describe("NavigationTabs", () => {
                 await expect(container).toHaveNoA11yViolations();
             });
         });
+
+        describe("ARIA", () => {
+            it("should set aria props on the navigation element", async () => {
+                // Arrange
+                const ariaDescribedBy = "aria-describedby-value";
+                render(
+                    <NavigationTabs aria-describedby={ariaDescribedBy}>
+                        {children}
+                    </NavigationTabs>,
+                );
+
+                // Act
+                const nav = await screen.findByRole("navigation");
+
+                // Assert
+                expect(nav).toHaveAttribute(
+                    "aria-describedby",
+                    ariaDescribedBy,
+                );
+            });
+        });
     });
 });

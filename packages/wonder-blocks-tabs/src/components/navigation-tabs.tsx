@@ -1,9 +1,9 @@
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
-type Props = {
+type Props = AriaProps & {
     /**
      * The NavigationTabItem components to render.
      */
@@ -44,9 +44,9 @@ const StyledUl = addStyle("ul");
  * ```
  */
 export const NavigationTabs = (props: Props) => {
-    const {id, testId, children} = props;
+    const {id, testId, children, ...otherProps} = props;
     return (
-        <nav id={id} data-testid={testId}>
+        <nav id={id} data-testid={testId} {...otherProps}>
             <StyledUl style={styles.list}>{children}</StyledUl>
         </nav>
     );
