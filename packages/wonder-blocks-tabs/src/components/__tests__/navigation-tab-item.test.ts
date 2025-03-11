@@ -1,3 +1,0 @@
-describe("NavigationTabItem", () => {
-    it("should ", () => {});
-});
