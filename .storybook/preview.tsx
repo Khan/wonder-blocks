@@ -151,11 +151,6 @@ const preview: Preview = {
                         icon: "comment",
                         title: "Khanmigo",
                     },
-                    {
-                        value: "classroom",
-                        icon: "lightning",
-                        title: "Thunder Blocks (Classroom)",
-                    },
                 ],
                 // Change title based on selected value
                 dynamicTitle: true,
