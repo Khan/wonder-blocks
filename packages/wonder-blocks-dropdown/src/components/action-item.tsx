@@ -2,7 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {PropsFor, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -223,6 +227,8 @@ const styles = StyleSheet.create({
     },
     shared: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
+        // Make sure that the item is always at least as tall as 40px.
+        paddingBlock: sizing.size_125,
     },
 
     label: {
