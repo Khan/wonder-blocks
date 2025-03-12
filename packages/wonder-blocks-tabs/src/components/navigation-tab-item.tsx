@@ -13,6 +13,10 @@ type Props = {
      * An id for the root element.
      */
     id?: string;
+    /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string;
 };
 
 const StyledLi = addStyle("li");
@@ -38,7 +42,7 @@ const StyledLi = addStyle("li");
  * ```
  */
 export const NavigationTabItem = (props: Props) => {
-    const {children, id} = props;
+    const {children, id, testId} = props;
 
     function renderChildren() {
         const linkProps = {
@@ -49,7 +53,7 @@ export const NavigationTabItem = (props: Props) => {
     }
 
     return (
-        <StyledLi id={id} style={styles.root}>
+        <StyledLi id={id} data-testid={testId} style={styles.root}>
             {renderChildren()}
         </StyledLi>
     );

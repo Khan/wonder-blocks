@@ -48,6 +48,22 @@ describe("NavigationTabItem", () => {
             // Assert
             expect(listitem).toHaveAttribute("id", id);
         });
+
+        it("should use the testId prop for the listitem element", async () => {
+            // Arrange
+            const testId = "test-id";
+            render(
+                <NavigationTabItem testId={testId}>
+                    {children}
+                </NavigationTabItem>,
+            );
+
+            // Act
+            const listItem = await screen.findByRole("listitem");
+
+            // Assert
+            expect(listItem).toHaveAttribute("data-testid", testId);
+        });
     });
 
     describe("a11y", () => {
