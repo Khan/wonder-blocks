@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 5.1.1
+
+### Patch Changes
+
+- 999101f: Update semanticColor.icon.primary to use the new a11y-friendly offBlack72 primitive color
+
 ## 5.1.0
 
 ### Minor Changes
