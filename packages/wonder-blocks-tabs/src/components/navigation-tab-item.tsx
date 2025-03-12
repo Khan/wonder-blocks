@@ -17,6 +17,11 @@ type Props = AriaProps & {
      * Optional test ID for e2e testing.
      */
     testId?: string;
+    /**
+     * If the `NavigationTabItem` is the current page. If `true`, current
+     * styling and aria-current=page will be applied to the Link.
+     */
+    current?: boolean;
 };
 
 const StyledLi = addStyle("li");
@@ -45,11 +50,12 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
     props: Props,
     ref: React.ForwardedRef<HTMLLIElement>,
 ) {
-    const {children, id, testId, ...otherProps} = props;
+    const {children, id, testId, current, ...otherProps} = props;
 
     function renderChildren() {
         const linkProps = {
             style: [typographyStyles.Body, styles.link],
+            "aria-current": current ? "page" : undefined,
         };
 
         return React.cloneElement(children, linkProps);

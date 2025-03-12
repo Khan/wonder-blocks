@@ -95,6 +95,23 @@ describe("NavigationTabItem", () => {
                 // Assert
                 await expect(container).toHaveNoA11yViolations();
             });
+
+            it("should have no a11y violations when it is the current navigation tab item", async () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    // Wrap NavigationTabItem in <ul> since NavigationTabs
+                    // renders the list element
+                    <ul>
+                        <NavigationTabItem current={true}>
+                            <Link href="/link-1">Link 1</Link>
+                        </NavigationTabItem>
+                    </ul>,
+                );
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
         });
 
         describe("ARIA", () => {
@@ -116,6 +133,37 @@ describe("NavigationTabItem", () => {
                     ariaDescribedBy,
                 );
             });
+
+            it("should set aria-current=page on the link if the current prop is set to true", async () => {
+                // Arrange
+                render(
+                    <NavigationTabItem current={true}>
+                        {children}
+                    </NavigationTabItem>,
+                );
+                // Act
+                const link = await screen.findByRole("link");
+
+                // Assert
+                expect(link).toHaveAttribute("aria-current", "page");
+            });
+
+            it.each([{current: undefined}, {current: false}])(
+                "should not have aria-current set on the link if the current prop is $current",
+                async ({current}) => {
+                    // Arrange
+                    render(
+                        <NavigationTabItem current={current}>
+                            {children}
+                        </NavigationTabItem>,
+                    );
+                    // Act
+                    const link = await screen.findByRole("link");
+
+                    // Assert
+                    expect(link).not.toHaveAttribute("aria-current");
+                },
+            );
         });
     });
 });
