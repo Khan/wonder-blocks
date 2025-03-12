@@ -100,6 +100,17 @@ describe("NavigationTabs", () => {
             // Assert
             expect(nav).toHaveAttribute("data-testid", testId);
         });
+
+        it("should forward the ref to the nav element", async () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<NavigationTabs ref={ref}>{children}</NavigationTabs>);
+
+            // Assert
+            expect(await screen.findByRole("navigation")).toBe(ref.current);
+        });
     });
 
     describe("a11y", () => {

@@ -59,7 +59,10 @@ const StyledUl = addStyle("ul");
  * </NavigationTabs>
  * ```
  */
-export const NavigationTabs = (props: Props) => {
+export const NavigationTabs = React.forwardRef(function NavigationTabs(
+    props: Props,
+    ref: React.ForwardedRef<HTMLElement>,
+) {
     const {
         id,
         testId,
@@ -74,12 +77,13 @@ export const NavigationTabs = (props: Props) => {
             data-testid={testId}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
+            ref={ref}
             {...otherProps}
         >
             <StyledUl style={styles.list}>{children}</StyledUl>
         </nav>
     );
-};
+});
 
 const styles = StyleSheet.create({
     list: {
