@@ -148,7 +148,7 @@ const theme = {
                     foreground: semanticColor.icon.primary,
                 },
                 hover: {
-                    ...baseColorStates.progressive.default,
+                    ...baseColorStates.progressive.hover,
                     background: "transparent",
                 },
             },
@@ -159,7 +159,7 @@ const theme = {
                     foreground: semanticColor.icon.primary,
                 },
                 hover: {
-                    ...baseColorStates.destructive.default,
+                    ...baseColorStates.destructive.hover,
                     background: "transparent",
                 },
             },
