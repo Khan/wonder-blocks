@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 9.1.4
+
+### Patch Changes
+
+- 887d581: Remove explict height for ActionItem so that it can grow as needed. Also make sure an ActionItem with a single line of text has a height of 40px still.
+
 ## 9.1.3
 
 ### Patch Changes
