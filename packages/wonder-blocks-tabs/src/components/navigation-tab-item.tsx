@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
         ":hover": {
             textDecoration: "none",
             [":after" as any]: {
+                // We use :after to apply underline styles instead of textDecoration
+                // so the underline is shown under icons in Link too
                 ...underlineStyles,
                 backgroundColor:
                     semanticColor.action.primary.progressive.hover.border,
