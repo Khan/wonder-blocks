@@ -64,6 +64,17 @@ describe("NavigationTabItem", () => {
             // Assert
             expect(listItem).toHaveAttribute("data-testid", testId);
         });
+
+        it("should forward the ref to the listitem element", async () => {
+            // Arrange
+            const ref = React.createRef<HTMLLIElement>();
+
+            // Act
+            render(<NavigationTabItem ref={ref}>{children}</NavigationTabItem>);
+
+            // Assert
+            expect(await screen.findByRole("listitem")).toBe(ref.current);
+        });
     });
 
     describe("a11y", () => {

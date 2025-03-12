@@ -41,7 +41,10 @@ const StyledLi = addStyle("li");
  * </NavigationTabs>
  * ```
  */
-export const NavigationTabItem = (props: Props) => {
+export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
+    props: Props,
+    ref: React.ForwardedRef<HTMLLIElement>,
+) {
     const {children, id, testId, ...otherProps} = props;
 
     function renderChildren() {
@@ -57,12 +60,13 @@ export const NavigationTabItem = (props: Props) => {
             id={id}
             data-testid={testId}
             style={styles.root}
+            ref={ref}
             {...otherProps}
         >
             {renderChildren()}
         </StyledLi>
     );
-};
+});
 
 const underlineStyles: CSSProperties = {
     content: '""',
