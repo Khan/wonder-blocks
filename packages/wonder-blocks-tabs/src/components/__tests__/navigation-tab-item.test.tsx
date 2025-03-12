@@ -4,6 +4,8 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {NavigationTabItem} from "../navigation-tab-item";
 
 describe("NavigationTabItem", () => {
+    const children = <Link href="/link-1">Link 1</Link>;
+
     it("should render a list item element", async () => {
         // Arrange
         render(
@@ -32,6 +34,20 @@ describe("NavigationTabItem", () => {
 
         // Assert
         expect(link1).toBeInTheDocument();
+    });
+
+    describe("props", () => {
+        it("should use the id prop for the listitem element", async () => {
+            // Arrange
+            const id = "unique-id";
+            render(<NavigationTabItem id={id}>{children}</NavigationTabItem>);
+
+            // Act
+            const listitem = await screen.findByRole("listitem");
+
+            // Assert
+            expect(listitem).toHaveAttribute("id", id);
+        });
     });
 
     describe("a11y", () => {

@@ -9,6 +9,10 @@ type Props = {
      * The contents of the NavigationTabItem (usually a Link component)
      */
     children: React.ReactElement;
+    /**
+     * An id for the root element.
+     */
+    id?: string;
 };
 
 const StyledLi = addStyle("li");
@@ -34,7 +38,7 @@ const StyledLi = addStyle("li");
  * ```
  */
 export const NavigationTabItem = (props: Props) => {
-    const {children} = props;
+    const {children, id} = props;
 
     function renderChildren() {
         const linkProps = {
@@ -44,7 +48,11 @@ export const NavigationTabItem = (props: Props) => {
         return React.cloneElement(children, linkProps);
     }
 
-    return <StyledLi style={styles.root}>{renderChildren()}</StyledLi>;
+    return (
+        <StyledLi id={id} style={styles.root}>
+            {renderChildren()}
+        </StyledLi>
+    );
 };
 
 const underlineStyles: CSSProperties = {
