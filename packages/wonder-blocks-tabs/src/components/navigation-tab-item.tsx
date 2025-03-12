@@ -13,6 +13,22 @@ type Props = {
 
 const StyledLi = addStyle("li");
 
+/**
+ * A component for a tab item in NavigationTabs. It is used with a Link
+ * component.
+ *
+ * Example:
+ * ```
+ * <NavigationTabs>
+ *  <NavigationTabItem>
+ *    <Link href="/link-1">Link 1</Link>
+ *  </NavigationTabItem>
+ *  <NavigationTabItem>
+ *    <Link href="/link-2">Link 2</Link>
+ *  </NavigationTabItem>
+ * </NavigationTabs>
+ * ```
+ */
 export const NavigationTabItem = (props: Props) => {
     const {children} = props;
 

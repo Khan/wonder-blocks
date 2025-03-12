@@ -1,7 +1,7 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
-import packageConfig from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {
     NavigationTabItem,
     NavigationTabs,
@@ -9,15 +9,16 @@ import {
 import Link from "@khanacademy/wonder-blocks-link";
 
 /**
- * The NavigationTabs component is a tabbed interface for link navigation.
+ * The `NavigationTabs` component is a tabbed interface for link navigation.
  * The tabs are links and keyboard users can change tabs using tab.
- * The NavigationTabs component is used with NavigationTabItem and Link
- * components. If the tabs should not be links, see the Tabs component,
+ * The `NavigationTabs` component is used with `NavigationTabItem` and `Link`
+ * components. If the tabs should not be links, see the `Tabs` component,
  * which implements different semantics and keyboard interactions.
  */
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs",
     component: NavigationTabs,
+    subcomponents: {NavigationTabItem},
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -45,5 +46,11 @@ const navigationTabItems = [
 export const Default: StoryComponentType = {
     args: {
         children: navigationTabItems,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because it's covered by All Variants
+            disableSnapshot: true,
+        },
     },
 };

@@ -12,6 +12,25 @@ type Props = {
 
 const StyledUl = addStyle("ul");
 
+/**
+ * The `NavigationTabs` component is a tabbed interface for link navigation.
+ * The tabs are links and keyboard users can change tabs using tab.
+ * The `NavigationTabs` component is used with `NavigationTabItem` and `Link`
+ * components. If the tabs should not be links, see the `Tabs` component,
+ * which implements different semantics and keyboard interactions.
+ *
+ * Example:
+ * ```
+ * <NavigationTabs>
+ *  <NavigationTabItem>
+ *    <Link href="/link-1">Link 1</Link>
+ *  </NavigationTabItem>
+ *  <NavigationTabItem>
+ *    <Link href="/link-2">Link 2</Link>
+ *  </NavigationTabItem>
+ * </NavigationTabs>
+ * ```
+ */
 export const NavigationTabs = (props: Props) => {
     const {children} = props;
     return (
