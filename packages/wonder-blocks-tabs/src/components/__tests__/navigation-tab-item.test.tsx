@@ -85,5 +85,26 @@ describe("NavigationTabItem", () => {
                 await expect(container).toHaveNoA11yViolations();
             });
         });
+
+        describe("ARIA", () => {
+            it("should set aria props on the listitem element", async () => {
+                // Arrange
+                const ariaDescribedBy = "aria-describedby-value";
+                render(
+                    <NavigationTabItem aria-describedby={ariaDescribedBy}>
+                        {children}
+                    </NavigationTabItem>,
+                );
+
+                // Act
+                const listItem = await screen.findByRole("listitem");
+
+                // Assert
+                expect(listItem).toHaveAttribute(
+                    "aria-describedby",
+                    ariaDescribedBy,
+                );
+            });
+        });
     });
 });

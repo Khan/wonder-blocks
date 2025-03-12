@@ -1,10 +1,10 @@
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {CSSProperties, StyleSheet} from "aphrodite";
 import * as React from "react";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
-type Props = {
+type Props = AriaProps & {
     /**
      * The contents of the NavigationTabItem (usually a Link component)
      */
@@ -42,7 +42,7 @@ const StyledLi = addStyle("li");
  * ```
  */
 export const NavigationTabItem = (props: Props) => {
-    const {children, id, testId} = props;
+    const {children, id, testId, ...otherProps} = props;
 
     function renderChildren() {
         const linkProps = {
@@ -53,7 +53,12 @@ export const NavigationTabItem = (props: Props) => {
     }
 
     return (
-        <StyledLi id={id} data-testid={testId} style={styles.root}>
+        <StyledLi
+            id={id}
+            data-testid={testId}
+            style={styles.root}
+            {...otherProps}
+        >
             {renderChildren()}
         </StyledLi>
     );
