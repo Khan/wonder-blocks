@@ -1,14 +1,25 @@
-import {addStyle, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {CSSProperties, StyleSheet} from "aphrodite";
 import * as React from "react";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
+type NavigationTabItemLinkProps = {style: StyleType; "aria-current"?: "page"};
+
 type Props = AriaProps & {
     /**
-     * The contents of the NavigationTabItem (usually a Link component)
+     * The `Link` to render for the navigation tab item.
+     *
+     * When a `Link` component is passed in for the `children` prop,
+     * `NavigationTabItem` will inject props for the `Link`. For specific use
+     * cases where the `Link` component is wrapped by another component (like a
+     * `Tooltip` or `Popover`), a render function can be used instead. The
+     * render function provides the Link props that should be applied to the
+     * Link component. See example in the docs for more details.
      */
-    children: React.ReactElement;
+    children:
+        | React.ReactElement
+        | ((linkProps: NavigationTabItemLinkProps) => React.ReactElement);
     /**
      * An id for the root element.
      */
@@ -53,10 +64,14 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
     const {children, id, testId, current, ...otherProps} = props;
 
     function renderChildren() {
-        const linkProps = {
+        const linkProps: NavigationTabItemLinkProps = {
             style: [typographyStyles.Body, styles.link],
             "aria-current": current ? "page" : undefined,
         };
+
+        if (typeof children === "function") {
+            return children(linkProps);
+        }
 
         return React.cloneElement(children, linkProps);
     }

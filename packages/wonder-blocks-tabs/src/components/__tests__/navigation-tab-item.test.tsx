@@ -36,6 +36,46 @@ describe("NavigationTabItem", () => {
         expect(link1).toBeInTheDocument();
     });
 
+    describe("children render function", () => {
+        it("should call it with the link props", () => {
+            // Arrange
+            const childrenMock = jest.fn();
+
+            // Act
+            render(
+                <NavigationTabItem current={true}>
+                    {childrenMock}
+                </NavigationTabItem>,
+            );
+
+            // Assert
+            expect(childrenMock).toHaveBeenCalledWith(
+                expect.objectContaining({"aria-current": "page"}),
+            );
+        });
+
+        it("should apply aria-current to the Link component when it is wrapped by another element", async () => {
+            // Arrange
+            render(
+                <NavigationTabItem current={true}>
+                    {(linkProps) => (
+                        <div>
+                            <Link {...linkProps} href="/link-1">
+                                Link 1
+                            </Link>
+                        </div>
+                    )}
+                </NavigationTabItem>,
+            );
+
+            // Act
+            const link = await screen.findByRole("link");
+
+            // Assert
+            expect(link).toHaveAttribute("aria-current", "page");
+        });
+    });
+
     describe("props", () => {
         it("should use the id prop for the listitem element", async () => {
             // Arrange
@@ -105,6 +145,28 @@ describe("NavigationTabItem", () => {
                     <ul>
                         <NavigationTabItem current={true}>
                             <Link href="/link-1">Link 1</Link>
+                        </NavigationTabItem>
+                    </ul>,
+                );
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+
+            it("should have no a11y violations when the children render function is used", async () => {
+                // Arrange
+                const {container} = render(
+                    // Wrap NavigationTabItem in <ul> since NavigationTabs
+                    // renders the list element
+                    <ul>
+                        <NavigationTabItem current={true}>
+                            {(linkProps) => (
+                                <div>
+                                    <Link {...linkProps} href="/link-1">
+                                        Link 1
+                                    </Link>
+                                </div>
+                            )}
                         </NavigationTabItem>
                     </ul>,
                 );
