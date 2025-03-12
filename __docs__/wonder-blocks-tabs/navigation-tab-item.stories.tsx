@@ -5,10 +5,6 @@ import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
 import Link from "@khanacademy/wonder-blocks-link";
 
-/**
- * A component for a tab item in NavigationTabs. It is used with a Link
- * component.
- */
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem",
     component: NavigationTabItem,

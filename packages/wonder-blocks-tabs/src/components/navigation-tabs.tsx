@@ -19,8 +19,12 @@ const StyledUl = addStyle("ul");
  * components. If the tabs should not be links, see the `Tabs` component,
  * which implements different semantics and keyboard interactions.
  *
- * Example:
- * ```
+ * ## Usage
+ *
+ * ```jsx
+ * import {NavigationTab, NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
+ * import Link from "@khanacademy/wonder-blocks-link";
+ *
  * <NavigationTabs>
  *  <NavigationTabItem>
  *    <Link href="/link-1">Link 1</Link>

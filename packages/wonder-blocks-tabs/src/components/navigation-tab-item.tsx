@@ -17,8 +17,12 @@ const StyledLi = addStyle("li");
  * A component for a tab item in NavigationTabs. It is used with a Link
  * component.
  *
- * Example:
- * ```
+ * ## Usage
+ *
+ * ```jsx
+ * import {NavigationTab, NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
+ * import Link from "@khanacademy/wonder-blocks-link";
+ *
  * <NavigationTabs>
  *  <NavigationTabItem>
  *    <Link href="/link-1">Link 1</Link>
