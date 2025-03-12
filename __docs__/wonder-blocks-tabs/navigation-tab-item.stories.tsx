@@ -8,6 +8,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import argTypes from "./navigation-tab-item.argtypes";
 
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem",
@@ -30,6 +31,7 @@ export default {
             },
         },
     },
+    argTypes,
 } as Meta<typeof NavigationTabItem>;
 
 type StoryComponentType = StoryObj<typeof NavigationTabItem>;

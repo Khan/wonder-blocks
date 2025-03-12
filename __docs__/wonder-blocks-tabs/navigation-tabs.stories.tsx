@@ -7,6 +7,7 @@ import {
     NavigationTabs,
 } from "@khanacademy/wonder-blocks-tabs";
 import Link from "@khanacademy/wonder-blocks-link";
+import argTypes from "./navigation-tabs.argtypes";
 
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs",
@@ -20,6 +21,7 @@ export default {
             />
         ),
     },
+    argTypes,
 } as Meta<typeof NavigationTabs>;
 
 type StoryComponentType = StoryObj<typeof NavigationTabs>;
