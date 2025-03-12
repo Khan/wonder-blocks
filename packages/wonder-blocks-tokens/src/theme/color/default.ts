@@ -7,7 +7,7 @@ const border = {
     inverse: color.white,
 };
 
-export default {
+export const semanticColor = {
     /**
      * For buttons, links, and controls to communicate the presence and meaning
      * of interaction.
@@ -161,7 +161,7 @@ export default {
      * Default icon colors that change in context (like actions).
      */
     icon: {
-        primary: color.fadedOffBlack64,
+        primary: color.fadedOffBlack72,
         secondary: color.offBlack,
         inverse: color.white,
         action: color.blue,
