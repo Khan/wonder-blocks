@@ -215,7 +215,7 @@ const AllFields = (
             style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: spacing.large_24,
+                gap: sizing.size_300,
             }}
         >
             <LabeledField
@@ -467,7 +467,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const longTextWithNoBreak =
         "LoremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaUtenimadminimveniamquisnostrudexercitationullamcolaborisnisiutaliquipexeacommodoconsequatDuisauteiruredolorinreprehenderitinvoluptatevelitessecillumdoloreeufugiatnullapariatur";
     return (
-        <View style={{gap: spacing.large_24}}>
+        <View style={{gap: sizing.size_300}}>
             <HeadingLarge>Scenarios</HeadingLarge>
             <LabeledField
                 {...args}
