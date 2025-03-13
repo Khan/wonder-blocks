@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -143,7 +142,13 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelMedium
-                    style={[styles.textWordBreak, styles.label]}
+                    style={[
+                        styles.textWordBreak,
+                        styles.label,
+                        description
+                            ? styles.labelWithDescription
+                            : styles.labelWithNoDescription,
+                    ]}
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
@@ -152,7 +157,6 @@ export default function LabeledField(props: Props) {
                     {label}
                     {isRequired && requiredIcon}
                 </LabelMedium>
-                <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
     }
@@ -171,7 +175,6 @@ export default function LabeledField(props: Props) {
                 >
                     {description}
                 </LabelSmall>
-                <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
     }
@@ -242,7 +245,6 @@ export default function LabeledField(props: Props) {
         <View style={style}>
             {renderLabel()}
             {maybeRenderDescription()}
-            <Strut size={spacing.xSmall_8} />
             {renderField()}
             {maybeRenderError()}
         </View>
@@ -253,8 +255,15 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.text.primary,
     },
+    labelWithDescription: {
+        paddingBottom: spacing.xxxSmall_4,
+    },
+    labelWithNoDescription: {
+        paddingBottom: spacing.small_12,
+    },
     description: {
         color: semanticColor.text.secondary,
+        paddingBottom: spacing.small_12,
     },
     errorSection: {
         flexDirection: "row",
