@@ -15,7 +15,7 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "peerDependencies": {
-    "react": "18.2.0"
+    "react": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
