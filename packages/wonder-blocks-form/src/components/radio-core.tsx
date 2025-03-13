@@ -112,14 +112,14 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         // Resting state (unchecked)
         unchecked: {
             border: semanticColor.border.strong,
-            background: colorAction.default.background,
+            background: semanticColor.surface.primary,
         },
         checked: {
             // NOTE: This is a special case where the border is the same color
             // as the foreground. This should change as soon as we simplify the
             // existing `action` tokens.
             border: colorAction.default.foreground,
-            background: colorAction.default.background,
+            background: semanticColor.surface.primary,
         },
         // Form validation error state
         error: {

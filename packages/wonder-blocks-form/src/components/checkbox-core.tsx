@@ -183,7 +183,9 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         // Resting state (shared between checked and unchecked)
         default: {
             border: colorAction.default.border,
-            background: colorAction.default.background,
+            background: isCheckedOrIndeterminate
+                ? colorAction.default.background
+                : semanticColor.surface.primary,
         },
         // Form validation error state
         error: {
