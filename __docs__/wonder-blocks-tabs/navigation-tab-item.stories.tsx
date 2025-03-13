@@ -58,35 +58,41 @@ export const Default: StoryComponentType = {
  * to the Link component. The Link props contains styles and attributes for
  * accessibility like `aria-current`.
  */
-export const ChildrenRenderFunction = () => {
-    return (
-        <View style={{flexDirection: "row", gap: sizing.size_1000}}>
-            <NavigationTabItem current={true}>
-                {(linkProps) => (
-                    <Tooltip content="Tooltip" opened={true}>
-                        <Link href="#link-1" {...linkProps}>
-                            Link with Tooltip
-                        </Link>
-                    </Tooltip>
-                )}
-            </NavigationTabItem>
-            <NavigationTabItem current={true}>
-                {(linkProps) => (
-                    <Popover
-                        content={
-                            <PopoverContent
-                                title="Title"
-                                content="The popover content."
-                            />
-                        }
-                        opened={true}
-                    >
-                        <Link href="#link-1" {...linkProps}>
-                            Link with Popover
-                        </Link>
-                    </Popover>
-                )}
-            </NavigationTabItem>
-        </View>
-    );
+export const ChildrenRenderFunction: StoryComponentType = {
+    render() {
+        return (
+            <View style={{flexDirection: "row", gap: sizing.size_1000}}>
+                <NavigationTabItem current={true}>
+                    {(linkProps) => (
+                        <Tooltip content="Tooltip" opened={true}>
+                            <Link href="#link-1" {...linkProps}>
+                                Link with Tooltip
+                            </Link>
+                        </Tooltip>
+                    )}
+                </NavigationTabItem>
+                <NavigationTabItem current={true}>
+                    {(linkProps) => (
+                        <Popover
+                            content={
+                                <PopoverContent
+                                    title="Title"
+                                    content="The popover content."
+                                />
+                            }
+                            opened={true}
+                        >
+                            <Link href="#link-1" {...linkProps}>
+                                Link with Popover
+                            </Link>
+                        </Popover>
+                    )}
+                </NavigationTabItem>
+            </View>
+        );
+    },
+    parameters: {
+        // Added to ensure that the popover/tooltip is rendered using PopperJS.
+        chromatic: {delay: 1000},
+    },
 };
