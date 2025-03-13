@@ -35,12 +35,11 @@ const baseColorStates = {
         default: {
             ...semanticColor.action.secondary.progressive.default,
             border: "transparent",
-            background: "transparent",
         },
         focus: focusOutline,
         press: {
+            ...semanticColor.action.secondary.progressive.press,
             border: semanticColor.action.secondary.progressive.press.border,
-            background: "transparent",
             foreground:
                 semanticColor.action.secondary.progressive.press.foreground,
         },

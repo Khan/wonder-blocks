@@ -60,12 +60,12 @@ export default {
             progressive: {
                 default: {
                     border: border.strong,
-                    background: color.white,
+                    background: "transparent",
                     foreground: color.blue,
                 },
                 hover: {
                     border: color.blue,
-                    background: color.white,
+                    background: "transparent",
                     foreground: color.blue,
                 },
                 press: {
@@ -96,6 +96,40 @@ export default {
                 border: border.primary,
                 background: color.offWhite,
                 foreground: color.fadedOffBlack32,
+            },
+        },
+
+        tertiary: {
+            progressive: {
+                default: {
+                    background: "transparent",
+                    foreground: color.blue,
+                },
+                hover: {
+                    border: color.blue,
+                },
+                press: {
+                    foreground: color.activeBlue,
+                },
+                disabled: {
+                    foreground: color.fadedOffBlack32,
+                },
+            },
+
+            destructive: {
+                default: {
+                    background: "transparent",
+                    foreground: color.red,
+                },
+                hover: {
+                    border: color.red,
+                },
+                press: {
+                    foreground: color.activeRed,
+                },
+                disabled: {
+                    foreground: color.fadedOffBlack32,
+                },
             },
         },
     },
