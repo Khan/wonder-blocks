@@ -5,6 +5,15 @@ import {NavigationTabs} from "../navigation-tabs";
 import {NavigationTabItem} from "../navigation-tab-item";
 
 describe("NavigationTabs", () => {
+    const children = [
+        <NavigationTabItem key="link-1">
+            <Link href="/link-1">Link 1</Link>
+        </NavigationTabItem>,
+        <NavigationTabItem key="link-2">
+            <Link href="/link-2">Link 2</Link>
+        </NavigationTabItem>,
+    ];
+
     it("should render a navigation element", async () => {
         // Arrange
         render(
@@ -67,6 +76,43 @@ describe("NavigationTabs", () => {
         expect(link2).toBeInTheDocument();
     });
 
+    describe("props", () => {
+        it("should use the id prop for the nav element", async () => {
+            // Arrange
+            const id = "unique-id";
+            render(<NavigationTabs id={id}>{children}</NavigationTabs>);
+
+            // Act
+            const nav = await screen.findByRole("navigation");
+
+            // Assert
+            expect(nav).toHaveAttribute("id", id);
+        });
+
+        it("should use the testId prop for the nav element", async () => {
+            // Arrange
+            const testId = "test-id";
+            render(<NavigationTabs testId={testId}>{children}</NavigationTabs>);
+
+            // Act
+            const nav = await screen.findByRole("navigation");
+
+            // Assert
+            expect(nav).toHaveAttribute("data-testid", testId);
+        });
+
+        it("should forward the ref to the nav element", async () => {
+            // Arrange
+            const ref = React.createRef<HTMLElement>();
+
+            // Act
+            render(<NavigationTabs ref={ref}>{children}</NavigationTabs>);
+
+            // Assert
+            expect(await screen.findByRole("navigation")).toBe(ref.current);
+        });
+    });
+
     describe("a11y", () => {
         describe("axe", () => {
             it("should have no a11y violations", async () => {
@@ -85,6 +131,62 @@ describe("NavigationTabs", () => {
 
                 // Assert
                 await expect(container).toHaveNoA11yViolations();
+            });
+        });
+
+        describe("ARIA", () => {
+            it("should set aria props on the navigation element", async () => {
+                // Arrange
+                const ariaDescribedBy = "aria-describedby-value";
+                render(
+                    <NavigationTabs aria-describedby={ariaDescribedBy}>
+                        {children}
+                    </NavigationTabs>,
+                );
+
+                // Act
+                const nav = await screen.findByRole("navigation");
+
+                // Assert
+                expect(nav).toHaveAttribute(
+                    "aria-describedby",
+                    ariaDescribedBy,
+                );
+            });
+
+            it("should set aria-label on the navigation element", async () => {
+                // Arrange
+                const ariaLabel = "Secondary navigation";
+                render(
+                    <NavigationTabs aria-label={ariaLabel}>
+                        {children}
+                    </NavigationTabs>,
+                );
+
+                // Act
+                const nav = await screen.findByRole("navigation");
+
+                // Assert
+                expect(nav).toHaveAttribute("aria-label", ariaLabel);
+            });
+
+            it("should set aria-labelledby on the navigation element", async () => {
+                // Arrange
+                const ariaLabelledBy = "label-id";
+                render(
+                    <>
+                        <div id="label-id">Label for navigation tabs</div>
+                        <NavigationTabs aria-labelledby={ariaLabelledBy}>
+                            {children}
+                        </NavigationTabs>
+                    </>,
+                );
+
+                // Act
+                const nav = await screen.findByRole("navigation");
+
+                // Assert
+                expect(nav).toHaveAttribute("aria-labelledby", ariaLabelledBy);
             });
         });
     });

@@ -15,10 +15,11 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 const rows = [
-    {name: "Default", props: {}},
+    {name: "Default", props: {"aria-label": "Default navigation tabs"}},
     {
         name: "Link Capabilities",
         props: {
+            "aria-label": "Navigation tabs with link capabilities",
             children: [
                 <NavigationTabItem>
                     <Link href="https://khanacademy.org" target="_blank">
