@@ -48,4 +48,16 @@ export default {
             type: "null",
         },
     },
+    styles: {
+        table: {
+            type: {
+                summary:
+                    "{ label?: StyleType; description?: StyleType; error?: StyleType }",
+            },
+            category: "Visual style",
+        },
+        control: {
+            type: "null",
+        },
+    },
 };
