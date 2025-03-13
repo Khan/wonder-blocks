@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -256,21 +256,21 @@ const styles = StyleSheet.create({
         color: semanticColor.text.primary,
     },
     labelWithDescription: {
-        paddingBottom: spacing.xxxSmall_4,
+        paddingBottom: sizing.size_050,
     },
     labelWithNoDescription: {
-        paddingBottom: spacing.small_12,
+        paddingBottom: sizing.size_150,
     },
     description: {
         color: semanticColor.text.secondary,
-        paddingBottom: spacing.small_12,
+        paddingBottom: sizing.size_150,
     },
     errorSection: {
         flexDirection: "row",
-        gap: spacing.xSmall_8,
+        gap: sizing.size_100,
     },
     errorSectionWithContent: {
-        paddingTop: spacing.small_12,
+        paddingTop: sizing.size_150,
     },
     error: {
         color: semanticColor.status.critical.foreground,
