@@ -54,9 +54,18 @@ type Props = {
      */
     errorMessage?: React.ReactNode;
     /**
-     * Custom styles for the labeled field container.
+     * Custom styles for the root of labeled field container.
      */
     style?: StyleType;
+    /**
+     * Custom styles for the elements of LabeledField. Useful if there are
+     * specific cases where spacing between elements needs to be customized.
+     */
+    styles?: {
+        label?: StyleType;
+        description?: StyleType;
+        error?: StyleType;
+    };
     /**
      * A unique id to use as the base of the ids for the elements within the component.
      * Here is how the id is used for the different elements in the component:
@@ -109,6 +118,7 @@ export default function LabeledField(props: Props) {
     const {
         field,
         style,
+        styles: stylesProp,
         label,
         id,
         required,
@@ -148,6 +158,7 @@ export default function LabeledField(props: Props) {
                         description
                             ? styles.labelWithDescription
                             : styles.labelWithNoDescription,
+                        stylesProp?.label,
                     ]}
                     tag="label"
                     htmlFor={fieldId}
@@ -169,7 +180,11 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelSmall
-                    style={[styles.textWordBreak, styles.description]}
+                    style={[
+                        styles.textWordBreak,
+                        styles.description,
+                        stylesProp?.description,
+                    ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
                 >
@@ -188,6 +203,7 @@ export default function LabeledField(props: Props) {
                         errorMessage
                             ? styles.errorSectionWithContent
                             : undefined,
+                        stylesProp?.error,
                     ]}
                     id={errorId}
                     testId={testId && `${testId}-error`}
