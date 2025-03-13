@@ -3,8 +3,7 @@ import {StyleSheet} from "aphrodite";
 import WarningCircle from "@phosphor-icons/core/bold/warning-circle-bold.svg";
 
 import {View, addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 
@@ -59,6 +58,15 @@ type Props = {
      */
     style?: StyleType;
     /**
+     * Custom styles for the elements of LabeledField. Useful if there are
+     * specific cases where spacing between elements needs to be customized.
+     */
+    styles?: {
+        label?: StyleType;
+        description?: StyleType;
+        error?: StyleType;
+    };
+    /**
      * A unique id to use as the base of the ids for the elements within the component.
      * Here is how the id is used for the different elements in the component:
      * - The label will have an id formatted as `${id}-label`
@@ -110,6 +118,7 @@ export default function LabeledField(props: Props) {
     const {
         field,
         style,
+        styles: stylesProp,
         label,
         id,
         required,
@@ -143,7 +152,14 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelMedium
-                    style={[styles.textWordBreak, styles.label]}
+                    style={[
+                        styles.textWordBreak,
+                        styles.label,
+                        description
+                            ? styles.labelWithDescription
+                            : styles.labelWithNoDescription,
+                        stylesProp?.label,
+                    ]}
                     tag="label"
                     htmlFor={fieldId}
                     testId={testId && `${testId}-label`}
@@ -152,7 +168,6 @@ export default function LabeledField(props: Props) {
                     {label}
                     {isRequired && requiredIcon}
                 </LabelMedium>
-                <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
     }
@@ -165,13 +180,16 @@ export default function LabeledField(props: Props) {
         return (
             <React.Fragment>
                 <LabelSmall
-                    style={[styles.textWordBreak, styles.description]}
+                    style={[
+                        styles.textWordBreak,
+                        styles.description,
+                        stylesProp?.description,
+                    ]}
                     testId={testId && `${testId}-description`}
                     id={descriptionId}
                 >
                     {description}
                 </LabelSmall>
-                <Strut size={spacing.xxxSmall_4} />
             </React.Fragment>
         );
     }
@@ -185,6 +203,7 @@ export default function LabeledField(props: Props) {
                         errorMessage
                             ? styles.errorSectionWithContent
                             : undefined,
+                        stylesProp?.error,
                     ]}
                     id={errorId}
                     testId={testId && `${testId}-error`}
@@ -242,7 +261,6 @@ export default function LabeledField(props: Props) {
         <View style={style}>
             {renderLabel()}
             {maybeRenderDescription()}
-            <Strut size={spacing.xSmall_8} />
             {renderField()}
             {maybeRenderError()}
         </View>
@@ -253,15 +271,22 @@ const styles = StyleSheet.create({
     label: {
         color: semanticColor.text.primary,
     },
+    labelWithDescription: {
+        paddingBlockEnd: sizing.size_050,
+    },
+    labelWithNoDescription: {
+        paddingBlockEnd: sizing.size_150,
+    },
     description: {
         color: semanticColor.text.secondary,
+        paddingBlockEnd: sizing.size_150,
     },
     errorSection: {
         flexDirection: "row",
-        gap: spacing.xSmall_8,
+        gap: sizing.size_100,
     },
     errorSectionWithContent: {
-        paddingTop: spacing.small_12,
+        paddingBlockStart: sizing.size_150,
     },
     error: {
         color: semanticColor.status.critical.foreground,
