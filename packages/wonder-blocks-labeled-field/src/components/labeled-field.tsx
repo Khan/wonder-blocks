@@ -54,7 +54,7 @@ type Props = {
      */
     errorMessage?: React.ReactNode;
     /**
-     * Custom styles for the root of labeled field container.
+     * Custom styles for the labeled field container.
      */
     style?: StyleType;
     /**
