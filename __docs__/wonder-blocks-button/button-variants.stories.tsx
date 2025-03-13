@@ -10,8 +10,6 @@ import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import {allModes} from "../../.storybook/modes";
-
 /**
  * The following stories are used to generate the pseudo states for the
  * Button component. This is only used for visual testing in Chromatic.
@@ -163,14 +161,6 @@ const AllVariants = () => (
 
 export const Default: StoryComponentType = {
     render: AllVariants,
-    parameters: {
-        chromatic: {
-            modes: {
-                default: allModes.default,
-                thunderblocks: allModes.thunderblocks,
-            },
-        },
-    },
 };
 
 export const Hover: StoryComponentType = {
