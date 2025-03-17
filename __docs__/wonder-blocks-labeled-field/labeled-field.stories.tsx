@@ -613,7 +613,7 @@ export const Custom = {
 
 /**
  * Custom styles can be set for the elements in LabeledField using the `styles`
- * prop. If you need to set styles on the root element, use the `style` prop.
+ * prop.
  *
  * It is useful for specific cases where spacing between elements needs to be
  * customized. If there is a specific use case where the styling needs to be
@@ -627,14 +627,17 @@ export const CustomStyles = {
         errorMessage: "Message about the error",
         required: "Custom required message",
         styles: {
+            root: {
+                padding: sizing.size_100,
+            },
             label: {
-                paddingBottom: sizing.size_025,
+                paddingBlockEnd: sizing.size_025,
             },
             description: {
-                paddingBottom: sizing.size_025,
+                paddingBlockEnd: sizing.size_025,
             },
             error: {
-                paddingTop: sizing.size_025,
+                paddingBlockStart: sizing.size_025,
             },
         },
     },

@@ -54,14 +54,11 @@ type Props = {
      */
     errorMessage?: React.ReactNode;
     /**
-     * Custom styles for the labeled field container.
-     */
-    style?: StyleType;
-    /**
      * Custom styles for the elements of LabeledField. Useful if there are
      * specific cases where spacing between elements needs to be customized.
      */
     styles?: {
+        root?: StyleType;
         label?: StyleType;
         description?: StyleType;
         error?: StyleType;
@@ -117,7 +114,6 @@ const StyledSpan = addStyle("span");
 export default function LabeledField(props: Props) {
     const {
         field,
-        style,
         styles: stylesProp,
         label,
         id,
@@ -258,7 +254,7 @@ export default function LabeledField(props: Props) {
     }
 
     return (
-        <View style={style}>
+        <View style={stylesProp?.root}>
             {renderLabel()}
             {maybeRenderDescription()}
             {renderField()}
