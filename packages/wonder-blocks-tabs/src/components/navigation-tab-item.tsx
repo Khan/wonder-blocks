@@ -71,7 +71,11 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
 
     function renderChildren() {
         const linkProps: NavigationTabItemLinkProps = {
-            style: [typographyStyles.Body, styles.link],
+            style: [
+                typographyStyles.Body,
+                styles.link,
+                current && styles.currentLink,
+            ],
             "aria-current": current ? "page" : undefined,
         };
 
@@ -86,7 +90,7 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
         <StyledLi
             id={id}
             data-testid={testId}
-            style={[styles.root, style]}
+            style={[styles.root, current && styles.current, style]}
             ref={ref}
             {...otherProps}
         >
@@ -103,6 +107,14 @@ const styles = StyleSheet.create({
             boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.primary.progressive.hover.border}`,
         },
         paddingBlock: sizing.size_150,
+    },
+    current: {
+        // TODO update semantic color
+        boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.primary.progressive.hover.border}`,
+    },
+    currentLink: {
+        // TODO update semantic color
+        color: semanticColor.action.primary.progressive.hover.border,
     },
     link: {
         color: semanticColor.text.primary,

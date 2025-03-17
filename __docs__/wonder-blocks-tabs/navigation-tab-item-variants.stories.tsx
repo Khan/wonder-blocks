@@ -84,6 +84,10 @@ const columns = [
         name: "Default",
         props: {},
     },
+    {
+        name: "Current",
+        props: {current: true},
+    },
 ];
 
 type Story = StoryObj<typeof NavigationTabItem>;
