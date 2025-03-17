@@ -16,18 +16,18 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.24.5",
+    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
   "peerDependencies": {
-    "@phosphor-icons/core": "^2.0.2",
-    "aphrodite": "^1.2.5",
-    "react": "18.2.0",
-    "react-router": "5.3.4",
-    "react-router-dom": "5.3.4"
+    "@phosphor-icons/core": "catalog:",
+    "aphrodite": "catalog:",
+    "react": "catalog:",
+    "react-router": "catalog:",
+    "react-router-dom": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"
