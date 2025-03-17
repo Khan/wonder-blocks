@@ -68,6 +68,7 @@ declare module "aphrodite" {
         "::placeholder"?: _CSSProperties;
         ":active"?: _CSSProperties;
         ":after"?: _CSSProperties;
+        ":before"?: _CSSProperties;
         ":first-child"?: _CSSProperties;
         ":focus-visible"?: _CSSProperties;
         ":focus:not(:focus-visible)"?: _CSSProperties;
