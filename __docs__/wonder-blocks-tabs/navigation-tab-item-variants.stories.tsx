@@ -146,5 +146,6 @@ export const Press: Story = {
 const styles = StyleSheet.create({
     container: {
         gap: sizing.size_200,
+        alignItems: "flex-start",
     },
 });

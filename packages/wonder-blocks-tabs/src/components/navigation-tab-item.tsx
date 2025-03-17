@@ -95,35 +95,21 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
     );
 });
 
-const underlineStyles: CSSProperties = {
-    content: '""',
-    display: "block",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: sizing.size_050,
-};
-
 const styles = StyleSheet.create({
     root: {
         listStyle: "none",
         display: "inline-flex",
+        [":has(a:hover)" as any]: {
+            boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.primary.progressive.hover.border}`,
+        },
+        paddingBlock: sizing.size_150,
     },
     link: {
         color: semanticColor.text.primary,
-        paddingBlock: sizing.size_150,
         paddingInline: 0,
         position: "relative",
         ":hover": {
             textDecoration: "none",
-            [":after" as any]: {
-                // We use :after to apply underline styles instead of textDecoration
-                // so the underline is shown under icons in Link too
-                ...underlineStyles,
-                backgroundColor:
-                    semanticColor.action.primary.progressive.hover.border,
-            },
         },
     },
 });
