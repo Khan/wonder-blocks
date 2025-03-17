@@ -33,6 +33,12 @@ type Props = AriaProps & {
      * styling and aria-current=page will be applied to the Link.
      */
     current?: boolean;
+    /**
+     * Custom styles for overriding default styles. For custom link styling,
+     * prefer applying the styles to the `Link` component. Note: The
+     * `NavigationTabItem` will also set styles to the `Link` child component.
+     */
+    style?: StyleType;
 };
 
 const StyledLi = addStyle("li");
@@ -61,7 +67,7 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
     props: Props,
     ref: React.ForwardedRef<HTMLLIElement>,
 ) {
-    const {children, id, testId, current, ...otherProps} = props;
+    const {children, id, testId, current, style, ...otherProps} = props;
 
     function renderChildren() {
         const linkProps: NavigationTabItemLinkProps = {
@@ -80,7 +86,7 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
         <StyledLi
             id={id}
             data-testid={testId}
-            style={styles.root}
+            style={[styles.root, style]}
             ref={ref}
             {...otherProps}
         >

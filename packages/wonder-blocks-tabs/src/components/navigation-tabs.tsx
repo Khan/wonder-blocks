@@ -1,4 +1,4 @@
-import {addStyle, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
@@ -32,8 +32,16 @@ type Props = AriaProps & {
      * tabs.
      */
     "aria-labelledby"?: string;
+    /**
+     * Custom styles for the elements in NavigationTabs.
+     */
+    styles?: {
+        root?: StyleType;
+        list?: StyleType;
+    };
 };
 
+const StyledNav = addStyle("nav");
 const StyledUl = addStyle("ul");
 
 /**
@@ -69,19 +77,23 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
         children,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
+        styles: stylesProp,
         ...otherProps
     } = props;
     return (
-        <nav
+        <StyledNav
             id={id}
             data-testid={testId}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
             ref={ref}
+            style={stylesProp?.root}
             {...otherProps}
         >
-            <StyledUl style={styles.list}>{children}</StyledUl>
-        </nav>
+            <StyledUl style={[styles.list, stylesProp?.list]}>
+                {children}
+            </StyledUl>
+        </StyledNav>
     );
 });
 

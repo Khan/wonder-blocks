@@ -108,3 +108,22 @@ export const ChildrenRenderFunction: StoryComponentType = {
         chromatic: {delay: 500},
     },
 };
+
+/**
+ * Custom styles can be set for the NavigationTabItem.
+ *
+ * For custom link styling, prefer applying the styles to the `Link` component.
+ * Note: The `NavigationTabItem` will also set styles to the `Link` child
+ * component.
+ *
+ * If there is a specific use case where the styling needs to be
+ * overridden, please reach out to the Wonder Blocks team!
+ */
+export const CustomStyle: StoryComponentType = {
+    args: {
+        children: <Link href="#link">Navigation tab item</Link>,
+        style: {
+            padding: sizing.size_100,
+        },
+    },
+};
