@@ -37,22 +37,11 @@ export default {
     /**
      * Visual Style
      */
-    style: {
-        table: {
-            type: {
-                summary: "StyleType",
-            },
-            category: "Visual style",
-        },
-        control: {
-            type: "null",
-        },
-    },
     styles: {
         table: {
             type: {
                 summary:
-                    "{ label?: StyleType; description?: StyleType; error?: StyleType }",
+                    "{ root?: StyleType; label?: StyleType; description?: StyleType; error?: StyleType }",
             },
             category: "Visual style",
         },
