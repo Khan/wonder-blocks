@@ -28,7 +28,7 @@ export default {
 type StoryComponentType = StoryObj<typeof NavigationTabs>;
 
 const navigationTabItems = [
-    <NavigationTabItem>
+    <NavigationTabItem current={true}>
         <Link href="#link-1">Navigation tab item 1</Link>
     </NavigationTabItem>,
     <NavigationTabItem>

@@ -21,7 +21,7 @@ const generateRows = (rtl: boolean = false) => [
         props: {
             "aria-label": "Default navigation tabs",
             children: [
-                <NavigationTabItem>
+                <NavigationTabItem current={true}>
                     <Link href="#link1">
                         {rtl ? rtlText : "Navigation Tab Item 1"}
                     </Link>
@@ -80,7 +80,7 @@ const generateRows = (rtl: boolean = false) => [
                         {rtl ? rtlText : "End Icon"}
                     </Link>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem current={true}>
                     <Link
                         href="#link4"
                         startIcon={
