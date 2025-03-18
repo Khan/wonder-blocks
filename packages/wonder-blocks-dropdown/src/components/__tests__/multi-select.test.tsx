@@ -46,8 +46,6 @@ jest.mock("@khanacademy/wonder-blocks-announcer", () => {
     };
 });
 
-jest.useFakeTimers();
-
 describe("MultiSelect", () => {
     beforeEach(() => {
         window.scrollTo = jest.fn();
