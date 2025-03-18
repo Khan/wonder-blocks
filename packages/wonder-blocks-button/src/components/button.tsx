@@ -230,8 +230,6 @@ const Button: React.ForwardRefExoticComponent<
         ...sharedButtonCoreProps
     } = props;
     const isInRouter = useInRouterContext();
-    console.log("isInRouter: ", isInRouter);
-
     const renderClickableBehavior = (): React.ReactNode => {
         const ClickableBehavior = getClickableBehavior(
             href,
