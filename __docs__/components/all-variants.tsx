@@ -5,7 +5,9 @@ import {StyleSheet} from "aphrodite";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
     border,
+    breakpoint,
     semanticColor,
+    sizing,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 
@@ -14,6 +16,7 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 const StyledTable = addStyle("table");
 const StyledTh = addStyle("th");
 const StyledTd = addStyle("td");
+const StyledUl = addStyle("ul");
 
 type Variant = {name: string; props: StrictArgs};
 
@@ -38,45 +41,74 @@ type Props = {
  */
 export function AllVariants({children, columns, rows}: Props) {
     return (
-        <StyledTable style={styles.table}>
-            <thead>
-                <tr>
-                    <StyledTh style={styles.cell}>
-                        <LabelLarge>Category / State</LabelLarge>
-                    </StyledTh>
-                    {columns.map((col, index) => (
-                        <StyledTh key={index} scope="col" style={styles.cell}>
-                            <LabelLarge>{col.name}</LabelLarge>
+        <>
+            <StyledTable style={styles.table}>
+                <thead>
+                    <tr>
+                        <StyledTh style={styles.cell}>
+                            <LabelLarge>Category / State</LabelLarge>
                         </StyledTh>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {rows.map((row, idx) => (
-                    <tr key={idx}>
-                        <StyledTh scope="row" style={styles.cell}>
-                            <LabelLarge>{row.name}</LabelLarge>
-                        </StyledTh>
-                        {columns.map((col) => (
-                            <StyledTd
-                                key={col.name}
-                                style={[
-                                    styles.cell,
-                                    {
-                                        border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
-                                    },
-                                ]}
+                        {columns.map((col, index) => (
+                            <StyledTh
+                                key={index}
+                                scope="col"
+                                style={styles.cell}
                             >
-                                {children({
-                                    ...row.props,
-                                    ...col.props,
-                                })}
-                            </StyledTd>
+                                <LabelLarge>{col.name}</LabelLarge>
+                            </StyledTh>
                         ))}
                     </tr>
-                ))}
-            </tbody>
-        </StyledTable>
+                </thead>
+                <tbody>
+                    {rows.map((row, idx) => (
+                        <tr key={idx}>
+                            <StyledTh scope="row" style={styles.cell}>
+                                <LabelLarge>{row.name}</LabelLarge>
+                            </StyledTh>
+                            {columns.map((col) => (
+                                <StyledTd
+                                    key={col.name}
+                                    style={[
+                                        styles.cell,
+                                        {
+                                            border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
+                                        },
+                                    ]}
+                                >
+                                    {children({
+                                        ...row.props,
+                                        ...col.props,
+                                    })}
+                                </StyledTd>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </StyledTable>
+            <StyledUl style={styles.list}>
+                {rows.map((row) => {
+                    return columns.map((column) => {
+                        return (
+                            <div>
+                                <LabelLarge>
+                                    Column: {column.name}, Row: {row.name}
+                                </LabelLarge>
+
+                                <div
+                                    style={{
+                                        padding: sizing.size_100,
+                                        marginBlock: sizing.size_100,
+                                        border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
+                                    }}
+                                >
+                                    {children({...column.props, ...row.props})}
+                                </div>
+                            </div>
+                        );
+                    });
+                })}
+            </StyledUl>
+        </>
     );
 }
 
@@ -84,6 +116,16 @@ const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
         textAlign: "left",
+        [breakpoint.mediaQuery.smOrSmaller]: {
+            display: "none",
+        },
+    },
+    list: {
+        margin: 0,
+        padding: 0,
+        [breakpoint.mediaQuery.mdOrLarger]: {
+            display: "none",
+        },
     },
     cell: {
         margin: spacing.medium_16,
