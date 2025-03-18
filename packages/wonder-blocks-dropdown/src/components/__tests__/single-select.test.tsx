@@ -13,7 +13,7 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
-import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
+
 import OptionItem from "../option-item";
 import SingleSelect from "../single-select";
 import type {SingleSelectLabelsValues} from "../single-select";
@@ -27,6 +27,12 @@ const doRender = (element: React.ReactElement) => {
         }),
     };
 };
+
+jest.mock("@khanacademy/wonder-blocks-announcer", () => {
+    return {
+        announceMessage: jest.fn(),
+    };
+});
 
 jest.mock("react-popper", () => ({
     ...jest.requireActual("react-popper"),
@@ -1206,9 +1212,18 @@ describe("SingleSelect", () => {
     });
 
     describe("a11y > Live region", () => {
-        beforeEach(() => {
-            initAnnouncer({debounceThreshold: 0});
+        let announceMessageSpy: any;
+        beforeAll(() => {
+            announceMessageSpy = jest.spyOn(
+                require("@khanacademy/wonder-blocks-announcer"),
+                "announceMessage",
+            );
         });
+
+        afterAll(() => {
+            announceMessageSpy.mockRestore();
+        });
+
         it("should change the number of options after using the search filter", async () => {
             // Arrange
             const {userEvent} = doRender(
@@ -1227,15 +1242,11 @@ describe("SingleSelect", () => {
             // Act
             // NOTE: We search using the lowercased version of the label.
             await userEvent.type(await screen.findByRole("textbox"), "item 0");
-            jest.advanceTimersByTime(10);
 
             // Assert
-            const liveRegion = screen.getByTestId("wbAnnounce");
-            const announcementText =
-                await within(liveRegion).findByText("1 item");
-
-            // Assert
-            expect(announcementText).toBeInTheDocument();
+            await expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "1 item",
+            });
         });
     });
 

@@ -15,7 +15,6 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
-import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
 import {defaultLabels as builtinLabels} from "../../util/constants";
@@ -40,6 +39,12 @@ const defaultLabels: LabelsValues = {
         numSelectedValues > 1 ? `${numSelectedValues} students` : "1 student",
     allSelected: "All students",
 };
+
+jest.mock("@khanacademy/wonder-blocks-announcer", () => {
+    return {
+        announceMessage: jest.fn(),
+    };
+});
 
 jest.useFakeTimers();
 
@@ -1668,8 +1673,17 @@ describe("MultiSelect", () => {
     });
 
     describe("a11y > Live region", () => {
-        beforeEach(() => {
-            initAnnouncer({debounceThreshold: 0});
+        let announceMessageSpy: any;
+
+        beforeAll(() => {
+            announceMessageSpy = jest.spyOn(
+                require("@khanacademy/wonder-blocks-announcer"),
+                "announceMessage",
+            );
+        });
+
+        afterAll(() => {
+            announceMessageSpy.mockRestore();
         });
 
         it("should announce the number of options when the listbox is open", async () => {
@@ -1691,17 +1705,13 @@ describe("MultiSelect", () => {
             );
             const opener = await screen.findByRole("combobox");
 
-            jest.advanceTimersByTime(10);
-
             // Act
             await userEvent.click(opener);
 
-            const announcer = screen.getByTestId("wbAnnounce");
-            const announcementText =
-                await within(announcer).findByText("3 schools");
-
             // Assert
-            expect(announcementText).toBeInTheDocument();
+            await expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "3 schools",
+            });
         });
 
         it("should change the number of options after using the search filter", async () => {
@@ -1734,15 +1744,9 @@ describe("MultiSelect", () => {
             await userEvent.click(textbox);
             await userEvent.paste("ear");
 
-            // wait to avoid getting caught in the Announcer debounce
-            jest.advanceTimersByTime(250);
-
-            const announcer = await screen.findByTestId("wbAnnounce");
-            const announcementText =
-                await within(announcer).findByText("1 planet");
             // Assert
-            await waitFor(() => {
-                expect(announcementText).toBeInTheDocument();
+            await expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "1 planet",
             });
         });
     });
