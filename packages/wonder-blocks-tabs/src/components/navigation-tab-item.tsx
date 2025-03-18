@@ -1,8 +1,12 @@
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {CSSProperties, StyleSheet} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    breakpoint,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 type NavigationTabItemLinkProps = {style: StyleType; "aria-current"?: "page"};
 
@@ -109,7 +113,12 @@ const styles = StyleSheet.create({
         [":has(a:active)" as any]: {
             boxShadow: `inset 0 -${sizing.size_075} 0 0 ${semanticColor.action.primary.progressive.press.border}`,
         },
-        paddingBlock: sizing.size_150,
+        paddingBlockStart: sizing.size_100,
+        paddingBlockEnd: sizing.size_225,
+        [breakpoint.mediaQuery.mdOrLarger]: {
+            paddingBlockStart: sizing.size_250,
+            paddingBlockEnd: sizing.size_300,
+        },
     },
     current: {
         // TODO update semantic color
