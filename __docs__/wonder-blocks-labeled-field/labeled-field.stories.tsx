@@ -6,7 +6,7 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {TextArea, TextField} from "@khanacademy/wonder-blocks-form";
 import LabeledFieldArgTypes from "./labeled-field.argtypes";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {sizing, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     MultiSelect,
     OptionItem,
@@ -215,7 +215,7 @@ const AllFields = (
             style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: spacing.large_24,
+                gap: sizing.size_300,
             }}
         >
             <LabeledField
@@ -467,7 +467,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const longTextWithNoBreak =
         "LoremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaUtenimadminimveniamquisnostrudexercitationullamcolaborisnisiutaliquipexeacommodoconsequatDuisauteiruredolorinreprehenderitinvoluptatevelitessecillumdoloreeufugiatnullapariatur";
     return (
-        <View style={{gap: spacing.large_24}}>
+        <View style={{gap: sizing.size_300}}>
             <HeadingLarge>Scenarios</HeadingLarge>
             <LabeledField
                 {...args}
@@ -608,5 +608,37 @@ export const Custom = {
                 <b>Error</b> <i>using</i> <u>JSX</u>
             </span>
         ),
+    },
+};
+
+/**
+ * Custom styles can be set for the elements in LabeledField using the `styles`
+ * prop.
+ *
+ * It is useful for specific cases where spacing between elements needs to be
+ * customized. If there is a specific use case where the styling needs to be
+ * overridden, please reach out to the Wonder Blocks team!
+ */
+export const CustomStyles = {
+    args: {
+        field: <TextField value="" onChange={() => {}} />,
+        label: "Name",
+        description: "Helpful description text.",
+        errorMessage: "Message about the error",
+        required: "Custom required message",
+        styles: {
+            root: {
+                padding: sizing.size_100,
+            },
+            label: {
+                paddingBlockEnd: sizing.size_025,
+            },
+            description: {
+                paddingBlockEnd: sizing.size_025,
+            },
+            error: {
+                paddingBlockStart: sizing.size_025,
+            },
+        },
     },
 };
