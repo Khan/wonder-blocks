@@ -26,11 +26,7 @@ import type {
     OpenerProps,
     OptionItemComponentArray,
 } from "../util/types";
-import {
-    getLabel,
-    getSelectOpenerLabel,
-    maybeExtractStringFromNode,
-} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type SingleSelectLabelsValues = {
@@ -479,14 +475,10 @@ const SingleSelect = (props: Props) => {
 
         let menuContent;
         if (selectedItem) {
-            const menuStringOrNode = getSelectOpenerLabel(
+            menuContent = getSelectOpenerLabel(
                 showOpenerLabelAsText,
                 selectedItem.props,
             );
-            // We only need the guaranteed node for SingleSelect here
-            // As the string label for the Announcer is in a useEffect above
-            const [, node] = maybeExtractStringFromNode(menuStringOrNode);
-            menuContent = node;
         } else {
             // If nothing is selected, or if the selectedValue doesn't match any
             // item in the menu, use the placeholder.

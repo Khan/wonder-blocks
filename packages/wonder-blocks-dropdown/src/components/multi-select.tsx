@@ -29,11 +29,7 @@ import type {
     OptionItemComponent,
     OptionItemComponentArray,
 } from "../util/types";
-import {
-    getLabel,
-    getSelectOpenerLabel,
-    maybeExtractStringFromNode,
-} from "../util/helpers";
+import {getLabel, getSelectOpenerLabel} from "../util/helpers";
 import {useSelectValidation} from "../hooks/use-select-validation";
 
 export type LabelsValues = {
@@ -381,7 +377,7 @@ const MultiSelect = (props: Props) => {
 
     const getMenuTextOrNode = (
         children: OptionItemComponentArray,
-    ): string | {[key: string]: string | JSX.Element} => {
+    ): string | JSX.Element => {
         const {noneSelected, someSelected, allSelected} = labels;
         const numSelectedAll = children.filter(
             (option) => !option.props.disabled,
@@ -553,6 +549,24 @@ const MultiSelect = (props: Props) => {
         });
     };
 
+    const maybeGetOpenerStringValue = (
+        children: OptionItemComponentArray,
+        openerContent: string | JSX.Element,
+    ) => {
+        let openerStringValue;
+        if (selectedValues.length === 1) {
+            const selectedItem = children.find(
+                (option) => option.props.value === selectedValues[0],
+            );
+            openerStringValue = selectedItem
+                ? getLabel(selectedItem?.props)
+                : undefined;
+        } else if (typeof openerContent === "string") {
+            openerStringValue = openerContent;
+        }
+        return openerStringValue;
+    };
+
     const renderOpener = (
         allChildren: React.ReactElement<
             React.ComponentProps<typeof OptionItem>
@@ -564,9 +578,11 @@ const MultiSelect = (props: Props) => {
         | React.ReactElement<React.ComponentProps<typeof SelectOpener>> => {
         const {noneSelected} = labels;
 
-        const menuTextOrNode = getMenuTextOrNode(allChildren);
-        const [openerStringValue, openerContent] =
-            maybeExtractStringFromNode(menuTextOrNode);
+        const openerContent = getMenuTextOrNode(allChildren);
+        const openerStringValue = maybeGetOpenerStringValue(
+            allChildren,
+            openerContent,
+        );
 
         if (openerStringValue) {
             // opener value changed, so let's announce it
