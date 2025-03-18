@@ -179,9 +179,25 @@ export const Press: Story = {
 };
 
 export const Zoom: Story = {
-    decorators: (Story) => (
+    render: (args) => (
         <ZoomWrapper>
-            <Story />
+            <AllVariants rows={rows} columns={columns} layout="list">
+                {(props) => (
+                    <View style={styles.container}>
+                        <NavigationTabItem {...args} {...props} />
+                    </View>
+                )}
+            </AllVariants>
+            <div dir="rtl">
+                <HeadingLarge>RTL</HeadingLarge>
+                <AllVariants rows={rtlRows} columns={columns} layout="list">
+                    {(props) => (
+                        <View style={styles.container}>
+                            <NavigationTabItem {...args} {...props} />
+                        </View>
+                    )}
+                </AllVariants>
+            </div>
         </ZoomWrapper>
     ),
 };

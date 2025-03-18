@@ -169,9 +169,24 @@ export const Active: Story = {
 };
 
 export const Zoom: Story = {
-    decorators: (Story) => (
+    render: (args) => (
         <ZoomWrapper>
-            <Story />
+            <AllVariants rows={rows} columns={columns} layout="list">
+                {(props) => (
+                    <View style={styles.container}>
+                        <NavigationTabs {...args} {...props} />
+                    </View>
+                )}
+            </AllVariants>
+            <div dir="rtl">
+                <AllVariants rows={rtlRows} columns={columns} layout="list">
+                    {(props) => (
+                        <View style={styles.container}>
+                            <NavigationTabs {...args} {...props} />
+                        </View>
+                    )}
+                </AllVariants>
+            </div>
         </ZoomWrapper>
     ),
 };

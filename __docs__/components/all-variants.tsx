@@ -34,58 +34,74 @@ type Props = {
      * The states to display in the table as rows.
      */
     columns: Array<Variant>;
+    /**
+     * The layout for AllVariants.
+     * - `responsive`: variants will be displayed in a table at larger screen
+     * sizes and in a list at smaller screen sizes
+     * - `list`: variants will always be displayed in a list
+     */
+    layout?: "responsive" | "list";
 };
 
 /**
  * A table that displays all possible variants of a component.
  */
-export function AllVariants({children, columns, rows}: Props) {
+export function AllVariants(props: Props) {
+    const {children, rows, columns, layout = "responsive"} = props;
+    console.log("layout", layout, props);
     return (
         <>
-            <StyledTable style={styles.table}>
-                <thead>
-                    <tr>
-                        <StyledTh style={styles.cell}>
-                            <LabelLarge>Category / State</LabelLarge>
-                        </StyledTh>
-                        {columns.map((col, index) => (
-                            <StyledTh
-                                key={index}
-                                scope="col"
-                                style={styles.cell}
-                            >
-                                <LabelLarge>{col.name}</LabelLarge>
+            {layout === "responsive" && (
+                <StyledTable style={[styles.table]}>
+                    <thead>
+                        <tr>
+                            <StyledTh style={styles.cell}>
+                                <LabelLarge>Category / State</LabelLarge>
                             </StyledTh>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows.map((row, idx) => (
-                        <tr key={idx}>
-                            <StyledTh scope="row" style={styles.cell}>
-                                <LabelLarge>{row.name}</LabelLarge>
-                            </StyledTh>
-                            {columns.map((col) => (
-                                <StyledTd
-                                    key={col.name}
-                                    style={[
-                                        styles.cell,
-                                        {
-                                            border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
-                                        },
-                                    ]}
+                            {columns.map((col, index) => (
+                                <StyledTh
+                                    key={index}
+                                    scope="col"
+                                    style={styles.cell}
                                 >
-                                    {children({
-                                        ...row.props,
-                                        ...col.props,
-                                    })}
-                                </StyledTd>
+                                    <LabelLarge>{col.name}</LabelLarge>
+                                </StyledTh>
                             ))}
                         </tr>
-                    ))}
-                </tbody>
-            </StyledTable>
-            <StyledUl style={styles.list}>
+                    </thead>
+                    <tbody>
+                        {rows.map((row, idx) => (
+                            <tr key={idx}>
+                                <StyledTh scope="row" style={styles.cell}>
+                                    <LabelLarge>{row.name}</LabelLarge>
+                                </StyledTh>
+                                {columns.map((col) => (
+                                    <StyledTd
+                                        key={col.name}
+                                        style={[
+                                            styles.cell,
+                                            {
+                                                border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
+                                            },
+                                        ]}
+                                    >
+                                        {children({
+                                            ...row.props,
+                                            ...col.props,
+                                        })}
+                                    </StyledTd>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </StyledTable>
+            )}
+            <StyledUl
+                style={[
+                    styles.list,
+                    layout === "responsive" && styles.listResponsive,
+                ]}
+            >
                 {rows.map((row) => {
                     return columns.map((column) => {
                         return (
@@ -123,6 +139,8 @@ const styles = StyleSheet.create({
     list: {
         margin: 0,
         padding: 0,
+    },
+    listResponsive: {
         [breakpoint.mediaQuery.mdOrLarger]: {
             display: "none",
         },
