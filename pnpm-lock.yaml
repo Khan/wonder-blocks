@@ -369,10 +369,6 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
-    devDependencies:
-      '@khanacademy/wb-dev-build-settings':
-        specifier: workspace:*
-        version: link:../../build-settings
 
   packages/wonder-blocks-banner:
     dependencies:
