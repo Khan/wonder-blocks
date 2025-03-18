@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-link
 
+## 8.0.2
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [1d7be37]
+- Updated dependencies [999101f]
+    - @khanacademy/wonder-blocks-clickable@6.1.4
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-icon@5.1.3
+    - @khanacademy/wonder-blocks-tokens@5.1.1
+
 ## 8.0.1
 
 ### Patch Changes

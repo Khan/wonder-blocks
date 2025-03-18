@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 7.0.2
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+
 ## 7.0.1
 
 ### Patch Changes
