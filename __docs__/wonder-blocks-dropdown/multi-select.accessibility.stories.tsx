@@ -1,7 +1,6 @@
 import * as React from "react";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
-// import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -137,14 +136,6 @@ const optionItems = allCountries.map(([code, translatedName]) => (
 ));
 
 const MultiSelectWithVisibleAnnouncer = () => {
-    // React.useEffect(() => {
-    //     // Inject Announcer into the Storybook iframe instead of body
-    //     const storybookRoot = document.getElementById("storybook-docs");
-    //     if (storybookRoot) {
-    //         console.log("announcer init");
-    //         // initAnnouncer({targetNode: storybookRoot});
-    //     }
-    // }, []);
     const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
         [],
     );

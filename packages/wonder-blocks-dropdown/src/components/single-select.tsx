@@ -7,10 +7,7 @@ import {
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
 
-import {
-    initAnnouncer,
-    announceMessage,
-} from "@khanacademy/wonder-blocks-announcer";
+import {announceMessage} from "@khanacademy/wonder-blocks-announcer";
 import DropdownCore from "./dropdown-core";
 import DropdownOpener from "./dropdown-opener";
 import SelectOpener from "./select-opener";
@@ -319,10 +316,6 @@ const SingleSelect = (props: Props) => {
         open,
     });
     const hasError = error || !!errorMessage;
-
-    React.useEffect(() => {
-        initAnnouncer();
-    }, []);
 
     React.useEffect(() => {
         // Used to sync the `opened` state when this component acts as a controlled

@@ -1,7 +1,6 @@
 import * as React from "react";
 import caretDown from "@phosphor-icons/core/regular/caret-down.svg";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-// import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -137,14 +136,6 @@ const optionItems = allCountries.map(([code, translatedName]) => (
 ));
 
 const SingleSelectWithVisibleAnnouncer = () => {
-    // React.useEffect(() => {
-    //     // Inject Announcer into the Storybook iframe instead of body
-    //     const storybookRoot = document.getElementById("storybook-docs");
-    //     if (storybookRoot) {
-    //         console.log("announcer init");
-    //         initAnnouncer({targetNode: storybookRoot});
-    //     }
-    // }, []);
     const [selectedValue, setSelectedValue] = React.useState("");
     return (
         <View>
