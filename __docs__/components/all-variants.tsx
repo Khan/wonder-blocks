@@ -2,7 +2,7 @@ import * as React from "react";
 import type {StrictArgs} from "@storybook/react";
 
 import {StyleSheet} from "aphrodite";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     semanticColor,
@@ -36,7 +36,7 @@ type Props = {
 /**
  * A table that displays all possible variants of a component.
  */
-function AllVariantsBase({children, columns, rows}: Props) {
+export function AllVariants({children, columns, rows}: Props) {
     return (
         <StyledTable style={styles.table}>
             <thead>
@@ -54,7 +54,7 @@ function AllVariantsBase({children, columns, rows}: Props) {
             <tbody>
                 {rows.map((row, idx) => (
                     <tr key={idx}>
-                        <StyledTh scope="row" style={(styles.cell, styles.th)}>
+                        <StyledTh scope="row" style={styles.cell}>
                             <LabelLarge>{row.name}</LabelLarge>
                         </StyledTh>
                         {columns.map((col) => (
@@ -80,39 +80,13 @@ function AllVariantsBase({children, columns, rows}: Props) {
     );
 }
 
-type AllVariantsProps = {
-    enableRtl?: boolean;
-};
-
-export function AllVariants({
-    children,
-    columns,
-    rows,
-    enableRtl,
-}: Props & AllVariantsProps) {
-    const base = (
-        <AllVariantsBase columns={columns} rows={rows}>
-            {(props) => children(props)}
-        </AllVariantsBase>
-    );
-
-    return (
-        <div>
-            {base}
-            {enableRtl && <div dir="rtl">{base}</div>}
-        </div>
-    );
-}
-
 const styles = StyleSheet.create({
     table: {
         borderCollapse: "collapse",
+        textAlign: "left",
     },
     cell: {
         margin: spacing.medium_16,
         padding: spacing.medium_16,
-    },
-    th: {
-        textAlign: "start",
     },
 });
