@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-grid
 
+## 3.1.4
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [1d7be37]
+- Updated dependencies [999101f]
+    - @khanacademy/wonder-blocks-layout@3.1.4
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-tokens@5.1.1
+
 ## 3.1.3
 
 ### Patch Changes
