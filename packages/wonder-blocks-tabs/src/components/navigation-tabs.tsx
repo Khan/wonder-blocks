@@ -103,5 +103,6 @@ const styles = StyleSheet.create({
         margin: 0,
         display: "flex",
         gap: sizing.size_200,
+        overflowX: "auto",
     },
 });
