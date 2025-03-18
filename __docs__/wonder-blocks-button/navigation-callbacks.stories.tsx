@@ -1,5 +1,5 @@
 import * as React from "react";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter, Route, Routes} from "react-router-dom";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -44,11 +44,11 @@ const BeforeNavCallbacks = () => (
             >
                 beforeNav, open URL in new tab
             </Button>
-            <Switch>
+            <Routes>
                 <Route path="/foo">
                     <View id="foo">Hello, world!</View>
                 </Route>
-            </Switch>
+            </Routes>
         </View>
     </MemoryRouter>
 );
@@ -91,11 +91,11 @@ const SafeWithNavCallbacks = () => (
             >
                 safeWithNav, open URL in new tab
             </Button>
-            <Switch>
+            <Routes>
                 <Route path="/foo">
                     <View id="foo">Hello, world!</View>
                 </Route>
-            </Switch>
+            </Routes>
         </View>
     </MemoryRouter>
 );

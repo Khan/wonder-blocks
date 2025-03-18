@@ -1,5 +1,5 @@
 import * as React from "react";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter, Route, Routes} from "react-router-dom";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
@@ -17,18 +17,21 @@ describe("Clickable", () => {
     test("client-side navigation", async () => {
         // Arrange
         render(
-            <MemoryRouter>
-                <View>
-                    <Clickable testId="button" href="/foo">
-                        {(eventState: any) => <h1>Click Me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <View>Hello, world!</View>
-                        </Route>
-                    </Switch>
-                </View>
-            </MemoryRouter>,
+            <>
+                <MemoryRouter>
+                    <View>
+                        <Clickable testId="button" href="/foo">
+                            {(eventState: any) => <h1>Click Me!</h1>}
+                        </Clickable>
+                    </View>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View>Hello, world!</View>}
+                        />
+                    </Routes>
+                </MemoryRouter>
+            </>,
         );
 
         // Act
@@ -46,11 +49,12 @@ describe("Clickable", () => {
                     <Clickable testId="button" href="/unknown">
                         {(eventState: any) => <h1>Click Me!</h1>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <View>Hello, world!</View>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View>Hello, world!</View>}
+                        />
+                    </Routes>
                 </View>
             </MemoryRouter>,
         );
@@ -70,11 +74,12 @@ describe("Clickable", () => {
                     <Clickable testId="button" href="/foo" skipClientNav>
                         {(eventState: any) => <h1>Click Me!</h1>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <View>Hello, world!</View>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View>Hello, world!</View>}
+                        />
+                    </Routes>
                 </View>
             </MemoryRouter>,
         );
@@ -94,11 +99,12 @@ describe("Clickable", () => {
                     <Clickable testId="button" href="/foo" disabled={true}>
                         {(eventState: any) => <h1>Click Me!</h1>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <View>Hello, world!</View>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View>Hello, world!</View>}
+                        />
+                    </Routes>
                 </View>
             </MemoryRouter>,
         );
@@ -154,11 +160,9 @@ describe("Clickable", () => {
                     >
                         {() => <span>Click me!</span>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -184,11 +188,9 @@ describe("Clickable", () => {
                     >
                         {() => <span>Click me!</span>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -212,11 +214,9 @@ describe("Clickable", () => {
                     >
                         {() => <span>Click me!</span>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -246,11 +246,9 @@ describe("Clickable", () => {
                     >
                         {() => <span>Click me!</span>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -277,11 +275,9 @@ describe("Clickable", () => {
                     >
                         {() => <h1>Click me!</h1>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -309,11 +305,9 @@ describe("Clickable", () => {
                     >
                         {() => <h1>Click me!</h1>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -340,11 +334,9 @@ describe("Clickable", () => {
                     >
                         {() => <h1>Click me!</h1>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -372,11 +364,9 @@ describe("Clickable", () => {
                     >
                         {() => <h1>Click me!</h1>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -407,11 +397,9 @@ describe("Clickable", () => {
                     >
                         {() => <h1>Click me!</h1>}
                     </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route path="/foo" element={<div>Hello, world!</div>} />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );

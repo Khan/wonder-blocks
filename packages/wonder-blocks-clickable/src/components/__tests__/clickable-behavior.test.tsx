@@ -2,7 +2,7 @@
 /* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
-import {MemoryRouter, Switch, Route} from "react-router-dom";
+import {MemoryRouter, Routes, Route} from "react-router-dom";
 import {userEvent} from "@testing-library/user-event";
 import {keys} from "@khanacademy/wonder-blocks-core";
 
@@ -916,11 +916,12 @@ describe("ClickableBehavior", () => {
                                 );
                             }}
                         </ClickableBehaviorWithRouter>
-                        <Switch>
-                            <Route path="/foo">
-                                <div>Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div>Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -959,11 +960,12 @@ describe("ClickableBehavior", () => {
                                     );
                                 }}
                             </ClickableBehaviorWithRouter>
-                            <Switch>
-                                <Route path="/foo">
-                                    <div>Hello, world!</div>
-                                </Route>
-                            </Switch>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div>Hello, world!</div>}
+                                />
+                            </Routes>
                         </div>
                     </MemoryRouter>,
                 );
@@ -1005,11 +1007,12 @@ describe("ClickableBehavior", () => {
                                     );
                                 }}
                             </ClickableBehaviorWithRouter>
-                            <Switch>
-                                <Route path="/foo">
-                                    <div>Hello, world!</div>
-                                </Route>
-                            </Switch>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div>Hello, world!</div>}
+                                />
+                            </Routes>
                         </div>
                     </MemoryRouter>,
                 );
@@ -1043,11 +1046,12 @@ describe("ClickableBehavior", () => {
                                     );
                                 }}
                             </ClickableBehaviorWithRouter>
-                            <Switch>
-                                <Route path="/foo">
-                                    <div>Hello, world!</div>
-                                </Route>
-                            </Switch>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div>Hello, world!</div>}
+                                />
+                            </Routes>
                         </div>
                     </MemoryRouter>,
                 );
@@ -1087,11 +1091,12 @@ describe("ClickableBehavior", () => {
                                     );
                                 }}
                             </ClickableBehaviorWithRouter>
-                            <Switch>
-                                <Route path="/foo">
-                                    <div>Hello, world!</div>
-                                </Route>
-                            </Switch>
+                            <Routes>
+                                <Route
+                                    path="/foo"
+                                    element={<div>Hello, world!</div>}
+                                />
+                            </Routes>
                         </div>
                     </MemoryRouter>,
                 );
@@ -1126,11 +1131,12 @@ describe("ClickableBehavior", () => {
                                 );
                             }}
                         </ClickableBehaviorWithRouter>
-                        <Switch>
-                            <Route path="/foo">
-                                <div>Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div>Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -1163,11 +1169,12 @@ describe("ClickableBehavior", () => {
                                 );
                             }}
                         </ClickableBehaviorWithRouter>
-                        <Switch>
-                            <Route path="/foo">
-                                <div>Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div>Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );

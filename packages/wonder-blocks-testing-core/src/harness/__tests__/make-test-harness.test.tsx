@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Route} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {render} from "@testing-library/react";
 
 import * as RA from "../adapt";
@@ -170,7 +170,12 @@ describe("#makeTestHarness", () => {
                     // Render a route match that only works if we render our
                     // overridden location.
                     const Component = (props: {text: string}) => (
-                        <Route path="/mysecretplace/*">{props.text}</Route>
+                        <Routes>
+                            <Route
+                                path="/mysecretplace/*"
+                                element={props.text}
+                            />
+                        </Routes>
                     );
 
                     // Act

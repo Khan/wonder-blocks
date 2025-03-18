@@ -1,8 +1,6 @@
 import {Meta} from "@storybook/blocks";
 
-<Meta
-    title="Packages / Testing / Test Harness / Exports / harnessAdapters"
-/>
+<Meta title="Packages / Testing / Test Harness / Exports / harnessAdapters" />
 
 # harnessAdapters
 
@@ -38,12 +36,12 @@ If you want to make your own test harness or hook harness using some of these de
 
 There are four build-in adapters:
 
--   [`boundary`](#boundary)
--   [`css`](#css)
--   [`data`](#data)
--   [`portal`](#portal)
--   [`router`](#router)
--   [`renderState`](#renderState)
+- [`boundary`](#boundary)
+- [`css`](#css)
+- [`data`](#data)
+- [`portal`](#portal)
+- [`router`](#router)
+- [`renderState`](#renderState)
 
 ## boundary
 
@@ -124,11 +122,6 @@ type Config =
                 initialIndex?: MemoryRouterProps["initialIndex"],
 
                 /**
-                 * See MemoryRouter prop for getUserConfirmation.
-                 */
-                getUserConfirmation?: MemoryRouterProps["getUserConfirmation"],
-
-                /**
                  * A path match to use.
                  *
                  * When this is specified, the harnessed component will be
@@ -194,7 +187,7 @@ type Config =
 
 There are four distinct shapes to the configuration:
 
-1. An object with `initialEntries` array (see `MemoryRouter` props), optional `initialIndex` and `getUserConfirmation` (see `MemoryRouter` props), and an optional `path` parameter if route matching is required.
+1. An object with `initialEntries` array (see `MemoryRouter` props), optional `initialIndex` (see `MemoryRouter` props), and an optional `path` parameter if route matching is required.
 2. An object with `forceStatic` set to true, the location as a `string` or `Location` object, with an optional `path` parameter if route matching is required.
 3. An object specifying the location as a `string` or a `LocationShape` object, with an optional `path` parameter if route matching is required.
 4. A `string` specifying the location to use

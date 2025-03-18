@@ -5,7 +5,7 @@
  * (button-with-icon.test.tsx) since this one is already too long.
  */
 import * as React from "react";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter, Route, Routes} from "react-router-dom";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
@@ -31,11 +31,12 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button href="/foo">Click me!</Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -56,11 +57,12 @@ describe("Button", () => {
                     <Button href="/foo" beforeNav={() => Promise.reject()}>
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -86,11 +88,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -111,11 +114,12 @@ describe("Button", () => {
                     <Button href="/foo" beforeNav={() => Promise.resolve()}>
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -144,11 +148,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -173,11 +178,12 @@ describe("Button", () => {
                     <Button href="/foo" beforeNav={() => Promise.resolve()}>
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -204,11 +210,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -235,11 +242,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -266,11 +274,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -298,11 +307,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -329,11 +339,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -362,11 +373,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -389,11 +401,12 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button href="/unknown">Click me!</Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -414,11 +427,12 @@ describe("Button", () => {
                     <Button href="/foo" skipClientNav>
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -439,11 +453,12 @@ describe("Button", () => {
                     <Button href="/foo" disabled={true}>
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -469,11 +484,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -499,11 +515,12 @@ describe("Button", () => {
                     >
                         Click me!
                     </Button>
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -554,11 +571,12 @@ describe("Button", () => {
                 <MemoryRouter>
                     <div>
                         <Button href="/foo">Click me!</Button>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -579,11 +597,12 @@ describe("Button", () => {
                 <MemoryRouter>
                     <div>
                         <Button href="/foo">Click me!</Button>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -606,11 +625,12 @@ describe("Button", () => {
                         <Button href="/foo" beforeNav={() => Promise.reject()}>
                             Click me!
                         </Button>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -631,11 +651,12 @@ describe("Button", () => {
                         <Button href="/foo" beforeNav={() => Promise.resolve()}>
                             Click me!
                         </Button>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -665,11 +686,12 @@ describe("Button", () => {
                         >
                             Click me!
                         </Button>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -695,11 +717,12 @@ describe("Button", () => {
                         >
                             Click me!
                         </Button>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -728,11 +751,12 @@ describe("Button", () => {
                         >
                             Click me!
                         </Button>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );

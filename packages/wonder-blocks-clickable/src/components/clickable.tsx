@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
-import {__RouterContext} from "react-router";
+import {useInRouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -213,16 +213,20 @@ const Clickable = React.forwardRef(function Clickable(
         typeof Link | HTMLAnchorElement | HTMLButtonElement
     >,
 ) {
+    const isInRouter = useInRouterContext();
+
     const getCorrectTag: (
         clickableState: ClickableState,
-        router: any,
+        isInRouter: boolean,
         commonProps: {
             [key: string]: any;
         },
-    ) => React.ReactElement = (clickableState, router, commonProps) => {
+    ) => React.ReactElement = (clickableState, isInRouter, commonProps) => {
         const activeHref = props.href && !props.disabled;
         const useClient =
-            router && !props.skipClientNav && isClientSideUrl(props.href || "");
+            isInRouter &&
+            !props.skipClientNav &&
+            isClientSideUrl(props.href || "");
 
         // NOTE: checking this.props.href here is redundant, but TypeScript
         // needs it to refine this.props.href to a string.
@@ -266,103 +270,94 @@ const Clickable = React.forwardRef(function Clickable(
         }
     };
 
-    const renderClickableBehavior: (router: any) => React.ReactNode = (
-        router: any,
-    ) => {
-        const {
-            href,
-            onClick,
-            skipClientNav,
-            beforeNav = undefined,
-            safeWithNav = undefined,
-            style,
-            target = undefined,
-            testId,
-            onFocus,
-            onKeyDown,
-            onKeyUp,
-            onMouseDown,
-            onMouseUp,
-            hideDefaultFocusRing,
-            light,
-            disabled,
-            tabIndex,
-            ...restProps
-        } = props;
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            router,
-        );
+    const {
+        href,
+        onClick,
+        skipClientNav,
+        beforeNav = undefined,
+        safeWithNav = undefined,
+        style,
+        target = undefined,
+        testId,
+        onFocus,
+        onKeyDown,
+        onKeyUp,
+        onMouseDown,
+        onMouseUp,
+        hideDefaultFocusRing,
+        light,
+        disabled,
+        tabIndex,
+        ...restProps
+    } = props;
 
-        const getStyle = (state: ClickableState): StyleType => [
-            styles.reset,
-            styles.link,
-            !hideDefaultFocusRing &&
-                state.focused &&
-                (light ? styles.focusedLight : styles.focused),
-            disabled && styles.disabled,
-            style,
-        ];
-
-        if (beforeNav) {
-            return (
-                <ClickableBehavior
-                    href={href}
-                    onClick={onClick}
-                    beforeNav={beforeNav}
-                    safeWithNav={safeWithNav}
-                    onFocus={onFocus}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                    onMouseDown={onMouseDown}
-                    onMouseUp={onMouseUp}
-                    disabled={disabled}
-                    tabIndex={tabIndex}
-                >
-                    {(state, childrenProps) =>
-                        getCorrectTag(state, router, {
-                            ...restProps,
-                            "data-testid": testId,
-                            style: getStyle(state),
-                            ...childrenProps,
-                        })
-                    }
-                </ClickableBehavior>
-            );
-        } else {
-            return (
-                <ClickableBehavior
-                    href={href}
-                    onClick={onClick}
-                    safeWithNav={safeWithNav}
-                    onFocus={onFocus}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                    onMouseDown={onMouseDown}
-                    onMouseUp={onMouseUp}
-                    target={target}
-                    disabled={disabled}
-                    tabIndex={tabIndex}
-                >
-                    {(state, childrenProps) =>
-                        getCorrectTag(state, router, {
-                            ...restProps,
-                            "data-testid": testId,
-                            style: getStyle(state),
-                            ...childrenProps,
-                        })
-                    }
-                </ClickableBehavior>
-            );
-        }
-    };
-
-    return (
-        <__RouterContext.Consumer>
-            {(router) => renderClickableBehavior(router)}
-        </__RouterContext.Consumer>
+    const ClickableBehavior = getClickableBehavior(
+        href,
+        skipClientNav,
+        isInRouter,
     );
+
+    const getStyle = (state: ClickableState): StyleType => [
+        styles.reset,
+        styles.link,
+        !hideDefaultFocusRing &&
+            state.focused &&
+            (light ? styles.focusedLight : styles.focused),
+        disabled && styles.disabled,
+        style,
+    ];
+
+    if (beforeNav) {
+        return (
+            <ClickableBehavior
+                href={href}
+                onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
+                onFocus={onFocus}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                disabled={disabled}
+                tabIndex={tabIndex}
+            >
+                {(state, childrenProps) =>
+                    getCorrectTag(state, isInRouter, {
+                        ...restProps,
+                        "data-testid": testId,
+                        style: getStyle(state),
+                        ...childrenProps,
+                    })
+                }
+            </ClickableBehavior>
+        );
+    } else {
+        return (
+            <ClickableBehavior
+                href={href}
+                onClick={onClick}
+                safeWithNav={safeWithNav}
+                onFocus={onFocus}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
+                onMouseDown={onMouseDown}
+                onMouseUp={onMouseUp}
+                target={target}
+                disabled={disabled}
+                tabIndex={tabIndex}
+            >
+                {(state, childrenProps) =>
+                    getCorrectTag(state, isInRouter, {
+                        ...restProps,
+                        "data-testid": testId,
+                        style: getStyle(state),
+                        ...childrenProps,
+                    })
+                }
+            </ClickableBehavior>
+        );
+    }
 });
 
 Clickable.defaultProps = {

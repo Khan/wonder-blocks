@@ -1,5 +1,5 @@
 import * as React from "react";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter, Route, Routes} from "react-router-dom";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
@@ -31,11 +31,12 @@ describe("Link", () => {
                 <MemoryRouter>
                     <div>
                         <Link href="/foo">Click me!</Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -56,11 +57,12 @@ describe("Link", () => {
                 <MemoryRouter>
                     <div>
                         <Link href="/">Click me!</Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -84,11 +86,12 @@ describe("Link", () => {
                         <Link href="/foo" beforeNav={() => Promise.resolve()}>
                             Click me!
                         </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -112,11 +115,12 @@ describe("Link", () => {
                         <Link href="/foo" beforeNav={() => Promise.resolve()}>
                             Click me!
                         </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -137,11 +141,12 @@ describe("Link", () => {
                         <Link href="/foo" beforeNav={() => Promise.reject()}>
                             Click me!
                         </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -167,11 +172,12 @@ describe("Link", () => {
                         >
                             Click me!
                         </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );
@@ -202,11 +208,12 @@ describe("Link", () => {
                         >
                             Click me!
                         </Link>
-                        <Switch>
-                            <Route path="/foo">
-                                <div id="foo">Hello, world!</div>
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
                     </div>
                 </MemoryRouter>,
             );

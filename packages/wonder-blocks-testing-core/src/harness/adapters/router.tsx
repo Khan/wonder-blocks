@@ -1,20 +1,13 @@
 import * as React from "react";
 
-import {
-    StaticRouter,
-    MemoryRouter,
-    Route,
-    Switch,
-    useLocation,
-} from "react-router-dom";
+import {MemoryRouter, Route, Routes, useLocation} from "react-router-dom";
+import {StaticRouter} from "react-router-dom/server";
 
 import type {LocationDescriptor} from "history";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import type {TestHarnessAdapter} from "../types";
 
-type MemoryRouterProps = JSX.LibraryManagedAttributes<
-    typeof MemoryRouter,
-    React.ComponentProps<typeof MemoryRouter>
->;
+type MemoryRouterProps = PropsFor<typeof MemoryRouter>;
 
 /**
  * Configuration for the withLocation test harness adapter.
@@ -30,10 +23,6 @@ type Config =
                  * See MemoryRouter prop for initialIndex.
                  */
                 initialIndex?: MemoryRouterProps["initialIndex"];
-                /**
-                 * See MemoryRouter prop for getUserConfirmation.
-                 */
-                getUserConfirmation?: MemoryRouterProps["getUserConfirmation"];
                 /**
                  * A path match to use.
                  *
@@ -119,13 +108,11 @@ const MaybeWithRoute = ({
     }
 
     return (
-        <Switch>
-            <Route exact={true} path={path}>
-                {children}
-            </Route>
+        <Routes>
+            <Route path={path}>{children}</Route>
             <Route
                 path="*"
-                render={() => {
+                loader={() => {
                     throw new Error(
                         `The current location '${actualLocation.pathname}' ` +
                             `does not match the configured path '${path}'. ` +
@@ -136,7 +123,7 @@ const MaybeWithRoute = ({
                     );
                 }}
             />
-        </Switch>
+        </Routes>
     );
 };
 
@@ -167,7 +154,7 @@ export const adapter: TestHarnessAdapter<Config> = (
          * really strict about not permitting client-side navigation events.
          */
         return (
-            <StaticRouter location={config.location} context={{}}>
+            <StaticRouter location={config.location}>
                 <MaybeWithRoute
                     path={config.path}
                     configLocation={config.location}
@@ -226,9 +213,6 @@ export const adapter: TestHarnessAdapter<Config> = (
     };
     if (config.initialIndex != null) {
         routerProps.initialIndex = config.initialIndex;
-    }
-    if (config.getUserConfirmation != null) {
-        routerProps.getUserConfirmation = config.getUserConfirmation;
     }
 
     return (

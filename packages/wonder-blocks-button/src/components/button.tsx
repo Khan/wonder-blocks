@@ -1,5 +1,5 @@
 import * as React from "react";
-import {__RouterContext} from "react-router";
+import {useInRouterContext} from "react-router";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import type {
@@ -229,12 +229,14 @@ const Button: React.ForwardRefExoticComponent<
         spinner = false,
         ...sharedButtonCoreProps
     } = props;
+    const isInRouter = useInRouterContext();
+    console.log("isInRouter: ", isInRouter);
 
-    const renderClickableBehavior = (router: any): React.ReactNode => {
+    const renderClickableBehavior = (): React.ReactNode => {
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
-            router,
+            isInRouter,
         );
 
         const renderProp = (
@@ -297,13 +299,7 @@ const Button: React.ForwardRefExoticComponent<
         }
     };
 
-    return (
-        <ThemedButton>
-            <__RouterContext.Consumer>
-                {(router) => renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
-        </ThemedButton>
-    );
+    return <ThemedButton>{renderClickableBehavior()}</ThemedButton>;
 });
 
 export default Button;
