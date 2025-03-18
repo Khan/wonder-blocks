@@ -547,9 +547,12 @@ const SingleSelect = (props: Props) => {
     const {someResults} = labels;
 
     // Announce in a screen reader when the number of filtered items changes
+    // when the dropdown is open
     React.useEffect(() => {
-        handleAnnouncement(someResults(items.length));
-    }, [items.length, someResults]);
+        if (open) {
+            handleAnnouncement(someResults(items.length));
+        }
+    }, [items.length, someResults, open]);
 
     return (
         <Id id={dropdownId}>
