@@ -106,6 +106,9 @@ const styles = StyleSheet.create({
         [":has(a:hover)" as any]: {
             boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.primary.progressive.hover.border}`,
         },
+        [":has(a:active)" as any]: {
+            boxShadow: `inset 0 -${sizing.size_075} 0 0 ${semanticColor.action.primary.progressive.press.border}`,
+        },
         paddingBlock: sizing.size_150,
     },
     current: {
@@ -122,6 +125,11 @@ const styles = StyleSheet.create({
         position: "relative",
         ":hover": {
             textDecoration: "none",
+        },
+        ":active": {
+            textDecoration: "none",
+            // TODO update semantic color to use foreground?
+            color: semanticColor.action.primary.progressive.press.border,
         },
     },
 });
