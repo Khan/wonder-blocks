@@ -10,75 +10,96 @@ import {AllVariants} from "../components/all-variants";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {rtlText} from "../components/text-for-testing";
 
-const rows = [
-    {name: "Default", props: {}},
-    {
-        name: "External Link",
-        props: {
-            children: (
-                <Link href="https://khanacademy.org" target="_blank">
-                    External link
-                </Link>
-            ),
+const generateRows = (rtl: boolean = false) => {
+    return [
+        {
+            name: "Default",
+            props: {
+                children: (
+                    <Link href="#link">
+                        {rtl ? rtlText : "Navigation Tab Item"}
+                    </Link>
+                ),
+            },
         },
-    },
-    {
-        name: "Start Icon",
-        props: {
-            children: (
-                <Link
-                    href="#link"
-                    startIcon={
-                        <PhosphorIcon icon={IconMappings.cookie} size="small" />
-                    }
-                >
-                    Start Icon
-                </Link>
-            ),
+        {
+            name: "External Link",
+            props: {
+                children: (
+                    <Link href="https://khanacademy.org" target="_blank">
+                        {rtl ? rtlText : "External link"}
+                    </Link>
+                ),
+            },
         },
-    },
-    {
-        name: "End Icon",
-        props: {
-            children: (
-                <Link
-                    href="#link"
-                    endIcon={
-                        <PhosphorIcon
-                            icon={IconMappings.iceCream}
-                            size="small"
-                        />
-                    }
-                >
-                    End Icon
-                </Link>
-            ),
+        {
+            name: "Start Icon",
+            props: {
+                children: (
+                    <Link
+                        href="#link"
+                        startIcon={
+                            <PhosphorIcon
+                                icon={IconMappings.cookie}
+                                size="small"
+                            />
+                        }
+                    >
+                        {rtl ? rtlText : "Start Icon"}
+                    </Link>
+                ),
+            },
         },
-    },
-    {
-        name: "Start and End Icons",
-        props: {
-            children: (
-                <Link
-                    href="#link"
-                    startIcon={
-                        <PhosphorIcon icon={IconMappings.cookie} size="small" />
-                    }
-                    endIcon={
-                        <PhosphorIcon
-                            icon={IconMappings.iceCream}
-                            size="small"
-                        />
-                    }
-                >
-                    Start and End Icons
-                </Link>
-            ),
+        {
+            name: "End Icon",
+            props: {
+                children: (
+                    <Link
+                        href="#link"
+                        endIcon={
+                            <PhosphorIcon
+                                icon={IconMappings.iceCream}
+                                size="small"
+                            />
+                        }
+                    >
+                        {rtl ? rtlText : "End Icon"}
+                    </Link>
+                ),
+            },
         },
-    },
-];
+        {
+            name: "Start and End Icons",
+            props: {
+                children: (
+                    <Link
+                        href="#link"
+                        startIcon={
+                            <PhosphorIcon
+                                icon={IconMappings.cookie}
+                                size="small"
+                            />
+                        }
+                        endIcon={
+                            <PhosphorIcon
+                                icon={IconMappings.iceCream}
+                                size="small"
+                            />
+                        }
+                    >
+                        {rtl ? rtlText : "Start and End Icons"}
+                    </Link>
+                ),
+            },
+        },
+    ];
+};
 
+const rows = generateRows();
+const rtlRows = generateRows(true);
 const columns = [
     {
         name: "Default",
@@ -100,17 +121,26 @@ const meta = {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem / NavigationTabItem - All Variants",
     component: NavigationTabItem,
     render: (args) => (
-        <AllVariants rows={rows} columns={columns}>
-            {(props) => (
-                <View style={styles.container}>
-                    <NavigationTabItem {...args} {...props} />
-                </View>
-            )}
-        </AllVariants>
+        <div>
+            <AllVariants rows={rows} columns={columns}>
+                {(props) => (
+                    <View style={styles.container}>
+                        <NavigationTabItem {...args} {...props} />
+                    </View>
+                )}
+            </AllVariants>
+            <div dir="rtl">
+                <HeadingLarge>RTL</HeadingLarge>
+                <AllVariants rows={rtlRows} columns={columns}>
+                    {(props) => (
+                        <View style={styles.container}>
+                            <NavigationTabItem {...args} {...props} />
+                        </View>
+                    )}
+                </AllVariants>
+            </div>
+        </div>
     ),
-    args: {
-        children: <Link href="#link">Navigation Tab Item</Link>,
-    },
     tags: ["!autodocs"],
     parameters: {
         a11y: {

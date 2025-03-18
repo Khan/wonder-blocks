@@ -13,9 +13,37 @@ import {AllVariants} from "../components/all-variants";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {rtlText} from "../components/text-for-testing";
 
-const rows = [
-    {name: "Default", props: {"aria-label": "Default navigation tabs"}},
+const generateRows = (rtl: boolean = false) => [
+    {
+        name: "Default",
+        props: {
+            "aria-label": "Default navigation tabs",
+            children: [
+                <NavigationTabItem>
+                    <Link href="#link1">
+                        {rtl ? rtlText : "Navigation Tab Item 1"}
+                    </Link>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <Link href="#link2">
+                        {rtl ? rtlText : "Navigation Tab Item 2"}
+                    </Link>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <Link href="#link3">
+                        {rtl ? rtlText : "Navigation Tab Item 3"}
+                    </Link>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <Link href="#link4">
+                        {rtl ? rtlText : "Navigation Tab Item 4"}
+                    </Link>
+                </NavigationTabItem>,
+            ],
+        },
+    },
     {
         name: "Link Capabilities",
         props: {
@@ -23,7 +51,7 @@ const rows = [
             children: [
                 <NavigationTabItem>
                     <Link href="https://khanacademy.org" target="_blank">
-                        External Link
+                        {rtl ? rtlText : "External Link"}
                     </Link>
                 </NavigationTabItem>,
                 <NavigationTabItem>
@@ -36,7 +64,7 @@ const rows = [
                             />
                         }
                     >
-                        Start Icon
+                        {rtl ? rtlText : "Start Icon"}
                     </Link>
                 </NavigationTabItem>,
                 <NavigationTabItem>
@@ -49,7 +77,7 @@ const rows = [
                             />
                         }
                     >
-                        End Icon
+                        {rtl ? rtlText : "End Icon"}
                     </Link>
                 </NavigationTabItem>,
                 <NavigationTabItem>
@@ -68,13 +96,16 @@ const rows = [
                             />
                         }
                     >
-                        Start and End Icons
+                        {rtl ? rtlText : "Start and End Icons"}
                     </Link>
                 </NavigationTabItem>,
             ],
         },
     },
 ];
+
+const rows = generateRows();
+const rtlRows = generateRows(true);
 
 const columns = [
     {
@@ -93,30 +124,25 @@ const meta = {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs / NavigationTabs - All Variants",
     component: NavigationTabs,
     render: (args) => (
-        <AllVariants rows={rows} columns={columns}>
-            {(props) => (
-                <View style={styles.container}>
-                    <NavigationTabs {...args} {...props} />
-                </View>
-            )}
-        </AllVariants>
+        <div>
+            <AllVariants rows={rows} columns={columns}>
+                {(props) => (
+                    <View style={styles.container}>
+                        <NavigationTabs {...args} {...props} />
+                    </View>
+                )}
+            </AllVariants>
+            <div dir="rtl">
+                <AllVariants rows={rtlRows} columns={columns}>
+                    {(props) => (
+                        <View style={styles.container}>
+                            <NavigationTabs {...args} {...props} />
+                        </View>
+                    )}
+                </AllVariants>
+            </div>
+        </div>
     ),
-    args: {
-        children: [
-            <NavigationTabItem>
-                <Link href="#link1">Navigation Tab Item 1</Link>
-            </NavigationTabItem>,
-            <NavigationTabItem>
-                <Link href="#link2">Navigation Tab Item 2</Link>
-            </NavigationTabItem>,
-            <NavigationTabItem>
-                <Link href="#link3">Navigation Tab Item 3</Link>
-            </NavigationTabItem>,
-            <NavigationTabItem>
-                <Link href="#link4">Navigation Tab Item 4</Link>
-            </NavigationTabItem>,
-        ],
-    },
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabs>;
 
