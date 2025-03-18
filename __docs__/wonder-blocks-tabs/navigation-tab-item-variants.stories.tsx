@@ -12,6 +12,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {rtlText} from "../components/text-for-testing";
+import {ZoomWrapper} from "../components/zoom-wrapper";
 
 const generateRows = (rtl: boolean = false) => {
     return [
@@ -175,6 +176,14 @@ export const HoverFocus: Story = {
 
 export const Press: Story = {
     parameters: {pseudo: {hover: true, active: true}},
+};
+
+export const Zoom: Story = {
+    decorators: (Story) => (
+        <ZoomWrapper>
+            <Story />
+        </ZoomWrapper>
+    ),
 };
 
 const styles = StyleSheet.create({
