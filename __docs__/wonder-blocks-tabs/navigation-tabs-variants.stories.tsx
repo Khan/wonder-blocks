@@ -179,17 +179,25 @@ const meta = {
     render: (args) => (
         <div>
             <AllVariants rows={rows} columns={columns}>
-                {(props) => (
+                {(props, name) => (
                     <View style={styles.container}>
-                        <NavigationTabs {...args} {...props} />
+                        <NavigationTabs
+                            {...args}
+                            {...props}
+                            aria-label={name}
+                        />
                     </View>
                 )}
             </AllVariants>
             <div dir="rtl">
                 <AllVariants rows={rtlRows} columns={columns}>
-                    {(props) => (
+                    {(props, name) => (
                         <View style={styles.container}>
-                            <NavigationTabs {...args} {...props} />
+                            <NavigationTabs
+                                {...args}
+                                {...props}
+                                aria-label={`${name} RTL`}
+                            />
                         </View>
                     )}
                 </AllVariants>
@@ -224,23 +232,45 @@ export const Zoom: Story = {
     render: (args) => (
         <ZoomWrapper>
             <AllVariants rows={rows} columns={columns} layout="list">
-                {(props) => (
+                {(props, name) => (
                     <View style={styles.container}>
-                        <NavigationTabs {...args} {...props} />
+                        <NavigationTabs
+                            {...args}
+                            {...props}
+                            aria-label={name}
+                        />
                     </View>
                 )}
             </AllVariants>
             <div dir="rtl">
                 <AllVariants rows={rtlRows} columns={columns} layout="list">
-                    {(props) => (
+                    {(props, name) => (
                         <View style={styles.container}>
-                            <NavigationTabs {...args} {...props} />
+                            <NavigationTabs
+                                {...args}
+                                {...props}
+                                aria-label={`${name} RTL`}
+                            />
                         </View>
                     )}
                 </AllVariants>
             </div>
         </ZoomWrapper>
     ),
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling warning: "Element's background color could not
+                    // be determined because it's partially obscured by another
+                    // element" since these examples can cause the horizontal
+                    // scrollbar to show. Color contrast check is enabled for
+                    // other stories (including the AllVariants)
+                    {id: "color-contrast", enabled: false},
+                ],
+            },
+        },
+    },
 };
 
 const styles = StyleSheet.create({

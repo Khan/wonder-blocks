@@ -7,7 +7,7 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
     scenarios: {name: string; props: StrictArgs}[];
-    children: (props: any) => React.ReactNode;
+    children: (props: any, name: string) => React.ReactNode;
 };
 
 /**
@@ -23,7 +23,7 @@ export const ScenariosLayout = (props: Props) => {
                 return (
                     <View key={scenario.name} style={styles.scenario}>
                         <LabelLarge>{scenario.name}</LabelLarge>
-                        {children(scenario.props)}
+                        {children(scenario.props, scenario.name)}
                     </View>
                 );
             })}

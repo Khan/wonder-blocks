@@ -168,15 +168,32 @@ export const Scenarios: StoryComponentType = {
         ];
         return (
             <ScenariosLayout scenarios={scenarios}>
-                {(props) => <NavigationTabs {...props} />}
+                {(props, name) => (
+                    <NavigationTabs {...props} aria-label={name} />
+                )}
             </ScenariosLayout>
         );
+    },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling warning: "Element's background color could not
+                    // be determined because it's partially obscured by another
+                    // element" since these examples can cause the horizontal
+                    // scrollbar to show. Color contrast check is enabled for
+                    // other stories (including the AllVariants)
+                    {id: "color-contrast", enabled: false},
+                ],
+            },
+        },
     },
 };
 
 export const ScenariosSmallScreen: StoryComponentType = {
-    render: Scenarios.render,
+    ...Scenarios,
     parameters: {
+        ...Scenarios.parameters,
         viewport: {
             defaultViewport: "small",
         },
@@ -194,19 +211,20 @@ const StyledDiv = addStyle("div");
  */
 export const HeaderWithNavigationTabsExample: StoryComponentType = {
     render() {
+        // Putting styles in the component so it shows in the code snippet
         const headerVerticalSpacing = sizing.size_150;
         const styles = StyleSheet.create({
             pageStyle: {
                 backgroundColor: semanticColor.surface.secondary,
                 height: "100vh",
-                width: "100%",
+                width: "100vw",
             },
             headerStyle: {
                 backgroundColor: semanticColor.surface.primary,
                 display: "flex",
                 alignItems: "center",
+                flexWrap: "wrap",
                 borderBottom: `1px solid ${semanticColor.border.primary}`,
-                width: "100%",
                 gap: sizing.size_300,
                 padding: `${headerVerticalSpacing} ${sizing.size_300}`,
             },

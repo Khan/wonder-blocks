@@ -25,7 +25,7 @@ type Props = {
      * The children as a function that receives the state props used to render
      * each variant of the component.
      */
-    children: (props: any) => React.ReactNode;
+    children: (props: any, name: string) => React.ReactNode;
     /**
      * The categories to display in the table as columns.
      */
@@ -48,7 +48,7 @@ type Props = {
  */
 export function AllVariants(props: Props) {
     const {children, rows, columns, layout = "responsive"} = props;
-    console.log("layout", layout, props);
+
     return (
         <>
             {layout === "responsive" && (
@@ -85,10 +85,13 @@ export function AllVariants(props: Props) {
                                             },
                                         ]}
                                     >
-                                        {children({
-                                            ...row.props,
-                                            ...col.props,
-                                        })}
+                                        {children(
+                                            {
+                                                ...row.props,
+                                                ...col.props,
+                                            },
+                                            `${row.name} ${col.name}`,
+                                        )}
                                     </StyledTd>
                                 ))}
                             </tr>
@@ -105,7 +108,7 @@ export function AllVariants(props: Props) {
                 {rows.map((row) => {
                     return columns.map((column) => {
                         return (
-                            <div>
+                            <li>
                                 <LabelLarge>
                                     Column: {column.name}, Row: {row.name}
                                 </LabelLarge>
@@ -117,9 +120,12 @@ export function AllVariants(props: Props) {
                                         border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
                                     }}
                                 >
-                                    {children({...column.props, ...row.props})}
+                                    {children(
+                                        {...column.props, ...row.props},
+                                        `${row.name} ${column.name}`,
+                                    )}
                                 </div>
-                            </div>
+                            </li>
                         );
                     });
                 })}
