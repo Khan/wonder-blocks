@@ -113,7 +113,11 @@ const generateRows = (rtl: boolean = false) => {
         {
             name: "Native anchor tag",
             props: {
-                children: <StyledA href="#link">Anchor tag</StyledA>,
+                children: (
+                    <StyledA href="#link">
+                        {rtl ? rtlText : "Anchor tag"}
+                    </StyledA>
+                ),
             },
         },
     ];
