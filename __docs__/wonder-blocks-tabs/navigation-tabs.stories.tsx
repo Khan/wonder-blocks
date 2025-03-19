@@ -170,3 +170,12 @@ export const Scenarios: StoryComponentType = {
         );
     },
 };
+
+export const ScenariosSmallScreen: StoryComponentType = {
+    render: Scenarios.render,
+    parameters: {
+        viewport: {
+            defaultViewport: "small",
+        },
+    },
+};

@@ -87,7 +87,7 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
             ref={ref}
-            style={stylesProp?.root}
+            style={[styles.nav, stylesProp?.root]}
             {...otherProps}
         >
             <StyledUl style={[styles.list, stylesProp?.list]}>
@@ -98,11 +98,14 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
 });
 
 const styles = StyleSheet.create({
+    nav: {
+        overflowX: "auto",
+    },
     list: {
         padding: 0,
         margin: 0,
         display: "flex",
         gap: sizing.size_200,
-        overflowX: "auto",
+        flexWrap: "nowrap",
     },
 });
