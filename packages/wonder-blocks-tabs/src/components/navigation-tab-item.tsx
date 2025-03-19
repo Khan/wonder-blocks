@@ -135,9 +135,11 @@ const styles = StyleSheet.create({
         paddingInline: 0,
         position: "relative",
         whiteSpace: "nowrap",
+        textDecoration: "none",
         ":hover": {
             textDecoration: "none",
             outline: "none",
+            color: semanticColor.action.primary.progressive.hover.border,
         },
         ":active": {
             textDecoration: "none",

@@ -3,7 +3,7 @@ import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {AllVariants} from "../components/all-variants";
@@ -15,6 +15,7 @@ import {rtlText} from "../components/text-for-testing";
 import {ZoomWrapper} from "../components/zoom-wrapper";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
+const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => {
     return [
         {
@@ -107,6 +108,12 @@ const generateRows = (rtl: boolean = false) => {
                         icon={IconMappings.iceCream}
                     />
                 ),
+            },
+        },
+        {
+            name: "Native anchor tag",
+            props: {
+                children: <StyledA href="#link">Anchor tag</StyledA>,
             },
         },
     ];
