@@ -146,6 +146,8 @@ const styles = StyleSheet.create({
         margin: 0,
         padding: 0,
         listStyle: "none",
+        display: "flex",
+        flexDirection: "column",
     },
     listResponsive: {
         [breakpoint.mediaQuery.mdOrLarger]: {

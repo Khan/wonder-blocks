@@ -10,7 +10,9 @@ type Props = {
 };
 
 /**
- * Simulates browser zoom for stories
+ * Simulates browser zoom for stories. Note: It is still important to test with
+ * real browser zoom in different browsers. For example, using the CSS zoom
+ * property in Safari looks a bit different than when you zoom.
  */
 export const ZoomWrapper = (props: Props) => {
     const {zoom = "400%", children} = props;
