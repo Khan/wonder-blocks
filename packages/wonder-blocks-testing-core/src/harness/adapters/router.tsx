@@ -4,10 +4,12 @@ import {MemoryRouter, Route, Routes, useLocation} from "react-router-dom";
 import {StaticRouter} from "react-router-dom/server";
 
 import type {LocationDescriptor} from "history";
-import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import type {TestHarnessAdapter} from "../types";
 
-type MemoryRouterProps = PropsFor<typeof MemoryRouter>;
+type MemoryRouterProps = JSX.LibraryManagedAttributes<
+    typeof MemoryRouter,
+    React.ComponentProps<typeof MemoryRouter>
+>;
 
 /**
  * Configuration for the withLocation test harness adapter.
@@ -109,7 +111,7 @@ const MaybeWithRoute = ({
 
     return (
         <Routes>
-            <Route path={path}>{children}</Route>
+            <Route path={path} element={children} />
             <Route
                 path="*"
                 loader={() => {
