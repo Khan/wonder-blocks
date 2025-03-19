@@ -10,6 +10,11 @@ type Props = {
     children: (props: any) => React.ReactNode;
 };
 
+/**
+ * Useful for stories that show different scenarios.
+ *
+ * Normally, ScenariosLayout is used for different cases at rest state.
+ */
 export const ScenariosLayout = (props: Props) => {
     const {scenarios, children} = props;
     return (
