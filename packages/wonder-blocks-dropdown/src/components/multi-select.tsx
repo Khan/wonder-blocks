@@ -268,7 +268,9 @@ const MultiSelect = (props: Props) => {
     } = props;
 
     // Merge custom labels with the default ones
-    const labels = {...defaultLabels, ...propLabels};
+    const labels = React.useMemo(() => {
+        return {...defaultLabels, ...propLabels};
+    }, [propLabels]);
 
     // Whether or not the dropdown is open.
     const [open, setOpen] = React.useState(false);
@@ -368,50 +370,53 @@ const MultiSelect = (props: Props) => {
         onSelectedValuesChangeValidation();
     };
 
-    const getMenuTextOrNode = (
-        children: OptionItemComponentArray,
-    ): string | JSX.Element => {
-        const {noneSelected, someSelected, allSelected} = labels;
-        const numSelectedAll = children.filter(
-            (option) => !option.props.disabled,
-        ).length;
+    const getMenuTextOrNode = React.useCallback(
+        (children: OptionItemComponentArray): string | JSX.Element => {
+            const {noneSelected, someSelected, allSelected} = labels;
+            const numSelectedAll = children.filter(
+                (option) => !option.props.disabled,
+            ).length;
 
-        // When implicit all enabled, use `labels.allSelected` when no selection
-        // otherwise, use the `labels.noneSelected` value
-        const noSelectionText = implicitAllEnabled ? allSelected : noneSelected;
+            // When implicit all enabled, use `labels.allSelected` when no selection
+            // otherwise, use the `labels.noneSelected` value
+            const noSelectionText = implicitAllEnabled
+                ? allSelected
+                : noneSelected;
 
-        switch (selectedValues.length) {
-            case 0:
-                return noSelectionText;
-            case 1:
-                // If there is one item selected, we display its label. If for
-                // some reason we can't find the selected item, we use the
-                // display text for the case where nothing is selected.
-                const selectedItem = children.find(
-                    (option) => option.props.value === selectedValues[0],
-                );
-
-                if (selectedItem) {
-                    const selectedLabel = getSelectOpenerLabel(
-                        showOpenerLabelAsText,
-                        selectedItem?.props,
+            switch (selectedValues.length) {
+                case 0:
+                    return noSelectionText;
+                case 1:
+                    // If there is one item selected, we display its label. If for
+                    // some reason we can't find the selected item, we use the
+                    // display text for the case where nothing is selected.
+                    const selectedItem = children.find(
+                        (option) => option.props.value === selectedValues[0],
                     );
-                    if (selectedLabel) {
-                        return selectedLabel;
-                        // If the label is a ReactNode and `labelAsText` is not set,
-                        // we fallback to, the default label for the case where only
-                        // one item is selected.
-                    } else {
-                        return someSelected(1);
+
+                    if (selectedItem) {
+                        const selectedLabel = getSelectOpenerLabel(
+                            showOpenerLabelAsText,
+                            selectedItem?.props,
+                        );
+                        if (selectedLabel) {
+                            return selectedLabel;
+                            // If the label is a ReactNode and `labelAsText` is not set,
+                            // we fallback to, the default label for the case where only
+                            // one item is selected.
+                        } else {
+                            return someSelected(1);
+                        }
                     }
-                }
-                return noSelectionText;
-            case numSelectedAll:
-                return allSelected;
-            default:
-                return someSelected(selectedValues.length);
-        }
-    };
+                    return noSelectionText;
+                case numSelectedAll:
+                    return allSelected;
+                default:
+                    return someSelected(selectedValues.length);
+            }
+        },
+        [implicitAllEnabled, labels, selectedValues, showOpenerLabelAsText],
+    );
 
     const getShortcuts = (numOptions: number): DropdownItem[] => {
         const {selectAllLabel, selectNoneLabel} = labels;
@@ -542,23 +547,42 @@ const MultiSelect = (props: Props) => {
         });
     };
 
-    const maybeGetOpenerStringValue = (
-        children: OptionItemComponentArray,
-        openerContent: string | JSX.Element,
-    ) => {
-        let openerStringValue;
-        if (selectedValues.length === 1) {
-            const selectedItem = children.find(
-                (option) => option.props.value === selectedValues[0],
-            );
-            openerStringValue = selectedItem
-                ? getLabel(selectedItem?.props)
-                : undefined;
-        } else if (typeof openerContent === "string") {
-            openerStringValue = openerContent;
+    const maybeGetOpenerStringValue = React.useCallback(
+        (
+            children: OptionItemComponentArray,
+            openerContent: string | JSX.Element,
+        ) => {
+            let openerStringValue;
+            if (selectedValues.length === 1) {
+                const selectedItem = children.find(
+                    (option) => option.props.value === selectedValues[0],
+                );
+                openerStringValue = selectedItem
+                    ? getLabel(selectedItem?.props)
+                    : undefined;
+            } else if (typeof openerContent === "string") {
+                openerStringValue = openerContent;
+            }
+            return openerStringValue;
+        },
+        [selectedValues],
+    );
+
+    React.useEffect(() => {
+        const optionItems = React.Children.toArray(
+            children,
+        ) as OptionItemComponentArray;
+        const openerContent = getMenuTextOrNode(optionItems);
+        const openerStringValue = maybeGetOpenerStringValue(
+            optionItems,
+            openerContent,
+        );
+
+        if (openerStringValue) {
+            // opener value changed, so let's announce it
+            handleAnnouncement(openerStringValue);
         }
-        return openerStringValue;
-    };
+    }, [children, getMenuTextOrNode, maybeGetOpenerStringValue]);
 
     const renderOpener = (
         allChildren: React.ReactElement<
@@ -572,15 +596,6 @@ const MultiSelect = (props: Props) => {
         const {noneSelected} = labels;
 
         const openerContent = getMenuTextOrNode(allChildren);
-        const openerStringValue = maybeGetOpenerStringValue(
-            allChildren,
-            openerContent,
-        );
-
-        if (openerStringValue) {
-            // opener value changed, so let's announce it
-            handleAnnouncement(openerStringValue);
-        }
 
         const dropdownOpener = (
             <Id id={id}>
