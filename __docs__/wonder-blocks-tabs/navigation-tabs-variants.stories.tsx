@@ -120,7 +120,7 @@ const generateRows = (rtl: boolean = false) => [
                 <NavigationTabItem>
                     <IconButton
                         icon={IconMappings.cookie}
-                        aria-label="Ice cream"
+                        aria-label="Cookie"
                         size="medium"
                         href="#link-2"
                     />
