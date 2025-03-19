@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
             textDecoration: "none",
             outline: "none",
             color: semanticColor.action.primary.progressive.hover.border,
+            backgroundColor: "transparent",
         },
         ":active": {
             textDecoration: "none",
@@ -150,6 +151,9 @@ const styles = StyleSheet.create({
         ":focus-visible": {
             // TODO update semantic color
             color: semanticColor.action.primary.progressive.hover.border,
+            outline: "none",
+            boxShadow: `0 0 0 ${sizing.size_025} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_050} ${semanticColor.focus.outer}`,
+            borderRadius: 0,
         },
     },
 });
