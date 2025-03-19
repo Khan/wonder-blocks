@@ -40,12 +40,6 @@ const defaultLabels: LabelsValues = {
     allSelected: "All students",
 };
 
-jest.mock("@khanacademy/wonder-blocks-announcer", () => {
-    return {
-        announceMessage: jest.fn(),
-    };
-});
-
 describe("MultiSelect", () => {
     beforeEach(() => {
         window.scrollTo = jest.fn();

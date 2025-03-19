@@ -28,12 +28,6 @@ const doRender = (element: React.ReactElement) => {
     };
 };
 
-jest.mock("@khanacademy/wonder-blocks-announcer", () => {
-    return {
-        announceMessage: jest.fn(),
-    };
-});
-
 jest.mock("react-popper", () => ({
     ...jest.requireActual("react-popper"),
     Popper: jest.fn().mockImplementation(({children}) => {
