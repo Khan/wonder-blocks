@@ -1,5 +1,6 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
+import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {
@@ -8,7 +9,7 @@ import {
 } from "@khanacademy/wonder-blocks-tabs";
 import Link from "@khanacademy/wonder-blocks-link";
 import argTypes from "./navigation-tabs.argtypes";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
     longText,
@@ -16,6 +17,8 @@ import {
 } from "../components/text-for-testing";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs",
@@ -177,5 +180,81 @@ export const ScenariosSmallScreen: StoryComponentType = {
         viewport: {
             defaultViewport: "small",
         },
+    },
+};
+
+const StyledHeader = addStyle("header");
+const StyledDiv = addStyle("div");
+
+/**
+ * Here is an example of the `NavigationTabs` component used within a header.
+ *
+ * Note: To line up the header bottom border with the NavigationTabs underline
+ * styling, a negative vertical margin is set on the `NavigationTabs`.
+ */
+export const HeaderWithNavigationTabsExample: StoryComponentType = {
+    render() {
+        const headerVerticalSpacing = sizing.size_150;
+        const styles = StyleSheet.create({
+            pageStyle: {
+                backgroundColor: semanticColor.surface.secondary,
+                height: "100vh",
+                width: "100%",
+            },
+            headerStyle: {
+                backgroundColor: semanticColor.surface.primary,
+                display: "flex",
+                alignItems: "center",
+                borderBottom: `1px solid ${semanticColor.border.primary}`,
+                width: "100%",
+                gap: sizing.size_300,
+                padding: `${headerVerticalSpacing} ${sizing.size_300}`,
+            },
+            navigationTabsRoot: {
+                // set margin to negative value of header vertical spacing so
+                // that selected indicator lines up with header border
+                margin: `-${headerVerticalSpacing} 0`,
+            },
+        });
+
+        return (
+            <StyledDiv style={styles.pageStyle}>
+                <StyledHeader style={styles.headerStyle}>
+                    <img
+                        src="/logo.svg"
+                        width="40px"
+                        alt="Wonder Blocks logo"
+                    />
+                    <SingleSelect
+                        placeholder="Placeholder"
+                        selectedValue={"item-1"}
+                        onChange={() => {}}
+                        style={{width: "200px"}}
+                    >
+                        <OptionItem value="item-1" label="Item 1" />
+                        <OptionItem value="item-2" label="Item 2" />
+                    </SingleSelect>
+                    <NavigationTabs
+                        aria-label="Secondary navigation"
+                        styles={{root: styles.navigationTabsRoot}}
+                    >
+                        <NavigationTabItem
+                            current={true} // replace with logic checking if this is the current route
+                        >
+                            <Link href="#link-1">Tab link 1</Link>
+                        </NavigationTabItem>
+                        <NavigationTabItem>
+                            <Link href="#link-2">Tab link 2</Link>
+                        </NavigationTabItem>
+                        <NavigationTabItem>
+                            <Link href="#link-3">Tab link 3</Link>
+                        </NavigationTabItem>
+                    </NavigationTabs>
+                </StyledHeader>
+            </StyledDiv>
+        );
+    },
+    parameters: {
+        layout: "fullscreen",
     },
 };

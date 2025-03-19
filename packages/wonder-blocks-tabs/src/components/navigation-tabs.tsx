@@ -102,8 +102,10 @@ const styles = StyleSheet.create({
         overflowX: "auto",
     },
     list: {
-        padding: 0,
-        margin: 0,
+        // Add horizontal padding for focus outline of first/last elements
+        paddingInline: sizing.size_050,
+        paddingBlock: sizing.size_0,
+        margin: sizing.size_0,
         display: "flex",
         gap: sizing.size_200,
         flexWrap: "nowrap",
