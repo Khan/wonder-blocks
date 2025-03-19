@@ -95,19 +95,7 @@ const parameters = {
     },
 };
 
-const withThemeSwitcher: Decorator = (
-    Story,
-    {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
-) => {
-    if (enableRenderStateRootDecorator) {
-        return (
-            <RenderStateRoot>
-                <ThemeSwitcherContext.Provider value={theme}>
-                    <Story />
-                </ThemeSwitcherContext.Provider>
-            </RenderStateRoot>
-        );
-    }
+const withThemeSwitcher: Decorator = (Story, {globals: {theme}}) => {
     return (
         <ThemeSwitcherContext.Provider value={theme}>
             <Story />

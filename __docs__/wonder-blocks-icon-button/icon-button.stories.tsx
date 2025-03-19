@@ -12,7 +12,7 @@ import magnifyingGlass from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import magnifyingGlassBold from "@phosphor-icons/core/bold/magnifying-glass-bold.svg";
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 
-import {MemoryRouter, Route, Switch} from "react-router";
+import {MemoryRouter, Route, Routes} from "react-router";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
@@ -346,11 +346,12 @@ export const WithRouter: StoryComponentType = {
                     aria-label="Skip client navigation"
                     skipClientNav
                 />
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
-                </Switch>
+                <Routes>
+                    <Route
+                        path="/foo"
+                        element={<View id="foo">Hello, world!</View>}
+                    />
+                </Routes>
             </View>
         </MemoryRouter>
     ),

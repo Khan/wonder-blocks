@@ -2,7 +2,7 @@ import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter, Route, Routes} from "react-router-dom";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import expectRenderError from "../../../../../utils/testing/expect-render-error";
@@ -65,11 +65,12 @@ describe("IconButton", () => {
                         testId="icon-button"
                         href="/foo"
                     />
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -92,11 +93,12 @@ describe("IconButton", () => {
                         testId="icon-button"
                         href="/unknown"
                     />
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -120,11 +122,12 @@ describe("IconButton", () => {
                         href="/foo"
                         skipClientNav
                     />
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );
@@ -147,11 +150,12 @@ describe("IconButton", () => {
                         href="/foo"
                         disabled={true}
                     />
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<div id="foo">Hello, world!</div>}
+                        />
+                    </Routes>
                 </div>
             </MemoryRouter>,
         );

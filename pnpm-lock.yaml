@@ -37,11 +37,11 @@ catalogs:
       specifier: ^2.3.0
       version: 2.3.0
     react-router:
-      specifier: 5.3.4
-      version: 5.3.4
+      specifier: 6.30.0
+      version: 6.30.0
     react-router-dom:
-      specifier: 5.3.4
-      version: 5.3.4
+      specifier: 6.30.0
+      version: 6.30.0
     react-window:
       specifier: ^1.8.11
       version: 1.8.11
@@ -86,10 +86,10 @@ importers:
         version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-router:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -214,12 +214,6 @@ importers:
       '@types/react-dom':
         specifier: '18'
         version: 18.3.5(@types/react@18.3.18)
-      '@types/react-router':
-        specifier: ^5.1.20
-        version: 5.1.20
-      '@types/react-router-dom':
-        specifier: ^5.3.3
-        version: 5.3.3
       '@types/react-window':
         specifier: ^1.8.8
         version: 1.8.8
@@ -534,10 +528,10 @@ importers:
         version: 18.2.0
       react-router:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -596,10 +590,10 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-router:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -621,10 +615,10 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-router:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -716,10 +710,10 @@ importers:
         version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-router:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -840,10 +834,10 @@ importers:
         version: 18.2.0
       react-router:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -930,10 +924,10 @@ importers:
         version: 18.2.0
       react-router:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1183,7 +1177,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1217,7 +1211,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-router-dom:
         specifier: 'catalog:'
-        version: 5.3.4(react@18.2.0)
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -2600,6 +2594,10 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
+  '@remix-run/router@1.23.0':
+    resolution: {integrity: sha512-O3rHJzAQKamUz1fvE0Qaw0xSFqsA/yafi2iqeE0pvdFtCO1viYx8QL6f3Ln/aCCTLxs68SLf0KPM9eSeM8yBnA==}
+    engines: {node: '>=14.0.0'}
+
   '@rollup/plugin-babel@6.0.4':
     resolution: {integrity: sha512-YF7Y52kFdFT/xVSuVdjkV5ZdX/3YtmX0QulG+x0taQOtJdHYzVU61aSSkAgVJ7NOv6qPkIYiJSgSWWN/DM5sGw==}
     engines: {node: '>=14.0.0'}
@@ -3206,12 +3204,6 @@ packages:
     resolution: {integrity: sha512-P4t6saawp+b/dFrUr2cvkVsfvPguwsxtH6dNIYRllMsefqFzkZk5UIjzyDOv5g1dXIPdG4Sp1yCR4Z6RCUsG/Q==}
     peerDependencies:
       '@types/react': '18'
-
-  '@types/react-router-dom@5.3.3':
-    resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
-
-  '@types/react-router@5.1.20':
-    resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
 
   '@types/react-window@1.8.8':
     resolution: {integrity: sha512-8Ls660bHR1AUA2kuRvVG9D/4XpRC6wjAaPT9dil7Ckc76eP9TKWZwwmgfq8Q1LANX3QNDnoU4Zp48A3w+zK69Q==}
@@ -4860,12 +4852,6 @@ packages:
   headers-polyfill@4.0.3:
     resolution: {integrity: sha512-IScLbePpkvO846sIwOtOTDjutRMWdXdJmXdMvk6gCBHxFO8d+QKOQedyZSxFTTFYRSmlgSTDtXqqq4pcenBXLQ==}
 
-  history@4.10.1:
-    resolution: {integrity: sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==}
-
-  hoist-non-react-statics@3.3.2:
-    resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
-
   hosted-git-info@2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
 
@@ -6337,9 +6323,6 @@ packages:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
     engines: {node: '>=16 || 14 >=14.18'}
 
-  path-to-regexp@1.9.0:
-    resolution: {integrity: sha512-xIp7/apCFJuUHdDLWe8O1HIkb0kQrOMb/0u6FXQjemHn/ii5LrIzU6bdECnsiTF/GjZkMEKg1xdiZwNqDYlZ6g==}
-
   path-to-regexp@6.3.0:
     resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
 
@@ -6565,15 +6548,18 @@ packages:
     resolution: {integrity: sha512-FPvF2XxTSikpJxcr+bHut2H4gJ17+18Uy20D5/F+SKzFap62R3cM5wH6b8WN3LyGSYeQilLEcJcR1fjBSI2S1A==}
     engines: {node: '>=0.10.0'}
 
-  react-router-dom@5.3.4:
-    resolution: {integrity: sha512-m4EqFMHv/Ih4kpcBCONHbkT68KoAeHN4p3lAGoNryfHi0dMy0kCzEZakiKRsvg5wHZ/JLrLW8o8KomWiz/qbYQ==}
+  react-router-dom@6.30.0:
+    resolution: {integrity: sha512-x30B78HV5tFk8ex0ITwzC9TTZMua4jGyA9IUlH1JLQYQTFyxr/ZxwOJq7evg1JX1qGVUcvhsmQSKdPncQrjTgA==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
-      react: '>=15'
+      react: '>=16.8'
+      react-dom: '>=16.8'
 
-  react-router@5.3.4:
-    resolution: {integrity: sha512-Ys9K+ppnJah3QuaRiLxk+jDWOR1MekYQrlytiXxC1RyfbdsZkS5pvKAzCCr031xHixZwpnsYNT5xysdFHQaYsA==}
+  react-router@6.30.0:
+    resolution: {integrity: sha512-D3X8FyH9nBcTSHGdEKurK7r8OYE1kKFn3d/CF+CoxbSHkxU7o37+Uh7eAHRXr6k2tSExXYO++07PeXJtA/dEhQ==}
+    engines: {node: '>=14.0.0'}
     peerDependencies:
-      react: '>=15'
+      react: '>=16.8'
 
   react-window@1.8.11:
     resolution: {integrity: sha512-+SRbUVT2scadgFSWx+R1P754xHPEqvcfSfVX10QYg6POOz+WNgkN48pS+BtZNIMGiL1HYrSEiCkwsMS15QogEQ==}
@@ -6738,9 +6724,6 @@ packages:
   resolve-from@5.0.0:
     resolution: {integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==}
     engines: {node: '>=8'}
-
-  resolve-pathname@3.0.0:
-    resolution: {integrity: sha512-C7rARubxI8bXFNB/hqcp/4iUeIXJhJZvFPFPiSPRnhU5UPxzMFIl+2E6yY6c4k9giDJAhtV+enfA+G89N6Csng==}
 
   resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
@@ -7175,9 +7158,6 @@ packages:
   tiny-invariant@1.3.3:
     resolution: {integrity: sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==}
 
-  tiny-warning@1.0.3:
-    resolution: {integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==}
-
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
 
@@ -7516,9 +7496,6 @@ packages:
   validate-npm-package-name@5.0.1:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
-
-  value-equal@1.0.1:
-    resolution: {integrity: sha512-NOJ6JZCAWr0zlxZt+xqCHNTEKOsrks2HQd4MqhP1qy4z1SkbEP467eNx6TgDKXMvUOb+OENfJCZwM+16n7fRfw==}
 
   vfile-find-up@6.1.0:
     resolution: {integrity: sha512-plN64Ff/wLPvKC8ucTzyB97cgV7SdIcFL74HLCSmI/79FqOI1WACbNM4noKrJa+dZRgN6Gwp4BQElm/yBDqC3w==}
@@ -9383,6 +9360,8 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
+  '@remix-run/router@1.23.0': {}
+
   '@rollup/plugin-babel@6.0.4(@babel/core@7.26.7)(@types/babel__core@7.20.5)(rollup@2.79.2)':
     dependencies:
       '@babel/core': 7.26.7
@@ -10027,17 +10006,6 @@ snapshots:
 
   '@types/react-dom@18.3.5(@types/react@18.3.18)':
     dependencies:
-      '@types/react': 18.3.18
-
-  '@types/react-router-dom@5.3.3':
-    dependencies:
-      '@types/history': 4.7.11
-      '@types/react': 18.3.18
-      '@types/react-router': 5.1.20
-
-  '@types/react-router@5.1.20':
-    dependencies:
-      '@types/history': 4.7.11
       '@types/react': 18.3.18
 
   '@types/react-window@1.8.8':
@@ -12075,19 +12043,6 @@ snapshots:
       space-separated-tokens: 2.0.2
 
   headers-polyfill@4.0.3: {}
-
-  history@4.10.1:
-    dependencies:
-      '@babel/runtime': 7.26.7
-      loose-envify: 1.4.0
-      resolve-pathname: 3.0.0
-      tiny-invariant: 1.3.3
-      tiny-warning: 1.0.3
-      value-equal: 1.0.1
-
-  hoist-non-react-statics@3.3.2:
-    dependencies:
-      react-is: 16.13.1
 
   hosted-git-info@2.8.9: {}
 
@@ -14246,10 +14201,6 @@ snapshots:
       lru-cache: 10.4.3
       minipass: 7.1.2
 
-  path-to-regexp@1.9.0:
-    dependencies:
-      isarray: 0.0.1
-
   path-to-regexp@6.3.0: {}
 
   path-type@3.0.0:
@@ -14450,29 +14401,17 @@ snapshots:
 
   react-refresh@0.16.0: {}
 
-  react-router-dom@5.3.4(react@18.2.0):
+  react-router-dom@6.30.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.26.7
-      history: 4.10.1
-      loose-envify: 1.4.0
-      prop-types: 15.8.1
+      '@remix-run/router': 1.23.0
       react: 18.2.0
-      react-router: 5.3.4(react@18.2.0)
-      tiny-invariant: 1.3.3
-      tiny-warning: 1.0.3
+      react-dom: 18.2.0(react@18.2.0)
+      react-router: 6.30.0(react@18.2.0)
 
-  react-router@5.3.4(react@18.2.0):
+  react-router@6.30.0(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.26.7
-      history: 4.10.1
-      hoist-non-react-statics: 3.3.2
-      loose-envify: 1.4.0
-      path-to-regexp: 1.9.0
-      prop-types: 15.8.1
+      '@remix-run/router': 1.23.0
       react: 18.2.0
-      react-is: 16.13.1
-      tiny-invariant: 1.3.3
-      tiny-warning: 1.0.3
 
   react-window@1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
@@ -14732,8 +14671,6 @@ snapshots:
   resolve-from@4.0.0: {}
 
   resolve-from@5.0.0: {}
-
-  resolve-pathname@3.0.0: {}
 
   resolve-pkg-maps@1.0.0: {}
 
@@ -15244,8 +15181,6 @@ snapshots:
 
   tiny-invariant@1.3.3: {}
 
-  tiny-warning@1.0.3: {}
-
   tinybench@2.9.0: {}
 
   tinyexec@0.3.2: {}
@@ -15656,8 +15591,6 @@ snapshots:
       spdx-expression-parse: 3.0.1
 
   validate-npm-package-name@5.0.1: {}
-
-  value-equal@1.0.1: {}
 
   vfile-find-up@6.1.0:
     dependencies:

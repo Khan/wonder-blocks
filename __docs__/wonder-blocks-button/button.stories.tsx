@@ -2,7 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter, Route, Routes} from "react-router-dom";
 
 import type {StyleDeclaration} from "aphrodite";
 
@@ -684,11 +684,12 @@ export const PreventNavigation: StoryComponentType = {
                 >
                     This button prevents navigation.
                 </Button>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
-                </Switch>
+                <Routes>
+                    <Route
+                        path="/foo"
+                        element={<View id="foo">Hello, world!</View>}
+                    />
+                </Routes>
             </View>
         </MemoryRouter>
     ),
@@ -716,11 +717,12 @@ export const WithRouter: StoryComponentType = {
                 <Button href="/foo" style={styles.button} skipClientNav>
                     Avoids Client-side Nav
                 </Button>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
-                </Switch>
+                <Routes>
+                    <Route
+                        path="/foo"
+                        element={<View id="foo">Hello, world!</View>}
+                    />
+                </Routes>
             </View>
         </MemoryRouter>
     ),
