@@ -2,7 +2,7 @@ import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {initAnnouncer} from "../packages/wonder-blocks-announcer";
+import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
