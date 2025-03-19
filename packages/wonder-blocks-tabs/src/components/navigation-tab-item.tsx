@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         color: semanticColor.text.primary,
         paddingInline: 0,
         position: "relative",
+        whiteSpace: "nowrap",
         ":hover": {
             textDecoration: "none",
         },
