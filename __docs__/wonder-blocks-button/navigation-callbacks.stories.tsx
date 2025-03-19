@@ -45,9 +45,10 @@ const BeforeNavCallbacks = () => (
                 beforeNav, open URL in new tab
             </Button>
             <Routes>
-                <Route path="/foo">
-                    <View id="foo">Hello, world!</View>
-                </Route>
+                <Route
+                    path="/foo"
+                    element={<View id="foo">Hello, world!</View>}
+                />
             </Routes>
         </View>
     </MemoryRouter>
@@ -92,9 +93,10 @@ const SafeWithNavCallbacks = () => (
                 safeWithNav, open URL in new tab
             </Button>
             <Routes>
-                <Route path="/foo">
-                    <View id="foo">Hello, world!</View>
-                </Route>
+                <Route
+                    path="/foo"
+                    element={<View id="foo">Hello, world!</View>}
+                />
             </Routes>
         </View>
     </MemoryRouter>

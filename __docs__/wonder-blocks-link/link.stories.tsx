@@ -409,12 +409,16 @@ export const Navigation: StoryComponentType = {
                 </View>
                 <View style={styles.navigation}>
                     <Routes>
-                        <Route path="/foo">
-                            <View id="foo">
-                                The first link does client-side navigation here.
-                            </View>
-                        </Route>
-                        <Route path="*">See navigation changes here</Route>
+                        <Route
+                            path="/foo"
+                            element={
+                                <View id="foo">
+                                    The first link does client-side navigation
+                                    here.
+                                </View>
+                            }
+                        />
+                        <Route path="*" element="See navigation changes here" />
                     </Routes>
                 </View>
             </View>

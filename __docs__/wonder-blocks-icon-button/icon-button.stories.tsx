@@ -347,9 +347,10 @@ export const WithRouter: StoryComponentType = {
                     skipClientNav
                 />
                 <Routes>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
+                    <Route
+                        path="/foo"
+                        element={<View id="foo">Hello, world!</View>}
+                    />
                 </Routes>
             </View>
         </MemoryRouter>
