@@ -9,6 +9,13 @@ import {
 import Link from "@khanacademy/wonder-blocks-link";
 import argTypes from "./navigation-tabs.argtypes";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {
+    longText,
+    longTextWithNoWordBreak,
+} from "../components/text-for-testing";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs",
@@ -69,5 +76,97 @@ export const CustomStyles: StoryComponentType = {
                 gap: sizing.size_500,
             },
         },
+    },
+};
+
+const generateChildren = (
+    numItems: number,
+    label: string,
+    showIcons: boolean = false,
+) => {
+    return Array(numItems)
+        .fill(0)
+        .map((_, index) => (
+            <NavigationTabItem current={index === 0}>
+                <Link
+                    href={`#link-${index + 1}`}
+                    startIcon={
+                        showIcons ? (
+                            <PhosphorIcon
+                                icon={IconMappings.cookie}
+                                size="small"
+                            />
+                        ) : undefined
+                    }
+                    endIcon={
+                        showIcons ? (
+                            <PhosphorIcon
+                                icon={IconMappings.iceCream}
+                                size="small"
+                            />
+                        ) : undefined
+                    }
+                >
+                    {label}
+                </Link>
+            </NavigationTabItem>
+        ));
+};
+
+export const Scenarios: StoryComponentType = {
+    render() {
+        const scenarios = [
+            {
+                name: "Many items",
+                props: {children: generateChildren(10, "Navigation Tab Item")},
+            },
+            {
+                name: "Long text",
+                props: {children: generateChildren(4, longText)},
+            },
+            {
+                name: "Long text with no word break",
+                props: {
+                    children: generateChildren(4, longTextWithNoWordBreak),
+                },
+            },
+            {
+                name: "Long text (with icons)",
+                props: {children: generateChildren(4, longText, true)},
+            },
+            {
+                name: "Long text with no word break (with icons)",
+                props: {
+                    children: generateChildren(
+                        4,
+                        longTextWithNoWordBreak,
+                        true,
+                    ),
+                },
+            },
+            {
+                name: "Varying lengths",
+                props: {
+                    children: [
+                        <NavigationTabItem current={true}>
+                            <Link href="#link-long">{longText}</Link>
+                        </NavigationTabItem>,
+                        <NavigationTabItem>
+                            <Link href="#link-short">Short text</Link>
+                        </NavigationTabItem>,
+                        <NavigationTabItem>
+                            <Link href="#link-long-no-break">
+                                {longTextWithNoWordBreak}
+                            </Link>
+                        </NavigationTabItem>,
+                    ],
+                },
+            },
+        ];
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <NavigationTabs {...props} />}
+            </ScenariosLayout>
+        );
     },
 };

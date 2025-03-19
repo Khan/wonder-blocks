@@ -9,6 +9,13 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import argTypes from "./navigation-tab-item.argtypes";
+import {
+    longText,
+    longTextWithNoWordBreak,
+} from "../components/text-for-testing";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {ScenariosLayout} from "../components/scenarios-layout";
 
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem",
@@ -106,6 +113,85 @@ export const ChildrenRenderFunction: StoryComponentType = {
     parameters: {
         // Added to ensure that the popover/tooltip is rendered using PopperJS.
         chromatic: {delay: 500},
+    },
+};
+
+export const Scenarios: StoryComponentType = {
+    render() {
+        const scenarios = [
+            {
+                name: "Long Text",
+                props: {
+                    current: true,
+                    children: <Link href="#link">{longText}</Link>,
+                },
+            },
+            {
+                name: "Long Text with No Word Break",
+                props: {
+                    current: true,
+                    children: (
+                        <Link href="#link">{longTextWithNoWordBreak}</Link>
+                    ),
+                },
+            },
+            {
+                name: "Long Text (icons)",
+                props: {
+                    current: true,
+                    children: (
+                        <Link
+                            href="#link"
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    size="small"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.iceCream}
+                                    size="small"
+                                />
+                            }
+                        >
+                            {longText}
+                        </Link>
+                    ),
+                },
+            },
+            {
+                name: "Long Text with No Word Break (icons)",
+                props: {
+                    current: true,
+                    children: (
+                        <Link
+                            href="#link"
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    size="small"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.iceCream}
+                                    size="small"
+                                />
+                            }
+                        >
+                            {longTextWithNoWordBreak}
+                        </Link>
+                    ),
+                },
+            },
+        ];
+
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <NavigationTabItem {...props} />}
+            </ScenariosLayout>
+        );
     },
 };
 
