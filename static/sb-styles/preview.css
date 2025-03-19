@@ -86,6 +86,7 @@ html {
 
 
 .showAnnouncer.sb-show-main #wbAnnounce {
+    background-color: white;
     bottom: 0;
     display: block !important;
     clip: revert !important;
@@ -99,7 +100,7 @@ html {
 }
 
 .showAnnouncer.sb-show-main .wbARegion::before {
-    background-color: white;
+    background-color: inherit;
     border: 1px solid red;
     content: attr(id) / "";
     display: block;
