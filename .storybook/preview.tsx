@@ -115,9 +115,21 @@ const withThemeSwitcher: Decorator = (
     );
 };
 
+const withLanguageDirection: Decorator = (Story, context) => {
+    if (context.globals.direction === "rtl") {
+        return (
+            <div dir="rtl">
+                <Story />
+            </div>
+        )
+    } else {
+        return <Story />
+    }
+}
+
 const preview: Preview = {
     parameters,
-    decorators: [withThemeSwitcher],
+    decorators: [withThemeSwitcher, withLanguageDirection],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
@@ -143,6 +155,24 @@ const preview: Preview = {
                 dynamicTitle: true,
             },
         },
+        direction: {
+            description: "The language direction to use",
+            toolbar: {
+                title: "Language Direction",
+                icon: "globe",
+                items: [{
+                    value: "ltr",
+                    icon: "arrowrightalt",
+                    title: "Left to Right",
+                },
+                {
+                    value: "rtl",
+                    icon: "arrowleftalt",
+                    title: "Right to Left",
+                },],
+                dynamicTitle: true,
+            },
+        }
     },
 
     tags: ["autodocs"],
