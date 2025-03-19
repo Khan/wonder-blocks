@@ -13,6 +13,7 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {rtlText} from "../components/text-for-testing";
 import {ZoomWrapper} from "../components/zoom-wrapper";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 const generateRows = (rtl: boolean = false) => {
     return [
@@ -93,6 +94,18 @@ const generateRows = (rtl: boolean = false) => {
                     >
                         {rtl ? rtlText : "Start and End Icons"}
                     </Link>
+                ),
+            },
+        },
+        {
+            name: "Icon only",
+            props: {
+                children: (
+                    <IconButton
+                        href="#link"
+                        aria-label="Ice cream"
+                        icon={IconMappings.iceCream}
+                    />
                 ),
             },
         },

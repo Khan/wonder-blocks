@@ -15,6 +15,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {rtlText} from "../components/text-for-testing";
 import {ZoomWrapper} from "../components/zoom-wrapper";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 const generateRows = (rtl: boolean = false) => [
     {
@@ -99,6 +100,29 @@ const generateRows = (rtl: boolean = false) => [
                     >
                         {rtl ? rtlText : "Start and End Icons"}
                     </Link>
+                </NavigationTabItem>,
+            ],
+        },
+    },
+    {
+        name: "Icon Only",
+        props: {
+            children: [
+                <NavigationTabItem current={true}>
+                    <IconButton
+                        icon={IconMappings.iceCream}
+                        aria-label="Ice cream"
+                        size="medium"
+                        href="#link-1"
+                    />
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <IconButton
+                        icon={IconMappings.cookie}
+                        aria-label="Ice cream"
+                        size="medium"
+                        href="#link-2"
+                    />
                 </NavigationTabItem>,
             ],
         },

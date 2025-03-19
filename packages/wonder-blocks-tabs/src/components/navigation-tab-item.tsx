@@ -129,17 +129,25 @@ const styles = StyleSheet.create({
         color: semanticColor.action.primary.progressive.hover.border,
     },
     link: {
+        display: "flex",
+        margin: 0,
         color: semanticColor.text.primary,
         paddingInline: 0,
         position: "relative",
         whiteSpace: "nowrap",
         ":hover": {
             textDecoration: "none",
+            outline: "none",
         },
         ":active": {
             textDecoration: "none",
+            outline: "none",
             // TODO update semantic color to use foreground?
             color: semanticColor.action.primary.progressive.press.border,
+        },
+        ":focus-visible": {
+            // TODO update semantic color
+            color: semanticColor.action.primary.progressive.hover.border,
         },
     },
 });
