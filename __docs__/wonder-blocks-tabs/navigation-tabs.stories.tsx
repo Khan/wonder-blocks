@@ -62,6 +62,66 @@ export const Default: StoryComponentType = {
 };
 
 /**
+ * Use the `Link` props for setting things like icons.
+ */
+export const WithIcons: StoryComponentType = {
+    args: {
+        children: [
+            <NavigationTabItem>
+                <Link href="https://khanacademy.org" target="_blank">
+                    External Link
+                </Link>
+            </NavigationTabItem>,
+            <NavigationTabItem>
+                <Link
+                    href="#link2"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.cookie} size="small" />
+                    }
+                >
+                    Start Icon
+                </Link>
+            </NavigationTabItem>,
+            <NavigationTabItem>
+                <Link
+                    href="#link3"
+                    endIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            size="small"
+                        />
+                    }
+                >
+                    End Icon
+                </Link>
+            </NavigationTabItem>,
+            <NavigationTabItem current={true}>
+                <Link
+                    href="#link4"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.cookie} size="small" />
+                    }
+                    endIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            size="small"
+                        />
+                    }
+                >
+                    Start and End Icons
+                </Link>
+            </NavigationTabItem>,
+        ],
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because it's covered by All Variants
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
  * Custom styles can be set for the elements in NavigationTabs using the
  * `styles` prop.
  *
@@ -116,6 +176,9 @@ const generateChildren = (
         ));
 };
 
+/**
+ * The following story shows how the component habdles specific scenarios.
+ */
 export const Scenarios: StoryComponentType = {
     render() {
         const scenarios = [
@@ -190,6 +253,10 @@ export const Scenarios: StoryComponentType = {
     },
 };
 
+/**
+ * The following story shows how the component habdles specific scenarios at a
+ * small screen size.
+ */
 export const ScenariosSmallScreen: StoryComponentType = {
     ...Scenarios,
     parameters: {
