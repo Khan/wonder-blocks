@@ -108,10 +108,10 @@ const styles = StyleSheet.create({
         listStyle: "none",
         display: "inline-flex",
         [":has(a:hover)" as any]: {
-            boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.primary.progressive.hover.border}`,
+            boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
         },
         [":has(a:active)" as any]: {
-            boxShadow: `inset 0 -${sizing.size_075} 0 0 ${semanticColor.action.primary.progressive.press.border}`,
+            boxShadow: `inset 0 -${sizing.size_075} 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
         },
         paddingBlockStart: sizing.size_100,
         paddingBlockEnd: sizing.size_225,
@@ -121,12 +121,10 @@ const styles = StyleSheet.create({
         },
     },
     current: {
-        // TODO update semantic color
-        boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.primary.progressive.hover.border}`,
+        boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
     },
     currentLink: {
-        // TODO update semantic color
-        color: semanticColor.action.primary.progressive.hover.border,
+        color: semanticColor.action.secondary.progressive.default.foreground,
     },
     link: {
         display: "flex",
@@ -139,18 +137,18 @@ const styles = StyleSheet.create({
         ":hover": {
             textDecoration: "none",
             outline: "none",
-            color: semanticColor.action.primary.progressive.hover.border,
+            color: semanticColor.action.secondary.progressive.default
+                .foreground,
             backgroundColor: "transparent",
         },
         ":active": {
             textDecoration: "none",
             outline: "none",
-            // TODO update semantic color to use foreground?
-            color: semanticColor.action.primary.progressive.press.border,
+            color: semanticColor.action.secondary.progressive.press.foreground,
         },
         ":focus-visible": {
-            // TODO update semantic color
-            color: semanticColor.action.primary.progressive.hover.border,
+            color: semanticColor.action.secondary.progressive.default
+                .foreground,
             outline: "none",
             boxShadow: `0 0 0 ${sizing.size_025} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_050} ${semanticColor.focus.outer}`,
             borderRadius: 0,
