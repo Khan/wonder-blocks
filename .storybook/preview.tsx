@@ -2,6 +2,7 @@ import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {initAnnouncer} from "../packages/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
@@ -103,8 +104,12 @@ const withThemeSwitcher: Decorator = (
     if (addBodyClass) {
         document.body.classList.add(addBodyClass);
     }
+    const containerRef = React.useRef(null);
     // Remove body class when changing stories
     React.useEffect(() => {
+        const storyContainer = containerRef.current;
+        // initialize Announcer on load to render Live Regions earlier
+        initAnnouncer({targetElement: storyContainer});
         return () => {
           if (addBodyClass) {
             document.body.classList.remove(addBodyClass);
@@ -115,14 +120,18 @@ const withThemeSwitcher: Decorator = (
         return (
             <RenderStateRoot>
                 <ThemeSwitcherContext.Provider value={theme}>
-                    <Story />
+                    <div ref={containerRef}>
+                        <Story />
+                    </div>
                 </ThemeSwitcherContext.Provider>
             </RenderStateRoot>
         );
     }
     return (
         <ThemeSwitcherContext.Provider value={theme}>
-            <Story />
+            <div ref={containerRef}>
+                <Story />
+            </div>
         </ThemeSwitcherContext.Provider>
     );
 };

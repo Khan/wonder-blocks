@@ -2,6 +2,7 @@ import Announcer from "./announcer";
 
 type InitAnnouncerProps = {
     debounceThreshold?: number;
+    targetElement?: HTMLElement | null;
 };
 
 /**
@@ -10,7 +11,11 @@ type InitAnnouncerProps = {
  * @returns {Announcer} The Announcer instance created.
  */
 export function initAnnouncer(props?: InitAnnouncerProps): Announcer {
-    const announcer = Announcer.getInstance();
+    let targetElement;
+    if (props?.targetElement !== null) {
+        targetElement = props?.targetElement;
+    }
+    const announcer = Announcer.getInstance(targetElement);
     if (props?.debounceThreshold !== undefined) {
         announcer.updateWaitThreshold(props?.debounceThreshold);
     }

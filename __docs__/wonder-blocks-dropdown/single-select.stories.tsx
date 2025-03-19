@@ -8,7 +8,6 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -105,15 +104,6 @@ export default {
             default: "offWhite",
         },
     },
-    decorators: [
-        (Story) => {
-            React.useEffect(() => {
-                // initialize Announcer on load to render Live Regions earlier
-                initAnnouncer();
-            }, []);
-            return <Story />;
-        },
-    ],
 } as Meta<typeof SingleSelect>;
 
 const styles = StyleSheet.create({

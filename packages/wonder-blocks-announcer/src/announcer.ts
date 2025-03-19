@@ -20,6 +20,7 @@ export const DEFAULT_WAIT_THRESHOLD = 250;
  */
 class Announcer {
     private static _instance: Announcer | null;
+    private targetElement: HTMLElement;
     topLevelId: string = `wbAnnounce`;
     node: HTMLElement | null = null;
     regionFactory: RegionFactory = {
@@ -35,7 +36,9 @@ class Announcer {
         updateWaitTime: (newWaitTime: number) => void;
     };
 
-    private constructor() {
+    private constructor(targetElement: HTMLElement = document.body) {
+        this.targetElement = targetElement;
+
         if (typeof document !== "undefined") {
             // Check if our top level element already exists
             const announcerCheck = document.getElementById(this.topLevelId);
@@ -63,9 +66,9 @@ class Announcer {
      * Singleton handler to ensure we only have one Announcer instance
      * @returns {Announcer}
      */
-    static getInstance() {
+    static getInstance(targetElement?: HTMLElement | undefined) {
         if (!Announcer._instance) {
-            Announcer._instance = new Announcer();
+            Announcer._instance = new Announcer(targetElement);
         }
         return Announcer._instance;
     }
@@ -101,7 +104,7 @@ class Announcer {
         );
         this.node.appendChild(pWrapper);
 
-        document.body.append(this.node);
+        this.targetElement.append(this.node);
     }
     /**
      * Recover in the event regions get lost
@@ -256,6 +259,17 @@ class Announcer {
         this.regionFactory.pIndex = 0;
 
         this.clear();
+    }
+
+    /**
+     * Remove Announcer instance and all elements.
+     * Useful for testing.
+     **/
+    destroy() {
+        if (this.node) {
+            this.node.parentElement?.removeChild(this.node);
+        }
+        Announcer._instance = null;
     }
 }
 
