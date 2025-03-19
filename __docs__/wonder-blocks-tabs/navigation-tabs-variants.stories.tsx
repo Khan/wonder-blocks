@@ -3,7 +3,7 @@ import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {
     NavigationTabItem,
     NavigationTabs,
@@ -17,6 +17,7 @@ import {rtlText} from "../components/text-for-testing";
 import {ZoomWrapper} from "../components/zoom-wrapper";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
+const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => [
     {
         name: "Default",
@@ -123,6 +124,33 @@ const generateRows = (rtl: boolean = false) => [
                         size="medium"
                         href="#link-2"
                     />
+                </NavigationTabItem>,
+            ],
+        },
+    },
+    {
+        name: "Native anchor links",
+        props: {
+            children: [
+                <NavigationTabItem current={true}>
+                    <StyledA href="#link-1">
+                        {rtl ? rtlText : "Anchor tag 1"}
+                    </StyledA>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <StyledA href="#link-2">
+                        {rtl ? rtlText : "Anchor tag 2"}
+                    </StyledA>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <StyledA href="#link-3">
+                        {rtl ? rtlText : "Anchor tag 3"}
+                    </StyledA>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <StyledA href="#link-4">
+                        {rtl ? rtlText : "Anchor tag 4"}
+                    </StyledA>
                 </NavigationTabItem>,
             ],
         },
