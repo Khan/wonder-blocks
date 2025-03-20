@@ -52,7 +52,7 @@ const meta = {
     render: (args) => (
         <AllVariants rows={rows} columns={columns}>
             {(props) => (
-                <div aria-label={props.label} role="listbox">
+                <div aria-label={props.ariaLabel} role="listbox">
                     <OptionItem {...args} {...props} />
                 </div>
             )}
