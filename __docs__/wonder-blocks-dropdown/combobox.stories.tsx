@@ -341,7 +341,7 @@ export const ControlledMultilpleCombobox: Story = {
         await userEvent.keyboard("{Enter}");
 
         // Assert
-        expect(canvas.getByRole("log")).toHaveTextContent(
+        expect(canvas.getAllByRole("log")[0]).toHaveTextContent(
             "Pineapple selected, 4 of 10. 10 results available.",
         );
     },

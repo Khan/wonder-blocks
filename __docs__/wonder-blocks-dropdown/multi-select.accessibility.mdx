@@ -44,3 +44,30 @@ receives focus. This can be useful when the options contain icons or other infor
 that would need to be omitted from the visible label.
 
 <Canvas of={MultiSelectAccessibilityStories.UsingOpenerAriaLabel} />
+
+## Automatic screen reader announcements in `MultiSelect`
+
+`MultiSelect` uses the [Wonder Blocks Announcer](/?path=/docs/packages-announcer--docs)
+under the hood for content updates in screen readers, such as the number of items
+and the selected value.
+
+This integration works around 2 bugs in VoiceOver and Safari on Mac OSX 14 and 15
+where the combobox opener value is cut off and cached incorrectly. The value is
+buggy when announced, differing from its current visual presentation and DOM content.
+
+Bugs filed in WebKit include:
+
+1. AX: combobox button value text clipped https://bugs.webkit.org/show_bug.cgi?id=285047
+2. AX: VoiceOver does not perceive changes to combobox value in an opener
+https://bugs.webkit.org/show_bug.cgi?id=286828
+
+### Testing the Announcer
+
+To observe the affect of the Announcer, you have a few options:
+
+1. Turn on a screen reader such as VoiceOver or NVDA while using the `MultiSelect`
+2. Inspect the DOM in the browser and look at the `#wbAnnounce` DIV element
+3. Look at the `With visible Announcer` story to see messages appended
+visually to the DOM
+
+<Canvas of={MultiSelectAccessibilityStories.WithVisibleAnnouncer} />

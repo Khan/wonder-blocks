@@ -13,6 +13,7 @@ import {
 } from "@testing-library/user-event";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
+
 import OptionItem from "../option-item";
 import SingleSelect from "../single-select";
 import type {SingleSelectLabelsValues} from "../single-select";
@@ -1205,9 +1206,19 @@ describe("SingleSelect", () => {
     });
 
     describe("a11y > Live region", () => {
-        // TODO (WB-1757.2): Enable this test once the LiveRegion component
-        // is refactored.
-        it.skip("should change the number of options after using the search filter", async () => {
+        let announceMessageSpy: any;
+        beforeAll(() => {
+            announceMessageSpy = jest.spyOn(
+                require("@khanacademy/wonder-blocks-announcer"),
+                "announceMessage",
+            );
+        });
+
+        afterAll(() => {
+            announceMessageSpy.mockRestore();
+        });
+
+        it("should change the number of options after using the search filter", async () => {
             // Arrange
             const {userEvent} = doRender(
                 <SingleSelect
@@ -1227,11 +1238,9 @@ describe("SingleSelect", () => {
             await userEvent.type(await screen.findByRole("textbox"), "item 0");
 
             // Assert
-            const liveRegionText = (
-                await screen.findByTestId("dropdown-live-region")
-            ).textContent;
-
-            expect(liveRegionText).toEqual("1 item");
+            await expect(announceMessageSpy).toHaveBeenCalledWith({
+                message: "1 item",
+            });
         });
     });
 

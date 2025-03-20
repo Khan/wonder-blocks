@@ -2,6 +2,7 @@ import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
@@ -97,20 +98,8 @@ const parameters = {
 
 const withThemeSwitcher: Decorator = (
     Story,
-    {globals: {theme}, parameters: {enableRenderStateRootDecorator, addBodyClass}},
+    {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
 ) => {
-    // Allow stories to specify a CSS body class
-    if (addBodyClass) {
-        document.body.classList.add(addBodyClass);
-    }
-    // Remove body class when changing stories
-    React.useEffect(() => {
-        return () => {
-          if (addBodyClass) {
-            document.body.classList.remove(addBodyClass);
-          }
-        };
-      }, [addBodyClass]);
     if (enableRenderStateRootDecorator) {
         return (
             <RenderStateRoot>
@@ -127,9 +116,36 @@ const withThemeSwitcher: Decorator = (
     );
 };
 
+const withAnnouncer: Decorator = (
+    Story,
+    {parameters: {addBodyClass}},
+) => {
+    // Allow stories to specify a CSS body class
+    if (addBodyClass) {
+        document.body.classList.add(addBodyClass);
+    }
+    const containerRef = React.useRef(null);
+    // Remove body class when changing stories
+    React.useEffect(() => {
+        const storyContainer = containerRef.current;
+        // initialize Announcer on load to render Live Regions earlier
+        initAnnouncer({targetElement: storyContainer});
+        return () => {
+          if (addBodyClass) {
+            document.body.classList.remove(addBodyClass);
+          }
+        };
+      }, [addBodyClass]);
+    return (
+        <span ref={containerRef}>
+            <Story />
+        </span>
+    );
+};
+
 const preview: Preview = {
     parameters,
-    decorators: [withThemeSwitcher],
+    decorators: [withThemeSwitcher, withAnnouncer],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {

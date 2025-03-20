@@ -86,10 +86,12 @@ html {
 
 
 .showAnnouncer.sb-show-main #wbAnnounce {
+    background-color: white;
     bottom: 0;
     display: block !important;
     clip: revert !important;
     position: fixed !important;
+    right: 0;
 }
 
 .showAnnouncer.sb-show-main .wbARegion {
@@ -98,11 +100,10 @@ html {
 }
 
 .showAnnouncer.sb-show-main .wbARegion::before {
-    background-color: white;
+    background-color: inherit;
     border: 1px solid red;
     content: attr(id) / "";
     display: block;
-    font-size: 0.75rem;
     padding: 0.25em;
 }
 
