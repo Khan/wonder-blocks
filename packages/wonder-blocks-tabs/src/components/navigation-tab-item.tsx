@@ -121,10 +121,10 @@ const styles = StyleSheet.create({
         },
     },
     current: {
-        boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
+        // boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
         [":has(a:hover)" as any]: {
-            // Make sure hover state for current item is the same underline at rest
-            boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
+            // Remove hover underline since we have the dynamic underline
+            boxShadow: "none",
         },
     },
     currentLink: {

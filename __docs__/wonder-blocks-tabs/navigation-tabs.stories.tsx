@@ -277,7 +277,7 @@ const StyledDiv = addStyle("div");
  * styling, a negative vertical margin is set on the `NavigationTabs`.
  */
 export const HeaderWithNavigationTabsExample: StoryComponentType = {
-    render() {
+    render: function HeaderExample(args) {
         // Putting styles in the component so it shows in the code snippet
         const headerVerticalSpacing = sizing.size_150;
         const styles = StyleSheet.create({
@@ -301,7 +301,16 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
                 margin: `-${headerVerticalSpacing} 0`,
             },
         });
-
+        const [currentTab, setCurrentTab] = React.useState(0);
+        const tabs = Array(4)
+            .fill(0)
+            .map((_, index) => (
+                <NavigationTabItem current={currentTab === index} key={index}>
+                    <Link href="#link-1" onClick={() => setCurrentTab(index)}>
+                        {`Tab ${index + 1}`}
+                    </Link>
+                </NavigationTabItem>
+            ));
         return (
             <StyledDiv style={styles.pageStyle}>
                 <StyledHeader style={styles.headerStyle}>
@@ -321,20 +330,11 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
                         <OptionItem value="item-2" label="Item 2" />
                     </SingleSelect>
                     <NavigationTabs
+                        {...args}
                         aria-label="Secondary navigation"
                         styles={{root: styles.navigationTabsRoot}}
                     >
-                        <NavigationTabItem
-                            current={true} // replace with logic checking if this is the current route
-                        >
-                            <Link href="#link-1">Tab link 1</Link>
-                        </NavigationTabItem>
-                        <NavigationTabItem>
-                            <Link href="#link-2">Tab link 2</Link>
-                        </NavigationTabItem>
-                        <NavigationTabItem>
-                            <Link href="#link-3">Tab link 3</Link>
-                        </NavigationTabItem>
+                        {tabs}
                     </NavigationTabs>
                 </StyledHeader>
             </StyledDiv>
@@ -343,10 +343,13 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
     parameters: {
         layout: "fullscreen",
     },
+    args: {
+        animated: true,
+    },
 };
 
 export const Interactive: StoryComponentType = {
-    render: function Interactive() {
+    render: function Interactive(args) {
         const [currentTab, setCurrentTab] = React.useState(0);
         const tabs = Array(4)
             .fill(0)
@@ -357,6 +360,9 @@ export const Interactive: StoryComponentType = {
                     </Link>
                 </NavigationTabItem>
             ));
-        return <NavigationTabs>{tabs}</NavigationTabs>;
+        return <NavigationTabs {...args}>{tabs}</NavigationTabs>;
+    },
+    args: {
+        animated: true,
     },
 };
