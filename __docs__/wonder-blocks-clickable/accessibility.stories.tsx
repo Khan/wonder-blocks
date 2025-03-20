@@ -36,6 +36,9 @@ const styles = StyleSheet.create({
         // TODO(WB-1878): Use elevation token.
         boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
     },
+    tabButton: {
+        width: "100%",
+    },
 });
 
 export default {
@@ -81,20 +84,27 @@ export const DisabledState = {
 export const KeyboardNavigation = {
     render: () => (
         <View>
-            <Clickable role="tab" aria-controls="panel-1" id="tab-1">
-                {({hovered, focused, pressed}) => (
-                    <View
-                        style={[
-                            styles.rest,
-                            hovered && styles.hover,
-                            focused && styles.focus,
-                            pressed && styles.press,
-                        ]}
-                    >
-                        <Body>Open School Info</Body>
-                    </View>
-                )}
-            </Clickable>
+            <div role="tablist">
+                <Clickable
+                    role="tab"
+                    aria-controls="panel-1"
+                    id="tab-1"
+                    style={styles.tabButton}
+                >
+                    {({hovered, focused, pressed}) => (
+                        <View
+                            style={[
+                                styles.rest,
+                                hovered && styles.hover,
+                                focused && styles.focus,
+                                pressed && styles.press,
+                            ]}
+                        >
+                            <Body>Open School Info</Body>
+                        </View>
+                    )}
+                </Clickable>
+            </div>
             <View
                 id="panel-1"
                 role="tabpanel"
