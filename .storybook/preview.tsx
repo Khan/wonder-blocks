@@ -115,6 +115,9 @@ const withThemeSwitcher: Decorator = (
     );
 };
 
+/**
+ * Wraps a story with `<div dir="rtl">` so it is shown in rtl mode.
+ */
 const withLanguageDirection: Decorator = (Story, context) => {
     if (context.globals.direction === "rtl") {
         return (
@@ -127,9 +130,27 @@ const withLanguageDirection: Decorator = (Story, context) => {
     }
 }
 
+/**
+ * Wraps a story with styling that simulates [zoom](https://developer.mozilla.org/en-US/docs/Web/CSS/zoom).
+ *
+ * Note: It is still important to test with real browser zoom in different
+ * browsers. For example, using the CSS zoom property in Safari looks a bit
+ * different than when you zoom in the browser.
+ */
+const withZoom: Decorator = (Story, context) => {
+    if (context.globals.zoom) {
+        return (
+            <div style={{ zoom: context.globals.zoom}}>
+                <Story />
+            </div>
+        )
+    }
+    return <Story />
+}
+
 const preview: Preview = {
     parameters,
-    decorators: [withThemeSwitcher, withLanguageDirection],
+    decorators: [withThemeSwitcher, withLanguageDirection, withZoom],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
@@ -171,6 +192,28 @@ const preview: Preview = {
                     title: "Right to Left",
                 },],
                 dynamicTitle: true,
+            },
+        },
+        zoom: {
+            description: "Preset zoom level",
+            toolbar: {
+                title: "Zoom Presets",
+                icon: "zoom",
+                items: [
+                    {
+                        // undefined so the there is no zoom value set
+                        value: undefined,
+                        title: "default",
+                    },
+                    {
+                        value: "2",
+                        title: "200%",
+                    },
+                    {
+                        value: "4",
+                        title: "400%",
+                    },
+                ],
             },
         }
     },

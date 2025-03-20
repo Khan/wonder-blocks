@@ -12,7 +12,6 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {rtlText} from "../components/text-for-testing";
-import {ZoomWrapper} from "../components/zoom-wrapper";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 const StyledA = addStyle("a");
@@ -204,7 +203,7 @@ export const Press: Story = {
 
 export const Zoom: Story = {
     render: (args) => (
-        <ZoomWrapper>
+        <div>
             <AllVariants rows={rows} columns={columns} layout="list">
                 {(props) => (
                     <View style={styles.container}>
@@ -222,8 +221,11 @@ export const Zoom: Story = {
                     )}
                 </AllVariants>
             </div>
-        </ZoomWrapper>
+        </div>
     ),
+    globals: {
+        zoom: "400%",
+    },
 };
 
 const styles = StyleSheet.create({
