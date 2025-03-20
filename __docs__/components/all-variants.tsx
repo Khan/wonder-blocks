@@ -108,7 +108,7 @@ export function AllVariants(props: Props) {
                 {rows.map((row) => {
                     return columns.map((column) => {
                         return (
-                            <li>
+                            <li key={`${row.name} ${column.name}`}>
                                 <LabelLarge>
                                     Column: {column.name}, Row: {row.name}
                                 </LabelLarge>
