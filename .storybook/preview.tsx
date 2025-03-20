@@ -140,7 +140,7 @@ const withLanguageDirection: Decorator = (Story, context) => {
 const withZoom: Decorator = (Story, context) => {
     if (context.globals.zoom) {
         return (
-            <div style={{ zoom: context.globals.zoom}}>
+            <div style={{ zoom: context.globals.zoom }}>
                 <Story />
             </div>
         )
@@ -181,16 +181,18 @@ const preview: Preview = {
             toolbar: {
                 title: "Language Direction",
                 icon: "globe",
-                items: [{
-                    value: "ltr",
-                    icon: "arrowrightalt",
-                    title: "Left to Right",
-                },
-                {
-                    value: "rtl",
-                    icon: "arrowleftalt",
-                    title: "Right to Left",
-                },],
+                items: [
+                    {
+                        value: "ltr",
+                        icon: "arrowrightalt",
+                        title: "Left to Right",
+                    },
+                    {
+                        value: "rtl",
+                        icon: "arrowleftalt",
+                        title: "Right to Left",
+                    },
+                ],
                 dynamicTitle: true,
             },
         },
