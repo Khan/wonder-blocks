@@ -31,6 +31,7 @@ export default {
 
 export const Default: StoryComponentType = {
     args: {
+        "aria-label": "Example",
         checked: false,
         onChange: () => {},
     },
@@ -38,7 +39,9 @@ export const Default: StoryComponentType = {
 
 export const Controlled: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
-    return <Radio checked={checked} onChange={setChecked} />;
+    return (
+        <Radio aria-label="Example" checked={checked} onChange={setChecked} />
+    );
 };
 
 Controlled.parameters = {
@@ -54,27 +57,45 @@ Controlled.parameters = {
 
 export const Variants: StoryComponentType = () => (
     <View style={styles.row}>
-        <Radio checked={false} style={styles.marginRight} onChange={() => {}} />
-        <Radio checked={true} style={styles.marginRight} onChange={() => {}} />
         <Radio
+            aria-label="Example"
+            checked={false}
+            style={styles.marginRight}
+            onChange={() => {}}
+        />
+        <Radio
+            aria-label="Checked Example"
+            checked={true}
+            style={styles.marginRight}
+            onChange={() => {}}
+        />
+        <Radio
+            aria-label="Error Example"
             error={true}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
+            aria-label="Checked Error Example"
             error={true}
             checked={true}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
+            aria-label="Disabled Example"
             disabled={true}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
-        <Radio disabled={true} checked={true} onChange={() => {}} />
+        <Radio
+            aria-label="Disabled Checked Example"
+            disabled={true}
+            checked={true}
+            onChange={() => {}}
+        />
     </View>
 );
 

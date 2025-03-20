@@ -54,7 +54,7 @@ const ChoiceWrapper = (args: any) => {
                 <Choice label="Extra cheese" value="cheese-checkbox" />
                 <Choice label="Green pepper" value="pepper-checkbox" />
                 <Choice label="Mushroom" value="mushroom-checkbox" />
-                <Choice {...args} />
+                <Choice aria-label="Pineapple" {...args} />
             </CheckboxGroup>
             <Strut size={spacing.xLarge_32} />
             <RadioGroup
@@ -64,16 +64,37 @@ const ChoiceWrapper = (args: any) => {
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
             >
-                <Choice label="Pepperoni" value="pepperoni-radio" />
                 <Choice
+                    aria-label="Only Pepperoni"
+                    label="Pepperoni"
+                    value="pepperoni-radio"
+                />
+                <Choice
+                    aria-label="Only Sausage"
                     label="Sausage"
                     value="sausage-radio"
                     description="Imported from Italy"
                 />
-                <Choice label="Extra cheese" value="cheese-radio" />
-                <Choice label="Green pepper" value="pepper-radio" />
-                <Choice label="Mushroom" value="mushroom-radio" />
-                <Choice {...args} />
+                <Choice
+                    aria-label="Only extra cheese"
+                    label="Extra cheese"
+                    value="cheese-radio"
+                />
+                <Choice
+                    aria-label="Only green pepper"
+                    label="Green pepper"
+                    value="pepper-radio"
+                />
+                <Choice
+                    aria-label="Only mushroom"
+                    label="Mushroom"
+                    value="mushroom-radio"
+                />
+                <Choice
+                    aria-label="Only Pineapple"
+                    value="only-pineapple"
+                    {...args}
+                />
             </RadioGroup>
         </View>
     );
@@ -83,7 +104,6 @@ export const Default: StoryComponentType = {
     render: (args) => <ChoiceWrapper {...args} />,
     args: {
         label: "Pineapple (Control)",
-        value: "pineapple",
         description: "Does in fact belong on pizzas",
     },
 };

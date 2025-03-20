@@ -67,6 +67,7 @@ function ControlledDefaultSwitch(args: PropsFor<typeof Switch>) {
  */
 export const Default: StoryComponentType = {
     args: {
+        "aria-label": "Example",
         checked: false,
         onChange: () => {},
     },
@@ -93,7 +94,11 @@ export const Controlled: StoryComponentType = {
 
         return (
             <View style={styles.column}>
-                <Switch checked={checkedOne} onChange={setCheckedOne} />
+                <Switch
+                    aria-label="Example"
+                    checked={checkedOne}
+                    onChange={setCheckedOne}
+                />
                 <Switch
                     testId="test-switch"
                     aria-label="test switch"
@@ -131,14 +136,24 @@ export const Controlled: StoryComponentType = {
 export const Disabled: StoryComponentType = {
     render: () => (
         <View style={styles.column}>
-            <Switch checked={false} disabled={true} />
-            <Switch checked={true} disabled={true} />
             <Switch
+                aria-label="Disabled example"
+                checked={false}
+                disabled={true}
+            />
+            <Switch
+                aria-label="Checked Disabled example"
+                checked={true}
+                disabled={true}
+            />
+            <Switch
+                aria-label="Disabled example"
                 checked={false}
                 disabled={true}
                 icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
             />
             <Switch
+                aria-label="Checked example"
                 checked={true}
                 disabled={true}
                 icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
@@ -156,11 +171,13 @@ export const WithIcon: StoryComponentType = {
         return (
             <View style={styles.column}>
                 <Switch
+                    aria-label="Example"
                     checked={false}
                     icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                 />
 
                 <Switch
+                    aria-label="Checked example"
                     checked={true}
                     icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                 />
@@ -181,30 +198,46 @@ export const KhanmigoTheme = () => {
             <View style={[styles.dark, styles.row]}>
                 <View style={styles.column}>
                     <LabelMedium style={styles.textLight}>Default</LabelMedium>
-                    <Switch checked={checkedOne} onChange={setCheckedOne} />
-                    <Switch checked={true} />
-                    <Switch checked={false} disabled={true} />
-                    <Switch checked={true} disabled={true} />
+                    <Switch
+                        aria-label="Checked example"
+                        checked={checkedOne}
+                        onChange={setCheckedOne}
+                    />
+                    <Switch aria-label="Checked example 2" checked={true} />
+                    <Switch
+                        aria-label="Disabled example"
+                        checked={false}
+                        disabled={true}
+                    />
+                    <Switch
+                        aria-label="Disabled checked example"
+                        checked={true}
+                        disabled={true}
+                    />
                 </View>
                 <View style={styles.column}>
                     <LabelMedium style={styles.textLight}>
                         With Icon
                     </LabelMedium>
                     <Switch
+                        aria-label="Checked example 3"
                         checked={checkedTwo}
                         onChange={setCheckedTwo}
                         icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                     />
                     <Switch
+                        aria-label="Checked example 4"
                         checked={true}
                         icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                     />
                     <Switch
+                        aria-label="Disabled example 2"
                         checked={false}
                         disabled={true}
                         icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
                     />
                     <Switch
+                        aria-label="Disabled checked example 2"
                         checked={true}
                         disabled={true}
                         icon={<PhosphorIcon icon={magnifyingGlassIcon} />}

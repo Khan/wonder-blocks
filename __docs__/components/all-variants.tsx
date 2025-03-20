@@ -68,6 +68,7 @@ export function AllVariants({children, columns, rows}: Props) {
                                 ]}
                             >
                                 {children({
+                                    ariaLabel: `${row.name} ${col.name}`,
                                     ...row.props,
                                     ...col.props,
                                 })}

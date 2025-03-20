@@ -37,10 +37,20 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * The default listbox with a list of items.
+ *
+ * When used separately, the listbox needs an aria-label. When bundled with a
+ * component component like SingleSelect or MultiSelect, the listbox doesn't
+ * need its own aria-label.
+ *
+ * These examples use an aria-label to allow them to stand alone.
+ */
 const defaultArgs = {
     children: items,
     disabled: false,
     testId: "",
+    "aria-label": "Fruit",
 };
 
 export default {
@@ -208,6 +218,7 @@ export const CustomStyles: Story = {
 export const SingleSelectionCustomOptionItems: Story = {
     name: "Single selection with custom OptionItems",
     args: {
+        "aria-label": "Profiles",
         children: allProfilesWithPictures.map((user, index) => (
             <OptionItem
                 key={user.id}

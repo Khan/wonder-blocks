@@ -59,7 +59,9 @@ export default {
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
-                <Story />
+                <div role="menu" aria-label="Example">
+                    <Story />
+                </div>
             </View>
         ),
     ],

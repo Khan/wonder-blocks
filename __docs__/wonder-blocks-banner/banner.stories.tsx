@@ -416,6 +416,7 @@ export const WithCustomAction: StoryComponentType = {
                     type: "custom",
                     node: (
                         <Button
+                            aria-label="Loading"
                             kind="tertiary"
                             size="small"
                             onClick={() => {}}
