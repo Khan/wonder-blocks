@@ -8,7 +8,11 @@ import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
 
-import type {IconButtonSize, SharedProps} from "./icon-button";
+import type {
+    IconButtonActionType,
+    IconButtonSize,
+    SharedProps,
+} from "./icon-button";
 import {
     iconSizeForButtonSize,
     targetPixelsForSize,
@@ -19,15 +23,6 @@ import {
 } from "../themes/themed-icon-button";
 
 type Kind = "primary" | "secondary" | "tertiary";
-/**
- * The color/actionType of the button.
- *
- * NOTE: `default` maps to `progressive` in the theme.
- *
- * TODO(WB-1871): Rename `default` to `progressive` and change `color` to
- * `actionType`.
- */
-type ButtonColor = "default" | "destructive";
 
 /**
  * Returns the phosphor icon component based on the size. This is necessary
@@ -94,7 +89,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
     Props
 >(function IconButtonCore(props: Props, ref) {
     const {
-        color,
+        actionType,
         disabled,
         href,
         icon,
@@ -111,7 +106,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
 
     const renderInner = (router: any): React.ReactNode => {
         const buttonStyles = _generateStyles(
-            color,
+            actionType,
             !!disabled,
             kind,
             light,
@@ -207,40 +202,24 @@ type ActionType =
     | "destructiveLight"
     | "disabledLight";
 
-/**
- * Returns the action type based on the button color and disabled state.
- *
- * This is useful to determine which token variant to use for the button, which
- * is based on the theme structure.
- */
-function getActionType(buttonColor: ButtonColor, disabled: boolean) {
-    const actionType =
-        buttonColor === "destructive" ? "destructive" : "progressive";
-
-    if (disabled) {
-        return "disabled";
-    }
-
-    return actionType;
-}
-
 function getStylesByKind(
-    buttonColor: ButtonColor,
+    actionType: IconButtonActionType = "progressive",
     disabled: boolean,
     kind: Kind,
     light: boolean,
     theme: IconButtonThemeContract,
 ) {
-    let actionType: ActionType = getActionType(buttonColor, disabled);
-    const themeVariant = theme.color[kind][actionType];
+    let actionTypeOrDisabled: ActionType = disabled ? "disabled" : actionType;
+
+    const themeVariant = theme.color[kind][actionTypeOrDisabled];
 
     if (kind === "primary") {
         // NOTE: Primary is the only kind that supports light variants.
         if (light) {
-            actionType = `${actionType}Light`;
+            actionTypeOrDisabled = `${actionType}Light`;
         }
 
-        const themeVariant = theme.color[kind][actionType];
+        const themeVariant = theme.color[kind][actionTypeOrDisabled];
 
         return {
             default: {
@@ -317,7 +296,7 @@ function getStylesByKind(
 }
 
 const _generateStyles = (
-    buttonColor: ButtonColor = "default",
+    actionType: IconButtonActionType = "progressive",
     disabled: boolean,
     kind: Kind,
     light: boolean,
@@ -325,7 +304,7 @@ const _generateStyles = (
     theme: IconButtonThemeContract,
     themeName: string,
 ) => {
-    const buttonType = `${buttonColor}-d_${disabled}-${kind}-l_${light}-${size}-${themeName}`;
+    const buttonType = `${actionType}-d_${disabled}-${kind}-l_${light}-${size}-${themeName}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -339,7 +318,7 @@ const _generateStyles = (
     // Override styles for each kind of button. This is useful for merging
     // pseudo-classes properly.
     const kindOverrides = getStylesByKind(
-        buttonColor,
+        actionType,
         disabled,
         kind,
         light,
