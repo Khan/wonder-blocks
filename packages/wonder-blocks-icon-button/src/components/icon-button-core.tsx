@@ -216,7 +216,7 @@ function getStylesByKind(
     if (kind === "primary") {
         // NOTE: Primary is the only kind that supports light variants.
         if (light) {
-            actionTypeOrDisabled = `${actionType}Light`;
+            actionTypeOrDisabled = `${actionTypeOrDisabled}Light`;
         }
 
         const themeVariant = theme.color[kind][actionTypeOrDisabled];
