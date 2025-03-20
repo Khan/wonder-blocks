@@ -226,6 +226,12 @@ export const Zoom: Story = {
     globals: {
         zoom: "400%",
     },
+    parameters: {
+        chromatic: {
+            // Disabling because Chromatic crops the story when zoom is used
+            disableSnapshot: true,
+        },
+    },
 };
 
 const styles = StyleSheet.create({
