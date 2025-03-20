@@ -344,3 +344,19 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
         layout: "fullscreen",
     },
 };
+
+export const Interactive: StoryComponentType = {
+    render: function Interactive() {
+        const [currentTab, setCurrentTab] = React.useState(0);
+        const tabs = Array(4)
+            .fill(0)
+            .map((_, index) => (
+                <NavigationTabItem current={currentTab === index} key={index}>
+                    <Link href="#link-1" onClick={() => setCurrentTab(index)}>
+                        {`Navigation tab item ${index + 1}`}
+                    </Link>
+                </NavigationTabItem>
+            ));
+        return <NavigationTabs>{tabs}</NavigationTabs>;
+    },
+};
