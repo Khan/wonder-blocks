@@ -98,7 +98,27 @@ const parameters = {
 
 const withThemeSwitcher: Decorator = (
     Story,
-    {globals: {theme}, parameters: {enableRenderStateRootDecorator, addBodyClass}},
+    {globals: {theme}, parameters: {enableRenderStateRootDecorator}},
+) => {
+    if (enableRenderStateRootDecorator) {
+        return (
+            <RenderStateRoot>
+                <ThemeSwitcherContext.Provider value={theme}>
+                    <Story />
+                </ThemeSwitcherContext.Provider>
+            </RenderStateRoot>
+        );
+    }
+    return (
+        <ThemeSwitcherContext.Provider value={theme}>
+            <Story />
+        </ThemeSwitcherContext.Provider>
+    );
+};
+
+const withAnnouncer: Decorator = (
+    Story,
+    {parameters: {addBodyClass}},
 ) => {
     // Allow stories to specify a CSS body class
     if (addBodyClass) {
@@ -116,29 +136,16 @@ const withThemeSwitcher: Decorator = (
           }
         };
       }, [addBodyClass]);
-    if (enableRenderStateRootDecorator) {
-        return (
-            <RenderStateRoot>
-                <ThemeSwitcherContext.Provider value={theme}>
-                    <div ref={containerRef}>
-                        <Story />
-                    </div>
-                </ThemeSwitcherContext.Provider>
-            </RenderStateRoot>
-        );
-    }
     return (
-        <ThemeSwitcherContext.Provider value={theme}>
-            <div ref={containerRef}>
-                <Story />
-            </div>
-        </ThemeSwitcherContext.Provider>
+        <span ref={containerRef}>
+            <Story />
+        </span>
     );
 };
 
 const preview: Preview = {
     parameters,
-    decorators: [withThemeSwitcher],
+    decorators: [withThemeSwitcher, withAnnouncer],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
