@@ -162,7 +162,7 @@ export default meta;
 export const StickerSheet: Story = {
     render: (args) => (
         <AllVariantsStates rows={rows} columns={columns}>
-            {(props) => <NavigationTabItem {...args} {...props} />}
+            {(props, name, isRtl) => <NavigationTabItem {...args} {...props} />}
         </AllVariantsStates>
     ),
     parameters: {pseudo: defaultPseudoStates},
