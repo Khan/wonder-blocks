@@ -140,7 +140,7 @@ const withLanguageDirection: Decorator = (Story, context) => {
 const withZoom: Decorator = (Story, context) => {
     if (context.globals.zoom) {
         return (
-            <div style={{ zoom: context.globals.zoom, width: "100vw", maxWidth: "100vw" }}>
+            <div style={{ zoom: context.globals.zoom }}>
                 <Story />
             </div>
         )
