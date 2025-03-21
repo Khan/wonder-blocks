@@ -227,8 +227,9 @@ export const Zoom: Story = {
         zoom: "400%",
     },
     parameters: {
-        viewport: {
-            defaultViewport: "large",
+        chromatic: {
+            // Disabling because Chromatic crops the story when zoom is used
+            // disableSnapshot: true,
         },
     },
 };
