@@ -1,16 +1,11 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import * as React from "react";
 
-import {StyleSheet} from "aphrodite";
-
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {AllVariants} from "../components/all-variants";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {rtlText} from "../components/text-for-testing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {
@@ -127,7 +122,6 @@ const generateRows = (rtl: boolean = false) => {
 };
 
 const rows = generateRows();
-const rtlRows = generateRows(true);
 const columns = [
     {
         name: "Default",
@@ -148,27 +142,6 @@ type Story = StoryObj<typeof NavigationTabItem>;
 const meta = {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem / NavigationTabItem - All Variants",
     component: NavigationTabItem,
-    render: (args) => (
-        <>
-            <AllVariants rows={rows} columns={columns}>
-                {(props) => (
-                    <View style={styles.container}>
-                        <NavigationTabItem {...args} {...props} />
-                    </View>
-                )}
-            </AllVariants>
-            <div dir="rtl">
-                <HeadingLarge>RTL</HeadingLarge>
-                <AllVariants rows={rtlRows} columns={columns}>
-                    {(props) => (
-                        <View style={styles.container}>
-                            <NavigationTabItem {...args} {...props} />
-                        </View>
-                    )}
-                </AllVariants>
-            </div>
-        </>
-    ),
     tags: ["!autodocs"],
     parameters: {
         a11y: {
@@ -186,74 +159,20 @@ const meta = {
 
 export default meta;
 
-export const Default: Story = {};
-
-export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
-};
-
-export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
-};
-
-export const HoverFocus: Story = {
-    name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
-};
-
-export const Press: Story = {
-    parameters: {pseudo: {hover: true, active: true}},
-};
-
-export const Zoom: Story = {
-    render: (args) => (
-        <>
-            <AllVariants rows={rows} columns={columns} layout="list">
-                {(props) => (
-                    <View style={styles.container}>
-                        <NavigationTabItem {...args} {...props} />
-                    </View>
-                )}
-            </AllVariants>
-            <div dir="rtl">
-                <HeadingLarge>RTL</HeadingLarge>
-                <AllVariants rows={rtlRows} columns={columns} layout="list">
-                    {(props) => (
-                        <View style={styles.container}>
-                            <NavigationTabItem {...args} {...props} />
-                        </View>
-                    )}
-                </AllVariants>
-            </div>
-        </>
-    ),
-    globals: {
-        zoom: "400%",
-    },
-    parameters: {
-        chromatic: {
-            // Disabling because Chromatic crops the story when zoom is used
-            disableSnapshot: true,
-        },
-    },
-};
-
-const styles = StyleSheet.create({
-    container: {
-        gap: sizing.size_200,
-        alignItems: "flex-start",
-    },
-});
-
 export const StickerSheet: Story = {
     render: (args) => (
         <AllVariantsStates rows={rows} columns={columns}>
-            {(props) => (
-                <View style={styles.container}>
-                    <NavigationTabItem {...args} {...props} />
-                </View>
-            )}
+            {(props) => <NavigationTabItem {...args} {...props} />}
         </AllVariantsStates>
     ),
     parameters: {pseudo: defaultPseudoStates},
+};
+
+export const ZoomStickerSheet: Story = {
+    render: (args) => (
+        <AllVariantsStates rows={rows} columns={columns} layout="list">
+            {(props) => <NavigationTabItem {...args} {...props} />}
+        </AllVariantsStates>
+    ),
+    globals: {zoom: "400%"},
 };
