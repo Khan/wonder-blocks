@@ -19,6 +19,11 @@ type Props = Omit<AllVariantsProps, "children"> & {
      * The states to render.
      */
     states?: State[];
+
+    /**
+     * Whether to show the RTL version of the component. Defaults to true.
+     */
+    showRtl?: boolean;
 };
 
 type State = {name: string; id: string};
@@ -52,28 +57,48 @@ export const defaultStates: State[] = [
 ];
 
 export const AllVariantsStates = (props: Props) => {
-    const {children, rows, columns, layout, states = defaultStates} = props;
+    const {
+        children,
+        rows,
+        columns,
+        layout,
+        states = defaultStates,
+        showRtl = true,
+    } = props;
+
+    const renderState = (state: State, isRtl: boolean = false) => (
+        <View key={state.id} id={state.id} style={styles.state}>
+            <HeadingMedium>{state.name}</HeadingMedium>
+            <AllVariants rows={rows} columns={columns} layout={layout}>
+                {(props, name) => children(props, name, isRtl)}
+            </AllVariants>
+        </View>
+    );
 
     return (
         <View style={styles.container}>
-            {states.map((state) => (
-                <View key={state.id} id={state.id} style={styles.state}>
-                    <HeadingMedium>{state.name}</HeadingMedium>
-                    <AllVariants rows={rows} columns={columns} layout={layout}>
-                        {(props, name) => children(props, name)}
-                    </AllVariants>
-                </View>
-            ))}
+            {states.map((state) => renderState(state))}
+            {showRtl && (
+                <div dir="rtl" style={{width: "100%"}}>
+                    <View style={styles.container}>
+                        <HeadingLarge>Right to Left</HeadingLarge>
+                        {states.map((state) => renderState(state, true))}
+                    </View>
+                </div>
+            )}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        gap: sizing.size_400,
+        gap: sizing.size_600,
         alignItems: "flex-start",
+        width: "100%",
     },
     state: {
-        gap: sizing.size_100,
+        gap: sizing.size_200,
+        alignItems: "flex-start",
+        width: "100%",
     },
 });
