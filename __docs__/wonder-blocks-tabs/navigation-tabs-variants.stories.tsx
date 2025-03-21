@@ -1,20 +1,20 @@
 import type {Meta, StoryObj} from "@storybook/react";
 import * as React from "react";
 
-import {StyleSheet} from "aphrodite";
-
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
     NavigationTabItem,
     NavigationTabs,
 } from "@khanacademy/wonder-blocks-tabs";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {AllVariants} from "../components/all-variants";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {rtlText} from "../components/text-for-testing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {
+    AllVariantsStates,
+    defaultPseudoStates,
+} from "../components/all-variants-states";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => [
@@ -175,112 +175,36 @@ type Story = StoryObj<typeof NavigationTabs>;
 const meta = {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs / NavigationTabs - All Variants",
     component: NavigationTabs,
-    render: (args) => (
-        <>
-            <AllVariants rows={rows} columns={columns}>
-                {(props, name) => (
-                    <View style={styles.container}>
-                        <NavigationTabs
-                            {...args}
-                            {...props}
-                            aria-label={name}
-                        />
-                    </View>
-                )}
-            </AllVariants>
-            <div dir="rtl">
-                <AllVariants rows={rtlRows} columns={columns}>
-                    {(props, name) => (
-                        <View style={styles.container}>
-                            <NavigationTabs
-                                {...args}
-                                {...props}
-                                aria-label={`${name} RTL`}
-                            />
-                        </View>
-                    )}
-                </AllVariants>
-            </div>
-        </>
-    ),
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabs>;
 
 export default meta;
 
-export const Default: Story = {};
-
-export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
-};
-
-export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
-};
-
-export const HoverFocus: Story = {
-    name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
-};
-
-export const Active: Story = {
-    parameters: {pseudo: {hover: true, active: true}},
-};
-
-export const Zoom: Story = {
+export const StickerSheet: Story = {
     render: (args) => (
-        <>
-            <AllVariants rows={rows} columns={columns} layout="list">
-                {(props, name) => (
-                    <View style={styles.container}>
-                        <NavigationTabs
-                            {...args}
-                            {...props}
-                            aria-label={name}
-                        />
-                    </View>
-                )}
-            </AllVariants>
-            <div dir="rtl">
-                <AllVariants rows={rtlRows} columns={columns} layout="list">
-                    {(props, name) => (
-                        <View style={styles.container}>
-                            <NavigationTabs
-                                {...args}
-                                {...props}
-                                aria-label={`${name} RTL`}
-                            />
-                        </View>
-                    )}
-                </AllVariants>
-            </div>
-        </>
+        <AllVariantsStates rows={rows} columns={columns}>
+            {(props) => <NavigationTabs {...args} {...props} />}
+        </AllVariantsStates>
     ),
-    parameters: {
-        a11y: {
-            config: {
-                rules: [
-                    // Disabling warning: "Element's background color could not
-                    // be determined because it's partially obscured by another
-                    // element" since these examples can cause the horizontal
-                    // scrollbar to show. Color contrast check is enabled for
-                    // other stories (including the AllVariants)
-                    {id: "color-contrast", enabled: false},
-                ],
-            },
-        },
-        chromatic: {
-            // Disabling because Chromatic crops the story when zoom is used
-            disableSnapshot: true,
-        },
-    },
-    globals: {
-        zoom: "400%",
-    },
+    parameters: {pseudo: defaultPseudoStates},
 };
 
-const styles = StyleSheet.create({
-    container: {
-        gap: sizing.size_200,
-    },
-});
+export const RTLStickerSheet: Story = {
+    render: (args) => (
+        <AllVariantsStates rows={rtlRows} columns={columns}>
+            {(props) => <NavigationTabs {...args} {...props} />}
+        </AllVariantsStates>
+    ),
+    parameters: {pseudo: defaultPseudoStates},
+    globals: {direction: "rtl"},
+};
+
+export const ZoomStickerSheet: Story = {
+    render: (args) => (
+        <AllVariantsStates rows={rows} columns={columns} layout="list">
+            {(props) => <NavigationTabs {...args} {...props} />}
+        </AllVariantsStates>
+    ),
+    parameters: {pseudo: defaultPseudoStates},
+    globals: {zoom: "400%"},
+};
