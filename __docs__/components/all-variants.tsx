@@ -20,7 +20,7 @@ const StyledUl = addStyle("ul");
 
 type Variant = {name: string; props: StrictArgs};
 
-type Props = {
+export type Props = {
     /**
      * The children as a function that receives the state props used to render
      * each variant of the component.
@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
         },
     },
     list: {
+        width: "100%",
         margin: 0,
         padding: 0,
         listStyle: "none",
@@ -156,5 +157,6 @@ const styles = StyleSheet.create({
         padding: sizing.size_100,
         marginBlock: sizing.size_100,
         border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
+        alignItems: "flex-start",
     },
 });
