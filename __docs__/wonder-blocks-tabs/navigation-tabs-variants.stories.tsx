@@ -270,8 +270,7 @@ export const Zoom: Story = {
             },
         },
         chromatic: {
-            // Disabling because Chromatic crops the story when zoom is used
-            disableSnapshot: true,
+            viewports: [1700],
         },
     },
     globals: {
