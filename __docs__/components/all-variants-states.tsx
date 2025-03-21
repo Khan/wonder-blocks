@@ -1,7 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {AllVariants, type Props as AllVariantsProps} from "./all-variants";
-import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
+import {
+    HeadingLarge,
+    HeadingMedium,
+} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -16,6 +19,11 @@ type Props = Omit<AllVariantsProps, "children"> & {
      * The states to render.
      */
     states?: State[];
+
+    /**
+     * Whether to show the RTL version of the component. Defaults to true.
+     */
+    showRtl?: boolean;
 };
 
 type State = {name: string; id: string};
@@ -49,7 +57,14 @@ export const defaultStates: State[] = [
 ];
 
 export const AllVariantsStates = (props: Props) => {
-    const {children, rows, columns, layout, states = defaultStates} = props;
+    const {
+        children,
+        rows,
+        columns,
+        layout,
+        states = defaultStates,
+        showRtl = true,
+    } = props;
 
     const renderState = (state: State, isRtl: boolean = false) => (
         <View key={state.id} id={state.id} style={styles.state}>
@@ -63,6 +78,14 @@ export const AllVariantsStates = (props: Props) => {
     return (
         <View style={styles.container}>
             {states.map((state) => renderState(state))}
+            {showRtl && (
+                <div dir="rtl" style={{width: "100%"}}>
+                    <View style={styles.container}>
+                        <HeadingLarge>Right to Left</HeadingLarge>
+                        {states.map((state) => renderState(state, true))}
+                    </View>
+                </div>
+            )}
         </View>
     );
 };
