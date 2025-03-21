@@ -137,6 +137,7 @@ const styles = StyleSheet.create({
         },
     },
     list: {
+        width: "100%",
         margin: 0,
         padding: 0,
         listStyle: "none",
