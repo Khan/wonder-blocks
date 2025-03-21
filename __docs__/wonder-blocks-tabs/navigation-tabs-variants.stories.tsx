@@ -182,7 +182,8 @@ export default meta;
 
 export const StickerSheet: Story = {
     render: (args) => (
-        <AllVariantsStates rows={rows} columns={columns}>
+        // showRtl=false because we have a separate story for rtl with rtlRows
+        <AllVariantsStates rows={rows} columns={columns} showRtl={false}>
             {(props) => <NavigationTabs {...args} {...props} />}
         </AllVariantsStates>
     ),
@@ -191,7 +192,8 @@ export const StickerSheet: Story = {
 
 export const RTLStickerSheet: Story = {
     render: (args) => (
-        <AllVariantsStates rows={rtlRows} columns={columns}>
+        // showRtl=false because we have a separate story for rtl with rtlRows
+        <AllVariantsStates rows={rtlRows} columns={columns} showRtl={false}>
             {(props) => <NavigationTabs {...args} {...props} />}
         </AllVariantsStates>
     ),

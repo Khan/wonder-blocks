@@ -12,6 +12,7 @@ import {
     AllVariantsStates,
     defaultPseudoStates,
 } from "../components/all-variants-states";
+import {rtlText} from "../components/text-for-testing";
 
 const rows = [
     {name: "Static", props: {}},
@@ -101,7 +102,15 @@ const styles = StyleSheet.create({
 export const StickerSheet: Story = {
     render: (args) => (
         <AllVariantsStates rows={rows} columns={columns}>
-            {(props) => <Pill {...args} {...props} />}
+            {(props, name, isRtl) => (
+                <View style={styles.container}>
+                    {kinds.map((kind) => (
+                        <Pill {...args} {...props} kind={kind}>
+                            {isRtl ? rtlText : `${kind}, ${name}`}
+                        </Pill>
+                    ))}
+                </View>
+            )}
         </AllVariantsStates>
     ),
     parameters: {pseudo: defaultPseudoStates},
