@@ -20,7 +20,7 @@ const StyledUl = addStyle("ul");
 
 type Variant = {name: string; props: StrictArgs};
 
-type Props = {
+export type Props = {
     /**
      * The children as a function that receives the state props used to render
      * each variant of the component.

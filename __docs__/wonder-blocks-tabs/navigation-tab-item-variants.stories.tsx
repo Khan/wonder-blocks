@@ -13,6 +13,10 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {rtlText} from "../components/text-for-testing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {
+    AllVariantsStates,
+    defaultPseudoStates,
+} from "../components/all-variants-states";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => {
@@ -240,3 +244,16 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
     },
 });
+
+export const StickerSheet: Story = {
+    render: (args) => (
+        <AllVariantsStates rows={rows} columns={columns}>
+            {(props) => (
+                <View style={styles.container}>
+                    <NavigationTabItem {...args} {...props} />
+                </View>
+            )}
+        </AllVariantsStates>
+    ),
+    parameters: {pseudo: defaultPseudoStates},
+};
