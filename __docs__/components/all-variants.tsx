@@ -157,5 +157,6 @@ const styles = StyleSheet.create({
         padding: sizing.size_100,
         marginBlock: sizing.size_100,
         border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
+        alignItems: "flex-start",
     },
 });
