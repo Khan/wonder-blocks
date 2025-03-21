@@ -8,6 +8,10 @@ import Pill from "@khanacademy/wonder-blocks-pill";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {AllVariants} from "../components/all-variants";
 import {PillKind} from "../../packages/wonder-blocks-pill/src/components/pill";
+import {
+    AllVariantsStates,
+    defaultPseudoStates,
+} from "../components/all-variants-states";
 
 const rows = [
     {name: "Static", props: {}},
@@ -93,3 +97,12 @@ const styles = StyleSheet.create({
         gap: spacing.medium_16,
     },
 });
+
+export const StickerSheet: Story = {
+    render: (args) => (
+        <AllVariantsStates rows={rows} columns={columns}>
+            {(props) => <Pill {...args} {...props} />}
+        </AllVariantsStates>
+    ),
+    parameters: {pseudo: defaultPseudoStates},
+};
