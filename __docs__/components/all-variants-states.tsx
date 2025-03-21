@@ -44,8 +44,8 @@ export const defaultStates: State[] = [
     commonStates.base,
     commonStates.hover,
     commonStates.focus,
-    commonStates.press,
     commonStates.hoverAndFocus,
+    commonStates.press,
 ];
 
 export const AllVariantsStates = (props: Props) => {
