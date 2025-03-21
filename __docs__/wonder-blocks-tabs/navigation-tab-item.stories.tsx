@@ -7,7 +7,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import argTypes from "./navigation-tab-item.argtypes";
 import {
     longText,
@@ -130,7 +130,7 @@ export const CustomStyle: StoryComponentType = {
     args: {
         children: <Link href="#link">Navigation tab item</Link>,
         style: {
-            padding: sizing.size_100,
+            backgroundColor: semanticColor.surface.secondary,
         },
     },
 };
