@@ -227,8 +227,8 @@ export const Zoom: Story = {
         zoom: "400%",
     },
     parameters: {
-        chromatic: {
-            viewports: [1700],
+        viewport: {
+            defaultViewport: "large",
         },
     },
 };

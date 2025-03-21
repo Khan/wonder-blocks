@@ -269,8 +269,8 @@ export const Zoom: Story = {
                 ],
             },
         },
-        chromatic: {
-            viewports: [1700],
+        viewport: {
+            defaultViewport: "large",
         },
     },
     globals: {
