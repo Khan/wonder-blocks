@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         listStyle: "none",
         display: "inline-flex",
         [":has(a:hover)" as any]: {
-            boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
+            boxShadow: `inset 0 -${sizing.size_025} 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
         },
         [":has(a:active)" as any]: {
             boxShadow: `inset 0 -${sizing.size_075} 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
@@ -122,6 +122,10 @@ const styles = StyleSheet.create({
     },
     current: {
         boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
+        [":has(a:hover)" as any]: {
+            // Make sure hover state for current item is the same underline at rest
+            boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
+        },
     },
     currentLink: {
         color: semanticColor.action.secondary.progressive.default.foreground,
