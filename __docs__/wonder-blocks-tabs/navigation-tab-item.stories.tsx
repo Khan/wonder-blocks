@@ -136,7 +136,7 @@ export const CustomStyle: StoryComponentType = {
 };
 
 /**
- * The following story shows how the component habdles specific scenarios.
+ * The following story shows how the component handles specific scenarios.
  */
 export const Scenarios: StoryComponentType = {
     render() {

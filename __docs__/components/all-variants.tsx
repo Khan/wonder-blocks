@@ -2,7 +2,7 @@ import * as React from "react";
 import type {StrictArgs} from "@storybook/react";
 
 import {StyleSheet} from "aphrodite";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     breakpoint,
@@ -113,18 +113,12 @@ export function AllVariants(props: Props) {
                                     Column: {column.name}, Row: {row.name}
                                 </LabelLarge>
 
-                                <div
-                                    style={{
-                                        padding: sizing.size_100,
-                                        marginBlock: sizing.size_100,
-                                        border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
-                                    }}
-                                >
+                                <View style={styles.childrenWrapper}>
                                     {children(
                                         {...column.props, ...row.props},
                                         `${row.name} ${column.name}`,
                                     )}
-                                </div>
+                                </View>
                             </li>
                         );
                     });
@@ -157,5 +151,10 @@ const styles = StyleSheet.create({
     cell: {
         margin: spacing.medium_16,
         padding: spacing.medium_16,
+    },
+    childrenWrapper: {
+        padding: sizing.size_100,
+        marginBlock: sizing.size_100,
+        border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
     },
 });

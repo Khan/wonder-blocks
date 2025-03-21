@@ -203,7 +203,7 @@ const preview: Preview = {
                 icon: "zoom",
                 items: [
                     {
-                        // undefined so the there is no zoom value set
+                        // undefined so there is no zoom value set
                         value: undefined,
                         title: "default",
                     },

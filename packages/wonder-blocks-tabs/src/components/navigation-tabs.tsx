@@ -34,6 +34,9 @@ type Props = AriaProps & {
     "aria-labelledby"?: string;
     /**
      * Custom styles for the elements in NavigationTabs.
+     * - `root`: Styles the root `nav` element.
+     * - `list`: Styles the underlying `ul` element that wraps the
+     * `NavigationTabItem` components
      */
     styles?: {
         root?: StyleType;

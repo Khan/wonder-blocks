@@ -145,7 +145,7 @@ const meta = {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem / NavigationTabItem - All Variants",
     component: NavigationTabItem,
     render: (args) => (
-        <div>
+        <>
             <AllVariants rows={rows} columns={columns}>
                 {(props) => (
                     <View style={styles.container}>
@@ -163,7 +163,7 @@ const meta = {
                     )}
                 </AllVariants>
             </div>
-        </div>
+        </>
     ),
     tags: ["!autodocs"],
     parameters: {
@@ -203,7 +203,7 @@ export const Press: Story = {
 
 export const Zoom: Story = {
     render: (args) => (
-        <div>
+        <>
             <AllVariants rows={rows} columns={columns} layout="list">
                 {(props) => (
                     <View style={styles.container}>
@@ -221,7 +221,7 @@ export const Zoom: Story = {
                     )}
                 </AllVariants>
             </div>
-        </div>
+        </>
     ),
     globals: {
         zoom: "400%",

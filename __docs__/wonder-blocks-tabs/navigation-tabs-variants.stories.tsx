@@ -176,7 +176,7 @@ const meta = {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs / NavigationTabs - All Variants",
     component: NavigationTabs,
     render: (args) => (
-        <div>
+        <>
             <AllVariants rows={rows} columns={columns}>
                 {(props, name) => (
                     <View style={styles.container}>
@@ -201,7 +201,7 @@ const meta = {
                     )}
                 </AllVariants>
             </div>
-        </div>
+        </>
     ),
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabs>;
@@ -229,7 +229,7 @@ export const Active: Story = {
 
 export const Zoom: Story = {
     render: (args) => (
-        <div>
+        <>
             <AllVariants rows={rows} columns={columns} layout="list">
                 {(props, name) => (
                     <View style={styles.container}>
@@ -254,7 +254,7 @@ export const Zoom: Story = {
                     )}
                 </AllVariants>
             </div>
-        </div>
+        </>
     ),
     parameters: {
         a11y: {

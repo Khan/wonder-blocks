@@ -177,7 +177,7 @@ const generateChildren = (
 };
 
 /**
- * The following story shows how the component habdles specific scenarios.
+ * The following story shows how the component handles specific scenarios.
  */
 export const Scenarios: StoryComponentType = {
     render() {
@@ -254,7 +254,7 @@ export const Scenarios: StoryComponentType = {
 };
 
 /**
- * The following story shows how the component habdles specific scenarios at a
+ * The following story shows how the component handles specific scenarios at a
  * small screen size.
  */
 export const ScenariosSmallScreen: StoryComponentType = {
@@ -311,6 +311,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
                         alt="Wonder Blocks logo"
                     />
                     <SingleSelect
+                        aria-label="Example select"
                         placeholder="Placeholder"
                         selectedValue={"item-1"}
                         onChange={() => {}}
