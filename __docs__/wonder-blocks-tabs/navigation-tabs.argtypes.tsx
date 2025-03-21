@@ -13,4 +13,15 @@ export default {
             },
         },
     },
+    styles: {
+        table: {
+            type: {
+                summary: "{ root?: StyleType; list?: StyleType; }",
+            },
+            category: "Visual style",
+        },
+        control: {
+            type: undefined,
+        },
+    },
 } satisfies ArgTypes;

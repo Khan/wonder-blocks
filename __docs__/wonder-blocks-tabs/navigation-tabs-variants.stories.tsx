@@ -3,7 +3,7 @@ import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {
     NavigationTabItem,
     NavigationTabs,
@@ -13,9 +13,39 @@ import {AllVariants} from "../components/all-variants";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {rtlText} from "../components/text-for-testing";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
-const rows = [
-    {name: "Default", props: {"aria-label": "Default navigation tabs"}},
+const StyledA = addStyle("a");
+const generateRows = (rtl: boolean = false) => [
+    {
+        name: "Default",
+        props: {
+            "aria-label": "Default navigation tabs",
+            children: [
+                <NavigationTabItem current={true}>
+                    <Link href="#link1">
+                        {rtl ? rtlText : "Navigation Tab Item 1"}
+                    </Link>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <Link href="#link2">
+                        {rtl ? rtlText : "Navigation Tab Item 2"}
+                    </Link>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <Link href="#link3">
+                        {rtl ? rtlText : "Navigation Tab Item 3"}
+                    </Link>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <Link href="#link4">
+                        {rtl ? rtlText : "Navigation Tab Item 4"}
+                    </Link>
+                </NavigationTabItem>,
+            ],
+        },
+    },
     {
         name: "Link Capabilities",
         props: {
@@ -23,7 +53,7 @@ const rows = [
             children: [
                 <NavigationTabItem>
                     <Link href="https://khanacademy.org" target="_blank">
-                        External Link
+                        {rtl ? rtlText : "External Link"}
                     </Link>
                 </NavigationTabItem>,
                 <NavigationTabItem>
@@ -36,7 +66,7 @@ const rows = [
                             />
                         }
                     >
-                        Start Icon
+                        {rtl ? rtlText : "Start Icon"}
                     </Link>
                 </NavigationTabItem>,
                 <NavigationTabItem>
@@ -49,10 +79,10 @@ const rows = [
                             />
                         }
                     >
-                        End Icon
+                        {rtl ? rtlText : "End Icon"}
                     </Link>
                 </NavigationTabItem>,
-                <NavigationTabItem>
+                <NavigationTabItem current={true}>
                     <Link
                         href="#link4"
                         startIcon={
@@ -68,13 +98,66 @@ const rows = [
                             />
                         }
                     >
-                        Start and End Icons
+                        {rtl ? rtlText : "Start and End Icons"}
                     </Link>
                 </NavigationTabItem>,
             ],
         },
     },
+    {
+        name: "Icon Only",
+        props: {
+            children: [
+                <NavigationTabItem current={true}>
+                    <IconButton
+                        icon={IconMappings.iceCream}
+                        aria-label="Ice cream"
+                        size="medium"
+                        href="#link-1"
+                    />
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <IconButton
+                        icon={IconMappings.cookie}
+                        aria-label="Cookie"
+                        size="medium"
+                        href="#link-2"
+                    />
+                </NavigationTabItem>,
+            ],
+        },
+    },
+    {
+        name: "Native anchor links",
+        props: {
+            children: [
+                <NavigationTabItem current={true}>
+                    <StyledA href="#link-1">
+                        {rtl ? rtlText : "Anchor tag 1"}
+                    </StyledA>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <StyledA href="#link-2">
+                        {rtl ? rtlText : "Anchor tag 2"}
+                    </StyledA>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <StyledA href="#link-3">
+                        {rtl ? rtlText : "Anchor tag 3"}
+                    </StyledA>
+                </NavigationTabItem>,
+                <NavigationTabItem>
+                    <StyledA href="#link-4">
+                        {rtl ? rtlText : "Anchor tag 4"}
+                    </StyledA>
+                </NavigationTabItem>,
+            ],
+        },
+    },
 ];
+
+const rows = generateRows();
+const rtlRows = generateRows(true);
 
 const columns = [
     {
@@ -93,30 +176,33 @@ const meta = {
     title: "Packages / Tabs / NavigationTabs / NavigationTabs / NavigationTabs - All Variants",
     component: NavigationTabs,
     render: (args) => (
-        <AllVariants rows={rows} columns={columns}>
-            {(props) => (
-                <View style={styles.container}>
-                    <NavigationTabs {...args} {...props} />
-                </View>
-            )}
-        </AllVariants>
+        <>
+            <AllVariants rows={rows} columns={columns}>
+                {(props, name) => (
+                    <View style={styles.container}>
+                        <NavigationTabs
+                            {...args}
+                            {...props}
+                            aria-label={name}
+                        />
+                    </View>
+                )}
+            </AllVariants>
+            <div dir="rtl">
+                <AllVariants rows={rtlRows} columns={columns}>
+                    {(props, name) => (
+                        <View style={styles.container}>
+                            <NavigationTabs
+                                {...args}
+                                {...props}
+                                aria-label={`${name} RTL`}
+                            />
+                        </View>
+                    )}
+                </AllVariants>
+            </div>
+        </>
     ),
-    args: {
-        children: [
-            <NavigationTabItem>
-                <Link href="#link1">Navigation Tab Item 1</Link>
-            </NavigationTabItem>,
-            <NavigationTabItem>
-                <Link href="#link2">Navigation Tab Item 2</Link>
-            </NavigationTabItem>,
-            <NavigationTabItem>
-                <Link href="#link3">Navigation Tab Item 3</Link>
-            </NavigationTabItem>,
-            <NavigationTabItem>
-                <Link href="#link4">Navigation Tab Item 4</Link>
-            </NavigationTabItem>,
-        ],
-    },
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabs>;
 
@@ -139,6 +225,58 @@ export const HoverFocus: Story = {
 
 export const Active: Story = {
     parameters: {pseudo: {hover: true, active: true}},
+};
+
+export const Zoom: Story = {
+    render: (args) => (
+        <>
+            <AllVariants rows={rows} columns={columns} layout="list">
+                {(props, name) => (
+                    <View style={styles.container}>
+                        <NavigationTabs
+                            {...args}
+                            {...props}
+                            aria-label={name}
+                        />
+                    </View>
+                )}
+            </AllVariants>
+            <div dir="rtl">
+                <AllVariants rows={rtlRows} columns={columns} layout="list">
+                    {(props, name) => (
+                        <View style={styles.container}>
+                            <NavigationTabs
+                                {...args}
+                                {...props}
+                                aria-label={`${name} RTL`}
+                            />
+                        </View>
+                    )}
+                </AllVariants>
+            </div>
+        </>
+    ),
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling warning: "Element's background color could not
+                    // be determined because it's partially obscured by another
+                    // element" since these examples can cause the horizontal
+                    // scrollbar to show. Color contrast check is enabled for
+                    // other stories (including the AllVariants)
+                    {id: "color-contrast", enabled: false},
+                ],
+            },
+        },
+        chromatic: {
+            // Disabling because Chromatic crops the story when zoom is used
+            disableSnapshot: true,
+        },
+    },
+    globals: {
+        zoom: "400%",
+    },
 };
 
 const styles = StyleSheet.create({

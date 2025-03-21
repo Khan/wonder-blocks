@@ -7,8 +7,15 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import argTypes from "./navigation-tab-item.argtypes";
+import {
+    longText,
+    longTextWithNoWordBreak,
+} from "../components/text-for-testing";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {ScenariosLayout} from "../components/scenarios-layout";
 
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem",
@@ -106,5 +113,106 @@ export const ChildrenRenderFunction: StoryComponentType = {
     parameters: {
         // Added to ensure that the popover/tooltip is rendered using PopperJS.
         chromatic: {delay: 500},
+    },
+};
+
+/**
+ * Custom styles can be set for the NavigationTabItem.
+ *
+ * For custom link styling, prefer applying the styles to the `Link` component.
+ * Note: The `NavigationTabItem` will also set styles to the `Link` child
+ * component.
+ *
+ * If there is a specific use case where the styling needs to be
+ * overridden, please reach out to the Wonder Blocks team!
+ */
+export const CustomStyle: StoryComponentType = {
+    args: {
+        children: <Link href="#link">Navigation tab item</Link>,
+        style: {
+            backgroundColor: semanticColor.surface.secondary,
+        },
+    },
+};
+
+/**
+ * The following story shows how the component handles specific scenarios.
+ */
+export const Scenarios: StoryComponentType = {
+    render() {
+        const scenarios = [
+            {
+                name: "Long Text",
+                props: {
+                    current: true,
+                    children: <Link href="#link">{longText}</Link>,
+                },
+            },
+            {
+                name: "Long Text with No Word Break",
+                props: {
+                    current: true,
+                    children: (
+                        <Link href="#link">{longTextWithNoWordBreak}</Link>
+                    ),
+                },
+            },
+            {
+                name: "Long Text (icons)",
+                props: {
+                    current: true,
+                    children: (
+                        <Link
+                            href="#link"
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    size="small"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.iceCream}
+                                    size="small"
+                                />
+                            }
+                        >
+                            {longText}
+                        </Link>
+                    ),
+                },
+            },
+            {
+                name: "Long Text with No Word Break (icons)",
+                props: {
+                    current: true,
+                    children: (
+                        <Link
+                            href="#link"
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    size="small"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.iceCream}
+                                    size="small"
+                                />
+                            }
+                        >
+                            {longTextWithNoWordBreak}
+                        </Link>
+                    ),
+                },
+            },
+        ];
+
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <NavigationTabItem {...props} />}
+            </ScenariosLayout>
+        );
     },
 };
