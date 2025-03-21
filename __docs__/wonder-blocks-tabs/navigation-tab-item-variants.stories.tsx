@@ -122,6 +122,7 @@ const generateRows = (rtl: boolean = false) => {
 };
 
 const rows = generateRows();
+const rtlRows = generateRows(true);
 const columns = [
     {
         name: "Default",
@@ -162,10 +163,20 @@ export default meta;
 export const StickerSheet: Story = {
     render: (args) => (
         <AllVariantsStates rows={rows} columns={columns}>
-            {(props, name, isRtl) => <NavigationTabItem {...args} {...props} />}
+            {(props) => <NavigationTabItem {...args} {...props} />}
         </AllVariantsStates>
     ),
     parameters: {pseudo: defaultPseudoStates},
+};
+
+export const RTLStickerSheet: Story = {
+    render: (args) => (
+        <AllVariantsStates rows={rtlRows} columns={columns}>
+            {(props) => <NavigationTabItem {...args} {...props} />}
+        </AllVariantsStates>
+    ),
+    parameters: {pseudo: defaultPseudoStates},
+    globals: {direction: "rtl"},
 };
 
 export const ZoomStickerSheet: Story = {
