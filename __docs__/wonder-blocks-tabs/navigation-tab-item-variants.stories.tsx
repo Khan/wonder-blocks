@@ -14,114 +14,99 @@ import {
 } from "../components/all-variants-states";
 
 const StyledA = addStyle("a");
-const generateRows = (rtl: boolean = false) => {
-    return [
-        {
-            name: "Default",
-            props: {
-                children: (
-                    <Link href="#link">
-                        {rtl ? rtlText : "Navigation Tab Item"}
-                    </Link>
-                ),
-            },
+const rows = [
+    {
+        name: "Default",
+        props: {
+            children: (label: string) => <Link href="#link">{label}</Link>,
         },
-        {
-            name: "External Link",
-            props: {
-                children: (
-                    <Link href="https://khanacademy.org" target="_blank">
-                        {rtl ? rtlText : "External link"}
-                    </Link>
-                ),
-            },
+    },
+    {
+        name: "External Link",
+        props: {
+            children: (label: string) => (
+                <Link href="https://khanacademy.org" target="_blank">
+                    {label}
+                </Link>
+            ),
         },
-        {
-            name: "Start Icon",
-            props: {
-                children: (
-                    <Link
-                        href="#link"
-                        startIcon={
-                            <PhosphorIcon
-                                icon={IconMappings.cookie}
-                                size="small"
-                            />
-                        }
-                    >
-                        {rtl ? rtlText : "Start Icon"}
-                    </Link>
-                ),
-            },
+    },
+    {
+        name: "Start Icon",
+        props: {
+            children: (label: string) => (
+                <Link
+                    href="#link"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.cookie} size="small" />
+                    }
+                >
+                    {label}
+                </Link>
+            ),
         },
-        {
-            name: "End Icon",
-            props: {
-                children: (
-                    <Link
-                        href="#link"
-                        endIcon={
-                            <PhosphorIcon
-                                icon={IconMappings.iceCream}
-                                size="small"
-                            />
-                        }
-                    >
-                        {rtl ? rtlText : "End Icon"}
-                    </Link>
-                ),
-            },
+    },
+    {
+        name: "End Icon",
+        props: {
+            children: (label: string) => (
+                <Link
+                    href="#link"
+                    endIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            size="small"
+                        />
+                    }
+                >
+                    {label}
+                </Link>
+            ),
         },
-        {
-            name: "Start and End Icons",
-            props: {
-                children: (
-                    <Link
-                        href="#link"
-                        startIcon={
-                            <PhosphorIcon
-                                icon={IconMappings.cookie}
-                                size="small"
-                            />
-                        }
-                        endIcon={
-                            <PhosphorIcon
-                                icon={IconMappings.iceCream}
-                                size="small"
-                            />
-                        }
-                    >
-                        {rtl ? rtlText : "Start and End Icons"}
-                    </Link>
-                ),
-            },
+    },
+    {
+        name: "Start and End Icons",
+        props: {
+            children: (label: string) => (
+                <Link
+                    href="#link"
+                    startIcon={
+                        <PhosphorIcon icon={IconMappings.cookie} size="small" />
+                    }
+                    endIcon={
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            size="small"
+                        />
+                    }
+                >
+                    {label}
+                </Link>
+            ),
         },
-        {
-            name: "Icon only",
-            props: {
-                children: (
-                    <IconButton
-                        href="#link"
-                        aria-label="Ice cream"
-                        icon={IconMappings.iceCream}
-                    />
-                ),
-            },
+    },
+    {
+        name: "Icon only",
+        props: {
+            children: () => (
+                <IconButton
+                    href="#link"
+                    aria-label="Ice cream"
+                    icon={IconMappings.iceCream}
+                />
+            ),
         },
-        {
-            name: "Native anchor tag",
-            props: {
-                children: (
-                    <StyledA href="#link">
-                        {rtl ? rtlText : "Anchor tag"}
-                    </StyledA>
-                ),
-            },
+    },
+    {
+        name: "Native anchor tag",
+        props: {
+            children: (label: string) => (
+                <StyledA href="#link">{label}</StyledA>
+            ),
         },
-    ];
-};
+    },
+];
 
-const rows = generateRows();
 const columns = [
     {
         name: "Default",
@@ -162,7 +147,14 @@ export default meta;
 export const StickerSheet: Story = {
     render: (args) => (
         <AllVariantsStates rows={rows} columns={columns}>
-            {(props, name, isRtl) => <NavigationTabItem {...args} {...props} />}
+            {(props, name, isRtl) => {
+                const {children, ...tabItemProps} = props;
+                return (
+                    <NavigationTabItem {...args} {...tabItemProps}>
+                        {children(isRtl ? rtlText : "Navigation Tab Item")}
+                    </NavigationTabItem>
+                );
+            }}
         </AllVariantsStates>
     ),
     parameters: {pseudo: defaultPseudoStates},
@@ -171,7 +163,14 @@ export const StickerSheet: Story = {
 export const ZoomStickerSheet: Story = {
     render: (args) => (
         <AllVariantsStates rows={rows} columns={columns} layout="list">
-            {(props) => <NavigationTabItem {...args} {...props} />}
+            {(props, name, isRtl) => {
+                const {children, ...tabItemProps} = props;
+                return (
+                    <NavigationTabItem {...args} {...tabItemProps}>
+                        {children(isRtl ? rtlText : "Navigation Tab Item")}
+                    </NavigationTabItem>
+                );
+            }}
         </AllVariantsStates>
     ),
     globals: {zoom: "400%"},
