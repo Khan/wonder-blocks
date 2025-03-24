@@ -54,7 +54,7 @@ const ChoiceWrapper = (args: any) => {
                 <Choice label="Extra cheese" value="cheese-checkbox" />
                 <Choice label="Green pepper" value="pepper-checkbox" />
                 <Choice label="Mushroom" value="mushroom-checkbox" />
-                <Choice aria-label="Pineapple" {...args} />
+                <Choice aria-label="Pineapple" value="pineapple" {...args} />
             </CheckboxGroup>
             <Strut size={spacing.xLarge_32} />
             <RadioGroup
