@@ -144,6 +144,7 @@ export const WithTooltip: StoryComponentType = (() => {
         <View>
             <Tooltip content={tooltipContent} placement="right">
                 <Switch
+                    aria-label="Tooltip example"
                     checked={checked}
                     onChange={setChecked}
                     icon={<PhosphorIcon icon={IconMappings.lightbulbBold} />}
