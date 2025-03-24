@@ -137,7 +137,8 @@ const withAnnouncer: Decorator = (
         };
       }, [addBodyClass]);
     return (
-        <span ref={containerRef}>
+        // inline-block keeps wrapper from impacting story widths
+        <span ref={containerRef} style={{display: 'inline-block'}}>
             <Story />
         </span>
     );
