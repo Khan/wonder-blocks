@@ -305,6 +305,7 @@ export const ControlledMultilpleCombobox: Story = {
         return (
             <Combobox
                 {...args}
+                testId="test-combobox"
                 opened={opened}
                 onToggle={() => {
                     setOpened(!opened);
@@ -341,7 +342,7 @@ export const ControlledMultilpleCombobox: Story = {
         await userEvent.keyboard("{Enter}");
 
         // Assert
-        expect(canvas.getByRole("log")).toHaveTextContent(
+        expect(canvas.getByTestId("test-combobox-status")).toHaveTextContent(
             "Pineapple selected, 4 of 10. 10 results available.",
         );
     },

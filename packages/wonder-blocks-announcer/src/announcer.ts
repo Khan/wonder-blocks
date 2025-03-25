@@ -1,9 +1,9 @@
-import {
+import type {
     PolitenessLevel,
     RegionFactory,
     RegionDictionary,
     RegionDef,
-} from "../types/announcer.types";
+} from "./util/announcer.types";
 
 import {
     createRegionWrapper,
@@ -20,6 +20,8 @@ export const DEFAULT_WAIT_THRESHOLD = 250;
  */
 class Announcer {
     private static _instance: Announcer | null;
+    private targetElement: HTMLElement;
+    topLevelId: string = `wbAnnounce`;
     node: HTMLElement | null = null;
     regionFactory: RegionFactory = {
         count: 2,
@@ -34,15 +36,16 @@ class Announcer {
         updateWaitTime: (newWaitTime: number) => void;
     };
 
-    private constructor() {
+    private constructor(targetElement: HTMLElement = document.body) {
+        this.targetElement = targetElement;
+
         if (typeof document !== "undefined") {
-            const topLevelId = `wbAnnounce`;
             // Check if our top level element already exists
-            const announcerCheck = document.getElementById(topLevelId);
+            const announcerCheck = document.getElementById(this.topLevelId);
 
             // Init new structure if the coast is clear
             if (announcerCheck === null) {
-                this.init(topLevelId);
+                this.init(this.topLevelId);
             }
             // The structure exists but references are lost, so help HMR recover
             else {
@@ -63,9 +66,9 @@ class Announcer {
      * Singleton handler to ensure we only have one Announcer instance
      * @returns {Announcer}
      */
-    static getInstance() {
+    static getInstance(targetElement?: HTMLElement | undefined) {
         if (!Announcer._instance) {
-            Announcer._instance = new Announcer();
+            Announcer._instance = new Announcer(targetElement);
         }
         return Announcer._instance;
     }
@@ -101,7 +104,7 @@ class Announcer {
         );
         this.node.appendChild(pWrapper);
 
-        document.body.append(this.node);
+        this.targetElement.append(this.node);
     }
     /**
      * Recover in the event regions get lost
@@ -109,7 +112,7 @@ class Announcer {
      * Announcer exists, but it loses the connection to DOM element Refs
      */
     reattachNodes() {
-        const announcerCheck = document.getElementById(`wbAnnounce`);
+        const announcerCheck = document.getElementById(this.topLevelId);
         if (announcerCheck !== null) {
             this.node = announcerCheck;
             const regions = Array.from(
@@ -256,6 +259,17 @@ class Announcer {
         this.regionFactory.pIndex = 0;
 
         this.clear();
+    }
+
+    /**
+     * Remove Announcer instance and all elements.
+     * Useful for testing.
+     **/
+    destroy() {
+        if (this.node) {
+            this.node.parentElement?.removeChild(this.node);
+        }
+        Announcer._instance = null;
     }
 }
 

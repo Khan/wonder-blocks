@@ -5,7 +5,7 @@ import {
     createRegion,
     removeMessage,
 } from "../../util/dom";
-import {PolitenessLevel} from "../../../types/announcer.types";
+import {type PolitenessLevel} from "../../util/announcer.types";
 
 jest.useFakeTimers();
 jest.spyOn(global, "setTimeout");

@@ -1,4 +1,4 @@
-import type {PolitenessLevel} from "../types/announcer.types";
+import type {PolitenessLevel} from "./util/announcer.types";
 import Announcer from "./announcer";
 
 export type AnnounceMessageProps = {
@@ -25,8 +25,8 @@ export function announceMessage({
     const announcer = Announcer.getInstance();
     if (initialTimeout > 0) {
         return new Promise<string>((resolve) => {
-            setTimeout(async () => {
-                const result = await announcer.announce(
+            return setTimeout(async () => {
+                const result = announcer.announce(
                     message,
                     level,
                     debounceThreshold,
@@ -35,9 +35,6 @@ export function announceMessage({
             }, initialTimeout);
         });
     } else {
-        const result = announcer.announce(message, level, debounceThreshold);
-        return new Promise<string>((resolve) => {
-            resolve(result);
-        });
+        return announcer.announce(message, level, debounceThreshold);
     }
 }
