@@ -1,8 +1,12 @@
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {CSSProperties, StyleSheet} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    breakpoint,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 type NavigationTabItemLinkProps = {style: StyleType; "aria-current"?: "page"};
 
@@ -33,6 +37,12 @@ type Props = AriaProps & {
      * styling and aria-current=page will be applied to the Link.
      */
     current?: boolean;
+    /**
+     * Custom styles for overriding default styles. For custom link styling,
+     * prefer applying the styles to the `Link` component. Note: The
+     * `NavigationTabItem` will also set styles to the `Link` child component.
+     */
+    style?: StyleType;
 };
 
 const StyledLi = addStyle("li");
@@ -61,11 +71,15 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
     props: Props,
     ref: React.ForwardedRef<HTMLLIElement>,
 ) {
-    const {children, id, testId, current, ...otherProps} = props;
+    const {children, id, testId, current, style, ...otherProps} = props;
 
     function renderChildren() {
         const linkProps: NavigationTabItemLinkProps = {
-            style: [typographyStyles.Body, styles.link],
+            style: [
+                typographyStyles.Body,
+                styles.link,
+                current && styles.currentLink,
+            ],
             "aria-current": current ? "page" : undefined,
         };
 
@@ -80,7 +94,7 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
         <StyledLi
             id={id}
             data-testid={testId}
-            style={styles.root}
+            style={[styles.root, current && styles.current, style]}
             ref={ref}
             {...otherProps}
         >
@@ -89,35 +103,59 @@ export const NavigationTabItem = React.forwardRef(function NavigationTabItem(
     );
 });
 
-const underlineStyles: CSSProperties = {
-    content: '""',
-    display: "block",
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: sizing.size_050,
-};
-
 const styles = StyleSheet.create({
     root: {
         listStyle: "none",
         display: "inline-flex",
+        [":has(a:hover)" as any]: {
+            boxShadow: `inset 0 -${sizing.size_025} 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
+        },
+        [":has(a:active)" as any]: {
+            boxShadow: `inset 0 -${sizing.size_075} 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
+        },
+        paddingBlockStart: sizing.size_100,
+        paddingBlockEnd: sizing.size_225,
+        [breakpoint.mediaQuery.mdOrLarger]: {
+            paddingBlockStart: sizing.size_250,
+            paddingBlockEnd: sizing.size_300,
+        },
+    },
+    current: {
+        boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
+        [":has(a:hover)" as any]: {
+            // Make sure hover state for current item is the same underline at rest
+            boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
+        },
+    },
+    currentLink: {
+        color: semanticColor.action.secondary.progressive.default.foreground,
     },
     link: {
+        display: "flex",
+        margin: 0,
         color: semanticColor.text.primary,
-        paddingBlock: sizing.size_150,
         paddingInline: 0,
         position: "relative",
+        whiteSpace: "nowrap",
+        textDecoration: "none",
         ":hover": {
             textDecoration: "none",
-            [":after" as any]: {
-                // We use :after to apply underline styles instead of textDecoration
-                // so the underline is shown under icons in Link too
-                ...underlineStyles,
-                backgroundColor:
-                    semanticColor.action.primary.progressive.hover.border,
-            },
+            outline: "none",
+            color: semanticColor.action.secondary.progressive.default
+                .foreground,
+            backgroundColor: "transparent",
+        },
+        ":active": {
+            textDecoration: "none",
+            outline: "none",
+            color: semanticColor.action.secondary.progressive.press.foreground,
+        },
+        ":focus-visible": {
+            color: semanticColor.action.secondary.progressive.default
+                .foreground,
+            outline: "none",
+            boxShadow: `0 0 0 ${sizing.size_025} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_050} ${semanticColor.focus.outer}`,
+            borderRadius: 0,
         },
     },
 });

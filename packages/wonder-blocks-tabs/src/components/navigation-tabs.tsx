@@ -1,4 +1,4 @@
-import {addStyle, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
@@ -32,8 +32,19 @@ type Props = AriaProps & {
      * tabs.
      */
     "aria-labelledby"?: string;
+    /**
+     * Custom styles for the elements in NavigationTabs.
+     * - `root`: Styles the root `nav` element.
+     * - `list`: Styles the underlying `ul` element that wraps the
+     * `NavigationTabItem` components
+     */
+    styles?: {
+        root?: StyleType;
+        list?: StyleType;
+    };
 };
 
+const StyledNav = addStyle("nav");
 const StyledUl = addStyle("ul");
 
 /**
@@ -69,27 +80,37 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
         children,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledBy,
+        styles: stylesProp,
         ...otherProps
     } = props;
     return (
-        <nav
+        <StyledNav
             id={id}
             data-testid={testId}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
             ref={ref}
+            style={[styles.nav, stylesProp?.root]}
             {...otherProps}
         >
-            <StyledUl style={styles.list}>{children}</StyledUl>
-        </nav>
+            <StyledUl style={[styles.list, stylesProp?.list]}>
+                {children}
+            </StyledUl>
+        </StyledNav>
     );
 });
 
 const styles = StyleSheet.create({
+    nav: {
+        overflowX: "auto",
+    },
     list: {
-        padding: 0,
-        margin: 0,
+        // Add horizontal padding for focus outline of first/last elements
+        paddingInline: sizing.size_050,
+        paddingBlock: sizing.size_0,
+        margin: sizing.size_0,
         display: "flex",
         gap: sizing.size_200,
+        flexWrap: "nowrap",
     },
 });
