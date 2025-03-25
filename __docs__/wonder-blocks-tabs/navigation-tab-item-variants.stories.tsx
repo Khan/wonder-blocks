@@ -166,18 +166,6 @@ const meta = {
         </>
     ),
     tags: ["!autodocs"],
-    parameters: {
-        a11y: {
-            config: {
-                rules: [
-                    // Disabling warning: "List item does not have a <ul>, <ol> parent element"
-                    // This is intentional because NavigationTabs provides the ul element and it
-                    // is outside of this component
-                    {id: "listitem", enabled: false},
-                ],
-            },
-        },
-    },
 } satisfies Meta<typeof NavigationTabItem>;
 
 export default meta;
