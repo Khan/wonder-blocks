@@ -61,7 +61,7 @@ const KindVariants = ({
                                     onClick={action("clicked")}
                                     kind={kind}
                                     light={light}
-                                    color="default"
+                                    actionType="progressive"
                                     size={size}
                                     key={size}
                                 />
@@ -90,7 +90,7 @@ const KindVariants = ({
                                     onClick={action("clicked")}
                                     kind={kind}
                                     light={light}
-                                    color="destructive"
+                                    actionType="destructive"
                                     size={size}
                                     key={size}
                                 />
