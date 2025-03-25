@@ -10,6 +10,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import actionItemArgtypes from "./action-item.argtypes";
+import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 const defaultArgs = {
     label: "Action Item",
@@ -58,7 +59,9 @@ export default {
     decorators: [
         (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
-                <Story />
+                <div role="menu" aria-label="Example">
+                    <Story />
+                </div>
             </View>
         ),
     ],
@@ -126,6 +129,27 @@ export const Disabled = {
 export const CustomActionItem = {
     args: {
         label: "Action Item",
+        onClick: () => {},
+        leftAccessory: (
+            <PhosphorIcon icon={IconMappings.calendar} size="medium" />
+        ),
+        rightAccessory: (
+            <PhosphorIcon icon={IconMappings.caretRight} size="medium" />
+        ),
+    },
+};
+
+/**
+ * Another example of a custom action item with a larger label
+ */
+export const CustomActionItemMultiLine = {
+    args: {
+        label: (
+            <View>
+                <LabelLarge>Title</LabelLarge>
+                <LabelMedium>Subtitle</LabelMedium>
+            </View>
+        ),
         onClick: () => {},
         leftAccessory: (
             <PhosphorIcon icon={IconMappings.calendar} size="medium" />

@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-theming",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "publishConfig": {
     "access": "public"
   },
@@ -14,9 +14,9 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "aphrodite": "^1.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "aphrodite": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"

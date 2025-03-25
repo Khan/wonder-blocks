@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-button",
-  "version": "7.1.3",
+  "version": "7.1.4",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.24.5",
+    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
@@ -26,10 +26,10 @@
     "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "aphrodite": "^1.2.5",
-    "react": "18.2.0",
-    "react-router": "5.3.4",
-    "react-router-dom": "5.3.4"
+    "aphrodite": "catalog:",
+    "react": "catalog:",
+    "react-router": "catalog:",
+    "react-router-dom": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"

@@ -1,5 +1,26 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 3.3.3
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [1d7be37]
+- Updated dependencies [999101f]
+    - @khanacademy/wonder-blocks-typography@3.1.3
+    - @khanacademy/wonder-blocks-dropdown@9.1.5
+    - @khanacademy/wonder-blocks-layout@3.1.4
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-icon@5.1.3
+    - @khanacademy/wonder-blocks-tokens@5.1.1
+
+## 3.3.2
+
+### Patch Changes
+
+- Updated dependencies [887d581]
+    - @khanacademy/wonder-blocks-dropdown@9.1.4
+
 ## 3.3.1
 
 ### Patch Changes

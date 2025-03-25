@@ -4,54 +4,94 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@babel/runtime':
+      specifier: ^7.24.5
+      version: 7.26.7
+    '@khanacademy/wonder-stuff-core':
+      specifier: ^1.5.4
+      version: 1.5.4
+    '@phosphor-icons/core':
+      specifier: ^2.0.2
+      version: 2.1.1
+    '@popperjs/core':
+      specifier: ^2.10.1
+      version: 2.11.8
+    aphrodite:
+      specifier: ^1.2.5
+      version: 1.2.5
+    moment:
+      specifier: 2.29.4
+      version: 2.29.4
+    node-fetch:
+      specifier: ^2.6.7
+      version: 2.7.0
+    react:
+      specifier: 18.2.0
+      version: 18.2.0
+    react-dom:
+      specifier: 18.2.0
+      version: 18.2.0
+    react-popper:
+      specifier: ^2.3.0
+      version: 2.3.0
+    react-router:
+      specifier: 5.3.4
+      version: 5.3.4
+    react-router-dom:
+      specifier: 5.3.4
+      version: 5.3.4
+    react-window:
+      specifier: ^1.8.11
+      version: 1.8.11
+
 overrides:
   '@types/react': '18'
   '@types/react-dom': '18'
-  strip-ansi: 6.0.1
-  strip-ansi-explanation: There's an issue with strip-ansi v7 which causes conflicts with the Khan/changeset-per-package action
 
 importers:
 
   .:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-stuff-core':
-        specifier: ^1.5.4
+        specifier: 'catalog:'
         version: 1.5.4
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       '@popperjs/core':
-        specifier: ^2.11.8
+        specifier: 'catalog:'
         version: 2.11.8
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       moment:
-        specifier: 2.29.4
+        specifier: 'catalog:'
         version: 2.29.4
       node-fetch:
-        specifier: ^2.6.7
+        specifier: 'catalog:'
         version: 2.7.0
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
       react-popper:
-        specifier: ^2.3.0
+        specifier: 'catalog:'
         version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-router:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-window:
-        specifier: ^1.8.11
+        specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@babel/core':
@@ -327,7 +367,7 @@ importers:
   packages/wonder-blocks-accordion:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
@@ -345,13 +385,13 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -361,7 +401,7 @@ importers:
   packages/wonder-blocks-banner:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-button':
         specifier: workspace:*
@@ -385,13 +425,13 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -401,7 +441,7 @@ importers:
   packages/wonder-blocks-birthday-picker:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -422,16 +462,16 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       moment:
-        specifier: ^2.24.0
+        specifier: 'catalog:'
         version: 2.29.4
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -441,7 +481,7 @@ importers:
   packages/wonder-blocks-breadcrumbs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -450,10 +490,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -463,7 +503,7 @@ importers:
   packages/wonder-blocks-button:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
@@ -487,16 +527,16 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-router:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -506,7 +546,7 @@ importers:
   packages/wonder-blocks-cell:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
@@ -524,10 +564,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -537,7 +577,7 @@ importers:
   packages/wonder-blocks-clickable:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -546,19 +586,19 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
       react-router:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -568,22 +608,22 @@ importers:
   packages/wonder-blocks-core:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
       react-router:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -596,16 +636,16 @@ importers:
   packages/wonder-blocks-data:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
       '@khanacademy/wonder-stuff-core':
-        specifier: ^1.5.4
+        specifier: 'catalog:'
         version: 1.5.4
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -621,7 +661,7 @@ importers:
   packages/wonder-blocks-dropdown:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-cell':
         specifier: workspace:*
@@ -657,31 +697,31 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       '@popperjs/core':
-        specifier: ^2.10.1
+        specifier: 'catalog:'
         version: 2.11.8
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
       react-popper:
-        specifier: ^2.0.0
+        specifier: 'catalog:'
         version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-router:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-window:
-        specifier: ^1.8.11
+        specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -691,7 +731,7 @@ importers:
   packages/wonder-blocks-form:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
@@ -712,13 +752,13 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -728,7 +768,7 @@ importers:
   packages/wonder-blocks-grid:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -740,10 +780,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -753,19 +793,19 @@ importers:
   packages/wonder-blocks-icon:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -775,7 +815,7 @@ importers:
   packages/wonder-blocks-icon-button:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
@@ -793,16 +833,16 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-router:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -812,7 +852,7 @@ importers:
   packages/wonder-blocks-labeled-field:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -827,13 +867,13 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -843,7 +883,7 @@ importers:
   packages/wonder-blocks-layout:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -852,10 +892,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -865,7 +905,7 @@ importers:
   packages/wonder-blocks-link:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
@@ -880,19 +920,19 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-router:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -902,7 +942,7 @@ importers:
   packages/wonder-blocks-modal:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-breadcrumbs':
         specifier: workspace:*
@@ -929,16 +969,16 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -948,7 +988,7 @@ importers:
   packages/wonder-blocks-pill:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-clickable':
         specifier: workspace:*
@@ -966,10 +1006,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -979,7 +1019,7 @@ importers:
   packages/wonder-blocks-popover:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -1000,22 +1040,22 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       '@popperjs/core':
-        specifier: ^2.10.1
+        specifier: 'catalog:'
         version: 2.11.8
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
       react-popper:
-        specifier: ^2.0.0
+        specifier: 'catalog:'
         version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1025,7 +1065,7 @@ importers:
   packages/wonder-blocks-progress-spinner:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -1034,10 +1074,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1047,7 +1087,7 @@ importers:
   packages/wonder-blocks-search-field:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -1068,13 +1108,13 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@phosphor-icons/core':
-        specifier: ^2.0.2
+        specifier: 'catalog:'
         version: 2.1.1
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1084,7 +1124,7 @@ importers:
   packages/wonder-blocks-switch:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -1099,10 +1139,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-tokens
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1137,7 +1177,7 @@ importers:
   packages/wonder-blocks-testing:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -1149,25 +1189,25 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-testing-core
       '@khanacademy/wonder-stuff-core':
-        specifier: ^1.5.4
+        specifier: 'catalog:'
         version: 1.5.4
       '@storybook/addon-actions':
         specifier: ^8.5.2
         version: 8.5.2(storybook@8.5.2(prettier@3.4.2))
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       node-fetch:
-        specifier: ^2.6.7
+        specifier: 'catalog:'
         version: 2.7.0
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1180,28 +1220,28 @@ importers:
   packages/wonder-blocks-testing-core:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-stuff-core':
-        specifier: ^1.5.4
+        specifier: 'catalog:'
         version: 1.5.4
       '@storybook/addon-actions':
         specifier: ^8.5.2
         version: 8.5.2(storybook@8.5.2(prettier@3.4.2))
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       node-fetch:
-        specifier: ^2.6.7
+        specifier: 'catalog:'
         version: 2.7.0
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
       react-router-dom:
-        specifier: 5.3.4
+        specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1214,13 +1254,13 @@ importers:
   packages/wonder-blocks-theming:
     dependencies:
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1230,7 +1270,7 @@ importers:
   packages/wonder-blocks-timing:
     dependencies:
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1249,7 +1289,7 @@ importers:
   packages/wonder-blocks-toolbar:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -1261,10 +1301,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1274,7 +1314,7 @@ importers:
   packages/wonder-blocks-tooltip:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -1292,19 +1332,19 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       '@popperjs/core':
-        specifier: ^2.10.1
+        specifier: 'catalog:'
         version: 2.11.8
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
       react-dom:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0(react@18.2.0)
       react-popper:
-        specifier: ^2.0.0
+        specifier: 'catalog:'
         version: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -1314,16 +1354,16 @@ importers:
   packages/wonder-blocks-typography:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:../wonder-blocks-core
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
@@ -3526,6 +3566,10 @@ packages:
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
+
+  ansi-regex@6.1.0:
+    resolution: {integrity: sha512-7HSX4QQb4CspciLpVFwyRe79O3xsIZDDLER21kERQ71oaPodF8jL725AgJMFAYbooIqolJoRLuM81SpeUkpkvA==}
+    engines: {node: '>=12'}
 
   ansi-styles@4.3.0:
     resolution: {integrity: sha512-zbB9rCJAT1rbjiVDb2hqKFHNYLxgtk8NURxZ3IZwD3F6NtxbXZQCnnSi1Lkx+IDohdPlFp222wVALIheZJQSEg==}
@@ -7049,6 +7093,10 @@ packages:
     resolution: {integrity: sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==}
     engines: {node: '>=8'}
 
+  strip-ansi@7.1.0:
+    resolution: {integrity: sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==}
+    engines: {node: '>=12'}
+
   strip-bom@3.0.0:
     resolution: {integrity: sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==}
     engines: {node: '>=4'}
@@ -8980,7 +9028,7 @@ snapshots:
     dependencies:
       string-width: 5.1.2
       string-width-cjs: string-width@4.2.3
-      strip-ansi: 6.0.1
+      strip-ansi: 7.1.0
       strip-ansi-cjs: strip-ansi@6.0.1
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
@@ -10451,6 +10499,8 @@ snapshots:
       type-fest: 0.21.3
 
   ansi-regex@5.0.1: {}
+
+  ansi-regex@6.1.0: {}
 
   ansi-styles@4.3.0:
     dependencies:
@@ -15062,7 +15112,7 @@ snapshots:
     dependencies:
       eastasianwidth: 0.2.0
       emoji-regex: 9.2.2
-      strip-ansi: 6.0.1
+      strip-ansi: 7.1.0
 
   string.prototype.includes@2.0.1:
     dependencies:
@@ -15128,6 +15178,10 @@ snapshots:
   strip-ansi@6.0.1:
     dependencies:
       ansi-regex: 5.0.1
+
+  strip-ansi@7.1.0:
+    dependencies:
+      ansi-regex: 6.1.0
 
   strip-bom@3.0.0: {}
 
@@ -15912,7 +15966,7 @@ snapshots:
     dependencies:
       ansi-styles: 6.2.1
       string-width: 5.1.2
-      strip-ansi: 6.0.1
+      strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
 

@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 3.0.0
+
+### Major Changes
+
+- 415f758: Remove `style` prop in favour of `styles` prop. Styling can be applied to the root instead using the `styles` prop
+
+### Minor Changes
+
+- 415f758: LabeledField
+
+    - Add `styles` prop to support custom stying for the label, description, and error elements
+    - Use CSS padding instead of `<Strut>` for spacing
+    - Migrated to `sizing` tokens instead of `spacing`
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [1d7be37]
+- Updated dependencies [999101f]
+    - @khanacademy/wonder-blocks-typography@3.1.3
+    - @khanacademy/wonder-blocks-layout@3.1.4
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-tokens@5.1.1
+
 ## 2.1.3
 
 ### Patch Changes
