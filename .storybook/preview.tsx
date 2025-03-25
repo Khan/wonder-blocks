@@ -124,23 +124,19 @@ const withAnnouncer: Decorator = (
     if (addBodyClass) {
         document.body.classList.add(addBodyClass);
     }
-    const containerRef = React.useRef(null);
-    // Remove body class when changing stories
     React.useEffect(() => {
-        const storyContainer = containerRef.current;
+        const storyContainer = document.querySelector('#storybook-root');
         // initialize Announcer on load to render Live Regions earlier
         initAnnouncer({targetElement: storyContainer});
         return () => {
           if (addBodyClass) {
+            // Remove body class when changing stories
             document.body.classList.remove(addBodyClass);
           }
         };
       }, [addBodyClass]);
     return (
-        // inline-block keeps wrapper from impacting story widths
-        <span ref={containerRef} style={{display: 'inline-block'}}>
-            <Story />
-        </span>
+        <Story />
     );
 };
 
