@@ -1149,6 +1149,31 @@ importers:
         specifier: workspace:*
         version: link:../../build-settings
 
+  packages/wonder-blocks-tabs:
+    dependencies:
+      '@babel/runtime':
+        specifier: ^7.24.5
+        version: 7.26.7
+      '@khanacademy/wonder-blocks-core':
+        specifier: workspace:*
+        version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:../wonder-blocks-tokens
+      '@khanacademy/wonder-blocks-typography':
+        specifier: workspace:*
+        version: link:../wonder-blocks-typography
+      aphrodite:
+        specifier: ^1.2.5
+        version: 1.2.5
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
+
   packages/wonder-blocks-testing:
     dependencies:
       '@babel/runtime':
