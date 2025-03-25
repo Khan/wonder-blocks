@@ -1152,7 +1152,7 @@ importers:
   packages/wonder-blocks-tabs:
     dependencies:
       '@babel/runtime':
-        specifier: ^7.24.5
+        specifier: 'catalog:'
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
@@ -1164,10 +1164,10 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-typography
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
