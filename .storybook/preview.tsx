@@ -2,6 +2,7 @@ import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
@@ -148,9 +149,35 @@ const withZoom: Decorator = (Story, context) => {
     return <Story />
 }
 
+/**
+ * Injects the Live Region Announcer for various components
+ */
+const withAnnouncer: Decorator = (
+    Story,
+    {parameters: {addBodyClass}},
+) => {
+    // Allow stories to specify a CSS body class
+    if (addBodyClass) {
+        document.body.classList.add(addBodyClass);
+    }
+    React.useEffect(() => {
+        // initialize Announcer on load to render Live Regions earlier
+        initAnnouncer();
+        return () => {
+          if (addBodyClass) {
+            // Remove body class when changing stories
+            document.body.classList.remove(addBodyClass);
+          }
+        };
+      }, [addBodyClass]);
+    return (
+        <Story />
+    );
+};
+
 const preview: Preview = {
     parameters,
-    decorators: [withThemeSwitcher, withLanguageDirection, withZoom],
+    decorators: [withThemeSwitcher, withLanguageDirection, withZoom, withAnnouncer],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {

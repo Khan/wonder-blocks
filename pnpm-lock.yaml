@@ -398,6 +398,21 @@ importers:
         specifier: workspace:*
         version: link:../../build-settings
 
+  packages/wonder-blocks-announcer:
+    dependencies:
+      '@babel/runtime':
+        specifier: 'catalog:'
+        version: 7.26.7
+      '@khanacademy/wonder-blocks-core':
+        specifier: ^9.0.0
+        version: 9.0.0(aphrodite@1.2.5)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@5.3.4(react@18.2.0))(react@18.2.0)
+      aphrodite:
+        specifier: 'catalog:'
+        version: 1.2.5
+      react:
+        specifier: 'catalog:'
+        version: 18.2.0
+
   packages/wonder-blocks-banner:
     dependencies:
       '@babel/runtime':
@@ -663,6 +678,9 @@ importers:
       '@babel/runtime':
         specifier: 'catalog:'
         version: 7.26.7
+      '@khanacademy/wonder-blocks-announcer':
+        specifier: workspace:*
+        version: link:../wonder-blocks-announcer
       '@khanacademy/wonder-blocks-cell':
         specifier: workspace:*
         version: link:../wonder-blocks-cell
@@ -2471,6 +2489,15 @@ packages:
 
   '@khanacademy/eslint-plugin@3.1.1':
     resolution: {integrity: sha512-1tOJRN1MWc7tOiSwxBT9KfOmo46d0/eB3P3On4PCZKkrrdC+wDNTxQ3FWX+xZBCjl6bSdh/ab5HZkOatDD7efA==}
+
+  '@khanacademy/wonder-blocks-core@9.0.0':
+    resolution: {integrity: sha512-IjNJi4upvwkeNR8rxFlDhj6k4rJuj0tmsAml6GwYC+cX9huuyHgQHrSNYHgJP3qsPb9v4hLzTE4VEwn0LEkf1Q==}
+    peerDependencies:
+      aphrodite: ^1.2.5
+      react: 18.2.0
+      react-dom: 18.2.0
+      react-router: 5.3.4
+      react-router-dom: 5.3.4
 
   '@khanacademy/wonder-stuff-core@1.5.4':
     resolution: {integrity: sha512-Z1DOHdSNrXyIKCgYsq6XKT6ZTRq5bb7Daof8mN31O30twStrwBynP5fS0lARS9qgxycaueThEcmeCF8AXyU21g==}
@@ -9257,6 +9284,15 @@ snapshots:
       - eslint
       - supports-color
       - typescript
+
+  '@khanacademy/wonder-blocks-core@9.0.0(aphrodite@1.2.5)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@5.3.4(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@babel/runtime': 7.26.7
+      aphrodite: 1.2.5
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router: 5.3.4(react@18.2.0)
+      react-router-dom: 5.3.4(react@18.2.0)
 
   '@khanacademy/wonder-stuff-core@1.5.4': {}
 
