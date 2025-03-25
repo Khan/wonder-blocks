@@ -245,7 +245,7 @@ export const Scenarios: StoryComponentType = {
                     // be determined because it's partially obscured by another
                     // element" since these examples can cause the horizontal
                     // scrollbar to show. Color contrast check is enabled for
-                    // other stories (including the AllVariants)
+                    // other stories (including the NavigationTabItem AllVariants)
                     {id: "color-contrast", enabled: false},
                 ],
             },
