@@ -400,14 +400,17 @@ importers:
 
   packages/wonder-blocks-announcer:
     dependencies:
+      '@babel/runtime':
+        specifier: 'catalog:'
+        version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: ^9.0.0
         version: 9.0.0(aphrodite@1.2.5)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@5.3.4(react@18.2.0))(react@18.2.0)
       aphrodite:
-        specifier: ^1.2.5
+        specifier: 'catalog:'
         version: 1.2.5
       react:
-        specifier: 18.2.0
+        specifier: 'catalog:'
         version: 18.2.0
 
   packages/wonder-blocks-banner:
