@@ -25,6 +25,7 @@ import ComponentInfo from "../components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 export default {
     title: "Packages / Button",
@@ -647,7 +648,10 @@ export const SubmittingForms: StoryComponentType = {
             }}
         >
             <View>
-                Foo: <input id="foo" value="bar" />
+                <LabeledField
+                    label="Foo"
+                    field={<input id="foo" value="bar" />}
+                />
                 <Button type="submit">Submit</Button>
             </View>
         </form>

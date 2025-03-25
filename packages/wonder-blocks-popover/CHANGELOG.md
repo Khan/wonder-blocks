@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-popover
 
+## 5.2.2
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [999101f]
+- Updated dependencies [1d7be37]
+- Updated dependencies [999101f]
+    - @khanacademy/wonder-blocks-icon-button@6.1.4
+    - @khanacademy/wonder-blocks-typography@3.1.3
+    - @khanacademy/wonder-blocks-tooltip@4.1.4
+    - @khanacademy/wonder-blocks-modal@7.1.4
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-tokens@5.1.1
+
 ## 5.2.1
 
 ### Patch Changes

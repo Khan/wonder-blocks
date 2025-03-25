@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 9.1.5
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [1d7be37]
+- Updated dependencies [999101f]
+    - @khanacademy/wonder-blocks-search-field@5.1.4
+    - @khanacademy/wonder-blocks-typography@3.1.3
+    - @khanacademy/wonder-blocks-clickable@6.1.4
+    - @khanacademy/wonder-blocks-layout@3.1.4
+    - @khanacademy/wonder-blocks-timing@7.0.2
+    - @khanacademy/wonder-blocks-modal@7.1.4
+    - @khanacademy/wonder-blocks-cell@4.1.4
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-icon@5.1.3
+    - @khanacademy/wonder-blocks-pill@3.1.4
+    - @khanacademy/wonder-blocks-tokens@5.1.1
+
 ## 9.1.4
 
 ### Patch Changes
