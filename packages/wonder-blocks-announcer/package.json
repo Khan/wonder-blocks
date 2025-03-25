@@ -16,11 +16,12 @@
     "access": "public"
   },
   "dependencies": {
+    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-core": "^9.0.0"
   },
   "peerDependencies": {
-    "aphrodite": "^1.2.5",
-    "react": "18.2.0"
+    "aphrodite": "catalog:",
+    "react": "catalog:"
   },
   "devDependencies": {
   }
