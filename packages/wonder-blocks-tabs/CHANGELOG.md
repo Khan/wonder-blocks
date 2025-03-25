@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.1.1
+
+### Patch Changes
+
+- 70fbe23: Update ts config
+
 ## 0.1.0
 
 ### Minor Changes
