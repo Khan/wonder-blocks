@@ -125,9 +125,8 @@ const withAnnouncer: Decorator = (
         document.body.classList.add(addBodyClass);
     }
     React.useEffect(() => {
-        const storyContainer = document.querySelector('#storybook-root');
         // initialize Announcer on load to render Live Regions earlier
-        initAnnouncer({targetElement: storyContainer});
+        initAnnouncer();
         return () => {
           if (addBodyClass) {
             // Remove body class when changing stories
