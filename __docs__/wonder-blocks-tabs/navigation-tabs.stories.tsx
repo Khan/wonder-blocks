@@ -348,6 +348,10 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
     },
 };
 
+/**
+ * The `animated` prop can be set to `true` to animate the current underline
+ * indicator.
+ */
 export const Interactive: StoryComponentType = {
     render: function Interactive(args) {
         const [currentTab, setCurrentTab] = React.useState(0);

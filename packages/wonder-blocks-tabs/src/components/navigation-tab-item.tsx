@@ -35,6 +35,8 @@ type Props = AriaProps & {
     /**
      * If the `NavigationTabItem` is the current page. If `true`, current
      * styling and aria-current=page will be applied to the Link.
+     *
+     * Note: NavigationTabs provides the styling for the current tab item.
      */
     current?: boolean;
     /**
@@ -121,9 +123,10 @@ const styles = StyleSheet.create({
         },
     },
     current: {
-        // boxShadow: `inset 0 -${sizing.size_050} 0 0 ${semanticColor.action.secondary.progressive.default.foreground}`,
+        // Note: The current tab item is styled in NavigationTabs.
         [":has(a:hover)" as any]: {
-            // Remove hover underline since we have the dynamic underline
+            // If it is current, remove hover underline since the tab is already
+            // selected.
             boxShadow: "none",
         },
     },
