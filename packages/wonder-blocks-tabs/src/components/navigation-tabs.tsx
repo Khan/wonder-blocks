@@ -136,9 +136,16 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
         if (activeTab) {
             const tabRect = activeTab.getBoundingClientRect();
             const parentRect = listRef.current.getBoundingClientRect();
+            const zoomFactor = parentRect.width / listRef.current.offsetWidth;
+
+            // When calculating, we divide by the zoom factor so the underline
+            // is proportional to the rest of the component
+            const left = (tabRect.left - parentRect.left) / zoomFactor; // Get position relative to parent
+            const width = tabRect.width / zoomFactor; // Use bounding width
+
             setUnderlineStyle({
-                left: tabRect.left - parentRect.left, // Get position relative to parent
-                width: tabRect.width, // Use bounding width
+                left,
+                width,
             });
         }
     }, [setUnderlineStyle, listRef]);
@@ -204,6 +211,7 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
                             styles.currentUnderline,
                             animated && styles.underlineTransition,
                         ]}
+                        role="presentation"
                     />
                 )}
             </StyledDiv>
