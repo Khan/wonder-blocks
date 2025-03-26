@@ -81,14 +81,34 @@ type StoryComponentType = StoryObj<typeof AnnouncerExample>;
  *
  * ####  Usage
  *
+ * Calling `announceMessage` in an event handler:
+ *
  * ```jsx
  * import { announceMessage } from "@khanacademy/wonder-blocks-announcer";
  *
  * <div>
- *  <button onClick={() => announceMessage({message: 'Saved your work for you.'})}>
- *      Save
- *  </button>
+ *      <button onClick={() => announceMessage({message: 'Saved your work for you.'})}>
+ *          Save
+ *      </button>
  * </div>
+ * ```
+ *
+ * Calling `announceMessage` in React.useEffect() when state changes:
+ *
+ *```jsx
+ *  import { announceMessage } from "@khanacademy/wonder-blocks-announcer";
+ *
+ * const MyComponent = () => {
+ *      React.useEffect(() => {
+ *          if (someState) {
+ *              announceMessage({message: "A thing!"});
+ *          }
+ *      }, [someState]);
+ *
+ *      return (
+ *          <div>Some content</div>
+ *      )
+ * }
  * ```
  *
  * ### initAnnouncer()
