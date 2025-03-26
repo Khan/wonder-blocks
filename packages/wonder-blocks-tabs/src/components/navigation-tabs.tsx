@@ -155,10 +155,14 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
      * recalculate the underline style when the list size changes.
      */
     useOnMountEffect(() => {
-        if (!listRef.current) {
+        // If the list ref is not set or if the ResizeObserver is not available,
+        // don't set up a resize observer. Note: ResizeObserver is supported in
+        // the browsers we support, but not in jsdom for tests
+        // https://github.com/jsdom/jsdom/issues/3368
+        if (!listRef.current || !window.ResizeObserver) {
             return;
         }
-        const observer = new ResizeObserver(([entry]) => {
+        const observer = new window.ResizeObserver(([entry]) => {
             if (entry) {
                 // Update underline style when the list size changes
                 updateUnderlineStyle();

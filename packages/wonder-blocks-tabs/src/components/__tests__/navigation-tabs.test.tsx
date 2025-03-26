@@ -4,24 +4,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {NavigationTabs} from "../navigation-tabs";
 import {NavigationTabItem} from "../navigation-tab-item";
 
-const originalResizeObserver = window.ResizeObserver;
-
 describe("NavigationTabs", () => {
-    beforeEach(() => {
-        // Mock ResizeObserver
-        window.ResizeObserver = jest.fn().mockImplementation(() => ({
-            observe: jest.fn(),
-            unobserve: jest.fn(),
-            disconnect: jest.fn(),
-        }));
-    });
-
-    afterEach(() => {
-        // Restore ResizeObserver
-        window.ResizeObserver = originalResizeObserver;
-        jest.restoreAllMocks(); // Optional, resets all Jest mocks
-    });
-
     const children = [
         <NavigationTabItem key="link-1">
             <Link href="/link-1">Link 1</Link>
