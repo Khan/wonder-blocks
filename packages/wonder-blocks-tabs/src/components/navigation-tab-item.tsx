@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         },
     },
     current: {
-        // Note: The current tab item is styled in NavigationTabs.
+        // Note: The current tab item underline style is provided by NavigationTabs.
         [":has(a:hover)" as any]: {
             // If it is current, remove hover underline since the tab is already
             // selected.
