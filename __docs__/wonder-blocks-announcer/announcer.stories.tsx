@@ -36,29 +36,96 @@ const AnnouncerExample = ({
 type StoryComponentType = StoryObj<typeof AnnouncerExample>;
 
 /**
- * Announcer exposes an API for screen reader messages using ARIA Live Regions.
- * It can be used to notify Assistive Technology users without moving focus. Use
- * cases include combobox filtering, toast notifications, client-side routing,
- * and more.
+ * > 🌱 **Note:** This is a new package. We would love your feedback on it!
  *
- * Calling the `announceMessage` function automatically appends the appropriate live regions
- * to the document body. It sends messages at a default `polite` level, with the
- * ability to override to `assertive` by passing a `level` argument. You can also
- * pass a `debounceThreshold` to wait a specific duration before making another announcement.
+ * Announcer exposes an API for screen reader messages using [ARIA Live Regions](https://www.w3.org/TR/wai-aria/#attrs_liveregions).
+ * It can be used to notify Assistive Technology users without moving
+ * keyboard focus. Use cases include combobox filtering, toast notifications,
+ * client-side routing, and more.
  *
- * To test this API, turn on VoiceOver for Mac/iOS or NVDA on Windows and click the example button.
+ * Announcer is an ES6 class that creates a singleton instance. It can be
+ * optionally configured once per page load with the `initAnnouncer` function.
+ * Calling `announceMessage` will automatically create this instance if not
+ * already present.
  *
- * ### Usage
+ * Messages alternate between one of two live regions per level (`polite` and `assertive`).
+ * They are automatically cleared from the DOM after a `5000` ms delay.
+ *
+ * To test the Announcer, turn on VoiceOver for Mac/iOS or NVDA on Windows and play with the [React example below](#react-announcer-example).
+ *
+ * By default, the `wbAnnouncer` container element is rendered _visually hidden_.
+ *
+ * > In Storybook, the Live Regions appended by Announcer are shown visually on the
+ * right side of the screen for debugging (see red outlined boxes). This can be
+ * controlled with a Storybook parameter, `addBodyClass: "showAnnouncer"`.
+ *
+ * ## API functions
+ * ### announceMessage()
+ *
+ * Calling the `announceMessage` function automatically appends the live regions
+ * to `document.body` by default.
+ *
+ * #### Options
+ * - **level:** `assertive` or `polite` (default)<br>
+ *      Whether to interrupt other messages before making an announcement or wait until the system queue is clear.
+ *
+ * - **debounceThreshold** `number` (default `250` ms)<br>
+ *      Specific duration to wait before making another announcement. This is helpful
+ *      to prevent too many messages in a dynamic render cycle. Uses trailing edge debounce where last message wins.
+ *
+ * - **initialTimeout** `number` (default `150` ms)<br>
+ *      Optional duration to wait before the first announcement, used for Safari and automated testing.
+ *
+ * #### Returns
+ * A promise resolving with the string ID of the last targeted live region element, such as `wbARegion-polite1`.
+ *
+ * ####  Usage
+ *
  * ```jsx
- * import { appendMessage } from "@khanacademy/wonder-blocks-announcer";
+ * import { announceMessage } from "@khanacademy/wonder-blocks-announcer";
  *
  * <div>
- *  <button onClick={() => appendMessage({message: 'Saved your work for you.'})}>
+ *  <button onClick={() => announceMessage({message: 'Saved your work for you.'})}>
  *      Save
  *  </button>
  * </div>
  * ```
- */
+ *
+ * ### initAnnouncer()
+
+The `initAnnouncer` function can be optionally called to inject live regions on page load.
+
+This can help with consistency of screen reader messages as live regions
+should ideally be present on the page before making announcements.
+
+Without this optional configuration, the live regions will be injected the first
+time `announceMessage` is called. This is sufficient for many use cases, and can be
+determined through screen reader testing (especially with VoiceOver and Safari).
+
+With the `targetElement` option, you can configure the Announcer to inject into a specific element.
+Otherwise it will default to `document.body` (without the `targetElement` property).
+
+#### Usage
+```jsx
+ * import { useRef } from "React";
+ * import { initAnnouncer } from "@khanacademy/wonder-blocks-announcer";
+ *
+ * const LayoutComponent = () => {
+ *      const containerRef = useRef(null);
+ *
+ *      initAnnouncer({
+ *          targetElement: containerRef.current // optional: defaults to document.body
+ *      })
+ *
+ *      return (
+ *          <div ref={containerRef}>
+ *              <div>...</div>
+ *              <--  wbAnnouncer will be injected here -->
+ *          </div>
+ *      )
+ * }
+ * ```
+ **/
 export default {
     title: "Packages / Announcer",
     component: AnnouncerExample,
@@ -99,10 +166,16 @@ export default {
 } as Meta<typeof AnnouncerExample>;
 
 /**
- * This is an example of a live region with all the options set to their default
- * values and the `message` argument set to some example text.
+ * ## React Announcer Example
+ *
+ * This is an example of a React component calling the `announceMessage` function.
+ * The `message` property is set to some example text and the other options are set to their
+ * default values.
+ *
+ * The `onClick` handler calls `announceMessage`, sending the message to the live
+ * regions appended by the Announcer instance.
  */
-export const SendMessage: StoryComponentType = {
+export const AnnounceMessage: StoryComponentType = {
     args: {
         message: "Here is some example text.",
         level: "polite",
