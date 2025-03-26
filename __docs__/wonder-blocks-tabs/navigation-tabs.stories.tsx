@@ -1,6 +1,7 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
+import {expect, within} from "@storybook/test";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {
@@ -348,6 +349,8 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
     },
 };
 
+const transitionStyle = "left 0.3s ease, width 0.3s ease";
+
 /**
  * The `animated` prop can be set to `true` to animate the current underline
  * indicator.
@@ -368,5 +371,46 @@ export const Interactive: StoryComponentType = {
     },
     args: {
         animated: true,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const currentIndicator = await canvas.findByRole("presentation");
+
+        // Assert
+        await expect(currentIndicator).toHaveStyle({
+            transition: transitionStyle,
+        });
+    },
+};
+
+/**
+ * When the `animated` prop is `false`, there is no animation when the current
+ * tab changes.
+ */
+export const AnimationsDisabled: StoryComponentType = {
+    ...Interactive,
+    args: {
+        animated: false,
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const currentIndicator = await canvas.findByRole("presentation");
+
+        // Assert
+        await expect(currentIndicator).not.toHaveStyle({
+            transition: transitionStyle,
+        });
     },
 };
