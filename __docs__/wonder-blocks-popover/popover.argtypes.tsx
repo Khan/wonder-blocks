@@ -5,7 +5,6 @@ import {Default, WithIcon, WithIllustration} from "./popover-content.stories";
 import {
     WithIcon as CoreWithIcon,
     WithDetailCell as CoreWithDetailCell,
-    Dark as CoreDark,
 } from "./popover-content-core.stories";
 
 // NOTE: Casting to any to avoid type errors.
@@ -14,7 +13,6 @@ const WithIconWrapper = WithIcon as any;
 const WithIllustrationWrapper = WithIllustration as any;
 const CoreWithIconWrapper = CoreWithIcon as any;
 const CoreWithDetailCellWrapper = CoreWithDetailCell as any;
-const CoreDarkWrapper = CoreDark as any;
 
 // NOTE: We have to use the `render` method to fix a bug in Storybook where
 // reusable stories don't render properly with CSF v3.
@@ -29,7 +27,6 @@ export const ContentMappings = {
     coreWithCell: CoreWithDetailCellWrapper.render({
         ...CoreWithDetailCell.args,
     }),
-    coreDark: CoreDarkWrapper.render({...CoreDark.args}),
 };
 
 export default {
