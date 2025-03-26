@@ -363,7 +363,9 @@ export const Interactive: StoryComponentType = {
             .map((_, index) => (
                 <NavigationTabItem current={currentTab === index} key={index}>
                     <Link href="#link-1" onClick={() => setCurrentTab(index)}>
-                        {`Navigation tab item ${index + 1}`}
+                        {index % 2 === 0
+                            ? `Navigation tab item ${index + 1}`
+                            : `Item ${index + 1}`}
                     </Link>
                 </NavigationTabItem>
             ));
