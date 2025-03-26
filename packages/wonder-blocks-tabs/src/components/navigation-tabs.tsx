@@ -58,6 +58,7 @@ type Props = AriaProps & {
 
 const StyledNav = addStyle("nav");
 const StyledUl = addStyle("ul");
+const StyledDiv = addStyle("div");
 
 /**
  * The `NavigationTabs` component is a tabbed interface for link navigation.
@@ -183,25 +184,29 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
             style={[styles.nav, stylesProp?.root]}
             {...otherProps}
         >
-            <StyledUl style={[styles.list, stylesProp?.list]} ref={listRef}>
-                {children}
-            </StyledUl>
-            {/* Underline indicator for the current tab item. It is a sibling of
+            {/* Wrap the contents so that any custom styles (like padding) set
+            on the root doesn't affect the positioning of the underline. */}
+            <StyledDiv style={styles.contents}>
+                <StyledUl style={[styles.list, stylesProp?.list]} ref={listRef}>
+                    {children}
+                </StyledUl>
+                {/* Underline indicator for the current tab item. It is a sibling of
             the list so that it can slide between tab items. We only show it
             once it is ready so that we don't show the indicator re-positioning
             itself after aphrodite styles are first loaded in */}
-            {indicatorIsReady.current && (
-                <View
-                    style={[
-                        {
-                            left: `${underlineStyle.left}px`,
-                            width: `${underlineStyle.width}px`,
-                        },
-                        styles.currentUnderline,
-                        animated && styles.underlineTransition,
-                    ]}
-                />
-            )}
+                {indicatorIsReady.current && (
+                    <View
+                        style={[
+                            {
+                                left: `${underlineStyle.left}px`,
+                                width: `${underlineStyle.width}px`,
+                            },
+                            styles.currentUnderline,
+                            animated && styles.underlineTransition,
+                        ]}
+                    />
+                )}
+            </StyledDiv>
         </StyledNav>
     );
 });
@@ -209,6 +214,8 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
 const styles = StyleSheet.create({
     nav: {
         overflowX: "auto",
+    },
+    contents: {
         position: "relative",
     },
     list: {
