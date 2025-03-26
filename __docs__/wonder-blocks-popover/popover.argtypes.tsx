@@ -1,12 +1,7 @@
 import * as React from "react";
 
 // Reusable stories
-import {
-    Default,
-    Emphasized,
-    WithIcon,
-    WithIllustration,
-} from "./popover-content.stories";
+import {Default, WithIcon, WithIllustration} from "./popover-content.stories";
 import {
     WithIcon as CoreWithIcon,
     WithDetailCell as CoreWithDetailCell,
@@ -15,7 +10,6 @@ import {
 
 // NOTE: Casting to any to avoid type errors.
 const DefaultWrapper = Default as any;
-const EmphasizedWrapper = Emphasized as any;
 const WithIconWrapper = WithIcon as any;
 const WithIllustrationWrapper = WithIllustration as any;
 const CoreWithIconWrapper = CoreWithIcon as any;
@@ -27,7 +21,6 @@ const CoreDarkWrapper = CoreDark as any;
 // See https://github.com/storybookjs/storybook/issues/15954#issuecomment-1835905271
 export const ContentMappings = {
     withTextOnly: DefaultWrapper.render({...Default.args}),
-    withEmphasis: EmphasizedWrapper.render({...Emphasized.args}),
     withIcon: WithIconWrapper.render({...WithIcon.args}),
     withIllustration: WithIllustrationWrapper.render({
         ...WithIllustration.args,

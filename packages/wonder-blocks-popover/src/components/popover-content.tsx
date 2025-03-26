@@ -55,43 +55,28 @@ type CommonProps = AriaProps & {
     uniqueId?: string;
 };
 
-type Props =
-    | (CommonProps & {
-          /**
-           * Decorate the popover with an illustrated icon. It cannot be used at the
-           * same time with image.
-           */
-          icon?:
-              | string
-              | React.ReactElement<React.ComponentProps<"img">>
-              | React.ReactElement<React.ComponentProps<"svg">>;
-          /**
-           * Alt text for the icon. This prop is only used if the `icon` prop
-           * is passed a url (instead of a svg or img element).
-           */
-          iconAlt?: string;
-          /**
-           * Decorate the popover with a full-bleed illustration. It cannot be used at
-           * the same time with icon.
-           */
-          image?:
-              | React.ReactElement<React.ComponentProps<"img">>
-              | React.ReactElement<React.ComponentProps<"svg">>;
-
-          emphasized?: never;
-      })
-    | (CommonProps & {
-          /**
-           * When true, changes the popover dialog background to blue; otherwise, the
-           * popover dialog background is not modified. It can be used only with
-           * Text-only popovers. It cannot be used with icon or image.
-           */
-          emphasized?: boolean;
-
-          icon?: never;
-          iconAlt?: never;
-          image?: never;
-      });
+type Props = CommonProps & {
+    /**
+     * Decorate the popover with an illustrated icon. It cannot be used at the
+     * same time with image.
+     */
+    icon?:
+        | string
+        | React.ReactElement<React.ComponentProps<"img">>
+        | React.ReactElement<React.ComponentProps<"svg">>;
+    /**
+     * Alt text for the icon. This prop is only used if the `icon` prop
+     * is passed a url (instead of a svg or img element).
+     */
+    iconAlt?: string;
+    /**
+     * Decorate the popover with a full-bleed illustration. It cannot be used at
+     * the same time with icon.
+     */
+    image?:
+        | React.ReactElement<React.ComponentProps<"img">>
+        | React.ReactElement<React.ComponentProps<"svg">>;
+};
 
 type DefaultProps = {
     closeButtonVisible: Props["closeButtonVisible"];
@@ -219,7 +204,6 @@ export default class PopoverContent extends React.Component<Props> {
             closeButtonLabel,
             closeButtonVisible,
             content,
-            emphasized = undefined,
             icon,
             image,
             style,
@@ -236,7 +220,6 @@ export default class PopoverContent extends React.Component<Props> {
 
                     return (
                         <PopoverContentCore
-                            color={emphasized ? "blue" : "white"}
                             closeButtonLight={image && placement === "top"}
                             closeButtonLabel={closeButtonLabel}
                             closeButtonVisible={closeButtonVisible}
