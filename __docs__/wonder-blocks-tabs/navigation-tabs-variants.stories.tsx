@@ -206,7 +206,7 @@ const meta = {
     tags: ["!autodocs"],
     parameters: {
         chromatic: {
-            delay: 1000,
+            delay: 1500,
         },
     },
 } satisfies Meta<typeof NavigationTabs>;
@@ -275,7 +275,7 @@ export const Zoom: Story = {
             },
         },
         chromatic: {
-            // // Disabling because Chromatic crops the story when zoom is used
+            // Disabling because Chromatic crops the story when zoom is used
             disableSnapshot: true,
         },
     },
