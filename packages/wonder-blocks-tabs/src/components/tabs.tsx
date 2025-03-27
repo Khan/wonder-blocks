@@ -15,6 +15,14 @@ type Props = {
     onTabSelected: (id: string) => unknown;
 };
 
+function getTabId(tabId: string) {
+    return `${tabId}__tab`;
+}
+
+function getTabPanelId(tabId: string) {
+    return `${tabId}__panel`;
+}
+
 export const Tabs = React.forwardRef(function Tabs(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
@@ -31,6 +39,9 @@ export const Tabs = React.forwardRef(function Tabs(
                             onClick={() => {
                                 onTabSelected(tab.id);
                             }}
+                            id={getTabId(tab.id)}
+                            aria-controls={getTabPanelId(tab.id)}
+                            selected={tab.id === selectedTabId}
                         >
                             {tab.label}
                         </Tab>
@@ -39,7 +50,11 @@ export const Tabs = React.forwardRef(function Tabs(
             </Tablist>
             {tabs.map((tab) => {
                 return (
-                    <TabPanel key={tab.id}>
+                    <TabPanel
+                        key={tab.id}
+                        id={getTabPanelId(tab.id)}
+                        aria-labelledby={getTabId(tab.id)}
+                    >
                         {selectedTabId === tab.id && tab.panel}
                     </TabPanel>
                 );
