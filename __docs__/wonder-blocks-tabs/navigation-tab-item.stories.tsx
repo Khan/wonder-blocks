@@ -4,7 +4,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
 import Link from "@khanacademy/wonder-blocks-link";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
@@ -17,6 +17,11 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {ScenariosLayout} from "../components/scenarios-layout";
 
+const StyledUl = addStyle("ul", {
+    margin: sizing.size_0,
+    padding: sizing.size_0,
+});
+
 export default {
     title: "Packages / Tabs / NavigationTabs / NavigationTabItem",
     component: NavigationTabItem,
@@ -27,17 +32,17 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        a11y: {
-            config: {
-                rules: [
-                    // Disabling warning: "List item does not have a <ul>, <ol> parent element"
-                    // This is intentional because NavigationTabs provides the ul element and it
-                    // is outside of this component
-                    {id: "listitem", enabled: false},
-                ],
-            },
-        },
     },
+    decorators: [
+        (Story) => (
+            // Wrap in a ul to address a11y warnings since NavigationTabItem
+            // renders a li element and should be used within a NavigationTabs
+            // component (which provides the ul element).
+            <StyledUl>
+                <Story />
+            </StyledUl>
+        ),
+    ],
     argTypes,
 } as Meta<typeof NavigationTabItem>;
 
