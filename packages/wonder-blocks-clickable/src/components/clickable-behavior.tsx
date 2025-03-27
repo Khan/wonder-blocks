@@ -1,5 +1,6 @@
 import * as React from "react";
 import {keys} from "@khanacademy/wonder-blocks-core";
+import {NavigateFunction} from "react-router";
 
 // NOTE: Potentially add to this as more cases come up.
 export type ClickableRole =
@@ -102,10 +103,12 @@ type CommonProps = Readonly<{
      */
     safeWithNav?: () => Promise<unknown>;
     /**
-     * Passed in by withRouter HOC.
+     * Passed in by React Router.
+     * @see https://reactrouter.com/6.30.0/hooks/use-navigate
+     *
      * @ignore
      */
-    history?: any;
+    navigate?: NavigateFunction;
     /**
      * A role that encapsulates how the clickable component should behave, which
      * affects which keyboard actions trigger the component. For example, a
@@ -354,7 +357,7 @@ export default class ClickableBehavior extends React.Component<
     navigateOrReset(shouldNavigate: boolean) {
         if (shouldNavigate) {
             const {
-                history,
+                navigate,
                 href,
                 skipClientNav,
                 target = undefined,
@@ -363,8 +366,8 @@ export default class ClickableBehavior extends React.Component<
                 if (target === "_blank") {
                     window.open(href, "_blank");
                     this.setState({waiting: false});
-                } else if (history && !skipClientNav) {
-                    history.push(href);
+                } else if (navigate && !skipClientNav) {
+                    navigate(href);
                     this.setState({waiting: false});
                 } else {
                     window.location.assign(href);
@@ -381,9 +384,9 @@ export default class ClickableBehavior extends React.Component<
         safeWithNav: () => Promise<unknown>,
         shouldNavigate: boolean,
     ): Promise<void> {
-        const {skipClientNav, history} = this.props;
+        const {skipClientNav, navigate} = this.props;
 
-        if ((history && !skipClientNav) || this.props.target === "_blank") {
+        if ((navigate && !skipClientNav) || this.props.target === "_blank") {
             // client-side nav
             safeWithNav();
 

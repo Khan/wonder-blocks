@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter, Route, Routes} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
@@ -220,7 +220,7 @@ export const DetailCellNavigation: StoryComponentType = {
             </View>
 
             <View style={styles.navigation}>
-                <Switch>
+                <Routes>
                     <Route path="/math/algebra">
                         Navigates to /math/algebra
                     </Route>
@@ -228,7 +228,7 @@ export const DetailCellNavigation: StoryComponentType = {
                         Navigates to /math/geometry
                     </Route>
                     <Route path="*">See navigation changes here</Route>
-                </Switch>
+                </Routes>
             </View>
         </MemoryRouter>
     ),

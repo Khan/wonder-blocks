@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter, Route, Routes} from "react-router-dom";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -229,15 +229,22 @@ export const ClientSideNavigation: StoryComponentType = () => (
                 </Clickable>
             </View>
             <View style={styles.navigation}>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">
-                            The first clickable element does client-side
-                            navigation here.
-                        </View>
-                    </Route>
-                    <Route path="*">See navigation changes here</Route>
-                </Switch>
+                <Routes>
+                    <Route
+                        path="/foo"
+                        element={
+                            <View id="foo">
+                                The first clickable element does client-side
+                                navigation here.
+                            </View>
+                        }
+                    />
+
+                    <Route
+                        path="*"
+                        element={<>See navigation changes here</>}
+                    />
+                </Routes>
             </View>
         </View>
     </MemoryRouter>

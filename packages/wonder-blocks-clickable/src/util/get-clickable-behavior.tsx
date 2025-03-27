@@ -9,15 +9,24 @@
  * See https://reacttraining.com/react-router/web/guides/basic-components.
  */
 import * as React from "react";
-import {withRouter} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 
 import ClickableBehavior from "../components/clickable-behavior";
 import {isClientSideUrl} from "./is-client-side-url";
 
-// @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'typeof ClickableBehavior' is not assignable to parameter of type 'ComponentType<RouteComponentProps<any, StaticContext, unknown>>'.
-const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
+function withRouter() {
+    return function WithRouterComponent(
+        props: PropsFor<typeof ClickableBehavior>,
+    ) {
+        const navigate = useNavigate();
+
+        return <ClickableBehavior {...props} navigate={navigate} />;
+    };
+}
+
+const ClickableBehaviorWithRouter = withRouter();
 
 export default function getClickableBehavior(
     /**
@@ -31,9 +40,9 @@ export default function getClickableBehavior(
     /**
      * router object added to the React context object by react-router-dom.
      */
-    router?: any,
+    isInRouter?: boolean,
 ): React.ComponentType<PropsFor<typeof ClickableBehavior>> {
-    if (router && skipClientNav !== true && href && isClientSideUrl(href)) {
+    if (isInRouter && skipClientNav !== true && href && isClientSideUrl(href)) {
         // We cast to `any` here since the type of ClickableBehaviorWithRouter
         // is slightly different from the return type of this function.
         // TODO(WB-1037): Always return the wrapped version once all routes have
