@@ -204,11 +204,6 @@ const meta = {
         </>
     ),
     tags: ["!autodocs"],
-    parameters: {
-        chromatic: {
-            delay: 1000,
-        },
-    },
 } satisfies Meta<typeof NavigationTabs>;
 
 export default meta;
@@ -219,18 +214,31 @@ export const Hover: Story = {
     parameters: {
         pseudo: {hover: true},
         chromatic: {
+            // Need different delay value for Chromatic to detect the styles
             delay: 500,
         },
     },
 };
 
 export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
+    parameters: {
+        pseudo: {focusVisible: true},
+        chromatic: {
+            // Need different delay value for Chromatic to detect the styles
+            delay: 1000,
+        },
+    },
 };
 
 export const HoverFocus: Story = {
     name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
+    parameters: {
+        pseudo: {hover: true, focusVisible: true},
+        chromatic: {
+            // Need different delay value for Chromatic to detect the styles
+            delay: 1500,
+        },
+    },
 };
 
 export const Active: Story = {
