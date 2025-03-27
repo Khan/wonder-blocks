@@ -206,7 +206,7 @@ const meta = {
     tags: ["!autodocs"],
     parameters: {
         chromatic: {
-            delay: 1500,
+            delay: 1000,
         },
     },
 } satisfies Meta<typeof NavigationTabs>;
@@ -216,7 +216,12 @@ export default meta;
 export const Default: Story = {};
 
 export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
+    parameters: {
+        pseudo: {hover: true},
+        chromatic: {
+            delay: 500,
+        },
+    },
 };
 
 export const Focus: Story = {
