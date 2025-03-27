@@ -15,11 +15,14 @@ type Props = {
     onTabSelected: (id: string) => unknown;
 };
 
-export const Tabs = (props: Props) => {
+export const Tabs = React.forwardRef(function Tabs(
+    props: Props,
+    ref: React.ForwardedRef<HTMLDivElement>,
+) {
     const {tabs, selectedTabId, onTabSelected} = props;
 
     return (
-        <div>
+        <div ref={ref}>
             <Tablist>
                 {tabs.map((tab) => {
                     return (
@@ -43,4 +46,4 @@ export const Tabs = (props: Props) => {
             })}
         </div>
     );
-};
+});

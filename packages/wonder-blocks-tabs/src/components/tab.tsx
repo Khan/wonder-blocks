@@ -5,11 +5,14 @@ type Props = {
     onClick?: (event: React.MouseEvent) => unknown;
 };
 
-export const Tab = (props: Props) => {
+export const Tab = React.forwardRef(function Tab(
+    props: Props,
+    ref: React.ForwardedRef<HTMLButtonElement>,
+) {
     const {children, onClick} = props;
     return (
-        <button role="tab" onClick={onClick}>
+        <button role="tab" onClick={onClick} ref={ref}>
             {children}
         </button>
     );
-};
+});

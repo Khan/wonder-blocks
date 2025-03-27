@@ -9,14 +9,17 @@ type Props = {
 
 const StyledDiv = addStyle("div");
 
-export const Tablist = (props: Props) => {
+export const Tablist = React.forwardRef(function Tablist(
+    props: Props,
+    ref: React.ForwardedRef<HTMLDivElement>,
+) {
     const {children} = props;
     return (
-        <StyledDiv role="tablist" style={styles.tablist}>
+        <StyledDiv role="tablist" style={styles.tablist} ref={ref}>
             {children}
         </StyledDiv>
     );
-};
+});
 
 const styles = StyleSheet.create({
     tablist: {
