@@ -184,7 +184,7 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         background: "none",
-        margin: -8,
+        margin: 0,
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
@@ -230,26 +230,24 @@ function getStylesByKind(
             ":hover": {
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
-                outlineColor: themeVariant.hover.border,
-                outlineOffset: 1,
-                outlineStyle: "solid",
-                outlineWidth: light
-                    ? theme.border.width.hoveredInverse
-                    : theme.border.width.hovered,
+                borderColor: themeVariant.hover.border,
+                borderStyle: "solid",
+                borderWidth: theme.border.width.hovered,
             },
             ":focus-visible": {
-                outlineColor: themeVariant.focus.border,
+                boxShadow: light ? theme.focus.inverse : theme.focus.default,
             },
             ":active": {
                 borderColor: themeVariant.press.border,
+                borderStyle: "solid",
+                borderWidth: theme.border.width.hovered,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
-                outlineColor: themeVariant.press.border,
             },
             disabled: {
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
-                outlineColor: themeVariant.focus.border,
+                borderColor: themeVariant.default.border,
             },
         };
     }
@@ -266,22 +264,19 @@ function getStylesByKind(
                 borderColor: themeVariant.hover.border,
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
-                outlineWidth: theme.border.width.active,
             },
             ":focus-visible": {
-                outlineColor: themeVariant.focus.border,
+                boxShadow: light ? theme.focus.inverse : theme.focus.default,
             },
             ":active": {
                 borderColor: themeVariant.press.border,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
-                outlineColor: themeVariant.press.border,
-                outlineWidth: theme.border.width.active,
             },
             disabled: {
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
-                outlineColor: themeVariant.focus.border,
+                borderColor: themeVariant.focus.border,
             },
         };
     }
@@ -340,9 +335,7 @@ const _generateStyles = (
              * Defined in the following order: hover, focus, active.
              */
             ":hover": {
-                boxShadow: "none",
                 borderRadius: theme.border.radius.default,
-                outlineWidth: theme.border.width.default,
                 ...kindOverrides[":hover"],
             },
             // Allow hover styles on non-touch devices only. This prevents an
@@ -350,25 +343,17 @@ const _generateStyles = (
             ["@media not (hover: hover)"]: {
                 ":hover": {
                     // reset hover styles on non-touch devices
-                    boxShadow: "none",
                     borderRadius: theme.border.radius.default,
-                    outline: "none",
                     backgroundColor: "transparent",
                 },
             },
 
             // :focus-visible -> Provide focus styles for keyboard users only.
             ":focus-visible": {
-                outlineWidth: theme.border.width.default,
-                outlineOffset: 1,
-                outlineStyle: "solid",
                 borderRadius: theme.border.radius.default,
                 ...kindOverrides[":focus-visible"],
             },
             ":active": {
-                outlineWidth: theme.border.width.default,
-                outlineOffset: 1,
-                outlineStyle: "solid",
                 borderRadius: theme.border.radius.default,
                 ...kindOverrides[":active"],
             },
@@ -379,11 +364,11 @@ const _generateStyles = (
             // NOTE: Even that browsers recommend to specify pseudo-classes in
             // this order: link, visited, focus, hover, active, we need to
             // specify focus after hover to override hover styles. By doing this
-            // we are able to remove the hover outline when the button is
+            // we are able to remove the hover border when the button is
             // disabled.
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
-            ":hover": {...disabledStatesStyles, outline: "none"},
-            ":active": {...disabledStatesStyles, outline: "none"},
+            ":hover": {...disabledStatesStyles, border: "none"},
+            ":active": {...disabledStatesStyles, border: "none"},
             ":focus-visible": disabledStatesStyles,
         },
     } as const;

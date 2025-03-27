@@ -1,4 +1,9 @@
-import {border, color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 const disabledStates = {
     // NOTE: This is a special case for the button
@@ -168,14 +173,16 @@ const theme = {
 
     border: {
         width: {
-            default: border.width.thin,
-            active: border.width.none,
             hovered: border.width.thin,
-            hoveredInverse: border.width.thin,
         },
         radius: {
             default: border.radius.medium_4,
         },
+    },
+
+    focus: {
+        default: `0 0 0 ${spacing.xxxxSmall_2}px ${semanticColor.focus.inner}, 0 0 0 ${spacing.xxxSmall_4}px ${semanticColor.focus.outer}`,
+        inverse: `0 0 0 ${spacing.xxxxSmall_2}px ${semanticColor.focus.outer}, 0 0 0 ${spacing.xxxSmall_4}px ${semanticColor.focus.inner}`,
     },
 };
 

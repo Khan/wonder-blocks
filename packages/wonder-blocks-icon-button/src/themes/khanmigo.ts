@@ -58,7 +58,6 @@ const theme = mergeTheme(defaultTheme, {
     border: {
         width: {
             hovered: border.width.none,
-            hoveredInverse: border.width.none,
         },
     },
 });
