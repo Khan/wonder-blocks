@@ -1,7 +1,10 @@
 import * as React from "react";
 
-type Props = {};
+type Props = {
+    children: React.ReactNode;
+};
 
 export const Tab = (props: Props) => {
-    return <div>Tab</div>;
+    const {children} = props;
+    return <div role="tab">{children}</div>;
 };
