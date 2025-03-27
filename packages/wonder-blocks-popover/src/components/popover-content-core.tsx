@@ -105,18 +105,6 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         justifyContent: "center",
     },
-    /**
-     * Theming
-     */
-    blue: {
-        backgroundColor: semanticColor.surface.emphasis,
-        color: semanticColor.text.inverse,
-    },
-
-    darkBlue: {
-        backgroundColor: semanticColor.surface.inverse,
-        color: semanticColor.text.inverse,
-    },
 
     /**
      * elements
