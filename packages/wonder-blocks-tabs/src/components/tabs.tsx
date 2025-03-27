@@ -11,19 +11,35 @@ export type TabItem = {
 
 type Props = {
     tabs: Array<TabItem>;
+    selectedTabId: string;
+    onTabSelected: (id: string) => unknown;
 };
 
 export const Tabs = (props: Props) => {
-    const {tabs} = props;
+    const {tabs, selectedTabId, onTabSelected} = props;
+
     return (
         <div>
             <Tablist>
                 {tabs.map((tab) => {
-                    return <Tab key={tab.id}>{tab.label}</Tab>;
+                    return (
+                        <Tab
+                            key={tab.id}
+                            onClick={() => {
+                                onTabSelected(tab.id);
+                            }}
+                        >
+                            {tab.label}
+                        </Tab>
+                    );
                 })}
             </Tablist>
             {tabs.map((tab) => {
-                return <TabPanel key={tab.id}>{tab.panel}</TabPanel>;
+                return (
+                    <TabPanel key={tab.id}>
+                        {selectedTabId === tab.id && tab.panel}
+                    </TabPanel>
+                );
             })}
         </div>
     );
