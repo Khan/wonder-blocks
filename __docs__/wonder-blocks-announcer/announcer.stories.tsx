@@ -60,12 +60,14 @@ type StoryComponentType = StoryObj<typeof AnnouncerExample>;
  * controlled with a Storybook parameter, `addBodyClass: "showAnnouncer"`.
  *
  * ## API functions
- * ### announceMessage()
+ * ### announceMessage(options)
  *
  * Calling the `announceMessage` function automatically appends the live regions
  * to `document.body` by default.
  *
- * #### Options
+ * #### Options object
+ * - **message:** `string` (required) The text to be announced in a screen reader
+ *
  * - **level:** `assertive` or `polite` (default)<br>
  *      Whether to interrupt other messages before making an announcement or wait until the system queue is clear.
  *
@@ -111,7 +113,7 @@ type StoryComponentType = StoryObj<typeof AnnouncerExample>;
  * }
  * ```
  *
- * ### initAnnouncer()
+ * ### initAnnouncer(options)
 
 The `initAnnouncer` function can be optionally called to inject live regions on page load.
 
