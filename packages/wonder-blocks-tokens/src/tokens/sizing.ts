@@ -1,7 +1,7 @@
 /**
  * The baseline for the size tokens.
  */
-const baseline = 8;
+const baseline = 10;
 
 /**
  * Converts a number (px) to a rem value.
@@ -23,24 +23,27 @@ function pxToRem(value: number): string {
  */
 export const sizing = {
     size_0: pxToRem(0),
-    size_0125: pxToRem(1),
-    size_025: pxToRem(2),
-    size_050: pxToRem(4),
-    size_075: pxToRem(6),
-    size_100: pxToRem(8),
-    size_125: pxToRem(10),
-    size_150: pxToRem(12),
-    size_200: pxToRem(16),
-    size_225: pxToRem(18),
-    size_250: pxToRem(20),
-    size_300: pxToRem(24),
-    size_400: pxToRem(32),
-    size_500: pxToRem(40),
-    size_600: pxToRem(48),
-    size_700: pxToRem(56),
-    size_800: pxToRem(64),
-    size_900: pxToRem(72),
-    size_1000: pxToRem(80),
-    size_1100: pxToRem(88),
-    size_1200: pxToRem(96),
+    size_010: pxToRem(1),
+    size_020: pxToRem(2),
+    size_040: pxToRem(4),
+    size_060: pxToRem(6),
+    size_080: pxToRem(8),
+    size_100: pxToRem(10),
+    size_120: pxToRem(12),
+    size_140: pxToRem(14),
+    size_160: pxToRem(16),
+    size_180: pxToRem(18),
+    size_200: pxToRem(20),
+    size_240: pxToRem(24),
+    size_280: pxToRem(28),
+    size_320: pxToRem(32),
+    size_360: pxToRem(36),
+    size_400: pxToRem(40),
+    size_480: pxToRem(48),
+    size_560: pxToRem(56),
+    size_640: pxToRem(64),
+    size_720: pxToRem(72),
+    size_800: pxToRem(80),
+    size_880: pxToRem(88),
+    size_960: pxToRem(96),
 } as const;

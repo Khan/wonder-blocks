@@ -110,16 +110,16 @@ const styles = StyleSheet.create({
         listStyle: "none",
         display: "inline-flex",
         [":has(a:hover)" as any]: {
-            boxShadow: `inset 0 -${sizing.size_025} 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
+            boxShadow: `inset 0 -${sizing.size_020} 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
         },
         [":has(a:active)" as any]: {
-            boxShadow: `inset 0 -${sizing.size_075} 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
+            boxShadow: `inset 0 -${sizing.size_060} 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
         },
         paddingBlockStart: sizing.size_100,
-        paddingBlockEnd: sizing.size_225,
+        paddingBlockEnd: sizing.size_180,
         [breakpoint.mediaQuery.mdOrLarger]: {
-            paddingBlockStart: sizing.size_250,
-            paddingBlockEnd: sizing.size_300,
+            paddingBlockStart: sizing.size_200,
+            paddingBlockEnd: sizing.size_240,
         },
     },
     current: {
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
             color: semanticColor.action.secondary.progressive.default
                 .foreground,
             outline: "none",
-            boxShadow: `0 0 0 ${sizing.size_025} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_050} ${semanticColor.focus.outer}`,
+            boxShadow: `0 0 0 ${sizing.size_020} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_040} ${semanticColor.focus.outer}`,
             borderRadius: 0,
         },
     },

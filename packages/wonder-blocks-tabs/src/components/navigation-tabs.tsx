@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     },
     list: {
         // Add horizontal padding for focus outline of first/last elements
-        paddingInline: sizing.size_050,
+        paddingInline: sizing.size_040,
         paddingBlock: sizing.size_0,
         margin: sizing.size_0,
         display: "flex",
