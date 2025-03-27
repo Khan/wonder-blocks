@@ -173,9 +173,15 @@ export const HoverFocus: StoryComponentType = {
     parameters: {pseudo: {hover: true, focusVisible: true}},
 };
 
-export const Active: StoryComponentType = {
+export const Press: StoryComponentType = {
     render: AllVariants,
     parameters: {pseudo: {active: true}},
+};
+
+export const PressFocus: StoryComponentType = {
+    name: "Press + Focus",
+    render: AllVariants,
+    parameters: {pseudo: {active: true, focusVisible: true}},
 };
 
 const styles = StyleSheet.create({
