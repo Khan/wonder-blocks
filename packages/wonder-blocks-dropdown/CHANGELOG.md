@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 9.2.0
+
+### Minor Changes
+
+- af828a5: Integrates Announcer for value announcements in SingleSelect and MultiSelect
+
+### Patch Changes
+
+- Updated dependencies [af828a5]
+- Updated dependencies [fe17b20]
+    - @khanacademy/wonder-blocks-announcer@1.0.0
+
 ## 9.1.5
 
 ### Patch Changes
