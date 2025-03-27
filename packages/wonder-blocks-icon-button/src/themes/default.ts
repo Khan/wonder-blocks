@@ -173,7 +173,8 @@ const theme = {
 
     border: {
         width: {
-            hovered: border.width.thin,
+            hover: border.width.thin,
+            press: border.width.thin,
         },
         radius: {
             default: border.radius.medium_4,

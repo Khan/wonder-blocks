@@ -232,7 +232,7 @@ function getStylesByKind(
                 color: themeVariant.hover.foreground,
                 borderColor: themeVariant.hover.border,
                 borderStyle: "solid",
-                borderWidth: theme.border.width.hovered,
+                borderWidth: theme.border.width.hover,
             },
             ":focus-visible": {
                 boxShadow: light ? theme.focus.inverse : theme.focus.default,
@@ -240,7 +240,7 @@ function getStylesByKind(
             ":active": {
                 borderColor: themeVariant.press.border,
                 borderStyle: "solid",
-                borderWidth: theme.border.width.hovered,
+                borderWidth: theme.border.width.press,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
             },
