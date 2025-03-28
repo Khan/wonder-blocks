@@ -13,7 +13,9 @@ component, especially if there are multiple `<nav>` elements on the page.
     - Otherwise, set the `aria-label` prop.
 - When enabling animations in the component using the `animated` prop, consider
 setting it to `false` for users who have their prefered reduced motion setting
-enabled.
+on. By default, animations are disabled.
+    - Note: We have an `animated` prop to enable animations so that this can be
+    configured based on both the OS and user's site settings
 
 ## About the Implementation
 
