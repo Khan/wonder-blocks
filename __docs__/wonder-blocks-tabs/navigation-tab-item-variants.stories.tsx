@@ -148,7 +148,7 @@ const meta = {
         <>
             <AllVariants rows={rows} columns={columns}>
                 {(props) => (
-                    <View style={styles.container}>
+                    <View style={styles.container} tag="ul">
                         <NavigationTabItem {...args} {...props} />
                     </View>
                 )}
@@ -157,7 +157,7 @@ const meta = {
                 <HeadingLarge>RTL</HeadingLarge>
                 <AllVariants rows={rtlRows} columns={columns}>
                     {(props) => (
-                        <View style={styles.container}>
+                        <View style={styles.container} tag="ul">
                             <NavigationTabItem {...args} {...props} />
                         </View>
                     )}
@@ -166,18 +166,6 @@ const meta = {
         </>
     ),
     tags: ["!autodocs"],
-    parameters: {
-        a11y: {
-            config: {
-                rules: [
-                    // Disabling warning: "List item does not have a <ul>, <ol> parent element"
-                    // This is intentional because NavigationTabs provides the ul element and it
-                    // is outside of this component
-                    {id: "listitem", enabled: false},
-                ],
-            },
-        },
-    },
 } satisfies Meta<typeof NavigationTabItem>;
 
 export default meta;
@@ -206,7 +194,7 @@ export const Zoom: Story = {
         <>
             <AllVariants rows={rows} columns={columns} layout="list">
                 {(props) => (
-                    <View style={styles.container}>
+                    <View style={styles.container} tag="ul">
                         <NavigationTabItem {...args} {...props} />
                     </View>
                 )}
@@ -215,7 +203,7 @@ export const Zoom: Story = {
                 <HeadingLarge>RTL</HeadingLarge>
                 <AllVariants rows={rtlRows} columns={columns} layout="list">
                     {(props) => (
-                        <View style={styles.container}>
+                        <View style={styles.container} tag="ul">
                             <NavigationTabItem {...args} {...props} />
                         </View>
                     )}
