@@ -228,7 +228,7 @@ const styles = StyleSheet.create({
     shared: {
         minHeight: DROPDOWN_ITEM_HEIGHT,
         // Make sure that the item is always at least as tall as 40px.
-        paddingBlock: sizing.size_125,
+        paddingBlock: sizing.size_100,
     },
 
     label: {
