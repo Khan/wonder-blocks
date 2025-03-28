@@ -416,3 +416,28 @@ export const AnimationsDisabled: StoryComponentType = {
         });
     },
 };
+
+/**
+ * This story shows the behaviour when none of the tabs are the current page
+ * initially.
+ */
+export const NoCurrentTab: StoryComponentType = {
+    render: function Interactive(args) {
+        const [currentTab, setCurrentTab] = React.useState(-1);
+        const tabs = Array(4)
+            .fill(0)
+            .map((_, index) => (
+                <NavigationTabItem current={currentTab === index} key={index}>
+                    <Link href="#link-1" onClick={() => setCurrentTab(index)}>
+                        {index % 2 === 0
+                            ? `Navigation tab item ${index + 1}`
+                            : `Item ${index + 1}`}
+                    </Link>
+                </NavigationTabItem>
+            ));
+        return <NavigationTabs {...args}>{tabs}</NavigationTabs>;
+    },
+    args: {
+        animated: true,
+    },
+};
