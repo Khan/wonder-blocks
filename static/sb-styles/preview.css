@@ -2,7 +2,7 @@
  * Overrides for the Storybook preview iframe.
  */
 html {
-    font-size: 50%;
+    font-size: 62.5%;
 }
 
 .sbdocs ul,
@@ -30,7 +30,7 @@ html {
     color: var(--color-text);
     font-family: 'Source Serif Pro', sans-serif;
     font-weight: 400;
-    margin-top: 1.5rem;
+    margin-top: 1.2rem;
 }
 
 /* Reset WB typhography colors inside docs pages */
@@ -109,11 +109,11 @@ html {
 
 /* TOC wrapper */
 .sbdocs-content+div {
-    width: 20rem;
+    width: 16rem;
 }
 
 .sbdocs-content+div>* {
-    width: 20rem;
-    padding-top: 8rem;
-    padding-bottom: 4rem;
+    width: 16rem;
+    padding-top: 6.4rem;
+    padding-bottom: 3.2rem;
 }
