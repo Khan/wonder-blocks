@@ -87,7 +87,7 @@ export function AllVariants(props: Props) {
                                     >
                                         {children(
                                             {
-                                                ariaLabel: `${row.name} ${col.name}`,
+                                                "aria-label": `${row.name} ${col.name}`,
                                                 ...row.props,
                                                 ...col.props,
                                             },
@@ -117,7 +117,7 @@ export function AllVariants(props: Props) {
                                 <View style={styles.childrenWrapper}>
                                     {children(
                                         {
-                                            ariaLabel: `${row.name} ${column.name}`,
+                                            "aria-label": `${row.name} ${column.name}`,
                                             ...column.props,
                                             ...row.props,
                                         },
