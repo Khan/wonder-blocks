@@ -99,7 +99,7 @@ type StoryComponentType = StoryObj<typeof IconButton>;
 export const Default: StoryComponentType = {
     args: {
         icon: magnifyingGlass,
-        color: "default",
+        actionType: "progressive",
         disabled: false,
         kind: "primary",
         size: "medium",
@@ -189,32 +189,32 @@ export const Variants: StoryComponentType = {
 };
 
 /**
- * IconButton has a `color` that is either `default` (the default, as shown
+ * IconButton has an `actionType` prop that is either `progressive` (the default, as shown
  * above) or `destructive` (as can seen below):
  */
-export const WithColor: StoryComponentType = {
-    name: "Color",
+export const WithActionType: StoryComponentType = {
+    name: "ActionType",
     render: (args) => (
         <View style={styles.row}>
             <IconButton
                 {...args}
                 icon={minusCircle}
                 onClick={() => {}}
-                color="destructive"
+                actionType="destructive"
             />
             <IconButton
                 {...args}
                 icon={minusCircle}
                 onClick={() => {}}
                 kind="secondary"
-                color="destructive"
+                actionType="destructive"
             />
             <IconButton
                 {...args}
                 icon={minusCircle}
                 onClick={() => {}}
                 kind="tertiary"
-                color="destructive"
+                actionType="destructive"
             />
             <IconButton
                 {...args}
@@ -222,7 +222,7 @@ export const WithColor: StoryComponentType = {
                 icon={minusCircle}
                 aria-label="search"
                 onClick={(e) => console.log("Click!")}
-                color="destructive"
+                actionType="destructive"
             />
         </View>
     ),
@@ -243,7 +243,7 @@ export const Light: StoryComponentType = {
                     onClick={(e) => console.log("Click!")}
                 />
                 <IconButton
-                    color="destructive"
+                    actionType="destructive"
                     icon={magnifyingGlass}
                     aria-label="search"
                     light={true}
@@ -269,7 +269,7 @@ export const DisabledLight: StoryComponentType = {
                     onClick={(e) => console.log("Click!")}
                 />
                 <IconButton
-                    color="destructive"
+                    actionType="destructive"
                     disabled={true}
                     icon={magnifyingGlass}
                     aria-label="search"

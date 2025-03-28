@@ -9,26 +9,6 @@ import PopoverContentCore from "../popover-content-core";
 jest.mock("@khanacademy/wonder-blocks-tooltip");
 
 describe("PopoverDialog", () => {
-    it("should update the tail color to match the content's color", () => {
-        // Arrange
-        const tooltipTailSpy = jest.spyOn(Tooltip, "TooltipTail");
-
-        // Act
-        render(
-            <PopoverDialog showTail={true} placement="top" onUpdate={jest.fn()}>
-                <PopoverContentCore color="darkBlue">
-                    popover content
-                </PopoverContentCore>
-            </PopoverDialog>,
-        );
-
-        // Assert
-        expect(tooltipTailSpy).toHaveBeenCalledWith(
-            expect.objectContaining({color: "darkBlue"}),
-            {},
-        );
-    });
-
     it("should call onUpdate if placement is changed", () => {
         // Arrange
         const onUpdateMock = jest.fn();
@@ -48,7 +28,7 @@ describe("PopoverDialog", () => {
         rerender(<UnderTest placement="bottom" />);
 
         // Assert
-        expect(onUpdateMock).toBeCalledWith("bottom");
+        expect(onUpdateMock).toHaveBeenCalledWith("bottom");
     });
 
     it("should not call onUpdate if placement remains the same", () => {
@@ -71,7 +51,7 @@ describe("PopoverDialog", () => {
         rerender(<UnderTest placement="top" />);
 
         // Assert
-        expect(onUpdateMock).not.toBeCalled();
+        expect(onUpdateMock).not.toHaveBeenCalled();
     });
 
     it("should not render a tail if showTail is false", () => {

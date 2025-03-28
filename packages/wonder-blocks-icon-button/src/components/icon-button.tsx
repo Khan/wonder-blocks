@@ -8,6 +8,8 @@ import ThemedIconButton from "../themes/themed-icon-button";
 
 export type IconButtonSize = "xsmall" | "small" | "medium" | "large";
 
+export type IconButtonActionType = "progressive" | "destructive";
+
 export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * A unique identifier for the IconButton.
@@ -18,9 +20,15 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     icon: PhosphorIconAsset;
     /**
-     * The color of the icon button, either blue or red.
+     * The action type/category of the icon button.
+     *
+     * - `progressive` is used for actions that move the user forward in a flow.
+     * - `destructive` is used for actions that have a negative impact on the
+     *   user.
+     *
+     * Defaults to `progressive`.
      */
-    color?: "default" | "destructive";
+    actionType?: IconButtonActionType;
     /**
      * The kind of the icon button, either primary, secondary, or tertiary.
      *
@@ -180,7 +188,7 @@ export const IconButton: React.ForwardRefExoticComponent<
     SharedProps
 >(function IconButton(props: SharedProps, ref) {
     const {
-        color = "default",
+        actionType = "progressive",
         disabled = false,
         href,
         kind = "primary",
@@ -216,7 +224,7 @@ export const IconButton: React.ForwardRefExoticComponent<
         <ThemedIconButton>
             <IconButtonCore
                 {...sharedProps}
-                color={color}
+                actionType={actionType}
                 disabled={disabled}
                 href={href}
                 kind={kind}

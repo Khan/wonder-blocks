@@ -61,7 +61,7 @@ const KindVariants = ({
                                     onClick={action("clicked")}
                                     kind={kind}
                                     light={light}
-                                    color="default"
+                                    actionType="progressive"
                                     size={size}
                                     key={size}
                                 />
@@ -90,7 +90,7 @@ const KindVariants = ({
                                     onClick={action("clicked")}
                                     kind={kind}
                                     light={light}
-                                    color="destructive"
+                                    actionType="destructive"
                                     size={size}
                                     key={size}
                                 />
@@ -173,9 +173,15 @@ export const HoverFocus: StoryComponentType = {
     parameters: {pseudo: {hover: true, focusVisible: true}},
 };
 
-export const Active: StoryComponentType = {
+export const Press: StoryComponentType = {
     render: AllVariants,
     parameters: {pseudo: {active: true}},
+};
+
+export const PressFocus: StoryComponentType = {
+    name: "Press + Focus",
+    render: AllVariants,
+    parameters: {pseudo: {active: true, focusVisible: true}},
 };
 
 const styles = StyleSheet.create({

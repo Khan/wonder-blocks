@@ -153,8 +153,4 @@ export default {
         options: Object.keys(ImageMappings) as Array<React.ReactNode>,
         mapping: ImageMappings,
     },
-    emphasized: {
-        description: `When true, changes the popover dialog background to blue; otherwise, the popover dialog background is not modified. It can be used only with Text-only popovers. It cannot be used with icon or image.`,
-        control: {type: "boolean"},
-    },
 } satisfies ArgTypes;

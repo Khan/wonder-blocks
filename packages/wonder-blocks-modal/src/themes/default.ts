@@ -64,7 +64,7 @@ const theme = {
     },
     closeButton: {
         spacing: {
-            gap: spacing.medium_16,
+            gap: spacing.xSmall_8,
         },
     },
 };
