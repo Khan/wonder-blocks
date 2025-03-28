@@ -1139,6 +1139,19 @@ importers:
         specifier: workspace:*
         version: link:../../build-settings
 
+  packages/wonder-blocks-styles:
+    dependencies:
+      '@babel/runtime':
+        specifier: 'catalog:'
+        version: 7.26.7
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:../wonder-blocks-tokens
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
+
   packages/wonder-blocks-switch:
     dependencies:
       '@babel/runtime':

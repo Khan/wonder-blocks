@@ -11,6 +11,6 @@ export const focus = {
     ":focus-visible": {
         boxShadow: `0 0 0 ${border.width.thin}px ${semanticColor.focus.inner}`,
         outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
-        outlineOffset: -border.width.thin,
+        outlineOffset: border.width.thin,
     },
 };

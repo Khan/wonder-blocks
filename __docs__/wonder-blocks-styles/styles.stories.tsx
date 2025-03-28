@@ -42,17 +42,23 @@ export const Focus: StoryComponentType = {
             <View
                 style={{
                     padding: spacing.medium_16,
-                    gap: spacing.medium_16,
                     flexDirection: "row",
                     placeItems: "center",
                 }}
             >
-                <IconButton
-                    kind="tertiary"
-                    icon={info}
-                    style={focusStyles.focus}
-                />
-
+                <View
+                    style={{
+                        background: semanticColor.status.success.background,
+                        padding: spacing.medium_16,
+                        gap: spacing.medium_16,
+                    }}
+                >
+                    <IconButton
+                        kind="tertiary"
+                        icon={info}
+                        style={focusStyles.focus}
+                    />
+                </View>
                 <View
                     style={{
                         background: semanticColor.surface.inverse,
@@ -78,5 +84,6 @@ export const Focus: StoryComponentType = {
                 code: JSON.stringify(focusStyles.focus, null, "\t"),
             },
         },
+        pseudo: {focusVisible: true},
     },
 };
