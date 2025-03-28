@@ -137,7 +137,7 @@ export const CustomStyles: StoryComponentType = {
                 padding: sizing.size_200,
             },
             list: {
-                gap: sizing.size_500,
+                gap: sizing.size_400,
             },
         },
     },
@@ -280,7 +280,7 @@ const StyledDiv = addStyle("div");
 export const HeaderWithNavigationTabsExample: StoryComponentType = {
     render: function HeaderExample(args) {
         // Putting styles in the component so it shows in the code snippet
-        const headerVerticalSpacing = sizing.size_150;
+        const headerVerticalSpacing = sizing.size_120;
         const styles = StyleSheet.create({
             pageStyle: {
                 backgroundColor: semanticColor.surface.secondary,
@@ -293,8 +293,8 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
                 alignItems: "center",
                 flexWrap: "wrap",
                 borderBottom: `1px solid ${semanticColor.border.primary}`,
-                gap: sizing.size_300,
-                padding: `${headerVerticalSpacing} ${sizing.size_300}`,
+                gap: sizing.size_240,
+                padding: `${headerVerticalSpacing} ${sizing.size_240}`,
             },
             navigationTabsRoot: {
                 // set margin to negative value of header vertical spacing so
