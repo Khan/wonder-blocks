@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 type Props = {
-    children: React.ReactElement | Array<React.ReactElement>;
+    children: React.ReactNode;
 };
 
 const StyledDiv = addStyle("div");
