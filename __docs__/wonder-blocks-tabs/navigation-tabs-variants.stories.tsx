@@ -204,12 +204,6 @@ const meta = {
         </>
     ),
     tags: ["!autodocs"],
-    parameters: {
-        chromatic: {
-            // Need different delay value for Chromatic to detect the styles
-            delay: 1000,
-        },
-    },
 } satisfies Meta<typeof NavigationTabs>;
 
 export default meta;
@@ -220,8 +214,10 @@ export const Hover: Story = {
     parameters: {
         pseudo: {hover: true},
         chromatic: {
-            // Need different delay value for Chromatic to detect the styles
-            delay: 500,
+            // TODO(WB-1917): Temporarily disabled since snapshots with
+            // NavigationTabs and pseudo states are flaky. We still get state
+            // style coverage in NavigationTabItem AllVariants stories
+            disable: true,
         },
     },
 };
@@ -229,6 +225,12 @@ export const Hover: Story = {
 export const Focus: Story = {
     parameters: {
         pseudo: {focusVisible: true},
+        chromatic: {
+            // TODO(WB-1917): Temporarily disabled since snapshots with
+            // NavigationTabs and pseudo states are flaky. We still get state
+            // style coverage in NavigationTabItem AllVariants stories
+            disable: true,
+        },
     },
 };
 
@@ -236,11 +238,25 @@ export const HoverFocus: Story = {
     name: "Hover + Focus",
     parameters: {
         pseudo: {hover: true, focusVisible: true},
+        chromatic: {
+            // TODO(WB-1917): Temporarily disabled since snapshots with
+            // NavigationTabs and pseudo states are flaky. We still get state
+            // style coverage in NavigationTabItem AllVariants stories
+            disable: true,
+        },
     },
 };
 
 export const Active: Story = {
-    parameters: {pseudo: {hover: true, active: true}},
+    parameters: {
+        pseudo: {hover: true, active: true},
+        chromatic: {
+            // TODO(WB-1917): Temporarily disabled since snapshots with
+            // NavigationTabs and pseudo states are flaky. We still get state
+            // style coverage in NavigationTabItem AllVariants stories
+            disable: true,
+        },
+    },
 };
 
 export const Zoom: Story = {
