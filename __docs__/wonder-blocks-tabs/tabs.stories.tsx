@@ -2,8 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import {Tabs} from "@khanacademy/wonder-blocks-tabs";
-import {TabItem} from "../../packages/wonder-blocks-tabs/src/components/tabs";
+import {TabItem, Tabs} from "@khanacademy/wonder-blocks-tabs";
 import argTypes from "./tabs.argtypes";
 
 const tabs: TabItem[] = [
