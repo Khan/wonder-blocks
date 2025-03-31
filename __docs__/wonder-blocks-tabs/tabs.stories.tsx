@@ -26,6 +26,7 @@ export default {
     args: {
         tabs,
         selectedTabId: tabs[0].id,
+        "aria-label": "Tabs Example",
     },
     argTypes,
     render: function Controlled(args) {
@@ -35,6 +36,7 @@ export default {
 
         return (
             <Tabs
+                {...args}
                 selectedTabId={selectedTabId}
                 onTabSelected={setSelectedTabId}
                 tabs={args.tabs || tabs}

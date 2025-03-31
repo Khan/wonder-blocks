@@ -22,6 +22,8 @@ describe("Tabs", () => {
         },
     ];
 
+    const tabsAriaLabel = "Tabs Example";
+
     it("should render the tabs in a tablist", async () => {
         // Arrange
         render(
@@ -29,6 +31,7 @@ describe("Tabs", () => {
                 tabs={tabs}
                 selectedTabId={tabs[0].id}
                 onTabSelected={jest.fn()}
+                aria-label={tabsAriaLabel}
             />,
         );
         const tablist = await screen.findByRole("tablist");
@@ -75,6 +78,7 @@ describe("Tabs", () => {
                 tabs={tabs}
                 selectedTabId={tabs[0].id}
                 onTabSelected={jest.fn()}
+                aria-label={tabsAriaLabel}
             />,
         );
 
@@ -107,6 +111,7 @@ describe("Tabs", () => {
                 tabs={tabs}
                 selectedTabId={tabs[1].id}
                 onTabSelected={jest.fn()}
+                aria-label={tabsAriaLabel}
             />,
         );
 
@@ -128,6 +133,7 @@ describe("Tabs", () => {
                 selectedTabId={tabs[0].id}
                 onTabSelected={jest.fn()}
                 ref={ref}
+                aria-label={tabsAriaLabel}
             />,
         );
 
@@ -147,6 +153,7 @@ describe("Tabs", () => {
                     tabs={tabs}
                     selectedTabId={tabs[0].id}
                     onTabSelected={onTabSelected}
+                    aria-label={tabsAriaLabel}
                 />,
             );
 
@@ -161,7 +168,7 @@ describe("Tabs", () => {
 
     describe("Accessibility", () => {
         describe("axe", () => {
-            it("should have no a11y violations", async () => {
+            it("should have no a11y violations when aria-label is provided", async () => {
                 // Arrange
                 // Act
                 const {container} = render(
@@ -169,7 +176,27 @@ describe("Tabs", () => {
                         tabs={tabs}
                         selectedTabId={tabs[0].id}
                         onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
                     />,
+                );
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+
+            it("should have no a11y violations when aria-labelledby is provided", async () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <div>
+                        <h1 id="tabs-label">Tabs Example</h1>
+                        <Tabs
+                            tabs={tabs}
+                            selectedTabId={tabs[0].id}
+                            onTabSelected={jest.fn()}
+                            aria-labelledby={"tabs-label"}
+                        />
+                    </div>,
                 );
 
                 // Assert
@@ -185,6 +212,7 @@ describe("Tabs", () => {
                         tabs={tabs}
                         selectedTabId={tabs[0].id}
                         onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
                     />,
                 );
 
@@ -203,6 +231,7 @@ describe("Tabs", () => {
                         tabs={tabs}
                         selectedTabId={tabs[0].id}
                         onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
                     />,
                 );
 
@@ -222,6 +251,7 @@ describe("Tabs", () => {
                         tabs={tabs}
                         selectedTabId={tabs[0].id}
                         onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
                     />,
                 );
                 const tabPanel = screen.getByRole("tabpanel", {name: "Tab 1"});
@@ -240,6 +270,7 @@ describe("Tabs", () => {
                         tabs={tabs}
                         selectedTabId={tabs[0].id}
                         onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
                     />,
                 );
                 const tab = screen.getByRole("tab", {name: "Tab 1"});
@@ -249,6 +280,47 @@ describe("Tabs", () => {
 
                 // Assert
                 expect(tabPanel).toHaveAttribute("aria-labelledby", tab.id);
+            });
+
+            it("should set aria-label on the tablist when provided", async () => {
+                // Arrange
+                const ariaLabel = "label";
+                render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label={ariaLabel}
+                    />,
+                );
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist).toHaveAttribute("aria-label", ariaLabel);
+            });
+
+            it("should set aria-labelledby on the tablist when provided", async () => {
+                // Arrange
+                const ariaLabelledby = "labelledby";
+                render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-labelledby={ariaLabelledby}
+                    />,
+                );
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist).toHaveAttribute(
+                    "aria-labelledby",
+                    ariaLabelledby,
+                );
             });
         });
     });

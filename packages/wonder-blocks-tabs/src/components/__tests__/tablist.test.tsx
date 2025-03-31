@@ -74,5 +74,36 @@ describe("Tablist", () => {
                 await expect(container).toHaveNoA11yViolations();
             });
         });
+
+        describe("ARIA", () => {
+            it("should set aria-label when provided", async () => {
+                // Arrange
+                const ariaLabel = "label";
+                render(<Tablist aria-label={ariaLabel}>Tablist</Tablist>);
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist).toHaveAttribute("aria-label", ariaLabel);
+            });
+
+            it("should set aria-labelledby when provided", async () => {
+                // Arrange
+                const ariaLabelledby = "labelledby";
+                render(
+                    <Tablist aria-labelledby={ariaLabelledby}>Tablist</Tablist>,
+                );
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist).toHaveAttribute(
+                    "aria-labelledby",
+                    ariaLabelledby,
+                );
+            });
+        });
     });
 });

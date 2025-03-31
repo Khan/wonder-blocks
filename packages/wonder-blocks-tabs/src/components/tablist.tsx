@@ -8,6 +8,16 @@ type Props = {
      * The contents of the tablist.
      */
     children: React.ReactNode;
+    /**
+     * If there is no visible label for the tablist, set aria-label to a
+     * label describing the tablist.
+     */
+    "aria-label"?: string;
+    /**
+     * If the tablist has a visible label, set aria-labelledby to a value
+     * that refers to the labelling element.
+     */
+    "aria-labelledby"?: string;
 };
 
 const StyledDiv = addStyle("div");
@@ -19,9 +29,19 @@ export const Tablist = React.forwardRef(function Tablist(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-    const {children} = props;
+    const {
+        children,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledby,
+    } = props;
     return (
-        <StyledDiv role="tablist" style={styles.tablist} ref={ref}>
+        <StyledDiv
+            role="tablist"
+            style={styles.tablist}
+            ref={ref}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledby}
+        >
             {children}
         </StyledDiv>
     );

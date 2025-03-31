@@ -18,6 +18,24 @@ export type TabItem = {
     panel: React.ReactNode;
 };
 
+type AriaLabelOrAriaLabelledby =
+    | {
+          /**
+           * If there is no visible label for the tabs, set aria-label to a
+           * label describing the tabs.
+           */
+          "aria-label": string;
+          "aria-labelledby"?: never;
+      }
+    | {
+          /**
+           * If the tabs have a visible label, set aria-labelledby to a value
+           * that refers to the labelling element.
+           */
+          "aria-labelledby": string;
+          "aria-label"?: never;
+      };
+
 type Props = {
     /**
      * The tabs to render. The Tabs component will wire up the tab and panel
@@ -32,7 +50,7 @@ type Props = {
      * Called when a tab is selected.
      */
     onTabSelected: (id: string) => unknown;
-};
+} & AriaLabelOrAriaLabelledby;
 
 /**
  * Returns the id of the tab.
@@ -59,11 +77,17 @@ export const Tabs = React.forwardRef(function Tabs(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-    const {tabs, selectedTabId, onTabSelected} = props;
+    const {
+        tabs,
+        selectedTabId,
+        onTabSelected,
+        "aria-label": ariaLabel,
+        "aria-labelledby": ariaLabelledby,
+    } = props;
 
     return (
         <div ref={ref}>
-            <Tablist>
+            <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
                 {tabs.map((tab) => {
                     return (
                         <Tab
