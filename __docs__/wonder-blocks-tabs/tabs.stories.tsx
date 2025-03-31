@@ -4,6 +4,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {Tabs} from "@khanacademy/wonder-blocks-tabs";
 import {TabItem} from "../../packages/wonder-blocks-tabs/src/components/tabs";
+import argTypes from "./tabs.argtypes";
 
 const tabs: TabItem[] = [
     {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
@@ -26,6 +27,7 @@ export default {
         tabs,
         selectedTabId: tabs[0].id,
     },
+    argTypes,
     render: function Controlled(args) {
         const [selectedTabId, setSelectedTabId] = React.useState(
             args.selectedTabId || tabs[0].id,

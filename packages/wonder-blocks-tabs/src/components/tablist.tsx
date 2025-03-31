@@ -4,11 +4,17 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 type Props = {
+    /**
+     * The contents of the tablist.
+     */
     children: React.ReactNode;
 };
 
 const StyledDiv = addStyle("div");
 
+/**
+ * A component that has `role="tablist"` and is used to group tab elements.
+ */
 export const Tablist = React.forwardRef(function Tablist(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
