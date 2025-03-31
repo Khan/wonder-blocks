@@ -18,7 +18,6 @@ const theme = {
         },
         border: {
             radius: border.radius.medium_4,
-            width: border.width.thin,
         },
     },
     /**
@@ -55,9 +54,6 @@ const theme = {
         },
     },
     panel: {
-        color: {
-            border: semanticColor.focus.outer,
-        },
         spacing: {
             gap: spacing.xLarge_32,
         },

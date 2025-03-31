@@ -7,6 +7,7 @@ import {
     useScopedTheme,
     useStyles,
 } from "@khanacademy/wonder-blocks-theming";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
@@ -180,11 +181,7 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         // programmatic focus. This is a workaround to make sure the focus
         // outline is visible when this control is focused.
         ":focus": {
-            outlineWidth: theme.root.border.width,
-            outlineColor: theme.panel.color.border,
-            outlineOffset: 1,
-            outlineStyle: "solid",
-            borderRadius: theme.root.border.radius,
+            ...focusStyles.focus[":focus-visible"],
         },
     },
 
