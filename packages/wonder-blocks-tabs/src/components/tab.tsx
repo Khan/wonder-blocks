@@ -46,6 +46,7 @@ export const Tab = React.forwardRef(function Tab(
             id={id}
             aria-controls={ariaControls}
             aria-selected={selected}
+            tabIndex={selected ? 0 : -1}
         >
             {children}
         </button>

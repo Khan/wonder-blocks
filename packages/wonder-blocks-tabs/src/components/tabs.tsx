@@ -1,4 +1,5 @@
 import * as React from "react";
+import {keys} from "@khanacademy/wonder-blocks-core";
 import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
@@ -88,9 +89,47 @@ export const Tabs = React.forwardRef(function Tabs(
         "aria-labelledby": ariaLabelledby,
     } = props;
 
+    const selectTab = (tabId: string) => {
+        // Move focus to the tab
+        const tabElement = document.getElementById(getTabId(tabId));
+        tabElement?.focus();
+        // Select the tab
+        onTabSelected(tabId);
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const currentIndex = tabs.findIndex((tab) => tab.id === selectedTabId);
+
+        switch (event.key) {
+            case keys.left:
+                event.preventDefault();
+                const prevIndex =
+                    (currentIndex - 1 + tabs.length) % tabs.length;
+                selectTab(tabs[prevIndex].id);
+                break;
+            case keys.right:
+                event.preventDefault();
+                const nextIndex = (currentIndex + 1) % tabs.length;
+                selectTab(tabs[nextIndex].id);
+                break;
+            case keys.home:
+                event.preventDefault();
+                selectTab(tabs[0].id);
+                break;
+            case keys.end:
+                event.preventDefault();
+                selectTab(tabs[tabs.length - 1].id);
+                break;
+        }
+    };
+
     return (
         <div ref={ref}>
-            <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
+            <Tablist
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledby}
+                onKeyDown={handleKeyDown}
+            >
                 {tabs.map((tab) => {
                     return (
                         <Tab

@@ -18,6 +18,10 @@ type Props = {
      * that refers to the labelling element.
      */
     "aria-labelledby"?: string;
+    /**
+     * Called when a key is pressed on the tablist.
+     */
+    onKeyDown?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
 };
 
 const StyledDiv = addStyle("div");
@@ -33,7 +37,9 @@ export const Tablist = React.forwardRef(function Tablist(
         children,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
+        onKeyDown,
     } = props;
+
     return (
         <StyledDiv
             role="tablist"
@@ -41,6 +47,8 @@ export const Tablist = React.forwardRef(function Tablist(
             ref={ref}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
+            onKeyDown={onKeyDown}
+            tabIndex={-1}
         >
             {children}
         </StyledDiv>
