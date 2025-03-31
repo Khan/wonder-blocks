@@ -54,6 +54,14 @@ type Props = {
      * Called when a tab is selected.
      */
     onTabSelected: (id: string) => unknown;
+    /**
+     * The mode of activation for the tabs for keyboard navigation.
+     *
+     * - If `manual`, the tab will only be activated when a tab receives focus
+     * and is selected by pressing `Space` or `Enter`.
+     * - If `automatic`, the tab will be activated once a tab receives focus.
+     */
+    activationMode?: "manual" | "automatic";
 } & AriaLabelOrAriaLabelledby;
 
 /**
@@ -87,39 +95,73 @@ export const Tabs = React.forwardRef(function Tabs(
         onTabSelected,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
+        activationMode = "manual",
     } = props;
 
+    const focusId = React.useRef(selectedTabId);
+
+    React.useEffect(() => {
+        focusId.current = selectedTabId;
+    }, [selectedTabId]);
+
     const selectTab = (tabId: string) => {
+        if (tabId !== selectedTabId) {
+            // Select the tab only if it's not already selected
+            onTabSelected(tabId);
+        }
+    };
+
+    const handleKeyInteraction = (tabId: string) => {
         // Move focus to the tab
         const tabElement = document.getElementById(getTabId(tabId));
         tabElement?.focus();
-        // Select the tab
-        onTabSelected(tabId);
+
+        switch (activationMode) {
+            case "manual": {
+                // Only update which tab is focused since we aren't activating
+                // the tab yet
+                focusId.current = tabId;
+                break;
+            }
+            case "automatic": {
+                // Activate the tab
+                selectTab(tabId);
+                break;
+            }
+        }
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        const currentIndex = tabs.findIndex((tab) => tab.id === selectedTabId);
+        const currentIndex = tabs.findIndex(
+            (tab) => tab.id === focusId.current,
+        );
 
         switch (event.key) {
             case keys.left:
                 event.preventDefault();
                 const prevIndex =
                     (currentIndex - 1 + tabs.length) % tabs.length;
-                selectTab(tabs[prevIndex].id);
+                handleKeyInteraction(tabs[prevIndex].id);
                 break;
             case keys.right:
                 event.preventDefault();
                 const nextIndex = (currentIndex + 1) % tabs.length;
-                selectTab(tabs[nextIndex].id);
+                handleKeyInteraction(tabs[nextIndex].id);
                 break;
             case keys.home:
                 event.preventDefault();
-                selectTab(tabs[0].id);
+                handleKeyInteraction(tabs[0].id);
                 break;
             case keys.end:
                 event.preventDefault();
-                selectTab(tabs[tabs.length - 1].id);
+                handleKeyInteraction(tabs[tabs.length - 1].id);
                 break;
+            case keys.enter:
+            case keys.space: {
+                event.preventDefault();
+                selectTab(focusId.current);
+                break;
+            }
         }
     };
 
