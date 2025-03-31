@@ -1,7 +1,7 @@
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 /**
- * A global focus style that can be applied to any element.
+ * A global focus style that can be applied to interactive elements.
  *
  * This style injects a combination of `outline` and `box-shadow` to indicate
  * the element is focused. This is used for accessibility purposes as it allows
