@@ -18,6 +18,9 @@ export type TabItem = {
     panel: React.ReactNode;
 };
 
+/**
+ * Type to help ensure aria-label or aria-labelledby is set.
+ */
 type AriaLabelOrAriaLabelledby =
     | {
           /**
