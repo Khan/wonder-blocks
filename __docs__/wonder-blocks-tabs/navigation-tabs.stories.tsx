@@ -349,8 +349,6 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
     },
 };
 
-const transitionStyle = "left 0.3s ease, width 0.3s ease";
-
 /**
  * The `animated` prop can be set to `true` to animate the current underline
  * indicator. By default, `animated` is set to `false`.
@@ -386,11 +384,10 @@ export const Animated: StoryComponentType = {
 
         // Act
         const currentIndicator = await canvas.findByRole("presentation");
+        const style = window.getComputedStyle(currentIndicator);
 
         // Assert
-        await expect(currentIndicator).toHaveStyle({
-            transition: transitionStyle,
-        });
+        await expect(style.transitionProperty).toMatch(/transform/);
     },
 };
 
@@ -409,11 +406,10 @@ export const AnimationsDisabled: StoryComponentType = {
 
         // Act
         const currentIndicator = await canvas.findByRole("presentation");
+        const style = window.getComputedStyle(currentIndicator);
 
         // Assert
-        await expect(currentIndicator).not.toHaveStyle({
-            transition: transitionStyle,
-        });
+        await expect(style.transitionProperty).not.toMatch(/transform/);
     },
 };
 

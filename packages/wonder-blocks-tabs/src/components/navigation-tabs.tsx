@@ -209,7 +209,10 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
                     <View
                         style={[
                             {
-                                left: `${underlineStyle.left}px`,
+                                // Translate x position instead of setting the
+                                // left position so layout doesn't need to be
+                                // recalculated each time
+                                transform: `translateX(${underlineStyle.left}px)`,
                                 width: `${underlineStyle.width}px`,
                             },
                             styles.currentUnderline,
@@ -242,11 +245,12 @@ const styles = StyleSheet.create({
     currentUnderline: {
         position: "absolute",
         bottom: 0,
+        left: 0,
         height: sizing.size_050,
         backgroundColor:
             semanticColor.action.secondary.progressive.default.foreground,
     },
     underlineTransition: {
-        transition: "left 0.3s ease, width 0.3s ease",
+        transition: "transform 0.3s ease, width 0.3s ease",
     },
 });
