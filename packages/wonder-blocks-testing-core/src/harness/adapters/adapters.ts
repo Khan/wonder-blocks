@@ -21,7 +21,11 @@ export const DefaultAdapters = {
     boundary: errorBoundary.adapter,
     css: css.adapter,
     portal: portal.adapter,
-    router: router.adapter,
+    // STOPSHIP: error TS2742: The inferred type of 'DefaultAdapters' cannot be
+    // named without a reference to
+    // '.pnpm/@remix-run+router@1.23.0/node_modules/@remix-run/router'. This is
+    // likely not portable. A type annotation is necessary.
+    router: router.adapter as any,
 } as const;
 
 /**
