@@ -1,6 +1,8 @@
+/* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import {TabItem, Tabs} from "../tabs";
 
 describe("Tabs", () => {
@@ -23,6 +25,26 @@ describe("Tabs", () => {
     ];
 
     const tabsAriaLabel = "Tabs Example";
+
+    const ControlledTabs = (
+        props: Omit<
+            PropsFor<typeof Tabs>,
+            "onTabSelected" | "aria-label" | "aria-labelledby"
+        >,
+    ) => {
+        const [selectedTabId, setSelectedTabId] = React.useState(
+            props.selectedTabId,
+        );
+
+        return (
+            <Tabs
+                {...props}
+                aria-label={tabsAriaLabel}
+                selectedTabId={selectedTabId}
+                onTabSelected={setSelectedTabId}
+            />
+        );
+    };
 
     it("should render the tabs in a tablist", async () => {
         // Arrange
@@ -321,6 +343,813 @@ describe("Tabs", () => {
                     "aria-labelledby",
                     ariaLabelledby,
                 );
+            });
+        });
+
+        describe("Keyboard Navigation", () => {
+            it("should focus on the active tab when the tab key is pressed", async () => {
+                // Arrange
+                render(
+                    <ControlledTabs tabs={tabs} selectedTabId={tabs[1].id} />,
+                );
+                const tab = screen.getByRole("tab", {name: "Tab 2"});
+
+                // Act
+                await userEvent.keyboard("{Tab}");
+
+                // Assert
+                expect(tab).toHaveFocus();
+            });
+
+            describe("Activation Mode: Manual", () => {
+                describe("Right arrow key", () => {
+                    it("should focus on the next tab when the right arrow key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 2"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should not change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 2"}),
+                        ).toHaveAttribute("aria-selected", "false");
+                    });
+
+                    it("should not change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.queryByText("Contents of tab 2"),
+                        ).not.toBeInTheDocument();
+                    });
+                });
+
+                describe("Right arrow key when the last tab is active", () => {
+                    it("should focus on the first tab when the right arrow key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[2].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should not change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[2].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveAttribute("aria-selected", "false");
+                    });
+
+                    it("should not change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[2].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.queryByText("Contents of tab 1"),
+                        ).not.toBeInTheDocument();
+                    });
+                });
+
+                describe("Left arrow key", () => {
+                    it("should focus on the previous tab when the left arrow key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should not change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveAttribute("aria-selected", "false");
+                    });
+
+                    it("should not change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.queryByText("Contents of tab 1"),
+                        ).not.toBeInTheDocument();
+                    });
+                });
+
+                describe("Left arrow key when the first tab is active", () => {
+                    it("should focus on the last tab when the left arrow key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 3"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should not change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 3"}),
+                        ).toHaveAttribute("aria-selected", "false");
+                    });
+
+                    it("should not change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.queryByText("Contents of tab 3"),
+                        ).not.toBeInTheDocument();
+                    });
+                });
+
+                describe("Home key", () => {
+                    it("should focus on the first tab when the home key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+                        // Act
+                        await userEvent.keyboard("{Home}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should not change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+
+                        // Act
+                        await userEvent.keyboard("{Home}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveAttribute("aria-selected", "false");
+                    });
+
+                    it("should not change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+
+                        // Act
+                        await userEvent.keyboard("{Home}");
+
+                        // Assert
+                        expect(
+                            screen.queryByText("Contents of tab 1"),
+                        ).not.toBeInTheDocument();
+                    });
+                });
+
+                describe("End key", () => {
+                    it("should focus on the last tab when the end key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+                        // Act
+                        await userEvent.keyboard("{End}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 3"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should not change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+
+                        // Act
+                        await userEvent.keyboard("{End}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 3"}),
+                        ).toHaveAttribute("aria-selected", "false");
+                    });
+
+                    it("should not change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+
+                        // Act
+                        await userEvent.keyboard("{End}");
+
+                        // Assert
+                        expect(
+                            screen.queryByText("Contents of tab 3"),
+                        ).not.toBeInTheDocument();
+                    });
+                });
+
+                describe.each([
+                    {key: "{Enter}", label: "Enter"},
+                    {key: " ", label: "Space"},
+                ])("$label key to activate tab", ({key}) => {
+                    it("should keep focus on the tab when it's activated", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Act
+                        await userEvent.keyboard(key);
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Act
+                        await userEvent.keyboard(key);
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveAttribute("aria-selected", "true");
+                    });
+
+                    it("should change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                            />,
+                        );
+                        await userEvent.tab();
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Act
+                        await userEvent.keyboard(key);
+
+                        // Assert
+                        expect(
+                            screen.getByText("Contents of tab 1"),
+                        ).toBeInTheDocument();
+                    });
+                });
+            });
+
+            describe("Activation Mode: Automatic", () => {
+                describe("Right arrow key", () => {
+                    it("should focus on the next tab when the right arrow key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 2"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 2"}),
+                        ).toHaveAttribute("aria-selected", "true");
+                    });
+
+                    it("should change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByText("Contents of tab 2"),
+                        ).toBeInTheDocument();
+                    });
+                });
+
+                describe("Right arrow key when the last tab is active", () => {
+                    it("should focus on the first tab when the right arrow key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[2].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[2].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveAttribute("aria-selected", "true");
+                    });
+
+                    it("should change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[2].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowRight}");
+
+                        // Assert
+                        expect(
+                            screen.getByText("Contents of tab 1"),
+                        ).toBeInTheDocument();
+                    });
+                });
+
+                describe("Left arrow key", () => {
+                    it("should focus on the previous tab when the left arrow key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveAttribute("aria-selected", "true");
+                    });
+
+                    it("should change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByText("Contents of tab 1"),
+                        ).toBeInTheDocument();
+                    });
+                });
+
+                describe("Left arrow key when the first tab is active", () => {
+                    it("should focus on the last tab when the left arrow key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 3"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 3"}),
+                        ).toHaveAttribute("aria-selected", "true");
+                    });
+
+                    it("should change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[0].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.keyboard("{Tab}");
+
+                        // Act
+                        await userEvent.keyboard("{ArrowLeft}");
+
+                        // Assert
+                        expect(
+                            screen.getByText("Contents of tab 3"),
+                        ).toBeInTheDocument();
+                    });
+                });
+
+                describe("Home key", () => {
+                    it("should focus on the first tab when the home key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.tab();
+                        // Act
+                        await userEvent.keyboard("{Home}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.tab();
+
+                        // Act
+                        await userEvent.keyboard("{Home}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 1"}),
+                        ).toHaveAttribute("aria-selected", "true");
+                    });
+
+                    it("should change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.tab();
+
+                        // Act
+                        await userEvent.keyboard("{Home}");
+
+                        // Assert
+                        expect(
+                            screen.getByText("Contents of tab 1"),
+                        ).toBeInTheDocument();
+                    });
+                });
+
+                describe("End key", () => {
+                    it("should focus on the last tab when the end key is pressed", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.tab();
+                        // Act
+                        await userEvent.keyboard("{End}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 3"}),
+                        ).toHaveFocus();
+                    });
+
+                    it("should change the selected tab", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.tab();
+
+                        // Act
+                        await userEvent.keyboard("{End}");
+
+                        // Assert
+                        expect(
+                            screen.getByRole("tab", {name: "Tab 3"}),
+                        ).toHaveAttribute("aria-selected", "true");
+                    });
+
+                    it("should change the tab panel content", async () => {
+                        // Arrange
+                        render(
+                            <ControlledTabs
+                                tabs={tabs}
+                                selectedTabId={tabs[1].id}
+                                activationMode="automatic"
+                            />,
+                        );
+                        await userEvent.tab();
+
+                        // Act
+                        await userEvent.keyboard("{End}");
+
+                        // Assert
+                        expect(
+                            screen.getByText("Contents of tab 3"),
+                        ).toBeInTheDocument();
+                    });
+                });
             });
         });
     });
