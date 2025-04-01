@@ -7,7 +7,7 @@ import {
     useScopedTheme,
     useStyles,
 } from "@khanacademy/wonder-blocks-theming";
-import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
@@ -126,16 +126,21 @@ export default function ModalPanel({
 
     const mainContent = renderMainContent();
 
+    const isInverse = !light;
+
     return (
         <View
-            style={[styles.wrapper, !light && styles.dark, style]}
+            style={[styles.wrapper, isInverse && styles.dark, style]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (
                 <CloseButton
-                    light={!light}
+                    light={isInverse}
                     onClick={onClose}
-                    style={styles.closeButton}
+                    style={[
+                        styles.closeButton,
+                        isInverse && actionStyles.inverse,
+                    ]}
                     testId={testId && `${testId}-close`}
                 />
             )}

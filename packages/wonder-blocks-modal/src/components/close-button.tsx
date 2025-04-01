@@ -52,7 +52,6 @@ export default class CloseButton extends React.Component<Props> {
                             aria-label="Close modal"
                             onClick={onClick || closeModal}
                             kind={light ? "primary" : "tertiary"}
-                            light={light}
                             style={style}
                             testId={testId}
                         />
