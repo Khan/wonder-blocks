@@ -4,9 +4,9 @@ import {focus} from "./focus-styles";
 const pressColor = `color-mix(in srgb, ${semanticColor.border.strong} 85%, ${semanticColor.border.inverse})`;
 
 /**
- * The inverse button styles.
+ * The inverse styles for an interactive control.
  *
- * This is used for special cases where the button is on a dark background.
+ * This is used for special cases where the element is on a dark background.
  *
  * NOTE: This will be deprecated in the future.
  */
