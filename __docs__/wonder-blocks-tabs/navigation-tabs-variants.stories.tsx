@@ -211,20 +211,52 @@ export default meta;
 export const Default: Story = {};
 
 export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
+    parameters: {
+        pseudo: {hover: true},
+        chromatic: {
+            // TODO(WB-1917): Temporarily disabled since snapshots with
+            // NavigationTabs and pseudo states are flaky. We still get state
+            // style coverage in NavigationTabItem AllVariants stories
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
+    parameters: {
+        pseudo: {focusVisible: true},
+        chromatic: {
+            // TODO(WB-1917): Temporarily disabled since snapshots with
+            // NavigationTabs and pseudo states are flaky. We still get state
+            // style coverage in NavigationTabItem AllVariants stories
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const HoverFocus: Story = {
     name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
+    parameters: {
+        pseudo: {hover: true, focusVisible: true},
+        chromatic: {
+            // TODO(WB-1917): Temporarily disabled since snapshots with
+            // NavigationTabs and pseudo states are flaky. We still get state
+            // style coverage in NavigationTabItem AllVariants stories
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const Active: Story = {
-    parameters: {pseudo: {hover: true, active: true}},
+    parameters: {
+        pseudo: {hover: true, active: true},
+        chromatic: {
+            // TODO(WB-1917): Temporarily disabled since snapshots with
+            // NavigationTabs and pseudo states are flaky. We still get state
+            // style coverage in NavigationTabItem AllVariants stories
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const Zoom: Story = {
