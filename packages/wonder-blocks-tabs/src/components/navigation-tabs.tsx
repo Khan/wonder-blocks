@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0,
         left: 0,
-        height: sizing.size_050,
+        height: sizing.size_040,
         backgroundColor:
             semanticColor.action.secondary.progressive.default.foreground,
     },
