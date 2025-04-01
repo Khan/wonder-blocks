@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.2.0
+
+### Minor Changes
+
+- 27f6298: `NavigationTabs`: Add `animated` prop to enable transition animation. Defaults to false.
+
 ## 0.1.1
 
 ### Patch Changes
