@@ -217,7 +217,7 @@ export const Hover: Story = {
             // TODO(WB-1917): Temporarily disabled since snapshots with
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
-            disable: true,
+            disableSnapshot: true,
         },
     },
 };
@@ -229,7 +229,7 @@ export const Focus: Story = {
             // TODO(WB-1917): Temporarily disabled since snapshots with
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
-            disable: true,
+            disableSnapshot: true,
         },
     },
 };
@@ -242,7 +242,7 @@ export const HoverFocus: Story = {
             // TODO(WB-1917): Temporarily disabled since snapshots with
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
-            disable: true,
+            disableSnapshot: true,
         },
     },
 };
@@ -254,7 +254,7 @@ export const Active: Story = {
             // TODO(WB-1917): Temporarily disabled since snapshots with
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
-            disable: true,
+            disableSnapshot: true,
         },
     },
 };
