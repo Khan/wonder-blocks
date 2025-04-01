@@ -8,6 +8,7 @@ import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
 
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import type {
     IconButtonActionType,
     IconButtonSize,
@@ -234,9 +235,7 @@ function getStylesByKind(
                 borderStyle: "solid",
                 borderWidth: theme.border.width.hover,
             },
-            ":focus-visible": {
-                boxShadow: light ? theme.focus.inverse : theme.focus.default,
-            },
+            ...focusStyles.focus,
             ":active": {
                 borderColor: themeVariant.press.border,
                 borderStyle: "solid",
@@ -265,9 +264,7 @@ function getStylesByKind(
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
             },
-            ":focus-visible": {
-                boxShadow: light ? theme.focus.inverse : theme.focus.default,
-            },
+            ...focusStyles.focus,
             ":active": {
                 borderColor: themeVariant.press.border,
                 background: themeVariant.press.background,
