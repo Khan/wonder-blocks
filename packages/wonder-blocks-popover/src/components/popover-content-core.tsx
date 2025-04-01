@@ -5,6 +5,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
+import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
 
 type Props = AriaProps & {
@@ -82,7 +83,10 @@ export default class PopoverContentCore extends React.Component<Props> {
                     <CloseButton
                         aria-label={closeButtonLabel}
                         light={closeButtonLight}
-                        style={styles.closeButton}
+                        style={[
+                            styles.closeButton,
+                            closeButtonLight && actionStyles.inverse,
+                        ]}
                         testId={`${testId || "popover"}-close-btn`}
                     />
                 )}
