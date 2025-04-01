@@ -353,10 +353,10 @@ const transitionStyle = "left 0.3s ease, width 0.3s ease";
 
 /**
  * The `animated` prop can be set to `true` to animate the current underline
- * indicator.
+ * indicator. By default, `animated` is set to `false`.
  */
-export const Interactive: StoryComponentType = {
-    render: function Interactive(args) {
+export const Animated: StoryComponentType = {
+    render: function Animated(args) {
         const [currentTab, setCurrentTab] = React.useState(0);
         const tabs = Array(4)
             .fill(0)
@@ -396,10 +396,10 @@ export const Interactive: StoryComponentType = {
 
 /**
  * When the `animated` prop is `false`, there is no animation when the current
- * tab changes.
+ * tab changes.  By default, `animated` is set to `false`.
  */
 export const AnimationsDisabled: StoryComponentType = {
-    ...Interactive,
+    ...Animated,
     args: {
         animated: false,
     },

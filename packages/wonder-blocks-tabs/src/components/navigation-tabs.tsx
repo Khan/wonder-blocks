@@ -50,8 +50,8 @@ type Props = AriaProps & {
     };
 
     /**
-     * Whether to include animation in the NavigationTabs. This should be false
-     * if the user has `prefers-reduced-motion` opted in. Defaults to false.
+     * Whether to include animation in the `NavigationTabs`. This should be false
+     * if the user has `prefers-reduced-motion` opted in. Defaults to `false`.
      */
     animated?: boolean;
 };
