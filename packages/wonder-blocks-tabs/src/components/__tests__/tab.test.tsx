@@ -93,6 +93,27 @@ describe("Tab", () => {
             // Assert
             expect(onClick).toHaveBeenCalledOnce();
         });
+
+        it("should call onKeyDown when a key is pressed", async () => {
+            // Arrange
+            const onKeyDown = jest.fn();
+            render(
+                <Tab {...props} onKeyDown={onKeyDown} selected={true}>
+                    Tab
+                </Tab>,
+            );
+            await userEvent.tab();
+
+            // Act
+            await userEvent.keyboard("{Enter}");
+
+            // Assert
+            expect(onKeyDown).toHaveBeenCalledExactlyOnceWith(
+                expect.objectContaining({
+                    key: "Enter",
+                }),
+            );
+        });
     });
 
     describe("Accessibility", () => {

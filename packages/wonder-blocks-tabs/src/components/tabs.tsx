@@ -131,7 +131,7 @@ export const Tabs = React.forwardRef(function Tabs(
         }
     };
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
         const currentIndex = tabs.findIndex(
             (tab) => tab.id === focusId.current,
         );
@@ -167,11 +167,7 @@ export const Tabs = React.forwardRef(function Tabs(
 
     return (
         <div ref={ref}>
-            <Tablist
-                aria-label={ariaLabel}
-                aria-labelledby={ariaLabelledby}
-                onKeyDown={handleKeyDown}
-            >
+            <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
                 {tabs.map((tab) => {
                     return (
                         <Tab
@@ -182,6 +178,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             id={getTabId(tab.id)}
                             aria-controls={getTabPanelId(tab.id)}
                             selected={tab.id === selectedTabId}
+                            onKeyDown={handleKeyDown}
                         >
                             {tab.label}
                         </Tab>

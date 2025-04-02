@@ -42,29 +42,6 @@ describe("Tablist", () => {
         expect(await screen.findByRole("tablist")).toBe(ref.current);
     });
 
-    describe("Event handlers", () => {
-        it("should call onKeyDown when a key is pressed", async () => {
-            // Arrange
-            const onKeyDown = jest.fn();
-            render(
-                <Tablist onKeyDown={onKeyDown}>
-                    <button role="tab">Tab</button>
-                </Tablist>,
-            );
-            await userEvent.tab();
-
-            // Act
-            await userEvent.keyboard("{enter}");
-
-            // Assert
-            expect(onKeyDown).toHaveBeenCalledExactlyOnceWith(
-                expect.objectContaining({
-                    key: "Enter",
-                }),
-            );
-        });
-    });
-
     describe("Accessibility", () => {
         describe("axe", () => {
             it("should have no a11y violations", async () => {

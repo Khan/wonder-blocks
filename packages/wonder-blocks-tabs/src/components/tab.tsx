@@ -21,6 +21,10 @@ type Props = {
      * If the tab is currently selected.
      */
     selected?: boolean;
+    /**
+     * Called when a key is pressed on the tab.
+     */
+    onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
 };
 
 /**
@@ -37,6 +41,7 @@ export const Tab = React.forwardRef(function Tab(
         id,
         "aria-controls": ariaControls,
         selected,
+        onKeyDown,
     } = props;
     return (
         <button
@@ -47,6 +52,7 @@ export const Tab = React.forwardRef(function Tab(
             aria-controls={ariaControls}
             aria-selected={selected}
             tabIndex={selected ? 0 : -1}
+            onKeyDown={onKeyDown}
         >
             {children}
         </button>
