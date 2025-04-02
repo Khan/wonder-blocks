@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {findFocusableNodes} from "../../../wonder-blocks-core/src/util/focus";
 
 type Props = {
     /**
@@ -27,16 +28,23 @@ const StyledDiv = addStyle("div");
  * A component that has `role="tabpanel"` and is used to represent a tab panel
  * in a tabbed interface.
  */
-export const TabPanel = React.forwardRef(function TabPanel(
-    props: Props,
-    ref: React.ForwardedRef<HTMLDivElement>,
-) {
+export const TabPanel = (props: Props) => {
     const {
         children,
         id,
         "aria-labelledby": ariaLabelledby,
         active = false,
     } = props;
+
+    const ref = React.useRef<HTMLDivElement>(null);
+    const [hasFocusableElement, setHasFocusableElement] = React.useState(false);
+
+    React.useEffect(() => {
+        if (ref.current) {
+            setHasFocusableElement(findFocusableNodes(ref.current).length > 0);
+        }
+    }, [active, ref, children]);
+
     return (
         <StyledDiv
             ref={ref}
@@ -44,11 +52,12 @@ export const TabPanel = React.forwardRef(function TabPanel(
             id={id}
             aria-labelledby={ariaLabelledby}
             style={!active && styles.hidden}
+            tabIndex={hasFocusableElement ? undefined : 0}
         >
             {children}
         </StyledDiv>
     );
-});
+};
 
 const styles = StyleSheet.create({
     hidden: {

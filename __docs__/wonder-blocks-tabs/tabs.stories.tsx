@@ -49,3 +49,44 @@ type StoryComponentType = StoryObj<typeof Tabs>;
 export const Default: StoryComponentType = {
     args: {},
 };
+
+export const WithFocusablePanelContent: StoryComponentType = {
+    args: {
+        tabs: [
+            {
+                label: "Content with button",
+                id: "tab-1",
+                panel: (
+                    <div>
+                        Tab contents with button{" "}
+                        <button>Focusable Button</button>
+                    </div>
+                ),
+            },
+            {
+                label: "Content with link",
+                id: "tab-2",
+                panel: (
+                    <div>
+                        Tab contents with link{" "}
+                        <a href="#link">Focusable Link</a>
+                    </div>
+                ),
+            },
+            {
+                label: "Content with input",
+                id: "tab-3",
+                panel: (
+                    <div>
+                        Tab contents with input <input type="text" />
+                    </div>
+                ),
+            },
+            {
+                label: "Content with no focusable elements",
+                id: "tab-4",
+                panel: <div>No focusable elements. Tab panel is focusable</div>,
+            },
+        ],
+    },
+};

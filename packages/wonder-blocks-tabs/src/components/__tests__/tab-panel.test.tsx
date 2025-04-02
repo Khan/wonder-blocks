@@ -1,5 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import {TabPanel} from "../tab-panel";
 
 describe("TabPanel", () => {
@@ -43,23 +44,6 @@ describe("TabPanel", () => {
 
         // Assert
         expect(children).toBeInTheDocument();
-    });
-
-    it("should forward the ref to the tab panel", async () => {
-        // Arrange
-        const ref = React.createRef<HTMLDivElement>();
-
-        // Act
-        render(
-            <TabPanel {...props} ref={ref}>
-                TabPanel
-            </TabPanel>,
-        );
-
-        // Assert
-        expect(await screen.findByRole("tabpanel", {hidden: true})).toBe(
-            ref.current,
-        );
     });
 
     it("should not be visible if active is false", async () => {
@@ -161,6 +145,60 @@ describe("TabPanel", () => {
                     ariaLabelledby,
                 );
             });
+        });
+
+        describe("Focus", () => {
+            it("should be focusable if there are no focusable elements in the panel", async () => {
+                // Arrange
+                render(
+                    <TabPanel {...props} active={true}>
+                        No focusable elements
+                    </TabPanel>,
+                );
+                const tabPanel = await screen.findByRole("tabpanel");
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                expect(tabPanel).toHaveFocus();
+            });
+
+            it.each([
+                {
+                    element: <a href="#link">Link Example</a>,
+                    label: "Link",
+                },
+                {
+                    element: <input type="text" />,
+                    label: "Input",
+                },
+                {
+                    element: <button>Button</button>,
+                    label: "Button",
+                },
+                {
+                    element: <textarea />,
+                    label: "Textarea",
+                },
+            ])(
+                "should not be focusable if there is a focusable element in the panel ($label)",
+                async ({element}) => {
+                    // Arrange
+                    render(
+                        <TabPanel {...props} active={true}>
+                            {element}
+                        </TabPanel>,
+                    );
+                    const tabPanel = await screen.findByRole("tabpanel");
+
+                    // Act
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(tabPanel).not.toHaveFocus();
+                },
+            );
         });
     });
 });
