@@ -137,7 +137,7 @@ export const CustomStyles: StoryComponentType = {
                 padding: sizing.size_160,
             },
             list: {
-                gap: sizing.size_320,
+                gap: sizing.size_480,
             },
         },
     },
