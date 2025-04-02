@@ -32,3 +32,31 @@ associated element with `role=tabpanel`
 the associated element with `role=tab`
 - `aria-label` or `aria-labelledby` is set on the `tablist` element using the
 `Tabs` component props
+
+### Keyboard Navigation
+
+The following keyboard interactions are implemented:
+- `Tab`
+    - When focus moves into the `Tabs` component, the active tab is focused
+    - When a tab is focused, pressing `Tab` will:
+        - move focus to the tab panel if there are no focusable elements in the
+        active tab panel, or
+        - move focus to the first element in the tabpanel that is focusable
+- `Left Arrow`
+    - When focus is on a tab element, the `Left Arrow` will move focus to the
+    previous tab
+    - If focus is on the first tab, focus is moved to the last tab
+    - If `activationMode=automatic`, the newly focused tab is also activated
+- `Right Arrow`
+    - When focus is on a tab element, the `Right Arrow` will move focus to the
+    next tab
+    - If focus is on the last tab, focus is moved to the first tab
+    - If `activationMode=automatic`, the newly focused tab is also activated
+- `Home`
+    - When focus is on a tab element, the `Home` key will move focus to the first
+    tab
+    - If `activationMode=automatic`, the newly focused tab is also activated
+- `End`
+    - When focus is on a tab element, the `End` key will move focus to the last
+    tab
+    - If `activationMode=automatic`, the newly focused tab is also activated

@@ -394,18 +394,76 @@ describe("Tabs", () => {
         });
 
         describe("Keyboard Navigation", () => {
-            it("should focus on the active tab when the tab key is pressed", async () => {
-                // Arrange
-                render(
-                    <ControlledTabs tabs={tabs} selectedTabId={tabs[1].id} />,
-                );
-                const tab = screen.getByRole("tab", {name: "Tab 2"});
+            describe("Tab key", () => {
+                it("should focus on the active tab when the tab key is pressed", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTabs
+                            tabs={tabs}
+                            selectedTabId={tabs[1].id}
+                        />,
+                    );
+                    const tab = screen.getByRole("tab", {name: "Tab 2"});
 
-                // Act
-                await userEvent.keyboard("{Tab}");
+                    // Act
+                    await userEvent.keyboard("{Tab}");
 
-                // Assert
-                expect(tab).toHaveFocus();
+                    // Assert
+                    expect(tab).toHaveFocus();
+                });
+
+                it("should focus on the tabpanel if there are no focusable elements in the tabpanel", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTabs
+                            tabs={tabs}
+                            selectedTabId={tabs[1].id}
+                        />,
+                    );
+                    const tabPanel = screen.getByRole("tabpanel", {
+                        name: "Tab 2",
+                    });
+                    await userEvent.keyboard("{Tab}"); // tab to get to the active tab
+
+                    // Act
+                    await userEvent.keyboard("{Tab}"); // tab to leave the tablist
+
+                    // Assert
+                    expect(tabPanel).toHaveFocus();
+                });
+
+                it("should focus on the first focusable element in the tabpanel if there is one", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTabs
+                            tabs={[
+                                {
+                                    id: "tab-1",
+                                    label: "Tab 1",
+                                    panel: (
+                                        <div>
+                                            With button <button>Button</button>
+                                        </div>
+                                    ),
+                                },
+                                {
+                                    id: "tab-2",
+                                    label: "Tab 2",
+                                    panel: <div>No focusable elements</div>,
+                                },
+                            ]}
+                            selectedTabId={tabs[0].id}
+                        />,
+                    );
+                    const button = screen.getByRole("button", {name: "Button"});
+                    await userEvent.keyboard("{Tab}"); // tab to get to the active tab
+
+                    // Act
+                    await userEvent.keyboard("{Tab}"); // tab to leave the tablist
+
+                    // Assert
+                    expect(button).toHaveFocus();
+                });
             });
 
             describe("Activation Mode: Manual", () => {

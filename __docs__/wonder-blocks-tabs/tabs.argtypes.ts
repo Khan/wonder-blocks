@@ -29,4 +29,11 @@ export default {
             category: "Accessibility",
         },
     },
+    activationMode: {
+        table: {
+            type: {
+                summary: '"manual" | "automatic"',
+            },
+        },
+    },
 } satisfies ArgTypes;

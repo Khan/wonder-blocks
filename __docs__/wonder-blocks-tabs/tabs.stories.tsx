@@ -50,6 +50,45 @@ export const Default: StoryComponentType = {
     args: {},
 };
 
+/**
+ * When `activationMode` is set to `manual`, the tab will only be activated
+ * via keyboard when a tab receives focus and is selected by pressing `Space`
+ * or `Enter`.
+ */
+export const ManualActivation: StoryComponentType = {
+    args: {
+        activationMode: "manual",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * When `activationMode` is set to `automatic`, the tab will be activated via
+ * keyboard when a tab receives focus.
+ */
+export const AutomaticActivation: StoryComponentType = {
+    args: {
+        activationMode: "automatic",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * When a tab panel has focusable elements, pressing `Tab` from the tablist
+ * will move focus to the first focusable element in the tab. If there are no
+ * focusable elements in the active panel, the tabpanel will be focused on
+ * instead.
+ */
 export const WithFocusablePanelContent: StoryComponentType = {
     args: {
         tabs: [
@@ -88,5 +127,11 @@ export const WithFocusablePanelContent: StoryComponentType = {
                 panel: <div>No focusable elements. Tab panel is focusable</div>,
             },
         ],
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
     },
 };

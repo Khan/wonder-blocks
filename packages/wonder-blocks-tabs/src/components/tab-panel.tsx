@@ -40,6 +40,8 @@ export const TabPanel = (props: Props) => {
     const [hasFocusableElement, setHasFocusableElement] = React.useState(false);
 
     React.useEffect(() => {
+        // Whenever tab panel contents change, determine if the panel has a
+        // focusable element
         if (ref.current) {
             setHasFocusableElement(findFocusableNodes(ref.current).length > 0);
         }
@@ -52,6 +54,8 @@ export const TabPanel = (props: Props) => {
             id={id}
             aria-labelledby={ariaLabelledby}
             style={!active && styles.hidden}
+            // If the tab panel doesn't have focusable elements, it should be
+            // focusable so that it is included in the tab sequence of the page
             tabIndex={hasFocusableElement ? undefined : 0}
         >
             {children}
