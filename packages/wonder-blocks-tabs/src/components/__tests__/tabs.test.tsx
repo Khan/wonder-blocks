@@ -188,6 +188,53 @@ describe("Tabs", () => {
         });
     });
 
+    describe("Interactions", () => {
+        describe("Selecting a tab", () => {
+            it("should focus on the selected tab when a tab is clicked", async () => {
+                // Arrange
+                render(
+                    <ControlledTabs tabs={tabs} selectedTabId={tabs[0].id} />,
+                );
+
+                // Act
+                await userEvent.click(screen.getByRole("tab", {name: "Tab 2"}));
+
+                // Assert
+                expect(screen.getByRole("tab", {name: "Tab 2"})).toHaveFocus();
+            });
+
+            it("should select the tab when a tab is clicked", async () => {
+                // Arrange
+                render(
+                    <ControlledTabs tabs={tabs} selectedTabId={tabs[0].id} />,
+                );
+
+                // Act
+                await userEvent.click(screen.getByRole("tab", {name: "Tab 2"}));
+
+                // Assert
+                expect(
+                    screen.getByRole("tab", {name: "Tab 2"}),
+                ).toHaveAttribute("aria-selected", "true");
+            });
+
+            it("should change the tab panel content when a tab is clicked", async () => {
+                // Arrange
+                render(
+                    <ControlledTabs tabs={tabs} selectedTabId={tabs[0].id} />,
+                );
+
+                // Act
+                await userEvent.click(screen.getByRole("tab", {name: "Tab 2"}));
+
+                // Assert
+                expect(
+                    screen.getByText("Contents of tab 2"),
+                ).toBeInTheDocument();
+            });
+        });
+    });
+
     describe("Accessibility", () => {
         describe("axe", () => {
             it("should have no a11y violations when aria-label is provided", async () => {
