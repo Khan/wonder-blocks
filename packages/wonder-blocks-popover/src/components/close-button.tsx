@@ -39,7 +39,7 @@ export default class CloseButton extends React.Component<Props> {
     };
 
     render(): React.ReactNode {
-        const {light, "aria-label": ariaLabel, style, testId} = this.props;
+        const {"aria-label": ariaLabel, style, testId} = this.props;
         return (
             <PopoverContext.Consumer>
                 {({close}) => {
@@ -48,7 +48,8 @@ export default class CloseButton extends React.Component<Props> {
                             icon={xIcon}
                             aria-label={ariaLabel}
                             onClick={close}
-                            kind={light ? "primary" : "tertiary"}
+                            kind="tertiary"
+                            actionType="neutral"
                             style={style}
                             testId={testId}
                         />

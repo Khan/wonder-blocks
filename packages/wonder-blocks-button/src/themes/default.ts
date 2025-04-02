@@ -103,16 +103,10 @@ const theme = {
             // kind=secondary / color=default / light=false
             progressive: {
                 ...semanticColor.action.secondary.progressive,
-                default: {
-                    ...semanticColor.action.secondary.progressive.default,
-                    // NOTE: This is a special case for the secondary button
-                    background: "transparent",
-                },
                 focus: focusOutline,
                 hover: {
                     ...semanticColor.action.secondary.progressive.hover,
                     // NOTE: This is a special case for the secondary button
-                    background: "transparent",
                     icon: "transparent",
                 },
                 disabled: {
@@ -165,7 +159,6 @@ const theme = {
                 hover: {
                     ...semanticColor.action.secondary.destructive.hover,
                     // NOTE: This is a special case for the secondary button
-                    background: "transparent",
                     icon: "transparent",
                 },
                 disabled: {

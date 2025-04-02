@@ -33,7 +33,7 @@ type Props = {
 
 export default class CloseButton extends React.Component<Props> {
     render(): React.ReactNode {
-        const {light, onClick, style, testId} = this.props;
+        const {onClick, style, testId} = this.props;
 
         return (
             <ModalContext.Consumer>
@@ -51,7 +51,8 @@ export default class CloseButton extends React.Component<Props> {
                             // TODO(kevinb): provide a way to set this label
                             aria-label="Close modal"
                             onClick={onClick || closeModal}
-                            kind={light ? "primary" : "tertiary"}
+                            kind="tertiary"
+                            actionType="neutral"
                             style={style}
                             testId={testId}
                         />

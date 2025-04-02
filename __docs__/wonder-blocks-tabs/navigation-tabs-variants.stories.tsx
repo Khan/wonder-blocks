@@ -112,6 +112,7 @@ const generateRows = (rtl: boolean = false) => [
                     <IconButton
                         icon={IconMappings.iceCream}
                         aria-label="Ice cream"
+                        kind="tertiary"
                         size="medium"
                         href="#link-1"
                     />
@@ -120,6 +121,7 @@ const generateRows = (rtl: boolean = false) => [
                     <IconButton
                         icon={IconMappings.cookie}
                         aria-label="Cookie"
+                        kind="tertiary"
                         size="medium"
                         href="#link-2"
                     />

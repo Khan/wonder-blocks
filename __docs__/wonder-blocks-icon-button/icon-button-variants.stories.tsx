@@ -66,6 +66,22 @@ const KindVariants = ({kind}: {kind: "primary" | "secondary" | "tertiary"}) => {
                         </View>
                     </View>
                     <View style={[styles.gridCol]}>
+                        <LabelMedium>{kind}-neutral</LabelMedium>
+                        <View style={[styles.iconButtons]}>
+                            {sizes.map((size) => (
+                                <IconButton
+                                    aria-label="Send"
+                                    icon={paperPlaneIcon}
+                                    onClick={action("clicked")}
+                                    kind={kind}
+                                    actionType="neutral"
+                                    size={size}
+                                    key={size}
+                                />
+                            ))}
+                        </View>
+                    </View>
+                    <View style={[styles.gridCol]}>
                         <LabelMedium>{kind}-disabled</LabelMedium>
                         <View style={[styles.iconButtons]}>
                             {sizes.map((size) => (
@@ -98,14 +114,7 @@ const VariantsByTheme = ({themeName = "Default"}: {themeName?: string}) => (
     </View>
 );
 
-const AllVariants = () => (
-    <>
-        <VariantsByTheme />
-        <ThemeSwitcherContext.Provider value="khanmigo">
-            <VariantsByTheme themeName="Khanmigo" />
-        </ThemeSwitcherContext.Provider>
-    </>
-);
+const AllVariants = () => <VariantsByTheme />;
 
 export const Default: StoryComponentType = {
     render: AllVariants,
@@ -141,7 +150,7 @@ export const PressFocus: StoryComponentType = {
 const styles = StyleSheet.create({
     grid: {
         display: "grid",
-        gridTemplateColumns: "repeat(3, 250px)",
+        gridTemplateColumns: "repeat(4, 250px)",
         gap: spacing.large_24,
     },
     gridCol: {
