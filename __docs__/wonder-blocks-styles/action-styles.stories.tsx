@@ -70,6 +70,12 @@ export const InverseOutline: Story = {
                     icon={info}
                     style={actionStyles.inverse}
                 />
+                <IconButton
+                    kind="primary"
+                    disabled
+                    icon={info}
+                    style={actionStyles.inverse}
+                />
 
                 <Clickable onClick={() => {}} style={actionStyles.inverse}>
                     {() => "Clickable component"}

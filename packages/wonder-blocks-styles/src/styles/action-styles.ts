@@ -11,11 +11,13 @@ const pressColor = `color-mix(in srgb, ${semanticColor.border.strong} 85%, ${sem
  * NOTE: This will be deprecated in the future.
  */
 export const inverse = {
-    // Overriding borderColor only to preserve the visual integrity of the
-    // button, as there might be some cases where the interactive element
-    // already includes a border.
-    borderColor: semanticColor.border.inverse,
-    color: semanticColor.text.inverse,
+    ":not([aria-disabled=true])": {
+        // Overriding borderColor only to preserve the visual integrity of the
+        // button, as there might be some cases where the interactive element
+        // already includes a border.
+        borderColor: semanticColor.border.inverse,
+        color: semanticColor.text.inverse,
+    },
 
     ":hover:not([aria-disabled=true])": {
         color: semanticColor.text.inverse,

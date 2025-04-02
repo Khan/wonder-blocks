@@ -52,12 +52,18 @@ export default {
                                 icon={info}
                                 style={actionStyles.inverse}
                             />
+                            <IconButton
+                                kind="primary"
+                                disabled
+                                icon={info}
+                                style={actionStyles.inverse}
+                            />
                         </View>
                     ),
                 },
             },
             {
-                name: "Using Clickable",
+                name: "Using Clickable (no border set)",
                 props: {
                     children: (
                         <Clickable
@@ -70,7 +76,7 @@ export default {
                 },
             },
             {
-                name: "Using Clickable with initial border",
+                name: "Using Clickable with border",
                 props: {
                     children: (
                         <Clickable
