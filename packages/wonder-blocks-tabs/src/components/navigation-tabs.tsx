@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
         paddingBlock: sizing.size_0,
         margin: sizing.size_0,
         display: "flex",
-        gap: sizing.size_200,
+        gap: sizing.size_160,
         flexWrap: "nowrap",
     },
     currentUnderline: {

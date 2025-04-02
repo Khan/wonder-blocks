@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         [":has(a:active)" as any]: {
             boxShadow: `inset 0 -${sizing.size_060} 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
         },
-        paddingBlockStart: sizing.size_100,
+        paddingBlockStart: sizing.size_080,
         paddingBlockEnd: sizing.size_180,
         [breakpoint.mediaQuery.mdOrLarger]: {
             paddingBlockStart: sizing.size_200,

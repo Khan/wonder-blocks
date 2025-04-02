@@ -134,10 +134,10 @@ export const CustomStyles: StoryComponentType = {
         children: navigationTabItems,
         styles: {
             root: {
-                padding: sizing.size_200,
+                padding: sizing.size_160,
             },
             list: {
-                gap: sizing.size_400,
+                gap: sizing.size_320,
             },
         },
     },

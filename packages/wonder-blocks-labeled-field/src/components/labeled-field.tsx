@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     },
     errorSection: {
         flexDirection: "row",
-        gap: sizing.size_100,
+        gap: sizing.size_080,
     },
     errorSectionWithContent: {
         paddingBlockStart: sizing.size_120,

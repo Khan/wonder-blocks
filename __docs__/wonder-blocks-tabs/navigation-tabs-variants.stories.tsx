@@ -313,6 +313,6 @@ export const Zoom: Story = {
 
 const styles = StyleSheet.create({
     container: {
-        gap: sizing.size_200,
+        gap: sizing.size_160,
     },
 });
