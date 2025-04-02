@@ -16,7 +16,7 @@ import {MemoryRouter, Route, Switch} from "react-router";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
@@ -29,8 +29,7 @@ import TextField from "../../packages/wonder-blocks-form/src/components/text-fie
  * To use, supply an `onClick` function, a Phosphor icon asset (see the
  * `Icon>PhosphorIcon` section) and an `aria-label` to describe the button
  * functionality. Optionally specify href (URL), clientSideNav, color (Wonder
- * Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"), light
- * (whether the IconButton will be rendered on a dark background), disabled ,
+ * Blocks Blue or Red), kind ("primary", "secondary", or "tertiary"), disabled,
  * test ID, and custom styling.
  *
  * The size of an `IconButton` is based on how the `size` prop is defined (see
@@ -229,59 +228,6 @@ export const WithActionType: StoryComponentType = {
 };
 
 /**
- * An `IconButton` on a dark background. Only the primary kind is allowed to have
- * the `light` prop set to true.
- */
-export const Light: StoryComponentType = {
-    render: () => {
-        return (
-            <View style={[styles.dark, styles.row]}>
-                <IconButton
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    light={true}
-                    onClick={(e) => console.log("Click!")}
-                />
-                <IconButton
-                    actionType="destructive"
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    light={true}
-                    onClick={(e) => console.log("Click!")}
-                />
-            </View>
-        );
-    },
-};
-
-/**
- * This is a disabled icon button with the `light` prop set to true.
- */
-export const DisabledLight: StoryComponentType = {
-    render: () => {
-        return (
-            <View style={[styles.dark, styles.row]}>
-                <IconButton
-                    disabled={true}
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    light={true}
-                    onClick={(e) => console.log("Click!")}
-                />
-                <IconButton
-                    actionType="destructive"
-                    disabled={true}
-                    icon={magnifyingGlass}
-                    aria-label="search"
-                    light={true}
-                    onClick={(e) => console.log("Click!")}
-                />
-            </View>
-        );
-    },
-};
-
-/**
  * This example has an `href` prop in addition to the `onClick` prop. `href` takes a URL or path,
  * and clicking the icon button will result in a navigation to the specified page. Note that
  * `onClick` is not required if `href` is defined. The `target="_blank"` prop will cause the href
@@ -396,10 +342,6 @@ export const SubmittingForms: StoryComponentType = {
 };
 
 const styles = StyleSheet.create({
-    dark: {
-        backgroundColor: semanticColor.surface.inverse,
-        padding: spacing.medium_16,
-    },
     arrowsWrapper: {
         flexDirection: "row",
         justifyContent: "space-between",

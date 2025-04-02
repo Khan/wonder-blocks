@@ -5,7 +5,6 @@ import {userEvent} from "@testing-library/user-event";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
-import expectRenderError from "../../../../../utils/testing/expect-render-error";
 import {IconButton} from "../icon-button";
 
 describe("IconButton", () => {
@@ -39,19 +38,6 @@ describe("IconButton", () => {
 
         // Assert
         expect(icon.innerHTML).toEqual(expect.stringContaining("mask-image"));
-    });
-
-    test("throw an error for if light and not primary", async () => {
-        expectRenderError(
-            <IconButton
-                icon={magnifyingGlassIcon}
-                aria-label="search"
-                kind="secondary"
-                light={true}
-                onClick={() => void 0}
-            />,
-            "Light is only supported for primary IconButtons",
-        );
     });
 
     test("client-side navigation", async () => {

@@ -41,10 +41,6 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     kind?: "primary" | "secondary" | "tertiary";
     /**
-     * Whether the icon button is on a dark/colored background.
-     */
-    light?: boolean;
-    /**
      * Whether the icon button is disabled.
      */
     disabled?: boolean;
@@ -192,7 +188,6 @@ export const IconButton: React.ForwardRefExoticComponent<
         disabled = false,
         href,
         kind = "primary",
-        light = false,
         size = "medium",
         skipClientNav,
         tabIndex,
@@ -228,7 +223,6 @@ export const IconButton: React.ForwardRefExoticComponent<
                 disabled={disabled}
                 href={href}
                 kind={kind}
-                light={light}
                 ref={ref}
                 skipClientNav={skipClientNav}
                 size={size}

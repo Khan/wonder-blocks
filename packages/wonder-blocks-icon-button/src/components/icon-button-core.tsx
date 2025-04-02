@@ -95,7 +95,6 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         href,
         icon,
         kind = "primary",
-        light = false,
         size = "medium",
         skipClientNav,
         style,
@@ -110,7 +109,6 @@ const IconButtonCore: React.ForwardRefExoticComponent<
             actionType,
             !!disabled,
             kind,
-            light,
             size,
             theme,
             themeName,
@@ -194,34 +192,19 @@ const sharedStyles = StyleSheet.create({
 
 const styles: Record<string, any> = {};
 
-type ActionType =
-    | "progressive"
-    | "destructive"
-    | "disabled"
-    // TODO(WB-1852): Remove light variants.
-    | "progressiveLight"
-    | "destructiveLight"
-    | "disabledLight";
+type ActionType = "progressive" | "destructive" | "disabled";
 
 function getStylesByKind(
     actionType: IconButtonActionType = "progressive",
     disabled: boolean,
     kind: Kind,
-    light: boolean,
     theme: IconButtonThemeContract,
 ) {
-    let actionTypeOrDisabled: ActionType = disabled ? "disabled" : actionType;
+    const actionTypeOrDisabled: ActionType = disabled ? "disabled" : actionType;
 
     const themeVariant = theme.color[kind][actionTypeOrDisabled];
 
     if (kind === "primary") {
-        // NOTE: Primary is the only kind that supports light variants.
-        if (light) {
-            actionTypeOrDisabled = `${actionTypeOrDisabled}Light`;
-        }
-
-        const themeVariant = theme.color[kind][actionTypeOrDisabled];
-
         return {
             default: {
                 borderColor: themeVariant.default.border,
@@ -246,7 +229,6 @@ function getStylesByKind(
             disabled: {
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
-                borderColor: themeVariant.default.border,
             },
         };
     }
@@ -273,7 +255,6 @@ function getStylesByKind(
             disabled: {
                 background: themeVariant.default.background,
                 color: themeVariant.default.foreground,
-                borderColor: themeVariant.focus.border,
             },
         };
     }
@@ -291,31 +272,20 @@ const _generateStyles = (
     actionType: IconButtonActionType = "progressive",
     disabled: boolean,
     kind: Kind,
-    light: boolean,
     size: IconButtonSize,
     theme: IconButtonThemeContract,
     themeName: string,
 ) => {
-    const buttonType = `${actionType}-d_${disabled}-${kind}-l_${light}-${size}-${themeName}`;
+    const buttonType = `${actionType}-d_${disabled}-${kind}-${size}-${themeName}`;
     if (styles[buttonType]) {
         return styles[buttonType];
-    }
-
-    if (light && kind !== "primary") {
-        throw new Error("Light is only supported for primary IconButtons");
     }
 
     const pixelsForSize = targetPixelsForSize(size);
 
     // Override styles for each kind of button. This is useful for merging
     // pseudo-classes properly.
-    const kindOverrides = getStylesByKind(
-        actionType,
-        disabled,
-        kind,
-        light,
-        theme,
-    );
+    const kindOverrides = getStylesByKind(actionType, disabled, kind, theme);
 
     const disabledStatesStyles = kindOverrides.disabled;
 
