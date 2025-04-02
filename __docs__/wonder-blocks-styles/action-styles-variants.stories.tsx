@@ -100,6 +100,9 @@ export default {
                         <StyledButton
                             style={[
                                 {
+                                    // NOTE: Swapping the colors is intentional
+                                    // here to show the inverse version of the
+                                    // button.
                                     border: `1px solid ${semanticColor.status.success.background}`,
                                     backgroundColor:
                                         semanticColor.status.success.foreground,
