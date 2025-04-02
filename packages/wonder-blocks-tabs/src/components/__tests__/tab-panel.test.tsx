@@ -20,7 +20,10 @@ describe("TabPanel", () => {
         );
 
         // Act
-        const tabPanel = await screen.findByRole("tabpanel");
+        const tabPanel = await screen.findByRole("tabpanel", {
+            // We expect the tab panel to be hidden if it is not active
+            hidden: true,
+        });
 
         // Assert
         expect(tabPanel).toBeInTheDocument();
@@ -54,7 +57,37 @@ describe("TabPanel", () => {
         );
 
         // Assert
-        expect(await screen.findByRole("tabpanel")).toBe(ref.current);
+        expect(await screen.findByRole("tabpanel", {hidden: true})).toBe(
+            ref.current,
+        );
+    });
+
+    it("should not be visible if active is false", async () => {
+        // Arrange
+        render(
+            <TabPanel {...props} active={false}>
+                TabPanel
+            </TabPanel>,
+        );
+        // Act
+        const tabPanel = await screen.findByRole("tabpanel", {hidden: true});
+
+        // Assert
+        expect(tabPanel).not.toBeVisible();
+    });
+
+    it("should be visible if active is true", async () => {
+        // Arrange
+        render(
+            <TabPanel {...props} active={true}>
+                TabPanel
+            </TabPanel>,
+        );
+        // Act
+        const tabPanel = await screen.findByRole("tabpanel");
+
+        // Assert
+        expect(tabPanel).toBeVisible();
     });
 
     describe("Props", () => {
@@ -68,7 +101,9 @@ describe("TabPanel", () => {
             );
 
             // Act
-            const tabPanel = await screen.findByRole("tabpanel");
+            const tabPanel = await screen.findByRole("tabpanel", {
+                hidden: true,
+            });
 
             // Assert
             expect(tabPanel).toHaveAttribute("id", id);
@@ -116,7 +151,9 @@ describe("TabPanel", () => {
                 );
 
                 // Act
-                const tabPanel = await screen.findByRole("tabpanel");
+                const tabPanel = await screen.findByRole("tabpanel", {
+                    hidden: true,
+                });
 
                 // Assert
                 expect(tabPanel).toHaveAttribute(

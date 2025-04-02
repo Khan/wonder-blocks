@@ -1,4 +1,6 @@
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 type Props = {
     /**
@@ -13,8 +15,14 @@ type Props = {
      * The id of the associated element with role="tab".
      */
     "aria-labelledby": string;
+
+    /**
+     * Whether the tab panel is active.
+     */
+    active?: boolean;
 };
 
+const StyledDiv = addStyle("div");
 /**
  * A component that has `role="tabpanel"` and is used to represent a tab panel
  * in a tabbed interface.
@@ -23,10 +31,27 @@ export const TabPanel = React.forwardRef(function TabPanel(
     props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-    const {children, id, "aria-labelledby": ariaLabelledby} = props;
+    const {
+        children,
+        id,
+        "aria-labelledby": ariaLabelledby,
+        active = false,
+    } = props;
     return (
-        <div ref={ref} role="tabpanel" id={id} aria-labelledby={ariaLabelledby}>
+        <StyledDiv
+            ref={ref}
+            role="tabpanel"
+            id={id}
+            aria-labelledby={ariaLabelledby}
+            style={!active && styles.hidden}
+        >
             {children}
-        </div>
+        </StyledDiv>
     );
+});
+
+const styles = StyleSheet.create({
+    hidden: {
+        display: "none",
+    },
 });

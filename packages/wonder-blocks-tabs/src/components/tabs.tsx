@@ -191,6 +191,7 @@ export const Tabs = React.forwardRef(function Tabs(
                         key={tab.id}
                         id={getTabPanelId(tab.id)}
                         aria-labelledby={getTabId(tab.id)}
+                        active={selectedTabId === tab.id}
                     >
                         {selectedTabId === tab.id && tab.panel}
                     </TabPanel>
