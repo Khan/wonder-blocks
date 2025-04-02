@@ -1,7 +1,7 @@
 import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {focus} from "./focus-styles";
 
-const pressColor = `color-mix(in srgb, ${semanticColor.border.strong} 85%, ${semanticColor.border.inverse})`;
+const pressColor = `color-mix(in srgb, ${semanticColor.border.strong} 55%, ${semanticColor.border.inverse})`;
 
 /**
  * The inverse styles for an interactive control.
@@ -32,7 +32,6 @@ export const inverse = {
 
     ":active:not([aria-disabled=true])": {
         borderRadius: spacing.xSmall_8,
-        color: pressColor,
         // This is a slightly darker color than the inverse color.
         borderColor: pressColor,
     },
