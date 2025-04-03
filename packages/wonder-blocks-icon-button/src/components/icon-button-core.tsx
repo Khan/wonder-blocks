@@ -192,82 +192,6 @@ const sharedStyles = StyleSheet.create({
 
 const styles: Record<string, any> = {};
 
-type ActionType = "progressive" | "destructive" | "disabled";
-
-function getStylesByKind(
-    actionType: IconButtonActionType = "progressive",
-    disabled: boolean,
-    kind: Kind,
-    theme: IconButtonThemeContract,
-) {
-    const actionTypeOrDisabled: ActionType = disabled ? "disabled" : actionType;
-
-    const themeVariant = theme.color[kind][actionTypeOrDisabled];
-
-    if (kind === "primary") {
-        return {
-            default: {
-                borderColor: themeVariant.default.border,
-                background: themeVariant.default.background,
-                color: themeVariant.default.foreground,
-            },
-            ":hover": {
-                background: themeVariant.hover.background,
-                color: themeVariant.hover.foreground,
-                borderColor: themeVariant.hover.border,
-                borderStyle: "solid",
-                borderWidth: theme.border.width.hover,
-            },
-            ...focusStyles.focus,
-            ":active": {
-                borderColor: themeVariant.press.border,
-                borderStyle: "solid",
-                borderWidth: theme.border.width.press,
-                background: themeVariant.press.background,
-                color: themeVariant.press.foreground,
-            },
-            disabled: {
-                background: themeVariant.default.background,
-                color: themeVariant.default.foreground,
-            },
-        };
-    }
-
-    // NOTE: These styles will diverge before we create the new polaris theme.
-    if (kind === "secondary" || kind === "tertiary") {
-        return {
-            default: {
-                borderColor: themeVariant.default.border,
-                background: themeVariant.default.background,
-                color: themeVariant.default.foreground,
-            },
-            ":hover": {
-                borderColor: themeVariant.hover.border,
-                background: themeVariant.hover.background,
-                color: themeVariant.hover.foreground,
-            },
-            ...focusStyles.focus,
-            ":active": {
-                borderColor: themeVariant.press.border,
-                background: themeVariant.press.background,
-                color: themeVariant.press.foreground,
-            },
-            disabled: {
-                background: themeVariant.default.background,
-                color: themeVariant.default.foreground,
-            },
-        };
-    }
-
-    return {
-        default: {},
-        ":hover": {},
-        ":focus-visible": {},
-        ":active": {},
-        disabled: {},
-    };
-}
-
 const _generateStyles = (
     actionType: IconButtonActionType = "progressive",
     disabled: boolean,
@@ -283,46 +207,72 @@ const _generateStyles = (
 
     const pixelsForSize = targetPixelsForSize(size);
 
-    // Override styles for each kind of button. This is useful for merging
-    // pseudo-classes properly.
-    const kindOverrides = getStylesByKind(actionType, disabled, kind, theme);
+    const borderWidthKind = theme.border.width[kind];
+    const outlineOffsetKind = theme.border.offset[kind];
+    const themeVariant = theme.color[kind][actionType];
+    const disabledState = theme.color[kind].disabled;
 
-    const disabledStatesStyles = kindOverrides.disabled;
+    const disabledStatesStyles = {
+        borderColor: disabledState.border,
+        background: disabledState.background,
+        color: disabledState.foreground,
+    };
 
     const newStyles = {
         default: {
             height: pixelsForSize,
             width: pixelsForSize,
             borderRadius: theme.border.radius.default,
-            ...kindOverrides.default,
+            // theming
+            borderStyle: "solid",
+            borderWidth: borderWidthKind.default,
+            borderColor: themeVariant.default.border,
+            background: themeVariant.default.background,
+            color: themeVariant.default.foreground,
 
             /**
              * States
              *
              * Defined in the following order: hover, focus, active.
              */
-            ":hover": {
-                borderRadius: theme.border.radius.default,
-                ...kindOverrides[":hover"],
+            ":hover:not([aria-disabled=true])": {
+                background: themeVariant.hover.background,
+                color: themeVariant.hover.foreground,
+                outline:
+                    kind === "primary"
+                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        : undefined,
+                outlineOffset:
+                    kind === "primary" ? outlineOffsetKind : undefined,
+                border:
+                    kind !== "primary"
+                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        : undefined,
             },
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
             ["@media not (hover: hover)"]: {
                 ":hover": {
                     // reset hover styles on non-touch devices
-                    borderRadius: theme.border.radius.default,
                     backgroundColor: "transparent",
                 },
             },
 
             // :focus-visible -> Provide focus styles for keyboard users only.
-            ":focus-visible": {
-                borderRadius: theme.border.radius.default,
-                ...kindOverrides[":focus-visible"],
-            },
-            ":active": {
-                borderRadius: theme.border.radius.default,
-                ...kindOverrides[":active"],
+            ...focusStyles.focus,
+            ":active:not([aria-disabled=true])": {
+                // primary
+                outlineColor:
+                    kind === "primary"
+                        ? themeVariant.press.border
+                        : "undefined",
+                // secondary, tertiary
+                border:
+                    kind !== "primary"
+                        ? `${borderWidthKind.hover}px solid ${themeVariant.press.border}`
+                        : undefined,
+                background: themeVariant.press.background,
+                color: themeVariant.press.foreground,
             },
         },
         disabled: {
@@ -334,8 +284,8 @@ const _generateStyles = (
             // we are able to remove the hover border when the button is
             // disabled.
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
-            ":hover": {...disabledStatesStyles, border: "none"},
-            ":active": {...disabledStatesStyles, border: "none"},
+            ":hover": {...disabledStatesStyles, outline: "none"},
+            ":active": {...disabledStatesStyles, outline: "none"},
             ":focus-visible": disabledStatesStyles,
         },
     } as const;

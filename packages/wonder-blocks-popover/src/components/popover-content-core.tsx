@@ -82,7 +82,6 @@ export default class PopoverContentCore extends React.Component<Props> {
                 {closeButtonVisible && (
                     <CloseButton
                         aria-label={closeButtonLabel}
-                        light={closeButtonLight}
                         style={[
                             styles.closeButton,
                             closeButtonLight && actionStyles.inverse,

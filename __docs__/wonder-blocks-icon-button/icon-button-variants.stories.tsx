@@ -5,7 +5,6 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
@@ -30,81 +29,84 @@ const sizes: ("xsmall" | "small" | "medium" | "large")[] = [
 
 const KindVariants = ({kind}: {kind: "primary" | "secondary" | "tertiary"}) => {
     return (
-        <ThemeSwitcherContext.Consumer>
-            {(theme) => (
-                <>
-                    <View style={[styles.gridCol]}>
-                        <LabelMedium>{kind}-default</LabelMedium>
-                        <View style={[styles.iconButtons]}>
-                            {sizes.map((size) => (
-                                <IconButton
-                                    aria-label="Send"
-                                    icon={paperPlaneIcon}
-                                    onClick={action("clicked")}
-                                    kind={kind}
-                                    actionType="progressive"
-                                    size={size}
-                                    key={size}
-                                />
-                            ))}
-                        </View>
-                    </View>
-                    <View style={[styles.gridCol]}>
-                        <LabelMedium>{kind}-destructive</LabelMedium>
-                        <View style={[styles.iconButtons]}>
-                            {sizes.map((size) => (
-                                <IconButton
-                                    aria-label="Send"
-                                    icon={paperPlaneIcon}
-                                    onClick={action("clicked")}
-                                    kind={kind}
-                                    actionType="destructive"
-                                    size={size}
-                                    key={size}
-                                />
-                            ))}
-                        </View>
-                    </View>
-                    <View style={[styles.gridCol]}>
-                        <LabelMedium>{kind}-disabled</LabelMedium>
-                        <View style={[styles.iconButtons]}>
-                            {sizes.map((size) => (
-                                <IconButton
-                                    aria-label="Send"
-                                    icon={paperPlaneIcon}
-                                    onClick={action("clicked")}
-                                    kind={kind}
-                                    disabled={true}
-                                    size={size}
-                                    key={size}
-                                />
-                            ))}
-                        </View>
-                    </View>
-                </>
-            )}
-        </ThemeSwitcherContext.Consumer>
+        <>
+            <View style={[styles.gridCol]}>
+                <LabelMedium>{kind}-default</LabelMedium>
+                <View style={[styles.iconButtons]}>
+                    {sizes.map((size) => (
+                        <IconButton
+                            aria-label="Send"
+                            icon={paperPlaneIcon}
+                            onClick={action("clicked")}
+                            kind={kind}
+                            actionType="progressive"
+                            size={size}
+                            key={size}
+                        />
+                    ))}
+                </View>
+            </View>
+            <View style={[styles.gridCol]}>
+                <LabelMedium>{kind}-destructive</LabelMedium>
+                <View style={[styles.iconButtons]}>
+                    {sizes.map((size) => (
+                        <IconButton
+                            aria-label="Send"
+                            icon={paperPlaneIcon}
+                            onClick={action("clicked")}
+                            kind={kind}
+                            actionType="destructive"
+                            size={size}
+                            key={size}
+                        />
+                    ))}
+                </View>
+            </View>
+            <View style={[styles.gridCol]}>
+                <LabelMedium>{kind}-neutral</LabelMedium>
+                <View style={[styles.iconButtons]}>
+                    {sizes.map((size) => (
+                        <IconButton
+                            aria-label="Send"
+                            icon={paperPlaneIcon}
+                            onClick={action("clicked")}
+                            kind={kind}
+                            actionType="neutral"
+                            size={size}
+                            key={size}
+                        />
+                    ))}
+                </View>
+            </View>
+            <View style={[styles.gridCol]}>
+                <LabelMedium>{kind}-disabled</LabelMedium>
+                <View style={[styles.iconButtons]}>
+                    {sizes.map((size) => (
+                        <IconButton
+                            aria-label="Send"
+                            icon={paperPlaneIcon}
+                            onClick={action("clicked")}
+                            kind={kind}
+                            disabled={true}
+                            size={size}
+                            key={size}
+                        />
+                    ))}
+                </View>
+            </View>
+        </>
     );
 };
 
-const VariantsByTheme = ({themeName = "Default"}: {themeName?: string}) => (
+const AllVariants = () => (
     <View style={{marginBottom: spacing.large_24}}>
-        <HeadingLarge>{themeName} theme</HeadingLarge>
+        <HeadingLarge>Default theme</HeadingLarge>
         <View style={styles.grid}>
             <KindVariants kind="primary" />
             <KindVariants kind="secondary" />
             <KindVariants kind="tertiary" />
         </View>
     </View>
-);
-
-const AllVariants = () => (
-    <>
-        <VariantsByTheme />
-        <ThemeSwitcherContext.Provider value="khanmigo">
-            <VariantsByTheme themeName="Khanmigo" />
-        </ThemeSwitcherContext.Provider>
-    </>
 );
 
 export const Default: StoryComponentType = {
@@ -141,7 +143,7 @@ export const PressFocus: StoryComponentType = {
 const styles = StyleSheet.create({
     grid: {
         display: "grid",
-        gridTemplateColumns: "repeat(3, 250px)",
+        gridTemplateColumns: "repeat(4, 250px)",
         gap: spacing.large_24,
     },
     gridCol: {

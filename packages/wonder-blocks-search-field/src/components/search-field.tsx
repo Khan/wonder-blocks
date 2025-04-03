@@ -186,6 +186,7 @@ const SearchField: React.ForwardRefExoticComponent<
                 icon={xIcon}
                 size="small"
                 kind="tertiary"
+                actionType="neutral"
                 onClick={handleClear}
                 style={styles.dismissIcon}
                 aria-label={clearAriaLabel}

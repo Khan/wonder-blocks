@@ -135,7 +135,6 @@ export default function ModalPanel({
         >
             {closeButtonVisible && (
                 <CloseButton
-                    light={isInverse}
                     onClick={onClose}
                     style={[
                         styles.closeButton,

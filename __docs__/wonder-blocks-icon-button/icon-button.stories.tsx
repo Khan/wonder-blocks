@@ -189,40 +189,72 @@ export const Variants: StoryComponentType = {
 
 /**
  * IconButton has an `actionType` prop that is either `progressive` (the default, as shown
- * above) or `destructive` (as can seen below):
+ * above), `destructive` or `neutral` (as can seen below):
  */
 export const WithActionType: StoryComponentType = {
     name: "ActionType",
     render: (args) => (
-        <View style={styles.row}>
-            <IconButton
-                {...args}
-                icon={minusCircle}
-                onClick={() => {}}
-                actionType="destructive"
-            />
-            <IconButton
-                {...args}
-                icon={minusCircle}
-                onClick={() => {}}
-                kind="secondary"
-                actionType="destructive"
-            />
-            <IconButton
-                {...args}
-                icon={minusCircle}
-                onClick={() => {}}
-                kind="tertiary"
-                actionType="destructive"
-            />
-            <IconButton
-                {...args}
-                disabled={true}
-                icon={minusCircle}
-                aria-label="search"
-                onClick={(e) => console.log("Click!")}
-                actionType="destructive"
-            />
+        <View style={{gap: spacing.medium_16}}>
+            <View style={styles.row}>
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    actionType="destructive"
+                />
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="destructive"
+                />
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="destructive"
+                />
+                <IconButton
+                    {...args}
+                    disabled={true}
+                    icon={minusCircle}
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                    actionType="destructive"
+                />
+            </View>
+            <View style={styles.row}>
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    actionType="neutral"
+                />
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    kind="secondary"
+                    actionType="neutral"
+                />
+                <IconButton
+                    {...args}
+                    icon={minusCircle}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    actionType="neutral"
+                />
+                <IconButton
+                    {...args}
+                    disabled={true}
+                    icon={minusCircle}
+                    aria-label="search"
+                    onClick={(e) => console.log("Click!")}
+                    actionType="neutral"
+                />
+            </View>
         </View>
     ),
 };
@@ -344,8 +376,7 @@ export const SubmittingForms: StoryComponentType = {
 const styles = StyleSheet.create({
     arrowsWrapper: {
         flexDirection: "row",
-        justifyContent: "space-between",
-        width: spacing.xxxLarge_64,
+        gap: spacing.medium_16,
     },
     row: {
         display: "flex",
