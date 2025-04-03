@@ -196,6 +196,22 @@ describe("Tab", () => {
                 // Assert
                 expect(tab).not.toHaveAttribute("aria-selected");
             });
+
+            it("should set aria attributes when provided", async () => {
+                // Arrange
+                const ariaLabel = "Specific aria label";
+                render(
+                    <Tab {...props} aria-label={ariaLabel}>
+                        Label
+                    </Tab>,
+                );
+
+                // Act
+                const tab = await screen.findByRole("tab");
+
+                // Assert
+                expect(tab).toHaveAttribute("aria-label", ariaLabel);
+            });
         });
 
         describe("Focus", () => {

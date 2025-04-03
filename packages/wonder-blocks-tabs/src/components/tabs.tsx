@@ -1,10 +1,10 @@
 import * as React from "react";
-import {keys} from "@khanacademy/wonder-blocks-core";
+import {AriaProps, keys} from "@khanacademy/wonder-blocks-core";
 import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
 
-export type TabItem = {
+export type TabItem = AriaProps & {
     /**
      * A unique id for the tab.
      */
@@ -195,21 +195,28 @@ export const Tabs = React.forwardRef(function Tabs(
                 onBlur={handleTablistBlur}
             >
                 {tabs.map((tab) => {
+                    const {
+                        id,
+                        label,
+                        panel: _,
+                        ...otherProps // Should only include aria related props
+                    } = tab;
                     return (
                         <Tab
-                            key={tab.id}
+                            {...otherProps}
+                            key={id}
                             onClick={() => {
-                                onTabSelected(tab.id);
+                                onTabSelected(id);
                             }}
-                            id={getTabId(tab.id)}
-                            aria-controls={getTabPanelId(tab.id)}
-                            selected={tab.id === selectedTabId}
+                            id={getTabId(id)}
+                            aria-controls={getTabPanelId(id)}
+                            selected={id === selectedTabId}
                             onKeyDown={handleKeyDown}
                             ref={(element) => {
                                 tabRefs.current[tab.id] = element;
                             }}
                         >
-                            {tab.label}
+                            {label}
                         </Tab>
                     );
                 })}

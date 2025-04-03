@@ -1,6 +1,7 @@
+import {AriaProps} from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
 
-type Props = {
+type Props = AriaProps & {
     /**
      * The contents of the tab label.
      */
@@ -42,9 +43,12 @@ export const Tab = React.forwardRef(function Tab(
         "aria-controls": ariaControls,
         selected,
         onKeyDown,
+        // Should only include aria related props
+        ...otherProps
     } = props;
     return (
         <button
+            {...otherProps}
             role="tab"
             onClick={onClick}
             ref={ref}

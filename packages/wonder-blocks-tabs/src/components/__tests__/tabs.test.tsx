@@ -391,6 +391,32 @@ describe("Tabs", () => {
                     ariaLabelledby,
                 );
             });
+
+            it("should use aria attributes from the tab items", async () => {
+                // Arrange
+                const ariaLabel = "Specific aria label";
+                render(
+                    <Tabs
+                        tabs={[
+                            {
+                                label: "Tab 1",
+                                id: "tab-1",
+                                "aria-label": ariaLabel,
+                                panel: "Content",
+                            },
+                        ]}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label="Tabs Example"
+                    />,
+                );
+
+                // Act
+                const tab = await screen.findByRole("tab", {name: ariaLabel});
+
+                // Assert
+                expect(tab).toHaveAttribute("aria-label", ariaLabel);
+            });
         });
 
         describe("Keyboard Navigation", () => {
