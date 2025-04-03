@@ -7,6 +7,13 @@ import {Tablist} from "./tablist";
 export type TabItem = AriaProps & {
     /**
      * A unique id for the tab.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The tab will have an id formatted as `${id}-tab`
+     * - The associated tab panel will have an id formatted as `${id}-panel`
+     *
+     * It is also used to communicate the id of the selected tab via the
+     * `selectedTabId` and `onTabSelected` props.
      */
     id: string;
     /**
@@ -42,6 +49,21 @@ type AriaLabelOrAriaLabelledby =
 
 type Props = {
     /**
+     * A unique id to use as the base of the ids for the elements within the
+     * component. If the `id` prop is not provided, a base unique id will be
+     * auto-generated.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The root will have an id of `${id}`
+     * - The tablist will have an id formatted as ${id}-tablist
+     *
+     * If you need to apply an id to a specific tab or tab panel, the `id` for
+     * the tab item in the `tabs` prop will be used:
+     * - The tab will have an id formatted as `${id}-tab`
+     * - The associated tab panel will have an id formatted as `${id}-panel`
+     */
+    id?: string;
+    /**
      * The tabs to render. The Tabs component will wire up the tab and panel
      * attributes for accessibility.
      */
@@ -69,7 +91,7 @@ type Props = {
  * Returns the id of the tab.
  */
 function getTabId(tabId: string) {
-    return `${tabId}__tab`;
+    return `${tabId}-tab`;
 }
 
 /**
@@ -77,7 +99,7 @@ function getTabId(tabId: string) {
  */
 
 function getTabPanelId(tabId: string) {
-    return `${tabId}__panel`;
+    return `${tabId}-panel`;
 }
 
 /**
@@ -97,10 +119,16 @@ export const Tabs = React.forwardRef(function Tabs(
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         activationMode = "manual",
+        id,
     } = props;
 
     const focusedTabId = React.useRef(selectedTabId);
+
     const tabRefs = React.useRef<{[key: string]: HTMLButtonElement | null}>({});
+
+    const generatedUniqueId = React.useId();
+    const uniqueId = id ?? generatedUniqueId;
+    const tablistId = `${uniqueId}-tablist`;
 
     React.useEffect(() => {
         focusedTabId.current = selectedTabId;
@@ -188,11 +216,12 @@ export const Tabs = React.forwardRef(function Tabs(
     }, [selectedTabId]);
 
     return (
-        <div ref={ref}>
+        <div ref={ref} id={uniqueId}>
             <Tablist
                 aria-label={ariaLabel}
                 aria-labelledby={ariaLabelledby}
                 onBlur={handleTablistBlur}
+                id={tablistId}
             >
                 {tabs.map((tab) => {
                     const {

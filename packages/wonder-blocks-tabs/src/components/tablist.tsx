@@ -5,6 +5,10 @@ import * as React from "react";
 
 type Props = {
     /**
+     * The id of the tablist.
+     */
+    id?: string;
+    /**
      * The contents of the tablist.
      */
     children: React.ReactNode;
@@ -34,6 +38,7 @@ export const Tablist = React.forwardRef(function Tablist(
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
     const {
+        id,
         children,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
@@ -42,6 +47,7 @@ export const Tablist = React.forwardRef(function Tablist(
 
     return (
         <StyledDiv
+            id={id}
             role="tablist"
             style={styles.tablist}
             ref={ref}

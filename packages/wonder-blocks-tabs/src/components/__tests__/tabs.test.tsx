@@ -164,6 +164,125 @@ describe("Tabs", () => {
         expect(ref.current).toBe(container.firstChild);
     });
 
+    describe("Props", () => {
+        describe("id", () => {
+            it("should use the provided id for the root element", async () => {
+                // Arrange
+                const id = "id";
+
+                // Act
+                const {container} = render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        id={id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- check the root element
+                expect(container.firstChild).toHaveAttribute("id", id);
+            });
+
+            it("should use the provided id for the tablist element", async () => {
+                // Arrange
+                const id = "id";
+                render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        id={id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist).toHaveAttribute("id", `${id}-tablist`);
+            });
+
+            it("should autogenerate an id for the root element if no id is provided", async () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- check the root element
+                expect(container.firstChild).toHaveAttribute("id");
+            });
+
+            it("should autogenerate an id for the tablist element if no id is provided", async () => {
+                // Arrange
+                render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist.id).toEndWith("-tablist");
+            });
+        });
+
+        describe("tab item ids", () => {
+            it("should use the tab item id for the tab element", () => {
+                // Arrange
+                const id = "tab-id";
+                render(
+                    <Tabs
+                        tabs={[{id, label: "Label", panel: "Panel"}]}
+                        selectedTabId={id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tab = screen.getByRole("tab", {name: "Label"});
+
+                // Assert
+                expect(tab).toHaveAttribute("id", `${id}-tab`);
+            });
+
+            it("should use the tab item id for the tab panel element", () => {
+                // Arrange
+                const id = "tab-id";
+                render(
+                    <Tabs
+                        tabs={[{id, label: "Label", panel: "Panel"}]}
+                        selectedTabId={id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tabPanel = screen.getByRole("tabpanel", {name: "Label"});
+
+                // Assert
+                expect(tabPanel).toHaveAttribute("id", `${id}-panel`);
+            });
+        });
+    });
+
     describe("Event Handlers", () => {
         it("should call the onTabSelected handler with the tab id when a tab is clicked", async () => {
             // Arrange
