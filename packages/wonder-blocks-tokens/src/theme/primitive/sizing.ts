@@ -50,6 +50,7 @@ export const sizing = {
     size_260: pxToRem(26),
     size_280: pxToRem(28),
     size_320: pxToRem(32),
+    size_340: pxToRem(34),
     size_360: pxToRem(36),
     size_400: pxToRem(40),
     size_480: pxToRem(48),
