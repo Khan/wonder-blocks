@@ -85,9 +85,9 @@ export const AutomaticActivation: StoryComponentType = {
 
 /**
  * When a tab panel has focusable elements, pressing `Tab` from the tablist
- * will move focus to the first focusable element in the tab. If there are no
- * focusable elements in the active panel, the tabpanel will be focused on
- * instead.
+ * will move focus to the first focusable element in the tab panel. If there
+ * are no focusable elements in the active tab panel, the tab panel will be
+ * focused instead.
  */
 export const WithFocusablePanelContent: StoryComponentType = {
     args: {
