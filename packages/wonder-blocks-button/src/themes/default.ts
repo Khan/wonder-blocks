@@ -253,7 +253,7 @@ const theme = {
             },
             // kind=tertiary / color=destructive / light=false
             destructive: {
-                ...semanticColor.action.tertiary.progressive,
+                ...semanticColor.action.tertiary.destructive,
                 focus: focusOutline,
                 disabled: {
                     foreground:
