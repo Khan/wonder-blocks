@@ -75,6 +75,18 @@ describe("Tablist", () => {
             // Assert
             expect(tablist).toHaveAttribute("id", id);
         });
+
+        it("should set the testId for the tablist", async () => {
+            // Arrange
+            const testId = "test-id";
+            render(<Tablist testId={testId}>Tablist</Tablist>);
+
+            // Act
+            const tablist = await screen.findByRole("tablist");
+
+            // Assert
+            expect(tablist).toHaveAttribute("data-testid", testId);
+        });
     });
 
     describe("Accessibility", () => {

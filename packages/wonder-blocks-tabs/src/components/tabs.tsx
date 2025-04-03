@@ -24,6 +24,14 @@ export type TabItem = AriaProps & {
      * The contents of the panel associated with the tab.
      */
     panel: React.ReactNode;
+    /**
+     * Optional test ID for e2e testing.
+     *
+     * Here is how the test id is used for the different elements in the component:
+     * - The tab will have a testId formatted as `${testId}-tab`
+     * - The associated tab panel will have a testId formatted as `${testId}-panel`
+     */
+    testId?: string;
 };
 
 /**
@@ -63,6 +71,18 @@ type Props = {
      * - The associated tab panel will have an id formatted as `${id}-panel`
      */
     id?: string;
+    /**
+     * Optional test ID for e2e testing. Here is how the test id is used for the
+     * different elements in the component:
+     * - The root will have a testId formatted as `${testId}`
+     * - The tablist will have a testId formatted as `${testId}-tablist`
+     *
+     * If you need to apply a testId to a specific tab or tab panel, add the
+     * test id to the tab item in the `tabs` prop:
+     * - The tab will have a testId formatted as `${testId}-tab`
+     * - The associated tab panel will have a testId formatted as `${testId}-panel`
+     */
+    testId?: string;
     /**
      * The tabs to render. The Tabs component will wire up the tab and panel
      * attributes for accessibility.
@@ -120,6 +140,7 @@ export const Tabs = React.forwardRef(function Tabs(
         "aria-labelledby": ariaLabelledby,
         activationMode = "manual",
         id,
+        testId,
     } = props;
 
     const focusedTabId = React.useRef(selectedTabId);
@@ -216,18 +237,20 @@ export const Tabs = React.forwardRef(function Tabs(
     }, [selectedTabId]);
 
     return (
-        <div ref={ref} id={uniqueId}>
+        <div ref={ref} id={uniqueId} data-testid={testId}>
             <Tablist
                 aria-label={ariaLabel}
                 aria-labelledby={ariaLabelledby}
                 onBlur={handleTablistBlur}
                 id={tablistId}
+                testId={testId && `${testId}-tablist`}
             >
                 {tabs.map((tab) => {
                     const {
                         id,
                         label,
                         panel: _,
+                        testId: tabTestId,
                         ...otherProps // Should only include aria related props
                     } = tab;
                     return (
@@ -238,6 +261,7 @@ export const Tabs = React.forwardRef(function Tabs(
                                 onTabSelected(id);
                             }}
                             id={getTabId(id)}
+                            testId={tabTestId && getTabId(tabTestId)}
                             aria-controls={getTabPanelId(id)}
                             selected={id === selectedTabId}
                             onKeyDown={handleKeyDown}
@@ -257,6 +281,7 @@ export const Tabs = React.forwardRef(function Tabs(
                         id={getTabPanelId(tab.id)}
                         aria-labelledby={getTabId(tab.id)}
                         active={selectedTabId === tab.id}
+                        testId={tab.testId && getTabPanelId(tab.testId)}
                     >
                         {selectedTabId === tab.id && tab.panel}
                     </TabPanel>

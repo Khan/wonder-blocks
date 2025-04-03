@@ -15,6 +15,10 @@ type Props = AriaProps & {
      */
     id: string;
     /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string;
+    /**
      * The id of the panel that the tab controls.
      */
     "aria-controls": string;
@@ -43,6 +47,7 @@ export const Tab = React.forwardRef(function Tab(
         "aria-controls": ariaControls,
         selected,
         onKeyDown,
+        testId,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -59,6 +64,7 @@ export const Tab = React.forwardRef(function Tab(
             // between tabs using the arrow keys
             tabIndex={selected ? 0 : -1}
             onKeyDown={onKeyDown}
+            data-testid={testId}
         >
             {children}
         </button>

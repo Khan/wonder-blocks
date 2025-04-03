@@ -9,6 +9,10 @@ type Props = {
      */
     id?: string;
     /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string;
+    /**
      * The contents of the tablist.
      */
     children: React.ReactNode;
@@ -43,6 +47,7 @@ export const Tablist = React.forwardRef(function Tablist(
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         onBlur,
+        testId,
     } = props;
 
     return (
@@ -54,6 +59,7 @@ export const Tablist = React.forwardRef(function Tablist(
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
             onBlur={onBlur}
+            data-testid={testId}
         >
             {children}
         </StyledDiv>

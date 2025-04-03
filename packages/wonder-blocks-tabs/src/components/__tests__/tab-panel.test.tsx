@@ -92,6 +92,22 @@ describe("TabPanel", () => {
             // Assert
             expect(tabPanel).toHaveAttribute("id", id);
         });
+
+        it("should set the testId for the tab panel", async () => {
+            // Arrange
+            const testId = "test-id";
+            render(
+                <TabPanel {...props} testId={testId} active={true}>
+                    TabPanel
+                </TabPanel>,
+            );
+
+            // Act
+            const tabPanel = await screen.findByRole("tabpanel");
+
+            // Assert
+            expect(tabPanel).toHaveAttribute("data-testid", testId);
+        });
     });
 
     describe("Accessibility", () => {
