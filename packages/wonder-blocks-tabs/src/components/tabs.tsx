@@ -105,71 +105,80 @@ export const Tabs = React.forwardRef(function Tabs(
         focusedId.current = selectedTabId;
     }, [selectedTabId]);
 
-    const selectTab = (tabId: string) => {
-        if (tabId !== selectedTabId) {
-            // Select the tab only if it's not already selected
-            onTabSelected(tabId);
-        }
-    };
+    const selectTab = React.useCallback(
+        (tabId: string) => {
+            if (tabId !== selectedTabId) {
+                // Select the tab only if it's not already selected
+                onTabSelected(tabId);
+            }
+        },
+        [onTabSelected, selectedTabId],
+    );
 
-    const handleKeyInteraction = (tabId: string) => {
-        // Move focus to the tab
-        const tabElement = document.getElementById(getTabId(tabId));
-        tabElement?.focus();
+    const handleKeyInteraction = React.useCallback(
+        (tabId: string) => {
+            // Move focus to the tab
+            const tabElement = document.getElementById(getTabId(tabId));
+            tabElement?.focus();
 
-        switch (activationMode) {
-            case "manual": {
-                // Only update which tab is focused since we aren't activating
-                // the tab yet
-                focusedId.current = tabId;
-                break;
+            switch (activationMode) {
+                case "manual": {
+                    // Only update which tab is focused since we aren't activating
+                    // the tab yet
+                    focusedId.current = tabId;
+                    break;
+                }
+                case "automatic": {
+                    // Activate the tab. When selectedTabId is updated, focus will
+                    // be moved to the selected tab
+                    selectTab(tabId);
+                    break;
+                }
             }
-            case "automatic": {
-                // Activate the tab. When selectedTabId is updated, focus will
-                // be moved to the selected tab
-                selectTab(tabId);
-                break;
-            }
-        }
-    };
+        },
+        [activationMode, selectTab, focusedId],
+    );
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-        const currentIndex = tabs.findIndex(
-            (tab) => tab.id === focusedId.current,
-        );
+    const handleKeyDown = React.useCallback(
+        (event: React.KeyboardEvent<HTMLButtonElement>) => {
+            const currentIndex = tabs.findIndex(
+                (tab) => tab.id === focusedId.current,
+            );
 
-        switch (event.key) {
-            case keys.left: {
-                event.preventDefault();
-                const prevIndex =
-                    (currentIndex - 1 + tabs.length) % tabs.length;
-                handleKeyInteraction(tabs[prevIndex].id);
-                break;
+            switch (event.key) {
+                case keys.left: {
+                    event.preventDefault();
+                    const prevIndex =
+                        (currentIndex - 1 + tabs.length) % tabs.length;
+                    handleKeyInteraction(tabs[prevIndex].id);
+                    break;
+                }
+                case keys.right: {
+                    event.preventDefault();
+                    const nextIndex = (currentIndex + 1) % tabs.length;
+                    handleKeyInteraction(tabs[nextIndex].id);
+                    break;
+                }
+                case keys.home: {
+                    event.preventDefault();
+                    handleKeyInteraction(tabs[0].id);
+                    break;
+                }
+                case keys.end: {
+                    event.preventDefault();
+                    handleKeyInteraction(tabs[tabs.length - 1].id);
+                    break;
+                }
+                case keys.enter:
+                case keys.space: {
+                    event.preventDefault();
+                    selectTab(focusedId.current);
+                    break;
+                }
             }
-            case keys.right: {
-                event.preventDefault();
-                const nextIndex = (currentIndex + 1) % tabs.length;
-                handleKeyInteraction(tabs[nextIndex].id);
-                break;
-            }
-            case keys.home: {
-                event.preventDefault();
-                handleKeyInteraction(tabs[0].id);
-                break;
-            }
-            case keys.end: {
-                event.preventDefault();
-                handleKeyInteraction(tabs[tabs.length - 1].id);
-                break;
-            }
-            case keys.enter:
-            case keys.space: {
-                event.preventDefault();
-                selectTab(focusedId.current);
-                break;
-            }
-        }
-    };
+        },
+        [handleKeyInteraction, selectTab, tabs, focusedId],
+    );
 
     return (
         <div ref={ref}>
