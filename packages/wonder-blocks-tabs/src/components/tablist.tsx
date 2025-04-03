@@ -34,6 +34,7 @@ export const Tablist = React.forwardRef(function Tablist(
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
     } = props;
+
     return (
         <StyledDiv
             role="tablist"
