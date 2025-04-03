@@ -1,0 +1,34 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Packages / Tabs / Tabs / Accessibility" />
+
+# Accessibility for Tabs
+
+## Guidelines
+- If there is a visible label for the tabs, set the `aria-labelledby` prop to
+the id of the label. If there isn't, set the `aria-label` prop
+- Make sure the ids for the tabs are unique. They are used to associate the tabs
+and tab panels together
+
+## About the Implementation
+
+The Tabs component follows the [ARIA Authoring Practices Guide (APG) Tabs
+Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+
+### HTML Semantics and Attributes
+
+The following semantics are used:
+- A `button` element with `role=tab` is used to control which tab panel is shown
+- An element with `role=tablist` holds a set of tab elements
+- An element with `role=tabpanel` is specified on the tab content associated with
+a tab
+
+The following attributes are implemented:
+- `aria-selected` is set to `true` on an element with `role=tab` if it is
+selected
+- `aria-controls` on the elements with `role=tab` is set to the id of the
+associated element with `role=tabpanel`
+- `aria-labelledby` on the elements with `role=tabpanel` is set to the id of
+the associated element with `role=tab`
+- `aria-label` or `aria-labelledby` is set on the `tablist` element using the
+`Tabs` component props
