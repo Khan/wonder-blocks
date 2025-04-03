@@ -1675,4 +1675,78 @@ describe("Tabs", () => {
             });
         });
     });
+
+    describe("Performance", () => {
+        it("should not mount tab panels that are not visited", () => {
+            // Arrange
+            const secondPanelOnMount = jest.fn();
+            const SecondPanel = () => {
+                React.useEffect(() => {
+                    secondPanelOnMount();
+                }, []);
+                return <div>Panel 2</div>;
+            };
+
+            // Act
+            render(
+                <ControlledTabs
+                    tabs={[
+                        {
+                            id: "tab-1",
+                            label: "Tab 1",
+                            panel: "Panel 1",
+                        },
+                        {
+                            id: "tab-2",
+                            label: "Tab 2",
+                            panel: <SecondPanel />,
+                        },
+                    ]}
+                    selectedTabId={"tab-1"}
+                />,
+            );
+
+            // Assert
+            // Since the first tab is selected, the second panel should not have been mounted
+            expect(secondPanelOnMount).not.toHaveBeenCalled();
+        });
+
+        it("should not remount tabs that have been visited", async () => {
+            // Arrange
+            const firstPanelOnMount = jest.fn();
+            const FirstPanel = () => {
+                React.useEffect(() => {
+                    firstPanelOnMount();
+                }, []);
+                return <div>Panel 1</div>;
+            };
+            render(
+                <ControlledTabs
+                    tabs={[
+                        {
+                            id: "tab-1",
+                            label: "Tab 1",
+                            panel: <FirstPanel />,
+                        },
+                        {
+                            id: "tab-2",
+                            label: "Tab 2",
+                            panel: "Panel 2",
+                        },
+                    ]}
+                    selectedTabId={"tab-1"}
+                />,
+            );
+
+            // Act
+            // Change tabs and then go back to the first tab
+            const tab2 = screen.getByRole("tab", {name: "Tab 2"});
+            await userEvent.click(tab2);
+            const tab1 = screen.getByRole("tab", {name: "Tab 1"});
+            await userEvent.click(tab1);
+
+            // Assert
+            expect(firstPanelOnMount).toHaveBeenCalledTimes(1);
+        });
+    });
 });

@@ -143,13 +143,28 @@ export const Tabs = React.forwardRef(function Tabs(
         testId,
     } = props;
 
+    /**
+     * The id of the tab that is currently focused.
+     */
     const focusedTabId = React.useRef(selectedTabId);
 
     const tabRefs = React.useRef<{[key: string]: HTMLButtonElement | null}>({});
 
+    /**
+     * Element ids
+     */
     const generatedUniqueId = React.useId();
     const uniqueId = id ?? generatedUniqueId;
     const tablistId = `${uniqueId}-tablist`;
+
+    /**
+     * Keep track of tabs that have been visited to avoid unnecessary mounting/
+     * unmounting of tab panels when we switch tabs. We won't mount any tab
+     * panel contents that aren't visited, and we won't remount tabs that have
+     * been visited already.
+     */
+    const visitedTabsRef = React.useRef(new Set<string>());
+    visitedTabsRef.current.add(selectedTabId);
 
     React.useEffect(() => {
         focusedTabId.current = selectedTabId;
@@ -283,7 +298,12 @@ export const Tabs = React.forwardRef(function Tabs(
                         active={selectedTabId === tab.id}
                         testId={tab.testId && getTabPanelId(tab.testId)}
                     >
-                        {selectedTabId === tab.id && tab.panel}
+                        {/* Tab panel contents are rendered if the tab has
+                        been previously visited. This prevents unnecessary
+                        re-mounting of tab panel contents when switching tabs.
+                        Note that TabPanel will only display the contents if it
+                        is the active panel. */}
+                        {visitedTabsRef.current.has(tab.id) && tab.panel}
                     </TabPanel>
                 );
             })}
