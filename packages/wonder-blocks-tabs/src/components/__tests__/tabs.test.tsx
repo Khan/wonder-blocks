@@ -4,6 +4,7 @@ import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import {TabItem, Tabs} from "../tabs";
+import {Tab} from "../tab";
 
 describe("Tabs", () => {
     const tabs: TabItem[] = [
@@ -453,6 +454,77 @@ describe("Tabs", () => {
 
                 // Assert
                 expect(tabPanel).not.toHaveAttribute("data-testid");
+            });
+        });
+
+        describe("tabs", () => {
+            describe("label prop render function", () => {
+                it("should render the tab label using the render function", () => {
+                    // Arrange
+                    render(
+                        <Tabs
+                            aria-label={tabsAriaLabel}
+                            tabs={[
+                                {
+                                    id: "tab-1",
+                                    label: (tabProps) => (
+                                        <div
+                                            key={tabProps.id}
+                                            data-testid="tab-wrapper"
+                                        >
+                                            <Tab {...tabProps}>Label</Tab>
+                                        </div>
+                                    ),
+                                    panel: "Panel",
+                                },
+                            ]}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Act
+                    const tabWrapper = screen.getByTestId("tab-wrapper");
+
+                    // Assert
+                    expect(tabWrapper).toBeInTheDocument();
+                });
+
+                it("should pass the tab props to the render function", () => {
+                    // Arrange
+                    const labelRenderFn = jest.fn();
+
+                    // Act
+                    render(
+                        <Tabs
+                            aria-label={tabsAriaLabel}
+                            tabs={[
+                                {
+                                    id: "tab-1",
+                                    label: labelRenderFn,
+                                    panel: "Panel",
+                                    "aria-label": "Tab 1 Aria Label",
+                                    testId: "tab-1-test-id",
+                                },
+                            ]}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    expect(labelRenderFn).toHaveBeenCalledExactlyOnceWith({
+                        id: "tab-1-tab",
+                        testId: "tab-1-test-id-tab",
+                        key: "tab-1",
+                        selected: true,
+                        "aria-controls": "tab-1-panel",
+                        "aria-label": "Tab 1 Aria Label",
+                        onClick: expect.any(Function),
+                        onKeyDown: expect.any(Function),
+                        ref: expect.any(Function),
+                    });
+                });
             });
         });
     });

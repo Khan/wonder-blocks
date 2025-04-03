@@ -1,8 +1,10 @@
 import * as React from "react";
-import {AriaProps, keys} from "@khanacademy/wonder-blocks-core";
+import {AriaProps, keys, PropsFor} from "@khanacademy/wonder-blocks-core";
 import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
+
+export type TabRenderProps = Omit<PropsFor<typeof Tab>, "children">;
 
 export type TabItem = AriaProps & {
     /**
@@ -18,8 +20,14 @@ export type TabItem = AriaProps & {
     id: string;
     /**
      * The contents of the tab label.
+     *
+     * For specific use cases where the underlying tab element is wrapped
+     * by another component (like a `Tooltip` or `Popover`), a render function
+     * can be used with the `Tab` component instead. The render function
+     * provides the tab props that should be applied to the `Tab` component.
+     * See example in the docs for more details.
      */
-    label: React.ReactNode;
+    label: React.ReactNode | ((tabProps: TabRenderProps) => React.ReactElement);
     /**
      * The contents of the panel associated with the tab.
      */
@@ -268,25 +276,28 @@ export const Tabs = React.forwardRef(function Tabs(
                         testId: tabTestId,
                         ...otherProps // Should only include aria related props
                     } = tab;
-                    return (
-                        <Tab
-                            {...otherProps}
-                            key={id}
-                            onClick={() => {
-                                onTabSelected(id);
-                            }}
-                            id={getTabId(id)}
-                            testId={tabTestId && getTabId(tabTestId)}
-                            aria-controls={getTabPanelId(id)}
-                            selected={id === selectedTabId}
-                            onKeyDown={handleKeyDown}
-                            ref={(element) => {
-                                tabRefs.current[tab.id] = element;
-                            }}
-                        >
-                            {label}
-                        </Tab>
-                    );
+
+                    const tabProps: TabRenderProps = {
+                        ...otherProps,
+                        key: id,
+                        id: getTabId(id),
+                        testId: tabTestId && getTabId(tabTestId),
+                        selected: id === selectedTabId,
+                        "aria-controls": getTabPanelId(id),
+                        onClick: () => {
+                            onTabSelected(id);
+                        },
+                        onKeyDown: handleKeyDown,
+                        ref: (element) => {
+                            tabRefs.current[tab.id] = element;
+                        },
+                    };
+
+                    if (typeof label === "function") {
+                        return label(tabProps);
+                    }
+
+                    return <Tab {...tabProps}>{label}</Tab>;
                 })}
             </Tablist>
             {tabs.map((tab) => {
