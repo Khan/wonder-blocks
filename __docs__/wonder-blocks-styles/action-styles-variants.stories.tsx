@@ -58,6 +58,18 @@ export default {
                                 icon={info}
                                 style={actionStyles.inverse}
                             />
+                            <IconButton
+                                kind="secondary"
+                                disabled
+                                icon={info}
+                                style={actionStyles.inverse}
+                            />
+                            <IconButton
+                                kind="tertiary"
+                                disabled
+                                icon={info}
+                                style={actionStyles.inverse}
+                            />
                         </View>
                     ),
                 },

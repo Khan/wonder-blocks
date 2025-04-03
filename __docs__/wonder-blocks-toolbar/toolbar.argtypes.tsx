@@ -38,7 +38,12 @@ type Mappings = {
 export const leftContentMappings: Mappings = {
     none: null,
     dismissButton: (
-        <IconButton aria-label="Dismiss" icon={xIcon} kind="tertiary" />
+        <IconButton
+            aria-label="Dismiss"
+            icon={xIcon}
+            kind="tertiary"
+            actionType="neutral"
+        />
     ),
     hintButton: (
         <IconButton aria-label="Hint" icon={lightbulb} kind="tertiary" />

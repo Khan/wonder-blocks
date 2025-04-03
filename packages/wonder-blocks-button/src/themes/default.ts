@@ -38,10 +38,15 @@ const theme = {
             // light variant.
             progressiveLight: {
                 ...semanticColor.action.secondary.progressive,
+                default: {
+                    ...semanticColor.action.secondary.progressive.default,
+                    background: semanticColor.surface.inverse,
+                },
                 focus: focusOutlineLight,
                 hover: {
                     ...semanticColor.action.secondary.progressive.hover,
                     border: semanticColor.border.inverse,
+                    backgrond: semanticColor.surface.inverse,
                 },
                 press: {
                     ...semanticColor.action.secondary.progressive.press,
@@ -73,10 +78,15 @@ const theme = {
             // light variant.
             destructiveLight: {
                 ...semanticColor.action.secondary.destructive,
+                default: {
+                    ...semanticColor.action.secondary.destructive.default,
+                    background: semanticColor.surface.inverse,
+                },
                 focus: focusOutlineLight,
                 hover: {
                     ...semanticColor.action.secondary.progressive.hover,
                     border: semanticColor.border.inverse,
+                    background: semanticColor.surface.inverse,
                 },
                 press: {
                     ...semanticColor.action.secondary.destructive.press,
