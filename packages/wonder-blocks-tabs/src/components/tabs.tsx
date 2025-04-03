@@ -99,10 +99,10 @@ export const Tabs = React.forwardRef(function Tabs(
         activationMode = "manual",
     } = props;
 
-    const focusedId = React.useRef(selectedTabId);
+    const focusedTabId = React.useRef(selectedTabId);
 
     React.useEffect(() => {
-        focusedId.current = selectedTabId;
+        focusedTabId.current = selectedTabId;
     }, [selectedTabId]);
 
     const selectTab = React.useCallback(
@@ -125,7 +125,7 @@ export const Tabs = React.forwardRef(function Tabs(
                 case "manual": {
                     // Only update which tab is focused since we aren't activating
                     // the tab yet
-                    focusedId.current = tabId;
+                    focusedTabId.current = tabId;
                     break;
                 }
                 case "automatic": {
@@ -136,13 +136,13 @@ export const Tabs = React.forwardRef(function Tabs(
                 }
             }
         },
-        [activationMode, selectTab, focusedId],
+        [activationMode, selectTab, focusedTabId],
     );
 
     const handleKeyDown = React.useCallback(
         (event: React.KeyboardEvent<HTMLButtonElement>) => {
             const currentIndex = tabs.findIndex(
-                (tab) => tab.id === focusedId.current,
+                (tab) => tab.id === focusedTabId.current,
             );
 
             switch (event.key) {
@@ -172,12 +172,12 @@ export const Tabs = React.forwardRef(function Tabs(
                 case keys.enter:
                 case keys.space: {
                     event.preventDefault();
-                    selectTab(focusedId.current);
+                    selectTab(focusedTabId.current);
                     break;
                 }
             }
         },
-        [handleKeyInteraction, selectTab, tabs, focusedId],
+        [handleKeyInteraction, selectTab, tabs, focusedTabId],
     );
 
     return (
