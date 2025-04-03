@@ -40,13 +40,13 @@ const theme = {
                 ...semanticColor.action.secondary.progressive,
                 default: {
                     ...semanticColor.action.secondary.progressive.default,
-                    background: semanticColor.surface.inverse,
+                    background: semanticColor.surface.primary,
                 },
                 focus: focusOutlineLight,
                 hover: {
                     ...semanticColor.action.secondary.progressive.hover,
                     border: semanticColor.border.inverse,
-                    backgrond: semanticColor.surface.inverse,
+                    backgrond: semanticColor.surface.primary,
                 },
                 press: {
                     ...semanticColor.action.secondary.progressive.press,
@@ -80,13 +80,13 @@ const theme = {
                 ...semanticColor.action.secondary.destructive,
                 default: {
                     ...semanticColor.action.secondary.destructive.default,
-                    background: semanticColor.surface.inverse,
+                    background: semanticColor.surface.primary,
                 },
                 focus: focusOutlineLight,
                 hover: {
                     ...semanticColor.action.secondary.progressive.hover,
                     border: semanticColor.border.inverse,
-                    background: semanticColor.surface.inverse,
+                    background: semanticColor.surface.primary,
                 },
                 press: {
                     ...semanticColor.action.secondary.destructive.press,
