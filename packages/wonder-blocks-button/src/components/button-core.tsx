@@ -461,7 +461,7 @@ export const _generateStyles = (
             },
         };
     } else if (kind === "tertiary") {
-        const themeColorAction = theme.color.text[colorToAction];
+        const themeColorAction = theme.color.tertiary[colorToAction];
 
         const focusStyling = {
             outlineStyle: "solid",

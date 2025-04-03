@@ -218,28 +218,14 @@ const theme = {
          *
          * Text buttons
          */
-        text: {
+        tertiary: {
             // kind=tertiary / color=default / light=false
             progressive: {
-                default: {
-                    background: "transparent",
-                    foreground:
-                        semanticColor.action.secondary.progressive.default
-                            .foreground,
-                },
+                ...semanticColor.action.tertiary.progressive,
                 focus: focusOutline,
-                hover: {
-                    border: semanticColor.action.secondary.progressive.hover
-                        .border,
-                },
-                press: {
-                    foreground:
-                        semanticColor.action.secondary.progressive.press
-                            .foreground,
-                },
                 disabled: {
                     foreground:
-                        semanticColor.action.secondary.disabled.foreground,
+                        semanticColor.action.tertiary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=default / light=true
@@ -267,25 +253,11 @@ const theme = {
             },
             // kind=tertiary / color=destructive / light=false
             destructive: {
-                default: {
-                    background: "transparent",
-                    foreground:
-                        semanticColor.action.secondary.destructive.default
-                            .foreground,
-                },
+                ...semanticColor.action.tertiary.destructive,
                 focus: focusOutline,
-                hover: {
-                    border: semanticColor.action.secondary.destructive.hover
-                        .border,
-                },
-                press: {
-                    foreground:
-                        semanticColor.action.secondary.destructive.press
-                            .foreground,
-                },
                 disabled: {
                     foreground:
-                        semanticColor.action.secondary.disabled.foreground,
+                        semanticColor.action.tertiary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=destructive / light=true
