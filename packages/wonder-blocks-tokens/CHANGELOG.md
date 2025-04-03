@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 5.2.0
+
+### Minor Changes
+
+- 3dc5dac: - Added `action.tertiary` category.
+    - Added `neutral` subcategory to each `action` kind.
+    - Modified `secondary` to use `transparent` bg instead of `white`.
+
 ## 5.1.1
 
 ### Patch Changes

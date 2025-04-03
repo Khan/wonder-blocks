@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 3.0.1
+
+### Patch Changes
+
+- Updated dependencies [3dc5dac]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-layout@3.1.5
+
 ## 3.0.0
 
 ### Major Changes

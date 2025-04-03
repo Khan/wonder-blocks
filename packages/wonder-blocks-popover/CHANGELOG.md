@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.0.1
+
+### Patch Changes
+
+- 4846e9c: Update icon buttons to use the new mapping (from `primary` to `tertiary`)
+- Updated dependencies [3dc5dac]
+- Updated dependencies [4846e9c]
+- Updated dependencies [4846e9c]
+- Updated dependencies [4846e9c]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-modal@7.1.6
+    - @khanacademy/wonder-blocks-icon-button@8.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.1
+    - @khanacademy/wonder-blocks-tooltip@4.1.6
+
 ## 6.0.0
 
 ### Major Changes

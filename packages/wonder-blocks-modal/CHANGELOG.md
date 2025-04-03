@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-modal
 
+## 7.1.6
+
+### Patch Changes
+
+- 4846e9c: Update icon buttons to use the new mapping (from `primary` to `tertiary`)
+- Updated dependencies [3dc5dac]
+- Updated dependencies [4846e9c]
+- Updated dependencies [4846e9c]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-icon-button@8.0.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.5
+    - @khanacademy/wonder-blocks-layout@3.1.5
+    - @khanacademy/wonder-blocks-styles@0.2.1
+
 ## 7.1.5
 
 ### Patch Changes
