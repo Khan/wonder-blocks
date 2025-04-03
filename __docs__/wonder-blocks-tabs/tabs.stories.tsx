@@ -226,3 +226,49 @@ export const TabLabelRenderFunction: StoryComponentType = {
         ],
     },
 };
+
+const PanelExample = ({label}: {label: string}) => {
+    React.useEffect(() => {
+        // eslint-disable-next-line no-console -- logging for testing purposes
+        console.log(`Panel ${label} mounted`);
+    }, [label]);
+
+    return <div>{label}</div>;
+};
+
+/**
+ * The tab panels are cached and only mounted once a tab is selected to prevent
+ * unnecessary mounting/unmounting of tab panel contents.
+ *
+ * In this example, the panels contain components that print out a message
+ * whenever it is mounted. Notice that a panel is only mounted when it is
+ * selected the first time. Visiting a tab that has already been selected will
+ * not cause the tab panel to be mounted again.
+ */
+export const PanelCaching: StoryComponentType = {
+    args: {
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <PanelExample label="Tab 1" />,
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <PanelExample label="Tab 2" />,
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                panel: <PanelExample label="Tab 3" />,
+            },
+        ],
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
