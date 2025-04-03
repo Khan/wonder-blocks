@@ -55,7 +55,8 @@ type Props = {
      */
     onTabSelected: (id: string) => unknown;
     /**
-     * The mode of activation for the tabs for keyboard navigation.
+     * The mode of activation for the tabs for keyboard navigation. Defaults to
+     * `manual`.
      *
      * - If `manual`, the tab will only be activated when a tab receives focus
      * and is selected by pressing `Space` or `Enter`.
