@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.2.2
+
+### Patch Changes
+
+- 4846e9c: Fix pseudo-states to account for aria-disabled
+- Updated dependencies [3dc5dac]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+
 ## 0.2.1
 
 ### Patch Changes

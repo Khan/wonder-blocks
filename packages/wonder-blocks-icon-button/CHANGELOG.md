@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 8.0.0
+
+### Major Changes
+
+- 4846e9c: - Updated to match `Button` styles.
+    - Reworked `kind` styles.
+    - Removed `secondary` style.
+    - Removed `khanmigo` theme to have a more consistent experience in the current site (OG).
+
+### Minor Changes
+
+- 4846e9c: Add `neutral` value to `actionType` prop.
+
+### Patch Changes
+
+- Updated dependencies [3dc5dac]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-clickable@6.1.5
+    - @khanacademy/wonder-blocks-styles@0.2.1
+
 ## 7.0.0
 
 ### Major Changes
