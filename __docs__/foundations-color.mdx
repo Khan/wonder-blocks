@@ -107,6 +107,15 @@ Communicates strong emphasis and primary actions.
     />
 </View>
 
+##### Neutral
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.primary.neutral}
+        group="action.primary.neutral"
+    />
+</View>
+
 #### Disabled
 
 <ColorGroup
@@ -138,11 +147,60 @@ Communicates secondary actions and less emphasis.
     />
 </View>
 
+##### Neutral
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.secondary.neutral}
+        group="action.secondary.neutral"
+    />
+</View>
+
 #### Disabled
 
 <ColorGroup
     colors={semanticColor.action.secondary.disabled}
     group="action.secondary.disabled"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+
+#### Tertiary
+
+Communicates tertiary actions that have the lowest hierarchy.
+
+#### Progressive
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.tertiary.progressive}
+        group="action.tertiary.progressive"
+    />
+</View>
+
+#### Destructive
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.tertiary.destructive}
+        group="action.tertiary.destructive"
+    />
+</View>
+
+##### Neutral
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.tertiary.neutral}
+        group="action.tertiary.neutral"
+    />
+</View>
+
+#### Disabled
+
+<ColorGroup
+    colors={semanticColor.action.tertiary.disabled}
+    group="action.tertiary.disabled"
     variant="compact"
     style={styles.gridCompact}
 />

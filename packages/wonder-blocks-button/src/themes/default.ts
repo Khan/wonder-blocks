@@ -38,10 +38,15 @@ const theme = {
             // light variant.
             progressiveLight: {
                 ...semanticColor.action.secondary.progressive,
+                default: {
+                    ...semanticColor.action.secondary.progressive.default,
+                    background: semanticColor.surface.primary,
+                },
                 focus: focusOutlineLight,
                 hover: {
                     ...semanticColor.action.secondary.progressive.hover,
                     border: semanticColor.border.inverse,
+                    backgrond: semanticColor.surface.primary,
                 },
                 press: {
                     ...semanticColor.action.secondary.progressive.press,
@@ -73,10 +78,15 @@ const theme = {
             // light variant.
             destructiveLight: {
                 ...semanticColor.action.secondary.destructive,
+                default: {
+                    ...semanticColor.action.secondary.destructive.default,
+                    background: semanticColor.surface.primary,
+                },
                 focus: focusOutlineLight,
                 hover: {
                     ...semanticColor.action.secondary.progressive.hover,
                     border: semanticColor.border.inverse,
+                    background: semanticColor.surface.primary,
                 },
                 press: {
                     ...semanticColor.action.secondary.destructive.press,
@@ -103,16 +113,10 @@ const theme = {
             // kind=secondary / color=default / light=false
             progressive: {
                 ...semanticColor.action.secondary.progressive,
-                default: {
-                    ...semanticColor.action.secondary.progressive.default,
-                    // NOTE: This is a special case for the secondary button
-                    background: "transparent",
-                },
                 focus: focusOutline,
                 hover: {
                     ...semanticColor.action.secondary.progressive.hover,
                     // NOTE: This is a special case for the secondary button
-                    background: "transparent",
                     icon: "transparent",
                 },
                 disabled: {
@@ -165,7 +169,6 @@ const theme = {
                 hover: {
                     ...semanticColor.action.secondary.destructive.hover,
                     // NOTE: This is a special case for the secondary button
-                    background: "transparent",
                     icon: "transparent",
                 },
                 disabled: {
@@ -215,28 +218,14 @@ const theme = {
          *
          * Text buttons
          */
-        text: {
+        tertiary: {
             // kind=tertiary / color=default / light=false
             progressive: {
-                default: {
-                    background: "transparent",
-                    foreground:
-                        semanticColor.action.secondary.progressive.default
-                            .foreground,
-                },
+                ...semanticColor.action.tertiary.progressive,
                 focus: focusOutline,
-                hover: {
-                    border: semanticColor.action.secondary.progressive.hover
-                        .border,
-                },
-                press: {
-                    foreground:
-                        semanticColor.action.secondary.progressive.press
-                            .foreground,
-                },
                 disabled: {
                     foreground:
-                        semanticColor.action.secondary.disabled.foreground,
+                        semanticColor.action.tertiary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=default / light=true
@@ -264,25 +253,11 @@ const theme = {
             },
             // kind=tertiary / color=destructive / light=false
             destructive: {
-                default: {
-                    background: "transparent",
-                    foreground:
-                        semanticColor.action.secondary.destructive.default
-                            .foreground,
-                },
+                ...semanticColor.action.tertiary.destructive,
                 focus: focusOutline,
-                hover: {
-                    border: semanticColor.action.secondary.destructive.hover
-                        .border,
-                },
-                press: {
-                    foreground:
-                        semanticColor.action.secondary.destructive.press
-                            .foreground,
-                },
                 disabled: {
                     foreground:
-                        semanticColor.action.secondary.disabled.foreground,
+                        semanticColor.action.tertiary.disabled.foreground,
                 },
             },
             // kind=tertiary / color=destructive / light=true
