@@ -1,25 +1,10 @@
-import {border, color, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 const disabledStates = {
     // NOTE: This is a special case for the button
     border: semanticColor.action.primary.disabled.border,
     background: "transparent",
     foreground: semanticColor.action.secondary.disabled.foreground,
-};
-
-// TODO(WB-1852): Remove light variants.
-const disabledLightStates = {
-    border: color.white50,
-    background: "transparent",
-    foreground: color.white50,
-};
-
-const focusOutline = {
-    border: semanticColor.focus.outer,
-};
-
-const focusOutlineLight = {
-    border: semanticColor.border.inverse,
 };
 
 /**
@@ -37,7 +22,10 @@ const baseColorStates = {
             border: "transparent",
             background: "transparent",
         },
-        focus: focusOutline,
+        hover: {
+            ...semanticColor.action.secondary.progressive.hover,
+            background: "transparent",
+        },
         press: {
             border: semanticColor.action.secondary.progressive.press.border,
             background: "transparent",
@@ -52,7 +40,10 @@ const baseColorStates = {
             border: "transparent",
             background: "transparent",
         },
-        focus: focusOutline,
+        hover: {
+            ...semanticColor.action.secondary.destructive.hover,
+            background: "transparent",
+        },
         press: {
             border: semanticColor.action.secondary.destructive.press.border,
             background: "transparent",
@@ -62,63 +53,14 @@ const baseColorStates = {
     },
     disabled: {
         default: disabledStates,
-        focus: focusOutline,
         hover: disabledStates,
         press: disabledStates,
-    },
-    // TODO(WB-1852): Remove light variants.
-    disabledLight: {
-        default: disabledLightStates,
-        focus: focusOutlineLight,
-        hover: disabledLightStates,
-        press: disabledLightStates,
     },
 };
 
 const theme = {
     color: {
-        primary: {
-            ...baseColorStates,
-            // Only primary supports the light variants.
-            // TODO(WB-1852): Remove light variants.
-            progressiveLight: {
-                default: {
-                    border: semanticColor.border.inverse,
-                    background: "transparent",
-                    foreground: semanticColor.text.inverse,
-                },
-                hover: {
-                    border: semanticColor.border.inverse,
-                    background: "transparent",
-                    foreground: semanticColor.text.inverse,
-                },
-                focus: focusOutlineLight,
-                press: {
-                    border: color.fadedBlue,
-                    background: "transparent",
-                    foreground: color.fadedBlue,
-                },
-            },
-            // TODO(WB-1852): Remove light variants.
-            destructiveLight: {
-                default: {
-                    border: semanticColor.border.inverse,
-                    background: "transparent",
-                    foreground: semanticColor.text.inverse,
-                },
-                hover: {
-                    border: semanticColor.border.inverse,
-                    background: "transparent",
-                    foreground: semanticColor.text.inverse,
-                },
-                focus: focusOutlineLight,
-                press: {
-                    border: color.fadedRed,
-                    background: "transparent",
-                    foreground: color.fadedRed,
-                },
-            },
-        },
+        primary: baseColorStates,
 
         // secondary
         secondary: {
@@ -147,10 +89,6 @@ const theme = {
                     ...baseColorStates.progressive.default,
                     foreground: semanticColor.icon.primary,
                 },
-                hover: {
-                    ...baseColorStates.progressive.hover,
-                    background: "transparent",
-                },
             },
             destructive: {
                 ...baseColorStates.destructive,
@@ -158,20 +96,14 @@ const theme = {
                     ...baseColorStates.destructive.default,
                     foreground: semanticColor.icon.primary,
                 },
-                hover: {
-                    ...baseColorStates.destructive.hover,
-                    background: "transparent",
-                },
             },
         },
     },
 
     border: {
         width: {
-            default: border.width.thin,
-            active: border.width.none,
-            hovered: border.width.thin,
-            hoveredInverse: border.width.thin,
+            hover: border.width.thin,
+            press: border.width.thin,
         },
         radius: {
             default: border.radius.medium_4,

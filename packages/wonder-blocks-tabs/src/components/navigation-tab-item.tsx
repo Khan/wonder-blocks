@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
         textDecoration: "none",
         ":hover": {
             textDecoration: "none",
+            border: "none",
             outline: "none",
             color: semanticColor.action.secondary.progressive.default
                 .foreground,
@@ -150,12 +151,14 @@ const styles = StyleSheet.create({
         },
         ":active": {
             textDecoration: "none",
+            border: "none",
             outline: "none",
             color: semanticColor.action.secondary.progressive.press.foreground,
         },
         ":focus-visible": {
             color: semanticColor.action.secondary.progressive.default
                 .foreground,
+            border: "none",
             outline: "none",
             boxShadow: `0 0 0 ${sizing.size_025} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_050} ${semanticColor.focus.outer}`,
             borderRadius: 0,

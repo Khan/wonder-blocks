@@ -40,7 +40,6 @@ export const leftContentMappings: Mappings = {
     dismissButton: (
         <IconButton aria-label="Dismiss" icon={xIcon} kind="tertiary" />
     ),
-    lightButton: <IconButton aria-label="Dismiss" icon={xIcon} light={true} />,
     hintButton: (
         <IconButton aria-label="Hint" icon={lightbulb} kind="primary" />
     ),
