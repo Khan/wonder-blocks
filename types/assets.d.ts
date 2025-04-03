@@ -5,6 +5,7 @@
  */
 declare module "*.jpg";
 declare module "*.png";
+declare module "*.css";
 
 // Support specific SVG paths from @phosphor-icons/core.
 declare type PhosphorRegular = string & {weight: "PhosphorRegular"};
