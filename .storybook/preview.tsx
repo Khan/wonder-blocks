@@ -247,7 +247,7 @@ const preview: Preview = {
         }
     },
 
-    tags: ["autodocs"],
+    tags: ["autodocs", "a11y-test"],
 };
 
 export default preview;
