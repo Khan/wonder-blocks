@@ -33,11 +33,11 @@ export const ScenariosLayout = (props: Props) => {
 
 const styles = StyleSheet.create({
     container: {
-        gap: sizing.size_200,
+        gap: sizing.size_160,
         alignItems: "flex-start",
     },
     scenario: {
-        gap: sizing.size_100,
+        gap: sizing.size_080,
         maxWidth: "100%",
     },
 });

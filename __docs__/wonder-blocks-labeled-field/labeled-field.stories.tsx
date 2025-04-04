@@ -215,7 +215,7 @@ const AllFields = (
             style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: sizing.size_300,
+                gap: sizing.size_240,
             }}
         >
             <LabeledField
@@ -467,7 +467,7 @@ export const Scenarios = (args: PropsFor<typeof LabeledField>) => {
     const longTextWithNoBreak =
         "LoremipsumdolorsitametconsecteturadipiscingelitseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquaUtenimadminimveniamquisnostrudexercitationullamcolaborisnisiutaliquipexeacommodoconsequatDuisauteiruredolorinreprehenderitinvoluptatevelitessecillumdoloreeufugiatnullapariatur";
     return (
-        <View style={{gap: sizing.size_300}}>
+        <View style={{gap: sizing.size_240}}>
             <HeadingLarge>Scenarios</HeadingLarge>
             <LabeledField
                 {...args}
@@ -628,16 +628,16 @@ export const CustomStyles = {
         required: "Custom required message",
         styles: {
             root: {
-                padding: sizing.size_100,
+                padding: sizing.size_080,
             },
             label: {
-                paddingBlockEnd: sizing.size_025,
+                paddingBlockEnd: sizing.size_020,
             },
             description: {
-                paddingBlockEnd: sizing.size_025,
+                paddingBlockEnd: sizing.size_020,
             },
             error: {
-                paddingBlockStart: sizing.size_025,
+                paddingBlockStart: sizing.size_020,
             },
         },
     },
