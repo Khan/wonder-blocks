@@ -141,21 +141,28 @@ const styles = StyleSheet.create({
         position: "relative",
         whiteSpace: "nowrap",
         textDecoration: "none",
-        ":hover": {
+        // NOTE: We use :not[aria-disabled] to avoid the hover styles to be
+        // applied when the interactive element is disabled.
+        [":hover:not([aria-disabled=true])" as any]: {
             textDecoration: "none",
+            border: "none",
             outline: "none",
             color: semanticColor.action.secondary.progressive.default
                 .foreground,
             backgroundColor: "transparent",
         },
-        ":active": {
+        // NOTE: We use :not[aria-disabled] to avoid the hover styles to be
+        // applied when the interactive element is disabled.
+        [":active:not([aria-disabled=true])" as any]: {
             textDecoration: "none",
+            border: "none",
             outline: "none",
             color: semanticColor.action.secondary.progressive.press.foreground,
         },
         ":focus-visible": {
             color: semanticColor.action.secondary.progressive.default
                 .foreground,
+            border: "none",
             outline: "none",
             boxShadow: `0 0 0 ${sizing.size_020} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_040} ${semanticColor.focus.outer}`,
             borderRadius: 0,

@@ -1,5 +1,40 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 8.0.0
+
+### Major Changes
+
+- 4846e9c: - Updated to match `Button` styles.
+    - Reworked `kind` styles.
+    - Removed `secondary` style.
+    - Removed `khanmigo` theme to have a more consistent experience in the current site (OG).
+
+### Minor Changes
+
+- 4846e9c: Add `neutral` value to `actionType` prop.
+
+### Patch Changes
+
+- Updated dependencies [3dc5dac]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-clickable@6.1.5
+    - @khanacademy/wonder-blocks-styles@0.2.1
+
+## 7.0.0
+
+### Major Changes
+
+- 61f7837: Remove `light` variant, and replace it with `actionStyles.inverse` for one-off cases
+- 3cacbe7: Rename `color` prop to `actionType`. Also rename the `default` value to `progressive`.
+
+### Patch Changes
+
+- 86e1901: Update IconButton to use `box-shadow` instead of `outline`. Also removed the negative margins around the icon button.
+- 4887c59: Use `focus` styles from `wonder-blocks-styles` to match the global focus outline.
+- Updated dependencies [aace76a]
+- Updated dependencies [61f7837]
+    - @khanacademy/wonder-blocks-styles@0.2.0
+
 ## 6.1.4
 
 ### Patch Changes

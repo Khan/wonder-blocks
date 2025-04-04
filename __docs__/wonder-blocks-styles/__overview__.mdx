@@ -1,0 +1,32 @@
+import {Meta} from "@storybook/blocks";
+
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
+
+<Meta title="Packages / Styles / Overview" />
+
+# Wonder Blocks Styles
+
+Wonder Blocks Styles provides a set of styles that can be used to style your
+components. These styles are defined in the `@khanacademy/wonder-blocks-styles`
+package.
+
+These styles are meant to be used as global patterns for styling your
+components. They are not meant to be used as a replacement for our own Wonder
+Blocks components. Please use WB components whenever possible, then use these
+styles as a last resort to enforce consistency across experiences.
+
+<View style={{marginBlock: spacing.medium_16}}>
+    <Banner
+        kind="info"
+        layout="full-width"
+        text="We highly recommend using existing Wonder Blocks components instead of
+        creating your own components. Use these styles to augment existing components
+        when necessary."
+    />
+</View>
+
+### Styles
+
+- <a href="../?path=/docs/packages-styles-focus-styles--docs">Focus</a>

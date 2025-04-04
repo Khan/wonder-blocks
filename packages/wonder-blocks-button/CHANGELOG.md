@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-button
 
+## 7.1.5
+
+### Patch Changes
+
+- 3dc5dac: - Updated theme to match `semanticColor.action.secondary` changes.
+    - Renamed `theme.color.text` to `theme.color.tertiary`.
+    - Cleaned up some theming code now that the `semanticColor` API is more consistent.
+- Updated dependencies [3dc5dac]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-clickable@6.1.5
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.5
+
 ## 7.1.4
 
 ### Patch Changes

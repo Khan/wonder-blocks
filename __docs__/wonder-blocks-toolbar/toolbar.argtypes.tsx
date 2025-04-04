@@ -38,24 +38,28 @@ type Mappings = {
 export const leftContentMappings: Mappings = {
     none: null,
     dismissButton: (
-        <IconButton aria-label="Dismiss" icon={xIcon} kind="tertiary" />
+        <IconButton
+            aria-label="Dismiss"
+            icon={xIcon}
+            kind="tertiary"
+            actionType="neutral"
+        />
     ),
-    lightButton: <IconButton aria-label="Dismiss" icon={xIcon} light={true} />,
     hintButton: (
-        <IconButton aria-label="Hint" icon={lightbulb} kind="primary" />
+        <IconButton aria-label="Hint" icon={lightbulb} kind="tertiary" />
     ),
     multipleContent: (
         <>
             <IconButton
                 aria-label="Zoom out"
                 icon={magnifyingGlassMinus}
-                kind="primary"
+                kind="tertiary"
             />
             <Strut size={spacing.medium_16} />
             <IconButton
                 aria-label="Zoom in"
                 icon={magnifyingGlassPlus}
-                kind="primary"
+                kind="tertiary"
             />
         </>
     ),

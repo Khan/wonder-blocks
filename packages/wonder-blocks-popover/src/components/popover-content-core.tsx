@@ -5,6 +5,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
+import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import CloseButton from "./close-button";
 
 type Props = AriaProps & {
@@ -25,11 +26,6 @@ type Props = AriaProps & {
      */
     closeButtonVisible?: boolean;
     /**
-     * Whether we should use the default light color scheme or switch to a
-     * different color scheme.
-     */
-    color: "blue" | "darkBlue" | "white";
-    /**
      * Custom styles applied to the content container
      */
     style?: StyleType;
@@ -40,7 +36,6 @@ type Props = AriaProps & {
 };
 
 type DefaultProps = {
-    color: Props["color"];
     closeButtonLight: Props["closeButtonLight"];
     closeButtonVisible: Props["closeButtonVisible"];
 };
@@ -63,7 +58,6 @@ type DefaultProps = {
  */
 export default class PopoverContentCore extends React.Component<Props> {
     static defaultProps: DefaultProps = {
-        color: "white",
         closeButtonLight: false,
         closeButtonVisible: false,
     };
@@ -75,7 +69,6 @@ export default class PopoverContentCore extends React.Component<Props> {
             closeButtonLight,
             closeButtonLabel,
             closeButtonVisible,
-            color,
             style,
             testId,
         } = this.props;
@@ -83,18 +76,16 @@ export default class PopoverContentCore extends React.Component<Props> {
         return (
             <View
                 testId={testId}
-                style={[
-                    styles.content,
-                    color !== "white" && styles[color],
-                    style,
-                ]}
+                style={[styles.content, style]}
                 aria-label={ariaLabel}
             >
                 {closeButtonVisible && (
                     <CloseButton
                         aria-label={closeButtonLabel}
-                        light={closeButtonLight || color !== "white"}
-                        style={styles.closeButton}
+                        style={[
+                            styles.closeButton,
+                            closeButtonLight && actionStyles.inverse,
+                        ]}
                         testId={`${testId || "popover"}-close-btn`}
                     />
                 )}
@@ -116,18 +107,6 @@ const styles = StyleSheet.create({
         padding: spacing.large_24,
         overflow: "hidden",
         justifyContent: "center",
-    },
-    /**
-     * Theming
-     */
-    blue: {
-        backgroundColor: semanticColor.surface.emphasis,
-        color: semanticColor.text.inverse,
-    },
-
-    darkBlue: {
-        backgroundColor: semanticColor.surface.inverse,
-        color: semanticColor.text.inverse,
     },
 
     /**

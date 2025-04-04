@@ -182,7 +182,7 @@ TriggerElement.parameters = {
                 Popover to control when and/or from where to open the popover
                 dialog.\n` +
                 `- For this example, if you use the \`image\` prop, make sure
-                to avoid using \`icon\` and/or \`emphasized\` at the same time.
+                to avoid using \`icon\` at the same time.
                 Doing so will throw an error.\n` +
                 `- This example uses the \`dismissEnabled\` prop. This means
                 that the user can close the Popover by pressing \`Esc\` or

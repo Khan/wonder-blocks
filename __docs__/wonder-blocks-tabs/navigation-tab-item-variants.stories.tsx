@@ -102,6 +102,7 @@ const generateRows = (rtl: boolean = false) => {
             props: {
                 children: (
                     <IconButton
+                        kind="tertiary"
                         href="#link"
                         aria-label="Ice cream"
                         icon={IconMappings.iceCream}

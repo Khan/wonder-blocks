@@ -6,13 +6,6 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import ModalContext from "./modal-context";
 
 type Props = {
-    /**
-     * Whether the button is on a dark/colored background.
-     *
-     * Sets primary button background color to white, and secondary and
-     * tertiary button title to color.
-     */
-    light?: boolean;
     /** Optional click handler */
     onClick?: () => unknown;
     /** Optional custom styles. */
@@ -33,7 +26,7 @@ type Props = {
 
 export default class CloseButton extends React.Component<Props> {
     render(): React.ReactNode {
-        const {light, onClick, style, testId} = this.props;
+        const {onClick, style, testId} = this.props;
 
         return (
             <ModalContext.Consumer>
@@ -51,8 +44,8 @@ export default class CloseButton extends React.Component<Props> {
                             // TODO(kevinb): provide a way to set this label
                             aria-label="Close modal"
                             onClick={onClick || closeModal}
-                            kind={light ? "primary" : "tertiary"}
-                            light={light}
+                            kind="tertiary"
+                            actionType="neutral"
                             style={style}
                             testId={testId}
                         />

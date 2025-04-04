@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-popover",
-  "version": "5.2.2",
+  "version": "6.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -20,6 +20,7 @@
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon-button": "workspace:*",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
+    "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-tooltip": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"
