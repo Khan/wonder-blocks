@@ -10,7 +10,7 @@ html {
     padding: 0.8rem;
 }
 .sbdocs.sbdocs-wrapper {
-    padding: 3.2rem 20px;
+    padding: 0 20px 3.2rem 20px;
     gap: 2.4rem;
 }
 
