@@ -1,5 +1,3 @@
-import * as React from "react";
-import {MemoryRouter} from "react-router-dom";
 import ClickableBehavior from "../../components/clickable-behavior";
 import getClickableBehavior from "../get-clickable-behavior";
 
@@ -23,11 +21,15 @@ describe("getClickableBehavior", () => {
             // Arrange
             const url = "http://google.com";
             const skipClientNav = undefined;
-            const router = <MemoryRouter />;
+            const inRouterContext = true;
             const expectation = ClickableBehavior;
 
             // Act
-            const result = getClickableBehavior(url, skipClientNav, router);
+            const result = getClickableBehavior(
+                url,
+                skipClientNav,
+                inRouterContext,
+            );
 
             // Assert
             expect(result).toBe(expectation);
@@ -39,14 +41,14 @@ describe("getClickableBehavior", () => {
                     // Arrange
                     const url = "/prep/lsat";
                     const skipClientNav = undefined;
-                    const router = undefined;
+                    const inRouterContext = false;
                     const expectation = ClickableBehavior;
 
                     // Act
                     const result = getClickableBehavior(
                         url,
                         skipClientNav,
-                        router,
+                        inRouterContext,
                     );
 
                     // Assert
@@ -57,14 +59,14 @@ describe("getClickableBehavior", () => {
                     // Arrange
                     const url = "/prep/lsat";
                     const skipClientNav = undefined;
-                    const router = <MemoryRouter />;
+                    const inRouterContext = true;
                     const expectation = "withRouter(ClickableBehavior)";
 
                     // Act
                     const result = getClickableBehavior(
                         url,
                         skipClientNav,
-                        router,
+                        inRouterContext,
                     );
 
                     // Assert
@@ -76,11 +78,15 @@ describe("getClickableBehavior", () => {
                 // Arrange
                 const url = "/prep/lsat";
                 const skipClientNav = false;
-                const router = <MemoryRouter />;
+                const inRouterContext = true;
                 const expectation = "withRouter(ClickableBehavior)";
 
                 // Act
-                const result = getClickableBehavior(url, skipClientNav, router);
+                const result = getClickableBehavior(
+                    url,
+                    skipClientNav,
+                    inRouterContext,
+                );
 
                 // Assert
                 expect((result as any).displayName).toBe(expectation);
@@ -90,11 +96,15 @@ describe("getClickableBehavior", () => {
                 // Arrange
                 const url = "/prep/lsat";
                 const skipClientNav = true;
-                const router = <MemoryRouter />;
+                const inRouterContext = true;
                 const expectation = ClickableBehavior;
 
                 // Act
-                const result = getClickableBehavior(url, skipClientNav, router);
+                const result = getClickableBehavior(
+                    url,
+                    skipClientNav,
+                    inRouterContext,
+                );
 
                 // Assert
                 expect(result).toBe(expectation);
