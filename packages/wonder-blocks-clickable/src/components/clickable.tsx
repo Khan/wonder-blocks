@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom-v5-compat";
-import {__RouterContext} from "react-router";
+import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -215,14 +214,20 @@ const Clickable = React.forwardRef(function Clickable(
 ) {
     const getCorrectTag: (
         clickableState: ClickableState,
-        router: any,
+        inRouterContext: boolean,
         commonProps: {
             [key: string]: any;
         },
-    ) => React.ReactElement = (clickableState, router, commonProps) => {
+    ) => React.ReactElement = (
+        clickableState,
+        inRouterContext,
+        commonProps,
+    ) => {
         const activeHref = props.href && !props.disabled;
         const useClient =
-            router && !props.skipClientNav && isClientSideUrl(props.href || "");
+            inRouterContext &&
+            !props.skipClientNav &&
+            isClientSideUrl(props.href || "");
 
         // NOTE: checking this.props.href here is redundant, but TypeScript
         // needs it to refine this.props.href to a string.
@@ -266,9 +271,8 @@ const Clickable = React.forwardRef(function Clickable(
         }
     };
 
-    const renderClickableBehavior: (router: any) => React.ReactNode = (
-        router: any,
-    ) => {
+    const RenderClickableBehavior = (props: Props) => {
+        const inRouterContext = useInRouterContext();
         const {
             href,
             onClick,
@@ -292,7 +296,7 @@ const Clickable = React.forwardRef(function Clickable(
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
-            router,
+            inRouterContext,
         );
 
         const getStyle = (state: ClickableState): StyleType => [
@@ -321,7 +325,7 @@ const Clickable = React.forwardRef(function Clickable(
                     tabIndex={tabIndex}
                 >
                     {(state, childrenProps) =>
-                        getCorrectTag(state, router, {
+                        getCorrectTag(state, inRouterContext, {
                             ...restProps,
                             "data-testid": testId,
                             style: getStyle(state),
@@ -346,7 +350,7 @@ const Clickable = React.forwardRef(function Clickable(
                     tabIndex={tabIndex}
                 >
                     {(state, childrenProps) =>
-                        getCorrectTag(state, router, {
+                        getCorrectTag(state, inRouterContext, {
                             ...restProps,
                             "data-testid": testId,
                             style: getStyle(state),
@@ -358,11 +362,7 @@ const Clickable = React.forwardRef(function Clickable(
         }
     };
 
-    return (
-        <__RouterContext.Consumer>
-            {(router) => renderClickableBehavior(router)}
-        </__RouterContext.Consumer>
-    );
+    return <RenderClickableBehavior {...props} />;
 });
 
 Clickable.defaultProps = {
