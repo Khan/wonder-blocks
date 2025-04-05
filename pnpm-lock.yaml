@@ -559,6 +559,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -621,6 +624,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -646,6 +652,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -744,6 +753,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -871,6 +883,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -961,6 +976,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1255,6 +1273,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1289,6 +1310,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
