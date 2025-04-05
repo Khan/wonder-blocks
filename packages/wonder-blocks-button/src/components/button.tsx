@@ -1,5 +1,4 @@
 import * as React from "react";
-import {__RouterContext} from "react-router";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import type {
@@ -8,7 +7,7 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
-import {Link} from "react-router-dom";
+import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 import ButtonCore from "./button-core";
 import ThemedButton from "../themes/themed-button";
 
@@ -230,11 +229,13 @@ const Button: React.ForwardRefExoticComponent<
         ...sharedButtonCoreProps
     } = props;
 
-    const renderClickableBehavior = (router: any): React.ReactNode => {
+    const RenderClickableBehavior = (props: Props) => {
+        const inRouterContext = useInRouterContext();
+
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
-            router,
+            inRouterContext,
         );
 
         const renderProp = (
@@ -299,9 +300,7 @@ const Button: React.ForwardRefExoticComponent<
 
     return (
         <ThemedButton>
-            <__RouterContext.Consumer>
-                {(router) => renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
+            <RenderClickableBehavior {...props} />
         </ThemedButton>
     );
 });
