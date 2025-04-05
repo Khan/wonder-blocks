@@ -68,7 +68,7 @@ describe("getClickableBehavior", () => {
                     );
 
                     // Assert
-                    expect(result.displayName).toBe(expectation);
+                    expect((result as any).displayName).toBe(expectation);
                 });
             });
 
@@ -83,7 +83,7 @@ describe("getClickableBehavior", () => {
                 const result = getClickableBehavior(url, skipClientNav, router);
 
                 // Assert
-                expect(result.displayName).toBe(expectation);
+                expect((result as any).displayName).toBe(expectation);
             });
 
             test("skipClientNav is true, returns ClickableBehavior", () => {

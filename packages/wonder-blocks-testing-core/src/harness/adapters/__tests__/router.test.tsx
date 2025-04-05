@@ -1,5 +1,5 @@
 import * as React from "react";
-import {withRouter, Prompt} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom-v5-compat";
 import {render} from "@testing-library/react";
 import * as Router from "../router";
 
@@ -27,50 +27,47 @@ describe("Router.adapter", () => {
     `("with $type config", ({config}: any) => {
         it("should allow navigation", () => {
             // Arrange
-            const historyListen = jest.fn();
-            const HistoryListener = withRouter(
-                ({history}: any): React.ReactElement | null => {
-                    React.useEffect(
-                        () => history.listen(historyListen),
-                        [history],
-                    );
-                    if (history.location.pathname === "/math") {
-                        history.push("/math/calculator");
-                    }
-                    return null;
-                },
-            );
+            const navigateListen = jest.fn();
+            const NavigateListener = (): React.ReactElement | null => {
+                const navigate = useNavigate();
+                const location = useLocation();
+                React.useEffect(() => navigateListen(location), [location]);
+                if (location.pathname === "/math") {
+                    navigate("/math/calculator");
+                }
+                return null;
+            };
 
             // Act
-            render(Router.adapter(<HistoryListener />, config));
+            render(Router.adapter(<NavigateListener />, config));
 
             // Assert
-            expect(historyListen).not.toHaveBeenCalled();
+            expect(navigateListen).toHaveBeenCalledOnce();
+            expect(navigateListen).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    pathname: "/math",
+                }),
+            );
         });
 
-        it("should have default route match of root /", () => {
+        it("should have default route match of /math", () => {
             // Arrange
-            const matchCatcherFn = jest.fn();
-            const MatchCatcher = withRouter(
-                ({match, history}: any): React.ReactElement | null => {
-                    React.useEffect(() => {
-                        if (history.location.pathname === "/math") {
-                            history.push("/math/calculator");
-                        }
-                        matchCatcherFn(match);
-                    }, [match, history]);
-                    return null;
-                },
-            );
+            const locationCatcherFn = jest.fn();
+            const LocationCatcher = (): React.ReactElement | null => {
+                const location = useLocation();
+                React.useEffect(() => {
+                    locationCatcherFn(location);
+                }, [location]);
+                return null;
+            };
 
             // Act
-            render(Router.adapter(<MatchCatcher />, config));
+            render(Router.adapter(<LocationCatcher />, config));
 
             // Assert
-            expect(matchCatcherFn).toHaveBeenLastCalledWith(
+            expect(locationCatcherFn).toHaveBeenLastCalledWith(
                 expect.objectContaining({
-                    path: "/",
-                    url: "/",
+                    pathname: "/math",
                 }),
             );
         });
@@ -83,25 +80,22 @@ describe("Router.adapter", () => {
     `("with $type config including path", ({config}: any) => {
         it("should include routing for the given path", () => {
             // Arrange
-            const matchCatcherFn = jest.fn();
-            const MatchCatcher = withRouter(
-                ({match}: any): React.ReactElement | null => {
-                    React.useEffect(() => {
-                        matchCatcherFn(match);
-                    }, [match]);
-                    return null;
-                },
-            );
+            const locationCatcherFn = jest.fn();
+            const LocationCatcher = (): React.ReactElement | null => {
+                const location = useLocation();
+                React.useEffect(() => {
+                    locationCatcherFn(location);
+                }, [location]);
+                return null;
+            };
 
             // Act
-            render(Router.adapter(<MatchCatcher />, config));
+            render(Router.adapter(<LocationCatcher />, config));
 
             // Assert
-            expect(matchCatcherFn).toHaveBeenLastCalledWith(
+            expect(locationCatcherFn).toHaveBeenLastCalledWith(
                 expect.objectContaining({
-                    isExact: true,
-                    path: "/math/*",
-                    url: "/math/calculator",
+                    pathname: "/math/calculator",
                 }),
             );
         });
@@ -128,76 +122,76 @@ describe("Router.adapter", () => {
     describe("with forceStatic", () => {
         it("should not navigate", () => {
             // Arrange
-            const historyListen = jest.fn();
-            const HistoryListener = withRouter(
-                ({history}: any): React.ReactElement | null => {
-                    React.useEffect(
-                        () => history.listen(historyListen),
-                        [history],
-                    );
-                    if (history.location.pathname === "/math") {
-                        history.push("/math/calculator");
-                    }
-                    return null;
-                },
-            );
+            const navigateListen = jest.fn();
+            const NavigateListener = (): React.ReactElement | null => {
+                const navigate = useNavigate();
+                const location = useLocation();
+                React.useEffect(() => navigateListen(location), [location]);
+                if (location.pathname === "/math") {
+                    navigate("/math/calculator");
+                }
+                return null;
+            };
 
             // Act
             render(
-                Router.adapter(<HistoryListener />, {
+                Router.adapter(<NavigateListener />, {
                     location: "/math",
                     forceStatic: true,
                 }),
             );
 
             // Assert
-            expect(historyListen).not.toHaveBeenCalled();
+            expect(navigateListen).toHaveBeenCalledOnce();
+            expect(navigateListen).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    pathname: "/math",
+                }),
+            );
         });
     });
 
     describe("with initialEntries", () => {
         it("should use the defaultConfig location if initialEntries is empty", () => {
             // Arrange
-            const matchCatcherFn = jest.fn();
-            const MatchCatcher = withRouter(
-                ({match, history}: any): React.ReactElement | null => {
-                    React.useEffect(() => {
-                        matchCatcherFn(match);
-                    }, [match, history]);
-                    return null;
-                },
-            );
+            const locationCatcherFn = jest.fn();
+            const LocationCatcher = (): React.ReactElement | null => {
+                const location = useLocation();
+                React.useEffect(() => {
+                    locationCatcherFn(location);
+                }, [location]);
+                return null;
+            };
 
             // Act
             render(
-                Router.adapter(<MatchCatcher />, {
+                Router.adapter(<LocationCatcher />, {
                     initialEntries: [],
                 }),
             );
 
             // Assert
-            expect(matchCatcherFn).toHaveBeenLastCalledWith(
+            expect(locationCatcherFn).toHaveBeenLastCalledWith(
                 expect.objectContaining({
-                    url: Router.defaultConfig.location,
+                    pathname: Router.defaultConfig.location,
                 }),
             );
         });
 
         it("should set initialIndex prop on MemoryRouter if given in configuration", () => {
             // Arrange
-            const matchCatcherFn = jest.fn();
-            const MatchCatcher = withRouter(
-                ({match}: any): React.ReactElement | null => {
-                    React.useEffect(() => {
-                        matchCatcherFn(match);
-                    }, [match]);
-                    return null;
-                },
-            );
+            const locationCatcherFn = jest.fn();
+            const LocationCatcher = (): React.ReactElement | null => {
+                const location = useLocation();
+                React.useEffect(() => {
+                    locationCatcherFn(location);
+                }, [location]);
+                return null;
+            };
 
             // Act
             render(
-                Router.adapter(<MatchCatcher />, {
+                Router.adapter(<LocationCatcher />, {
                     initialEntries: ["/location/old", "/location/current"],
                     initialIndex: 1,
                     path: "/location/*",
@@ -205,47 +199,10 @@ describe("Router.adapter", () => {
             );
 
             // Assert
-            expect(matchCatcherFn).toHaveBeenLastCalledWith(
+            expect(locationCatcherFn).toHaveBeenLastCalledWith(
                 expect.objectContaining({
-                    url: "/location/current",
+                    pathname: "/location/current",
                 }),
-            );
-        });
-
-        it("should set getUserConfirmation prop on MemoryRouter if given in configuration", () => {
-            // Arrange
-            const getUserConfirmationSpy = jest
-                .fn()
-                .mockImplementation((message: any, cb: any) => {
-                    cb(true);
-                });
-            const matchCatcherFn = jest.fn();
-            const MatchCatcher = withRouter(
-                ({match, history}: any): React.ReactElement => {
-                    React.useEffect(() => {
-                        if (history.location.pathname === "/location/old") {
-                            // Fire off a location change.
-                            history.goForward();
-                        }
-                        matchCatcherFn(match);
-                    }, [match, history]);
-                    return <Prompt message="Are you sure?" />;
-                },
-            );
-
-            // Act
-            render(
-                Router.adapter(<MatchCatcher />, {
-                    initialEntries: ["/location/old", "/location/current"],
-                    getUserConfirmation: getUserConfirmationSpy,
-                    path: "/location/*",
-                }),
-            );
-
-            // Assert
-            expect(getUserConfirmationSpy).toHaveBeenCalledWith(
-                "Are you sure?",
-                expect.any(Function),
             );
         });
     });

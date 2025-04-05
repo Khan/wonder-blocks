@@ -9,14 +9,24 @@
  * See https://reacttraining.com/react-router/web/guides/basic-components.
  */
 import * as React from "react";
-import {withRouter} from "react-router-dom";
-
-import {PropsFor} from "@khanacademy/wonder-blocks-core";
+import {useNavigate} from "react-router-dom-v5-compat";
 
 import ClickableBehavior from "../components/clickable-behavior";
 import {isClientSideUrl} from "./is-client-side-url";
 
-// @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'typeof ClickableBehavior' is not assignable to parameter of type 'ComponentType<RouteComponentProps<any, StaticContext, unknown>>'.
+// Create a wrapper component that uses useNavigate
+function withRouter(Component: typeof ClickableBehavior) {
+    function WithRouterWrapper(
+        props: Omit<React.ComponentProps<typeof ClickableBehavior>, "navigate">,
+    ) {
+        const navigate = useNavigate();
+        // @ts-expect-error Ignoring the type mismatch
+        return <Component {...props} navigate={navigate} />;
+    }
+    WithRouterWrapper.displayName = "withRouter(ClickableBehavior)";
+    return WithRouterWrapper;
+}
+
 const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
 
 export default function getClickableBehavior(
@@ -32,15 +42,10 @@ export default function getClickableBehavior(
      * router object added to the React context object by react-router-dom.
      */
     router?: any,
-): React.ComponentType<PropsFor<typeof ClickableBehavior>> {
+): typeof ClickableBehavior {
     if (router && skipClientNav !== true && href && isClientSideUrl(href)) {
-        // We cast to `any` here since the type of ClickableBehaviorWithRouter
-        // is slightly different from the return type of this function.
-        // TODO(WB-1037): Always return the wrapped version once all routes have
-        // been ported to the app-shell in webapp.
-        return ClickableBehaviorWithRouter as any;
+        return ClickableBehaviorWithRouter as unknown as typeof ClickableBehavior;
     }
 
-    // @ts-expect-error [FEI-5019] - TS2322 - Type 'typeof ClickableBehavior' is not assignable to type 'ComponentType<Pick<Props, "children" | "href" | "tabIndex" | "role" | "target" | "type" | "rel" | "onKeyDown" | "onKeyUp" | "onClick" | "history" | "skipClientNav" | "safeWithNav" | "beforeNav"> & InexactPartial<...> & InexactPartial<...>>'.
     return ClickableBehavior;
 }

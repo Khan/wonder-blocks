@@ -1,12 +1,12 @@
 import * as React from "react";
 
+import {StaticRouter, MemoryRouter} from "react-router-dom";
 import {
-    StaticRouter,
-    MemoryRouter,
+    CompatRouter,
     Route,
-    Switch,
+    Routes,
     useLocation,
-} from "react-router-dom";
+} from "react-router-dom-v5-compat";
 
 import type {LocationDescriptor} from "history";
 import type {TestHarnessAdapter} from "../types";
@@ -30,10 +30,6 @@ type Config =
                  * See MemoryRouter prop for initialIndex.
                  */
                 initialIndex?: MemoryRouterProps["initialIndex"];
-                /**
-                 * See MemoryRouter prop for getUserConfirmation.
-                 */
-                getUserConfirmation?: MemoryRouterProps["getUserConfirmation"];
                 /**
                  * A path match to use.
                  *
@@ -118,25 +114,23 @@ const MaybeWithRoute = ({
         return <>{children}</>;
     }
 
+    const errorMessage =
+        `The current location '${actualLocation.pathname}' ` +
+        `does not match the configured path '${path}'. ` +
+        `Did you provide the correct configured ` +
+        `location, '${configuredLocation}', or did the ` +
+        `routing lead to a different place than you ` +
+        `expected?`;
+
+    const ErrorElement = () => {
+        throw new Error(errorMessage);
+    };
+
     return (
-        <Switch>
-            <Route exact={true} path={path}>
-                {children}
-            </Route>
-            <Route
-                path="*"
-                render={() => {
-                    throw new Error(
-                        `The current location '${actualLocation.pathname}' ` +
-                            `does not match the configured path '${path}'. ` +
-                            `Did you provide the correct configured ` +
-                            `location, '${configuredLocation}', or did the ` +
-                            `routing lead to a different place than you ` +
-                            `expected?`,
-                    );
-                }}
-            />
-        </Switch>
+        <Routes>
+            <Route path={path} element={<>{children}</>} />
+            <Route path="*" element={<ErrorElement />} />
+        </Routes>
     );
 };
 
@@ -168,12 +162,14 @@ export const adapter: TestHarnessAdapter<Config> = (
          */
         return (
             <StaticRouter location={config.location} context={{}}>
-                <MaybeWithRoute
-                    path={config.path}
-                    configLocation={config.location}
-                >
-                    {children}
-                </MaybeWithRoute>
+                <CompatRouter>
+                    <MaybeWithRoute
+                        path={config.path}
+                        configLocation={config.location}
+                    >
+                        {children}
+                    </MaybeWithRoute>
+                </CompatRouter>
             </StaticRouter>
         );
     }
@@ -189,12 +185,14 @@ export const adapter: TestHarnessAdapter<Config> = (
     if ("location" in config && config.location !== undefined) {
         return (
             <MemoryRouter initialEntries={[config.location]}>
-                <MaybeWithRoute
-                    path={config.path}
-                    configLocation={config.location}
-                >
-                    {children}
-                </MaybeWithRoute>
+                <CompatRouter>
+                    <MaybeWithRoute
+                        path={config.path}
+                        configLocation={config.location}
+                    >
+                        {children}
+                    </MaybeWithRoute>
+                </CompatRouter>
             </MemoryRouter>
         );
     }
@@ -227,18 +225,17 @@ export const adapter: TestHarnessAdapter<Config> = (
     if (config.initialIndex != null) {
         routerProps.initialIndex = config.initialIndex;
     }
-    if (config.getUserConfirmation != null) {
-        routerProps.getUserConfirmation = config.getUserConfirmation;
-    }
 
     return (
         <MemoryRouter {...routerProps}>
-            <MaybeWithRoute
-                path={config.path}
-                configLocation={entries[config.initialIndex ?? 0]}
-            >
-                {children}
-            </MaybeWithRoute>
+            <CompatRouter>
+                <MaybeWithRoute
+                    path={config.path}
+                    configLocation={entries[config.initialIndex ?? 0]}
+                >
+                    {children}
+                </MaybeWithRoute>
+            </CompatRouter>
         </MemoryRouter>
     );
 };
