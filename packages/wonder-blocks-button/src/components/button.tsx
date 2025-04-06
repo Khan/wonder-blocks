@@ -229,20 +229,20 @@ const Button: React.ForwardRefExoticComponent<
         ...sharedButtonCoreProps
     } = props;
 
-    const RenderClickableBehavior = (props: Props) => {
-        const inRouterContext = useInRouterContext();
+    const inRouterContext = useInRouterContext();
 
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            inRouterContext,
-        );
+    const ClickableBehavior = getClickableBehavior(
+        href,
+        skipClientNav,
+        inRouterContext,
+    );
 
-        const renderProp = (
-            state: ClickableState,
-            restChildProps: ChildrenProps,
-        ) => {
-            return (
+    const renderProp = (
+        state: ClickableState,
+        restChildProps: ChildrenProps,
+    ) => {
+        return (
+            <ThemedButton>
                 <ButtonCore
                     {...sharedButtonCoreProps}
                     {...state}
@@ -262,47 +262,41 @@ const Button: React.ForwardRefExoticComponent<
                 >
                     {children}
                 </ButtonCore>
-            );
-        };
-
-        if (beforeNav) {
-            return (
-                <ClickableBehavior
-                    disabled={spinner || disabled}
-                    href={href}
-                    role="button"
-                    type={type}
-                    onClick={onClick}
-                    beforeNav={beforeNav}
-                    safeWithNav={safeWithNav}
-                    rel={rel}
-                >
-                    {renderProp}
-                </ClickableBehavior>
-            );
-        } else {
-            return (
-                <ClickableBehavior
-                    disabled={spinner || disabled}
-                    href={href}
-                    role="button"
-                    type={type}
-                    onClick={onClick}
-                    safeWithNav={safeWithNav}
-                    target={target}
-                    rel={rel}
-                >
-                    {renderProp}
-                </ClickableBehavior>
-            );
-        }
+            </ThemedButton>
+        );
     };
 
-    return (
-        <ThemedButton>
-            <RenderClickableBehavior {...props} />
-        </ThemedButton>
-    );
+    if (beforeNav) {
+        return (
+            <ClickableBehavior
+                disabled={spinner || disabled}
+                href={href}
+                role="button"
+                type={type}
+                onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
+                rel={rel}
+            >
+                {renderProp}
+            </ClickableBehavior>
+        );
+    } else {
+        return (
+            <ClickableBehavior
+                disabled={spinner || disabled}
+                href={href}
+                role="button"
+                type={type}
+                onClick={onClick}
+                safeWithNav={safeWithNav}
+                target={target}
+                rel={rel}
+            >
+                {renderProp}
+            </ClickableBehavior>
+        );
+    }
 });
 
 export default Button;
