@@ -1,5 +1,4 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {findFocusableNodes} from "../../../wonder-blocks-core/src/util/focus";
 

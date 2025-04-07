@@ -92,7 +92,7 @@ export const AutomaticActivation: StoryComponentType = {
  * are no focusable elements in the active tab panel, the tab panel will be
  * focused instead.
  */
-export const WithFocusablePanelContent: StoryComponentType = {
+export const WithFocusableContent: StoryComponentType = {
     args: {
         selectedTabId: "tab-wb-button",
         tabs: [
@@ -122,7 +122,11 @@ export const WithFocusablePanelContent: StoryComponentType = {
                 panel: (
                     <div>
                         Tab contents with WB TextField{" "}
-                        <TextField value="" onChange={() => {}} />
+                        <TextField
+                            value=""
+                            onChange={() => {}}
+                            aria-label="Focusable TextField"
+                        />
                     </div>
                 ),
             },
@@ -151,7 +155,8 @@ export const WithFocusablePanelContent: StoryComponentType = {
                 id: "tab-input",
                 panel: (
                     <div>
-                        Tab contents with input <input type="text" />
+                        Tab contents with input{" "}
+                        <input type="text" aria-label="Focusable input" />
                     </div>
                 ),
             },
