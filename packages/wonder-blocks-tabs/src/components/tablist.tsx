@@ -18,6 +18,10 @@ type Props = {
      * that refers to the labelling element.
      */
     "aria-labelledby"?: string;
+    /**
+     * Called when focus moves out of the tablist.
+     */
+    onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
 };
 
 const StyledDiv = addStyle("div");
@@ -33,7 +37,9 @@ export const Tablist = React.forwardRef(function Tablist(
         children,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
+        onBlur,
     } = props;
+
     return (
         <StyledDiv
             role="tablist"
@@ -41,6 +47,7 @@ export const Tablist = React.forwardRef(function Tablist(
             ref={ref}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
+            onBlur={onBlur}
         >
             {children}
         </StyledDiv>

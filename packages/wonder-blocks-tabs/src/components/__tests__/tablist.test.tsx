@@ -1,5 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import {Tablist} from "../tablist";
 
 describe("Tablist", () => {
@@ -39,6 +40,27 @@ describe("Tablist", () => {
 
         // Assert
         expect(await screen.findByRole("tablist")).toBe(ref.current);
+    });
+
+    describe("Event Handlers", () => {
+        describe("onBlur", () => {
+            it("should call the handler when the tablist is blurred", async () => {
+                // Arrange
+                const onBlur = jest.fn();
+                render(
+                    <Tablist onBlur={onBlur}>
+                        <button role="tab">Tab</button>
+                    </Tablist>,
+                );
+                await userEvent.tab(); // Focus on the tab
+
+                // Act
+                await userEvent.tab(); // Move focus out of the tablist
+
+                // Assert
+                expect(onBlur).toHaveBeenCalledTimes(1);
+            });
+        });
     });
 
     describe("Accessibility", () => {

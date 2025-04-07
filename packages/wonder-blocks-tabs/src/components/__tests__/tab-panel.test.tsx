@@ -1,5 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import {TabPanel} from "../tab-panel";
 
 describe("TabPanel", () => {
@@ -20,7 +21,10 @@ describe("TabPanel", () => {
         );
 
         // Act
-        const tabPanel = await screen.findByRole("tabpanel");
+        const tabPanel = await screen.findByRole("tabpanel", {
+            // We expect the tab panel to be hidden if it is not active
+            hidden: true,
+        });
 
         // Assert
         expect(tabPanel).toBeInTheDocument();
@@ -42,19 +46,32 @@ describe("TabPanel", () => {
         expect(children).toBeInTheDocument();
     });
 
-    it("should forward the ref to the tab panel", async () => {
+    it("should not be visible if active is false", async () => {
         // Arrange
-        const ref = React.createRef<HTMLDivElement>();
-
-        // Act
         render(
-            <TabPanel {...props} ref={ref}>
+            <TabPanel {...props} active={false}>
                 TabPanel
             </TabPanel>,
         );
+        // Act
+        const tabPanel = await screen.findByRole("tabpanel", {hidden: true});
 
         // Assert
-        expect(await screen.findByRole("tabpanel")).toBe(ref.current);
+        expect(tabPanel).not.toBeVisible();
+    });
+
+    it("should be visible if active is true", async () => {
+        // Arrange
+        render(
+            <TabPanel {...props} active={true}>
+                TabPanel
+            </TabPanel>,
+        );
+        // Act
+        const tabPanel = await screen.findByRole("tabpanel");
+
+        // Assert
+        expect(tabPanel).toBeVisible();
     });
 
     describe("Props", () => {
@@ -68,7 +85,9 @@ describe("TabPanel", () => {
             );
 
             // Act
-            const tabPanel = await screen.findByRole("tabpanel");
+            const tabPanel = await screen.findByRole("tabpanel", {
+                hidden: true,
+            });
 
             // Assert
             expect(tabPanel).toHaveAttribute("id", id);
@@ -116,7 +135,9 @@ describe("TabPanel", () => {
                 );
 
                 // Act
-                const tabPanel = await screen.findByRole("tabpanel");
+                const tabPanel = await screen.findByRole("tabpanel", {
+                    hidden: true,
+                });
 
                 // Assert
                 expect(tabPanel).toHaveAttribute(
@@ -124,6 +145,116 @@ describe("TabPanel", () => {
                     ariaLabelledby,
                 );
             });
+        });
+
+        describe("Focus", () => {
+            it("should be focusable if there are no focusable elements in the panel", async () => {
+                // Arrange
+                render(
+                    <TabPanel {...props} active={true}>
+                        No focusable elements
+                    </TabPanel>,
+                );
+                const tabPanel = await screen.findByRole("tabpanel");
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                expect(tabPanel).toHaveFocus();
+            });
+
+            it.each([
+                {
+                    element: <a href="#link">Link Example</a>,
+                    label: "Link",
+                },
+                {
+                    element: <input type="text" />,
+                    label: "Input",
+                },
+                {
+                    element: <button>Button</button>,
+                    label: "Button",
+                },
+                {
+                    element: <textarea />,
+                    label: "Textarea",
+                },
+            ])(
+                "should not be focusable if there is a focusable element in the panel ($label)",
+                async ({element}) => {
+                    // Arrange
+                    render(
+                        <TabPanel {...props} active={true}>
+                            {element}
+                        </TabPanel>,
+                    );
+                    const tabPanel = await screen.findByRole("tabpanel");
+
+                    // Act
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(tabPanel).not.toHaveFocus();
+                },
+            );
+
+            it.each([
+                {
+                    element: (
+                        <a
+                            href="#link"
+                            data-testid="expected-focusable-element"
+                        >
+                            Link Example
+                        </a>
+                    ),
+                    label: "Link",
+                },
+                {
+                    element: (
+                        <input
+                            type="text"
+                            data-testid="expected-focusable-element"
+                        />
+                    ),
+                    label: "Input",
+                },
+                {
+                    element: (
+                        <button data-testid="expected-focusable-element">
+                            Button
+                        </button>
+                    ),
+                    label: "Button",
+                },
+                {
+                    element: (
+                        <textarea data-testid="expected-focusable-element" />
+                    ),
+                    label: "Textarea",
+                },
+            ])(
+                "should focus on the expected focusable element if there is a focusable element in the panel ($label)",
+                async ({element}) => {
+                    // Arrange
+                    render(
+                        <TabPanel {...props} active={true}>
+                            {element}
+                        </TabPanel>,
+                    );
+                    const expectedFocusableElement = await screen.findByTestId(
+                        "expected-focusable-element",
+                    );
+
+                    // Act
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(expectedFocusableElement).toHaveFocus();
+                },
+            );
         });
     });
 });

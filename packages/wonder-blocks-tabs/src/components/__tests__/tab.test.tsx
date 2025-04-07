@@ -93,6 +93,27 @@ describe("Tab", () => {
             // Assert
             expect(onClick).toHaveBeenCalledOnce();
         });
+
+        it("should call onKeyDown when a key is pressed", async () => {
+            // Arrange
+            const onKeyDown = jest.fn();
+            render(
+                <Tab {...props} onKeyDown={onKeyDown} selected={true}>
+                    Tab
+                </Tab>,
+            );
+            await userEvent.tab();
+
+            // Act
+            await userEvent.keyboard("{Enter}");
+
+            // Assert
+            expect(onKeyDown).toHaveBeenCalledExactlyOnceWith(
+                expect.objectContaining({
+                    key: "Enter",
+                }),
+            );
+        });
     });
 
     describe("Accessibility", () => {
@@ -174,6 +195,40 @@ describe("Tab", () => {
 
                 // Assert
                 expect(tab).not.toHaveAttribute("aria-selected");
+            });
+        });
+
+        describe("Focus", () => {
+            it("should be focusable if it is selected", async () => {
+                // Arrange
+                render(
+                    <Tab {...props} selected={true}>
+                        Tab
+                    </Tab>,
+                );
+                const tab = await screen.findByRole("tab");
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                expect(tab).toHaveFocus();
+            });
+
+            it("should not be focusable if it is not selected", async () => {
+                // Arrange
+                render(
+                    <Tab {...props} selected={false}>
+                        Tab
+                    </Tab>,
+                );
+                const tab = await screen.findByRole("tab");
+
+                // Act
+                await userEvent.tab();
+
+                // Assert
+                expect(tab).not.toHaveFocus();
             });
         });
     });
