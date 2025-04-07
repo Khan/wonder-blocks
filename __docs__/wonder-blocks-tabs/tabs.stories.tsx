@@ -18,8 +18,9 @@ const tabs: TabItem[] = [
 ];
 
 export default {
-    title: "Packages / Tabs / Tabs / Tabs",
+    title: "Packages / Tabs / Tabs",
     component: Tabs,
+    subcomponents: {Tab},
     parameters: {
         componentSubtitle: (
             <ComponentInfo
