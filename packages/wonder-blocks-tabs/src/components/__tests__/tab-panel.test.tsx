@@ -199,6 +199,62 @@ describe("TabPanel", () => {
                     expect(tabPanel).not.toHaveFocus();
                 },
             );
+
+            it.each([
+                {
+                    element: (
+                        <a
+                            href="#link"
+                            data-testid="expected-focusable-element"
+                        >
+                            Link Example
+                        </a>
+                    ),
+                    label: "Link",
+                },
+                {
+                    element: (
+                        <input
+                            type="text"
+                            data-testid="expected-focusable-element"
+                        />
+                    ),
+                    label: "Input",
+                },
+                {
+                    element: (
+                        <button data-testid="expected-focusable-element">
+                            Button
+                        </button>
+                    ),
+                    label: "Button",
+                },
+                {
+                    element: (
+                        <textarea data-testid="expected-focusable-element" />
+                    ),
+                    label: "Textarea",
+                },
+            ])(
+                "should focus on the expected focusable element if there is a focusable element in the panel ($label)",
+                async ({element}) => {
+                    // Arrange
+                    render(
+                        <TabPanel {...props} active={true}>
+                            {element}
+                        </TabPanel>,
+                    );
+                    const expectedFocusableElement = await screen.findByTestId(
+                        "expected-focusable-element",
+                    );
+
+                    // Act
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(expectedFocusableElement).toHaveFocus();
+                },
+            );
         });
     });
 });
