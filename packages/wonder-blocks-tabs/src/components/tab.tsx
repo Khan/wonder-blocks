@@ -51,6 +51,8 @@ export const Tab = React.forwardRef(function Tab(
             id={id}
             aria-controls={ariaControls}
             aria-selected={selected}
+            // Only the selected tab is focusable since keyboard users will navigate
+            // between tabs using the arrow keys
             tabIndex={selected ? 0 : -1}
             onKeyDown={onKeyDown}
         >
