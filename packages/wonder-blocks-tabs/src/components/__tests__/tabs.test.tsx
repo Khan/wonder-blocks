@@ -406,7 +406,7 @@ describe("Tabs", () => {
                     const tab = screen.getByRole("tab", {name: "Tab 2"});
 
                     // Act
-                    await userEvent.keyboard("{Tab}");
+                    await userEvent.tab();
 
                     // Assert
                     expect(tab).toHaveFocus();
@@ -423,10 +423,10 @@ describe("Tabs", () => {
                     const tabPanel = screen.getByRole("tabpanel", {
                         name: "Tab 2",
                     });
-                    await userEvent.keyboard("{Tab}"); // tab to get to the active tab
+                    await userEvent.tab(); // tab to get to the active tab
 
                     // Act
-                    await userEvent.keyboard("{Tab}"); // tab to leave the tablist
+                    await userEvent.tab(); // tab to leave the tablist
 
                     // Assert
                     expect(tabPanel).toHaveFocus();
@@ -456,10 +456,10 @@ describe("Tabs", () => {
                         />,
                     );
                     const button = screen.getByRole("button", {name: "Button"});
-                    await userEvent.keyboard("{Tab}"); // tab to get to the active tab
+                    await userEvent.tab(); // tab to get to the active tab
 
                     // Act
-                    await userEvent.keyboard("{Tab}"); // tab to leave the tablist
+                    await userEvent.tab(); // tab to leave the tablist
 
                     // Assert
                     expect(button).toHaveFocus();
@@ -521,7 +521,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[0].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -540,7 +540,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[0].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -559,7 +559,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[0].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -580,7 +580,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[2].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -599,7 +599,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[2].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -618,7 +618,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[2].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -639,7 +639,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[1].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -658,7 +658,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[1].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -677,7 +677,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[1].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -698,7 +698,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[0].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -717,7 +717,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[0].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -736,7 +736,7 @@ describe("Tabs", () => {
                                 selectedTabId={tabs[0].id}
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -941,7 +941,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -961,7 +961,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -981,7 +981,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -1003,7 +1003,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -1023,7 +1023,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -1043,7 +1043,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowRight}");
@@ -1065,7 +1065,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -1085,7 +1085,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -1105,7 +1105,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -1127,7 +1127,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -1147,7 +1147,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
@@ -1167,7 +1167,7 @@ describe("Tabs", () => {
                                 activationMode="automatic"
                             />,
                         );
-                        await userEvent.keyboard("{Tab}");
+                        await userEvent.tab();
 
                         // Act
                         await userEvent.keyboard("{ArrowLeft}");
