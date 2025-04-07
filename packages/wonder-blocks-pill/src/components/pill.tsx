@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {mix} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {
     Body,
@@ -243,10 +242,12 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
     }
 
     const pressColor =
-        kind === "transparent"
-            ? semanticColor.status.neutral.background
-            : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
-              mix(tokens.color.offBlack32, backgroundColor);
+        kind === "transparent" || kind === "neutral"
+            ? tokens.color.offBlack16
+            : kind === "accent"
+              ? tokens.color.activeBlue
+              : // NOTE(WB-1880): This will be simplified once we split this into Badge and Pill.
+                `color-mix(in srgb, ${tokens.color.offBlack32}, ${backgroundColor})`;
 
     const textColor =
         kind === "accent"
