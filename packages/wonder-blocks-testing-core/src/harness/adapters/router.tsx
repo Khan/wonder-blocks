@@ -1,12 +1,7 @@
 import * as React from "react";
 
-import {StaticRouter, MemoryRouter} from "react-router-dom";
-import {
-    CompatRouter,
-    Route,
-    Routes,
-    useLocation,
-} from "react-router-dom-v5-compat";
+import {StaticRouter, MemoryRouter, Switch, Route} from "react-router-dom";
+import {CompatRouter, useLocation} from "react-router-dom-v5-compat";
 
 import type {LocationDescriptor} from "history";
 import type {TestHarnessAdapter} from "../types";
@@ -126,11 +121,16 @@ const MaybeWithRoute = ({
         throw new Error(errorMessage);
     };
 
+    // NOTE(john): We want to use a Switch here because we want to ensure that
+    // we're still rendering RRv5-style routes. If we were to use Routes here
+    // then we would be rendering RRv6-style routes and that would break any
+    // usage of RRv5-style APIs happening inside the component we're testing.
+    // When we fully adopt v6, we can (and must) switch to using Routes.
     return (
-        <Routes>
-            <Route path={path} element={<>{children}</>} />
-            <Route path="*" element={<ErrorElement />} />
-        </Routes>
+        <Switch>
+            <Route path={path} render={() => <>{children}</>} />
+            <Route path="*" component={ErrorElement} />
+        </Switch>
     );
 };
 
