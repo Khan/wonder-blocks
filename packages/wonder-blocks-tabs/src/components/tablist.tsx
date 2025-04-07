@@ -1,5 +1,5 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
@@ -69,6 +69,9 @@ export const Tablist = React.forwardRef(function Tablist(
 const styles = StyleSheet.create({
     tablist: {
         display: "flex",
-        gap: sizing.size_200,
+        overflowX: "auto",
+        // TODO: Update to use spacing tokens
+        gap: "24px",
+        borderBottom: `1px solid ${semanticColor.border.subtle}`,
     },
 });

@@ -1,5 +1,9 @@
-import {AriaProps} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps} from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 type Props = AriaProps & {
     /**
@@ -32,6 +36,8 @@ type Props = AriaProps & {
     onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
 };
 
+const StyledButton = addStyle("button");
+
 /**
  * A component that has `role="tab"` and is used to represent a tab in a tabbed
  * interface.
@@ -52,7 +58,7 @@ export const Tab = React.forwardRef(function Tab(
         ...otherProps
     } = props;
     return (
-        <button
+        <StyledButton
             {...otherProps}
             role="tab"
             onClick={onClick}
@@ -65,8 +71,59 @@ export const Tab = React.forwardRef(function Tab(
             tabIndex={selected ? 0 : -1}
             onKeyDown={onKeyDown}
             data-testid={testId}
+            style={[
+                typographyStyles.Body,
+                styles.tab,
+                selected && styles.selectedTab,
+            ]}
         >
             {children}
-        </button>
+        </StyledButton>
     );
+});
+
+export const styles = StyleSheet.create({
+    tab: {
+        display: "flex",
+        alignItems: "center",
+        textWrap: "nowrap",
+        backgroundColor: "transparent",
+        border: "none",
+        margin: 0,
+        padding: 0,
+        cursor: "pointer",
+        // TODO: Update to use spacing tokens
+        marginBlockStart: "8px",
+        // TODO: Update to use spacing tokens
+        marginBlockEnd: "14px",
+        position: "relative",
+        ...focusStyles.focus,
+        ":after": {
+            content: "''",
+            position: "absolute",
+            left: 0,
+            right: 0,
+            // TODO: Update to use spacing tokens
+            bottom: "-14px",
+        },
+        ":hover": {
+            color: semanticColor.action.secondary.progressive.hover.foreground,
+            [":after" as any]: {
+                height: border.width.hairline,
+                backgroundColor:
+                    semanticColor.action.secondary.progressive.hover.foreground,
+            },
+        },
+        ":active": {
+            color: semanticColor.action.secondary.progressive.press.foreground,
+            [":after" as any]: {
+                height: border.width.thick,
+                backgroundColor:
+                    semanticColor.action.secondary.progressive.press.foreground,
+            },
+        },
+    },
+    selectedTab: {
+        color: semanticColor.action.secondary.progressive.default.foreground,
+    },
 });

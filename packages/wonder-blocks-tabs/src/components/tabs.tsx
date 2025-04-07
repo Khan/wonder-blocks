@@ -1,5 +1,11 @@
 import * as React from "react";
-import {AriaProps, keys, PropsFor} from "@khanacademy/wonder-blocks-core";
+import {
+    addStyle,
+    AriaProps,
+    keys,
+    PropsFor,
+} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
@@ -130,6 +136,7 @@ function getTabPanelId(tabId: string) {
     return `${tabId}-panel`;
 }
 
+const StyledDiv = addStyle("div");
 /**
  * A component that uses a tabbed interface to control a specific view. The
  * tabs have `role=”tab”` and keyboard users can change tabs using arrow keys.
@@ -259,8 +266,17 @@ export const Tabs = React.forwardRef(function Tabs(
         focusedTabId.current = selectedTabId;
     }, [selectedTabId]);
 
+    if (tabs.length === 0) {
+        return <React.Fragment />;
+    }
+
     return (
-        <div ref={ref} id={uniqueId} data-testid={testId}>
+        <StyledDiv
+            ref={ref}
+            id={uniqueId}
+            data-testid={testId}
+            style={styles.tabs}
+        >
             <Tablist
                 aria-label={ariaLabel}
                 aria-labelledby={ariaLabelledby}
@@ -318,6 +334,14 @@ export const Tabs = React.forwardRef(function Tabs(
                     </TabPanel>
                 );
             })}
-        </div>
+        </StyledDiv>
     );
+});
+
+const styles = StyleSheet.create({
+    tabs: {
+        display: "inline-flex",
+        flexDirection: "column",
+        alignItems: "stretch",
+    },
 });

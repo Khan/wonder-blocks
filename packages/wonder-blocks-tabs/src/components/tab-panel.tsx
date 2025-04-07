@@ -1,5 +1,6 @@
 import * as React from "react";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 import {findFocusableNodes} from "../../../wonder-blocks-core/src/util/focus";
 
 type Props = {
@@ -63,8 +64,17 @@ export const TabPanel = (props: Props) => {
             // Only show the tab panel if it is active
             hidden={!active}
             data-testid={testId}
+            // Only apply styles if it is active so it doesn't override the display: none for inactive tabs
+            style={active && styles.tabPanel}
         >
             {children}
         </StyledDiv>
     );
 };
+
+const styles = StyleSheet.create({
+    tabPanel: {
+        // Apply flex so that panel supports rtl
+        display: "flex",
+    },
+});
