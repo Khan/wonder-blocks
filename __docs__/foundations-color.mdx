@@ -48,8 +48,8 @@ in our product and how these are reflected in our primitive tokens.
 
 Colors are defined into two categories:
 
--   <Link href="#semantic-colors">Semantic Colors</Link>
--   <Link href="#primitive-colors">Primitive Colors</Link>
+- <Link href="#semantic-colors">Semantic Colors</Link>
+- <Link href="#primitive-colors">Primitive Colors</Link>
 
 ## Semantic Colors
 
@@ -85,7 +85,7 @@ how to use these colors depending on the context.
 For buttons, links, and controls to communicate the presence and meaning of
 interaction.
 
-#### Filled
+#### Primary
 
 Communicates strong emphasis and primary actions.
 
@@ -93,8 +93,8 @@ Communicates strong emphasis and primary actions.
 
 <View style={styles.gridCompact}>
     <ActionColorGroup
-        category={semanticColor.action.filled.progressive}
-        group="action.filled.progressive"
+        category={semanticColor.action.primary.progressive}
+        group="action.primary.progressive"
     />
 </View>
 
@@ -102,12 +102,30 @@ Communicates strong emphasis and primary actions.
 
 <View style={styles.gridCompact}>
     <ActionColorGroup
-        category={semanticColor.action.filled.destructive}
-        group="action.filled.destructive"
+        category={semanticColor.action.primary.destructive}
+        group="action.primary.destructive"
     />
 </View>
 
-#### Outlined
+##### Neutral
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.primary.neutral}
+        group="action.primary.neutral"
+    />
+</View>
+
+#### Disabled
+
+<ColorGroup
+    colors={semanticColor.action.primary.disabled}
+    group="action.primary.disabled"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+
+#### Secondary
 
 Communicates secondary actions and less emphasis.
 
@@ -115,8 +133,8 @@ Communicates secondary actions and less emphasis.
 
 <View style={styles.gridCompact}>
     <ActionColorGroup
-        category={semanticColor.action.outlined.progressive}
-        group="action.outlined.progressive"
+        category={semanticColor.action.secondary.progressive}
+        group="action.secondary.progressive"
     />
 </View>
 
@@ -124,16 +142,65 @@ Communicates secondary actions and less emphasis.
 
 <View style={styles.gridCompact}>
     <ActionColorGroup
-        category={semanticColor.action.outlined.destructive}
-        group="action.outlined.destructive"
+        category={semanticColor.action.secondary.destructive}
+        group="action.secondary.destructive"
+    />
+</View>
+
+##### Neutral
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.secondary.neutral}
+        group="action.secondary.neutral"
     />
 </View>
 
 #### Disabled
 
 <ColorGroup
-    colors={semanticColor.action.disabled}
-    group="action.disabled"
+    colors={semanticColor.action.secondary.disabled}
+    group="action.secondary.disabled"
+    variant="compact"
+    style={styles.gridCompact}
+/>
+
+#### Tertiary
+
+Communicates tertiary actions that have the lowest hierarchy.
+
+#### Progressive
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.tertiary.progressive}
+        group="action.tertiary.progressive"
+    />
+</View>
+
+#### Destructive
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.tertiary.destructive}
+        group="action.tertiary.destructive"
+    />
+</View>
+
+##### Neutral
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.action.tertiary.neutral}
+        group="action.tertiary.neutral"
+    />
+</View>
+
+#### Disabled
+
+<ColorGroup
+    colors={semanticColor.action.tertiary.disabled}
+    group="action.tertiary.disabled"
     variant="compact"
     style={styles.gridCompact}
 />
@@ -215,6 +282,16 @@ would use `border.primary`, rows and layout elements use
 contrast is a priority (ex. form elements)
 
 <ColorGroup colors={semanticColor.border} group="border" />
+
+### Focus
+
+For focus states on interactive elements. This is meant to be used globally for
+all interactive elements regardless of the state (disabled, error, etc).
+
+- `outer`: The outer ring of the focus state.
+- `inner`: The inner ring of the focus state.
+
+<ColorGroup colors={semanticColor.focus} group="focus" />
 
 ### Icon
 
@@ -437,12 +514,12 @@ content is accessible to all users.
 
 For more detail, you can check the following Success Criteria documents:
 
--   <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">
-        Use of Color
-    </a>
--   <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
-        Contrast (minimum)
-    </a>
--   <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">
-        Non-text Contrast (Level AA)
-    </a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color">
+      Use of Color
+  </a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
+      Contrast (minimum)
+  </a>
+- <a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast">
+      Non-text Contrast (Level AA)
+  </a>

@@ -157,26 +157,29 @@ type IconGroup = {
 const IconEntries = Object.entries(IconMappings);
 
 const groupIconsByNames = () => {
-    return IconEntries.reduce((acc, [name, icon]) => {
-        const isSmall = name.includes("Bold");
-        const key = name.replace("Bold", "");
+    return IconEntries.reduce(
+        (acc, [name, icon]) => {
+            const isSmall = name.includes("Bold");
+            const key = name.replace("Bold", "");
 
-        if (!acc[key]) {
-            if (isSmall) {
-                acc[key] = {small: icon as PhosphorBold, medium: null};
+            if (!acc[key]) {
+                if (isSmall) {
+                    acc[key] = {small: icon as PhosphorBold, medium: null};
+                } else {
+                    acc[key] = {small: null, medium: icon as PhosphorRegular};
+                }
             } else {
-                acc[key] = {small: null, medium: icon as PhosphorRegular};
+                if (isSmall) {
+                    acc[key].small = icon as PhosphorBold;
+                } else {
+                    acc[key].medium = icon as PhosphorRegular;
+                }
             }
-        } else {
-            if (isSmall) {
-                acc[key].small = icon as PhosphorBold;
-            } else {
-                acc[key].medium = icon as PhosphorRegular;
-            }
-        }
 
-        return acc;
-    }, {} as Record<string, IconGroup>);
+            return acc;
+        },
+        {} as Record<string, IconGroup>,
+    );
 };
 
 const StyledTable = addStyle("table");

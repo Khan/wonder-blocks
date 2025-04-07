@@ -4,15 +4,14 @@ import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
+import type {LabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
@@ -39,12 +38,20 @@ type MultiSelectArgs = Partial<typeof MultiSelect>;
  * The multi select stays open until closed by the user. The onChange callback
  * happens every time there is a change in the selection of the items.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
+ *
  * ### Usage
  *
  * ```tsx
  * import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
  *
- * <MultiSelect onChange={setSelectedValues} selectedValues={selectedValues}>
+ * <MultiSelect aria-label="Fruits" onChange={setSelectedValues} selectedValues={selectedValues}>
  *  <OptionItem value="pear">Pear</OptionItem>
  *  <OptionItem value="mango">Mango</OptionItem>
  * </MultiSelect>
@@ -63,6 +70,7 @@ export default {
         implicitAllEnabled: false,
         id: "",
         testId: "",
+        "aria-label": "Planets",
     },
     parameters: {
         componentSubtitle: (
@@ -108,14 +116,14 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.fadedPurple24,
-        color: color.offBlack,
+        background: semanticColor.status.warning.background,
+        color: semanticColor.text.primary,
         padding: spacing.medium_16,
     },
     focused: {
-        outlineColor: color.purple,
+        outlineColor: semanticColor.focus.outer,
         outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
@@ -123,7 +131,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     pressed: {
-        color: color.blue,
+        color: semanticColor.status.warning.foreground,
     },
 });
 
@@ -152,6 +160,7 @@ const Template = (args: any) => {
     return (
         <MultiSelect
             {...args}
+            aria-label={args["aria-label"]}
             onChange={setSelectedValues}
             selectedValues={selectedValues}
             opened={opened}
@@ -167,6 +176,47 @@ export const Default: StoryComponentType = {
     parameters: {
         chromatic: {
             // We don't need screenshots b/c the dropdown is initially closed.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relevant accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.selectedValues || []);
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <MultiSelect
+                        {...args}
+                        selectedValues={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    >
+                        {optionItems}
+                    </MultiSelect>
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
             disableSnapshot: true,
         },
     },
@@ -220,10 +270,10 @@ export const ControlledOpened: StoryComponentType = {
 };
 
 // Custom MultiSelect labels
-const dropdownLabels: Labels = {
+const dropdownLabels: LabelsValues = {
     ...defaultLabels,
     noneSelected: "Solar system",
-    someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
+    someSelected: (numSelectedValues: number) => `${numSelectedValues} planets`,
 };
 
 /**
@@ -565,6 +615,7 @@ const VirtualizedMultiSelect = function (props: Props): React.ReactElement {
     return (
         <View style={styles.wrapper}>
             <MultiSelect
+                aria-label="Countries"
                 onChange={setSelectedValues}
                 shortcuts={true}
                 isFilterable={true}
@@ -595,7 +646,7 @@ export const VirtualizedFilterable: StoryComponentType = {
  * a function with the following arguments:
  *  - `eventState`: lets you customize the style for different states, such as
  *    pressed, hovered and focused.
- *  - `text`: Passes the menu label defined in the parent component. This value
+ *  - `text`: Passes the menu value defined in the parent component. This value
  *  is passed using the placeholder prop set in the `MultiSelect` component.
  *  - `opened`: Whether the dropdown is opened.
  *
@@ -604,11 +655,16 @@ export const VirtualizedFilterable: StoryComponentType = {
  *
  * **Accessibility:** When a custom opener is used, the following attributes are
  * added automatically: `aria-expanded`, `aria-haspopup`, and `aria-controls`.
+ * With a custom opener, you are still responsible for labeling the `MultiSelect`
+ * by wrapping it in a `<LabeledField>` or using `aria-label` on the parent component
+ * to describe the purpose of the control. Because it is a combobox, the value
+ * can't also be used for the label.
  */
 export const CustomOpener: StoryComponentType = {
     render: Template,
     args: {
         selectedValues: [],
+        "aria-label": "Custom opener",
         opener: ({focused, hovered, pressed, text, opened}: OpenerProps) => {
             action(JSON.stringify({focused, hovered, pressed, opened}))(
                 "state changed!",
@@ -660,21 +716,23 @@ export const CustomLabels: StoryComponentType = {
         >([]);
         const [opened, setOpened] = React.useState(true);
 
-        const labels: Labels = {
+        const labels: LabelsValues = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",
-            selectAllLabel: (numOptions) => `Seleccionar todas (${numOptions})`,
+            selectAllLabel: (numOptions: number) =>
+                `Seleccionar todas (${numOptions})`,
             selectNoneLabel: "No seleccionar ninguno",
             noneSelected: "0 escuelas seleccionadas",
             allSelected: "Todas las escuelas",
-            someSelected: (numSelectedValues) =>
+            someSelected: (numSelectedValues: number) =>
                 `${numSelectedValues} escuelas seleccionadas`,
         };
 
         return (
             <View style={styles.wrapper}>
                 <MultiSelect
+                    aria-label="Escuelas"
                     shortcuts={true}
                     isFilterable={true}
                     onChange={setSelectedValues}
@@ -721,6 +779,7 @@ export const CustomOptionItems: StoryComponentType = {
 
         return (
             <MultiSelect
+                aria-label="Users"
                 onChange={handleChange}
                 selectedValues={selectedValues}
                 onToggle={handleToggle}
@@ -772,6 +831,7 @@ export const CustomOptionItemsWithNodeLabel: StoryComponentType = {
 
         return (
             <MultiSelect
+                aria-label="Languages"
                 onChange={handleChange}
                 selectedValues={selectedValues}
                 onToggle={handleToggle}

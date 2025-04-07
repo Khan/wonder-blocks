@@ -18,11 +18,11 @@ More information: https://khan.github.io/wonder-blocks/
 
 To install Wonder Blocks, you need to run the following commands:
 
-#### `yarn install`
+#### `pnpm install`
 
 Installs project dependencies
 
-#### `yarn start`
+#### `pnpm start`
 
 Runs the docs in dev mode
 

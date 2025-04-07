@@ -13,8 +13,12 @@ export default mergeConfig(viteConfig, {
         browser: {
             enabled: true,
             headless: true,
-            name: "chromium",
             provider: "playwright",
+            instances: [
+                {
+                    browser: "chromium",
+                },
+            ],
         },
         // Make sure to adjust this pattern to match your stories files.
         stories: ["./__docs__/**/*.stories.@(ts|tsx)"],

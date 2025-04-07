@@ -1,101 +1,287 @@
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 
+const {semanticColor} = tokens;
+
 // The underline-offset is the distance between the text baseline and the
 // bottom of the underline. This is necessary to prevent the underline from
 // breaking with descenders.
 const textUnderlineOffset = tokens.spacing.xxxSmall_4;
 
+const focusOutline = {
+    border: semanticColor.focus.outer,
+};
+
+const focusOutlineLight = {
+    border: semanticColor.border.inverse,
+};
+
 const theme = {
     color: {
-        bg: {
-            /**
-             * Color
-             */
-            // color="default"
-            action: {
-                default: tokens.color.blue,
-                active: tokens.color.activeBlue,
-                inverse: tokens.color.fadedBlue,
-            },
-            // color="destructive"
-            critical: {
-                default: tokens.color.red,
-                active: tokens.color.activeRed,
-                inverse: tokens.color.fadedRed,
-            },
-
-            /**
-             * Kind
-             */
-            primary: {
-                default: tokens.color.white,
-                disabled: tokens.color.offBlack32,
-            },
-
-            secondary: {
-                default: "none",
-                inverse: "none",
-                focus: tokens.color.white,
-                active: {
-                    action: tokens.color.fadedBlue,
-                    critical: tokens.color.fadedRed,
+        /**
+         * Primary
+         */
+        primary: {
+            // kind=primary / color=default / light=false
+            progressive: {
+                ...semanticColor.action.primary.progressive,
+                focus: focusOutline,
+                disabled: {
+                    background:
+                        semanticColor.action.primary.disabled.background,
+                    foreground:
+                        semanticColor.action.primary.disabled.foreground,
                 },
             },
 
-            /**
-             * Icons
-             */
-            icon: {
-                secondaryHover: "transparent",
+            // kind=primary / color=default / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            progressiveLight: {
+                ...semanticColor.action.secondary.progressive,
+                default: {
+                    ...semanticColor.action.secondary.progressive.default,
+                    background: semanticColor.surface.primary,
+                },
+                focus: focusOutlineLight,
+                hover: {
+                    ...semanticColor.action.secondary.progressive.hover,
+                    border: semanticColor.border.inverse,
+                    backgrond: semanticColor.surface.primary,
+                },
+                press: {
+                    ...semanticColor.action.secondary.progressive.press,
+                    border: semanticColor.action.secondary.progressive.press
+                        .background,
+                },
+                disabled: {
+                    background:
+                        semanticColor.action.secondary.progressive.press
+                            .background,
+                    foreground:
+                        semanticColor.action.secondary.progressive.default
+                            .foreground,
+                },
+            },
+            // kind=primary / color=destructive / light=false
+            destructive: {
+                ...semanticColor.action.primary.destructive,
+                focus: focusOutline,
+                disabled: {
+                    background:
+                        semanticColor.action.primary.disabled.background,
+                    foreground:
+                        semanticColor.action.primary.disabled.foreground,
+                },
+            },
+            // kind=primary / color=destructive / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            destructiveLight: {
+                ...semanticColor.action.secondary.destructive,
+                default: {
+                    ...semanticColor.action.secondary.destructive.default,
+                    background: semanticColor.surface.primary,
+                },
+                focus: focusOutlineLight,
+                hover: {
+                    ...semanticColor.action.secondary.progressive.hover,
+                    border: semanticColor.border.inverse,
+                    background: semanticColor.surface.primary,
+                },
+                press: {
+                    ...semanticColor.action.secondary.destructive.press,
+                    border: semanticColor.action.secondary.destructive.press
+                        .background,
+                },
+                disabled: {
+                    background:
+                        semanticColor.action.secondary.destructive.press
+                            .background,
+                    foreground:
+                        semanticColor.action.secondary.destructive.default
+                            .foreground,
+                },
             },
         },
-        text: {
-            /**
-             * Default
-             */
-            // kind="secondary, tertiary", disabled=true, light=false
-            disabled: tokens.color.offBlack32,
-            // kind="primary", light=false | kind="secondary, tertiary", light=true
-            inverse: tokens.color.white,
 
-            /**
-             * Kind
-             */
-            primary: {
-                disabled: tokens.color.white64,
+        /**
+         * Secondary
+         *
+         * Outlined buttons
+         */
+        secondary: {
+            // kind=secondary / color=default / light=false
+            progressive: {
+                ...semanticColor.action.secondary.progressive,
+                focus: focusOutline,
+                hover: {
+                    ...semanticColor.action.secondary.progressive.hover,
+                    // NOTE: This is a special case for the secondary button
+                    icon: "transparent",
+                },
+                disabled: {
+                    // NOTE: This is a special case for the secondary button
+                    // TODO(WB-1895): Revisit disabled styles.
+                    border: semanticColor.action.primary.disabled.border,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
+                },
             },
-            secondary: {
-                inverse: tokens.color.white50,
+            // kind=secondary / color=default / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            progressiveLight: {
+                default: {
+                    border: tokens.color.white64,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                focus: focusOutlineLight,
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                    // NOTE: Not used, but included for type safety.
+                    icon: "transparent",
+                },
+                press: {
+                    border: tokens.color.fadedBlue,
+                    background:
+                        semanticColor.action.primary.progressive.press
+                            .background,
+                    foreground: semanticColor.text.inverse,
+                },
+                disabled: {
+                    border: semanticColor.action.secondary.progressive.press
+                        .background,
+                    background:
+                        semanticColor.action.secondary.progressive.press
+                            .background,
+                    // NOTE: Using primitive token, but this will go away once
+                    // we remove the light variant.
+                    foreground: tokens.color.white50,
+                },
             },
-
-            /**
-             * Icons
-             */
-            icon: {
-                // Allows the icon to be visible on hover in both light and dark
-                // backgrounds.
-                secondaryHover: "inherit",
+            // kind=secondary / color=destructive / light=false
+            destructive: {
+                ...semanticColor.action.secondary.destructive,
+                focus: focusOutline,
+                hover: {
+                    ...semanticColor.action.secondary.destructive.hover,
+                    // NOTE: This is a special case for the secondary button
+                    icon: "transparent",
+                },
+                disabled: {
+                    // NOTE: This is a special case for the secondary button
+                    // TODO(WB-1895): Revisit disabled styles.
+                    border: semanticColor.action.primary.disabled.border,
+                    foreground:
+                        semanticColor.action.secondary.disabled.foreground,
+                },
+            },
+            // kind=secondary / color=destructive / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            destructiveLight: {
+                default: {
+                    border: tokens.color.white64,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                focus: focusOutlineLight,
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                    // NOTE: Not used, but included for type safety.
+                    icon: "transparent",
+                },
+                press: {
+                    border: tokens.color.fadedRed,
+                    background:
+                        semanticColor.action.primary.destructive.press
+                            .background,
+                    foreground: semanticColor.text.inverse,
+                },
+                disabled: {
+                    border: semanticColor.action.secondary.destructive.press
+                        .background,
+                    background:
+                        semanticColor.action.secondary.destructive.press
+                            .background,
+                    foreground: tokens.color.white50,
+                },
             },
         },
-        border: {
-            /**
-             * Default
-             */
-            // kind="secondary", light=false | kind="tertiary", light=false
-            disabled: tokens.color.offBlack32,
-            /**
-             * Kind
-             */
-            primary: {
-                inverse: tokens.color.white,
+        /**
+         * Tertiary
+         *
+         * Text buttons
+         */
+        tertiary: {
+            // kind=tertiary / color=default / light=false
+            progressive: {
+                ...semanticColor.action.tertiary.progressive,
+                focus: focusOutline,
+                disabled: {
+                    foreground:
+                        semanticColor.action.tertiary.disabled.foreground,
+                },
             },
-            secondary: {
-                action: tokens.color.offBlack50,
-                critical: tokens.color.offBlack50,
-                inverse: tokens.color.white50,
+            // kind=tertiary / color=default / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            progressiveLight: {
+                default: {
+                    border: tokens.color.white64,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                focus: focusOutlineLight,
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                press: {
+                    border: semanticColor.border.inverse,
+                    foreground: tokens.color.fadedBlue,
+                },
+                disabled: {
+                    foreground: tokens.color.white50,
+                },
             },
-            tertiary: {
-                inverse: tokens.color.white,
+            // kind=tertiary / color=destructive / light=false
+            destructive: {
+                ...semanticColor.action.tertiary.destructive,
+                focus: focusOutline,
+                disabled: {
+                    foreground:
+                        semanticColor.action.tertiary.disabled.foreground,
+                },
+            },
+            // kind=tertiary / color=destructive / light=true
+            // NOTE: These colors will be removed from WB as soon as we remove the
+            // light variant.
+            destructiveLight: {
+                default: {
+                    border: tokens.color.white64,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                focus: focusOutlineLight,
+                hover: {
+                    border: semanticColor.border.inverse,
+                    background: "transparent",
+                    foreground: semanticColor.text.inverse,
+                },
+                press: {
+                    border: semanticColor.border.inverse,
+                    foreground: tokens.color.fadedRed,
+                },
+                disabled: {
+                    foreground: tokens.color.white50,
+                },
             },
         },
     },
@@ -110,6 +296,7 @@ const theme = {
         },
         offset: {
             primary: tokens.spacing.xxxxSmall_2,
+            secondary: -tokens.spacing.xxxxSmall_2,
         },
         radius: {
             // default

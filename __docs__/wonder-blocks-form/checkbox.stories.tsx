@@ -21,6 +21,10 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in checkbox-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof Checkbox>;
 
@@ -30,14 +34,7 @@ export const Default: StoryComponentType = {
     args: {
         checked: false,
         onChange: () => {},
-    },
-};
-
-Default.parameters = {
-    chromatic: {
-        // We already have screenshots of another story that covers
-        // this and more cases.
-        disableSnapshot: true,
+        "aria-label": "Example",
     },
 };
 
@@ -51,15 +48,16 @@ export const Controlled: StoryComponentType = () => {
         setChecked(checked === false);
     };
 
-    return <Checkbox checked={checked} onChange={handleChange} />;
+    return (
+        <Checkbox
+            aria-label="Example"
+            checked={checked}
+            onChange={handleChange}
+        />
+    );
 };
 
 Controlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, its for testing
-        // that `state` works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `Use state to keep track of whether the checkbox
@@ -74,6 +72,7 @@ export const Indeterminate: StoryComponentType = () => {
     return (
         <View style={styles.row}>
             <Checkbox
+                aria-label="Default example"
                 checked={null}
                 disabled={false}
                 error={false}
@@ -81,6 +80,7 @@ export const Indeterminate: StoryComponentType = () => {
             />
             <Strut size={8} />
             <Checkbox
+                aria-label="Disabled example"
                 checked={undefined}
                 disabled={true}
                 error={false}
@@ -88,6 +88,7 @@ export const Indeterminate: StoryComponentType = () => {
             />
             <Strut size={8} />
             <Checkbox
+                aria-label="Error example"
                 checked={null}
                 disabled={false}
                 error={true}
@@ -183,36 +184,42 @@ IndeterminateWithGroup.parameters = {
 export const Variants: StoryComponentType = () => (
     <View style={styles.row}>
         <Checkbox
+            aria-label="Default example"
             error={false}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Checked example"
             error={false}
             checked={true}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Error example"
             error={true}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Error checked example"
             error={true}
             checked={true}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Disabled example"
             disabled={true}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Checkbox
+            aria-label="Disabled checked example"
             disabled={true}
             checked={true}
             style={styles.marginRight}
@@ -237,17 +244,20 @@ export const VariantsControlled: StoryComponentType = () => {
     return (
         <View style={styles.row}>
             <Checkbox
+                aria-label="Checked example"
                 checked={defaultChecked}
                 onChange={defaultSetChecked}
                 style={styles.marginRight}
             />
             <Checkbox
+                aria-label="Error example"
                 error={true}
                 checked={errorChecked}
                 onChange={errorSetChecked}
                 style={styles.marginRight}
             />
             <Checkbox
+                aria-label="Disabled checked example"
                 checked={disabledChecked}
                 disabled={true}
                 onChange={disabledSetChecked}
@@ -258,11 +268,6 @@ export const VariantsControlled: StoryComponentType = () => {
 };
 
 VariantsControlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, its for testing
-        // that `state` works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `A demo of the different kinds of checkboxes

@@ -10,4 +10,4 @@ export const viewportPixelsForSize = (size: IconSize): number =>
         medium: 24,
         large: 48,
         xlarge: 96,
-    }[size]);
+    })[size];

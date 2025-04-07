@@ -5,7 +5,7 @@ import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";
@@ -169,7 +169,7 @@ type Props =
           target?: never;
       });
 
-const StyledAnchor = addStyle("a");
+const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
@@ -241,7 +241,7 @@ const Clickable = React.forwardRef(function Clickable(
             );
         } else if (activeHref && !useClient) {
             return (
-                <StyledAnchor
+                <StyledA
                     {...commonProps}
                     href={props.href}
                     role={props.role}
@@ -250,7 +250,7 @@ const Clickable = React.forwardRef(function Clickable(
                     ref={ref as React.Ref<HTMLAnchorElement>}
                 >
                     {props.children(clickableState)}
-                </StyledAnchor>
+                </StyledA>
             );
         } else {
             return (
@@ -410,20 +410,21 @@ const styles = StyleSheet.create({
     },
     focused: {
         ":focus": {
-            outline: `solid 2px ${color.blue}`,
+            outline: `solid ${border.width.thin}px ${semanticColor.focus.outer}`,
         },
     },
+    // TODO(WB-1852): Remove light variant.
     focusedLight: {
-        outline: `solid 2px ${color.white}`,
+        outline: `solid ${border.width.thin}px ${semanticColor.border.inverse}`,
     },
     disabled: {
-        color: color.offBlack32,
+        color: semanticColor.action.secondary.disabled.foreground,
         cursor: "not-allowed",
         ":focus": {
             outline: "none",
         },
         ":focus-visible": {
-            outline: `solid 2px ${color.blue}`,
+            outline: `solid ${border.width.thin}px ${semanticColor.focus.outer}`,
         },
     },
 });

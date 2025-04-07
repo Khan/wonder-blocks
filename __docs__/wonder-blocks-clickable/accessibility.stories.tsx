@@ -4,51 +4,54 @@ import {StyleSheet} from "aphrodite";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
+const actionCategory = semanticColor.action.secondary.progressive;
+
 const styles = StyleSheet.create({
-    resting: {
-        boxShadow: `inset 0px 0px 1px 1px ${color.purple}`,
+    rest: {
+        border: `1px solid ${actionCategory.default.border}`,
         padding: spacing.xSmall_8,
     },
-    hovered: {
+    hover: {
         textDecoration: "underline",
-        backgroundColor: color.blue,
-        color: color.white,
+        borderColor: actionCategory.hover.border,
+        backgroundColor: actionCategory.hover.background,
+        color: actionCategory.hover.foreground,
     },
-    pressed: {
-        color: color.darkBlue,
+    press: {
+        background: actionCategory.press.background,
+        borderColor: actionCategory.press.border,
+        color: actionCategory.press.foreground,
     },
-    focused: {
-        outline: `solid 4px ${color.purple}`,
+    focus: {
+        outline: `solid 1px ${semanticColor.focus.outer}`,
+        outlineOffset: spacing.xxxxSmall_2,
     },
     panel: {
         padding: spacing.medium_16,
-        boxShadow: `inset 0px 0px 0 1px ${color.offBlack8}`,
+        // TODO(WB-1878): Use elevation token.
+        boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
+    },
+    tabButton: {
+        width: "100%",
     },
 });
 
 export default {
     title: "Packages / Clickable / Clickable / Accessibility",
     component: Clickable,
-
-    // Disables chromatic testing for these stories.
     parameters: {
-        previewTabs: {
-            canvas: {
-                hidden: true,
-            },
-        },
-
-        viewMode: "docs",
-
+        // Disables chromatic testing for these stories.
         chromatic: {
             disableSnapshot: true,
         },
     },
+    // Include these stories in the Docs tab, but hide them from the sidebar.
+    tags: ["autodocs", "!dev"],
 };
 
 export const Labeling = {
@@ -58,9 +61,7 @@ export const Labeling = {
                 onClick={() => {}}
                 aria-label="More information about this subject"
             >
-                {({hovered, focused, pressed}) => (
-                    <PhosphorIcon icon={IconMappings.info} />
-                )}
+                {() => <PhosphorIcon icon={IconMappings.info} />}
             </Clickable>
         </View>
     ),
@@ -73,9 +74,7 @@ export const DisabledState = {
             onClick={(e) => console.log("Hello, world!")}
             disabled={true}
         >
-            {({hovered, focused, pressed}) =>
-                "This is a disabled clickable element"
-            }
+            {() => "This is a disabled clickable element"}
         </Clickable>
     ),
 
@@ -85,20 +84,27 @@ export const DisabledState = {
 export const KeyboardNavigation = {
     render: () => (
         <View>
-            <Clickable role="tab" aria-controls="panel-1" id="tab-1">
-                {({hovered, focused, pressed}) => (
-                    <View
-                        style={[
-                            styles.resting,
-                            hovered && styles.hovered,
-                            focused && styles.focused,
-                            pressed && styles.pressed,
-                        ]}
-                    >
-                        <Body>Open School Info</Body>
-                    </View>
-                )}
-            </Clickable>
+            <div role="tablist">
+                <Clickable
+                    role="tab"
+                    aria-controls="panel-1"
+                    id="tab-1"
+                    style={styles.tabButton}
+                >
+                    {({hovered, focused, pressed}) => (
+                        <View
+                            style={[
+                                styles.rest,
+                                hovered && styles.hover,
+                                focused && styles.focus,
+                                pressed && styles.press,
+                            ]}
+                        >
+                            <Body>Open School Info</Body>
+                        </View>
+                    )}
+                </Clickable>
+            </div>
             <View
                 id="panel-1"
                 role="tabpanel"

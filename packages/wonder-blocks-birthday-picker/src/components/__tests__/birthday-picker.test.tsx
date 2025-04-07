@@ -1,12 +1,25 @@
 import * as React from "react";
 import moment from "moment";
-import {render, screen, waitFor} from "@testing-library/react";
+import {render, act, screen, waitFor} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
 
 import BirthdayPicker, {defaultLabels} from "../birthday-picker";
 
 import type {Labels} from "../birthday-picker";
+
+jest.mock("react-popper", () => ({
+    ...jest.requireActual("react-popper"),
+    Popper: jest.fn().mockImplementation(({children}) => {
+        // Mock `isReferenceHidden` to always return false (or true for testing visibility)
+        return children({
+            ref: jest.fn(),
+            style: {},
+            placement: "bottom",
+            isReferenceHidden: false, // Mocking isReferenceHidden
+        });
+    }),
+}));
 
 describe("BirthdayPicker", () => {
     const today = new Date("2021-07-19T09:30:00Z");
@@ -183,34 +196,63 @@ describe("BirthdayPicker", () => {
             expect(await screen.findByRole("alert")).toBeInTheDocument();
         });
 
-        // NOTE(john): After upgrading to user-event v14 this test no longer
-        // works. the findByRole("listbox") is not finding the listbox. Juan
-        // and I tried all sorts of options, but none work. Hopefully this
-        // can be fixed once we upgrade to React 18?
-        it.skip.each(["day", "month", "year"])(
-            "%s > renders the listbox as invalid with an invalid default value",
-            async (fragment) => {
-                // Arrange
-                const defaultValue = "2021-02-31";
+        describe.each(["day", "month", "year"])(
+            "$fragment",
+            (fragment: string) => {
+                it("%s > renders the listbox as invalid with an invalid default value", async () => {
+                    // Arrange
+                    const defaultValue = "2021-02-31";
 
-                render(
-                    <BirthdayPicker
-                        defaultValue={defaultValue}
-                        onChange={() => {}}
-                    />,
-                );
+                    render(
+                        <BirthdayPicker
+                            defaultValue={defaultValue}
+                            onChange={() => {}}
+                        />,
+                    );
 
-                const button = await screen.findByTestId(
-                    `birthday-picker-${fragment}`,
-                );
-                await userEvent.click(button);
+                    const button = await screen.findByTestId(
+                        `birthday-picker-${fragment}`,
+                    );
+                    await userEvent.click(button);
 
-                // Act
-                // wait for the listbox (options list) to appear
-                const listbox = await screen.findByRole("listbox");
+                    // Act
+                    // wait for the listbox (options list) to appear
+                    const listbox = await screen.findByRole("listbox", {
+                        hidden: true,
+                    });
 
-                // Assert
-                expect(listbox).toHaveAttribute("aria-invalid", "true");
+                    // Assert
+                    expect(listbox).toHaveAttribute("aria-invalid", "true");
+                });
+
+                it("$s > labels the opener", async () => {
+                    // Arrange
+                    const defaultValue = "2021-02-31";
+                    const testLabels: Labels = {
+                        month: "Mois",
+                        day: "Jour",
+                        year: "Année",
+                        errorMessage: "There was an error",
+                    };
+
+                    render(
+                        <BirthdayPicker
+                            defaultValue={defaultValue}
+                            onChange={() => {}}
+                            labels={testLabels}
+                        />,
+                    );
+
+                    // Act
+                    const button = await screen.findByTestId(
+                        `birthday-picker-${fragment}`,
+                    );
+
+                    // Assert
+                    expect(button).toHaveAccessibleName(
+                        testLabels[fragment as keyof Labels],
+                    );
+                });
             },
         );
     });
@@ -222,11 +264,15 @@ describe("BirthdayPicker", () => {
 
             render(<BirthdayPicker onChange={onChange} />);
 
-            // Act
-            await userEvent.click(
-                await screen.findByTestId("birthday-picker-month"),
+            const monthDropdown = await screen.findByTestId(
+                "birthday-picker-month",
             );
-            const monthOption = await screen.findByText("Jul");
+            // Act
+            await userEvent.click(monthDropdown);
+
+            const monthOption = await screen.findByRole("option", {
+                name: "Jul",
+            });
             await userEvent.click(monthOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -234,7 +280,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-day"),
             );
-            const dayOption = await screen.findByText("5");
+            const dayOption = await screen.findByRole("option", {
+                name: "5",
+            });
             await userEvent.click(dayOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -242,7 +290,9 @@ describe("BirthdayPicker", () => {
             await userEvent.click(
                 await screen.findByTestId("birthday-picker-year"),
             );
-            const yearOption = await screen.findByText("2021");
+            const yearOption = await screen.findByRole("option", {
+                name: "2021",
+            });
             await userEvent.click(yearOption, {
                 pointerEventsCheck: PointerEventsCheckLevel.Never,
             });
@@ -374,9 +424,9 @@ describe("BirthdayPicker", () => {
             // This test was written by calling methods on the instance because
             // react-window (used by SingleSelect) doesn't show all of the items
             // in the dropdown.
-            instance.handleMonthChange("1");
-            instance.handleDayChange("31");
-            instance.handleYearChange("2021");
+            await act(() => instance.handleMonthChange("1"));
+            await act(() => instance.handleDayChange("31"));
+            await act(() => instance.handleYearChange("2021"));
 
             // Assert
             await waitFor(() => expect(onChange).toHaveBeenCalledWith(null));
@@ -406,7 +456,7 @@ describe("BirthdayPicker", () => {
             expect(onChange).toHaveBeenCalledTimes(1);
         });
 
-        it("onChange triggers the first day of the month when monthYearOnly is set", async () => {
+        it("onChange triggers the last day of the month when monthYearOnly is set", async () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -431,10 +481,10 @@ describe("BirthdayPicker", () => {
 
             // Assert
             // Verify that we passed the first day of the month
-            expect(onChange).toHaveBeenCalledWith("2018-08-01");
+            expect(onChange).toHaveBeenCalledWith("2018-08-31");
         });
 
-        it("onChange triggers the passed-in day intact when defaultValue and monthYearOnly are set", async () => {
+        it("onChange triggers the last day of month when defaultValue and monthYearOnly are set", async () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -465,7 +515,7 @@ describe("BirthdayPicker", () => {
 
             // Assert
             // Verify that we passed the same day originally passed in.
-            expect(onChange).toHaveBeenCalledWith("2018-08-17");
+            expect(onChange).toHaveBeenCalledWith("2018-08-31");
         });
     });
 

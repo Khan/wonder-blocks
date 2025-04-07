@@ -17,9 +17,6 @@ import Button from "@khanacademy/wonder-blocks-button";
 export default {
     title: "Packages / Button / All Variants",
     parameters: {
-        docs: {
-            autodocs: false,
-        },
         chromatic: {
             // NOTE: This is required to prevent Chromatic from cutting off the
             // dark background in screenshots (accounts for all the space taken
@@ -27,6 +24,7 @@ export default {
             viewports: [1700],
         },
     },
+    tags: ["!autodocs"],
 } as Meta;
 
 type StoryComponentType = StoryObj<typeof Button>;
@@ -113,16 +111,32 @@ const KindVariants = ({light}: {light: boolean}) => {
     return (
         <>
             {sizes.map((size) => (
-                <>
+                <React.Fragment key={size}>
                     {colors.map((color) => (
+                        <React.Fragment key={color}>
+                            <VariantsGroup
+                                size={size}
+                                color={color}
+                                light={light}
+                            />
+                            {light && (
+                                <VariantsGroup
+                                    size={size}
+                                    color={color}
+                                    disabled={true}
+                                    light={light}
+                                />
+                            )}
+                        </React.Fragment>
+                    ))}
+                    {!light && (
                         <VariantsGroup
                             size={size}
-                            color={color}
+                            disabled={true}
                             light={light}
                         />
-                    ))}
-                    <VariantsGroup size={size} disabled={true} light={light} />
-                </>
+                    )}
+                </React.Fragment>
             ))}
         </>
     );

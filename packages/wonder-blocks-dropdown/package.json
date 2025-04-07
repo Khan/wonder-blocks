@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "7.0.6",
+  "version": "9.2.2",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
@@ -16,32 +16,32 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-cell": "^4.0.5",
-    "@khanacademy/wonder-blocks-clickable": "^5.0.5",
-    "@khanacademy/wonder-blocks-core": "^11.1.0",
-    "@khanacademy/wonder-blocks-icon": "^5.0.5",
-    "@khanacademy/wonder-blocks-layout": "^3.0.5",
-    "@khanacademy/wonder-blocks-modal": "^7.0.3",
-    "@khanacademy/wonder-blocks-pill": "^3.0.5",
-    "@khanacademy/wonder-blocks-search-field": "^4.0.6",
-    "@khanacademy/wonder-blocks-timing": "^6.0.1",
-    "@khanacademy/wonder-blocks-tokens": "^3.0.1",
-    "@khanacademy/wonder-blocks-typography": "^3.0.5"
+    "@babel/runtime": "catalog:",
+    "@khanacademy/wonder-blocks-announcer": "workspace:*",
+    "@khanacademy/wonder-blocks-cell": "workspace:*",
+    "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-icon": "workspace:*",
+    "@khanacademy/wonder-blocks-layout": "workspace:*",
+    "@khanacademy/wonder-blocks-modal": "workspace:*",
+    "@khanacademy/wonder-blocks-pill": "workspace:*",
+    "@khanacademy/wonder-blocks-search-field": "workspace:*",
+    "@khanacademy/wonder-blocks-timing": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "@phosphor-icons/core": "^2.0.2",
-    "@popperjs/core": "^2.10.1",
-    "aphrodite": "^1.2.5",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-popper": "^2.0.0",
-    "react-router": "5.3.4",
-    "react-router-dom": "5.3.4",
-    "react-window": "^1.8.10"
+    "@phosphor-icons/core": "catalog:",
+    "@popperjs/core": "catalog:",
+    "aphrodite": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-popper": "catalog:",
+    "react-router": "catalog:",
+    "react-router-dom": "catalog:",
+    "react-window": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^7.0.5",
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

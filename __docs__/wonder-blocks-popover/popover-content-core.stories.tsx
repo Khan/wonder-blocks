@@ -2,15 +2,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import type {Meta, StoryObj} from "@storybook/react";
-import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    Body,
-    HeadingSmall,
-    LabelLarge,
-} from "@khanacademy/wonder-blocks-typography";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
@@ -67,7 +62,7 @@ const styles = StyleSheet.create({
     action: {
         backgroundColor: "transparent",
         border: "none",
-        color: color.white,
+        color: semanticColor.text.inverse,
         cursor: "pointer",
         margin: spacing.small_12,
         padding: spacing.xxSmall_6,
@@ -101,7 +96,9 @@ export const WithIcon: StoryComponentType = {
 const ClickableDetailCellWrapper = ClickableDetailCell as React.ElementType;
 
 /**
- * Using DetailCell as the content
+ * Popovers can also benefit from other Wonder Blocks components. In this
+ * example, we are using the `DetailCell` component embedded as part of the
+ * popover contents.
  */
 export const WithDetailCell: StoryComponentType = {
     args: {
@@ -110,76 +107,4 @@ export const WithDetailCell: StoryComponentType = {
         style: styles.popoverWithCell,
     },
     render: (args) => <PopoverContentCore {...args} />,
-};
-
-WithDetailCell.parameters = {
-    docs: {
-        description: {
-            story: "Popovers can also benefit from other Wonder Blocks components. In this example, we are using the DetailCell component embedded as part of the popover contents.",
-        },
-    },
-};
-
-/**
- * Dark custom popover
- */
-const CustomPopoverContent = (
-    <>
-        <HeadingSmall>Custom popover title</HeadingSmall>
-        <View style={styles.row}>
-            <Clickable style={styles.action} onClick={close} id="btn-1">
-                {() => (
-                    <>
-                        <PhosphorIcon
-                            icon={IconMappings.pencilSimple}
-                            color={color.gold}
-                            size="large"
-                        />
-                        <LabelLarge>Option 1</LabelLarge>
-                    </>
-                )}
-            </Clickable>
-            <Clickable style={styles.action} onClick={close} id="btn-2">
-                {() => (
-                    <>
-                        <PhosphorIcon
-                            icon={IconMappings.pencilSimple}
-                            color={color.green}
-                            size="large"
-                        />
-                        <LabelLarge>Option 2</LabelLarge>
-                    </>
-                )}
-            </Clickable>
-            <Clickable style={styles.action} onClick={close} id="btn-3">
-                {() => (
-                    <>
-                        <PhosphorIcon
-                            icon={IconMappings.pencilSimple}
-                            color={color.blue}
-                            size="large"
-                        />
-                        <LabelLarge>Option 3</LabelLarge>
-                    </>
-                )}
-            </Clickable>
-        </View>
-    </>
-);
-
-export const Dark: StoryComponentType = {
-    args: {
-        children: CustomPopoverContent,
-        color: "darkBlue",
-        style: styles.customPopover,
-    },
-    render: (args) => <PopoverContentCore {...args} />,
-};
-
-Dark.parameters = {
-    docs: {
-        description: {
-            story: "This component provides a flexible variant that can be used for example, for our Confidence Prompt in test prep and popovers that don't fit into other categories. If you want to use a different background, you can set `color` as part of `PopoverContentCore`.",
-        },
-    },
 };

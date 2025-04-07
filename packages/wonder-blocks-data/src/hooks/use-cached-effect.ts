@@ -19,7 +19,7 @@ type CachedEffectOptions<TData extends ValidCacheData> = {
      *
      * Defaults to `FetchPolicy.CacheBeforeNetwork`.
      */
-    fetchPolicy?: typeof FetchPolicy[keyof typeof FetchPolicy];
+    fetchPolicy?: (typeof FetchPolicy)[keyof typeof FetchPolicy];
     /**
      * When `true`, the effect will not be executed; otherwise, the effect will
      * be executed.
@@ -281,8 +281,8 @@ export const useCachedEffect = <TData extends ValidCacheData>(
     const loadingResult = retainResultOnChange
         ? lastResultAgnosticOfIdRef.current
         : shouldFetch
-        ? Status.loading<TData>()
-        : Status.noData<TData>();
+          ? Status.loading<TData>()
+          : Status.noData<TData>();
 
     // Loading and no-data are transient states, so we only use them here;
     // they're not something we cache.

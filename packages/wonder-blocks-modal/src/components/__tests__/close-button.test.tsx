@@ -9,7 +9,7 @@ describe("CloseButton", () => {
     test("ModalContext.Provider and onClose should warn", () => {
         expectRenderError(
             <ModalContext.Provider value={{closeModal: () => {}}}>
-                <CloseButton light={false} onClick={() => {}} />,
+                <CloseButton onClick={() => {}} />,
             </ModalContext.Provider>,
             "You've specified 'onClose' on a modal when using ModalLauncher.  Please specify 'onClose' on the ModalLauncher instead",
         );

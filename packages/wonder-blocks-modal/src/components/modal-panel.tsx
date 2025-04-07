@@ -7,6 +7,7 @@ import {
     useScopedTheme,
     useStyles,
 } from "@khanacademy/wonder-blocks-theming";
+import {actionStyles, focusStyles} from "@khanacademy/wonder-blocks-styles";
 import ModalContent from "./modal-content";
 import ModalHeader from "./modal-header";
 import ModalFooter from "./modal-footer";
@@ -125,16 +126,20 @@ export default function ModalPanel({
 
     const mainContent = renderMainContent();
 
+    const isInverse = !light;
+
     return (
         <View
-            style={[styles.wrapper, !light && styles.dark, style]}
+            style={[styles.wrapper, isInverse && styles.dark, style]}
             testId={testId && `${testId}-panel`}
         >
             {closeButtonVisible && (
                 <CloseButton
-                    light={!light}
                     onClick={onClose}
-                    style={styles.closeButton}
+                    style={[
+                        styles.closeButton,
+                        isInverse && actionStyles.inverse,
+                    ]}
                     testId={testId && `${testId}-close`}
                 />
             )}
@@ -170,8 +175,8 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
 
     closeButton: {
         position: "absolute",
-        right: theme.spacing.panel.closeButton,
-        top: theme.spacing.panel.closeButton,
+        right: theme.closeButton.spacing.gap,
+        top: theme.closeButton.spacing.gap,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.
         zIndex: 1,
@@ -180,20 +185,17 @@ const themedStylesFn: ThemedStylesFn<ModalDialogThemeContract> = (theme) => ({
         // programmatic focus. This is a workaround to make sure the focus
         // outline is visible when this control is focused.
         ":focus": {
-            outlineWidth: theme.border.width,
-            outlineColor: theme.border.color,
-            outlineOffset: 1,
-            outlineStyle: "solid",
-            borderRadius: theme.border.radius,
+            ...focusStyles.focus[":focus-visible"],
         },
     },
 
     dark: {
-        background: theme.color.bg.inverse,
-        color: theme.color.text.inverse,
+        background: theme.root.color.inverse.background,
+        color: theme.root.color.inverse.foreground,
     },
 
     hasFooter: {
-        paddingBottom: theme.spacing.panel.footer,
+        // The space between the content and the footer
+        paddingBlockEnd: theme.panel.spacing.gap,
     },
 });

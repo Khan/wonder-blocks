@@ -106,6 +106,7 @@ describe("maybeGetPortalMountedModalHostElement", () => {
             const actAndAssert = (node: any) => {
                 if (node) {
                     // Act
+                    // eslint-disable-next-line import/no-deprecated
                     const candidateElement = ReactDOM.findDOMNode(node);
                     const result =
                         maybeGetPortalMountedModalHostElement(candidateElement);

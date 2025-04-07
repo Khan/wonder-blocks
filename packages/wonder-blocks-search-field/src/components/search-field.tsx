@@ -110,6 +110,14 @@ type Props = AriaProps & {
  * Search Field. A TextField with a search icon on its left side
  * and an X icon on its right side.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
+ *
  * ### Usage
  * ```jsx
  * import {SearchField} from "@khanacademy/wonder-blocks-search-field";
@@ -178,6 +186,7 @@ const SearchField: React.ForwardRefExoticComponent<
                 icon={xIcon}
                 size="small"
                 kind="tertiary"
+                actionType="neutral"
                 onClick={handleClear}
                 style={styles.dismissIcon}
                 aria-label={clearAriaLabel}
@@ -194,7 +203,7 @@ const SearchField: React.ForwardRefExoticComponent<
                         size="small"
                         color={
                             disabled
-                                ? semanticColor.action.disabled.default
+                                ? semanticColor.icon.disabled
                                 : semanticColor.icon.primary
                         }
                         style={styles.searchIcon}

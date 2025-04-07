@@ -4,25 +4,26 @@ import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {color} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 
 type CheckboxProps = PropsFor<typeof Checkbox>;
 
 const ErrorTemplate = (args: CheckboxProps) => {
     const [checked, setChecked] = React.useState(false);
+    const errorId = React.useId();
     const errorState = !checked;
     return (
         <View>
             <Checkbox
                 error={errorState}
-                aria-describedby={errorState ? "error-message" : undefined}
+                aria-describedby={errorState ? errorId : undefined}
                 aria-required={true}
                 {...args}
                 checked={checked}
                 onChange={setChecked}
             />
             {errorState && (
-                <LabelSmall style={styles.error} id="error-message">
+                <LabelSmall style={styles.error} id={errorId}>
                     You must agree to the terms to continue
                 </LabelSmall>
             )}
@@ -45,7 +46,7 @@ const DisabledTemplate = (args: CheckboxProps) => {
 
 const styles = StyleSheet.create({
     error: {
-        color: color.red,
+        color: semanticColor.status.critical.foreground,
     },
 });
 

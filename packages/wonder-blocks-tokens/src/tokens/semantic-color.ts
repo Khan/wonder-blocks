@@ -13,8 +13,7 @@ export const semanticColor = {
      * of interaction.
      */
     action: {
-        // Filled buttons are meant for primary actions.
-        filled: {
+        primary: {
             progressive: {
                 default: {
                     border: "transparent",
@@ -49,20 +48,42 @@ export const semanticColor = {
                     foreground: color.white,
                 },
             },
+
+            neutral: {
+                default: {
+                    border: "transparent",
+                    background: color.fadedOffBlack72,
+                    foreground: color.white,
+                },
+                hover: {
+                    border: color.fadedOffBlack72,
+                    background: color.fadedOffBlack72,
+                    foreground: color.white,
+                },
+                press: {
+                    border: color.offBlack,
+                    background: color.offBlack,
+                    foreground: color.white,
+                },
+            },
+
+            disabled: {
+                border: color.fadedOffBlack32,
+                background: color.fadedOffBlack32,
+                foreground: color.offWhite,
+            },
         },
 
-        // Outlined is meant for use on secondary controls, or controls over
-        // white/transparent backgrounds.
-        outlined: {
+        secondary: {
             progressive: {
                 default: {
                     border: border.strong,
-                    background: color.white,
+                    background: "transparent",
                     foreground: color.blue,
                 },
                 hover: {
                     border: color.blue,
-                    background: color.white,
+                    background: "transparent",
                     foreground: color.blue,
                 },
                 press: {
@@ -74,12 +95,12 @@ export const semanticColor = {
             destructive: {
                 default: {
                     border: border.strong,
-                    background: color.white,
+                    background: "transparent",
                     foreground: color.red,
                 },
                 hover: {
                     border: color.red,
-                    background: color.white,
+                    background: "transparent",
                     foreground: color.red,
                 },
                 press: {
@@ -88,10 +109,90 @@ export const semanticColor = {
                     foreground: color.activeRed,
                 },
             },
+            neutral: {
+                default: {
+                    border: border.strong,
+                    background: "transparent",
+                    foreground: color.fadedOffBlack72,
+                },
+                hover: {
+                    border: color.fadedOffBlack72,
+                    background: "transparent",
+                    foreground: color.fadedOffBlack72,
+                },
+                press: {
+                    border: color.offBlack,
+                    background: "transparent",
+                    foreground: color.offBlack,
+                },
+            },
+
+            disabled: {
+                border: border.primary,
+                background: color.offWhite,
+                foreground: color.fadedOffBlack32,
+            },
         },
-        disabled: {
-            default: color.fadedOffBlack32,
-            secondary: color.offWhite,
+
+        tertiary: {
+            progressive: {
+                default: {
+                    border: "transparent",
+                    background: "transparent",
+                    foreground: color.blue,
+                },
+                hover: {
+                    border: color.blue,
+                    background: "transparent",
+                    foreground: color.blue,
+                },
+                press: {
+                    border: color.activeBlue,
+                    background: "transparent",
+                    foreground: color.activeBlue,
+                },
+            },
+
+            destructive: {
+                default: {
+                    border: "transparent",
+                    background: "transparent",
+                    foreground: color.red,
+                },
+                hover: {
+                    border: color.red,
+                    background: "transparent",
+                    foreground: color.red,
+                },
+                press: {
+                    border: color.activeRed,
+                    background: "transparent",
+                    foreground: color.activeRed,
+                },
+            },
+            neutral: {
+                default: {
+                    border: "transparent",
+                    background: "transparent",
+                    foreground: color.fadedOffBlack72,
+                },
+                hover: {
+                    border: color.fadedOffBlack72,
+                    background: "transparent",
+                    foreground: color.fadedOffBlack72,
+                },
+                press: {
+                    border: color.offBlack,
+                    background: "transparent",
+                    foreground: color.offBlack,
+                },
+            },
+
+            disabled: {
+                border: border.primary,
+                background: "transparent",
+                foreground: color.fadedOffBlack32,
+            },
         },
     },
     /**
@@ -137,7 +238,7 @@ export const semanticColor = {
      */
     text: {
         primary: color.offBlack,
-        secondary: color.fadedOffBlack64,
+        secondary: color.fadedOffBlack72,
         disabled: color.fadedOffBlack32,
         inverse: color.white,
     },
@@ -147,15 +248,21 @@ export const semanticColor = {
      * -Strong for when 3:1 contrast is a priority (ex. form elements)
      */
     border: border,
+
+    focus: {
+        outer: color.blue,
+        inner: color.white,
+    },
     /**
      * Default icon colors that change in context (like actions).
      */
     icon: {
-        primary: color.fadedOffBlack64,
+        primary: color.fadedOffBlack72,
         secondary: color.offBlack,
         inverse: color.white,
         action: color.blue,
         destructive: color.red,
+        disabled: color.fadedOffBlack32,
     },
     /**
      * Colors to be used exclusively for Khanmigo or to communicate a

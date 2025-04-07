@@ -1,7 +1,7 @@
 {
   "name": "@khanacademy/wonder-blocks-timing",
   "private": false,
-  "version": "6.0.1",
+  "version": "7.0.2",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,11 +15,11 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "peerDependencies": {
-    "react": "18.2.0"
+    "react": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^2.0.0",
-    "@khanacademy/wonder-blocks-testing-core": "^2.0.1"
+    "@khanacademy/wb-dev-build-settings": "workspace:*",
+    "@khanacademy/wonder-blocks-testing-core": "workspace:*"
   },
   "author": "",
   "license": "MIT"

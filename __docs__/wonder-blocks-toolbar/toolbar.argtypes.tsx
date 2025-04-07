@@ -37,14 +37,30 @@ type Mappings = {
 
 export const leftContentMappings: Mappings = {
     none: null,
-    dismissButton: <IconButton icon={xIcon} kind="tertiary" />,
-    lightButton: <IconButton icon={xIcon} light={true} />,
-    hintButton: <IconButton icon={lightbulb} kind="primary" />,
+    dismissButton: (
+        <IconButton
+            aria-label="Dismiss"
+            icon={xIcon}
+            kind="tertiary"
+            actionType="neutral"
+        />
+    ),
+    hintButton: (
+        <IconButton aria-label="Hint" icon={lightbulb} kind="tertiary" />
+    ),
     multipleContent: (
         <>
-            <IconButton icon={magnifyingGlassMinus} kind="primary" />
+            <IconButton
+                aria-label="Zoom out"
+                icon={magnifyingGlassMinus}
+                kind="tertiary"
+            />
             <Strut size={spacing.medium_16} />
-            <IconButton icon={magnifyingGlassPlus} kind="primary" />
+            <IconButton
+                aria-label="Zoom in"
+                icon={magnifyingGlassPlus}
+                kind="tertiary"
+            />
         </>
     ),
     exitWithTitle: (
@@ -79,7 +95,7 @@ export const rightContentMappings: Mappings = {
         </Button>
     ),
     link: (
-        <Link href="#">
+        <Link href="#exercise">
             <LabelLarge>Go to exercise</LabelLarge>
         </Link>
     ),

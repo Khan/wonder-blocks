@@ -6,7 +6,7 @@ import * as React from "react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {Listbox, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {allProfilesWithPictures} from "./option-item-examples";
 
@@ -27,20 +27,30 @@ const items = [
 
 const styles = StyleSheet.create({
     example: {
-        background: color.offWhite,
+        background: semanticColor.surface.secondary,
         padding: spacing.medium_16,
         width: 360,
     },
     customListbox: {
-        border: `5px solid ${color.offBlack16}`,
+        border: `5px solid ${semanticColor.border.primary}`,
         width: 250,
     },
 });
 
+/**
+ * The default listbox with a list of items.
+ *
+ * When used separately, the listbox needs an aria-label. When bundled with a
+ * component component like SingleSelect or MultiSelect, the listbox doesn't
+ * need its own aria-label.
+ *
+ * These examples use an aria-label to allow them to stand alone.
+ */
 const defaultArgs = {
     children: items,
     disabled: false,
     testId: "",
+    "aria-label": "Fruit",
 };
 
 export default {
@@ -208,6 +218,7 @@ export const CustomStyles: Story = {
 export const SingleSelectionCustomOptionItems: Story = {
     name: "Single selection with custom OptionItems",
     args: {
+        "aria-label": "Profiles",
         children: allProfilesWithPictures.map((user, index) => (
             <OptionItem
                 key={user.id}

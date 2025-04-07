@@ -274,8 +274,8 @@ export const WithInlineLinks: StoryComponentType = {
                     <LabelSmall>
                         Use inline links in the body of the text instead. Click{" "}
                         {
-                            <Link href="" inline={true}>
-                                here
+                            <Link href="#link" inline={true}>
+                                link example
                             </Link>
                         }{" "}
                         to go to some other page.
@@ -416,6 +416,7 @@ export const WithCustomAction: StoryComponentType = {
                     type: "custom",
                     node: (
                         <Button
+                            aria-label="Loading"
                             kind="tertiary"
                             size="small"
                             onClick={() => {}}

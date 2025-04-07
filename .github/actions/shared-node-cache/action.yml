@@ -1,0 +1,33 @@
+name: 'Shared Node Cache'
+description: 'Install & cache our npm dependencies'
+
+# The inputs this action expects.
+inputs:
+  node-version:
+    description: 'Node version to use'
+    required: false
+    default: '20.x'
+  cache-bust:
+    description: 'A unique string to bust the cache'
+    required: true
+
+# The steps this action runs.
+runs:
+  using: "composite"
+  steps:
+
+    - uses: pnpm/action-setup@v4
+      name: Install pnpm
+      with:
+        run_install: false
+
+    - name: Use Node.js ${{ inputs.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'pnpm'
+        cache-dependency-path: 'pnpm-lock.yaml'
+
+    - name: Install Dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

@@ -3,7 +3,7 @@
 import fs from "fs";
 import path from "path";
 import {nodeExternals} from "rollup-plugin-node-externals";
-import babel from "rollup-plugin-babel";
+import {babel} from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 // eslint-disable-next-line import/extensions
 import makeBabelConfig from "./babel.config.js";
@@ -41,7 +41,7 @@ const createConfig = (pkgName) => {
                 presets,
                 plugins,
                 exclude: "node_modules/**",
-                runtimeHelpers: true,
+                babelHelpers: "runtime",
                 comments: false,
                 extensions,
             }),

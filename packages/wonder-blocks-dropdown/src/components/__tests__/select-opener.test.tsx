@@ -1,6 +1,7 @@
 import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
+import {keys} from "@khanacademy/wonder-blocks-core";
 
 import SelectOpener from "../select-opener";
 
@@ -25,7 +26,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(onOpenMock).toHaveBeenCalledTimes(1);
@@ -49,17 +50,17 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyDown(button, {
-                key: " ",
+                key: keys.space,
             });
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyUp(button, {
-                key: " ",
+                key: keys.space,
             });
 
             // Assert
@@ -84,7 +85,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -127,7 +128,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            await userEvent.click(await screen.findByRole("button"));
+            await userEvent.click(await screen.findByRole("combobox"));
 
             // Assert
             expect(onOpenMock).toHaveBeenCalledTimes(0);
@@ -151,7 +152,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -186,7 +187,7 @@ describe("SelectOpener", () => {
 
             // Act
             // Press the button.
-            const button = await screen.findByRole("button");
+            const button = await screen.findByRole("combobox");
             // NOTE: we need to use fireEvent here because await userEvent doesn't
             // support keyUp/Down events and we use these handlers to override
             // the default behavior of the button.
@@ -232,7 +233,7 @@ describe("SelectOpener", () => {
                     </SelectOpener>,
                 );
                 // Assert
-                expect(screen.getByRole("button")).toHaveAttribute(
+                expect(screen.getByRole("combobox")).toHaveAttribute(
                     "aria-invalid",
                     ariaInvalid,
                 );

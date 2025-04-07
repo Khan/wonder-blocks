@@ -14,11 +14,7 @@ import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
  */
 export default {
     title: "Packages / Form / TextArea / All Variants",
-    parameters: {
-        docs: {
-            autodocs: false,
-        },
-    },
+    tags: ["!autodocs"],
 } as Meta;
 
 type StoryComponentType = StoryObj<typeof TextArea>;

@@ -591,7 +591,7 @@ export const WithMarkup: StoryComponentType = {
                     <span>
                         Description with <strong>strong</strong> text and a{" "}
                         <Link href="/path/to/resource" inline={true}>
-                            link
+                            link example
                         </Link>
                     </span>
                 }

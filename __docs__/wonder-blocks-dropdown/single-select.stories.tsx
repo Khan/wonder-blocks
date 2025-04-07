@@ -7,7 +7,7 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -21,7 +21,7 @@ import {
     SeparatorItem,
 } from "@khanacademy/wonder-blocks-dropdown";
 
-import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
+import type {SingleSelectLabelsValues} from "@khanacademy/wonder-blocks-dropdown";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import ComponentInfo from "../components/component-info";
@@ -51,6 +51,14 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  * performance when rendering these elements and is capable of handling many
  * hundreds of items without performance problems.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
+ *
  * ### Usage
  *
  * #### General usage
@@ -60,7 +68,7 @@ type SingleSelectArgs = Partial<typeof SingleSelect>;
  *
  * const [selectedValue, setSelectedValue] = React.useState("");
  *
- * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ * <SingleSelect aria-label="Fruit" placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
  *     <OptionItem label="Pear" value="pear" />
  *     <OptionItem label="Mango" value="mango" />
  * </SingleSelect>
@@ -81,6 +89,7 @@ export default {
         isFilterable: true,
         opened: false,
         disabled: false,
+        "aria-label": "Fruit",
         placeholder: "Choose a fruit",
         selectedValue: "",
     },
@@ -114,14 +123,14 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${spacing.xxxSmall_4}px solid ${color.purple}`,
+        borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
         borderRadius: spacing.xxxSmall_4,
-        background: color.fadedPurple24,
-        color: color.offBlack,
+        background: semanticColor.status.warning.background,
+        color: semanticColor.text.primary,
         padding: spacing.medium_16,
     },
     focused: {
-        outlineColor: color.purple,
+        outlineColor: semanticColor.focus.outer,
         outlineOffset: spacing.xxxxSmall_2,
     },
     hovered: {
@@ -129,7 +138,7 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     pressed: {
-        backgroundColor: color.blue,
+        color: semanticColor.status.warning.foreground,
     },
 
     fullBleed: {
@@ -146,18 +155,6 @@ const styles = StyleSheet.create({
     },
     scrollableArea: {
         height: "200vh",
-    },
-    /**
-     * Dark
-     */
-    darkBackgroundWrapper: {
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        backgroundColor: color.darkBlue,
-        width: "100%",
-        height: 200,
-        paddingRight: spacing.medium_16,
-        paddingTop: spacing.medium_16,
     },
     // AutoFocus
     icon: {
@@ -192,6 +189,7 @@ const Template = (args: any) => {
     return (
         <SingleSelect
             {...args}
+            aria-label={args["aria-label"]}
             onChange={setSelectedValue}
             selectedValue={selectedValue}
             opened={opened}
@@ -204,6 +202,47 @@ const Template = (args: any) => {
 
 export const Default: StoryComponentType = {
     render: Template,
+};
+
+/**
+ * The field can be used with the LabeledField component to provide a label,
+ * description, required indicator, and/or error message for the field.
+ *
+ * Using the field with the LabeledField component will ensure that the field
+ * has the relevant accessibility attributes set.
+ */
+export const WithLabeledField: StoryComponentType = {
+    render: function LabeledFieldStory(args) {
+        const [value, setValue] = React.useState(args.selectedValue || "");
+        const [errorMessage, setErrorMessage] = React.useState<
+            string | null | undefined
+        >();
+        return (
+            <LabeledField
+                label="Label"
+                field={
+                    <SingleSelect
+                        {...args}
+                        selectedValue={value}
+                        onChange={setValue}
+                        onValidate={setErrorMessage}
+                    >
+                        {optionItems}
+                    </SingleSelect>
+                }
+                description="Description"
+                required={true}
+                errorMessage={errorMessage}
+            />
+        );
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this is for documentation purposes and is
+            // covered by the LabeledField stories
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**
@@ -268,6 +307,7 @@ export const LongOptionLabels: StoryComponentType = {
 
         return (
             <SingleSelect
+                aria-label="Fruit"
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
                 opened={opened}
@@ -592,6 +632,7 @@ const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
     return (
         <View style={styles.wrapper}>
             <SingleSelect
+                aria-label="Country"
                 onChange={setSelectedValue}
                 isFilterable={true}
                 opened={opened}
@@ -777,15 +818,15 @@ export const CustomOpener: StoryComponentType = {
  * Custom labels
  */
 const translatedItems = [
-    <OptionItem label="Banano" value="banano" />,
-    <OptionItem label="Fresa" value="fresa" disabled />,
-    <OptionItem label="Pera" value="pera" />,
-    <OptionItem label="Naranja" value="naranja" />,
-    <OptionItem label="Sandia" value="sandia" />,
-    <OptionItem label="Manzana" value="manzana" />,
-    <OptionItem label="Uva" value="uva" />,
-    <OptionItem label="Limon" value="limon" />,
-    <OptionItem label="Mango" value="mango" />,
+    <OptionItem label="Banano" value="banano" key={0} />,
+    <OptionItem label="Fresa" value="fresa" disabled key={1} />,
+    <OptionItem label="Pera" value="pera" key={2} />,
+    <OptionItem label="Naranja" value="naranja" key={3} />,
+    <OptionItem label="Sandia" value="sandia" key={4} />,
+    <OptionItem label="Manzana" value="manzana" key={5} />,
+    <OptionItem label="Uva" value="uva" key={6} />,
+    <OptionItem label="Limon" value="limon" key={7} />,
+    <OptionItem label="Mango" value="mango" key={8} />,
 ];
 
 /**
@@ -797,16 +838,17 @@ export const CustomLabels: StoryComponentType = {
         const [value, setValue] = React.useState<any>(null);
         const [opened, setOpened] = React.useState(true);
 
-        const translatedLabels: SingleSelectLabels = {
+        const translatedLabels: SingleSelectLabelsValues = {
             clearSearch: "Limpiar busqueda",
             filter: "Filtrar",
             noResults: "Sin resultados",
-            someResults: (numResults) => `${numResults} frutas`,
+            someResults: (numResults: number) => `${numResults} frutas`,
         };
 
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Fruta"
                     isFilterable={true}
                     onChange={setValue}
                     selectedValue={value}
@@ -841,8 +883,8 @@ const timeSlots = [
     "11:59 PM",
 ];
 
-const timeSlotOptions = timeSlots.map((timeSlot) => (
-    <OptionItem label={timeSlot} value={timeSlot} />
+const timeSlotOptions = timeSlots.map((timeSlot, index) => (
+    <OptionItem label={timeSlot} value={timeSlot} key={index} />
 ));
 
 /**
@@ -882,7 +924,7 @@ export const AutoFocusDisabled: StoryComponentType = {
                                 style={styles.fullBleed}
                             />
                             <PhosphorIcon
-                                color={color.blue}
+                                color={semanticColor.status.notice.foreground}
                                 icon={IconMappings.clockBold}
                                 size="small"
                                 style={styles.icon}
@@ -934,6 +976,7 @@ export const CustomOptionItems: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Profile"
                     placeholder="Select a profile"
                     onChange={handleChange}
                     selectedValue={selectedValue}
@@ -982,6 +1025,7 @@ export const CustomOptionItemWithNodeLabel: StoryComponentType = {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
+                    aria-label="Currency"
                     placeholder="Select your currency"
                     onChange={handleChange}
                     selectedValue={selectedValue}
@@ -1041,6 +1085,7 @@ export const CustomOptionItemsVirtualized: StoryComponentType = {
 
         return (
             <SingleSelect
+                aria-label="Country"
                 placeholder="Select a country"
                 isFilterable={true}
                 onChange={handleChange}

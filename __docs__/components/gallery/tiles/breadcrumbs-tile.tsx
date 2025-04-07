@@ -25,10 +25,14 @@ export default function BreadcrumbsTile(props: CommonTileProps) {
             <View style={styles.centerContent}>
                 <Breadcrumbs>
                     <BreadcrumbsItem>
-                        <Link href="">Course</Link>
+                        <Link href="#course" target="_blank">
+                            Course
+                        </Link>
                     </BreadcrumbsItem>
                     <BreadcrumbsItem>
-                        <Link href="">Unit</Link>
+                        <Link href="#unit" target="_blank">
+                            Unit
+                        </Link>
                     </BreadcrumbsItem>
                     <BreadcrumbsItem>Lesson</BreadcrumbsItem>
                 </Breadcrumbs>

@@ -18,21 +18,3 @@ import PopoverContent from "../popover-content";
     icon="close"
     image={<img src="domokun.jpg" alt="domokun" />}
 />;
-
-<PopoverContent title="Title" content="Content" emphasized={true} />;
-
-// @ts-expect-error `emphasized` cannot be used with `icon`
-<PopoverContent
-    title="Title"
-    content="Content"
-    icon="close"
-    emphasized={true}
-/>;
-
-// @ts-expect-error `emphasized` cannot be used with `img`
-<PopoverContent
-    title="Title"
-    content="Content"
-    image={<img src="domokun.jpg" alt="domokun" />}
-    emphasized={true}
-/>;

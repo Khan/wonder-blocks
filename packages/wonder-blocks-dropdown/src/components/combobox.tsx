@@ -497,10 +497,12 @@ export default function Combobox({
             // Override the disabled state of the icon to match the combobox
             // state.
             color: disabled
-                ? color.offBlack32
+                ? semanticColor.icon.disabled
                 : // Use the color passed in, otherwise use the default color.
-                  startIcon.props.color ?? semanticColor.icon.primary,
-        } as Partial<React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>>);
+                  (startIcon.props.color ?? semanticColor.icon.primary),
+        } as Partial<
+            React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+        >);
 
         return <View style={styles.iconWrapper}>{startIconElement}</View>;
     };
@@ -510,18 +512,18 @@ export default function Combobox({
     const currentActiveDescendant = !openState
         ? undefined
         : focusedIndex >= 0
-        ? // listbox is focused
-          renderList[focusedIndex]?.props?.id
-        : // pills are focused (multiple values selected)
-          pillIdPrefix + focusedMultiSelectIndex;
+          ? // listbox is focused
+            renderList[focusedIndex]?.props?.id
+          : // pills are focused (multiple values selected)
+            pillIdPrefix + focusedMultiSelectIndex;
 
     // Determine which widget will be controlled by the combobox (listbox or
     // pills group).
     const controlledWidget = !openState
         ? undefined
         : focusedIndex >= 0
-        ? uniqueId
-        : pillIdPrefix;
+          ? uniqueId
+          : pillIdPrefix;
 
     return (
         <>
@@ -597,6 +599,7 @@ export default function Combobox({
                     <IconButton
                         icon={xIcon}
                         onClick={handleClearClick}
+                        actionType="neutral"
                         kind="tertiary"
                         size="small"
                         style={[styles.button, styles.clearButton]}
@@ -617,6 +620,7 @@ export default function Combobox({
                         // this element.
                         e.preventDefault();
                     }}
+                    actionType="neutral"
                     kind="tertiary"
                     size="small"
                     style={[styles.button, openState && styles.buttonOpen]}
@@ -685,6 +689,40 @@ export default function Combobox({
     );
 }
 
+// TODO(WB-1868): Move this to a theme file.
+const theme = {
+    combobox: {
+        color: {
+            default: {
+                border: semanticColor.border.strong,
+                background: semanticColor.surface.primary,
+            },
+            focus: {
+                border: semanticColor.focus.outer,
+                background: semanticColor.surface.primary,
+            },
+            disabled: {
+                border: semanticColor.action.secondary.disabled.border,
+                background: semanticColor.action.secondary.disabled.background,
+                foreground: semanticColor.action.secondary.disabled.foreground,
+            },
+            error: {
+                border: semanticColor.status.critical.foreground,
+                background: semanticColor.status.critical.background,
+                foreground: semanticColor.text.primary,
+            },
+        },
+    },
+    listbox: {
+        color: {
+            default: {
+                background: semanticColor.surface.primary,
+                border: semanticColor.border.primary,
+            },
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
@@ -693,24 +731,24 @@ const styles = StyleSheet.create({
         maxWidth: "100%",
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
-        background: color.white,
+        background: theme.combobox.color.default.background,
         borderRadius: border.radius.medium_4,
-        border: `solid 1px ${color.offBlack50}`,
+        border: `solid 1px ${theme.combobox.color.default.border}`,
         paddingInline: spacing.xSmall_8,
     },
     focused: {
-        background: color.white,
-        border: `1px solid ${color.blue}`,
+        background: theme.combobox.color.focus.background,
+        border: `1px solid ${theme.combobox.color.focus.border}`,
     },
     disabled: {
-        background: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack64,
+        background: theme.combobox.color.disabled.background,
+        border: `1px solid ${theme.combobox.color.disabled.border}`,
+        color: theme.combobox.color.disabled.foreground,
     },
     error: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.red}`,
-        color: color.offBlack,
+        background: theme.combobox.color.error.background,
+        border: `1px solid ${theme.combobox.color.error.border}`,
+        color: theme.combobox.color.error.foreground,
     },
     /**
      * Combobox input styles
@@ -735,9 +773,10 @@ const styles = StyleSheet.create({
      * Listbox custom styles
      */
     listbox: {
-        backgroundColor: color.white,
+        backgroundColor: theme.listbox.color.default.background,
         borderRadius: border.radius.medium_4,
-        border: `solid 1px ${color.offBlack16}`,
+        border: `solid ${border.width.hairline}px ${theme.listbox.color.default.border}`,
+        // TODO(WB-1878): Move to elevation tokens.
         boxShadow: `0px ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0px ${color.offBlack8}`,
         // We use a custom property to set the max height of the dropdown.
         // This comes from the maxHeight custom modifier.

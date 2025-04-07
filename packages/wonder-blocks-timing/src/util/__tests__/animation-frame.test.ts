@@ -59,8 +59,10 @@ describe("AnimationFrame", () => {
     describe("isSet", () => {
         it("is false when the request has not been set", () => {
             // Arrange
-            const animationFrame = new AnimationFrame(() => {},
-            SchedulePolicy.OnDemand);
+            const animationFrame = new AnimationFrame(
+                () => {},
+                SchedulePolicy.OnDemand,
+            );
 
             // Act
             const result = animationFrame.isSet;

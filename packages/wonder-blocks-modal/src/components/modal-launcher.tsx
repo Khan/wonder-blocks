@@ -163,6 +163,7 @@ class ModalLauncher extends React.Component<Props, State> {
 
         // Focus on the specified element after closing the modal.
         if (closedFocusId) {
+            // eslint-disable-next-line import/no-deprecated
             const focusElement = ReactDOM.findDOMNode(
                 document.getElementById(closedFocusId),
             ) as any;

@@ -1,6 +1,5 @@
 import * as React from "react";
 import {render, screen, within} from "@testing-library/react";
-import {StyleSheet} from "aphrodite";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
@@ -133,31 +132,6 @@ describe("LabeledField", () => {
         // Assert
         const error = screen.getByTestId(`${testId}-error`);
         expect(error).toBeInTheDocument();
-    });
-
-    it("stype prop applies to the LabeledField container", () => {
-        // Arrange
-        const styles = StyleSheet.create({
-            style1: {
-                flexGrow: 1,
-                background: "blue",
-            },
-        });
-
-        // Act
-        const {container} = render(
-            <LabeledField
-                field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                label="Label"
-                errorMessage="Error"
-                style={styles.style1}
-            />,
-            defaultOptions,
-        );
-
-        // Assert
-        const labeledField = container.childNodes[0];
-        expect(labeledField).toHaveStyle("background: blue");
     });
 
     describe("Labels prop", () => {

@@ -22,35 +22,29 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            // These stories are being tested in radio-variants.stories.tsx
+            disableSnapshot: true,
+        },
     },
 } as Meta<typeof Radio>;
 
 export const Default: StoryComponentType = {
     args: {
+        "aria-label": "Example",
         checked: false,
         onChange: () => {},
     },
 };
 
-Default.parameters = {
-    chromatic: {
-        // We already have screenshots of another story that covers
-        // this and more cases.
-        disableSnapshot: true,
-    },
-};
-
 export const Controlled: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
-    return <Radio checked={checked} onChange={setChecked} />;
+    return (
+        <Radio aria-label="Example" checked={checked} onChange={setChecked} />
+    );
 };
 
 Controlled.parameters = {
-    chromatic: {
-        // Disabling because this doesn't test visuals, it tests
-        // that the `checked` state works as expected.
-        disableSnapshot: true,
-    },
     docs: {
         description: {
             story: `Use state to keep track of whether
@@ -63,27 +57,45 @@ Controlled.parameters = {
 
 export const Variants: StoryComponentType = () => (
     <View style={styles.row}>
-        <Radio checked={false} style={styles.marginRight} onChange={() => {}} />
-        <Radio checked={true} style={styles.marginRight} onChange={() => {}} />
         <Radio
+            aria-label="Example"
+            checked={false}
+            style={styles.marginRight}
+            onChange={() => {}}
+        />
+        <Radio
+            aria-label="Checked Example"
+            checked={true}
+            style={styles.marginRight}
+            onChange={() => {}}
+        />
+        <Radio
+            aria-label="Error Example"
             error={true}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
+            aria-label="Checked Error Example"
             error={true}
             checked={true}
             style={styles.marginRight}
             onChange={() => {}}
         />
         <Radio
+            aria-label="Disabled Example"
             disabled={true}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
-        <Radio disabled={true} checked={true} onChange={() => {}} />
+        <Radio
+            aria-label="Disabled Checked Example"
+            disabled={true}
+            checked={true}
+            onChange={() => {}}
+        />
     </View>
 );
 

@@ -2,7 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {Id, addStyle} from "@khanacademy/wonder-blocks-core";
-import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
@@ -258,6 +262,29 @@ const TextField = (props: PropsWithForwardRef) => {
     );
 };
 
+// The different states that the component can be in.
+const states = {
+    // Resting state
+    default: {
+        border: semanticColor.border.strong,
+        background: semanticColor.surface.primary,
+        foreground: semanticColor.text.primary,
+    },
+    disabled: {
+        border: semanticColor.action.secondary.disabled.border,
+        background: semanticColor.action.secondary.disabled.background,
+        // NOTE: This color is specific for form fields.
+        // TODO(WB-1895): Revisit disabled styles.
+        foreground: semanticColor.text.secondary,
+    },
+    // Form validation error state
+    error: {
+        border: semanticColor.status.critical.foreground,
+        background: semanticColor.status.critical.background,
+        foreground: semanticColor.text.primary,
+    },
+};
+
 const styles = StyleSheet.create({
     input: {
         width: "100%",
@@ -268,45 +295,45 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     default: {
-        background: color.white,
-        border: `1px solid ${color.offBlack50}`,
-        color: color.offBlack,
+        background: states.default.background,
+        border: `${border.width.hairline}px solid ${states.default.border}`,
+        color: states.default.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
     },
     defaultFocus: {
         ":focus-visible": {
-            borderColor: color.blue,
-            outline: `1px solid ${color.blue}`,
+            borderColor: semanticColor.focus.outer,
+            outline: `${border.width.hairline}px solid ${semanticColor.focus.outer}`,
             // Negative outline offset so it focus outline is not cropped off if
             // an ancestor element has overflow: hidden
-            outlineOffset: "-2px",
+            outlineOffset: -2,
         },
     },
     error: {
-        background: color.fadedRed8,
-        border: `1px solid ${color.red}`,
-        color: color.offBlack,
+        background: states.error.background,
+        border: `${border.width.hairline}px solid ${states.error.border}`,
+        color: states.error.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            outlineColor: color.red,
-            borderColor: color.red,
+            outlineColor: semanticColor.focus.outer,
+            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
         },
     },
     disabled: {
-        background: color.offWhite,
-        border: `1px solid ${color.offBlack16}`,
-        color: color.offBlack64,
+        background: states.disabled.background,
+        border: `${border.width.hairline}px solid ${states.disabled.border}`,
+        color: states.disabled.foreground,
         "::placeholder": {
-            color: color.offBlack64,
+            color: states.disabled.foreground,
         },
         cursor: "not-allowed",
         ":focus-visible": {
-            outline: `2px solid ${color.offBlack32}`,
-            outlineOffset: "-3px",
+            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
+            outlineOffset: -3,
         },
     },
 });
@@ -322,6 +349,13 @@ type ExportProps = OmitConstrained<
 /**
  * A TextField is an element used to accept a single line of text from the user.
  *
+ * Make sure to provide a label for the field. This can be done by either:
+ * - (recommended) Using the **LabeledField** component to provide a label,
+ * description, and/or error message for the field
+ * - Using a `label` html tag with the `htmlFor` prop set to the unique id of
+ * the field
+ * - Using an `aria-label` attribute on the field
+ * - Using an `aria-labelledby` attribute on the field
  * ### Usage
  *
  * ```jsx

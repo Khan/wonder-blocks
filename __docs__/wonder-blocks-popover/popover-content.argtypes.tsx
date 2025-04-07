@@ -1,5 +1,5 @@
+import type {ArgTypes} from "@storybook/react";
 import * as React from "react";
-import type {InputType} from "@storybook/csf";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
@@ -136,6 +136,11 @@ export default {
         options: Object.keys(IconMappings) as Array<React.ReactNode>,
         mapping: IconMappings,
     },
+    iconAlt: {
+        description:
+            "Alt text for the icon. This prop is only used if the `icon` prop is passed a url (instead of a svg or img element).",
+        type: "string",
+    },
     image: {
         description: `Decorate the popover with a full-bleed illustration. It cannot be used at the same time with icon.`,
         type: {
@@ -148,8 +153,4 @@ export default {
         options: Object.keys(ImageMappings) as Array<React.ReactNode>,
         mapping: ImageMappings,
     },
-    emphasized: {
-        description: `When true, changes the popover dialog background to blue; otherwise, the popover dialog background is not modified. It can be used only with Text-only popovers. It cannot be used with icon or image.`,
-        control: {type: "boolean"},
-    },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

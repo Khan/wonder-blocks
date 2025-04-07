@@ -74,6 +74,7 @@ export default class PopoverEventListener extends React.Component<
             return;
         }
 
+        // eslint-disable-next-line import/no-deprecated
         const node = ReactDOM.findDOMNode(this.props.contentRef?.current);
         if (node && !node.contains(e.target as any)) {
             // Stop the event going any further.

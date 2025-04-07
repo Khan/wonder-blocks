@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-button",
-  "version": "7.0.5",
+  "version": "7.1.5",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,22 +16,22 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-clickable": "^5.0.5",
-    "@khanacademy/wonder-blocks-core": "^11.1.0",
-    "@khanacademy/wonder-blocks-icon": "^5.0.5",
-    "@khanacademy/wonder-blocks-progress-spinner": "^3.0.5",
-    "@khanacademy/wonder-blocks-theming": "^3.0.1",
-    "@khanacademy/wonder-blocks-tokens": "^3.0.1",
-    "@khanacademy/wonder-blocks-typography": "^3.0.5"
+    "@babel/runtime": "catalog:",
+    "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-icon": "workspace:*",
+    "@khanacademy/wonder-blocks-progress-spinner": "workspace:*",
+    "@khanacademy/wonder-blocks-theming": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
-    "aphrodite": "^1.2.5",
-    "react": "18.2.0",
-    "react-router": "5.3.4",
-    "react-router-dom": "5.3.4"
+    "aphrodite": "catalog:",
+    "react": "catalog:",
+    "react-router": "catalog:",
+    "react-router-dom": "catalog:"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^2.0.0"
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
   }
 }

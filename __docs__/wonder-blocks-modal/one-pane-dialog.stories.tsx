@@ -11,7 +11,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
@@ -232,10 +232,10 @@ export const WithBreadcrumbs: StoryComponentType = () => (
                 breadcrumbs={
                     <Breadcrumbs>
                         <BreadcrumbsItem>
-                            <Link href="">Course</Link>
+                            <Link href="#course">Course</Link>
                         </BreadcrumbsItem>
                         <BreadcrumbsItem>
-                            <Link href="">Unit</Link>
+                            <Link href="#unit">Unit</Link>
                         </BreadcrumbsItem>
                         <BreadcrumbsItem>Lesson</BreadcrumbsItem>
                     </Breadcrumbs>
@@ -363,7 +363,7 @@ export const WithStyle: StoryComponentType = () => (
                     </Body>
                 }
                 style={{
-                    color: color.blue,
+                    color: semanticColor.status.notice.foreground,
                     maxWidth: 1000,
                 }}
             />

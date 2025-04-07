@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import type {InputType} from "@storybook/csf";
+import type {ArgTypes} from "@storybook/react";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
@@ -55,29 +55,9 @@ export default {
         type: {name: "boolean", required: false},
     },
 
-    kind: {
-        control: {type: "select"},
-        description:
-            "Kind of Link. Note: Secondary light Links are not supported.",
-        options: ["primary", "secondary"],
-        table: {
-            type: {summary: `"primary" | "secondary"`},
-        },
-        type: {name: "enum", value: ["primary", "secondary"], required: false},
-    },
-
     light: {
         control: {type: "boolean"},
         description: "Whether the button is on a dark/colored background.",
-        table: {
-            type: {summary: "boolean"},
-        },
-    },
-
-    visitable: {
-        control: {type: "boolean"},
-        description:
-            "Whether the link should change color once it's visited. Secondary or primary (light) links are not allowed to be visitable.",
         table: {
             type: {summary: "boolean"},
         },
@@ -214,4 +194,4 @@ export default {
             type: {summary: "(e: SyntheticKeyboardEvent<>) => mixed"},
         },
     },
-} satisfies Record<string, InputType>;
+} satisfies ArgTypes;

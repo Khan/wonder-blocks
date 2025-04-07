@@ -55,44 +55,35 @@ type CommonProps = AriaProps & {
     uniqueId?: string;
 };
 
-type Props =
-    | (CommonProps & {
-          /**
-           * Decorate the popover with an illustrated icon. It cannot be used at the
-           * same time with image.
-           */
-          icon?:
-              | string
-              | React.ReactElement<React.ComponentProps<"img">>
-              | React.ReactElement<React.ComponentProps<"svg">>;
-          /**
-           * Decorate the popover with a full-bleed illustration. It cannot be used at
-           * the same time with icon.
-           */
-          image?:
-              | React.ReactElement<React.ComponentProps<"img">>
-              | React.ReactElement<React.ComponentProps<"svg">>;
-
-          emphasized?: never;
-      })
-    | (CommonProps & {
-          /**
-           * When true, changes the popover dialog background to blue; otherwise, the
-           * popover dialog background is not modified. It can be used only with
-           * Text-only popovers. It cannot be used with icon or image.
-           */
-          emphasized?: boolean;
-
-          icon?: never;
-          image?: never;
-      });
+type Props = CommonProps & {
+    /**
+     * Decorate the popover with an illustrated icon. It cannot be used at the
+     * same time with image.
+     */
+    icon?:
+        | string
+        | React.ReactElement<React.ComponentProps<"img">>
+        | React.ReactElement<React.ComponentProps<"svg">>;
+    /**
+     * Alt text for the icon. This prop is only used if the `icon` prop
+     * is passed a url (instead of a svg or img element).
+     */
+    iconAlt?: string;
+    /**
+     * Decorate the popover with a full-bleed illustration. It cannot be used at
+     * the same time with icon.
+     */
+    image?:
+        | React.ReactElement<React.ComponentProps<"img">>
+        | React.ReactElement<React.ComponentProps<"svg">>;
+};
 
 type DefaultProps = {
     closeButtonVisible: Props["closeButtonVisible"];
 };
 
 // Created to add custom styles to the icon or image elements
-const StyledImage = addStyle("img");
+const StyledImg = addStyle("img");
 
 /**
  * This is the container that is consumed by all the predefined variations. Its
@@ -166,7 +157,7 @@ export default class PopoverContent extends React.Component<Props> {
 
     // @ts-expect-error [FEI-5019] - TS2322 - Type '() => JSX.Element | null' is not assignable to type '() => ReactElement<any, string | JSXElementConstructor<any>>'.
     maybeRenderIcon: () => React.ReactElement = () => {
-        const {icon} = this.props;
+        const {icon, iconAlt} = this.props;
 
         if (!icon) {
             return null;
@@ -177,7 +168,11 @@ export default class PopoverContent extends React.Component<Props> {
                 {typeof icon !== "string" ? (
                     icon
                 ) : (
-                    <StyledImage src={icon} style={styles.icon} />
+                    <StyledImg
+                        src={icon}
+                        style={styles.icon}
+                        alt={iconAlt || ""}
+                    />
                 )}
             </View>
         );
@@ -209,7 +204,6 @@ export default class PopoverContent extends React.Component<Props> {
             closeButtonLabel,
             closeButtonVisible,
             content,
-            emphasized = undefined,
             icon,
             image,
             style,
@@ -226,7 +220,6 @@ export default class PopoverContent extends React.Component<Props> {
 
                     return (
                         <PopoverContentCore
-                            color={emphasized ? "blue" : "white"}
                             closeButtonLight={image && placement === "top"}
                             closeButtonLabel={closeButtonLabel}
                             closeButtonVisible={closeButtonVisible}
