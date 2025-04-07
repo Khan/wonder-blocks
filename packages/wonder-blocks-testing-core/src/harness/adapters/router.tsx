@@ -159,17 +159,19 @@ export const adapter: TestHarnessAdapter<Config> = (
         /**
          * There may be times (SSR testing comes to mind) where we will be
          * really strict about not permitting client-side navigation events.
+         *
+         * NOTE(john): We don't have a CompatRouter here as it uses useLayoutEffect
+         * which causes issues in our test enviornment. Namely, that it generates
+         * a warning about the use of useLayoutEffect, which causes an error.
          */
         return (
             <StaticRouter location={config.location} context={{}}>
-                <CompatRouter>
-                    <MaybeWithRoute
-                        path={config.path}
-                        configLocation={config.location}
-                    >
-                        {children}
-                    </MaybeWithRoute>
-                </CompatRouter>
+                <MaybeWithRoute
+                    path={config.path}
+                    configLocation={config.location}
+                >
+                    {children}
+                </MaybeWithRoute>
             </StaticRouter>
         );
     }
