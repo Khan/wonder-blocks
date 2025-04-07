@@ -56,6 +56,7 @@ export const TabPanel = (props: Props) => {
             // If the tab panel doesn't have focusable elements, it should be
             // focusable so that it is included in the tab sequence of the page
             tabIndex={hasFocusableElement ? undefined : 0}
+            // Only show the tab panel if it is active
             hidden={!active}
         >
             {children}
