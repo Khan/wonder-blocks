@@ -4,6 +4,9 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {TabItem, Tabs} from "@khanacademy/wonder-blocks-tabs";
 import argTypes from "./tabs.argtypes";
+import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
+import {TextField} from "@khanacademy/wonder-blocks-form";
 
 const tabs: TabItem[] = [
     {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
@@ -91,10 +94,41 @@ export const AutomaticActivation: StoryComponentType = {
  */
 export const WithFocusablePanelContent: StoryComponentType = {
     args: {
+        selectedTabId: "tab-wb-button",
         tabs: [
             {
+                label: "Content with WB Button",
+                id: "tab-wb-button",
+                panel: (
+                    <div>
+                        Tab contents with button{" "}
+                        <Button>Focusable Button</Button>
+                    </div>
+                ),
+            },
+            {
+                label: "Content with WB Link",
+                id: "tab-wb-link",
+                panel: (
+                    <div>
+                        Tab contents with link{" "}
+                        <Link href="#link">Focusable Link</Link>
+                    </div>
+                ),
+            },
+            {
+                label: "Content with WB TextField",
+                id: "tab-wb-textfield",
+                panel: (
+                    <div>
+                        Tab contents with WB TextField{" "}
+                        <TextField value="" onChange={() => {}} />
+                    </div>
+                ),
+            },
+            {
                 label: "Content with button",
-                id: "tab-1",
+                id: "tab-button",
                 panel: (
                     <div>
                         Tab contents with button{" "}
@@ -104,7 +138,7 @@ export const WithFocusablePanelContent: StoryComponentType = {
             },
             {
                 label: "Content with link",
-                id: "tab-2",
+                id: "tab-link",
                 panel: (
                     <div>
                         Tab contents with link{" "}
@@ -114,7 +148,7 @@ export const WithFocusablePanelContent: StoryComponentType = {
             },
             {
                 label: "Content with input",
-                id: "tab-3",
+                id: "tab-input",
                 panel: (
                     <div>
                         Tab contents with input <input type="text" />
@@ -123,7 +157,7 @@ export const WithFocusablePanelContent: StoryComponentType = {
             },
             {
                 label: "Content with no focusable elements",
-                id: "tab-4",
+                id: "tab-no-focusable-elements",
                 panel: <div>No focusable elements. Tab panel is focusable</div>,
             },
         ],
