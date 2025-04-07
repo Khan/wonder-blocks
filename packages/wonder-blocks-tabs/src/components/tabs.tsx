@@ -100,6 +100,7 @@ export const Tabs = React.forwardRef(function Tabs(
     } = props;
 
     const focusedTabId = React.useRef(selectedTabId);
+    const tabRefs = React.useRef<{[key: string]: HTMLButtonElement | null}>({});
 
     React.useEffect(() => {
         focusedTabId.current = selectedTabId;
@@ -118,7 +119,7 @@ export const Tabs = React.forwardRef(function Tabs(
     const handleKeyInteraction = React.useCallback(
         (tabId: string) => {
             // Move focus to the tab
-            const tabElement = document.getElementById(getTabId(tabId));
+            const tabElement = tabRefs.current[tabId];
             tabElement?.focus();
 
             switch (activationMode) {
@@ -194,6 +195,9 @@ export const Tabs = React.forwardRef(function Tabs(
                             aria-controls={getTabPanelId(tab.id)}
                             selected={tab.id === selectedTabId}
                             onKeyDown={handleKeyDown}
+                            ref={(element) => {
+                                tabRefs.current[tab.id] = element;
+                            }}
                         >
                             {tab.label}
                         </Tab>

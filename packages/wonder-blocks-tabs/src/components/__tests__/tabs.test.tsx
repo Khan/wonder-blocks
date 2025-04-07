@@ -1256,6 +1256,59 @@ describe("Tabs", () => {
                     });
                 });
             });
+
+            describe("Multiple Tabs instances", () => {
+                it("should only focus on tabs within the same instance when an arrow key is pressed", async () => {
+                    // Arrange
+                    render(
+                        <div>
+                            <ControlledTabs
+                                // First set of tabs are post fixed with "a" and
+                                // will have the same ids as the second set of tabs
+                                tabs={[
+                                    {
+                                        label: "Tab 1a",
+                                        id: "tab-1",
+                                        panel: "Panel 1a",
+                                    },
+                                    {
+                                        label: "Tab 2a",
+                                        id: "tab-2",
+                                        panel: "Panel 2a",
+                                    },
+                                ]}
+                                selectedTabId={"tab-1"}
+                            />
+                            <ControlledTabs
+                                // Second set of tabs are post fixed with "b" and
+                                // will have the same ids as the first set of tabs
+                                tabs={[
+                                    {
+                                        label: "Tab 1b",
+                                        id: "tab-1",
+                                        panel: "Panel 1b",
+                                    },
+                                    {
+                                        label: "Tab 2b",
+                                        id: "tab-2",
+                                        panel: "Panel 2b",
+                                    },
+                                ]}
+                                selectedTabId={"tab-1"}
+                            />
+                        </div>,
+                    );
+                    const tab1b = screen.getByRole("tab", {name: "Tab 1b"});
+                    const tab2b = screen.getByRole("tab", {name: "Tab 2b"});
+                    tab1b.focus(); // Focus on the second set of tabs
+
+                    // Act
+                    await userEvent.keyboard("{ArrowRight}");
+
+                    // Assert
+                    expect(tab2b).toHaveFocus();
+                });
+            });
         });
     });
 });
