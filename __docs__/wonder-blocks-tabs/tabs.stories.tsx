@@ -184,6 +184,10 @@ export const WithFocusableContent: StoryComponentType = {
  * provides the tab props that should be applied to the `Tab` component.
  * You will also need to set a `key` on the root element of the render function
  * since the tabs are rendered in a loop.
+ *
+ * This story demonstrates how to use a render function to wrap a `Tab`
+ * component in a `Tooltip` and a `Popover`. Please test the accessibility for
+ * your use case, especially focus management and keyboard interactions!
  */
 export const TabLabelRenderFunction: StoryComponentType = {
     args: {
