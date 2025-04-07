@@ -464,6 +464,51 @@ describe("Tabs", () => {
                     // Assert
                     expect(button).toHaveFocus();
                 });
+
+                it("should focus on the selected tab when focus is back to the tablist after changing the focused tab without selecting it", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTabs
+                            tabs={tabs}
+                            selectedTabId={tabs[0].id}
+                        />,
+                    );
+                    await userEvent.tab(); // focus on the active tab
+                    await userEvent.keyboard("{ArrowRight}"); // move focus to the next tab without selecting it
+                    await userEvent.tab(); // move focus out of the tablist
+
+                    // Act
+                    await userEvent.keyboard("{Shift>}{Tab}"); // move focus back to the tablist
+
+                    // Assert
+                    // Selected tab should be focused
+                    expect(
+                        screen.getByRole("tab", {name: "Tab 1"}),
+                    ).toHaveFocus();
+                });
+
+                it("should continue to focus on the correct tab when focus is moved from the tablist without selecting a tab", async () => {
+                    // Arrange
+                    render(
+                        <ControlledTabs
+                            tabs={tabs}
+                            selectedTabId={tabs[0].id}
+                        />,
+                    );
+                    await userEvent.tab(); // focus on the active tab
+                    await userEvent.keyboard("{ArrowRight}"); // move focus to the next tab without selecting it
+                    await userEvent.tab(); // move focus out of the tablist
+                    await userEvent.keyboard("{Shift>}{Tab}"); // move focus back to the tablist
+
+                    // Act
+                    await userEvent.keyboard("{ArrowRight}"); // move focus to the next tab
+
+                    // Assert
+                    // Next tab should be focused
+                    expect(
+                        screen.getByRole("tab", {name: "Tab 2"}),
+                    ).toHaveFocus();
+                });
             });
 
             describe("Activation Mode: Manual", () => {

@@ -181,9 +181,19 @@ export const Tabs = React.forwardRef(function Tabs(
         [handleKeyInteraction, selectTab, tabs, focusedTabId],
     );
 
+    const handleTablistBlur = React.useCallback(() => {
+        // When tablist loses focus, set the focused tab to the selected tab to
+        // reset it
+        focusedTabId.current = selectedTabId;
+    }, [selectedTabId]);
+
     return (
         <div ref={ref}>
-            <Tablist aria-label={ariaLabel} aria-labelledby={ariaLabelledby}>
+            <Tablist
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledby}
+                onBlur={handleTablistBlur}
+            >
                 {tabs.map((tab) => {
                     return (
                         <Tab
