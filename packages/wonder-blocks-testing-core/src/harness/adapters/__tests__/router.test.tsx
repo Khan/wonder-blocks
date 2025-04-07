@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Redirect, useLocation as useLocationV5} from "react-router-dom";
 import {useLocation, useNavigate} from "react-router-dom-v5-compat";
 import {render} from "@testing-library/react";
 import * as Router from "../router";
@@ -138,6 +139,36 @@ describe("Router.adapter", () => {
                 Router.adapter(<NavigateListener />, {
                     location: "/math",
                     forceStatic: true,
+                }),
+            );
+
+            // Assert
+            expect(navigateListen).toHaveBeenCalledOnce();
+            expect(navigateListen).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    pathname: "/math",
+                }),
+            );
+        });
+
+        it("should support turning off the CompatRouter", () => {
+            // Arrange
+            const navigateListen = jest.fn();
+            const NavigateListener = (): React.ReactElement | null => {
+                const location = useLocationV5();
+                React.useEffect(() => navigateListen(location), [location]);
+                if (location.pathname === "/math") {
+                    return <Redirect to="/math/calculator" />;
+                }
+                return null;
+            };
+
+            // Act
+            render(
+                Router.adapter(<NavigateListener />, {
+                    location: "/math",
+                    forceStatic: true,
+                    disableCompatRouter: true,
                 }),
             );
 

@@ -49,6 +49,15 @@ type Config =
                  */
                 forceStatic: true;
                 /**
+                 * If true, then we will not use a CompatRouter.
+                 *
+                 * NOTE(john): There are cases where we don't want a CompatRouter
+                 * here as it uses useLayoutEffect, which causes issues in our
+                 * test environment. Namely, that it generates a warning about
+                 * the use of useLayoutEffect, which causes an error.
+                 */
+                disableCompatRouter?: boolean;
+                /**
                  * A path match to use.
                  *
                  * When this is specified, the harnessed component will be
@@ -99,25 +108,23 @@ const MaybeWithRoute = ({
     path: string | null | undefined;
     configLocation: LocationDescriptor;
 }): React.ReactElement => {
-    const actualLocation = useLocation();
-    const configuredLocation =
-        typeof configLocation === "string"
-            ? configLocation
-            : configLocation.pathname;
-
     if (path == null) {
         return <>{children}</>;
     }
 
-    const errorMessage =
-        `The current location '${actualLocation.pathname}' ` +
-        `does not match the configured path '${path}'. ` +
-        `Did you provide the correct configured ` +
-        `location, '${configuredLocation}', or did the ` +
-        `routing lead to a different place than you ` +
-        `expected?`;
-
     const ErrorElement = () => {
+        const actualLocation = useLocation();
+        const configuredLocation =
+            typeof configLocation === "string"
+                ? configLocation
+                : configLocation.pathname;
+        const errorMessage =
+            `The current location '${actualLocation.pathname}' ` +
+            `does not match the configured path '${path}'. ` +
+            `Did you provide the correct configured ` +
+            `location, '${configuredLocation}', or did the ` +
+            `routing lead to a different place than you ` +
+            `expected?`;
         throw new Error(errorMessage);
     };
 
@@ -159,23 +166,33 @@ export const adapter: TestHarnessAdapter<Config> = (
         /**
          * There may be times (SSR testing comes to mind) where we will be
          * really strict about not permitting client-side navigation events.
-         *
-         * NOTE(john): We don't have a CompatRouter here as it uses useLayoutEffect
-         * which causes issues in our test enviornment. Namely, that it generates
-         * a warning about the use of useLayoutEffect, which causes an error.
          */
+        if (config.disableCompatRouter) {
+            return (
+                <StaticRouter location={config.location} context={{}}>
+                    <MaybeWithRoute
+                        path={config.path}
+                        configLocation={config.location}
+                    >
+                        {children}
+                    </MaybeWithRoute>
+                </StaticRouter>
+            );
+        }
+
         return (
             <StaticRouter location={config.location} context={{}}>
-                <MaybeWithRoute
-                    path={config.path}
-                    configLocation={config.location}
-                >
-                    {children}
-                </MaybeWithRoute>
+                <CompatRouter>
+                    <MaybeWithRoute
+                        path={config.path}
+                        configLocation={config.location}
+                    >
+                        {children}
+                    </MaybeWithRoute>
+                </CompatRouter>
             </StaticRouter>
         );
     }
-
     /**
      * OK, we must be OK with a memory router.
      *
