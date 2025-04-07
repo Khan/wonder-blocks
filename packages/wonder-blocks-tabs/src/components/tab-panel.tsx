@@ -53,18 +53,12 @@ export const TabPanel = (props: Props) => {
             role="tabpanel"
             id={id}
             aria-labelledby={ariaLabelledby}
-            style={!active && styles.hidden}
             // If the tab panel doesn't have focusable elements, it should be
             // focusable so that it is included in the tab sequence of the page
             tabIndex={hasFocusableElement ? undefined : 0}
+            hidden={!active}
         >
             {children}
         </StyledDiv>
     );
 };
-
-const styles = StyleSheet.create({
-    hidden: {
-        display: "none",
-    },
-});
