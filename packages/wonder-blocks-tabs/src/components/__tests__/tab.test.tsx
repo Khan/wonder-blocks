@@ -209,7 +209,7 @@ describe("Tab", () => {
                 const tab = await screen.findByRole("tab");
 
                 // Act
-                await userEvent.keyboard("{tab}");
+                await userEvent.tab();
 
                 // Assert
                 expect(tab).toHaveFocus();
@@ -225,7 +225,7 @@ describe("Tab", () => {
                 const tab = await screen.findByRole("tab");
 
                 // Act
-                await userEvent.keyboard("{tab}");
+                await userEvent.tab();
 
                 // Assert
                 expect(tab).not.toHaveFocus();
