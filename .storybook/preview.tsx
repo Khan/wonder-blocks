@@ -44,6 +44,9 @@ const wbViewports = {
 };
 
 const parameters = {
+    a11y: {
+        test: "error",
+    },
     // Enable the RenderStateRoot decorator by default.
     enableRenderStateRootDecorator: true,
     backgrounds: {
@@ -125,11 +128,11 @@ const withLanguageDirection: Decorator = (Story, context) => {
             <div dir="rtl">
                 <Story />
             </div>
-        )
+        );
     } else {
-        return <Story />
+        return <Story />;
     }
-}
+};
 
 /**
  * Wraps a story with styling that simulates [zoom](https://developer.mozilla.org/en-US/docs/Web/CSS/zoom).
@@ -141,21 +144,18 @@ const withLanguageDirection: Decorator = (Story, context) => {
 const withZoom: Decorator = (Story, context) => {
     if (context.globals.zoom) {
         return (
-            <div style={{ zoom: context.globals.zoom }}>
+            <div style={{zoom: context.globals.zoom}}>
                 <Story />
             </div>
-        )
+        );
     }
-    return <Story />
-}
+    return <Story />;
+};
 
 /**
  * Injects the Live Region Announcer for various components
  */
-const withAnnouncer: Decorator = (
-    Story,
-    {parameters: {addBodyClass}},
-) => {
+const withAnnouncer: Decorator = (Story, {parameters: {addBodyClass}}) => {
     // Allow stories to specify a CSS body class
     if (addBodyClass) {
         document.body.classList.add(addBodyClass);
@@ -164,20 +164,23 @@ const withAnnouncer: Decorator = (
         // initialize Announcer on load to render Live Regions earlier
         initAnnouncer();
         return () => {
-          if (addBodyClass) {
-            // Remove body class when changing stories
-            document.body.classList.remove(addBodyClass);
-          }
+            if (addBodyClass) {
+                // Remove body class when changing stories
+                document.body.classList.remove(addBodyClass);
+            }
         };
-      }, [addBodyClass]);
-    return (
-        <Story />
-    );
+    }, [addBodyClass]);
+    return <Story />;
 };
 
 const preview: Preview = {
     parameters,
-    decorators: [withThemeSwitcher, withLanguageDirection, withZoom, withAnnouncer],
+    decorators: [
+        withThemeSwitcher,
+        withLanguageDirection,
+        withZoom,
+        withAnnouncer,
+    ],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
@@ -244,10 +247,10 @@ const preview: Preview = {
                     },
                 ],
             },
-        }
+        },
     },
 
-    tags: ["autodocs", "a11y-test"],
+    tags: ["autodocs"],
 };
 
 export default preview;
