@@ -256,6 +256,7 @@ export const TooltipOnButtons: StoryComponentType = () => {
                 <IconButton
                     icon={magnifyingGlass}
                     aria-label="search"
+                    kind="tertiary"
                     onClick={() => {}}
                 />
             </Tooltip>

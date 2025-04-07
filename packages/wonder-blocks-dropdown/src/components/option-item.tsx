@@ -336,8 +336,7 @@ const theme = {
     checkbox: {
         color: {
             hover: {
-                background:
-                    semanticColor.action.secondary.progressive.hover.background,
+                background: semanticColor.surface.primary,
                 foreground:
                     semanticColor.action.secondary.progressive.hover.foreground,
             },

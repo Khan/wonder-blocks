@@ -4,7 +4,6 @@ import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";

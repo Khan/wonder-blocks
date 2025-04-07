@@ -599,6 +599,7 @@ export default function Combobox({
                     <IconButton
                         icon={xIcon}
                         onClick={handleClearClick}
+                        actionType="neutral"
                         kind="tertiary"
                         size="small"
                         style={[styles.button, styles.clearButton]}
@@ -619,6 +620,7 @@ export default function Combobox({
                         // this element.
                         e.preventDefault();
                     }}
+                    actionType="neutral"
                     kind="tertiary"
                     size="small"
                     style={[styles.button, openState && styles.buttonOpen]}

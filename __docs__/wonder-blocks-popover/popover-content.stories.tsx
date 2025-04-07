@@ -2,10 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
 
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import packageConfig from "../../packages/wonder-blocks-popover/package.json";
@@ -66,32 +63,6 @@ export const Default: StoryComponentType = {
 };
 
 Default.storyName = "Default (text)";
-
-/**
- * Text-only variant with added emphasis.
- * **NOTE:** When using this variant, make sure to apply the `light`
- * prop to each button
- */
-export const Emphasized: StoryComponentType = {
-    args: {
-        title: "Popover with emphasis",
-        content:
-            "Some content for the popover. Note that the action buttons are using the light version.",
-        emphasized: true,
-        actions: (
-            <>
-                <Button light={true} kind="secondary">
-                    Previous
-                </Button>
-                <Strut size={spacing.medium_16} />
-                <Button light={true} kind="primary">
-                    Next
-                </Button>
-            </>
-        ),
-    },
-    render: (args) => <PopoverContent {...args} />,
-};
 
 /**
  * Decorate the popover with an illustrated icon. You need to pass an `icon`
