@@ -1,5 +1,42 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.0.1
+
+### Patch Changes
+
+- 4846e9c: Update icon buttons to use the new mapping (from `primary` to `tertiary`)
+- Updated dependencies [3dc5dac]
+- Updated dependencies [4846e9c]
+- Updated dependencies [4846e9c]
+- Updated dependencies [4846e9c]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-modal@7.1.6
+    - @khanacademy/wonder-blocks-icon-button@8.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.1
+    - @khanacademy/wonder-blocks-tooltip@4.1.6
+
+## 6.0.0
+
+### Major Changes
+
+- 46206d0: Remove `emphasized` variant from `PopoverContent` and `color` prop from `PopoverContentCore` as these are not currently used and no longer recommended
+
+### Patch Changes
+
+- 61f7837: Update dismiss button (CloseButton) to use `actionStyles.inverse` instead of the now deprecated `IconButton.light` variant"
+- Updated dependencies [61f7837]
+- Updated dependencies [86e1901]
+- Updated dependencies [aace76a]
+- Updated dependencies [3cacbe7]
+- Updated dependencies [61f7837]
+- Updated dependencies [4887c59]
+- Updated dependencies [86e1901]
+- Updated dependencies [61f7837]
+    - @khanacademy/wonder-blocks-icon-button@7.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.0
+    - @khanacademy/wonder-blocks-modal@7.1.5
+    - @khanacademy/wonder-blocks-tooltip@4.1.5
+
 ## 5.2.2
 
 ### Patch Changes

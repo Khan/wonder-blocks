@@ -1,5 +1,31 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 9.2.2
+
+### Patch Changes
+
+- 3dc5dac: Fix hover state to use primary surface
+- 4846e9c: Update icon buttons to use the new mapping (from `primary` to `tertiary`)
+- Updated dependencies [3dc5dac]
+- Updated dependencies [4846e9c]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-search-field@5.1.6
+    - @khanacademy/wonder-blocks-modal@7.1.6
+    - @khanacademy/wonder-blocks-cell@4.1.5
+    - @khanacademy/wonder-blocks-clickable@6.1.5
+    - @khanacademy/wonder-blocks-layout@3.1.5
+    - @khanacademy/wonder-blocks-pill@3.1.5
+
+## 9.2.1
+
+### Patch Changes
+
+- Updated dependencies [4887c59]
+- Updated dependencies [86e1901]
+- Updated dependencies [61f7837]
+    - @khanacademy/wonder-blocks-modal@7.1.5
+    - @khanacademy/wonder-blocks-search-field@5.1.5
+
 ## 9.2.0
 
 ### Minor Changes

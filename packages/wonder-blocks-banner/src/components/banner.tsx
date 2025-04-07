@@ -285,6 +285,7 @@ const Banner = (props: Props): React.ReactElement => {
                         <IconButton
                             icon={xIcon}
                             kind="tertiary"
+                            actionType="neutral"
                             onClick={onDismiss}
                             style={styles.dismiss}
                             aria-label={dismissAriaLabel}

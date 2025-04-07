@@ -6,7 +6,6 @@ import {
 } from "@khanacademy/wonder-blocks-theming";
 
 import defaultTheme from "./default";
-import khanmigoTheme from "./khanmigo";
 
 type Props = {
     children: React.ReactNode;
@@ -19,7 +18,6 @@ export type IconButtonThemeContract = typeof defaultTheme;
  */
 const themes: Themes<IconButtonThemeContract> = {
     default: defaultTheme,
-    khanmigo: khanmigoTheme,
 };
 
 /**
