@@ -4,6 +4,7 @@ import {render, screen, within} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {PropsFor} from "@khanacademy/wonder-blocks-core";
 import {TabItem, Tabs} from "../tabs";
+import {Tab} from "../tab";
 
 describe("Tabs", () => {
     const tabs: TabItem[] = [
@@ -162,6 +163,370 @@ describe("Tabs", () => {
         // Assert
         // eslint-disable-next-line testing-library/no-node-access -- check ref is on root element
         expect(ref.current).toBe(container.firstChild);
+    });
+
+    describe("Props", () => {
+        describe("id", () => {
+            it("should use the provided id for the root element", async () => {
+                // Arrange
+                const id = "id";
+
+                // Act
+                const {container} = render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        id={id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- checking the root element
+                expect(container.firstChild).toHaveAttribute("id", id);
+            });
+
+            it("should use the provided id for the tablist element", async () => {
+                // Arrange
+                const id = "id";
+                render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        id={id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist).toHaveAttribute("id", `${id}-tablist`);
+            });
+
+            it("should autogenerate an id for the root element if no id is provided", async () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- checking the root element
+                expect(container.firstChild).toHaveAttribute("id");
+            });
+
+            it("should autogenerate an id for the tablist element if no id is provided", async () => {
+                // Arrange
+                render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist.id).toEndWith("-tablist");
+            });
+        });
+
+        describe("testId", () => {
+            it("should set the testId for the root element", async () => {
+                // Arrange
+                const testId = "test-id";
+                // Act
+                const {container} = render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        testId={testId}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- checking the root element
+                expect(container.firstChild).toHaveAttribute(
+                    "data-testid",
+                    testId,
+                );
+            });
+
+            it("should set the testId for the tablist element", async () => {
+                // Arrange
+                const testId = "test-id";
+                render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        testId={testId}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tablist = await screen.findByRole("tablist");
+
+                // Assert
+                expect(tablist).toHaveAttribute(
+                    "data-testid",
+                    `${testId}-tablist`,
+                );
+            });
+
+            it("should not set the testId for the root element if no testId is provided", () => {
+                // Arrange
+                const {container} = render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Assert
+                // eslint-disable-next-line testing-library/no-node-access -- checking the root element
+                expect(container.firstChild).not.toHaveAttribute("data-testid");
+            });
+
+            it("should not set the testId for the tablist element if no testId is provided", () => {
+                // Arrange
+                render(
+                    <Tabs
+                        tabs={tabs}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tablist = screen.getByRole("tablist");
+
+                // Assert
+                expect(tablist).not.toHaveAttribute("data-testid");
+            });
+        });
+
+        describe("tab item ids", () => {
+            it("should use the tab item id for the tab element", () => {
+                // Arrange
+                const id = "tab-id";
+                render(
+                    <Tabs
+                        tabs={[{id, label: "Label", panel: "Panel"}]}
+                        selectedTabId={id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tab = screen.getByRole("tab", {name: "Label"});
+
+                // Assert
+                expect(tab).toHaveAttribute("id", `${id}-tab`);
+            });
+
+            it("should use the tab item id for the tab panel element", () => {
+                // Arrange
+                const id = "tab-id";
+                render(
+                    <Tabs
+                        tabs={[{id, label: "Label", panel: "Panel"}]}
+                        selectedTabId={id}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tabPanel = screen.getByRole("tabpanel", {name: "Label"});
+
+                // Assert
+                expect(tabPanel).toHaveAttribute("id", `${id}-panel`);
+            });
+        });
+
+        describe("tab item test ids", () => {
+            it("should set the testId for the tab element", () => {
+                // Arrange
+                const testId = "test-id";
+                render(
+                    <Tabs
+                        tabs={[
+                            {
+                                id: "tab-id",
+                                label: "Label",
+                                panel: "Panel",
+                                testId,
+                            },
+                        ]}
+                        selectedTabId={"tab-id"}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tab = screen.getByRole("tab", {name: "Label"});
+
+                // Assert
+                expect(tab).toHaveAttribute("data-testid", `${testId}-tab`);
+            });
+
+            it("should set the testId for the tab panel element", () => {
+                // Arrange
+                const testId = "test-id";
+                render(
+                    <Tabs
+                        tabs={[
+                            {
+                                id: "tab-id",
+                                label: "Label",
+                                panel: "Panel",
+                                testId,
+                            },
+                        ]}
+                        selectedTabId={"tab-id"}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tabPanel = screen.getByRole("tabpanel", {name: "Label"});
+
+                // Assert
+                expect(tabPanel).toHaveAttribute(
+                    "data-testid",
+                    `${testId}-panel`,
+                );
+            });
+
+            it("should not set the testId for the tab element if no testId is provided", () => {
+                // Arrange
+                render(
+                    <Tabs
+                        tabs={[{id: "tab-id", label: "Label", panel: "Panel"}]}
+                        selectedTabId={"tab-id"}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tab = screen.getByRole("tab", {name: "Label"});
+
+                // Assert
+                expect(tab).not.toHaveAttribute("data-testid");
+            });
+
+            it("should not set the testId for the tab panel element if no testId is provided", () => {
+                // Arrange
+                render(
+                    <Tabs
+                        tabs={[{id: "tab-id", label: "Label", panel: "Panel"}]}
+                        selectedTabId={"tab-id"}
+                        onTabSelected={jest.fn()}
+                        aria-label={tabsAriaLabel}
+                    />,
+                );
+
+                // Act
+                const tabPanel = screen.getByRole("tabpanel", {name: "Label"});
+
+                // Assert
+                expect(tabPanel).not.toHaveAttribute("data-testid");
+            });
+        });
+
+        describe("tabs", () => {
+            describe("label prop render function", () => {
+                it("should render the tab label using the render function", () => {
+                    // Arrange
+                    render(
+                        <Tabs
+                            aria-label={tabsAriaLabel}
+                            tabs={[
+                                {
+                                    id: "tab-1",
+                                    label: (tabProps) => (
+                                        <div
+                                            key={tabProps.id}
+                                            data-testid="tab-wrapper"
+                                        >
+                                            <Tab {...tabProps}>Label</Tab>
+                                        </div>
+                                    ),
+                                    panel: "Panel",
+                                },
+                            ]}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Act
+                    const tabWrapper = screen.getByTestId("tab-wrapper");
+
+                    // Assert
+                    expect(tabWrapper).toBeInTheDocument();
+                });
+
+                it("should pass the tab props to the render function", () => {
+                    // Arrange
+                    const labelRenderFn = jest.fn();
+
+                    // Act
+                    render(
+                        <Tabs
+                            aria-label={tabsAriaLabel}
+                            tabs={[
+                                {
+                                    id: "tab-1",
+                                    label: labelRenderFn,
+                                    panel: "Panel",
+                                    "aria-label": "Tab 1 Aria Label",
+                                    testId: "tab-1-test-id",
+                                },
+                            ]}
+                            selectedTabId="tab-1"
+                            onTabSelected={jest.fn()}
+                        />,
+                    );
+
+                    // Assert
+                    expect(labelRenderFn).toHaveBeenCalledExactlyOnceWith({
+                        id: "tab-1-tab",
+                        testId: "tab-1-test-id-tab",
+                        key: "tab-1",
+                        selected: true,
+                        "aria-controls": "tab-1-panel",
+                        "aria-label": "Tab 1 Aria Label",
+                        onClick: expect.any(Function),
+                        onKeyDown: expect.any(Function),
+                        ref: expect.any(Function),
+                    });
+                });
+            });
+        });
     });
 
     describe("Event Handlers", () => {
@@ -390,6 +755,32 @@ describe("Tabs", () => {
                     "aria-labelledby",
                     ariaLabelledby,
                 );
+            });
+
+            it("should use aria attributes from the tab items", async () => {
+                // Arrange
+                const ariaLabel = "Specific aria label";
+                render(
+                    <Tabs
+                        tabs={[
+                            {
+                                label: "Tab 1",
+                                id: "tab-1",
+                                "aria-label": ariaLabel,
+                                panel: "Content",
+                            },
+                        ]}
+                        selectedTabId={tabs[0].id}
+                        onTabSelected={jest.fn()}
+                        aria-label="Tabs Example"
+                    />,
+                );
+
+                // Act
+                const tab = await screen.findByRole("tab", {name: ariaLabel});
+
+                // Assert
+                expect(tab).toHaveAttribute("aria-label", ariaLabel);
             });
         });
 
@@ -1354,6 +1745,80 @@ describe("Tabs", () => {
                     expect(tab2b).toHaveFocus();
                 });
             });
+        });
+    });
+
+    describe("Performance", () => {
+        it("should not mount tab panels that are not visited", () => {
+            // Arrange
+            const secondPanelOnMount = jest.fn();
+            const SecondPanel = () => {
+                React.useEffect(() => {
+                    secondPanelOnMount();
+                }, []);
+                return <div>Panel 2</div>;
+            };
+
+            // Act
+            render(
+                <ControlledTabs
+                    tabs={[
+                        {
+                            id: "tab-1",
+                            label: "Tab 1",
+                            panel: "Panel 1",
+                        },
+                        {
+                            id: "tab-2",
+                            label: "Tab 2",
+                            panel: <SecondPanel />,
+                        },
+                    ]}
+                    selectedTabId={"tab-1"}
+                />,
+            );
+
+            // Assert
+            // Since the first tab is selected, the second panel should not have been mounted
+            expect(secondPanelOnMount).not.toHaveBeenCalled();
+        });
+
+        it("should not remount tabs that have been visited", async () => {
+            // Arrange
+            const firstPanelOnMount = jest.fn();
+            const FirstPanel = () => {
+                React.useEffect(() => {
+                    firstPanelOnMount();
+                }, []);
+                return <div>Panel 1</div>;
+            };
+            render(
+                <ControlledTabs
+                    tabs={[
+                        {
+                            id: "tab-1",
+                            label: "Tab 1",
+                            panel: <FirstPanel />,
+                        },
+                        {
+                            id: "tab-2",
+                            label: "Tab 2",
+                            panel: "Panel 2",
+                        },
+                    ]}
+                    selectedTabId={"tab-1"}
+                />,
+            );
+
+            // Act
+            // Change tabs and then go back to the first tab
+            const tab2 = screen.getByRole("tab", {name: "Tab 2"});
+            await userEvent.click(tab2);
+            const tab1 = screen.getByRole("tab", {name: "Tab 1"});
+            await userEvent.click(tab1);
+
+            // Assert
+            expect(firstPanelOnMount).toHaveBeenCalledTimes(1);
         });
     });
 });

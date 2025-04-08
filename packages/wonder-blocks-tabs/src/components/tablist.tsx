@@ -5,6 +5,14 @@ import * as React from "react";
 
 type Props = {
     /**
+     * The id of the tablist.
+     */
+    id?: string;
+    /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string;
+    /**
      * The contents of the tablist.
      */
     children: React.ReactNode;
@@ -34,20 +42,24 @@ export const Tablist = React.forwardRef(function Tablist(
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
     const {
+        id,
         children,
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         onBlur,
+        testId,
     } = props;
 
     return (
         <StyledDiv
+            id={id}
             role="tablist"
             style={styles.tablist}
             ref={ref}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
             onBlur={onBlur}
+            data-testid={testId}
         >
             {children}
         </StyledDiv>

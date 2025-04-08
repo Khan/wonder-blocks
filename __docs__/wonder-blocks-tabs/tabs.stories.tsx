@@ -1,12 +1,15 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "@storybook/addon-actions";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import {TabItem, Tabs} from "@khanacademy/wonder-blocks-tabs";
+import {Tab, TabItem, Tabs} from "@khanacademy/wonder-blocks-tabs";
 import argTypes from "./tabs.argtypes";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 
 const tabs: TabItem[] = [
     {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
@@ -164,6 +167,105 @@ export const WithFocusableContent: StoryComponentType = {
                 label: "Content with no focusable elements",
                 id: "tab-no-focusable-elements",
                 panel: <div>No focusable elements. Tab panel is focusable</div>,
+            },
+        ],
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * For specific use cases where the underlying tab element is wrapped
+ * by another component (like a `Tooltip` or `Popover`), a render function
+ * can be used with the `Tab` component instead. The render function
+ * provides the tab props that should be applied to the `Tab` component.
+ * You will also need to set a `key` on the root element of the render function
+ * since the tabs are rendered in a loop.
+ *
+ * This story demonstrates how to use a render function to wrap a `Tab`
+ * component in a `Tooltip` and a `Popover`. Please test the accessibility for
+ * your use case, especially focus management and keyboard interactions!
+ */
+export const TabLabelRenderFunction: StoryComponentType = {
+    args: {
+        tabs: [
+            {
+                label(tabProps) {
+                    return (
+                        <Tooltip
+                            content="Tooltip"
+                            opened={true}
+                            key={tabProps.id}
+                        >
+                            <Tab {...tabProps}>Tab with a tooltip on it</Tab>
+                        </Tooltip>
+                    );
+                },
+                id: "tab-1",
+                panel: <div>Tab contents 1</div>,
+            },
+            {
+                label(tabProps) {
+                    return (
+                        <Popover
+                            content={
+                                <PopoverContent
+                                    title="Title"
+                                    content="The popover content."
+                                />
+                            }
+                            opened={true}
+                            key={tabProps.id}
+                        >
+                            <Tab {...tabProps}>Tab With a Popover on it</Tab>
+                        </Popover>
+                    );
+                },
+                id: "tab-2",
+                panel: <div>Tab contents 2</div>,
+            },
+        ],
+    },
+};
+
+const PanelExample = ({label}: {label: string}) => {
+    React.useEffect(() => {
+        action(`Panel mounted`)(label);
+    }, [label]);
+
+    return <div>{label}</div>;
+};
+
+/**
+ * The tab panels are cached and only mounted once a tab is selected to prevent
+ * unnecessary mounting/unmounting of tab panel contents.
+ *
+ * In this example, the panels contain components that print out a message in
+ * the Storybook actions panel whenever it is mounted. Notice that a panel is
+ * only mounted when it is selected the first time. Visiting a tab that has
+ * already been selected will not cause the tab panel to be mounted again.
+ */
+export const PanelCaching: StoryComponentType = {
+    args: {
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <PanelExample label="Tab 1" />,
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <PanelExample label="Tab 2" />,
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                panel: <PanelExample label="Tab 3" />,
             },
         ],
     },

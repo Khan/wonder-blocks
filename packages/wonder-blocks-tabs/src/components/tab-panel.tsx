@@ -12,6 +12,10 @@ type Props = {
      */
     id: string;
     /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string;
+    /**
      * The id of the associated element with role="tab".
      */
     "aria-labelledby": string;
@@ -33,6 +37,7 @@ export const TabPanel = (props: Props) => {
         id,
         "aria-labelledby": ariaLabelledby,
         active = false,
+        testId,
     } = props;
 
     const ref = React.useRef<HTMLDivElement>(null);
@@ -57,6 +62,7 @@ export const TabPanel = (props: Props) => {
             tabIndex={hasFocusableElement ? undefined : 0}
             // Only show the tab panel if it is active
             hidden={!active}
+            data-testid={testId}
         >
             {children}
         </StyledDiv>

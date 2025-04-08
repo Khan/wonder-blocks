@@ -1,22 +1,45 @@
 import * as React from "react";
-import {keys} from "@khanacademy/wonder-blocks-core";
+import {AriaProps, keys, PropsFor} from "@khanacademy/wonder-blocks-core";
 import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
 
-export type TabItem = {
+export type TabRenderProps = Omit<PropsFor<typeof Tab>, "children">;
+
+export type TabItem = AriaProps & {
     /**
      * A unique id for the tab.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The tab will have an id formatted as `${id}-tab`
+     * - The associated tab panel will have an id formatted as `${id}-panel`
+     *
+     * It is also used to communicate the id of the selected tab via the
+     * `selectedTabId` and `onTabSelected` props.
      */
     id: string;
     /**
      * The contents of the tab label.
+     *
+     * For specific use cases where the underlying tab element is wrapped
+     * by another component (like a `Tooltip` or `Popover`), a render function
+     * can be used with the `Tab` component instead. The render function
+     * provides the tab props that should be applied to the `Tab` component.
+     * See example in the docs for more details.
      */
-    label: React.ReactNode;
+    label: React.ReactNode | ((tabProps: TabRenderProps) => React.ReactElement);
     /**
      * The contents of the panel associated with the tab.
      */
     panel: React.ReactNode;
+    /**
+     * Optional test ID for e2e testing.
+     *
+     * Here is how the test id is used for the different elements in the component:
+     * - The tab will have a testId formatted as `${testId}-tab`
+     * - The associated tab panel will have a testId formatted as `${testId}-panel`
+     */
+    testId?: string;
 };
 
 /**
@@ -41,6 +64,33 @@ type AriaLabelOrAriaLabelledby =
       };
 
 type Props = {
+    /**
+     * A unique id to use as the base of the ids for the elements within the
+     * component. If the `id` prop is not provided, a base unique id will be
+     * auto-generated.
+     *
+     * Here is how the id is used for the different elements in the component:
+     * - The root will have an id of `${id}`
+     * - The tablist will have an id formatted as ${id}-tablist
+     *
+     * If you need to apply an id to a specific tab or tab panel, the `id` for
+     * the tab item in the `tabs` prop will be used:
+     * - The tab will have an id formatted as `${id}-tab`
+     * - The associated tab panel will have an id formatted as `${id}-panel`
+     */
+    id?: string;
+    /**
+     * Optional test ID for e2e testing. Here is how the test id is used for the
+     * different elements in the component:
+     * - The root will have a testId formatted as `${testId}`
+     * - The tablist will have a testId formatted as `${testId}-tablist`
+     *
+     * If you need to apply a testId to a specific tab or tab panel, add the
+     * test id to the tab item in the `tabs` prop:
+     * - The tab will have a testId formatted as `${testId}-tab`
+     * - The associated tab panel will have a testId formatted as `${testId}-panel`
+     */
+    testId?: string;
     /**
      * The tabs to render. The Tabs component will wire up the tab and panel
      * attributes for accessibility.
@@ -69,7 +119,7 @@ type Props = {
  * Returns the id of the tab.
  */
 function getTabId(tabId: string) {
-    return `${tabId}__tab`;
+    return `${tabId}-tab`;
 }
 
 /**
@@ -77,7 +127,7 @@ function getTabId(tabId: string) {
  */
 
 function getTabPanelId(tabId: string) {
-    return `${tabId}__panel`;
+    return `${tabId}-panel`;
 }
 
 /**
@@ -97,10 +147,32 @@ export const Tabs = React.forwardRef(function Tabs(
         "aria-label": ariaLabel,
         "aria-labelledby": ariaLabelledby,
         activationMode = "manual",
+        id,
+        testId,
     } = props;
 
+    /**
+     * The id of the tab that is currently focused.
+     */
     const focusedTabId = React.useRef(selectedTabId);
+
     const tabRefs = React.useRef<{[key: string]: HTMLButtonElement | null}>({});
+
+    /**
+     * Element ids
+     */
+    const generatedUniqueId = React.useId();
+    const uniqueId = id ?? generatedUniqueId;
+    const tablistId = `${uniqueId}-tablist`;
+
+    /**
+     * Keep track of tabs that have been visited to avoid unnecessary mounting/
+     * unmounting of tab panels when we switch tabs. We won't mount any tab
+     * panel contents that aren't visited, and we won't remount tabs that have
+     * been visited already.
+     */
+    const visitedTabsRef = React.useRef(new Set<string>());
+    visitedTabsRef.current.add(selectedTabId);
 
     React.useEffect(() => {
         focusedTabId.current = selectedTabId;
@@ -188,30 +260,44 @@ export const Tabs = React.forwardRef(function Tabs(
     }, [selectedTabId]);
 
     return (
-        <div ref={ref}>
+        <div ref={ref} id={uniqueId} data-testid={testId}>
             <Tablist
                 aria-label={ariaLabel}
                 aria-labelledby={ariaLabelledby}
                 onBlur={handleTablistBlur}
+                id={tablistId}
+                testId={testId && `${testId}-tablist`}
             >
                 {tabs.map((tab) => {
-                    return (
-                        <Tab
-                            key={tab.id}
-                            onClick={() => {
-                                onTabSelected(tab.id);
-                            }}
-                            id={getTabId(tab.id)}
-                            aria-controls={getTabPanelId(tab.id)}
-                            selected={tab.id === selectedTabId}
-                            onKeyDown={handleKeyDown}
-                            ref={(element) => {
-                                tabRefs.current[tab.id] = element;
-                            }}
-                        >
-                            {tab.label}
-                        </Tab>
-                    );
+                    const {
+                        id,
+                        label,
+                        panel: _,
+                        testId: tabTestId,
+                        ...otherProps // Should only include aria related props
+                    } = tab;
+
+                    const tabProps: TabRenderProps = {
+                        ...otherProps,
+                        key: id,
+                        id: getTabId(id),
+                        testId: tabTestId && getTabId(tabTestId),
+                        selected: id === selectedTabId,
+                        "aria-controls": getTabPanelId(id),
+                        onClick: () => {
+                            onTabSelected(id);
+                        },
+                        onKeyDown: handleKeyDown,
+                        ref: (element) => {
+                            tabRefs.current[tab.id] = element;
+                        },
+                    };
+
+                    if (typeof label === "function") {
+                        return label(tabProps);
+                    }
+
+                    return <Tab {...tabProps}>{label}</Tab>;
                 })}
             </Tablist>
             {tabs.map((tab) => {
@@ -221,8 +307,14 @@ export const Tabs = React.forwardRef(function Tabs(
                         id={getTabPanelId(tab.id)}
                         aria-labelledby={getTabId(tab.id)}
                         active={selectedTabId === tab.id}
+                        testId={tab.testId && getTabPanelId(tab.testId)}
                     >
-                        {selectedTabId === tab.id && tab.panel}
+                        {/* Tab panel contents are rendered if the tab has
+                        been previously visited. This prevents unnecessary
+                        re-mounting of tab panel contents when switching tabs.
+                        Note that TabPanel will only display the contents if it
+                        is the active panel. */}
+                        {visitedTabsRef.current.has(tab.id) && tab.panel}
                     </TabPanel>
                 );
             })}

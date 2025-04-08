@@ -74,6 +74,22 @@ describe("Tab", () => {
             // Assert
             expect(tab).toHaveAttribute("id", id);
         });
+
+        it("should set the testId for the tab", async () => {
+            // Arrange
+            const testId = "test-id";
+            render(
+                <Tab {...props} testId={testId}>
+                    Tab
+                </Tab>,
+            );
+
+            // Act
+            const tab = await screen.findByRole("tab");
+
+            // Assert
+            expect(tab).toHaveAttribute("data-testid", testId);
+        });
     });
 
     describe("Event Handlers", () => {
@@ -195,6 +211,22 @@ describe("Tab", () => {
 
                 // Assert
                 expect(tab).not.toHaveAttribute("aria-selected");
+            });
+
+            it("should set aria attributes when provided", async () => {
+                // Arrange
+                const ariaLabel = "Specific aria label";
+                render(
+                    <Tab {...props} aria-label={ariaLabel}>
+                        Label
+                    </Tab>,
+                );
+
+                // Act
+                const tab = await screen.findByRole("tab");
+
+                // Assert
+                expect(tab).toHaveAttribute("aria-label", ariaLabel);
             });
         });
 
