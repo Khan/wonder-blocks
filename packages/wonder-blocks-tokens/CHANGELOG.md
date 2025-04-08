@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 6.0.0
+
+### Major Changes
+
+- 24bf12f: Update sizing primitive tokens to use Base 10 rem units instead of Base 8 to work around minimum size bugs in browsers
+
 ## 5.2.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-link
 
+## 8.0.4
+
+### Patch Changes
+
+- Updated dependencies [24bf12f]
+    - @khanacademy/wonder-blocks-tokens@6.0.0
+    - @khanacademy/wonder-blocks-clickable@6.1.6
+
 ## 8.0.3
 
 ### Patch Changes
