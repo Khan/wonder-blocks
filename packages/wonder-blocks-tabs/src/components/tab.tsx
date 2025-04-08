@@ -1,7 +1,7 @@
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
@@ -88,6 +88,7 @@ export const Tab = React.forwardRef(function Tab(
     );
 });
 
+const bottomSpacing = sizing.size_140;
 export const styles = StyleSheet.create({
     tab: {
         display: "flex",
@@ -98,10 +99,8 @@ export const styles = StyleSheet.create({
         margin: 0,
         padding: 0,
         cursor: "pointer",
-        // TODO: Update to use spacing tokens
-        marginBlockStart: "8px",
-        // TODO: Update to use spacing tokens
-        marginBlockEnd: "14px",
+        marginBlockStart: sizing.size_080,
+        marginBlockEnd: bottomSpacing,
         position: "relative",
         ...focusStyles.focus,
         ":after": {
@@ -109,8 +108,7 @@ export const styles = StyleSheet.create({
             position: "absolute",
             left: 0,
             right: 0,
-            // TODO: Update to use spacing tokens
-            bottom: "-14px",
+            bottom: `-${bottomSpacing}`,
         },
         // Only apply hover styles to tabs that are not selected
         [":hover:not([aria-selected='true'])" as any]: {

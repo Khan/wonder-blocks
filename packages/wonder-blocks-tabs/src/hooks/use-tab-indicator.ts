@@ -3,7 +3,7 @@ import {
     StyleType,
     useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         bottom: 0,
         left: 0,
-        height: sizing.size_050, // TODO: update token
+        height: border.width.thick,
         backgroundColor:
             semanticColor.action.secondary.progressive.default.foreground,
     },

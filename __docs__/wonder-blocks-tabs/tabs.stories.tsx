@@ -19,15 +19,15 @@ import {
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const Placeholder = ({children}: {children: React.ReactNode}) => {
     return (
         <View
             style={{
                 backgroundColor: semanticColor.surface.secondary,
-                padding: "12px", // TODO: Use sizing tokens
-                margin: "1px",
+                padding: sizing.size_120,
+                margin: sizing.size_010,
                 border: `${border.width.thin}px dashed ${semanticColor.border.subtle}`,
                 width: "100%",
                 alignItems: "center",
@@ -46,7 +46,11 @@ const generateTabs = (
     return new Array(count).fill(0).map((_, index) => ({
         label: (
             <View
-                style={{gap: "8px", alignItems: "center", flexDirection: "row"}}
+                style={{
+                    gap: sizing.size_080,
+                    alignItems: "center",
+                    flexDirection: "row",
+                }}
             >
                 {withIcons && <PhosphorIcon icon={IconMappings.cookie} />}
                 {`${tabContent} ${index + 1}`}
