@@ -28,6 +28,14 @@ type Props = {
      */
     isTabActive(childElement: Element): boolean;
 };
+
+/**
+ * A hook that is used to manage the underline current indicator for tabs.
+ * It returns:
+ * - `indicatorProps`: The props to apply to the underline current indicator
+ * - `updateUnderlineStyle`: A function that updates the underline style. Use
+ * this function when the component detects a change in the tabs
+ */
 export const useTabIndicator = (props: Props) => {
     const {animated, tabsContainerRef, isTabActive} = props;
 
