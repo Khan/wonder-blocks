@@ -19,24 +19,8 @@ import {
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-
-const Placeholder = ({children}: {children: React.ReactNode}) => {
-    return (
-        <View
-            style={{
-                backgroundColor: semanticColor.surface.secondary,
-                padding: sizing.size_120,
-                margin: sizing.size_010,
-                border: `${border.width.thin}px dashed ${semanticColor.border.subtle}`,
-                width: "100%",
-                alignItems: "center",
-            }}
-        >
-            {children}
-        </View>
-    );
-};
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Placeholder} from "../components/placeholder";
 
 const generateTabs = (
     count: number,
