@@ -109,6 +109,7 @@ const generateRows = (rtl: boolean = false) => [
                     ),
                     id: "tab-1",
                     panel: rtl ? rtlText : "Tab 1 Contents",
+                    "aria-label": "Tab 1",
                 },
                 {
                     label: (
@@ -119,6 +120,7 @@ const generateRows = (rtl: boolean = false) => [
                     ),
                     id: "tab-2",
                     panel: rtl ? rtlText : "Tab 2 Contents",
+                    "aria-label": "Tab 2",
                 },
             ],
             selectedTabId: "tab-1",
@@ -188,4 +190,30 @@ export const HoverFocus: Story = {
 
 export const Press: Story = {
     parameters: {pseudo: {hover: true, active: true}},
+};
+
+export const Zoom: Story = {
+    render: (args) => (
+        <>
+            <AllVariants rows={rows} columns={columns} layout="list">
+                {(props) => (
+                    <View>
+                        <Tabs {...args} {...props} />
+                    </View>
+                )}
+            </AllVariants>
+            <div dir="rtl">
+                <AllVariants rows={rtlRows} columns={columns} layout="list">
+                    {(props) => (
+                        <View>
+                            <Tabs {...args} {...props} />
+                        </View>
+                    )}
+                </AllVariants>
+            </div>
+        </>
+    ),
+    globals: {
+        zoom: "400%",
+    },
 };

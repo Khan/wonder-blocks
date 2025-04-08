@@ -401,10 +401,10 @@ export const CustomStyles: StoryComponentType = {
         // visual regression tests to ensure that the custom styles are applied
         // correctly.
         styles: {
-            root: {outline: "2px solid red"},
-            tablist: {backgroundColor: "lightpink"},
-            tabPanel: {backgroundColor: "lightblue"},
-            tab: {backgroundColor: "lightgray"},
+            root: {outline: "2px solid lightpink"},
+            tablist: {backgroundColor: "lavender"},
+            tabPanel: {backgroundColor: "lavenderblush"},
+            tab: {backgroundColor: "lightcyan"},
         },
         tabs: [
             {
@@ -419,13 +419,23 @@ export const CustomStyles: StoryComponentType = {
             },
             {
                 label: (
-                    <View style={{backgroundColor: "lightgreen"}}>
+                    <View
+                        style={{
+                            backgroundColor: "honeydew",
+                            fontStyle: "italic",
+                        }}
+                    >
                         Tab with custom style
                     </View>
                 ),
                 id: "tab-3",
                 panel: (
-                    <View style={{backgroundColor: "lightgreen"}}>
+                    <View
+                        style={{
+                            backgroundColor: "honeydew",
+                            fontStyle: "italic",
+                        }}
+                    >
                         Tab contents with custom style
                     </View>
                 ),
@@ -520,6 +530,7 @@ const scenarios = [
                         <PhosphorIcon
                             icon={IconMappings.cookie}
                             size="medium"
+                            aria-label="Tab 1"
                         />
                     ),
                     id: "tab-1",
@@ -530,6 +541,7 @@ const scenarios = [
                         <PhosphorIcon
                             icon={IconMappings.iceCream}
                             size="medium"
+                            aria-label="Tab 2"
                         />
                     ),
                     id: "tab-2",

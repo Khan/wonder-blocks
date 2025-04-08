@@ -7,6 +7,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {rtlText} from "../components/text-for-testing";
 
 const StyledDiv = addStyle("div");
 
@@ -14,7 +15,7 @@ const generateRows = (rtl: boolean = false) => [
     {
         name: "Default",
         props: {
-            children: "Tab",
+            children: rtl ? rtlText : "Tab",
         },
     },
     {
@@ -29,7 +30,7 @@ const generateRows = (rtl: boolean = false) => [
                     }}
                 >
                     <PhosphorIcon icon={IconMappings.cookie} />
-                    Tab
+                    {rtl ? rtlText : "Tab"}
                     <PhosphorIcon icon={IconMappings.iceCream} />
                 </StyledDiv>
             ),
@@ -75,11 +76,19 @@ const meta = {
     render: (args) => (
         <>
             <AllVariants rows={rows} columns={columns}>
-                {(props) => <Tab {...args} {...props} />}
+                {(props) => (
+                    <div role="tablist">
+                        <Tab {...args} {...props} />
+                    </div>
+                )}
             </AllVariants>
             <div dir="rtl">
                 <AllVariants rows={rtlRows} columns={columns}>
-                    {(props) => <Tab {...args} {...props} />}
+                    {(props) => (
+                        <div role="tablist">
+                            <Tab {...args} {...props} />
+                        </div>
+                    )}
                 </AllVariants>
             </div>
         </>
