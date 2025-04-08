@@ -1,4 +1,4 @@
-import {addStyle, AriaProps} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
@@ -34,6 +34,10 @@ type Props = AriaProps & {
      * Called when a key is pressed on the tab.
      */
     onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
+    /**
+     * Custom styles for the `Tab` component.
+     */
+    style?: StyleType;
 };
 
 const StyledButton = addStyle("button");
@@ -54,6 +58,7 @@ export const Tab = React.forwardRef(function Tab(
         selected,
         onKeyDown,
         testId,
+        style,
         // Should only include aria related props
         ...otherProps
     } = props;
@@ -75,6 +80,7 @@ export const Tab = React.forwardRef(function Tab(
                 typographyStyles.Body,
                 styles.tab,
                 selected && styles.selectedTab,
+                style,
             ]}
         >
             {children}
@@ -106,7 +112,8 @@ export const styles = StyleSheet.create({
             // TODO: Update to use spacing tokens
             bottom: "-14px",
         },
-        ":hover": {
+        // Only apply hover styles to tabs that are not selected
+        [":hover:not([aria-selected='true'])" as any]: {
             color: semanticColor.action.secondary.progressive.hover.foreground,
             [":after" as any]: {
                 height: border.width.hairline,
@@ -114,7 +121,8 @@ export const styles = StyleSheet.create({
                     semanticColor.action.secondary.progressive.hover.foreground,
             },
         },
-        ":active": {
+        // Only apply active styles to tabs that are not selected
+        [":active:not([aria-selected='true'])" as any]: {
             color: semanticColor.action.secondary.progressive.press.foreground,
             [":after" as any]: {
                 height: border.width.thick,

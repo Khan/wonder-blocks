@@ -18,12 +18,62 @@ import {
 } from "../components/text-for-testing";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {addStyle, PropsFor} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+
+const Placeholder = ({children}: {children: React.ReactNode}) => {
+    return (
+        <View
+            style={{
+                backgroundColor: semanticColor.surface.secondary,
+                padding: "12px", // TODO: Use sizing tokens
+                margin: "1px",
+                border: `${border.width.thin}px dashed ${semanticColor.border.subtle}`,
+                width: "100%",
+                alignItems: "center",
+            }}
+        >
+            {children}
+        </View>
+    );
+};
+
+const generateTabs = (
+    count: number,
+    tabContent: string = "Tab",
+    withIcons: boolean = false,
+) => {
+    return new Array(count).fill(0).map((_, index) => ({
+        label: (
+            <View
+                style={{gap: "8px", alignItems: "center", flexDirection: "row"}}
+            >
+                {withIcons && <PhosphorIcon icon={IconMappings.cookie} />}
+                {`${tabContent} ${index + 1}`}
+                {withIcons && <PhosphorIcon icon={IconMappings.iceCream} />}
+            </View>
+        ),
+        id: `tab-${index + 1}`,
+        panel: <Placeholder>Tab contents {index + 1}</Placeholder>,
+    }));
+};
 
 const tabs: TabItem[] = [
-    {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
-    {label: "Tab 2", id: "tab-2", panel: <div>Tab contents 2</div>},
-    {label: "Tab 3", id: "tab-3", panel: <div>Tab contents 3</div>},
+    {
+        label: "Tab 1",
+        id: "tab-1",
+        panel: <Placeholder>Tab contents 1</Placeholder>,
+    },
+    {
+        label: "Tab 2",
+        id: "tab-2",
+        panel: <Placeholder>Tab contents 2</Placeholder>,
+    },
+    {
+        label: "Tab 3",
+        id: "tab-3",
+        panel: <Placeholder>Tab contents 3</Placeholder>,
+    },
 ];
 
 function ControlledTabs(props: PropsFor<typeof Tabs>) {
@@ -92,6 +142,22 @@ export const ManualActivation: StoryComponentType = {
 export const AutomaticActivation: StoryComponentType = {
     args: {
         activationMode: "automatic",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * The tab label can be customized to include icons.
+ */
+export const WithIcons: StoryComponentType = {
+    args: {
+        tabs: generateTabs(3, "Tab", true),
+        selectedTabId: "tab-1",
     },
     parameters: {
         chromatic: {
@@ -218,7 +284,7 @@ export const TabLabelRenderFunction: StoryComponentType = {
                     );
                 },
                 id: "tab-1",
-                panel: <div>Tab contents 1</div>,
+                panel: <Placeholder>Tab contents 1</Placeholder>,
             },
             {
                 label(tabProps) {
@@ -238,7 +304,7 @@ export const TabLabelRenderFunction: StoryComponentType = {
                     );
                 },
                 id: "tab-2",
-                panel: <div>Tab contents 2</div>,
+                panel: <Placeholder>Tab contents 2</Placeholder>,
             },
         ],
     },
@@ -337,26 +403,47 @@ export const PanelCaching: StoryComponentType = {
     },
 };
 
-const StyledSpan = addStyle("span");
-
-const generateTabs = (
-    count: number,
-    tabContent: string = "Tab",
-    withIcons: boolean = false,
-) => {
-    return new Array(count).fill(0).map((_, index) => ({
-        label: (
-            <StyledSpan
-                style={{display: "flex", gap: "8px", alignItems: "center"}}
-            >
-                {withIcons && <PhosphorIcon icon={IconMappings.cookie} />}
-                {`${tabContent} ${index + 1}`}
-                {withIcons && <PhosphorIcon icon={IconMappings.iceCream} />}
-            </StyledSpan>
-        ),
-        id: `tab-${index + 1}`,
-        panel: <div>Tab contents {index + 1}</div>,
-    }));
+/**
+ * The following example shows how the `styles` prop can be used to apply
+ * custom styles to different elements in the `Tabs` component.
+ */
+export const CustomStyles: StoryComponentType = {
+    args: {
+        // These styles are for demo purposes only. We use this story in the
+        // visual regression tests to ensure that the custom styles are applied
+        // correctly.
+        styles: {
+            root: {outline: "2px solid red"},
+            tablist: {backgroundColor: "lightpink"},
+            tabPanel: {backgroundColor: "lightblue"},
+            tab: {backgroundColor: "lightgray"},
+        },
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <div>Tab contents 1</div>,
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <div>Tab contents 2</div>,
+            },
+            {
+                label: (
+                    <View style={{backgroundColor: "lightgreen"}}>
+                        Tab with custom style
+                    </View>
+                ),
+                id: "tab-3",
+                panel: (
+                    <View style={{backgroundColor: "lightgreen"}}>
+                        Tab contents with custom style
+                    </View>
+                ),
+            },
+        ],
+    },
 };
 
 const scenarios = [

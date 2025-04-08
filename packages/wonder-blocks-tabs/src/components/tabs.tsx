@@ -4,6 +4,7 @@ import {
     AriaProps,
     keys,
     PropsFor,
+    StyleType,
     View,
 } from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
@@ -127,6 +128,23 @@ type Props = {
      * `false`.
      */
     animated?: boolean;
+    /**
+     * Custom styles for the `Tabs` component.
+     * - `root`: Styles the root `div` element.
+     * - `tablist`: Styles the `tablist` element.
+     * - `tab`: Styles all `tab` elements.
+     * - `tabPanel`: Styles all the `tabpanel` elements.
+     *
+     * If styles need to be applied to specific tab or tab panel elements,
+     * consider setting the styles on the `label` and `panel` content for the
+     * `tabs` prop.
+     */
+    styles?: {
+        root?: StyleType;
+        tablist?: StyleType;
+        tab?: StyleType;
+        tabPanel?: StyleType;
+    };
 } & AriaLabelOrAriaLabelledby;
 
 /**
@@ -165,6 +183,7 @@ export const Tabs = React.forwardRef(function Tabs(
         id,
         testId,
         animated = false,
+        styles: stylesProp,
     } = props;
 
     /**
@@ -311,7 +330,7 @@ export const Tabs = React.forwardRef(function Tabs(
             ref={ref}
             id={uniqueId}
             data-testid={testId}
-            style={styles.tabs}
+            style={[styles.tabs, stylesProp?.root]}
         >
             {/* Wrap the tablist so we can set relative positioning for the tab indicator */}
             <StyledDiv style={styles.tablistWrapper}>
@@ -322,6 +341,7 @@ export const Tabs = React.forwardRef(function Tabs(
                     id={tablistId}
                     testId={testId && `${testId}-tablist`}
                     ref={tablistRef}
+                    style={stylesProp?.tablist}
                 >
                     {tabs.map((tab) => {
                         const {
@@ -346,6 +366,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             ref: (element) => {
                                 tabRefs.current[tab.id] = element;
                             },
+                            style: [stylesProp?.tab],
                         };
 
                         if (typeof label === "function") {
@@ -365,6 +386,7 @@ export const Tabs = React.forwardRef(function Tabs(
                         aria-labelledby={getTabId(tab.id)}
                         active={selectedTabId === tab.id}
                         testId={tab.testId && getTabPanelId(tab.testId)}
+                        style={stylesProp?.tabPanel}
                     >
                         {/* Tab panel contents are rendered if the tab has
                         been previously visited. This prevents unnecessary
