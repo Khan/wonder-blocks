@@ -1,6 +1,7 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {action} from "@storybook/addon-actions";
+import {expect, within} from "@storybook/test";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {Tab, TabItem, Tabs} from "@khanacademy/wonder-blocks-tabs";
@@ -17,13 +18,28 @@ import {
 } from "../components/text-for-testing";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, PropsFor} from "@khanacademy/wonder-blocks-core";
 
 const tabs: TabItem[] = [
     {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
     {label: "Tab 2", id: "tab-2", panel: <div>Tab contents 2</div>},
     {label: "Tab 3", id: "tab-3", panel: <div>Tab contents 3</div>},
 ];
+
+function ControlledTabs(props: PropsFor<typeof Tabs>) {
+    const [selectedTabId, setSelectedTabId] = React.useState(
+        props.selectedTabId,
+    );
+
+    return (
+        <Tabs
+            {...props}
+            selectedTabId={selectedTabId}
+            onTabSelected={setSelectedTabId}
+            tabs={props.tabs}
+        />
+    );
+}
 
 export default {
     title: "Packages / Tabs / Tabs",
@@ -43,20 +59,7 @@ export default {
         "aria-label": "Tabs Example",
     },
     argTypes,
-    render: function Controlled(args) {
-        const [selectedTabId, setSelectedTabId] = React.useState(
-            args.selectedTabId || tabs[0].id,
-        );
-
-        return (
-            <Tabs
-                {...args}
-                selectedTabId={selectedTabId}
-                onTabSelected={setSelectedTabId}
-                tabs={args.tabs || tabs}
-            />
-        );
-    },
+    render: ControlledTabs,
 } as Meta<typeof Tabs>;
 
 type StoryComponentType = StoryObj<typeof Tabs>;
@@ -250,6 +253,54 @@ const PanelExample = ({label}: {label: string}) => {
 };
 
 /**
+ * The `animated` prop can be set to `true` to animate the current underline
+ * indicator. By default, `animated` is set to `false`.
+ */
+export const Animated: StoryComponentType = {
+    args: {
+        animated: true,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const currentIndicator = await canvas.findByRole("presentation");
+        const style = window.getComputedStyle(currentIndicator);
+
+        // Assert
+        await expect(style.transitionProperty).toMatch(/transform/);
+    },
+};
+
+/**
+ * When the `animated` prop is `false`, there is no animation when the current
+ * tab changes.  By default, `animated` is set to `false`.
+ */
+export const AnimationsDisabled: StoryComponentType = {
+    args: {
+        animated: false,
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const currentIndicator = await canvas.findByRole("presentation");
+        const style = window.getComputedStyle(currentIndicator);
+
+        // Assert
+        await expect(style.transitionProperty).not.toMatch(/transform/);
+    },
+};
+
+/**
  * The tab panels are cached and only mounted once a tab is selected to prevent
  * unnecessary mounting/unmounting of tab panel contents.
  *
@@ -308,118 +359,122 @@ const generateTabs = (
     }));
 };
 
+const scenarios = [
+    {
+        name: "Zero items",
+        props: {
+            tabs: [],
+        },
+    },
+    {
+        name: "Many Items",
+        props: {
+            tabs: generateTabs(30),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "No item selected",
+        props: {
+            tabs: generateTabs(3),
+            selectedTabId: "",
+        },
+    },
+    {
+        name: "Long text",
+        props: {
+            tabs: generateTabs(3, longText),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text with no word break",
+        props: {
+            tabs: generateTabs(3, longTextWithNoWordBreak),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text (with icons)",
+        props: {
+            tabs: generateTabs(3, longText, true),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text with no word break (with icons)",
+        props: {
+            tabs: generateTabs(3, longTextWithNoWordBreak, true),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Varying lengths",
+        props: {
+            tabs: [
+                {
+                    label: longText,
+                    id: "tab-1",
+                    panel: <div>Tab contents 1</div>,
+                },
+                {
+                    label: "Short text",
+                    id: "tab-2",
+                    panel: <div>Tab contents 2</div>,
+                },
+                {
+                    label: longText,
+                    id: "tab-3",
+                    panel: <div>Tab contents 3</div>,
+                },
+                {
+                    label: "Short text",
+                    id: "tab-4",
+                    panel: <div>Tab contents 4</div>,
+                },
+            ],
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "With icons only",
+        props: {
+            tabs: [
+                {
+                    label: (
+                        <PhosphorIcon
+                            icon={IconMappings.cookie}
+                            size="medium"
+                        />
+                    ),
+                    id: "tab-1",
+                    panel: <div>Tab contents 1</div>,
+                },
+                {
+                    label: (
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            size="medium"
+                        />
+                    ),
+                    id: "tab-2",
+                    panel: <div>Tab contents 2</div>,
+                },
+            ],
+            selectedTabId: "tab-1",
+        },
+    },
+];
+
 export const Scenarios: StoryComponentType = {
-    render: () => {
-        const scenarios = [
-            {
-                name: "Zero items",
-                props: {
-                    tabs: [],
-                },
-            },
-            {
-                name: "Many Items",
-                props: {
-                    tabs: generateTabs(30),
-                    selectedTabId: "tab-1",
-                },
-            },
-            {
-                name: "No item selected",
-                props: {
-                    tabs: generateTabs(3),
-                    selectedTabId: "",
-                },
-            },
-            {
-                name: "Long text",
-                props: {
-                    tabs: generateTabs(3, longText),
-                    selectedTabId: "tab-1",
-                },
-            },
-            {
-                name: "Long text with no word break",
-                props: {
-                    tabs: generateTabs(3, longTextWithNoWordBreak),
-                    selectedTabId: "tab-1",
-                },
-            },
-            {
-                name: "Long text (with icons)",
-                props: {
-                    tabs: generateTabs(3, longText, true),
-                    selectedTabId: "tab-1",
-                },
-            },
-            {
-                name: "Long text with no word break (with icons)",
-                props: {
-                    tabs: generateTabs(3, longTextWithNoWordBreak, true),
-                    selectedTabId: "tab-1",
-                },
-            },
-            {
-                name: "Varying lengths",
-                props: {
-                    tabs: [
-                        {
-                            label: longText,
-                            id: "tab-1",
-                            panel: <div>Tab contents 1</div>,
-                        },
-                        {
-                            label: "Short text",
-                            id: "tab-2",
-                            panel: <div>Tab contents 2</div>,
-                        },
-                        {
-                            label: longText,
-                            id: "tab-3",
-                            panel: <div>Tab contents 3</div>,
-                        },
-                        {
-                            label: "Short text",
-                            id: "tab-4",
-                            panel: <div>Tab contents 4</div>,
-                        },
-                    ],
-                    selectedTabId: "tab-1",
-                },
-            },
-            {
-                name: "With icons only",
-                props: {
-                    tabs: [
-                        {
-                            label: (
-                                <PhosphorIcon
-                                    icon={IconMappings.cookie}
-                                    size="medium"
-                                />
-                            ),
-                            id: "tab-1",
-                            panel: <div>Tab contents 1</div>,
-                        },
-                        {
-                            label: (
-                                <PhosphorIcon
-                                    icon={IconMappings.iceCream}
-                                    size="medium"
-                                />
-                            ),
-                            id: "tab-2",
-                            panel: <div>Tab contents 2</div>,
-                        },
-                    ],
-                    selectedTabId: "tab-1",
-                },
-            },
-        ];
+    render: (args) => {
         return (
             <ScenariosLayout scenarios={scenarios}>
-                {(props) => <Tabs {...props} />}
+                {(props) => <ControlledTabs {...args} {...props} />}
             </ScenariosLayout>
         );
+    },
+    args: {
+        animated: true,
     },
 };

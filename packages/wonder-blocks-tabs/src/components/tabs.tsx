@@ -4,11 +4,13 @@ import {
     AriaProps,
     keys,
     PropsFor,
+    View,
 } from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
+import {useTabIndicator} from "../hooks/use-tab-indicator";
 
 export type TabRenderProps = Omit<PropsFor<typeof Tab>, "children">;
 
@@ -119,6 +121,12 @@ type Props = {
      * - If `automatic`, the tab will be activated once a tab receives focus.
      */
     activationMode?: "manual" | "automatic";
+    /**
+     * Whether to include animation in the `Tabs` component. This should be
+     * false if the user has `prefers-reduced-motion` opted in. Defaults to
+     * `false`.
+     */
+    animated?: boolean;
 } & AriaLabelOrAriaLabelledby;
 
 /**
@@ -156,6 +164,7 @@ export const Tabs = React.forwardRef(function Tabs(
         activationMode = "manual",
         id,
         testId,
+        animated = false,
     } = props;
 
     /**
@@ -163,6 +172,9 @@ export const Tabs = React.forwardRef(function Tabs(
      */
     const focusedTabId = React.useRef(selectedTabId);
 
+    /**
+     * Keep track of refs for each each tab.
+     */
     const tabRefs = React.useRef<{[key: string]: HTMLButtonElement | null}>({});
 
     /**
@@ -181,9 +193,33 @@ export const Tabs = React.forwardRef(function Tabs(
     const visitedTabsRef = React.useRef(new Set<string>());
     visitedTabsRef.current.add(selectedTabId);
 
+    /**
+     * Ref for the tablist.
+     */
+    const tablistRef = React.useRef<HTMLDivElement>(null);
+
+    /**
+     * Determine if the tab is active if it has aria-selected="true".
+     */
+    const isTabActive = React.useCallback((tabElement: Element): boolean => {
+        return tabElement.ariaSelected === "true";
+    }, []);
+
+    const {indicatorProps, updateUnderlineStyle} = useTabIndicator({
+        animated,
+        tabsContainerRef: tablistRef,
+        isTabActive,
+    });
+
     React.useEffect(() => {
         focusedTabId.current = selectedTabId;
     }, [selectedTabId]);
+
+    React.useEffect(() => {
+        // Update the underline style when the selected tab changes or the tabs
+        // changes
+        updateUnderlineStyle();
+    }, [updateUnderlineStyle, tabs, selectedTabId]);
 
     const selectTab = React.useCallback(
         (tabId: string) => {
@@ -277,45 +313,50 @@ export const Tabs = React.forwardRef(function Tabs(
             data-testid={testId}
             style={styles.tabs}
         >
-            <Tablist
-                aria-label={ariaLabel}
-                aria-labelledby={ariaLabelledby}
-                onBlur={handleTablistBlur}
-                id={tablistId}
-                testId={testId && `${testId}-tablist`}
-            >
-                {tabs.map((tab) => {
-                    const {
-                        id,
-                        label,
-                        panel: _,
-                        testId: tabTestId,
-                        ...otherProps // Should only include aria related props
-                    } = tab;
+            {/* Wrap the tablist so we can set relative positioning for the tab indicator */}
+            <StyledDiv style={styles.tablistWrapper}>
+                <Tablist
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledby}
+                    onBlur={handleTablistBlur}
+                    id={tablistId}
+                    testId={testId && `${testId}-tablist`}
+                    ref={tablistRef}
+                >
+                    {tabs.map((tab) => {
+                        const {
+                            id,
+                            label,
+                            panel: _,
+                            testId: tabTestId,
+                            ...otherProps // Should only include aria related props
+                        } = tab;
 
-                    const tabProps: TabRenderProps = {
-                        ...otherProps,
-                        key: id,
-                        id: getTabId(id),
-                        testId: tabTestId && getTabId(tabTestId),
-                        selected: id === selectedTabId,
-                        "aria-controls": getTabPanelId(id),
-                        onClick: () => {
-                            onTabSelected(id);
-                        },
-                        onKeyDown: handleKeyDown,
-                        ref: (element) => {
-                            tabRefs.current[tab.id] = element;
-                        },
-                    };
+                        const tabProps: TabRenderProps = {
+                            ...otherProps,
+                            key: id,
+                            id: getTabId(id),
+                            testId: tabTestId && getTabId(tabTestId),
+                            selected: id === selectedTabId,
+                            "aria-controls": getTabPanelId(id),
+                            onClick: () => {
+                                onTabSelected(id);
+                            },
+                            onKeyDown: handleKeyDown,
+                            ref: (element) => {
+                                tabRefs.current[tab.id] = element;
+                            },
+                        };
 
-                    if (typeof label === "function") {
-                        return label(tabProps);
-                    }
+                        if (typeof label === "function") {
+                            return label(tabProps);
+                        }
 
-                    return <Tab {...tabProps}>{label}</Tab>;
-                })}
-            </Tablist>
+                        return <Tab {...tabProps}>{label}</Tab>;
+                    })}
+                </Tablist>
+                {<View {...indicatorProps} />}
+            </StyledDiv>
             {tabs.map((tab) => {
                 return (
                     <TabPanel
@@ -343,5 +384,10 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         flexDirection: "column",
         alignItems: "stretch",
+        position: "relative",
+    },
+    tablistWrapper: {
+        position: "relative",
+        overflowX: "auto",
     },
 });

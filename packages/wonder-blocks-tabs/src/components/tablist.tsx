@@ -69,7 +69,6 @@ export const Tablist = React.forwardRef(function Tablist(
 const styles = StyleSheet.create({
     tablist: {
         display: "flex",
-        overflowX: "auto",
         // TODO: Update to use spacing tokens
         gap: "24px",
         borderBottom: `1px solid ${semanticColor.border.subtle}`,
