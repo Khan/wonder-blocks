@@ -1,5 +1,6 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
+import {action} from "@storybook/addon-actions";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {Tab, TabItem, Tabs} from "@khanacademy/wonder-blocks-tabs";
@@ -233,8 +234,7 @@ export const TabLabelRenderFunction: StoryComponentType = {
 
 const PanelExample = ({label}: {label: string}) => {
     React.useEffect(() => {
-        // eslint-disable-next-line no-console -- logging for testing purposes
-        console.log(`Panel ${label} mounted`);
+        action(`Panel mounted`)(label);
     }, [label]);
 
     return <div>{label}</div>;
@@ -244,10 +244,10 @@ const PanelExample = ({label}: {label: string}) => {
  * The tab panels are cached and only mounted once a tab is selected to prevent
  * unnecessary mounting/unmounting of tab panel contents.
  *
- * In this example, the panels contain components that print out a message
- * whenever it is mounted. Notice that a panel is only mounted when it is
- * selected the first time. Visiting a tab that has already been selected will
- * not cause the tab panel to be mounted again.
+ * In this example, the panels contain components that print out a message in
+ * the Storybook actions panel whenever it is mounted. Notice that a panel is
+ * only mounted when it is selected the first time. Visiting a tab that has
+ * already been selected will not cause the tab panel to be mounted again.
  */
 export const PanelCaching: StoryComponentType = {
     args: {
