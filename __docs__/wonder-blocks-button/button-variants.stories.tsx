@@ -4,6 +4,8 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
+import {allModes} from "../../.storybook/modes";
+
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -21,7 +23,9 @@ export default {
             // NOTE: This is required to prevent Chromatic from cutting off the
             // dark background in screenshots (accounts for all the space taken
             // by the variants).
-            viewports: [1700],
+            modes: {
+                wide: allModes.wide,
+            },
         },
     },
     tags: ["!autodocs"],
