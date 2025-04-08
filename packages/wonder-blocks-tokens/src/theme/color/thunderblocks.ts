@@ -85,41 +85,41 @@ export default mergeTheme(defaultSemantic, {
             destructive: {
                 default: {
                     border: color.red_30,
-                    background: color.white_01,
+                    background: color.red_80,
                     foreground: color.red_30,
                 },
                 hover: {
                     border: color.red_20,
-                    background: color.white_01,
+                    background: color.red_70,
                     foreground: color.red_20,
                 },
                 press: {
                     border: color.red_20,
-                    background: color.white_01,
+                    background: color.red_70,
                     foreground: color.red_20,
                 },
             },
             neutral: {
                 default: {
                     border: color.gray_20,
-                    background: color.white_01,
+                    background: color.gray_80,
                     foreground: color.gray_20,
                 },
                 hover: {
                     border: color.gray_10,
-                    background: color.white_01,
+                    background: color.gray_70,
                     foreground: color.gray_10,
                 },
                 press: {
                     border: color.gray_10,
-                    background: color.white_01,
+                    background: color.gray_70,
                     foreground: color.gray_10,
                 },
             },
 
             disabled: {
-                border: color.gray_70,
-                background: color.white_01,
+                border: color.gray_60,
+                background: color.gray_80,
                 foreground: color.gray_50,
             },
         },
