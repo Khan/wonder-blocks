@@ -401,7 +401,7 @@ export const CustomStyles: StoryComponentType = {
         // visual regression tests to ensure that the custom styles are applied
         // correctly.
         styles: {
-            root: {outline: "2px solid lightpink"},
+            root: {border: "2px solid lightpink"},
             tablist: {backgroundColor: "lavender"},
             tabPanel: {backgroundColor: "lavenderblush"},
             tab: {backgroundColor: "lightcyan"},

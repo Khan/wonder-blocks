@@ -366,7 +366,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             ref: (element) => {
                                 tabRefs.current[tab.id] = element;
                             },
-                            style: [stylesProp?.tab],
+                            style: stylesProp?.tab,
                         };
 
                         if (typeof label === "function") {

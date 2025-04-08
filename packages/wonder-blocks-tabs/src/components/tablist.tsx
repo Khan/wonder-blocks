@@ -1,5 +1,5 @@
 import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     tablist: {
         display: "flex",
         gap: sizing.size_240,
-        borderBottom: `1px solid ${semanticColor.border.subtle}`,
+        borderBottom: `${border.width.hairline}px solid ${semanticColor.border.subtle}`,
         // Add horizontal padding for focus outline of first/last elements
         paddingInline: sizing.size_040,
     },
