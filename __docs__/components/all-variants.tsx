@@ -158,8 +158,8 @@ const styles = StyleSheet.create({
         padding: spacing.medium_16,
     },
     childrenWrapper: {
-        padding: sizing.size_100,
-        marginBlock: sizing.size_100,
+        padding: sizing.size_080,
+        marginBlock: sizing.size_080,
         border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
     },
 });

@@ -82,7 +82,7 @@ export const ChildrenRenderFunction: StoryComponentType = {
                 <View
                     style={{
                         flexDirection: "row",
-                        gap: sizing.size_1000,
+                        gap: sizing.size_800,
                     }}
                 >
                     <NavigationTabItem current={true}>
