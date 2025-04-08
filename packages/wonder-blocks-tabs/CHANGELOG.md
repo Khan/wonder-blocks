@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.2.3
+
+### Patch Changes
+
+- 24bf12f: Update sizing tokens used internally to Base 10 to handle browser minimum size issues
+- Updated dependencies [24bf12f]
+    - @khanacademy/wonder-blocks-tokens@6.0.0
+
 ## 0.2.2
 
 ### Patch Changes
