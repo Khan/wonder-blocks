@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-data
 
+## 14.1.3
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [1d7be37]
+    - @khanacademy/wonder-blocks-core@12.2.1
+
 ## 14.1.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 3.2.1
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+
 ## 3.2.0
 
 ### Minor Changes

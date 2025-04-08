@@ -1,5 +1,52 @@
 # @khanacademy/wonder-blocks-modal
 
+## 7.1.6
+
+### Patch Changes
+
+- 4846e9c: Update icon buttons to use the new mapping (from `primary` to `tertiary`)
+- Updated dependencies [3dc5dac]
+- Updated dependencies [4846e9c]
+- Updated dependencies [4846e9c]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-icon-button@8.0.0
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.5
+    - @khanacademy/wonder-blocks-layout@3.1.5
+    - @khanacademy/wonder-blocks-styles@0.2.1
+
+## 7.1.5
+
+### Patch Changes
+
+- 4887c59: Use `focus` styles from `wonder-blocks-styles` to match the global focus outline.
+- 86e1901: Update close button position to account for the new IconButton margin changes
+- 61f7837: Update dismiss button (CloseButton) to use `actionStyles.inverse` instead of the now deprecated `IconButton.light` variant"
+- Updated dependencies [61f7837]
+- Updated dependencies [86e1901]
+- Updated dependencies [aace76a]
+- Updated dependencies [3cacbe7]
+- Updated dependencies [61f7837]
+- Updated dependencies [4887c59]
+    - @khanacademy/wonder-blocks-icon-button@7.0.0
+    - @khanacademy/wonder-blocks-styles@0.2.0
+
+## 7.1.4
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [999101f]
+- Updated dependencies [1d7be37]
+- Updated dependencies [999101f]
+    - @khanacademy/wonder-blocks-icon-button@6.1.4
+    - @khanacademy/wonder-blocks-breadcrumbs@3.1.4
+    - @khanacademy/wonder-blocks-typography@3.1.3
+    - @khanacademy/wonder-blocks-theming@3.2.1
+    - @khanacademy/wonder-blocks-layout@3.1.4
+    - @khanacademy/wonder-blocks-timing@7.0.2
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-tokens@5.1.1
+
 ## 7.1.3
 
 ### Patch Changes

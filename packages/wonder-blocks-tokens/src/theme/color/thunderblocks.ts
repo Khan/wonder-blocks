@@ -39,6 +39,23 @@ export default mergeTheme(defaultSemantic, {
                     foreground: color.white_100,
                 },
             },
+            neutral: {
+                default: {
+                    border: color.gray_50,
+                    background: color.gray_30,
+                    foreground: color.white_100,
+                },
+                hover: {
+                    border: color.gray_10,
+                    background: color.gray_10,
+                    foreground: color.white_100,
+                },
+                press: {
+                    border: color.gray_10,
+                    background: color.gray_10,
+                    foreground: color.white_100,
+                },
+            },
 
             disabled: {
                 border: color.gray_70,
@@ -82,9 +99,87 @@ export default mergeTheme(defaultSemantic, {
                     foreground: color.red_20,
                 },
             },
+            neutral: {
+                default: {
+                    border: color.gray_20,
+                    background: color.white_01,
+                    foreground: color.gray_20,
+                },
+                hover: {
+                    border: color.gray_10,
+                    background: color.white_01,
+                    foreground: color.gray_10,
+                },
+                press: {
+                    border: color.gray_10,
+                    background: color.white_01,
+                    foreground: color.gray_10,
+                },
+            },
 
             disabled: {
                 border: color.gray_70,
+                background: color.white_01,
+                foreground: color.gray_50,
+            },
+        },
+
+        tertiary: {
+            progressive: {
+                default: {
+                    border: color.white_01,
+                    background: color.white_01,
+                    foreground: color.blue_30,
+                },
+                hover: {
+                    border: color.blue_20,
+                    background: color.white_01,
+                    foreground: color.blue_20,
+                },
+                press: {
+                    border: color.blue_20,
+                    background: color.white_01,
+                    foreground: color.blue_20,
+                },
+            },
+
+            destructive: {
+                default: {
+                    border: color.white_01,
+                    background: color.white_01,
+                    foreground: color.red_30,
+                },
+                hover: {
+                    border: color.red_20,
+                    background: color.white_01,
+                    foreground: color.red_20,
+                },
+                press: {
+                    border: color.red_20,
+                    background: color.white_01,
+                    foreground: color.red_20,
+                },
+            },
+            neutral: {
+                default: {
+                    border: color.white_01,
+                    background: color.white_01,
+                    foreground: color.gray_20,
+                },
+                hover: {
+                    border: color.gray_10,
+                    background: color.white_01,
+                    foreground: color.gray_10,
+                },
+                press: {
+                    border: color.gray_10,
+                    background: color.white_01,
+                    foreground: color.gray_10,
+                },
+            },
+
+            disabled: {
+                border: color.white_01,
                 background: color.white_01,
                 foreground: color.gray_50,
             },

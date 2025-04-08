@@ -1,5 +1,45 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.1.6
+
+### Patch Changes
+
+- 4846e9c: Update icon buttons to use the new mapping (from `primary` to `tertiary`)
+- Updated dependencies [3dc5dac]
+- Updated dependencies [3dc5dac]
+- Updated dependencies [4846e9c]
+- Updated dependencies [4846e9c]
+    - @khanacademy/wonder-blocks-tokens@5.2.0
+    - @khanacademy/wonder-blocks-button@7.1.5
+    - @khanacademy/wonder-blocks-icon-button@8.0.0
+    - @khanacademy/wonder-blocks-link@8.0.3
+
+## 4.1.5
+
+### Patch Changes
+
+- Updated dependencies [61f7837]
+- Updated dependencies [86e1901]
+- Updated dependencies [3cacbe7]
+- Updated dependencies [4887c59]
+    - @khanacademy/wonder-blocks-icon-button@7.0.0
+
+## 4.1.4
+
+### Patch Changes
+
+- 1d7be37: Use pnpm catalog to pin dependency versions across packages
+- Updated dependencies [999101f]
+- Updated dependencies [1d7be37]
+- Updated dependencies [999101f]
+    - @khanacademy/wonder-blocks-icon-button@6.1.4
+    - @khanacademy/wonder-blocks-typography@3.1.3
+    - @khanacademy/wonder-blocks-button@7.1.4
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-icon@5.1.3
+    - @khanacademy/wonder-blocks-link@8.0.2
+    - @khanacademy/wonder-blocks-tokens@5.1.1
+
 ## 4.1.3
 
 ### Patch Changes

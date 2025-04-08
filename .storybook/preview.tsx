@@ -5,12 +5,19 @@ import {DocsContainer} from "@storybook/blocks";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
 import {
     ThemeSwitcherContext,
     ThemeSwitcher,
 } from "@khanacademy/wonder-blocks-theming";
 import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
+
+// Import the Wonder Blocks CSS variables
+// NOTE: External consumers should import the CSS variables from the
+// wonder-blocks-tokens package directly.
+// e.g. import "@khanacademy/wonder-blocks-tokens/styles.css";
+import "../node_modules/@khanacademy/wonder-blocks-tokens/dist/css/index.css";
 
 // Import the Wonder Blocks CSS variables
 // NOTE: External consumers should import the CSS variables from the
@@ -140,9 +147,68 @@ const withThemeSwitcher: Decorator = (
     );
 };
 
+/**
+ * Wraps a story with `<div dir="rtl">` so it is shown in rtl mode.
+ */
+const withLanguageDirection: Decorator = (Story, context) => {
+    if (context.globals.direction === "rtl") {
+        return (
+            <div dir="rtl">
+                <Story />
+            </div>
+        )
+    } else {
+        return <Story />
+    }
+}
+
+/**
+ * Wraps a story with styling that simulates [zoom](https://developer.mozilla.org/en-US/docs/Web/CSS/zoom).
+ *
+ * Note: It is still important to test with real browser zoom in different
+ * browsers. For example, using the CSS zoom property in Safari looks a bit
+ * different than when you zoom in the browser.
+ */
+const withZoom: Decorator = (Story, context) => {
+    if (context.globals.zoom) {
+        return (
+            <div style={{ zoom: context.globals.zoom }}>
+                <Story />
+            </div>
+        )
+    }
+    return <Story />
+}
+
+/**
+ * Injects the Live Region Announcer for various components
+ */
+const withAnnouncer: Decorator = (
+    Story,
+    {parameters: {addBodyClass}},
+) => {
+    // Allow stories to specify a CSS body class
+    if (addBodyClass) {
+        document.body.classList.add(addBodyClass);
+    }
+    React.useEffect(() => {
+        // initialize Announcer on load to render Live Regions earlier
+        initAnnouncer();
+        return () => {
+          if (addBodyClass) {
+            // Remove body class when changing stories
+            document.body.classList.remove(addBodyClass);
+          }
+        };
+      }, [addBodyClass]);
+    return (
+        <Story />
+    );
+};
+
 const preview: Preview = {
     parameters,
-    decorators: [withThemeSwitcher],
+    decorators: [withThemeSwitcher, withLanguageDirection, withZoom, withAnnouncer],
     globalTypes: {
         // Allow the user to select a theme from the toolbar.
         theme: {
@@ -173,6 +239,48 @@ const preview: Preview = {
                 dynamicTitle: true,
             },
         },
+        direction: {
+            description: "The language direction to use",
+            toolbar: {
+                title: "Language Direction",
+                icon: "globe",
+                items: [
+                    {
+                        value: "ltr",
+                        icon: "arrowrightalt",
+                        title: "Left to Right",
+                    },
+                    {
+                        value: "rtl",
+                        icon: "arrowleftalt",
+                        title: "Right to Left",
+                    },
+                ],
+                dynamicTitle: true,
+            },
+        },
+        zoom: {
+            description: "Preset zoom level",
+            toolbar: {
+                title: "Zoom Presets",
+                icon: "zoom",
+                items: [
+                    {
+                        // undefined so there is no zoom value set
+                        value: undefined,
+                        title: "default",
+                    },
+                    {
+                        value: "2",
+                        title: "200%",
+                    },
+                    {
+                        value: "4",
+                        title: "400%",
+                    },
+                ],
+            },
+        }
     },
 
     tags: ["autodocs"],

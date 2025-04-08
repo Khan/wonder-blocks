@@ -134,25 +134,23 @@
     "vitest": "^3.0.4"
   },
   "dependencies": {
-    "@babel/runtime": "^7.24.5",
-    "@khanacademy/wonder-stuff-core": "^1.5.4",
-    "@phosphor-icons/core": "^2.0.2",
-    "@popperjs/core": "^2.11.8",
-    "aphrodite": "^1.2.5",
-    "moment": "2.29.4",
-    "node-fetch": "^2.6.7",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-popper": "^2.3.0",
-    "react-router": "5.3.4",
-    "react-router-dom": "5.3.4",
-    "react-window": "^1.8.11"
+    "@babel/runtime": "catalog:",
+    "@khanacademy/wonder-stuff-core": "catalog:",
+    "@phosphor-icons/core": "catalog:",
+    "@popperjs/core": "catalog:",
+    "aphrodite": "catalog:",
+    "moment": "catalog:",
+    "node-fetch": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-popper": "catalog:",
+    "react-router": "catalog:",
+    "react-router-dom": "catalog:",
+    "react-window": "catalog:"
   },
   "resolutions": {
     "@types/react": "18",
-    "@types/react-dom": "18",
-    "strip-ansi": "6.0.1",
-    "strip-ansi-explanation": "There's an issue with strip-ansi v7 which causes conflicts with the Khan/changeset-per-package action"
+    "@types/react-dom": "18"
   },
   "packageManager": "pnpm@10.1.0+sha512.c89847b0667ddab50396bbbd008a2a43cf3b581efd59cf5d9aa8923ea1fb4b8106c041d540d08acb095037594d73ebc51e1ec89ee40c88b30b8a66c0fae0ac1b"
 }

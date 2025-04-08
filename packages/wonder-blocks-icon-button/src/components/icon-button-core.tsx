@@ -8,7 +8,12 @@ import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
 
-import type {IconButtonSize, SharedProps} from "./icon-button";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import type {
+    IconButtonActionType,
+    IconButtonSize,
+    SharedProps,
+} from "./icon-button";
 import {
     iconSizeForButtonSize,
     targetPixelsForSize,
@@ -19,15 +24,6 @@ import {
 } from "../themes/themed-icon-button";
 
 type Kind = "primary" | "secondary" | "tertiary";
-/**
- * The color/actionType of the button.
- *
- * NOTE: `default` maps to `progressive` in the theme.
- *
- * TODO(WB-1871): Rename `default` to `progressive` and change `color` to
- * `actionType`.
- */
-type ButtonColor = "default" | "destructive";
 
 /**
  * Returns the phosphor icon component based on the size. This is necessary
@@ -94,12 +90,11 @@ const IconButtonCore: React.ForwardRefExoticComponent<
     Props
 >(function IconButtonCore(props: Props, ref) {
     const {
-        color,
+        actionType,
         disabled,
         href,
         icon,
         kind = "primary",
-        light = false,
         size = "medium",
         skipClientNav,
         style,
@@ -111,10 +106,9 @@ const IconButtonCore: React.ForwardRefExoticComponent<
 
     const renderInner = (router: any): React.ReactNode => {
         const buttonStyles = _generateStyles(
-            color,
+            actionType,
             !!disabled,
             kind,
-            light,
             size,
             theme,
             themeName,
@@ -189,7 +183,7 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         textDecoration: "none",
         background: "none",
-        margin: -8,
+        margin: 0,
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
@@ -198,162 +192,43 @@ const sharedStyles = StyleSheet.create({
 
 const styles: Record<string, any> = {};
 
-type ActionType =
-    | "progressive"
-    | "destructive"
-    | "disabled"
-    // TODO(WB-1852): Remove light variants.
-    | "progressiveLight"
-    | "destructiveLight"
-    | "disabledLight";
-
-/**
- * Returns the action type based on the button color and disabled state.
- *
- * This is useful to determine which token variant to use for the button, which
- * is based on the theme structure.
- */
-function getActionType(buttonColor: ButtonColor, disabled: boolean) {
-    const actionType =
-        buttonColor === "destructive" ? "destructive" : "progressive";
-
-    if (disabled) {
-        return "disabled";
-    }
-
-    return actionType;
-}
-
-function getStylesByKind(
-    buttonColor: ButtonColor,
-    disabled: boolean,
-    kind: Kind,
-    light: boolean,
-    theme: IconButtonThemeContract,
-) {
-    let actionType: ActionType = getActionType(buttonColor, disabled);
-    const themeVariant = theme.color[kind][actionType];
-
-    if (kind === "primary") {
-        // NOTE: Primary is the only kind that supports light variants.
-        if (light) {
-            actionType = `${actionType}Light`;
-        }
-
-        const themeVariant = theme.color[kind][actionType];
-
-        return {
-            default: {
-                borderColor: themeVariant.default.border,
-                background: themeVariant.default.background,
-                color: themeVariant.default.foreground,
-            },
-            ":hover": {
-                background: themeVariant.hover.background,
-                color: themeVariant.hover.foreground,
-                outlineColor: themeVariant.hover.border,
-                outlineOffset: 1,
-                outlineStyle: "solid",
-                outlineWidth: light
-                    ? theme.border.width.hoveredInverse
-                    : theme.border.width.hovered,
-            },
-            ":focus-visible": {
-                outlineColor: themeVariant.focus.border,
-            },
-            ":active": {
-                borderColor: themeVariant.press.border,
-                background: themeVariant.press.background,
-                color: themeVariant.press.foreground,
-                outlineColor: themeVariant.press.border,
-            },
-            disabled: {
-                background: themeVariant.default.background,
-                color: themeVariant.default.foreground,
-                outlineColor: themeVariant.focus.border,
-            },
-        };
-    }
-
-    // NOTE: These styles will diverge before we create the new polaris theme.
-    if (kind === "secondary" || kind === "tertiary") {
-        return {
-            default: {
-                borderColor: themeVariant.default.border,
-                background: themeVariant.default.background,
-                color: themeVariant.default.foreground,
-            },
-            ":hover": {
-                borderColor: themeVariant.hover.border,
-                background: themeVariant.hover.background,
-                color: themeVariant.hover.foreground,
-                outlineWidth: theme.border.width.active,
-            },
-            ":focus-visible": {
-                outlineColor: themeVariant.focus.border,
-            },
-            ":active": {
-                borderColor: themeVariant.press.border,
-                background: themeVariant.press.background,
-                color: themeVariant.press.foreground,
-                outlineColor: themeVariant.press.border,
-                outlineWidth: theme.border.width.active,
-            },
-            disabled: {
-                background: themeVariant.default.background,
-                color: themeVariant.default.foreground,
-                outlineColor: themeVariant.focus.border,
-            },
-        };
-    }
-
-    return {
-        default: {},
-        ":hover": {},
-        ":focus-visible": {},
-        ":active": {},
-        disabled: {},
-    };
-}
-
 const _generateStyles = (
-    buttonColor: ButtonColor = "default",
+    actionType: IconButtonActionType = "progressive",
     disabled: boolean,
     kind: Kind,
-    light: boolean,
     size: IconButtonSize,
     theme: IconButtonThemeContract,
     themeName: string,
 ) => {
-    const buttonType = `${buttonColor}-d_${disabled}-${kind}-l_${light}-${size}-${themeName}`;
+    const buttonType = `${actionType}-d_${disabled}-${kind}-${size}-${themeName}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
-    if (light && kind !== "primary") {
-        throw new Error("Light is only supported for primary IconButtons");
-    }
-
     const pixelsForSize = targetPixelsForSize(size);
 
-    // Override styles for each kind of button. This is useful for merging
-    // pseudo-classes properly.
-    const kindOverrides = getStylesByKind(
-        buttonColor,
-        disabled,
-        kind,
-        light,
-        theme,
-    );
+    const borderWidthKind = theme.border.width[kind];
+    const outlineOffsetKind = theme.border.offset[kind];
+    const themeVariant = theme.color[kind][actionType];
+    const disabledState = theme.color[kind].disabled;
 
-    const disabledStatesStyles = kindOverrides.disabled;
+    const disabledStatesStyles = {
+        borderColor: disabledState.border,
+        background: disabledState.background,
+        color: disabledState.foreground,
+    };
 
     const newStyles = {
         default: {
             height: pixelsForSize,
             width: pixelsForSize,
             borderRadius: theme.border.radius.default,
-            ...kindOverrides.default,
+            // theming
+            borderStyle: "solid",
+            borderWidth: borderWidthKind.default,
+            borderColor: themeVariant.default.border,
+            background: themeVariant.default.background,
+            color: themeVariant.default.foreground,
 
             /**
              * States
@@ -361,37 +236,43 @@ const _generateStyles = (
              * Defined in the following order: hover, focus, active.
              */
             ":hover": {
-                boxShadow: "none",
-                borderRadius: theme.border.radius.default,
-                outlineWidth: theme.border.width.default,
-                ...kindOverrides[":hover"],
+                background: themeVariant.hover.background,
+                color: themeVariant.hover.foreground,
+                outline:
+                    kind === "primary"
+                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        : undefined,
+                outlineOffset:
+                    kind === "primary" ? outlineOffsetKind : undefined,
+                border:
+                    kind !== "primary"
+                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        : undefined,
             },
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
             ["@media not (hover: hover)"]: {
                 ":hover": {
                     // reset hover styles on non-touch devices
-                    boxShadow: "none",
-                    borderRadius: theme.border.radius.default,
-                    outline: "none",
                     backgroundColor: "transparent",
                 },
             },
 
             // :focus-visible -> Provide focus styles for keyboard users only.
-            ":focus-visible": {
-                outlineWidth: theme.border.width.default,
-                outlineOffset: 1,
-                outlineStyle: "solid",
-                borderRadius: theme.border.radius.default,
-                ...kindOverrides[":focus-visible"],
-            },
+            ...focusStyles.focus,
             ":active": {
-                outlineWidth: theme.border.width.default,
-                outlineOffset: 1,
-                outlineStyle: "solid",
-                borderRadius: theme.border.radius.default,
-                ...kindOverrides[":active"],
+                // primary
+                outlineColor:
+                    kind === "primary"
+                        ? themeVariant.press.border
+                        : "undefined",
+                // secondary, tertiary
+                border:
+                    kind !== "primary"
+                        ? `${borderWidthKind.hover}px solid ${themeVariant.press.border}`
+                        : undefined,
+                background: themeVariant.press.background,
+                color: themeVariant.press.foreground,
             },
         },
         disabled: {
@@ -400,7 +281,7 @@ const _generateStyles = (
             // NOTE: Even that browsers recommend to specify pseudo-classes in
             // this order: link, visited, focus, hover, active, we need to
             // specify focus after hover to override hover styles. By doing this
-            // we are able to remove the hover outline when the button is
+            // we are able to remove the hover border when the button is
             // disabled.
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
             ":hover": {...disabledStatesStyles, outline: "none"},

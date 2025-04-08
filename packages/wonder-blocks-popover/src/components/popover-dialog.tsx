@@ -84,9 +84,7 @@ export default class PopoverDialog extends React.Component<Props> {
         const contentProps = children.props as any;
 
         // extract the background color from the popover content
-        const color: keyof typeof tokens.color = contentProps.emphasized
-            ? "blue"
-            : contentProps.color;
+        const color: keyof typeof tokens.color = contentProps.color;
 
         return (
             <React.Fragment>

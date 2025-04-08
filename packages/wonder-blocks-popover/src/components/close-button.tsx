@@ -8,11 +8,6 @@ import PopoverContext from "./popover-context";
 
 type Props = AriaProps & {
     /**
-     * Whether to display the light version of this component instead, for use
-     * when the item is used on a dark background.
-     */
-    light?: boolean;
-    /**
      * Custom styles applied to the IconButton
      */
     style?: StyleType;
@@ -23,7 +18,6 @@ type Props = AriaProps & {
 };
 
 type DefaultProps = {
-    light: Props["light"];
     ["aria-label"]: Props["aria-label"];
 };
 
@@ -34,12 +28,11 @@ type DefaultProps = {
  */
 export default class CloseButton extends React.Component<Props> {
     static defaultProps: DefaultProps = {
-        light: true,
         "aria-label": "Close Popover",
     };
 
     render(): React.ReactNode {
-        const {light, "aria-label": ariaLabel, style, testId} = this.props;
+        const {"aria-label": ariaLabel, style, testId} = this.props;
         return (
             <PopoverContext.Consumer>
                 {({close}) => {
@@ -48,8 +41,8 @@ export default class CloseButton extends React.Component<Props> {
                             icon={xIcon}
                             aria-label={ariaLabel}
                             onClick={close}
-                            kind={light ? "primary" : "tertiary"}
-                            light={light}
+                            kind="tertiary"
+                            actionType="neutral"
                             style={style}
                             testId={testId}
                         />

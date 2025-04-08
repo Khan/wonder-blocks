@@ -14,7 +14,7 @@ import {
     border,
 } from "@khanacademy/wonder-blocks-tokens";
 
-import {addStyle, PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View, keys} from "@khanacademy/wonder-blocks-core";
 import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -40,8 +40,6 @@ import OptionItem from "./option-item";
  * TODO(juan, WB-1263): Improve performance by refactoring this component.
  */
 const VIRTUALIZE_THRESHOLD = 125;
-
-const StyledSpan = addStyle("span");
 
 type LabelsValues = {
     /**
@@ -1056,24 +1054,6 @@ class DropdownCore extends React.Component<Props, State> {
         );
     }
 
-    renderLiveRegion(): React.ReactNode {
-        const {items, open} = this.props;
-        const {labels} = this.state;
-        const totalItems = items.length;
-
-        return (
-            <StyledSpan
-                aria-live="polite"
-                aria-atomic="true"
-                aria-relevant="additions text"
-                style={styles.srOnly}
-                data-testid="dropdown-live-region"
-            >
-                {open && labels.someResults(totalItems)}
-            </StyledSpan>
-        );
-    }
-
     render(): React.ReactNode {
         const {open, opener, style, className, disabled} = this.props;
 
@@ -1084,7 +1064,6 @@ class DropdownCore extends React.Component<Props, State> {
                 style={[styles.menuWrapper, style]}
                 className={className}
             >
-                {this.renderLiveRegion()}
                 {opener}
                 {open && this.renderDropdown()}
             </View>
