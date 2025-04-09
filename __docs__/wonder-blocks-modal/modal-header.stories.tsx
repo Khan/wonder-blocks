@@ -168,7 +168,6 @@ export default {
         chromatic: {
             modes: {
                 small: allModes.small,
-                medium: allModes.medium,
                 large: allModes.large,
             },
         },
