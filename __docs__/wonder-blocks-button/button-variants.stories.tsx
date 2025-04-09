@@ -17,7 +17,7 @@ import Button from "@khanacademy/wonder-blocks-button";
  * Button component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / Button / All Variants",
+    title: "Packages / Button / Button - All Variants",
     parameters: {
         chromatic: {
             // NOTE: This is required to prevent Chromatic from cutting off the
