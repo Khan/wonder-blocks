@@ -98,6 +98,7 @@ jobs:
         # Generate snapshots for only changed stories
         # See: https://www.chromatic.com/docs/turbosnap
         onlyChanged: true
+        forceRebuild: true
     # Install Playwright browsers so Vitest browser mode can run story tests
     - name: Install playwright dependencies
       if: ${{ inputs.target == 'review' }}
