@@ -341,6 +341,12 @@ export const AnimationsDisabled: StoryComponentType = {
     args: {
         animated: false,
     },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
     play: async ({canvasElement}) => {
         // Arrange
         const canvas = within(canvasElement.ownerDocument.body);
