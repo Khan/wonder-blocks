@@ -1,5 +1,5 @@
-import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
@@ -30,6 +30,10 @@ type Props = {
      * Called when focus moves out of the tablist.
      */
     onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void;
+    /**
+     * Custom styles for the `Tablist` component.
+     */
+    style?: StyleType;
 };
 
 const StyledDiv = addStyle("div");
@@ -48,13 +52,14 @@ export const Tablist = React.forwardRef(function Tablist(
         "aria-labelledby": ariaLabelledby,
         onBlur,
         testId,
+        style,
     } = props;
 
     return (
         <StyledDiv
             id={id}
             role="tablist"
-            style={styles.tablist}
+            style={[styles.tablist, style]}
             ref={ref}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledby}
@@ -69,6 +74,9 @@ export const Tablist = React.forwardRef(function Tablist(
 const styles = StyleSheet.create({
     tablist: {
         display: "flex",
-        gap: sizing.size_200,
+        gap: sizing.size_240,
+        borderBottom: `${border.width.hairline}px solid ${semanticColor.border.subtle}`,
+        // Add horizontal padding for focus outline of first/last elements
+        paddingInline: sizing.size_040,
     },
 });

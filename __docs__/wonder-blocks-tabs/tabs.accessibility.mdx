@@ -9,6 +9,11 @@ import {Meta} from "@storybook/blocks";
 the id of the label. If there isn't, set the `aria-label` prop
 - Make sure the ids for the tabs are unique. They are used to associate the tabs
 and tab panels together
+- When enabling animations in the component using the `animated` prop, consider
+setting it to `false` for users who have their prefered reduced motion setting
+on. By default, animations are disabled.
+    - Note: We have an `animated` prop to enable animations so that this can be
+    configured based on both the OS and user's site settings
 
 ## About the Implementation
 
