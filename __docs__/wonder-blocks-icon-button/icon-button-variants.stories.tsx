@@ -20,7 +20,8 @@ export default {
     parameters: {
         chromatic: {
             modes: {
-                themeThunderBlocks: allModes.themeThunderBlocks,
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
