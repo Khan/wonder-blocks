@@ -13,6 +13,7 @@ import ToolbarArgtypes, {
     leftContentMappings,
     rightContentMappings,
 } from "./toolbar.argtypes";
+import {allModes} from "../../.storybook/modes";
 
 type StoryComponentType = StoryObj<typeof Toolbar>;
 
@@ -183,7 +184,11 @@ Responsive.parameters = {
     },
     chromatic: {
         // Test responsiveness of the toolbar.
-        viewports: [320, 768, 1024],
+        modes: {
+            small: allModes.small,
+            medium: allModes.medium,
+            large: allModes.large,
+        },
     },
 };
 

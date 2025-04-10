@@ -235,18 +235,18 @@ const styles = StyleSheet.create({
     },
     list: {
         // Add horizontal padding for focus outline of first/last elements
-        paddingInline: sizing.size_050,
+        paddingInline: sizing.size_040,
         paddingBlock: sizing.size_0,
         margin: sizing.size_0,
         display: "flex",
-        gap: sizing.size_200,
+        gap: sizing.size_160,
         flexWrap: "nowrap",
     },
     currentUnderline: {
         position: "absolute",
         bottom: 0,
         left: 0,
-        height: sizing.size_050,
+        height: sizing.size_040,
         backgroundColor:
             semanticColor.action.secondary.progressive.default.foreground,
     },
