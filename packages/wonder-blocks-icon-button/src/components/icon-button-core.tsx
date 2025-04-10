@@ -227,7 +227,7 @@ const _generateStyles = (
              *
              * Defined in the following order: hover, focus, active.
              */
-            ":hover:not([aria-disabled=true])": {
+            ":hover": {
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
                 outline:
@@ -252,7 +252,7 @@ const _generateStyles = (
 
             // :focus-visible -> Provide focus styles for keyboard users only.
             ...focusStyles.focus,
-            ":active:not([aria-disabled=true])": {
+            ":active": {
                 // primary
                 outlineColor:
                     kind === "primary"

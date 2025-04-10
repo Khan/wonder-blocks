@@ -1,4 +1,3 @@
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {mergeTheme} from "../merge-theme";
 
 describe("mergeTheme", () => {
@@ -69,7 +68,16 @@ describe("mergeTheme", () => {
 
     it("should override the global tokens", () => {
         // Arrange
-        const themeDefault = tokens;
+        const themeDefault = {
+            color: {
+                blue: "#0000f0",
+                green: "#00ff00",
+            },
+            spacing: {
+                medium: 8,
+                large: 16,
+            },
+        };
 
         // Only override the blue color
         const themeOverride = {
