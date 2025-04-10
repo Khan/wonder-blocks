@@ -19,6 +19,7 @@ import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
+import {allModes} from "../../.storybook/modes";
 
 const customViewports = {
     phone: {
@@ -165,7 +166,10 @@ export default {
             defaultViewport: "desktop",
         },
         chromatic: {
-            viewports: [320, 640, 1024],
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+            },
         },
     },
     argTypes: ModalHeaderArgtypes,

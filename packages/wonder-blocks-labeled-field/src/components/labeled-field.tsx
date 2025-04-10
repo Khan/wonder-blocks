@@ -268,21 +268,21 @@ const styles = StyleSheet.create({
         color: semanticColor.text.primary,
     },
     labelWithDescription: {
-        paddingBlockEnd: sizing.size_050,
+        paddingBlockEnd: sizing.size_040,
     },
     labelWithNoDescription: {
-        paddingBlockEnd: sizing.size_150,
+        paddingBlockEnd: sizing.size_120,
     },
     description: {
         color: semanticColor.text.secondary,
-        paddingBlockEnd: sizing.size_150,
+        paddingBlockEnd: sizing.size_120,
     },
     errorSection: {
         flexDirection: "row",
-        gap: sizing.size_100,
+        gap: sizing.size_080,
     },
     errorSectionWithContent: {
-        paddingBlockStart: sizing.size_150,
+        paddingBlockStart: sizing.size_120,
     },
     error: {
         color: semanticColor.status.critical.foreground,
