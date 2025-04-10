@@ -238,7 +238,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         border: "none",
         borderRadius: theme.border.radius.default,
         cursor: "pointer",
-        //outline: "none",
+        outline: "none",
         textDecoration: "none",
         boxSizing: "border-box",
         // This removes the 300ms click delay on mobile browsers by indicating that
