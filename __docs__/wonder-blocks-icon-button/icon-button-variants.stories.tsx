@@ -8,6 +8,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {allModes} from "../../.storybook/modes";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -16,6 +17,13 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 export default {
     title: "Packages / IconButton / All Variants",
     tags: ["!autodocs"],
+    parameters: {
+        chromatic: {
+            modes: {
+                themeThunderBlocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
 } as Meta;
 
 type StoryComponentType = StoryObj<typeof IconButton>;

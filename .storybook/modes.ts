@@ -15,4 +15,11 @@ export const allModes = {
     wide: {
         viewport: "wide",
     },
+    // Theming
+    themeDefault: {
+        theme: "default",
+    },
+    themeThunderBlocks: {
+        theme: "thunderblocks",
+    },
 };
