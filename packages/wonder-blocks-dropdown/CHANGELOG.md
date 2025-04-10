@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.0.0
+
+### Major Changes
+
+- 38c926c: Upgrade WB to using react-router-dom-v5-compat.
+
+### Patch Changes
+
+- Updated dependencies [38c926c]
+    - @khanacademy/wonder-blocks-clickable@7.0.0
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-timing@7.0.2
+    - @khanacademy/wonder-blocks-modal@7.1.8
+    - @khanacademy/wonder-blocks-search-field@5.1.8
+    - @khanacademy/wonder-blocks-cell@4.1.7
+    - @khanacademy/wonder-blocks-pill@3.1.7
+
 ## 9.2.3
 
 ### Patch Changes

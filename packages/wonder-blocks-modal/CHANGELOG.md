@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-modal
 
+## 7.1.8
+
+### Patch Changes
+
+- Updated dependencies [38c926c]
+    - @khanacademy/wonder-blocks-icon-button@9.0.0
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-timing@7.0.2
+
 ## 7.1.7
 
 ### Patch Changes
