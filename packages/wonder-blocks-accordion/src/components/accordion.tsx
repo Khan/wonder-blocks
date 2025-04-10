@@ -73,6 +73,11 @@ type Props = AriaProps & {
      * Custom styles for the overall accordion container.
      */
     style?: StyleType;
+    onToggleModeComplete?: (status: {
+        anyExpanded: boolean;
+        anyCollapsed: boolean;
+    }) => void;
+    toggleMode?: "expand-all" | "collapse-all" | "none";
 };
 
 const LANDMARK_PROLIFERATION_THRESHOLD = 6;
@@ -119,6 +124,8 @@ const Accordion = React.forwardRef(function Accordion(
         cornerKind = "rounded",
         animated,
         style,
+        toggleMode,
+        onToggleModeComplete,
         ...ariaProps
     } = props;
 
@@ -129,6 +136,17 @@ const Accordion = React.forwardRef(function Accordion(
         startingArray[initialExpandedIndex] = true;
     }
     const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
+
+    const [internalToggleMode, setInternalToggleMode] = React.useState<
+        "expand-all" | "collapse-all" | "none"
+    >(toggleMode ?? "none");
+
+    // Sync internal state with prop
+    React.useEffect(() => {
+        if (toggleMode !== null) {
+            setInternalToggleMode(toggleMode);
+        }
+    }, [toggleMode]);
 
     //  NOTE: It may seem like we should filter out non-collapsible sections
     //  here as they are effectively disabled. However, we should keep these
@@ -147,12 +165,20 @@ const Accordion = React.forwardRef(function Accordion(
     const sectionsAreRegions =
         children.length <= LANDMARK_PROLIFERATION_THRESHOLD;
 
+    // Updates the sectionsOpened state based on the toggleMode
+    // when the toggleMode prop changes to either "expand-all" or "collapse-all"
+    React.useEffect(() => {
+        if (toggleMode === "expand-all") {
+            setSectionsOpened(Array(children.length).fill(true));
+        } else if (toggleMode === "collapse-all") {
+            setSectionsOpened(Array(children.length).fill(false));
+        }
+    }, [toggleMode, children.length]);
+
     const handleSectionClick = (
         index: number,
         childOnToggle?: (newExpandedState: boolean) => unknown,
     ) => {
-        // If allowMultipleExpanded is false, we want to close all other
-        // sections when one is opened.
         const newSectionsOpened = allowMultipleExpanded
             ? [...sectionsOpened]
             : Array(children.length).fill(false);
@@ -161,11 +187,23 @@ const Accordion = React.forwardRef(function Accordion(
         newSectionsOpened[index] = newOpenedValueAtIndex;
         setSectionsOpened(newSectionsOpened);
 
+        // Detect partial vs all open vs all closed sections
+        const anyOpen = newSectionsOpened.some(Boolean);
+        const anyClosed = newSectionsOpened.some((sectionOpen) => !sectionOpen);
+
+        if (anyOpen && anyClosed) {
+            onToggleModeComplete?.({anyExpanded: true, anyCollapsed: true});
+        } else {
+            onToggleModeComplete?.({
+                anyExpanded: anyOpen,
+                anyCollapsed: anyClosed,
+            });
+        }
+
         if (childOnToggle) {
             childOnToggle(newOpenedValueAtIndex);
         }
     };
-
     /**
      * Keyboard navigation for keys: ArrowUp, ArrowDown, Home, and End.
      */
@@ -275,6 +313,7 @@ const Accordion = React.forwardRef(function Accordion(
                             isLastSection: isLastChild,
                             isRegion: sectionsAreRegions,
                             ref: childRef,
+                            parentToggleMode: internalToggleMode,
                         })}
                     </li>
                 );

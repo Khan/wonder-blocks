@@ -22,9 +22,14 @@ import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionArgtypes from "./accordion.argtypes";
 
+type AccordionToggleModeStatus = {
+    anyExpanded: boolean;
+    anyCollapsed: boolean;
+};
+
 /**
  * An accordion displays a vertically stacked list of sections, each of which
- * contains content that can be shown or hidden by clicking its header.
+ * contains content that can be shown or hdden by clicking its header.
  *
  * The Wonder Blocks Accordion component is a styled wrapper for a list of
  * AccordionSection components. It also wraps the AccordionSection
@@ -148,8 +153,8 @@ AllowMultipleExpanded.parameters = {
 
 /**
  * An accordion can have the caret at the start or the end of the header block.
- * "start" means it’s on the left of a left-to-right language (and on the
- * right of a right-to-left language), and "end" means it’s on the right of
+ * "start" means it's on the left of a left-to-right language (and on the
+ * right of a right-to-left language), and "end" means it's on the right of
  * a left-to-right language (and on the left of a right-to-left language).
  *
  * If the `caretPosition` prop is specified both here in the Accordion and
@@ -238,7 +243,7 @@ export const CaretPositions: StoryComponentType = {
  * vertical white space between each section.
  *
  * If `cornerKind` is specified both here in the Accordion and within
- * a child AccordionSection component, the AccordionSection’s `cornerKind`
+ * a child AccordionSection component, the AccordionSection's `cornerKind`
  * value is prioritized.
  */
 export const CornerKinds: StoryComponentType = {
@@ -685,3 +690,173 @@ const styles = StyleSheet.create({
         marginBottom: tokens.spacing.medium_16,
     },
 });
+
+export const WithToggleAll: StoryComponentType = {
+    render: function Render() {
+        const [toggleMode, setToggleMode] = React.useState<
+            "expand-all" | "collapse-all" | undefined
+        >("none");
+
+        const [toggleModeForNextedSection, setToggleModeForNextedSection] =
+            React.useState<"expand-all" | "collapse-all" | undefined>("none");
+
+        return (
+            <>
+                <View>
+                    <LabelLarge>Accordions with toggle all</LabelLarge>
+
+                    <View
+                        style={{
+                            maxWidth: 500,
+                            marginBlockEnd: tokens.spacing.large_24,
+                            paddingBlockStart: tokens.spacing.large_24,
+                            flexDirection: "row",
+                            gap: tokens.spacing.small_12,
+                        }}
+                    >
+                        <Button
+                            onClick={() => setToggleMode("expand-all")}
+                            disabled={toggleMode === "expand-all"}
+                        >
+                            Expand All
+                        </Button>
+                        <Button
+                            onClick={() => setToggleMode("collapse-all")}
+                            disabled={toggleMode === "collapse-all"}
+                        >
+                            Collapse All
+                        </Button>
+                    </View>
+                    <Accordion
+                        toggleMode={toggleMode}
+                        onToggleModeComplete={({
+                            anyExpanded,
+                            anyCollapsed,
+                        }: AccordionToggleModeStatus) => {
+                            // partial
+                            if (anyExpanded && anyCollapsed) {
+                                setToggleMode("none");
+                            } else if (!anyExpanded) {
+                                // all closed
+                                setToggleMode("collapse-all");
+                            } else {
+                                // all open
+                                setToggleMode("expand-all");
+                            }
+                        }}
+                    >
+                        {exampleSections}
+                    </Accordion>
+                </View>
+
+                <View>
+                    <LabelLarge>Nested Accordion Example</LabelLarge>
+
+                    <View
+                        style={{
+                            maxWidth: 500,
+                            marginBlockEnd: tokens.spacing.large_24,
+                            paddingBlockStart: tokens.spacing.large_24,
+                            flexDirection: "row",
+                            gap: tokens.spacing.small_12,
+                        }}
+                    >
+                        <Button
+                            onClick={() =>
+                                setToggleModeForNextedSection("expand-all")
+                            }
+                            disabled={
+                                toggleModeForNextedSection === "expand-all"
+                            }
+                        >
+                            Expand All
+                        </Button>
+                        <Button
+                            onClick={() =>
+                                setToggleModeForNextedSection("collapse-all")
+                            }
+                            disabled={
+                                toggleModeForNextedSection === "collapse-all"
+                            }
+                        >
+                            Collapse All
+                        </Button>
+                    </View>
+
+                    {/* Main Accordion Component */}
+                    <Accordion
+                        toggleMode={toggleModeForNextedSection}
+                        onToggleModeComplete={({
+                            anyExpanded,
+                            anyCollapsed,
+                        }: AccordionToggleModeStatus) => {
+                            // partial
+                            if (anyExpanded && anyCollapsed) {
+                                setToggleModeForNextedSection("none");
+                            } else if (!anyExpanded) {
+                                // all closed
+                                setToggleModeForNextedSection("collapse-all");
+                            } else {
+                                // all open
+                                setToggleModeForNextedSection("expand-all");
+                            }
+                        }}
+                    >
+                        <AccordionSection
+                            header="Section 1"
+                            caretPosition="start"
+                        >
+                            This is the content of section 1.
+                        </AccordionSection>
+                        <AccordionSection
+                            header="Section 2"
+                            caretPosition="start"
+                        >
+                            This is the content of section 2.
+                        </AccordionSection>
+                        <AccordionSection
+                            header="Section 3"
+                            caretPosition="start"
+                        >
+                            This is the content of section 3.
+                        </AccordionSection>
+                        <AccordionSection
+                            header={`Nested Section 1`}
+                            key={`nested-section-1`}
+                            caretPosition="start"
+                        >
+                            <AccordionSection
+                                header={`Nested Section A`}
+                                headerStyle={{
+                                    backgroundColor: "lightblue",
+                                }}
+                                caretPosition="start"
+                                cornerKind="square"
+                                expanded={
+                                    toggleModeForNextedSection === "expand-all"
+                                }
+                                parentToggleMode={toggleModeForNextedSection}
+                            >
+                                This is content for nested section 2.
+                            </AccordionSection>
+                            <AccordionSection
+                                header={`Nested Section B`}
+                                headerStyle={{
+                                    backgroundColor: "lightgreen",
+                                }}
+                                caretPosition="start"
+                                cornerKind="square"
+                                expanded={
+                                    toggleModeForNextedSection === "expand-all"
+                                }
+                                parentToggleMode={toggleModeForNextedSection}
+                            >
+                                This is content for nested section 3.
+                            </AccordionSection>
+                        </AccordionSection>
+                    </Accordion>
+                </View>
+            </>
+        );
+    },
+};

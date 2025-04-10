@@ -125,6 +125,12 @@ type Props = AriaProps & {
      * @ignore
      */
     isRegion?: boolean;
+    /**
+     * The mode of the parent accordion.
+     */
+    parentToggleMode?: "expand-all" | "collapse-all";
+    setSectionsOpened: (newSectionsOpened: boolean[]) => unknown;
+    sectionsOpened: boolean[];
 };
 
 /**
@@ -199,6 +205,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         // Assume it's a region by default. Override this to be false
         // if we know there are more than six panels in an accordion.
         isRegion = true,
+        parentToggleMode,
         ...ariaProps
     } = props;
 
@@ -207,6 +214,25 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     );
 
     const controlledMode = expanded !== undefined && onToggle;
+
+    React.useEffect(() => {
+        if (parentToggleMode) {
+            setInternalExpanded(parentToggleMode === "expand-all");
+        }
+    }, [parentToggleMode]);
+
+    const handleClick = () => {
+        // Controlled mode
+        if (controlledMode) {
+            onToggle(!expanded);
+        } else {
+            // Uncontrolled mode
+            setInternalExpanded(!internalExpanded);
+            if (onToggle) {
+                onToggle(!internalExpanded);
+            }
+        }
+    };
 
     const uniqueSectionId = useId();
     const sectionId = id ?? uniqueSectionId;
@@ -223,19 +249,6 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         isFirstSection,
         isLastSection,
     );
-
-    const handleClick = () => {
-        // Controlled mode
-        if (controlledMode) {
-            onToggle(!expanded);
-        } else {
-            // Uncontrolled mode
-            setInternalExpanded(!internalExpanded);
-            if (onToggle) {
-                onToggle(!internalExpanded);
-            }
-        }
-    };
 
     let expandedState;
     if (collapsible === false) {
