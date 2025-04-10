@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-labeled-field
 
+## 3.0.2
+
+### Patch Changes
+
+- 24bf12f: Update sizing tokens used internally to Base 10 to handle browser minimum size issues
+- Updated dependencies [24bf12f]
+    - @khanacademy/wonder-blocks-tokens@6.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.6
+
 ## 3.0.1
 
 ### Patch Changes
