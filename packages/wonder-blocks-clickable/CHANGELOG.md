@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 7.0.0
+
+### Major Changes
+
+- 38c926c: Upgrade WB to using react-router-dom-v5-compat.
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-core@12.2.1
+
 ## 6.1.6
 
 ### Patch Changes
