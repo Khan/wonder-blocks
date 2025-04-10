@@ -42,6 +42,9 @@ catalogs:
     react-router-dom:
       specifier: 5.3.4
       version: 5.3.4
+    react-router-dom-v5-compat:
+      specifier: ^6.30.0
+      version: 6.30.0
     react-window:
       specifier: ^1.8.11
       version: 1.8.11
@@ -90,6 +93,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -405,7 +411,7 @@ importers:
         version: 7.26.7
       '@khanacademy/wonder-blocks-core':
         specifier: ^9.0.0
-        version: 9.0.0(aphrodite@1.2.5)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 9.0.0(aphrodite@1.2.5)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@6.30.0(react@18.2.0))(react@18.2.0)
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
@@ -553,6 +559,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -615,6 +624,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -640,6 +652,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -738,6 +753,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -865,6 +883,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -955,6 +976,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1249,6 +1273,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1283,6 +1310,9 @@ importers:
       react-router-dom:
         specifier: 'catalog:'
         version: 5.3.4(react@18.2.0)
+      react-router-dom-v5-compat:
+        specifier: 'catalog:'
+        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -2673,6 +2703,10 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
+  '@remix-run/router@1.23.0':
+    resolution: {integrity: sha512-O3rHJzAQKamUz1fvE0Qaw0xSFqsA/yafi2iqeE0pvdFtCO1viYx8QL6f3Ln/aCCTLxs68SLf0KPM9eSeM8yBnA==}
+    engines: {node: '>=14.0.0'}
 
   '@rollup/plugin-babel@6.0.4':
     resolution: {integrity: sha512-YF7Y52kFdFT/xVSuVdjkV5ZdX/3YtmX0QulG+x0taQOtJdHYzVU61aSSkAgVJ7NOv6qPkIYiJSgSWWN/DM5sGw==}
@@ -4937,6 +4971,9 @@ packages:
   history@4.10.1:
     resolution: {integrity: sha512-36nwAD620w12kuzPAsyINPWJqlNbij+hpK1k9XRloDtym8mxzGYl2c17LnV6IAGB2Dmg4tEa7G7DlawS0+qjew==}
 
+  history@5.3.0:
+    resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
+
   hoist-non-react-statics@3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
 
@@ -6639,6 +6676,14 @@ packages:
     resolution: {integrity: sha512-FPvF2XxTSikpJxcr+bHut2H4gJ17+18Uy20D5/F+SKzFap62R3cM5wH6b8WN3LyGSYeQilLEcJcR1fjBSI2S1A==}
     engines: {node: '>=0.10.0'}
 
+  react-router-dom-v5-compat@6.30.0:
+    resolution: {integrity: sha512-MAVRASbdQ3+ZOTPPjAa7jKcF0F9LkHWKB/iib3hf+jzzIazL4GEpMDDdTswCsqRQNU+zNnT3qD0WiNbzJ6ncPw==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+      react-router-dom: 4 || 5
+
   react-router-dom@5.3.4:
     resolution: {integrity: sha512-m4EqFMHv/Ih4kpcBCONHbkT68KoAeHN4p3lAGoNryfHi0dMy0kCzEZakiKRsvg5wHZ/JLrLW8o8KomWiz/qbYQ==}
     peerDependencies:
@@ -6648,6 +6693,12 @@ packages:
     resolution: {integrity: sha512-Ys9K+ppnJah3QuaRiLxk+jDWOR1MekYQrlytiXxC1RyfbdsZkS5pvKAzCCr031xHixZwpnsYNT5xysdFHQaYsA==}
     peerDependencies:
       react: '>=15'
+
+  react-router@6.30.0:
+    resolution: {integrity: sha512-D3X8FyH9nBcTSHGdEKurK7r8OYE1kKFn3d/CF+CoxbSHkxU7o37+Uh7eAHRXr6k2tSExXYO++07PeXJtA/dEhQ==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
 
   react-window@1.8.11:
     resolution: {integrity: sha512-+SRbUVT2scadgFSWx+R1P754xHPEqvcfSfVX10QYg6POOz+WNgkN48pS+BtZNIMGiL1HYrSEiCkwsMS15QogEQ==}
@@ -9307,13 +9358,13 @@ snapshots:
       - supports-color
       - typescript
 
-  '@khanacademy/wonder-blocks-core@9.0.0(aphrodite@1.2.5)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@5.3.4(react@18.2.0))(react@18.2.0)':
+  '@khanacademy/wonder-blocks-core@9.0.0(aphrodite@1.2.5)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react-router@6.30.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.26.7
       aphrodite: 1.2.5
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-router: 5.3.4(react@18.2.0)
+      react-router: 6.30.0(react@18.2.0)
       react-router-dom: 5.3.4(react@18.2.0)
 
   '@khanacademy/wonder-stuff-core@1.5.4': {}
@@ -9465,6 +9516,8 @@ snapshots:
   '@polka/url@1.0.0-next.28': {}
 
   '@popperjs/core@2.11.8': {}
+
+  '@remix-run/router@1.23.0': {}
 
   '@rollup/plugin-babel@6.0.4(@babel/core@7.26.7)(@types/babel__core@7.20.5)(rollup@2.79.2)':
     dependencies:
@@ -12168,6 +12221,10 @@ snapshots:
       tiny-warning: 1.0.3
       value-equal: 1.0.1
 
+  history@5.3.0:
+    dependencies:
+      '@babel/runtime': 7.26.7
+
   hoist-non-react-statics@3.3.2:
     dependencies:
       react-is: 16.13.1
@@ -14533,6 +14590,15 @@ snapshots:
 
   react-refresh@0.16.0: {}
 
+  react-router-dom-v5-compat@6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0):
+    dependencies:
+      '@remix-run/router': 1.23.0
+      history: 5.3.0
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-router: 6.30.0(react@18.2.0)
+      react-router-dom: 5.3.4(react@18.2.0)
+
   react-router-dom@5.3.4(react@18.2.0):
     dependencies:
       '@babel/runtime': 7.26.7
@@ -14556,6 +14622,11 @@ snapshots:
       react-is: 16.13.1
       tiny-invariant: 1.3.3
       tiny-warning: 1.0.3
+
+  react-router@6.30.0(react@18.2.0):
+    dependencies:
+      '@remix-run/router': 1.23.0
+      react: 18.2.0
 
   react-window@1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:

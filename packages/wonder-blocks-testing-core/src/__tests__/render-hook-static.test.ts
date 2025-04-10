@@ -1,4 +1,4 @@
-import {useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom-v5-compat";
 
 import {hookHarness} from "../harness/hook-harness";
 import {renderHookStatic} from "../render-hook-static";

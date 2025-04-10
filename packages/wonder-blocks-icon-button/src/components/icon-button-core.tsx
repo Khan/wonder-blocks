@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
-import {__RouterContext} from "react-router";
+import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
@@ -103,69 +102,62 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         ...restProps
     } = props;
     const {theme, themeName} = useScopedTheme(IconButtonThemeContext);
+    const inRouterContext = useInRouterContext();
 
-    const renderInner = (router: any): React.ReactNode => {
-        const buttonStyles = _generateStyles(
-            actionType,
-            !!disabled,
-            kind,
-            size,
-            theme,
-            themeName,
-        );
-
-        const defaultStyle = [
-            sharedStyles.shared,
-            buttonStyles.default,
-            disabled && buttonStyles.disabled,
-        ];
-
-        const child = <IconChooser size={size} icon={icon} />;
-
-        const commonProps = {
-            "data-testid": testId,
-            style: [defaultStyle, style],
-            ...restProps,
-        } as const;
-
-        if (href && !disabled) {
-            return router && !skipClientNav && isClientSideUrl(href) ? (
-                <StyledLink
-                    {...commonProps}
-                    to={href}
-                    ref={ref as React.Ref<typeof Link>}
-                >
-                    {child}
-                </StyledLink>
-            ) : (
-                <StyledA
-                    {...commonProps}
-                    href={href}
-                    ref={ref as React.Ref<HTMLAnchorElement>}
-                >
-                    {child}
-                </StyledA>
-            );
-        } else {
-            return (
-                <StyledButton
-                    type={type}
-                    {...commonProps}
-                    onClick={disabled ? undefined : restProps.onClick}
-                    aria-disabled={disabled}
-                    ref={ref as React.Ref<HTMLButtonElement>}
-                >
-                    {child}
-                </StyledButton>
-            );
-        }
-    };
-
-    return (
-        <__RouterContext.Consumer>
-            {(router) => renderInner(router)}
-        </__RouterContext.Consumer>
+    const buttonStyles = _generateStyles(
+        actionType,
+        !!disabled,
+        kind,
+        size,
+        theme,
+        themeName,
     );
+
+    const defaultStyle = [
+        sharedStyles.shared,
+        buttonStyles.default,
+        disabled && buttonStyles.disabled,
+    ];
+
+    const child = <IconChooser size={size} icon={icon} />;
+
+    const commonProps = {
+        "data-testid": testId,
+        style: [defaultStyle, style],
+        ...restProps,
+    } as const;
+
+    if (href && !disabled) {
+        return inRouterContext && !skipClientNav && isClientSideUrl(href) ? (
+            <StyledLink
+                {...commonProps}
+                to={href}
+                ref={ref as React.Ref<typeof Link>}
+            >
+                {child}
+            </StyledLink>
+        ) : (
+            <StyledA
+                {...commonProps}
+                href={href}
+                ref={ref as React.Ref<HTMLAnchorElement>}
+            >
+                {child}
+            </StyledA>
+        );
+    } else {
+        return (
+            <StyledButton
+                type={type}
+                {...commonProps}
+                onClick={disabled ? undefined : restProps.onClick}
+                aria-disabled={disabled}
+                ref={ref as React.Ref<HTMLButtonElement>}
+            >
+                {child}
+            </StyledButton>
+        );
+    }
 });
 
 export default IconButtonCore;

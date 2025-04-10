@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
@@ -185,51 +186,58 @@ export const DetailCellNavigation: StoryComponentType = {
     name: "Client-side navigation with DetailCell",
     render: () => (
         <MemoryRouter>
-            <View>
-                <DetailCell
-                    title="Data"
-                    subtitle2="Subtitle for article item"
-                    leftAccessory={
-                        <PhosphorIcon
-                            icon={IconMappings.playCircle}
-                            size="medium"
-                        />
-                    }
-                    rightAccessory={
-                        <PhosphorIcon icon={IconMappings.caretRight} />
-                    }
-                    href="/math/algebra"
-                    aria-label="Press to navigate to the article"
-                />
-                <DetailCell
-                    title="Geometry"
-                    subtitle2="Subtitle for article item"
-                    leftAccessory={
-                        <PhosphorIcon
-                            icon={IconMappings.playCircle}
-                            size="medium"
-                        />
-                    }
-                    rightAccessory={
-                        <PhosphorIcon icon={IconMappings.caretRight} />
-                    }
-                    href="/math/geometry"
-                    aria-label="Press to navigate to the article"
-                    horizontalRule="none"
-                />
-            </View>
+            <CompatRouter>
+                <View>
+                    <DetailCell
+                        title="Data"
+                        subtitle2="Subtitle for article item"
+                        leftAccessory={
+                            <PhosphorIcon
+                                icon={IconMappings.playCircle}
+                                size="medium"
+                            />
+                        }
+                        rightAccessory={
+                            <PhosphorIcon icon={IconMappings.caretRight} />
+                        }
+                        href="/math/algebra"
+                        aria-label="Press to navigate to the article"
+                    />
+                    <DetailCell
+                        title="Geometry"
+                        subtitle2="Subtitle for article item"
+                        leftAccessory={
+                            <PhosphorIcon
+                                icon={IconMappings.playCircle}
+                                size="medium"
+                            />
+                        }
+                        rightAccessory={
+                            <PhosphorIcon icon={IconMappings.caretRight} />
+                        }
+                        href="/math/geometry"
+                        aria-label="Press to navigate to the article"
+                        horizontalRule="none"
+                    />
+                </View>
 
-            <View style={styles.navigation}>
-                <Switch>
-                    <Route path="/math/algebra">
-                        Navigates to /math/algebra
-                    </Route>
-                    <Route path="/math/geometry">
-                        Navigates to /math/geometry
-                    </Route>
-                    <Route path="*">See navigation changes here</Route>
-                </Switch>
-            </View>
+                <View style={styles.navigation}>
+                    <Routes>
+                        <Route
+                            path="/math/algebra"
+                            element={<View>Navigates to /math/algebra</View>}
+                        />
+                        <Route
+                            path="/math/geometry"
+                            element={<View>Navigates to /math/geometry</View>}
+                        />
+                        <Route
+                            path="*"
+                            element={<View>See navigation changes here</View>}
+                        />
+                    </Routes>
+                </View>
+            </CompatRouter>
         </MemoryRouter>
     ),
 };

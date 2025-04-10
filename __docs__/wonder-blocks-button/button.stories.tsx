@@ -2,7 +2,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 
 import type {StyleDeclaration} from "aphrodite";
 
@@ -678,22 +679,25 @@ export const PreventNavigation: StoryComponentType = {
     name: "Preventing navigation",
     render: () => (
         <MemoryRouter>
-            <View style={styles.row}>
-                <Button
-                    href="/foo"
-                    style={styles.button}
-                    onClick={(e) => {
-                        e.preventDefault();
-                    }}
-                >
-                    This button prevents navigation.
-                </Button>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
-                </Switch>
-            </View>
+            <CompatRouter>
+                <View style={styles.row}>
+                    <Button
+                        href="/foo"
+                        style={styles.button}
+                        onClick={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
+                        This button prevents navigation.
+                    </Button>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View id="foo">Hello, world!</View>}
+                        />
+                    </Routes>
+                </View>
+            </CompatRouter>
         </MemoryRouter>
     ),
 };
@@ -713,19 +717,22 @@ export const WithRouter: StoryComponentType = {
     name: "Navigation with React Router",
     render: () => (
         <MemoryRouter>
-            <View style={styles.row}>
-                <Button href="/foo" style={styles.button}>
-                    Uses Client-side Nav
-                </Button>
-                <Button href="/foo" style={styles.button} skipClientNav>
-                    Avoids Client-side Nav
-                </Button>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">Hello, world!</View>
-                    </Route>
-                </Switch>
-            </View>
+            <CompatRouter>
+                <View style={styles.row}>
+                    <Button href="/foo" style={styles.button}>
+                        Uses Client-side Nav
+                    </Button>
+                    <Button href="/foo" style={styles.button} skipClientNav>
+                        Avoids Client-side Nav
+                    </Button>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={<View id="foo">Hello, world!</View>}
+                        />
+                    </Routes>
+                </View>
+            </CompatRouter>
         </MemoryRouter>
     ),
 };

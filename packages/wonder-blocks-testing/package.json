@@ -26,7 +26,8 @@
     "node-fetch": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router-dom": "catalog:"
+    "react-router-dom": "catalog:",
+    "react-router-dom-v5-compat": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",

@@ -2,7 +2,7 @@ import * as React from "react";
 
 import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import {Link} from "react-router-dom";
+import {Link} from "react-router-dom-v5-compat";
 import IconButtonCore from "./icon-button-core";
 import ThemedIconButton from "../themes/themed-icon-button";
 
