@@ -18,6 +18,7 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {StyleDeclaration} from "aphrodite";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import type {SharedProps} from "./link";
 
 type Props = SharedProps &
@@ -161,7 +162,7 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-const action = semanticColor.action.secondary.progressive;
+const action = semanticColor.action.tertiary.progressive;
 
 /**
  * TODO(WB-1862): Move this to a shared theme file.
@@ -176,10 +177,6 @@ const theme = {
             hover: {
                 foreground: action.hover.foreground,
             },
-            focus: {
-                border: semanticColor.focus.outer,
-                foreground: action.hover.foreground,
-            },
             press: {
                 foreground: action.press.foreground,
             },
@@ -190,10 +187,6 @@ const theme = {
                 foreground: semanticColor.text.inverse,
             },
             hover: {
-                foreground: semanticColor.text.inverse,
-            },
-            focus: {
-                border: semanticColor.border.inverse,
                 foreground: semanticColor.text.inverse,
             },
             press: {
@@ -212,8 +205,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
     const variant = light ? theme.color.inverse : theme.color.default;
 
     const focusStyling = {
-        color: variant.focus.foreground,
-        outline: `${border.width.hairline}px solid ${variant.focus.border}`,
+        ...focusStyles.focus,
         borderRadius: border.radius.small_3,
     };
 

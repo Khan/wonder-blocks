@@ -112,11 +112,6 @@ export const HoverFocus: Story = {
     parameters: {pseudo: {hover: true, focusVisible: true}},
 };
 
-export const HoverVisited: Story = {
-    name: "Hover + Visited",
-    parameters: {pseudo: {visited: true, hover: true}},
-};
-
 export const Press: Story = {
     parameters: {pseudo: {active: true}},
 };
@@ -124,11 +119,6 @@ export const Press: Story = {
 export const PressFocus: Story = {
     name: "Press + Focus",
     parameters: {pseudo: {focusVisible: true, active: true}},
-};
-
-export const PressVisited: Story = {
-    name: "Press + Visited",
-    parameters: {pseudo: {visited: true, active: true}},
 };
 
 const styles = StyleSheet.create({
