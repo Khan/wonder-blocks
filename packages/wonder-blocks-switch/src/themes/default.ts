@@ -41,7 +41,7 @@ const theme = {
             // slider
             small: spacing.small_12,
             // switch
-            full: border.radius.full,
+            full: border.radius.radius_full,
         },
     },
     size: {

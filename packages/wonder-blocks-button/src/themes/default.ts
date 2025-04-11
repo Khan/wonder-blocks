@@ -309,7 +309,7 @@ const theme = {
             /**
              * Icons
              */
-            icon: tokens.border.radius.full,
+            icon: tokens.border.radius.radius_full,
         },
     },
     size: {
