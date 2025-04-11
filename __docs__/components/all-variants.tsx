@@ -138,6 +138,7 @@ export function AllVariants(props: Props) {
                     </tbody>
                 </StyledTable>
             )}
+            {/* TODO(WB-1925): Make sure to include state labels properly for each children (see `state-sheet.tsx`) */}
             <StyledUl
                 style={[
                     styles.list,

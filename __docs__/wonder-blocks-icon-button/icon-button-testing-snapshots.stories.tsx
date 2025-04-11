@@ -14,7 +14,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
  * IconButton component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / IconButton / IconButton - All Variants",
+    title: "Packages / IconButton / Testing / IconButton - Snapshots",
     tags: ["!autodocs"],
     args: {
         "aria-label": "Send",
