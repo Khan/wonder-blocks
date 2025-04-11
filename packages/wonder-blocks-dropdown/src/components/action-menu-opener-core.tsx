@@ -4,7 +4,11 @@ import {StyleSheet} from "aphrodite";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
@@ -127,7 +131,7 @@ const sharedStyles = StyleSheet.create({
         justifyContent: "center",
         height: DROPDOWN_ITEM_HEIGHT,
         border: "none",
-        borderRadius: spacing.xxxSmall_4,
+        borderRadius: border.radius.radius_040,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",

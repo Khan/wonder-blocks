@@ -2,7 +2,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {spacing, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {
+    spacing,
+    semanticColor,
+    border,
+} from "@khanacademy/wonder-blocks-tokens";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {
@@ -304,7 +308,7 @@ export default class OptionItem extends React.Component<OptionProps> {
 const focusedStyle = {
     // Override the default focus state for the cell element, so that it
     // can be added programmatically to the button element.
-    borderRadius: spacing.xxxSmall_4,
+    borderRadius: border.radius.radius_040,
     outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
     outlineOffset: -spacing.xxxxSmall_2,
 };

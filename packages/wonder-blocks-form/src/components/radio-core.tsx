@@ -64,7 +64,7 @@ const disabledChecked = {
     left: size / 4,
     height: size / 2,
     width: size / 2,
-    borderRadius: "50%",
+    borderRadius: border.radius.full,
     backgroundColor: semanticColor.action.primary.disabled.background,
 } as const;
 
@@ -85,7 +85,7 @@ const sharedStyles = StyleSheet.create({
         boxSizing: "border-box",
         borderStyle: "solid",
         borderWidth: border.width.hairline,
-        borderRadius: "50%",
+        borderRadius: border.radius.full,
     },
     disabled: {
         cursor: "auto",

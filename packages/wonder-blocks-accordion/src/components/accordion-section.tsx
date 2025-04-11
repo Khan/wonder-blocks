@@ -410,7 +410,7 @@ const _generateStyles = (
     if (cornerKind === "rounded-per-section") {
         wrapperStyle = {
             border: borderStyle,
-            borderRadius: spacing.small_12,
+            borderRadius: border.radius.radius_120,
             marginBottom: spacing.medium_16,
         };
 

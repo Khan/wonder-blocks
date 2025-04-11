@@ -1,9 +1,8 @@
 import * as React from "react";
 import {Meta, Story, Canvas} from "@storybook/blocks";
-import * as AddStyleStories from './add-style.stories';
+import * as AddStyleStories from "./add-style.stories";
 
 <Meta of={AddStyleStories} />
-
 
 # addStyle
 
@@ -12,11 +11,11 @@ The `addStyle` function is a HOC that accepts a **React Component** or a **DOM**
 styles as its second argument. This HOC returns a **React Component** with a
 `style` prop included ready to be rendered.
 
-*Note: this differs from using a bare **DOM** **intrinsic** with a `style`
+_Note: this differs from using a bare **DOM** **intrinsic** with a `style`
 prop. The bare **DOM** **intrinsic** will generate inline styles whereas a
 component that has been wrapped with `addStyle` will process the styles with
 [Aphrodite](https://github.com/Khan/aphrodite). As a result, always use
-`addStyle` if you need to style the component/element.*
+`addStyle` if you need to style the component/element._
 
 ## Usage
 
@@ -31,9 +30,9 @@ addStyle(
 
 ## API
 
-| Argument       | TypeScript Type           | Default    | Description                           |
+| Argument       | TypeScript Type                | Default    | Description                           |
 | -------------- | ------------------------------ | ---------- | ------------------------------------- |
-| `Component`    | `React.ReactElement`, `string` | *Required* | The component that will be decorated. |
+| `Component`    | `React.ReactElement`, `string` | _Required_ | The component that will be decorated. |
 | `defaultStyle` | `StyleType`                    | null       | The initial styles to be applied.     |
 
 ## Types
@@ -64,7 +63,7 @@ component so we don't have to create a new instance on every render.
 
 ```js
 import {StyleSheet} from "aphrodite";
-import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 const StyledInput = addStyle("input", styles.input);
@@ -74,7 +73,7 @@ const styles = StyleSheet.create({
     input: {
         background: color.white,
         borderColor: color.offBlack16,
-        borderRadius: spacing.xxxSmall_4,
+        borderRadius: border.radius.radius_040,
         fontSize: spacing.medium_16,
         padding: spacing.xSmall_8,
     },

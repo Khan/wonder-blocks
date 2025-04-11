@@ -10,7 +10,11 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     ActionItem,
@@ -145,7 +149,7 @@ const styles = StyleSheet.create({
      */
     customOpener: {
         borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
-        borderRadius: spacing.xxxSmall_4,
+        borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.text.primary,
         padding: spacing.medium_16,
