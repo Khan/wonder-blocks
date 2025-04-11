@@ -6,14 +6,13 @@
 "@khanacademy/wonder-blocks-popover": patch
 "@khanacademy/wonder-blocks-tooltip": patch
 "@khanacademy/wonder-blocks-banner": patch
-"@khanacademy/wonder-blocks-form": patch
 "@khanacademy/wonder-blocks-styles": patch
+"@khanacademy/wonder-blocks-switch": patch
 "@khanacademy/wonder-blocks-modal": patch
 "@khanacademy/wonder-blocks-cell": patch
 "@khanacademy/wonder-blocks-form": patch
 "@khanacademy/wonder-blocks-link": patch
 "@khanacademy/wonder-blocks-pill": patch
-"@khanacademy/wonder-blocks-switch": patch
 "@khanacademy/wonder-blocks-tabs": patch
 ---
 
