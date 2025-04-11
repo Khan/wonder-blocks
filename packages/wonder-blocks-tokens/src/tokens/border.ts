@@ -8,7 +8,7 @@ export const border = {
         radius_0: sizing.size_0,
         radius_040: sizing.size_040,
         radius_080: sizing.size_080,
-        xLarge_12: 12,
+        radius_120: sizing.size_120,
         full: "50%",
     },
     width: {
