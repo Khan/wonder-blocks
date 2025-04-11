@@ -6,7 +6,6 @@
 "@khanacademy/wonder-blocks-popover": patch
 "@khanacademy/wonder-blocks-tooltip": patch
 "@khanacademy/wonder-blocks-banner": patch
-"@khanacademy/wonder-blocks-button": patch
 "@khanacademy/wonder-blocks-form": patch
 "@khanacademy/wonder-blocks-styles": patch
 "@khanacademy/wonder-blocks-modal": patch
