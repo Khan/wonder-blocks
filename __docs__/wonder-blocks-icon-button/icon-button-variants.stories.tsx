@@ -42,7 +42,11 @@ export const StateSheetStory: StoryComponentType = {
         ];
 
         return (
-            <StateSheet rows={rows} columns={columns}>
+            <StateSheet
+                rows={rows}
+                columns={columns}
+                title="Kind / Action Type"
+            >
                 {({props, className, name}) => (
                     <IconButton
                         {...args}

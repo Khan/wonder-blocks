@@ -67,7 +67,7 @@ function StateLabels({
             <LabelLarge style={{alignSelf: "center"}}>{variant}</LabelLarge>
             <View
                 style={[
-                    styles.states,
+                    styles.rowHeaderStates,
                     {gridTemplateRows: `repeat(${states.length}, 40px)`},
                 ]}
             >
@@ -94,6 +94,7 @@ export function StateSheet({
     columns,
     rows,
     states = defaultStates,
+    title,
 }: Props) {
     // Override the default row headers to include the state labels.
     const rowsWithStateLabels = rows.map(({name, props}) => ({
@@ -109,6 +110,7 @@ export function StateSheet({
                 styles={{
                     rowHeader: styles.rowHeader,
                 }}
+                title={title}
             >
                 {({props}) => {
                     return (
@@ -145,9 +147,10 @@ const styles = StyleSheet.create({
         background: semanticColor.surface.secondary,
         borderTop: `${sizing.size_010} solid ${semanticColor.border.strong}`,
     },
-    states: {
+    rowHeaderStates: {
         gap: sizing.size_160,
         display: "grid",
-        placeItems: "center",
+        alignItems: "center",
+        textAlign: "right",
     },
 });

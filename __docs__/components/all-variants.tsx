@@ -57,6 +57,11 @@ type Props = {
     styles?: {
         rowHeader?: StyleType;
     };
+
+    /**
+     * The title of the table.
+     */
+    title?: string;
 };
 
 /**
@@ -69,6 +74,7 @@ export function AllVariants(props: Props) {
         columns,
         layout = "responsive",
         styles: stylesProp,
+        title = "Category / State",
     } = props;
 
     return (
@@ -78,7 +84,7 @@ export function AllVariants(props: Props) {
                     <thead>
                         <tr>
                             <StyledTh style={styles.cell}>
-                                <LabelLarge>Category / State</LabelLarge>
+                                <LabelLarge>{title}</LabelLarge>
                             </StyledTh>
                             {columns.map((col, index) => (
                                 <StyledTh
