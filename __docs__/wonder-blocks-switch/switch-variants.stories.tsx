@@ -66,7 +66,7 @@ const meta = {
                             {theme} theme
                         </HeadingLarge>
                         <AllVariants rows={rows} columns={columns}>
-                            {(props) => <Switch {...args} {...props} />}
+                            {({props}) => <Switch {...args} {...props} />}
                         </AllVariants>
                     </View>
                 </ThemeSwitcherContext.Provider>
