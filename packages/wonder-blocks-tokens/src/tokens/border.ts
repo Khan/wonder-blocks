@@ -1,9 +1,13 @@
+import {sizing} from "./sizing";
+
 export const border = {
+    /**
+     * Corner radius values for borders.
+     */
     radius: {
-        xSmall_2: 2,
-        small_3: 3,
-        medium_4: 4,
-        large_6: 6,
+        radius_0: sizing.size_0,
+        radius_040: sizing.size_040,
+        radius_080: sizing.size_080,
         xLarge_12: 12,
         full: "50%",
     },

@@ -84,7 +84,8 @@ const styles = StyleSheet.create({
         minHeight: spacing.medium_16,
         minWidth: spacing.medium_16,
         height: spacing.medium_16,
-        borderRadius: border.radius.small_3,
+        // TODO(WB-1864): Use the correct token once TB is updated.
+        borderRadius: 3,
         borderWidth: border.width.hairline,
         borderStyle: "solid",
         borderColor: theme.checkbox.color.default.border,

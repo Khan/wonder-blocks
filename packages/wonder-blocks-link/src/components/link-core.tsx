@@ -214,7 +214,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
     const focusStyling = {
         color: variant.focus.foreground,
         outline: `${border.width.hairline}px solid ${variant.focus.border}`,
-        borderRadius: border.radius.small_3,
+        borderRadius: border.radius.radius_040,
     };
 
     const pressStyling = {

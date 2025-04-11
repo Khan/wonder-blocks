@@ -300,11 +300,11 @@ const theme = {
         },
         radius: {
             // default
-            default: tokens.border.radius.medium_4,
+            default: tokens.border.radius.radius_040,
             // small button
-            small: tokens.border.radius.medium_4,
+            small: tokens.border.radius.radius_040,
             // large button
-            large: tokens.border.radius.large_6,
+            large: tokens.border.radius.radius_040,
 
             /**
              * Icons

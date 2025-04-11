@@ -17,7 +17,7 @@ const theme = {
             },
         },
         border: {
-            radius: border.radius.medium_4,
+            radius: border.radius.radius_040,
         },
     },
     /**

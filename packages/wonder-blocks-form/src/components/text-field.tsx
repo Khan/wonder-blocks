@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     input: {
         width: "100%",
         height: 40,
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
         boxSizing: "border-box",
         paddingLeft: spacing.medium_16,
         margin: 0,
