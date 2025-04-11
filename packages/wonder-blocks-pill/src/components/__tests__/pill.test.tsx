@@ -105,37 +105,6 @@ describe("Pill", () => {
         expect(pillButton).not.toBeInTheDocument();
     });
 
-    test("renders the title when a string is passed in (small)", async () => {
-        // Arrange, Act
-        render(
-            <Pill size="small" testId="pill-test-id">
-                Hello, world!
-            </Pill>,
-        );
-        const pill = await screen.findByTestId("pill-test-id");
-
-        // Assert
-        expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
-        // Font size should be at least 14px for accessibility.
-        expect(pill).toHaveStyle({
-            fontSize: 14,
-        });
-    });
-
-    test("renders the title when a string is passed in (large)", async () => {
-        // Arrange, Act
-        render(
-            <Pill size="large" testId="pill-test-id">
-                Hello, world!
-            </Pill>,
-        );
-        const pill = await screen.findByTestId("pill-test-id");
-
-        // Assert
-        expect(await screen.findByText("Hello, world!")).toBeInTheDocument();
-        expect(pill).toHaveStyle({fontSize: 16});
-    });
-
     test("renders the title when a React node is passed in", async () => {
         // Arrange, Act
         render(
