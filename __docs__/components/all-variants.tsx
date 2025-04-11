@@ -53,9 +53,11 @@ type Props = {
     /**
      * Custom styles for the `AllVariants` component.
      * - `rowHeader`: Styles all the row headers in the table.
+     * - `cell`: Styles all the cells in the table.
      */
     styles?: {
         rowHeader?: StyleType;
+        cell?: StyleType;
     };
 
     /**
@@ -118,6 +120,7 @@ export function AllVariants(props: Props) {
                                             {
                                                 border: `${border.width.hairline}px dashed ${semanticColor.border.primary}`,
                                             },
+                                            stylesProp?.cell,
                                         ]}
                                     >
                                         {children({
