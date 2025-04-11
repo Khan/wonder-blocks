@@ -79,7 +79,7 @@ const sizes = [
 export const Sizes: StoryComponentType = {
     render: (args) => {
         return (
-            <AllVariants rows={sizes} columns={kinds}>
+            <AllVariants rows={sizes} columns={kinds} title="Size / Kind">
                 {({props}) => (
                     <View style={{gap: sizing.size_160, flexDirection: "row"}}>
                         {actionTypes.map(({props: {actionType}}, index) => (
