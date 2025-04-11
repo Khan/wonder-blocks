@@ -18,7 +18,7 @@ catalog:
     # Styling
     aphrodite: ^1.2.5
     # Dates
-    moment: 2.29.4
+    temporal-polyfill: "^0.3.0"
     # Testing/data
     node-fetch: ^2.6.7
     # React
