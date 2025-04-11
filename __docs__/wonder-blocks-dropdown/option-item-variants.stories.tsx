@@ -51,7 +51,7 @@ const meta = {
     component: OptionItem,
     render: (args) => (
         <AllVariants rows={rows} columns={columns}>
-            {(props) => (
+            {({props}) => (
                 <div aria-label={props.ariaLabel} role="listbox">
                     <OptionItem {...args} {...props} />
                 </div>

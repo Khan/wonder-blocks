@@ -148,7 +148,7 @@ const meta = {
     render: (args) => (
         <>
             <AllVariants rows={rows} columns={columns}>
-                {(props) => (
+                {({props}) => (
                     <View style={styles.container} tag="ul">
                         <NavigationTabItem {...args} {...props} />
                     </View>
@@ -157,7 +157,7 @@ const meta = {
             <div dir="rtl">
                 <HeadingLarge>RTL</HeadingLarge>
                 <AllVariants rows={rtlRows} columns={columns}>
-                    {(props) => (
+                    {({props}) => (
                         <View style={styles.container} tag="ul">
                             <NavigationTabItem {...args} {...props} />
                         </View>
@@ -194,7 +194,7 @@ export const Zoom: Story = {
     render: (args) => (
         <>
             <AllVariants rows={rows} columns={columns} layout="list">
-                {(props) => (
+                {({props}) => (
                     <View style={styles.container} tag="ul">
                         <NavigationTabItem {...args} {...props} />
                     </View>
@@ -203,7 +203,7 @@ export const Zoom: Story = {
             <div dir="rtl">
                 <HeadingLarge>RTL</HeadingLarge>
                 <AllVariants rows={rtlRows} columns={columns} layout="list">
-                    {(props) => (
+                    {({props}) => (
                         <View style={styles.container} tag="ul">
                             <NavigationTabItem {...args} {...props} />
                         </View>

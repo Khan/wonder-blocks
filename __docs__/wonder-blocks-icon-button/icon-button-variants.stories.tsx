@@ -1,162 +1,84 @@
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {spacing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {AllVariants} from "../components/all-variants";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
 /**
  * The following stories are used to generate the pseudo states for the
  * IconButton component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / IconButton / All Variants",
+    title: "Packages / IconButton / IconButton - All Variants",
     tags: ["!autodocs"],
+    args: {
+        "aria-label": "Send",
+        icon: paperPlaneIcon,
+        onClick: action("clicked"),
+        actionType: "progressive",
+        size: "medium",
+    },
 } as Meta;
 
 type StoryComponentType = StoryObj<typeof IconButton>;
 
-const sizes: ("xsmall" | "small" | "medium" | "large")[] = [
-    "xsmall",
-    "small",
-    "medium",
-    "large",
-];
+export const StateSheetStory: StoryComponentType = {
+    name: "StateSheet",
+    render: (args) => {
+        const rows = [
+            {name: "Primary", props: {kind: "primary"}},
+            {name: "Secondary", props: {kind: "secondary"}},
+            {name: "Tertiary", props: {kind: "tertiary"}},
+        ];
 
-const KindVariants = ({kind}: {kind: "primary" | "secondary" | "tertiary"}) => {
-    return (
-        <>
-            <View style={[styles.gridCol]}>
-                <LabelMedium>{kind}-default</LabelMedium>
-                <View style={[styles.iconButtons]}>
-                    {sizes.map((size) => (
-                        <IconButton
-                            aria-label="Send"
-                            icon={paperPlaneIcon}
-                            onClick={action("clicked")}
-                            kind={kind}
-                            actionType="progressive"
-                            size={size}
-                            key={size}
-                        />
-                    ))}
-                </View>
-            </View>
-            <View style={[styles.gridCol]}>
-                <LabelMedium>{kind}-destructive</LabelMedium>
-                <View style={[styles.iconButtons]}>
-                    {sizes.map((size) => (
-                        <IconButton
-                            aria-label="Send"
-                            icon={paperPlaneIcon}
-                            onClick={action("clicked")}
-                            kind={kind}
-                            actionType="destructive"
-                            size={size}
-                            key={size}
-                        />
-                    ))}
-                </View>
-            </View>
-            <View style={[styles.gridCol]}>
-                <LabelMedium>{kind}-neutral</LabelMedium>
-                <View style={[styles.iconButtons]}>
-                    {sizes.map((size) => (
-                        <IconButton
-                            aria-label="Send"
-                            icon={paperPlaneIcon}
-                            onClick={action("clicked")}
-                            kind={kind}
-                            actionType="neutral"
-                            size={size}
-                            key={size}
-                        />
-                    ))}
-                </View>
-            </View>
-            <View style={[styles.gridCol]}>
-                <LabelMedium>{kind}-disabled</LabelMedium>
-                <View style={[styles.iconButtons]}>
-                    {sizes.map((size) => (
-                        <IconButton
-                            aria-label="Send"
-                            icon={paperPlaneIcon}
-                            onClick={action("clicked")}
-                            kind={kind}
-                            disabled={true}
-                            size={size}
-                            key={size}
-                        />
-                    ))}
-                </View>
-            </View>
-        </>
-    );
-};
+        const columns = [
+            {name: "Progressive", props: {actionType: "progressive"}},
+            {name: "Destructive", props: {actionType: "destructive"}},
+            {name: "Neutral", props: {actionType: "neutral"}},
+            {name: "Disabled", props: {disabled: true}},
+        ];
 
-const AllVariants = () => (
-    <View style={{marginBottom: spacing.large_24}}>
-        <HeadingLarge>Default theme</HeadingLarge>
-        <View style={styles.grid}>
-            <KindVariants kind="primary" />
-            <KindVariants kind="secondary" />
-            <KindVariants kind="tertiary" />
-        </View>
-    </View>
-);
-
-export const Default: StoryComponentType = {
-    render: AllVariants,
-};
-
-export const Hover: StoryComponentType = {
-    render: AllVariants,
-    parameters: {pseudo: {hover: true}},
-};
-
-export const Focus: StoryComponentType = {
-    render: AllVariants,
-    parameters: {pseudo: {focusVisible: true}},
-};
-
-export const HoverFocus: StoryComponentType = {
-    name: "Hover + Focus",
-    render: AllVariants,
-    parameters: {pseudo: {hover: true, focusVisible: true}},
-};
-
-export const Press: StoryComponentType = {
-    render: AllVariants,
-    parameters: {pseudo: {active: true}},
-};
-
-export const PressFocus: StoryComponentType = {
-    name: "Press + Focus",
-    render: AllVariants,
-    parameters: {pseudo: {active: true, focusVisible: true}},
-};
-
-const styles = StyleSheet.create({
-    grid: {
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 250px)",
-        gap: spacing.large_24,
+        return (
+            <StateSheet rows={rows} columns={columns}>
+                {({props, className, name}) => (
+                    <IconButton
+                        {...args}
+                        {...props}
+                        className={className}
+                        key={name}
+                    />
+                )}
+            </StateSheet>
+        );
     },
-    gridCol: {
-        flexDirection: "column",
-        alignItems: "center",
-        gap: spacing.large_24,
-        justifyContent: "space-between",
-        padding: spacing.medium_16,
+    parameters: {
+        pseudo: defaultPseudoStates,
     },
-    iconButtons: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        gap: spacing.xLarge_32,
+};
+
+export const Sizes: StoryComponentType = {
+    render: (args) => {
+        const rows = [
+            {name: "xsmall", props: {size: "xsmall"}},
+            {name: "small", props: {size: "small"}},
+            {name: "medium", props: {size: "medium"}},
+            {name: "large", props: {size: "large"}},
+        ];
+
+        const columns = [
+            {name: "Progressive", props: {actionType: "progressive"}},
+            {name: "Destructive", props: {actionType: "destructive"}},
+            {name: "Neutral", props: {actionType: "neutral"}},
+            {name: "Disabled", props: {disabled: true}},
+        ];
+
+        return (
+            <AllVariants rows={rows} columns={columns}>
+                {({props}) => <IconButton {...args} {...props} />}
+            </AllVariants>
+        );
     },
-});
+};

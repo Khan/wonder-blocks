@@ -48,7 +48,7 @@ const meta = {
     component: ActionItem,
     render: (args) => (
         <AllVariants rows={rows} columns={columns}>
-            {(props) => <ActionItem {...args} {...props} />}
+            {({props}) => <ActionItem {...args} {...props} />}
         </AllVariants>
     ),
     args: {

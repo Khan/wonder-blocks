@@ -2,7 +2,7 @@ import * as React from "react";
 import type {StrictArgs} from "@storybook/react";
 
 import {StyleSheet} from "aphrodite";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType, View} from "@khanacademy/wonder-blocks-core";
 import {
     border,
     breakpoint,
@@ -18,14 +18,22 @@ const StyledTh = addStyle("th");
 const StyledTd = addStyle("td");
 const StyledUl = addStyle("ul");
 
-type Variant = {name: string; props: StrictArgs};
+type Variant = {name: string | React.ReactNode; props: StrictArgs};
 
 type Props = {
     /**
      * The children as a function that receives the state props used to render
      * each variant of the component.
      */
-    children: (props: any, name: string) => React.ReactNode;
+    children: ({
+        props,
+        name,
+        className,
+    }: {
+        props: any;
+        name?: string;
+        className?: string;
+    }) => React.ReactNode;
     /**
      * The categories to display in the table as columns.
      */
@@ -41,13 +49,27 @@ type Props = {
      * - `list`: variants will always be displayed in a list
      */
     layout?: "responsive" | "list";
+
+    /**
+     * Custom styles for the `AllVariants` component.
+     * - `rowHeader`: Styles all the row headers in the table.
+     */
+    styles?: {
+        rowHeader?: StyleType;
+    };
 };
 
 /**
  * A table that displays all possible variants of a component.
  */
 export function AllVariants(props: Props) {
-    const {children, rows, columns, layout = "responsive"} = props;
+    const {
+        children,
+        rows,
+        columns,
+        layout = "responsive",
+        styles: stylesProp,
+    } = props;
 
     return (
         <>
@@ -72,12 +94,19 @@ export function AllVariants(props: Props) {
                     <tbody>
                         {rows.map((row, idx) => (
                             <tr key={idx}>
-                                <StyledTh scope="row" style={styles.cell}>
-                                    <LabelLarge>{row.name}</LabelLarge>
+                                <StyledTh
+                                    scope="row"
+                                    style={[styles.cell, stylesProp?.rowHeader]}
+                                >
+                                    {typeof row.name === "string" ? (
+                                        <LabelLarge>{row.name}</LabelLarge>
+                                    ) : (
+                                        row.name
+                                    )}
                                 </StyledTh>
-                                {columns.map((col) => (
+                                {columns.map((col, index) => (
                                     <StyledTd
-                                        key={col.name}
+                                        key={index}
                                         style={[
                                             styles.cell,
                                             {
@@ -85,14 +114,14 @@ export function AllVariants(props: Props) {
                                             },
                                         ]}
                                     >
-                                        {children(
-                                            {
+                                        {children({
+                                            props: {
                                                 "aria-label": `${row.name} ${col.name}`,
                                                 ...row.props,
                                                 ...col.props,
                                             },
-                                            `${row.name} ${col.name}`,
-                                        )}
+                                            name: `${row.name} ${col.name}`,
+                                        })}
                                     </StyledTd>
                                 ))}
                             </tr>
@@ -115,14 +144,14 @@ export function AllVariants(props: Props) {
                                 </LabelLarge>
 
                                 <View style={styles.childrenWrapper}>
-                                    {children(
-                                        {
+                                    {children({
+                                        props: {
                                             "aria-label": `${row.name} ${column.name}`,
                                             ...column.props,
                                             ...row.props,
                                         },
-                                        `${row.name} ${column.name}`,
-                                    )}
+                                        name: `${row.name} ${column.name}`,
+                                    })}
                                 </View>
                             </li>
                         );

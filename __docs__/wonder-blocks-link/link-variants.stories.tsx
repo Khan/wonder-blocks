@@ -69,7 +69,7 @@ const meta = {
                 <View style={[styles.theme, styles[theme]]} key={idx}>
                     <HeadingLarge style={styles.title}>{theme}</HeadingLarge>
                     <AllVariants rows={rows} columns={columns}>
-                        {(props) => (
+                        {({props}) => (
                             <>
                                 <Link
                                     {...args}
