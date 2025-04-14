@@ -340,7 +340,7 @@ const states = {
 
 const styles = StyleSheet.create({
     textarea: {
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
         boxSizing: "border-box",
         padding: `${VERTICAL_SPACING_PX}px ${spacing.medium_16}px`,
         // This minHeight is equivalent to when the textarea has one row

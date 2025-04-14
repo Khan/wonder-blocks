@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
         paddingLeft: spacing.medium_16,
         paddingRight: spacing.small_12,
         borderWidth: 0,
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
         borderStyle: "solid",
         outline: "none",
         textDecoration: "none",

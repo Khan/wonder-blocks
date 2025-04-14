@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
 
         // focus (only visible when using keyboard navigation)
         ":focus-visible": {
-            borderRadius: spacing.xxxSmall_4,
+            borderRadius: border.radius.radius_040,
             // To hide the internal corners of the cell.
             overflow: "hidden",
             // To display the focus ring based on the cell's border.
@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
             width: `calc(100% - ${spacing.xxxSmall_4}px)`,
             height: `calc(100% - ${spacing.xxxSmall_4}px)`,
             border: `${spacing.xxxxSmall_2}px solid ${cellTokens.root.focus.border}`,
-            borderRadius: spacing.xxxSmall_4,
+            borderRadius: border.radius.radius_040,
         },
         [":focus-visible[aria-disabled=true]:after" as any]: {
             borderColor: cellTokens.root.disabled.border,

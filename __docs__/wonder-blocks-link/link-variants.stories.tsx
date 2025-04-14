@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     },
     theme: {
         border: `1px solid ${semanticColor.border.subtle}`,
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
         padding: spacing.large_24,
     },
     dark: {

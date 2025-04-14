@@ -11,6 +11,16 @@ function pxToRem(value: number): string {
 }
 
 /**
+ * Converts a rem value to a number (px).
+ * @param value The rem value to convert (includes the unit).
+ * @returns A string with the px value.
+ */
+export function remToPx(value: string): string {
+    const num = parseFloat(value);
+    return `${Math.round(num * baseline)}px`;
+}
+
+/**
  * Tokens that define the sizing of elements. These values are expressed in
  * `rem` units.
  *
