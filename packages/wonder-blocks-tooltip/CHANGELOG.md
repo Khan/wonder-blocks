@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 4.1.9
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- Updated dependencies [e8ccf60]
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-modal@7.1.9
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+    - @khanacademy/wonder-blocks-layout@3.1.7
+
 ## 4.1.8
 
 ### Patch Changes

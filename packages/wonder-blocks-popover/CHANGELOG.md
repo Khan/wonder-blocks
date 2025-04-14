@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.0.4
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- Updated dependencies [e8ccf60]
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-icon-button@9.0.1
+    - @khanacademy/wonder-blocks-tooltip@4.1.9
+    - @khanacademy/wonder-blocks-styles@0.2.3
+    - @khanacademy/wonder-blocks-modal@7.1.9
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+
 ## 6.0.3
 
 ### Patch Changes
