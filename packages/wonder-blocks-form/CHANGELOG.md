@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.1.8
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.1
+    - @khanacademy/wonder-blocks-layout@3.1.7
+
 ## 7.1.7
 
 ### Patch Changes

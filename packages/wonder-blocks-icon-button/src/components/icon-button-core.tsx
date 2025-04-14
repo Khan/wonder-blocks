@@ -206,6 +206,7 @@ const _generateStyles = (
 
     const disabledStatesStyles = {
         borderColor: disabledState.border,
+        borderWidth: borderWidthKind.default,
         background: disabledState.background,
         color: disabledState.foreground,
     };
@@ -225,9 +226,12 @@ const _generateStyles = (
             /**
              * States
              *
-             * Defined in the following order: hover, focus, active.
+             * Defined in the following order: hover, active, focus.
+             *
+             * This is important as we want to give more priority to the
+             * :focus-visible styles.
              */
-            ":hover:not([aria-disabled=true])": {
+            ":hover": {
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
                 outline:
@@ -250,22 +254,25 @@ const _generateStyles = (
                 },
             },
 
-            // :focus-visible -> Provide focus styles for keyboard users only.
-            ...focusStyles.focus,
-            ":active:not([aria-disabled=true])": {
+            ":active": {
                 // primary
-                outlineColor:
+                outline:
                     kind === "primary"
-                        ? themeVariant.press.border
-                        : "undefined",
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                        : undefined,
+                outlineOffset:
+                    kind === "primary" ? outlineOffsetKind : undefined,
                 // secondary, tertiary
                 border:
                     kind !== "primary"
-                        ? `${borderWidthKind.hover} solid ${themeVariant.press.border}`
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
                         : undefined,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
             },
+
+            // :focus-visible -> Provide focus styles for keyboard users only.
+            ...focusStyles.focus,
         },
         disabled: {
             cursor: "not-allowed",
@@ -273,8 +280,8 @@ const _generateStyles = (
             // NOTE: Even that browsers recommend to specify pseudo-classes in
             // this order: link, visited, focus, hover, active, we need to
             // specify focus after hover to override hover styles. By doing this
-            // we are able to remove the hover border when the button is
-            // disabled.
+            // we are able to reset the border/outline styles to the default
+            // ones (rest state).
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
             ":hover": {...disabledStatesStyles, outline: "none"},
             ":active": {...disabledStatesStyles, outline: "none"},

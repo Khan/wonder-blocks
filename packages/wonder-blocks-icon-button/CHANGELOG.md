@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 9.0.1
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- Updated dependencies [e8ccf60]
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-styles@0.2.3
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.1
+
 ## 9.0.0
 
 ### Major Changes

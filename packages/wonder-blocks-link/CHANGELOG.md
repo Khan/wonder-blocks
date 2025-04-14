@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-link
 
+## 9.0.1
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- e8ccf60: Update focus outline to use `radius.radius_040` (4px, 0.4rem) instead of `3px`.
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.1
+
 ## 9.0.0
 
 ### Major Changes

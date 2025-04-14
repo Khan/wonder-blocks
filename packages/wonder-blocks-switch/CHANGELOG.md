@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-switch
 
+## 3.1.7
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+
 ## 3.1.6
 
 ### Patch Changes
