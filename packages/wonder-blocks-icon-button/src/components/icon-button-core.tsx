@@ -278,7 +278,7 @@ const _generateStyles = (
             // NOTE: Even that browsers recommend to specify pseudo-classes in
             // this order: link, visited, focus, hover, active, we need to
             // specify focus after hover to override hover styles. By doing this
-            // we are able to restet the border/outline styles to the default
+            // we are able to reset the border/outline styles to the default
             // ones (rest state).
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
             ":hover": {...disabledStatesStyles, outline: "none"},
