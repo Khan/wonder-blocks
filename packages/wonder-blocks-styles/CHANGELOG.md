@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-styles
 
+## 0.2.4
+
+### Patch Changes
+
+- e63adea: Update `border.width` tokens to use new naming conventions.
+- 72c47d8: Update `actionStyles.inverse` to use simpler pseudo-classes (e.g. `:hover`)
+- Updated dependencies [e63adea]
+    - @khanacademy/wonder-blocks-tokens@8.0.0
+
 ## 0.2.3
 
 ### Patch Changes

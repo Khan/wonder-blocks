@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 9.0.2
+
+### Patch Changes
+
+- e63adea: Update `border.width` tokens to use new naming conventions.
+- 72c47d8: Fix `IconButton.primary` border/outline to always use the global focus outline color (blue)
+- Updated dependencies [e63adea]
+- Updated dependencies [e63adea]
+- Updated dependencies [72c47d8]
+    - @khanacademy/wonder-blocks-tokens@8.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.2
+    - @khanacademy/wonder-blocks-styles@0.2.4
+
 ## 9.0.1
 
 ### Patch Changes
