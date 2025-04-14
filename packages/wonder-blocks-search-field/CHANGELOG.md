@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 5.1.9
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- Updated dependencies [e8ccf60]
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-icon-button@9.0.1
+    - @khanacademy/wonder-blocks-form@7.1.8
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+
 ## 5.1.8
 
 ### Patch Changes

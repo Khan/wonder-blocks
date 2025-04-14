@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.8
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- e8ccf60: Update `Pill.small` and `Pill.medium` to use `radius_40` (4px, 0.4rem) instead of `6px`.
+- Updated dependencies [e8ccf60]
+- Updated dependencies [e8ccf60]
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-link@9.0.1
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.1
+
 ## 3.1.7
 
 ### Patch Changes
