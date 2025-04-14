@@ -256,14 +256,16 @@ const _generateStyles = (
 
             ":active": {
                 // primary
-                outlineColor:
+                outline:
                     kind === "primary"
-                        ? themeVariant.press.border
-                        : "undefined",
+                        ? `${borderWidthKind.press}px solid ${themeVariant.press.border}`
+                        : undefined,
+                outlineOffset:
+                    kind === "primary" ? outlineOffsetKind : undefined,
                 // secondary, tertiary
                 border:
                     kind !== "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.press.border}`
+                        ? `${borderWidthKind.press}px solid ${themeVariant.press.border}`
                         : undefined,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
