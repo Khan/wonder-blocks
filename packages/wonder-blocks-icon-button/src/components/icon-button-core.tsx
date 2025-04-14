@@ -236,13 +236,13 @@ const _generateStyles = (
                 color: themeVariant.hover.foreground,
                 outline:
                     kind === "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
                         : undefined,
                 outlineOffset:
                     kind === "primary" ? outlineOffsetKind : undefined,
                 border:
                     kind !== "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
                         : undefined,
             },
             // Allow hover styles on non-touch devices only. This prevents an
@@ -258,14 +258,14 @@ const _generateStyles = (
                 // primary
                 outline:
                     kind === "primary"
-                        ? `${borderWidthKind.press}px solid ${themeVariant.press.border}`
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
                         : undefined,
                 outlineOffset:
                     kind === "primary" ? outlineOffsetKind : undefined,
                 // secondary, tertiary
                 border:
                     kind !== "primary"
-                        ? `${borderWidthKind.press}px solid ${themeVariant.press.border}`
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
                         : undefined,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,

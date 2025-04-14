@@ -95,7 +95,7 @@ export default {
                             onClick={() => {}}
                             style={[
                                 {
-                                    border: `${border.width.thick}px solid`,
+                                    border: `${border.width.thick} solid`,
                                 },
                                 actionStyles.inverse,
                             ]}
@@ -115,7 +115,7 @@ export default {
                                     // NOTE: Swapping the colors is intentional
                                     // here to show the inverse version of the
                                     // button.
-                                    border: `1px solid ${semanticColor.status.success.background}`,
+                                    border: `${border.width.thin} solid ${semanticColor.status.success.background}`,
                                     backgroundColor:
                                         semanticColor.status.success.foreground,
                                     color: semanticColor.status.success

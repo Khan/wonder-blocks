@@ -16,9 +16,9 @@ export const border = {
         radius_full: "50%",
     },
     width: {
-        none: 0,
-        hairline: 1,
-        thin: 2,
-        thick: 4,
+        none: remToPx(sizing.size_0),
+        thin: remToPx(sizing.size_010),
+        medium: remToPx(sizing.size_020),
+        thick: remToPx(sizing.size_040),
     },
 };

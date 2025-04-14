@@ -406,12 +406,12 @@ const styles = StyleSheet.create({
     },
     focused: {
         ":focus": {
-            outline: `solid ${border.width.thin}px ${semanticColor.focus.outer}`,
+            outline: `solid ${border.width.medium} ${semanticColor.focus.outer}`,
         },
     },
     // TODO(WB-1852): Remove light variant.
     focusedLight: {
-        outline: `solid ${border.width.thin}px ${semanticColor.border.inverse}`,
+        outline: `solid ${border.width.medium} ${semanticColor.border.inverse}`,
     },
     disabled: {
         color: semanticColor.action.secondary.disabled.foreground,
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
             outline: "none",
         },
         ":focus-visible": {
-            outline: `solid ${border.width.thin}px ${semanticColor.focus.outer}`,
+            outline: `solid ${border.width.medium} ${semanticColor.focus.outer}`,
         },
     },
 });

@@ -362,7 +362,7 @@ export const WithStyle: StoryComponentType = {
         const modalStyles = {
             color: semanticColor.status.notice.foreground,
             background: semanticColor.status.notice.background,
-            border: `${border.width.thin}px solid ${semanticColor.status.notice.foreground}`,
+            border: `${border.width.medium} solid ${semanticColor.status.notice.foreground}`,
             borderRadius: 20,
         } as const;
 

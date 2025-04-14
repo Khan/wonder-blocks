@@ -51,7 +51,7 @@ const theme = mergeTheme(defaultTheme, {
             large: tokens.border.radius.radius_120,
         },
         width: {
-            focused: tokens.border.width.hairline,
+            focused: tokens.border.width.thin,
         },
     },
     margin: {
