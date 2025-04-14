@@ -288,11 +288,11 @@ const theme = {
     border: {
         width: {
             // secondary (resting)
-            secondary: tokens.border.width.hairline,
+            secondary: tokens.border.width.thin,
             // primary (focus), secondary (focus, active), tertiary (focus)
-            focused: tokens.border.width.thin,
+            focused: tokens.border.width.medium,
             // secondary (disabled)
-            disabled: tokens.border.width.thin,
+            disabled: tokens.border.width.medium,
         },
         offset: {
             primary: tokens.spacing.xxxxSmall_2,

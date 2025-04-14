@@ -408,7 +408,7 @@ const styles = StyleSheet.create({
                     top: 0,
                     left: 0,
                     bottom: 0,
-                    width: border.width.thin,
+                    width: border.width.medium,
                     backgroundColor: semanticColor.surface.emphasis,
                 },
             },

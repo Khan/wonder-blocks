@@ -279,9 +279,9 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     // TODO(WB-1868): Address outlineOffset to include hover and focus states
     const sharedOutlineStyling = {
         // Outline sits inside the border (inset)
-        outlineOffset: -border.width.thin,
+        outlineOffset: -border.width.medium,
         outlineStyle: "solid",
-        outlineWidth: border.width.thin,
+        outlineWidth: border.width.medium,
     };
 
     const focusStyling = {
@@ -309,7 +309,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         default: {
             background: currentState.background,
             borderColor: currentState.border,
-            borderWidth: border.width.hairline,
+            borderWidth: border.width.thin,
             color: placeholder
                 ? semanticColor.text.secondary
                 : currentState.foreground,
@@ -319,7 +319,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             ["@media not (hover: hover)"]: {
                 ":hover:not([aria-disabled=true])": {
                     borderColor: currentState.border,
-                    borderWidth: border.width.hairline,
+                    borderWidth: border.width.thin,
                     paddingLeft: spacing.medium_16,
                     paddingRight: spacing.small_12,
                 },

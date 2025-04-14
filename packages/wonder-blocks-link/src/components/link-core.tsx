@@ -213,7 +213,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
 
     const focusStyling = {
         color: variant.focus.foreground,
-        outline: `${border.width.hairline}px solid ${variant.focus.border}`,
+        outline: `${border.width.thin} solid ${variant.focus.border}`,
         borderRadius: border.radius.radius_040,
     };
 

@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
     },
 
     tableCell: {
-        border: `${tokens.border.width.hairline}px solid ${tokens.color.offBlack}`,
+        border: `${tokens.border.width.thin}px solid ${tokens.color.offBlack}`,
         padding: tokens.spacing.medium_16,
     },
     inline: {
