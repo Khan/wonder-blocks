@@ -1095,7 +1095,7 @@ const styles = StyleSheet.create({
 
     dropdown: {
         backgroundColor: theme.dropdown.color.default.background,
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
         paddingTop: spacing.xxxSmall_4,
         paddingBottom: spacing.xxxSmall_4,
         border: `solid 1px ${theme.dropdown.color.default.border}`,

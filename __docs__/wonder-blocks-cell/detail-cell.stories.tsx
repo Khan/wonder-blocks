@@ -496,13 +496,13 @@ export const CustomRootStyle = {
                 Active (with rootStyle prop):
                 <DetailCell
                     {...args}
-                    rootStyle={{borderRadius: border.radius.xLarge_12}}
+                    rootStyle={{borderRadius: border.radius.radius_120}}
                     active={true}
                 />
                 Pressed (with rootStyle prop):
                 <DetailCell
                     {...args}
-                    rootStyle={{borderRadius: border.radius.xLarge_12}}
+                    rootStyle={{borderRadius: border.radius.radius_120}}
                 />
                 Different content heights (with style prop)
                 <View

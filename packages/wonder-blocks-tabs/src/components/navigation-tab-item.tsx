@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {
+    border,
     breakpoint,
     semanticColor,
     sizing,
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
             border: "none",
             outline: "none",
             boxShadow: `0 0 0 ${sizing.size_020} ${semanticColor.focus.inner}, 0 0 0 ${sizing.size_040} ${semanticColor.focus.outer}`,
-            borderRadius: 0,
+            borderRadius: border.radius.radius_0,
         },
     },
 });

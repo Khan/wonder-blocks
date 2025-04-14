@@ -732,7 +732,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         // The following styles are to emulate the input styles
         background: theme.combobox.color.default.background,
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
         border: `solid 1px ${theme.combobox.color.default.border}`,
         paddingInline: spacing.xSmall_8,
     },
@@ -774,7 +774,7 @@ const styles = StyleSheet.create({
      */
     listbox: {
         backgroundColor: theme.listbox.color.default.background,
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
         border: `solid ${border.width.hairline}px ${theme.listbox.color.default.border}`,
         // TODO(WB-1878): Move to elevation tokens.
         boxShadow: `0px ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0px ${color.offBlack8}`,

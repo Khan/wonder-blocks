@@ -145,7 +145,8 @@ const sharedStyles = StyleSheet.create({
         boxSizing: "border-box",
         borderStyle: "solid",
         borderWidth: border.width.hairline,
-        borderRadius: border.radius.small_3,
+        // TODO(WB-1864): Use the correct token once TB is updated.
+        borderRadius: 3,
     },
 
     disabled: {

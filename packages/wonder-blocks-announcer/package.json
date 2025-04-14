@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@babel/runtime": "catalog:",
-    "@khanacademy/wonder-blocks-core": "^9.0.0"
+    "@khanacademy/wonder-blocks-core": "workspace:*"
   },
   "peerDependencies": {
     "aphrodite": "catalog:",
