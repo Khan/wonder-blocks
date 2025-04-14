@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-form
 
+## 7.1.9
+
+### Patch Changes
+
+- e63adea: Update `border.width` tokens to use new naming conventions.
+- Updated dependencies [e63adea]
+- Updated dependencies [e63adea]
+    - @khanacademy/wonder-blocks-tokens@8.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.2
+    - @khanacademy/wonder-blocks-layout@3.1.8
+
 ## 7.1.8
 
 ### Patch Changes

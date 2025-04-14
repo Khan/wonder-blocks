@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.0.2
+
+### Patch Changes
+
+- e63adea: Update `border.width` tokens to use new naming conventions.
+- Updated dependencies [e63adea]
+- Updated dependencies [e63adea]
+    - @khanacademy/wonder-blocks-tokens@8.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.2
+    - @khanacademy/wonder-blocks-cell@4.1.9
+    - @khanacademy/wonder-blocks-layout@3.1.8
+    - @khanacademy/wonder-blocks-modal@7.1.10
+    - @khanacademy/wonder-blocks-pill@3.1.9
+    - @khanacademy/wonder-blocks-search-field@5.1.10
+
 ## 10.0.1
 
 ### Patch Changes
