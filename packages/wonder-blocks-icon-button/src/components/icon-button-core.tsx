@@ -232,13 +232,13 @@ const _generateStyles = (
                 color: themeVariant.hover.foreground,
                 outline:
                     kind === "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
                         : undefined,
                 outlineOffset:
                     kind === "primary" ? outlineOffsetKind : undefined,
                 border:
                     kind !== "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
                         : undefined,
             },
             // Allow hover styles on non-touch devices only. This prevents an
@@ -261,7 +261,7 @@ const _generateStyles = (
                 // secondary, tertiary
                 border:
                     kind !== "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.press.border}`
+                        ? `${borderWidthKind.hover} solid ${themeVariant.press.border}`
                         : undefined,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
