@@ -6,7 +6,7 @@ const theme = {
     border: {
         offset: {
             primary: border.width.medium,
-            secondary: -border.width.medium,
+            secondary: `-${border.width.medium}`,
             tertiary: -border.width.medium,
         },
         width: {
