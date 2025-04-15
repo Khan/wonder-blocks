@@ -8,7 +8,6 @@ import {
 } from "@khanacademy/wonder-blocks-accordion";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
@@ -166,7 +165,12 @@ export const CaretPositions: StoryComponentType = {
         return (
             <View>
                 {/* Left-to-right */}
-                <View style={styles.sideBySide}>
+                <View
+                    style={[
+                        styles.sideBySide,
+                        {paddingBlockEnd: tokens.spacing.xLarge_32},
+                    ]}
+                >
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: end, language direction: left to
@@ -176,7 +180,6 @@ export const CaretPositions: StoryComponentType = {
                             {exampleSections}
                         </Accordion>
                     </View>
-                    <Strut size={tokens.spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: left to
@@ -190,7 +193,12 @@ export const CaretPositions: StoryComponentType = {
 
                 {/* Right-to-left */}
                 <View style={[styles.sideBySide, styles.rtl]}>
-                    <View style={styles.fullWidth}>
+                    <View
+                        style={[
+                            styles.fullWidth,
+                            {paddingBlockEnd: tokens.spacing.xLarge_32},
+                        ]}
+                    >
                         <LabelLarge>
                             Caret position: end, language direction: right to
                             left
@@ -209,7 +217,6 @@ export const CaretPositions: StoryComponentType = {
                             </AccordionSection>
                         </Accordion>
                     </View>
-                    <Strut size={tokens.spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: right to
@@ -514,8 +521,11 @@ export const LongSections: StoryComponentType = {
                                         src="/logo.svg"
                                         width="100%"
                                         alt="Wonder Blocks logo"
+                                        style={{
+                                            paddingBlockEnd:
+                                                tokens.spacing.xLarge_32,
+                                        }}
                                     />
-                                    <Strut size={tokens.spacing.xLarge_32} />
                                     <img
                                         src="/logo.svg"
                                         width="100%"
@@ -538,36 +548,37 @@ export const LongSections: StoryComponentType = {
  */
 export const WithDropdown: StoryComponentType = {
     render: function Render() {
-        const [value, setValue] = React.useState<any>(null);
-        const [singleOpened, setSingleOpened] = React.useState(false);
+        const [selectedValue, setSelectedValue] = React.useState<any>(null);
+        const [opened, setOpened] = React.useState(false);
 
         const [values, setValues] = React.useState<any>([]);
         const [multiOpened, setMultiOpened] = React.useState(false);
 
-        const items = [
-            <OptionItem label="Banana" value="banana" key={0} />,
-            <OptionItem
-                label="Strawberry"
-                value="strawberry"
-                disabled
-                key={1}
-            />,
-            <OptionItem label="Pear" value="pear" key={2} />,
-        ];
-
         return (
             <Accordion animated={true}>
                 <AccordionSection header={`Single Select`}>
-                    {/* Adding height because overflow hidden in sections. */}
-                    <View style={singleOpened && {height: 200}}>
+                    <View style={opened && {height: 200}}>
                         <SingleSelect
-                            placeholder="Select an option"
-                            selectedValue={value}
-                            onChange={setValue}
-                            opened={singleOpened}
-                            onToggle={setSingleOpened}
+                            aria-label="Fruit"
+                            placeholder="Choose a fruit"
+                            onChange={setSelectedValue}
+                            selectedValue={selectedValue}
+                            opened={opened}
+                            onToggle={setOpened}
                         >
-                            {items}
+                            {React.createElement(OptionItem, {
+                                label: "Banana",
+                                value: "banana",
+                            })}
+                            {React.createElement(OptionItem, {
+                                label: "Strawberry",
+                                value: "strawberry",
+                                disabled: true,
+                            })}
+                            {React.createElement(OptionItem, {
+                                label: "Pear",
+                                value: "pear",
+                            })}
                         </SingleSelect>
                     </View>
                 </AccordionSection>
@@ -579,7 +590,19 @@ export const WithDropdown: StoryComponentType = {
                             opened={multiOpened}
                             onToggle={setMultiOpened}
                         >
-                            {items}
+                            {React.createElement(OptionItem, {
+                                label: "Banana",
+                                value: "banana",
+                            })}
+                            {React.createElement(OptionItem, {
+                                label: "Strawberry",
+                                value: "strawberry",
+                                disabled: true,
+                            })}
+                            {React.createElement(OptionItem, {
+                                label: "Pear",
+                                value: "pear",
+                            })}
                         </MultiSelect>
                     </View>
                 </AccordionSection>
@@ -648,10 +671,19 @@ export const BackgroundColorExample: StoryComponentType = {
 
         return (
             <>
-                <Accordion cornerKind="rounded">{sections}</Accordion>
-                <Strut size={tokens.spacing.large_24} />
-                <Accordion cornerKind="square">{sections}</Accordion>
-                <Strut size={tokens.spacing.large_24} />
+                <Accordion
+                    cornerKind="rounded"
+                    style={{paddingBlockEnd: tokens.spacing.large_24}}
+                >
+                    {sections}
+                </Accordion>
+
+                <Accordion
+                    cornerKind="square"
+                    style={{paddingBlockEnd: tokens.spacing.large_24}}
+                >
+                    {sections}
+                </Accordion>
                 <Accordion cornerKind="rounded-per-section">
                     {sections}
                 </Accordion>
