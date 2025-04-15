@@ -198,8 +198,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             }
 
             if (monthYearOnly) {
-                // Temporal will constrain the date to the last day of the month
-                date = date.with({day: 31});
+                date = date.with({day: date.daysInMonth});
             }
 
             initialState.month = String(date.month);
@@ -360,7 +359,10 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             month: "short",
         }).format;
         return [...Array(12).keys()].map((m) =>
-            format(new Date(Date.UTC(2021, (m + 1) % 12))),
+            // TODO: use Temporal.PlainDate.from() once the linter lets
+            // format() accept a Temporal object
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format#parameters
+            format(new Date(2021, m, 15)),
         );
     }
 
