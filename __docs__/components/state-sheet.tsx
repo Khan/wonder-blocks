@@ -26,17 +26,17 @@ export const commonStates = {
  */
 export const defaultPseudoStates = {
     hover: [
-        `.${commonStates.hover.className}`,
-        `.${commonStates.hoverAndFocus.className}`,
+        `.${commonStates.hover.className} *`,
+        `.${commonStates.hoverAndFocus.className} *`,
     ],
     focusVisible: [
-        `.${commonStates.focus.className}`,
-        `.${commonStates.hoverAndFocus.className}`,
-        `.${commonStates.pressAndFocus.className}`,
+        `.${commonStates.focus.className} *`,
+        `.${commonStates.hoverAndFocus.className} *`,
+        `.${commonStates.pressAndFocus.className} *`,
     ],
     active: [
-        `.${commonStates.press.className}`,
-        `.${commonStates.pressAndFocus.className}`,
+        `.${commonStates.press.className} *`,
+        `.${commonStates.pressAndFocus.className} *`,
     ],
 };
 
