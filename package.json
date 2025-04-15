@@ -62,6 +62,7 @@
     "@khanacademy/wonder-blocks-cell": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
+    "@khanacademy/wonder-blocks-data": "workspace:*",
     "@khanacademy/wonder-blocks-dropdown": "workspace:*",
     "@khanacademy/wonder-blocks-form": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",

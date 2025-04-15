@@ -166,6 +166,9 @@ importers:
       '@khanacademy/wonder-blocks-core':
         specifier: workspace:*
         version: link:packages/wonder-blocks-core
+      '@khanacademy/wonder-blocks-data':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-data
       '@khanacademy/wonder-blocks-dropdown':
         specifier: workspace:*
         version: link:packages/wonder-blocks-dropdown
