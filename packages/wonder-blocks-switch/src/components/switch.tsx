@@ -9,6 +9,7 @@ import {
     useStyles,
 } from "@khanacademy/wonder-blocks-theming";
 import {useId} from "react";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import ThemedSwitch, {
     SwitchThemeContext,
     SwitchThemeContract,
@@ -44,6 +45,10 @@ type Props = Pick<
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Adds CSS classes to the component.
+     */
+    className?: string;
 };
 
 const StyledSpan = addStyle("span");
@@ -58,6 +63,7 @@ const SwitchCore = React.forwardRef(function SwitchCore(
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
         checked,
+        className,
         disabled = false,
         icon,
         id,
@@ -105,6 +111,7 @@ const SwitchCore = React.forwardRef(function SwitchCore(
                 stateStyles.switch,
                 disabled && sharedStyles.disabled,
             ]}
+            className={className}
             testId={testId}
         >
             <StyledInput
@@ -142,22 +149,16 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         width: theme.size.width.large,
         borderRadius: theme.border.radius.small,
         flexShrink: 0,
-        ":hover": {
-            outlineOffset: theme.size.offset.default,
-        },
-        ":focus-within": {
-            outline: `solid ${theme.size.width.small}px ${theme.color.outline.default}`,
-            outlineOffset: theme.size.offset.default,
-        },
+        ":focus-within": focusStyles.focus,
     },
     disabled: {
         cursor: "not-allowed",
         ":hover": {
             outline: "none",
         },
-        ":focus-within": {
-            outline: `solid ${theme.size.width.small}px ${theme.color.outline.default}`,
-            outlineOffset: theme.size.offset.default,
+        ":focus-within": focusStyles.focus,
+        ":active": {
+            outline: "none",
         },
     },
     slider: {
@@ -197,8 +198,9 @@ const _generateStyles = (
     const sharedSwitchStyles = {
         cursor: clickable ? "pointer" : "auto",
         ":hover": {
+            ...focusStyles.focus[":focus-visible"],
             outline: clickable
-                ? `solid ${theme.size.width.small}px ${theme.color.outline.default}`
+                ? focusStyles.focus[":focus-visible"].outline
                 : "none",
         },
     };
@@ -214,6 +216,10 @@ const _generateStyles = (
                         !disabled && clickable
                             ? theme.color.bg.switch.activeOn
                             : undefined,
+                    ...focusStyles.focus[":focus-visible"],
+                    outline: clickable
+                        ? focusStyles.focus[":focus-visible"].outline
+                        : "none",
                 },
                 ...sharedSwitchStyles,
             },
@@ -238,6 +244,10 @@ const _generateStyles = (
                         !disabled && clickable
                             ? theme.color.bg.switch.activeOff
                             : undefined,
+                    ...focusStyles.focus[":focus-visible"],
+                    outline: clickable
+                        ? focusStyles.focus[":focus-visible"].outline
+                        : "none",
                 },
                 ...sharedSwitchStyles,
             },

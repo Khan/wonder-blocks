@@ -32,9 +32,6 @@ const theme = {
                 disabledOff: semanticColor.icon.disabled,
             },
         },
-        outline: {
-            default: semanticColor.focus.outer,
-        },
     },
     border: {
         radius: {
@@ -61,9 +58,6 @@ const theme = {
             // NOTE: This token is specific to the Switch component
             // slider
             large: 40,
-        },
-        offset: {
-            default: 1,
         },
     },
     spacing: {
