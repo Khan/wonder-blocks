@@ -2,6 +2,7 @@
 import fs from "fs";
 import path from "path";
 import ancesdir from "ancesdir";
+import {THEME_DATA_ATTRIBUTE} from "@khanacademy/wonder-blocks-theming";
 import {generateTokens} from "../internal/generate-tokens";
 
 const THEMES_DIR = "../theme/color";
@@ -35,7 +36,9 @@ function generateCssVariablesDefinitions() {
 
             // Use the root selector for the default theme
             const selector =
-                theme.name === "default" ? ":root" : `.wb-theme-${theme.name}`;
+                theme.name === "default"
+                    ? ":root"
+                    : `[${THEME_DATA_ATTRIBUTE}='${theme.name}']`;
 
             return `${selector} {${cssVariables}}`;
         })
