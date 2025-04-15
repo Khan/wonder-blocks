@@ -27,5 +27,6 @@ catalog:
     # React Router
     react-router: 5.3.4
     react-router-dom: 5.3.4
+    react-router-dom-v5-compat: ^6.30.0
     # Virtualization
     react-window: ^1.8.11

@@ -39,9 +39,9 @@ const theme = {
     border: {
         radius: {
             // slider
-            small: spacing.small_12,
+            small: border.radius.radius_120,
             // switch
-            full: border.radius.full,
+            full: border.radius.radius_full,
         },
     },
     size: {

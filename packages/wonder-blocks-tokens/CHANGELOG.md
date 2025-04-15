@@ -1,5 +1,31 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 8.0.0
+
+### Major Changes
+
+- e63adea: Updated `border.width` tokens to use new structure:
+
+    | Current Token Name | New Token Name | Pixels (px) |
+    | ------------------ | -------------- | ----------- |
+    | `hairline`         | `thin`         | 1px         |
+    | `thin`             | `medium`       | 2px         |
+
+## 7.0.0
+
+### Major Changes
+
+- e8ccf60: Refactor `border.radius` tokens to use new proposed structure:
+
+    | Current Token Name | New Token Name | Pixels (px) |
+    | ------------------ | -------------- | ----------- |
+    | `xSmall_2`         | `radius_010`   | 1px         |
+    | `small_3`          | `radius_040`   | 4px         |
+    | `medium_4`         | `radius_040`   | 4px         |
+    | `large_6`          | `radius_080`   | 8px         |
+    | `xLarge_12`        | `radius_120`   | 12px        |
+    | `full`             | `radius_full`  | 50%         |
+
 ## 6.0.0
 
 ### Major Changes

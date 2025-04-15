@@ -26,7 +26,7 @@ const defaultTheme = {
         },
     },
     border: {
-        radius: tokens.border.radius.medium_4,
+        radius: tokens.border.radius.radius_040,
     },
 };
 
@@ -37,7 +37,7 @@ const customTheme = mergeTheme(defaultTheme, {
         },
     },
     border: {
-        radius: tokens.border.radius.large_6,
+        radius: tokens.border.radius.radius_080,
     },
 });
 

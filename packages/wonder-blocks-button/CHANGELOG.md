@@ -1,5 +1,39 @@
 # @khanacademy/wonder-blocks-button
 
+## 8.0.2
+
+### Patch Changes
+
+- e63adea: Update `border.width` tokens to use new naming conventions.
+- Updated dependencies [e63adea]
+- Updated dependencies [e63adea]
+    - @khanacademy/wonder-blocks-tokens@8.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.2
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.8
+
+## 8.0.1
+
+### Patch Changes
+
+- e8ccf60: - Update `Button.large` to use `radius_40` (4px, 0.4rem) instead of `6px`.
+    - Update `Button.small (khanmigo)` to use `radius_80` (8px, 0.8rem) instead of `6px`.
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.1
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.7
+
+## 8.0.0
+
+### Major Changes
+
+- 38c926c: Upgrade WB to using react-router-dom-v5-compat.
+
+### Patch Changes
+
+- Updated dependencies [38c926c]
+    - @khanacademy/wonder-blocks-clickable@7.0.0
+    - @khanacademy/wonder-blocks-core@12.2.1
+
 ## 7.1.6
 
 ### Patch Changes

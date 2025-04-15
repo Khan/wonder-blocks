@@ -38,7 +38,7 @@ const meta = {
     component: Radio,
     render: (args) => (
         <AllVariants rows={rows} columns={columns}>
-            {(props) => <Radio {...args} {...props} />}
+            {({props}) => <Radio {...args} {...props} />}
         </AllVariants>
     ),
     args: {

@@ -131,7 +131,7 @@ const sharedStyles = StyleSheet.create({
         justifyContent: "center",
         height: DROPDOWN_ITEM_HEIGHT,
         border: "none",
-        borderRadius: spacing.xxxSmall_4,
+        borderRadius: border.radius.radius_040,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -175,7 +175,6 @@ const sharedStyles = StyleSheet.create({
             right: 0,
             bottom: -1,
             background: "currentColor",
-            borderRadius: border.radius.xSmall_2,
         },
     },
     press: {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {fade, spacing, color} from "@khanacademy/wonder-blocks-tokens";
+import {spacing, color, border} from "@khanacademy/wonder-blocks-tokens";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 
@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
         // default style for all instances of StyledInput
         background: color.white,
         border: `1px solid ${color.offBlack16}`,
-        borderRadius: spacing.xxxSmall_4,
+        borderRadius: border.radius.radius_040,
         fontSize: spacing.medium_16,
         padding: spacing.xSmall_8,
     },
     error: {
-        background: fade(color.red, 0.16),
+        background: color.fadedRed16,
         borderColor: color.red,
     },
 });

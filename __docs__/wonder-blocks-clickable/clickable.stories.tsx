@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -204,42 +205,50 @@ Disabled.parameters = {
 
 export const ClientSideNavigation: StoryComponentType = () => (
     <MemoryRouter>
-        <View>
-            <View style={styles.row}>
-                <Clickable
-                    href="/foo"
-                    style={styles.heading}
-                    onClick={() => {
-                        // eslint-disable-next-line no-console
-                        console.log("I'm still on the same page!");
-                    }}
-                >
-                    {(eventState) => (
-                        <LabelLarge>Uses Client-side Nav</LabelLarge>
-                    )}
-                </Clickable>
-                <Clickable
-                    href="/iframe.html?id=clickable-clickable--default&viewMode=story"
-                    style={styles.heading}
-                    skipClientNav
-                >
-                    {(eventState) => (
-                        <LabelLarge>Avoids Client-side Nav</LabelLarge>
-                    )}
-                </Clickable>
+        <CompatRouter>
+            <View>
+                <View style={styles.row}>
+                    <Clickable
+                        href="/foo"
+                        style={styles.heading}
+                        onClick={() => {
+                            // eslint-disable-next-line no-console
+                            console.log("I'm still on the same page!");
+                        }}
+                    >
+                        {(eventState) => (
+                            <LabelLarge>Uses Client-side Nav</LabelLarge>
+                        )}
+                    </Clickable>
+                    <Clickable
+                        href="/iframe.html?id=clickable-clickable--default&viewMode=story"
+                        style={styles.heading}
+                        skipClientNav
+                    >
+                        {(eventState) => (
+                            <LabelLarge>Avoids Client-side Nav</LabelLarge>
+                        )}
+                    </Clickable>
+                </View>
+                <View style={styles.navigation}>
+                    <Routes>
+                        <Route
+                            path="/foo"
+                            element={
+                                <View id="foo">
+                                    The first clickable element does client-side
+                                    navigation here.
+                                </View>
+                            }
+                        />
+                        <Route
+                            path="*"
+                            element={<View>See navigation changes here</View>}
+                        />
+                    </Routes>
+                </View>
             </View>
-            <View style={styles.navigation}>
-                <Switch>
-                    <Route path="/foo">
-                        <View id="foo">
-                            The first clickable element does client-side
-                            navigation here.
-                        </View>
-                    </Route>
-                    <Route path="*">See navigation changes here</Route>
-                </Switch>
-            </View>
-        </View>
+        </CompatRouter>
     </MemoryRouter>
 );
 

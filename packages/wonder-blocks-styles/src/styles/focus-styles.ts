@@ -9,8 +9,8 @@ import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
  */
 export const focus = {
     ":focus-visible": {
-        boxShadow: `0 0 0 ${border.width.thin}px ${semanticColor.focus.inner}`,
-        outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
-        outlineOffset: border.width.thin,
+        boxShadow: `0 0 0 ${border.width.medium} ${semanticColor.focus.inner}`,
+        outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
+        outlineOffset: border.width.medium,
     },
 };

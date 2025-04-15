@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-testing-core",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -23,7 +23,8 @@
     "node-fetch": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-router-dom": "catalog:"
+    "react-router-dom": "catalog:",
+    "react-router-dom-v5-compat": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",

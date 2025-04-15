@@ -1,5 +1,31 @@
 # @khanacademy/wonder-blocks-accordion
 
+## 3.1.9
+
+### Patch Changes
+
+- Updated dependencies [e63adea]
+- Updated dependencies [e63adea]
+    - @khanacademy/wonder-blocks-tokens@8.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.2
+
+## 3.1.8
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.1
+
+## 3.1.7
+
+### Patch Changes
+
+- Updated dependencies [38c926c]
+    - @khanacademy/wonder-blocks-clickable@7.0.0
+    - @khanacademy/wonder-blocks-core@12.2.1
+
 ## 3.1.6
 
 ### Patch Changes

@@ -3,7 +3,11 @@ import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -361,7 +365,7 @@ const _generateStyles = (
         wrapperStyle = {
             border: borderStyle,
             borderBottom: "none",
-            borderRadius: 0,
+            borderRadius: border.radius.radius_0,
         };
 
         if (isLastSection) {
@@ -406,7 +410,7 @@ const _generateStyles = (
     if (cornerKind === "rounded-per-section") {
         wrapperStyle = {
             border: borderStyle,
-            borderRadius: spacing.small_12,
+            borderRadius: border.radius.radius_120,
             marginBottom: spacing.medium_16,
         };
 

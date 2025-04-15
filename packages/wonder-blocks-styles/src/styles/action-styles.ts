@@ -1,4 +1,4 @@
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {focus} from "./focus-styles";
 
 const pressColor = `color-mix(in srgb, ${semanticColor.border.strong} 55%, ${semanticColor.border.inverse})`;
@@ -11,10 +11,10 @@ const pressColor = `color-mix(in srgb, ${semanticColor.border.strong} 55%, ${sem
  * NOTE: This will be deprecated in the future.
  */
 export const inverse = {
+    // Overriding borderColor only to preserve the visual integrity of the
+    // button, as there might be some cases where the interactive element
+    // already includes a border.
     ":not([aria-disabled=true])": {
-        // Overriding borderColor only to preserve the visual integrity of the
-        // button, as there might be some cases where the interactive element
-        // already includes a border.
         borderColor: semanticColor.border.inverse,
         color: semanticColor.text.inverse,
     },
@@ -31,7 +31,7 @@ export const inverse = {
     ...focus,
 
     ":active:not([aria-disabled=true])": {
-        borderRadius: spacing.xSmall_8,
+        borderRadius: border.radius.radius_080,
         // This is a slightly darker color than the inverse color.
         borderColor: pressColor,
     },

@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import {
+    border,
     semanticColor,
     sizing,
     spacing,
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
         ":focus": {
             // Override the default focus state for the cell element, so that it
             // can be added programmatically to the button element.
-            borderRadius: spacing.xxxSmall_4,
+            borderRadius: border.radius.radius_040,
             outline: `${spacing.xxxxSmall_2}px solid ${semanticColor.focus.outer}`,
             outlineOffset: -spacing.xxxxSmall_2,
         },

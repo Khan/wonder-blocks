@@ -1,6 +1,7 @@
 import * as React from "react";
 import {render, waitFor} from "@testing-library/react";
-import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter} from "react-router-dom-v5-compat";
 import * as ReactDOM from "react-dom";
 
 import plus from "@phosphor-icons/core/regular/plus.svg";
@@ -169,14 +170,16 @@ describe("Link", () => {
     // Link element) if it uses a router and uses client navigation.
     test("forwards ref to react-router-dom Link which is an HTMLAnchorElement", () => {
         // Arrange
-        const ref: React.RefObject<typeof ReactRouterLink> = React.createRef();
+        const ref: any = React.createRef();
 
         // Act
         render(
             <MemoryRouter>
-                <Link href="/foo" skipClientNav={false} ref={ref}>
-                    Click me!
-                </Link>
+                <CompatRouter>
+                    <Link href="/foo" skipClientNav={false} ref={ref}>
+                        Click me!
+                    </Link>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -271,14 +274,16 @@ describe("Button", () => {
     // Link element) if it uses a router and uses client navigation.
     test("forwards ref to react-router-dom Link which is an HTMLAnchorElement", () => {
         // Arrange
-        const ref: React.RefObject<typeof ReactRouterLink> = React.createRef();
+        const ref: any = React.createRef();
 
         // Act
         render(
             <MemoryRouter>
-                <Link href="/foo" skipClientNav={false} ref={ref}>
-                    Click me!
-                </Link>
+                <CompatRouter>
+                    <Link href="/foo" skipClientNav={false} ref={ref}>
+                        Click me!
+                    </Link>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -324,18 +329,20 @@ describe("IconButton", () => {
     // Link element) if it uses a router and uses client navigation.
     test("forwards ref to react-router-dom Link which is an HTMLAnchorElement", () => {
         // Arrange
-        const ref: React.RefObject<typeof ReactRouterLink> = React.createRef();
+        const ref: any = React.createRef();
 
         // Act
         render(
             <MemoryRouter>
-                <IconButton
-                    href="/foo"
-                    skipClientNav={false}
-                    ref={ref}
-                    icon={plus}
-                />
-                ,
+                <CompatRouter>
+                    <IconButton
+                        href="/foo"
+                        skipClientNav={false}
+                        ref={ref}
+                        icon={plus}
+                    />
+                    ,
+                </CompatRouter>
             </MemoryRouter>,
         );
 

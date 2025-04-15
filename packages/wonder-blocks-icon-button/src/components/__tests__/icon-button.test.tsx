@@ -2,7 +2,8 @@ import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 
 import {IconButton} from "../icon-button";
@@ -44,19 +45,22 @@ describe("IconButton", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <div>
-                    <IconButton
-                        icon={magnifyingGlassIcon}
-                        aria-label="search"
-                        testId="icon-button"
-                        href="/foo"
-                    />
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <IconButton
+                            icon={magnifyingGlassIcon}
+                            aria-label="search"
+                            testId="icon-button"
+                            href="/foo"
+                        />
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -71,19 +75,22 @@ describe("IconButton", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <div>
-                    <IconButton
-                        icon={magnifyingGlassIcon}
-                        aria-label="search"
-                        testId="icon-button"
-                        href="/unknown"
-                    />
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <IconButton
+                            icon={magnifyingGlassIcon}
+                            aria-label="search"
+                            testId="icon-button"
+                            href="/unknown"
+                        />
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -98,20 +105,23 @@ describe("IconButton", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <div>
-                    <IconButton
-                        icon={magnifyingGlassIcon}
-                        aria-label="search"
-                        testId="icon-button"
-                        href="/foo"
-                        skipClientNav
-                    />
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <IconButton
+                            icon={magnifyingGlassIcon}
+                            aria-label="search"
+                            testId="icon-button"
+                            href="/foo"
+                            skipClientNav
+                        />
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -125,20 +135,23 @@ describe("IconButton", () => {
     test("disallow navigation when href and disabled are both set", async () => {
         render(
             <MemoryRouter>
-                <div>
-                    <IconButton
-                        icon={magnifyingGlassIcon}
-                        aria-label="search"
-                        testId="icon-button"
-                        href="/foo"
-                        disabled={true}
-                    />
-                    <Switch>
-                        <Route path="/foo">
-                            <div id="foo">Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <IconButton
+                            icon={magnifyingGlassIcon}
+                            aria-label="search"
+                            testId="icon-button"
+                            href="/foo"
+                            disabled={true}
+                        />
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<div id="foo">Hello, world!</div>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -208,7 +221,9 @@ describe("IconButton", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <IconButton icon={magnifyingGlassIcon} href="#" />,
+                <CompatRouter>
+                    <IconButton icon={magnifyingGlassIcon} href="#" />,
+                </CompatRouter>
             </MemoryRouter>,
         );
 

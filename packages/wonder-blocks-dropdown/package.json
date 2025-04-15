@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "9.2.3",
+  "version": "10.0.2",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
@@ -39,6 +39,7 @@
     "react-popper": "catalog:",
     "react-router": "catalog:",
     "react-router-dom": "catalog:",
+    "react-router-dom-v5-compat": "catalog:",
     "react-window": "catalog:"
   },
   "devDependencies": {
