@@ -143,7 +143,7 @@ type Story = StoryObj<typeof NavigationTabItem>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Tabs / NavigationTabs / Subcomponents /NavigationTabItem / NavigationTabItem - All Variants",
+    title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabItem / Testing / NavigationTabItem - Snapshots",
     component: NavigationTabItem,
     render: (args) => (
         <>

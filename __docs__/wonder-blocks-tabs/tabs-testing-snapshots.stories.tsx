@@ -143,7 +143,7 @@ type Story = StoryObj<typeof Tabs>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Tabs / Tabs / Tabs - All Variants",
+    title: "Packages / Tabs / Tabs / Testing / Tabs - Snapshots",
     component: Tabs,
     render: (args) => (
         <>
