@@ -340,19 +340,15 @@ const states = {
 
 const styles = StyleSheet.create({
     textarea: {
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
         boxSizing: "border-box",
         padding: `${VERTICAL_SPACING_PX}px ${spacing.medium_16}px`,
         // This minHeight is equivalent to when the textarea has one row
-        minHeight: `${
-            VERTICAL_SPACING_PX * 2 +
-            font.lineHeight.medium +
-            2 * border.width.hairline
-        }px`,
+        minHeight: `${VERTICAL_SPACING_PX * 2 + font.lineHeight.medium + 2}px`,
     },
     default: {
         background: states.default.background,
-        border: `${border.width.hairline}px solid ${states.default.border}`,
+        border: `${border.width.thin} solid ${states.default.border}`,
         color: states.default.foreground,
         "::placeholder": {
             color: semanticColor.text.secondary,
@@ -361,7 +357,7 @@ const styles = StyleSheet.create({
     defaultFocus: {
         ":focus-visible": {
             borderColor: semanticColor.focus.outer,
-            outline: `${border.width.hairline}px solid ${semanticColor.focus.outer}`,
+            outline: `${border.width.thin} solid ${semanticColor.focus.outer}`,
             // Negative outline offset so it focus outline is not cropped off if
             // an ancestor element has overflow: hidden
             outlineOffset: -2,
@@ -369,26 +365,26 @@ const styles = StyleSheet.create({
     },
     disabled: {
         background: states.disabled.background,
-        border: `${border.width.hairline}px solid ${states.disabled.border}`,
+        border: `${border.width.thin} solid ${states.disabled.border}`,
         color: states.disabled.foreground,
         "::placeholder": {
             color: states.disabled.foreground,
         },
         cursor: "not-allowed",
         ":focus-visible": {
-            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
+            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
             outlineOffset: -3,
         },
     },
     error: {
         background: states.error.background,
-        border: `${border.width.hairline}px solid ${states.error.border}`,
+        border: `${border.width.thin} solid ${states.error.border}`,
         color: states.error.foreground,
         "::placeholder": {
             color: semanticColor.text.secondary,
         },
         ":focus-visible": {
-            outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
+            outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
             borderColor: states.error.border,
         },
     },

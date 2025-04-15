@@ -5,29 +5,29 @@ const theme = {
 
     border: {
         offset: {
-            primary: border.width.thin,
-            secondary: -border.width.thin,
-            tertiary: -border.width.thin,
+            primary: border.width.medium,
+            secondary: `-${border.width.medium}`,
+            tertiary: -border.width.medium,
         },
         width: {
             primary: {
                 default: border.width.none,
-                hover: border.width.thin,
-                press: border.width.thin,
+                hover: border.width.medium,
+                press: border.width.medium,
             },
             secondary: {
-                default: border.width.hairline,
-                hover: border.width.thin,
-                press: border.width.thin,
+                default: border.width.thin,
+                hover: border.width.medium,
+                press: border.width.medium,
             },
             tertiary: {
                 default: border.width.none,
-                hover: border.width.thin,
-                press: border.width.thin,
+                hover: border.width.medium,
+                press: border.width.medium,
             },
         },
         radius: {
-            default: border.radius.medium_4,
+            default: border.radius.radius_040,
         },
     },
 };

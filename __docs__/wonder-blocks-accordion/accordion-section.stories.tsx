@@ -238,7 +238,8 @@ export const ReactElementInHeader: StoryComponentType = {
                             <View
                                 style={{
                                     backgroundSize: "contain",
-                                    borderRadius: "8px",
+                                    borderRadius:
+                                        tokens.border.radius.radius_080,
                                     height: 40,
                                     marginRight: tokens.spacing.small_12,
                                     minWidth: 40,

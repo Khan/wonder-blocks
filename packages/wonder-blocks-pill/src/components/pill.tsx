@@ -187,13 +187,13 @@ const pillStyles = StyleSheet.create({
     wrapperSmall: {
         paddingLeft: tokens.spacing.xSmall_8,
         paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.spacing.xxSmall_6,
+        borderRadius: tokens.border.radius.radius_040,
         height: 20,
     },
     wrapperMedium: {
         paddingLeft: tokens.spacing.xSmall_8,
         paddingRight: tokens.spacing.xSmall_8,
-        borderRadius: tokens.spacing.xxSmall_6,
+        borderRadius: tokens.border.radius.radius_040,
         // Minimum tap area recommendation for a11y
         height: tokens.spacing.large_24,
     },
@@ -202,7 +202,9 @@ const pillStyles = StyleSheet.create({
         paddingRight: tokens.spacing.small_12,
         paddingTop: tokens.spacing.xxSmall_6,
         paddingBottom: tokens.spacing.xxSmall_6,
-        borderRadius: tokens.spacing.large_24,
+        // TODO(WB-1876): This should be replaced with a border.radius token.
+        // Check with TB to determine final token.
+        borderRadius: tokens.sizing.size_240,
         height: tokens.spacing.xLarge_32,
     },
 });

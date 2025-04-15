@@ -145,6 +145,7 @@
     "react-popper": "catalog:",
     "react-router": "catalog:",
     "react-router-dom": "catalog:",
+    "react-router-dom-v5-compat": "catalog:",
     "react-window": "catalog:"
   },
   "resolutions": {

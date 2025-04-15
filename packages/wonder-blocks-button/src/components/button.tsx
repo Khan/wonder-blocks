@@ -1,5 +1,4 @@
 import * as React from "react";
-import {__RouterContext} from "react-router";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import type {
@@ -8,7 +7,7 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
-import {Link} from "react-router-dom";
+import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 import ButtonCore from "./button-core";
 import ThemedButton from "../themes/themed-button";
 
@@ -230,18 +229,20 @@ const Button: React.ForwardRefExoticComponent<
         ...sharedButtonCoreProps
     } = props;
 
-    const renderClickableBehavior = (router: any): React.ReactNode => {
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            router,
-        );
+    const inRouterContext = useInRouterContext();
 
-        const renderProp = (
-            state: ClickableState,
-            restChildProps: ChildrenProps,
-        ) => {
-            return (
+    const ClickableBehavior = getClickableBehavior(
+        href,
+        skipClientNav,
+        inRouterContext,
+    );
+
+    const renderProp = (
+        state: ClickableState,
+        restChildProps: ChildrenProps,
+    ) => {
+        return (
+            <ThemedButton>
                 <ButtonCore
                     {...sharedButtonCoreProps}
                     {...state}
@@ -261,49 +262,41 @@ const Button: React.ForwardRefExoticComponent<
                 >
                     {children}
                 </ButtonCore>
-            );
-        };
-
-        if (beforeNav) {
-            return (
-                <ClickableBehavior
-                    disabled={spinner || disabled}
-                    href={href}
-                    role="button"
-                    type={type}
-                    onClick={onClick}
-                    beforeNav={beforeNav}
-                    safeWithNav={safeWithNav}
-                    rel={rel}
-                >
-                    {renderProp}
-                </ClickableBehavior>
-            );
-        } else {
-            return (
-                <ClickableBehavior
-                    disabled={spinner || disabled}
-                    href={href}
-                    role="button"
-                    type={type}
-                    onClick={onClick}
-                    safeWithNav={safeWithNav}
-                    target={target}
-                    rel={rel}
-                >
-                    {renderProp}
-                </ClickableBehavior>
-            );
-        }
+            </ThemedButton>
+        );
     };
 
-    return (
-        <ThemedButton>
-            <__RouterContext.Consumer>
-                {(router) => renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
-        </ThemedButton>
-    );
+    if (beforeNav) {
+        return (
+            <ClickableBehavior
+                disabled={spinner || disabled}
+                href={href}
+                role="button"
+                type={type}
+                onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
+                rel={rel}
+            >
+                {renderProp}
+            </ClickableBehavior>
+        );
+    } else {
+        return (
+            <ClickableBehavior
+                disabled={spinner || disabled}
+                href={href}
+                role="button"
+                type={type}
+                onClick={onClick}
+                safeWithNav={safeWithNav}
+                target={target}
+                rel={rel}
+            >
+                {renderProp}
+            </ClickableBehavior>
+        );
+    }
 });
 
 export default Button;

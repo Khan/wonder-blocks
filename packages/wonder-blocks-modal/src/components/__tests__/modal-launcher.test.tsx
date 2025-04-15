@@ -1,6 +1,8 @@
 import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter} from "react-router-dom-v5-compat";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -295,33 +297,39 @@ describe("ModalLauncher", () => {
             };
 
             return (
-                <View>
-                    <Button>Top of page (should not receive focus)</Button>
-                    <Button
-                        testId="launcher-button"
-                        onClick={() => handleOpen()}
-                    >
-                        Open modal
-                    </Button>
-                    <ModalLauncher
-                        onClose={() => handleClose()}
-                        opened={opened}
-                        modal={({closeModal}: any) => (
-                            <OnePaneDialog
-                                title="Regular modal"
-                                content={<View>Hello World</View>}
-                                footer={
-                                    <Button
-                                        testId="modal-close-button"
-                                        onClick={closeModal}
-                                    >
-                                        Close Modal
-                                    </Button>
-                                }
+                <MemoryRouter>
+                    <CompatRouter>
+                        <View>
+                            <Button>
+                                Top of page (should not receive focus)
+                            </Button>
+                            <Button
+                                testId="launcher-button"
+                                onClick={() => handleOpen()}
+                            >
+                                Open modal
+                            </Button>
+                            <ModalLauncher
+                                onClose={() => handleClose()}
+                                opened={opened}
+                                modal={({closeModal}: any) => (
+                                    <OnePaneDialog
+                                        title="Regular modal"
+                                        content={<View>Hello World</View>}
+                                        footer={
+                                            <Button
+                                                testId="modal-close-button"
+                                                onClick={closeModal}
+                                            >
+                                                Close Modal
+                                            </Button>
+                                        }
+                                    />
+                                )}
                             />
-                        )}
-                    />
-                </View>
+                        </View>
+                    </CompatRouter>
+                </MemoryRouter>
             );
         };
 

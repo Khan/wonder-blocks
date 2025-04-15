@@ -1,12 +1,7 @@
 import * as React from "react";
 
-import {
-    StaticRouter,
-    MemoryRouter,
-    Route,
-    Switch,
-    useLocation,
-} from "react-router-dom";
+import {StaticRouter, MemoryRouter, Switch, Route} from "react-router-dom";
+import {CompatRouter, useLocation} from "react-router-dom-v5-compat";
 
 import type {LocationDescriptor} from "history";
 import type {TestHarnessAdapter} from "../types";
@@ -31,10 +26,6 @@ type Config =
                  */
                 initialIndex?: MemoryRouterProps["initialIndex"];
                 /**
-                 * See MemoryRouter prop for getUserConfirmation.
-                 */
-                getUserConfirmation?: MemoryRouterProps["getUserConfirmation"];
-                /**
                  * A path match to use.
                  *
                  * When this is specified, the harnessed component will be
@@ -57,6 +48,15 @@ type Config =
                  * Force the use of a StaticRouter, instead of MemoryRouter.
                  */
                 forceStatic: true;
+                /**
+                 * If true, then we will not use a CompatRouter.
+                 *
+                 * NOTE(john): There are cases where we don't want a CompatRouter
+                 * here as it uses useLayoutEffect, which causes issues in our
+                 * test environment. Namely, that it generates a warning about
+                 * the use of useLayoutEffect, which causes an error.
+                 */
+                disableCompatRouter?: boolean;
                 /**
                  * A path match to use.
                  *
@@ -108,34 +108,35 @@ const MaybeWithRoute = ({
     path: string | null | undefined;
     configLocation: LocationDescriptor;
 }): React.ReactElement => {
-    const actualLocation = useLocation();
-    const configuredLocation =
-        typeof configLocation === "string"
-            ? configLocation
-            : configLocation.pathname;
-
     if (path == null) {
         return <>{children}</>;
     }
 
+    const ErrorElement = () => {
+        const actualLocation = useLocation();
+        const configuredLocation =
+            typeof configLocation === "string"
+                ? configLocation
+                : configLocation.pathname;
+        const errorMessage =
+            `The current location '${actualLocation.pathname}' ` +
+            `does not match the configured path '${path}'. ` +
+            `Did you provide the correct configured ` +
+            `location, '${configuredLocation}', or did the ` +
+            `routing lead to a different place than you ` +
+            `expected?`;
+        throw new Error(errorMessage);
+    };
+
+    // NOTE(john): We want to use a Switch here because we want to ensure that
+    // we're still rendering RRv5-style routes. If we were to use Routes here
+    // then we would be rendering RRv6-style routes and that would break any
+    // usage of RRv5-style APIs happening inside the component we're testing.
+    // When we fully adopt v6, we can (and must) switch to using Routes.
     return (
         <Switch>
-            <Route exact={true} path={path}>
-                {children}
-            </Route>
-            <Route
-                path="*"
-                render={() => {
-                    throw new Error(
-                        `The current location '${actualLocation.pathname}' ` +
-                            `does not match the configured path '${path}'. ` +
-                            `Did you provide the correct configured ` +
-                            `location, '${configuredLocation}', or did the ` +
-                            `routing lead to a different place than you ` +
-                            `expected?`,
-                    );
-                }}
-            />
+            <Route path={path} render={() => <>{children}</>} />
+            <Route path="*" component={ErrorElement} />
         </Switch>
     );
 };
@@ -166,18 +167,32 @@ export const adapter: TestHarnessAdapter<Config> = (
          * There may be times (SSR testing comes to mind) where we will be
          * really strict about not permitting client-side navigation events.
          */
+        if (config.disableCompatRouter) {
+            return (
+                <StaticRouter location={config.location} context={{}}>
+                    <MaybeWithRoute
+                        path={config.path}
+                        configLocation={config.location}
+                    >
+                        {children}
+                    </MaybeWithRoute>
+                </StaticRouter>
+            );
+        }
+
         return (
             <StaticRouter location={config.location} context={{}}>
-                <MaybeWithRoute
-                    path={config.path}
-                    configLocation={config.location}
-                >
-                    {children}
-                </MaybeWithRoute>
+                <CompatRouter>
+                    <MaybeWithRoute
+                        path={config.path}
+                        configLocation={config.location}
+                    >
+                        {children}
+                    </MaybeWithRoute>
+                </CompatRouter>
             </StaticRouter>
         );
     }
-
     /**
      * OK, we must be OK with a memory router.
      *
@@ -189,12 +204,14 @@ export const adapter: TestHarnessAdapter<Config> = (
     if ("location" in config && config.location !== undefined) {
         return (
             <MemoryRouter initialEntries={[config.location]}>
-                <MaybeWithRoute
-                    path={config.path}
-                    configLocation={config.location}
-                >
-                    {children}
-                </MaybeWithRoute>
+                <CompatRouter>
+                    <MaybeWithRoute
+                        path={config.path}
+                        configLocation={config.location}
+                    >
+                        {children}
+                    </MaybeWithRoute>
+                </CompatRouter>
             </MemoryRouter>
         );
     }
@@ -227,18 +244,17 @@ export const adapter: TestHarnessAdapter<Config> = (
     if (config.initialIndex != null) {
         routerProps.initialIndex = config.initialIndex;
     }
-    if (config.getUserConfirmation != null) {
-        routerProps.getUserConfirmation = config.getUserConfirmation;
-    }
 
     return (
         <MemoryRouter {...routerProps}>
-            <MaybeWithRoute
-                path={config.path}
-                configLocation={entries[config.initialIndex ?? 0]}
-            >
-                {children}
-            </MaybeWithRoute>
+            <CompatRouter>
+                <MaybeWithRoute
+                    path={config.path}
+                    configLocation={entries[config.initialIndex ?? 0]}
+                >
+                    {children}
+                </MaybeWithRoute>
+            </CompatRouter>
         </MemoryRouter>
     );
 };

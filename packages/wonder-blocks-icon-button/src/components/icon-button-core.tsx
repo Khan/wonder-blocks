@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
-import {__RouterContext} from "react-router";
+import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
@@ -103,69 +102,62 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         ...restProps
     } = props;
     const {theme, themeName} = useScopedTheme(IconButtonThemeContext);
+    const inRouterContext = useInRouterContext();
 
-    const renderInner = (router: any): React.ReactNode => {
-        const buttonStyles = _generateStyles(
-            actionType,
-            !!disabled,
-            kind,
-            size,
-            theme,
-            themeName,
-        );
-
-        const defaultStyle = [
-            sharedStyles.shared,
-            buttonStyles.default,
-            disabled && buttonStyles.disabled,
-        ];
-
-        const child = <IconChooser size={size} icon={icon} />;
-
-        const commonProps = {
-            "data-testid": testId,
-            style: [defaultStyle, style],
-            ...restProps,
-        } as const;
-
-        if (href && !disabled) {
-            return router && !skipClientNav && isClientSideUrl(href) ? (
-                <StyledLink
-                    {...commonProps}
-                    to={href}
-                    ref={ref as React.Ref<typeof Link>}
-                >
-                    {child}
-                </StyledLink>
-            ) : (
-                <StyledA
-                    {...commonProps}
-                    href={href}
-                    ref={ref as React.Ref<HTMLAnchorElement>}
-                >
-                    {child}
-                </StyledA>
-            );
-        } else {
-            return (
-                <StyledButton
-                    type={type}
-                    {...commonProps}
-                    onClick={disabled ? undefined : restProps.onClick}
-                    aria-disabled={disabled}
-                    ref={ref as React.Ref<HTMLButtonElement>}
-                >
-                    {child}
-                </StyledButton>
-            );
-        }
-    };
-
-    return (
-        <__RouterContext.Consumer>
-            {(router) => renderInner(router)}
-        </__RouterContext.Consumer>
+    const buttonStyles = _generateStyles(
+        actionType,
+        !!disabled,
+        kind,
+        size,
+        theme,
+        themeName,
     );
+
+    const defaultStyle = [
+        sharedStyles.shared,
+        buttonStyles.default,
+        disabled && buttonStyles.disabled,
+    ];
+
+    const child = <IconChooser size={size} icon={icon} />;
+
+    const commonProps = {
+        "data-testid": testId,
+        style: [defaultStyle, style],
+        ...restProps,
+    } as const;
+
+    if (href && !disabled) {
+        return inRouterContext && !skipClientNav && isClientSideUrl(href) ? (
+            <StyledLink
+                {...commonProps}
+                to={href}
+                ref={ref as React.Ref<typeof Link>}
+            >
+                {child}
+            </StyledLink>
+        ) : (
+            <StyledA
+                {...commonProps}
+                href={href}
+                ref={ref as React.Ref<HTMLAnchorElement>}
+            >
+                {child}
+            </StyledA>
+        );
+    } else {
+        return (
+            <StyledButton
+                type={type}
+                {...commonProps}
+                onClick={disabled ? undefined : restProps.onClick}
+                aria-disabled={disabled}
+                ref={ref as React.Ref<HTMLButtonElement>}
+            >
+                {child}
+            </StyledButton>
+        );
+    }
 });
 
 export default IconButtonCore;
@@ -214,6 +206,7 @@ const _generateStyles = (
 
     const disabledStatesStyles = {
         borderColor: disabledState.border,
+        borderWidth: borderWidthKind.default,
         background: disabledState.background,
         color: disabledState.foreground,
     };
@@ -233,20 +226,23 @@ const _generateStyles = (
             /**
              * States
              *
-             * Defined in the following order: hover, focus, active.
+             * Defined in the following order: hover, active, focus.
+             *
+             * This is important as we want to give more priority to the
+             * :focus-visible styles.
              */
             ":hover": {
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
                 outline:
                     kind === "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
                         : undefined,
                 outlineOffset:
                     kind === "primary" ? outlineOffsetKind : undefined,
                 border:
                     kind !== "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.hover.border}`
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
                         : undefined,
             },
             // Allow hover styles on non-touch devices only. This prevents an
@@ -258,22 +254,25 @@ const _generateStyles = (
                 },
             },
 
-            // :focus-visible -> Provide focus styles for keyboard users only.
-            ...focusStyles.focus,
             ":active": {
                 // primary
-                outlineColor:
+                outline:
                     kind === "primary"
-                        ? themeVariant.press.border
-                        : "undefined",
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                        : undefined,
+                outlineOffset:
+                    kind === "primary" ? outlineOffsetKind : undefined,
                 // secondary, tertiary
                 border:
                     kind !== "primary"
-                        ? `${borderWidthKind.hover}px solid ${themeVariant.press.border}`
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
                         : undefined,
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
             },
+
+            // :focus-visible -> Provide focus styles for keyboard users only.
+            ...focusStyles.focus,
         },
         disabled: {
             cursor: "not-allowed",
@@ -281,8 +280,8 @@ const _generateStyles = (
             // NOTE: Even that browsers recommend to specify pseudo-classes in
             // this order: link, visited, focus, hover, active, we need to
             // specify focus after hover to override hover styles. By doing this
-            // we are able to remove the hover border when the button is
-            // disabled.
+            // we are able to reset the border/outline styles to the default
+            // ones (rest state).
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
             ":hover": {...disabledStatesStyles, outline: "none"},
             ":active": {...disabledStatesStyles, outline: "none"},

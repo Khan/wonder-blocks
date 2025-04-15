@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
-import {__RouterContext} from "react-router";
+import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {
@@ -34,116 +33,107 @@ const LinkCore = React.forwardRef(function LinkCore(
     props: Props,
     ref: React.ForwardedRef<typeof Link | HTMLAnchorElement>,
 ) {
-    const renderInner = (router: any): React.ReactNode => {
-        const {
-            children,
-            skipClientNav,
-            focused,
-            hovered, // eslint-disable-line @typescript-eslint/no-unused-vars
-            href,
-            inline = false,
-            light = false,
-            pressed,
-            style,
-            testId,
-            waiting: _,
-            target,
-            startIcon,
-            endIcon,
-            ...restProps
-        } = props;
+    const inRouterContext = useInRouterContext();
 
-        const linkStyles = _generateStyles(inline, light);
+    const {
+        children,
+        skipClientNav,
+        focused,
+        hovered, // eslint-disable-line @typescript-eslint/no-unused-vars
+        href,
+        inline = false,
+        light = false,
+        pressed,
+        style,
+        testId,
+        waiting: _,
+        target,
+        startIcon,
+        endIcon,
+        ...restProps
+    } = props;
 
-        const defaultStyles = [
-            sharedStyles.shared,
-            linkStyles.rest,
-            inline && linkStyles.restInline,
-            // focused is preserved to allow for programmatic focus.
-            !pressed && focused && linkStyles.focus,
-        ];
+    const linkStyles = _generateStyles(inline, light);
 
-        const commonProps = {
-            "data-testid": testId,
-            style: [defaultStyles, style],
-            target,
-            ...restProps,
-        } as const;
+    const defaultStyles = [
+        sharedStyles.shared,
+        linkStyles.rest,
+        inline && linkStyles.restInline,
+        // focused is preserved to allow for programmatic focus.
+        !pressed && focused && linkStyles.focus,
+    ];
 
-        const linkUrl = new URL(href, window.location.origin);
+    const commonProps = {
+        "data-testid": testId,
+        style: [defaultStyles, style],
+        target,
+        ...restProps,
+    } as const;
 
-        const isExternalLink = linkUrl.origin !== window.location.origin;
+    const linkUrl = new URL(href, window.location.origin);
 
-        const externalIcon = (
-            <PhosphorIcon
-                icon={externalLinkIcon}
-                size="small"
-                style={[linkContentStyles.endIcon, linkContentStyles.centered]}
-                testId="external-icon"
-            />
-        );
+    const isExternalLink = linkUrl.origin !== window.location.origin;
 
-        let startIconElement;
-        let endIconElement;
+    const externalIcon = (
+        <PhosphorIcon
+            icon={externalLinkIcon}
+            size="small"
+            style={[linkContentStyles.endIcon, linkContentStyles.centered]}
+            testId="external-icon"
+        />
+    );
 
-        if (startIcon) {
-            startIconElement = React.cloneElement(startIcon, {
-                style: [
-                    linkContentStyles.startIcon,
-                    linkContentStyles.centered,
-                ],
-                testId: "start-icon",
-                "aria-hidden": "true",
-                ...startIcon.props,
-            } as Partial<
-                React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
-            >);
-        }
+    let startIconElement;
+    let endIconElement;
 
-        if (endIcon) {
-            endIconElement = React.cloneElement(endIcon, {
-                style: [linkContentStyles.endIcon, linkContentStyles.centered],
-                testId: "end-icon",
-                "aria-hidden": "true",
-                ...endIcon.props,
-            } as Partial<
-                React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
-            >);
-        }
+    if (startIcon) {
+        startIconElement = React.cloneElement(startIcon, {
+            style: [linkContentStyles.startIcon, linkContentStyles.centered],
+            testId: "start-icon",
+            "aria-hidden": "true",
+            ...startIcon.props,
+        } as Partial<
+            React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+        >);
+    }
 
-        const linkContent = (
-            <>
-                {startIcon && startIconElement}
-                {children}
-                {endIcon
-                    ? endIconElement
-                    : isExternalLink && target === "_blank" && externalIcon}
-            </>
-        );
+    if (endIcon) {
+        endIconElement = React.cloneElement(endIcon, {
+            style: [linkContentStyles.endIcon, linkContentStyles.centered],
+            testId: "end-icon",
+            "aria-hidden": "true",
+            ...endIcon.props,
+        } as Partial<
+            React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>
+        >);
+    }
 
-        return router && !skipClientNav && isClientSideUrl(href) ? (
-            <StyledLink
-                {...commonProps}
-                to={href}
-                ref={ref as React.ForwardedRef<typeof Link>}
-            >
-                {linkContent}
-            </StyledLink>
-        ) : (
-            <StyledA
-                {...commonProps}
-                href={href}
-                ref={ref as React.ForwardedRef<HTMLAnchorElement>}
-            >
-                {linkContent}
-            </StyledA>
-        );
-    };
+    const linkContent = (
+        <>
+            {startIcon && startIconElement}
+            {children}
+            {endIcon
+                ? endIconElement
+                : isExternalLink && target === "_blank" && externalIcon}
+        </>
+    );
 
-    return (
-        <__RouterContext.Consumer>
-            {(router) => renderInner(router)}
-        </__RouterContext.Consumer>
+    return inRouterContext && !skipClientNav && isClientSideUrl(href) ? (
+        <StyledLink
+            {...commonProps}
+            to={href}
+            ref={ref as React.ForwardedRef<typeof Link>}
+        >
+            {linkContent}
+        </StyledLink>
+    ) : (
+        <StyledA
+            {...commonProps}
+            href={href}
+            ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+        >
+            {linkContent}
+        </StyledA>
     );
 });
 
@@ -223,8 +213,8 @@ const _generateStyles = (inline: boolean, light: boolean) => {
 
     const focusStyling = {
         color: variant.focus.foreground,
-        outline: `${border.width.hairline}px solid ${variant.focus.border}`,
-        borderRadius: border.radius.small_3,
+        outline: `${border.width.thin} solid ${variant.focus.border}`,
+        borderRadius: border.radius.radius_040,
     };
 
     const pressStyling = {

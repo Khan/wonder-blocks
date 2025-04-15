@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-link",
-  "version": "8.0.4",
+  "version": "9.0.2",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -27,7 +27,8 @@
     "aphrodite": "catalog:",
     "react": "catalog:",
     "react-router": "catalog:",
-    "react-router-dom": "catalog:"
+    "react-router-dom": "catalog:",
+    "react-router-dom-v5-compat": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"

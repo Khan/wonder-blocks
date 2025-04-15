@@ -1,5 +1,6 @@
 import * as React from "react";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
+import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
@@ -18,16 +19,19 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <View>
-                    <Clickable testId="button" href="/foo">
-                        {(eventState: any) => <h1>Click Me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <View>Hello, world!</View>
-                        </Route>
-                    </Switch>
-                </View>
+                <CompatRouter>
+                    <View>
+                        <Clickable testId="button" href="/foo">
+                            {(eventState: any) => <h1>Click Me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </View>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -42,16 +46,19 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <View>
-                    <Clickable testId="button" href="/unknown">
-                        {(eventState: any) => <h1>Click Me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <View>Hello, world!</View>
-                        </Route>
-                    </Switch>
-                </View>
+                <CompatRouter>
+                    <View>
+                        <Clickable testId="button" href="/unknown">
+                            {(eventState: any) => <h1>Click Me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </View>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -66,16 +73,19 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <View>
-                    <Clickable testId="button" href="/foo" skipClientNav>
-                        {(eventState: any) => <h1>Click Me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <View>Hello, world!</View>
-                        </Route>
-                    </Switch>
-                </View>
+                <CompatRouter>
+                    <View>
+                        <Clickable testId="button" href="/foo" skipClientNav>
+                            {(eventState: any) => <h1>Click Me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </View>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -90,16 +100,19 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <View>
-                    <Clickable testId="button" href="/foo" disabled={true}>
-                        {(eventState: any) => <h1>Click Me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <View>Hello, world!</View>
-                        </Route>
-                    </Switch>
-                </View>
+                <CompatRouter>
+                    <View>
+                        <Clickable testId="button" href="/foo" disabled={true}>
+                            {(eventState: any) => <h1>Click Me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </View>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -146,20 +159,23 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        beforeNav={() => Promise.reject()}
-                    >
-                        {() => <span>Click me!</span>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            beforeNav={() => Promise.reject()}
+                        >
+                            {() => <span>Click me!</span>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -175,21 +191,24 @@ describe("Clickable", () => {
         const safeWithNavMock = jest.fn();
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        beforeNav={() => Promise.reject()}
-                        safeWithNav={safeWithNavMock}
-                    >
-                        {() => <span>Click me!</span>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            beforeNav={() => Promise.reject()}
+                            safeWithNav={safeWithNavMock}
+                        >
+                            {() => <span>Click me!</span>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -204,20 +223,23 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        beforeNav={() => Promise.resolve()}
-                    >
-                        {() => <span>Click me!</span>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            beforeNav={() => Promise.resolve()}
+                        >
+                            {() => <span>Click me!</span>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -237,21 +259,24 @@ describe("Clickable", () => {
         const safeWithNavMock = jest.fn();
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        beforeNav={() => Promise.resolve()}
-                        safeWithNav={safeWithNavMock}
-                    >
-                        {() => <span>Click me!</span>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            beforeNav={() => Promise.resolve()}
+                            safeWithNav={safeWithNavMock}
+                        >
+                            {() => <span>Click me!</span>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -268,21 +293,24 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        safeWithNav={() => Promise.resolve()}
-                        skipClientNav={true}
-                    >
-                        {() => <h1>Click me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            safeWithNav={() => Promise.resolve()}
+                            skipClientNav={true}
+                        >
+                            {() => <h1>Click me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -299,22 +327,25 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        beforeNav={() => Promise.resolve()}
-                        safeWithNav={() => Promise.resolve()}
-                        skipClientNav={true}
-                    >
-                        {() => <h1>Click me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            beforeNav={() => Promise.resolve()}
+                            safeWithNav={() => Promise.resolve()}
+                            skipClientNav={true}
+                        >
+                            {() => <h1>Click me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -331,21 +362,24 @@ describe("Clickable", () => {
         // Arrange
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        safeWithNav={() => Promise.reject()}
-                        skipClientNav={true}
-                    >
-                        {() => <h1>Click me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            safeWithNav={() => Promise.reject()}
+                            skipClientNav={true}
+                        >
+                            {() => <h1>Click me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -363,21 +397,24 @@ describe("Clickable", () => {
         const safeWithNavMock = jest.fn();
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        safeWithNav={safeWithNavMock}
-                        skipClientNav={false}
-                    >
-                        {() => <h1>Click me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            safeWithNav={safeWithNavMock}
+                            skipClientNav={false}
+                        >
+                            {() => <h1>Click me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -397,22 +434,25 @@ describe("Clickable", () => {
         const safeWithNavMock = jest.fn();
         render(
             <MemoryRouter>
-                <div>
-                    <Clickable
-                        testId="button"
-                        href="/foo"
-                        beforeNav={() => Promise.resolve()}
-                        safeWithNav={safeWithNavMock}
-                        skipClientNav={false}
-                    >
-                        {() => <h1>Click me!</h1>}
-                    </Clickable>
-                    <Switch>
-                        <Route path="/foo">
-                            <div>Hello, world!</div>
-                        </Route>
-                    </Switch>
-                </div>
+                <CompatRouter>
+                    <div>
+                        <Clickable
+                            testId="button"
+                            href="/foo"
+                            beforeNav={() => Promise.resolve()}
+                            safeWithNav={safeWithNavMock}
+                            skipClientNav={false}
+                        >
+                            {() => <h1>Click me!</h1>}
+                        </Clickable>
+                        <Routes>
+                            <Route
+                                path="/foo"
+                                element={<View>Hello, world!</View>}
+                            />
+                        </Routes>
+                    </div>
+                </CompatRouter>
             </MemoryRouter>,
         );
 

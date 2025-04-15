@@ -144,15 +144,16 @@ const sharedStyles = StyleSheet.create({
         outline: "none",
         boxSizing: "border-box",
         borderStyle: "solid",
-        borderWidth: border.width.hairline,
-        borderRadius: border.radius.small_3,
+        borderWidth: border.width.thin,
+        // TODO(WB-1864): Use the correct token once TB is updated.
+        borderRadius: 3,
     },
 
     disabled: {
         cursor: "auto",
         backgroundColor: disabledState.background,
         borderColor: disabledState.border,
-        borderWidth: border.width.hairline,
+        borderWidth: border.width.thin,
     },
 
     checkboxIcon: {
@@ -203,17 +204,17 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
                 ":focus-visible": {
-                    outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
+                    outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: 1,
                 },
 
                 ":hover": {
-                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
                 },
 
                 ":active": {
-                    outline: `${border.width.thin}px solid ${colorAction.press.border}`,
+                    outline: `${border.width.medium} solid ${colorAction.press.border}`,
                     outlineOffset: 1,
                     background: colorAction.press.background,
                 },
@@ -234,7 +235,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     backgroundColor: error
                         ? states.error.background
                         : colorAction.hover.background,
-                    outline: `${border.width.thin}px solid ${semanticColor.focus.outer}`,
+                    outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,
                 },
 
@@ -242,13 +243,13 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     backgroundColor: error
                         ? states.error.background
                         : colorAction.hover.background,
-                    outline: `${border.width.thin}px solid ${colorAction.hover.border}`,
+                    outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: -1,
                 },
 
                 ":active": {
                     backgroundColor: colorAction.press.background,
-                    outline: `${border.width.thin}px solid ${colorAction.press.border}`,
+                    outline: `${border.width.medium} solid ${colorAction.press.border}`,
                     outlineOffset: -1,
                 },
             },
