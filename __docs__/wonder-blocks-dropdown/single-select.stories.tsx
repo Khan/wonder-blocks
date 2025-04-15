@@ -7,7 +7,11 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -123,8 +127,8 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
-        borderRadius: spacing.xxxSmall_4,
+        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.text.primary,
         padding: spacing.medium_16,

@@ -21,6 +21,7 @@ import {
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import ComponentInfo from "../components/component-info";
 import modalPanelArgtypes from "./modal-panel.argtypes";
+import {allModes} from "../../.storybook/modes";
 
 const customViewports = {
     phone: {
@@ -148,7 +149,10 @@ export default {
             defaultViewport: "desktop",
         },
         chromatic: {
-            viewports: [320, 640, 1024],
+            modes: {
+                small: allModes.small,
+                large: allModes.large,
+            },
         },
     },
     argTypes: modalPanelArgtypes,
@@ -358,7 +362,7 @@ export const WithStyle: StoryComponentType = {
         const modalStyles = {
             color: semanticColor.status.notice.foreground,
             background: semanticColor.status.notice.background,
-            border: `${border.width.thin}px solid ${semanticColor.status.notice.foreground}`,
+            border: `${border.width.medium} solid ${semanticColor.status.notice.foreground}`,
             borderRadius: 20,
         } as const;
 

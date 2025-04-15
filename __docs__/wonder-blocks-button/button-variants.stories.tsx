@@ -4,6 +4,8 @@ import {action} from "@storybook/addon-actions";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg";
+import {allModes} from "../../.storybook/modes";
+
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -15,13 +17,15 @@ import Button from "@khanacademy/wonder-blocks-button";
  * Button component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / Button / All Variants",
+    title: "Packages / Button / Button - All Variants",
     parameters: {
         chromatic: {
             // NOTE: This is required to prevent Chromatic from cutting off the
             // dark background in screenshots (accounts for all the space taken
             // by the variants).
-            viewports: [1700],
+            modes: {
+                wide: allModes.wide,
+            },
         },
     },
     tags: ["!autodocs"],

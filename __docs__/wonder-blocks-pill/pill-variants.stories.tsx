@@ -50,7 +50,7 @@ const meta = {
     component: Pill,
     render: (args) => (
         <AllVariants rows={rows} columns={columns}>
-            {(props) => (
+            {({props}) => (
                 <View style={styles.container}>
                     {kinds.map((kind) => (
                         <Pill {...args} {...props} kind={kind}>

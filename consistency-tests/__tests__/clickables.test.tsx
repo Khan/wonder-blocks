@@ -6,6 +6,7 @@
  */
 import * as React from "react";
 import {MemoryRouter} from "react-router-dom";
+import {CompatRouter} from "react-router-dom-v5-compat";
 import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
@@ -95,7 +96,9 @@ describe.each`
         // Arrange
         render(
             <MemoryRouter>
-                <Component href="#">Click me</Component>
+                <CompatRouter>
+                    <Component href="#">Click me</Component>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -133,7 +136,9 @@ describe.each`
         // Arrange
         render(
             <MemoryRouter>
-                <Component onClick={() => {}}>Click me</Component>
+                <CompatRouter>
+                    <Component onClick={() => {}}>Click me</Component>
+                </CompatRouter>
             </MemoryRouter>,
         );
 
@@ -149,7 +154,9 @@ describe.each`
         const clickHandler = jest.fn();
         render(
             <MemoryRouter>
-                <Component onClick={clickHandler}>Click me</Component>
+                <CompatRouter>
+                    <Component onClick={clickHandler}>Click me</Component>
+                </CompatRouter>
             </MemoryRouter>,
         );
 

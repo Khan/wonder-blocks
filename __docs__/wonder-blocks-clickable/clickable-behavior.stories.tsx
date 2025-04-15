@@ -15,7 +15,7 @@ const ClickableBehavior = getClickableBehavior();
 
 export default {
     title: "Packages / Clickable / ClickableBehavior",
-    component: ClickableBehavior,
+    component: ClickableBehavior as unknown,
     argTypes: argTypes,
     args: {
         disabled: false,

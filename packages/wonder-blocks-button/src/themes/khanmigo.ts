@@ -46,12 +46,12 @@ const theme = mergeTheme(defaultTheme, {
     },
     border: {
         radius: {
-            default: tokens.border.radius.xLarge_12,
-            small: tokens.border.radius.large_6,
-            large: tokens.border.radius.xLarge_12,
+            default: tokens.border.radius.radius_120,
+            small: tokens.border.radius.radius_080,
+            large: tokens.border.radius.radius_120,
         },
         width: {
-            focused: tokens.border.width.hairline,
+            focused: tokens.border.width.thin,
         },
     },
     margin: {

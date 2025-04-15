@@ -1,7 +1,6 @@
 import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom";
-import {__RouterContext} from "react-router";
+import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
@@ -36,202 +35,191 @@ const ButtonCore: React.ForwardRefExoticComponent<
 >(function ButtonCore(props: Props, ref) {
     const {theme, themeName} = useScopedTheme(ButtonThemeContext);
     const sharedStyles = useStyles(themedSharedStyles, theme);
+    const inRouterContext = useInRouterContext();
 
-    const renderInner = (router: any): React.ReactNode => {
-        const {
-            children,
-            skipClientNav,
-            color,
-            disabled: disabledProp,
-            focused,
-            hovered,
-            href = undefined,
-            kind = "primary",
-            labelStyle,
-            light = false,
-            pressed,
-            size = "medium",
-            style,
-            testId,
-            type = undefined,
-            spinner,
-            startIcon,
-            endIcon,
-            id,
-            waiting: _,
-            ...restProps
-        } = props;
+    const {
+        children,
+        skipClientNav,
+        color,
+        disabled: disabledProp,
+        focused,
+        hovered,
+        href = undefined,
+        kind = "primary",
+        labelStyle,
+        light = false,
+        pressed,
+        size = "medium",
+        style,
+        testId,
+        type = undefined,
+        spinner,
+        startIcon,
+        endIcon,
+        id,
+        waiting: _,
+        ...restProps
+    } = props;
 
-        const buttonStyles = _generateStyles(
-            color,
-            kind,
-            light,
-            size,
-            theme,
-            themeName,
-        );
-
-        const disabled = spinner || disabledProp;
-
-        const defaultStyle = [
-            sharedStyles.shared,
-            disabled && sharedStyles.disabled,
-            startIcon && sharedStyles.withStartIcon,
-            endIcon && sharedStyles.withEndIcon,
-            buttonStyles.default,
-            disabled && buttonStyles.disabled,
-            // apply focus effect only to default and secondary buttons
-            kind !== "tertiary" &&
-                !disabled &&
-                (pressed
-                    ? buttonStyles.pressed
-                    : focused && buttonStyles.focused),
-            kind === "tertiary" &&
-                !pressed &&
-                focused && [
-                    buttonStyles.focused,
-                    disabled && buttonStyles.disabledFocus,
-                ],
-            size === "small" && sharedStyles.small,
-            size === "large" && sharedStyles.large,
-        ];
-
-        const commonProps = {
-            "data-testid": testId,
-            id: id,
-            role: "button",
-            style: [defaultStyle, style],
-            ...restProps,
-        } as const;
-
-        const Label = size === "small" ? LabelSmall : LabelLarge;
-
-        const label = (
-            <Label
-                style={[
-                    sharedStyles.text,
-                    size === "small" && sharedStyles.smallText,
-                    size === "large" && sharedStyles.largeText,
-                    labelStyle,
-                    spinner && sharedStyles.hiddenText,
-                    kind === "tertiary" && sharedStyles.textWithFocus,
-                    // apply press/hover effects on the label
-                    kind === "tertiary" &&
-                        !disabled &&
-                        (pressed
-                            ? [buttonStyles.hover, buttonStyles.active]
-                            : hovered && buttonStyles.hover),
-                ]}
-                testId={testId ? `${testId}-inner-label` : undefined}
-            >
-                {children}
-            </Label>
-        );
-
-        const sizeMapping = {
-            medium: "small",
-            small: "xsmall",
-            large: "medium",
-        } as const;
-
-        // We have to use `medium` for both md and lg buttons so we can fit the
-        // icons in large buttons.
-        const iconSize = size === "small" ? "small" : "medium";
-
-        const contents = (
-            <React.Fragment>
-                {startIcon && (
-                    <View
-                        // The start icon doesn't have the circle around it
-                        // in the Khanmigo theme, but we wrap it with
-                        // iconWrapper anyway to give it the same spacing
-                        // as the end icon so the button is symmetrical.
-                        style={sharedStyles.iconWrapper}
-                    >
-                        <ButtonIcon
-                            size={iconSize}
-                            icon={startIcon}
-                            style={[
-                                sharedStyles.startIcon,
-                                kind === "tertiary" &&
-                                    sharedStyles.tertiaryStartIcon,
-                            ]}
-                            testId={testId ? `${testId}-start-icon` : undefined}
-                        />
-                    </View>
-                )}
-                {label}
-                {spinner && (
-                    <CircularSpinner
-                        style={sharedStyles.spinner}
-                        size={sizeMapping[size]}
-                        light={kind === "primary"}
-                        testId={`${testId || "button"}-spinner`}
-                    />
-                )}
-                {endIcon && (
-                    <View
-                        testId={
-                            testId ? `${testId}-end-icon-wrapper` : undefined
-                        }
-                        style={[
-                            styles.endIcon,
-                            sharedStyles.iconWrapper,
-                            sharedStyles.endIconWrapper,
-                            kind === "tertiary" &&
-                                sharedStyles.endIconWrapperTertiary,
-                            (focused || hovered) &&
-                                kind !== "primary" &&
-                                buttonStyles.iconWrapperHovered,
-                        ]}
-                    >
-                        <ButtonIcon
-                            size={iconSize}
-                            icon={endIcon}
-                            testId={testId ? `${testId}-end-icon` : undefined}
-                        />
-                    </View>
-                )}
-            </React.Fragment>
-        );
-
-        if (href && !disabled) {
-            return router && !skipClientNav && isClientSideUrl(href) ? (
-                <StyledLink
-                    {...commonProps}
-                    to={href}
-                    ref={ref as React.Ref<typeof Link>}
-                >
-                    {contents}
-                </StyledLink>
-            ) : (
-                <StyledA
-                    {...commonProps}
-                    href={href}
-                    ref={ref as React.Ref<HTMLAnchorElement>}
-                >
-                    {contents}
-                </StyledA>
-            );
-        } else {
-            return (
-                <StyledButton
-                    type={type || "button"}
-                    {...commonProps}
-                    aria-disabled={disabled}
-                    ref={ref as React.Ref<HTMLButtonElement>}
-                >
-                    {contents}
-                </StyledButton>
-            );
-        }
-    };
-
-    return (
-        <__RouterContext.Consumer>
-            {(router) => renderInner(router)}
-        </__RouterContext.Consumer>
+    const buttonStyles = _generateStyles(
+        color,
+        kind,
+        light,
+        size,
+        theme,
+        themeName,
     );
+
+    const disabled = spinner || disabledProp;
+
+    const defaultStyle = [
+        sharedStyles.shared,
+        disabled && sharedStyles.disabled,
+        startIcon && sharedStyles.withStartIcon,
+        endIcon && sharedStyles.withEndIcon,
+        buttonStyles.default,
+        disabled && buttonStyles.disabled,
+        // apply focus effect only to default and secondary buttons
+        kind !== "tertiary" &&
+            !disabled &&
+            (pressed ? buttonStyles.pressed : focused && buttonStyles.focused),
+        kind === "tertiary" &&
+            !pressed &&
+            focused && [
+                buttonStyles.focused,
+                disabled && buttonStyles.disabledFocus,
+            ],
+        size === "small" && sharedStyles.small,
+        size === "large" && sharedStyles.large,
+    ];
+
+    const commonProps = {
+        "data-testid": testId,
+        id: id,
+        role: "button",
+        style: [defaultStyle, style],
+        ...restProps,
+    } as const;
+
+    const Label = size === "small" ? LabelSmall : LabelLarge;
+
+    const label = (
+        <Label
+            style={[
+                sharedStyles.text,
+                size === "small" && sharedStyles.smallText,
+                size === "large" && sharedStyles.largeText,
+                labelStyle,
+                spinner && sharedStyles.hiddenText,
+                kind === "tertiary" && sharedStyles.textWithFocus,
+                // apply press/hover effects on the label
+                kind === "tertiary" &&
+                    !disabled &&
+                    (pressed
+                        ? [buttonStyles.hover, buttonStyles.active]
+                        : hovered && buttonStyles.hover),
+            ]}
+            testId={testId ? `${testId}-inner-label` : undefined}
+        >
+            {children}
+        </Label>
+    );
+
+    const sizeMapping = {
+        medium: "small",
+        small: "xsmall",
+        large: "medium",
+    } as const;
+
+    // We have to use `medium` for both md and lg buttons so we can fit the
+    // icons in large buttons.
+    const iconSize = size === "small" ? "small" : "medium";
+
+    const contents = (
+        <React.Fragment>
+            {startIcon && (
+                <View
+                    // The start icon doesn't have the circle around it
+                    // in the Khanmigo theme, but we wrap it with
+                    // iconWrapper anyway to give it the same spacing
+                    // as the end icon so the button is symmetrical.
+                    style={sharedStyles.iconWrapper}
+                >
+                    <ButtonIcon
+                        size={iconSize}
+                        icon={startIcon}
+                        style={[
+                            sharedStyles.startIcon,
+                            kind === "tertiary" &&
+                                sharedStyles.tertiaryStartIcon,
+                        ]}
+                        testId={testId ? `${testId}-start-icon` : undefined}
+                    />
+                </View>
+            )}
+            {label}
+            {spinner && (
+                <CircularSpinner
+                    style={sharedStyles.spinner}
+                    size={sizeMapping[size]}
+                    light={kind === "primary"}
+                    testId={`${testId || "button"}-spinner`}
+                />
+            )}
+            {endIcon && (
+                <View
+                    testId={testId ? `${testId}-end-icon-wrapper` : undefined}
+                    style={[
+                        styles.endIcon,
+                        sharedStyles.iconWrapper,
+                        sharedStyles.endIconWrapper,
+                        kind === "tertiary" &&
+                            sharedStyles.endIconWrapperTertiary,
+                        (focused || hovered) &&
+                            kind !== "primary" &&
+                            buttonStyles.iconWrapperHovered,
+                    ]}
+                >
+                    <ButtonIcon
+                        size={iconSize}
+                        icon={endIcon}
+                        testId={testId ? `${testId}-end-icon` : undefined}
+                    />
+                </View>
+            )}
+        </React.Fragment>
+    );
+
+    if (href && !disabled) {
+        return inRouterContext && !skipClientNav && isClientSideUrl(href) ? (
+            <StyledLink
+                {...commonProps}
+                to={href}
+                ref={ref as React.Ref<typeof Link>}
+            >
+                {contents}
+            </StyledLink>
+        ) : (
+            <StyledA
+                {...commonProps}
+                href={href}
+                ref={ref as React.Ref<HTMLAnchorElement>}
+            >
+                {contents}
+            </StyledA>
+        );
+    } else {
+        return (
+            <StyledButton
+                type={type || "button"}
+                {...commonProps}
+                aria-disabled={disabled}
+                ref={ref as React.Ref<HTMLButtonElement>}
+            >
+                {contents}
+            </StyledButton>
+        );
+    }
 });
 
 export default ButtonCore;

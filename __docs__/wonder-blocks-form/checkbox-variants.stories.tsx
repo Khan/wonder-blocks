@@ -37,7 +37,7 @@ const meta = {
     component: Checkbox,
     render: (args) => (
         <AllVariants rows={rows} columns={columns}>
-            {(props) => <Checkbox {...args} {...props} />}
+            {({props}) => <Checkbox {...args} {...props} />}
         </AllVariants>
     ),
     args: {

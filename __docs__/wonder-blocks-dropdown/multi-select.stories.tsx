@@ -7,7 +7,11 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Pill from "@khanacademy/wonder-blocks-pill";
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
         height: 200,
         overflow: "auto",
         border: "1px solid grey",
-        borderRadius: spacing.xxxSmall_4,
+        borderRadius: border.radius.radius_040,
         margin: spacing.xSmall_8,
         padding: spacing.medium_16,
     },
@@ -116,8 +120,8 @@ const styles = StyleSheet.create({
      * Custom opener styles
      */
     customOpener: {
-        borderLeft: `${spacing.xxxSmall_4}px solid ${semanticColor.status.warning.foreground}`,
-        borderRadius: spacing.xxxSmall_4,
+        borderLeft: `${border.width.thick} solid ${semanticColor.status.warning.foreground}`,
+        borderRadius: border.radius.radius_040,
         background: semanticColor.status.warning.background,
         color: semanticColor.text.primary,
         padding: spacing.medium_16,

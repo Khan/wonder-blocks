@@ -1,16 +1,24 @@
+import {sizing, remToPx} from "./sizing";
+
 export const border = {
+    /**
+     * Corner radius values for borders.
+     *
+     * NOTE: We use fixed values for the corner radius instead of using the
+     * regular `spacing` tokens to ensure that the corner radius is consistent
+     * across different root font sizes.
+     */
     radius: {
-        xSmall_2: 2,
-        small_3: 3,
-        medium_4: 4,
-        large_6: 6,
-        xLarge_12: 12,
-        full: "50%",
+        radius_0: remToPx(sizing.size_0),
+        radius_040: remToPx(sizing.size_040),
+        radius_080: remToPx(sizing.size_080),
+        radius_120: remToPx(sizing.size_120),
+        radius_full: "50%",
     },
     width: {
-        none: 0,
-        hairline: 1,
-        thin: 2,
-        thick: 4,
+        none: remToPx(sizing.size_0),
+        thin: remToPx(sizing.size_010),
+        medium: remToPx(sizing.size_020),
+        thick: remToPx(sizing.size_040),
     },
 };

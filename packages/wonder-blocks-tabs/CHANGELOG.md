@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-tabs
 
+## 0.2.5
+
+### Patch Changes
+
+- Updated dependencies [e63adea]
+    - @khanacademy/wonder-blocks-tokens@8.0.0
+
+## 0.2.4
+
+### Patch Changes
+
+- e8ccf60: Update `borderRadius` styles to use new `border.radius` tokens
+- Updated dependencies [e8ccf60]
+    - @khanacademy/wonder-blocks-tokens@7.0.0
+
 ## 0.2.3
 
 ### Patch Changes

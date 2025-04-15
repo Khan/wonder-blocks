@@ -220,7 +220,7 @@ const styles = StyleSheet.create({
 
         backgroundColor: semanticColor.surface.secondary,
         border: `1px solid ${semanticColor.border.primary}`,
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
     },
     pattern: {
         backgroundImage: `radial-gradient(${color.blue} 0.5px, ${color.offWhite} 0.5px)`,
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
         backgroundColor: semanticColor.surface.secondary,
         border: `1px solid ${color.offBlack16}`,
         padding: spacing.xxxxSmall_2,
-        borderRadius: border.radius.medium_4,
+        borderRadius: border.radius.radius_040,
     },
     capitalized: {
         textTransform: "capitalize",
