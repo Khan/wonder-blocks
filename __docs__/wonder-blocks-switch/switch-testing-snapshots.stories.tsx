@@ -60,7 +60,13 @@ export const StateSheetStory: Story = {
         return (
             <StateSheet rows={rows} columns={columns} title="Status / Variant">
                 {({props, className, name}) => (
-                    <View key={name} style={{height: sizing.size_400}}>
+                    <View
+                        key={name}
+                        style={{
+                            height: sizing.size_400,
+                            justifyContent: "center",
+                        }}
+                    >
                         <Switch {...args} {...props} className={className} />
                     </View>
                 )}
@@ -71,5 +77,3 @@ export const StateSheetStory: Story = {
         pseudo: defaultPseudoStates,
     },
 };
-
-// export const StateSheetStory: Story = {};
