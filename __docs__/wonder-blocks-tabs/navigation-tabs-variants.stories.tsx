@@ -174,6 +174,7 @@ const createPseudoStatesDecorator = (state: string) => (Story: StoryFn) => {
         const timer = setTimeout(() => {
             document?.querySelectorAll("a").forEach((a) => {
                 a.classList.add(`pseudo-${state}`);
+                a.classList.add(`pseudo-state-${state}`);
             });
         }, 200);
         return () => clearTimeout(timer);
