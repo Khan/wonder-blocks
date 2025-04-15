@@ -116,7 +116,7 @@ export const styles = StyleSheet.create({
         [":hover:not([aria-selected='true'])" as any]: {
             color: semanticColor.action.secondary.progressive.hover.foreground,
             [":after" as any]: {
-                height: border.width.hairline,
+                height: border.width.thin,
                 backgroundColor:
                     semanticColor.action.secondary.progressive.hover.foreground,
             },

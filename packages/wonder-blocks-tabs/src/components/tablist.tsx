@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     tablist: {
         display: "flex",
         gap: sizing.size_240,
-        borderBottom: `${border.width.hairline}px solid ${semanticColor.border.subtle}`,
+        borderBottom: `${border.width.thin} solid ${semanticColor.border.subtle}`,
         // Add horizontal padding for focus outline of first/last elements
         paddingInline: sizing.size_040,
     },
