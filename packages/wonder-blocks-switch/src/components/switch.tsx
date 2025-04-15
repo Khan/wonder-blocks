@@ -156,10 +156,10 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         ":hover": {
             outline: "none",
         },
-        ":focus-within": focusStyles.focus[":focus-visible"],
         ":active": {
             outline: "none",
         },
+        ":focus-within": focusStyles.focus[":focus-visible"],
     },
     slider: {
         position: "absolute",
