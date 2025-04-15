@@ -1,5 +1,6 @@
 import * as React from "react";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 import {findFocusableNodes} from "../../../wonder-blocks-core/src/util/focus";
 
 type Props = {
@@ -24,6 +25,11 @@ type Props = {
      * Whether the tab panel is active.
      */
     active?: boolean;
+
+    /**
+     * Custom styles for the `TabPanel` component.
+     */
+    style?: StyleType;
 };
 
 const StyledDiv = addStyle("div");
@@ -38,6 +44,7 @@ export const TabPanel = (props: Props) => {
         "aria-labelledby": ariaLabelledby,
         active = false,
         testId,
+        style,
     } = props;
 
     const ref = React.useRef<HTMLDivElement>(null);
@@ -63,8 +70,17 @@ export const TabPanel = (props: Props) => {
             // Only show the tab panel if it is active
             hidden={!active}
             data-testid={testId}
+            // Only apply styles if it is active so it doesn't override the display: none for inactive tabs
+            style={active && [styles.tabPanel, style]}
         >
             {children}
         </StyledDiv>
     );
 };
+
+const styles = StyleSheet.create({
+    tabPanel: {
+        // Apply flex so that panel supports rtl
+        display: "flex",
+    },
+});

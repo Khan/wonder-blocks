@@ -1,5 +1,9 @@
-import {AriaProps} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 
 type Props = AriaProps & {
     /**
@@ -30,7 +34,13 @@ type Props = AriaProps & {
      * Called when a key is pressed on the tab.
      */
     onKeyDown?: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
+    /**
+     * Custom styles for the `Tab` component.
+     */
+    style?: StyleType;
 };
+
+const StyledButton = addStyle("button");
 
 /**
  * A component that has `role="tab"` and is used to represent a tab in a tabbed
@@ -48,11 +58,12 @@ export const Tab = React.forwardRef(function Tab(
         selected,
         onKeyDown,
         testId,
+        style,
         // Should only include aria related props
         ...otherProps
     } = props;
     return (
-        <button
+        <StyledButton
             {...otherProps}
             role="tab"
             onClick={onClick}
@@ -65,8 +76,62 @@ export const Tab = React.forwardRef(function Tab(
             tabIndex={selected ? 0 : -1}
             onKeyDown={onKeyDown}
             data-testid={testId}
+            style={[
+                typographyStyles.Body,
+                styles.tab,
+                selected && styles.selectedTab,
+                style,
+            ]}
         >
             {children}
-        </button>
+        </StyledButton>
     );
+});
+
+const bottomSpacing = sizing.size_140;
+export const styles = StyleSheet.create({
+    tab: {
+        display: "flex",
+        alignItems: "center",
+        textWrap: "nowrap",
+        backgroundColor: "transparent",
+        border: "none",
+        margin: 0,
+        padding: 0,
+        cursor: "pointer",
+        marginBlockStart: sizing.size_080,
+        marginBlockEnd: bottomSpacing,
+        position: "relative",
+        ...focusStyles.focus,
+        // Using :after styling to apply the hover/pressed underline styling
+        // instead of box-shadow because we use box-shadow for the focus outline.
+        ":after": {
+            content: "''",
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: `-${bottomSpacing}`,
+        },
+        // Only apply hover styles to tabs that are not selected
+        [":hover:not([aria-selected='true'])" as any]: {
+            color: semanticColor.action.secondary.progressive.hover.foreground,
+            [":after" as any]: {
+                height: border.width.hairline,
+                backgroundColor:
+                    semanticColor.action.secondary.progressive.hover.foreground,
+            },
+        },
+        // Only apply active styles to tabs that are not selected
+        [":active:not([aria-selected='true'])" as any]: {
+            color: semanticColor.action.secondary.progressive.press.foreground,
+            [":after" as any]: {
+                height: border.width.thick,
+                backgroundColor:
+                    semanticColor.action.secondary.progressive.press.foreground,
+            },
+        },
+    },
+    selectedTab: {
+        color: semanticColor.action.secondary.progressive.default.foreground,
+    },
 });

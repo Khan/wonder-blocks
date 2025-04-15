@@ -1,6 +1,7 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {action} from "@storybook/addon-actions";
+import {expect, within} from "@storybook/test";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {Tab, TabItem, Tabs} from "@khanacademy/wonder-blocks-tabs";
@@ -10,16 +11,78 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {
+    longText,
+    longTextWithNoWordBreak,
+} from "../components/text-for-testing";
+import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {Placeholder} from "../components/placeholder";
+
+const generateTabs = (
+    count: number,
+    tabContent: string = "Tab",
+    withIcons: boolean = false,
+) => {
+    return new Array(count).fill(0).map((_, index) => ({
+        label: (
+            <View
+                style={{
+                    gap: sizing.size_080,
+                    alignItems: "center",
+                    flexDirection: "row",
+                }}
+            >
+                {withIcons && <PhosphorIcon icon={IconMappings.cookie} />}
+                {`${tabContent} ${index + 1}`}
+                {withIcons && <PhosphorIcon icon={IconMappings.iceCream} />}
+            </View>
+        ),
+        id: `tab-${index + 1}`,
+        panel: <Placeholder>Tab contents {index + 1}</Placeholder>,
+    }));
+};
 
 const tabs: TabItem[] = [
-    {label: "Tab 1", id: "tab-1", panel: <div>Tab contents 1</div>},
-    {label: "Tab 2", id: "tab-2", panel: <div>Tab contents 2</div>},
-    {label: "Tab 3", id: "tab-3", panel: <div>Tab contents 3</div>},
+    {
+        label: "Tab 1",
+        id: "tab-1",
+        panel: <Placeholder>Tab contents 1</Placeholder>,
+    },
+    {
+        label: "Tab 2",
+        id: "tab-2",
+        panel: <Placeholder>Tab contents 2</Placeholder>,
+    },
+    {
+        label: "Tab 3",
+        id: "tab-3",
+        panel: <Placeholder>Tab contents 3</Placeholder>,
+    },
 ];
 
+function ControlledTabs(props: PropsFor<typeof Tabs>) {
+    const [selectedTabId, setSelectedTabId] = React.useState(
+        props.selectedTabId,
+    );
+
+    return (
+        <Tabs
+            {...props}
+            selectedTabId={selectedTabId}
+            onTabSelected={setSelectedTabId}
+            tabs={props.tabs}
+        />
+    );
+}
+
 export default {
-    title: "Packages / Tabs / Tabs / Tabs",
+    title: "Packages / Tabs / Tabs",
     component: Tabs,
+    subcomponents: {Tab},
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -34,20 +97,7 @@ export default {
         "aria-label": "Tabs Example",
     },
     argTypes,
-    render: function Controlled(args) {
-        const [selectedTabId, setSelectedTabId] = React.useState(
-            args.selectedTabId || tabs[0].id,
-        );
-
-        return (
-            <Tabs
-                {...args}
-                selectedTabId={selectedTabId}
-                onTabSelected={setSelectedTabId}
-                tabs={args.tabs || tabs}
-            />
-        );
-    },
+    render: ControlledTabs,
 } as Meta<typeof Tabs>;
 
 type StoryComponentType = StoryObj<typeof Tabs>;
@@ -80,6 +130,22 @@ export const ManualActivation: StoryComponentType = {
 export const AutomaticActivation: StoryComponentType = {
     args: {
         activationMode: "automatic",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * The tab label can be customized to include icons.
+ */
+export const WithIcons: StoryComponentType = {
+    args: {
+        tabs: generateTabs(3, "Tab", true),
+        selectedTabId: "tab-1",
     },
     parameters: {
         chromatic: {
@@ -206,7 +272,7 @@ export const TabLabelRenderFunction: StoryComponentType = {
                     );
                 },
                 id: "tab-1",
-                panel: <div>Tab contents 1</div>,
+                panel: <Placeholder>Tab contents 1</Placeholder>,
             },
             {
                 label(tabProps) {
@@ -226,7 +292,7 @@ export const TabLabelRenderFunction: StoryComponentType = {
                     );
                 },
                 id: "tab-2",
-                panel: <div>Tab contents 2</div>,
+                panel: <Placeholder>Tab contents 2</Placeholder>,
             },
         ],
     },
@@ -238,6 +304,60 @@ const PanelExample = ({label}: {label: string}) => {
     }, [label]);
 
     return <div>{label}</div>;
+};
+
+/**
+ * The `animated` prop can be set to `true` to animate the current underline
+ * indicator. By default, `animated` is set to `false`.
+ */
+export const Animated: StoryComponentType = {
+    args: {
+        animated: true,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const currentIndicator = await canvas.findByRole("presentation");
+        const style = window.getComputedStyle(currentIndicator);
+
+        // Assert
+        await expect(style.transitionProperty).toMatch(/transform/);
+    },
+};
+
+/**
+ * When the `animated` prop is `false`, there is no animation when the current
+ * tab changes.  By default, `animated` is set to `false`.
+ */
+export const AnimationsDisabled: StoryComponentType = {
+    args: {
+        animated: false,
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+    play: async ({canvasElement}) => {
+        // Arrange
+        const canvas = within(canvasElement.ownerDocument.body);
+
+        // Act
+        const currentIndicator = await canvas.findByRole("presentation");
+        const style = window.getComputedStyle(currentIndicator);
+
+        // Assert
+        await expect(style.transitionProperty).not.toMatch(/transform/);
+    },
 };
 
 /**
@@ -274,5 +394,180 @@ export const PanelCaching: StoryComponentType = {
             // Disabling because this doesn't test anything visual.
             disableSnapshot: true,
         },
+    },
+};
+
+/**
+ * The following example shows how the `styles` prop can be used to apply
+ * custom styles to different elements in the `Tabs` component.
+ */
+export const CustomStyles: StoryComponentType = {
+    args: {
+        // These styles are for demo purposes only. We use this story in the
+        // visual regression tests to ensure that the custom styles are applied
+        // correctly.
+        styles: {
+            root: {border: "2px solid lightpink"},
+            tablist: {backgroundColor: "lavender"},
+            tabPanel: {backgroundColor: "lavenderblush"},
+            tab: {backgroundColor: "lightcyan"},
+        },
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <div>Tab contents 1</div>,
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <div>Tab contents 2</div>,
+            },
+            {
+                label: (
+                    <View
+                        style={{
+                            backgroundColor: "honeydew",
+                            fontStyle: "italic",
+                        }}
+                    >
+                        Tab with custom style
+                    </View>
+                ),
+                id: "tab-3",
+                panel: (
+                    <View
+                        style={{
+                            backgroundColor: "honeydew",
+                            fontStyle: "italic",
+                        }}
+                    >
+                        Tab contents with custom style
+                    </View>
+                ),
+            },
+        ],
+    },
+};
+
+const scenarios = [
+    {
+        name: "Zero items",
+        props: {
+            tabs: [],
+        },
+    },
+    {
+        name: "Many Items",
+        props: {
+            tabs: generateTabs(30),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "No item selected",
+        props: {
+            tabs: generateTabs(3),
+            selectedTabId: "",
+        },
+    },
+    {
+        name: "Long text",
+        props: {
+            tabs: generateTabs(3, longText),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text with no word break",
+        props: {
+            tabs: generateTabs(3, longTextWithNoWordBreak),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text (with icons)",
+        props: {
+            tabs: generateTabs(3, longText, true),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text with no word break (with icons)",
+        props: {
+            tabs: generateTabs(3, longTextWithNoWordBreak, true),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Varying lengths",
+        props: {
+            tabs: [
+                {
+                    label: longText,
+                    id: "tab-1",
+                    panel: <div>Tab contents 1</div>,
+                },
+                {
+                    label: "Short text",
+                    id: "tab-2",
+                    panel: <div>Tab contents 2</div>,
+                },
+                {
+                    label: longText,
+                    id: "tab-3",
+                    panel: <div>Tab contents 3</div>,
+                },
+                {
+                    label: "Short text",
+                    id: "tab-4",
+                    panel: <div>Tab contents 4</div>,
+                },
+            ],
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "With icons only",
+        props: {
+            tabs: [
+                {
+                    label: (
+                        <PhosphorIcon
+                            icon={IconMappings.cookie}
+                            size="medium"
+                            aria-label="Tab 1"
+                        />
+                    ),
+                    id: "tab-1",
+                    panel: <div>Tab contents 1</div>,
+                },
+                {
+                    label: (
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            size="medium"
+                            aria-label="Tab 2"
+                        />
+                    ),
+                    id: "tab-2",
+                    panel: <div>Tab contents 2</div>,
+                },
+            ],
+            selectedTabId: "tab-1",
+        },
+    },
+];
+
+export const Scenarios: StoryComponentType = {
+    render: (args) => {
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <ControlledTabs {...args} {...props} />}
+            </ScenariosLayout>
+        );
+    },
+    args: {
+        animated: true,
     },
 };
