@@ -7,6 +7,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {rtlText} from "../components/text-for-testing";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const StyledDiv = addStyle("div");
 
@@ -44,8 +45,7 @@ const generateRows = (rtl: boolean = false) => [
                             style={{
                                 display: "flex",
                                 alignItems: "center",
-                                // TODO: Update to use spacing tokens
-                                gap: "4px",
+                                gap: sizing.size_040,
                             }}
                         >
                             <PhosphorIcon icon={IconMappings.cookie} />
@@ -62,8 +62,7 @@ const generateRows = (rtl: boolean = false) => [
                             style={{
                                 display: "flex",
                                 alignItems: "center",
-                                // TODO: Update to use spacing tokens
-                                gap: "4px",
+                                gap: sizing.size_040,
                             }}
                         >
                             <PhosphorIcon icon={IconMappings.cookie} />
@@ -80,8 +79,7 @@ const generateRows = (rtl: boolean = false) => [
                             style={{
                                 display: "flex",
                                 alignItems: "center",
-                                // TODO: Update to use spacing tokens
-                                gap: "4px",
+                                gap: sizing.size_040,
                             }}
                         >
                             <PhosphorIcon icon={IconMappings.cookie} />
