@@ -139,15 +139,96 @@ importers:
       '@khanacademy/eslint-plugin':
         specifier: ^3.1.1
         version: 3.1.1(eslint@8.57.1)(typescript@5.7.3)
+      '@khanacademy/wonder-blocks-accordion':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-accordion
+      '@khanacademy/wonder-blocks-announcer':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-announcer
+      '@khanacademy/wonder-blocks-banner':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-banner
+      '@khanacademy/wonder-blocks-birthday-picker':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-birthday-picker
+      '@khanacademy/wonder-blocks-breadcrumbs':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-breadcrumbs
+      '@khanacademy/wonder-blocks-button':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-button
+      '@khanacademy/wonder-blocks-cell':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-cell
+      '@khanacademy/wonder-blocks-clickable':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-clickable
+      '@khanacademy/wonder-blocks-core':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-core
+      '@khanacademy/wonder-blocks-dropdown':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-dropdown
+      '@khanacademy/wonder-blocks-form':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-form
+      '@khanacademy/wonder-blocks-icon':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-icon
+      '@khanacademy/wonder-blocks-icon-button':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-icon-button
+      '@khanacademy/wonder-blocks-labeled-field':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-labeled-field
+      '@khanacademy/wonder-blocks-layout':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-layout
       '@khanacademy/wonder-blocks-link':
         specifier: workspace:*
         version: link:packages/wonder-blocks-link
+      '@khanacademy/wonder-blocks-modal':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-modal
+      '@khanacademy/wonder-blocks-pill':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-pill
+      '@khanacademy/wonder-blocks-popover':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-popover
+      '@khanacademy/wonder-blocks-progress-spinner':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-progress-spinner
+      '@khanacademy/wonder-blocks-search-field':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-search-field
+      '@khanacademy/wonder-blocks-styles':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-styles
+      '@khanacademy/wonder-blocks-switch':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-switch
+      '@khanacademy/wonder-blocks-tabs':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-tabs
       '@khanacademy/wonder-blocks-theming':
         specifier: workspace:*
         version: link:packages/wonder-blocks-theming
+      '@khanacademy/wonder-blocks-timing':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-timing
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:packages/wonder-blocks-tokens
+      '@khanacademy/wonder-blocks-toolbar':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-toolbar
+      '@khanacademy/wonder-blocks-tooltip':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-tooltip
+      '@khanacademy/wonder-blocks-typography':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-typography
       '@khanacademy/wonder-stuff-testing':
         specifier: ^3.0.5
         version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
@@ -1360,10 +1441,6 @@ importers:
         version: link:../wonder-blocks-testing-core
 
   packages/wonder-blocks-tokens:
-    dependencies:
-      '@khanacademy/wonder-blocks-theming':
-        specifier: workspace:*
-        version: link:../wonder-blocks-theming
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*

@@ -42,7 +42,7 @@ function generateCssVariablesDefinitions() {
 
             return `${selector} {${cssVariables}}`;
         })
-        .join("\n");
+        .join("\n\n");
 }
 
 /**

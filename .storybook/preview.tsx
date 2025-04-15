@@ -12,10 +12,7 @@ import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
 import {Preview} from "@storybook/react";
 
 // Import the Wonder Blocks CSS variables
-// NOTE: External consumers should import the CSS variables from the
-// wonder-blocks-tokens package directly.
-// e.g. import "@khanacademy/wonder-blocks-tokens/styles.css";
-import "../node_modules/@khanacademy/wonder-blocks-tokens/dist/css/index.css";
+import "@khanacademy/wonder-blocks-tokens/styles.css";
 
 /**
  * WB Official breakpoints
