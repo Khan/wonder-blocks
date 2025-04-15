@@ -347,8 +347,8 @@ importers:
         specifier: ^8.5.2
         version: 8.5.2(prettier@3.4.2)
       storybook-addon-pseudo-states:
-        specifier: ^4.0.2
-        version: 4.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(storybook@8.5.2(prettier@3.4.2))
+        specifier: ^4.0.3
+        version: 4.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(storybook@8.5.2(prettier@3.4.2))
       typescript:
         specifier: 5.7.3
         version: 5.7.3
@@ -7049,8 +7049,8 @@ packages:
   std-env@3.8.0:
     resolution: {integrity: sha512-Bc3YwwCB+OzldMxOXJIIvC6cPRWr/LxOp48CdQTOkPyk/t4JWWJbrilwBd7RJzKV8QW7tJkcgAmeuLLJugl5/w==}
 
-  storybook-addon-pseudo-states@4.0.2:
-    resolution: {integrity: sha512-dTHkeq4VzqIrJfR8k2BHkX190cQ+aYBZUktWNZpDw3N5tJ8IwaRLzf6ZjHDHY6xwDshaNiTO5UkziRE0Ytukkw==}
+  storybook-addon-pseudo-states@4.0.3:
+    resolution: {integrity: sha512-QppSJsRK0oWeTtVHJKxSCxGwyh1r6vMBxgCWFgUffFA+NOwVvfsBhi9A7xKI2z/0fmweiqSZhBafRIAMlT6X5Q==}
     peerDependencies:
       storybook: ^8.2.0
 
@@ -15107,7 +15107,7 @@ snapshots:
 
   std-env@3.8.0: {}
 
-  storybook-addon-pseudo-states@4.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(storybook@8.5.2(prettier@3.4.2)):
+  storybook-addon-pseudo-states@4.0.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(storybook@8.5.2(prettier@3.4.2)):
     dependencies:
       '@storybook/icons': 1.3.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       storybook: 8.5.2(prettier@3.4.2)
