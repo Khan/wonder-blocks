@@ -22,7 +22,7 @@ import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs / NavigationTabs",
+    title: "Packages / Tabs / NavigationTabs",
     component: NavigationTabs,
     subcomponents: {NavigationTabItem},
     parameters: {

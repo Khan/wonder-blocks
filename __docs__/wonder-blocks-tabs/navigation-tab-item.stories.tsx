@@ -23,7 +23,7 @@ const StyledUl = addStyle("ul", {
 });
 
 export default {
-    title: "Packages / Tabs / NavigationTabs / NavigationTabItem",
+    title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabItem",
     component: NavigationTabItem,
     parameters: {
         componentSubtitle: (
