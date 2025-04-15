@@ -149,14 +149,14 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         width: theme.size.width.large,
         borderRadius: theme.border.radius.small,
         flexShrink: 0,
-        ":focus-within": focusStyles.focus,
+        ":focus-within": focusStyles.focus[":focus-visible"],
     },
     disabled: {
         cursor: "not-allowed",
         ":hover": {
             outline: "none",
         },
-        ":focus-within": focusStyles.focus,
+        ":focus-within": focusStyles.focus[":focus-visible"],
         ":active": {
             outline: "none",
         },
@@ -180,6 +180,8 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
     },
 });
 
+const focusStylesObject = focusStyles.focus[":focus-visible"];
+
 const styles: Record<string, any> = {};
 const _generateStyles = (
     checked: boolean,
@@ -198,10 +200,8 @@ const _generateStyles = (
     const sharedSwitchStyles = {
         cursor: clickable ? "pointer" : "auto",
         ":hover": {
-            ...focusStyles.focus[":focus-visible"],
-            outline: clickable
-                ? focusStyles.focus[":focus-visible"].outline
-                : "none",
+            ...focusStylesObject,
+            outline: clickable ? focusStylesObject.outline : "none",
         },
     };
 
@@ -216,10 +216,8 @@ const _generateStyles = (
                         !disabled && clickable
                             ? theme.color.bg.switch.activeOn
                             : undefined,
-                    ...focusStyles.focus[":focus-visible"],
-                    outline: clickable
-                        ? focusStyles.focus[":focus-visible"].outline
-                        : "none",
+                    ...focusStylesObject,
+                    outline: clickable ? focusStylesObject.outline : "none",
                 },
                 ...sharedSwitchStyles,
             },
@@ -244,10 +242,8 @@ const _generateStyles = (
                         !disabled && clickable
                             ? theme.color.bg.switch.activeOff
                             : undefined,
-                    ...focusStyles.focus[":focus-visible"],
-                    outline: clickable
-                        ? focusStyles.focus[":focus-visible"].outline
-                        : "none",
+                    ...focusStylesObject,
+                    outline: clickable ? focusStylesObject.outline : "none",
                 },
                 ...sharedSwitchStyles,
             },
