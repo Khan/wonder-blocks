@@ -12,6 +12,12 @@ import Button from "@khanacademy/wonder-blocks-button";
 export default {
     title: "Packages / Theming / ThemeSwitcher",
     component: ThemeSwitcher,
+    parameters: {
+        // This is only for documentation purposes.
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
     // Hide stories in the sidebar. Only show Docs.
     tags: ["!dev"],
 } as Meta<typeof ThemeSwitcher>;
