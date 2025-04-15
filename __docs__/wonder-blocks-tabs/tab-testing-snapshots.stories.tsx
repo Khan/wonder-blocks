@@ -76,7 +76,7 @@ const meta = {
     render: (args) => (
         <>
             <AllVariants rows={rows} columns={columns}>
-                {(props) => (
+                {({props}) => (
                     <div role="tablist">
                         <Tab {...args} {...props} />
                     </div>
@@ -84,7 +84,7 @@ const meta = {
             </AllVariants>
             <div dir="rtl">
                 <AllVariants rows={rtlRows} columns={columns}>
-                    {(props) => (
+                    {({props}) => (
                         <div role="tablist">
                             <Tab {...args} {...props} />
                         </div>

@@ -13,8 +13,14 @@ import {AllVariants} from "../components/all-variants";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {rtlText} from "../components/text-for-testing";
+import {
+    longText,
+    longTextWithNoWordBreak,
+    rtlText,
+} from "../components/text-for-testing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {generateChildren} from "./navigation-tabs-utils";
+import {ScenariosLayout} from "../components/scenarios-layout";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => [
@@ -310,6 +316,97 @@ export const Zoom: Story = {
     },
     globals: {
         zoom: "400%",
+    },
+};
+
+/**
+ * The following story shows how the component handles specific scenarios.
+ */
+export const Scenarios: Story = {
+    render() {
+        const scenarios = [
+            {
+                name: "Many items",
+                props: {children: generateChildren(10, "Navigation Tab Item")},
+            },
+            {
+                name: "Long text",
+                props: {children: generateChildren(4, longText)},
+            },
+            {
+                name: "Long text with no word break",
+                props: {
+                    children: generateChildren(4, longTextWithNoWordBreak),
+                },
+            },
+            {
+                name: "Long text (with icons)",
+                props: {children: generateChildren(4, longText, true)},
+            },
+            {
+                name: "Long text with no word break (with icons)",
+                props: {
+                    children: generateChildren(
+                        4,
+                        longTextWithNoWordBreak,
+                        true,
+                    ),
+                },
+            },
+            {
+                name: "Varying lengths",
+                props: {
+                    children: [
+                        <NavigationTabItem current={true}>
+                            <Link href="#link-long">{longText}</Link>
+                        </NavigationTabItem>,
+                        <NavigationTabItem>
+                            <Link href="#link-short">Short text</Link>
+                        </NavigationTabItem>,
+                        <NavigationTabItem>
+                            <Link href="#link-long-no-break">
+                                {longTextWithNoWordBreak}
+                            </Link>
+                        </NavigationTabItem>,
+                    ],
+                },
+            },
+        ];
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props, name) => (
+                    <NavigationTabs {...props} aria-label={name} />
+                )}
+            </ScenariosLayout>
+        );
+    },
+    parameters: {
+        a11y: {
+            config: {
+                rules: [
+                    // Disabling warning: "Element's background color could not
+                    // be determined because it's partially obscured by another
+                    // element" since these examples can cause the horizontal
+                    // scrollbar to show. Color contrast check is enabled for
+                    // other stories (including the NavigationTabItem AllVariants)
+                    {id: "color-contrast", enabled: false},
+                ],
+            },
+        },
+    },
+};
+
+/**
+ * The following story shows how the component handles specific scenarios at a
+ * small screen size.
+ */
+export const ScenariosSmallScreen: Story = {
+    ...Scenarios,
+    parameters: {
+        ...Scenarios.parameters,
+        viewport: {
+            defaultViewport: "small",
+        },
     },
 };
 

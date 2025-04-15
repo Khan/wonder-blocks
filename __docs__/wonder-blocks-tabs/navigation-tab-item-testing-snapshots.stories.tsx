@@ -11,8 +11,13 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
-import {rtlText} from "../components/text-for-testing";
+import {
+    longText,
+    longTextWithNoWordBreak,
+    rtlText,
+} from "../components/text-for-testing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {ScenariosLayout} from "../components/scenarios-layout";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => {
@@ -220,6 +225,88 @@ export const Zoom: Story = {
             // Disabling because Chromatic crops the story when zoom is used
             disableSnapshot: true,
         },
+    },
+};
+
+/**
+ * The following story shows how the component handles specific scenarios.
+ */
+export const Scenarios: Story = {
+    render() {
+        const scenarios = [
+            {
+                name: "Long Text",
+                props: {
+                    current: true,
+                    children: <Link href="#link">{longText}</Link>,
+                },
+            },
+            {
+                name: "Long Text with No Word Break",
+                props: {
+                    current: true,
+                    children: (
+                        <Link href="#link">{longTextWithNoWordBreak}</Link>
+                    ),
+                },
+            },
+            {
+                name: "Long Text (icons)",
+                props: {
+                    current: true,
+                    children: (
+                        <Link
+                            href="#link"
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    size="small"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.iceCream}
+                                    size="small"
+                                />
+                            }
+                        >
+                            {longText}
+                        </Link>
+                    ),
+                },
+            },
+            {
+                name: "Long Text with No Word Break (icons)",
+                props: {
+                    current: true,
+                    children: (
+                        <Link
+                            href="#link"
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    size="small"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.iceCream}
+                                    size="small"
+                                />
+                            }
+                        >
+                            {longTextWithNoWordBreak}
+                        </Link>
+                    ),
+                },
+            },
+        ];
+
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <NavigationTabItem {...props} />}
+            </ScenariosLayout>
+        );
     },
 };
 

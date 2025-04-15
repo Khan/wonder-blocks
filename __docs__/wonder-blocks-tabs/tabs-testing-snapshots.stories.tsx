@@ -6,8 +6,14 @@ import {AllVariants} from "../components/all-variants";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import {rtlText} from "../components/text-for-testing";
+import {
+    rtlText,
+    longText,
+    longTextWithNoWordBreak,
+} from "../components/text-for-testing";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {ControlledTabs, generateTabs} from "./tabs-utils";
 
 const StyledDiv = addStyle("div");
 
@@ -148,7 +154,7 @@ const meta = {
     render: (args) => (
         <>
             <AllVariants rows={rows} columns={columns}>
-                {(props) => (
+                {({props}) => (
                     <View>
                         <Tabs {...args} {...props} />
                     </View>
@@ -156,7 +162,7 @@ const meta = {
             </AllVariants>
             <div dir="rtl">
                 <AllVariants rows={rtlRows} columns={columns}>
-                    {(props) => (
+                    {({props}) => (
                         <View>
                             <Tabs {...args} {...props} />
                         </View>
@@ -165,7 +171,9 @@ const meta = {
             </div>
         </>
     ),
-    args: {},
+    args: {
+        tabs: [],
+    },
     tags: ["!autodocs"],
 } satisfies Meta<typeof Tabs>;
 
@@ -194,7 +202,7 @@ export const Zoom: Story = {
     render: (args) => (
         <>
             <AllVariants rows={rows} columns={columns} layout="list">
-                {(props) => (
+                {({props}) => (
                     <View>
                         <Tabs {...args} {...props} />
                     </View>
@@ -202,7 +210,7 @@ export const Zoom: Story = {
             </AllVariants>
             <div dir="rtl">
                 <AllVariants rows={rtlRows} columns={columns} layout="list">
-                    {(props) => (
+                    {({props}) => (
                         <View>
                             <Tabs {...args} {...props} />
                         </View>
@@ -213,5 +221,127 @@ export const Zoom: Story = {
     ),
     globals: {
         zoom: "400%",
+    },
+};
+
+const scenarios = [
+    {
+        name: "Zero items",
+        props: {
+            tabs: [],
+        },
+    },
+    {
+        name: "Many Items",
+        props: {
+            tabs: generateTabs(30),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "No item selected",
+        props: {
+            tabs: generateTabs(3),
+            selectedTabId: "",
+        },
+    },
+    {
+        name: "Long text",
+        props: {
+            tabs: generateTabs(3, longText),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text with no word break",
+        props: {
+            tabs: generateTabs(3, longTextWithNoWordBreak),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text (with icons)",
+        props: {
+            tabs: generateTabs(3, longText, true),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Long text with no word break (with icons)",
+        props: {
+            tabs: generateTabs(3, longTextWithNoWordBreak, true),
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "Varying lengths",
+        props: {
+            tabs: [
+                {
+                    label: longText,
+                    id: "tab-1",
+                    panel: <div>Tab contents 1</div>,
+                },
+                {
+                    label: "Short text",
+                    id: "tab-2",
+                    panel: <div>Tab contents 2</div>,
+                },
+                {
+                    label: longText,
+                    id: "tab-3",
+                    panel: <div>Tab contents 3</div>,
+                },
+                {
+                    label: "Short text",
+                    id: "tab-4",
+                    panel: <div>Tab contents 4</div>,
+                },
+            ],
+            selectedTabId: "tab-1",
+        },
+    },
+    {
+        name: "With icons only",
+        props: {
+            tabs: [
+                {
+                    label: (
+                        <PhosphorIcon
+                            icon={IconMappings.cookie}
+                            size="medium"
+                            aria-label="Tab 1"
+                        />
+                    ),
+                    id: "tab-1",
+                    panel: <div>Tab contents 1</div>,
+                },
+                {
+                    label: (
+                        <PhosphorIcon
+                            icon={IconMappings.iceCream}
+                            size="medium"
+                            aria-label="Tab 2"
+                        />
+                    ),
+                    id: "tab-2",
+                    panel: <div>Tab contents 2</div>,
+                },
+            ],
+            selectedTabId: "tab-1",
+        },
+    },
+];
+
+export const Scenarios: Story = {
+    render: (args) => {
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <ControlledTabs {...args} {...props} />}
+            </ScenariosLayout>
+        );
+    },
+    args: {
+        animated: true,
     },
 };
