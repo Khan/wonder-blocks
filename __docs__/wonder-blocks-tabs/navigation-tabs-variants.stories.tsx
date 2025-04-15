@@ -218,7 +218,6 @@ export const Hover: Story = {
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
             // disableSnapshot: true,
-            delay: 1000,
         },
     },
 };
@@ -231,7 +230,6 @@ export const Focus: Story = {
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
             // disableSnapshot: true,
-            delay: 1000,
         },
     },
 };
@@ -245,7 +243,6 @@ export const HoverFocus: Story = {
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
             // disableSnapshot: true,
-            delay: 1000,
         },
     },
 };
@@ -258,7 +255,6 @@ export const Active: Story = {
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
             // disableSnapshot: true,
-            delay: 1000,
         },
     },
 };
