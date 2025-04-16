@@ -6,7 +6,7 @@ const baseline = 10;
 /**
  * Converts a number (px) to a rem value.
  */
-export function pxToRem(value: number): string {
+function pxToRem(value: number): string {
     return `${value / baseline}rem`;
 }
 
