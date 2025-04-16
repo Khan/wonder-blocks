@@ -14,22 +14,29 @@ const THEMES_DIR = "../theme";
  * the CSS variables for each theme.
  */
 function processThemeCollection() {
-    return fs
-        .readdirSync(path.resolve(__dirname, THEMES_DIR), {
-            withFileTypes: true,
-        })
-        .filter((file) => {
-            return file.isFile() && file.name.endsWith(".ts");
-        })
-        .map((file) => {
-            // Remove the file extension
-            const filename = file.name.split(".")[0];
+    return (
+        fs
+            .readdirSync(path.resolve(__dirname, THEMES_DIR), {
+                // Needed to determine whether the file is a directory or a
+                // file.
+                withFileTypes: true,
+            })
+            // Only include files that contain tokens
+            .filter((file) => {
+                return file.isFile() && file.name.endsWith(".ts");
+            })
+            .map((file) => {
+                // Remove the file extension
+                const filename = file.name.split(".")[0];
 
-            // eslint-disable-next-line @typescript-eslint/no-require-imports
-            const {default: themeObject} = require(`${THEMES_DIR}/${filename}`);
+                // eslint-disable-next-line @typescript-eslint/no-require-imports
+                const {default: themeObject} = require(
+                    `${THEMES_DIR}/${filename}`,
+                );
 
-            return {name: filename, tokens: generateTokens(themeObject)};
-        });
+                return {name: filename, tokens: generateTokens(themeObject)};
+            })
+    );
 }
 
 /**
