@@ -13,6 +13,11 @@ export type AccordionCornerKindType =
     | "rounded"
     | "rounded-per-section";
 
+export type AccordionToggleModeStatus = {
+    anyExpanded: boolean;
+    anyCollapsed: boolean;
+};
+
 type Props = AriaProps & {
     /**
      * The unique identifier for the accordion.
@@ -73,6 +78,26 @@ type Props = AriaProps & {
      * Custom styles for the overall accordion container.
      */
     style?: StyleType;
+
+    /**
+     * Called whenever the accordion’s overall expansion state may have changed,
+     * for example after the user toggles a single section or a “Expand All”
+     * / “Collapse All” action. The callback receives an object with booleans
+     * `anyExpanded` and `anyCollapsed`, indicating whether at least one section
+     * is open or closed, respectively.
+     */
+    onToggleModeComplete?: (status: {
+        anyExpanded: boolean;
+        anyCollapsed: boolean;
+    }) => void;
+
+    /**
+     * Uniformly expands or collapses all sections:
+     * `expand-all` opens them all.
+     * `collapse-all` closes them all.
+     * `none` leaves their state user-controlled.
+     */
+    toggleMode?: "expand-all" | "collapse-all" | "none";
 };
 
 const LANDMARK_PROLIFERATION_THRESHOLD = 6;
@@ -119,6 +144,8 @@ const Accordion = React.forwardRef(function Accordion(
         cornerKind = "rounded",
         animated,
         style,
+        toggleMode,
+        onToggleModeComplete,
         ...ariaProps
     } = props;
 
@@ -129,6 +156,20 @@ const Accordion = React.forwardRef(function Accordion(
         startingArray[initialExpandedIndex] = true;
     }
     const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
+
+    // We keep a local toggle mode state that defaults to "none" unless we
+    // have an initial toggleMode prop. Whenever the parent updates the
+    // toggleMode prop, this effect synchronizes our local state to match.
+    const [internalToggleMode, setInternalToggleMode] = React.useState<
+        "expand-all" | "collapse-all" | "none"
+    >(toggleMode ?? "none");
+
+    // Sync internal state with prop
+    React.useEffect(() => {
+        if (toggleMode !== null) {
+            setInternalToggleMode(toggleMode);
+        }
+    }, [toggleMode]);
 
     //  NOTE: It may seem like we should filter out non-collapsible sections
     //  here as they are effectively disabled. However, we should keep these
@@ -147,6 +188,16 @@ const Accordion = React.forwardRef(function Accordion(
     const sectionsAreRegions =
         children.length <= LANDMARK_PROLIFERATION_THRESHOLD;
 
+    // Updates the sectionsOpened state based on the toggleMode
+    // when the toggleMode prop changes to either "expand-all" or "collapse-all"
+    React.useEffect(() => {
+        if (toggleMode === "expand-all") {
+            setSectionsOpened(Array(children.length).fill(true));
+        } else if (toggleMode === "collapse-all") {
+            setSectionsOpened(Array(children.length).fill(false));
+        }
+    }, [toggleMode, children.length]);
+
     const handleSectionClick = (
         index: number,
         childOnToggle?: (newExpandedState: boolean) => unknown,
@@ -160,6 +211,19 @@ const Accordion = React.forwardRef(function Accordion(
 
         newSectionsOpened[index] = newOpenedValueAtIndex;
         setSectionsOpened(newSectionsOpened);
+
+        // Detect partial vs all open vs all closed sections
+        const anyOpen = newSectionsOpened.some(Boolean);
+        const anyClosed = newSectionsOpened.some((sectionOpen) => !sectionOpen);
+
+        if (anyOpen && anyClosed) {
+            onToggleModeComplete?.({anyExpanded: true, anyCollapsed: true});
+        } else {
+            onToggleModeComplete?.({
+                anyExpanded: anyOpen,
+                anyCollapsed: anyClosed,
+            });
+        }
 
         if (childOnToggle) {
             childOnToggle(newOpenedValueAtIndex);
@@ -275,6 +339,7 @@ const Accordion = React.forwardRef(function Accordion(
                             isLastSection: isLastChild,
                             isRegion: sectionsAreRegions,
                             ref: childRef,
+                            parentToggleMode: internalToggleMode,
                         })}
                     </li>
                 );

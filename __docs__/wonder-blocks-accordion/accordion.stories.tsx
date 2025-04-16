@@ -8,7 +8,6 @@ import {
 } from "@khanacademy/wonder-blocks-accordion";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
@@ -21,6 +20,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionArgtypes from "./accordion.argtypes";
+import type {AccordionToggleModeStatus} from "../../packages/wonder-blocks-accordion/src/components/accordion";
 
 /**
  * An accordion displays a vertically stacked list of sections, each of which
@@ -162,7 +162,9 @@ export const CaretPositions: StoryComponentType = {
             <View>
                 {/* Left-to-right */}
                 <View style={styles.sideBySide}>
-                    <View style={styles.fullWidth}>
+                    <View
+                        style={(styles.fullWidth, styles.caretExamplePadding)}
+                    >
                         <LabelLarge>
                             Caret position: end, language direction: left to
                             right
@@ -171,7 +173,6 @@ export const CaretPositions: StoryComponentType = {
                             {exampleSections}
                         </Accordion>
                     </View>
-                    <Strut size={tokens.spacing.xLarge_32} />
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: left to
@@ -185,7 +186,9 @@ export const CaretPositions: StoryComponentType = {
 
                 {/* Right-to-left */}
                 <View style={[styles.sideBySide, styles.rtl]}>
-                    <View style={styles.fullWidth}>
+                    <View
+                        style={(styles.fullWidth, styles.caretExamplePadding)}
+                    >
                         <LabelLarge>
                             Caret position: end, language direction: right to
                             left
@@ -204,7 +207,7 @@ export const CaretPositions: StoryComponentType = {
                             </AccordionSection>
                         </Accordion>
                     </View>
-                    <Strut size={tokens.spacing.xLarge_32} />
+
                     <View style={styles.fullWidth}>
                         <LabelLarge>
                             Caret position: start, language direction: right to
@@ -509,8 +512,8 @@ export const LongSections: StoryComponentType = {
                                         src="/logo.svg"
                                         width="100%"
                                         alt="Wonder Blocks logo"
+                                        style={styles.imagePadding}
                                     />
-                                    <Strut size={tokens.spacing.xLarge_32} />
                                     <img
                                         src="/logo.svg"
                                         width="100%"
@@ -643,10 +646,14 @@ export const BackgroundColorExample: StoryComponentType = {
 
         return (
             <>
-                <Accordion cornerKind="rounded">{sections}</Accordion>
-                <Strut size={tokens.spacing.large_24} />
-                <Accordion cornerKind="square">{sections}</Accordion>
-                <Strut size={tokens.spacing.large_24} />
+                <Accordion cornerKind="rounded" style={styles.accordionPadding}>
+                    {sections}
+                </Accordion>
+
+                <Accordion cornerKind="square" style={styles.accordionPadding}>
+                    {sections}
+                </Accordion>
+
                 <Accordion cornerKind="rounded-per-section">
                     {sections}
                 </Accordion>
@@ -684,4 +691,177 @@ const styles = StyleSheet.create({
         width: "fit-content",
         marginBottom: tokens.spacing.medium_16,
     },
+    caretExamplePadding: {
+        paddingBlockEnd: tokens.spacing.xLarge_32,
+    },
+    imagePadding: {
+        marginBottom: tokens.spacing.xLarge_32,
+    },
+    accordionPadding: {
+        paddingBlockEnd: tokens.spacing.large_24,
+    },
 });
+
+export const WithToggleMode: StoryComponentType = {
+    render: function Render() {
+        const [toggleMode, setToggleMode] = React.useState<
+            "expand-all" | "collapse-all" | undefined
+        >("none");
+
+        const [toggleModeForNextedSection, setToggleModeForNextedSection] =
+            React.useState<"expand-all" | "collapse-all" | undefined>("none");
+
+        return (
+            <>
+                <View>
+                    <LabelLarge>Accordions with toggle all</LabelLarge>
+
+                    <View
+                        style={{
+                            maxWidth: 500,
+                            marginBlockEnd: tokens.spacing.large_24,
+                            paddingBlockStart: tokens.spacing.large_24,
+                            flexDirection: "row",
+                            gap: tokens.spacing.small_12,
+                        }}
+                    >
+                        <Button
+                            onClick={() => setToggleMode("expand-all")}
+                            disabled={toggleMode === "expand-all"}
+                        >
+                            Expand All
+                        </Button>
+                        <Button
+                            onClick={() => setToggleMode("collapse-all")}
+                            disabled={toggleMode === "collapse-all"}
+                        >
+                            Collapse All
+                        </Button>
+                    </View>
+                    <Accordion
+                        toggleMode={toggleMode}
+                        onToggleModeComplete={({
+                            anyExpanded,
+                            anyCollapsed,
+                        }: AccordionToggleModeStatus) => {
+                            // partial
+                            if (anyExpanded && anyCollapsed) {
+                                setToggleMode("none");
+                            } else if (!anyExpanded) {
+                                // all closed
+                                setToggleMode("collapse-all");
+                            } else {
+                                // all open
+                                setToggleMode("expand-all");
+                            }
+                        }}
+                    >
+                        {exampleSections}
+                    </Accordion>
+                </View>
+
+                <View>
+                    <LabelLarge>Nested Accordion Example</LabelLarge>
+
+                    <View
+                        style={{
+                            maxWidth: 500,
+                            marginBlockEnd: tokens.spacing.large_24,
+                            paddingBlockStart: tokens.spacing.large_24,
+                            flexDirection: "row",
+                            gap: tokens.spacing.small_12,
+                        }}
+                    >
+                        <Button
+                            onClick={() =>
+                                setToggleModeForNextedSection("expand-all")
+                            }
+                            disabled={
+                                toggleModeForNextedSection === "expand-all"
+                            }
+                        >
+                            Expand All
+                        </Button>
+                        <Button
+                            onClick={() =>
+                                setToggleModeForNextedSection("collapse-all")
+                            }
+                            disabled={
+                                toggleModeForNextedSection === "collapse-all"
+                            }
+                        >
+                            Collapse All
+                        </Button>
+                    </View>
+
+                    {/* Main Accordion Component */}
+                    <Accordion
+                        toggleMode={toggleModeForNextedSection}
+                        onToggleModeComplete={({
+                            anyExpanded,
+                            anyCollapsed,
+                        }: AccordionToggleModeStatus) => {
+                            // partial
+                            if (anyExpanded && anyCollapsed) {
+                                setToggleModeForNextedSection("none");
+                            } else if (!anyExpanded) {
+                                // all closed
+                                setToggleModeForNextedSection("collapse-all");
+                            } else {
+                                // all open
+                                setToggleModeForNextedSection("expand-all");
+                            }
+                        }}
+                    >
+                        <AccordionSection
+                            header="Section 1"
+                            caretPosition="start"
+                        >
+                            This is the content of section 1.
+                        </AccordionSection>
+                        <AccordionSection
+                            header="Section 2"
+                            caretPosition="start"
+                        >
+                            This is the content of section 2.
+                        </AccordionSection>
+                        <AccordionSection
+                            header="Section 3"
+                            caretPosition="start"
+                        >
+                            This is the content of section 3.
+                        </AccordionSection>
+                        <AccordionSection
+                            header={`Nested Section 1`}
+                            key={`nested-section-1`}
+                            caretPosition="start"
+                        >
+                            <AccordionSection
+                                header={`Nested Section A`}
+                                caretPosition="start"
+                                cornerKind="square"
+                                expanded={
+                                    toggleModeForNextedSection === "expand-all"
+                                }
+                                parentToggleMode={toggleModeForNextedSection}
+                            >
+                                This is content for nested section 2.
+                            </AccordionSection>
+                            <AccordionSection
+                                header={`Nested Section B`}
+                                caretPosition="start"
+                                cornerKind="square"
+                                expanded={
+                                    toggleModeForNextedSection === "expand-all"
+                                }
+                                parentToggleMode={toggleModeForNextedSection}
+                            >
+                                This is content for nested section 3.
+                            </AccordionSection>
+                        </AccordionSection>
+                    </Accordion>
+                </View>
+            </>
+        );
+    },
+};

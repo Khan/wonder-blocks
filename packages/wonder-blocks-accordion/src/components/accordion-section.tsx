@@ -125,6 +125,12 @@ type Props = AriaProps & {
      * @ignore
      */
     isRegion?: boolean;
+    /**
+     * Whether the parent accordion is in "expand-all" or "collapse-all" mode.
+     * For internal use only.
+     * @ignore
+     */
+    parentToggleMode?: "expand-all" | "collapse-all";
 };
 
 /**
@@ -199,6 +205,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         // Assume it's a region by default. Override this to be false
         // if we know there are more than six panels in an accordion.
         isRegion = true,
+        parentToggleMode,
         ...ariaProps
     } = props;
 
@@ -207,6 +214,12 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     );
 
     const controlledMode = expanded !== undefined && onToggle;
+
+    React.useEffect(() => {
+        if (parentToggleMode) {
+            setInternalExpanded(parentToggleMode === "expand-all");
+        }
+    }, [parentToggleMode]);
 
     const uniqueSectionId = useId();
     const sectionId = id ?? uniqueSectionId;
