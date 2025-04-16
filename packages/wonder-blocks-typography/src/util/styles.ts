@@ -49,8 +49,8 @@ const styles: StyleDeclaration = StyleSheet.create({
             lineHeight: font.lineHeight.xLarge,
         },
         [breakpoint.mediaQuery.mdOrSmaller]: {
-            fontSize: font.size.large,
-            lineHeight: font.lineHeight.large,
+            fontSize: "22px",
+            lineHeight: "26px",
         },
     },
     HeadingSmall: {
