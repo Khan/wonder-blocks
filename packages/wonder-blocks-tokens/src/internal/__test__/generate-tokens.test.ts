@@ -4,8 +4,10 @@ describe("generateTokens", () => {
     it("should generate tokens", () => {
         // Arrange
         const obj = {
-            primary: "red",
-            secondary: "blue",
+            semanticColor: {
+                primary: "red",
+                secondary: "blue",
+            },
         };
 
         // Act
@@ -13,16 +15,18 @@ describe("generateTokens", () => {
 
         // Assert
         expect(cssVars).toStrictEqual({
-            "--wb-s-color-primary": "red",
-            "--wb-s-color-secondary": "blue",
+            "--wb-semanticColor-primary": "red",
+            "--wb-semanticColor-secondary": "blue",
         });
     });
 
     it("should not generate tokens in empty objects", () => {
         // Arrange
         const obj = {
-            primary: {},
-            secondary: "blue",
+            semanticColor: {
+                primary: {},
+                secondary: "blue",
+            },
         };
 
         // Act
@@ -30,7 +34,7 @@ describe("generateTokens", () => {
 
         // Assert
         expect(cssVars).toStrictEqual({
-            "--wb-s-color-secondary": "blue",
+            "--wb-semanticColor-secondary": "blue",
         });
     });
 });
