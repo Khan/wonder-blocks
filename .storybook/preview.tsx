@@ -1,6 +1,7 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
+import {DocsContainer} from "@storybook/blocks";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
@@ -91,6 +92,16 @@ const parameters = {
         },
     },
     docs: {
+        // Customize the DocsContainer to use the WB theme in MDX pages.
+        container: (props) => {
+            const theme = props.context.store.userGlobals.globals.theme;
+
+            return (
+                <ThemeSwitcher theme={theme}>
+                    <DocsContainer {...props}>{props.children}</DocsContainer>
+                </ThemeSwitcher>
+            );
+        },
         toc: {
             // Useful for MDX pages like "Using color".
             headingSelector: "h2, h3",
@@ -214,6 +225,11 @@ const preview: Preview = {
                         value: "khanmigo",
                         icon: "comment",
                         title: "Khanmigo",
+                    },
+                    {
+                        value: "thunderblocks",
+                        icon: "lightning",
+                        title: "Thunder Blocks (Classroom)",
                     },
                 ],
                 // Change title based on selected value
