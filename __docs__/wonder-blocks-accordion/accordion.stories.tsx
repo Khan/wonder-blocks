@@ -859,9 +859,6 @@ export const WithToggleAll: StoryComponentType = {
                         >
                             <AccordionSection
                                 header={`Nested Section A`}
-                                headerStyle={{
-                                    backgroundColor: "lightblue",
-                                }}
                                 caretPosition="start"
                                 cornerKind="square"
                                 expanded={
@@ -873,9 +870,6 @@ export const WithToggleAll: StoryComponentType = {
                             </AccordionSection>
                             <AccordionSection
                                 header={`Nested Section B`}
-                                headerStyle={{
-                                    backgroundColor: "lightgreen",
-                                }}
                                 caretPosition="start"
                                 cornerKind="square"
                                 expanded={
