@@ -34,6 +34,11 @@ export const defaultPseudoStates = {
         `.${commonStates.hoverAndFocus.className}`,
         `.${commonStates.pressAndFocus.className}`,
     ],
+    focusWithin: [
+        `.${commonStates.focus.className}`,
+        `.${commonStates.hoverAndFocus.className}`,
+        `.${commonStates.pressAndFocus.className}`,
+    ],
     active: [
         `.${commonStates.press.className}`,
         `.${commonStates.pressAndFocus.className}`,

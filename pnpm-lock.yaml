@@ -1211,6 +1211,9 @@ importers:
       '@khanacademy/wonder-blocks-icon':
         specifier: workspace:*
         version: link:../wonder-blocks-icon
+      '@khanacademy/wonder-blocks-styles':
+        specifier: workspace:*
+        version: link:../wonder-blocks-styles
       '@khanacademy/wonder-blocks-theming':
         specifier: workspace:*
         version: link:../wonder-blocks-theming
