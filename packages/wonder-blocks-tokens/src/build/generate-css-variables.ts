@@ -5,7 +5,7 @@ import ancesdir from "ancesdir";
 import {THEME_DATA_ATTRIBUTE} from "@khanacademy/wonder-blocks-theming";
 import {generateTokens} from "../internal/generate-tokens";
 
-const THEMES_DIR = "../theme/color";
+const THEMES_DIR = "../theme";
 
 /**
  * Process all themes in the theme directory.
@@ -14,14 +14,22 @@ const THEMES_DIR = "../theme/color";
  * the CSS variables for each theme.
  */
 function processThemeCollection() {
-    return fs.readdirSync(path.resolve(__dirname, THEMES_DIR)).map((file) => {
-        // Remove the file extension
-        const filename = file.split(".")[0];
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
-        const {default: themeObject} = require(`${THEMES_DIR}/${filename}`);
+    return fs
+        .readdirSync(path.resolve(__dirname, THEMES_DIR), {
+            withFileTypes: true,
+        })
+        .filter((file) => {
+            return file.isFile() && file.name.endsWith(".ts");
+        })
+        .map((file) => {
+            // Remove the file extension
+            const filename = file.name.split(".")[0];
 
-        return {name: filename, tokens: generateTokens(themeObject)};
-    });
+            // eslint-disable-next-line @typescript-eslint/no-require-imports
+            const {default: themeObject} = require(`${THEMES_DIR}/${filename}`);
+
+            return {name: filename, tokens: generateTokens(themeObject)};
+        });
 }
 
 /**
@@ -29,7 +37,7 @@ function processThemeCollection() {
  */
 function generateCssVariablesDefinitions() {
     return processThemeCollection()
-        .map((theme) => {
+        .map((theme, index) => {
             const cssVariables = Object.entries(theme.tokens)
                 .map(([key, value]) => `${key}: ${value};`)
                 .join("");

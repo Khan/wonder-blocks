@@ -42,6 +42,10 @@ const styles = {padding: sizing.size_160};
             cell: (row) => <code>sizing.{row.label}</code>,
         },
         {
+            label: "CSS Variable",
+            cell: (row) => <code>{row.css}</code>,
+        },
+        {
             label: "Base unit multiplier",
             cell: (row) => row.value.replace("rem", "x"),
         },

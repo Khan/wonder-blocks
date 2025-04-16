@@ -7,4 +7,4 @@
  * - namespace: The design token namespace (`s` for semantic tokens).
  * - token_category: The category of the design token (e.g. `color`, `size`).
  */
-export const CSS_VAR_COLOR_PREFIX = "--wb-s-color-";
+export const CSS_VAR_PREFIX = "--wb-";

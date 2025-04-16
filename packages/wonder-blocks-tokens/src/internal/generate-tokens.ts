@@ -1,4 +1,4 @@
-import {CSS_VAR_COLOR_PREFIX} from "../util/constants";
+import {CSS_VAR_PREFIX} from "../util/constants";
 import {RecursivePartial} from "../util/types";
 
 /**
@@ -11,7 +11,7 @@ export function generateTokens<T>(root: T): Record<string, string> {
     const tokens = {} as Record<string, string>;
     function generateCssVariables(
         obj: T | RecursivePartial<T>,
-        prefix = CSS_VAR_COLOR_PREFIX,
+        prefix = CSS_VAR_PREFIX,
     ) {
         for (const key in obj as RecursivePartial<T>) {
             if (typeof obj[key] === "object") {

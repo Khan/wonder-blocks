@@ -7,7 +7,7 @@ const border = {
     inverse: color.white,
 };
 
-export default {
+export const semanticColor = {
     /**
      * For buttons, links, and controls to communicate the presence and meaning
      * of interaction.
