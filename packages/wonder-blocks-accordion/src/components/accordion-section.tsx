@@ -12,7 +12,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {useId} from "react";
-import type {AccordionCornerKindType} from "./accordion";
+import type {AccordionCornerKindType, AccordionToggleMode} from "./accordion";
 import AccordionSectionHeader from "./accordion-section-header";
 
 export type TagType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -27,7 +27,7 @@ type Props = AriaProps & {
      * passed in, it will automatically be given Body typography from
      * Wonder Blocks Typography.
      */
-    children: string | React.ReactElement;
+    children: string | React.ReactNode;
     /**
      * The header for this section. If a string is passed in, it will
      * automatically be given Body typography from Wonder Blocks Typography.
@@ -130,7 +130,7 @@ type Props = AriaProps & {
      * For internal use only.
      * @ignore
      */
-    parentToggleMode?: "expand-all" | "collapse-all";
+    parentToggleMode?: AccordionToggleMode;
 };
 
 /**

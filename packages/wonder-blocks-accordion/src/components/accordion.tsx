@@ -18,6 +18,11 @@ export type AccordionToggleModeStatus = {
     anyCollapsed: boolean;
 };
 
+export type AccordionToggleMode =
+    | "expand-all"
+    | "collapse-all"
+    | "none"
+    | undefined;
 type Props = AriaProps & {
     /**
      * The unique identifier for the accordion.
@@ -157,19 +162,14 @@ const Accordion = React.forwardRef(function Accordion(
     }
     const [sectionsOpened, setSectionsOpened] = React.useState(startingArray);
 
-    // We keep a local toggle mode state that defaults to "none" unless we
-    // have an initial toggleMode prop. Whenever the parent updates the
-    // toggleMode prop, this effect synchronizes our local state to match.
-    const [internalToggleMode, setInternalToggleMode] = React.useState<
-        "expand-all" | "collapse-all" | "none"
-    >(toggleMode ?? "none");
+    const [internalToggleMode, setInternalToggleMode] =
+        React.useState<AccordionToggleMode>(toggleMode ?? "none");
 
-    // Sync internal state with prop
     React.useEffect(() => {
-        if (toggleMode !== null) {
+        if (toggleMode !== internalToggleMode) {
             setInternalToggleMode(toggleMode);
         }
-    }, [toggleMode]);
+    }, [internalToggleMode, toggleMode]);
 
     //  NOTE: It may seem like we should filter out non-collapsible sections
     //  here as they are effectively disabled. However, we should keep these

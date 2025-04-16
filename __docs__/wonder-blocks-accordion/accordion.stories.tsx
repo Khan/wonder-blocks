@@ -20,7 +20,10 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-accordion/package.json";
 
 import AccordionArgtypes from "./accordion.argtypes";
-import type {AccordionToggleModeStatus} from "../../packages/wonder-blocks-accordion/src/components/accordion";
+import type {
+    AccordionToggleMode,
+    AccordionToggleModeStatus,
+} from "../../packages/wonder-blocks-accordion/src/components/accordion";
 
 /**
  * An accordion displays a vertically stacked list of sections, each of which
@@ -704,12 +707,11 @@ const styles = StyleSheet.create({
 
 export const WithToggleMode: StoryComponentType = {
     render: function Render() {
-        const [toggleMode, setToggleMode] = React.useState<
-            "expand-all" | "collapse-all" | undefined
-        >("none");
+        const [toggleMode, setToggleMode] =
+            React.useState<AccordionToggleMode>("none");
 
         const [toggleModeForNextedSection, setToggleModeForNextedSection] =
-            React.useState<"expand-all" | "collapse-all" | undefined>("none");
+            React.useState<AccordionToggleMode>("none");
 
         return (
             <>
@@ -838,6 +840,7 @@ export const WithToggleMode: StoryComponentType = {
                         >
                             <AccordionSection
                                 header={`Nested Section A`}
+                                key={`nested-section-a`}
                                 caretPosition="start"
                                 cornerKind="square"
                                 expanded={
