@@ -299,7 +299,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
             navigationTabsRoot: {
                 // set margin to negative value of header vertical spacing so
                 // that selected indicator lines up with header border
-                margin: `-${headerVerticalSpacing} 0`,
+                margin: `var(${headerVerticalSpacing}, *-1) 0`,
             },
         });
         const [currentTab, setCurrentTab] = React.useState(0);
