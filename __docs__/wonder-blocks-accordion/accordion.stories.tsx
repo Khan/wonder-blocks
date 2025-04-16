@@ -708,10 +708,10 @@ const styles = StyleSheet.create({
 export const WithToggleMode: StoryComponentType = {
     render: function Render() {
         const [toggleMode, setToggleMode] =
-            React.useState<AccordionToggleMode>("none");
+            React.useState<AccordionToggleMode>("collapse-all");
 
         const [toggleModeForNextedSection, setToggleModeForNextedSection] =
-            React.useState<AccordionToggleMode>("none");
+            React.useState<AccordionToggleMode>("collapse-all");
 
         return (
             <>
