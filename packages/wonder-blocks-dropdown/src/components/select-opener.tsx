@@ -279,7 +279,7 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
     // TODO(WB-1868): Address outlineOffset to include hover and focus states
     const sharedOutlineStyling = {
         // Outline sits inside the border (inset)
-        outlineOffset: `-${border.width.medium}`,
+        outlineOffset: `calc(${border.width.medium} * -1)`,
         outlineStyle: "solid",
         outlineWidth: border.width.medium,
     };
