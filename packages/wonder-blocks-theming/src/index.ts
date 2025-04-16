@@ -9,5 +9,6 @@ export {
 } from "./components/with-scoped-theme";
 export {type ThemedStylesFn, type SupportedThemes, type Themes} from "./types";
 export {default as useStyles} from "./hooks/use-styles";
+export {THEME_DATA_ATTRIBUTE} from "./utils/constants";
 export {ThemeSwitcherContext} from "./utils/theme-switcher-context";
 export {ThemeSwitcher} from "./components/theme-switcher";

@@ -139,6 +139,12 @@ importers:
       '@khanacademy/eslint-plugin':
         specifier: ^3.1.1
         version: 3.1.1(eslint@8.57.1)(typescript@5.7.3)
+      '@khanacademy/wonder-blocks-announcer':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-announcer
+      '@khanacademy/wonder-blocks-core':
+        specifier: workspace:*
+        version: link:packages/wonder-blocks-core
       '@khanacademy/wonder-blocks-link':
         specifier: workspace:*
         version: link:packages/wonder-blocks-link

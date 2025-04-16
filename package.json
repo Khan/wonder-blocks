@@ -53,6 +53,8 @@
     "@khanacademy/eslint-config": "^5.2.0",
     "@khanacademy/eslint-plugin": "^3.1.1",
     "@khanacademy/wonder-stuff-testing": "^3.0.5",
+    "@khanacademy/wonder-blocks-announcer": "workspace:*",
+    "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-link": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-theming": "workspace:*",

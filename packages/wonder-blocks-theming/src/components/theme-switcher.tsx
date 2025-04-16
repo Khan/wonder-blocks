@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import {SupportedThemes} from "../types";
+import {THEME_DATA_ATTRIBUTE} from "../utils/constants";
 
 type Props = {
     /**
@@ -22,7 +23,10 @@ export function ThemeSwitcher({theme, children}: Props) {
         return children;
     }
 
+    const props = {
+        [THEME_DATA_ATTRIBUTE]: theme,
+    };
     // Attach the CSS variables to a local scope so that they only work within
     // this component
-    return <div className={`wb-theme-${theme}`}>{children}</div>;
+    return <div {...props}>{children}</div>;
 }

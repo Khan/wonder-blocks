@@ -1,6 +1,7 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -8,14 +9,10 @@ import {
     ThemeSwitcherContext,
     ThemeSwitcher,
 } from "@khanacademy/wonder-blocks-theming";
-import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
 import {Preview} from "@storybook/react";
 
 // Import the Wonder Blocks CSS variables
-// NOTE: External consumers should import the CSS variables from the
-// wonder-blocks-tokens package directly.
-// e.g. import "@khanacademy/wonder-blocks-tokens/styles.css";
-import "../node_modules/@khanacademy/wonder-blocks-tokens/dist/css/index.css";
+import "@khanacademy/wonder-blocks-tokens/styles.css";
 
 /**
  * WB Official breakpoints
