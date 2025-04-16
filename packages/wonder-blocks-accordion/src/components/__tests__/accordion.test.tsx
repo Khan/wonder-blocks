@@ -706,4 +706,40 @@ describe("Accordion", () => {
             },
         );
     });
+    describe("ToggleMode uniform open/close", () => {
+        test("expands all sections when toggleMode is 'expand-all' and collapses them when 'collapse-all'", async () => {
+            // Arrange
+            const {rerender} = render(
+                <Accordion toggleMode="expand-all">
+                    <AccordionSection header="Section 1">
+                        Content 1
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Content 2
+                    </AccordionSection>
+                </Accordion>,
+                {wrapper: RenderStateRoot},
+            );
+
+            // Assert that both sections are open (fully expanded).
+            expect(await screen.findByText("Content 1")).toBeVisible();
+            expect(await screen.findByText("Content 2")).toBeVisible();
+
+            // Act: now re-render with toggleMode="collapse-all"
+            rerender(
+                <Accordion toggleMode="collapse-all">
+                    <AccordionSection header="Section 1">
+                        Content 1
+                    </AccordionSection>
+                    <AccordionSection header="Section 2">
+                        Content 2
+                    </AccordionSection>
+                </Accordion>,
+            );
+
+            // Assert that both sections are now collapsed.
+            expect(screen.queryByText("Content 1")).not.toBeVisible();
+            expect(screen.queryByText("Content 2")).not.toBeVisible();
+        });
+    });
 });
