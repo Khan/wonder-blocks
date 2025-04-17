@@ -300,7 +300,16 @@ export const WithDarkPanel: StoryComponentType = {
                         footer={
                             <Button
                                 kind="secondary"
-                                style={actionStyles.inverse}
+                                style={[
+                                    actionStyles.inverse,
+                                    // NOTE: This is a workaround while we move
+                                    // this button to DAB and remove the
+                                    // `Button.khanmigo` theme.
+                                    {
+                                        background: "transparent",
+                                        ":hover": {background: "transparent"},
+                                    },
+                                ]}
                                 onClick={() => {}}
                             >
                                 Continue
