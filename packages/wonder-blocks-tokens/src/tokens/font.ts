@@ -1,4 +1,4 @@
-import {sizing} from "./sizing";
+import {sizing} from "../theme/primitive/sizing";
 
 export const fontFamily = {
     sans: 'Lato, "Noto Sans", sans-serif',

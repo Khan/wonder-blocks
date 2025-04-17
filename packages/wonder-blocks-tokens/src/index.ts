@@ -7,7 +7,7 @@ import {spacing} from "./tokens/spacing";
 import {breakpoint} from "./tokens/media-queries";
 
 // utils
-import {mix, fade} from "./util/utils";
+import {mix, fade, pxToRem, remToPx} from "./util/utils";
 
 // theme
 import theme from "./tokens/theme";
@@ -21,6 +21,8 @@ export {
     border,
     color,
     font,
+    pxToRem,
+    remToPx,
     sizing,
     spacing,
     /**
