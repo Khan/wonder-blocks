@@ -67,11 +67,9 @@ function DocsContainerWithTheme({children, context, ...props}) {
     const theme = context.store.userGlobals.globals.theme;
 
     return (
-        <ThemeSwitcher theme={theme}>
-            <DocsContainer context={context} {...props}>
-                {children}
-            </DocsContainer>
-        </ThemeSwitcher>
+        <DocsContainer context={context} {...props}>
+            <ThemeSwitcher theme={theme}>{children}</ThemeSwitcher>
+        </DocsContainer>
     );
 }
 
