@@ -2,7 +2,7 @@
 import {border} from "./tokens/border";
 import {color} from "./tokens/color";
 import {font} from "./tokens/font";
-import {sizing} from "./tokens/sizing";
+import {pxToRem, remToPx, sizing} from "./tokens/sizing";
 import {spacing} from "./tokens/spacing";
 
 // media queries
@@ -20,6 +20,8 @@ export {
     border,
     color,
     font,
+    pxToRem,
+    remToPx,
     sizing,
     spacing,
     /**
