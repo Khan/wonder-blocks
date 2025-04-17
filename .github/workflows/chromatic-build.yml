@@ -46,6 +46,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       CI: true
+      LANG: "en-US"
     strategy:
       fail-fast: false
       matrix:

@@ -1,8 +1,8 @@
 import * as React from "react";
-import moment from "moment";
 import {render, act, screen, waitFor} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import {userEvent, PointerEventsCheckLevel} from "@testing-library/user-event";
+import {Temporal} from "temporal-polyfill";
 
 import BirthdayPicker, {defaultLabels} from "../birthday-picker";
 
@@ -63,8 +63,7 @@ describe("BirthdayPicker", () => {
 
         it("renders with a valid default value", async () => {
             // Arrange
-            const date = moment(today);
-            const defaultValue = date.format("YYYY-MM-DD");
+            const defaultValue = Temporal.Now.plainDateISO().toString();
 
             // Act
             render(
@@ -92,8 +91,9 @@ describe("BirthdayPicker", () => {
         it("renders with a invalid default future value", async () => {
             // Arrange
             DateMock.advanceTo(today);
-            const date = moment(today).add(1, "day");
-            const defaultValue = date.format("YYYY-MM-DD");
+            const defaultValue = Temporal.Now.plainDateISO()
+                .add({days: 1})
+                .toString();
 
             // Act
             render(
@@ -119,8 +119,11 @@ describe("BirthdayPicker", () => {
 
         it("renders an error with a invalid default future value", async () => {
             // Arrange
-            const date = moment(today).add(1, "day");
-            const defaultValue = date.format("YYYY-MM-DD");
+            const defaultValue = Temporal.PlainDate.from({
+                year: today.getFullYear(),
+                month: today.getMonth() + 1, // Temporal is 1-based
+                day: today.getDate() + 1, // +1 for future date
+            }).toString();
 
             // Act
             render(
@@ -424,7 +427,7 @@ describe("BirthdayPicker", () => {
             // This test was written by calling methods on the instance because
             // react-window (used by SingleSelect) doesn't show all of the items
             // in the dropdown.
-            await act(() => instance.handleMonthChange("1"));
+            await act(() => instance.handleMonthChange("2"));
             await act(() => instance.handleDayChange("31"));
             await act(() => instance.handleYearChange("2021"));
 

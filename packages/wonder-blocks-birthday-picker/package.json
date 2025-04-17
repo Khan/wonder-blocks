@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-birthday-picker",
-  "version": "3.3.10",
+  "version": "4.0.0",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -25,7 +25,7 @@
   "peerDependencies": {
     "@phosphor-icons/core": "catalog:",
     "aphrodite": "catalog:",
-    "moment": "catalog:",
+    "temporal-polyfill": "catalog:",
     "react": "catalog:"
   },
   "devDependencies": {
