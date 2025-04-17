@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {AllVariants} from "./all-variants";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {LabelLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 export const commonStates = {
     rest: {name: "Rest", className: "rest"},
@@ -51,34 +51,6 @@ export const defaultStates: Array<State> = Object.values(commonStates);
  */
 type State = {name: string; className: string};
 
-/**
- * The labels for the states presented in the row headers in the `StateSheet`
- * component.
- */
-function StateLabels({
-    states,
-    variant,
-}: {
-    states: Array<State>;
-    variant: string | React.ReactNode;
-}) {
-    return (
-        <View style={styles.stateLabelsContainer}>
-            <LabelLarge style={{alignSelf: "center"}}>{variant}</LabelLarge>
-            <View
-                style={[
-                    styles.rowHeaderStates,
-                    {gridTemplateRows: `repeat(${states.length}, 40px)`},
-                ]}
-            >
-                {states.map(({name}, index) => (
-                    <LabelMedium key={index}>{name}</LabelMedium>
-                ))}
-            </View>
-        </View>
-    );
-}
-
 type Props = PropsFor<typeof AllVariants> & {
     /**
      * The states to display in the table as rows.
@@ -95,33 +67,45 @@ export function StateSheet({
     rows,
     states = defaultStates,
     title,
+    layout = "responsive",
 }: Props) {
-    // Override the default row headers to include the state labels.
-    const rowsWithStateLabels = rows.map(({name, props}) => ({
-        name: <StateLabels variant={name} states={states} />,
-        props,
-    }));
-
     return (
-        <View>
+        <View style={{alignItems: "flex-start"}}>
             <AllVariants
-                rows={rowsWithStateLabels}
+                rows={rows}
                 columns={columns}
                 styles={{
                     rowHeader: styles.rowHeader,
                 }}
                 title={title}
+                layout={layout}
             >
                 {({props}) => {
                     return (
-                        <View style={styles.container}>
-                            {states.map(({className, name}) =>
-                                children({
-                                    props,
-                                    className,
-                                    name,
-                                }),
-                            )}
+                        <View style={[styles.container]}>
+                            {states.map(({className, name}) => (
+                                <View
+                                    key={name}
+                                    className={className}
+                                    style={{
+                                        alignItems: "flex-start",
+                                    }}
+                                >
+                                    <LabelSmall
+                                        style={{
+                                            paddingBlockEnd: sizing.size_080,
+                                            color: semanticColor.text.secondary,
+                                        }}
+                                    >
+                                        {name}
+                                    </LabelSmall>
+                                    {children({
+                                        props,
+                                        className,
+                                        name,
+                                    })}
+                                </View>
+                            ))}
                         </View>
                     );
                 }}
@@ -137,15 +121,6 @@ const styles = StyleSheet.create({
     },
     container: {
         gap: sizing.size_160,
-    },
-
-    stateLabelsContainer: {
-        flexDirection: "row",
-        gap: sizing.size_160,
-        padding: sizing.size_160,
-        justifyContent: "space-between",
-        background: semanticColor.surface.secondary,
-        borderTop: `${sizing.size_010} solid ${semanticColor.border.strong}`,
     },
     rowHeaderStates: {
         gap: sizing.size_160,

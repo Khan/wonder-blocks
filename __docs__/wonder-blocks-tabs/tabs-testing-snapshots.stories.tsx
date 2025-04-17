@@ -5,7 +5,7 @@ import {Tabs} from "@khanacademy/wonder-blocks-tabs";
 import {AllVariants} from "../components/all-variants";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {
     rtlText,
     longText,
@@ -14,6 +14,7 @@ import {
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {ControlledTabs, generateTabs} from "./tabs-utils";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
 const StyledDiv = addStyle("div");
 
@@ -179,46 +180,51 @@ const meta = {
 
 export default meta;
 
-export const Default: Story = {};
-
-export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
+const generateStateSheet = (
+    args: Partial<PropsFor<typeof Tabs>>,
+    layout: "responsive" | "list",
+) => {
+    return (
+        <View>
+            <StateSheet rows={rows} columns={columns} title="" layout={layout}>
+                {({props, name, className}) => (
+                    <View className={className}>
+                        <Tabs {...args} {...props} key={name} />
+                    </View>
+                )}
+            </StateSheet>
+            <div dir="rtl">
+                <StateSheet
+                    rows={rtlRows}
+                    columns={columns}
+                    title=""
+                    layout={layout}
+                >
+                    {({props, name, className}) => (
+                        <View className={className}>
+                            <Tabs {...args} {...props} key={name} />
+                        </View>
+                    )}
+                </StateSheet>
+            </div>
+        </View>
+    );
 };
 
-export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
-};
-
-export const HoverFocus: Story = {
-    name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
-};
-
-export const Press: Story = {
-    parameters: {pseudo: {hover: true, active: true}},
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args) => {
+        return generateStateSheet(args, "responsive");
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
 };
 
 export const Zoom: Story = {
-    render: (args) => (
-        <>
-            <AllVariants rows={rows} columns={columns} layout="list">
-                {({props}) => (
-                    <View>
-                        <Tabs {...args} {...props} />
-                    </View>
-                )}
-            </AllVariants>
-            <div dir="rtl">
-                <AllVariants rows={rtlRows} columns={columns} layout="list">
-                    {({props}) => (
-                        <View>
-                            <Tabs {...args} {...props} />
-                        </View>
-                    )}
-                </AllVariants>
-            </div>
-        </>
-    ),
+    render: (args) => {
+        return generateStateSheet(args, "list");
+    },
     globals: {
         zoom: "400%",
     },
