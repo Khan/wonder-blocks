@@ -128,60 +128,60 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         tertiary: {
             progressive: {
                 default: {
-                    border: color.white_01,
-                    background: color.white_01,
+                    border: "transparent",
+                    background: "transparent",
                     foreground: color.blue_30,
                 },
                 hover: {
                     border: color.blue_20,
-                    background: color.white_01,
+                    background: "transparent",
                     foreground: color.blue_20,
                 },
                 press: {
                     border: color.blue_20,
-                    background: color.white_01,
+                    background: "transparent",
                     foreground: color.blue_20,
                 },
             },
 
             destructive: {
                 default: {
-                    border: color.white_01,
-                    background: color.white_01,
+                    border: "transparent",
+                    background: "transparent",
                     foreground: color.red_30,
                 },
                 hover: {
                     border: color.red_20,
-                    background: color.white_01,
+                    background: "transparent",
                     foreground: color.red_20,
                 },
                 press: {
                     border: color.red_20,
-                    background: color.white_01,
+                    background: "transparent",
                     foreground: color.red_20,
                 },
             },
             neutral: {
                 default: {
-                    border: color.white_01,
-                    background: color.white_01,
+                    border: "transparent",
+                    background: "transparent",
                     foreground: color.gray_20,
                 },
                 hover: {
                     border: color.gray_10,
-                    background: color.white_01,
+                    background: "transparent",
                     foreground: color.gray_10,
                 },
                 press: {
                     border: color.gray_10,
-                    background: color.white_01,
+                    background: "transparent",
                     foreground: color.gray_10,
                 },
             },
 
             disabled: {
-                border: color.white_01,
-                background: color.white_01,
+                border: "transparent",
+                background: "transparent",
                 foreground: color.gray_50,
             },
         },
