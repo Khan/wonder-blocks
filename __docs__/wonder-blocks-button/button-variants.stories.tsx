@@ -97,25 +97,17 @@ function VariantsGroup({
     );
 }
 
-const KindVariants = () => {
-    return (
-        <>
-            {sizes.map((size) => (
-                <React.Fragment key={size}>
-                    {colors.map((color) => (
-                        <VariantsGroup key={color} size={size} color={color} />
-                    ))}
-                    <VariantsGroup size={size} disabled={true} />
-                </React.Fragment>
-            ))}
-        </>
-    );
-};
-
 const VariantsByTheme = ({themeName = "Default"}: {themeName?: string}) => (
     <View style={{marginBottom: spacing.large_24}}>
         <HeadingLarge>{themeName} theme</HeadingLarge>
-        <KindVariants />
+        {sizes.map((size) => (
+            <React.Fragment key={size}>
+                {colors.map((color) => (
+                    <VariantsGroup key={color} size={size} color={color} />
+                ))}
+                <VariantsGroup size={size} disabled={true} />
+            </React.Fragment>
+        ))}
     </View>
 );
 
