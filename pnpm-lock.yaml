@@ -21,9 +21,6 @@ catalogs:
     aphrodite:
       specifier: ^1.2.5
       version: 1.2.5
-    moment:
-      specifier: 2.29.4
-      version: 2.29.4
     node-fetch:
       specifier: ^2.6.7
       version: 2.7.0
@@ -48,6 +45,9 @@ catalogs:
     react-window:
       specifier: ^1.8.11
       version: 1.8.11
+    temporal-polyfill:
+      specifier: ^0.3.0
+      version: 0.3.0
 
 overrides:
   '@types/react': '18'
@@ -72,9 +72,6 @@ importers:
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
-      moment:
-        specifier: 'catalog:'
-        version: 2.29.4
       node-fetch:
         specifier: 'catalog:'
         version: 2.7.0
@@ -506,12 +503,12 @@ importers:
       aphrodite:
         specifier: 'catalog:'
         version: 1.2.5
-      moment:
-        specifier: 'catalog:'
-        version: 2.29.4
       react:
         specifier: 'catalog:'
         version: 18.2.0
+      temporal-polyfill:
+        specifier: 'catalog:'
+        version: 0.3.0
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -6157,9 +6154,6 @@ packages:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
-  moment@2.29.4:
-    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
-
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -7271,6 +7265,12 @@ packages:
   temp@0.8.4:
     resolution: {integrity: sha512-s0ZZzd0BzYv5tLSptZooSjK8oj6C+c19p7Vqta9+6NPOf7r+fxq0cJe6/oN4LTC79sy5NY8ucOJNgwsKCSbfqg==}
     engines: {node: '>=6.0.0'}
+
+  temporal-polyfill@0.3.0:
+    resolution: {integrity: sha512-qNsTkX9K8hi+FHDfHmf22e/OGuXmfBm9RqNismxBrnSmZVJKegQ+HYYXT+R7Ha8F/YSm2Y34vmzD4cxMu2u95g==}
+
+  temporal-spec@0.3.0:
+    resolution: {integrity: sha512-n+noVpIqz4hYgFSMOSiINNOUOMFtV5cZQNCmmszA6GiVFVRt3G7AqVyhXjhCSmowvQn+NsGn+jMDMKJYHd3bSQ==}
 
   term-size@2.2.1:
     resolution: {integrity: sha512-wK0Ri4fOGjv/XPy8SBHZChl8CM7uMc5VML7SqiQ0zG7+J5Vr+RMQDoHa2CNT6KHUnTGIXH34UDMkPzAUyapBZg==}
@@ -14034,8 +14034,6 @@ snapshots:
 
   minipass@7.1.2: {}
 
-  moment@2.29.4: {}
-
   mri@1.2.0: {}
 
   mrmime@2.0.0: {}
@@ -15361,6 +15359,12 @@ snapshots:
   temp@0.8.4:
     dependencies:
       rimraf: 2.6.3
+
+  temporal-polyfill@0.3.0:
+    dependencies:
+      temporal-spec: 0.3.0
+
+  temporal-spec@0.3.0: {}
 
   term-size@2.2.1: {}
 

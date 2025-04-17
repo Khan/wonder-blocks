@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 4.0.0
+
+### Major Changes
+
+- 422505e: Removed moment.js and replaced it with Temporal polyfill
+
 ## 3.3.10
 
 ### Patch Changes

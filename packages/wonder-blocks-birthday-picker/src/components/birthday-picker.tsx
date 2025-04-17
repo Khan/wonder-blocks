@@ -1,4 +1,4 @@
-import moment from "moment"; // NOTE: DO NOT use named imports; 'moment' does not support named imports
+import {Temporal} from "temporal-polyfill";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {StyleType, View} from "@khanacademy/wonder-blocks-core";
@@ -186,29 +186,48 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         // merge custom labels with the default ones
         this.labels = {...defaultLabels, ...this.props.labels};
 
-        // If a default value was provided then we use moment to convert it
+        // If a default value was provided then we use Temporal to convert it
         // into a date that we can use to populate the
         if (defaultValue) {
-            let date = moment(defaultValue);
-
-            if (date.isValid()) {
-                if (monthYearOnly) {
-                    date = date.endOf("month");
-                }
-
-                initialState.month = String(date.month());
-                initialState.day = String(date.date());
-                initialState.year = String(date.year());
+            let date: Temporal.PlainDate | null = null;
+            try {
+                date = Temporal.PlainDate.from(defaultValue);
+            } catch (err) {
+                initialState.error = this.labels.errorMessage;
+                return initialState;
             }
 
-            // If the date is in the future or is invalid then we want to show
-            // an error to the user.
-            if (date.isAfter() || !date.isValid()) {
+            if (monthYearOnly) {
+                date = date.with({day: date.daysInMonth});
+            }
+
+            initialState.month = String(date.month);
+            initialState.day = String(date.day);
+            initialState.year = String(date.year);
+
+            // If the date is in the future then we want to show an error to
+            // the user.
+            if (this.isFutureDate(date)) {
                 initialState.error = this.labels.errorMessage;
             }
         }
 
         return initialState;
+    }
+
+    /**
+     * Determines whether a given date is in the future.
+     *
+     * @param date - The Temporal.PlainDate to check.
+     * @returns True if the provided date comes after today's date, false otherwise.
+     */
+    isFutureDate(date: Temporal.PlainDate): boolean {
+        // The Temporal.PlainDate.compare() static method returns a number
+        // (-1, 0, or 1) indicating whether the first date comes before, is the
+        // same as, or comes after the second date.
+        return (
+            Temporal.PlainDate.compare(date, Temporal.Now.plainDateISO()) === 1
+        );
     }
 
     lastChangeValue: string | null | undefined = null;
@@ -248,25 +267,45 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             return;
         }
 
-        // If the month/year only mode is enabled, we set the day to the
-        // last day of the selected month.
-        // NOTE: at this point dateFields is guaranteed to have non-null values
-        // because of the .some() check above.
-        let date = moment(dateFields as Array<string>);
-        if (monthYearOnly) {
-            date = date.endOf("month");
+        let date: Temporal.PlainDate;
+        try {
+            // If the month/year only mode is enabled, we set the day to the
+            // last day of the selected month.
+            // NOTE: at this point dateFields is guaranteed to have non-null values
+            // because of the .some() check above.
+            if (monthYearOnly) {
+                date = Temporal.PlainDate.from({
+                    year: Number(year),
+                    month: Number(month),
+                    // Temporal will constrain the date to the last day of the month
+                    day: 31,
+                });
+            } else {
+                date = Temporal.PlainDate.from(
+                    {
+                        year: Number(year),
+                        month: Number(month),
+                        day: Number(day),
+                    },
+                    {overflow: "reject"},
+                );
+            }
+        } catch (err) {
+            this.setState({error: this.labels.errorMessage});
+            this.reportChange(null);
+            return;
         }
 
         // If the date is in the future or is invalid then we want to show
         // an error to the user and return a null value.
-        if (date.isAfter() || !date.isValid()) {
+        if (this.isFutureDate(date)) {
             this.setState({error: this.labels.errorMessage});
             this.reportChange(null);
         } else {
             this.setState({error: null});
-            // If the date picker is in a non-English language, we still
-            // want to generate an English date.
-            this.reportChange(date.locale("en").format("YYYY-MM-DD"));
+            // Regardless of locale, we want to format the date as YYYY-MM-DD
+            // toString() returns an ISO 8601 date string, which is YYYY-MM-DD.
+            this.reportChange(date.toString());
         }
     };
 
@@ -315,6 +354,18 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         );
     }
 
+    monthsShort(): string[] {
+        const format = new Intl.DateTimeFormat(navigator.language, {
+            month: "short",
+        }).format;
+        return [...Array(12).keys()].map((m) =>
+            // TODO: use Temporal.PlainDate.from() once the linter lets
+            // format() accept a Temporal object
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/format#parameters
+            format(new Date(2021, m, 15)),
+        );
+    }
+
     renderMonth(): React.ReactNode {
         const {disabled, monthYearOnly, dropdownStyle} = this.props;
         const {month} = this.state;
@@ -331,9 +382,13 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 style={[{minWidth}, defaultStyles.input, dropdownStyle]}
                 testId="birthday-picker-month"
             >
-                {/* eslint-disable-next-line import/no-named-as-default-member */}
-                {moment.monthsShort().map((month, i) => (
-                    <OptionItem key={month} label={month} value={String(i)} />
+                {this.monthsShort().map((monthShort, i) => (
+                    <OptionItem
+                        key={monthShort}
+                        label={monthShort}
+                        // +1 because Temporal months are 1-indexed
+                        value={String(i + 1)}
+                    />
                 ))}
             </SingleSelect>
         );
