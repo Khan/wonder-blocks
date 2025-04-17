@@ -117,15 +117,8 @@ export function StateSheet({
 const styles = StyleSheet.create({
     rowHeader: {
         verticalAlign: "top",
-        padding: 0,
     },
     container: {
         gap: sizing.size_160,
-    },
-    rowHeaderStates: {
-        gap: sizing.size_160,
-        display: "grid",
-        alignItems: "center",
-        textAlign: "right",
     },
 });

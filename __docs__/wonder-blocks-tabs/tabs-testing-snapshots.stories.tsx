@@ -152,26 +152,6 @@ type Story = StoryObj<typeof Tabs>;
 const meta = {
     title: "Packages / Tabs / Tabs / Testing / Tabs - Snapshots",
     component: Tabs,
-    render: (args) => (
-        <>
-            <AllVariants rows={rows} columns={columns}>
-                {({props}) => (
-                    <View>
-                        <Tabs {...args} {...props} />
-                    </View>
-                )}
-            </AllVariants>
-            <div dir="rtl">
-                <AllVariants rows={rtlRows} columns={columns}>
-                    {({props}) => (
-                        <View>
-                            <Tabs {...args} {...props} />
-                        </View>
-                    )}
-                </AllVariants>
-            </div>
-        </>
-    ),
     args: {
         tabs: [],
     },
