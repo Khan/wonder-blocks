@@ -1,17 +1,18 @@
 // primitive tokens
-import {border} from "./tokens/border";
 import {color} from "./tokens/color";
 import {font} from "./tokens/font";
-import {sizing} from "./tokens/sizing";
 import {spacing} from "./tokens/spacing";
 
 // media queries
 import {breakpoint} from "./tokens/media-queries";
-// semantic tokens
-import {semanticColor} from "./tokens/semantic-color";
 
 // utils
 import {mix, fade} from "./util/utils";
+
+// theme
+import theme from "./tokens/theme";
+
+const {border, semanticColor, sizing} = theme;
 
 export {
     /**

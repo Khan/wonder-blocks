@@ -15,7 +15,7 @@ import {
     semanticColor,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
-import {getTokenName} from "./tokens-util";
+import {getTokenName, maybeGetCssVariableInfo} from "./tokens-util";
 
 type Variant = "primitive" | "semantic" | "compact";
 
@@ -66,6 +66,8 @@ type ColorProps = {
 
 function Color({name, value, variant}: ColorProps) {
     function renderInfo() {
+        const rawValue = maybeGetCssVariableInfo(value).value;
+
         if (variant === "compact") {
             const tokenName = name.toString().split(".");
             return (
@@ -83,7 +85,7 @@ function Color({name, value, variant}: ColorProps) {
 
                     <Footnote>
                         Primitive:{" "}
-                        <em>{getTokenName(color, value) || value}</em>
+                        <em>{getTokenName(color, rawValue) || rawValue}</em>
                     </Footnote>
                 </View>
             );
@@ -114,10 +116,11 @@ function Color({name, value, variant}: ColorProps) {
                     {name}
                 </LabelSmall>
                 <Caption>
-                    Primitive: <em>{getTokenName(color, value) || value}</em>
+                    Primitive:{" "}
+                    <em>{getTokenName(color, rawValue) || rawValue}</em>
                 </Caption>
                 <LabelSmall>
-                    Value: <Footnote style={styles.code}>{value}</Footnote>
+                    Reference: <Footnote style={styles.code}>{value}</Footnote>
                 </LabelSmall>
             </>
         );
@@ -160,8 +163,8 @@ type ActionColorGroupProps = {
 };
 
 export function ActionColorGroup({category, group}: ActionColorGroupProps) {
-    return Object.entries(category).map(([state, colorGroup]) => (
-        <View style={styles.actionGroup}>
+    return Object.entries(category).map(([state, colorGroup], index) => (
+        <View style={styles.actionGroup} key={index}>
             <LabelLarge style={styles.capitalized}>{state}</LabelLarge>
             <Example style={colorGroup} />
             <ColorGroup

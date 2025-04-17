@@ -3,6 +3,7 @@ import {StyleSheet} from "aphrodite";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {maybeGetCssVariableInfo} from "./tokens-util";
 
 const StyledTable = addStyle("table");
 const StyledTr = addStyle("tr");
@@ -37,9 +38,18 @@ export default function TokenTable<T>({
     tokens,
 }: Props<T>): React.ReactElement {
     // Convert the tokens object into an array of objects.
-    const data = Object.entries(tokens).map(
-        ([key, value]) => ({label: key, value}) as T,
-    );
+    const data = Object.entries(tokens).map(([key, value]) => {
+        if (typeof value === "string") {
+            // Check if the value is a CSS variable so we can transform it into
+            // its actual value.
+            const {name: cssVariable, value: rawValue} =
+                maybeGetCssVariableInfo(value);
+
+            return {label: key, css: cssVariable, value: rawValue};
+        }
+
+        return {label: key, value};
+    });
 
     return (
         <StyledTable style={styles.table}>

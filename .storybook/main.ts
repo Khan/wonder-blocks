@@ -28,7 +28,7 @@ const config: StorybookConfig = {
         disableTelemetry: true,
     },
     framework: "@storybook/react-vite",
-    async viteFinal(config, options) {
+    async viteFinal(config) {
         // Merge custom configuration into the default config
         const {mergeConfig} = await import("vite");
 

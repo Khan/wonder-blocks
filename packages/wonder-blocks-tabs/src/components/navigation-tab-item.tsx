@@ -111,10 +111,10 @@ const styles = StyleSheet.create({
         listStyle: "none",
         display: "inline-flex",
         [":has(a:hover)" as any]: {
-            boxShadow: `inset 0 -${sizing.size_020} 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
+            boxShadow: `inset 0 calc(${sizing.size_020}*-1) 0 0 ${semanticColor.action.secondary.progressive.hover.foreground}`,
         },
         [":has(a:active)" as any]: {
-            boxShadow: `inset 0 -${sizing.size_060} 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
+            boxShadow: `inset 0 calc(${sizing.size_060}*-1) 0 0 ${semanticColor.action.secondary.progressive.press.foreground}`,
         },
         paddingBlockStart: sizing.size_080,
         paddingBlockEnd: sizing.size_180,

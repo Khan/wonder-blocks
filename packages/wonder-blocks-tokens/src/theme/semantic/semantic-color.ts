@@ -1,4 +1,4 @@
-import {color} from "./color";
+import {color} from "../../tokens/color";
 
 const border = {
     primary: color.fadedOffBlack16,
