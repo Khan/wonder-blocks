@@ -11,6 +11,7 @@ import {
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import Button from "@khanacademy/wonder-blocks-button";
 
 const StyledButton = addStyle("button");
 
@@ -126,6 +127,58 @@ export default {
                         >
                             Custom button
                         </StyledButton>
+                    ),
+                },
+            },
+            {
+                name: "Using Button",
+                props: {
+                    children: (
+                        <View
+                            style={{
+                                display: "grid",
+                                gridTemplateColumns: "repeat(3, 1fr)",
+                                gap: spacing.medium_16,
+                            }}
+                        >
+                            <Button kind="primary" style={actionStyles.inverse}>
+                                Primary button
+                            </Button>
+                            <Button
+                                kind="secondary"
+                                endIcon={info}
+                                style={actionStyles.inverse}
+                            >
+                                Secondary button
+                            </Button>
+                            <Button
+                                kind="tertiary"
+                                style={actionStyles.inverse}
+                            >
+                                Tertiary button
+                            </Button>
+                            <Button
+                                disabled
+                                kind="primary"
+                                style={actionStyles.inverse}
+                            >
+                                Disabled Primary button
+                            </Button>
+                            <Button
+                                disabled
+                                kind="secondary"
+                                style={actionStyles.inverse}
+                            >
+                                Disabled Secondary button
+                            </Button>
+                            <Button
+                                disabled
+                                kind="tertiary"
+                                style={actionStyles.inverse}
+                            >
+                                Disabled Tertiary button
+                            </Button>
+                        </View>
                     ),
                 },
             },
