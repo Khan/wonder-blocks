@@ -57,6 +57,24 @@ const wbViewports = {
     },
 };
 
+/**
+ * This is a custom DocsContainer that uses the current theme in MDX pages.
+ *
+ * It is useful when we want to use the "Theme" toolbar to switch between
+ * themes in MDX pages (like "Foundations > Using color").
+ */
+function DocsContainerWithTheme({children, context, ...props}) {
+    const theme = context.store.userGlobals.globals.theme;
+
+    return (
+        <ThemeSwitcher theme={theme}>
+            <DocsContainer context={context} {...props}>
+                {children}
+            </DocsContainer>
+        </ThemeSwitcher>
+    );
+}
+
 const parameters = {
     // Enable the RenderStateRoot decorator by default.
     enableRenderStateRootDecorator: true,
@@ -93,15 +111,7 @@ const parameters = {
     },
     docs: {
         // Customize the DocsContainer to use the WB theme in MDX pages.
-        container: (props) => {
-            const theme = props.context.store.userGlobals.globals.theme;
-
-            return (
-                <ThemeSwitcher theme={theme}>
-                    <DocsContainer {...props}>{props.children}</DocsContainer>
-                </ThemeSwitcher>
-            );
-        },
+        container: DocsContainerWithTheme,
         toc: {
             // Useful for MDX pages like "Using color".
             headingSelector: "h2, h3",
