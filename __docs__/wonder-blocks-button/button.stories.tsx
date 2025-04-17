@@ -51,7 +51,6 @@ export const Default: StoryComponentType = {
         kind: "primary",
         color: "default",
         size: "medium",
-        light: false,
         disabled: false,
         style: {maxWidth: 200},
         labelStyle: {},
@@ -188,114 +187,6 @@ WithColor.parameters = {
     },
 };
 
-export const Dark: StoryComponentType = () => (
-    <View
-        style={{
-            backgroundColor: color.darkBlue,
-            gap: spacing.medium_16,
-            padding: spacing.medium_16,
-        }}
-    >
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}} light={true}>
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} light={true} kind="secondary">
-                Hello, world!
-            </Button>
-            <Button onClick={() => {}} light={true} kind="tertiary">
-                Hello, world!
-            </Button>
-        </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}} light={true} disabled={true}>
-                Hello, world!
-            </Button>
-            <Button
-                onClick={() => {}}
-                light={true}
-                disabled={true}
-                kind="secondary"
-            >
-                Hello, world!
-            </Button>
-            <Button
-                onClick={() => {}}
-                light={true}
-                disabled={true}
-                kind="tertiary"
-            >
-                Hello, world!
-            </Button>
-        </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}} light={true} color="destructive">
-                Hello, world!
-            </Button>
-            <Button
-                onClick={() => {}}
-                light={true}
-                kind="secondary"
-                color="destructive"
-            >
-                Hello, world!
-            </Button>
-            <Button
-                onClick={() => {}}
-                light={true}
-                kind="tertiary"
-                color="destructive"
-            >
-                Hello, world!
-            </Button>
-        </View>
-        <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button
-                onClick={() => {}}
-                disabled={true}
-                light={true}
-                color="destructive"
-            >
-                Hello, world!
-            </Button>
-            <Button
-                onClick={() => {}}
-                disabled={true}
-                light={true}
-                kind="secondary"
-                color="destructive"
-            >
-                Hello, world!
-            </Button>
-            <Button
-                onClick={() => {}}
-                disabled={true}
-                light={true}
-                kind="tertiary"
-                color="destructive"
-            >
-                Hello, world!
-            </Button>
-        </View>
-    </View>
-);
-
-Dark.parameters = {
-    backgrounds: {
-        default: "darkBlue",
-    },
-    docs: {
-        description: {
-            story: "Buttons on a `darkBlue` background should set `light` to `true`.",
-        },
-    },
-    chromatic: {
-        // We already have screenshots of other stories that cover more of
-        // the button states
-        disableSnapshot: true,
-    },
-};
-
 const kinds = ["primary", "secondary", "tertiary"] as const;
 
 const IconExample = () => (
@@ -379,26 +270,6 @@ const IconExample = () => (
                     size="small"
                 >
                     {`${kind} small`}
-                </Button>
-            ))}
-        </View>
-        <LabelLarge style={styles.label}>Over a dark background</LabelLarge>
-        <View
-            style={[
-                styles.row,
-                {backgroundColor: color.darkBlue, padding: spacing.medium_16},
-            ]}
-        >
-            {kinds.map((kind, idx) => (
-                <Button
-                    light={true}
-                    kind={kind}
-                    startIcon={pencilSimpleBold}
-                    endIcon={plus}
-                    style={styles.button}
-                    key={idx}
-                >
-                    {kind}
                 </Button>
             ))}
         </View>
@@ -758,7 +629,6 @@ export const KhanmigoTheme: StoryComponentType = {
     render: () => {
         const stories = [
             Variants,
-            Dark,
             Size,
             IconExample,
         ] as Array<React.ElementType>;

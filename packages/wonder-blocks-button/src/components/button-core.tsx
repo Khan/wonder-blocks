@@ -47,7 +47,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
         href = undefined,
         kind = "primary",
         labelStyle,
-        light = false,
         pressed,
         size = "medium",
         style,
@@ -61,14 +60,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
         ...restProps
     } = props;
 
-    const buttonStyles = _generateStyles(
-        color,
-        kind,
-        light,
-        size,
-        theme,
-        themeName,
-    );
+    const buttonStyles = _generateStyles(color, kind, size, theme, themeName);
 
     const disabled = spinner || disabledProp;
 
@@ -80,15 +72,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
         buttonStyles.default,
         disabled && buttonStyles.disabled,
         // apply focus effect only to default and secondary buttons
-        kind !== "tertiary" &&
-            !disabled &&
+        !disabled &&
             (pressed ? buttonStyles.pressed : focused && buttonStyles.focused),
-        kind === "tertiary" &&
-            !pressed &&
-            focused && [
-                buttonStyles.focused,
-                disabled && buttonStyles.disabledFocus,
-            ],
         size === "small" && sharedStyles.small,
         size === "large" && sharedStyles.large,
     ];
@@ -175,7 +160,8 @@ const ButtonCore: React.ForwardRefExoticComponent<
                         sharedStyles.endIconWrapper,
                         kind === "tertiary" &&
                             sharedStyles.endIconWrapperTertiary,
-                        (focused || hovered) &&
+                        !disabled &&
+                            (focused || hovered) &&
                             kind !== "primary" &&
                             buttonStyles.iconWrapperHovered,
                     ]}
@@ -323,12 +309,11 @@ const styles: Record<string, any> = {};
 export const _generateStyles = (
     buttonColor = "default",
     kind: "primary" | "secondary" | "tertiary",
-    light: boolean,
     size: "large" | "medium" | "small",
     theme: ButtonThemeContract,
     themeName: string,
 ) => {
-    const buttonType = `${buttonColor}-${kind}-${light}-${size}-${themeName}`;
+    const buttonType = `${buttonColor}-${kind}-${size}-${themeName}`;
 
     if (styles[buttonType]) {
         return styles[buttonType];
@@ -337,13 +322,16 @@ export const _generateStyles = (
     const padding =
         size === "large" ? theme.padding.xLarge : theme.padding.large;
 
-    const colorToAction = light
-        ? buttonColor === "destructive"
-            ? "destructiveLight"
-            : "progressiveLight"
-        : buttonColor === "destructive"
-          ? "destructive"
-          : "progressive";
+    const colorToAction =
+        buttonColor === "destructive" ? "destructive" : "progressive";
+
+    const disabledState = theme.color[kind].disabled;
+
+    const disabledStateStyles = {
+        borderColor: disabledState.border,
+        background: disabledState.background,
+        color: disabledState.foreground,
+    };
 
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
@@ -378,18 +366,17 @@ export const _generateStyles = (
                 background: themeColorAction.default.background,
                 color: themeColorAction.default.foreground,
                 paddingInline: padding,
-                [":hover:not([aria-disabled=true])" as any]: hoverStyling,
-                [":focus-visible:not([aria-disabled=true])" as any]:
-                    focusStyling,
-                [":active:not([aria-disabled=true])" as any]:
-                    activePressedStyling,
+                ":hover": hoverStyling,
+                ":focus-visible": focusStyling,
+                ":active": activePressedStyling,
             },
             focused: focusStyling,
             pressed: activePressedStyling,
             disabled: {
-                background: themeColorAction.disabled.background,
-                color: themeColorAction.disabled.foreground,
-                cursor: "default",
+                ...disabledStateStyles,
+                cursor: "not-allowed",
+                ":hover": {...disabledStateStyles, outline: "none"},
+                ":active": {...disabledStateStyles, outline: "none"},
                 ":focus-visible": focusStyling,
             },
         };
@@ -410,7 +397,7 @@ export const _generateStyles = (
 
         const hoverStyling = {
             ...sharedFocusHoverStyling,
-            outlineColor: themeColorAction.hover.border,
+            borderColor: themeColorAction.hover.border,
         };
 
         const activePressedStyling = {
@@ -429,18 +416,18 @@ export const _generateStyles = (
                 borderStyle: "solid",
                 borderWidth: theme.border.width.secondary,
                 paddingInline: padding,
-                [":hover:not([aria-disabled=true])" as any]: hoverStyling,
-                [":focus-visible:not([aria-disabled=true])" as any]:
-                    focusStyling,
-                [":active:not([aria-disabled=true])" as any]:
-                    activePressedStyling,
+                ":hover": hoverStyling,
+                ":focus-visible": focusStyling,
+                ":active": activePressedStyling,
             },
             focused: focusStyling,
             pressed: activePressedStyling,
             disabled: {
-                color: themeColorAction.disabled.foreground,
-                borderColor: themeColorAction.disabled.border,
-                cursor: "default",
+                ...disabledStateStyles,
+                cursor: "not-allowed",
+                // Reset hover/press styles when disabled
+                ":hover": {...disabledStateStyles, outline: "none"},
+                ":active": {...disabledStateStyles, outline: "none"},
                 ":focus-visible": focusStyling,
             },
             iconWrapperHovered: {
@@ -465,29 +452,37 @@ export const _generateStyles = (
             textUnderlineOffset: theme.font.offset.default,
         };
 
+        const sharedDisabledStyling = {
+            ...disabledStateStyles,
+            textDecoration: "none",
+            textDecorationThickness: "unset",
+            textUnderlineOffset: "unset",
+            outline: "none",
+        };
+
         newStyles = {
             default: {
                 background: themeColorAction.default.background,
                 color: themeColorAction.default.foreground,
                 paddingInline: 0,
-                [":hover:not([aria-disabled=true])" as any]: {
+                ":hover": {
                     textUnderlineOffset: theme.font.offset.default,
                     textDecoration: "underline",
                     textDecorationThickness: theme.size.underline.hover,
                 },
-                [":focus-visible:not([aria-disabled=true])" as any]:
-                    focusStyling,
-                [":active:not([aria-disabled=true])" as any]:
-                    activePressedStyling,
+                ":focus-visible": focusStyling,
+                ":active": activePressedStyling,
             },
             focused: focusStyling,
             pressed: activePressedStyling,
             disabled: {
-                color: themeColorAction.disabled.foreground,
-                cursor: "default",
+                ...disabledStateStyles,
+                cursor: "not-allowed",
+                // Reset hover/press styles when disabled
+                ":hover": sharedDisabledStyling,
+                ":active": sharedDisabledStyling,
                 ":focus-visible": focusStyling,
             },
-            disabledFocus: focusStyling,
         };
     } else {
         throw new Error("Button kind not recognized");

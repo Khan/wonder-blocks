@@ -8,7 +8,7 @@ import {allModes} from "../../.storybook/modes";
 
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
-import {color, semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import Button from "@khanacademy/wonder-blocks-button";
 
@@ -44,29 +44,18 @@ function VariantsGroup({
     color = "default",
     disabled = false,
     label = "Button",
-    light,
     size,
 }: {
     color?: ButtonProps["color"];
     disabled?: ButtonProps["disabled"];
     label?: string;
-    light: boolean;
     size: ButtonProps["size"];
 }) {
-    const theme = React.useContext(ThemeSwitcherContext);
     const category = disabled ? "disabled" : color;
 
     return (
-        <View
-            style={[
-                styles.variants,
-                light &&
-                    (theme === "khanmigo"
-                        ? styles.darkKhanmigo
-                        : styles.darkDefault),
-            ]}
-        >
-            <LabelMedium style={[styles.label, light && styles.inverseLabel]}>
+        <View style={[styles.variants]}>
+            <LabelMedium style={styles.label}>
                 {size} / {category}
             </LabelMedium>
             {kinds.map((kind) => (
@@ -75,7 +64,6 @@ function VariantsGroup({
                         onClick={action("clicked")}
                         disabled={disabled}
                         kind={kind}
-                        light={light}
                         color={color}
                         size={size}
                     >
@@ -86,7 +74,6 @@ function VariantsGroup({
                         onClick={action("clicked")}
                         disabled={disabled}
                         kind={kind}
-                        light={light}
                         color={color}
                         size={size}
                         startIcon={paperPlaneIcon}
@@ -98,7 +85,6 @@ function VariantsGroup({
                         onClick={action("clicked")}
                         disabled={disabled}
                         kind={kind}
-                        light={light}
                         color={color}
                         size={size}
                         endIcon={paperPlaneIcon}
@@ -111,35 +97,15 @@ function VariantsGroup({
     );
 }
 
-const KindVariants = ({light}: {light: boolean}) => {
+const KindVariants = () => {
     return (
         <>
             {sizes.map((size) => (
                 <React.Fragment key={size}>
                     {colors.map((color) => (
-                        <React.Fragment key={color}>
-                            <VariantsGroup
-                                size={size}
-                                color={color}
-                                light={light}
-                            />
-                            {light && (
-                                <VariantsGroup
-                                    size={size}
-                                    color={color}
-                                    disabled={true}
-                                    light={light}
-                                />
-                            )}
-                        </React.Fragment>
+                        <VariantsGroup key={color} size={size} color={color} />
                     ))}
-                    {!light && (
-                        <VariantsGroup
-                            size={size}
-                            disabled={true}
-                            light={light}
-                        />
-                    )}
+                    <VariantsGroup size={size} disabled={true} />
                 </React.Fragment>
             ))}
         </>
@@ -149,8 +115,7 @@ const KindVariants = ({light}: {light: boolean}) => {
 const VariantsByTheme = ({themeName = "Default"}: {themeName?: string}) => (
     <View style={{marginBottom: spacing.large_24}}>
         <HeadingLarge>{themeName} theme</HeadingLarge>
-        <KindVariants light={false} />
-        <KindVariants light={true} />
+        <KindVariants />
     </View>
 );
 
@@ -189,12 +154,6 @@ export const Active: StoryComponentType = {
 };
 
 const styles = StyleSheet.create({
-    darkDefault: {
-        backgroundColor: color.darkBlue,
-    },
-    darkKhanmigo: {
-        backgroundColor: color.eggplant,
-    },
     variants: {
         justifyContent: "flex-start",
         padding: spacing.medium_16,
@@ -205,8 +164,5 @@ const styles = StyleSheet.create({
     },
     label: {
         minWidth: 150,
-    },
-    inverseLabel: {
-        color: semanticColor.text.inverse,
     },
 });

@@ -36,8 +36,6 @@ export type SharedProps =
          * If true, replaces the contents with a spinner.
          *
          * Note: setting this prop to `true` will disable the button.
-         *
-         * TODO(kevinb): support spinner + light once we have designs
          */
         spinner?: boolean;
         /**
@@ -54,13 +52,6 @@ export type SharedProps =
          * - Tertiary buttons have no background or border
          */
         kind?: "primary" | "secondary" | "tertiary";
-        /**
-         * Whether the button is on a dark/colored background.
-         *
-         * Sets primary button background color to white, and secondary and
-         * tertiary button title to color.
-         */
-        light?: boolean;
         /**
          * The size of the button. "medium" = height: 40; "small" = height: 32;
          * "large" = height: 56;
@@ -222,7 +213,6 @@ const Button: React.ForwardRefExoticComponent<
         rel,
         color = "default",
         kind = "primary",
-        light = false,
         size = "medium",
         disabled = false,
         spinner = false,
@@ -251,7 +241,6 @@ const Button: React.ForwardRefExoticComponent<
                     spinner={spinner || state.waiting}
                     color={color}
                     kind={kind}
-                    light={light}
                     size={size}
                     skipClientNav={skipClientNav}
                     href={href}
