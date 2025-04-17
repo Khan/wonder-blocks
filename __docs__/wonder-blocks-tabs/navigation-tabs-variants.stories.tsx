@@ -1,4 +1,4 @@
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryFn, StoryObj} from "@storybook/react";
 import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
@@ -170,6 +170,20 @@ const columns = [
 
 type Story = StoryObj<typeof NavigationTabs>;
 
+const createPseudoStatesDecorator = (state: string) => (Story: StoryFn) => {
+    React.useEffect(() => {
+        // Apply classes directly after a short delay
+        const timer = setTimeout(() => {
+            document?.querySelectorAll("a").forEach((a) => {
+                a.classList.add(`pseudo-${state}`);
+                a.classList.add(`pseudo-state-${state}`);
+            });
+        }, 200);
+        return () => clearTimeout(timer);
+    }, []);
+    return <Story />;
+};
+
 /**
  * The following stories are used to generate the pseudo states for the Switch
  * component. This is only used for visual testing in Chromatic.
@@ -214,51 +228,58 @@ export const Default: Story = {};
 
 export const Hover: Story = {
     parameters: {
-        pseudo: {hover: true},
+        // pseudo: {hover: true},
         chromatic: {
             // TODO(WB-1917): Temporarily disabled since snapshots with
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
-            disableSnapshot: true,
+            // disableSnapshot: true,
         },
     },
+    decorators: [createPseudoStatesDecorator("hover")],
 };
 
 export const Focus: Story = {
     parameters: {
-        pseudo: {focusVisible: true},
+        // pseudo: {focusVisible: true},
         chromatic: {
             // TODO(WB-1917): Temporarily disabled since snapshots with
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
-            disableSnapshot: true,
+            // disableSnapshot: true,
         },
     },
+    decorators: [createPseudoStatesDecorator("focus-visible")],
 };
 
 export const HoverFocus: Story = {
     name: "Hover + Focus",
     parameters: {
-        pseudo: {hover: true, focusVisible: true},
+        // pseudo: {hover: true, focusVisible: true},
         chromatic: {
             // TODO(WB-1917): Temporarily disabled since snapshots with
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
-            disableSnapshot: true,
+            // disableSnapshot: true,
         },
     },
+    decorators: [
+        createPseudoStatesDecorator("hover"),
+        createPseudoStatesDecorator("focus-visible"),
+    ],
 };
 
 export const Active: Story = {
     parameters: {
-        pseudo: {hover: true, active: true},
+        // pseudo: {active: true},
         chromatic: {
             // TODO(WB-1917): Temporarily disabled since snapshots with
             // NavigationTabs and pseudo states are flaky. We still get state
             // style coverage in NavigationTabItem AllVariants stories
-            disableSnapshot: true,
+            // disableSnapshot: true,
         },
     },
+    decorators: [createPseudoStatesDecorator("active")],
 };
 
 export const Zoom: Story = {
@@ -305,7 +326,7 @@ export const Zoom: Story = {
         },
         chromatic: {
             // Disabling because Chromatic crops the story when zoom is used
-            disableSnapshot: true,
+            // disableSnapshot: true,
         },
     },
     globals: {
