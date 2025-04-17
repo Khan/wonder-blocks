@@ -11,11 +11,6 @@ type Mappings = Record<string, React.ReactNode>;
 const ActionsMappings: Mappings = {
     none: null,
     singleButton: <Button kind="primary">Continue</Button>,
-    emphasizedSingleButton: (
-        <Button kind="primary" light={true}>
-            Continue
-        </Button>
-    ),
     pagination: (
         <>
             <Button kind="tertiary">Previous</Button>
@@ -23,31 +18,11 @@ const ActionsMappings: Mappings = {
             <Button kind="primary">Next</Button>
         </>
     ),
-    emphasizedPagination: (
-        <>
-            <Button kind="tertiary" light={true}>
-                Previous
-            </Button>
-            <Strut size={spacing.medium_16} />
-            <Button kind="primary" light={true}>
-                Next
-            </Button>
-        </>
-    ),
     steps: (
         <>
             <LabelLarge>Step 1 of 5</LabelLarge>
             <Spring />
             <Button kind="tertiary">Skip this step</Button>
-        </>
-    ),
-    emphasizedSteps: (
-        <>
-            <LabelLarge>Step 1 of 5</LabelLarge>
-            <Spring />
-            <Button kind="secondary" light={true}>
-                Skip this step
-            </Button>
         </>
     ),
 };
