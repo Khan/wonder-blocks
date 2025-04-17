@@ -1,7 +1,7 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
-import {DocsContainer} from "@storybook/blocks";
+// import {DocsContainer} from "@storybook/blocks";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
