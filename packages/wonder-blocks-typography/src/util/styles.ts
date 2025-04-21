@@ -95,7 +95,7 @@ const styles: StyleDeclaration = StyleSheet.create({
         fontFamily: font.family.sans,
         fontWeight: font.weight.regular,
         fontSize: font.size.medium,
-        lineHeight: "2.2rem",
+        lineHeight: font.lineHeight.xMedium,
     },
     LabelLarge: {
         ...common,

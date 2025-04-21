@@ -33,6 +33,7 @@ export const font = {
         xxLarge: sizing.size_320,
         xLarge: sizing.size_280,
         large: sizing.size_240,
+        xMedium: sizing.size_220,
         medium: sizing.size_200,
         small: sizing.size_180,
         xSmall: sizing.size_160,

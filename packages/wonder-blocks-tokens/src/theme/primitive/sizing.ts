@@ -44,6 +44,7 @@ export const sizing = {
     size_160: pxToRem(16),
     size_180: pxToRem(18),
     size_200: pxToRem(20),
+    size_220: pxToRem(22),
     size_240: pxToRem(24),
     size_280: pxToRem(28),
     size_320: pxToRem(32),
