@@ -144,9 +144,9 @@ const theme = {
             large: "1.8rem",
         },
         lineHeight: {
-            small: tokens.font.lineHeight.small + textUnderlineOffset,
-            default: tokens.font.lineHeight.medium + textUnderlineOffset,
-            large: tokens.font.lineHeight.medium + 2 + textUnderlineOffset,
+            small: tokens.font.lineHeight.xMedium,
+            default: tokens.font.lineHeight.large,
+            large: tokens.font.lineHeight.large,
         },
         weight: {
             default: tokens.font.weight.bold,
