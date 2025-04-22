@@ -70,7 +70,7 @@ export function StateSheet({
     layout = "responsive",
 }: Props) {
     return (
-        <View style={{alignItems: "flex-start"}}>
+        <View style={styles.flexStartContainer}>
             <AllVariants
                 rows={rows}
                 columns={columns}
@@ -87,19 +87,12 @@ export function StateSheet({
                                 <View
                                     key={name}
                                     className={className}
-                                    style={{
-                                        alignItems: "flex-start",
-                                    }}
+                                    style={styles.flexStartContainer}
                                 >
-                                    <LabelSmall
-                                        style={{
-                                            paddingBlockEnd: sizing.size_080,
-                                            color: semanticColor.text.secondary,
-                                        }}
-                                    >
+                                    <LabelSmall style={styles.label}>
                                         {name}
                                     </LabelSmall>
-                                    <View style={{maxWidth: "100%"}}>
+                                    <View style={styles.content}>
                                         {children({
                                             props,
                                             className,
@@ -122,5 +115,15 @@ const styles = StyleSheet.create({
     },
     container: {
         gap: sizing.size_160,
+    },
+    flexStartContainer: {
+        alignItems: "flex-start",
+    },
+    label: {
+        paddingBlockEnd: sizing.size_080,
+        color: semanticColor.text.secondary,
+    },
+    content: {
+        maxWidth: "100%",
     },
 });
