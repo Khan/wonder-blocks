@@ -9,7 +9,6 @@ import {
     NavigationTabs,
 } from "@khanacademy/wonder-blocks-tabs";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {AllVariants} from "../components/all-variants";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -21,6 +20,7 @@ import {
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {generateChildren} from "./navigation-tabs-utils";
 import {ScenariosLayout} from "../components/scenarios-layout";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => [
@@ -185,7 +185,7 @@ const meta = {
     component: NavigationTabs,
     render: (args) => (
         <>
-            <AllVariants rows={rows} columns={columns}>
+            <StateSheet rows={rows} columns={columns} title="">
                 {({props, name}) => (
                     <View style={styles.container}>
                         <NavigationTabs
@@ -195,9 +195,9 @@ const meta = {
                         />
                     </View>
                 )}
-            </AllVariants>
+            </StateSheet>
             <div dir="rtl">
-                <AllVariants rows={rtlRows} columns={columns}>
+                <StateSheet rows={rtlRows} columns={columns}>
                     {({props, name}) => (
                         <View style={styles.container}>
                             <NavigationTabs
@@ -207,10 +207,11 @@ const meta = {
                             />
                         </View>
                     )}
-                </AllVariants>
+                </StateSheet>
             </div>
         </>
     ),
+    parameters: {pseudo: defaultPseudoStates},
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabs>;
 
@@ -218,59 +219,10 @@ export default meta;
 
 export const Default: Story = {};
 
-export const Hover: Story = {
-    parameters: {
-        pseudo: {hover: true},
-        chromatic: {
-            // TODO(WB-1917): Temporarily disabled since snapshots with
-            // NavigationTabs and pseudo states are flaky. We still get state
-            // style coverage in NavigationTabItem AllVariants stories
-            disableSnapshot: true,
-        },
-    },
-};
-
-export const Focus: Story = {
-    parameters: {
-        pseudo: {focusVisible: true},
-        chromatic: {
-            // TODO(WB-1917): Temporarily disabled since snapshots with
-            // NavigationTabs and pseudo states are flaky. We still get state
-            // style coverage in NavigationTabItem AllVariants stories
-            disableSnapshot: true,
-        },
-    },
-};
-
-export const HoverFocus: Story = {
-    name: "Hover + Focus",
-    parameters: {
-        pseudo: {hover: true, focusVisible: true},
-        chromatic: {
-            // TODO(WB-1917): Temporarily disabled since snapshots with
-            // NavigationTabs and pseudo states are flaky. We still get state
-            // style coverage in NavigationTabItem AllVariants stories
-            disableSnapshot: true,
-        },
-    },
-};
-
-export const Active: Story = {
-    parameters: {
-        pseudo: {hover: true, active: true},
-        chromatic: {
-            // TODO(WB-1917): Temporarily disabled since snapshots with
-            // NavigationTabs and pseudo states are flaky. We still get state
-            // style coverage in NavigationTabItem AllVariants stories
-            disableSnapshot: true,
-        },
-    },
-};
-
 export const Zoom: Story = {
     render: (args) => (
         <>
-            <AllVariants rows={rows} columns={columns} layout="list">
+            <StateSheet rows={rows} columns={columns} layout="list">
                 {({props, name}) => (
                     <View style={styles.container}>
                         <NavigationTabs
@@ -280,9 +232,9 @@ export const Zoom: Story = {
                         />
                     </View>
                 )}
-            </AllVariants>
+            </StateSheet>
             <div dir="rtl">
-                <AllVariants rows={rtlRows} columns={columns} layout="list">
+                <StateSheet rows={rtlRows} columns={columns} layout="list">
                     {({props, name}) => (
                         <View style={styles.container}>
                             <NavigationTabs
@@ -292,7 +244,7 @@ export const Zoom: Story = {
                             />
                         </View>
                     )}
-                </AllVariants>
+                </StateSheet>
             </div>
         </>
     ),
