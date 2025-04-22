@@ -130,9 +130,18 @@ const styles = StyleSheet.create({
             // selected.
             boxShadow: "none",
         },
+        [":active:not([aria-disabled=true])" as any]: {
+            // If it is current, make sure there is no box shadow
+            boxShadow: "none",
+        },
     },
     currentLink: {
         color: semanticColor.action.secondary.progressive.default.foreground,
+        [":active:not([aria-disabled=true])" as any]: {
+            // Make sure the current link doesn't change color when pressed
+            color: semanticColor.action.secondary.progressive.default
+                .foreground,
+        },
     },
     link: {
         display: "flex",
