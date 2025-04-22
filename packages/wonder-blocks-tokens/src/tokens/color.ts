@@ -1,4 +1,4 @@
-import {fade, mix} from "../util/utils";
+import {fade, mix} from "../util/color-utils";
 
 const offBlack = "#21242c";
 const white = "#ffffff";
