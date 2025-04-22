@@ -1,7 +1,7 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
-import {DocsContainer} from "@storybook/blocks";
+// import {DocsContainer} from "@storybook/blocks";
 import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
@@ -63,15 +63,15 @@ const wbViewports = {
  * It is useful when we want to use the "Theme" toolbar to switch between
  * themes in MDX pages (like "Foundations > Using color").
  */
-function DocsContainerWithTheme({children, context, ...props}) {
-    const theme = context.store.userGlobals.globals.theme;
+// function DocsContainerWithTheme({children, context, ...props}) {
+//     const theme = context.store.userGlobals.globals.theme;
 
-    return (
-        <DocsContainer context={context} {...props}>
-            <ThemeSwitcher theme={theme}>{children}</ThemeSwitcher>
-        </DocsContainer>
-    );
-}
+//     return (
+//         <DocsContainer context={context} {...props}>
+//             <ThemeSwitcher theme={theme}>{children}</ThemeSwitcher>
+//         </DocsContainer>
+//     );
+// }
 
 const parameters = {
     // Enable the RenderStateRoot decorator by default.
@@ -109,7 +109,7 @@ const parameters = {
     },
     docs: {
         // Customize the DocsContainer to use the WB theme in MDX pages.
-        container: DocsContainerWithTheme,
+        // container: DocsContainerWithTheme,
         toc: {
             // Useful for MDX pages like "Using color".
             headingSelector: "h2, h3",
