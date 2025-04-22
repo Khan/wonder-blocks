@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
             // selected.
             boxShadow: "none",
         },
-        [":active:not([aria-disabled=true])" as any]: {
+        [":has(a:active):not([aria-disabled=true])" as any]: {
             // If it is current, make sure there is no box shadow
             boxShadow: "none",
         },
