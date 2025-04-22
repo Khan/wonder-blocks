@@ -217,7 +217,12 @@ export const Default: Story = {
             </div>
         </>
     ),
-    parameters: {pseudo: defaultPseudoStates},
+    parameters: {
+        pseudo: defaultPseudoStates,
+        chromatic: {
+            delay: 500,
+        },
+    },
 };
 
 export const Zoom: Story = {
@@ -262,11 +267,10 @@ export const Zoom: Story = {
                 ],
             },
         },
+        pseudo: defaultPseudoStates,
         chromatic: {
-            // Disabling because Chromatic crops the story when zoom is used
-            disableSnapshot: true,
+            delay: 500,
         },
-        parameters: {pseudo: defaultPseudoStates},
     },
     globals: {
         zoom: "400%",
