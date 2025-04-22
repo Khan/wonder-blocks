@@ -99,11 +99,13 @@ export function StateSheet({
                                     >
                                         {name}
                                     </LabelSmall>
-                                    {children({
-                                        props,
-                                        className,
-                                        name,
-                                    })}
+                                    <View style={{maxWidth: "100%"}}>
+                                        {children({
+                                            props,
+                                            className,
+                                            name,
+                                        })}
+                                    </View>
                                 </View>
                             ))}
                         </View>
