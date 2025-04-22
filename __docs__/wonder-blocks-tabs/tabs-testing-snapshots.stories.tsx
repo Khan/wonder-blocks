@@ -2,7 +2,6 @@ import type {Meta, StoryObj} from "@storybook/react";
 import * as React from "react";
 
 import {Tabs} from "@khanacademy/wonder-blocks-tabs";
-import {AllVariants} from "../components/all-variants";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
@@ -207,6 +206,9 @@ export const Zoom: Story = {
     },
     globals: {
         zoom: "400%",
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
     },
 };
 

@@ -6,7 +6,7 @@ import {StyleSheet} from "aphrodite";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {AllVariants} from "../components/all-variants";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
@@ -150,70 +150,65 @@ type Story = StoryObj<typeof NavigationTabItem>;
 const meta = {
     title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabItem / Testing / NavigationTabItem - Snapshots",
     component: NavigationTabItem,
-    render: (args) => (
-        <>
-            <AllVariants rows={rows} columns={columns}>
-                {({props}) => (
-                    <View style={styles.container} tag="ul">
-                        <NavigationTabItem {...args} {...props} />
-                    </View>
-                )}
-            </AllVariants>
-            <div dir="rtl">
-                <HeadingLarge>RTL</HeadingLarge>
-                <AllVariants rows={rtlRows} columns={columns}>
-                    {({props}) => (
-                        <View style={styles.container} tag="ul">
-                            <NavigationTabItem {...args} {...props} />
-                        </View>
-                    )}
-                </AllVariants>
-            </div>
-        </>
-    ),
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabItem>;
 
 export default meta;
 
-export const Default: Story = {};
-
-export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
-};
-
-export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
-};
-
-export const HoverFocus: Story = {
-    name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
-};
-
-export const Press: Story = {
-    parameters: {pseudo: {hover: true, active: true}},
+export const Default: Story = {
+    render: (args) => (
+        <>
+            <StateSheet rows={rows} columns={columns}>
+                {({props, className}) => (
+                    <View
+                        style={styles.container}
+                        tag="ul"
+                        className={className}
+                    >
+                        <NavigationTabItem {...args} {...props} />
+                    </View>
+                )}
+            </StateSheet>
+            <div dir="rtl">
+                <HeadingLarge>RTL</HeadingLarge>
+                <StateSheet rows={rtlRows} columns={columns}>
+                    {({props, className}) => (
+                        <View
+                            style={styles.container}
+                            tag="ul"
+                            className={className}
+                        >
+                            <NavigationTabItem {...args} {...props} />
+                        </View>
+                    )}
+                </StateSheet>
+            </div>
+        </>
+    ),
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
 };
 
 export const Zoom: Story = {
     render: (args) => (
         <>
-            <AllVariants rows={rows} columns={columns} layout="list">
+            <StateSheet rows={rows} columns={columns} layout="list">
                 {({props}) => (
                     <View style={styles.container} tag="ul">
                         <NavigationTabItem {...args} {...props} />
                     </View>
                 )}
-            </AllVariants>
+            </StateSheet>
             <div dir="rtl">
                 <HeadingLarge>RTL</HeadingLarge>
-                <AllVariants rows={rtlRows} columns={columns} layout="list">
+                <StateSheet rows={rtlRows} columns={columns} layout="list">
                     {({props}) => (
                         <View style={styles.container} tag="ul">
                             <NavigationTabItem {...args} {...props} />
                         </View>
                     )}
-                </AllVariants>
+                </StateSheet>
             </div>
         </>
     ),
@@ -225,6 +220,7 @@ export const Zoom: Story = {
             // Disabling because Chromatic crops the story when zoom is used
             disableSnapshot: true,
         },
+        pseudo: defaultPseudoStates,
     },
 };
 

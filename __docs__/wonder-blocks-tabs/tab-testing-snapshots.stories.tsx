@@ -73,6 +73,13 @@ type Story = StoryObj<typeof Tab>;
 const meta = {
     title: "Packages / Tabs / Tabs / Subcomponents / Tab / Testing / Tab - Snapshots",
     component: Tab,
+    args: {},
+    tags: ["!autodocs"],
+} satisfies Meta<typeof Tab>;
+
+export default meta;
+
+export const Default: Story = {
     render: (args) => (
         <>
             <StateSheet rows={rows} columns={columns} title="">
@@ -93,12 +100,5 @@ const meta = {
             </div>
         </>
     ),
-    args: {},
-    tags: ["!autodocs"],
-} satisfies Meta<typeof Tab>;
-
-export default meta;
-
-export const Default: Story = {
     parameters: {pseudo: defaultPseudoStates},
 };

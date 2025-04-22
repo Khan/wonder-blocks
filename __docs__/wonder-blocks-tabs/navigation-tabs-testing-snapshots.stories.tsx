@@ -183,6 +183,12 @@ type Story = StoryObj<typeof NavigationTabs>;
 const meta = {
     title: "Packages / Tabs / NavigationTabs / Testing / NavigationTabs - Snapshots ",
     component: NavigationTabs,
+    tags: ["!autodocs"],
+} satisfies Meta<typeof NavigationTabs>;
+
+export default meta;
+
+export const Default: Story = {
     render: (args) => (
         <>
             <StateSheet rows={rows} columns={columns} title="">
@@ -212,12 +218,7 @@ const meta = {
         </>
     ),
     parameters: {pseudo: defaultPseudoStates},
-    tags: ["!autodocs"],
-} satisfies Meta<typeof NavigationTabs>;
-
-export default meta;
-
-export const Default: Story = {};
+};
 
 export const Zoom: Story = {
     render: (args) => (
@@ -265,6 +266,7 @@ export const Zoom: Story = {
             // Disabling because Chromatic crops the story when zoom is used
             disableSnapshot: true,
         },
+        parameters: {pseudo: defaultPseudoStates},
     },
     globals: {
         zoom: "400%",
