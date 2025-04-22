@@ -151,7 +151,7 @@ importers:
         specifier: ^8.6.12
         version: 8.6.12(@types/react@18.3.18)(storybook@8.6.12(prettier@3.4.2))
       '@storybook/blocks':
-        specifier: ^8.5.2
+        specifier: ^8.6.12
         version: 8.6.12(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(storybook@8.6.12(prettier@3.4.2))
       '@storybook/builder-vite':
         specifier: ^8.6.12
