@@ -197,6 +197,9 @@ export const StateSheetStory: Story = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+        chromatic: {
+            delay: 1500,
+        },
     },
 };
 
@@ -209,6 +212,9 @@ export const Zoom: Story = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+        chromatic: {
+            delay: 500,
+        },
     },
 };
 
