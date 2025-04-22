@@ -155,7 +155,8 @@ const meta = {
 
 export default meta;
 
-export const Default: Story = {
+export const StateSheetStory: Story = {
+    name: "StateSheet",
     render: (args) => (
         <>
             <StateSheet rows={rows} columns={columns}>
