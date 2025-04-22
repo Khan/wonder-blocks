@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.10
+
+### Patch Changes
+
+- 7bbf311: Use color-mix() for active background colors
+- Updated dependencies [2656fd4]
+- Updated dependencies [6018552]
+- Updated dependencies [7bbf311]
+- Updated dependencies [7f79943]
+    - @khanacademy/wonder-blocks-tokens@9.0.0
+    - @khanacademy/wonder-blocks-clickable@7.0.3
+    - @khanacademy/wonder-blocks-link@9.0.3
+
 ## 3.1.9
 
 ### Patch Changes
