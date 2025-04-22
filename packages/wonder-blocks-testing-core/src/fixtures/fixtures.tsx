@@ -1,3 +1,4 @@
+/* eslint-disable import/no-deprecated */
 import * as React from "react";
 import {action} from "@storybook/addon-actions";
 
@@ -12,6 +13,9 @@ import type {FixtureFn, FixtureProps} from "./types";
  * @param {React.ComponentType<any>} Component The component we want to create
  * stories for.
  * @returns {FixtureFn<TProps>} A function to create a CSF compatible story.
+ *
+ * @deprecated Use CSFv3 style stories instead. This API was for migration
+ * from our old fixtures framework and will be removed in a future release.
  */
 export const fixtures = <
     TComponent extends React.ComponentType<any>,
