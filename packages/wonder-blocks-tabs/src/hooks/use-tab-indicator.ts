@@ -1,14 +1,9 @@
-import {
-    AriaRole,
-    StyleType,
-    useOnMountEffect,
-} from "@khanacademy/wonder-blocks-core";
+import {AriaRole, useOnMountEffect} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 type IndicatorProps = {
-    style: StyleType;
+    style: React.CSSProperties;
     role: AriaRole;
 };
 
@@ -112,31 +107,30 @@ export const useTabIndicator = (props: Props) => {
         };
     });
 
+    const positioningStyle = {
+        // Translate x position instead of setting the
+        // left position so layout doesn't need to be
+        // recalculated each time
+        transform: `translateX(${underlineStyle.left}px)`,
+        width: `${underlineStyle.width}px`,
+    };
+
     const indicatorProps: IndicatorProps = {
-        style: [
-            {
-                // Translate x position instead of setting the
-                // left position so layout doesn't need to be
-                // recalculated each time
-                transform: `translateX(${underlineStyle.left}px)`,
-                width: `${underlineStyle.width}px`,
-            },
-            styles.currentUnderline,
-            animated && styles.underlineTransition,
-            // We only show it once it is ready so that we don't show the
-            // indicator re-positioning itself after aphrodite styles are first
-            // loaded in the browser
-            !indicatorIsReady.current && {display: "none"},
-        ],
+        style: {
+            ...positioningStyle,
+            ...styles.currentUnderline,
+            ...(animated ? styles.underlineTransition : {}),
+            ...(!indicatorIsReady.current ? {display: "none"} : {}),
+        },
         role: "presentation",
     };
 
     return {indicatorProps, updateUnderlineStyle};
 };
 
-const styles = StyleSheet.create({
+const styles = {
     currentUnderline: {
-        position: "absolute",
+        position: "absolute" as const,
         bottom: 0,
         left: 0,
         height: border.width.thick,
@@ -146,4 +140,4 @@ const styles = StyleSheet.create({
     underlineTransition: {
         transition: "transform 0.3s ease, width 0.3s ease",
     },
-});
+};

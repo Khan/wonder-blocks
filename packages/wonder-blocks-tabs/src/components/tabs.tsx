@@ -5,7 +5,6 @@ import {
     keys,
     PropsFor,
     StyleType,
-    View,
 } from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {TabPanel} from "./tab-panel";
@@ -376,7 +375,7 @@ export const Tabs = React.forwardRef(function Tabs(
                         return <Tab {...tabProps}>{label}</Tab>;
                     })}
                 </Tablist>
-                {<View {...indicatorProps} />}
+                {<div {...indicatorProps} />}
             </StyledDiv>
             {tabs.map((tab) => {
                 return (

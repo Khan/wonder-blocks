@@ -1,9 +1,4 @@
-import {
-    addStyle,
-    AriaProps,
-    StyleType,
-    View,
-} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
@@ -144,7 +139,7 @@ export const NavigationTabs = React.forwardRef(function NavigationTabs(
                 </StyledUl>
                 {/* Underline indicator for the current tab item. It is a sibling of
             the list so that it can slide between tab items. */}
-                {<View {...indicatorProps} />}
+                {<div {...indicatorProps} />}
             </StyledDiv>
         </StyledNav>
     );
