@@ -241,7 +241,7 @@ export const Zoom: Story = {
                     // be determined because it's partially obscured by another
                     // element" since these examples can cause the horizontal
                     // scrollbar to show. Color contrast check is enabled for
-                    // other stories (including the NavigationTabItem AllVariants)
+                    // other stories (including the NavigationTabItem - Snapshots)
                     {id: "color-contrast", enabled: false},
                 ],
             },
@@ -322,7 +322,7 @@ export const Scenarios: Story = {
                     // be determined because it's partially obscured by another
                     // element" since these examples can cause the horizontal
                     // scrollbar to show. Color contrast check is enabled for
-                    // other stories (including the NavigationTabItem AllVariants)
+                    // other stories (including the NavigationTabItem - Snapshots)
                     {id: "color-contrast", enabled: false},
                 ],
             },
