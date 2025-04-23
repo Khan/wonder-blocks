@@ -144,6 +144,18 @@ type Props = {
         tab?: StyleType;
         tabPanel?: StyleType;
     };
+
+    /**
+     * Whether to mount all tab panels when the component mounts.
+     *
+     * - When enabled, all tab panels are in the DOM. This is useful if the
+     * tab contents should be crawlable for SEO purposes.
+     * - When disabled, tab panels are only in the DOM if they've been visited.
+     * This is useful for performance so that unvisited panels are not mounted.
+     *
+     * Defaults to `false`.
+     */
+    mountAllPanels?: boolean;
 } & AriaLabelOrAriaLabelledby;
 
 /**
@@ -183,6 +195,7 @@ export const Tabs = React.forwardRef(function Tabs(
         testId,
         animated = false,
         styles: stylesProp,
+        mountAllPanels = false,
     } = props;
 
     /**
@@ -388,11 +401,14 @@ export const Tabs = React.forwardRef(function Tabs(
                         style={stylesProp?.tabPanel}
                     >
                         {/* Tab panel contents are rendered if the tab has
-                        been previously visited. This prevents unnecessary
+                        been previously visited or if mountAllPanels is enabled.
+                        If mountAllPanels is off, it prevents unnecessary
                         re-mounting of tab panel contents when switching tabs.
                         Note that TabPanel will only display the contents if it
                         is the active panel. */}
-                        {visitedTabsRef.current.has(tab.id) && tab.panel}
+                        {(mountAllPanels ||
+                            visitedTabsRef.current.has(tab.id)) &&
+                            tab.panel}
                     </TabPanel>
                 );
             })}

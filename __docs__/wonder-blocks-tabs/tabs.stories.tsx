@@ -315,8 +315,9 @@ export const AnimationsDisabled: StoryComponentType = {
 };
 
 /**
- * The tab panels are cached and only mounted once a tab is selected to prevent
- * unnecessary mounting/unmounting of tab panel contents.
+ * When `mountAllPanels` is `false` or not set, the tab panels are cached and
+ * only mounted once a tab is selected to prevent unnecessary mounting/unmounting
+ * of tab panel contents.
  *
  * In this example, the panels contain components that print out a message in
  * the Storybook actions panel whenever it is mounted. Notice that a panel is
@@ -325,6 +326,49 @@ export const AnimationsDisabled: StoryComponentType = {
  */
 export const PanelCaching: StoryComponentType = {
     args: {
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <PanelExample label="Tab 1" />,
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <PanelExample label="Tab 2" />,
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                panel: <PanelExample label="Tab 3" />,
+            },
+        ],
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+};
+
+/**
+ * If you need to ensure that all tab panels are always in the DOM, you can
+ * set the `mountAllPanels` prop to `true`. By default, `mountAllPanels` is
+ * set to `false`.
+ *
+ * This is helpful for tabbed content that needs to be available in the DOM for
+ * SEO purposes.
+ *
+ * In this example, the panels contain components that print out a message in
+ * the Storybook actions panel whenever it is mounted. Notice that all panels
+ * are mounted when the component mounts. And panels are not remounted when
+ * switching tabs. When inspecting the DOM, you will also see that all the
+ * panel contents are there.
+ */
+export const MountAllPanels: StoryComponentType = {
+    args: {
+        mountAllPanels: true,
         tabs: [
             {
                 label: "Tab 1",
