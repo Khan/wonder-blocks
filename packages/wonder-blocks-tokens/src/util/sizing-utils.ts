@@ -8,16 +8,27 @@ const BASELINE_VALUE = 10;
  * @param value The rem value to convert (includes the unit).
  * @param includeUnit A boolean for whether to include the string unit.
  * @param baseline A number to configure the baseline for calculations, e.g. 10.
- * @returns A string with the px value.
+ * @returns A string with the px value or a number without.
  */
+export function remToPx(
+    value: string,
+    includeUnit?: true,
+    baseline?: number,
+): string;
+export function remToPx(
+    value: string,
+    includeUnit: false,
+    baseline?: number,
+): number;
+
 export function remToPx(
     value: string,
     includeUnit: boolean = true,
     baseline: number = BASELINE_VALUE,
-): string {
+): string | number {
     const num = parseFloat(value);
-    const unit = includeUnit ? "px" : "";
-    return `${Math.round(num * baseline)}${unit}`;
+    const result = Math.round(num * baseline);
+    return includeUnit ? `${result}px` : result;
 }
 
 /**
