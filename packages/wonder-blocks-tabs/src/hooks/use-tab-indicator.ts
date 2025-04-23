@@ -97,11 +97,11 @@ export const useTabIndicator = (props: Props) => {
         const observer = new window.ResizeObserver(([entry]) => {
             if (entry) {
                 // Update underline style when the ref size changes
-                updateUnderlineStyle();
-                if (!indicatorIsReady.current) {
-                    // Mark indicator as ready to show
-                    indicatorIsReady.current = true;
-                }
+                // updateUnderlineStyle();
+                // if (!indicatorIsReady.current) {
+                //     // Mark indicator as ready to show
+                //     indicatorIsReady.current = true;
+                // }
             }
         });
 
