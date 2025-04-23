@@ -147,7 +147,7 @@ const theme = {
             small: tokens.font.lineHeight.xMedium,
             default: tokens.font.lineHeight.large,
             // NOTE: this token is specific to this button size.
-            large: "2.42rem",
+            large: "2.6rem",
         },
         weight: {
             default: tokens.font.weight.bold,
