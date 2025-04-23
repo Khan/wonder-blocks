@@ -12,23 +12,12 @@ describe("remToPx", () => {
         expect(result).toBe("12px");
     });
 
-    it("optionally returns a number without the px unit", () => {
-        // Arrange
-        const size = "1.3rem";
-
-        // Act
-        const result = remToPx(size, false);
-
-        // Assert
-        expect(result).toBe(13);
-    });
-
     it("takes a configurable baseline parameter", () => {
         // Arrange
         const size = "1.5rem";
 
         // Act
-        const result = remToPx(size, true, 8);
+        const result = remToPx(size, 8);
 
         // Assert
         expect(result).toBe("12px");
