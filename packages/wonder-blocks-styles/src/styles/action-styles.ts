@@ -14,12 +14,10 @@ export const inverse = {
     // Overriding borderColor only to preserve the visual integrity of the
     // button, as there might be some cases where the interactive element
     // already includes a border.
-    ":not([aria-disabled=true])": {
-        borderColor: semanticColor.border.inverse,
-        color: semanticColor.text.inverse,
-    },
+    borderColor: semanticColor.border.inverse,
+    color: semanticColor.text.inverse,
 
-    ":hover:not([aria-disabled=true])": {
+    ":hover": {
         color: semanticColor.text.inverse,
         // Overriding borderColor only to preserve the visual integrity of the
         // button, as there might be some cases where the interactive element
@@ -35,5 +33,6 @@ export const inverse = {
         // This is a slightly darker color than the inverse color.
         borderColor: pressColor,
         background: `color-mix(in srgb, ${semanticColor.surface.primary} 5%, transparent)`,
+        color: semanticColor.text.inverse,
     },
 };
