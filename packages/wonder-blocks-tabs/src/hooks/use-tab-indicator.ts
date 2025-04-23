@@ -3,6 +3,9 @@ import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import * as React from "react";
 
 type IndicatorProps = {
+    /**
+     * Inline styles for the indicator.
+     */
     style: React.CSSProperties;
     role: AriaRole;
 };
@@ -117,8 +120,8 @@ export const useTabIndicator = (props: Props) => {
 
     const indicatorProps: IndicatorProps = {
         style: {
-            ...positioningStyle,
             ...styles.currentUnderline,
+            ...positioningStyle,
             ...(animated ? styles.underlineTransition : {}),
             ...(!indicatorIsReady.current ? {display: "none"} : {}),
         },
@@ -128,6 +131,9 @@ export const useTabIndicator = (props: Props) => {
     return {indicatorProps, updateUnderlineStyle};
 };
 
+// Styles for the tab indicator. We use the styles as inline styles instead of
+// aphrodite styles so that new classes aren't generated each time the tabs
+// resize.
 const styles = {
     currentUnderline: {
         position: "absolute" as const,
