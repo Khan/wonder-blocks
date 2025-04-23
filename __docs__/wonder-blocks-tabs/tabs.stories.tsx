@@ -11,40 +11,9 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
-import {ScenariosLayout} from "../components/scenarios-layout";
-import {
-    longText,
-    longTextWithNoWordBreak,
-} from "../components/text-for-testing";
-import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {Placeholder} from "../components/placeholder";
-
-const generateTabs = (
-    count: number,
-    tabContent: string = "Tab",
-    withIcons: boolean = false,
-) => {
-    return new Array(count).fill(0).map((_, index) => ({
-        label: (
-            <View
-                style={{
-                    gap: sizing.size_080,
-                    alignItems: "center",
-                    flexDirection: "row",
-                }}
-            >
-                {withIcons && <PhosphorIcon icon={IconMappings.cookie} />}
-                {`${tabContent} ${index + 1}`}
-                {withIcons && <PhosphorIcon icon={IconMappings.iceCream} />}
-            </View>
-        ),
-        id: `tab-${index + 1}`,
-        panel: <Placeholder>Tab contents {index + 1}</Placeholder>,
-    }));
-};
+import {generateTabs, ControlledTabs} from "./tabs-utils";
 
 const tabs: TabItem[] = [
     {
@@ -63,21 +32,6 @@ const tabs: TabItem[] = [
         panel: <Placeholder>Tab contents 3</Placeholder>,
     },
 ];
-
-function ControlledTabs(props: PropsFor<typeof Tabs>) {
-    const [selectedTabId, setSelectedTabId] = React.useState(
-        props.selectedTabId,
-    );
-
-    return (
-        <Tabs
-            {...props}
-            selectedTabId={selectedTabId}
-            onTabSelected={setSelectedTabId}
-            tabs={props.tabs}
-        />
-    );
-}
 
 export default {
     title: "Packages / Tabs / Tabs",
@@ -447,127 +401,5 @@ export const CustomStyles: StoryComponentType = {
                 ),
             },
         ],
-    },
-};
-
-const scenarios = [
-    {
-        name: "Zero items",
-        props: {
-            tabs: [],
-        },
-    },
-    {
-        name: "Many Items",
-        props: {
-            tabs: generateTabs(30),
-            selectedTabId: "tab-1",
-        },
-    },
-    {
-        name: "No item selected",
-        props: {
-            tabs: generateTabs(3),
-            selectedTabId: "",
-        },
-    },
-    {
-        name: "Long text",
-        props: {
-            tabs: generateTabs(3, longText),
-            selectedTabId: "tab-1",
-        },
-    },
-    {
-        name: "Long text with no word break",
-        props: {
-            tabs: generateTabs(3, longTextWithNoWordBreak),
-            selectedTabId: "tab-1",
-        },
-    },
-    {
-        name: "Long text (with icons)",
-        props: {
-            tabs: generateTabs(3, longText, true),
-            selectedTabId: "tab-1",
-        },
-    },
-    {
-        name: "Long text with no word break (with icons)",
-        props: {
-            tabs: generateTabs(3, longTextWithNoWordBreak, true),
-            selectedTabId: "tab-1",
-        },
-    },
-    {
-        name: "Varying lengths",
-        props: {
-            tabs: [
-                {
-                    label: longText,
-                    id: "tab-1",
-                    panel: <div>Tab contents 1</div>,
-                },
-                {
-                    label: "Short text",
-                    id: "tab-2",
-                    panel: <div>Tab contents 2</div>,
-                },
-                {
-                    label: longText,
-                    id: "tab-3",
-                    panel: <div>Tab contents 3</div>,
-                },
-                {
-                    label: "Short text",
-                    id: "tab-4",
-                    panel: <div>Tab contents 4</div>,
-                },
-            ],
-            selectedTabId: "tab-1",
-        },
-    },
-    {
-        name: "With icons only",
-        props: {
-            tabs: [
-                {
-                    label: (
-                        <PhosphorIcon
-                            icon={IconMappings.cookie}
-                            size="medium"
-                            aria-label="Tab 1"
-                        />
-                    ),
-                    id: "tab-1",
-                    panel: <div>Tab contents 1</div>,
-                },
-                {
-                    label: (
-                        <PhosphorIcon
-                            icon={IconMappings.iceCream}
-                            size="medium"
-                            aria-label="Tab 2"
-                        />
-                    ),
-                    id: "tab-2",
-                    panel: <div>Tab contents 2</div>,
-                },
-            ],
-            selectedTabId: "tab-1",
-        },
-    },
-];
-
-export const Scenarios: StoryComponentType = {
-    render: (args) => {
-        return (
-            <ScenariosLayout scenarios={scenarios}>
-                {(props) => <ControlledTabs {...args} {...props} />}
-            </ScenariosLayout>
-        );
-    },
-    args: {
-        animated: true,
     },
 };

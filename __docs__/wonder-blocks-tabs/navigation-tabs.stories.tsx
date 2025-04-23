@@ -11,18 +11,13 @@ import {
 import Link from "@khanacademy/wonder-blocks-link";
 import argTypes from "./navigation-tabs.argtypes";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {ScenariosLayout} from "../components/scenarios-layout";
-import {
-    longText,
-    longTextWithNoWordBreak,
-} from "../components/text-for-testing";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs / NavigationTabs",
+    title: "Packages / Tabs / NavigationTabs",
     component: NavigationTabs,
     subcomponents: {NavigationTabItem},
     parameters: {
@@ -139,131 +134,6 @@ export const CustomStyles: StoryComponentType = {
             list: {
                 gap: sizing.size_400,
             },
-        },
-    },
-};
-
-const generateChildren = (
-    numItems: number,
-    label: string,
-    showIcons: boolean = false,
-) => {
-    return Array(numItems)
-        .fill(0)
-        .map((_, index) => (
-            <NavigationTabItem current={index === 0}>
-                <Link
-                    href={`#link-${index + 1}`}
-                    startIcon={
-                        showIcons ? (
-                            <PhosphorIcon
-                                icon={IconMappings.cookie}
-                                size="small"
-                            />
-                        ) : undefined
-                    }
-                    endIcon={
-                        showIcons ? (
-                            <PhosphorIcon
-                                icon={IconMappings.iceCream}
-                                size="small"
-                            />
-                        ) : undefined
-                    }
-                >
-                    {label}
-                </Link>
-            </NavigationTabItem>
-        ));
-};
-
-/**
- * The following story shows how the component handles specific scenarios.
- */
-export const Scenarios: StoryComponentType = {
-    render() {
-        const scenarios = [
-            {
-                name: "Many items",
-                props: {children: generateChildren(10, "Navigation Tab Item")},
-            },
-            {
-                name: "Long text",
-                props: {children: generateChildren(4, longText)},
-            },
-            {
-                name: "Long text with no word break",
-                props: {
-                    children: generateChildren(4, longTextWithNoWordBreak),
-                },
-            },
-            {
-                name: "Long text (with icons)",
-                props: {children: generateChildren(4, longText, true)},
-            },
-            {
-                name: "Long text with no word break (with icons)",
-                props: {
-                    children: generateChildren(
-                        4,
-                        longTextWithNoWordBreak,
-                        true,
-                    ),
-                },
-            },
-            {
-                name: "Varying lengths",
-                props: {
-                    children: [
-                        <NavigationTabItem current={true}>
-                            <Link href="#link-long">{longText}</Link>
-                        </NavigationTabItem>,
-                        <NavigationTabItem>
-                            <Link href="#link-short">Short text</Link>
-                        </NavigationTabItem>,
-                        <NavigationTabItem>
-                            <Link href="#link-long-no-break">
-                                {longTextWithNoWordBreak}
-                            </Link>
-                        </NavigationTabItem>,
-                    ],
-                },
-            },
-        ];
-        return (
-            <ScenariosLayout scenarios={scenarios}>
-                {(props, name) => (
-                    <NavigationTabs {...props} aria-label={name} />
-                )}
-            </ScenariosLayout>
-        );
-    },
-    parameters: {
-        a11y: {
-            config: {
-                rules: [
-                    // Disabling warning: "Element's background color could not
-                    // be determined because it's partially obscured by another
-                    // element" since these examples can cause the horizontal
-                    // scrollbar to show. Color contrast check is enabled for
-                    // other stories (including the NavigationTabItem AllVariants)
-                    {id: "color-contrast", enabled: false},
-                ],
-            },
-        },
-    },
-};
-
-/**
- * The following story shows how the component handles specific scenarios at a
- * small screen size.
- */
-export const ScenariosSmallScreen: StoryComponentType = {
-    ...Scenarios,
-    parameters: {
-        ...Scenarios.parameters,
-        viewport: {
-            defaultViewport: "small",
         },
     },
 };

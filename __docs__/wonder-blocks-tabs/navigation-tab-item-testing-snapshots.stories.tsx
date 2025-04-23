@@ -6,13 +6,18 @@ import {StyleSheet} from "aphrodite";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
-import {AllVariants} from "../components/all-variants";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import Link from "@khanacademy/wonder-blocks-link";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
-import {rtlText} from "../components/text-for-testing";
+import {
+    longText,
+    longTextWithNoWordBreak,
+    rtlText,
+} from "../components/text-for-testing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {ScenariosLayout} from "../components/scenarios-layout";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => {
@@ -143,72 +148,68 @@ type Story = StoryObj<typeof NavigationTabItem>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Tabs / NavigationTabs / NavigationTabItem / NavigationTabItem - All Variants",
+    title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabItem / Testing / NavigationTabItem - Snapshots",
     component: NavigationTabItem,
-    render: (args) => (
-        <>
-            <AllVariants rows={rows} columns={columns}>
-                {({props}) => (
-                    <View style={styles.container} tag="ul">
-                        <NavigationTabItem {...args} {...props} />
-                    </View>
-                )}
-            </AllVariants>
-            <div dir="rtl">
-                <HeadingLarge>RTL</HeadingLarge>
-                <AllVariants rows={rtlRows} columns={columns}>
-                    {({props}) => (
-                        <View style={styles.container} tag="ul">
-                            <NavigationTabItem {...args} {...props} />
-                        </View>
-                    )}
-                </AllVariants>
-            </div>
-        </>
-    ),
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabItem>;
 
 export default meta;
 
-export const Default: Story = {};
-
-export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
-};
-
-export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
-};
-
-export const HoverFocus: Story = {
-    name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
-};
-
-export const Press: Story = {
-    parameters: {pseudo: {hover: true, active: true}},
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args) => (
+        <>
+            <StateSheet rows={rows} columns={columns}>
+                {({props, className}) => (
+                    <View
+                        style={styles.container}
+                        tag="ul"
+                        className={className}
+                    >
+                        <NavigationTabItem {...args} {...props} />
+                    </View>
+                )}
+            </StateSheet>
+            <div dir="rtl">
+                <HeadingLarge>RTL</HeadingLarge>
+                <StateSheet rows={rtlRows} columns={columns}>
+                    {({props, className}) => (
+                        <View
+                            style={styles.container}
+                            tag="ul"
+                            className={className}
+                        >
+                            <NavigationTabItem {...args} {...props} />
+                        </View>
+                    )}
+                </StateSheet>
+            </div>
+        </>
+    ),
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
 };
 
 export const Zoom: Story = {
     render: (args) => (
         <>
-            <AllVariants rows={rows} columns={columns} layout="list">
+            <StateSheet rows={rows} columns={columns} layout="list">
                 {({props}) => (
                     <View style={styles.container} tag="ul">
                         <NavigationTabItem {...args} {...props} />
                     </View>
                 )}
-            </AllVariants>
+            </StateSheet>
             <div dir="rtl">
                 <HeadingLarge>RTL</HeadingLarge>
-                <AllVariants rows={rtlRows} columns={columns} layout="list">
+                <StateSheet rows={rtlRows} columns={columns} layout="list">
                     {({props}) => (
                         <View style={styles.container} tag="ul">
                             <NavigationTabItem {...args} {...props} />
                         </View>
                     )}
-                </AllVariants>
+                </StateSheet>
             </div>
         </>
     ),
@@ -220,6 +221,89 @@ export const Zoom: Story = {
             // Disabling because Chromatic crops the story when zoom is used
             disableSnapshot: true,
         },
+        pseudo: defaultPseudoStates,
+    },
+};
+
+/**
+ * The following story shows how the component handles specific scenarios.
+ */
+export const Scenarios: Story = {
+    render() {
+        const scenarios = [
+            {
+                name: "Long Text",
+                props: {
+                    current: true,
+                    children: <Link href="#link">{longText}</Link>,
+                },
+            },
+            {
+                name: "Long Text with No Word Break",
+                props: {
+                    current: true,
+                    children: (
+                        <Link href="#link">{longTextWithNoWordBreak}</Link>
+                    ),
+                },
+            },
+            {
+                name: "Long Text (icons)",
+                props: {
+                    current: true,
+                    children: (
+                        <Link
+                            href="#link"
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    size="small"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.iceCream}
+                                    size="small"
+                                />
+                            }
+                        >
+                            {longText}
+                        </Link>
+                    ),
+                },
+            },
+            {
+                name: "Long Text with No Word Break (icons)",
+                props: {
+                    current: true,
+                    children: (
+                        <Link
+                            href="#link"
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    size="small"
+                                />
+                            }
+                            endIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.iceCream}
+                                    size="small"
+                                />
+                            }
+                        >
+                            {longTextWithNoWordBreak}
+                        </Link>
+                    ),
+                },
+            },
+        ];
+
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => <NavigationTabItem {...props} />}
+            </ScenariosLayout>
+        );
     },
 };
 
