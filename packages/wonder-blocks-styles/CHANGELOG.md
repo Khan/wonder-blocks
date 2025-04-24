@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-styles
 
+## 0.2.6
+
+### Patch Changes
+
+- 0b47477: Adjust `actionStyles.inverse` to account for `Button` instances
+
 ## 0.2.5
 
 ### Patch Changes
