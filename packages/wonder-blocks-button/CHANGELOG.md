@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 9.0.0
+
+### Major Changes
+
+- 0b47477: Removes the `light` prop as it is no longer maintained. Simplifes pseudo-states (e.g. `:hover`, `:active`).
+
 ## 8.0.3
 
 ### Patch Changes
