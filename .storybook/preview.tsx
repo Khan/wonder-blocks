@@ -57,6 +57,9 @@ const wbViewports = {
 };
 
 const parameters = {
+    a11y: {
+        test: "error",
+    },
     // Enable the RenderStateRoot decorator by default.
     enableRenderStateRootDecorator: true,
     backgrounds: {
