@@ -4,15 +4,9 @@ import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 
 export default {
     children: {
-        description: "Text to appear on the button.",
         type: {name: "string", required: true},
     },
     startIcon: {
-        description: `A Phosphor icon asset (imported as a static SVG file)
-            that will appear at the start of the button (left for LTR, right
-            for RTL).`,
-        type: {name: "other", value: "PhosphorIconAsset", required: false},
-        control: {type: "select"},
         options: Object.keys(IconMappings),
         mapping: IconMappings,
         table: {
@@ -21,11 +15,6 @@ export default {
         },
     },
     endIcon: {
-        description: `A Phosphor icon asset (imported as a static SVG file)
-            that will appear at the end of the button (right for LTR, left
-            for RTL).`,
-        type: {name: "other", value: "PhosphorIconAsset", required: false},
-        control: {type: "select"},
         options: Object.keys(IconMappings),
         mapping: IconMappings,
         table: {
@@ -34,104 +23,21 @@ export default {
         },
     },
     spinner: {
-        description: "If true, replaces the contents with a spinner.",
         control: {type: "boolean"},
         table: {
             category: "Layout",
-            type: {
-                summary: "boolean",
-                detail: "Setting this prop to `true` will disable the button.",
-            },
-        },
-    },
-    color: {
-        description: "The color of the button, either blue or red.",
-        options: ["default", "destructive"],
-        control: {type: "radio"},
-        table: {
-            category: "Theming",
-            type: {
-                summary: `"default" | "destructive"`,
-            },
-        },
-    },
-    kind: {
-        description:
-            "The kind of the button, either primary, secondary, or tertiary.",
-        options: ["primary", "secondary", "tertiary"],
-        control: {type: "select"},
-        table: {
-            type: {summary: "primary | secondary | tertiary"},
-            defaultValue: {
-                detail: `
-                - Primary buttons have background colors.\n- Secondary buttons have a border and no background color.\n- Tertiary buttons have no background or border.
-                `,
-            },
-        },
-    },
-    light: {
-        description: "Whether the button is on a dark/colored background.",
-        control: {type: "boolean"},
-        table: {
-            category: "Theming",
-            type: {
-                summary: "boolean",
-                detail: "Sets primary button background color to white, and secondary and tertiary button title to color.",
-            },
         },
     },
     size: {
-        description: "The size of the button.",
-        options: ["small", "medium", "large"],
         control: {type: "select"},
         table: {
             category: "Layout",
-            defaultValue: {
-                detail: `"medium" = height: 40; "small" = height: 32; "large" = height: 56;`,
-            },
             type: {
                 summary: `"medium" | "small" | "large"`,
             },
         },
     },
-    disabled: {
-        description: "Whether the button is disabled.",
-        table: {
-            type: {
-                summary: "boolean",
-            },
-        },
-    },
-    id: {
-        description: "An optional id attribute.",
-        control: {type: "text"},
-        table: {
-            type: {
-                summary: "string",
-            },
-        },
-    },
-    testId: {
-        description: "Test ID used for e2e testing.",
-        control: {type: "text"},
-        table: {
-            type: {
-                summary: "string",
-            },
-        },
-    },
-
-    tabIndex: {
-        description: "Set the tabindex attribute on the rendered element.",
-        control: {type: "number", min: -1},
-        table: {
-            type: {
-                summary: "number",
-            },
-        },
-    },
     style: {
-        description: "Optional custom styles.",
         table: {
             category: "Layout",
             type: {
@@ -140,7 +46,6 @@ export default {
         },
     },
     labelStyle: {
-        description: "Optional custom styles for the inner label.",
         table: {
             category: "Layout",
             type: {
@@ -149,7 +54,6 @@ export default {
         },
     },
     className: {
-        description: "Adds CSS classes to the Button.",
         control: {type: "text"},
         table: {
             category: "Layout",
@@ -163,9 +67,6 @@ export default {
      */
     onClick: {
         action: "clicked",
-        description: `Function to call when button is clicked.
-        This callback should be used for things like marking BigBingo conversions. It should NOT be used to redirect to a different URL or to prevent navigation via e.preventDefault(). The event passed to this handler will have its preventDefault() and stopPropagation() methods stubbed out.
-        `,
         table: {
             category: "Events",
             type: {
@@ -179,39 +80,24 @@ export default {
      * Navigation
      */
     skipClientNav: {
-        description: `Whether to avoid using client-side navigation. If the URL passed to href is local to the client-side, e.g. /math/algebra/eval-exprs, then it tries to use react-router-dom's Link component which handles the client-side navigation. You can set "skipClientNav" to true avoid using client-side nav entirely.`,
         control: {type: "boolean"},
         table: {
             category: "Navigation",
-            type: {
-                summary: "Note",
-                detail: "All URLs containing a protocol are considered external, e.g. https://khanacademy.org/math/algebra/eval-exprs will trigger a full page reload.",
-            },
         },
     },
     rel: {
-        description: `Specifies the type of relationship between the current document and the linked document. Should only be used when "href" is specified. This defaults to "noopener noreferrer" when target="_blank", but can be overridden by setting this prop to something else.`,
         control: {type: "text"},
         table: {
             category: "Navigation",
-            type: {
-                summary: "string",
-            },
         },
     },
     target: {
-        description: `A target destination window for a link to open in. Should only be used
-        * when "href" is specified.`,
         control: {type: "text"},
         table: {
             category: "Navigation",
-            type: {
-                summary: "string",
-            },
         },
     },
     href: {
-        description: "URL to navigate to.",
         control: {type: "text"},
         table: {
             category: "Navigation",
@@ -222,7 +108,6 @@ export default {
         },
     },
     beforeNav: {
-        description: `Run async code before navigating. If the promise returned rejects then navigation will not occur. If both safeWithNav and beforeNav are provided, beforeNav will be run first and safeWithNav will only be run if beforeNav does not reject.`,
         table: {
             category: "Navigation",
             type: {
@@ -231,7 +116,6 @@ export default {
         },
     },
     safeWithNav: {
-        description: `Run async code in the background while client-side navigating. If the browser does a full page load navigation, the callback promise must be settled before the navigation will occur. Errors are ignored so that navigation is guaranteed to succeed.`,
         table: {
             category: "Navigation",
             type: {
