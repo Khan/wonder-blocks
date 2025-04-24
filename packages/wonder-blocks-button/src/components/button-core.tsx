@@ -253,17 +253,17 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         whiteSpace: "nowrap",
         overflow: "hidden",
         // To account for the underline-offset in tertiary buttons
-        lineHeight: `${theme.font.lineHeight.default}px`,
+        lineHeight: theme.font.lineHeight.default,
         textOverflow: "ellipsis",
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
     smallText: {
-        lineHeight: `${theme.font.lineHeight.small}px`,
+        lineHeight: theme.font.lineHeight.small,
     },
     largeText: {
         fontSize: theme.font.size.large,
-        lineHeight: `${theme.font.lineHeight.large}px`,
+        lineHeight: theme.font.lineHeight.large,
     },
     textWithFocus: {
         position: "relative", // allows the tertiary button border to use the label width

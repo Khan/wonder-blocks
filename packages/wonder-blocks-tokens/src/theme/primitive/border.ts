@@ -1,4 +1,6 @@
-import {remToPx, sizing} from "./sizing";
+import {remToPx} from "../../util/sizing-utils";
+
+import {sizing} from "./sizing";
 
 export const border = {
     /**

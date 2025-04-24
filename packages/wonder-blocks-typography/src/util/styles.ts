@@ -1,154 +1,143 @@
 import {StyleSheet} from "aphrodite";
 import type {StyleDeclaration} from "aphrodite";
-
-const Regular = 400;
-const Bold = 700;
-const Black = 900;
-
-const mobile = "@media (max-width: 1023px)";
-const desktop = "@media (min-width: 1024px)";
+import {font, breakpoint} from "@khanacademy/wonder-blocks-tokens";
 
 const common = {
     display: "block",
 } as const;
 
-const SansFamily = 'Lato, "Noto Sans", sans-serif';
-// TODO(kevinb): Use Minion Pro here
-const SerifFamily = '"Noto Serif", serif';
-const InconsolataFamily = "Inconsolata, monospace";
-
 const styles: StyleDeclaration = StyleSheet.create({
     Title: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Black,
-        [desktop]: {
-            fontSize: 36,
-            lineHeight: "40px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.black,
+        [breakpoint.mediaQuery.xl]: {
+            fontSize: font.size.xxxLarge,
+            lineHeight: font.lineHeight.xxxLarge,
         },
-        [mobile]: {
-            fontSize: 28,
-            lineHeight: "32px",
+        [breakpoint.mediaQuery.mdOrSmaller]: {
+            fontSize: font.size.xxLarge,
+            lineHeight: font.lineHeight.xxLarge,
         },
     },
     Tagline: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Regular,
-        fontSize: 20,
-        lineHeight: "24px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.large,
+        lineHeight: font.lineHeight.large,
     },
     HeadingLarge: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Bold,
-        [desktop]: {
-            fontSize: 28,
-            lineHeight: "32px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.bold,
+        [breakpoint.mediaQuery.xl]: {
+            fontSize: font.size.xxLarge,
+            lineHeight: font.lineHeight.xxLarge,
         },
-        [mobile]: {
-            fontSize: 24,
-            lineHeight: "28px",
+        [breakpoint.mediaQuery.mdOrSmaller]: {
+            fontSize: font.size.xLarge,
+            lineHeight: font.lineHeight.xLarge,
         },
     },
     HeadingMedium: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Bold,
-        [desktop]: {
-            fontSize: 24,
-            lineHeight: "28px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.bold,
+        [breakpoint.mediaQuery.xl]: {
+            fontSize: font.size.xLarge,
+            lineHeight: font.lineHeight.xLarge,
         },
-        [mobile]: {
-            fontSize: 22,
-            lineHeight: "26px",
+        [breakpoint.mediaQuery.mdOrSmaller]: {
+            fontSize: "2.2rem",
+            lineHeight: "2.6rem",
         },
     },
     HeadingSmall: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Bold,
-        fontSize: 20,
-        lineHeight: "24px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.bold,
+        fontSize: font.size.large,
+        lineHeight: font.lineHeight.large,
     },
     HeadingXSmall: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Bold,
-        fontSize: 12,
-        lineHeight: "16px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.bold,
+        fontSize: font.size.xSmall,
+        lineHeight: font.lineHeight.xSmall,
         letterSpacing: 0.6,
         textTransform: "uppercase",
     },
     BodySerifBlock: {
         ...common,
-        fontFamily: SerifFamily,
-        fontWeight: Regular,
-        fontSize: 22,
-        lineHeight: "28px",
+        fontFamily: font.family.serif,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.large,
+        lineHeight: font.lineHeight.large,
     },
     BodySerif: {
         ...common,
-        fontFamily: SerifFamily,
-        fontWeight: Regular,
-        fontSize: 18,
-        lineHeight: "22px",
+        fontFamily: font.family.serif,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.medium,
+        lineHeight: font.size.medium,
     },
     BodyMonospace: {
         ...common,
-        fontFamily: InconsolataFamily,
-        fontWeight: Regular,
-        fontSize: 17,
-        lineHeight: "22px",
+        fontFamily: font.family.mono,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.medium,
+        lineHeight: font.lineHeight.medium,
     },
     Body: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Regular,
-        fontSize: 16,
-        lineHeight: "22px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.medium,
+        lineHeight: font.lineHeight.xMedium,
     },
     LabelLarge: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Bold,
-        fontSize: 16,
-        lineHeight: "20px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.bold,
+        fontSize: font.size.medium,
+        lineHeight: font.lineHeight.medium,
     },
     LabelMedium: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Regular,
-        fontSize: 16,
-        lineHeight: "20px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.medium,
+        lineHeight: font.lineHeight.medium,
     },
     LabelSmall: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Regular,
-        fontSize: 14,
-        lineHeight: "18px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.small,
+        lineHeight: font.lineHeight.small,
     },
     LabelXSmall: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Regular,
-        fontSize: 12,
-        lineHeight: "16px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.xSmall,
+        lineHeight: font.lineHeight.xSmall,
     },
     Caption: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Regular,
-        fontSize: 14,
-        lineHeight: "20px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.small,
+        lineHeight: font.lineHeight.medium,
     },
     Footnote: {
         ...common,
-        fontFamily: SansFamily,
-        fontWeight: Regular,
-        fontSize: 12,
-        lineHeight: "18px",
+        fontFamily: font.family.sans,
+        fontWeight: font.weight.regular,
+        fontSize: font.size.xSmall,
+        lineHeight: font.lineHeight.small,
     },
 });
 

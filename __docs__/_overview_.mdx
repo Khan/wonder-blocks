@@ -11,10 +11,7 @@ import ComponentGallery from "./components/gallery/component-gallery";
 <Meta title="Overview" />
 
 export default function Layout({children}) {
-    {
-        /* NOTE: Adding a negative margin to move the hero right above the toolbar */
-    }
-    return <main style={{marginTop: -64}}>{children}</main>;
+    return <main>{children}</main>;
 }
 
 export const StyledImage = addStyle("img");

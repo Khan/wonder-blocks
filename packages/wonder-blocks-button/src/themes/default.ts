@@ -5,7 +5,7 @@ const {semanticColor} = tokens;
 // The underline-offset is the distance between the text baseline and the
 // bottom of the underline. This is necessary to prevent the underline from
 // breaking with descenders.
-const textUnderlineOffset = tokens.spacing.xxxSmall_4;
+const textUnderlineOffset = tokens.sizing.size_040;
 
 const focusOutline = {
     border: semanticColor.focus.outer,
@@ -141,12 +141,13 @@ const theme = {
     font: {
         size: {
             // NOTE: This token is specific to this button size.
-            large: 18,
+            large: "1.8rem",
         },
         lineHeight: {
-            small: tokens.font.lineHeight.small + textUnderlineOffset,
-            default: tokens.font.lineHeight.medium + textUnderlineOffset,
-            large: tokens.font.lineHeight.medium + 2 + textUnderlineOffset,
+            small: tokens.font.lineHeight.xMedium,
+            default: tokens.font.lineHeight.large,
+            // NOTE: this token is specific to this button size.
+            large: "2.6rem",
         },
         weight: {
             default: tokens.font.weight.bold,
