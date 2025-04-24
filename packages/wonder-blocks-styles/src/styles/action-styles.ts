@@ -19,7 +19,7 @@ export const inverse = {
         color: semanticColor.text.inverse,
     },
 
-    ":hover": {
+    ":hover:not([aria-disabled=true])": {
         color: semanticColor.text.inverse,
         // Overriding borderColor only to preserve the visual integrity of the
         // button, as there might be some cases where the interactive element
@@ -30,7 +30,7 @@ export const inverse = {
     // Use the global focus styles to ensure that the focus state is consistent
     ...focus,
 
-    ":active": {
+    ":active:not([aria-disabled=true])": {
         borderRadius: border.radius.radius_080,
         // This is a slightly darker color than the inverse color.
         borderColor: pressColor,
