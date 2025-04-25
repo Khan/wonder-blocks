@@ -9,6 +9,9 @@ catalogs:
     '@khanacademy/wonder-stuff-core':
       specifier: ^1.5.4
       version: 1.5.4
+    '@khanacademy/wonder-stuff-testing':
+      specifier: ^3.0.5
+      version: 3.0.5
     '@phosphor-icons/core':
       specifier: ^2.0.2
       version: 2.1.1
@@ -640,7 +643,7 @@ importers:
         specifier: workspace:*
         version: link:../wonder-blocks-testing-core
       '@khanacademy/wonder-stuff-testing':
-        specifier: ^3.0.5
+        specifier: 'catalog:'
         version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-dropdown:
@@ -1188,7 +1191,7 @@ importers:
         specifier: workspace:*
         version: link:../../build-settings
       '@khanacademy/wonder-stuff-testing':
-        specifier: ^3.0.5
+        specifier: 'catalog:'
         version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-testing-core:
@@ -1222,7 +1225,7 @@ importers:
         specifier: workspace:*
         version: link:../../build-settings
       '@khanacademy/wonder-stuff-testing':
-        specifier: ^3.0.1
+        specifier: 'catalog:'
         version: 3.0.5(jest@29.7.0(@types/node@22.13.0))
 
   packages/wonder-blocks-theming:

@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
-    "@khanacademy/wonder-stuff-testing": "^3.0.1"
+    "@khanacademy/wonder-stuff-testing": "catalog:"
   },
   "author": "",
   "license": "MIT"

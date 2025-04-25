@@ -8,6 +8,7 @@ packages:
 catalog:
     # Wonder Stuff
     "@khanacademy/wonder-stuff-core": ^1.5.4
+    "@khanacademy/wonder-stuff-testing": ^3.0.5
     # Icons library
     "@phosphor-icons/core": ^2.0.2
     # Positioning
