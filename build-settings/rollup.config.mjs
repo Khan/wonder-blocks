@@ -3,12 +3,8 @@
 import fs from "fs";
 import path from "path";
 import {nodeExternals} from "rollup-plugin-node-externals";
-import {babel} from "@rollup/plugin-babel";
+import swc from "@rollup/plugin-swc";
 import resolve from "@rollup/plugin-node-resolve";
-// eslint-disable-next-line import/extensions
-import makeBabelConfig from "./babel.config.js";
-
-const {presets, plugins} = makeBabelConfig({env: () => false});
 
 const createConfig = (pkgName) => {
     const packageJsonPath = path.join("packages", pkgName, "package.json");
@@ -37,13 +33,12 @@ const createConfig = (pkgName) => {
         // deal with this so we manually externalize these imports.
         external: [/core-js/],
         plugins: [
-            babel({
-                presets,
-                plugins,
+            swc({
+                swc: {
+                    swcrc: true,
+                    minify: true,
+                },
                 exclude: "node_modules/**",
-                babelHelpers: "runtime",
-                comments: false,
-                extensions,
             }),
             resolve({
                 browser: true,
