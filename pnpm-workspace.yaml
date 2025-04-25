@@ -28,3 +28,5 @@ catalog:
     react-router-dom-v5-compat: ^6.30.0
     # Virtualization
     react-window: ^1.8.11
+    # Codemods
+    jscodeshift: ^17.3.0
