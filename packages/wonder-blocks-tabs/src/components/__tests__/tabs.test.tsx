@@ -1749,76 +1749,209 @@ describe("Tabs", () => {
     });
 
     describe("Performance", () => {
-        it("should not mount tab panels that are not visited", () => {
-            // Arrange
-            const secondPanelOnMount = jest.fn();
-            const SecondPanel = () => {
-                React.useEffect(() => {
-                    secondPanelOnMount();
-                }, []);
-                return <div>Panel 2</div>;
-            };
+        describe("Panel Caching (mountAllPanels={false})", () => {
+            it("should not mount tab panels that are not visited", () => {
+                // Arrange
+                const secondPanelOnMount = jest.fn();
+                const SecondPanel = () => {
+                    React.useEffect(() => {
+                        secondPanelOnMount();
+                    }, []);
+                    return <div>Panel 2</div>;
+                };
 
-            // Act
-            render(
-                <ControlledTabs
-                    tabs={[
-                        {
-                            id: "tab-1",
-                            label: "Tab 1",
-                            panel: "Panel 1",
-                        },
-                        {
-                            id: "tab-2",
-                            label: "Tab 2",
-                            panel: <SecondPanel />,
-                        },
-                    ]}
-                    selectedTabId={"tab-1"}
-                />,
-            );
+                // Act
+                render(
+                    <ControlledTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: "Panel 1",
+                            },
+                            {
+                                id: "tab-2",
+                                label: "Tab 2",
+                                panel: <SecondPanel />,
+                            },
+                        ]}
+                        selectedTabId={"tab-1"}
+                        mountAllPanels={false}
+                    />,
+                );
 
-            // Assert
-            // Since the first tab is selected, the second panel should not have been mounted
-            expect(secondPanelOnMount).not.toHaveBeenCalled();
+                // Assert
+                // Since the first tab is selected, the second panel should not have been mounted
+                expect(secondPanelOnMount).not.toHaveBeenCalled();
+            });
+
+            it("should not remount tabs that have been visited", async () => {
+                // Arrange
+                const firstPanelOnMount = jest.fn();
+                const FirstPanel = () => {
+                    React.useEffect(() => {
+                        firstPanelOnMount();
+                    }, []);
+                    return <div>Panel 1</div>;
+                };
+                render(
+                    <ControlledTabs
+                        tabs={[
+                            {
+                                id: "tab-1",
+                                label: "Tab 1",
+                                panel: <FirstPanel />,
+                            },
+                            {
+                                id: "tab-2",
+                                label: "Tab 2",
+                                panel: "Panel 2",
+                            },
+                        ]}
+                        selectedTabId={"tab-1"}
+                        mountAllPanels={false}
+                    />,
+                );
+
+                // Act
+                // Change tabs and then go back to the first tab
+                const tab2 = screen.getByRole("tab", {name: "Tab 2"});
+                await userEvent.click(tab2);
+                const tab1 = screen.getByRole("tab", {name: "Tab 1"});
+                await userEvent.click(tab1);
+
+                // Assert
+                expect(firstPanelOnMount).toHaveBeenCalledTimes(1);
+            });
+
+            it("should not have the panel contents in the DOM if it is not visited", () => {
+                // Arrange
+                // Act
+                render(
+                    <ControlledTabs
+                        tabs={[
+                            {label: "Tab 1", id: "tab-1", panel: "Panel 1"},
+                            {label: "Tab 2", id: "tab-2", panel: "Panel 2"},
+                        ]}
+                        selectedTabId={"tab-1"}
+                        mountAllPanels={false}
+                    />,
+                );
+
+                // Assert
+                expect(screen.queryByText("Panel 2")).not.toBeInTheDocument();
+            });
         });
 
-        it("should not remount tabs that have been visited", async () => {
-            // Arrange
-            const firstPanelOnMount = jest.fn();
-            const FirstPanel = () => {
-                React.useEffect(() => {
-                    firstPanelOnMount();
-                }, []);
-                return <div>Panel 1</div>;
-            };
-            render(
-                <ControlledTabs
-                    tabs={[
-                        {
-                            id: "tab-1",
-                            label: "Tab 1",
-                            panel: <FirstPanel />,
-                        },
-                        {
-                            id: "tab-2",
-                            label: "Tab 2",
-                            panel: "Panel 2",
-                        },
-                    ]}
-                    selectedTabId={"tab-1"}
-                />,
-            );
+        describe("Mounting All Panels (mountAllPanels={true})", () => {
+            it("should mount all tab panels when the component mounts", () => {
+                // Arrange
+                const onMount = jest.fn();
+                const Panel1 = () => {
+                    const name = "Panel 1";
+                    React.useEffect(() => {
+                        onMount(name);
+                    }, []);
+                    return <div>{name}</div>;
+                };
+                const Panel2 = () => {
+                    const name = "Panel 2";
+                    React.useEffect(() => {
+                        onMount(name);
+                    }, []);
+                    return <div>{name}</div>;
+                };
 
-            // Act
-            // Change tabs and then go back to the first tab
-            const tab2 = screen.getByRole("tab", {name: "Tab 2"});
-            await userEvent.click(tab2);
-            const tab1 = screen.getByRole("tab", {name: "Tab 1"});
-            await userEvent.click(tab1);
+                // Act
+                render(
+                    <ControlledTabs
+                        tabs={[
+                            {label: "Tab 1", id: "tab-1", panel: <Panel1 />},
+                            {label: "Tab 2", id: "tab-2", panel: <Panel2 />},
+                        ]}
+                        selectedTabId={"tab-1"}
+                        mountAllPanels={true}
+                    />,
+                );
 
-            // Assert
-            expect(firstPanelOnMount).toHaveBeenCalledTimes(1);
+                // Assert
+                expect(onMount.mock.calls).toEqual([["Panel 1"], ["Panel 2"]]);
+            });
+
+            it("should not remount tab panel if it is visited again", async () => {
+                // Arrange
+                const onMount = jest.fn();
+                const Panel1 = () => {
+                    const name = "Panel 1";
+                    React.useEffect(() => {
+                        onMount(name);
+                    }, []);
+                    return <div>{name}</div>;
+                };
+                const Panel2 = () => {
+                    const name = "Panel 2";
+                    React.useEffect(() => {
+                        onMount(name);
+                    }, []);
+                    return <div>{name}</div>;
+                };
+                render(
+                    <ControlledTabs
+                        tabs={[
+                            {label: "Tab 1", id: "tab-1", panel: <Panel1 />},
+                            {label: "Tab 2", id: "tab-2", panel: <Panel2 />},
+                        ]}
+                        selectedTabId={"tab-1"}
+                        mountAllPanels={true}
+                    />,
+                );
+                onMount.mockClear();
+                await userEvent.click(screen.getByRole("tab", {name: "Tab 2"}));
+
+                // Act
+                // Visit the first tab again
+                await userEvent.click(screen.getByRole("tab", {name: "Tab 1"}));
+
+                // Assert
+                expect(onMount.mock.calls).toEqual([]);
+            });
+
+            it("should include the tab panel in the DOM if it is not visited", () => {
+                // Arrange
+                // Act
+                render(
+                    <ControlledTabs
+                        tabs={[
+                            {label: "Tab 1", id: "tab-1", panel: "Panel 1"},
+                            {label: "Tab 2", id: "tab-2", panel: "Panel 2"},
+                        ]}
+                        selectedTabId={"tab-1"}
+                        mountAllPanels={true}
+                    />,
+                );
+
+                // Assert
+                expect(screen.getByText("Panel 2")).toBeInTheDocument();
+            });
+        });
+
+        describe("mountAllPanels is not set (defaults to false)", () => {
+            it("should not mount tab panels that are not visited", () => {
+                // Arrange
+                // Act
+                render(
+                    <ControlledTabs
+                        tabs={[
+                            {id: "tab-1", label: "Tab 1", panel: "Panel 1"},
+                            {id: "tab-2", label: "Tab 2", panel: "Panel 2"},
+                        ]}
+                        selectedTabId={"tab-1"}
+                    />,
+                );
+
+                // Assert
+                expect(screen.queryByText("Panel 2")).not.toBeInTheDocument();
+            });
         });
     });
 });
