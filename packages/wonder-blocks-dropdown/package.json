@@ -16,7 +16,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-announcer": "workspace:*",
     "@khanacademy/wonder-blocks-cell": "workspace:*",
     "@khanacademy/wonder-blocks-clickable": "workspace:*",

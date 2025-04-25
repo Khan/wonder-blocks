@@ -6,8 +6,6 @@ packages:
     # AST transforms
     - "wb-codemod"
 catalog:
-    # Babel
-    "@babel/runtime": ^7.24.5
     # Wonder Stuff
     "@khanacademy/wonder-stuff-core": ^1.5.4
     # Icons library
