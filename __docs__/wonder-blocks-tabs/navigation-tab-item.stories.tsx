@@ -80,7 +80,10 @@ export const ChildrenRenderFunction: StoryComponentType = {
                 >
                     <NavigationTabItem current={true}>
                         {(linkProps) => (
-                            <Tooltip content="Tooltip" opened={true}>
+                            <Tooltip
+                                content="Contents for the tooltip"
+                                opened={true}
+                            >
                                 <Link href="#link-1" {...linkProps}>
                                     Link with Tooltip
                                 </Link>

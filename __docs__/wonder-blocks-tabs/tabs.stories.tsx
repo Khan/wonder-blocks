@@ -217,7 +217,7 @@ export const TabLabelRenderFunction: StoryComponentType = {
                 label(tabProps) {
                     return (
                         <Tooltip
-                            content="Tooltip"
+                            content="Contents for the tooltip"
                             opened={true}
                             key={tabProps.id}
                         >
