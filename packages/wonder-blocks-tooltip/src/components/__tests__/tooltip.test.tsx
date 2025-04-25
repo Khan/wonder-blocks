@@ -176,7 +176,46 @@ describe("Tooltip", () => {
             const result = await screen.findByRole("tooltip");
 
             // Assert
-            expect(result).toHaveAttribute("id", "tooltip-1");
+            expect(result).toHaveAttribute(
+                "id",
+                "tooltip-1-anchor-aria-content",
+            );
+        });
+
+        test("id provided, aria-describedby of the anchor is the id of the role=tooltip element", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip id="tooltip-3" content="Content" opened={true}>
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            const anchor = await screen.findByText("Anchor");
+            const tooltip = await screen.findByRole("tooltip");
+
+            // Assert
+            expect(anchor).toHaveAttribute("aria-describedby", tooltip.id);
+        });
+
+        test("no id provided, aria-describedby of the anchor is the id of the role=tooltip element", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip content="Content" opened={true}>
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            const anchor = await screen.findByText("Anchor");
+            const tooltip = await screen.findByRole("tooltip");
+
+            // Assert
+            expect(anchor).toHaveAttribute("aria-describedby", tooltip.id);
         });
 
         describe("text-only anchor", () => {

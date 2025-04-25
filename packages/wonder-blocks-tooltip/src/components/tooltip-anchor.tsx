@@ -320,11 +320,11 @@ export default class TooltipAnchor
         );
     }
 
-    _renderAccessibleChildren(uniqueId: string): React.ReactNode {
+    _renderAccessibleChildren(anchorId: string): React.ReactNode {
         const anchorableChildren = this._renderAnchorableChildren();
 
         return React.cloneElement(anchorableChildren, {
-            "aria-describedby": `${uniqueId}-${TooltipAnchor.ariaContentId}`,
+            "aria-describedby": `${anchorId}-${TooltipAnchor.ariaContentId}`,
         });
     }
 
