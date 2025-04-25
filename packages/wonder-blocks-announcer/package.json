@@ -22,5 +22,7 @@
     "aphrodite": "catalog:",
     "react": "catalog:"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@khanacademy/wb-dev-build-settings": "workspace:*"
+  }
 }
