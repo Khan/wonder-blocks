@@ -1,11 +1,12 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react";
 import {PopoverContent, Popover} from "@khanacademy/wonder-blocks-popover";
-import {Tab, Tabs} from "@khanacademy/wonder-blocks-tabs";
+import {Tab, TabRenderProps, Tabs} from "@khanacademy/wonder-blocks-tabs";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Placeholder} from "../components/placeholder";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {ControlledTabs} from "./tabs-utils";
 
 export default {
     title: "Packages / Tabs / Tabs / Testing / Tabs - Playtesting",
@@ -56,16 +57,10 @@ export const Default: Story = {
  * of triggering the popover.
  */
 export const TabLabelRenderFunction: Story = {
-    render: (args) => {
-        return (
-            <Tabs {...args} styles={{root: {paddingBlock: sizing.size_960}}} />
-        );
-    },
-    args: {
-        selectedTabId: "tab-1",
-        tabs: [
+    render: function TestComponent() {
+        const tabs = [
             {
-                label(tabProps) {
+                label(tabProps: TabRenderProps) {
                     return (
                         <Tooltip
                             content="Contents for the tooltip"
@@ -79,7 +74,7 @@ export const TabLabelRenderFunction: Story = {
                 panel: <Placeholder>Tab contents 1</Placeholder>,
             },
             {
-                label(tabProps) {
+                label(tabProps: TabRenderProps) {
                     return (
                         <Popover
                             content={
@@ -106,7 +101,7 @@ export const TabLabelRenderFunction: Story = {
                 ),
             },
             {
-                label(tabProps) {
+                label(tabProps: TabRenderProps) {
                     return (
                         <Tooltip
                             content="Contents for the tooltip"
@@ -122,7 +117,7 @@ export const TabLabelRenderFunction: Story = {
                 panel: <Placeholder>Tab contents 3</Placeholder>,
             },
             {
-                label(tabProps) {
+                label(tabProps: TabRenderProps) {
                     return (
                         <Popover
                             content={
@@ -143,6 +138,13 @@ export const TabLabelRenderFunction: Story = {
                 id: "tab-4",
                 panel: <Placeholder>Tab contents 4</Placeholder>,
             },
-        ],
+        ];
+        return (
+            <ControlledTabs
+                aria-label="Test"
+                tabs={tabs}
+                selectedTabId={"tab-1"}
+            />
+        );
     },
 };
