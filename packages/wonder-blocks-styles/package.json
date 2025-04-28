@@ -15,7 +15,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
   "devDependencies": {
