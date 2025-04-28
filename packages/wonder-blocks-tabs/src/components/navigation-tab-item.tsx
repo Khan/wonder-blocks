@@ -20,7 +20,7 @@ type Props = AriaProps & {
      * cases where the `Link` component is wrapped by another component (like a
      * `Tooltip` or `Popover`), a render function can be used instead. The
      * render function provides the Link props that should be applied to the
-     * Link component. See example in the docs for more details.
+     * Link component.
      */
     children:
         | React.ReactElement

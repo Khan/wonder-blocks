@@ -49,11 +49,17 @@ export const Default: Story = {
  *
  * This story demonstrates how to use a render function to wrap a `Tab`
  * component in a `Tooltip` and a `Popover`. Please test the accessibility for
- * your use case, especially focus management and keyboard interactions!
+ * your use case, especially focus management, keyboard interactions, and
+ * screenreader support!
+ *
+ * Note: Pressing `Enter` on a tab with a popover will select the tab instead
+ * of triggering the popover.
  */
 export const TabLabelRenderFunction: Story = {
     render: (args) => {
-        return <Tabs {...args} />;
+        return (
+            <Tabs {...args} styles={{root: {paddingBlock: sizing.size_960}}} />
+        );
     },
     args: {
         selectedTabId: "tab-1",
@@ -106,6 +112,7 @@ export const TabLabelRenderFunction: Story = {
                             content="Contents for the tooltip"
                             opened={true}
                             key={tabProps.id}
+                            placement="top"
                         >
                             <Tab {...tabProps}>Tab with an opened tooltip</Tab>
                         </Tooltip>
@@ -127,6 +134,7 @@ export const TabLabelRenderFunction: Story = {
                             }
                             opened={true}
                             key={tabProps.id}
+                            placement="top"
                         >
                             <Tab {...tabProps}>Tab with an opened Popover</Tab>
                         </Popover>

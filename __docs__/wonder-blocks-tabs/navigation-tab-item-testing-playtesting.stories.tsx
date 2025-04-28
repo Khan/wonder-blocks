@@ -1,6 +1,9 @@
 import * as React from "react";
 import {Meta, StoryObj} from "@storybook/react";
-import {NavigationTabItem} from "@khanacademy/wonder-blocks-tabs";
+import {
+    NavigationTabItem,
+    NavigationTabs,
+} from "@khanacademy/wonder-blocks-tabs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
@@ -40,14 +43,18 @@ export const Default: Story = {
  * instead. The render function provides the Link props that should be applied
  * to the Link component. The Link props contains styles and attributes for
  * accessibility like `aria-current`.
+ *
+ * When using a tooltip or popover within the NavigationTabs, it is important
+ * to test what the experience is like using keyboard navigation and a screenreader.
  */
 export const ChildrenRenderFunction: Story = {
     render() {
         return (
-            <div
+            <View
                 style={{
                     // Need to set the height so tooltip/popover are captured in chromatic
                     minHeight: 400,
+                    gap: sizing.size_240,
                 }}
             >
                 <View
@@ -56,7 +63,7 @@ export const ChildrenRenderFunction: Story = {
                         gap: sizing.size_800,
                     }}
                 >
-                    <ul>
+                    <NavigationTabs aria-label="With tooltip and popover not shown by default">
                         <NavigationTabItem current={true}>
                             {(linkProps) => (
                                 <Tooltip content="Contents for the tooltip">
@@ -66,9 +73,7 @@ export const ChildrenRenderFunction: Story = {
                                 </Tooltip>
                             )}
                         </NavigationTabItem>
-                    </ul>
-                    <ul>
-                        <NavigationTabItem current={true}>
+                        <NavigationTabItem>
                             {(linkProps) => (
                                 <Popover
                                     content={
@@ -85,7 +90,7 @@ export const ChildrenRenderFunction: Story = {
                                 </Popover>
                             )}
                         </NavigationTabItem>
-                    </ul>
+                    </NavigationTabs>
                 </View>
                 <HeadingMedium>Opened state</HeadingMedium>
                 <View
@@ -94,7 +99,7 @@ export const ChildrenRenderFunction: Story = {
                         gap: sizing.size_960,
                     }}
                 >
-                    <ul>
+                    <NavigationTabs aria-label="With tooltip and popover shown by default">
                         <NavigationTabItem current={true}>
                             {(linkProps) => (
                                 <Tooltip
@@ -108,9 +113,7 @@ export const ChildrenRenderFunction: Story = {
                                 </Tooltip>
                             )}
                         </NavigationTabItem>
-                    </ul>
-                    <ul>
-                        <NavigationTabItem current={true}>
+                        <NavigationTabItem>
                             {(linkProps) => (
                                 <Popover
                                     content={
@@ -129,9 +132,9 @@ export const ChildrenRenderFunction: Story = {
                                 </Popover>
                             )}
                         </NavigationTabItem>
-                    </ul>
+                    </NavigationTabs>
                 </View>
-            </div>
+            </View>
         );
     },
     parameters: {

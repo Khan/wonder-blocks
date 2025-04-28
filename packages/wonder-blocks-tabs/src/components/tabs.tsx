@@ -33,7 +33,6 @@ export type TabItem = AriaProps & {
      * by another component (like a `Tooltip` or `Popover`), a render function
      * can be used with the `Tab` component instead. The render function
      * provides the tab props that should be applied to the `Tab` component.
-     * See example in the docs for more details.
      */
     label: React.ReactNode | ((tabProps: TabRenderProps) => React.ReactElement);
     /**
