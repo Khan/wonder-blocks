@@ -9,12 +9,9 @@ import argTypes from "./tabs.argtypes";
 import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import Tooltip from "@khanacademy/wonder-blocks-tooltip";
-import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Placeholder} from "../components/placeholder";
 import {generateTabs, ControlledTabs} from "./tabs-utils";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
 
 const tabs: TabItem[] = [
     {
@@ -196,102 +193,6 @@ export const WithFocusableContent: StoryComponentType = {
             // Disabling because this doesn't test anything visual.
             disableSnapshot: true,
         },
-    },
-};
-
-/**
- * For specific use cases where the underlying tab element is wrapped
- * by another component (like a `Tooltip` or `Popover`), a render function
- * can be used with the `Tab` component instead. The render function
- * provides the tab props that should be applied to the `Tab` component.
- * You will also need to set a `key` on the root element of the render function
- * since the tabs are rendered in a loop.
- *
- * This story demonstrates how to use a render function to wrap a `Tab`
- * component in a `Tooltip` and a `Popover`. Please test the accessibility for
- * your use case, especially focus management and keyboard interactions!
- */
-export const TabLabelRenderFunction: StoryComponentType = {
-    args: {
-        tabs: [
-            {
-                label(tabProps) {
-                    return (
-                        <Tooltip
-                            content="Contents for the tooltip"
-                            key={tabProps.id}
-                        >
-                            <Tab {...tabProps}>Tab with a tooltip on it</Tab>
-                        </Tooltip>
-                    );
-                },
-                id: "tab-1",
-                panel: <Placeholder>Tab contents 1</Placeholder>,
-            },
-            {
-                label(tabProps) {
-                    return (
-                        <Popover
-                            content={
-                                <PopoverContent
-                                    title="Title"
-                                    content="The popover content."
-                                    closeButtonVisible
-                                />
-                            }
-                            key={tabProps.id}
-                        >
-                            <Tab {...tabProps}>Tab with a Popover on it</Tab>
-                        </Popover>
-                    );
-                },
-                id: "tab-2",
-                panel: (
-                    <Placeholder>
-                        <View style={{padding: sizing.size_960}}>
-                            Tab contents 2. Pressing `Enter` on the tab will
-                            select the tab instead of triggering the popover.
-                        </View>
-                    </Placeholder>
-                ),
-            },
-            {
-                label(tabProps) {
-                    return (
-                        <Tooltip
-                            content="Contents for the tooltip"
-                            opened={true}
-                            key={tabProps.id}
-                        >
-                            <Tab {...tabProps}>Tab with an opened tooltip</Tab>
-                        </Tooltip>
-                    );
-                },
-                id: "tab-3",
-                panel: <Placeholder>Tab contents 3</Placeholder>,
-            },
-            {
-                label(tabProps) {
-                    return (
-                        <Popover
-                            content={
-                                <PopoverContent
-                                    title="Title"
-                                    content="The popover content."
-                                    closeButtonVisible
-                                />
-                            }
-                            opened={true}
-                            key={tabProps.id}
-                        >
-                            <Tab {...tabProps}>Tab with an opened Popover</Tab>
-                        </Popover>
-                    );
-                },
-                id: "tab-4",
-                panel: <Placeholder>Tab contents 4</Placeholder>,
-            },
-        ],
     },
 };
 
