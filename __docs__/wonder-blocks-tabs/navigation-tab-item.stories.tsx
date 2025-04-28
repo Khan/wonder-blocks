@@ -9,6 +9,7 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import argTypes from "./navigation-tab-item.argtypes";
+import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 
 const StyledUl = addStyle("ul", {
     margin: sizing.size_0,
@@ -69,7 +70,7 @@ export const ChildrenRenderFunction: StoryComponentType = {
             <div
                 style={{
                     // Need to set the height so tooltip/popover are captured in chromatic
-                    minHeight: 200,
+                    minHeight: 400,
                 }}
             >
                 <View
@@ -80,10 +81,7 @@ export const ChildrenRenderFunction: StoryComponentType = {
                 >
                     <NavigationTabItem current={true}>
                         {(linkProps) => (
-                            <Tooltip
-                                content="Contents for the tooltip"
-                                opened={true}
-                            >
+                            <Tooltip content="Contents for the tooltip">
                                 <Link href="#link-1" {...linkProps}>
                                     Link with Tooltip
                                 </Link>
@@ -97,12 +95,52 @@ export const ChildrenRenderFunction: StoryComponentType = {
                                     <PopoverContent
                                         title="Title"
                                         content="The popover content."
+                                        closeButtonVisible
                                     />
                                 }
-                                opened={true}
                             >
                                 <Link href="#link-1" {...linkProps}>
                                     Link with Popover
+                                </Link>
+                            </Popover>
+                        )}
+                    </NavigationTabItem>
+                </View>
+                <HeadingMedium>Opened state</HeadingMedium>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        gap: sizing.size_960,
+                    }}
+                >
+                    <NavigationTabItem current={true}>
+                        {(linkProps) => (
+                            <Tooltip
+                                content="Contents for the tooltip"
+                                opened={true}
+                                placement="bottom"
+                            >
+                                <Link href="#link-1" {...linkProps}>
+                                    Link with Opened Tooltip
+                                </Link>
+                            </Tooltip>
+                        )}
+                    </NavigationTabItem>
+                    <NavigationTabItem current={true}>
+                        {(linkProps) => (
+                            <Popover
+                                content={
+                                    <PopoverContent
+                                        title="Title"
+                                        content="The popover content."
+                                        closeButtonVisible
+                                    />
+                                }
+                                placement="bottom"
+                                opened={true}
+                            >
+                                <Link href="#link-1" {...linkProps}>
+                                    Link with Opened Popover
                                 </Link>
                             </Popover>
                         )}
