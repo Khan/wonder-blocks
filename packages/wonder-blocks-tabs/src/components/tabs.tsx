@@ -317,7 +317,8 @@ export const Tabs = React.forwardRef(function Tabs(
                 }
                 case keys.enter:
                 case keys.space: {
-                    event.preventDefault();
+                    // We don't use `event.preventDefault()` here in case we
+                    // want to trigger a popover also.
                     selectTab(focusedTabId.current);
                     break;
                 }

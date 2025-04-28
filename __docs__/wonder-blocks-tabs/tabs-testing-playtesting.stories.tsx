@@ -7,6 +7,7 @@ import {Placeholder} from "../components/placeholder";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ControlledTabs} from "./tabs-utils";
+import Button from "@khanacademy/wonder-blocks-button";
 
 export default {
     title: "Packages / Tabs / Tabs / Testing / Tabs - Playtesting",
@@ -48,13 +49,51 @@ export const Default: Story = {
  * You will also need to set a `key` on the root element of the render function
  * since the tabs are rendered in a loop.
  *
- * This story demonstrates how to use a render function to wrap a `Tab`
+ * This story demonstrates how a render function could be used to wrap a `Tab`
  * component in a `Tooltip` and a `Popover`. Please test the accessibility for
- * your use case, especially focus management, keyboard interactions, and
+ * your use case, especially around focus management, keyboard interactions, and
  * screenreader support!
  *
- * Note: Pressing `Enter` on a tab with a popover will select the tab instead
- * of triggering the popover.
+ * #### Current screenreader behaviour
+ *
+ * ##### Tooltips
+ *
+ * ###### ** Expected behaviour: ** The tooltip content is announced when the
+ * tab is focused.
+ *
+ * - Chrome + NVDA, Firefox + NVDA: Works as expected - the tooltip content is
+ * announced when the tab is focused (both when a tooltip is already opened and
+ * when it is not yet opened)
+ * - Safari + VoiceOver: Only announces the tooltip content if the tooltip on
+ * the tab was already opened. It does not announce the tooltip content when
+ * focusing on a tab that opens a tooltip.
+ *
+ * ##### Popovers
+ *
+ * ###### ** Expected behaviour: ** Focusing on a tab with a popover will
+ * announce that it is expanded or collapsed.
+ *
+ * - Chrome + NVDA,Firefox + NVDA, Safari + VoiceOver: Works as expected - it is
+ * announced that the tab is expanded or collapsed when it is focused.
+ *
+ * ###### ** Expected behaviour: ** A popover that is already opened is in the
+ * tab order
+ *
+ * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: The popover contents can
+ * be tabbed to.
+ * - The focus management is handled by the `Popover` component, see the
+ * `Popover Accessibility` docs for more details. For more consistent focus
+ * management, use `portal={false}` so that the tab order of the popover contents
+ * is after the tablist and before the tab panel.
+ *
+ * ###### ** Expected behaviour: ** Selecting a tab with a popover (using
+ * `Space` or `Enter`) will open the popover and update the selected tab.
+ *
+ * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: Works as expected - the
+ * popover is opened and the selected tab is updated. The popover contents are
+ * announced and can be interacted with.
+ * - The focus management is handled by the `Popover` component, see the
+ * `Popover Accessibility` docs for more details.
  */
 export const TabLabelRenderFunction: Story = {
     render: function TestComponent() {
@@ -77,14 +116,21 @@ export const TabLabelRenderFunction: Story = {
                 label(tabProps: TabRenderProps) {
                     return (
                         <Popover
+                            initialFocusId="action-button"
                             content={
                                 <PopoverContent
                                     title="Title"
                                     content="The popover content."
                                     closeButtonVisible
+                                    actions={
+                                        <Button id="action-button">
+                                            Action
+                                        </Button>
+                                    }
                                 />
                             }
                             key={tabProps.id}
+                            portal={false}
                         >
                             <Tab {...tabProps}>Tab with a Popover on it</Tab>
                         </Popover>
@@ -120,13 +166,20 @@ export const TabLabelRenderFunction: Story = {
                 label(tabProps: TabRenderProps) {
                     return (
                         <Popover
+                            initialFocusId="action-button"
                             content={
                                 <PopoverContent
                                     title="Title"
                                     content="The popover content."
                                     closeButtonVisible
+                                    actions={
+                                        <Button id="action-button">
+                                            Action
+                                        </Button>
+                                    }
                                 />
                             }
+                            portal={false}
                             opened={true}
                             key={tabProps.id}
                             placement="top"
@@ -140,11 +193,20 @@ export const TabLabelRenderFunction: Story = {
             },
         ];
         return (
-            <ControlledTabs
-                aria-label="Test"
-                tabs={tabs}
-                selectedTabId={"tab-1"}
-            />
+            <>
+                <ControlledTabs
+                    aria-label="Test"
+                    tabs={tabs}
+                    selectedTabId={"tab-1"}
+                    styles={{
+                        root: {
+                            paddingBlock: sizing.size_960,
+                            marginBlock: sizing.size_960,
+                        },
+                    }}
+                />
+                <button>end</button>
+            </>
         );
     },
 };

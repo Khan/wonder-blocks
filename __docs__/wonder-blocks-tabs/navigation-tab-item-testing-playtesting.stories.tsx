@@ -12,7 +12,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabItem / Testing / NavigationTabItem - Playtesting",
+    title: "Packages / Tabs / NavigationTabs / Testing / NavigationTabs - Playtesting",
 } as Meta<typeof NavigationTabItem>;
 
 type Story = StoryObj<typeof NavigationTabItem>;
@@ -22,11 +22,11 @@ export const Default: Story = {
     // description properly.
     render: (args) => {
         return (
-            <ul>
+            <NavigationTabs>
                 <NavigationTabItem {...args}>
                     <Link href="#link">Navigation tab item</Link>
                 </NavigationTabItem>
-            </ul>
+            </NavigationTabs>
         );
     },
     parameters: {
@@ -44,8 +44,10 @@ export const Default: Story = {
  * to the Link component. The Link props contains styles and attributes for
  * accessibility like `aria-current`.
  *
- * When using a tooltip or popover within the NavigationTabs, it is important
- * to test what the experience is like using keyboard navigation and a screenreader.
+ * This story demonstrates how a render function could be used to wrap a `Link`
+ * in a `NavigationTabItem` with a `Tooltip` and a `Popover`. Please test for
+ * accessibility for your use case, especially around focus management,
+ * keyboard interactions, and screenreader support!
  */
 export const ChildrenRenderFunction: Story = {
     render() {
