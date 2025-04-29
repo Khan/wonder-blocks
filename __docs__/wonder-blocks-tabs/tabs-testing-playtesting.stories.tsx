@@ -82,9 +82,7 @@ export const Default: Story = {
  * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: The popover contents can
  * be tabbed to.
  * - The focus management is handled by the `Popover` component, see the
- * `Popover Accessibility` docs for more details. For more consistent focus
- * management, use `portal={false}` so that the tab order of the popover contents
- * is after the tablist and before the tab panel.
+ * `Popover Accessibility` docs for more details.
  *
  * ###### ** Expected behaviour: ** Selecting a tab with a popover (using
  * `Space` or `Enter`) will open the popover and update the selected tab.
@@ -130,7 +128,6 @@ export const TabLabelRenderFunction: Story = {
                                 />
                             }
                             key={tabProps.id}
-                            portal={false}
                         >
                             <Tab {...tabProps}>Tab with a Popover on it</Tab>
                         </Popover>
@@ -179,7 +176,6 @@ export const TabLabelRenderFunction: Story = {
                                     }
                                 />
                             }
-                            portal={false}
                             opened={true}
                             key={tabProps.id}
                             placement="top"
