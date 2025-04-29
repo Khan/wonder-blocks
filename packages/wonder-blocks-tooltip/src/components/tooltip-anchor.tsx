@@ -324,7 +324,9 @@ export default class TooltipAnchor
         const anchorableChildren = this._renderAnchorableChildren();
 
         return React.cloneElement(anchorableChildren, {
-            "aria-describedby": `${anchorId}-${TooltipAnchor.ariaContentId}`,
+            "aria-describedby": this.state.active
+                ? `${anchorId}-${TooltipAnchor.ariaContentId}`
+                : undefined,
         });
     }
 
