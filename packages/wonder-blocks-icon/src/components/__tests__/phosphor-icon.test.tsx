@@ -152,9 +152,9 @@ describe("PhosphorIcon", () => {
         const ref: React.RefObject<HTMLSpanElement> = React.createRef();
 
         // Act
-        render(<PhosphorIcon icon={Plus} ref={ref} tabIndex={1} />);
+        render(<PhosphorIcon icon={Plus} ref={ref} tabIndex={-1} />);
 
         // Assert
-        expect(ref.current).toHaveAttribute("tabindex", "1");
+        expect(ref.current).toHaveAttribute("tabindex", "-1");
     });
 });
