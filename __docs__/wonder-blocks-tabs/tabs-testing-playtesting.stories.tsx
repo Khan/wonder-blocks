@@ -58,8 +58,7 @@ export const Default: Story = {
  *
  * ##### Tooltips
  *
- * ###### ** Expected behaviour: ** The tooltip content is announced when the
- * tab is focused.
+ * ###### ** Expected behaviour: ** The tooltip content is announced when the tab is focused.
  *
  * - Chrome + NVDA, Firefox + NVDA: Works as expected - the tooltip content is
  * announced when the tab is focused (both when a tooltip is already opened and
@@ -70,27 +69,24 @@ export const Default: Story = {
  *
  * ##### Popovers
  *
- * ###### ** Expected behaviour: ** Focusing on a tab with a popover will
- * announce that it is expanded or collapsed.
+ * ###### ** Expected behaviour: ** Focusing on a tab with a popover will announce that it is expanded or collapsed.
  *
  * - Chrome + NVDA,Firefox + NVDA, Safari + VoiceOver: Works as expected - it is
  * announced that the tab is expanded or collapsed when it is focused.
  *
- * ###### ** Expected behaviour: ** A popover that is already opened is in the
- * tab order
+ * ###### ** Expected behaviour: ** A popover that is already opened is in the tab order
  *
  * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: The popover contents can
  * be tabbed to.
- * - The focus management is handled by the `Popover` component, see the
+ * - The popover focus management is handled by the `Popover` component, see the
  * `Popover Accessibility` docs for more details.
  *
- * ###### ** Expected behaviour: ** Selecting a tab with a popover (using
- * `Space` or `Enter`) will open the popover and update the selected tab.
+ * ###### ** Expected behaviour: ** Selecting a tab with a popover (using `Space` or `Enter`) will open the popover and update the selected tab.
  *
  * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: Works as expected - the
  * popover is opened and the selected tab is updated. The popover contents are
  * announced and can be interacted with.
- * - The focus management is handled by the `Popover` component, see the
+ * - The popoverfocus management is handled by the `Popover` component, see the
  * `Popover Accessibility` docs for more details.
  */
 export const TabLabelRenderFunction: Story = {
