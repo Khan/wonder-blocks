@@ -48,6 +48,41 @@ export const Default: Story = {
  * in a `NavigationTabItem` with a `Tooltip` and a `Popover`. Please test for
  * accessibility for your use case, especially around focus management,
  * keyboard interactions, and screenreader support!
+ *
+ * #### Current screenreader behaviour
+ *
+ * ##### Tooltips
+ *
+ * ###### ** Expected behaviour: ** The tooltip content is announced when a Link in the NavigationTabs is focused
+ *
+ * - Chrome + NVDA: Works as expected - the tooltip content is announced
+ * - Firefox + NVDA: Only announces the tooltip contents if the tooltip is
+ * already opened
+ * - Safari + VoiceOver: Does not consistently read the tooltip contents when
+ * the link is focused
+ *
+ * ##### Popovers
+ *
+ * ###### ** Expected behaviour: ** Focusing on a link with a popover will announce that it is expanded or collapsed.
+ *
+ * - Chrome + NVDA, Firefox + NVDA: Works as expected - it is
+ * announced that the tab is expanded or collapsed when it is focused.
+ * - Safari + VoiceOver: Does not communicate expanded or collapsed state.
+ *
+ * ###### ** Expected behaviour: ** A popover that is already opened is in the tab order
+ *
+ * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: The popover contents can
+ * be tabbed to.
+ * - The popover focus management is handled by the `Popover` component, see the
+ * `Popover Accessibility` docs for more details.
+ *
+ * ###### ** Expected behaviour: ** Selecting a tab with a popover (using `Space` or `Enter`) will open the popover and navigate the user
+ *
+ * - Chrome + NVDA, Firefox + NVDA, Safari + VoiceOver: Works as expected - the
+ * popover is opened and the browser navigates. The popover contents are
+ * announced and can be interacted with.
+ * - The popover focus management is handled by the `Popover` component, see the
+ * `Popover Accessibility` docs for more details.
  */
 export const ChildrenRenderFunction: Story = {
     render() {
