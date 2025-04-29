@@ -120,28 +120,17 @@ export const TabLabelRenderFunction: Story = {
                                     title="Title"
                                     content="The popover content."
                                     closeButtonVisible
-                                    actions={
-                                        <Button id="action-button">
-                                            Action
-                                        </Button>
-                                    }
                                 />
                             }
                             key={tabProps.id}
+                            initialFocusDelay={100}
                         >
                             <Tab {...tabProps}>Tab with a Popover on it</Tab>
                         </Popover>
                     );
                 },
                 id: "tab-2",
-                panel: (
-                    <Placeholder>
-                        <View style={{padding: sizing.size_960}}>
-                            Tab contents 2. Pressing `Enter` on the tab will
-                            select the tab instead of triggering the popover.
-                        </View>
-                    </Placeholder>
-                ),
+                panel: <Placeholder>Tab contents 2</Placeholder>,
             },
             {
                 label(tabProps: TabRenderProps) {
@@ -169,16 +158,12 @@ export const TabLabelRenderFunction: Story = {
                                     title="Title"
                                     content="The popover content."
                                     closeButtonVisible
-                                    actions={
-                                        <Button id="action-button">
-                                            Action
-                                        </Button>
-                                    }
                                 />
                             }
                             opened={true}
                             key={tabProps.id}
                             placement="top"
+                            initialFocusDelay={100}
                         >
                             <Tab {...tabProps}>Tab with an opened Popover</Tab>
                         </Popover>
@@ -189,20 +174,17 @@ export const TabLabelRenderFunction: Story = {
             },
         ];
         return (
-            <>
-                <ControlledTabs
-                    aria-label="Test"
-                    tabs={tabs}
-                    selectedTabId={"tab-1"}
-                    styles={{
-                        root: {
-                            paddingBlock: sizing.size_960,
-                            marginBlock: sizing.size_960,
-                        },
-                    }}
-                />
-                <button>end</button>
-            </>
+            <ControlledTabs
+                aria-label="Test"
+                tabs={tabs}
+                selectedTabId={"tab-1"}
+                styles={{
+                    root: {
+                        paddingBlock: sizing.size_960,
+                        marginBlock: sizing.size_960,
+                    },
+                }}
+            />
         );
     },
 };
