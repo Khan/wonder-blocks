@@ -4,10 +4,8 @@ import {PopoverContent, Popover} from "@khanacademy/wonder-blocks-popover";
 import {Tab, TabRenderProps, Tabs} from "@khanacademy/wonder-blocks-tabs";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Placeholder} from "../components/placeholder";
-import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ControlledTabs} from "./tabs-utils";
-import Button from "@khanacademy/wonder-blocks-button";
 
 export default {
     title: "Packages / Tabs / Tabs / Testing / Tabs - Playtesting",
