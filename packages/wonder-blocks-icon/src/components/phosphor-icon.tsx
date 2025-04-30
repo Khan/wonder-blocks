@@ -46,7 +46,7 @@ type Props = Pick<AriaProps, "aria-hidden" | "aria-label" | "role"> & {
     /**
      * Set the tabindex attribute on the rendered element.
      */
-    tabIndex?: number;
+    tabIndex?: 0 | -1;
 
     /**
      * The icon to display. This is a reference to the icon asset (imported as a
