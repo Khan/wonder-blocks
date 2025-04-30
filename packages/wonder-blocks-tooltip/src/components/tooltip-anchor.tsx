@@ -56,6 +56,10 @@ type Props = {
      * Optional unique id.
      */
     id?: string | undefined;
+    /**
+     * If the tooltip is opened.
+     */
+    opened?: boolean;
 };
 
 type DefaultProps = {
@@ -324,7 +328,7 @@ export default class TooltipAnchor
         const anchorableChildren = this._renderAnchorableChildren();
 
         return React.cloneElement(anchorableChildren, {
-            "aria-describedby": this.state.active
+            "aria-describedby": this.props.opened
                 ? `${anchorId}-${TooltipAnchor.ariaContentId}`
                 : undefined,
         });

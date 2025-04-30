@@ -277,6 +277,7 @@ export default class Tooltip extends React.Component<Props, State> {
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
                     id={anchorId}
+                    opened={active}
                 >
                     {children}
                 </TooltipAnchor>
