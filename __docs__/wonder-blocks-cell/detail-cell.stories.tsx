@@ -467,11 +467,11 @@ export const Scenarios = () => {
     ];
     return (
         <View style={{gap: spacing.large_24}}>
-            {scenarios.map((scenario) => (
-                <>
+            {scenarios.map((scenario, index) => (
+                <React.Fragment key={index}>
                     <LabelSmall>{scenario.label}</LabelSmall>
                     <DetailCell {...scenario.props} />
-                </>
+                </React.Fragment>
             ))}
         </View>
     );

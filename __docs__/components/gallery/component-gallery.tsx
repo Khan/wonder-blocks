@@ -102,11 +102,12 @@ export default function ComponentGallery() {
                         </HeadingLarge>
 
                         <View style={styles.section}>
-                            {group.components.map((Tile) => {
+                            {group.components.map((Tile, index) => {
                                 return (
                                     <Tile
                                         layout={currentLayout}
                                         compactGrid={compactGridView}
+                                        key={index}
                                     />
                                 );
                             })}
