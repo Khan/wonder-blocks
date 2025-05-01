@@ -522,7 +522,7 @@ export const SubmittingForms: StoryComponentType = {
             <View>
                 <LabeledField
                     label="Foo"
-                    field={<input id="foo" value="bar" />}
+                    field={<input id="foo" value="bar" onChange={() => {}} />}
                 />
                 <Button type="submit">Submit</Button>
             </View>
