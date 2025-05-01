@@ -8,7 +8,7 @@ export default mergeConfig(viteConfig, {
         // See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
         storybookTest({
             configDir: ".storybook",
-            storybookUrl: process.env.SB_URL,
+            storybookUrl: process.env.SB_URL || "http://localhost:6061",
         }),
     ],
     test: {

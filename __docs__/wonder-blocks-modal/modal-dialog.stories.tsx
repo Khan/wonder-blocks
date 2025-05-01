@@ -18,7 +18,7 @@ import {
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
-import {allModes} from "../../.storybook/modes";
+// import {allModes} from "../../.storybook/modes";
 import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const customViewports = {
@@ -85,12 +85,12 @@ export default {
             viewports: customViewports,
             defaultViewport: "desktop",
         },
-        chromatic: {
-            modes: {
-                small: allModes.small,
-                large: allModes.large,
-            },
-        },
+        // chromatic: {
+        //     modes: {
+        //         small: allModes.small,
+        //         large: allModes.large,
+        //     },
+        // },
     },
     // Make the following props null in the control panel
     // because setting an object for a React node is
