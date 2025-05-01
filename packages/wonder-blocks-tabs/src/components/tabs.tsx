@@ -11,6 +11,7 @@ import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
+import {startViewTransition} from "../../../../__docs__/wonder-blocks-tabs/utils";
 
 export type TabRenderProps = Omit<PropsFor<typeof Tab>, "children">;
 
@@ -254,12 +255,24 @@ export const Tabs = React.forwardRef(function Tabs(
 
     const selectTab = React.useCallback(
         (tabId: string) => {
-            if (tabId !== selectedTabId) {
-                // Select the tab only if it's not already selected
-                onTabSelected(tabId);
-            }
+            const newTabIndex = tabs.findIndex((tab) => tab.id === tabId);
+            const currentTabIndex = tabs.findIndex(
+                (tab) => tab.id === selectedTabId,
+            );
+            // TODO: Need to consider rtl. Also need to fix keyboard nav for rtl
+            const direction =
+                newTabIndex > currentTabIndex ? "forwards" : "backwards";
+            startViewTransition({
+                update: () => {
+                    if (tabId !== selectedTabId) {
+                        // Select the tab only if it's not already selected
+                        onTabSelected(tabId);
+                    }
+                },
+                types: [direction],
+            });
         },
-        [onTabSelected, selectedTabId],
+        [onTabSelected, selectedTabId, tabs],
     );
 
     const handleKeyInteraction = React.useCallback(
@@ -372,7 +385,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             selected: id === selectedTabId,
                             "aria-controls": getTabPanelId(id),
                             onClick: () => {
-                                onTabSelected(id);
+                                selectTab(id);
                             },
                             onKeyDown: handleKeyDown,
                             ref: (element) => {
@@ -390,28 +403,30 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-            {tabs.map((tab) => {
-                return (
-                    <TabPanel
-                        key={tab.id}
-                        id={getTabPanelId(tab.id)}
-                        aria-labelledby={getTabId(tab.id)}
-                        active={selectedTabId === tab.id}
-                        testId={tab.testId && getTabPanelId(tab.testId)}
-                        style={stylesProp?.tabPanel}
-                    >
-                        {/* Tab panel contents are rendered if the tab has
+            <div style={{viewTransitionName: "tab-panel"}}>
+                {tabs.map((tab) => {
+                    return (
+                        <TabPanel
+                            key={tab.id}
+                            id={getTabPanelId(tab.id)}
+                            aria-labelledby={getTabId(tab.id)}
+                            active={selectedTabId === tab.id}
+                            testId={tab.testId && getTabPanelId(tab.testId)}
+                            style={[stylesProp?.tabPanel]}
+                        >
+                            {/* Tab panel contents are rendered if the tab has
                         been previously visited or if mountAllPanels is enabled.
                         If mountAllPanels is off, it prevents unnecessary
                         re-mounting of tab panel contents when switching tabs.
                         Note that TabPanel will only display the contents if it
                         is the active panel. */}
-                        {(mountAllPanels ||
-                            visitedTabsRef.current.has(tab.id)) &&
-                            tab.panel}
-                    </TabPanel>
-                );
-            })}
+                            {(mountAllPanels ||
+                                visitedTabsRef.current.has(tab.id)) &&
+                                tab.panel}
+                        </TabPanel>
+                    );
+                })}
+            </div>
         </StyledDiv>
     );
 });

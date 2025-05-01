@@ -137,3 +137,71 @@ html {
     animation-timing-function: linear(0, 0.03 1.3%, 0.113 2.7%, 0.84 11.5%, 0.981 14.7%, 1.049 18.2%, 1.061 20%, 1.061 22.2%, 1.011 32.3%, 0.997 39.3%, 1);
     animation-duration: 1s;
 }
+
+/** Animations **/
+@keyframes slide-in-from-left {
+    from {
+      translate: -100% 0;
+    }
+}
+@keyframes slide-in-from-right {
+    from {
+      translate: 100% 0;
+    }
+}
+@keyframes slide-out-to-left {
+    to {
+      translate: -100% 0;
+      opacity: 0;
+    }
+}
+@keyframes slide-out-to-right {
+    to {
+      translate: 100% 0;
+      opacity: 0;
+    }
+}
+
+/**
+ * Tab Panel transitions
+ */
+
+::view-transition-old(tab-panel),
+::view-transition-new(tab-panel) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+:active-view-transition-type(forwards) {
+    &::view-transition-old(tab-panel) {
+      animation-name: slide-out-to-left;
+    }
+    &::view-transition-new(tab-panel) {
+      animation-name: slide-in-from-right;
+    }
+}
+
+:active-view-transition-type(backwards) {
+    &::view-transition-old(tab-panel) {
+      animation-name: slide-out-to-right;
+    }
+    &::view-transition-new(tab-panel) {
+      animation-name: slide-in-from-left;
+    }
+}
+
+/**
+ * Navigation Tab transitions
+ */
+::view-transition-old(navigation-tab-page),
+::view-transition-new(navigation-tab-page) {
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(navigation-tab-page) {
+    animation-name: slide-out-to-left;
+}
+::view-transition-new(navigation-tab-page) {
+    animation-name: slide-in-from-right;
+}

@@ -2,6 +2,12 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
 import {expect, within} from "@storybook/test";
+import {
+    createMemoryRouter,
+    Outlet,
+    RouterProvider,
+    useViewTransitionState,
+} from "react-router-dom-v5-compat";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
 import {
@@ -10,11 +16,14 @@ import {
 } from "@khanacademy/wonder-blocks-tabs";
 import Link from "@khanacademy/wonder-blocks-link";
 import argTypes from "./navigation-tabs.argtypes";
-import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {Placeholder} from "../components/placeholder";
+import {startViewTransition} from "./utils";
 
 export default {
     title: "Packages / Tabs / NavigationTabs",
@@ -305,5 +314,160 @@ export const NoCurrentTab: StoryComponentType = {
     },
     args: {
         animated: true,
+    },
+};
+
+const NavigationTabsLayout = () => {
+    const [currentTab, setCurrentTab] = React.useState(1);
+    return (
+        <div>
+            <NavigationTabs
+                animated={true}
+                styles={{
+                    root: {
+                        borderBottom: `${border.width.thin} solid ${semanticColor.border.primary}`,
+                    },
+                }}
+            >
+                <NavigationTabItem current={currentTab === 1}>
+                    <Link
+                        viewTransition={true}
+                        href="/link-1"
+                        onClick={() => setCurrentTab(1)}
+                    >
+                        Navigation tab item 1
+                    </Link>
+                </NavigationTabItem>
+                <NavigationTabItem current={currentTab === 2}>
+                    <Link
+                        viewTransition={true}
+                        href="/link-2"
+                        onClick={() => setCurrentTab(2)}
+                    >
+                        Navigation tab item 2
+                    </Link>
+                </NavigationTabItem>
+                <NavigationTabItem current={currentTab === 3}>
+                    <Link
+                        viewTransition={true}
+                        href="/link-3"
+                        onClick={() => setCurrentTab(3)}
+                    >
+                        Navigation tab item 3
+                    </Link>
+                </NavigationTabItem>
+            </NavigationTabs>
+            <View style={{paddingBlock: sizing.size_240}}>
+                <Outlet />
+            </View>
+        </div>
+    );
+};
+
+const Page = ({numColumns}: {numColumns: number}) => {
+    const to = `/link-${numColumns}`;
+    const isTransitioning = useViewTransitionState(to);
+    return (
+        <View
+            style={{
+                viewTransitionName: isTransitioning
+                    ? "navigation-tab-page"
+                    : "none",
+            }}
+        >
+            <HeadingLarge
+                style={{
+                    paddingBlockEnd: sizing.size_240,
+                }}
+            >
+                Page {numColumns}
+            </HeadingLarge>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: `repeat(${numColumns}, 1fr)`,
+                    gap: sizing.size_320,
+                }}
+            >
+                {Array.from({length: numColumns}).map((_, index) => (
+                    <Placeholder key={index} style={{height: 300}} />
+                ))}
+            </div>
+        </View>
+    );
+};
+export const WithLinkViewTransition: StoryComponentType = {
+    decorators: [
+        () => {
+            const router = createMemoryRouter(
+                [
+                    {
+                        path: "/",
+                        element: <NavigationTabsLayout />,
+                        children: [
+                            {
+                                path: "/link-1",
+                                element: <Page numColumns={1} />,
+                            },
+                            {path: "/link-2", element: <Page numColumns={2} />},
+                            {path: "/link-3", element: <Page numColumns={3} />},
+                        ],
+                    },
+                ],
+                {
+                    initialEntries: ["/", "/link-1"],
+                    initialIndex: 1,
+                },
+            );
+            return <RouterProvider router={router} />;
+        },
+    ],
+};
+
+export const Test: StoryComponentType = {
+    render: function Test(args) {
+        const [index, setIndex] = React.useState(1);
+
+        const handleClick = (direction: "forwards" | "backwards") => {
+            document.startViewTransition({
+                update: () => {
+                    setIndex(direction === "forwards" ? 2 : 1);
+                },
+                types: [direction],
+            });
+        };
+        return (
+            <div className="App">
+                <button onClick={() => handleClick("backwards")}>
+                    Backwards
+                </button>
+                <button onClick={() => handleClick("forwards")}>
+                    Forwards
+                </button>
+                <div style={{viewTransitionName: "tab-panel"}}>
+                    {index === 1 ? (
+                        <div
+                            style={{
+                                width: 100,
+                                height: 100,
+                                backgroundColor: "yellow",
+                            }}
+                        >
+                            1
+                        </div>
+                    ) : (
+                        <div
+                            style={{
+                                width: 100,
+                                height: 100,
+                                backgroundColor: "red",
+                            }}
+                        >
+                            2
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
     },
 };
