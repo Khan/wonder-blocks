@@ -8,20 +8,16 @@ export default mergeConfig(viteConfig, {
         // See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
         storybookTest({
             configDir: ".storybook",
-            storybookUrl: "http://localhost:6061",
+            storybookUrl: process.env.SB_URL || "http://localhost:6061",
         }),
     ],
     test: {
         name: "storybook",
         browser: {
             enabled: true,
+            name: "chromium",
             headless: true,
             provider: "playwright",
-            instances: [
-                {
-                    browser: "chromium",
-                },
-            ],
         },
         // Make sure to adjust this pattern to match your stories files.
         stories: ["./__docs__/**/*.stories.@(ts|tsx)"],

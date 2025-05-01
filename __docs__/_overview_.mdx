@@ -11,10 +11,7 @@ import ComponentGallery from "./components/gallery/component-gallery";
 <Meta title="Overview" />
 
 export default function Layout({children}) {
-    {
-        /* NOTE: Adding a negative margin to move the hero right above the toolbar */
-    }
-    return <main style={{marginTop: -64}}>{children}</main>;
+    return <main>{children}</main>;
 }
 
 export const StyledImage = addStyle("img");
@@ -54,10 +51,9 @@ export const styles = StyleSheet.create({
 <View style={styles.heroWrapper}>
     <View style={styles.heroBody}>
         <h1>Wonder Blocks (Web)</h1>
-        <p>
-            Components and utilities you can drop right into your experiences so
-            you can focus on solving the problems that really matter.
-        </p>
+
+        Components and utilities you can drop right into your experiences so you
+        can focus on solving the problems that really matter.
         <Caption style={styles.heroCaption}>
             <strong>Note:</strong> These components are only available for use
             on the web (including mobile web).
@@ -69,6 +65,7 @@ export const styles = StyleSheet.create({
         src="./wb-overview.png"
         style={styles.heroImage}
     />
+
 </View>
 
 ## Overview
@@ -77,23 +74,23 @@ Since our design system is a constant work in progress, these components vary in
 degrees of completion. Follow these guidelines to ensure the smoothest process
 from design to development:
 
--   Some components currently have limitations, so read the guidelines carefully
-    to ensure that you're not designing something that will be difficult (or
-    impossible) for your engineers to build.
--   Some components aren't complete yet, so while you may see that component
-    being used in the wild, know that these aren't official components yet. As
-    such, they haven't been stress-tested and may not meet the quality standards
-    your team needs (eg, they may not be built with accessibility in mind). They
-    could also be difficult for your engineering team to build, so check with
-    them early on.
--   A component you need may not be listed in here, in which case you're more
-    than welcome to propose it to the design systems team.
+- Some components currently have limitations, so read the guidelines carefully
+  to ensure that you're not designing something that will be difficult (or
+  impossible) for your engineers to build.
+- Some components aren't complete yet, so while you may see that component
+  being used in the wild, know that these aren't official components yet. As
+  such, they haven't been stress-tested and may not meet the quality standards
+  your team needs (eg, they may not be built with accessibility in mind). They
+  could also be difficult for your engineering team to build, so check with
+  them early on.
+- A component you need may not be listed in here, in which case you're more
+  than welcome to propose it to the design systems team.
 
 ## Resources
 
--   [Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks)
--   [GitHub](https://github.com/Khan/wonder-blocks#getting-started)
--   [Development setup](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/100827261/Developing+Web+Wonder+Blocks)
+- [Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks)
+- [GitHub](https://github.com/Khan/wonder-blocks#getting-started)
+- [Development setup](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/100827261/Developing+Web+Wonder+Blocks)
 
 ## Feedback
 

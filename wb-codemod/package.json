@@ -3,10 +3,8 @@
   "version": "2.1.1",
   "license": "MIT",
   "dependencies": {
-    "jscodeshift": "^0.15.1"
+    "jscodeshift": "catalog:"
   },
-  "devDependencies": {
-    "@types/jscodeshift": "^0.11.11"
-  },
+  "devDependencies": {},
   "bin": "bin/cli.js"
 }

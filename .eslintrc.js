@@ -9,15 +9,7 @@ module.exports = {
         // practices
         "plugin:storybook/recommended",
     ],
-    plugins: [
-        "import",
-        "jest",
-        "jsdoc",
-        "promise",
-        "monorepo",
-        "react-hooks",
-        "@babel",
-    ],
+    plugins: ["import", "jest", "jsdoc", "promise", "monorepo", "react-hooks"],
     settings: {
         "import/resolver": {
             typescript: {

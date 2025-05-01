@@ -1,4 +1,4 @@
-import {fade, mix} from "../utils";
+import {fade, mix} from "../color-utils";
 
 const INVALID_COLORS = ["#NOTVALID", "#12345", "#12", "#ABCDEFG", ""];
 

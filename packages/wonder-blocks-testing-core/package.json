@@ -13,9 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
-  "dependencies": {
-    "@babel/runtime": "catalog:"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@khanacademy/wonder-stuff-core": "catalog:",
     "@storybook/addon-actions": "^8.5.2",
@@ -28,7 +26,7 @@
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*",
-    "@khanacademy/wonder-stuff-testing": "^3.0.1"
+    "@khanacademy/wonder-stuff-testing": "catalog:"
   },
   "author": "",
   "license": "MIT"

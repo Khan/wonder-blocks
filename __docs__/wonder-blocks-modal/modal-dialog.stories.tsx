@@ -19,6 +19,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 import modalDialogArgtypes from "./modal-dialog.argtypes";
 import {allModes} from "../../.storybook/modes";
+import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const customViewports = {
     phone: {
@@ -299,7 +300,16 @@ export const WithDarkPanel: StoryComponentType = {
                         footer={
                             <Button
                                 kind="secondary"
-                                light={true}
+                                style={[
+                                    actionStyles.inverse,
+                                    // NOTE: This is a workaround while we move
+                                    // this button to DAB and remove the
+                                    // `Button.khanmigo` theme.
+                                    {
+                                        background: "transparent",
+                                        ":hover": {background: "transparent"},
+                                    },
+                                ]}
                                 onClick={() => {}}
                             >
                                 Continue

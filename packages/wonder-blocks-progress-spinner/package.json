@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-progress-spinner",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
