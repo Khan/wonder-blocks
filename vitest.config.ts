@@ -6,7 +6,10 @@ import viteConfig from "./vite.config";
 export default mergeConfig(viteConfig, {
     plugins: [
         // See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
-        storybookTest({configDir: ".storybook"}),
+        storybookTest({
+            configDir: ".storybook",
+            storybookUrl: process.env.SB_URL,
+        }),
     ],
     test: {
         name: "storybook",
