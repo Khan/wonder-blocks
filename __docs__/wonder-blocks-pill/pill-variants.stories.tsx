@@ -52,8 +52,8 @@ const meta = {
         <AllVariants rows={rows} columns={columns}>
             {({props}) => (
                 <View style={styles.container}>
-                    {kinds.map((kind) => (
-                        <Pill {...args} {...props} kind={kind}>
+                    {kinds.map((kind, index) => (
+                        <Pill {...args} {...props} kind={kind} key={index}>
                             {kind}, {props.size}
                         </Pill>
                     ))}
