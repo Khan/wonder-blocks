@@ -1,4 +1,4 @@
-import {fade} from "../../../util/utils";
+import {fade} from "../../../util/color-utils";
 
 // Base colors
 const black = "#191918";
