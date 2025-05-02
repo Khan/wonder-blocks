@@ -1,4 +1,4 @@
-import {sizing} from "../theme/primitive/sizing";
+import {sizing} from "./sizing";
 
 export const fontFamily = {
     sans: 'Lato, "Noto Sans", sans-serif',
@@ -24,6 +24,7 @@ export const font = {
         xxLarge: sizing.size_280,
         xLarge: sizing.size_240,
         large: sizing.size_200,
+        xMedium: sizing.size_180, // only used in TB - do we need it here?
         medium: sizing.size_160,
         small: sizing.size_140,
         xSmall: sizing.size_120,
@@ -41,6 +42,7 @@ export const font = {
     weight: {
         light: fontWeight.light,
         regular: fontWeight.regular,
+        semi: fontWeight.regular, // is no semi in Lato, so this is a fallback
         bold: fontWeight.bold,
         black: fontWeight.black,
     },
