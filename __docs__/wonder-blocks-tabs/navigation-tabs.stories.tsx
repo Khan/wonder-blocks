@@ -6,7 +6,7 @@ import {
     createMemoryRouter,
     Outlet,
     RouterProvider,
-    useViewTransitionState,
+    // useViewTransitionState,
 } from "react-router-dom-v5-compat";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-tabs/package.json";
@@ -319,6 +319,15 @@ export const NoCurrentTab: StoryComponentType = {
 
 const NavigationTabsLayout = () => {
     const [currentTab, setCurrentTab] = React.useState(1);
+    const handleClick = (tab: number) => {
+        const direction = tab > currentTab ? "forwards" : "backwards";
+        startViewTransition({
+            update: () => {
+                setCurrentTab(tab);
+            },
+            types: [direction],
+        });
+    };
     return (
         <div>
             <NavigationTabs
@@ -330,29 +339,17 @@ const NavigationTabsLayout = () => {
                 }}
             >
                 <NavigationTabItem current={currentTab === 1}>
-                    <Link
-                        viewTransition={true}
-                        href="/link-1"
-                        onClick={() => setCurrentTab(1)}
-                    >
+                    <Link href="/link-1" beforeNav={async () => handleClick(1)}>
                         Navigation tab item 1
                     </Link>
                 </NavigationTabItem>
                 <NavigationTabItem current={currentTab === 2}>
-                    <Link
-                        viewTransition={true}
-                        href="/link-2"
-                        onClick={() => setCurrentTab(2)}
-                    >
+                    <Link href="/link-2" beforeNav={async () => handleClick(2)}>
                         Navigation tab item 2
                     </Link>
                 </NavigationTabItem>
                 <NavigationTabItem current={currentTab === 3}>
-                    <Link
-                        viewTransition={true}
-                        href="/link-3"
-                        onClick={() => setCurrentTab(3)}
-                    >
+                    <Link href="/link-3" beforeNav={async () => handleClick(3)}>
                         Navigation tab item 3
                     </Link>
                 </NavigationTabItem>
@@ -365,16 +362,11 @@ const NavigationTabsLayout = () => {
 };
 
 const Page = ({numColumns}: {numColumns: number}) => {
-    const to = `/link-${numColumns}`;
-    const isTransitioning = useViewTransitionState(to);
+    // Didn't need to toggle view transition name
+    // const to = `/link-${numColumns}`;
+    // const isTransitioning = useViewTransitionState(to);
     return (
-        <View
-            style={{
-                viewTransitionName: isTransitioning
-                    ? "navigation-tab-page"
-                    : "none",
-            }}
-        >
+        <View style={{viewTransitionName: "navigation-tab-page"}}>
             <HeadingLarge
                 style={{
                     paddingBlockEnd: sizing.size_240,

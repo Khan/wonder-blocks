@@ -199,9 +199,20 @@ html {
   animation-timing-function: ease-in-out;
 }
 
-::view-transition-old(navigation-tab-page) {
-    animation-name: slide-out-to-left;
+:active-view-transition-type(forwards) {
+    &::view-transition-old(navigation-tab-page) {
+      animation-name: slide-out-to-left;
+    }
+    &::view-transition-new(navigation-tab-page) {
+      animation-name: slide-in-from-right;
+    }
 }
-::view-transition-new(navigation-tab-page) {
-    animation-name: slide-in-from-right;
+
+:active-view-transition-type(backwards) {
+    &::view-transition-old(navigation-tab-page) {
+      animation-name: slide-out-to-right;
+    }
+    &::view-transition-new(navigation-tab-page) {
+      animation-name: slide-in-from-left;
+    }
 }
