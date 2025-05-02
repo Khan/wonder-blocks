@@ -55,8 +55,10 @@ type Props = {
     /**
      * Required aria-describedby id.
      * This ID will reference the text in the tooltip bubble.
+     * It should only be set to `undefined` when the tooltip bubble
+     * is not visible.
      */
-    "aria-describedby": string;
+    "aria-describedby": string | undefined;
 };
 
 type DefaultProps = {

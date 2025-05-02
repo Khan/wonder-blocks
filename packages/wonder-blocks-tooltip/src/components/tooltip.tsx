@@ -278,7 +278,9 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
-                    aria-describedby={ariaContentId}
+                    aria-describedby={
+                        shouldBeVisible ? ariaContentId : undefined
+                    }
                 >
                     {children}
                 </TooltipAnchor>
