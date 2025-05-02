@@ -1,6 +1,5 @@
 // primitive tokens
 import {color} from "./tokens/color";
-import {font} from "./tokens/font";
 import {spacing} from "./tokens/spacing";
 
 // media queries
@@ -14,7 +13,7 @@ import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
 // theme
 import theme from "./tokens/theme";
 
-const {border, semanticColor, sizing} = theme;
+const {border, semanticColor, sizing, font} = theme;
 
 export {
     /**
