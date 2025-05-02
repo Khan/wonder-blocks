@@ -416,8 +416,16 @@ export const _generateStyles = (
             // we are able to reset the border/outline styles to the default
             // ones (rest state).
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
-            ":hover": {...disabledStatesStyles, outline: "none"},
-            ":active": {...disabledStatesStyles, outline: "none"},
+            ":hover": {
+                ...disabledStatesStyles,
+                outline: "none",
+                marginInline: 0,
+            },
+            ":active": {
+                ...disabledStatesStyles,
+                outline: "none",
+                marginInline: 0,
+            },
             ":focus-visible": disabledStatesStyles,
         },
         iconWrapperHovered: {
