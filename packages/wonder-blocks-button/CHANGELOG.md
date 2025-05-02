@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-button
 
+## 9.0.1
+
+### Patch Changes
+
+- b9e4946: Update to use REM sizing tokens internally for scalable font-sizes
+- Updated dependencies [b9e4946]
+- Updated dependencies [b9e4946]
+    - @khanacademy/wonder-blocks-tokens@10.0.0
+    - @khanacademy/wonder-blocks-typography@3.2.0
+    - @khanacademy/wonder-blocks-clickable@7.0.4
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.10
+    - @khanacademy/wonder-blocks-core@12.2.1
+    - @khanacademy/wonder-blocks-icon@5.1.3
+    - @khanacademy/wonder-blocks-theming@3.3.0
+
 ## 9.0.0
 
 ### Major Changes
