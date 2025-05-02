@@ -14,6 +14,7 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Placeholder} from "../components/placeholder";
 import {generateTabs, ControlledTabs} from "./tabs-utils";
+import {startViewTransition} from "./utils";
 
 const tabs: TabItem[] = [
     {
@@ -445,5 +446,57 @@ export const CustomStyles: StoryComponentType = {
                 ),
             },
         ],
+    },
+};
+
+export const WithViewTransition: StoryComponentType = {
+    render: function Example() {
+        const tabs = [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: <PanelExample label="Tab 1" />,
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: <PanelExample label="Tab 2" />,
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                panel: <PanelExample label="Tab 3" />,
+            },
+        ];
+
+        const [selectedTabId, setSelectedTabId] = React.useState(tabs[0].id);
+
+        const handleTabSelected = (tabId: string) => {
+            const newTabIndex = tabs.findIndex((tab) => tab.id === tabId);
+            const currentTabIndex = tabs.findIndex(
+                (tab) => tab.id === selectedTabId,
+            );
+            // TODO: Need to consider rtl. Also need to fix keyboard nav for rtl
+            const direction =
+                newTabIndex > currentTabIndex ? "forwards" : "backwards";
+            startViewTransition({
+                update: () => {
+                    if (tabId !== selectedTabId) {
+                        // Select the tab only if it's not already selected
+                        setSelectedTabId(tabId);
+                    }
+                },
+                types: [direction],
+            });
+        };
+
+        return (
+            <Tabs
+                tabs={tabs}
+                onTabSelected={handleTabSelected}
+                selectedTabId={selectedTabId}
+                styles={{tabPanelContainer: {viewTransitionName: "tab-panel"}}}
+            />
+        );
     },
 };

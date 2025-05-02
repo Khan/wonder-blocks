@@ -39,7 +39,12 @@ export function ControlledTabs(props: PropsFor<typeof Tabs>) {
         <Tabs
             {...props}
             selectedTabId={selectedTabId}
-            onTabSelected={setSelectedTabId}
+            onTabSelected={(id: string) => {
+                if (props.onTabSelected) {
+                    props.onTabSelected(id);
+                }
+                setSelectedTabId(id);
+            }}
             tabs={props.tabs}
         />
     );

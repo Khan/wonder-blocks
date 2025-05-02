@@ -11,7 +11,6 @@ import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
 import {useTabIndicator} from "../hooks/use-tab-indicator";
-import {startViewTransition} from "../../../../__docs__/wonder-blocks-tabs/utils";
 
 export type TabRenderProps = Omit<PropsFor<typeof Tab>, "children">;
 
@@ -134,6 +133,7 @@ type Props = {
      * - `tablist`: Styles the `tablist` element.
      * - `tab`: Styles all `tab` elements.
      * - `tabPanel`: Styles all the `tabpanel` elements.
+     * - `tabPanelContainer`: Styles the container for the `tabpanel` elements.
      *
      * If styles need to be applied to specific tab or tab panel elements,
      * consider setting the styles on the `label` and `panel` content for the
@@ -144,6 +144,7 @@ type Props = {
         tablist?: StyleType;
         tab?: StyleType;
         tabPanel?: StyleType;
+        tabPanelContainer?: StyleType;
     };
 
     /**
@@ -255,24 +256,11 @@ export const Tabs = React.forwardRef(function Tabs(
 
     const selectTab = React.useCallback(
         (tabId: string) => {
-            const newTabIndex = tabs.findIndex((tab) => tab.id === tabId);
-            const currentTabIndex = tabs.findIndex(
-                (tab) => tab.id === selectedTabId,
-            );
-            // TODO: Need to consider rtl. Also need to fix keyboard nav for rtl
-            const direction =
-                newTabIndex > currentTabIndex ? "forwards" : "backwards";
-            startViewTransition({
-                update: () => {
-                    if (tabId !== selectedTabId) {
-                        // Select the tab only if it's not already selected
-                        onTabSelected(tabId);
-                    }
-                },
-                types: [direction],
-            });
+            if (tabId !== selectedTabId) {
+                onTabSelected(tabId);
+            }
         },
-        [onTabSelected, selectedTabId, tabs],
+        [onTabSelected, selectedTabId],
     );
 
     const handleKeyInteraction = React.useCallback(
@@ -403,7 +391,7 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-            <div style={{viewTransitionName: "tab-panel"}}>
+            <StyledDiv style={stylesProp?.tabPanelContainer}>
                 {tabs.map((tab) => {
                     return (
                         <TabPanel
@@ -426,7 +414,7 @@ export const Tabs = React.forwardRef(function Tabs(
                         </TabPanel>
                     );
                 })}
-            </div>
+            </StyledDiv>
         </StyledDiv>
     );
 });
