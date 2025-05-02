@@ -1,5 +1,5 @@
 import * as React from "react";
-import {CSSProperties, StyleSheet} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -16,6 +16,7 @@ import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import type {
     ButtonActionType,
     ButtonKind,
@@ -228,12 +229,9 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         alignItems: "center",
         justifyContent: "center",
         height: theme.size.height.medium,
-        paddingTop: 0,
-        paddingBottom: 0,
-        paddingLeft: theme.padding.large,
-        paddingRight: theme.padding.large,
+        paddingBlock: 0,
+        paddingInline: theme.padding.large,
         border: "none",
-        borderRadius: theme.border.radius.default,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -333,168 +331,96 @@ export const _generateStyles = (
     const padding =
         size === "large" ? theme.padding.xLarge : theme.padding.large;
 
+    const borderWidthKind = theme.border.width[kind];
+    const outlineOffsetKind = theme.border.offset[kind];
+    const themeVariant = theme.color[kind][actionType];
     const disabledState = theme.color[kind].disabled;
 
-    const disabledStateStyles = {
+    const disabledStatesStyles = {
         borderColor: disabledState.border,
+        borderWidth: borderWidthKind.default,
         background: disabledState.background,
         color: disabledState.foreground,
     };
 
-    let newStyles: Record<string, CSSProperties> = {};
-    if (kind === "primary") {
-        const themeColorAction = theme.color.primary[actionType];
+    const newStyles = {
+        default: {
+            borderRadius: theme.border.radius[size],
+            paddingInline: kind === "tertiary" ? 0 : padding,
+            // theming
+            borderStyle: "solid",
+            borderWidth: borderWidthKind.default,
+            borderColor: themeVariant.default.border,
+            background: themeVariant.default.background,
+            color: themeVariant.default.foreground,
 
-        const sharedFocusHoverStyling = {
-            outlineOffset: theme.border.offset.primary,
-            outlineStyle: "solid",
-            outlineWidth: theme.border.width.focused,
-        };
-
-        const focusStyling = {
-            ...sharedFocusHoverStyling,
-            outlineColor: themeColorAction.focus.border,
-        };
-
-        const hoverStyling = {
-            ...sharedFocusHoverStyling,
-            outlineColor: themeColorAction.hover.border,
-        };
-
-        const activePressedStyling = {
-            background: themeColorAction.press.background,
-            outlineColor: themeColorAction.press.border,
-            outlineOffset: theme.border.offset.primary,
-            outlineStyle: "solid",
-            outlineWidth: theme.border.width.focused,
-        };
-
-        newStyles = {
-            default: {
-                background: themeColorAction.default.background,
-                color: themeColorAction.default.foreground,
-                paddingInline: padding,
-                ":hover": hoverStyling,
-                ":focus-visible": focusStyling,
-                ":active": activePressedStyling,
+            /**
+             * States
+             *
+             * Defined in the following order: hover, active, focus.
+             *
+             * This is important as we want to give more priority to the
+             * :focus-visible styles.
+             */
+            ":hover": {
+                background: themeVariant.hover.background,
+                color: themeVariant.hover.foreground,
+                marginInline: theme.margin[kind].hover,
+                outline:
+                    kind === "primary"
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
+                        : undefined,
+                outlineOffset:
+                    kind === "primary" ? outlineOffsetKind : undefined,
+                border:
+                    kind !== "primary"
+                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
+                        : undefined,
             },
-            focused: focusStyling,
-            pressed: activePressedStyling,
-            disabled: {
-                ...disabledStateStyles,
-                cursor: "not-allowed",
-                ":hover": {...disabledStateStyles, outline: "none"},
-                ":active": {...disabledStateStyles, outline: "none"},
-                ":focus-visible": focusStyling,
-            },
-        };
-    } else if (kind === "secondary") {
-        const themeColorAction = theme.color.secondary[actionType];
-
-        const sharedFocusHoverStyling = {
-            background: themeColorAction.hover.background,
-            outlineStyle: "solid",
-            outlineOffset: theme.border.offset.secondary,
-            outlineWidth: theme.border.width.focused,
-        };
-
-        const focusStyling = {
-            ...sharedFocusHoverStyling,
-            outlineColor: themeColorAction.focus.border,
-        };
-
-        const hoverStyling = {
-            ...sharedFocusHoverStyling,
-            borderColor: themeColorAction.hover.border,
-        };
-
-        const activePressedStyling = {
-            background: themeColorAction.press.background,
-            color: themeColorAction.press.foreground,
-            outlineColor: themeColorAction.press.border,
-            outlineStyle: "solid",
-            outlineWidth: theme.border.width.focused,
-        };
-
-        newStyles = {
-            default: {
-                background: themeColorAction.default.background,
-                color: themeColorAction.default.foreground,
-                borderColor: themeColorAction.default.border,
-                borderStyle: "solid",
-                borderWidth: theme.border.width.secondary,
-                paddingInline: padding,
-                ":hover": hoverStyling,
-                ":focus-visible": focusStyling,
-                ":active": activePressedStyling,
-            },
-            focused: focusStyling,
-            pressed: activePressedStyling,
-            disabled: {
-                ...disabledStateStyles,
-                cursor: "not-allowed",
-                // Reset hover/press styles when disabled
-                ":hover": {...disabledStateStyles, outline: "none"},
-                ":active": {...disabledStateStyles, outline: "none"},
-                ":focus-visible": focusStyling,
-            },
-            iconWrapperHovered: {
-                backgroundColor: themeColorAction.hover.icon,
-                color: themeColorAction.hover.foreground,
-            },
-        };
-    } else if (kind === "tertiary") {
-        const themeColorAction = theme.color.tertiary[actionType];
-
-        const focusStyling = {
-            outlineStyle: "solid",
-            borderColor: "transparent",
-            outlineColor: themeColorAction.focus.border,
-            outlineWidth: theme.border.width.focused,
-            borderRadius: theme.border.radius.default,
-        };
-        const activePressedStyling = {
-            color: themeColorAction.press.foreground,
-            textDecoration: "underline",
-            textDecorationThickness: theme.size.underline.active,
-            textUnderlineOffset: theme.font.offset.default,
-        };
-
-        const sharedDisabledStyling = {
-            ...disabledStateStyles,
-            textDecoration: "none",
-            textDecorationThickness: "unset",
-            textUnderlineOffset: "unset",
-            outline: "none",
-        };
-
-        newStyles = {
-            default: {
-                background: themeColorAction.default.background,
-                color: themeColorAction.default.foreground,
-                paddingInline: 0,
+            // Allow hover styles on non-touch devices only. This prevents an
+            // issue with hover being sticky on touch devices (e.g. mobile).
+            ["@media not (hover: hover)"]: {
                 ":hover": {
-                    textUnderlineOffset: theme.font.offset.default,
-                    textDecoration: "underline",
-                    textDecorationThickness: theme.size.underline.hover,
+                    // reset hover styles on non-touch devices
+                    backgroundColor: "transparent",
                 },
-                ":focus-visible": focusStyling,
-                ":active": activePressedStyling,
             },
-            focused: focusStyling,
-            pressed: activePressedStyling,
-            disabled: {
-                ...disabledStateStyles,
-                cursor: "not-allowed",
-                // Reset hover/press styles when disabled
-                ":hover": sharedDisabledStyling,
-                ":active": sharedDisabledStyling,
-                ":focus-visible": focusStyling,
+
+            ":active": {
+                marginInline: theme.margin[kind].press,
+                // primary
+                outline:
+                    kind === "primary"
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                        : undefined,
+                outlineOffset:
+                    kind === "primary" ? outlineOffsetKind : undefined,
+                // secondary, tertiary
+                border:
+                    kind !== "primary"
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                        : undefined,
+                background: themeVariant.press.background,
+                color: themeVariant.press.foreground,
             },
-        };
-    } else {
-        throw new Error("Button kind not recognized");
-    }
+
+            // :focus-visible -> Provide focus styles for keyboard users only.
+            ...focusStyles.focus,
+        },
+        disabled: {
+            cursor: "not-allowed",
+            ...disabledStatesStyles,
+            // NOTE: Even that browsers recommend to specify pseudo-classes in
+            // this order: link, visited, focus, hover, active, we need to
+            // specify focus after hover to override hover styles. By doing this
+            // we are able to reset the border/outline styles to the default
+            // ones (rest state).
+            // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
+            ":hover": {...disabledStatesStyles, outline: "none"},
+            ":active": {...disabledStatesStyles, outline: "none"},
+            ":focus-visible": disabledStatesStyles,
+        },
+    } as const;
 
     styles[buttonType] = StyleSheet.create(newStyles);
     return styles[buttonType];

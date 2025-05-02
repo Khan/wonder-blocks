@@ -1,8 +1,14 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    color,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
-const secondaryBgColor = tokens.color.offWhite;
+const secondaryBgColor = color.offWhite;
 
 /**
  * The overrides for the Khanmigo theme.
@@ -12,57 +18,52 @@ const theme = mergeTheme(defaultTheme, {
         secondary: {
             progressive: {
                 default: {
-                    border: tokens.color.fadedBlue,
+                    border: color.fadedBlue,
                     background: secondaryBgColor,
                 },
                 hover: {
                     background: secondaryBgColor,
-                    icon: tokens.color.fadedBlue16,
                     foreground:
-                        tokens.semanticColor.action.secondary.progressive
-                            .default.foreground,
+                        semanticColor.action.secondary.progressive.default
+                            .foreground,
                 },
                 press: {
-                    background: tokens.color.fadedBlue8,
+                    background: color.fadedBlue8,
                 },
             },
             destructive: {
                 default: {
-                    border: tokens.color.fadedRed,
+                    border: color.fadedRed,
                     background: secondaryBgColor,
                 },
                 hover: {
                     background: secondaryBgColor,
-                    icon: tokens.color.fadedRed16,
                     foreground:
-                        tokens.semanticColor.action.secondary.destructive
-                            .default.foreground,
+                        semanticColor.action.secondary.destructive.default
+                            .foreground,
                 },
                 press: {
-                    background: tokens.color.fadedRed8,
+                    background: color.fadedRed8,
                 },
             },
         },
     },
     border: {
         radius: {
-            default: tokens.border.radius.radius_120,
-            small: tokens.border.radius.radius_080,
-            large: tokens.border.radius.radius_120,
-        },
-        width: {
-            focused: tokens.border.width.thin,
+            medium: border.radius.radius_120,
+            small: border.radius.radius_080,
+            large: border.radius.radius_120,
         },
     },
     margin: {
         icon: {
             // Bring the icons closer to the edges of the button.
-            offset: -tokens.spacing.xSmall_8,
+            offset: `calc(-1 * ${sizing.size_080})`,
         },
     },
     font: {
         weight: {
-            default: tokens.font.weight.regular,
+            default: font.weight.regular,
         },
     },
 });
