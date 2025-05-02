@@ -49,7 +49,7 @@ export const Default: StoryComponentType = {
     args: {
         children: "Hello, world!",
         kind: "primary",
-        color: "default",
+        actionType: "progressive",
         size: "medium",
         disabled: false,
         style: {maxWidth: 200},
@@ -117,13 +117,17 @@ export const Variants: StoryComponentType = () => (
             </Button>
         </View>
         <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-            <Button onClick={() => {}} color="destructive">
+            <Button onClick={() => {}} actionType="destructive">
                 Hello, world!
             </Button>
-            <Button onClick={() => {}} kind="secondary" color="destructive">
+            <Button
+                onClick={() => {}}
+                kind="secondary"
+                actionType="destructive"
+            >
                 Hello, world!
             </Button>
-            <Button onClick={() => {}} kind="tertiary" color="destructive">
+            <Button onClick={() => {}} kind="tertiary" actionType="destructive">
                 Hello, world!
             </Button>
         </View>
@@ -150,7 +154,7 @@ export const WithColor: StoryComponentType = {
             <Button
                 style={styles.button}
                 onClick={() => {}}
-                color="destructive"
+                actionType="destructive"
             >
                 Primary
             </Button>
@@ -158,7 +162,7 @@ export const WithColor: StoryComponentType = {
                 style={styles.button}
                 onClick={() => {}}
                 kind="secondary"
-                color="destructive"
+                actionType="destructive"
             >
                 Secondary
             </Button>
@@ -166,7 +170,7 @@ export const WithColor: StoryComponentType = {
                 style={styles.button}
                 onClick={() => {}}
                 kind="tertiary"
-                color="destructive"
+                actionType="destructive"
             >
                 Tertiary
             </Button>
@@ -177,7 +181,7 @@ export const WithColor: StoryComponentType = {
 WithColor.parameters = {
     docs: {
         description: {
-            story: "Buttons have a `color` that is either `default` (the default, as shown above) or `destructive` (as can seen below):",
+            story: "Buttons have an `actionType` that is either `progressive` (the default, as shown above) or `destructive` (as can seen below):",
         },
     },
     chromatic: {

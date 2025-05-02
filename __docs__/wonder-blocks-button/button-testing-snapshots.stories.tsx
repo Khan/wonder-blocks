@@ -30,11 +30,10 @@ export default {
         children: "Button",
         icon: paperPlaneIcon,
         onClick: action("clicked"),
-        // TODO(WB-1899.2): Change to `actionType=progressive`.
-        color: "default",
+        actionType: "progressive",
         size: "medium",
     },
-} as Meta;
+} as Meta<typeof Button>;
 
 type StoryComponentType = StoryObj<typeof Button>;
 
@@ -45,9 +44,8 @@ const kinds = [
 ];
 
 const actionTypes = [
-    // TODO(WB-1899.2): Change to `actionType=progressive`.
-    {name: "Default", props: {color: "default"}},
-    {name: "Destructive", props: {color: "destructive"}},
+    {name: "Progressive", props: {actionType: "progressive"}},
+    {name: "Destructive", props: {actionType: "destructive"}},
     {name: "Disabled", props: {disabled: true}},
 ];
 
@@ -112,12 +110,11 @@ export const Sizes: StoryComponentType = {
                 {({props}) => (
                     <View style={{gap: sizing.size_160, flexDirection: "row"}}>
                         {actionTypes.map(
-                            ({props: {color, disabled}}, index) => (
+                            ({props: {actionType, disabled}}, index) => (
                                 <Button
                                     {...args}
                                     {...props}
-                                    // TODO(WB-1899.2): Change to `actionType`.
-                                    color={color}
+                                    actionType={actionType}
                                     disabled={disabled}
                                     key={index}
                                 />
