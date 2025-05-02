@@ -363,19 +363,31 @@ export const _generateStyles = (
              * :focus-visible styles.
              */
             ":hover": {
+                // shared
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
                 marginInline: theme.root.margin[kind].hover,
-                outline:
-                    kind === "primary"
-                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
-                        : undefined,
-                outlineOffset:
-                    kind === "primary" ? outlineOffsetKind : undefined,
+                ...(kind === "primary"
+                    ? {
+                          outline: `${borderWidthKind.hover} solid ${themeVariant.hover.border}`,
+                          outlineOffset: outlineOffsetKind,
+                      }
+                    : undefined),
+                // secondary-specific styles
                 border:
-                    kind !== "primary"
+                    kind === "secondary"
                         ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
                         : undefined,
+
+                // tertiary-specific styles
+                ...(kind === "tertiary"
+                    ? {
+                          textDecoration: "underline",
+                          textUnderlineOffset: theme.root.font.offset.default,
+                          textDecorationThickness:
+                              theme.root.sizing.underline.hover,
+                      }
+                    : undefined),
             },
             // Allow hover styles on non-touch devices only. This prevents an
             // issue with hover being sticky on touch devices (e.g. mobile).
@@ -387,21 +399,32 @@ export const _generateStyles = (
             },
 
             ":active": {
-                marginInline: theme.root.margin[kind].press,
-                // primary
-                outline:
-                    kind === "primary"
-                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                        : undefined,
-                outlineOffset:
-                    kind === "primary" ? outlineOffsetKind : undefined,
-                // secondary, tertiary
-                border:
-                    kind !== "primary"
-                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                        : undefined,
+                // shared
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
+                marginInline: theme.root.margin[kind].press,
+                // primary
+                ...(kind === "primary"
+                    ? {
+                          outline: `${borderWidthKind.press} solid ${themeVariant.press.border}`,
+                          outlineOffset: outlineOffsetKind,
+                      }
+                    : undefined),
+                // secondary
+                border:
+                    kind === "secondary"
+                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                        : undefined,
+
+                // tertiary-specific styles
+                ...(kind === "tertiary"
+                    ? {
+                          textDecoration: "underline",
+                          textUnderlineOffset: theme.root.font.offset.default,
+                          textDecorationThickness:
+                              theme.root.sizing.underline.press,
+                      }
+                    : undefined),
             },
 
             // :focus-visible -> Provide focus styles for keyboard users only.
@@ -429,14 +452,16 @@ export const _generateStyles = (
             ":focus-visible": disabledStatesStyles,
         },
         iconWrapperHovered: {
-            backgroundColor:
-                kind === "secondary"
-                    ? theme.icon.color[kind][actionType].hover.background
-                    : undefined,
-            color:
-                kind === "secondary"
-                    ? theme.icon.color[kind][actionType].hover.foreground
-                    : undefined,
+            // Only applies to secondary buttons (khanmigo theme)
+            ...(kind === "secondary"
+                ? {
+                      backgroundColor:
+                          theme.icon.color[kind][actionType].hover.background,
+
+                      color: theme.icon.color[kind][actionType].hover
+                          .foreground,
+                  }
+                : undefined),
         },
     } as const;
 

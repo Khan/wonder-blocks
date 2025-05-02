@@ -49,6 +49,10 @@ const theme = {
                 medium: sizing.size_400,
                 large: sizing.size_560,
             },
+            underline: {
+                hover: sizing.size_020,
+                press: sizing.size_010,
+            },
         },
         margin: {
             // NOTE: These margin tokens reference border.width tokens to account
