@@ -1,0 +1,26 @@
+@font-face {
+    font-display: swap;
+    font-family:  "Plus Jakarta Sans", sans-serif;
+    font-style: 'normal';
+    font-weight: 200 800;
+    font-variation-settings: "wght" 400;
+    src: url(/static/fonts/jakarta-sans/PlusJakartaSans-VariableFont_wght.woff2) format('woff2');
+}
+
+@font-face {
+    font-family:  "Plus Jakarta Sans", serif;
+    font-style: 'italic';
+    font-weight: 400;
+    src: url(fonts/jakarta-sans/PlusJakartaSans-Italic-VariableFont_wght.woff2) format('woff2');
+}
+
+/*
+Note: the :not([data-wb-theme]) bit for nested themes is essential
+to not override ancestor defaults unintentionally
+@supports (font-variation-settings: "wght" 450) {
+    [data-wb-theme='thunderblocks'] :not([data-wb-theme]) {
+        font-family: 'Plus Jakarta Sans';
+        font-weight: 450;
+    }
+}
+*/
