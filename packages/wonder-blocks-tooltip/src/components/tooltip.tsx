@@ -217,7 +217,7 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(bubbleId: string): React.ReactNode {
+    _renderPopper(ariaContentId: string): React.ReactNode {
         const {backgroundColor, placement} = this.props;
         return (
             <TooltipPopper
@@ -228,7 +228,7 @@ export default class Tooltip extends React.Component<Props, State> {
             >
                 {(props) => (
                     <TooltipBubble
-                        id={bubbleId}
+                        id={ariaContentId}
                         style={props.style}
                         backgroundColor={backgroundColor}
                         tailOffset={props.tailOffset}
@@ -269,6 +269,8 @@ export default class Tooltip extends React.Component<Props, State> {
         const shouldBeVisible =
             popperHost && (active || activeBubble) && shouldAnchorExist;
 
+        const ariaContentId = `${uniqueId}-aria-content`;
+
         // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
         return (
             <React.Fragment>
@@ -276,13 +278,15 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
-                    id={`${uniqueId}-anchor`}
+                    aria-describedby={
+                        shouldBeVisible ? ariaContentId : undefined
+                    }
                 >
                     {children}
                 </TooltipAnchor>
                 {shouldBeVisible &&
                     ReactDOM.createPortal(
-                        this._renderPopper(uniqueId),
+                        this._renderPopper(ariaContentId),
                         popperHost,
                     )}
             </React.Fragment>
