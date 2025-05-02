@@ -11,6 +11,11 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 import ButtonCore from "./button-core";
 import ThemedButton from "../themes/themed-button";
 
+// Variants
+export type ButtonActionType = "progressive" | "destructive";
+export type ButtonKind = "primary" | "secondary" | "tertiary";
+export type ButtonSize = "small" | "medium" | "large";
+
 export type SharedProps =
     /**
      * aria-label should be used when `spinner={true}` to let people using screen
@@ -39,9 +44,17 @@ export type SharedProps =
          */
         spinner?: boolean;
         /**
-         * The color of the button, either blue or red.
+         * The action type/category of the button.
+         *
+         * - `progressive` is used for actions that move the user forward in a
+         *   flow.
+         * - `destructive` is used for actions that have a negative impact on
+         *   the user.
+         *
+         * Defaults to `progressive`.
          */
-        color?: "default" | "destructive";
+        actionType?: ButtonActionType;
+
         /**
          * The kind of the button, either primary, secondary, or tertiary.
          *
@@ -51,12 +64,12 @@ export type SharedProps =
          * - Secondary buttons have a border and no background color
          * - Tertiary buttons have no background or border
          */
-        kind?: "primary" | "secondary" | "tertiary";
+        kind?: ButtonKind;
         /**
          * The size of the button. "medium" = height: 40; "small" = height: 32;
          * "large" = height: 56;
          */
-        size?: "medium" | "small" | "large";
+        size?: ButtonSize;
         /**
          * Whether the button is disabled.
          */
@@ -211,7 +224,7 @@ const Button: React.ForwardRefExoticComponent<
         tabIndex,
         target,
         rel,
-        color = "default",
+        actionType = "progressive",
         kind = "primary",
         size = "medium",
         disabled = false,
@@ -239,7 +252,7 @@ const Button: React.ForwardRefExoticComponent<
                     {...restChildProps}
                     disabled={disabled}
                     spinner={spinner || state.waiting}
-                    color={color}
+                    actionType={actionType}
                     kind={kind}
                     size={size}
                     skipClientNav={skipClientNav}

@@ -16,7 +16,12 @@ import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
-import type {SharedProps} from "./button";
+import type {
+    ButtonActionType,
+    ButtonKind,
+    ButtonSize,
+    SharedProps,
+} from "./button";
 import {ButtonThemeContext, ButtonThemeContract} from "../themes/themed-button";
 import {ButtonIcon} from "./button-icon";
 
@@ -40,7 +45,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
     const {
         children,
         skipClientNav,
-        color,
+        actionType,
         disabled: disabledProp,
         focused,
         hovered,
@@ -60,7 +65,13 @@ const ButtonCore: React.ForwardRefExoticComponent<
         ...restProps
     } = props;
 
-    const buttonStyles = _generateStyles(color, kind, size, theme, themeName);
+    const buttonStyles = _generateStyles(
+        actionType,
+        kind,
+        size,
+        theme,
+        themeName,
+    );
 
     const disabled = spinner || disabledProp;
 
@@ -307,13 +318,13 @@ const styles: Record<string, any> = {};
 
 // export for testing only
 export const _generateStyles = (
-    buttonColor = "default",
-    kind: "primary" | "secondary" | "tertiary",
-    size: "large" | "medium" | "small",
+    actionType: ButtonActionType = "progressive",
+    kind: ButtonKind,
+    size: ButtonSize,
     theme: ButtonThemeContract,
     themeName: string,
 ) => {
-    const buttonType = `${buttonColor}-${kind}-${size}-${themeName}`;
+    const buttonType = `${actionType}-${kind}-${size}-${themeName}`;
 
     if (styles[buttonType]) {
         return styles[buttonType];
@@ -321,9 +332,6 @@ export const _generateStyles = (
 
     const padding =
         size === "large" ? theme.padding.xLarge : theme.padding.large;
-
-    const colorToAction =
-        buttonColor === "destructive" ? "destructive" : "progressive";
 
     const disabledState = theme.color[kind].disabled;
 
@@ -335,7 +343,7 @@ export const _generateStyles = (
 
     let newStyles: Record<string, CSSProperties> = {};
     if (kind === "primary") {
-        const themeColorAction = theme.color.primary[colorToAction];
+        const themeColorAction = theme.color.primary[actionType];
 
         const sharedFocusHoverStyling = {
             outlineOffset: theme.border.offset.primary,
@@ -381,7 +389,7 @@ export const _generateStyles = (
             },
         };
     } else if (kind === "secondary") {
-        const themeColorAction = theme.color.secondary[colorToAction];
+        const themeColorAction = theme.color.secondary[actionType];
 
         const sharedFocusHoverStyling = {
             background: themeColorAction.hover.background,
@@ -436,7 +444,7 @@ export const _generateStyles = (
             },
         };
     } else if (kind === "tertiary") {
-        const themeColorAction = theme.color.tertiary[colorToAction];
+        const themeColorAction = theme.color.tertiary[actionType];
 
         const focusStyling = {
             outlineStyle: "solid",
