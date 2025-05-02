@@ -228,9 +228,9 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        height: theme.size.height.medium,
+        height: theme.root.sizing.height.medium,
         paddingBlock: 0,
-        paddingInline: theme.padding.large,
+        paddingInline: theme.root.padding.medium,
         border: "none",
         cursor: "pointer",
         outline: "none",
@@ -249,30 +249,30 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         cursor: "auto",
     },
     small: {
-        borderRadius: theme.border.radius.small,
-        height: theme.size.height.small,
+        borderRadius: theme.root.border.radius.small,
+        height: theme.root.sizing.height.small,
     },
     large: {
-        borderRadius: theme.border.radius.large,
-        height: theme.size.height.large,
+        borderRadius: theme.root.border.radius.large,
+        height: theme.root.sizing.height.large,
     },
     text: {
         alignItems: "center",
-        fontWeight: theme.font.weight.default,
+        fontWeight: theme.root.font.weight.default,
         whiteSpace: "nowrap",
         overflow: "hidden",
         // To account for the underline-offset in tertiary buttons
-        lineHeight: theme.font.lineHeight.default,
+        lineHeight: theme.root.font.lineHeight.default,
         textOverflow: "ellipsis",
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
     smallText: {
-        lineHeight: theme.font.lineHeight.small,
+        lineHeight: theme.root.font.lineHeight.small,
     },
     largeText: {
-        fontSize: theme.font.size.large,
-        lineHeight: theme.font.lineHeight.large,
+        fontSize: theme.root.font.size.large,
+        lineHeight: theme.root.font.lineHeight.large,
     },
     textWithFocus: {
         position: "relative", // allows the tertiary button border to use the label width
@@ -284,8 +284,8 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         position: "absolute",
     },
     startIcon: {
-        marginRight: theme.padding.small,
-        marginLeft: theme.margin.icon.offset,
+        marginInlineStart: theme.icon.margin.inline.outer,
+        marginInlineEnd: theme.icon.margin.inline.inner,
     },
     tertiaryStartIcon: {
         // Undo the negative padding from startIcon since tertiary
@@ -293,19 +293,19 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         marginLeft: 0,
     },
     endIcon: {
-        marginLeft: theme.padding.small,
+        marginInlineStart: theme.icon.margin.inline.inner,
     },
     iconWrapper: {
-        borderRadius: theme.border.radius.icon,
-        padding: theme.padding.xsmall,
+        borderRadius: theme.icon.border.radius,
+        padding: theme.icon.padding,
         // View has a default minWidth of 0, which causes the label text
         // to encroach on the icon when it needs to truncate. We can fix
         // this by setting the minWidth to auto.
         minWidth: "auto",
     },
     endIconWrapper: {
-        marginLeft: theme.padding.small,
-        marginRight: theme.margin.icon.offset,
+        marginInlineStart: theme.icon.margin.inline.inner,
+        marginInlineEnd: theme.icon.margin.inline.outer,
     },
     endIconWrapperTertiary: {
         marginRight: 0,
@@ -329,12 +329,12 @@ export const _generateStyles = (
     }
 
     const padding =
-        size === "large" ? theme.padding.xLarge : theme.padding.large;
+        size === "large" ? theme.root.padding.large : theme.root.padding.medium;
 
-    const borderWidthKind = theme.border.width[kind];
-    const outlineOffsetKind = theme.border.offset[kind];
-    const themeVariant = theme.color[kind][actionType];
-    const disabledState = theme.color[kind].disabled;
+    const borderWidthKind = theme.root.border.width[kind];
+    const outlineOffsetKind = theme.root.border.offset[kind];
+    const themeVariant = theme.root.color[kind][actionType];
+    const disabledState = theme.root.color[kind].disabled;
 
     const disabledStatesStyles = {
         borderColor: disabledState.border,
@@ -345,7 +345,7 @@ export const _generateStyles = (
 
     const newStyles = {
         default: {
-            borderRadius: theme.border.radius[size],
+            borderRadius: theme.root.border.radius[size],
             paddingInline: kind === "tertiary" ? 0 : padding,
             // theming
             borderStyle: "solid",
@@ -365,7 +365,7 @@ export const _generateStyles = (
             ":hover": {
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
-                marginInline: theme.margin[kind].hover,
+                marginInline: theme.root.margin[kind].hover,
                 outline:
                     kind === "primary"
                         ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
@@ -387,7 +387,7 @@ export const _generateStyles = (
             },
 
             ":active": {
-                marginInline: theme.margin[kind].press,
+                marginInline: theme.root.margin[kind].press,
                 // primary
                 outline:
                     kind === "primary"
@@ -419,6 +419,16 @@ export const _generateStyles = (
             ":hover": {...disabledStatesStyles, outline: "none"},
             ":active": {...disabledStatesStyles, outline: "none"},
             ":focus-visible": disabledStatesStyles,
+        },
+        iconWrapperHovered: {
+            backgroundColor:
+                kind === "secondary"
+                    ? theme.icon.color[kind][actionType].hover.background
+                    : undefined,
+            color:
+                kind === "secondary"
+                    ? theme.icon.color[kind][actionType].hover.foreground
+                    : undefined,
         },
     } as const;
 

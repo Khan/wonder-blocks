@@ -14,57 +14,87 @@ const secondaryBgColor = color.offWhite;
  * The overrides for the Khanmigo theme.
  */
 const theme = mergeTheme(defaultTheme, {
-    color: {
-        secondary: {
-            progressive: {
-                default: {
-                    border: color.fadedBlue,
-                    background: secondaryBgColor,
+    root: {
+        color: {
+            secondary: {
+                progressive: {
+                    default: {
+                        border: color.fadedBlue,
+                        background: secondaryBgColor,
+                    },
+                    hover: {
+                        background: secondaryBgColor,
+                        foreground:
+                            semanticColor.action.secondary.progressive.default
+                                .foreground,
+                    },
+                    press: {
+                        background: color.fadedBlue8,
+                    },
                 },
-                hover: {
-                    background: secondaryBgColor,
-                    foreground:
-                        semanticColor.action.secondary.progressive.default
-                            .foreground,
-                },
-                press: {
-                    background: color.fadedBlue8,
+                destructive: {
+                    default: {
+                        border: color.fadedRed,
+                        background: secondaryBgColor,
+                    },
+                    hover: {
+                        background: secondaryBgColor,
+                        foreground:
+                            semanticColor.action.secondary.destructive.default
+                                .foreground,
+                    },
+                    press: {
+                        background: color.fadedRed8,
+                    },
                 },
             },
-            destructive: {
-                default: {
-                    border: color.fadedRed,
-                    background: secondaryBgColor,
-                },
-                hover: {
-                    background: secondaryBgColor,
-                    foreground:
-                        semanticColor.action.secondary.destructive.default
-                            .foreground,
-                },
-                press: {
-                    background: color.fadedRed8,
-                },
+        },
+
+        border: {
+            radius: {
+                medium: border.radius.radius_120,
+                small: border.radius.radius_080,
+                large: border.radius.radius_120,
+            },
+        },
+        font: {
+            weight: {
+                default: font.weight.regular,
             },
         },
     },
-    border: {
-        radius: {
-            medium: border.radius.radius_120,
-            small: border.radius.radius_080,
-            large: border.radius.radius_120,
+
+    icon: {
+        color: {
+            secondary: {
+                progressive: {
+                    hover: {
+                        background: color.fadedBlue16,
+                        foreground:
+                            semanticColor.action.secondary.progressive.default
+                                .foreground,
+                    },
+                },
+                destructive: {
+                    hover: {
+                        background: color.fadedRed16,
+                        foreground:
+                            semanticColor.action.secondary.destructive.default
+                                .foreground,
+                    },
+                },
+            },
         },
-    },
-    margin: {
-        icon: {
-            // Bring the icons closer to the edges of the button.
-            offset: `calc(-1 * ${sizing.size_080})`,
+        border: {
+            radius: border.radius.radius_full,
         },
-    },
-    font: {
-        weight: {
-            default: font.weight.regular,
+        margin: {
+            inline: {
+                // Bring the icons closer to the edges of the button.
+                outer: `calc(-1 * ${sizing.size_080})`,
+            },
         },
+        padding: sizing.size_020,
     },
 });
 
