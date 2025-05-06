@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 4.1.13
+
+### Patch Changes
+
+- 9bb3cf2: Fix tooltips so that they are read out by screen readers
+- Updated dependencies [b9e4946]
+- Updated dependencies [b9e4946]
+    - @khanacademy/wonder-blocks-tokens@10.0.0
+    - @khanacademy/wonder-blocks-typography@3.2.0
+    - @khanacademy/wonder-blocks-layout@3.1.10
+    - @khanacademy/wonder-blocks-modal@7.1.13
+    - @khanacademy/wonder-blocks-core@12.2.1
+
 ## 4.1.12
 
 ### Patch Changes
