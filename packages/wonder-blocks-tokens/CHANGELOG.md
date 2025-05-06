@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 10.0.0
+
+### Major Changes
+
+- b9e4946: Update font tokens to use REM sizing scale for scalable font-sizing
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-theming@3.3.0
+
 ## 9.0.0
 
 ### Major Changes
