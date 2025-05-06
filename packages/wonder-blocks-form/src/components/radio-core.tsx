@@ -106,7 +106,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     const states = {
         // Resting state (unchecked)
         unchecked: {
-            border: semanticColor.border.strong,
+            border: semanticColor.input.default.border,
             background: colorAction.default.background,
         },
         checked: {
@@ -118,8 +118,8 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         },
         // Form validation error state
         error: {
-            border: semanticColor.status.critical.foreground,
-            background: semanticColor.status.critical.background,
+            border: semanticColor.input.error.border,
+            background: semanticColor.input.error.background,
         },
     };
 

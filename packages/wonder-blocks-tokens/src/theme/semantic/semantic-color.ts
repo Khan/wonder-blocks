@@ -205,7 +205,7 @@ export const semanticColor = {
             foreground: color.offBlack,
         },
         checked: {
-            border: color.blue, // ?? do we need this?
+            border: color.blue,
             background: color.blue,
             foreground: color.white,
         },

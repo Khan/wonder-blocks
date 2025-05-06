@@ -183,8 +183,8 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         },
         // Form validation error state
         error: {
-            border: semanticColor.status.critical.foreground,
-            background: semanticColor.status.critical.background,
+            border: semanticColor.input.error.border,
+            background: semanticColor.input.error.background,
         },
     };
 
