@@ -1,5 +1,5 @@
 import {resolve} from "path";
-import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 import {defineConfig} from "vite";
 
 export default defineConfig({
@@ -9,6 +9,13 @@ export default defineConfig({
     },
     resolve: {
         alias: [
+            {
+                find: "@khanacademy/wonder-blocks-tokens/styles.css",
+                replacement: resolve(
+                    __dirname,
+                    "./packages/wonder-blocks-tokens/dist/css/index.css",
+                ),
+            },
             // Allow us to detect changes from local wonder-blocks packages.
             {
                 find: /^@khanacademy\/wonder-blocks(-.*)$/,

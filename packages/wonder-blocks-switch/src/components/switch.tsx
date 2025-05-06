@@ -9,6 +9,7 @@ import {
     useStyles,
 } from "@khanacademy/wonder-blocks-theming";
 import {useId} from "react";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import ThemedSwitch, {
     SwitchThemeContext,
     SwitchThemeContract,
@@ -44,6 +45,10 @@ type Props = Pick<
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Adds CSS classes to the component.
+     */
+    className?: string;
 };
 
 const StyledSpan = addStyle("span");
@@ -58,6 +63,7 @@ const SwitchCore = React.forwardRef(function SwitchCore(
         "aria-labelledby": ariaLabelledBy,
         "aria-describedby": ariaDescribedBy,
         checked,
+        className,
         disabled = false,
         icon,
         id,
@@ -105,6 +111,7 @@ const SwitchCore = React.forwardRef(function SwitchCore(
                 stateStyles.switch,
                 disabled && sharedStyles.disabled,
             ]}
+            className={className}
             testId={testId}
         >
             <StyledInput
@@ -142,23 +149,17 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
         width: theme.size.width.large,
         borderRadius: theme.border.radius.small,
         flexShrink: 0,
-        ":hover": {
-            outlineOffset: theme.size.offset.default,
-        },
-        ":focus-within": {
-            outline: `solid ${theme.size.width.small}px ${theme.color.outline.default}`,
-            outlineOffset: theme.size.offset.default,
-        },
+        ":focus-within": focusStyles.focus[":focus-visible"],
     },
     disabled: {
         cursor: "not-allowed",
         ":hover": {
             outline: "none",
         },
-        ":focus-within": {
-            outline: `solid ${theme.size.width.small}px ${theme.color.outline.default}`,
-            outlineOffset: theme.size.offset.default,
+        ":active": {
+            outline: "none",
         },
+        ":focus-within": focusStyles.focus[":focus-visible"],
     },
     slider: {
         position: "absolute",
@@ -179,6 +180,8 @@ const themedSharedStyles: ThemedStylesFn<SwitchThemeContract> = (theme) => ({
     },
 });
 
+const focusStylesObject = focusStyles.focus[":focus-visible"];
+
 const styles: Record<string, any> = {};
 const _generateStyles = (
     checked: boolean,
@@ -197,9 +200,8 @@ const _generateStyles = (
     const sharedSwitchStyles = {
         cursor: clickable ? "pointer" : "auto",
         ":hover": {
-            outline: clickable
-                ? `solid ${theme.size.width.small}px ${theme.color.outline.default}`
-                : "none",
+            ...focusStylesObject,
+            outline: clickable ? focusStylesObject.outline : "none",
         },
     };
 
@@ -214,6 +216,8 @@ const _generateStyles = (
                         !disabled && clickable
                             ? theme.color.bg.switch.activeOn
                             : undefined,
+                    ...focusStylesObject,
+                    outline: clickable ? focusStylesObject.outline : "none",
                 },
                 ...sharedSwitchStyles,
             },
@@ -238,6 +242,8 @@ const _generateStyles = (
                         !disabled && clickable
                             ? theme.color.bg.switch.activeOff
                             : undefined,
+                    ...focusStylesObject,
+                    outline: clickable ? focusStylesObject.outline : "none",
                 },
                 ...sharedSwitchStyles,
             },

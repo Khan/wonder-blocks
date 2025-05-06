@@ -18,6 +18,16 @@ const StyledTh = addStyle("th");
 const StyledTd = addStyle("td");
 const StyledUl = addStyle("ul");
 
+function getAriaLabel(
+    rowName: string | React.ReactNode,
+    columnName: string | React.ReactNode,
+): string {
+    const rowLabel = typeof rowName === "string" ? rowName : "";
+    const columnLabel = typeof columnName === "string" ? columnName : "";
+
+    return `${rowLabel} ${columnLabel}`;
+}
+
 type Variant = {name: string | React.ReactNode; props: StrictArgs};
 
 type Props = {
@@ -112,27 +122,34 @@ export function AllVariants(props: Props) {
                                         row.name
                                     )}
                                 </StyledTh>
-                                {columns.map((col, index) => (
-                                    <StyledTd
-                                        key={index}
-                                        style={[
-                                            styles.cell,
-                                            {
-                                                border: `${border.width.thin} dashed ${semanticColor.border.primary}`,
-                                            },
-                                            stylesProp?.cell,
-                                        ]}
-                                    >
-                                        {children({
-                                            props: {
-                                                "aria-label": `${row.name} ${col.name}`,
-                                                ...row.props,
-                                                ...col.props,
-                                            },
-                                            name: `${row.name} ${col.name}`,
-                                        })}
-                                    </StyledTd>
-                                ))}
+                                {columns.map((col, index) => {
+                                    const ariaLabel = getAriaLabel(
+                                        row.name,
+                                        col.name,
+                                    );
+
+                                    return (
+                                        <StyledTd
+                                            key={index}
+                                            style={[
+                                                styles.cell,
+                                                {
+                                                    border: `${border.width.thin} dashed ${semanticColor.border.primary}`,
+                                                },
+                                                stylesProp?.cell,
+                                            ]}
+                                        >
+                                            {children({
+                                                props: {
+                                                    "aria-label": ariaLabel,
+                                                    ...row.props,
+                                                    ...col.props,
+                                                },
+                                                name: ariaLabel,
+                                            })}
+                                        </StyledTd>
+                                    );
+                                })}
                             </tr>
                         ))}
                     </tbody>
@@ -147,6 +164,8 @@ export function AllVariants(props: Props) {
             >
                 {rows.map((row) => {
                     return columns.map((column) => {
+                        const ariaLabel = getAriaLabel(row.name, column.name);
+
                         return (
                             <li key={`${row.name} ${column.name}`}>
                                 <LabelLarge>
@@ -156,11 +175,11 @@ export function AllVariants(props: Props) {
                                 <View style={styles.childrenWrapper}>
                                     {children({
                                         props: {
-                                            "aria-label": `${row.name} ${column.name}`,
+                                            "aria-label": ariaLabel,
                                             ...column.props,
                                             ...row.props,
                                         },
-                                        name: `${row.name} ${column.name}`,
+                                        name: ariaLabel,
                                     })}
                                 </View>
                             </li>

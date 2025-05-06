@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
         boxSizing: "border-box",
         padding: `${VERTICAL_SPACING_PX}px ${spacing.medium_16}px`,
         // This minHeight is equivalent to when the textarea has one row
-        minHeight: `${VERTICAL_SPACING_PX * 2 + font.lineHeight.medium + 2}px`,
+        minHeight: `calc(${VERTICAL_SPACING_PX * 2 + 2}px + ${font.lineHeight.medium})`,
     },
     default: {
         background: states.default.background,

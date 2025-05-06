@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "7.1.10",
+  "version": "7.1.12",
   "design": "v2",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-breadcrumbs": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon-button": "workspace:*",

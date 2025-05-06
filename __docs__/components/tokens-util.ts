@@ -65,7 +65,30 @@ export function getTokenName(tokens: Record<string, string>, value: string) {
         }
 
         if (tokens[property] === value) {
-            return property;
+            return maybeGetCssVariableInfo(value).name;
         }
     }
+}
+
+/**
+ * Given a string, evaluates if it is a CSS variable and returns its name and
+ * value. Otherwise, it returns the string as is.
+ *
+ * @param value The string to evaluate.
+ * @returns An object containing the name and value of the CSS variable or the
+ * original string.
+ */
+export function maybeGetCssVariableInfo(value: string) {
+    // If the value is a CSS variable, we need to transform it into its
+    // actual value.
+    if (value.startsWith("var(--")) {
+        const cssVariable = value.slice(4, -1);
+        const rawValue = getComputedStyle(
+            document.documentElement,
+        ).getPropertyValue(cssVariable);
+
+        return {name: cssVariable, value: rawValue};
+    }
+
+    return {name: value, value: value};
 }

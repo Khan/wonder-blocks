@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-styles",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "description": "Reusable Wonder Blocks styles.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
@@ -15,7 +15,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
   "devDependencies": {

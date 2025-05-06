@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 9.0.0
+
+### Major Changes
+
+- 7bbf311: Replaces `semanticColor` values with references to css variables. Creates a build step to convert semanticColor tokens to css variables that can be consumed via CSS imports.
+
+### Minor Changes
+
+- 2656fd4: Export `border` and `sizing` as CSS variables. Map JS tokens to css var counterparts
+- 7f79943: Update build script to use the new data-wb-theme attribute to generate styles.css. Fixes vite.config to allow importing css files in Storybbok
+
+### Patch Changes
+
+- 6018552: Export TS types correctly in package.json so consumers can use them correctly
+- Updated dependencies [7f79943]
+- Updated dependencies [7bbf311]
+    - @khanacademy/wonder-blocks-theming@3.3.0
+
 ## 8.0.0
 
 ### Major Changes

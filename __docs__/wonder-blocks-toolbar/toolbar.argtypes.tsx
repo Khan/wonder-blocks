@@ -13,6 +13,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {actionStyles} from "@khanacademy/wonder-blocks-styles";
 
 const mobile = "@media (max-width: 1023px)";
 
@@ -90,7 +91,7 @@ export const rightContentMappings: Mappings = {
     tertiaryButton: <Button kind="tertiary">Import...</Button>,
     nextVideoButton: <Button>Next Video</Button>,
     lightButton: (
-        <Button kind="secondary" light={true}>
+        <Button kind="secondary" style={actionStyles.inverse}>
             Go to Article
         </Button>
     ),

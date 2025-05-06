@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-cell",
-  "version": "4.1.9",
+  "version": "4.1.10",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -14,7 +14,6 @@
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },
   "dependencies": {
-    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-clickable": "workspace:*",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-layout": "workspace:*",
