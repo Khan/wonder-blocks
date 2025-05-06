@@ -204,6 +204,11 @@ export const semanticColor = {
             background: color.white,
             foreground: color.offBlack,
         },
+        checked: {
+            border: color.blue, // ?? do we need this?
+            background: color.blue,
+            foreground: color.white,
+        },
         disabled: {
             border: border.primary,
             background: color.offWhite,

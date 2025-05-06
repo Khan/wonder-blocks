@@ -315,29 +315,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
 const VERTICAL_SPACING_PX = 10;
 
-// The different states that the component can be in.
-const states = {
-    // Resting state
-    default: {
-        border: semanticColor.border.strong,
-        background: semanticColor.surface.primary,
-        foreground: semanticColor.text.primary,
-    },
-    disabled: {
-        border: semanticColor.action.secondary.disabled.border,
-        background: semanticColor.action.secondary.disabled.background,
-        // NOTE: This color is specific for form fields.
-        // TODO(WB-1895): Revisit disabled styles.
-        foreground: semanticColor.text.secondary,
-    },
-    // Form validation error state
-    error: {
-        border: semanticColor.status.critical.foreground,
-        background: semanticColor.status.critical.background,
-        foreground: semanticColor.text.primary,
-    },
-};
-
 const styles = StyleSheet.create({
     textarea: {
         borderRadius: border.radius.radius_040,
@@ -347,9 +324,9 @@ const styles = StyleSheet.create({
         minHeight: `calc(${VERTICAL_SPACING_PX * 2 + 2}px + ${font.lineHeight.medium})`,
     },
     default: {
-        background: states.default.background,
-        border: `${border.width.thin} solid ${states.default.border}`,
-        color: states.default.foreground,
+        background: semanticColor.input.default.background,
+        border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
+        color: semanticColor.input.default.foreground,
         "::placeholder": {
             color: semanticColor.text.secondary,
         },
@@ -364,11 +341,11 @@ const styles = StyleSheet.create({
         },
     },
     disabled: {
-        background: states.disabled.background,
-        border: `${border.width.thin} solid ${states.disabled.border}`,
-        color: states.disabled.foreground,
+        background: semanticColor.input.disabled.background,
+        border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
+        color: semanticColor.input.disabled.foreground,
         "::placeholder": {
-            color: states.disabled.foreground,
+            color: semanticColor.input.disabled.foreground,
         },
         cursor: "not-allowed",
         ":focus-visible": {
@@ -377,15 +354,15 @@ const styles = StyleSheet.create({
         },
     },
     error: {
-        background: states.error.background,
-        border: `${border.width.thin} solid ${states.error.border}`,
-        color: states.error.foreground,
+        background: semanticColor.input.error.background,
+        border: `${border.width.thin} solid ${semanticColor.input.error.border}`,
+        color: semanticColor.input.error.foreground,
         "::placeholder": {
             color: semanticColor.text.secondary,
         },
         ":focus-visible": {
             outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
-            borderColor: states.error.border,
+            borderColor: semanticColor.input.error.border,
         },
     },
 });

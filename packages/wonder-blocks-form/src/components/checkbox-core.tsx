@@ -122,11 +122,6 @@ const CheckboxCore = React.forwardRef(function CheckboxCore(
     );
 });
 
-const disabledState = {
-    border: semanticColor.action.secondary.disabled.border,
-    background: semanticColor.action.secondary.disabled.background,
-};
-
 const sharedStyles = StyleSheet.create({
     // Reset the default styled input element
     inputReset: {
@@ -151,8 +146,8 @@ const sharedStyles = StyleSheet.create({
 
     disabled: {
         cursor: "auto",
-        backgroundColor: disabledState.background,
-        borderColor: disabledState.border,
+        backgroundColor: semanticColor.input.disabled.background,
+        borderColor: semanticColor.input.disabled.border,
         borderWidth: border.width.thin,
     },
 
@@ -233,7 +228,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                 // up with keyboard navigation.
                 ":focus-visible": {
                     backgroundColor: error
-                        ? states.error.background
+                        ? semanticColor.input.error.background
                         : colorAction.hover.background,
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,
@@ -241,7 +236,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
                 ":hover": {
                     backgroundColor: error
-                        ? states.error.background
+                        ? semanticColor.input.error.background
                         : colorAction.hover.background,
                     outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: -1,

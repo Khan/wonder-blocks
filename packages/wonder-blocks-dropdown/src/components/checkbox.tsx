@@ -67,11 +67,11 @@ const theme = {
     checkbox: {
         color: {
             default: {
-                border: semanticColor.border.strong,
+                border: semanticColor.input.default.border,
             },
             disabled: {
-                border: semanticColor.action.secondary.disabled.border,
-                background: semanticColor.action.secondary.disabled.background,
+                border: semanticColor.input.disabled.border,
+                background: semanticColor.input.disabled.background,
             },
         },
     },
