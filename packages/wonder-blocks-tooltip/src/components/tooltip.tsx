@@ -268,7 +268,7 @@ export default class Tooltip extends React.Component<Props, State> {
         const shouldAnchorExist = autoUpdate ? this.state.anchorElement : true;
         const shouldBeVisible =
             popperHost && (active || activeBubble) && shouldAnchorExist;
-        const anchorId = `${uniqueId}-anchor`;
+
         // TODO(kevinb): update to use ReactPopper's React 16-friendly syntax
         return (
             <React.Fragment>
@@ -276,16 +276,13 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
-                    id={anchorId}
-                    opened={active}
+                    id={`${uniqueId}-anchor`}
                 >
                     {children}
                 </TooltipAnchor>
                 {shouldBeVisible &&
                     ReactDOM.createPortal(
-                        this._renderPopper(
-                            `${anchorId}-${TooltipAnchor.ariaContentId}`,
-                        ),
+                        this._renderPopper(uniqueId),
                         popperHost,
                     )}
             </React.Fragment>
