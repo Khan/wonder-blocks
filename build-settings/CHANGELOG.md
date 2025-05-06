@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 3.0.0
+
+### Major Changes
+
+- 62b587a: Switch Rollup to use SWC (instead of babel)
+
 ## 2.1.1
 
 ### Patch Changes
