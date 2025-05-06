@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-tabs",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "design": "v1",
   "description": "Tabs are used to control what content is shown",
   "main": "dist/index.js",
