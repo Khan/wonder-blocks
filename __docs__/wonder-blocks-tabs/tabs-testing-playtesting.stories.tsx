@@ -6,6 +6,7 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Placeholder} from "../components/placeholder";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ControlledTabs} from "./tabs-utils";
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
 
 export default {
     title: "Packages / Tabs / Tabs / Testing / Tabs - Playtesting",
@@ -180,5 +181,52 @@ export const TabLabelRenderFunction: Story = {
                 }}
             />
         );
+    },
+};
+
+/**
+ * This is what the Tabs look like when the panel contents are long so the page
+ * is scrollable. When a tab is selected using `Space` or `Enter`, the page
+ * should not scroll down.
+ */
+export const ScrollingPage: Story = {
+    render: (args: PropsFor<typeof ControlledTabs>) => {
+        return <ControlledTabs {...args} />;
+    },
+    args: {
+        tabs: [
+            {
+                label: "Tab 1",
+                id: "tab-1",
+                panel: (
+                    <Placeholder>
+                        <div style={{height: "200vh"}}>Tab contents 1</div>
+                    </Placeholder>
+                ),
+            },
+            {
+                label: "Tab 2",
+                id: "tab-2",
+                panel: (
+                    <Placeholder>
+                        <div style={{height: "200vh"}}>Tab contents 2</div>
+                    </Placeholder>
+                ),
+            },
+            {
+                label: "Tab 3",
+                id: "tab-3",
+                panel: (
+                    <Placeholder>
+                        <div style={{height: "200vh"}}>Tab contents 3</div>
+                    </Placeholder>
+                ),
+            },
+        ],
+        selectedTabId: "tab-1",
+    },
+    parameters: {
+        /** This story is used for testing purposes only so we disable snapshots */
+        chromatic: {disableSnapshot: true},
     },
 };
