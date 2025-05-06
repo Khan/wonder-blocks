@@ -291,16 +291,22 @@ export const Tabs = React.forwardRef(function Tabs(
             const currentIndex = tabs.findIndex(
                 (tab) => tab.id === focusedTabId.current,
             );
+            const element = event.currentTarget;
+            const isRtl = !!element.closest("[dir=rtl]");
 
             switch (event.key) {
-                case keys.left: {
+                case isRtl && keys.right:
+                case !isRtl && keys.left: {
+                    // Select previous tab
                     event.preventDefault();
                     const prevIndex =
                         (currentIndex - 1 + tabs.length) % tabs.length;
                     handleKeyInteraction(tabs[prevIndex].id);
                     break;
                 }
-                case keys.right: {
+                case isRtl && keys.left:
+                case !isRtl && keys.right: {
+                    // Select next tab
                     event.preventDefault();
                     const nextIndex = (currentIndex + 1) % tabs.length;
                     handleKeyInteraction(tabs[nextIndex].id);
