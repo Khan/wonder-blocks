@@ -196,6 +196,26 @@ export const semanticColor = {
         },
     },
     /**
+     * For inputs, form elements, and other elements that require user input.
+     */
+    input: {
+        default: {
+            border: border.strong,
+            background: color.white,
+            foreground: color.offBlack,
+        },
+        disabled: {
+            border: border.primary,
+            background: color.offWhite,
+            foreground: color.fadedOffBlack72,
+        },
+        error: {
+            border: color.red,
+            background: color.fadedRed8,
+            foreground: color.offBlack,
+        },
+    },
+    /**
      * For labels, icons, filters, alerts, and other elements where color can
      * add meaning to the state of the system or an item in the system.
      */
