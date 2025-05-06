@@ -53,9 +53,12 @@ type Props = {
      */
     onActiveChanged: (active: boolean) => unknown;
     /**
-     * Optional unique id.
+     * Required aria-describedby id.
+     * This ID will reference the text in the tooltip bubble.
+     * It should only be set to `undefined` when the tooltip bubble
+     * is not visible.
      */
-    id?: string | undefined;
+    "aria-describedby": string | undefined;
 };
 
 type DefaultProps = {
@@ -161,8 +164,6 @@ export default class TooltipAnchor
             document.removeEventListener("keyup", this._handleKeyUp);
         }
     }
-
-    static ariaContentId = "aria-content";
 
     activeStateStolen: () => void = () => {
         // Something wants the active state.
@@ -320,22 +321,12 @@ export default class TooltipAnchor
         );
     }
 
-    _renderAccessibleChildren(uniqueId: string): React.ReactNode {
+    render(): React.ReactNode {
+        const {"aria-describedby": ariaDescribedBy} = this.props;
         const anchorableChildren = this._renderAnchorableChildren();
 
         return React.cloneElement(anchorableChildren, {
-            "aria-describedby": `${uniqueId}-${TooltipAnchor.ariaContentId}`,
+            "aria-describedby": ariaDescribedBy,
         });
-    }
-
-    render(): React.ReactNode {
-        // We need to make sure we can anchor on our content.
-        // If the content is just a string, we wrap it in a Text element
-        // so as not to affect styling or layout but still have an element
-        // to anchor to.
-        if (this.props.id) {
-            return this._renderAccessibleChildren(this.props.id);
-        }
-        return this._renderAnchorableChildren();
     }
 }

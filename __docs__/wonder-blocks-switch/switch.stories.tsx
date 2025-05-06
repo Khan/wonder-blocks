@@ -7,9 +7,7 @@ import magnifyingGlassIcon from "@phosphor-icons/core/bold/magnifying-glass-bold
 import Switch from "@khanacademy/wonder-blocks-switch";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import * as tokens from "@khanacademy/wonder-blocks-tokens";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import packageConfig from "../../packages/wonder-blocks-switch/package.json";
 import ComponentInfo from "../components/component-info";
@@ -44,7 +42,8 @@ export default {
             />
         ),
         chromatic: {
-            // These stories are being tested in switch-variants.stories.tsx
+            // These stories are being tested in
+            // switch-testing-snapshots.stories.tsx
             disableSnapshot: true,
         },
     },
@@ -186,83 +185,10 @@ export const WithIcon: StoryComponentType = {
     },
 };
 
-/**
- * The switch supports the `khanmigo` theme.
- */
-export const KhanmigoTheme = () => {
-    const [checkedOne, setCheckedOne] = React.useState(false);
-    const [checkedTwo, setCheckedTwo] = React.useState(false);
-
-    return (
-        <ThemeSwitcherContext.Provider value="khanmigo">
-            <View style={[styles.dark, styles.row]}>
-                <View style={styles.column}>
-                    <LabelMedium style={styles.textLight}>Default</LabelMedium>
-                    <Switch
-                        aria-label="Checked example"
-                        checked={checkedOne}
-                        onChange={setCheckedOne}
-                    />
-                    <Switch aria-label="Checked example 2" checked={true} />
-                    <Switch
-                        aria-label="Disabled example"
-                        checked={false}
-                        disabled={true}
-                    />
-                    <Switch
-                        aria-label="Disabled checked example"
-                        checked={true}
-                        disabled={true}
-                    />
-                </View>
-                <View style={styles.column}>
-                    <LabelMedium style={styles.textLight}>
-                        With Icon
-                    </LabelMedium>
-                    <Switch
-                        aria-label="Checked example 3"
-                        checked={checkedTwo}
-                        onChange={setCheckedTwo}
-                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-                    />
-                    <Switch
-                        aria-label="Checked example 4"
-                        checked={true}
-                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-                    />
-                    <Switch
-                        aria-label="Disabled example 2"
-                        checked={false}
-                        disabled={true}
-                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-                    />
-                    <Switch
-                        aria-label="Disabled checked example 2"
-                        checked={true}
-                        disabled={true}
-                        icon={<PhosphorIcon icon={magnifyingGlassIcon} />}
-                    />
-                </View>
-            </View>
-        </ThemeSwitcherContext.Provider>
-    );
-};
-
 const styles = StyleSheet.create({
     column: {
         flexDirection: "column",
         alignItems: "start",
-        gap: tokens.spacing.xSmall_8,
-    },
-    dark: {
-        backgroundColor: tokens.color.eggplant,
-        padding: tokens.spacing.xSmall_8,
-    },
-    row: {
-        flexDirection: "row",
-        gap: tokens.spacing.medium_16,
-    },
-    textLight: {
-        color: tokens.color.white,
+        gap: tokens.sizing.size_080,
     },
 });

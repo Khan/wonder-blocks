@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-toolbar",
-  "version": "5.1.8",
+  "version": "5.1.9",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"

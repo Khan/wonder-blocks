@@ -1,12 +1,18 @@
 import * as React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme";
 import {Decorator} from "@storybook/react";
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {initAnnouncer} from "@khanacademy/wonder-blocks-announcer";
 import Link from "@khanacademy/wonder-blocks-link";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
-import {RenderStateRoot} from "../packages/wonder-blocks-core/src";
+import {
+    ThemeSwitcherContext,
+    ThemeSwitcher,
+} from "@khanacademy/wonder-blocks-theming";
 import {Preview} from "@storybook/react";
+
+// Import the Wonder Blocks CSS variables
+import "@khanacademy/wonder-blocks-tokens/styles.css";
 
 /**
  * WB Official breakpoints
@@ -111,14 +117,18 @@ const withThemeSwitcher: Decorator = (
         return (
             <RenderStateRoot>
                 <ThemeSwitcherContext.Provider value={theme}>
-                    <Story />
+                    <ThemeSwitcher theme={theme}>
+                        <Story />
+                    </ThemeSwitcher>
                 </ThemeSwitcherContext.Provider>
             </RenderStateRoot>
         );
     }
     return (
         <ThemeSwitcherContext.Provider value={theme}>
-            <Story />
+            <ThemeSwitcher theme={theme}>
+                <Story />
+            </ThemeSwitcher>
         </ThemeSwitcherContext.Provider>
     );
 };
@@ -202,7 +212,7 @@ const preview: Preview = {
                     },
                     {
                         value: "khanmigo",
-                        icon: "circle",
+                        icon: "comment",
                         title: "Khanmigo",
                     },
                 ],

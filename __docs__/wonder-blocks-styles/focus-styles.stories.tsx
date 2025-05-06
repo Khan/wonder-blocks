@@ -197,11 +197,11 @@ export const Scenarios: Story = {
 
         return (
             <ScenariosLayout scenarios={scenarios}>
-                {(props) => (
+                {({inverse, ...props}) => (
                     <View
                         {...props}
                         style={{
-                            background: props.inverse
+                            background: inverse
                                 ? semanticColor.surface.inverse
                                 : semanticColor.status.success.background,
                             padding: spacing.medium_16,

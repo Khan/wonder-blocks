@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-theming
 
+## 3.3.0
+
+### Minor Changes
+
+- 7f79943: Export THEME_DATA_ATTRIBUTE to centralize how the theme is set in WB
+- 7bbf311: Add ThemeSwitcher component to change themes using CSS variables
+
 ## 3.2.1
 
 ### Patch Changes

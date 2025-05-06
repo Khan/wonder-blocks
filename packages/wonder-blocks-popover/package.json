@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-popover",
-  "version": "6.0.5",
+  "version": "6.0.7",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "catalog:",
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon-button": "workspace:*",
     "@khanacademy/wonder-blocks-modal": "workspace:*",
