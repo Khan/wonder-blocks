@@ -423,44 +423,35 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-            <StyledDiv
-                style={
-                    direction === "left"
-                        ? styles.slideLeft
-                        : direction === "right"
-                          ? styles.slideRight
-                          : undefined
-                }
-            >
-                {tabs.map((tab) => {
-                    const isActive = selectedTabId === tab.id;
-                    return (
-                        <TabPanel
-                            key={tab.id}
-                            id={getTabPanelId(tab.id)}
-                            aria-labelledby={getTabId(tab.id)}
-                            active={isActive}
-                            testId={tab.testId && getTabPanelId(tab.testId)}
-                            style={[
-                                stylesProp?.tabPanel,
-                                // isActive
-                                //     ? styles.openedTabPanel
-                                //     : styles.closedTabPanel,
-                            ]}
-                        >
-                            {/* Tab panel contents are rendered if the tab has
+
+            {tabs.map((tab) => {
+                const isActive = selectedTabId === tab.id;
+                return (
+                    <TabPanel
+                        key={tab.id}
+                        id={getTabPanelId(tab.id)}
+                        aria-labelledby={getTabId(tab.id)}
+                        active={isActive}
+                        testId={tab.testId && getTabPanelId(tab.testId)}
+                        style={[
+                            stylesProp?.tabPanel,
+                            isActive
+                                ? styles.openedTabPanel
+                                : styles.closedTabPanel,
+                        ]}
+                    >
+                        {/* Tab panel contents are rendered if the tab has
                         been previously visited or if mountAllPanels is enabled.
                         If mountAllPanels is off, it prevents unnecessary
                         re-mounting of tab panel contents when switching tabs.
                         Note that TabPanel will only display the contents if it
                         is the active panel. */}
-                            {(mountAllPanels ||
-                                visitedTabsRef.current.has(tab.id)) &&
-                                tab.panel}
-                        </TabPanel>
-                    );
-                })}
-            </StyledDiv>
+                        {(mountAllPanels ||
+                            visitedTabsRef.current.has(tab.id)) &&
+                            tab.panel}
+                    </TabPanel>
+                );
+            })}
         </StyledDiv>
     );
 });
@@ -491,24 +482,6 @@ const vanish = {
     },
 };
 
-const slideLeft = {
-    from: {
-        transform: "translateX(0%)",
-    },
-    to: {
-        transform: "translateX(-100%)",
-    },
-};
-
-const slideRight = {
-    from: {
-        transform: "translateX(-100%)",
-    },
-    to: {
-        transform: "translateX(0%)",
-    },
-};
-
 const styles = StyleSheet.create({
     tabs: {
         display: "inline-flex",
@@ -521,19 +494,11 @@ const styles = StyleSheet.create({
         overflowX: "auto",
     },
     openedTabPanel: {
-        // animationName: appear,
-        animationDuration: "1s",
-    } as any,
-    closedTabPanel: {
-        // animationName: vanish,
-        animationDuration: "1s",
-    } as any,
-    slideLeft: {
-        animationName: slideLeft,
+        animationName: appear,
         animationDuration: "0.3s",
     } as any,
-    slideRight: {
-        animationName: slideRight,
+    closedTabPanel: {
+        animationName: vanish,
         animationDuration: "0.3s",
     } as any,
 });
