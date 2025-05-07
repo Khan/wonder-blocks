@@ -246,29 +246,6 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         return stateStyles[styleKey];
     }
 
-    // The different states that the component can be in.
-    const states = {
-        // Resting state
-        default: {
-            border: semanticColor.border.strong,
-            background: semanticColor.surface.primary,
-            foreground: semanticColor.text.primary,
-        },
-        disabled: {
-            border: semanticColor.action.secondary.disabled.border,
-            background: semanticColor.action.secondary.disabled.background,
-            // NOTE: This color is specific for form fields.
-            // TODO(WB-1895): Revisit disabled styles.
-            foreground: semanticColor.text.secondary,
-        },
-        // Form validation error state
-        error: {
-            border: semanticColor.status.critical.foreground,
-            background: semanticColor.status.critical.background,
-            foreground: semanticColor.text.primary,
-        },
-    };
-
     // The color is based on the action color.
     const actionType = error ? "destructive" : "progressive";
     // NOTE: We are using the secondary action type for all the non-resting
@@ -303,7 +280,9 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
         ...sharedOutlineStyling,
     };
 
-    const currentState = error ? states.error : states.default;
+    const currentState = error
+        ? semanticColor.input.error
+        : semanticColor.input.default;
 
     const newStyles = {
         default: {
@@ -328,9 +307,9 @@ const _generateStyles = (placeholder: boolean, error: boolean) => {
             ":active:not([aria-disabled=true])": pressStyling,
         },
         disabled: {
-            background: states.disabled.background,
-            borderColor: states.disabled.border,
-            color: states.disabled.foreground,
+            background: semanticColor.input.disabled.background,
+            borderColor: semanticColor.input.disabled.border,
+            color: semanticColor.input.disabled.foreground,
             cursor: "not-allowed",
             ":focus-visible": {
                 outlineColor: semanticColor.focus.outer,
