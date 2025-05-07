@@ -129,7 +129,7 @@ export const semanticColor = {
 
             disabled: {
                 border: border.primary,
-                background: color.offWhite,
+                background: "transparent",
                 foreground: color.fadedOffBlack32,
             },
         },
