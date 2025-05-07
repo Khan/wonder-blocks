@@ -1,15 +1,29 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter} from "react-router-dom";
-import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
+import {
+    CompatRouter,
+    createMemoryRouter,
+    Outlet,
+    Route,
+    RouterProvider,
+    Routes,
+    useViewTransitionState,
+} from "react-router-dom-v5-compat";
 import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {semanticColor, spacing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    semanticColor,
+    sizing,
+    spacing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {
     Body,
+    HeadingMedium,
     HeadingSmall,
     LabelLarge,
 } from "@khanacademy/wonder-blocks-typography";
@@ -435,6 +449,168 @@ export const Navigation: StoryComponentType = {
 };
 
 /**
+ * An example of a React Router root component.
+ */
+function Layout() {
+    return (
+        <View>
+            <View style={styles.row}>
+                <Link href="/one" style={styles.heading} viewTransition>
+                    <LabelLarge>First Page</LabelLarge>
+                </Link>
+                <Link href="/two" style={styles.heading} viewTransition>
+                    <LabelLarge>Second Page</LabelLarge>
+                </Link>
+            </View>
+            <View style={[styles.navigation]}>
+                <Outlet />
+            </View>
+        </View>
+    );
+}
+
+/**
+ * `Link` can be used with `viewTransition` to animate between pages. The
+ * `viewTransition` prop is a boolean that indicates whether the link should use
+ * the View Transition API. See the [View Transition API
+ * documentation](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API)
+ * for more information.
+ *
+ * This example uses the ReactRouter's `useViewTransitionState` hook to
+ * determine if the link is currently transitioning, then applies the
+ * `viewTransitionName` style to the link and the card. The `viewTransitionName`
+ * style is a CSS property that specifies the name of the transition. The
+ * transition name is used to match the elements that should be animated between
+ * the two pages.
+ *
+ * You can take a look at the code snippet below to see how this example works
+ * (click on the "Show code" button).
+ */
+export const ViewTransition: StoryComponentType = {
+    name: "ViewTransition",
+    // NOTE: This story is not a part of the main storybook. It is created this
+    // way to allow including the whole code snippet and avoid recreating the
+    // FirstPage and SecondPage components in the storybook's render cycle.
+    decorators: [
+        () => {
+            function FirstPage() {
+                const to = "/two";
+                const isTransitioning = useViewTransitionState(to);
+
+                return (
+                    <View
+                        style={[
+                            styles.card,
+                            {
+                                width: "fit-content",
+                                // 1️⃣ A transition name is only applied when
+                                // the link is clicked (transition starts)👇.
+                                viewTransitionName: isTransitioning
+                                    ? "card-expand"
+                                    : "none",
+                            },
+                        ]}
+                    >
+                        <Body>The first link opens the second tab.</Body>
+
+                        <Link
+                            href={to}
+                            viewTransition
+                            style={{
+                                viewTransitionName: isTransitioning
+                                    ? "card-link"
+                                    : "none",
+                            }}
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretRightBold}
+                                />
+                            }
+                        >
+                            Go to second page
+                        </Link>
+                    </View>
+                );
+            }
+
+            function SecondPage() {
+                const to = "/one";
+                const isTransitioning = useViewTransitionState(to);
+
+                return (
+                    <View
+                        style={[
+                            styles.card,
+                            {
+                                // 2️⃣ This is how View Transitions connect
+                                // elements between pages (using the same
+                                // name)👇.
+                                viewTransitionName: isTransitioning
+                                    ? "card-expand"
+                                    : "none",
+                                // 3️⃣ Any CSS properties that change are
+                                // transitioned between states/pages 👇.
+                                width: 480,
+                                height: 400,
+                                justifyContent: "space-between",
+                                marginInline: "auto",
+                            },
+                        ]}
+                    >
+                        <HeadingMedium>This is the Detail page</HeadingMedium>
+                        <img
+                            src="./km-ready.svg"
+                            alt="detail screenshot"
+                            height={150}
+                        />
+                        <Link
+                            href={to}
+                            style={[
+                                {
+                                    // 4️⃣ We can assign different VT names in
+                                    // any page, so different DOM elements can
+                                    // have different transitions 👇.
+                                    viewTransitionName: isTransitioning
+                                        ? "card-link"
+                                        : "none",
+                                    alignSelf: "flex-end",
+                                },
+                            ]}
+                            viewTransition
+                            startIcon={
+                                <PhosphorIcon
+                                    icon={IconMappings.caretLeftBold}
+                                />
+                            }
+                        >
+                            Go back to first page
+                        </Link>
+                    </View>
+                );
+            }
+
+            const router = createMemoryRouter(
+                [
+                    {
+                        path: "/",
+                        element: <Layout />,
+                        children: [
+                            {path: "/one", element: <FirstPage />},
+                            {path: "/two", element: <SecondPage />},
+                        ],
+                    },
+                ],
+                {
+                    initialEntries: ["/", "/one"],
+                    initialIndex: 1,
+                },
+            );
+            return <RouterProvider router={router} />;
+        },
+    ],
+};
+
+/**
  * Link can take a title prop. Give a link a title by setting the `title` prop
  * to a string. Hover over the link to see its title.
  */
@@ -523,5 +699,13 @@ const styles = StyleSheet.create({
         display: "inline-block",
         marginBottom: spacing.xSmall_8,
         maxWidth: "15%",
+    },
+    card: {
+        background: semanticColor.surface.secondary,
+        border: `${border.width.thin} solid ${semanticColor.border.primary}`,
+        borderRadius: border.radius.radius_040,
+        width: "100%",
+        height: "100%",
+        padding: sizing.size_160,
     },
 });

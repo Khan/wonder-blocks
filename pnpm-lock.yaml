@@ -56,6 +56,11 @@ overrides:
   '@types/react': '18'
   '@types/react-dom': '18'
 
+patchedDependencies:
+  react-router-dom-v5-compat@6.30.0:
+    hash: a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245
+    path: patches/react-router-dom-v5-compat@6.30.0.patch
+
 importers:
 
   .:
@@ -92,7 +97,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -538,7 +543,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -597,7 +602,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -622,7 +627,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -717,7 +722,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
       react-window:
         specifier: 'catalog:'
         version: 1.8.11(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -835,7 +840,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -919,7 +924,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1192,7 +1197,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -1226,7 +1231,7 @@ importers:
         version: 5.3.4(react@18.2.0)
       react-router-dom-v5-compat:
         specifier: 'catalog:'
-        version: 6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
+        version: 6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0)
     devDependencies:
       '@khanacademy/wb-dev-build-settings':
         specifier: workspace:*
@@ -8458,7 +8463,6 @@ snapshots:
   '@babel/runtime@7.27.0':
     dependencies:
       regenerator-runtime: 0.14.1
-    optional: true
 
   '@babel/template@7.25.9':
     dependencies:
@@ -11761,7 +11765,7 @@ snapshots:
 
   history@4.10.1:
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.27.0
       loose-envify: 1.4.0
       resolve-pathname: 3.0.0
       tiny-invariant: 1.3.3
@@ -14085,7 +14089,7 @@ snapshots:
 
   react-refresh@0.16.0: {}
 
-  react-router-dom-v5-compat@6.30.0(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0):
+  react-router-dom-v5-compat@6.30.0(patch_hash=a5aa3aa17ce8dee8928732ae0a22bd6e9e3c0c458e4c2024a78e155de1060245)(react-dom@18.2.0(react@18.2.0))(react-router-dom@5.3.4(react@18.2.0))(react@18.2.0):
     dependencies:
       '@remix-run/router': 1.23.0
       history: 5.3.0
@@ -14096,7 +14100,7 @@ snapshots:
 
   react-router-dom@5.3.4(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.27.0
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -14107,7 +14111,7 @@ snapshots:
 
   react-router@5.3.4(react@18.2.0):
     dependencies:
-      '@babel/runtime': 7.26.7
+      '@babel/runtime': 7.27.0
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0

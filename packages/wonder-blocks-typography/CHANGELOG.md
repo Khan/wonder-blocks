@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-typography
 
+## 3.2.0
+
+### Minor Changes
+
+- b9e4946: Update Typography components to use font tokens with REM units instead of pixels for user-scalable font-sizing and line-heights.
+
+### Patch Changes
+
+- Updated dependencies [b9e4946]
+    - @khanacademy/wonder-blocks-tokens@10.0.0
+    - @khanacademy/wonder-blocks-core@12.2.1
+
 ## 3.1.3
 
 ### Patch Changes
