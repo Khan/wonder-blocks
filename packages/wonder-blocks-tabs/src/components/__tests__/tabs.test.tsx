@@ -1752,8 +1752,24 @@ describe("Tabs", () => {
                     render(
                         <div dir="rtl">
                             <ControlledTabs
-                                tabs={tabs}
-                                selectedTabId={tabs[1].id}
+                                tabs={[
+                                    {
+                                        id: "tab-1",
+                                        label: "Tab 1",
+                                        panel: <div>Contents of tab 1</div>,
+                                    },
+                                    {
+                                        id: "tab-2",
+                                        label: "Tab 2",
+                                        panel: <div>Contents of tab 2</div>,
+                                    },
+                                    {
+                                        id: "tab-3",
+                                        label: "Tab 3",
+                                        panel: <div>Contents of tab 3</div>,
+                                    },
+                                ]}
+                                selectedTabId={"tab-2"}
                             />
                         </div>,
                     );
@@ -1773,8 +1789,24 @@ describe("Tabs", () => {
                     render(
                         <div dir="rtl">
                             <ControlledTabs
-                                tabs={tabs}
-                                selectedTabId={tabs[1].id}
+                                tabs={[
+                                    {
+                                        id: "tab-1",
+                                        label: "Tab 1",
+                                        panel: <div>Contents of tab 1</div>,
+                                    },
+                                    {
+                                        id: "tab-2",
+                                        label: "Tab 2",
+                                        panel: <div>Contents of tab 2</div>,
+                                    },
+                                    {
+                                        id: "tab-3",
+                                        label: "Tab 3",
+                                        panel: <div>Contents of tab 3</div>,
+                                    },
+                                ]}
+                                selectedTabId={"tab-2"}
                             />
                         </div>,
                     );
@@ -1794,8 +1826,24 @@ describe("Tabs", () => {
                     render(
                         <div dir="rtl">
                             <ControlledTabs
-                                tabs={tabs}
-                                selectedTabId={tabs[1].id}
+                                tabs={[
+                                    {
+                                        id: "tab-1",
+                                        label: "Tab 1",
+                                        panel: <div>Contents of tab 1</div>,
+                                    },
+                                    {
+                                        id: "tab-2",
+                                        label: "Tab 2",
+                                        panel: <div>Contents of tab 2</div>,
+                                    },
+                                    {
+                                        id: "tab-3",
+                                        label: "Tab 3",
+                                        panel: <div>Contents of tab 3</div>,
+                                    },
+                                ]}
+                                selectedTabId={"tab-2"}
                             />
                         </div>,
                     );
@@ -1815,8 +1863,24 @@ describe("Tabs", () => {
                     render(
                         <div dir="rtl">
                             <ControlledTabs
-                                tabs={tabs}
-                                selectedTabId={tabs[1].id}
+                                tabs={[
+                                    {
+                                        id: "tab-1",
+                                        label: "Tab 1",
+                                        panel: <div>Contents of tab 1</div>,
+                                    },
+                                    {
+                                        id: "tab-2",
+                                        label: "Tab 2",
+                                        panel: <div>Contents of tab 2</div>,
+                                    },
+                                    {
+                                        id: "tab-3",
+                                        label: "Tab 3",
+                                        panel: <div>Contents of tab 3</div>,
+                                    },
+                                ]}
+                                selectedTabId={"tab-2"}
                             />
                         </div>,
                     );
