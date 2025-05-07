@@ -277,15 +277,11 @@ describe("IconButton", () => {
             // the default behavior of the button.
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyDown(button, {
-                key: "Space",
-                code: "Space",
-                charCode: 32,
+                key: " ",
             });
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyUp(button, {
-                key: "Space",
-                code: "Space",
-                charCode: 32,
+                key: " ",
             });
 
             // Assert
@@ -314,8 +310,6 @@ describe("IconButton", () => {
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyDown(button, {
                 key: "Enter",
-                code: "Enter",
-                charCode: 13,
             });
             // NOTE: We need to trigger multiple events to simulate the browser
             // behavior of pressing Enter on a button. By default, browsers will
@@ -324,14 +318,10 @@ describe("IconButton", () => {
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyDown(button, {
                 key: "Enter",
-                code: "Enter",
-                charCode: 13,
             });
             // eslint-disable-next-line testing-library/prefer-user-event
             fireEvent.keyUp(button, {
                 key: "Enter",
-                code: "Enter",
-                charCode: 13,
             });
 
             // Assert
