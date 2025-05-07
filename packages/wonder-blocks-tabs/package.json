@@ -22,7 +22,8 @@
   },
   "peerDependencies": {
     "aphrodite": "catalog:",
-    "react": "catalog:"
+    "react": "catalog:",
+    "motion": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"

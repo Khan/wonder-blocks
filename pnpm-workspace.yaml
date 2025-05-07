@@ -31,3 +31,5 @@ catalog:
     react-window: ^1.8.11
     # Codemods
     jscodeshift: ^17.3.0
+    # Motion
+    motion: ^12.10.1
