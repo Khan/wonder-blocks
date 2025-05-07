@@ -5,6 +5,7 @@ import {
     keys,
     PropsFor,
     StyleType,
+    useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {TabPanel} from "./tab-panel";
@@ -230,6 +231,22 @@ export const Tabs = React.forwardRef(function Tabs(
     const tablistRef = React.useRef<HTMLDivElement>(null);
 
     /**
+     * Whether the component is in RTL mode.
+     */
+    const [isRtl, setIsRtl] = React.useState(false);
+
+    useOnMountEffect(() => {
+        setIsRtl(!!tablistRef.current?.closest("[dir=rtl]"));
+    });
+
+    /**
+     * Direction of the tabs motion.
+     */
+    const [direction, setDirection] = React.useState<"left" | "right" | null>(
+        null,
+    );
+
+    /**
      * Determine if the tab is active if it has aria-selected="true".
      */
     const isTabActive = React.useCallback((tabElement: Element): boolean => {
@@ -255,11 +272,23 @@ export const Tabs = React.forwardRef(function Tabs(
     const selectTab = React.useCallback(
         (tabId: string) => {
             if (tabId !== selectedTabId) {
+                const currentIndex = tabs.findIndex(
+                    (tab) => tab.id === selectedTabId,
+                );
+                const selectedIndex = tabs.findIndex((tab) => tab.id === tabId);
+                const direction = isRtl
+                    ? selectedIndex > currentIndex
+                        ? "left"
+                        : "right"
+                    : currentIndex > selectedIndex
+                      ? "left"
+                      : "right";
+                setDirection(direction);
                 // Select the tab only if it's not already selected
                 onTabSelected(tabId);
             }
         },
-        [onTabSelected, selectedTabId],
+        [onTabSelected, selectedTabId, isRtl, setDirection, tabs],
     );
 
     const handleKeyInteraction = React.useCallback(
@@ -291,8 +320,6 @@ export const Tabs = React.forwardRef(function Tabs(
             const currentIndex = tabs.findIndex(
                 (tab) => tab.id === focusedTabId.current,
             );
-            const element = event.currentTarget;
-            const isRtl = !!element.closest("[dir=rtl]");
 
             switch (event.key) {
                 case isRtl && keys.right:
@@ -330,7 +357,7 @@ export const Tabs = React.forwardRef(function Tabs(
                 }
             }
         },
-        [handleKeyInteraction, selectTab, tabs, focusedTabId],
+        [handleKeyInteraction, selectTab, tabs, focusedTabId, isRtl],
     );
 
     const handleTablistBlur = React.useCallback(() => {
@@ -378,7 +405,7 @@ export const Tabs = React.forwardRef(function Tabs(
                             selected: id === selectedTabId,
                             "aria-controls": getTabPanelId(id),
                             onClick: () => {
-                                onTabSelected(id);
+                                selectTab(id);
                             },
                             onKeyDown: handleKeyDown,
                             ref: (element) => {
