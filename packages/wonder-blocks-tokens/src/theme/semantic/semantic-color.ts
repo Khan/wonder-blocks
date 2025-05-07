@@ -5,6 +5,8 @@ const border = {
     subtle: color.fadedOffBlack8,
     strong: color.fadedOffBlack50,
     inverse: color.white,
+    progressive: color.blue,
+    destructive: color.red,
 };
 
 const surface = {
@@ -36,7 +38,7 @@ export const semanticColor = {
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: color.blue,
+                    border: border.progressive,
                     background: color.blue,
                     foreground: text.inverse,
                 },
@@ -53,7 +55,7 @@ export const semanticColor = {
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: color.red,
+                    border: border.destructive,
                     background: color.red,
                     foreground: text.inverse,
                 },
@@ -97,7 +99,7 @@ export const semanticColor = {
                     foreground: color.blue,
                 },
                 hover: {
-                    border: color.blue,
+                    border: border.progressive,
                     background: "transparent",
                     foreground: color.blue,
                 },
@@ -114,7 +116,7 @@ export const semanticColor = {
                     foreground: color.red,
                 },
                 hover: {
-                    border: color.red,
+                    border: border.destructive,
                     background: "transparent",
                     foreground: color.red,
                 },
@@ -157,7 +159,7 @@ export const semanticColor = {
                     foreground: color.blue,
                 },
                 hover: {
-                    border: color.blue,
+                    border: border.progressive,
                     background: "transparent",
                     foreground: color.blue,
                 },
@@ -175,7 +177,7 @@ export const semanticColor = {
                     foreground: color.red,
                 },
                 hover: {
-                    border: color.red,
+                    border: border.destructive,
                     background: "transparent",
                     foreground: color.red,
                 },
@@ -221,7 +223,7 @@ export const semanticColor = {
             placeholder: text.secondary,
         },
         checked: {
-            border: color.blue,
+            border: border.progressive,
             background: color.blue,
             foreground: text.inverse,
         },
@@ -232,7 +234,7 @@ export const semanticColor = {
             placeholder: text.secondary,
         },
         error: {
-            border: color.red,
+            border: border.destructive,
             background: color.fadedRed8,
             foreground: text.primary,
         },
