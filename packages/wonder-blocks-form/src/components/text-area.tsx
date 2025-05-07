@@ -328,10 +328,11 @@ const styles = StyleSheet.create({
         border: `${border.width.thin} solid ${semanticColor.input.default.border}`,
         color: semanticColor.input.default.foreground,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: semanticColor.input.default.placeholder,
         },
     },
     defaultFocus: {
+        // TODO(WB-1864): Use focusStyles.focus
         ":focus-visible": {
             borderColor: semanticColor.focus.outer,
             outline: `${border.width.thin} solid ${semanticColor.focus.outer}`,
@@ -345,9 +346,10 @@ const styles = StyleSheet.create({
         border: `${border.width.thin} solid ${semanticColor.input.disabled.border}`,
         color: semanticColor.input.disabled.foreground,
         "::placeholder": {
-            color: semanticColor.input.disabled.foreground,
+            color: semanticColor.input.disabled.placeholder,
         },
         cursor: "not-allowed",
+        // TODO(WB-1864): Use focusStyles.focus
         ":focus-visible": {
             outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
             outlineOffset: -3,
@@ -358,8 +360,9 @@ const styles = StyleSheet.create({
         border: `${border.width.thin} solid ${semanticColor.input.error.border}`,
         color: semanticColor.input.error.foreground,
         "::placeholder": {
-            color: semanticColor.text.secondary,
+            color: semanticColor.input.default.placeholder,
         },
+        // TODO(WB-1864): Use focusStyles.focus
         ":focus-visible": {
             outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
             borderColor: semanticColor.input.error.border,

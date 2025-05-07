@@ -198,11 +198,13 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
+                // TODO(WB-1864): Use focusStyles.focus
                 ":focus-visible": {
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: 1,
                 },
 
+                // TODO(WB-1864): Revisit hover, press tokens
                 ":hover": {
                     outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
@@ -226,6 +228,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
+                // TODO(WB-1864): Use focusStyles.focus
                 ":focus-visible": {
                     backgroundColor: error
                         ? semanticColor.input.error.background
@@ -233,7 +236,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: -1,
                 },
-
+                // TODO(WB-1864): Revisit hover, press tokens
                 ":hover": {
                     backgroundColor: error
                         ? semanticColor.input.error.background

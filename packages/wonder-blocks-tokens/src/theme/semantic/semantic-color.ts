@@ -218,6 +218,7 @@ export const semanticColor = {
             border: border.strong,
             background: surface.primary,
             foreground: text.primary,
+            placeholder: text.secondary,
         },
         checked: {
             border: color.blue,
@@ -228,6 +229,7 @@ export const semanticColor = {
             border: border.primary,
             background: color.offWhite,
             foreground: text.secondary,
+            placeholder: text.secondary,
         },
         error: {
             border: color.red,
