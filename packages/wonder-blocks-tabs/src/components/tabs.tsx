@@ -423,31 +423,91 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-            {tabs.map((tab) => {
-                return (
-                    <TabPanel
-                        key={tab.id}
-                        id={getTabPanelId(tab.id)}
-                        aria-labelledby={getTabId(tab.id)}
-                        active={selectedTabId === tab.id}
-                        testId={tab.testId && getTabPanelId(tab.testId)}
-                        style={stylesProp?.tabPanel}
-                    >
-                        {/* Tab panel contents are rendered if the tab has
+            <StyledDiv
+                style={
+                    direction === "left"
+                        ? styles.slideLeft
+                        : direction === "right"
+                          ? styles.slideRight
+                          : undefined
+                }
+            >
+                {tabs.map((tab) => {
+                    const isActive = selectedTabId === tab.id;
+                    return (
+                        <TabPanel
+                            key={tab.id}
+                            id={getTabPanelId(tab.id)}
+                            aria-labelledby={getTabId(tab.id)}
+                            active={isActive}
+                            testId={tab.testId && getTabPanelId(tab.testId)}
+                            style={[
+                                stylesProp?.tabPanel,
+                                // isActive
+                                //     ? styles.openedTabPanel
+                                //     : styles.closedTabPanel,
+                            ]}
+                        >
+                            {/* Tab panel contents are rendered if the tab has
                         been previously visited or if mountAllPanels is enabled.
                         If mountAllPanels is off, it prevents unnecessary
                         re-mounting of tab panel contents when switching tabs.
                         Note that TabPanel will only display the contents if it
                         is the active panel. */}
-                        {(mountAllPanels ||
-                            visitedTabsRef.current.has(tab.id)) &&
-                            tab.panel}
-                    </TabPanel>
-                );
-            })}
+                            {(mountAllPanels ||
+                                visitedTabsRef.current.has(tab.id)) &&
+                                tab.panel}
+                        </TabPanel>
+                    );
+                })}
+            </StyledDiv>
         </StyledDiv>
     );
 });
+
+const appear = {
+    from: {
+        display: "none",
+        opacity: 0,
+        // transform: "translateX(0%)",
+    },
+    to: {
+        display: "block",
+        opacity: 1,
+        // transform: "translateX(-100%)",
+    },
+};
+
+const vanish = {
+    from: {
+        display: "block",
+        opacity: 1,
+        // transform: "translateX(-100%)",
+    },
+    to: {
+        display: "none",
+        opacity: 0,
+        // transform: "translateX(0%)",
+    },
+};
+
+const slideLeft = {
+    from: {
+        transform: "translateX(0%)",
+    },
+    to: {
+        transform: "translateX(-100%)",
+    },
+};
+
+const slideRight = {
+    from: {
+        transform: "translateX(-100%)",
+    },
+    to: {
+        transform: "translateX(0%)",
+    },
+};
 
 const styles = StyleSheet.create({
     tabs: {
@@ -460,4 +520,20 @@ const styles = StyleSheet.create({
         position: "relative",
         overflowX: "auto",
     },
+    openedTabPanel: {
+        // animationName: appear,
+        animationDuration: "1s",
+    } as any,
+    closedTabPanel: {
+        // animationName: vanish,
+        animationDuration: "1s",
+    } as any,
+    slideLeft: {
+        animationName: slideLeft,
+        animationDuration: "0.3s",
+    } as any,
+    slideRight: {
+        animationName: slideRight,
+        animationDuration: "0.3s",
+    } as any,
 });
