@@ -239,12 +239,7 @@ export const Tabs = React.forwardRef(function Tabs(
         setIsRtl(!!tablistRef.current?.closest("[dir=rtl]"));
     });
 
-    /**
-     * Direction of the tabs motion.
-     */
-    const [direction, setDirection] = React.useState<"left" | "right" | null>(
-        null,
-    );
+    const previousSelectedTabId = React.useRef(selectedTabId);
 
     /**
      * Determine if the tab is active if it has aria-selected="true".
@@ -272,23 +267,12 @@ export const Tabs = React.forwardRef(function Tabs(
     const selectTab = React.useCallback(
         (tabId: string) => {
             if (tabId !== selectedTabId) {
-                const currentIndex = tabs.findIndex(
-                    (tab) => tab.id === selectedTabId,
-                );
-                const selectedIndex = tabs.findIndex((tab) => tab.id === tabId);
-                const direction = isRtl
-                    ? selectedIndex > currentIndex
-                        ? "left"
-                        : "right"
-                    : currentIndex > selectedIndex
-                      ? "left"
-                      : "right";
-                setDirection(direction);
                 // Select the tab only if it's not already selected
+                previousSelectedTabId.current = selectedTabId;
                 onTabSelected(tabId);
             }
         },
-        [onTabSelected, selectedTabId, isRtl, setDirection, tabs],
+        [onTabSelected, selectedTabId],
     );
 
     const handleKeyInteraction = React.useCallback(
@@ -370,6 +354,15 @@ export const Tabs = React.forwardRef(function Tabs(
         return <React.Fragment />;
     }
 
+    const currentIndex = tabs.findIndex((tab) => tab.id === selectedTabId);
+
+    const previousIndex = tabs.findIndex(
+        (tab) => tab.id === previousSelectedTabId.current,
+    );
+
+    const currentTabStyle = styles.slideInFromRight;
+    const previousTabStyle = styles.slideOutToLeft;
+
     return (
         <StyledDiv
             ref={ref}
@@ -438,6 +431,9 @@ export const Tabs = React.forwardRef(function Tabs(
                             isActive
                                 ? styles.openedTabPanel
                                 : styles.closedTabPanel,
+                            isActive && currentTabStyle,
+                            previousSelectedTabId.current === tab.id &&
+                                previousTabStyle,
                         ]}
                     >
                         {/* Tab panel contents are rendered if the tab has
@@ -460,12 +456,10 @@ const appear = {
     from: {
         display: "none",
         opacity: 0,
-        // transform: "translateX(0%)",
     },
     to: {
         display: "block",
         opacity: 1,
-        // transform: "translateX(-100%)",
     },
 };
 
@@ -473,12 +467,55 @@ const vanish = {
     from: {
         display: "block",
         opacity: 1,
-        // transform: "translateX(-100%)",
     },
     to: {
         display: "none",
         opacity: 0,
-        // transform: "translateX(0%)",
+    },
+};
+
+const slideInFromLeft = {
+    from: {
+        opacity: 0,
+        display: "none",
+        translate: "-100% 0",
+    },
+    to: {
+        opacity: 1,
+        display: "block",
+    },
+};
+const slideInFromRight = {
+    from: {
+        opacity: 0,
+        display: "none",
+        translate: "100% 0",
+    },
+    to: {
+        opacity: 1,
+        display: "block",
+    },
+};
+const slideOutToLeft = {
+    from: {
+        opacity: 1,
+        display: "block",
+    },
+    to: {
+        opacity: 0,
+        display: "none",
+        translate: "-100% 0",
+    },
+};
+const slideOutToRight = {
+    from: {
+        opacity: 1,
+        display: "block",
+    },
+    to: {
+        opacity: 0,
+        display: "none",
+        translate: "100% 0",
     },
 };
 
@@ -495,10 +532,26 @@ const styles = StyleSheet.create({
     },
     openedTabPanel: {
         animationName: appear,
-        animationDuration: "0.3s",
+        animationDuration: "1s",
     } as any,
     closedTabPanel: {
         animationName: vanish,
-        animationDuration: "0.3s",
+        animationDuration: "1s",
+    } as any,
+    slideInFromLeft: {
+        animationName: slideInFromLeft,
+        animationDuration: "1s",
+    } as any,
+    slideInFromRight: {
+        animationName: slideInFromRight,
+        animationDuration: "1s",
+    } as any,
+    slideOutToLeft: {
+        animationName: slideOutToLeft,
+        animationDuration: "1s",
+    } as any,
+    slideOutToRight: {
+        animationName: slideOutToRight,
+        animationDuration: "1s",
     } as any,
 });

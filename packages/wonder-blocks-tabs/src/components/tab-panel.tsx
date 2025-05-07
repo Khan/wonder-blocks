@@ -71,7 +71,7 @@ export const TabPanel = (props: Props) => {
             hidden={!active}
             data-testid={testId}
             // Only apply styles if it is active so it doesn't override the display: none for inactive tabs
-            style={active && [styles.tabPanel, style]}
+            style={[active && styles.tabPanel, style]}
         >
             {children}
         </StyledDiv>
