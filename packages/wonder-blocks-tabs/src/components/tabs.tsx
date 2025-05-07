@@ -360,9 +360,33 @@ export const Tabs = React.forwardRef(function Tabs(
         (tab) => tab.id === previousSelectedTabId.current,
     );
 
-    const currentTabStyle = styles.slideInFromRight;
-    const previousTabStyle = styles.slideOutToLeft;
+    function getCurrentTabStyle() {
+        if (currentIndex === previousIndex) {
+            return undefined;
+        }
 
+        if (currentIndex > previousIndex) {
+            return styles.slideInFromRight;
+        }
+
+        return styles.slideInFromLeft;
+    }
+
+    function getPreviousTabStyle() {
+        if (currentIndex === previousIndex) {
+            return undefined;
+        }
+
+        if (currentIndex > previousIndex) {
+            return styles.slideOutToLeft;
+        }
+
+        return styles.slideOutToRight;
+    }
+    const currentTabStyle = getCurrentTabStyle();
+    const previousTabStyle = getPreviousTabStyle();
+    console.log("currentTabStyle", currentTabStyle);
+    console.log("previousTabStyle", previousTabStyle);
     return (
         <StyledDiv
             ref={ref}
@@ -416,7 +440,6 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-
             {tabs.map((tab) => {
                 const isActive = selectedTabId === tab.id;
                 return (
@@ -428,9 +451,9 @@ export const Tabs = React.forwardRef(function Tabs(
                         testId={tab.testId && getTabPanelId(tab.testId)}
                         style={[
                             stylesProp?.tabPanel,
-                            isActive
-                                ? styles.openedTabPanel
-                                : styles.closedTabPanel,
+                            // isActive
+                            //     ? styles.openedTabPanel
+                            //     : styles.closedTabPanel,
                             isActive && currentTabStyle,
                             previousSelectedTabId.current === tab.id &&
                                 previousTabStyle,
