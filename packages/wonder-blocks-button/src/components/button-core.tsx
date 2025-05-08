@@ -464,7 +464,7 @@ export const _generateStyles = (
             cursor: "not-allowed",
             ...disabledStatesStyles,
             // NOTE: Even that browsers recommend to specify pseudo-classes in
-            // this order: link, visited, focus, hover, active, we need to
+            // this order: link, visited, hover, focus, active, we need to
             // specify focus after hover to override hover styles. By doing this
             // we are able to reset the border/outline styles to the default
             // ones (rest state).
