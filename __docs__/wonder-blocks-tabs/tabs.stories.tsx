@@ -515,7 +515,7 @@ export const ExampleWithContent: StoryComponentType = {
                             width: "100%",
                         }}
                     >
-                        <HeadingLarge>Example Table</HeadingLarge>
+                        <HeadingLarge>Some More Data</HeadingLarge>
                         <ExampleTable />
                     </View>
                 ),
@@ -531,7 +531,7 @@ export const ExampleWithContent: StoryComponentType = {
                             width: "100%",
                         }}
                     >
-                        <HeadingLarge>Example Table 2</HeadingLarge>
+                        <HeadingLarge>More Data</HeadingLarge>
                         <ExampleTable numRows={10} />
                     </View>
                 ),
