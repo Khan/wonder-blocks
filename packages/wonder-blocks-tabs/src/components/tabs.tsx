@@ -440,7 +440,7 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-            <div style={{display: "flex", flexDirection: "row"}}>
+            <div style={{position: "relative"}}>
                 {tabs.map((tab) => {
                     const isActive = selectedTabId === tab.id;
                     return (
@@ -452,9 +452,6 @@ export const Tabs = React.forwardRef(function Tabs(
                             testId={tab.testId && getTabPanelId(tab.testId)}
                             style={[
                                 stylesProp?.tabPanel,
-                                // isActive
-                                //     ? styles.openedTabPanel
-                                //     : styles.closedTabPanel,
                                 isActive && currentTabStyle,
                                 previousSelectedTabId.current === tab.id &&
                                     previousTabStyle,
@@ -523,24 +520,36 @@ const slideInFromRight = {
     },
 };
 const slideOutToLeft = {
+    // When a panel is sliding out, it should have position: absolute so
+    // that it doesn't take up space while it is exiting
     from: {
         opacity: 1,
         display: "block",
+        position: "absolute",
+        top: 0,
     },
     to: {
         opacity: 0,
         display: "none",
+        position: "absolute",
+        top: 0,
         translate: "-100% 0",
     },
 };
 const slideOutToRight = {
+    // When a panel is sliding out, it should have position: absolute so
+    // that it doesn't take up space while it is exiting
     from: {
         opacity: 1,
         display: "block",
+        position: "absolute",
+        top: 0,
     },
     to: {
         opacity: 0,
         display: "none",
+        position: "absolute",
+        top: 0,
         translate: "100% 0",
     },
 };
