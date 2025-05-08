@@ -2,7 +2,6 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {action} from "@storybook/addon-actions";
 import {expect, within} from "@storybook/test";
-import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {Tab, TabItem, Tabs} from "@khanacademy/wonder-blocks-tabs";
@@ -12,7 +11,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {Placeholder} from "../components/placeholder";
 import {generateTabs, ControlledTabs} from "./tabs-utils";
 
@@ -473,67 +472,3 @@ export const RightToLeft: StoryComponentType = {
         direction: "rtl",
     },
 };
-
-const StyledDiv = addStyle("div");
-
-export const Test = () => {
-    const [show, setShow] = React.useState(false);
-
-    return (
-        <div className="App">
-            <button
-                onClick={() => {
-                    setShow(!show);
-                }}
-            >
-                Toggle
-            </button>
-            <StyledDiv
-                hidden={!show}
-                style={[styles.base, show ? styles.opened : styles.closed]}
-            />
-        </div>
-    );
-};
-
-const appear = {
-    from: {
-        display: "none",
-        opacity: 0,
-        transform: "translateX(-100%)",
-    },
-    to: {
-        display: "block",
-        opacity: 1,
-        transform: "translateX(0)",
-    },
-};
-
-const vanish = {
-    from: {
-        display: "block",
-        opacity: 1,
-        transform: "translateX(0)",
-    },
-    to: {
-        display: "none",
-        opacity: 0,
-        transform: "translateX(-100%)",
-    },
-};
-
-const styles = StyleSheet.create({
-    base: {
-        width: 100,
-        height: 100,
-        backgroundColor: "pink",
-    },
-    opened: {
-        animationName: appear,
-        animationDuration: "1s",
-    } as any,
-    closed: {
-        animationName: vanish,
-        animationDuration: "1s",
-    } as any,
-});
