@@ -362,11 +362,12 @@ export const _generateStyles = (
              * This is important as we want to give more priority to the
              * :focus-visible styles.
              */
+            // :focus-visible -> Provide focus styles for keyboard users only.
+            ...focusStyles.focus,
             ":hover": {
                 // shared
                 background: themeVariant.hover.background,
                 color: themeVariant.hover.foreground,
-                marginInline: theme.root.margin[kind].hover,
                 ...(kind === "primary"
                     ? {
                           outline: `${borderWidthKind.hover} solid ${themeVariant.hover.border}`,
@@ -374,10 +375,12 @@ export const _generateStyles = (
                       }
                     : undefined),
                 // secondary-specific styles
-                border:
-                    kind === "secondary"
-                        ? `${borderWidthKind.hover} solid ${themeVariant.hover.border}`
-                        : undefined,
+                ...(kind === "secondary"
+                    ? {
+                          borderColor: themeVariant.hover.border,
+                          boxShadow: `inset 0 0 0 ${borderWidthKind.hover} ${themeVariant.hover.border}`,
+                      }
+                    : undefined),
 
                 // tertiary-specific styles
                 ...(kind === "tertiary"
@@ -402,7 +405,6 @@ export const _generateStyles = (
                 // shared
                 background: themeVariant.press.background,
                 color: themeVariant.press.foreground,
-                marginInline: theme.root.margin[kind].press,
                 // primary
                 ...(kind === "primary"
                     ? {
@@ -411,10 +413,12 @@ export const _generateStyles = (
                       }
                     : undefined),
                 // secondary
-                border:
-                    kind === "secondary"
-                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                        : undefined,
+                ...(kind === "secondary"
+                    ? {
+                          borderColor: themeVariant.press.border,
+                          boxShadow: `inset 0 0 0 ${borderWidthKind.press} ${themeVariant.press.border}`,
+                      }
+                    : undefined),
 
                 // tertiary-specific styles
                 ...(kind === "tertiary"
@@ -426,9 +430,6 @@ export const _generateStyles = (
                       }
                     : undefined),
             },
-
-            // :focus-visible -> Provide focus styles for keyboard users only.
-            ...focusStyles.focus,
         },
         disabled: {
             cursor: "not-allowed",

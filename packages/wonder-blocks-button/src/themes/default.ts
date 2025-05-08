@@ -22,8 +22,8 @@ const theme = {
                 },
                 secondary: {
                     default: border.width.thin,
-                    hover: border.width.medium,
-                    press: border.width.medium,
+                    hover: border.width.thin,
+                    press: border.width.thin,
                 },
                 tertiary: {
                     default: border.width.none,
@@ -52,25 +52,6 @@ const theme = {
             underline: {
                 hover: sizing.size_020,
                 press: sizing.size_010,
-            },
-        },
-        margin: {
-            // NOTE: These margin tokens reference border.width tokens to account
-            // for the border width changes in between states.
-            primary: {
-                default: border.width.none,
-                hover: border.width.none,
-                press: border.width.none,
-            },
-            secondary: {
-                default: border.width.none,
-                hover: `calc(-1 * ${border.width.thin})`,
-                press: `calc(-1 * ${border.width.thin})`,
-            },
-            tertiary: {
-                default: border.width.none,
-                hover: `calc(-1 * ${border.width.medium})`,
-                press: `calc(-1 * ${border.width.medium})`,
             },
         },
         padding: {
