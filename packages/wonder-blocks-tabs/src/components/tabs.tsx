@@ -364,24 +364,35 @@ export const Tabs = React.forwardRef(function Tabs(
         if (currentIndex === previousIndex || !animated) {
             return undefined;
         }
-
-        if (currentIndex > previousIndex) {
+        if (isRtl) {
+            if (currentIndex > previousIndex) {
+                return styles.slideInFromLeft;
+            }
             return styles.slideInFromRight;
-        }
+        } else {
+            if (currentIndex > previousIndex) {
+                return styles.slideInFromRight;
+            }
 
-        return styles.slideInFromLeft;
+            return styles.slideInFromLeft;
+        }
     }
 
     function getPreviousTabAnimationStyle() {
         if (currentIndex === previousIndex || !animated) {
             return undefined;
         }
-
-        if (currentIndex > previousIndex) {
+        if (isRtl) {
+            if (currentIndex > previousIndex) {
+                return styles.slideOutToRight;
+            }
             return styles.slideOutToLeft;
+        } else {
+            if (currentIndex > previousIndex) {
+                return styles.slideOutToLeft;
+            }
+            return styles.slideOutToRight;
         }
-
-        return styles.slideOutToRight;
     }
     const currentTabAnimationStyle = getCurrentTabAnimationStyle();
     const previousTabAnimationStyle = getPreviousTabAnimationStyle();
