@@ -4,6 +4,7 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 type Props = {
     children: React.ReactNode;
+    style?: React.CSSProperties;
 };
 
 /**
@@ -11,17 +12,20 @@ type Props = {
  * layouts.
  */
 export const Placeholder = (props: Props) => {
-    const {children} = props;
+    const {children, style} = props;
     return (
         <View
-            style={{
-                backgroundColor: semanticColor.surface.secondary,
-                padding: sizing.size_120,
-                margin: sizing.size_010,
-                border: `${border.width.thin}px dashed ${semanticColor.border.subtle}`,
-                width: "100%",
-                alignItems: "center",
-            }}
+            style={[
+                {
+                    backgroundColor: semanticColor.surface.secondary,
+                    padding: sizing.size_120,
+                    margin: sizing.size_010,
+                    border: `${border.width.thin}px dashed ${semanticColor.border.subtle}`,
+                    width: "100%",
+                    alignItems: "center",
+                },
+                style,
+            ]}
         >
             {children}
         </View>
