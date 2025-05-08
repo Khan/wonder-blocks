@@ -97,6 +97,14 @@ const theme = {
                                 .foreground,
                     },
                 },
+                neutral: {
+                    hover: {
+                        background: "transparent",
+                        foreground:
+                            semanticColor.action.secondary.neutral.hover
+                                .foreground,
+                    },
+                },
             },
         },
         border: {

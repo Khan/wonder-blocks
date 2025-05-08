@@ -139,7 +139,7 @@ export const semanticColor = {
                 },
                 press: {
                     border: color.offBlack,
-                    background: "transparent",
+                    background: color.offBlack16,
                     foreground: text.primary,
                 },
             },
