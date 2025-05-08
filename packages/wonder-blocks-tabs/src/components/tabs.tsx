@@ -8,6 +8,7 @@ import {
     useOnMountEffect,
 } from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {TabPanel} from "./tab-panel";
 import {Tab} from "./tab";
 import {Tablist} from "./tablist";
@@ -450,7 +451,7 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-            <div style={{position: "relative"}}>
+            <div style={{position: "relative", paddingInline: sizing.size_040}}>
                 {tabs.map((tab) => {
                     const isActive = selectedTabId === tab.id;
                     return (
@@ -485,11 +486,13 @@ export const Tabs = React.forwardRef(function Tabs(
     );
 });
 
+const slidingDistancePx = "100px";
+const animationDuration = "0.3s";
 const slideInFromLeft = {
     from: {
         opacity: 0,
         display: "none",
-        translate: "-100% 0",
+        transform: `translateX(-${slidingDistancePx})`,
     },
     to: {
         opacity: 1,
@@ -500,7 +503,7 @@ const slideInFromRight = {
     from: {
         opacity: 0,
         display: "none",
-        translate: "100% 0",
+        transform: `translateX(${slidingDistancePx})`,
     },
     to: {
         opacity: 1,
@@ -521,7 +524,7 @@ const slideOutToLeft = {
         display: "none",
         position: "absolute",
         top: 0,
-        translate: "-100% 0",
+        transform: `translateX(-${slidingDistancePx})`,
     },
 };
 const slideOutToRight = {
@@ -538,7 +541,7 @@ const slideOutToRight = {
         display: "none",
         position: "absolute",
         top: 0,
-        translate: "100% 0",
+        transform: `translateX(${slidingDistancePx})`,
     },
 };
 
@@ -555,18 +558,18 @@ const styles = StyleSheet.create({
     },
     slideInFromLeft: {
         animationName: slideInFromLeft,
-        animationDuration: "1s",
+        animationDuration,
     } as any,
     slideInFromRight: {
         animationName: slideInFromRight,
-        animationDuration: "1s",
+        animationDuration,
     } as any,
     slideOutToLeft: {
         animationName: slideOutToLeft,
-        animationDuration: "1s",
+        animationDuration,
     } as any,
     slideOutToRight: {
         animationName: slideOutToRight,
-        animationDuration: "1s",
+        animationDuration,
     } as any,
 });
