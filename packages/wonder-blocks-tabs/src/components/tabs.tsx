@@ -360,8 +360,8 @@ export const Tabs = React.forwardRef(function Tabs(
         (tab) => tab.id === previousSelectedTabId.current,
     );
 
-    function getCurrentTabStyle() {
-        if (currentIndex === previousIndex) {
+    function getCurrentTabAnimationStyle() {
+        if (currentIndex === previousIndex || !animated) {
             return undefined;
         }
 
@@ -372,8 +372,8 @@ export const Tabs = React.forwardRef(function Tabs(
         return styles.slideInFromLeft;
     }
 
-    function getPreviousTabStyle() {
-        if (currentIndex === previousIndex) {
+    function getPreviousTabAnimationStyle() {
+        if (currentIndex === previousIndex || !animated) {
             return undefined;
         }
 
@@ -383,8 +383,8 @@ export const Tabs = React.forwardRef(function Tabs(
 
         return styles.slideOutToRight;
     }
-    const currentTabStyle = getCurrentTabStyle();
-    const previousTabStyle = getPreviousTabStyle();
+    const currentTabAnimationStyle = getCurrentTabAnimationStyle();
+    const previousTabAnimationStyle = getPreviousTabAnimationStyle();
 
     return (
         <StyledDiv
@@ -451,9 +451,9 @@ export const Tabs = React.forwardRef(function Tabs(
                             testId={tab.testId && getTabPanelId(tab.testId)}
                             style={[
                                 stylesProp?.tabPanel,
-                                isActive && currentTabStyle,
+                                isActive && currentTabAnimationStyle,
                                 previousSelectedTabId.current === tab.id &&
-                                    previousTabStyle,
+                                    previousTabAnimationStyle,
                                 {width: "100%"},
                             ]}
                         >
