@@ -440,37 +440,40 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-            {tabs.map((tab) => {
-                const isActive = selectedTabId === tab.id;
-                return (
-                    <TabPanel
-                        key={tab.id}
-                        id={getTabPanelId(tab.id)}
-                        aria-labelledby={getTabId(tab.id)}
-                        active={isActive}
-                        testId={tab.testId && getTabPanelId(tab.testId)}
-                        style={[
-                            stylesProp?.tabPanel,
-                            // isActive
-                            //     ? styles.openedTabPanel
-                            //     : styles.closedTabPanel,
-                            isActive && currentTabStyle,
-                            previousSelectedTabId.current === tab.id &&
-                                previousTabStyle,
-                        ]}
-                    >
-                        {/* Tab panel contents are rendered if the tab has
+            <div style={{display: "flex", flexDirection: "row"}}>
+                {tabs.map((tab) => {
+                    const isActive = selectedTabId === tab.id;
+                    return (
+                        <TabPanel
+                            key={tab.id}
+                            id={getTabPanelId(tab.id)}
+                            aria-labelledby={getTabId(tab.id)}
+                            active={isActive}
+                            testId={tab.testId && getTabPanelId(tab.testId)}
+                            style={[
+                                stylesProp?.tabPanel,
+                                // isActive
+                                //     ? styles.openedTabPanel
+                                //     : styles.closedTabPanel,
+                                isActive && currentTabStyle,
+                                previousSelectedTabId.current === tab.id &&
+                                    previousTabStyle,
+                                {width: "100%"},
+                            ]}
+                        >
+                            {/* Tab panel contents are rendered if the tab has
                         been previously visited or if mountAllPanels is enabled.
                         If mountAllPanels is off, it prevents unnecessary
                         re-mounting of tab panel contents when switching tabs.
                         Note that TabPanel will only display the contents if it
                         is the active panel. */}
-                        {(mountAllPanels ||
-                            visitedTabsRef.current.has(tab.id)) &&
-                            tab.panel}
-                    </TabPanel>
-                );
-            })}
+                            {(mountAllPanels ||
+                                visitedTabsRef.current.has(tab.id)) &&
+                                tab.panel}
+                        </TabPanel>
+                    );
+                })}
+            </div>
         </StyledDiv>
     );
 });
