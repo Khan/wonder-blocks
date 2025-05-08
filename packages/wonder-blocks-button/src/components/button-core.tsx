@@ -343,6 +343,18 @@ export const _generateStyles = (
         color: disabledState.foreground,
     };
 
+    const disabledStatesOverrides = {
+        ...disabledStatesStyles,
+        // primary overrides
+        outline: "none",
+        // secondary overrides
+        boxShadow: "none",
+        // tertiary overrides
+        textDecoration: "none",
+        textDecorationThickness: "unset",
+        textUnderlineOffset: "unset",
+    };
+
     const newStyles = {
         default: {
             borderRadius: theme.root.border.radius[size],
@@ -363,7 +375,7 @@ export const _generateStyles = (
              * :focus-visible styles.
              */
             // :focus-visible -> Provide focus styles for keyboard users only.
-            ...focusStyles.focus,
+
             ":hover": {
                 // shared
                 background: themeVariant.hover.background,
@@ -430,6 +442,23 @@ export const _generateStyles = (
                       }
                     : undefined),
             },
+
+            ...focusStyles.focus,
+            // These overrides are needed to ensure that the boxShadow is
+            // properly applied to the button when it is focused +
+            // hovered/pressed.
+            ...(kind === "secondary"
+                ? {
+                      ":focus-visible:hover": {
+                          ...focusStyles.focus[":focus-visible"],
+                          boxShadow: `inset 0 0 0 ${borderWidthKind.hover} ${themeVariant.hover.border}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+                      },
+                      ":focus-visible:active": {
+                          ...focusStyles.focus[":focus-visible"],
+                          boxShadow: `inset 0 0 0 ${borderWidthKind.press} ${themeVariant.press.border}, ${focusStyles.focus[":focus-visible"].boxShadow}`,
+                      },
+                  }
+                : {}),
         },
         disabled: {
             cursor: "not-allowed",
@@ -440,22 +469,8 @@ export const _generateStyles = (
             // we are able to reset the border/outline styles to the default
             // ones (rest state).
             // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
-            ":hover": {
-                ...disabledStatesStyles,
-                outline: "none",
-                marginInline: 0,
-                textDecoration: "none",
-                textDecorationThickness: "unset",
-                textUnderlineOffset: "unset",
-            },
-            ":active": {
-                ...disabledStatesStyles,
-                outline: "none",
-                marginInline: 0,
-                textDecoration: "none",
-                textDecorationThickness: "unset",
-                textUnderlineOffset: "unset",
-            },
+            ":hover": disabledStatesOverrides,
+            ":active": disabledStatesOverrides,
             ":focus-visible": disabledStatesStyles,
         },
         iconWrapperHovered: {
