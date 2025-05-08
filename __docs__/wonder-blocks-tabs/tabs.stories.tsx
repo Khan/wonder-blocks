@@ -14,6 +14,13 @@ import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Placeholder} from "../components/placeholder";
 import {generateTabs, ControlledTabs} from "./tabs-utils";
+import {
+    HeadingLarge,
+    HeadingMedium,
+} from "@khanacademy/wonder-blocks-typography";
+import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {ExampleTable} from "../components/example-table";
+import {longText} from "../components/text-for-testing";
 
 const tabs: TabItem[] = [
     {
@@ -470,5 +477,79 @@ export const RightToLeft: StoryComponentType = {
     },
     globals: {
         direction: "rtl",
+    },
+};
+
+export const ExampleWithContent: StoryComponentType = {
+    args: {
+        styles: {
+            root: {
+                width: "100%",
+            },
+        },
+        tabs: [
+            {
+                label: "Example Table",
+                id: "tab-1",
+                panel: (
+                    <View
+                        style={{
+                            paddingBlock: sizing.size_360,
+                            gap: sizing.size_200,
+                            width: "100%",
+                        }}
+                    >
+                        <HeadingLarge>Example Table</HeadingLarge>
+                        <ExampleTable />
+                    </View>
+                ),
+            },
+            {
+                label: "Some More Data",
+                id: "tab-2",
+                panel: (
+                    <View
+                        style={{
+                            paddingBlock: sizing.size_360,
+                            gap: sizing.size_200,
+                            width: "100%",
+                        }}
+                    >
+                        <HeadingLarge>Example Table</HeadingLarge>
+                        <ExampleTable />
+                    </View>
+                ),
+            },
+            {
+                label: "More Data",
+                id: "tab-3",
+                panel: (
+                    <View
+                        style={{
+                            paddingBlock: sizing.size_360,
+                            gap: sizing.size_200,
+                            width: "100%",
+                        }}
+                    >
+                        <HeadingLarge>Example Table 2</HeadingLarge>
+                        <ExampleTable numRows={10} />
+                    </View>
+                ),
+            },
+        ],
+        selectedTabId: "tab-1",
+        animated: true,
+    },
+    render: (args) => {
+        return (
+            <div>
+                <ControlledTabs {...args} />
+                <div>
+                    <HeadingMedium>Content after the tabs</HeadingMedium>
+                    <p>{longText}</p>
+                    <Button>Example Button</Button>
+                </div>
+            </div>
+        );
     },
 };
