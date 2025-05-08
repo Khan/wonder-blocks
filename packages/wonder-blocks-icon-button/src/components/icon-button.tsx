@@ -198,19 +198,18 @@ export const IconButton: React.ForwardRefExoticComponent<
         ...sharedProps
     } = props;
 
-    function handleKeyDown(e: React.KeyboardEvent) {
-        const keyCode = e.key;
+    function handleKeyDown({key, preventDefault}: React.KeyboardEvent) {
         // Prevent default behavior for space and enter keys on
         // buttons. We let the browser handle the default behavior
         // for links, which is to activate the link on `Enter`.
-        if (!href && (keyCode === keys.enter || keyCode === keys.space)) {
-            e.preventDefault();
+        if (!href && (key === keys.enter || key === keys.space)) {
+            preventDefault();
         }
     }
 
     function handleKeyUp(e: React.KeyboardEvent) {
-        const keyCode = e.key;
-        if (!href && (keyCode === keys.enter || keyCode === keys.space)) {
+        const key = e.key;
+        if (!href && (key === keys.enter || key === keys.space)) {
             if (sharedProps.onClick) {
                 sharedProps.onClick(e);
             }
