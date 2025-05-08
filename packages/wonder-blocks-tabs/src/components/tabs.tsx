@@ -487,9 +487,12 @@ export const Tabs = React.forwardRef(function Tabs(
 });
 
 const slidingDistancePx = "100px";
-const animationDuration = "0.3s";
 const slideInFromLeft = {
     from: {
+        opacity: 0,
+        display: "none",
+    },
+    "33%": {
         opacity: 0,
         display: "none",
         transform: `translateX(-${slidingDistancePx})`,
@@ -501,6 +504,10 @@ const slideInFromLeft = {
 };
 const slideInFromRight = {
     from: {
+        opacity: 0,
+        display: "none",
+    },
+    "33%": {
         opacity: 0,
         display: "none",
         transform: `translateX(${slidingDistancePx})`,
@@ -558,18 +565,18 @@ const styles = StyleSheet.create({
     },
     slideInFromLeft: {
         animationName: slideInFromLeft,
-        animationDuration,
+        animationDuration: "0.3s",
     } as any,
     slideInFromRight: {
         animationName: slideInFromRight,
-        animationDuration,
+        animationDuration: "0.3s",
     } as any,
     slideOutToLeft: {
         animationName: slideOutToLeft,
-        animationDuration,
+        animationDuration: "0.1s",
     } as any,
     slideOutToRight: {
         animationName: slideOutToRight,
-        animationDuration,
+        animationDuration: "0.1s",
     } as any,
 });
