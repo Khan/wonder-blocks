@@ -22,6 +22,7 @@ import caretLeft from "@phosphor-icons/core/regular/caret-left.svg";
 import caretLeftBold from "@phosphor-icons/core/bold/caret-left-bold.svg";
 import caretRight from "@phosphor-icons/core/regular/caret-right.svg";
 import caretRightBold from "@phosphor-icons/core/bold/caret-right-bold.svg";
+import dotsThreeBold from "@phosphor-icons/core/bold/dots-three-bold.svg";
 import minusCircle from "@phosphor-icons/core/regular/minus-circle.svg";
 import minusCircleBold from "@phosphor-icons/core/bold/minus-circle-bold.svg";
 import lightbulb from "@phosphor-icons/core/regular/lightbulb.svg";
@@ -74,6 +75,7 @@ export const IconMappings = {
     checkBold,
     checkCircle,
     checkCircleBold,
+    dotsThreeBold,
     x,
     xBold,
     xCircle,
