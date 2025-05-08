@@ -385,8 +385,7 @@ export const Tabs = React.forwardRef(function Tabs(
     }
     const currentTabStyle = getCurrentTabStyle();
     const previousTabStyle = getPreviousTabStyle();
-    console.log("currentTabStyle", currentTabStyle);
-    console.log("previousTabStyle", previousTabStyle);
+
     return (
         <StyledDiv
             ref={ref}
@@ -475,28 +474,6 @@ export const Tabs = React.forwardRef(function Tabs(
     );
 });
 
-const appear = {
-    from: {
-        display: "none",
-        opacity: 0,
-    },
-    to: {
-        display: "block",
-        opacity: 1,
-    },
-};
-
-const vanish = {
-    from: {
-        display: "block",
-        opacity: 1,
-    },
-    to: {
-        display: "none",
-        opacity: 0,
-    },
-};
-
 const slideInFromLeft = {
     from: {
         opacity: 0,
@@ -565,14 +542,6 @@ const styles = StyleSheet.create({
         position: "relative",
         overflowX: "auto",
     },
-    openedTabPanel: {
-        animationName: appear,
-        animationDuration: "1s",
-    } as any,
-    closedTabPanel: {
-        animationName: vanish,
-        animationDuration: "1s",
-    } as any,
     slideInFromLeft: {
         animationName: slideInFromLeft,
         animationDuration: "1s",
