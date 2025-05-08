@@ -517,6 +517,9 @@ importers:
       '@khanacademy/wonder-blocks-progress-spinner':
         specifier: workspace:*
         version: link:../wonder-blocks-progress-spinner
+      '@khanacademy/wonder-blocks-styles':
+        specifier: workspace:*
+        version: link:../wonder-blocks-styles
       '@khanacademy/wonder-blocks-theming':
         specifier: workspace:*
         version: link:../wonder-blocks-theming

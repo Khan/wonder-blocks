@@ -145,7 +145,7 @@ export const semanticColor = {
             },
 
             disabled: {
-                border: border.primary,
+                border: color.fadedOffBlack32,
                 background: "transparent",
                 foreground: text.disabled,
             },

@@ -1,160 +1,114 @@
-import * as tokens from "@khanacademy/wonder-blocks-tokens";
-
-const {semanticColor} = tokens;
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 
 // The underline-offset is the distance between the text baseline and the
 // bottom of the underline. This is necessary to prevent the underline from
 // breaking with descenders.
-const textUnderlineOffset = tokens.sizing.size_040;
-
-const focusOutline = {
-    border: semanticColor.focus.outer,
-};
+const textUnderlineOffset = sizing.size_040;
 
 const theme = {
-    color: {
-        /**
-         * Primary
-         */
-        primary: {
-            // kind=primary / color=default / light=false
-            progressive: {
-                ...semanticColor.action.primary.progressive,
-                focus: focusOutline,
-            },
-
-            // kind=primary / color=destructive / light=false
-            destructive: {
-                ...semanticColor.action.primary.destructive,
-                focus: focusOutline,
-            },
-            disabled: semanticColor.action.primary.disabled,
-        },
-
-        /**
-         * Secondary
-         *
-         * Outlined buttons
-         */
-        secondary: {
-            // kind=secondary / color=default / light=false
-            progressive: {
-                ...semanticColor.action.secondary.progressive,
-                focus: focusOutline,
-                hover: {
-                    ...semanticColor.action.secondary.progressive.hover,
-                    // NOTE: This is a special case for the secondary button
-                    icon: "transparent",
+    root: {
+        color: semanticColor.action,
+        border: {
+            width: {
+                primary: {
+                    default: border.width.none,
+                    hover: border.width.medium,
+                    press: border.width.medium,
+                },
+                secondary: {
+                    default: border.width.thin,
+                    hover: border.width.thin,
+                    press: border.width.thin,
+                },
+                tertiary: {
+                    default: border.width.none,
+                    hover: border.width.medium,
+                    press: border.width.medium,
                 },
             },
+            offset: {
+                primary: border.width.medium,
+                // Only primary buttons have an offset.
+                secondary: 0,
+                tertiary: 0,
+            },
+            radius: {
+                small: border.radius.radius_040,
+                medium: border.radius.radius_040, // default
+                large: border.radius.radius_040,
+            },
+        },
+        sizing: {
+            height: {
+                small: sizing.size_320,
+                medium: sizing.size_400,
+                large: sizing.size_560,
+            },
+            underline: {
+                hover: sizing.size_020,
+                press: sizing.size_010,
+            },
+        },
+        padding: {
+            medium: sizing.size_160,
+            large: sizing.size_320,
+        },
+        font: {
+            size: {
+                // NOTE: This token is specific to this button size.
+                large: "1.8rem",
+            },
+            lineHeight: {
+                small: font.lineHeight.xMedium,
+                default: font.lineHeight.large,
+                // NOTE: this token is specific to this button size.
+                large: "2.6rem",
+            },
+            weight: {
+                default: font.weight.bold,
+            },
+            offset: {
+                default: textUnderlineOffset,
+            },
+        },
+    },
 
-            // kind=secondary / color=destructive / light=false
-            destructive: {
-                ...semanticColor.action.secondary.destructive,
-                focus: focusOutline,
-                hover: {
-                    ...semanticColor.action.secondary.destructive.hover,
-                    // NOTE: This is a special case for the secondary button
-                    icon: "transparent",
+    icon: {
+        color: {
+            secondary: {
+                progressive: {
+                    hover: {
+                        background: "transparent",
+                        foreground:
+                            semanticColor.action.secondary.progressive.hover
+                                .foreground,
+                    },
+                },
+                destructive: {
+                    hover: {
+                        background: "transparent",
+                        foreground:
+                            semanticColor.action.secondary.destructive.hover
+                                .foreground,
+                    },
                 },
             },
-
-            disabled: {
-                ...semanticColor.action.secondary.disabled,
-                // NOTE: This is a special case for the secondary button
-                // TODO(WB-1895): Revisit disabled styles.
-                border: semanticColor.action.primary.disabled.border,
+        },
+        border: {
+            radius: border.radius.radius_full,
+        },
+        margin: {
+            inline: {
+                inner: sizing.size_060,
+                outer: `calc(-1 * ${border.width.medium})`,
             },
         },
-        /**
-         * Tertiary
-         *
-         * Text buttons
-         */
-        tertiary: {
-            // kind=tertiary / color=default / light=false
-            progressive: {
-                ...semanticColor.action.tertiary.progressive,
-                focus: focusOutline,
-            },
-
-            // kind=tertiary / color=destructive / light=false
-            destructive: {
-                ...semanticColor.action.tertiary.destructive,
-                focus: focusOutline,
-            },
-
-            disabled: semanticColor.action.tertiary.disabled,
-        },
-    },
-    border: {
-        width: {
-            // secondary (resting)
-            secondary: tokens.border.width.thin,
-            // primary (focus), secondary (focus, active), tertiary (focus)
-            focused: tokens.border.width.medium,
-            // secondary (disabled)
-            disabled: tokens.border.width.medium,
-        },
-        offset: {
-            primary: tokens.spacing.xxxxSmall_2,
-            secondary: -tokens.spacing.xxxxSmall_2,
-        },
-        radius: {
-            // default
-            default: tokens.border.radius.radius_040,
-            // small button
-            small: tokens.border.radius.radius_040,
-            // large button
-            large: tokens.border.radius.radius_040,
-
-            /**
-             * Icons
-             */
-            icon: tokens.border.radius.radius_full,
-        },
-    },
-    size: {
-        height: {
-            small: tokens.spacing.xLarge_32,
-            // NOTE: These height tokens are specific to this component.
-            medium: 40,
-            large: 56,
-        },
-        underline: {
-            hover: tokens.spacing.xxxxSmall_2,
-            active: 1,
-        },
-    },
-    margin: {
-        icon: {
-            offset: -tokens.spacing.xxxxSmall_2,
-        },
-    },
-    padding: {
-        xsmall: tokens.spacing.xxxxSmall_2,
-        small: tokens.spacing.xxSmall_6,
-        medium: tokens.spacing.small_12,
-        large: tokens.spacing.medium_16,
-        xLarge: tokens.spacing.xLarge_32,
-    },
-    font: {
-        size: {
-            // NOTE: This token is specific to this button size.
-            large: "1.8rem",
-        },
-        lineHeight: {
-            small: tokens.font.lineHeight.xMedium,
-            default: tokens.font.lineHeight.large,
-            // NOTE: this token is specific to this button size.
-            large: "2.6rem",
-        },
-        weight: {
-            default: tokens.font.weight.bold,
-        },
-        offset: {
-            default: textUnderlineOffset,
-        },
+        padding: sizing.size_020,
     },
 };
 
