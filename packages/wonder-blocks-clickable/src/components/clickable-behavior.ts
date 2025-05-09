@@ -134,6 +134,16 @@ type CommonProps = Readonly<{
      * Respond to a raw "mouseup" event.
      */
     onMouseUp?: (e: React.MouseEvent) => unknown;
+
+    /**
+     * An optional prop that enables a
+     * [https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API](View
+     * Transition) for this navigation by wrapping the final state update in
+     * `document.startViewTransition()`.
+     *
+     * @see https://reactrouter.com/6.30.0/components/link#viewtransition
+     */
+    viewTransition?: boolean;
 }>;
 
 type Props =
@@ -365,7 +375,12 @@ export default class ClickableBehavior extends React.Component<
                     window.open(href, "_blank");
                     this.setState({waiting: false});
                 } else if (navigate && !skipClientNav) {
-                    navigate(href);
+                    // viewTransition needs to be set for enabling the
+                    // View Transition API.
+                    // @see https://remix.run/docs/en/main/hooks/use-navigate#options
+                    navigate(href, {
+                        viewTransition: this.props.viewTransition,
+                    });
                     this.setState({waiting: false});
                 } else {
                     window.location.assign(href);

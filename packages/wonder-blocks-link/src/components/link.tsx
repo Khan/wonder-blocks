@@ -123,6 +123,16 @@ type CommonProps = AriaProps & {
      * the default `externalIcon`.
      */
     endIcon?: React.ReactElement<React.ComponentProps<typeof PhosphorIcon>>;
+
+    /**
+     * An optional prop that enables a
+     * [https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API](View
+     * Transition) for this navigation by wrapping the final state update in
+     * `document.startViewTransition()`.
+     *
+     * @see https://reactrouter.com/6.30.0/components/link#viewtransition
+     */
+    viewTransition?: boolean;
 };
 
 export type SharedProps =
@@ -191,6 +201,7 @@ const Link = React.forwardRef(function Link(
         target = undefined,
         inline = false,
         light = false,
+        viewTransition = false,
         ...sharedProps
     } = props;
 
@@ -213,6 +224,7 @@ const Link = React.forwardRef(function Link(
                 safeWithNav={safeWithNav}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
+                viewTransition={viewTransition}
             >
                 {(state, {...childrenProps}) => {
                     return (
@@ -227,6 +239,7 @@ const Link = React.forwardRef(function Link(
                             inline={inline}
                             light={light}
                             ref={ref}
+                            viewTransition={viewTransition}
                         >
                             {children}
                         </LinkCore>
@@ -245,6 +258,7 @@ const Link = React.forwardRef(function Link(
                 target={target}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
+                viewTransition={viewTransition}
             >
                 {(state, {...childrenProps}) => {
                     return (
@@ -259,6 +273,7 @@ const Link = React.forwardRef(function Link(
                             inline={inline}
                             light={light}
                             ref={ref}
+                            viewTransition={viewTransition}
                         >
                             {children}
                         </LinkCore>

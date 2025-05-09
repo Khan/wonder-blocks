@@ -13,6 +13,7 @@ import Pill from "@khanacademy/wonder-blocks-pill";
 import {
     border,
     semanticColor,
+    sizing,
     spacing,
 } from "@khanacademy/wonder-blocks-tokens";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
@@ -29,6 +30,9 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
 
 const actionItems: Array<Item> = [
     <ActionItem
@@ -532,5 +536,95 @@ export const CustomActionItems: StoryComponentType = {
         // Assert
         const actionMenu = await canvas.findByRole("menu");
         expect(actionMenu).toBeInTheDocument();
+    },
+};
+
+/**
+ * This example shows how to use the ActionMenu with a modal. The modal is
+ * opened when the user presses the "Open modal" action item. This could be done
+ * by pressing `Enter`/`Space` when the opener is focused.
+ *
+ * Use the keyboard to navigate to the "Open modal" action item and press
+ * `Enter` or `Space` to open the modal.
+ *
+ * Then navigate on the modal by pressing Tab and `Shift` + `Tab`.
+ */
+export const OpeningModal: StoryComponentType = {
+    name: "Opening a Modal",
+    render: function Render(args) {
+        const [opened, setOpened] = React.useState(false);
+
+        return (
+            <>
+                <ActionMenu menuText="Betsy Appleseed" {...args}>
+                    <ActionItem
+                        key="1"
+                        label="Profile"
+                        href="http://khanacademy.org/profile"
+                        target="_blank"
+                        testId="profile"
+                    />
+                    <ActionItem
+                        key="2"
+                        label="Open modal"
+                        testId="modal"
+                        onClick={() => {
+                            console.log("open modal");
+                            setOpened(true);
+                        }}
+                    />
+                </ActionMenu>
+                <ModalLauncher
+                    onClose={() => {
+                        setOpened(false);
+                    }}
+                    opened={opened}
+                    modal={({closeModal}) => (
+                        <OnePaneDialog
+                            title="Are you sure?"
+                            content="This is just a test"
+                            style={{maxHeight: "fit-content"}}
+                            footer={
+                                <View
+                                    style={{
+                                        flexDirection: "row",
+                                        gap: sizing.size_160,
+                                    }}
+                                >
+                                    <Button
+                                        kind="tertiary"
+                                        onClick={closeModal}
+                                    >
+                                        Cancel
+                                    </Button>
+                                    <Button
+                                        color="destructive"
+                                        onClick={closeModal}
+                                    >
+                                        Delete
+                                    </Button>
+                                </View>
+                            }
+                        />
+                    )}
+                />
+            </>
+        );
+    },
+    args: {
+        opener: () => (
+            <IconButton
+                aria-label="Actions"
+                kind="tertiary"
+                actionType="neutral"
+                icon={IconMappings.dotsThreeBold}
+            />
+        ),
+    } as Partial<typeof ActionMenu>,
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test visuals.
+            disableSnapshot: true,
+        },
     },
 };

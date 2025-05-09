@@ -1,7 +1,10 @@
 /* eslint-disable max-lines */
 import * as React from "react";
+import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
 import {render, screen} from "@testing-library/react";
 import {PointerEventsCheckLevel, userEvent} from "@testing-library/user-event";
+
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ActionItem from "../action-item";
 import OptionItem from "../option-item";
@@ -439,6 +442,71 @@ describe("ActionMenu", () => {
 
             // Act
             await userEvent.click(await screen.findByLabelText("Search"));
+
+            // Assert
+            expect(
+                await screen.findByRole("menu", {hidden: true}),
+            ).toBeInTheDocument();
+        });
+
+        it.each([{key: "{Enter}"}, {key: " "}])(
+            "should open the menu when pressing $key",
+            async ({key}) => {
+                // Arrange
+                render(
+                    <ActionMenu
+                        menuText=""
+                        testId="openTest"
+                        onChange={onChange}
+                        selectedValues={[]}
+                        opener={() => (
+                            <IconButton
+                                aria-label="Search"
+                                icon={magnifyingGlassIcon}
+                                onClick={jest.fn()}
+                            />
+                        )}
+                    >
+                        <ActionItem label="Action" onClick={onClick} />
+                    </ActionMenu>,
+                );
+
+                await userEvent.tab();
+
+                // Act
+                await userEvent.keyboard(key);
+
+                // Assert
+                expect(
+                    await screen.findByRole("menu", {hidden: true}),
+                ).toBeInTheDocument();
+            },
+        );
+
+        it("opens the menu when pressing {Space}", async () => {
+            // Arrange
+            render(
+                <ActionMenu
+                    menuText=""
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={[]}
+                    opener={() => (
+                        <IconButton
+                            aria-label="Search"
+                            icon={magnifyingGlassIcon}
+                            onClick={jest.fn()}
+                        />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            await userEvent.tab();
+
+            // Act
+            await userEvent.keyboard(" ");
 
             // Assert
             expect(
