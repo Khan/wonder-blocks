@@ -1467,4 +1467,73 @@ describe("ClickableBehavior", () => {
             expect(childrenProps.rel).toBeUndefined();
         });
     });
+
+    describe("viewTransition", () => {
+        it("should call navigate with viewTransition when passed in", async () => {
+            // Arrange
+            const navigateMock = jest.fn();
+
+            render(
+                <ClickableBehavior
+                    href="https://www.khanacademy.org"
+                    navigate={navigateMock}
+                    viewTransition={true}
+                >
+                    {(state: any, childrenProps: any) => {
+                        return (
+                            <a
+                                href="https://www.khanacademy.org"
+                                {...childrenProps}
+                            >
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("link"));
+
+            // Assert
+            expect(navigateMock).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                {
+                    viewTransition: true,
+                },
+            );
+        });
+
+        it("should not pass viewTransition to the navigate function when it is not set", async () => {
+            // Arrange
+            const navigateMock = jest.fn();
+
+            render(
+                <ClickableBehavior
+                    href="https://www.khanacademy.org"
+                    navigate={navigateMock}
+                >
+                    {(state: any, childrenProps: any) => {
+                        return (
+                            <a
+                                href="https://www.khanacademy.org"
+                                {...childrenProps}
+                            >
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            await userEvent.click(await screen.findByRole("link"));
+
+            // Assert
+            expect(navigateMock).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                {viewTransition: undefined},
+            );
+        });
+    });
 });

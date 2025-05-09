@@ -2,6 +2,7 @@ import * as React from "react";
 
 import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {keys} from "@khanacademy/wonder-blocks-core";
 import {Link} from "react-router-dom-v5-compat";
 import IconButtonCore from "./icon-button-core";
 import ThemedIconButton from "../themes/themed-icon-button";
@@ -198,18 +199,18 @@ export const IconButton: React.ForwardRefExoticComponent<
     } = props;
 
     function handleKeyDown(e: React.KeyboardEvent) {
-        const keyCode = e.key;
+        const key = e.key;
         // Prevent default behavior for space and enter keys on
         // buttons. We let the browser handle the default behavior
         // for links, which is to activate the link on `Enter`.
-        if (!href && (keyCode === "Enter" || keyCode === "Space")) {
+        if (!href && (key === keys.enter || key === keys.space)) {
             e.preventDefault();
         }
     }
 
     function handleKeyUp(e: React.KeyboardEvent) {
-        const keyCode = e.key;
-        if (!href && (keyCode === "Enter" || keyCode === "Space")) {
+        const key = e.key;
+        if (!href && (key === keys.enter || key === keys.space)) {
             if (sharedProps.onClick) {
                 sharedProps.onClick(e);
             }
