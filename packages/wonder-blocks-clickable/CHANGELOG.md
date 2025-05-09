@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 7.1.0
+
+### Minor Changes
+
+- 38042e2: Add `viewTransition` prop to support ReactRouter's v6 `Link.viewTransition` prop which supports the View Transitions API. See https://reactrouter.com/6.30.0/components/link#viewtransition
+
+### Patch Changes
+
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+    - @khanacademy/wonder-blocks-core@12.3.0
+
 ## 7.0.4
 
 ### Patch Changes

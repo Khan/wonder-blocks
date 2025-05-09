@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.0.6
+
+### Patch Changes
+
+- c9a0147: Fixes an issue with the IconButton component not triggering `onClick` when the `Space` key is pressed.
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+- Updated dependencies [38042e2]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-clickable@7.1.0
+    - @khanacademy/wonder-blocks-announcer@1.0.2
+    - @khanacademy/wonder-blocks-cell@4.1.12
+    - @khanacademy/wonder-blocks-icon@5.1.4
+    - @khanacademy/wonder-blocks-layout@3.1.11
+    - @khanacademy/wonder-blocks-modal@7.1.14
+    - @khanacademy/wonder-blocks-pill@3.1.12
+    - @khanacademy/wonder-blocks-search-field@5.1.14
+    - @khanacademy/wonder-blocks-typography@3.2.1
+
 ## 10.0.5
 
 ### Patch Changes
