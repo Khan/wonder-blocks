@@ -70,4 +70,46 @@ describe("InitialFocus", () => {
         // Assert
         expect(firstFocusableElement).toHaveFocus();
     });
+
+    it("should focus on a given element by id after a delay if a delay is provided", () => {
+        // Arrange
+        render(
+            <InitialFocus initialFocusId="initial-focus-id" delay={100}>
+                <div data-testid="container">
+                    <button data-testid="item-0" />
+                    <button data-testid="item-1" id="initial-focus-id" />
+                    <button data-testid="item-2" />
+                </div>
+            </InitialFocus>,
+        );
+
+        // Act
+        const firstFocusableElement = screen.getByTestId("item-1");
+
+        // Fast-forward until all timers have been executed
+        jest.runAllTimers();
+
+        // Assert
+        expect(firstFocusableElement).toHaveFocus();
+    });
+
+    it("should not focus on a given element by id before a delay if a delay is provided", () => {
+        // Arrange
+        render(
+            <InitialFocus initialFocusId="initial-focus-id" delay={100}>
+                <div data-testid="container">
+                    <button data-testid="item-0" />
+                    <button data-testid="item-1" id="initial-focus-id" />
+                    <button data-testid="item-2" />
+                </div>
+            </InitialFocus>,
+        );
+
+        // Act
+        const firstFocusableElement = screen.getByTestId("item-1");
+        // We don't fast forward the timers here intentionally
+
+        // Assert
+        expect(firstFocusableElement).not.toHaveFocus();
+    });
 });

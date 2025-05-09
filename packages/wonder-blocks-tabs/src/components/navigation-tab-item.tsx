@@ -20,7 +20,7 @@ type Props = AriaProps & {
      * cases where the `Link` component is wrapped by another component (like a
      * `Tooltip` or `Popover`), a render function can be used instead. The
      * render function provides the Link props that should be applied to the
-     * Link component. See example in the docs for more details.
+     * Link component.
      */
     children:
         | React.ReactElement
@@ -130,9 +130,18 @@ const styles = StyleSheet.create({
             // selected.
             boxShadow: "none",
         },
+        [":has(a:active):not([aria-disabled=true])" as any]: {
+            // If it is current, make sure there is no box shadow
+            boxShadow: "none",
+        },
     },
     currentLink: {
         color: semanticColor.action.secondary.progressive.default.foreground,
+        [":active:not([aria-disabled=true])" as any]: {
+            // Make sure the current link doesn't change color when pressed
+            color: semanticColor.action.secondary.progressive.default
+                .foreground,
+        },
     },
     link: {
         display: "flex",
