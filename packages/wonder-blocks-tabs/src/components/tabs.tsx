@@ -451,7 +451,13 @@ export const Tabs = React.forwardRef(function Tabs(
                 </Tablist>
                 {<div {...indicatorProps} />}
             </StyledDiv>
-            <div style={{position: "relative", paddingInline: sizing.size_040}}>
+            <div
+                style={{
+                    position: "relative",
+                    paddingInline: sizing.size_040,
+                    overflowX: "hidden",
+                }}
+            >
                 {tabs.map((tab) => {
                     const isActive = selectedTabId === tab.id;
                     return (

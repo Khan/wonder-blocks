@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
     },
     headerCell: {
         borderBottom: `${border.width.medium} solid ${semanticColor.border.primary}`,
-        textAlign: "left",
+        textAlign: "start",
     },
 });
