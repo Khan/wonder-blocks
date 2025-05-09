@@ -27,6 +27,16 @@ const styles: StyleDeclaration = StyleSheet.create({
         fontSize: font.size.large,
         lineHeight: font.lineHeight.large,
     },
+    Heading: {
+        ...common,
+        fontFamily: font.family.sans,
+        // weight, size and lineHeight are determined by props
+    },
+    BodyText: {
+        ...common,
+        fontFamily: font.family.sans,
+        // weight, size and lineHeight are determined by props
+    },
     HeadingLarge: {
         ...common,
         fontFamily: font.family.sans,

@@ -7,10 +7,12 @@ import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
+    Heading,
     HeadingLarge,
     HeadingMedium,
     HeadingSmall,
     HeadingXSmall,
+    BodyText,
     BodySerifBlock,
     BodySerif,
     BodyMonospace,
@@ -31,6 +33,7 @@ import TypographyArgTypes from "./typography.argtypes";
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
 import "./styles.css";
+import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
 
 const typographyDescription = `Typography. \`wonder-blocks-typography\`
 provides a set of standardized components for displaying text in a consistent
@@ -73,7 +76,25 @@ export const ControlProps: StoryObj<typeof Title> = {
     },
 };
 
-export const TypographyElements: StoryObj<any> = () => (
+export const TBTypographyElements: StoryObj<any> = () => (
+    <View>
+        <ThemeSwitcher theme="thunderblocks">
+            <Heading size="xxLarge">Heading</Heading>
+            <BodyText>BodyText</BodyText>
+        </ThemeSwitcher>
+    </View>
+);
+
+TBTypographyElements.parameters = {
+    docs: {
+        description: {
+            story: `These are all the available Thunderblocks typography
+            elements with their names written out in their respective styles.`,
+        },
+    },
+};
+
+export const OGTypographyElements: StoryObj<any> = () => (
     <View>
         <Title>Title</Title>
         <HeadingLarge>HeadingLarge</HeadingLarge>
@@ -94,10 +115,10 @@ export const TypographyElements: StoryObj<any> = () => (
     </View>
 );
 
-TypographyElements.parameters = {
+OGTypographyElements.parameters = {
     docs: {
         description: {
-            story: `These are all the available typography elements
+            story: `These are all the available classic typography elements
             with their names written out in their respective styles.`,
         },
     },
