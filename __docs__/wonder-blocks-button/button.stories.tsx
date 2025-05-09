@@ -29,7 +29,7 @@ import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 export default {
-    title: "Packages / Button",
+    title: "Packages / Button / Button",
     component: Button,
     parameters: {
         componentSubtitle: (
@@ -669,38 +669,5 @@ WithRouter.parameters = {
     },
     chromatic: {
         disableSnapshot: true,
-    },
-};
-
-/**
- * Button supports theming via the `ThemeSwitcherContext`. This story shows the
- * button in the `khanmigo` theme using all the variants.
- *
- * **Note:** You can also use the "Theme" addon in the toolbar to switch themes.
- */
-export const KhanmigoTheme: StoryComponentType = {
-    render: () => {
-        const stories = [
-            Variants,
-            Size,
-            IconExample,
-        ] as Array<React.ElementType>;
-
-        return (
-            <ThemeSwitcherContext.Provider value="khanmigo">
-                <View style={{gap: spacing.medium_16}}>
-                    {stories.map((Story, i) => (
-                        <Story key={i} />
-                    ))}
-                </View>
-            </ThemeSwitcherContext.Provider>
-        );
-    },
-    parameters: {
-        chromatic: {
-            // We already have screenshots of other stories that cover more of
-            // the button states
-            disableSnapshot: true,
-        },
     },
 };
