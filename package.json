@@ -55,6 +55,7 @@
     "@storybook/addon-actions": "^8.6.12",
     "@storybook/addon-docs": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
+    "@storybook/blocks": "^8.6.12",
     "@storybook/builder-vite": "^8.6.12",
     "@storybook/experimental-addon-test": "^8.6.12",
     "@storybook/preview-api": "^8.6.12",
