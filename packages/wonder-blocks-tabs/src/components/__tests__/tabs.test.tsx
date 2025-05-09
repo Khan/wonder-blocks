@@ -1745,6 +1745,156 @@ describe("Tabs", () => {
                     expect(tab2b).toHaveFocus();
                 });
             });
+
+            describe("RTL", () => {
+                it("should focus on the previous tab when the right arrow key is pressed and it is in RTL mode", async () => {
+                    // Arrange
+                    render(
+                        <div dir="rtl">
+                            <ControlledTabs
+                                tabs={[
+                                    {
+                                        id: "tab-1",
+                                        label: "Tab 1",
+                                        panel: <div>Contents of tab 1</div>,
+                                    },
+                                    {
+                                        id: "tab-2",
+                                        label: "Tab 2",
+                                        panel: <div>Contents of tab 2</div>,
+                                    },
+                                    {
+                                        id: "tab-3",
+                                        label: "Tab 3",
+                                        panel: <div>Contents of tab 3</div>,
+                                    },
+                                ]}
+                                selectedTabId={"tab-2"}
+                            />
+                        </div>,
+                    );
+                    await userEvent.tab();
+
+                    // Act
+                    await userEvent.keyboard("{ArrowRight}");
+
+                    // Assert
+                    expect(
+                        screen.getByRole("tab", {name: "Tab 1"}),
+                    ).toHaveFocus();
+                });
+
+                it("should focus on the next tab when the left arrow key is pressed and it is in RTL mode", async () => {
+                    // Arrange
+                    render(
+                        <div dir="rtl">
+                            <ControlledTabs
+                                tabs={[
+                                    {
+                                        id: "tab-1",
+                                        label: "Tab 1",
+                                        panel: <div>Contents of tab 1</div>,
+                                    },
+                                    {
+                                        id: "tab-2",
+                                        label: "Tab 2",
+                                        panel: <div>Contents of tab 2</div>,
+                                    },
+                                    {
+                                        id: "tab-3",
+                                        label: "Tab 3",
+                                        panel: <div>Contents of tab 3</div>,
+                                    },
+                                ]}
+                                selectedTabId={"tab-2"}
+                            />
+                        </div>,
+                    );
+                    await userEvent.tab();
+
+                    // Act
+                    await userEvent.keyboard("{ArrowLeft}");
+
+                    // Assert
+                    expect(
+                        screen.getByRole("tab", {name: "Tab 3"}),
+                    ).toHaveFocus();
+                });
+
+                it("should focus on the first tab when the home key is pressed and it is in RTL mode", async () => {
+                    // Arrange
+                    render(
+                        <div dir="rtl">
+                            <ControlledTabs
+                                tabs={[
+                                    {
+                                        id: "tab-1",
+                                        label: "Tab 1",
+                                        panel: <div>Contents of tab 1</div>,
+                                    },
+                                    {
+                                        id: "tab-2",
+                                        label: "Tab 2",
+                                        panel: <div>Contents of tab 2</div>,
+                                    },
+                                    {
+                                        id: "tab-3",
+                                        label: "Tab 3",
+                                        panel: <div>Contents of tab 3</div>,
+                                    },
+                                ]}
+                                selectedTabId={"tab-2"}
+                            />
+                        </div>,
+                    );
+                    await userEvent.tab();
+
+                    // Act
+                    await userEvent.keyboard("{Home}");
+
+                    // Assert
+                    expect(
+                        screen.getByRole("tab", {name: "Tab 1"}),
+                    ).toHaveFocus();
+                });
+
+                it("should focus on the last tab when the end key is pressed and it is in RTL mode", async () => {
+                    // Arrange
+                    render(
+                        <div dir="rtl">
+                            <ControlledTabs
+                                tabs={[
+                                    {
+                                        id: "tab-1",
+                                        label: "Tab 1",
+                                        panel: <div>Contents of tab 1</div>,
+                                    },
+                                    {
+                                        id: "tab-2",
+                                        label: "Tab 2",
+                                        panel: <div>Contents of tab 2</div>,
+                                    },
+                                    {
+                                        id: "tab-3",
+                                        label: "Tab 3",
+                                        panel: <div>Contents of tab 3</div>,
+                                    },
+                                ]}
+                                selectedTabId={"tab-2"}
+                            />
+                        </div>,
+                    );
+                    await userEvent.tab();
+
+                    // Act
+                    await userEvent.keyboard("{End}");
+
+                    // Assert
+                    expect(
+                        screen.getByRole("tab", {name: "Tab 3"}),
+                    ).toHaveFocus();
+                });
+            });
         });
     });
 

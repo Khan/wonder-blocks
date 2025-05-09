@@ -543,3 +543,28 @@ export const TabLabelRenderFunction: StoryComponentType = {
         );
     },
 };
+
+/**
+ * If an ancestor element of the `Tabs` component has `dir="rtl"`, the
+ * keyboard arrow navigation will be reversed:
+ * - `{ArrowRight}` will move focus to the previous tab
+ * - `{ArrowLeft}` will move focus to the next tab
+ *
+ * `{Home}` continues to move focus to the first tab. `{End}` continues to move
+ * focus to the last tab.
+ */
+export const RightToLeft: StoryComponentType = {
+    args: {
+        tabs: generateTabs(3, "Tab", false),
+        selectedTabId: "tab-1",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because this doesn't test anything visual.
+            disableSnapshot: true,
+        },
+    },
+    globals: {
+        direction: "rtl",
+    },
+};
