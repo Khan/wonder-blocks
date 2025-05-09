@@ -598,7 +598,7 @@ export const OpeningModal: StoryComponentType = {
                                         Cancel
                                     </Button>
                                     <Button
-                                        color="destructive"
+                                        actionType="destructive"
                                         onClick={closeModal}
                                     >
                                         Delete

@@ -52,11 +52,6 @@ const StyledInput = addStyle("input");
     );
 });
 
-const disabledState = {
-    border: semanticColor.action.secondary.disabled.border,
-    background: semanticColor.action.secondary.disabled.background,
-};
-
 const size = 16; // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
 const disabledChecked = {
     position: "absolute",
@@ -89,8 +84,8 @@ const sharedStyles = StyleSheet.create({
     },
     disabled: {
         cursor: "auto",
-        backgroundColor: disabledState.background,
-        borderColor: disabledState.border,
+        backgroundColor: semanticColor.input.disabled.background,
+        borderColor: semanticColor.input.disabled.border,
         borderWidth: border.width.thin,
     },
 });
@@ -111,7 +106,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     const states = {
         // Resting state (unchecked)
         unchecked: {
-            border: semanticColor.border.strong,
+            border: semanticColor.input.default.border,
             background: colorAction.default.background,
         },
         checked: {
@@ -123,8 +118,8 @@ const _generateStyles = (checked: Checked, error: boolean) => {
         },
         // Form validation error state
         error: {
-            border: semanticColor.status.critical.foreground,
-            background: semanticColor.status.critical.background,
+            border: semanticColor.input.error.border,
+            background: semanticColor.input.error.background,
         },
     };
 
@@ -138,11 +133,13 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
+                // TODO(WB-1864): Use focusStyles.focus
                 ":focus-visible": {
                     outline: `${border.width.medium} solid ${semanticColor.focus.outer}`,
                     outlineOffset: 1,
                 },
 
+                // TODO(WB-1864): Revisit hover, press tokens
                 ":hover": {
                     outline: `${border.width.medium} solid ${colorAction.hover.border}`,
                     outlineOffset: 1,
@@ -165,6 +162,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
 
                 // Focus and hover have the same style. Focus style only shows
                 // up with keyboard navigation.
+                // TODO(WB-1864): Use focusStyles.focus
                 ":focus-visible": {
                     backgroundColor: error
                         ? states.error.background
@@ -173,6 +171,7 @@ const _generateStyles = (checked: Checked, error: boolean) => {
                     outlineOffset: -1,
                 },
 
+                // TODO(WB-1864): Revisit hover, press tokens
                 ":hover": {
                     backgroundColor: error
                         ? states.error.background

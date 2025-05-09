@@ -453,7 +453,7 @@ export const KeyboardNavigation: StoryComponentType = {
                     </Button>
                     <Button
                         kind="secondary"
-                        color="destructive"
+                        actionType="destructive"
                         onClick={() => {
                             if (numButtonsAfter > 0) {
                                 setNumButtonsAfter(numButtonsAfter - 1);
@@ -472,7 +472,7 @@ export const KeyboardNavigation: StoryComponentType = {
                     </Button>
                     <Button
                         kind="secondary"
-                        color="destructive"
+                        actionType="destructive"
                         onClick={() => {
                             if (numButtonsAfter > 0) {
                                 setNumButtonsInside(numButtonsInside - 1);
@@ -573,7 +573,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
                     </Button>
                     <Button
                         kind="secondary"
-                        color="destructive"
+                        actionType="destructive"
                         onClick={() => {
                             if (numButtonsAfter > 0) {
                                 setNumButtonsAfter(numButtonsAfter - 1);
@@ -592,7 +592,7 @@ export const CustomKeyboardNavigation: StoryComponentType = {
                     </Button>
                     <Button
                         kind="secondary"
-                        color="destructive"
+                        actionType="destructive"
                         onClick={() => {
                             if (numButtonsAfter > 0) {
                                 setNumButtonsInside(numButtonsInside - 1);
