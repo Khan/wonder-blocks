@@ -1,11 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
-import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
+
 import {
     ThemedStylesFn,
     useScopedTheme,
@@ -17,20 +16,19 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {Link} from "react-router-dom-v5-compat";
 import type {
     ButtonActionType,
     ButtonKind,
     ButtonSize,
-    SharedProps,
-} from "./button";
+    ButtonProps,
+} from "../util/button.types";
 import {ButtonThemeContext, ButtonThemeContract} from "../themes/themed-button";
 import {ButtonIcon} from "./button-icon";
 
-type Props = SharedProps & ChildrenProps & ClickableState;
+import {ButtonUnstyled} from "./button-unstyled";
 
-const StyledA = addStyle("a");
-const StyledButton = addStyle("button");
-const StyledLink = addStyle(Link);
+type Props = ButtonProps & ChildrenProps & ClickableState;
 
 const ButtonCore: React.ForwardRefExoticComponent<
     Props &
@@ -41,7 +39,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
 >(function ButtonCore(props: Props, ref) {
     const {theme, themeName} = useScopedTheme(ButtonThemeContext);
     const sharedStyles = useStyles(themedSharedStyles, theme);
-    const inRouterContext = useInRouterContext();
 
     const {
         children,
@@ -78,7 +75,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
     const defaultStyle = [
         sharedStyles.shared,
-        disabled && sharedStyles.disabled,
         startIcon && sharedStyles.withStartIcon,
         endIcon && sharedStyles.withEndIcon,
         buttonStyles.default,
@@ -90,14 +86,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
         size === "large" && sharedStyles.large,
     ];
 
-    const commonProps = {
-        "data-testid": testId,
-        id: id,
-        role: "button",
-        style: [defaultStyle, style],
-        ...restProps,
-    } as const;
-
     const Label = size === "small" ? LabelSmall : LabelLarge;
 
     const label = (
@@ -108,7 +96,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
                 size === "large" && sharedStyles.largeText,
                 labelStyle,
                 spinner && sharedStyles.hiddenText,
-                kind === "tertiary" && sharedStyles.textWithFocus,
                 // apply press/hover effects on the label
                 kind === "tertiary" &&
                     !disabled &&
@@ -188,65 +175,31 @@ const ButtonCore: React.ForwardRefExoticComponent<
         </React.Fragment>
     );
 
-    if (href && !disabled) {
-        return inRouterContext && !skipClientNav && isClientSideUrl(href) ? (
-            <StyledLink
-                {...commonProps}
-                to={href}
-                ref={ref as React.Ref<typeof Link>}
-            >
-                {contents}
-            </StyledLink>
-        ) : (
-            <StyledA
-                {...commonProps}
-                href={href}
-                ref={ref as React.Ref<HTMLAnchorElement>}
-            >
-                {contents}
-            </StyledA>
-        );
-    } else {
-        return (
-            <StyledButton
-                type={type || "button"}
-                {...commonProps}
-                aria-disabled={disabled}
-                ref={ref as React.Ref<HTMLButtonElement>}
-            >
-                {contents}
-            </StyledButton>
-        );
-    }
+    return (
+        <ButtonUnstyled
+            {...restProps}
+            disabled={disabled}
+            href={href}
+            id={id}
+            ref={ref}
+            skipClientNav={skipClientNav}
+            style={[defaultStyle, style]}
+            testId={testId}
+            tabIndex={props.tabIndex}
+            type={type}
+        >
+            {contents}
+        </ButtonUnstyled>
+    );
 });
 
 export default ButtonCore;
 
 const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     shared: {
-        position: "relative",
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
         height: theme.root.sizing.height.medium,
         paddingBlock: 0,
         paddingInline: theme.root.padding.medium,
-        border: "none",
-        cursor: "pointer",
-        outline: "none",
-        textDecoration: "none",
-        boxSizing: "border-box",
-        // This removes the 300ms click delay on mobile browsers by indicating that
-        // "double-tap to zoom" shouldn't be used on this element.
-        touchAction: "manipulation",
-        userSelect: "none",
-        ":focus": {
-            // Mobile: Removes a blue highlight style shown when the user clicks a button
-            WebkitTapHighlightColor: "rgba(0,0,0,0)",
-        },
-    },
-    disabled: {
-        cursor: "auto",
     },
     small: {
         borderRadius: theme.root.border.radius.small,
@@ -274,9 +227,6 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         fontSize: theme.root.font.size.large,
         lineHeight: theme.root.font.lineHeight.large,
     },
-    textWithFocus: {
-        position: "relative", // allows the tertiary button border to use the label width
-    },
     hiddenText: {
         visibility: "hidden",
     },
@@ -290,7 +240,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     tertiaryStartIcon: {
         // Undo the negative padding from startIcon since tertiary
         // buttons don't have extra padding.
-        marginLeft: 0,
+        marginInlineStart: 0,
     },
     endIcon: {
         marginInlineStart: theme.icon.margin.inline.inner,
@@ -308,7 +258,7 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         marginInlineEnd: theme.icon.margin.inline.outer,
     },
     endIconWrapperTertiary: {
-        marginRight: 0,
+        marginInlineEnd: 0,
     },
 });
 
