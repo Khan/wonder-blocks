@@ -410,6 +410,28 @@ importers:
         specifier: workspace:*
         version: link:../../build-settings
 
+  packages/wonder-blocks-badge:
+    dependencies:
+      '@khanacademy/wonder-blocks-core':
+        specifier: workspace:*
+        version: link:../wonder-blocks-core
+      '@khanacademy/wonder-blocks-tokens':
+        specifier: workspace:*
+        version: link:../wonder-blocks-tokens
+      '@khanacademy/wonder-blocks-typography':
+        specifier: workspace:*
+        version: link:../wonder-blocks-typography
+      aphrodite:
+        specifier: 'catalog:'
+        version: 1.2.5
+      react:
+        specifier: 'catalog:'
+        version: 18.2.0
+    devDependencies:
+      '@khanacademy/wb-dev-build-settings':
+        specifier: workspace:*
+        version: link:../../build-settings
+
   packages/wonder-blocks-banner:
     dependencies:
       '@khanacademy/wonder-blocks-button':
