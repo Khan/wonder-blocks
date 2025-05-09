@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 9.0.6
+
+### Patch Changes
+
+- c9a0147: Fixes an issue with the IconButton component not triggering `onClick` when the `Space` key is pressed.
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+- Updated dependencies [38042e2]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-clickable@7.1.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+
 ## 9.0.5
 
 ### Patch Changes

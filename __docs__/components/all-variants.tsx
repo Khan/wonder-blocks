@@ -198,6 +198,7 @@ const styles = StyleSheet.create({
         [breakpoint.mediaQuery.smOrSmaller]: {
             display: "none",
         },
+        maxWidth: "100%",
     },
     list: {
         margin: 0,
@@ -205,6 +206,7 @@ const styles = StyleSheet.create({
         listStyle: "none",
         display: "flex",
         flexDirection: "column",
+        maxWidth: "100%",
     },
     listResponsive: {
         [breakpoint.mediaQuery.mdOrLarger]: {

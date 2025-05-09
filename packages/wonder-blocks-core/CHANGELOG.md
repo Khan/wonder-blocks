@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-core
 
+## 12.3.0
+
+### Minor Changes
+
+- 28fa0c0: Add focus utilities: `findFocusableNodes` and `isFocusable`
+- 28fa0c0: Add constants for `ArrowLeft`, `ArrowRight`, `Home`, and `End` keys
+
 ## 12.2.1
 
 ### Patch Changes

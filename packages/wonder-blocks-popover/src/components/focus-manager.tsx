@@ -17,6 +17,13 @@ type Props = {
      * When not set, the first tabbable element within the dialog will be used.
      */
     initialFocusId?: string;
+    /**
+     * The delay in milliseconds before the initial focus is set.
+     * This is to ensure that any active event listeners have time to finish.
+     *
+     * Defaults to 0.
+     */
+    initialFocusDelay?: number;
 };
 
 /**
@@ -337,7 +344,10 @@ export default class FocusManager extends React.Component<Props> {
                     this.changeFocusabilityInsidePopover(false);
                 }}
             >
-                <InitialFocus initialFocusId={this.props.initialFocusId}>
+                <InitialFocus
+                    initialFocusId={this.props.initialFocusId}
+                    delay={this.props.initialFocusDelay}
+                >
                     {children}
                 </InitialFocus>
             </div>
