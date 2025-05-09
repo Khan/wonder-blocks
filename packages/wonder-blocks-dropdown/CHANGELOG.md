@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.1.0
+
+### Minor Changes
+
+- 96048b6: Adds "active" prop to ActionItem so that it can be marked `aria-current`
+
 ## 10.0.6
 
 ### Patch Changes
