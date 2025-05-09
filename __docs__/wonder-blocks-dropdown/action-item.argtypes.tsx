@@ -3,6 +3,7 @@ import type {ArgTypes} from "@storybook/react";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
+import type {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 const AccessoryMappings = {
     none: null,
@@ -111,4 +112,16 @@ export default {
         },
         type: {name: "other", required: false, value: "React.Node"},
     },
-} satisfies ArgTypes;
+    active: {
+        control: {type: "boolean"},
+        description:
+            `Optional; applies aria-current to the cell.\n\n` +
+            `This is used to indicate that the action item is currently active.`,
+        table: {
+            type: {summary: "boolean"},
+        },
+        type: {name: "boolean", required: false},
+    },
+} satisfies ArgTypes<
+    Omit<React.ComponentProps<typeof ActionItem>, "indent" | "role">
+>;
