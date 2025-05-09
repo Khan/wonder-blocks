@@ -12,7 +12,7 @@ import ButtonCore from "./button-core";
 import ThemedButton from "../themes/themed-button";
 
 // Variants
-export type ButtonActionType = "progressive" | "destructive";
+export type ButtonActionType = "progressive" | "destructive" | "neutral";
 export type ButtonKind = "primary" | "secondary" | "tertiary";
 export type ButtonSize = "small" | "medium" | "large";
 
