@@ -110,7 +110,7 @@ export const styles = StyleSheet.create({
             position: "absolute",
             left: 0,
             right: 0,
-            bottom: `-${bottomSpacing}`,
+            bottom: `calc(${bottomSpacing} * -1)`,
         },
         // Only apply hover styles to tabs that are not selected
         [":hover:not([aria-selected='true'])" as any]: {
