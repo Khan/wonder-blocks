@@ -8,7 +8,7 @@ export const fontFamily = {
 
 export const fontWeight = {
     light: 300,
-    regular: 400,
+    medium: 400, // 'regular' in OG
     semi: 600, // only used in TB
     bold: 700,
     black: 900,
@@ -42,7 +42,7 @@ export const font = {
     },
     weight: {
         light: fontWeight.light,
-        regular: fontWeight.regular,
+        medium: fontWeight.medium,
         semi: fontWeight.semi,
         bold: fontWeight.bold,
         black: fontWeight.black,
