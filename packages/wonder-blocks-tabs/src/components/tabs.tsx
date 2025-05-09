@@ -33,7 +33,6 @@ export type TabItem = AriaProps & {
      * by another component (like a `Tooltip` or `Popover`), a render function
      * can be used with the `Tab` component instead. The render function
      * provides the tab props that should be applied to the `Tab` component.
-     * See example in the docs for more details.
      */
     label: React.ReactNode | ((tabProps: TabRenderProps) => React.ReactElement);
     /**
@@ -324,7 +323,8 @@ export const Tabs = React.forwardRef(function Tabs(
                 }
                 case keys.enter:
                 case keys.space: {
-                    event.preventDefault();
+                    // We don't use `event.preventDefault()` here in case we
+                    // want to trigger a popover also.
                     selectTab(focusedTabId.current);
                     break;
                 }

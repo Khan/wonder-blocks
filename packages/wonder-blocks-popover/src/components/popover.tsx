@@ -84,6 +84,13 @@ type Props = AriaProps &
          */
         initialFocusId?: string;
         /**
+         * The delay in milliseconds before the initial focus is set.
+         * This allows any active event listeners to finish before focusing.
+         *
+         * Defaults to 0.
+         */
+        initialFocusDelay?: number;
+        /**
          * Renders the popover when true, renders nothing when false.
          *
          * Using this prop makes the component behave as a controlled component. The
@@ -298,6 +305,7 @@ export default class Popover extends React.Component<Props, State> {
             "aria-describedby": ariaDescribedBy,
             rootBoundary,
             viewportPadding,
+            initialFocusDelay,
         } = this.props;
         const {anchorElement} = this.state;
 
@@ -333,6 +341,7 @@ export default class Popover extends React.Component<Props, State> {
                 <FocusManager
                     anchorElement={anchorElement}
                     initialFocusId={initialFocusId}
+                    initialFocusDelay={initialFocusDelay}
                 >
                     {popperContent}
                 </FocusManager>
@@ -341,7 +350,10 @@ export default class Popover extends React.Component<Props, State> {
             return (
                 // Ensures the user is focused on the first available element
                 // when popover is rendered without the focus manager.
-                <InitialFocus initialFocusId={initialFocusId}>
+                <InitialFocus
+                    initialFocusId={initialFocusId}
+                    delay={initialFocusDelay}
+                >
                     {popperContent}
                 </InitialFocus>
             );
