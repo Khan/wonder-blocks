@@ -21,6 +21,7 @@ type BadgeWithLabelProps = {
 };
 
 const StyledDiv = addStyle("div");
+const StyledSpan = addStyle("span");
 
 function getKindStyle(kind: Props["kind"]) {
     switch (kind) {
@@ -49,7 +50,7 @@ export const Badge = (props: Props) => {
             ]}
             aria-label={ariaLabel}
         >
-            {icon}
+            {icon && <StyledSpan style={styles.icon}>{icon}</StyledSpan>}
             {label}
         </StyledDiv>
     );
@@ -65,6 +66,10 @@ const styles = StyleSheet.create({
         paddingBlock: sizing.size_040,
         paddingInline: sizing.size_080,
         borderRadius: border.radius.radius_080,
+    },
+    icon: {
+        width: sizing.size_160,
+        height: sizing.size_160,
     },
     iconOnly: {
         padding: sizing.size_040,
