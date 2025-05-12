@@ -54,7 +54,7 @@ function getIconKindStyle(kind: Props["kind"]) {
 }
 
 export const Badge = (props: Props) => {
-    const {kind, "aria-label": ariaLabel, icon, label} = props;
+    const {kind = "info", "aria-label": ariaLabel, icon, label} = props;
     return (
         <StyledDiv
             style={[
