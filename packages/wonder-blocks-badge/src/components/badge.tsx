@@ -75,54 +75,116 @@ export const Badge = (props: Props) => {
     );
 };
 
+const badgeTokens = {
+    root: {
+        sizing: {
+            paddingBlock: sizing.size_040,
+            paddingInline: sizing.size_080,
+            gap: sizing.size_040,
+        },
+        border: {
+            width: border.width.thin,
+            style: "solid",
+            radius: border.radius.radius_080,
+        },
+        color: {
+            info: {
+                background: semanticColor.status.notice.background,
+                border: semanticColor.status.notice.foreground,
+                foreground: semanticColor.text.primary,
+            },
+            success: {
+                background: semanticColor.status.success.background,
+                border: semanticColor.status.success.foreground,
+                foreground: semanticColor.text.primary,
+            },
+            warning: {
+                background: semanticColor.status.warning.background,
+                border: semanticColor.status.warning.foreground,
+                foreground: semanticColor.text.primary,
+            },
+            critical: {
+                background: semanticColor.status.critical.background,
+                border: semanticColor.status.critical.foreground,
+                foreground: semanticColor.text.primary,
+            },
+        },
+    },
+    icon: {
+        sizing: {
+            width: sizing.size_160,
+            height: sizing.size_160,
+        },
+        color: {
+            info: {
+                foreground: semanticColor.status.notice.foreground,
+            },
+            success: {
+                foreground: semanticColor.status.success.foreground,
+            },
+            warning: {
+                foreground: semanticColor.status.warning.foreground,
+            },
+            critical: {
+                foreground: semanticColor.status.critical.foreground,
+            },
+        },
+    },
+    iconOnly: {
+        sizing: {
+            padding: sizing.size_040,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     badge: {
         display: "inline-flex",
         alignItems: "center",
-        gap: sizing.size_040,
-        borderWidth: border.width.thin,
-        borderStyle: "solid",
-        paddingBlock: sizing.size_040,
-        paddingInline: sizing.size_080,
-        borderRadius: border.radius.radius_080,
+        gap: badgeTokens.root.sizing.gap,
+        borderWidth: badgeTokens.root.border.width,
+        borderStyle: badgeTokens.root.border.style,
+        paddingBlock: badgeTokens.root.sizing.paddingBlock,
+        paddingInline: badgeTokens.root.sizing.paddingInline,
+        borderRadius: badgeTokens.root.border.radius,
     },
     icon: {
-        width: sizing.size_160,
-        height: sizing.size_160,
+        width: badgeTokens.icon.sizing.width,
+        height: badgeTokens.icon.sizing.height,
     },
     iconOnly: {
-        padding: sizing.size_040,
+        padding: badgeTokens.iconOnly.sizing.padding,
     },
     info: {
-        backgroundColor: semanticColor.status.notice.background,
-        color: semanticColor.text.primary,
-        borderColor: semanticColor.status.notice.foreground,
+        backgroundColor: badgeTokens.root.color.info.background,
+        color: badgeTokens.root.color.info.foreground,
+        borderColor: badgeTokens.root.color.info.border,
     },
     success: {
-        backgroundColor: semanticColor.status.success.background,
-        color: semanticColor.text.primary,
-        borderColor: semanticColor.status.success.foreground,
+        backgroundColor: badgeTokens.root.color.success.background,
+        color: badgeTokens.root.color.success.foreground,
+        borderColor: badgeTokens.root.color.success.border,
     },
     warning: {
-        backgroundColor: semanticColor.status.warning.background,
-        color: semanticColor.text.primary,
-        borderColor: semanticColor.status.warning.foreground,
+        backgroundColor: badgeTokens.root.color.warning.background,
+        color: badgeTokens.root.color.warning.foreground,
+        borderColor: badgeTokens.root.color.warning.border,
     },
     critical: {
-        backgroundColor: semanticColor.status.critical.background,
-        color: semanticColor.text.primary,
-        borderColor: semanticColor.status.critical.foreground,
+        backgroundColor: badgeTokens.root.color.critical.background,
+        color: badgeTokens.root.color.critical.foreground,
+        borderColor: badgeTokens.root.color.critical.border,
     },
     infoIcon: {
-        color: semanticColor.status.notice.foreground,
+        color: badgeTokens.icon.color.info.foreground,
     },
     successIcon: {
-        color: semanticColor.status.success.foreground,
+        color: badgeTokens.icon.color.success.foreground,
     },
     warningIcon: {
-        color: semanticColor.status.warning.foreground,
+        color: badgeTokens.icon.color.warning.foreground,
     },
     criticalIcon: {
-        color: semanticColor.status.critical.foreground,
+        color: badgeTokens.icon.color.critical.foreground,
     },
 });
