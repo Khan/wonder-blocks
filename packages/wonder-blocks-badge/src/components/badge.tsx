@@ -38,6 +38,21 @@ function getKindStyle(kind: Props["kind"]) {
     }
 }
 
+function getIconKindStyle(kind: Props["kind"]) {
+    switch (kind) {
+        case "info":
+            return styles.infoIcon;
+        case "success":
+            return styles.successIcon;
+        case "warning":
+            return styles.warningIcon;
+        case "critical":
+            return styles.criticalIcon;
+        default:
+            return {};
+    }
+}
+
 export const Badge = (props: Props) => {
     const {kind, "aria-label": ariaLabel, icon, label} = props;
     return (
@@ -50,7 +65,11 @@ export const Badge = (props: Props) => {
             ]}
             aria-label={ariaLabel}
         >
-            {icon && <StyledSpan style={styles.icon}>{icon}</StyledSpan>}
+            {icon && (
+                <StyledSpan style={[styles.icon, getIconKindStyle(kind)]}>
+                    {icon}
+                </StyledSpan>
+            )}
             {label}
         </StyledDiv>
     );
@@ -88,6 +107,18 @@ const styles = StyleSheet.create({
     },
     critical: {
         backgroundColor: semanticColor.status.critical.background,
+        color: semanticColor.status.critical.foreground,
+    },
+    infoIcon: {
+        color: semanticColor.status.notice.foreground,
+    },
+    successIcon: {
+        color: semanticColor.status.success.foreground,
+    },
+    warningIcon: {
+        color: semanticColor.status.warning.foreground,
+    },
+    criticalIcon: {
         color: semanticColor.status.critical.foreground,
     },
 });
