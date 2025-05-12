@@ -141,7 +141,6 @@ export function AllVariants(props: Props) {
                                         >
                                             {children({
                                                 props: {
-                                                    "aria-label": ariaLabel,
                                                     ...row.props,
                                                     ...col.props,
                                                 },
