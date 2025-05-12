@@ -1,23 +1,13 @@
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, AriaProps} from "@khanacademy/wonder-blocks-core";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
-type Props = {
+type Props = AriaProps & {
     kind?: "info" | "success" | "warning" | "critical";
-} & (IconOnlyProps | BadgeWithLabelProps);
-
-type IconOnlyProps = {
-    icon: React.ReactNode;
-    "aria-label": string;
-    label?: never;
-};
-
-type BadgeWithLabelProps = {
-    label: string;
+    label?: string;
     icon?: React.ReactNode;
-    "aria-label"?: string;
 };
 
 const StyledDiv = addStyle("div");
@@ -54,7 +44,7 @@ function getIconKindStyle(kind: Props["kind"]) {
 }
 
 export const Badge = (props: Props) => {
-    const {kind = "info", "aria-label": ariaLabel, icon, label} = props;
+    const {kind = "info", icon, label, ...otherProps} = props;
     return (
         <StyledDiv
             style={[
@@ -63,7 +53,7 @@ export const Badge = (props: Props) => {
                 getKindStyle(kind),
                 icon && !label ? styles.iconOnly : {},
             ]}
-            aria-label={ariaLabel}
+            {...otherProps}
         >
             {icon && (
                 <StyledSpan style={[styles.icon, getIconKindStyle(kind)]}>
