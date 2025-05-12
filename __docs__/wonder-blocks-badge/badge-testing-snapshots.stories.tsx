@@ -53,8 +53,12 @@ export const StateSheetStory: StoryComponentType = {
             {
                 name: "Icon only",
                 props: {
-                    icon: <PhosphorIcon icon={IconMappings.cookie} />,
-                    "aria-label": "Cookie",
+                    icon: (
+                        <PhosphorIcon
+                            icon={IconMappings.cookie}
+                            aria-label="Cookie"
+                        />
+                    ),
                 },
             },
         ];
