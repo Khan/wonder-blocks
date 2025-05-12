@@ -95,19 +95,23 @@ const styles = StyleSheet.create({
     },
     info: {
         backgroundColor: semanticColor.status.notice.background,
-        color: semanticColor.status.notice.foreground,
+        color: semanticColor.text.primary,
+        borderColor: semanticColor.status.notice.foreground,
     },
     success: {
         backgroundColor: semanticColor.status.success.background,
-        color: semanticColor.status.success.foreground,
+        color: semanticColor.text.primary,
+        borderColor: semanticColor.status.success.foreground,
     },
     warning: {
         backgroundColor: semanticColor.status.warning.background,
-        color: semanticColor.status.warning.foreground,
+        color: semanticColor.text.primary,
+        borderColor: semanticColor.status.warning.foreground,
     },
     critical: {
         backgroundColor: semanticColor.status.critical.background,
-        color: semanticColor.status.critical.foreground,
+        color: semanticColor.text.primary,
+        borderColor: semanticColor.status.critical.foreground,
     },
     infoIcon: {
         color: semanticColor.status.notice.foreground,
