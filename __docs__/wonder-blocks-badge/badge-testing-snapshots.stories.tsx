@@ -167,6 +167,10 @@ export const Scenarios: StoryComponentType = {
                     ),
                 },
             },
+            {
+                name: "No label and no icon",
+                props: {},
+            },
         ];
         return (
             <View style={{gap: sizing.size_080}}>

@@ -5,8 +5,22 @@ import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
 type Props = AriaProps & {
+    /**
+     * The kind of badge to display. Defaults to `info`.
+     */
     kind?: "info" | "success" | "warning" | "critical";
+    /**
+     * The label to display in the badge.
+     */
     label?: string;
+    /**
+     * The icon to display in the badge. It can be a PhosphorIcon, a custom svg,
+     * or `img` element.
+     * Considerations:
+     * - If the icon conveys meaning, set the alt text on the icon being used
+     * - If the icon is an `img` element, it may need width: 100% and height: 100%
+     *   to render properly in the badge.
+     */
     icon?: React.ReactNode;
 };
 
@@ -43,8 +57,15 @@ function getIconKindStyle(kind: Props["kind"]) {
     }
 }
 
+/**
+ * Badges are visual indicators used to display concise information, such as
+ * a status, label, or count.
+ */
 export const Badge = (props: Props) => {
     const {kind = "info", icon, label, ...otherProps} = props;
+    if (!label && !icon) {
+        return <React.Fragment />;
+    }
     return (
         <StyledDiv
             style={[

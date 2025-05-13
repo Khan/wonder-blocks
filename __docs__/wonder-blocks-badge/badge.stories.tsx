@@ -13,14 +13,12 @@ import {
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import badgeArgtypes from "./badge.argtypes";
 
-/**
- * Badges are visual indicators used to display concise information, such as
- * a status, label, or count.
- */
 export default {
     title: "Packages / Badge",
     component: Badge,
+    argTypes: badgeArgtypes,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
