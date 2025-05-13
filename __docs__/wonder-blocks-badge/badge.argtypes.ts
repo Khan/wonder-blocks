@@ -14,7 +14,7 @@ export default {
         mapping: IconMappings,
         table: {
             type: {
-                summary: "ReactNode",
+                summary: "ReactElement",
             },
         },
     },

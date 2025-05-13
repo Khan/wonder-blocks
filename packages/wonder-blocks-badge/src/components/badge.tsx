@@ -21,7 +21,7 @@ type Props = AriaProps & {
      * - If the icon is an `img` element, it may need width: 100% and height: 100%
      *   to render properly in the badge.
      */
-    icon?: React.ReactNode;
+    icon?: React.ReactElement;
 };
 
 const StyledDiv = addStyle("div");
