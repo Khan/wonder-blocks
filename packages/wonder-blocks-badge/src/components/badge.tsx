@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         gap: badgeTokens.root.sizing.gap,
+        width: "fit-content",
         borderWidth: badgeTokens.root.border.width,
         borderStyle: badgeTokens.root.border.style,
         paddingBlock: badgeTokens.root.sizing.paddingBlock,
