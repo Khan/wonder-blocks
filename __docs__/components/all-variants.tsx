@@ -174,7 +174,6 @@ export function AllVariants(props: Props) {
                                 <View style={styles.childrenWrapper}>
                                     {children({
                                         props: {
-                                            "aria-label": ariaLabel,
                                             ...column.props,
                                             ...row.props,
                                         },

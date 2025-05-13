@@ -139,7 +139,7 @@ export const Scenarios: StoryComponentType = {
             {
                 name: "Custom multi-colored svg icon",
                 props: {
-                    icon: multiColoredIcon, // TODO alt text
+                    icon: multiColoredIcon,
                 },
             },
             {
