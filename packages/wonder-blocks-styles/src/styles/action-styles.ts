@@ -1,7 +1,7 @@
 import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import {focus} from "./focus-styles";
 
-const pressColor = `color-mix(in srgb, ${semanticColor.border.strong} 55%, ${semanticColor.border.inverse})`;
+const pressColor = `color-mix(in srgb, ${semanticColor.border.neutral.strong} 55%, ${semanticColor.border.inverse.strong})`;
 
 /**
  * The inverse styles for an interactive control.
@@ -15,7 +15,7 @@ export const inverse = {
     // button, as there might be some cases where the interactive element
     // already includes a border.
     ":not([aria-disabled=true])": {
-        borderColor: semanticColor.border.inverse,
+        borderColor: semanticColor.border.inverse.strong,
         color: semanticColor.text.inverse,
     },
 
@@ -24,7 +24,7 @@ export const inverse = {
         // Overriding borderColor only to preserve the visual integrity of the
         // button, as there might be some cases where the interactive element
         // already includes a border.
-        borderColor: semanticColor.border.inverse,
+        borderColor: semanticColor.border.inverse.strong,
     },
 
     // Use the global focus styles to ensure that the focus state is consistent

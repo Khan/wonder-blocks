@@ -17,6 +17,11 @@ const core = {
         strong: color.fadedOffBlack50,
         // what should we do with faddedOffBlack72?
     },
+    inverse: {
+        subtle: color.fadedOffBlack8,
+        default: color.offWhite,
+        strong: color.white,
+    },
 };
 
 const border = core;
