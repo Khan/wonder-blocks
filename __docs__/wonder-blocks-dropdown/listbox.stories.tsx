@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         width: 360,
     },
     customListbox: {
-        border: `5px solid ${semanticColor.border.primary}`,
+        border: `5px solid ${semanticColor.border.neutral.default}`,
         width: 250,
     },
 });

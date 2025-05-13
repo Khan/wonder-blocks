@@ -673,7 +673,7 @@ const styles = StyleSheet.create({
         marginRight: spacing.large_24,
     },
     navigation: {
-        border: `1px dashed ${semanticColor.border.primary}`,
+        border: `1px dashed ${semanticColor.border.neutral.default}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
     },
@@ -702,7 +702,7 @@ const styles = StyleSheet.create({
     },
     card: {
         background: semanticColor.surface.secondary,
-        border: `${border.width.thin} solid ${semanticColor.border.primary}`,
+        border: `${border.width.thin} solid ${semanticColor.border.neutral.default}`,
         borderRadius: border.radius.radius_040,
         width: "100%",
         height: "100%",
