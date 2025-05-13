@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-button
 
+## 10.0.0
+
+### Major Changes
+
+- a55481a: Renames `color` prop to `actionType` and changes `default` to `progressive`.
+
+### Minor Changes
+
+- 812c167: Add `neutral` value to the `actionType` prop.
+
+### Patch Changes
+
+- a1be4c5: Updates Button default theme to simplify its use and have more consistency with the `IconButton` styles. Also makes some changes to get this button closer to the design specs.
+- 176a3bd: Splits ButtonCore to keep styles there and creates a new ButtonUnstyled to handle the semantics of the Button HTML elements"
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-clickable@7.1.1
+    - @khanacademy/wonder-blocks-progress-spinner@3.1.12
+    - @khanacademy/wonder-blocks-styles@0.2.8
+    - @khanacademy/wonder-blocks-typography@3.2.2
+
 ## 9.0.2
 
 ### Patch Changes
