@@ -41,12 +41,12 @@ export default {
                             {...args}
                             kind={kind}
                             icon={
-                                args.icon && (
+                                args.icon ? (
                                     <PhosphorIcon
                                         icon={args.icon}
                                         aria-label={"Example icon"}
                                     />
-                                )
+                                ) : undefined
                             }
                         />
                     );
@@ -54,9 +54,13 @@ export default {
             </StyledDiv>
         );
     },
-} as Meta<typeof Badge>;
+};
 
-type StoryComponentType = StoryObj<typeof Badge>;
+type StoryComponentType = StoryObj<
+    // Omit original icon type and replace with string so we can use the IconMapping
+    // for PhosphorIcons
+    Omit<PropsFor<typeof Badge>, "icon"> & {icon?: string}
+>;
 
 const StyledDiv = addStyle("div");
 const kinds = ["info", "success", "warning", "critical"] as const;
@@ -69,7 +73,11 @@ export const Default = {
     render: (args: Omit<PropsFor<typeof Badge>, "icon"> & {icon: string}) => (
         <Badge
             {...args}
-            icon={<PhosphorIcon icon={args.icon} aria-label="Example icon" />}
+            icon={
+                args.icon ? (
+                    <PhosphorIcon icon={args.icon} aria-label="Example icon" />
+                ) : undefined
+            }
         />
     ),
     argTypes: {
@@ -90,11 +98,7 @@ export const Default = {
  * The different kinds of badges.
  */
 export const Kinds: StoryComponentType = {
-    args: {
-        label: "Badge",
-        icon: <PhosphorIcon icon={IconMappings.cookie} aria-label="Cookie" />,
-    },
-    render(args) {
+    render() {
         return (
             <StyledDiv style={styles.container}>
                 {kinds.map((kind) => {
@@ -103,9 +107,14 @@ export const Kinds: StoryComponentType = {
                     return (
                         <Badge
                             key={kind}
-                            {...args}
                             kind={kind}
                             label={kindLabel}
+                            icon={
+                                <PhosphorIcon
+                                    icon={IconMappings.cookie}
+                                    aria-label="Cookie"
+                                />
+                            }
                         />
                     );
                 })}
