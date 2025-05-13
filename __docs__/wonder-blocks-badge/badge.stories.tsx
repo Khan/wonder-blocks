@@ -83,6 +83,9 @@ export const Default = {
     },
 };
 
+/**
+ * The different kinds of badges.
+ */
 export const Kinds: StoryComponentType = {
     args: {
         label: "Badge",
@@ -108,18 +111,34 @@ export const Kinds: StoryComponentType = {
     },
 };
 
+/**
+ * A badge can be used with only a label.
+ */
 export const LabelOnly: StoryComponentType = {
     args: {
         label: "Badge",
     },
 };
 
+/**
+ * A badge can be used with only an icon.
+ */
 export const IconOnly: StoryComponentType = {
     args: {
         icon: "cookie",
     },
 };
 
+/**
+ * A badge can be used with a custom svg. Here are some examples of custom icons:
+ * - A single colored svg icon - If the svg has `fill="currentColor"` then the
+ * icon will use the color specified by the Badge component..
+ * - A multi-colored svg icon - An svg that defines it's own fill can be used
+ * - An icon using an img tag - The `img` element should have a height and width
+ * of 100% to ensure it scales to the size of the badge icon.
+ *
+ * If the icon conveys meaning, it should have alt text.
+ */
 export const CustomIcons: StoryComponentType = {
     render: () => {
         return (
