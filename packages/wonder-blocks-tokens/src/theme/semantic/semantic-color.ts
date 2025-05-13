@@ -193,7 +193,7 @@ export const semanticColor = {
                     foreground: text.secondary,
                 },
                 hover: {
-                    border: border.neutral.default,
+                    border: border.neutral.strong,
                     background: core.trasparent,
                     foreground: text.secondary,
                 },
