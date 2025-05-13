@@ -67,7 +67,10 @@ export const Default = {
         icon: "cookie",
     },
     render: (args: Omit<PropsFor<typeof Badge>, "icon"> & {icon: string}) => (
-        <Badge {...args} icon={<PhosphorIcon icon={args.icon} />} />
+        <Badge
+            {...args}
+            icon={<PhosphorIcon icon={args.icon} aria-label="Example icon" />}
+        />
     ),
     argTypes: {
         icon: {
