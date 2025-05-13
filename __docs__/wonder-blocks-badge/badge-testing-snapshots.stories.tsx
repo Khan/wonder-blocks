@@ -17,7 +17,6 @@ import {
     multiColoredIcon,
     singleColoredIcon,
 } from "../components/icons-for-testing";
-import favicon from "../../static/favicon.ico";
 
 /**
  * Badges are visual indicators used to display concise information, such as
@@ -148,7 +147,7 @@ export const Scenarios: StoryComponentType = {
                 props: {
                     icon: (
                         <img
-                            src={"/favicon.ico"}
+                            src={"./logo.svg"}
                             alt="Wonder Blocks"
                             style={{height: "100%", width: "100%"}}
                         />
@@ -161,7 +160,7 @@ export const Scenarios: StoryComponentType = {
                     label: "Badge",
                     icon: (
                         <img
-                            src={favicon}
+                            src={"./logo.svg"}
                             alt="Wonder Blocks"
                             style={{height: "100%", width: "100%"}}
                         />
