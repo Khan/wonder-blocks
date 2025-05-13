@@ -2,6 +2,7 @@ import {color} from "../../tokens/color";
 import {mix} from "../../util";
 
 const core = {
+    trasparent: "transparent",
     progressive: {
         subtle: color.fadedBlue8,
         default: color.blue,
@@ -13,9 +14,14 @@ const core = {
         strong: color.activeRed,
     },
     neutral: {
-        subtle: color.fadedOffBlack16,
-        default: color.fadedOffBlack50,
+        subtle: color.fadedOffBlack8,
+        default: color.fadedOffBlack64,
         strong: color.fadedOffBlack72,
+    },
+    disabled: {
+        subtle: "transparent",
+        default: color.fadedOffBlack32,
+        strong: color.fadedOffBlack50,
     },
     inverse: {
         subtle: color.fadedOffBlack8,
@@ -35,7 +41,33 @@ const core = {
     },
 };
 
-const border = core;
+const background = {
+    neutral: core.neutral,
+    disabled: core.disabled,
+    progressive: core.progressive,
+    destructive: core.destructive,
+};
+
+const border = {
+    progressive: core.progressive,
+    destructive: core.destructive,
+    // NOTE: Border colors are used differently in different contexts.
+    neutral: {
+        subtle: color.fadedOffBlack8,
+        default: color.fadedOffBlack16,
+        strong: color.fadedOffBlack50,
+    },
+    inverse: {
+        subtle: color.fadedOffBlack8,
+        default: color.offWhite,
+        strong: color.white,
+    },
+    disabled: {
+        subtle: core.trasparent,
+        default: color.fadedOffBlack16,
+        strong: color.fadedOffBlack32,
+    },
+};
 
 const surface = {
     primary: color.white,
@@ -61,60 +93,60 @@ export const semanticColor = {
         primary: {
             progressive: {
                 default: {
-                    border: "transparent",
-                    background: core.progressive.default,
+                    border: core.trasparent,
+                    background: background.progressive.default,
                     foreground: text.inverse,
                 },
                 hover: {
                     border: border.progressive.default,
-                    background: core.progressive.default,
+                    background: background.progressive.default,
                     foreground: text.inverse,
                 },
                 press: {
                     border: border.progressive.strong,
-                    background: core.progressive.strong,
+                    background: background.progressive.strong,
                     foreground: text.inverse,
                 },
             },
             destructive: {
                 default: {
-                    border: "transparent",
-                    background: core.progressive.default,
+                    border: core.trasparent,
+                    background: background.destructive.default,
                     foreground: text.inverse,
                 },
                 hover: {
                     border: border.destructive.default,
-                    background: core.progressive.default,
+                    background: background.destructive.default,
                     foreground: text.inverse,
                 },
                 press: {
                     border: border.destructive.strong,
-                    background: core.destructive.strong,
+                    background: background.destructive.strong,
                     foreground: text.inverse,
                 },
             },
 
             neutral: {
                 default: {
-                    border: "transparent",
-                    background: core.neutral.default,
+                    border: core.trasparent,
+                    background: background.neutral.default,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: border.neutral.default,
-                    background: core.neutral.default,
+                    border: core.neutral.default,
+                    background: background.neutral.default,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: border.neutral.strong,
-                    background: border.neutral.strong,
+                    border: core.neutral.strong,
+                    background: background.neutral.strong,
                     foreground: text.inverse,
                 },
             },
 
             disabled: {
-                border: color.fadedOffBlack32,
-                background: color.fadedOffBlack32,
+                border: border.disabled.strong,
+                background: background.disabled.default,
                 foreground: color.offWhite,
             },
         },
@@ -123,12 +155,12 @@ export const semanticColor = {
             progressive: {
                 default: {
                     border: border.neutral.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: core.progressive.default,
                 },
                 hover: {
                     border: border.progressive.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: core.progressive.default,
                 },
                 press: {
@@ -140,12 +172,12 @@ export const semanticColor = {
             destructive: {
                 default: {
                     border: border.neutral.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: core.destructive.default,
                 },
                 hover: {
                     border: border.destructive.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: core.destructive.default,
                 },
                 press: {
@@ -157,12 +189,12 @@ export const semanticColor = {
             neutral: {
                 default: {
                     border: border.neutral.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: text.secondary,
                 },
                 hover: {
                     border: border.neutral.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: text.secondary,
                 },
                 press: {
@@ -173,8 +205,8 @@ export const semanticColor = {
             },
 
             disabled: {
-                border: color.fadedOffBlack32,
-                background: "transparent",
+                border: border.disabled.strong,
+                background: background.disabled.subtle,
                 foreground: text.disabled,
             },
         },
@@ -182,60 +214,60 @@ export const semanticColor = {
         tertiary: {
             progressive: {
                 default: {
-                    border: "transparent",
-                    background: "transparent",
+                    border: core.trasparent,
+                    background: core.trasparent,
                     foreground: core.progressive.default,
                 },
                 hover: {
                     border: border.progressive.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: core.progressive.default,
                 },
                 press: {
                     border: border.progressive.strong,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: core.progressive.strong,
                 },
             },
 
             destructive: {
                 default: {
-                    border: "transparent",
-                    background: "transparent",
+                    border: core.trasparent,
+                    background: core.trasparent,
                     foreground: core.destructive.default,
                 },
                 hover: {
                     border: border.destructive.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: core.destructive.default,
                 },
                 press: {
                     border: border.destructive.strong,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: core.destructive.strong,
                 },
             },
             neutral: {
                 default: {
-                    border: "transparent",
-                    background: "transparent",
+                    border: core.trasparent,
+                    background: core.trasparent,
                     foreground: text.secondary,
                 },
                 hover: {
                     border: border.neutral.default,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: text.secondary,
                 },
                 press: {
                     border: border.neutral.strong,
-                    background: "transparent",
+                    background: core.trasparent,
                     foreground: text.primary,
                 },
             },
 
             disabled: {
-                border: border.neutral.default,
-                background: "transparent",
+                border: border.disabled.default,
+                background: background.disabled.subtle,
                 foreground: text.disabled,
             },
         },
