@@ -31,11 +31,25 @@ export default {
             disableSnapshot: true,
         },
     },
-    render: (args) => {
+    render: (args: Omit<PropsFor<typeof Badge>, "icon"> & {icon: string}) => {
         return (
             <StyledDiv style={styles.container}>
                 {kinds.map((kind) => {
-                    return <Badge key={kind} {...args} kind={kind} />;
+                    return (
+                        <Badge
+                            key={kind}
+                            {...args}
+                            kind={kind}
+                            icon={
+                                args.icon && (
+                                    <PhosphorIcon
+                                        icon={args.icon}
+                                        aria-label={"Example icon"}
+                                    />
+                                )
+                            }
+                        />
+                    );
                 })}
             </StyledDiv>
         );
@@ -102,7 +116,7 @@ export const LabelOnly: StoryComponentType = {
 
 export const IconOnly: StoryComponentType = {
     args: {
-        icon: <PhosphorIcon icon={IconMappings.cookie} aria-label="Cookie" />,
+        icon: "cookie",
     },
 };
 
