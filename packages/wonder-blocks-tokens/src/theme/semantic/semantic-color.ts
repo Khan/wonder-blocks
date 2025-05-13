@@ -154,7 +154,7 @@ export const semanticColor = {
         secondary: {
             progressive: {
                 default: {
-                    border: border.neutral.default,
+                    border: border.neutral.strong,
                     background: core.trasparent,
                     foreground: core.progressive.default,
                 },
@@ -171,7 +171,7 @@ export const semanticColor = {
             },
             destructive: {
                 default: {
-                    border: border.neutral.default,
+                    border: border.neutral.strong,
                     background: core.trasparent,
                     foreground: core.destructive.default,
                 },
@@ -188,7 +188,7 @@ export const semanticColor = {
             },
             neutral: {
                 default: {
-                    border: border.neutral.default,
+                    border: border.neutral.strong,
                     background: core.trasparent,
                     foreground: text.secondary,
                 },
@@ -321,7 +321,7 @@ export const semanticColor = {
             foreground: core.progressive.default,
         },
         neutral: {
-            background: color.fadedOffBlack8,
+            background: background.neutral.subtle,
             foreground: text.primary,
         },
     },
