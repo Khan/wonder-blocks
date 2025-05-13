@@ -3,58 +3,84 @@ import {color} from "./internal/primitive-color-thunderblocks";
 
 import {semanticColor as defaultSemanticColor} from "./semantic-color";
 
+const border = {
+    subtle: color.gray_60,
+    // TODO(juan): Figure out neutral name
+    // primary: color.fadedOffBlack16,
+    neutral: color.gray_30,
+    strong: color.gray_20,
+    inverse: color.white_100,
+    progressive: color.blue_30,
+    destructive: color.red_30,
+};
+
+const surface = {
+    primary: color.white_100,
+    secondary: color.blue_90,
+    emphasis: color.blue_70,
+    inverse: color.gray_05,
+    overlay: color.black_50,
+};
+
+const text = {
+    primary: color.black_100,
+    secondary: color.gray_20,
+    disabled: color.gray_60,
+    inverse: color.white_100,
+};
+
 export const semanticColor = mergeTheme(defaultSemanticColor, {
     action: {
         primary: {
             progressive: {
                 default: {
-                    border: color.blue_30,
+                    border: border.progressive,
                     background: color.blue_30,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
                 hover: {
                     border: color.blue_20,
                     background: color.blue_20,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
                 press: {
                     border: color.blue_20,
                     background: color.blue_20,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
             },
             destructive: {
                 default: {
-                    border: color.red_30,
+                    border: border.destructive,
                     background: color.red_30,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
                 hover: {
                     border: color.red_20,
                     background: color.red_20,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
                 press: {
                     border: color.red_20,
                     background: color.red_20,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
             },
             neutral: {
                 default: {
-                    border: color.gray_50,
+                    border: border.neutral,
                     background: color.gray_30,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
                 hover: {
                     border: color.gray_10,
                     background: color.gray_10,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
                 press: {
                     border: color.gray_10,
                     background: color.gray_10,
-                    foreground: color.white_100,
+                    foreground: text.inverse,
                 },
             },
 
@@ -211,25 +237,9 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         },
     },
 
-    surface: {
-        primary: color.white_100,
-        secondary: color.blue_90,
-        emphasis: color.blue_70,
-        inverse: color.gray_05,
-        overlay: color.black_50,
-    },
-    text: {
-        primary: color.black_100,
-        secondary: color.gray_20,
-        disabled: color.gray_60,
-        inverse: color.white_100,
-    },
-    border: {
-        subtle: color.gray_60,
-        // TODO(juan): Figure out neutral name
-        // neutral: color.gray_30,
-        strong: color.gray_20,
-    },
+    surface,
+    text,
+    border,
 
     focus: {
         outer: color.blue_30,
