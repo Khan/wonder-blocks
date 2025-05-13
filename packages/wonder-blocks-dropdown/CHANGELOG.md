@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.1.0
+
+### Minor Changes
+
+- 96048b6: Adds "active" prop to ActionItem so that it can be marked `aria-current`
+
+### Patch Changes
+
+- abf5496: modify form field components to use `semanticColor.input`.
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-search-field@5.1.15
+    - @khanacademy/wonder-blocks-cell@4.1.13
+    - @khanacademy/wonder-blocks-clickable@7.1.1
+    - @khanacademy/wonder-blocks-layout@3.1.12
+    - @khanacademy/wonder-blocks-modal@7.1.15
+    - @khanacademy/wonder-blocks-pill@3.1.13
+    - @khanacademy/wonder-blocks-typography@3.2.2
+
 ## 10.0.6
 
 ### Patch Changes

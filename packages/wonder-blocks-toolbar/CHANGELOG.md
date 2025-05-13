@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 5.1.12
+
+### Patch Changes
+
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-typography@3.2.2
+
 ## 5.1.11
 
 ### Patch Changes

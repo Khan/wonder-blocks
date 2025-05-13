@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 10.1.0
+
+### Minor Changes
+
+- abf5496: Add semanticColor.input tokens for form fields
+
+### Patch Changes
+
+- a1be4c5: Change secondary.disabled.border to match design specs
+- d00a6f1: Fixes `semanticColor.action.secondary.disabled.background` to match the Design specs (transparent instead of offWhite)
+- 812c167: Fix `neutral.secondary.press.background` value to be closer to the progressive and destructive backgrounds
+
 ## 10.0.0
 
 ### Major Changes
