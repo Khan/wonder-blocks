@@ -10,7 +10,7 @@ import {
     multiColoredIcon,
     singleColoredIcon,
 } from "../components/icons-for-testing";
-import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes from "./badge.argtypes";
@@ -47,7 +47,29 @@ type StoryComponentType = StoryObj<typeof Badge>;
 const StyledDiv = addStyle("div");
 const kinds = ["info", "success", "warning", "critical"] as const;
 
-export const Default: StoryComponentType = {
+export const Default = {
+    args: {
+        label: "Badge",
+        icon: "cookie",
+    },
+    render: (args: Omit<PropsFor<typeof Badge>, "icon"> & {icon: string}) => (
+        <Badge {...args} icon={<PhosphorIcon icon={args.icon} />} />
+    ),
+    argTypes: {
+        icon: {
+            control: {type: "select"},
+            options: Object.keys(IconMappings),
+            mapping: IconMappings,
+            table: {
+                type: {
+                    summary: "ReactNode",
+                },
+            },
+        },
+    },
+};
+
+export const Kinds: StoryComponentType = {
     args: {
         label: "Badge",
         icon: <PhosphorIcon icon={IconMappings.cookie} aria-label="Cookie" />,

@@ -6,4 +6,11 @@ export default {
             },
         },
     },
+    icon: {
+        table: {
+            type: {
+                summary: "ReactNode",
+            },
+        },
+    },
 };
