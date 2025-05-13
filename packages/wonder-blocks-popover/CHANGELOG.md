@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-popover
 
+## 6.1.0
+
+### Minor Changes
+
+- 3be8b60: Popover: Add optional `initialFocusDelay` prop. This sets a delay before the first focusable element is focused when a Popover is opened
+
+### Patch Changes
+
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+- Updated dependencies [c9a0147]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-icon-button@9.0.6
+    - @khanacademy/wonder-blocks-modal@7.1.14
+    - @khanacademy/wonder-blocks-tooltip@4.1.14
+    - @khanacademy/wonder-blocks-typography@3.2.1
+
 ## 6.0.8
 
 ### Patch Changes

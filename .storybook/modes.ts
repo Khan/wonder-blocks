@@ -12,8 +12,16 @@ export const allModes = {
     chromebook: {
         viewport: "chromebook",
     },
-    wide: {
-        viewport: "wide",
+    // Theming
+    themeDefault: {
+        theme: "default",
+    },
+    themeThunderBlocks: {
+        theme: "thunderblocks",
+    },
+    // NOTE: This will go away when we consolidate the ThunderBlocks theme.
+    themeKhanmigo: {
+        theme: "khanmigo",
     },
     // Theming
     themeDefault: {

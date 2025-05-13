@@ -96,6 +96,11 @@ type ActionProps = {
      * Optional right accessory to display in the `ActionItem` element.
      */
     rightAccessory?: CompactCellProps["rightAccessory"];
+
+    /**
+     * Optional; applies aria-current to the cell.
+     */
+    active?: CompactCellProps["active"];
 };
 
 type DefaultProps = {
@@ -138,6 +143,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             role,
             style,
             testId,
+            active,
         } = this.props;
 
         const defaultStyle = [
@@ -173,6 +179,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                 href={href}
                 target={target}
                 onClick={onClick}
+                active={active}
             />
         );
     }

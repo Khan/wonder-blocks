@@ -1,5 +1,5 @@
 import Button from "./components/button";
-import type {SharedProps} from "./components/button";
+import type {ButtonProps} from "./util/button.types";
 
-export type {SharedProps as ButtonProps};
+export type {ButtonProps};
 export {Button as default};

@@ -351,8 +351,8 @@ const theme = {
                     semanticColor.action.secondary.progressive.press.foreground,
             },
             selected: {
-                background: actionType.default.background,
-                foreground: actionType.default.foreground,
+                background: semanticColor.input.checked.background,
+                foreground: semanticColor.input.checked.foreground,
             },
         },
     },
