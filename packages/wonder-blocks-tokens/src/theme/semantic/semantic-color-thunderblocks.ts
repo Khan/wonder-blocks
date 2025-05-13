@@ -5,9 +5,10 @@ import {semanticColor as defaultSemanticColor} from "./semantic-color";
 
 const border = {
     subtle: color.gray_60,
-    // TODO(juan): Figure out neutral name
+    // TODO(WB-1941): Change to the new core.border structure and use
+    // neutral.default instead of primary.
     // primary: color.fadedOffBlack16,
-    neutral: color.gray_30,
+    primary: color.gray_30,
     strong: color.gray_20,
     inverse: color.white_100,
     progressive: color.blue_30,
@@ -68,7 +69,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
             neutral: {
                 default: {
-                    border: border.neutral,
+                    border: border.primary,
                     background: color.gray_30,
                     foreground: text.inverse,
                 },
@@ -215,24 +216,23 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
 
     status: {
         critical: {
-            background: color.red_80,
+            background: color.red_90,
             foreground: color.red_10,
         },
         warning: {
-            background: color.yellow_80,
-            foreground: color.yellow_10,
+            background: color.yellow_90,
+            foreground: color.yellow_05,
         },
         success: {
-            background: color.green_80,
+            background: color.green_90,
             foreground: color.green_10,
         },
-        // TODO(juan): check with design
         notice: {
-            background: color.blue_80,
+            background: color.blue_90,
             foreground: color.blue_10,
         },
         neutral: {
-            background: color.gray_80,
+            background: color.gray_90,
             foreground: color.gray_10,
         },
     },
