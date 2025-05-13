@@ -260,7 +260,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
         default: {
             border:
                 kind === "transparent"
-                    ? `1px solid ${semanticColor.border.primary}`
+                    ? `1px solid ${semanticColor.border.neutral.default}`
                     : "none",
             background: backgroundColor,
             foreground: textColor,

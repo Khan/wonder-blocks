@@ -42,7 +42,7 @@ export default class SeparatorItem extends React.Component<{
 const theme = {
     separator: {
         color: {
-            border: semanticColor.border.primary,
+            border: semanticColor.border.neutral.default,
         },
     },
 };
