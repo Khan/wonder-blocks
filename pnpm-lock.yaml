@@ -750,6 +750,9 @@ importers:
       '@khanacademy/wonder-blocks-icon':
         specifier: workspace:*
         version: link:../wonder-blocks-icon
+      '@khanacademy/wonder-blocks-icon-button':
+        specifier: workspace:*
+        version: link:../wonder-blocks-icon-button
       '@khanacademy/wonder-blocks-layout':
         specifier: workspace:*
         version: link:../wonder-blocks-layout
