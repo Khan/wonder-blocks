@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import {Badge} from "@khanacademy/wonder-blocks-badge";
+import {Badge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {commonStates, StateSheet} from "../components/state-sheet";
@@ -72,6 +72,14 @@ export const StateSheetStory: StoryComponentType = {
                 props: {},
             },
         ];
+
+        const statusRows = [
+            ...["info", "success", "warning", "critical"].map((kind) => ({
+                name: kind,
+                props: {kind},
+            })),
+        ];
+
         return (
             <View style={{gap: sizing.size_080}}>
                 <HeadingLarge>Badge</HeadingLarge>
@@ -81,6 +89,14 @@ export const StateSheetStory: StoryComponentType = {
                     states={[commonStates.rest]}
                 >
                     {({props}) => <Badge {...props} />}
+                </StateSheet>
+                <HeadingLarge>Status Badge</HeadingLarge>
+                <StateSheet
+                    rows={statusRows}
+                    columns={columns}
+                    states={[commonStates.rest]}
+                >
+                    {({props}) => <StatusBadge {...props} />}
                 </StateSheet>
             </View>
         );
