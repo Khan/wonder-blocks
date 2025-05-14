@@ -5,7 +5,8 @@ import type {Meta, StoryObj} from "@storybook/react";
 // RadioGroup instead. This import is only used for visual testing in Chromatic.
 import Radio from "../../packages/wonder-blocks-form/src/components/radio";
 
-import {AllVariants} from "../components/all-variants";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
+import {allModes} from "../../.storybook/modes";
 
 const rows = [
     {name: "Unchecked", props: {checked: false}},
@@ -36,35 +37,39 @@ type Story = StoryObj<typeof Radio>;
 const meta = {
     title: "Packages / Form / Radio (internal) / Radio - All Variants",
     component: Radio,
-    render: (args) => (
-        <AllVariants rows={rows} columns={columns}>
-            {({props}) => <Radio {...args} {...props} />}
-        </AllVariants>
-    ),
     args: {
         label: "Label",
         description: "Description",
+    },
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+            },
+        },
     },
     tags: ["!autodocs"],
 } satisfies Meta<typeof Radio>;
 
 export default meta;
 
-export const Default: Story = {};
-
-export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
-};
-
-export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
-};
-
-export const HoverFocus: Story = {
-    name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
-};
-
-export const Active: Story = {
-    parameters: {pseudo: {active: true}},
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args) => {
+        return (
+            <StateSheet rows={rows} columns={columns}>
+                {({props, className, name}) => (
+                    <Radio
+                        {...args}
+                        {...props}
+                        className={className}
+                        key={name}
+                    />
+                )}
+            </StateSheet>
+        );
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
 };

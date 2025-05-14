@@ -23,4 +23,13 @@ export const allModes = {
     themeKhanmigo: {
         theme: "khanmigo",
     },
+    // NOTE: This will go away when we fully remove the light variants.
+    dark: {
+        background: "darkBlue",
+    },
+    // Accessibility
+    "themeDefault rtl": {
+        theme: "default",
+        direction: "rtl",
+    },
 };
