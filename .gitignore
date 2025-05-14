@@ -11,3 +11,4 @@ changeset-status.json
 # Pnpm errors
 pnpm-debug.log
 .swc/
+.turbo

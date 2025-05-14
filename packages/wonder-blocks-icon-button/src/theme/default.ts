@@ -1,13 +1,11 @@
-import {border, semanticColor} from "@khanacademy/wonder-blocks-tokens";
+import {border} from "@khanacademy/wonder-blocks-tokens";
 
 const theme = {
-    color: semanticColor.action,
-
     border: {
         offset: {
             primary: border.width.medium,
-            secondary: `-${border.width.medium}`,
-            tertiary: -border.width.medium,
+            secondary: `calc(-1 * ${border.width.medium})`,
+            tertiary: `calc(-1 * ${border.width.medium})`,
         },
         width: {
             primary: {

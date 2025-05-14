@@ -37,4 +37,23 @@ describe("generateTokens", () => {
             "--wb-semanticColor-secondary": "blue",
         });
     });
+
+    it("should set the prefix correctly", () => {
+        // Arrange
+        const obj = {
+            semanticColor: {
+                primary: "red",
+                secondary: "blue",
+            },
+        };
+
+        // Act
+        const cssVars = generateTokens(obj, "--wb-custom-prefix-");
+
+        // Assert
+        expect(cssVars).toStrictEqual({
+            "--wb-custom-prefix-semanticColor-primary": "red",
+            "--wb-custom-prefix-semanticColor-secondary": "blue",
+        });
+    });
 });

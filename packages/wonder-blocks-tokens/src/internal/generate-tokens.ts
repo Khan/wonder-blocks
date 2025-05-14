@@ -7,7 +7,10 @@ import {RecursivePartial} from "../util/types";
  * @param root The root object containing the theme tokens.
  * @returns A record of CSS variables.
  */
-export function generateTokens<T>(root: T): Record<string, string> {
+export function generateTokens<T>(
+    root: T,
+    prefix = CSS_VAR_PREFIX,
+): Record<string, string> {
     const tokens = {} as Record<string, string>;
     function generateCssVariables(
         obj: T | RecursivePartial<T>,
@@ -25,7 +28,7 @@ export function generateTokens<T>(root: T): Record<string, string> {
         }
     }
 
-    generateCssVariables(root);
+    generateCssVariables(root, prefix);
 
     return tokens;
 }

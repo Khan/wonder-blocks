@@ -9,6 +9,8 @@ import {breakpoint} from "./tokens/media-queries";
 // utils
 import {mix, fade, pxToRem, remToPx} from "./util";
 
+import {mapValuesToCssVars} from "./internal/map-values-to-css-vars";
+
 // theme
 import theme from "./tokens/theme";
 
@@ -38,4 +40,8 @@ export {
      */
     mix,
     fade,
+    /**
+     * Allows converting regular JS tokens to CSS variables.
+     */
+    mapValuesToCssVars,
 };

@@ -1,0 +1,13 @@
+{
+    "$schema": "https://turborepo.com/schema.json",
+    "tasks": {
+        "dev": {},
+        "//#dev:css": {
+            "cache": false,
+            "inputs": ["packages/**/src/theme/**.ts"],
+            "persistent": true,
+            "interruptible": true,
+            "dependsOn": ["^dev"]
+        }
+    }
+}
