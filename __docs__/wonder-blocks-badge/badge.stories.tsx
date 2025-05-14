@@ -146,10 +146,11 @@ export const CustomStyles: StoryComponentType = {
                 }
                 styles={{
                     root: {
-                        backgroundColor: "turquoise",
-                        borderColor: "turquoise",
+                        backgroundColor: "lightblue",
+                        borderColor: "lightblue",
+                        color: "black",
                     },
-                    icon: {color: "black"},
+                    icon: {color: "darkblue"},
                 }}
             />
         );
