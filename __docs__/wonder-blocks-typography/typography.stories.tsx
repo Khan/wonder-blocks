@@ -76,7 +76,7 @@ export const ControlProps: StoryObj<typeof Title> = {
     },
 };
 
-export const TBTypographyElements: StoryObj<any> = () => (
+export const NewTypographyElements: StoryObj<any> = () => (
     <View>
         <ThemeSwitcher theme="thunderblocks">
             <Heading size="xxLarge">Heading</Heading>
@@ -85,7 +85,7 @@ export const TBTypographyElements: StoryObj<any> = () => (
     </View>
 );
 
-TBTypographyElements.parameters = {
+NewTypographyElements.parameters = {
     docs: {
         description: {
             story: `These are all the available Thunderblocks typography
@@ -94,7 +94,7 @@ TBTypographyElements.parameters = {
     },
 };
 
-export const OGTypographyElements: StoryObj<any> = () => (
+export const ClassicTypographyElements: StoryObj<any> = () => (
     <View>
         <Title>Title</Title>
         <HeadingLarge>HeadingLarge</HeadingLarge>
@@ -115,7 +115,7 @@ export const OGTypographyElements: StoryObj<any> = () => (
     </View>
 );
 
-OGTypographyElements.parameters = {
+ClassicTypographyElements.parameters = {
     docs: {
         description: {
             story: `These are all the available classic typography elements
