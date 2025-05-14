@@ -6,11 +6,11 @@ import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
 import {ThemeSwitcher} from "@khanacademy/wonder-blocks-theming";
-import {Heading} from "@khanacademy/wonder-blocks-typography";
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 
 export default {
-    title: "Packages / Typography / Heading",
-    component: Heading,
+    title: "Packages / Typography / BodyText",
+    component: BodyText,
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -25,16 +25,16 @@ export default {
         },
     },
     argTypes: TypographyArgTypes,
-} as Meta<typeof Heading>;
-export const Default: StoryObj<typeof Heading> = {
+} as Meta<typeof BodyText>;
+export const Default: StoryObj<typeof BodyText> = {
     render: (args) => (
         <ThemeSwitcher theme="thunderblocks">
-            <Heading {...args} />
+            <BodyText {...args} />
         </ThemeSwitcher>
     ),
     args: {
-        children: "Heading",
-        size: "large",
-        weight: "bold",
+        children: "BodyText",
+        size: "medium",
+        weight: "regular",
     },
 };
