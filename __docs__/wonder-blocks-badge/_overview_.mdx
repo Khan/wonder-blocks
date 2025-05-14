@@ -1,0 +1,26 @@
+import {Meta, Canvas} from "@storybook/blocks";
+import * as StatusBadgeStories from "./status-badge.stories";
+import * as BadgeStories from "./badge.stories";
+
+<Meta
+    title="Packages / Badge / Overview"
+/>
+
+# Badges
+
+Badges are visual indicators used to display concise information, such as a
+status, label, or count.
+
+The `wonder-blocks-badge` packages has several types of badges. For more details
+about each type of badge, refer to the docs for that component!
+
+## StatusBadge
+
+<Canvas of={StatusBadgeStories.Kinds} />
+
+## Custom Badges
+
+For custom badges, the `Badge` component can be used directly. The styles can be
+overridden using the `styles` prop.
+
+<Canvas of={BadgeStories.Default} />
