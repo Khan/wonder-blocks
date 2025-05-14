@@ -1,7 +1,9 @@
 {
     "$schema": "https://turborepo.com/schema.json",
     "tasks": {
-        "dev": {},
+        "dev": {
+            "cache": false
+        },
         "//#dev:css": {
             "cache": false,
             "inputs": ["packages/**/src/theme/**.ts"],

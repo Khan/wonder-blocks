@@ -9,7 +9,7 @@
   },
   "scripts": {
     "alex": "alex packages/",
-    "dev": "turbo watch dev:css",
+    "dev": "pnpm build && turbo watch dev:css",
     "dev:css": "pnpm build:css",
     "build": "rollup -c ./build-settings/rollup.config.mjs && pnpm -r build && pnpm run build:css",
     "build:css": "node -r @swc-node/register ./build-settings/build-css.ts",
