@@ -88,7 +88,7 @@ export const NewTypographyElements: StoryObj<any> = () => (
 NewTypographyElements.parameters = {
     docs: {
         description: {
-            story: 'These are all the available Thunderblocks typography elements with their names written out in their respective styles. Wrapping them in `ThemeSwitcher` with `theme ="thunderblocks"` will include the Jakarta typeface, otherwise they will default to Lato.',
+            story: 'These are all the available Thunderblocks typography elements with their names written out in their respective styles. Wrapping them in `ThemeSwitcher` with `theme ="thunderblocks"` will include the Plus Jakarta Sans typeface, otherwise they will default to Lato.',
         },
     },
 };
