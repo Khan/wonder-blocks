@@ -30,12 +30,14 @@ const styles: StyleDeclaration = StyleSheet.create({
     Heading: {
         ...common,
         fontFamily: font.family.sans,
-        // weight, size and lineHeight are determined by props
+        // weight and size are determined by props
+        // lineHeight is determined by fontSize on REM scale
     },
     BodyText: {
         ...common,
         fontFamily: font.family.sans,
-        // weight, size and lineHeight are determined by props
+        // weight and size are determined by props
+        // lineHeight is determined by fontSize on REM scale
     },
     HeadingLarge: {
         ...common,

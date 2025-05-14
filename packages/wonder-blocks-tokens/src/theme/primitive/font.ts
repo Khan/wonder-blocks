@@ -26,7 +26,7 @@ export const font = {
         xxLarge: sizing.size_280,
         xLarge: sizing.size_240,
         large: sizing.size_200,
-        xMedium: sizing.size_180, // only used in TB - do we need it here?
+        xMedium: sizing.size_180,
         medium: sizing.size_160,
         small: sizing.size_140,
         xSmall: sizing.size_120,

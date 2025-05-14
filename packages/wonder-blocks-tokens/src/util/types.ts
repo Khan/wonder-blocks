@@ -20,12 +20,3 @@ type TBFontWeights = {
 };
 
 export type FontWeights = BaseFontWeights & (OGFontWeights | TBFontWeights);
-
-// export type FontWeights = {
-//     light: number;
-//     regular: number;
-//     medium: number;
-//     semi: number;
-//     bold: number;
-//     black: number;
-// };
