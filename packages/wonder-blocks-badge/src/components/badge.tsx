@@ -123,7 +123,10 @@ const styles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         gap: badgeTokens.root.sizing.gap,
+        // Make sure badge container fits the content
         width: "fit-content",
+        // Make sure the badge text doesn't wrap
+        textWrap: "nowrap",
         borderWidth: badgeTokens.root.border.width,
         borderStyle: badgeTokens.root.border.style,
         paddingBlock: badgeTokens.root.sizing.paddingBlock,
