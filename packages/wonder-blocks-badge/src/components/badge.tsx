@@ -1,6 +1,6 @@
 import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
@@ -60,13 +60,20 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
             style={[
                 typographyStyles.LabelXSmall,
                 styles.badge,
+                styles.defaultBadgeStyling,
                 icon && !label ? styles.iconOnly : {},
                 stylesProp?.root,
             ]}
             {...otherProps}
         >
             {icon && (
-                <StyledSpan style={[styles.icon, stylesProp?.icon]}>
+                <StyledSpan
+                    style={[
+                        styles.icon,
+                        styles.defaultIconStyling,
+                        stylesProp?.icon,
+                    ]}
+                >
                     {icon}
                 </StyledSpan>
             )}
@@ -89,11 +96,19 @@ const badgeTokens = {
             style: "solid",
             radius: border.radius.radius_080,
         },
+        color: {
+            background: semanticColor.surface.secondary,
+            foreground: semanticColor.text.primary,
+            border: semanticColor.border.subtle,
+        },
     },
     icon: {
         sizing: {
             width: sizing.size_160,
             height: sizing.size_160,
+        },
+        color: {
+            foreground: semanticColor.icon.primary,
         },
     },
     iconOnly: {
@@ -115,9 +130,17 @@ const styles = StyleSheet.create({
         paddingInline: badgeTokens.root.sizing.paddingInline,
         borderRadius: badgeTokens.root.border.radius,
     },
+    defaultBadgeStyling: {
+        backgroundColor: badgeTokens.root.color.background,
+        borderColor: badgeTokens.root.color.border,
+        color: badgeTokens.root.color.foreground,
+    },
     icon: {
         width: badgeTokens.icon.sizing.width,
         height: badgeTokens.icon.sizing.height,
+    },
+    defaultIconStyling: {
+        color: badgeTokens.icon.color.foreground,
     },
     iconOnly: {
         padding: badgeTokens.iconOnly.sizing.padding,
