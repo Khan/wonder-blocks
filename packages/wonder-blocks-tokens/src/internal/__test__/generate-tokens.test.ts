@@ -8,6 +8,9 @@ describe("generateTokens", () => {
                 primary: "red",
                 secondary: "blue",
             },
+            font: {
+                weight: 400,
+            },
         };
 
         // Act
@@ -17,6 +20,7 @@ describe("generateTokens", () => {
         expect(cssVars).toStrictEqual({
             "--wb-semanticColor-primary": "red",
             "--wb-semanticColor-secondary": "blue",
+            "--wb-font-weight": 400,
         });
     });
 
