@@ -13,14 +13,3 @@
     font-weight: 400;
     src: url(fonts/jakarta-sans/PlusJakartaSans-Italic-VariableFont_wght.woff2) format('woff2');
 }
-
-/*
-Note: the :not([data-wb-theme]) bit for nested themes is essential
-to not override ancestor defaults unintentionally
-*/
-@supports (font-variation-settings: "wght" 400) {
-    [data-wb-theme='thunderblocks'] :not([data-wb-theme]) {
-        font-family: 'Plus Jakarta Sans';
-        font-weight: 400;
-    }
-}
