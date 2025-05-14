@@ -6,7 +6,7 @@ import styles from "../util/styles";
 
 type Props = PropsFor<typeof Text> & {
     size?: "xSmall" | "small" | "medium";
-    weight?: "regular" | "semi" | "bold";
+    weight?: "medium" | "semi" | "bold";
 };
 
 const BodyText = React.forwardRef(function BodyText(
