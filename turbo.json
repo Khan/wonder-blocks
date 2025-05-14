@@ -1,15 +1,14 @@
 {
     "$schema": "https://turborepo.com/schema.json",
     "tasks": {
-        "dev": {
-            "cache": false
+        "build:css": {
+            "inputs": ["$TURBO_DEFAULT$", "src/theme/**.ts"],
+            "outputs": ["dist/css/vars.css"]
         },
-        "//#dev:css": {
+        "//#build:css": {
             "cache": false,
-            "inputs": ["packages/**/src/theme/**.ts"],
-            "persistent": true,
-            "interruptible": true,
-            "dependsOn": ["^dev"]
+            "outputs": ["packages/wonder-blocks-tokens/dist/css/index.css"],
+            "dependsOn": ["^build:css"]
         }
     }
 }

@@ -14,8 +14,7 @@
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "node -r @swc-node/register ./src/build/generate-css-variables.ts",
-    "dev": "pnpm build",
+    "build:css": "node -r @swc-node/register ./src/build/generate-css-variables.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishOnly": "../../utils/publish/package-pre-publish-check.sh"
   },

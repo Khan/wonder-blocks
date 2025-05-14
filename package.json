@@ -9,9 +9,8 @@
   },
   "scripts": {
     "alex": "alex packages/",
-    "dev": "pnpm build && turbo watch dev:css",
-    "dev:css": "pnpm build:css",
-    "build": "rollup -c ./build-settings/rollup.config.mjs && pnpm -r build && pnpm run build:css",
+    "dev": "pnpm build && turbo watch build:css",
+    "build": "rollup -c ./build-settings/rollup.config.mjs && pnpm -r build && turbo build:css",
     "build:css": "node -r @swc-node/register ./build-settings/build-css.ts",
     "build:types": "pnpm tsc --build tsconfig-build.json && ./build-settings/check-type-definitions.ts",
     "build:storybook": "storybook build --stats-json",
