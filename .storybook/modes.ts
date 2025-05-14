@@ -23,11 +23,4 @@ export const allModes = {
     themeKhanmigo: {
         theme: "khanmigo",
     },
-    // Theming
-    themeDefault: {
-        theme: "default",
-    },
-    themeThunderBlocks: {
-        theme: "thunderblocks",
-    },
 };
