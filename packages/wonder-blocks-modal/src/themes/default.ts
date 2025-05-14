@@ -35,12 +35,12 @@ const theme = {
     },
     footer: {
         color: {
-            border: semanticColor.border.primary,
+            border: semanticColor.border.neutral.default,
         },
     },
     header: {
         color: {
-            border: semanticColor.border.primary,
+            border: semanticColor.border.neutral.default,
             secondary: semanticColor.text.secondary,
         },
         spacing: {

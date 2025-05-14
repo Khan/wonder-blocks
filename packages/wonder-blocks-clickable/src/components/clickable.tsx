@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
     },
     // TODO(WB-1852): Remove light variant.
     focusedLight: {
-        outline: `solid ${border.width.medium} ${semanticColor.border.inverse}`,
+        outline: `solid ${border.width.medium} ${semanticColor.border.inverse.strong}`,
     },
     disabled: {
         color: semanticColor.action.secondary.disabled.foreground,

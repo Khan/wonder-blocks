@@ -709,7 +709,7 @@ const theme = {
         color: {
             default: {
                 background: semanticColor.surface.primary,
-                border: semanticColor.border.primary,
+                border: semanticColor.border.neutral.default,
             },
         },
     },

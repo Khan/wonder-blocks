@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
         gap: spacing.medium_16,
     },
     theme: {
-        border: `1px solid ${semanticColor.border.subtle}`,
+        border: `1px solid ${semanticColor.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
         padding: spacing.large_24,
     },

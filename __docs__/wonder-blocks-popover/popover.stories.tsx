@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     playground: {
-        border: `1px dashed ${semanticColor.border.primary}`,
+        border: `1px dashed ${semanticColor.border.neutral.default}`,
         marginTop: spacing.large_24,
         padding: spacing.large_24,
         flexDirection: "row",

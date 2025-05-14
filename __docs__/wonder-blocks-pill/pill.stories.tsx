@@ -240,11 +240,11 @@ export const WithStyle: StoryComponentType = () => {
         paddingRight: tokens.spacing.xxLarge_48,
 
         ":hover": {
-            outlineColor: tokens.semanticColor.border.strong,
+            outlineColor: tokens.semanticColor.border.neutral.strong,
         },
 
         ":active": {
-            outlineColor: tokens.semanticColor.border.primary,
+            outlineColor: tokens.semanticColor.border.neutral.default,
             backgroundColor: tokens.semanticColor.surface.overlay,
         },
     };

@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     content: {
         maxWidth: 472,
         borderRadius: border.radius.radius_040,
-        border: `solid 1px ${semanticColor.border.primary}`,
+        border: `solid 1px ${semanticColor.border.neutral.default}`,
         backgroundColor: semanticColor.surface.primary,
         // TODO(WB-1878): Use `elevation` token.
         boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,

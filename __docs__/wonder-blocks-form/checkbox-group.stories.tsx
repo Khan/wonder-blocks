@@ -329,7 +329,7 @@ const styles = StyleSheet.create({
     },
     title: {
         paddingBottom: spacing.xSmall_8,
-        borderBottom: `1px solid ${semanticColor.border.strong}`,
+        borderBottom: `1px solid ${semanticColor.border.neutral.strong}`,
     },
     // Multiple choice styling
     multipleChoice: {

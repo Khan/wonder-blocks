@@ -359,7 +359,7 @@ const _generateStyles = (
     let firstSectionStyle: StyleType = Object.freeze({});
     let lastSectionStyle: StyleType = Object.freeze({});
 
-    const borderStyle = `1px solid ${semanticColor.border.primary}`;
+    const borderStyle = `1px solid ${semanticColor.border.neutral.default}`;
 
     if (cornerKind === "square") {
         wrapperStyle = {
