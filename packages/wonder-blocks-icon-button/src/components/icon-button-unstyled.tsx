@@ -32,6 +32,11 @@ type Props = Omit<IconButtonProps, "icon"> & {
      * actions when the user presses the spacebar or enter key.
      */
     onKeyUp?: (e: React.KeyboardEvent) => unknown;
+    /**
+     * When the button is in a pressing state. This is useful for keyboard
+     * interactions, so we can provide visual feedback to the user.
+     */
+    onPress?: (isPressing: boolean) => unknown;
 };
 
 export const IconButtonUnstyled: React.ForwardRefExoticComponent<
@@ -45,6 +50,7 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
         children,
         disabled,
         href,
+        onPress,
         skipClientNav,
         style,
         testId,
@@ -53,24 +59,29 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
     } = props;
     const inRouterContext = useInRouterContext();
 
-    function handleKeyDown(e: React.KeyboardEvent) {
-        const key = e.key;
-        // Prevent default behavior for space and enter keys on
-        // buttons. We let the browser handle the default behavior
-        // for links, which is to activate the link on `Enter`.
-        if (!href && (key === keys.enter || key === keys.space)) {
-            e.preventDefault();
-        }
-    }
+    const handleKeyDown = React.useCallback(
+        (e: React.KeyboardEvent) => {
+            const key = e.key;
+            // Prevent default behavior for space and enter keys on
+            // buttons. We let the browser handle the default behavior
+            // for links, which is to activate the link on `Enter`.
+            if (!href && (key === keys.enter || key === keys.space)) {
+                e.preventDefault();
+                onPress?.(true);
+            }
+        },
+        [href, onPress],
+    );
 
-    function handleKeyUp(e: React.KeyboardEvent) {
+    const handleKeyUp = React.useCallback((e: React.KeyboardEvent) => {
         const key = e.key;
         if (!href && (key === keys.enter || key === keys.space)) {
             if (restProps.onClick) {
                 restProps.onClick(e);
+                onPress?.(false);
             }
         }
-    }
+    }, []);
 
     const commonProps = {
         "data-testid": testId,

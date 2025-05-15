@@ -102,39 +102,36 @@ export const IconButton: React.ForwardRefExoticComponent<
     const {
         actionType = "progressive",
         disabled = false,
-        href,
         icon,
         kind = "primary",
         size = "medium",
-        skipClientNav,
         style,
-        testId,
         type = "button",
         ...restProps
     } = props;
+
+    const [pressed, setPressed] = React.useState(false);
+
     const buttonStyles = _generateStyles(actionType, !!disabled, kind, size);
 
-    const defaultStyle = [
+    const styles = [
         buttonStyles.default,
         disabled && buttonStyles.disabled,
+        pressed && buttonStyles.pressed,
+        style,
     ];
 
-    const commonProps = {
-        "data-testid": testId,
-        style: [defaultStyle, style],
-        ...restProps,
-    } as const;
+    const handlePress = React.useCallback((isPressing: boolean) => {
+        setPressed(isPressing);
+    }, []);
 
     return (
         <IconButtonUnstyled
-            {...commonProps}
+            {...restProps}
             disabled={disabled}
-            href={href}
+            onPress={handlePress}
             ref={ref}
-            skipClientNav={skipClientNav}
-            style={[defaultStyle, style]}
-            testId={testId}
-            tabIndex={props.tabIndex}
+            style={styles}
             type={type}
         >
             <IconChooser size={size} icon={icon} />
@@ -167,6 +164,22 @@ const _generateStyles = (
         borderWidth: borderWidthKind.default,
         background: disabledState.background,
         color: disabledState.foreground,
+    };
+
+    const pressStyles = {
+        // primary
+        outline:
+            kind === "primary"
+                ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                : undefined,
+        outlineOffset: kind === "primary" ? outlineOffsetKind : undefined,
+        // secondary, tertiary
+        border:
+            kind !== "primary"
+                ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
+                : undefined,
+        background: themeVariant.press.background,
+        color: themeVariant.press.foreground,
     };
 
     const newStyles = {
@@ -212,22 +225,7 @@ const _generateStyles = (
                 },
             },
 
-            ":active": {
-                // primary
-                outline:
-                    kind === "primary"
-                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                        : undefined,
-                outlineOffset:
-                    kind === "primary" ? outlineOffsetKind : undefined,
-                // secondary, tertiary
-                border:
-                    kind !== "primary"
-                        ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                        : undefined,
-                background: themeVariant.press.background,
-                color: themeVariant.press.foreground,
-            },
+            ":active": pressStyles,
 
             // :focus-visible -> Provide focus styles for keyboard users only.
             ...focusStyles.focus,
@@ -245,6 +243,8 @@ const _generateStyles = (
             ":active": {...disabledStatesStyles, outline: "none"},
             ":focus-visible": disabledStatesStyles,
         },
+        // Enable keyboard support for press styles.
+        pressed: pressStyles,
     } as const;
 
     styles[buttonType] = StyleSheet.create(newStyles);
