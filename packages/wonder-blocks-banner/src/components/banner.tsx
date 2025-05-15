@@ -42,7 +42,7 @@ type ActionTriggerCustom = {
     node: React.ReactNode;
 };
 
-export type ActionTrigger =
+type ActionTrigger =
     | ActionTriggerWithButton
     | ActionTriggerWithLink
     | ActionTriggerCustom;
@@ -106,7 +106,7 @@ type Props = {
      *
      * The ActionTrigger must have either an onClick or an href field, or both.
      */
-    actions?: Array<ActionTrigger>;
+    actions?: ReadonlyArray<ActionTrigger>;
     /**
      * If present, dismiss button is on right side. If not, no button appears.
      */
