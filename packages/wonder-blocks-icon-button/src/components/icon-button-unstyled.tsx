@@ -73,15 +73,18 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
         [href, onPress],
     );
 
-    const handleKeyUp = React.useCallback((e: React.KeyboardEvent) => {
-        const key = e.key;
-        if (!href && (key === keys.enter || key === keys.space)) {
-            if (restProps.onClick) {
-                restProps.onClick(e);
-                onPress?.(false);
+    const handleKeyUp = React.useCallback(
+        (e: React.KeyboardEvent) => {
+            const key = e.key;
+            if (!href && (key === keys.enter || key === keys.space)) {
+                if (restProps.onClick) {
+                    restProps.onClick(e);
+                    onPress?.(false);
+                }
             }
-        }
-    }, []);
+        },
+        [href, onPress, restProps],
+    );
 
     const commonProps = {
         "data-testid": testId,
