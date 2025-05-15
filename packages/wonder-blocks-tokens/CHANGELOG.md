@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 10.2.0
+
+### Minor Changes
+
+- c7d95bf: Add `thunderblocks` theme to Wonder Blocks.
+- 668093b: Expose mapValuesToCssVars so other WB packages can switch to theming with CSS vars instead of relying on React Context.
+
+### Patch Changes
+
+- Updated dependencies [c7d95bf]
+    - @khanacademy/wonder-blocks-theming@3.4.0
+
 ## 10.1.0
 
 ### Minor Changes

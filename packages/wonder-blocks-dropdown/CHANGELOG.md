@@ -1,5 +1,27 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.1.1
+
+### Patch Changes
+
+- 668093b: Add missing `wonder-blocks-icon-button` dependency
+- Updated dependencies [c7d95bf]
+- Updated dependencies [668093b]
+- Updated dependencies [668093b]
+    - @khanacademy/wonder-blocks-tokens@10.2.0
+    - @khanacademy/wonder-blocks-icon-button@10.0.0
+    - @khanacademy/wonder-blocks-announcer@1.0.2
+    - @khanacademy/wonder-blocks-cell@4.1.14
+    - @khanacademy/wonder-blocks-clickable@7.1.2
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+    - @khanacademy/wonder-blocks-layout@3.1.13
+    - @khanacademy/wonder-blocks-modal@7.1.16
+    - @khanacademy/wonder-blocks-pill@3.1.14
+    - @khanacademy/wonder-blocks-search-field@5.1.16
+    - @khanacademy/wonder-blocks-timing@7.0.2
+    - @khanacademy/wonder-blocks-typography@3.2.3
+
 ## 10.1.0
 
 ### Minor Changes

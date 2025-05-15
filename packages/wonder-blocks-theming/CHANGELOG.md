@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-theming
 
+## 3.4.0
+
+### Minor Changes
+
+- c7d95bf: Add `thunderblocks` theme to Wonder Blocks.
+
 ## 3.3.0
 
 ### Minor Changes
