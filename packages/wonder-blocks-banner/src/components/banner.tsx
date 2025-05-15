@@ -42,7 +42,7 @@ type ActionTriggerCustom = {
     node: React.ReactNode;
 };
 
-type ActionTrigger =
+export type ActionTrigger =
     | ActionTriggerWithButton
     | ActionTriggerWithLink
     | ActionTriggerCustom;
