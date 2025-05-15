@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-typography",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "design": "v2",
   "publishConfig": {
     "access": "public"
