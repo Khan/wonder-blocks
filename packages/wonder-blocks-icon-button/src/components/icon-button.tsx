@@ -5,7 +5,6 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {keys} from "@khanacademy/wonder-blocks-core";
 import {Link} from "react-router-dom-v5-compat";
 import IconButtonCore from "./icon-button-core";
-import ThemedIconButton from "../themes/themed-icon-button";
 
 export type IconButtonSize = "xsmall" | "small" | "medium" | "large";
 
@@ -218,22 +217,20 @@ export const IconButton: React.ForwardRefExoticComponent<
     }
 
     return (
-        <ThemedIconButton>
-            <IconButtonCore
-                {...sharedProps}
-                actionType={actionType}
-                disabled={disabled}
-                href={href}
-                kind={kind}
-                ref={ref}
-                skipClientNav={skipClientNav}
-                size={size}
-                target={target}
-                tabIndex={tabIndex}
-                onKeyDown={handleKeyDown}
-                onKeyUp={handleKeyUp}
-                type={type}
-            />
-        </ThemedIconButton>
+        <IconButtonCore
+            {...sharedProps}
+            actionType={actionType}
+            disabled={disabled}
+            href={href}
+            kind={kind}
+            ref={ref}
+            skipClientNav={skipClientNav}
+            size={size}
+            target={target}
+            tabIndex={tabIndex}
+            onKeyDown={handleKeyDown}
+            onKeyUp={handleKeyUp}
+            type={type}
+        />
     );
 });
