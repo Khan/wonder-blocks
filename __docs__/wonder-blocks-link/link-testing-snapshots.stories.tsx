@@ -88,7 +88,6 @@ export const StateSheetStory: Story = {
         return (
             <StateSheet rows={rows} columns={columnsPerMode}>
                 {({props, className, name}) => (
-                    // eslint-disable-next-line jsx-a11y/anchor-has-content
                     <Link
                         {...args}
                         {...props}
@@ -96,7 +95,9 @@ export const StateSheetStory: Story = {
                         href="https://www.khanacademy.org"
                         className={className}
                         key={name}
-                    />
+                    >
+                        {props.children}
+                    </Link>
                 )}
             </StateSheet>
         );

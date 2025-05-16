@@ -95,7 +95,10 @@ export const Sizes: Story = {
     render: (args) => {
         return (
             <AllVariants
-                rows={[{name: "Static", props: {}}]}
+                rows={[
+                    {name: "Static", props: {}},
+                    {name: "Clickable", props: {onClick: () => {}}},
+                ]}
                 columns={sizes}
                 title="Type / Size"
             >
