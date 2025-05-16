@@ -49,9 +49,12 @@ export type BadgeProps = AriaProps &
             root?: StyleType;
             icon?: StyleType;
         };
+        /**
+         * The HTML tag to render. Defaults to `div`.
+         */
+        tag?: keyof JSX.IntrinsicElements;
     };
 
-const StyledDiv = addStyle("div");
 const StyledSpan = addStyle("span");
 
 /**
@@ -62,12 +65,21 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
     props: BadgeProps,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-    const {icon, label, id, testId, styles: stylesProp, ...otherProps} = props;
+    const {
+        icon,
+        label,
+        id,
+        testId,
+        styles: stylesProp,
+        tag = "div",
+        ...otherProps
+    } = props;
+    const StyledTag = React.useMemo(() => addStyle(tag, styles.default), [tag]);
     if (!label && !icon) {
         return <React.Fragment />;
     }
     return (
-        <StyledDiv
+        <StyledTag
             id={id}
             data-testid={testId}
             ref={ref}
@@ -92,7 +104,7 @@ const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
                 </StyledSpan>
             )}
             {label}
-        </StyledDiv>
+        </StyledTag>
     );
 });
 

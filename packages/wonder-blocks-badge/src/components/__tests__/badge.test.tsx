@@ -101,5 +101,18 @@ describe("Badge", () => {
                 expect(badge).toBeInTheDocument();
             });
         });
+
+        describe("Semantics", () => {
+            it("should use the tag prop if provided", () => {
+                // Arrange
+                render(<Badge tag={"strong"} label="Badge label" />);
+
+                // Act
+                const badge = screen.getByText("Badge label");
+
+                // Assert
+                expect(badge).toHaveProperty("tagName", "STRONG");
+            });
+        });
     });
 });

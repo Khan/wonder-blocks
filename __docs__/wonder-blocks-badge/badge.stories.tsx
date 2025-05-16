@@ -163,3 +163,16 @@ export const CustomStyles: StoryComponentType = {
         },
     },
 };
+
+/**
+ * When the `tag` prop is provided, the badge will render as the specified tag.
+ *
+ * For example, if a badge should have emphasis, use a `strong` tag.
+ */
+export const Tag: StoryComponentType = {
+    args: {
+        label: "Badge",
+        icon: "cookie",
+        tag: "strong",
+    },
+};
