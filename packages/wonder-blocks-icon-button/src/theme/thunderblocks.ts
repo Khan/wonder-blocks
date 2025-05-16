@@ -1,15 +1,32 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 
-import {border} from "@khanacademy/wonder-blocks-tokens";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import defaultTheme from "./default";
 
 export default mergeTheme(defaultTheme, {
-    border: {
-        width: {
-            primary: {
-                default: border.width.none,
-                hover: border.width.none,
-                press: border.width.none,
+    iconButton: {
+        root: {
+            border: {
+                width: {
+                    primary: {
+                        default: border.width.none,
+                        hover: border.width.none,
+                        press: border.width.none,
+                    },
+                },
+                radius: {
+                    default: border.radius.radius_080,
+                    hover: border.radius.radius_080,
+                    press: border.radius.radius_120,
+                },
+            },
+        },
+        icon: {
+            size: {
+                xsmall: sizing.size_120,
+                small: sizing.size_120,
+                medium: sizing.size_180,
+                large: sizing.size_200,
             },
         },
     },
