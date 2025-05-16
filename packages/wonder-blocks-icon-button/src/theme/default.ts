@@ -32,6 +32,7 @@ export default {
                     press: border.radius.radius_040,
                 },
             },
+            // Target areas for each button size.
             size: {
                 xsmall: sizing.size_240,
                 small: sizing.size_320,
@@ -40,6 +41,7 @@ export default {
             },
         },
         icon: {
+            // Icon sizes for each button size.
             size: {
                 xsmall: sizing.size_160,
                 small: sizing.size_240,
