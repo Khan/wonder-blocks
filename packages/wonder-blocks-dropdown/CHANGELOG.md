@@ -1,5 +1,68 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 10.1.1
+
+### Patch Changes
+
+- 668093b: Add missing `wonder-blocks-icon-button` dependency
+- Updated dependencies [c7d95bf]
+- Updated dependencies [668093b]
+- Updated dependencies [668093b]
+    - @khanacademy/wonder-blocks-tokens@10.2.0
+    - @khanacademy/wonder-blocks-icon-button@10.0.0
+    - @khanacademy/wonder-blocks-announcer@1.0.2
+    - @khanacademy/wonder-blocks-cell@4.1.14
+    - @khanacademy/wonder-blocks-clickable@7.1.2
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+    - @khanacademy/wonder-blocks-layout@3.1.13
+    - @khanacademy/wonder-blocks-modal@7.1.16
+    - @khanacademy/wonder-blocks-pill@3.1.14
+    - @khanacademy/wonder-blocks-search-field@5.1.16
+    - @khanacademy/wonder-blocks-timing@7.0.2
+    - @khanacademy/wonder-blocks-typography@3.2.3
+
+## 10.1.0
+
+### Minor Changes
+
+- 96048b6: Adds "active" prop to ActionItem so that it can be marked `aria-current`
+
+### Patch Changes
+
+- abf5496: modify form field components to use `semanticColor.input`.
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-search-field@5.1.15
+    - @khanacademy/wonder-blocks-cell@4.1.13
+    - @khanacademy/wonder-blocks-clickable@7.1.1
+    - @khanacademy/wonder-blocks-layout@3.1.12
+    - @khanacademy/wonder-blocks-modal@7.1.15
+    - @khanacademy/wonder-blocks-pill@3.1.13
+    - @khanacademy/wonder-blocks-typography@3.2.2
+
+## 10.0.6
+
+### Patch Changes
+
+- c9a0147: Fixes an issue with the IconButton component not triggering `onClick` when the `Space` key is pressed.
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+- Updated dependencies [38042e2]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-clickable@7.1.0
+    - @khanacademy/wonder-blocks-announcer@1.0.2
+    - @khanacademy/wonder-blocks-cell@4.1.12
+    - @khanacademy/wonder-blocks-icon@5.1.4
+    - @khanacademy/wonder-blocks-layout@3.1.11
+    - @khanacademy/wonder-blocks-modal@7.1.14
+    - @khanacademy/wonder-blocks-pill@3.1.12
+    - @khanacademy/wonder-blocks-search-field@5.1.14
+    - @khanacademy/wonder-blocks-typography@3.2.1
+
 ## 10.0.5
 
 ### Patch Changes

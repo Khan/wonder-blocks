@@ -5,9 +5,9 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {useScopedTheme} from "@khanacademy/wonder-blocks-theming";
 
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {
     IconButtonActionType,
     IconButtonSize,
@@ -17,10 +17,8 @@ import {
     iconSizeForButtonSize,
     targetPixelsForSize,
 } from "../util/icon-button-util";
-import {
-    IconButtonThemeContext,
-    IconButtonThemeContract,
-} from "../themes/themed-icon-button";
+
+import theme from "../theme/index";
 
 type Kind = "primary" | "secondary" | "tertiary";
 
@@ -101,17 +99,9 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         type = "button",
         ...restProps
     } = props;
-    const {theme, themeName} = useScopedTheme(IconButtonThemeContext);
     const inRouterContext = useInRouterContext();
 
-    const buttonStyles = _generateStyles(
-        actionType,
-        !!disabled,
-        kind,
-        size,
-        theme,
-        themeName,
-    );
+    const buttonStyles = _generateStyles(actionType, !!disabled, kind, size);
 
     const defaultStyle = [
         sharedStyles.shared,
@@ -189,10 +179,8 @@ const _generateStyles = (
     disabled: boolean,
     kind: Kind,
     size: IconButtonSize,
-    theme: IconButtonThemeContract,
-    themeName: string,
 ) => {
-    const buttonType = `${actionType}-d_${disabled}-${kind}-${size}-${themeName}`;
+    const buttonType = `${actionType}-d_${disabled}-${kind}-${size}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -201,8 +189,8 @@ const _generateStyles = (
 
     const borderWidthKind = theme.border.width[kind];
     const outlineOffsetKind = theme.border.offset[kind];
-    const themeVariant = theme.color[kind][actionType];
-    const disabledState = theme.color[kind].disabled;
+    const themeVariant = semanticColor.action[kind][actionType];
+    const disabledState = semanticColor.action[kind].disabled;
 
     const disabledStatesStyles = {
         borderColor: disabledState.border,

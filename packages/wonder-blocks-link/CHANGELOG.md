@@ -1,5 +1,42 @@
 # @khanacademy/wonder-blocks-link
 
+## 9.1.2
+
+### Patch Changes
+
+- Updated dependencies [c7d95bf]
+- Updated dependencies [668093b]
+    - @khanacademy/wonder-blocks-tokens@10.2.0
+    - @khanacademy/wonder-blocks-clickable@7.1.2
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+
+## 9.1.1
+
+### Patch Changes
+
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-clickable@7.1.1
+
+## 9.1.0
+
+### Minor Changes
+
+- 38042e2: Add `viewTransition` prop to support ReactRouter's v6 `Link.viewTransition` prop which supports the View Transitions API. See https://reactrouter.com/6.30.0/components/link#viewtransition
+
+### Patch Changes
+
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+- Updated dependencies [38042e2]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-clickable@7.1.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+
 ## 9.0.4
 
 ### Patch Changes

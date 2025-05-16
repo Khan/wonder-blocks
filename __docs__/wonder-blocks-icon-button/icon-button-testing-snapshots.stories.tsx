@@ -8,6 +8,7 @@ import {AllVariants} from "../components/all-variants";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {allModes} from "../../.storybook/modes";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -22,6 +23,14 @@ export default {
         onClick: action("clicked"),
         actionType: "progressive",
         size: "medium",
+    },
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
     },
 } as Meta;
 

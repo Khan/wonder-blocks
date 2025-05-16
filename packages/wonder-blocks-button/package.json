@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-button",
-  "version": "9.0.1",
+  "version": "10.0.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -20,6 +20,7 @@
     "@khanacademy/wonder-blocks-core": "workspace:*",
     "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-progress-spinner": "workspace:*",
+    "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-theming": "workspace:*",
     "@khanacademy/wonder-blocks-tokens": "workspace:*",
     "@khanacademy/wonder-blocks-typography": "workspace:*"

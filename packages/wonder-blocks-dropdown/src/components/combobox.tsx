@@ -694,23 +694,15 @@ const theme = {
     combobox: {
         color: {
             default: {
-                border: semanticColor.border.strong,
-                background: semanticColor.surface.primary,
+                border: semanticColor.input.default.border,
+                background: semanticColor.input.default.background,
             },
             focus: {
                 border: semanticColor.focus.outer,
                 background: semanticColor.surface.primary,
             },
-            disabled: {
-                border: semanticColor.action.secondary.disabled.border,
-                background: semanticColor.action.secondary.disabled.background,
-                foreground: semanticColor.action.secondary.disabled.foreground,
-            },
-            error: {
-                border: semanticColor.status.critical.foreground,
-                background: semanticColor.status.critical.background,
-                foreground: semanticColor.text.primary,
-            },
+            disabled: semanticColor.input.disabled,
+            error: semanticColor.input.error,
         },
     },
     listbox: {

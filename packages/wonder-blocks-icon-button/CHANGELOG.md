@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 10.0.0
+
+### Major Changes
+
+- 668093b: Theming: Switch from React Context to using CSS variables for theming. Modifies build and dev scripts to include generating CSS as part of the dev/build processes.
+
+### Patch Changes
+
+- Updated dependencies [c7d95bf]
+- Updated dependencies [668093b]
+    - @khanacademy/wonder-blocks-theming@3.4.0
+    - @khanacademy/wonder-blocks-tokens@10.2.0
+    - @khanacademy/wonder-blocks-clickable@7.1.2
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+    - @khanacademy/wonder-blocks-styles@0.2.9
+
+## 9.0.7
+
+### Patch Changes
+
+- Updated dependencies [a1be4c5]
+- Updated dependencies [d00a6f1]
+- Updated dependencies [abf5496]
+- Updated dependencies [812c167]
+    - @khanacademy/wonder-blocks-tokens@10.1.0
+    - @khanacademy/wonder-blocks-clickable@7.1.1
+    - @khanacademy/wonder-blocks-styles@0.2.8
+
+## 9.0.6
+
+### Patch Changes
+
+- c9a0147: Fixes an issue with the IconButton component not triggering `onClick` when the `Space` key is pressed.
+- Updated dependencies [28fa0c0]
+- Updated dependencies [28fa0c0]
+- Updated dependencies [38042e2]
+    - @khanacademy/wonder-blocks-core@12.3.0
+    - @khanacademy/wonder-blocks-clickable@7.1.0
+    - @khanacademy/wonder-blocks-icon@5.1.4
+
 ## 9.0.5
 
 ### Patch Changes

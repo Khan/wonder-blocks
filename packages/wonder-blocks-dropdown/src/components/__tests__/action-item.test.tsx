@@ -97,4 +97,17 @@ describe("ActionItem", () => {
         // Assert
         expect(screen.getByRole("heading")).toBeInTheDocument();
     });
+
+    it("should apply aria-current if active is true", () => {
+        // Arrange
+
+        // Act
+        render(<ActionItem label="Example" active={true} />);
+
+        // Assert
+        expect(screen.getByRole("menuitem")).toHaveAttribute(
+            "aria-current",
+            "true",
+        );
+    });
 });
