@@ -100,7 +100,7 @@ export {Badge};
 
 const badgeTokens = {
     root: {
-        sizing: {
+        layout: {
             paddingBlock: sizing.size_040,
             paddingInline: sizing.size_080,
             gap: sizing.size_040,
@@ -126,7 +126,7 @@ const badgeTokens = {
         },
     },
     iconOnly: {
-        sizing: {
+        layout: {
             padding: sizing.size_040,
         },
     },
@@ -136,15 +136,15 @@ const styles = StyleSheet.create({
     badge: {
         display: "inline-flex",
         alignItems: "center",
-        gap: badgeTokens.root.sizing.gap,
+        gap: badgeTokens.root.layout.gap,
         // Make sure badge container fits the content
         width: "fit-content",
         // Make sure the badge text doesn't wrap
         textWrap: "nowrap",
         borderWidth: badgeTokens.root.border.width,
         borderStyle: badgeTokens.root.border.style,
-        paddingBlock: badgeTokens.root.sizing.paddingBlock,
-        paddingInline: badgeTokens.root.sizing.paddingInline,
+        paddingBlock: badgeTokens.root.layout.paddingBlock,
+        paddingInline: badgeTokens.root.layout.paddingInline,
         borderRadius: badgeTokens.root.border.radius,
     },
     defaultBadgeStyling: {
@@ -160,6 +160,6 @@ const styles = StyleSheet.create({
         color: badgeTokens.icon.color.foreground,
     },
     iconOnly: {
-        padding: badgeTokens.iconOnly.sizing.padding,
+        padding: badgeTokens.iconOnly.layout.padding,
     },
 });
