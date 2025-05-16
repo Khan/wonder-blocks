@@ -7,10 +7,12 @@ import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
 import {
     Title,
+    Heading,
     HeadingLarge,
     HeadingMedium,
     HeadingSmall,
     HeadingXSmall,
+    BodyText,
     BodySerifBlock,
     BodySerif,
     BodyMonospace,
@@ -32,18 +34,21 @@ import TypographyArgTypes from "./typography.argtypes";
 // eslint-disable-next-line import/no-unassigned-import
 import "./styles.css";
 
-const typographyDescription = `Typography. \`wonder-blocks-typography\`
+/**
+Typography. `wonder-blocks-typography`
 provides a set of standardized components for displaying text in a consistent
 way. This includes components for headings, paragraphs, and text
-labels.\n\n\n ### Usage
+labels.
 
-\`\`\`jsx
+### Usage
+
+```jsx
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 <Title>Title: Hello, world!</Title>
 <Body>This is just a regular paragraph</Body>
-\`\`\`
-`;
+```
+*/
 
 export default {
     title: "Packages / Typography",
@@ -55,7 +60,6 @@ export default {
             />
         ),
         docs: {
-            description: {component: typographyDescription},
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
                 excludeDecorators: true,
@@ -73,34 +77,47 @@ export const ControlProps: StoryObj<typeof Title> = {
     },
 };
 
-export const TypographyElements: StoryObj<any> = () => (
-    <View>
-        <Title>Title</Title>
-        <HeadingLarge>HeadingLarge</HeadingLarge>
-        <HeadingMedium>HeadingMedium</HeadingMedium>
-        <HeadingSmall>HeadingSmall</HeadingSmall>
-        <HeadingXSmall>HeadingXSmall</HeadingXSmall>
-        <BodySerifBlock>BodySerifBlock</BodySerifBlock>
-        <BodySerif>BodySerif</BodySerif>
-        <BodyMonospace>BodyMonospace</BodyMonospace>
-        <Body>Body</Body>
-        <LabelLarge>LabelLarge</LabelLarge>
-        <LabelMedium>LabelMedium</LabelMedium>
-        <LabelSmall>LabelSmall</LabelSmall>
-        <LabelXSmall>LabelXSmall</LabelXSmall>
-        <Tagline>Tagline</Tagline>
-        <Caption>Caption</Caption>
-        <Footnote>Footnote</Footnote>
-    </View>
-);
+/**
+ These are all the available Thunderblocks typography elements with their names
+ written out in their respective styles. Wrapping them in `ThemeSwitcher` with
+ `theme ="thunderblocks"` will include the Plus Jakarta Sans typeface, otherwise
+ they will default to Lato.
+ */
+export const NewTypographyElements: StoryObj<any> = {
+    render: () => (
+        <View>
+            <Heading size="xxLarge">Heading</Heading>
+            <BodyText>BodyText</BodyText>
+        </View>
+    ),
+    globals: {theme: "thunderblocks"},
+};
 
-TypographyElements.parameters = {
-    docs: {
-        description: {
-            story: `These are all the available typography elements
-            with their names written out in their respective styles.`,
-        },
-    },
+/**
+These are all the available classic typography elements with their names written
+out in their respective styles.
+ */
+export const ClassicTypographyElements: StoryObj<any> = {
+    render: () => (
+        <View>
+            <Title>Title</Title>
+            <HeadingLarge>HeadingLarge</HeadingLarge>
+            <HeadingMedium>HeadingMedium</HeadingMedium>
+            <HeadingSmall>HeadingSmall</HeadingSmall>
+            <HeadingXSmall>HeadingXSmall</HeadingXSmall>
+            <BodySerifBlock>BodySerifBlock</BodySerifBlock>
+            <BodySerif>BodySerif</BodySerif>
+            <BodyMonospace>BodyMonospace</BodyMonospace>
+            <Body>Body</Body>
+            <LabelLarge>LabelLarge</LabelLarge>
+            <LabelMedium>LabelMedium</LabelMedium>
+            <LabelSmall>LabelSmall</LabelSmall>
+            <LabelXSmall>LabelXSmall</LabelXSmall>
+            <Tagline>Tagline</Tagline>
+            <Caption>Caption</Caption>
+            <Footnote>Footnote</Footnote>
+        </View>
+    ),
 };
 
 /**
