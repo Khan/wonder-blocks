@@ -21,4 +21,7 @@ export default {
         // auto-generated due to the union type
         description: "The label to display in the badge.",
     },
+    tag: {
+        control: {type: "text"},
+    },
 };
