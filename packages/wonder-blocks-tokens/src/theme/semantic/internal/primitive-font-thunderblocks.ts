@@ -1,4 +1,6 @@
+import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
 import {sizing} from "../../primitive/sizing";
+import {font as defaultFont} from "../../primitive/font";
 
 export const fontFamily = {
     sans: "Plus Jakarta Sans, serif",
@@ -14,7 +16,7 @@ export const fontWeight = {
     black: 900,
 };
 
-export const font = {
+export const font = mergeTheme(defaultFont, {
     family: {
         sans: fontFamily.sans,
         serif: fontFamily.serif,
@@ -47,4 +49,4 @@ export const font = {
         bold: fontWeight.bold,
         black: fontWeight.black,
     },
-};
+});
