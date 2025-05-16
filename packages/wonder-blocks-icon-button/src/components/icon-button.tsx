@@ -12,7 +12,6 @@ import type {
     IconButtonProps,
     IconButtonSize,
 } from "../util/icon-button.types";
-// import {targetPixelsForSize} from "../util/icon-button-util";
 
 import iconButtonTheme from "../theme/index";
 import {IconButtonUnstyled} from "./icon-button-unstyled";
@@ -159,8 +158,6 @@ const _generateStyles = (
         return styles[buttonType];
     }
 
-    // const pixelsForSize = targetPixelsForSize(size);
-
     const borderWidthKind = theme.root.border.width[kind];
     const outlineOffsetKind = theme.root.border.offset[kind];
     const themeVariant = semanticColor.action[kind][actionType];
@@ -189,13 +186,12 @@ const _generateStyles = (
         borderRadius: theme.root.border.radius.press,
         color: themeVariant.press.foreground,
         // Animation
-        transition: `border-radius 0.1s ease-in-out`,
+        transition: "border-radius 0.1s ease-in-out",
     };
 
     const newStyles = {
         default: {
-            // height: pixelsForSize,
-            // width: pixelsForSize,
+            // Define button sizes per theme.
             height: theme.root.size[size],
             width: theme.root.size[size],
             borderRadius: theme.root.border.radius.default,
