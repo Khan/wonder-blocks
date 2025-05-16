@@ -1,19 +1,4 @@
-import {iconSizeForButtonSize, targetPixelsForSize} from "./icon-button-util";
-
-describe("iconSizeForButtonSize", () => {
-    test.each`
-        buttonSize  | expectedIconSize
-        ${"xsmall"} | ${"small"}
-        ${"small"}  | ${"medium"}
-        ${"medium"} | ${"medium"}
-        ${"large"}  | ${"medium"}
-    `(
-        "should return $expectedIconSize icon for $buttonSize icon button",
-        ({buttonSize, expectedIconSize}) => {
-            expect(iconSizeForButtonSize(buttonSize)).toBe(expectedIconSize);
-        },
-    );
-});
+import {targetPixelsForSize} from "./icon-button-util";
 
 describe("targetPixelsForSize", () => {
     test.each`

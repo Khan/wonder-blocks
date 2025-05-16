@@ -12,10 +12,7 @@ import type {
     IconButtonProps,
     IconButtonSize,
 } from "../util/icon-button.types";
-import {
-    iconSizeForButtonSize,
-    targetPixelsForSize,
-} from "../util/icon-button-util";
+import {targetPixelsForSize} from "../util/icon-button-util";
 
 import iconButtonTheme from "../theme/index";
 import {IconButtonUnstyled} from "./icon-button-unstyled";
@@ -33,14 +30,14 @@ function IconChooser({
     icon: IconButtonProps["icon"];
     size: IconButtonSize;
 }) {
-    const iconSize = iconSizeForButtonSize(size);
-
+    // We set the icon size based on the theme object. This is necessary
+    // because the icon size could change based on the theme.
     const iconStyle = {
         width: theme.icon.size[size],
         height: theme.icon.size[size],
     };
 
-    switch (iconSize) {
+    switch (size) {
         case "small":
             return (
                 <PhosphorIcon
