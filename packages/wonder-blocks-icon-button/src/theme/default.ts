@@ -36,7 +36,7 @@ export default {
         icon: {
             size: {
                 xsmall: sizing.size_160,
-                small: sizing.size_160,
+                small: sizing.size_240,
                 medium: sizing.size_240,
                 large: sizing.size_240,
             },
