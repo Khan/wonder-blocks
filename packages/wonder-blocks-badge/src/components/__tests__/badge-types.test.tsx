@@ -21,6 +21,17 @@ describe("Badge types", () => {
                 expect(ref.current).toBe(badge);
             });
 
+            it("should use the tag prop if provided", () => {
+                // Arrange
+                render(<Component tag={"strong"} label="Badge label" />);
+
+                // Act
+                const badge = screen.getByText("Badge label");
+
+                // Assert
+                expect(badge).toHaveProperty("tagName", "STRONG");
+            });
+
             describe("Attributes", () => {
                 it("should set the id attribute", () => {
                     // Arrange
