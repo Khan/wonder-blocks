@@ -71,6 +71,7 @@ export function StateSheet({
     columns,
     rows,
     states = defaultStates,
+    styles: stylesProp,
     title,
     layout = "responsive",
 }: Props) {
@@ -80,7 +81,8 @@ export function StateSheet({
                 rows={rows}
                 columns={columns}
                 styles={{
-                    rowHeader: styles.rowHeader,
+                    rowHeader: [styles.rowHeader, stylesProp?.rowHeader],
+                    cell: [styles.cell, stylesProp?.cell],
                 }}
                 title={title}
                 layout={layout}
@@ -130,5 +132,8 @@ const styles = StyleSheet.create({
     },
     content: {
         maxWidth: "100%",
+    },
+    cell: {
+        alignContent: "flex-start",
     },
 });
