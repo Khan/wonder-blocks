@@ -32,6 +32,12 @@ export default {
                     press: border.radius.radius_040,
                 },
             },
+            size: {
+                xsmall: sizing.size_240,
+                small: sizing.size_320,
+                medium: sizing.size_400,
+                large: sizing.size_480,
+            },
         },
         icon: {
             size: {

@@ -20,6 +20,12 @@ export default mergeTheme(defaultTheme, {
                     press: border.radius.radius_120,
                 },
             },
+            size: {
+                xsmall: sizing.size_240,
+                small: sizing.size_260,
+                medium: sizing.size_400,
+                large: sizing.size_440,
+            },
         },
         icon: {
             size: {

@@ -53,34 +53,34 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             destructive: {
                 default: {
                     border: border.destructive,
-                    background: color.red_30,
+                    background: color.red_20,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: color.red_10,
-                    background: color.red_10,
+                    border: color.red_05,
+                    background: color.red_05,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: color.red_10,
-                    background: color.red_10,
+                    border: color.red_05,
+                    background: color.red_05,
                     foreground: text.inverse,
                 },
             },
             neutral: {
                 default: {
                     border: border.primary,
-                    background: color.gray_30,
+                    background: color.gray_20,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: color.black_100,
-                    background: color.black_100,
+                    border: color.gray_05,
+                    background: color.gray_05,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: color.black_100,
-                    background: color.black_100,
+                    border: color.gray_05,
+                    background: color.gray_05,
                     foreground: text.inverse,
                 },
             },
@@ -95,53 +95,53 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         secondary: {
             progressive: {
                 default: {
-                    border: color.blue_30,
+                    border: color.blue_60,
                     background: color.blue_80,
                     foreground: color.blue_30,
                 },
                 hover: {
-                    border: color.blue_20,
+                    border: color.blue_40,
                     background: color.blue_70,
-                    foreground: color.blue_20,
+                    foreground: color.blue_30,
                 },
                 press: {
-                    border: color.blue_20,
+                    border: color.blue_40,
                     background: color.blue_70,
-                    foreground: color.blue_20,
+                    foreground: color.blue_30,
                 },
             },
             destructive: {
                 default: {
                     border: color.red_30,
-                    background: color.red_80,
-                    foreground: color.red_30,
+                    background: color.red_90,
+                    foreground: color.red_20,
                 },
                 hover: {
-                    border: color.red_20,
+                    border: color.red_10,
                     background: color.red_70,
-                    foreground: color.red_20,
+                    foreground: color.red_10,
                 },
                 press: {
-                    border: color.red_20,
+                    border: color.red_10,
                     background: color.red_70,
-                    foreground: color.red_20,
+                    foreground: color.red_10,
                 },
             },
             neutral: {
                 default: {
-                    border: color.gray_20,
-                    background: color.gray_80,
-                    foreground: color.gray_20,
+                    border: color.gray_60,
+                    background: color.white_100,
+                    foreground: color.gray_10,
                 },
                 hover: {
                     border: color.gray_10,
-                    background: color.gray_70,
-                    foreground: color.gray_10,
+                    background: color.white_100,
+                    foreground: color.black_100,
                 },
                 press: {
                     border: color.gray_10,
-                    background: color.gray_70,
-                    foreground: color.gray_10,
+                    background: color.white_100,
+                    foreground: color.black_100,
                 },
             },
 
@@ -160,14 +160,14 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     foreground: color.blue_30,
                 },
                 hover: {
-                    border: color.blue_20,
+                    border: color.blue_10,
                     background: "transparent",
-                    foreground: color.blue_20,
+                    foreground: color.blue_10,
                 },
                 press: {
-                    border: color.blue_20,
+                    border: color.blue_10,
                     background: "transparent",
-                    foreground: color.blue_20,
+                    foreground: color.blue_10,
                 },
             },
 
@@ -175,7 +175,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 default: {
                     border: "transparent",
                     background: "transparent",
-                    foreground: color.red_30,
+                    foreground: color.red_20,
                 },
                 hover: {
                     border: color.red_20,
@@ -192,17 +192,17 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 default: {
                     border: "transparent",
                     background: "transparent",
-                    foreground: color.gray_20,
+                    foreground: color.gray_10,
                 },
                 hover: {
                     border: color.gray_10,
                     background: "transparent",
-                    foreground: color.gray_10,
+                    foreground: color.black_100,
                 },
                 press: {
                     border: color.gray_10,
                     background: "transparent",
-                    foreground: color.gray_10,
+                    foreground: color.black_100,
                 },
             },
 
