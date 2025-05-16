@@ -1,4 +1,3 @@
-import {FontWeights} from "../../util/types";
 import {sizing} from "./sizing";
 
 export const fontFamily = {
@@ -7,7 +6,7 @@ export const fontFamily = {
     mono: "Inconsolata, monospace",
 };
 
-export const fontWeight: FontWeights = {
+export const fontWeight = {
     light: 300,
     regular: 400,
     semi: 400,
