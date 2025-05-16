@@ -35,6 +35,7 @@ export default {
             <StyledDiv style={styles.container}>
                 <Badge
                     {...args}
+                    label={args.label || ""}
                     icon={
                         args.icon ? (
                             <PhosphorIcon
@@ -57,6 +58,15 @@ type StoryComponentType = StoryObj<
 
 const StyledDiv = addStyle("div");
 
+/**
+ * The badge takes an icon and/or a label:
+ * - `icon`: The icon to display in the badge. It can be a PhosphorIcon, a custom svg,
+ *   or `img` element. Considerations:
+ *   - If the icon conveys meaning, set the alt text on the icon being used
+ *   - If the icon is an `img` element, it may need width: 100% and height: 100%
+ *     to render properly in the badge.
+ * - `label`: The label to display in the badge.
+ */
 export const Default = {
     args: {
         label: "Badge",
@@ -136,6 +146,7 @@ export const CustomStyles: StoryComponentType = {
         return (
             <Badge
                 {...args}
+                label={args.label || ""}
                 icon={
                     args.icon ? (
                         <PhosphorIcon

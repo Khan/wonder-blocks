@@ -27,10 +27,10 @@ describe("Badge", () => {
         expect(iconElement).toBeInTheDocument();
     });
 
-    it("should not render anything if there is no label or icon", () => {
+    it("should not render anything if label is an empty string and there is no icon", () => {
         // Arrange
         // Act
-        const {container} = render(<Badge />);
+        const {container} = render(<Badge label="" />);
 
         // Assert
         expect(container).toBeEmptyDOMElement();

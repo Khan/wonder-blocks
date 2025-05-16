@@ -170,8 +170,11 @@ export const Scenarios: StoryComponentType = {
                 },
             },
             {
-                name: "No label and no icon",
-                props: {},
+                name: "Empty label and no icon",
+                props: {
+                    label: "",
+                    icon: undefined,
+                },
             },
         ];
         return (

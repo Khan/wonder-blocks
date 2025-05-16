@@ -4,38 +4,52 @@ import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 
-export type BadgeProps = AriaProps & {
-    /**
-     * The label to display in the badge.
-     */
-    label?: string;
-    /**
-     * The icon to display in the badge. It can be a PhosphorIcon, a custom svg,
-     * or `img` element.
-     * Considerations:
-     * - If the icon conveys meaning, set the alt text on the icon being used
-     * - If the icon is an `img` element, it may need width: 100% and height: 100%
-     *   to render properly in the badge.
-     */
-    icon?: React.ReactElement;
-    /**
-     * The id for the badge.
-     */
-    id?: string;
-    /**
-     * The test id for the badge.
-     */
-    testId?: string;
-    /**
-     * Custom styles for the elements in the Badge component.
-     * - `root`: Styles the root element
-     * - `icon`: Styles the icon element
-     */
-    styles?: {
-        root?: StyleType;
-        icon?: StyleType;
-    };
+type IconOnly = {
+    icon: React.ReactElement;
+    label?: never;
 };
+
+type LabelOnly = {
+    icon?: never;
+    label: string;
+};
+
+type IconAndLabel = {
+    icon: React.ReactElement;
+    label: string;
+};
+
+/**
+ * The props for the icon and label in the badge.
+ * - Icon: The icon to display in the badge. It can be a PhosphorIcon, a custom svg,
+ *   or `img` element. Considerations:
+ *   - If the icon conveys meaning, set the alt text on the icon being used
+ *   - If the icon is an `img` element, it may need width: 100% and height: 100%
+ *     to render properly in the badge.
+ * - Label: The label to display in the badge.
+ */
+type IconLabelProps = IconOnly | LabelOnly | IconAndLabel;
+
+export type BadgeProps = AriaProps &
+    IconLabelProps & {
+        /**
+         * The id for the badge.
+         */
+        id?: string;
+        /**
+         * The test id for the badge.
+         */
+        testId?: string;
+        /**
+         * Custom styles for the elements in the Badge component.
+         * - `root`: Styles the root element
+         * - `icon`: Styles the icon element
+         */
+        styles?: {
+            root?: StyleType;
+            icon?: StyleType;
+        };
+    };
 
 const StyledDiv = addStyle("div");
 const StyledSpan = addStyle("span");
