@@ -41,6 +41,7 @@ export default {
                             key={kind}
                             {...args}
                             kind={kind}
+                            label={args.label || ""}
                             icon={
                                 args.icon ? (
                                     <PhosphorIcon
@@ -76,6 +77,7 @@ export const Default = {
     ) => (
         <StatusBadge
             {...args}
+            label={args.label || ""}
             icon={
                 args.icon ? (
                     <PhosphorIcon icon={args.icon} aria-label="Example icon" />
@@ -213,6 +215,7 @@ export const CustomStyles: StoryComponentType = {
         return (
             <StatusBadge
                 {...args}
+                label={args.label || ""}
                 icon={
                     args.icon ? (
                         <PhosphorIcon
