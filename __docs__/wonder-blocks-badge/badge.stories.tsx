@@ -32,20 +32,18 @@ export default {
     },
     render: (args: Omit<PropsFor<typeof Badge>, "icon"> & {icon: string}) => {
         return (
-            <StyledDiv style={styles.container}>
-                <Badge
-                    {...args}
-                    label={args.label || ""}
-                    icon={
-                        args.icon ? (
-                            <PhosphorIcon
-                                icon={args.icon}
-                                aria-label={"Example icon"}
-                            />
-                        ) : undefined
-                    }
-                />
-            </StyledDiv>
+            <Badge
+                {...args}
+                label={args.label || ""}
+                icon={
+                    args.icon ? (
+                        <PhosphorIcon
+                            icon={args.icon}
+                            aria-label={"Example icon"}
+                        />
+                    ) : undefined
+                }
+            />
         );
     },
 };
@@ -55,8 +53,6 @@ type StoryComponentType = StoryObj<
     // for PhosphorIcons
     Omit<PropsFor<typeof Badge>, "icon"> & {icon?: string}
 >;
-
-const StyledDiv = addStyle("div");
 
 /**
  * The badge takes an icon and/or a label:
@@ -107,26 +103,20 @@ export const CustomIcons: StoryComponentType = {
         return (
             <View style={{gap: sizing.size_240}}>
                 <HeadingLarge>Custom single colored svg icon</HeadingLarge>
-                <StyledDiv style={styles.container}>
-                    <Badge icon={singleColoredIcon} label="Custom Icon" />
-                </StyledDiv>
+                <Badge icon={singleColoredIcon} label="Custom Icon" />
                 <HeadingLarge>Custom multi-colored svg icon</HeadingLarge>
-                <StyledDiv style={styles.container}>
-                    <Badge icon={multiColoredIcon} label="Custom Icon" />
-                </StyledDiv>
+                <Badge icon={multiColoredIcon} label="Custom Icon" />
                 <HeadingLarge>Custom icon using img tag</HeadingLarge>
-                <StyledDiv style={styles.container}>
-                    <Badge
-                        icon={
-                            <img
-                                src={"/favicon.ico"}
-                                alt="Wonder Blocks"
-                                style={{height: "100%", width: "100%"}}
-                            />
-                        }
-                        label="Custom Icon"
-                    />
-                </StyledDiv>
+                <Badge
+                    icon={
+                        <img
+                            src={"/favicon.ico"}
+                            alt="Wonder Blocks"
+                            style={{height: "100%", width: "100%"}}
+                        />
+                    }
+                    label="Custom Icon"
+                />
             </View>
         );
     },
@@ -174,12 +164,3 @@ export const CustomStyles: StoryComponentType = {
         },
     },
 };
-
-const styles = StyleSheet.create({
-    container: {
-        display: "flex",
-        flexDirection: "row",
-        gap: sizing.size_120,
-        flexWrap: "wrap",
-    },
-});
