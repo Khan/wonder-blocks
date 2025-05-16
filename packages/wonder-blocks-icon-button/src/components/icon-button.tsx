@@ -12,13 +12,11 @@ import type {
     IconButtonProps,
     IconButtonSize,
 } from "../util/icon-button.types";
-import {
-    iconSizeForButtonSize,
-    targetPixelsForSize,
-} from "../util/icon-button-util";
 
-import theme from "../theme/index";
+import iconButtonTheme from "../theme/index";
 import {IconButtonUnstyled} from "./icon-button-unstyled";
+
+const theme = iconButtonTheme.iconButton;
 
 /**
  * Returns the phosphor icon component based on the size. This is necessary
@@ -31,14 +29,21 @@ function IconChooser({
     icon: IconButtonProps["icon"];
     size: IconButtonSize;
 }) {
-    const iconSize = iconSizeForButtonSize(size);
-    switch (iconSize) {
+    // We set the icon size based on the theme object. This is necessary
+    // because the icon size could change based on the theme.
+    const iconStyle = {
+        width: theme.icon.size[size],
+        height: theme.icon.size[size],
+    };
+
+    switch (size) {
         case "small":
             return (
                 <PhosphorIcon
                     size="small"
                     color="currentColor"
                     icon={icon as PhosphorBold | PhosphorFill}
+                    style={iconStyle}
                 />
             );
         case "medium":
@@ -48,6 +53,7 @@ function IconChooser({
                     size="medium"
                     color="currentColor"
                     icon={icon as PhosphorRegular | PhosphorFill}
+                    style={iconStyle}
                 />
             );
     }
@@ -152,10 +158,8 @@ const _generateStyles = (
         return styles[buttonType];
     }
 
-    const pixelsForSize = targetPixelsForSize(size);
-
-    const borderWidthKind = theme.border.width[kind];
-    const outlineOffsetKind = theme.border.offset[kind];
+    const borderWidthKind = theme.root.border.width[kind];
+    const outlineOffsetKind = theme.root.border.offset[kind];
     const themeVariant = semanticColor.action[kind][actionType];
     const disabledState = semanticColor.action[kind].disabled;
 
@@ -171,22 +175,26 @@ const _generateStyles = (
         outline:
             kind === "primary"
                 ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                : undefined,
+                : "none",
         outlineOffset: kind === "primary" ? outlineOffsetKind : undefined,
         // secondary, tertiary
         border:
             kind !== "primary"
                 ? `${borderWidthKind.press} solid ${themeVariant.press.border}`
-                : undefined,
+                : "none",
         background: themeVariant.press.background,
+        borderRadius: theme.root.border.radius.press,
         color: themeVariant.press.foreground,
+        // Animation
+        transition: "border-radius 0.1s ease-in-out",
     };
 
     const newStyles = {
         default: {
-            height: pixelsForSize,
-            width: pixelsForSize,
-            borderRadius: theme.border.radius.default,
+            // Define button sizes per theme.
+            height: theme.root.size[size],
+            width: theme.root.size[size],
+            borderRadius: theme.root.border.radius.default,
             // theming
             borderStyle: "solid",
             borderWidth: borderWidthKind.default,
@@ -204,6 +212,7 @@ const _generateStyles = (
              */
             ":hover": {
                 background: themeVariant.hover.background,
+                borderRadius: theme.root.border.radius.hover,
                 color: themeVariant.hover.foreground,
                 outline:
                     kind === "primary"
