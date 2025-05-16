@@ -1,8 +1,4 @@
 import {mapValuesToCssVars} from "@khanacademy/wonder-blocks-tokens";
 import themeDefault from "./default";
 
-const theme = {
-    ...themeDefault,
-};
-
-export default mapValuesToCssVars(theme, "--wb-c-icon-button-");
+export default mapValuesToCssVars(themeDefault, "--wb-c-icon-button-");

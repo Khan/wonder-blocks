@@ -2,4 +2,6 @@
 "@khanacademy/wonder-blocks-tokens": patch
 ---
 
-Update some action tokens (thunderblocks)
+- Updates some action tokens (thunderblocks)
+- Adds `sizing.size_260` and `sizing.size_440` to the `sizing` tokens to support
+  new Button sizes.
