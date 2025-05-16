@@ -1,5 +1,5 @@
 import {IconSize} from "@khanacademy/wonder-blocks-icon";
-import {IconButtonSize} from "../components/icon-button";
+import {IconButtonSize} from "./icon-button.types";
 
 /**
  * A function that returns the icon size for a given icon button size.
