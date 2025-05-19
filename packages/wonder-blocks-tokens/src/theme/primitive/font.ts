@@ -42,8 +42,7 @@ export const font = {
     },
     weight: {
         light: fontWeight.light,
-        medium: fontWeight.regular,
-        regular: fontWeight.regular,
+        medium: fontWeight.regular, // called medium to support theming across fonts
         semi: fontWeight.regular, // is no semi in Lato, so this is a fallback
         bold: fontWeight.bold,
         black: fontWeight.black,
