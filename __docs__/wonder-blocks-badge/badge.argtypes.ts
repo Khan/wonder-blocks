@@ -7,7 +7,9 @@ export default {
         mapping: IconMappings,
         table: {
             type: {
-                summary: "ReactElement",
+                // `icon` prop can be any ReactElement, however, we want to
+                // encourage the use of `PhosphorIcon` or `Icon` components.
+                summary: "PhosphorIcon | Icon",
             },
         },
         // Explicitly adding icon prop description since description is not

@@ -43,11 +43,9 @@ export const Sizes: StoryComponentType = {
             <View style={styles.container}>
                 {(["small", "medium", "large", "xlarge"] as const).map(
                     (size) => (
-                        <View key={size}>
-                            <View style={styles.iconContainer}>
-                                <LabelSmall>{size}</LabelSmall>
-                                <Icon icon="/logo.svg" size={size} />
-                            </View>
+                        <View style={styles.iconContainer} key={size}>
+                            <LabelSmall>{size}</LabelSmall>
+                            <Icon icon="/logo.svg" size={size} />
                         </View>
                     ),
                 )}
