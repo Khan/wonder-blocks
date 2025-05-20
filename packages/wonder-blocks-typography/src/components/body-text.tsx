@@ -1,5 +1,4 @@
 import * as React from "react";
-import {css} from "aphrodite";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 import {font} from "@khanacademy/wonder-blocks-tokens";
 import styles from "../util/styles";
@@ -21,7 +20,7 @@ const BodyText = React.forwardRef(function BodyText(
     ref,
 ) {
     // map props to theme defaults
-    const bodyTextStyles = {
+    const themeBodyText = {
         fontSize: font.size[size],
         fontWeight: font.weight[weight],
         lineHeight: font.lineHeight[size],
@@ -29,9 +28,8 @@ const BodyText = React.forwardRef(function BodyText(
     return (
         <Text
             {...otherProps}
-            className={css(styles.BodyText)}
             tag={tag}
-            style={[bodyTextStyles, style]}
+            style={[styles.BodyText, themeBodyText, style]}
             ref={ref}
         >
             {children}

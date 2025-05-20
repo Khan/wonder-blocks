@@ -1,5 +1,4 @@
 import * as React from "react";
-import {css} from "aphrodite";
 import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 import {font} from "@khanacademy/wonder-blocks-tokens";
 import styles from "../util/styles";
@@ -22,7 +21,7 @@ const Heading = React.forwardRef(function Heading(
     ref,
 ) {
     // map props to theme defaults
-    const headingStyles = {
+    const themeHeading = {
         fontSize: font.size[size],
         fontWeight: font.weight[weight],
         lineHeight: font.lineHeight[size],
@@ -31,8 +30,7 @@ const Heading = React.forwardRef(function Heading(
         <Text
             {...otherProps}
             tag={tag}
-            style={[headingStyles, style]}
-            className={css(styles.Heading)}
+            style={[styles.Heading, themeHeading, style]}
             ref={ref}
         >
             {children}
