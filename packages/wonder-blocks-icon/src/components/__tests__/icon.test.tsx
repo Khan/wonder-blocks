@@ -78,4 +78,55 @@ describe("Icon", () => {
             expect(icon).toHaveAttribute("data-testid", testId);
         });
     });
+
+    describe("Accessibility", () => {
+        describe("axe", () => {
+            it("should have no a11y violations when alt is provided", async () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <Icon icon={"/icon.svg"} alt="Icon example" />,
+                );
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+
+            it("should have no a11y violations when alt is not provided", async () => {
+                // Arrange
+                // Act
+                const {container} = render(<Icon icon={"/icon.svg"} />);
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+        });
+
+        describe("ARIA", () => {
+            it("should set aria attributes that are passed in", () => {
+                // Arrange
+                render(
+                    <span>
+                        <Icon
+                            icon={"/icon.svg"}
+                            alt="Icon example"
+                            aria-describedby="icon-description"
+                        />
+                        <span id="icon-description">
+                            Example description of icon
+                        </span>
+                    </span>,
+                );
+
+                // Act
+                const icon = screen.getByRole("img");
+
+                // Assert
+                expect(icon).toHaveAttribute(
+                    "aria-describedby",
+                    "icon-description",
+                );
+            });
+        });
+    });
 });
