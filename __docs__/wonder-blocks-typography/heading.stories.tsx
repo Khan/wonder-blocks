@@ -38,11 +38,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        chromatic: {
-            // Disabling because all typography components are covered together
-            // in the Typography stories
-            disableSnapshot: true,
-        },
     },
     argTypes: TypographyArgTypes,
 } as Meta<typeof Heading>;
@@ -58,6 +53,13 @@ export const Default: StoryObj<typeof Heading> = {
         children: "Heading",
         size: "large",
         weight: "bold",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because all typography components are covered together
+            // in the Typography stories
+            disableSnapshot: true,
+        },
     },
 };
 

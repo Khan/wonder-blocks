@@ -91,6 +91,13 @@ export const NewTypographyElements: StoryObj<any> = {
         </View>
     ),
     globals: {theme: "thunderblocks"},
+    parameters: {
+        chromatic: {
+            // Disabling because the new typography components are covered
+            // in the Heading / BodyText stories
+            disableSnapshot: true,
+        },
+    },
 };
 
 /**

@@ -37,11 +37,6 @@ export default {
                 version={packageConfig.version}
             />
         ),
-        chromatic: {
-            // Disabling because all typography components are covered together
-            // in the Typography stories
-            disableSnapshot: true,
-        },
     },
     argTypes: TypographyArgTypes,
 } as Meta<typeof BodyText>;
@@ -57,6 +52,13 @@ export const Default: StoryObj<typeof BodyText> = {
         children: "BodyText",
         size: "medium",
         weight: "medium",
+    },
+    parameters: {
+        chromatic: {
+            // Disabling because all typography components are covered together
+            // in the Typography stories
+            disableSnapshot: true,
+        },
     },
 };
 
