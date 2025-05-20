@@ -4,7 +4,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {Badge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {commonStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
@@ -13,11 +13,8 @@ import {
 } from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    multiColoredIcon,
-    singleColoredIcon,
-} from "../components/icons-for-testing";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import singleColoredIcon from "../components/single-colored-icon.svg";
 
 /**
  * Badges are visual indicators used to display concise information, such as
@@ -138,51 +135,39 @@ export const Scenarios: StoryComponentType = {
                 name: "Custom svg icon with label",
                 props: {
                     label: "Badge",
-                    icon: singleColoredIcon,
+                    icon: <PhosphorIcon icon={singleColoredIcon} />,
                 },
             },
             {
                 name: "Custom svg icon",
                 props: {
-                    icon: singleColoredIcon,
+                    icon: <PhosphorIcon icon={singleColoredIcon} />,
                 },
             },
             {
                 name: "Custom multi-colored svg icon with label",
                 props: {
                     label: "Badge",
-                    icon: multiColoredIcon,
+                    icon: <Icon icon={"/logo.svg"} alt="Wonder Blocks" />,
                 },
             },
             {
                 name: "Custom multi-colored svg icon",
                 props: {
-                    icon: multiColoredIcon,
+                    icon: <Icon icon={"/logo.svg"} alt="Wonder Blocks" />,
                 },
             },
             {
-                name: "Custom img tag icon",
+                name: "Custom image asset icon",
                 props: {
-                    icon: (
-                        <img
-                            src={"./logo.svg"}
-                            alt="Wonder Blocks"
-                            style={{height: "100%", width: "100%"}}
-                        />
-                    ),
+                    icon: <Icon icon={"/favicon.ico"} alt="Wonder Blocks" />,
                 },
             },
             {
-                name: "Custom img tag icon with label",
+                name: "Custom image asset icon with label",
                 props: {
                     label: "Badge",
-                    icon: (
-                        <img
-                            src={"./logo.svg"}
-                            alt="Wonder Blocks"
-                            style={{height: "100%", width: "100%"}}
-                        />
-                    ),
+                    icon: <Icon icon={"/favicon.ico"} alt="Wonder Blocks" />,
                 },
             },
             {
