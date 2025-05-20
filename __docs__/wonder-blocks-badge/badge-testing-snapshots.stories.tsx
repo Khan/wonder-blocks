@@ -160,14 +160,14 @@ export const Scenarios: StoryComponentType = {
             {
                 name: "Custom image asset icon",
                 props: {
-                    icon: <Icon icon={"/favicon.ico"} alt="Wonder Blocks" />,
+                    icon: <Icon icon={"/avatar.png"} alt="Example avatar" />,
                 },
             },
             {
                 name: "Custom image asset icon with label",
                 props: {
                     label: "Badge",
-                    icon: <Icon icon={"/favicon.ico"} alt="Wonder Blocks" />,
+                    icon: <Icon icon={"/avatar.png"} alt="Example avatar" />,
                 },
             },
             {

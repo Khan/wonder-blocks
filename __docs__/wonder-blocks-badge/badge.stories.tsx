@@ -145,7 +145,7 @@ export const CustomIcons: StoryComponentType = {
                     Custom image asset using the Icon component
                 </HeadingLarge>
                 <Badge
-                    icon={<Icon icon={"/favicon.ico"} alt="Wonder Blocks" />}
+                    icon={<Icon icon={"/avatar.png"} alt="Example avatar" />}
                     label="Custom Icon"
                 />
             </View>
