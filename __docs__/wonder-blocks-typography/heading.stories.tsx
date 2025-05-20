@@ -29,7 +29,7 @@ Other content should utilize `BodyText`, primarily in `p` tags.
 **/
 
 export default {
-    title: "Packages / Typography / Thunderblocks / Heading",
+    title: "Packages / Typography / Heading",
     component: Heading,
     parameters: {
         componentSubtitle: (

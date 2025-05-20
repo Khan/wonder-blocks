@@ -28,7 +28,7 @@ Heading text should utilize the `Heading` component.
 **/
 
 export default {
-    title: "Packages / Typography / Thunderblocks / BodyText",
+    title: "Packages / Typography / BodyText",
     component: BodyText,
     parameters: {
         componentSubtitle: (
