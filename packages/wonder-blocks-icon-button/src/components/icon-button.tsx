@@ -32,8 +32,8 @@ function IconChooser({
     // We set the icon size based on the theme object. This is necessary
     // because the icon size could change based on the theme.
     const iconStyle = {
-        width: theme.icon.size[size],
-        height: theme.icon.size[size],
+        width: theme.icon.sizing[size],
+        height: theme.icon.sizing[size],
     };
 
     switch (size) {
@@ -192,8 +192,8 @@ const _generateStyles = (
     const newStyles = {
         default: {
             // Define button sizes per theme.
-            height: theme.root.size[size],
-            width: theme.root.size[size],
+            height: theme.root.sizing[size],
+            width: theme.root.sizing[size],
             borderRadius: theme.root.border.radius.default,
             // theming
             borderStyle: "solid",

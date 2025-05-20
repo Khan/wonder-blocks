@@ -33,7 +33,7 @@ export default {
                 },
             },
             // Target areas for each button size.
-            size: {
+            sizing: {
                 xsmall: sizing.size_240,
                 small: sizing.size_320,
                 medium: sizing.size_400,
@@ -42,7 +42,7 @@ export default {
         },
         icon: {
             // Icon sizes for each button size.
-            size: {
+            sizing: {
                 xsmall: sizing.size_160,
                 small: sizing.size_240,
                 medium: sizing.size_240,
