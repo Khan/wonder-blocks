@@ -19,10 +19,9 @@ const columns = [
 ];
 
 const rows = [
-    {
-        name: "Default",
-        props: {onClick: () => {}},
-    },
+    // TODO(WB-1950): Remove "Static" variant once Badge is released.
+    {name: "Static", props: {}},
+    {name: "Clickable", props: {onClick: () => {}}},
 ];
 
 type Story = StoryObj<typeof Pill>;
@@ -94,14 +93,7 @@ const sizes = [
 export const Sizes: Story = {
     render: (args) => {
         return (
-            <AllVariants
-                rows={[
-                    {name: "Static", props: {}},
-                    {name: "Clickable", props: {onClick: () => {}}},
-                ]}
-                columns={sizes}
-                title="Type / Size"
-            >
+            <AllVariants rows={rows} columns={sizes} title="Type / Size">
                 {({props}) => (
                     <View style={{gap: sizing.size_160, flexDirection: "row"}}>
                         <View style={{gap: sizing.size_160}}>
