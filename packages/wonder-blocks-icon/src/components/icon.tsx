@@ -54,10 +54,15 @@ function getSize(size: IconSize): CSSProperties {
 }
 
 /**
- * A component for displaying a custom icon. For Phosphor icons, use the
- * `PhosphorIcon` component.
+ * A component for displaying a custom icon. The Icon component supports custom
+ * icons that are images or svg assets with their own fill. It renders an `img`
+ * element.
  *
- * If the icon is interactive, use `IconButton` instead.
+ * Related components:
+ * - For Phosphor icons, use the `PhosphorIcon` component.
+ * - For custom icons that are single colored svg assets, use the `PhosphorIcon`
+ * component, which supports changing the color of the icon.
+ * - If the icon is interactive, use `IconButton` instead.
  */
 const Icon = React.forwardRef(
     (props: Props, ref: React.Ref<HTMLImageElement>) => {
