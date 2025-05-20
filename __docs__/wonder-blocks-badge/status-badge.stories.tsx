@@ -9,7 +9,7 @@ import {
     multiColoredIcon,
     singleColoredIcon,
 } from "../components/icons-for-testing";
-import {addStyle, PropsFor, View} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes from "./badge.argtypes";
@@ -34,7 +34,7 @@ export default {
         args: Omit<PropsFor<typeof StatusBadge>, "icon"> & {icon: string},
     ) => {
         return (
-            <StyledDiv style={styles.container}>
+            <View style={styles.container}>
                 {kinds.map((kind) => {
                     return (
                         <StatusBadge
@@ -53,7 +53,7 @@ export default {
                         />
                     );
                 })}
-            </StyledDiv>
+            </View>
         );
     },
 };
@@ -64,7 +64,6 @@ type StoryComponentType = StoryObj<
     Omit<PropsFor<typeof StatusBadge>, "icon"> & {icon?: string}
 >;
 
-const StyledDiv = addStyle("div");
 const kinds = ["info", "success", "warning", "critical"] as const;
 
 export const Default = {
@@ -96,7 +95,7 @@ export const Kinds = {
     },
     render(args: Omit<PropsFor<typeof StatusBadge>, "icon"> & {icon: string}) {
         return (
-            <StyledDiv style={styles.container}>
+            <View style={styles.container}>
                 {kinds.map((kind) => {
                     const kindLabel =
                         kind.charAt(0).toUpperCase() + kind.slice(1);
@@ -114,7 +113,7 @@ export const Kinds = {
                         />
                     );
                 })}
-            </StyledDiv>
+            </View>
         );
     },
 };
@@ -152,7 +151,7 @@ export const CustomIcons: StoryComponentType = {
         return (
             <View style={{gap: sizing.size_240}}>
                 <HeadingLarge>Custom single colored svg icon</HeadingLarge>
-                <StyledDiv style={styles.container}>
+                <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
                             <StatusBadge
@@ -163,9 +162,9 @@ export const CustomIcons: StoryComponentType = {
                             />
                         );
                     })}
-                </StyledDiv>
+                </View>
                 <HeadingLarge>Custom multi-colored svg icon</HeadingLarge>
-                <StyledDiv style={styles.container}>
+                <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
                             <StatusBadge
@@ -176,9 +175,9 @@ export const CustomIcons: StoryComponentType = {
                             />
                         );
                     })}
-                </StyledDiv>
+                </View>
                 <HeadingLarge>Custom icon using img tag</HeadingLarge>
-                <StyledDiv style={styles.container}>
+                <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
                             <StatusBadge
@@ -195,7 +194,7 @@ export const CustomIcons: StoryComponentType = {
                             />
                         );
                     })}
-                </StyledDiv>
+                </View>
             </View>
         );
     },
