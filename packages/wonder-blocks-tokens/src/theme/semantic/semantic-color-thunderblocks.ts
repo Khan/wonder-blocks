@@ -178,14 +178,14 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     foreground: color.red_20,
                 },
                 hover: {
-                    border: color.red_20,
+                    border: color.red_10,
                     background: "transparent",
-                    foreground: color.red_20,
+                    foreground: color.red_10,
                 },
                 press: {
-                    border: color.red_20,
+                    border: color.red_10,
                     background: "transparent",
-                    foreground: color.red_20,
+                    foreground: color.red_10,
                 },
             },
             neutral: {
