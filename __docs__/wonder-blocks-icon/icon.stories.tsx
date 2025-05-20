@@ -5,7 +5,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 import {Icon} from "@khanacademy/wonder-blocks-icon";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 export default {
@@ -27,8 +27,16 @@ export const Default: StoryComponentType = {
     args: {
         icon: "/logo.svg",
     },
+    parameters: {
+        chromatic: {
+            disableSnapshot: true,
+        },
+    },
 };
 
+/**
+ * The different sizes supported by the Icon component.
+ */
 export const Sizes: StoryComponentType = {
     render: () => {
         return (
@@ -45,6 +53,19 @@ export const Sizes: StoryComponentType = {
                 )}
             </View>
         );
+    },
+};
+
+/**
+ * Custom styles can be applied to the icon using the `style` prop.
+ */
+export const CustomStyles: StoryComponentType = {
+    args: {
+        icon: "/logo.svg",
+        size: "xlarge",
+        style: {
+            borderRadius: border.radius.radius_full,
+        },
     },
 };
 

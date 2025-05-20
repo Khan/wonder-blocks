@@ -50,4 +50,32 @@ describe("Icon", () => {
         // Assert
         expect(await screen.findByRole("img")).toBe(ref.current);
     });
+
+    describe("Attributes", () => {
+        it("should set the id of the icon", () => {
+            // Arrange
+            const id = "icon-id";
+            render(<Icon icon={"/icon.svg"} id={id} alt="Icon example" />);
+
+            // Act
+            const icon = screen.getByRole("img");
+
+            // Assert
+            expect(icon).toHaveAttribute("id", id);
+        });
+
+        it("should set the test id of the icon", () => {
+            // Arrange
+            const testId = "icon-test-id";
+            render(
+                <Icon icon={"/icon.svg"} testId={testId} alt="Icon example" />,
+            );
+
+            // Act
+            const icon = screen.getByTestId(testId);
+
+            // Assert
+            expect(icon).toHaveAttribute("data-testid", testId);
+        });
+    });
 });

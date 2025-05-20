@@ -1,5 +1,5 @@
 import * as React from "react";
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {addStyle, StyleType} from "@khanacademy/wonder-blocks-core";
 import {CSSProperties, StyleSheet} from "aphrodite";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconSize} from "../types";
@@ -7,6 +7,18 @@ import {IconSize} from "../types";
 const StyledImg = addStyle("img");
 
 type Props = {
+    /**
+     * The id for the icon.
+     */
+    id?: string;
+    /**
+     * The test id for the icon.
+     */
+    testId?: string;
+    /**
+     * Custom styles to apply to the icon.
+     */
+    style?: StyleType;
     /**
      * Size of the icon. One of `small` (16), `medium` (24), `large` (48), or
      * `xlarge` (96). Defaults to `small`.
@@ -49,12 +61,14 @@ function getSize(size: IconSize): CSSProperties {
  */
 const Icon = React.forwardRef(
     (props: Props, ref: React.Ref<HTMLImageElement>) => {
-        const {size = "small", alt, icon} = props;
+        const {size = "small", alt, icon, id, testId, style} = props;
 
         return (
             <StyledImg
+                id={id}
+                data-testid={testId}
                 src={icon}
-                style={getSize(size)}
+                style={[getSize(size), style]}
                 alt={alt || ""}
                 ref={ref}
             />
