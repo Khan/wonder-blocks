@@ -12,9 +12,8 @@ export default {
         },
         // Explicitly adding icon prop description since description is not
         // auto-generated due to the union type
-        // TODO(WB-1921): Once Icon component is created, update docs/examples to show Icon usage
         description:
-            "The icon to display in the badge. This can be a PhosphorIcon or a custom icon",
+            "The icon to display in the badge. This can be a `PhosphorIcon` or a custom icon using the `Icon` component",
     },
     label: {
         // Explicitly adding label prop description since description is not
