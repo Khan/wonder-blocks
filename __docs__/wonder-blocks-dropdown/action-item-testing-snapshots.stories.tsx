@@ -1,17 +1,14 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 
-import {AllVariants} from "../components/all-variants";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {allModes} from "../../.storybook/modes";
+import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 
-const rows = [
-    {name: "Unchecked", props: {checked: false}},
-    {name: "Checked", props: {checked: true}},
-    {name: "Indeterminate", props: {checked: null}},
-];
+const rows = [{name: "Unselected", props: {}}];
 
 const columns = [
     {
@@ -44,13 +41,8 @@ type Story = StoryObj<typeof ActionItem>;
  * ActionItem component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Dropdown / ActionItem / ActionItem - All Variants",
+    title: "Packages / Dropdown / ActionItem / Testing / ActionItem - Snapshots",
     component: ActionItem,
-    render: (args) => (
-        <AllVariants rows={rows} columns={columns}>
-            {({props}) => <ActionItem {...args} {...props} />}
-        </AllVariants>
-    ),
     args: {
         label: "Action Item",
         onClick: () => {},
@@ -74,27 +66,34 @@ const meta = {
         backgrounds: {
             default: "offWhite",
         },
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+            },
+        },
     },
     tags: ["!autodocs"],
 } satisfies Meta<typeof ActionItem>;
 
 export default meta;
 
-export const Default: Story = {};
-
-export const Hover: Story = {
-    parameters: {pseudo: {hover: true}},
-};
-
-export const Focus: Story = {
-    parameters: {pseudo: {focusVisible: true}},
-};
-
-export const HoverFocus: Story = {
-    name: "Hover + Focus",
-    parameters: {pseudo: {hover: true, focusVisible: true}},
-};
-
-export const Active: Story = {
-    parameters: {pseudo: {active: true, focusVisible: true}},
+export const StateSheetStory: Story = {
+    name: "StateSheet",
+    render: (args) => {
+        return (
+            <StateSheet rows={rows} columns={columns}>
+                {({props, className, name}) => (
+                    <ActionItem
+                        {...args}
+                        {...props}
+                        className={className}
+                        key={name}
+                    />
+                )}
+            </StateSheet>
+        );
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
 };
