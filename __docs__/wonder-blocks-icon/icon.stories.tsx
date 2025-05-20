@@ -26,6 +26,7 @@ type StoryComponentType = StoryObj<typeof Icon>;
 export const Default: StoryComponentType = {
     args: {
         icon: "/logo.svg",
+        alt: "Wonder Blocks",
     },
     parameters: {
         chromatic: {
@@ -45,7 +46,11 @@ export const Sizes: StoryComponentType = {
                     (size) => (
                         <View style={styles.iconContainer} key={size}>
                             <LabelSmall>{size}</LabelSmall>
-                            <Icon icon="/logo.svg" size={size} />
+                            <Icon
+                                icon="/logo.svg"
+                                size={size}
+                                alt="Wonder Blocks"
+                            />
                         </View>
                     ),
                 )}
