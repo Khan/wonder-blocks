@@ -47,11 +47,20 @@ function getSize(size: IconSize): CSSProperties {
  *
  * If the icon is interactive, use `IconButton` instead.
  */
-export const Icon = (props: Props) => {
-    const {size = "small", alt, icon} = props;
+const Icon = React.forwardRef(
+    (props: Props, ref: React.Ref<HTMLImageElement>) => {
+        const {size = "small", alt, icon} = props;
 
-    return <StyledImg src={icon} style={getSize(size)} alt={alt || ""} />;
-};
+        return (
+            <StyledImg
+                src={icon}
+                style={getSize(size)}
+                alt={alt || ""}
+                ref={ref}
+            />
+        );
+    },
+);
 
 const styles = StyleSheet.create({
     small: {
@@ -71,3 +80,5 @@ const styles = StyleSheet.create({
         height: sizing.size_960,
     },
 });
+
+export {Icon};
