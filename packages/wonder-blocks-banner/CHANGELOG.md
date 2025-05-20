@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-banner
 
+## 4.1.17
+
+### Patch Changes
+
+- 30760f6: change actions prop from Array to ReadonlyArray
+
 ## 4.1.16
 
 ### Patch Changes
