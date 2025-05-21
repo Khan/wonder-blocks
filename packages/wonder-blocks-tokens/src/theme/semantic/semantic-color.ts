@@ -5,7 +5,7 @@ const transparent = "transparent";
 const core = {
     transparent,
     border: {
-        informative: {
+        instructive: {
             subtle: color.fadedBlue,
             default: color.blue,
             strong: color.activeBlue,
@@ -91,12 +91,12 @@ export const semanticColor = {
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: core.border.informative.default,
+                    border: core.border.instructive.default,
                     background: color.blue,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: core.border.informative.strong,
+                    border: core.border.instructive.strong,
                     background: color.activeBlue,
                     foreground: text.inverse,
                 },
@@ -152,12 +152,12 @@ export const semanticColor = {
                     foreground: color.blue,
                 },
                 hover: {
-                    border: core.border.informative.default,
+                    border: core.border.instructive.default,
                     background: "transparent",
                     foreground: color.blue,
                 },
                 press: {
-                    border: core.border.informative.strong,
+                    border: core.border.instructive.strong,
                     background: color.fadedBlue,
                     foreground: color.activeBlue,
                 },
@@ -212,12 +212,12 @@ export const semanticColor = {
                     foreground: color.blue,
                 },
                 hover: {
-                    border: core.border.informative.default,
+                    border: core.border.instructive.default,
                     background: "transparent",
                     foreground: color.blue,
                 },
                 press: {
-                    border: core.border.informative.strong,
+                    border: core.border.instructive.strong,
                     background: "transparent",
                     foreground: color.activeBlue,
                 },
@@ -276,7 +276,7 @@ export const semanticColor = {
             placeholder: text.secondary,
         },
         checked: {
-            border: core.border.informative.default,
+            border: core.border.instructive.default,
             background: color.blue,
             foreground: text.inverse,
         },

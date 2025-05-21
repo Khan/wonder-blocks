@@ -138,7 +138,7 @@ function Color({name, value, variant}: ColorProps) {
                 <View
                     style={{
                         backgroundColor: value,
-                        boxShadow: `inset 0 0 1px 0 ${semanticColor.border.primary}`,
+                        boxShadow: `inset 0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
                         // Expand to fill the parent container
                         alignSelf: "stretch",
                         flex: 1,
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
         margin: spacing.xxxSmall_4,
         padding: spacing.xxxSmall_4,
         gap: spacing.xxxSmall_4,
-        border: `1px dashed ${semanticColor.border.subtle}`,
+        border: `1px dashed ${semanticColor.core.border.neutral.subtle}`,
     },
     item: {
         maxWidth: itemWidth,
@@ -231,13 +231,13 @@ const styles = StyleSheet.create({
         width: "100%",
 
         backgroundColor: semanticColor.surface.secondary,
-        border: `1px solid ${semanticColor.border.primary}`,
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         borderRadius: border.radius.radius_040,
     },
     pattern: {
         backgroundImage: `radial-gradient(${color.blue} 0.5px, ${color.offWhite} 0.5px)`,
         backgroundSize: `${spacing.small_12}px ${spacing.small_12}px`,
-        boxShadow: `0 0 1px 0 ${semanticColor.border.primary}`,
+        boxShadow: `0 0 1px 0 ${semanticColor.core.border.neutral.subtle}`,
     },
     thumbnail: {
         width: itemWidth,
