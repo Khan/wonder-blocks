@@ -1,16 +1,13 @@
 import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
-import {sizing} from "../../primitive/sizing";
 import {font as defaultFont} from "../../primitive/font";
 
 export const fontFamily = {
     sans: "Plus Jakarta Sans, serif",
-    serif: '"Noto Serif", serif',
-    mono: "Inconsolata, monospace",
 };
 
 export const fontWeight = {
     light: 300,
-    medium: 400, // 'regular' in OG
+    medium: 500, // 'regular' in OG
     semi: 600, // only used in TB
     bold: 700,
     black: 900,
@@ -19,28 +16,6 @@ export const fontWeight = {
 export const font = mergeTheme(defaultFont, {
     family: {
         sans: fontFamily.sans,
-        serif: fontFamily.serif,
-        mono: fontFamily.mono,
-    },
-    size: {
-        xxxLarge: sizing.size_360,
-        xxLarge: sizing.size_280,
-        xLarge: sizing.size_240,
-        large: sizing.size_200,
-        xMedium: sizing.size_180, // only used in TB
-        medium: sizing.size_160,
-        small: sizing.size_140,
-        xSmall: sizing.size_120,
-    },
-    lineHeight: {
-        xxxLarge: sizing.size_400,
-        xxLarge: sizing.size_320,
-        xLarge: sizing.size_280,
-        large: sizing.size_240,
-        xMedium: sizing.size_220,
-        medium: sizing.size_200,
-        small: sizing.size_180,
-        xSmall: sizing.size_160,
     },
     weight: {
         light: fontWeight.light,

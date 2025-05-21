@@ -3,6 +3,8 @@ import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 import {font} from "@khanacademy/wonder-blocks-tokens";
 import styles from "../util/styles";
 
+import theme from "../theme/index";
+
 type Props = PropsFor<typeof Text> & {
     size?: "xsmall" | "small" | "medium";
     weight?: "medium" | "semi" | "bold";
@@ -19,11 +21,11 @@ const BodyText = React.forwardRef(function BodyText(
     }: Props,
     ref,
 ) {
-    // map props to theme defaults
+    // map props to theme and global token defaults for CSS styles
     const themeBodyText = {
-        fontSize: font.size[size],
+        fontSize: theme.body.font.size[size],
         fontWeight: font.weight[weight],
-        lineHeight: font.lineHeight[size],
+        lineHeight: theme.body.font.lineHeight[size],
     };
     return (
         <Text
