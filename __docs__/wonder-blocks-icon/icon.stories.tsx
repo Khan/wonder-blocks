@@ -7,7 +7,10 @@ import {Icon} from "@khanacademy/wonder-blocks-icon";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import {multiColoredIcon, singleColoredIcon} from "./icons/icons";
+import {
+    multiColoredIcon,
+    singleColoredIcon,
+} from "../components/icons-for-testing";
 
 export default {
     title: "Packages / Icon / Icon",

@@ -15,7 +15,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import singleColoredIcon from "../components/single-colored-icon.svg";
-import {multiColoredIcon} from "../wonder-blocks-icon/icons/icons";
+import {multiColoredIcon} from "../components/icons-for-testing";
 
 /**
  * Badges are visual indicators used to display concise information, such as

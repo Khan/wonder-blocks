@@ -9,7 +9,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes from "./badge.argtypes";
-import {multiColoredIcon} from "../wonder-blocks-icon/icons/icons";
+import {multiColoredIcon} from "../components/icons-for-testing";
 
 export default {
     title: "Packages / Badge / Badge",
