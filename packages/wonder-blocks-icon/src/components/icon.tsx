@@ -59,7 +59,7 @@ const StyledDiv = addStyle("div");
  * - If the icon is interactive, use `IconButton` instead.
  */
 const Icon = React.forwardRef(
-    (props: Props, ref: React.Ref<HTMLImageElement>) => {
+    (props: Props, ref: React.Ref<HTMLDivElement>) => {
         const {
             size = "small",
             id,

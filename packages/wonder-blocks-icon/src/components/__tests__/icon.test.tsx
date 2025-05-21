@@ -3,10 +3,14 @@ import {render, screen} from "@testing-library/react";
 import {Icon} from "../icon";
 
 describe("Icon", () => {
-    it("should render the icon", () => {
+    it("should render the children", () => {
         // Arrange
         const src = "/logo.svg";
-        render(<Icon icon={src} alt="Logo" />);
+        render(
+            <Icon>
+                <img src={src} alt="Logo" />
+            </Icon>,
+        );
 
         // Act
         const icon = screen.getByRole("img");
@@ -15,67 +19,51 @@ describe("Icon", () => {
         expect(icon).toHaveAttribute("src", src);
     });
 
-    it("should include the alt text", () => {
+    it("should forward the ref to the icon root element", async () => {
         // Arrange
-        const src = "/logo.svg";
-        const alt = "Logo";
-        render(<Icon icon={src} alt={alt} />);
+        const ref = React.createRef<HTMLDivElement>();
 
         // Act
-        const icon = screen.getByRole("img");
+        const {container} = render(
+            <Icon ref={ref}>
+                <img src="/icon.svg" alt="Icon example" />
+            </Icon>,
+        );
 
         // Assert
-        expect(icon).toHaveAttribute("alt", alt);
-    });
-
-    it("should include empty string alt text if not provided", () => {
-        // Arrange
-        const src = "/logo.svg";
-        render(<Icon icon={src} />);
-
-        // Act
-        const icon = screen.getByRole("presentation");
-
-        // Assert
-        expect(icon).toHaveAttribute("alt", "");
-    });
-
-    it("should forward the ref to the icon", async () => {
-        // Arrange
-        const ref = React.createRef<HTMLImageElement>();
-
-        // Act
-        render(<Icon icon={"/icon.svg"} ref={ref} alt="Icon example" />);
-
-        // Assert
-        expect(await screen.findByRole("img")).toBe(ref.current);
+        // eslint-disable-next-line testing-library/no-node-access -- explicitly check that the root element
+        expect(container.firstChild).toBe(ref.current);
     });
 
     describe("Attributes", () => {
-        it("should set the id of the icon", () => {
+        it("should set the id of the icon component", () => {
             // Arrange
             const id = "icon-id";
-            render(<Icon icon={"/icon.svg"} id={id} alt="Icon example" />);
 
             // Act
-            const icon = screen.getByRole("img");
+            const {container} = render(
+                <Icon id={id}>
+                    <img src="/icon.svg" alt="Icon example" />
+                </Icon>,
+            );
 
             // Assert
-            expect(icon).toHaveAttribute("id", id);
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check that the root element
+            expect(container.firstChild).toHaveAttribute("id", id);
         });
 
         it("should set the test id of the icon", () => {
             // Arrange
             const testId = "icon-test-id";
-            render(
-                <Icon icon={"/icon.svg"} testId={testId} alt="Icon example" />,
+            const {container} = render(
+                <Icon testId={testId}>
+                    <img src="/icon.svg" alt="Icon example" />
+                </Icon>,
             );
 
-            // Act
-            const icon = screen.getByTestId(testId);
-
             // Assert
-            expect(icon).toHaveAttribute("data-testid", testId);
+            // eslint-disable-next-line testing-library/no-node-access -- explicitly check that the root element
+            expect(container.firstChild).toHaveAttribute("data-testid", testId);
         });
     });
 
@@ -85,17 +73,23 @@ describe("Icon", () => {
                 // Arrange
                 // Act
                 const {container} = render(
-                    <Icon icon={"/icon.svg"} alt="Icon example" />,
+                    <Icon>
+                        <img src="/icon.svg" alt="Icon example" />
+                    </Icon>,
                 );
 
                 // Assert
                 await expect(container).toHaveNoA11yViolations();
             });
 
-            it("should have no a11y violations when alt is not provided", async () => {
+            it("should have no a11y violations when alt is empty", async () => {
                 // Arrange
                 // Act
-                const {container} = render(<Icon icon={"/icon.svg"} />);
+                const {container} = render(
+                    <Icon>
+                        <img src="/icon.svg" alt="" />
+                    </Icon>,
+                );
 
                 // Assert
                 await expect(container).toHaveNoA11yViolations();
@@ -108,10 +102,11 @@ describe("Icon", () => {
                 render(
                     <span>
                         <Icon
-                            icon={"/icon.svg"}
-                            alt="Icon example"
                             aria-describedby="icon-description"
-                        />
+                            testId="testId"
+                        >
+                            <img src="/icon.svg" alt="Icon example" />
+                        </Icon>
                         <span id="icon-description">
                             Example description of icon
                         </span>
@@ -119,10 +114,10 @@ describe("Icon", () => {
                 );
 
                 // Act
-                const icon = screen.getByRole("img");
+                const iconComponent = screen.getByTestId("testId");
 
                 // Assert
-                expect(icon).toHaveAttribute(
+                expect(iconComponent).toHaveAttribute(
                     "aria-describedby",
                     "icon-description",
                 );
