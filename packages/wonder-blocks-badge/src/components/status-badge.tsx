@@ -12,6 +12,9 @@ type Props = {
 
 /**
  * A badge that represents a status.
+ *
+ * `StatusBadge` uses the `Badge` component and applies the appropriate styles
+ * for the status kinds. For more details, see the `Badge` docs.
  */
 const StatusBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     const {kind = "info", ...otherProps} = props;

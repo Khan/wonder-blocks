@@ -53,11 +53,9 @@ type StoryComponentType = StoryObj<
 
 /**
  * The badge takes an icon and/or a label:
- * - `icon`: The icon to display in the badge. It can be a PhosphorIcon, a custom svg,
- *   or `img` element. Considerations:
- *   - If the icon conveys meaning, set the alt text on the icon being used
- *   - If the icon is an `img` element, it may need width: 100% and height: 100%
- *     to render properly in the badge.
+ * - `icon`: The icon to display in the badge. It can be a `PhosphorIcon` or a
+ * `Icon` for custom icons (see Custom Icons docs for more details). If the icon
+ * conveys meaning, set the alt text on the icon being used
  * - `label`: The label to display in the badge.
  */
 export const Default = {
@@ -99,6 +97,8 @@ export const IconOnly: StoryComponentType = {
  * - An `img` element
  *   - Use with the `Icon` component
  *   - The `Icon` component supports `img` elements
+ * - For icons that are from the Phosphor library, continue using the
+ * `PhosphorIcon` component.
  *
  * If the icon conveys meaning, it should have alt text.
  */
