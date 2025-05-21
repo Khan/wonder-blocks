@@ -186,7 +186,7 @@ export const semanticColor = {
                     foreground: text.secondary,
                 },
                 hover: {
-                    border: core.border.neutral.strong,
+                    border: core.border.neutral.default,
                     background: "transparent",
                     foreground: text.secondary,
                 },
