@@ -28,7 +28,7 @@ Heading text should utilize the `Heading` component.
 **/
 
 export default {
-    title: "Packages / Typography / BodyText",
+    title: "Packages / Typography / BodyText (New)",
     component: BodyText,
     parameters: {
         componentSubtitle: (
@@ -38,6 +38,7 @@ export default {
             />
         ),
     },
+    globals: {theme: "thunderblocks"},
     argTypes: TypographyArgTypes,
 } as Meta<typeof BodyText>;
 
@@ -47,7 +48,6 @@ export default {
  */
 export const Default: StoryObj<typeof BodyText> = {
     render: (args) => <BodyText {...args} />,
-    globals: {theme: "thunderblocks"},
     args: {
         children: "BodyText",
         size: "medium",

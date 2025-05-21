@@ -29,8 +29,9 @@ Other content should utilize `BodyText`, primarily in `p` tags.
 **/
 
 export default {
-    title: "Packages / Typography / Heading",
+    title: "Packages / Typography / Heading (New)",
     component: Heading,
+    globals: {theme: "thunderblocks"},
     parameters: {
         componentSubtitle: (
             <ComponentInfo
@@ -48,7 +49,6 @@ export default {
  */
 export const Default: StoryObj<typeof Heading> = {
     render: (args) => <Heading {...args} />,
-    globals: {theme: "thunderblocks"},
     args: {
         children: "Heading",
         size: "large",
