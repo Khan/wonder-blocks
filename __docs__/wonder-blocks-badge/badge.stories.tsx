@@ -9,7 +9,7 @@ import {
     singleColoredIcon,
 } from "../components/icons-for-testing";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
-import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes from "./badge.argtypes";
 
@@ -125,6 +125,8 @@ export const CustomIcons: StoryComponentType = {
  * A badge can be used with custom styles. The following parts can be styled:
  * - `root`: Styles the root element
  * - `icon`: Styles the icon element
+ *
+ * Here is an example of custom styles using semantic tokens.
  */
 export const CustomStyles: StoryComponentType = {
     args: {
@@ -146,11 +148,11 @@ export const CustomStyles: StoryComponentType = {
                 }
                 styles={{
                     root: {
-                        backgroundColor: "lightblue",
-                        borderColor: "lightblue",
-                        color: "black",
+                        backgroundColor: semanticColor.surface.inverse,
+                        borderColor: semanticColor.border.inverse,
+                        color: semanticColor.text.inverse,
                     },
-                    icon: {color: "darkblue"},
+                    icon: {color: semanticColor.icon.inverse},
                 }}
             />
         );
