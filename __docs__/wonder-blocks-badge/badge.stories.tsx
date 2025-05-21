@@ -9,6 +9,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes from "./badge.argtypes";
+import {multiColoredIcon} from "../wonder-blocks-icon/icons/icons";
 
 export default {
     title: "Packages / Badge / Badge",
@@ -92,15 +93,12 @@ export const IconOnly: StoryComponentType = {
  *   - If the svg has `fill="currentColor"` and the `color` prop for
  *     `PhosphorIcon` is not set, then the icon will use the color specified by
  *     the `Badge` component.
- * - A multi-colored svg icon
+ * - A multi-colored inline svg
  *   - Use with the `Icon` component
- *   - The `Icon` component supports svg assets that define their own fill. It
- *     does not provide any color styling. It renders the icon as an `img`
- *     element.
- * - An image asset
+ *   - The `Icon` component supports svg assets that define their own fill
+ * - An `img` element
  *   - Use with the `Icon` component
- *   - The `Icon` component supports image assets and renders them as an `img`
- *     element.
+ *   - The `Icon` component supports `img` elements
  *
  * If the icon conveys meaning, it should have alt text.
  */
@@ -135,17 +133,32 @@ export const CustomIcons: StoryComponentType = {
                     label="Custom Icon"
                 />
                 <HeadingLarge>
-                    Custom multi-colored svg icon using the Icon component
+                    Custom multi-colored inline svg using the Icon component
                 </HeadingLarge>
                 <Badge
-                    icon={<Icon icon={"/logo.svg"} alt="Wonder Blocks" />}
+                    icon={<Icon>{multiColoredIcon}</Icon>}
                     label="Custom Icon"
                 />
                 <HeadingLarge>
-                    Custom image asset using the Icon component
+                    Custom img element using the Icon component with a svg src
                 </HeadingLarge>
                 <Badge
-                    icon={<Icon icon={"/avatar.png"} alt="Example avatar" />}
+                    icon={
+                        <Icon>
+                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                        </Icon>
+                    }
+                    label="Custom Icon"
+                />
+                <HeadingLarge>
+                    Custom img element using the Icon component with a png src
+                </HeadingLarge>
+                <Badge
+                    icon={
+                        <Icon>
+                            <img src={"/avatar.png"} alt="Example avatar" />
+                        </Icon>
+                    }
                     label="Custom Icon"
                 />
             </View>

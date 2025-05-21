@@ -15,6 +15,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import singleColoredIcon from "../components/single-colored-icon.svg";
+import {multiColoredIcon} from "../wonder-blocks-icon/icons/icons";
 
 /**
  * Badges are visual indicators used to display concise information, such as
@@ -132,44 +133,74 @@ export const Scenarios: StoryComponentType = {
         ];
         const scenarios = [
             {
-                name: "Custom svg icon with label",
+                name: "Custom svg icon using PhosphorIcon with label",
                 props: {
                     label: "Badge",
                     icon: <PhosphorIcon icon={singleColoredIcon} />,
                 },
             },
             {
-                name: "Custom svg icon",
+                name: "Custom svg icon using PhosphorIcon",
                 props: {
                     icon: <PhosphorIcon icon={singleColoredIcon} />,
                 },
             },
             {
-                name: "Custom multi-colored svg icon with label",
+                name: "Custom img element with svg src with label",
                 props: {
                     label: "Badge",
-                    icon: <Icon icon={"/logo.svg"} alt="Wonder Blocks" />,
+                    icon: (
+                        <Icon>
+                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                        </Icon>
+                    ),
                 },
             },
             {
-                name: "Custom multi-colored svg icon",
+                name: "Custom img element with svg src",
                 props: {
-                    icon: <Icon icon={"/logo.svg"} alt="Wonder Blocks" />,
+                    icon: (
+                        <Icon>
+                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                        </Icon>
+                    ),
                 },
             },
             {
-                name: "Custom image asset icon",
-                props: {
-                    icon: <Icon icon={"/avatar.png"} alt="Example avatar" />,
-                },
-            },
-            {
-                name: "Custom image asset icon with label",
+                name: "Custom img element with png src with label",
                 props: {
                     label: "Badge",
-                    icon: <Icon icon={"/avatar.png"} alt="Example avatar" />,
+                    icon: (
+                        <Icon>
+                            <img src={"/avatar.png"} alt="Example avatar" />
+                        </Icon>
+                    ),
                 },
             },
+            {
+                name: "Custom img element with png src",
+                props: {
+                    icon: (
+                        <Icon>
+                            <img src={"/avatar.png"} alt="Example avatar" />
+                        </Icon>
+                    ),
+                },
+            },
+            {
+                name: "Custom multi-colored inline svg using the Icon component with label",
+                props: {
+                    label: "Badge",
+                    icon: <Icon>{multiColoredIcon}</Icon>,
+                },
+            },
+            {
+                name: "Custom multi-colored inline svg using the Icon component",
+                props: {
+                    icon: <Icon>{multiColoredIcon}</Icon>,
+                },
+            },
+
             {
                 name: "Empty label and no icon",
                 props: {

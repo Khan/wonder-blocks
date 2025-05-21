@@ -10,6 +10,7 @@ import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes from "./badge.argtypes";
+import {multiColoredIcon} from "../wonder-blocks-icon/icons/icons";
 
 export default {
     title: "Packages / Badge / StatusBadge",
@@ -134,24 +135,7 @@ export const IconOnly: StoryComponentType = {
 };
 
 /**
- * A badge can be used with a custom icon using the `PhosphorIcon` or `Icon`
- * components. Here are some examples with custom icons:
- * - A custom single colored svg icon
- *   - Use with the `PhosphorIcon` component
- *   - If the svg has `fill="currentColor"` and the `color` prop for
- *     `PhosphorIcon` is not set, then the icon will use the color specified by
- *     the `Badge` component.
- * - A multi-colored svg icon
- *   - Use with the `Icon` component
- *   - The `Icon` component supports svg assets that define their own fill. It
- *     does not provide any color styling. It renders the icon as an `img`
- *     element.
- * - An image asset
- *   - Use with the `Icon` component
- *   - The `Icon` component supports image assets and renders them as an `img`
- *     element.
- *
- * If the icon conveys meaning, it should have alt text.
+ * For more details about using custom icons, see the Badge docs for custom icons.
  */
 export const CustomIcons: StoryComponentType = {
     render: () => {
@@ -200,7 +184,22 @@ export const CustomIcons: StoryComponentType = {
                     })}
                 </View>
                 <HeadingLarge>
-                    Custom multi-colored svg icon using the Icon component
+                    Custom multi-colored inline svg using the Icon component
+                </HeadingLarge>
+                <View style={styles.container}>
+                    {kinds.map((kind) => {
+                        return (
+                            <StatusBadge
+                                key={kind}
+                                kind={kind}
+                                icon={<Icon>{multiColoredIcon}</Icon>}
+                                label="Custom Icon"
+                            />
+                        );
+                    })}
+                </View>
+                <HeadingLarge>
+                    Custom img element using the Icon component with a svg src
                 </HeadingLarge>
                 <View style={styles.container}>
                     {kinds.map((kind) => {
@@ -209,10 +208,12 @@ export const CustomIcons: StoryComponentType = {
                                 key={kind}
                                 kind={kind}
                                 icon={
-                                    <Icon
-                                        icon={"/logo.svg"}
-                                        alt="Wonder Blocks"
-                                    />
+                                    <Icon>
+                                        <img
+                                            src={"/logo.svg"}
+                                            alt="Wonder Blocks"
+                                        />
+                                    </Icon>
                                 }
                                 label="Custom Icon"
                             />
@@ -220,7 +221,7 @@ export const CustomIcons: StoryComponentType = {
                     })}
                 </View>
                 <HeadingLarge>
-                    Custom image asset using the Icon component
+                    Custom img element using the Icon component with a png src
                 </HeadingLarge>
                 <View style={styles.container}>
                     {kinds.map((kind) => {
@@ -229,10 +230,12 @@ export const CustomIcons: StoryComponentType = {
                                 key={kind}
                                 kind={kind}
                                 icon={
-                                    <Icon
-                                        icon={"/avatar.png"}
-                                        alt="Example avatar"
-                                    />
+                                    <Icon>
+                                        <img
+                                            src={"/avatar.png"}
+                                            alt="Example avatar"
+                                        />
+                                    </Icon>
                                 }
                                 label="Custom Icon"
                             />
@@ -241,6 +244,13 @@ export const CustomIcons: StoryComponentType = {
                 </View>
             </View>
         );
+    },
+    parameters: {
+        chromatic: {
+            // Enable snapshots for this story so we can verify custom icons
+            // are used correctly
+            disableSnapshot: false,
+        },
     },
 };
 
