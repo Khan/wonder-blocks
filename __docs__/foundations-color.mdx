@@ -285,14 +285,22 @@ backgrounds in light mode.
 
 <ColorGroup colors={semanticColor.text} group="text" />
 
-### Border
+### Core
+
+#### Border
 
 Borders define structure for elements. Generally borders for component elements
-would use `border.primary`, rows and layout elements use
-`border.subtle` and `border.strong` for when 3:1
+would use `border.neutral.default`, rows and layout elements use
+`border.neutral.subtle` and `border.neutral.strong` for when 3:1
 contrast is a priority (ex. form elements)
 
-<ColorGroup colors={semanticColor.border} group="border" />
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.core.border}
+        group="border"
+        includeExample={false}
+    />
+</View>
 
 ### Focus
 

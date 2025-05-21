@@ -160,13 +160,22 @@ type ActionColorGroupProps = {
      * The group name to use as a prefix for the color names.
      */
     group: string;
+    /**
+     * Whether to include an example of the color.
+     * This is useful for showing how the color looks in a UI context.
+     */
+    includeExample?: boolean;
 };
 
-export function ActionColorGroup({category, group}: ActionColorGroupProps) {
+export function ActionColorGroup({
+    category,
+    group,
+    includeExample = true,
+}: ActionColorGroupProps) {
     return Object.entries(category).map(([state, colorGroup], index) => (
         <View style={styles.actionGroup} key={index}>
             <LabelLarge style={styles.capitalized}>{state}</LabelLarge>
-            <Example style={colorGroup} />
+            {includeExample && <Example style={colorGroup} />}
             <ColorGroup
                 colors={colorGroup}
                 group={group + "." + state}

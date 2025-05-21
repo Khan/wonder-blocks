@@ -1,5 +1,52 @@
 import {color} from "../../tokens/color";
 
+const transparent = "transparent";
+
+const core = {
+    transparent,
+    border: {
+        informative: {
+            subtle: color.fadedBlue,
+            default: color.blue,
+            strong: color.activeBlue,
+        },
+        neutral: {
+            subtle: color.fadedOffBlack16,
+            default: color.fadedOffBlack50,
+            strong: color.fadedOffBlack72,
+        },
+        critical: {
+            subtle: color.fadedRed24,
+            default: color.red,
+            strong: color.activeRed,
+        },
+        success: {
+            subtle: color.fadedGreen24,
+            default: color.green,
+            strong: color.activeGreen,
+        },
+        warning: {
+            subtle: color.fadedGold24,
+            default: color.gold,
+            strong: color.activeGold,
+        },
+        disabled: {
+            subtle: transparent,
+            default: color.fadedOffBlack16,
+            strong: color.fadedOffBlack32,
+        },
+        inverse: {
+            subtle: color.offBlack16,
+            default: color.offBlack8,
+            strong: color.white,
+        },
+    },
+};
+
+/**
+ * TODO(WB-1941): Remove border once we have migrated to the new core.border
+ * tokens.
+ */
 const border = {
     primary: color.fadedOffBlack16,
     subtle: color.fadedOffBlack8,
@@ -26,6 +73,12 @@ const text = {
 
 export const semanticColor = {
     /**
+     * Our core colors are used for the most common elements in our UI. They
+     * are the most important colors in our system and should be used
+     * consistently across all components.
+     */
+    core,
+    /**
      * For buttons, links, and controls to communicate the presence and meaning
      * of interaction.
      */
@@ -33,34 +86,34 @@ export const semanticColor = {
         primary: {
             progressive: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: color.blue,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: border.progressive,
+                    border: core.border.informative.default,
                     background: color.blue,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: color.activeBlue,
+                    border: core.border.informative.strong,
                     background: color.activeBlue,
                     foreground: text.inverse,
                 },
             },
             destructive: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: color.red,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: border.destructive,
+                    border: core.border.critical.default,
                     background: color.red,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: color.activeRed,
+                    border: core.border.critical.strong,
                     background: color.activeRed,
                     foreground: text.inverse,
                 },
@@ -68,24 +121,24 @@ export const semanticColor = {
 
             neutral: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: color.fadedOffBlack72,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: color.fadedOffBlack72,
+                    border: core.border.neutral.default,
                     background: color.fadedOffBlack72,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: color.offBlack,
+                    border: core.border.neutral.strong,
                     background: color.offBlack,
                     foreground: text.inverse,
                 },
             },
 
             disabled: {
-                border: color.fadedOffBlack32,
+                border: core.border.disabled.strong,
                 background: color.fadedOffBlack32,
                 foreground: color.offWhite,
             },
@@ -94,58 +147,58 @@ export const semanticColor = {
         secondary: {
             progressive: {
                 default: {
-                    border: border.strong,
+                    border: core.border.neutral.default,
                     background: "transparent",
                     foreground: color.blue,
                 },
                 hover: {
-                    border: border.progressive,
+                    border: core.border.informative.default,
                     background: "transparent",
                     foreground: color.blue,
                 },
                 press: {
-                    border: color.activeBlue,
+                    border: core.border.informative.strong,
                     background: color.fadedBlue,
                     foreground: color.activeBlue,
                 },
             },
             destructive: {
                 default: {
-                    border: border.strong,
+                    border: core.border.neutral.default,
                     background: "transparent",
                     foreground: color.red,
                 },
                 hover: {
-                    border: border.destructive,
+                    border: core.border.critical.default,
                     background: "transparent",
                     foreground: color.red,
                 },
                 press: {
-                    border: color.activeRed,
+                    border: core.border.critical.strong,
                     background: color.fadedRed,
                     foreground: color.activeRed,
                 },
             },
             neutral: {
                 default: {
-                    border: border.strong,
+                    border: core.border.neutral.default,
                     background: "transparent",
                     foreground: text.secondary,
                 },
                 hover: {
-                    border: color.fadedOffBlack72,
+                    border: core.border.neutral.strong,
                     background: "transparent",
                     foreground: text.secondary,
                 },
                 press: {
-                    border: color.offBlack,
+                    border: core.border.neutral.strong,
                     background: color.offBlack16,
                     foreground: text.primary,
                 },
             },
 
             disabled: {
-                border: color.fadedOffBlack32,
+                border: core.border.disabled.strong,
                 background: "transparent",
                 foreground: text.disabled,
             },
@@ -154,17 +207,17 @@ export const semanticColor = {
         tertiary: {
             progressive: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: "transparent",
                     foreground: color.blue,
                 },
                 hover: {
-                    border: border.progressive,
+                    border: core.border.informative.default,
                     background: "transparent",
                     foreground: color.blue,
                 },
                 press: {
-                    border: color.activeBlue,
+                    border: core.border.informative.strong,
                     background: "transparent",
                     foreground: color.activeBlue,
                 },
@@ -172,41 +225,41 @@ export const semanticColor = {
 
             destructive: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: "transparent",
                     foreground: color.red,
                 },
                 hover: {
-                    border: border.destructive,
+                    border: core.border.critical.default,
                     background: "transparent",
                     foreground: color.red,
                 },
                 press: {
-                    border: color.activeRed,
+                    border: core.border.critical.strong,
                     background: "transparent",
                     foreground: color.activeRed,
                 },
             },
             neutral: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: "transparent",
                     foreground: text.secondary,
                 },
                 hover: {
-                    border: color.fadedOffBlack72,
+                    border: core.border.neutral.default,
                     background: "transparent",
                     foreground: text.secondary,
                 },
                 press: {
-                    border: color.offBlack,
+                    border: core.border.neutral.strong,
                     background: "transparent",
                     foreground: text.primary,
                 },
             },
 
             disabled: {
-                border: border.primary,
+                border: core.border.disabled.default,
                 background: "transparent",
                 foreground: text.disabled,
             },
@@ -217,24 +270,24 @@ export const semanticColor = {
      */
     input: {
         default: {
-            border: border.strong,
+            border: core.border.neutral.default,
             background: surface.primary,
             foreground: text.primary,
             placeholder: text.secondary,
         },
         checked: {
-            border: border.progressive,
+            border: core.border.informative.default,
             background: color.blue,
             foreground: text.inverse,
         },
         disabled: {
-            border: border.primary,
+            border: core.border.disabled.default,
             background: color.offWhite,
             foreground: text.secondary,
             placeholder: text.secondary,
         },
         error: {
-            border: border.destructive,
+            border: core.border.critical.default,
             background: color.fadedRed8,
             foreground: text.primary,
         },
