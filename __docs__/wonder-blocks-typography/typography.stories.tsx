@@ -29,6 +29,7 @@ import packageConfig from "../../packages/wonder-blocks-typography/package.json"
 
 import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
+import {allModes} from "../../.storybook/modes";
 
 // NOTE: Only for testing purposes.
 // eslint-disable-next-line import/no-unassigned-import
@@ -105,6 +106,14 @@ These are all the available classic typography elements with their names written
 out in their respective styles.
  */
 export const ClassicTypographyElements: StoryObj<any> = {
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
     render: () => (
         <View>
             <Title>Title</Title>

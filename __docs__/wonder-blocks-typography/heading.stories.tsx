@@ -9,6 +9,7 @@ import TypographyArgTypes from "./typography.argtypes";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Heading} from "@khanacademy/wonder-blocks-typography";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
+import {allModes} from "../../.storybook/modes";
 
 /**
 New component for Thunderblocks headings.
@@ -68,6 +69,14 @@ export const Default: StoryObj<typeof Heading> = {
  * mimicking the ones found in Figma Foundation specs.
  */
 export const SizesAndWeights = {
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
     render: () => (
         <View style={styles.grid}>
             <View style={styles.row}>
