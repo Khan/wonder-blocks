@@ -4,19 +4,17 @@ import {CSSProperties, StyleSheet} from "aphrodite";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {IconSize} from "../types";
 
-const StyledImg = addStyle("img");
-
 type Props = AriaProps & {
     /**
-     * The id for the icon.
+     * The id for the icon component.
      */
     id?: string;
     /**
-     * The test id for the icon.
+     * The test id for the icon component.
      */
     testId?: string;
     /**
-     * Custom styles to apply to the icon.
+     * Custom styles to apply to the icon component.
      */
     style?: StyleType;
     /**
@@ -25,14 +23,9 @@ type Props = AriaProps & {
      */
     size?: IconSize;
     /**
-     * The alt text for the icon. If not provided, the icon will have `alt=""`
-     * and be marked as decorative.
+     * The icon to display. This can be an inline svg or an image.
      */
-    alt?: string;
-    /**
-     * The icon to display. This is a reference to the icon asset.
-     */
-    icon: string;
+    children: React.ReactElement;
 };
 
 function getSize(size: IconSize): CSSProperties {
@@ -53,10 +46,11 @@ function getSize(size: IconSize): CSSProperties {
     }
 }
 
+const StyledDiv = addStyle("div");
+
 /**
  * A component for displaying a custom icon. The Icon component supports custom
- * icons that are images or svg assets with their own fill. It renders an `img`
- * element.
+ * icons that are `img` elements or inline svg assets with their own fill.
  *
  * Related components:
  * - For Phosphor icons, use the `PhosphorIcon` component.
@@ -68,24 +62,31 @@ const Icon = React.forwardRef(
     (props: Props, ref: React.Ref<HTMLImageElement>) => {
         const {
             size = "small",
-            alt,
-            icon,
             id,
             testId,
             style,
+            children,
             ...otherProps
         } = props;
+        const childrenElement = React.cloneElement(children, {
+            style: {
+                // Make sure the children element takes up the width/height of
+                // the Icon component div
+                width: "100%",
+                height: "100%",
+            },
+        });
 
         return (
-            <StyledImg
+            <StyledDiv
+                style={[getSize(size), style]}
                 id={id}
                 data-testid={testId}
-                src={icon}
-                style={[getSize(size), style]}
-                alt={alt || ""}
                 ref={ref}
                 {...otherProps}
-            />
+            >
+                {childrenElement}
+            </StyledDiv>
         );
     },
 );
