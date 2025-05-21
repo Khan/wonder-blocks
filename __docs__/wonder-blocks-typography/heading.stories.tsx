@@ -69,44 +69,41 @@ export const Default: StoryObj<typeof Heading> = {
  */
 export const SizesAndWeights = {
     render: () => (
-        <View>
-            <View style={styles.twoUp}>
-                <Heading size="small" weight="semi">
-                    Small semibold
-                </Heading>
+        <View style={styles.grid}>
+            <View style={styles.row}>
                 <Heading size="small" weight="bold">
                     Small bold
                 </Heading>
-            </View>
-            <View style={styles.twoUp}>
-                <Heading size="medium" weight="semi">
-                    Medium semibold
+                <Heading size="small" weight="semi">
+                    Small semibold
                 </Heading>
+            </View>
+            <View style={styles.row}>
                 <Heading size="medium" weight="bold">
                     Medium bold
                 </Heading>
-            </View>
-            <View style={styles.twoUp}>
-                <Heading size="large" weight="semi">
-                    Large semibold
+                <Heading size="medium" weight="semi">
+                    Medium semibold
                 </Heading>
+            </View>
+            <View style={styles.row}>
                 <Heading size="large" weight="bold">
                     Large bold
                 </Heading>
-            </View>
-            <View style={styles.twoUp}>
-                <Heading size="xLarge" weight="semi">
-                    xLarge semibold
+                <Heading size="large" weight="semi">
+                    Large semibold
                 </Heading>
-                <Heading size="xLarge" weight="bold">
+            </View>
+            <View style={styles.row}>
+                <Heading size="xlarge" weight="bold">
                     xLarge bold
                 </Heading>
-            </View>
-            <View style={styles.twoUp}>
-                <Heading size="xxLarge" weight="semi">
-                    xxLarge semibold
+                <Heading size="xlarge" weight="semi">
+                    xLarge semibold
                 </Heading>
-                <Heading size="xxLarge" weight="bold">
+            </View>
+            <View style={styles.row}>
+                <Heading size="xxlarge" weight="bold">
                     xxLarge bold
                 </Heading>
             </View>
@@ -117,9 +114,13 @@ export const SizesAndWeights = {
 };
 
 const styles = StyleSheet.create({
-    twoUp: {
-        flexDirection: "row",
-        gap: spacing.large_24,
-        marginBottom: spacing.large_24,
+    grid: {
+        display: "grid",
+        gridTemplateColumns: "max-content max-content",
+        rowGap: spacing.medium_16,
+        columnGap: spacing.large_24,
+    },
+    row: {
+        display: "contents",
     },
 });

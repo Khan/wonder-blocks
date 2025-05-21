@@ -4,7 +4,7 @@ import {font} from "@khanacademy/wonder-blocks-tokens";
 import styles from "../util/styles";
 
 type Props = PropsFor<typeof Text> & {
-    size?: "xSmall" | "small" | "medium";
+    size?: "xsmall" | "small" | "medium";
     weight?: "medium" | "semi" | "bold";
 };
 

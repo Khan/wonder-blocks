@@ -12,12 +12,12 @@ const styles: StyleDeclaration = StyleSheet.create({
         fontFamily: font.family.sans,
         fontWeight: font.weight.black,
         [breakpoint.mediaQuery.xl]: {
-            fontSize: font.size.xxxLarge,
-            lineHeight: font.lineHeight.xxxLarge,
+            fontSize: font.size.xxxlarge,
+            lineHeight: font.lineHeight.xxxlarge,
         },
         [breakpoint.mediaQuery.mdOrSmaller]: {
-            fontSize: font.size.xxLarge,
-            lineHeight: font.lineHeight.xxLarge,
+            fontSize: font.size.xxlarge,
+            lineHeight: font.lineHeight.xxlarge,
         },
     },
     Tagline: {
@@ -44,12 +44,12 @@ const styles: StyleDeclaration = StyleSheet.create({
         fontFamily: font.family.sans,
         fontWeight: font.weight.bold,
         [breakpoint.mediaQuery.xl]: {
-            fontSize: font.size.xxLarge,
-            lineHeight: font.lineHeight.xxLarge,
+            fontSize: font.size.xxlarge,
+            lineHeight: font.lineHeight.xxlarge,
         },
         [breakpoint.mediaQuery.mdOrSmaller]: {
-            fontSize: font.size.xLarge,
-            lineHeight: font.lineHeight.xLarge,
+            fontSize: font.size.xlarge,
+            lineHeight: font.lineHeight.xlarge,
         },
     },
     HeadingMedium: {
@@ -57,8 +57,8 @@ const styles: StyleDeclaration = StyleSheet.create({
         fontFamily: font.family.sans,
         fontWeight: font.weight.bold,
         [breakpoint.mediaQuery.xl]: {
-            fontSize: font.size.xLarge,
-            lineHeight: font.lineHeight.xLarge,
+            fontSize: font.size.xlarge,
+            lineHeight: font.lineHeight.xlarge,
         },
         [breakpoint.mediaQuery.mdOrSmaller]: {
             fontSize: "2.2rem",
@@ -76,8 +76,8 @@ const styles: StyleDeclaration = StyleSheet.create({
         ...common,
         fontFamily: font.family.sans,
         fontWeight: font.weight.bold,
-        fontSize: font.size.xSmall,
-        lineHeight: font.lineHeight.xSmall,
+        fontSize: font.size.xsmall,
+        lineHeight: font.lineHeight.xsmall,
         letterSpacing: 0.6,
         textTransform: "uppercase",
     },
@@ -107,7 +107,7 @@ const styles: StyleDeclaration = StyleSheet.create({
         fontFamily: font.family.sans,
         fontWeight: font.weight.medium,
         fontSize: font.size.medium,
-        lineHeight: font.lineHeight.xMedium,
+        lineHeight: font.lineHeight.xmedium,
     },
     LabelLarge: {
         ...common,
@@ -134,8 +134,8 @@ const styles: StyleDeclaration = StyleSheet.create({
         ...common,
         fontFamily: font.family.sans,
         fontWeight: font.weight.medium,
-        fontSize: font.size.xSmall,
-        lineHeight: font.lineHeight.xSmall,
+        fontSize: font.size.xsmall,
+        lineHeight: font.lineHeight.xsmall,
     },
     Caption: {
         ...common,
@@ -148,7 +148,7 @@ const styles: StyleDeclaration = StyleSheet.create({
         ...common,
         fontFamily: font.family.sans,
         fontWeight: font.weight.medium,
-        fontSize: font.size.xSmall,
+        fontSize: font.size.xsmall,
         lineHeight: font.lineHeight.small,
     },
 });

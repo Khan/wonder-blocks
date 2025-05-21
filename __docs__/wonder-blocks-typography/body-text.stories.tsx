@@ -68,21 +68,24 @@ export const Default: StoryObj<typeof BodyText> = {
  */
 export const SizesAndWeights = {
     render: () => (
-        <View>
-            <View style={styles.twoUp}>
-                <BodyText size="xSmall" weight="bold">
+        <View style={styles.grid}>
+            <View style={styles.row}>
+                <BodyText size="xsmall" weight="bold">
                     xSmall bold
                 </BodyText>
-                <BodyText size="xSmall" weight="medium">
+                <BodyText size="xsmall" weight="medium">
                     xSmall medium
                 </BodyText>
+                <div />
             </View>
-            <View style={styles.twoUp}>
+            <View style={styles.row}>
                 <BodyText size="small" weight="semi">
                     Small semibold
                 </BodyText>
+                <div />
+                <div />
             </View>
-            <View style={styles.twoUp}>
+            <View style={styles.row}>
                 <BodyText size="medium" weight="medium">
                     Medium medium
                 </BodyText>
@@ -100,9 +103,14 @@ export const SizesAndWeights = {
 };
 
 const styles = StyleSheet.create({
-    twoUp: {
-        flexDirection: "row",
-        gap: spacing.large_24,
-        marginBottom: spacing.large_24,
+    grid: {
+        display: "grid",
+        gridAutoFlow: "row",
+        gridTemplateColumns: "max-content max-content max-content",
+        rowGap: spacing.medium_16,
+        columnGap: spacing.large_24,
+    },
+    row: {
+        display: "contents",
     },
 });

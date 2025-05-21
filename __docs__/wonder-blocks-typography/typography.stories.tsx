@@ -86,7 +86,7 @@ export const ControlProps: StoryObj<typeof Title> = {
 export const NewTypographyElements: StoryObj<any> = {
     render: () => (
         <View>
-            <Heading size="xxLarge">Heading</Heading>
+            <Heading size="xxlarge">Heading</Heading>
             <BodyText>BodyText</BodyText>
         </View>
     ),
