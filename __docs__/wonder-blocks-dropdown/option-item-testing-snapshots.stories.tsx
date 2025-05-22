@@ -50,7 +50,6 @@ type Story = StoryObj<typeof OptionItem>;
 const meta = {
     title: "Packages / Dropdown / OptionItem / Testing / OptionItem - Snapshots",
     component: OptionItem,
-
     args: {
         label: "Option Item",
         onClick: () => {},
@@ -93,6 +92,7 @@ export const StateSheetStory: Story = {
                         {...props}
                         className={className}
                         key={name}
+                        aria-label={name}
                     />
                 )}
             </StateSheet>

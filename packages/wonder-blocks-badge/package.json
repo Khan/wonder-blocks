@@ -1,11 +1,8 @@
 {
-  "name": "@khanacademy/wonder-blocks-icon",
-  "version": "5.1.4",
+  "name": "@khanacademy/wonder-blocks-badge",
+  "version": "0.0.0",
   "design": "v1",
-  "publishConfig": {
-    "access": "public"
-  },
-  "description": "",
+  "description": "Badges are used to display information",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
   "types": "dist/index.d.ts",
@@ -15,16 +12,19 @@
   },
   "author": "",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "workspace:*",
-    "@khanacademy/wonder-blocks-tokens": "workspace:*"
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
+  },
+  "peerDependencies": {
+    "aphrodite": "catalog:",
+    "react": "catalog:"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"
-  },
-  "peerDependencies": {
-    "@phosphor-icons/core": "catalog:",
-    "aphrodite": "catalog:",
-    "react": "catalog:"
   }
 }
