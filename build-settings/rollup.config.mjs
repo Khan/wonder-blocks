@@ -27,16 +27,17 @@ const createConfig = (pkgName) => {
             },
         ],
         input: `packages/${pkgName}/src/index.ts`,
-        // We're using `builtIns: "usage"` with @babel/preset-env.
-        // This results in individual modules being imported from
-        // core-js directly.  `autoExternal` doesn't know how to
-        // deal with this so we manually externalize these imports.
-        external: [/core-js/],
         plugins: [
             swc({
                 swc: {
                     swcrc: true,
                     minify: true,
+                    // We do _not_ specify "env" here (a la @babel/preset-env)
+                    // because our TypeScrip compiler "target" is set to ES2021
+                    // which is compatible with all of Khan Academy's supported
+                    // browsers _and_ will protect us against using APIs that
+                    // aren't supported in this browser list).
+                    // "env": {...}
                 },
                 exclude: "node_modules/**",
             }),
