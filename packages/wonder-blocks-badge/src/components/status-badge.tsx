@@ -1,14 +1,16 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-import {Badge, BadgeProps} from "./badge";
+import {Badge} from "./badge";
+import {BaseBadgeProps, IconLabelProps} from "../types";
 
 type Props = {
     /**
      * The kind of badge to display. Defaults to `info`.
      */
     kind?: "info" | "success" | "warning" | "critical";
-} & BadgeProps;
+} & BaseBadgeProps &
+    IconLabelProps;
 
 /**
  * A badge that represents a status.

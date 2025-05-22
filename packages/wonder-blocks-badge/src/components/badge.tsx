@@ -1,59 +1,11 @@
-import {addStyle, AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
+import {BaseBadgeProps, IconLabelProps} from "../types";
 
-type IconOnly = {
-    icon: React.ReactElement;
-    label?: never;
-};
-
-type LabelOnly = {
-    icon?: never;
-    label: string;
-};
-
-type IconAndLabel = {
-    icon: React.ReactElement;
-    label: string;
-};
-
-/**
- * The props for the icon and label in the badge.
- * - Icon: The icon to display in the badge. It can be a PhosphorIcon, a custom svg,
- *   or `img` element. Considerations:
- *   - If the icon conveys meaning, set the alt text on the icon being used
- *   - If the icon is an `img` element, it may need width: 100% and height: 100%
- *     to render properly in the badge.
- * - Label: The label to display in the badge.
- */
-type IconLabelProps = IconOnly | LabelOnly | IconAndLabel;
-
-export type BadgeProps = AriaProps &
-    IconLabelProps & {
-        /**
-         * The id for the badge.
-         */
-        id?: string;
-        /**
-         * The test id for the badge.
-         */
-        testId?: string;
-        /**
-         * Custom styles for the elements in the Badge component.
-         * - `root`: Styles the root element
-         * - `icon`: Styles the icon element
-         */
-        styles?: {
-            root?: StyleType;
-            icon?: StyleType;
-        };
-        /**
-         * The HTML tag to render. Defaults to `div`.
-         */
-        tag?: keyof JSX.IntrinsicElements;
-    };
+type Props = IconLabelProps & BaseBadgeProps;
 
 const StyledSpan = addStyle("span");
 
@@ -61,8 +13,8 @@ const StyledSpan = addStyle("span");
  * Badges are visual indicators used to display concise information, such as
  * a status, label, or count.
  */
-const Badge = React.forwardRef<HTMLDivElement, BadgeProps>(function Badge(
-    props: BadgeProps,
+const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
+    props: Props,
     ref: React.ForwardedRef<HTMLDivElement>,
 ) {
     const {

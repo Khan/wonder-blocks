@@ -8,13 +8,13 @@ import singleColoredIcon from "../components/single-colored-icon.svg";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
-import badgeArgtypes from "./badge.argtypes";
+import badgeArgtypes, {iconArgType} from "./badge.argtypes";
 import {multiColoredIcon} from "../components/icons-for-testing";
 
 export default {
     title: "Packages / Badge / Badge",
     component: Badge,
-    argTypes: badgeArgtypes,
+    argTypes: {...badgeArgtypes, ...iconArgType},
     parameters: {
         componentSubtitle: (
             <ComponentInfo

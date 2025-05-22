@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import {Badge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
+import {Badge, GemBadge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {commonStates, StateSheet} from "../components/state-sheet";
@@ -78,6 +78,28 @@ export const StateSheetStory: StoryComponentType = {
             })),
         ];
 
+        const columnsWithShowIconProp = [
+            {
+                name: "Label only",
+                props: {
+                    label: "Badge",
+                },
+            },
+            {
+                name: "Label with icon",
+                props: {
+                    label: "Badge",
+                    showIcon: true,
+                },
+            },
+            {
+                name: "Icon only",
+                props: {
+                    showIcon: true,
+                },
+            },
+        ];
+
         return (
             <View style={{gap: sizing.size_080}}>
                 <HeadingLarge>Badge</HeadingLarge>
@@ -95,6 +117,14 @@ export const StateSheetStory: StoryComponentType = {
                     states={[commonStates.rest]}
                 >
                     {({props}) => <StatusBadge {...props} />}
+                </StateSheet>
+                <HeadingLarge>Gem Badge</HeadingLarge>
+                <StateSheet
+                    rows={rows}
+                    columns={columnsWithShowIconProp}
+                    states={[commonStates.rest]}
+                >
+                    {({props}) => <GemBadge {...props} />}
                 </StateSheet>
             </View>
         );
