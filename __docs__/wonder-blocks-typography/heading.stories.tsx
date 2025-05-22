@@ -32,7 +32,6 @@ Other content should utilize `BodyText`, primarily in `p` tags.
 export default {
     title: "Packages / Typography / Heading (New)",
     component: Heading,
-    globals: {theme: "thunderblocks"},
     parameters: {
         componentSubtitle: (
             <ComponentInfo

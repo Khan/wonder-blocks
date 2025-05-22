@@ -39,7 +39,6 @@ export default {
             />
         ),
     },
-    globals: {theme: "thunderblocks"},
     argTypes: TypographyArgTypes,
 } as Meta<typeof BodyText>;
 
