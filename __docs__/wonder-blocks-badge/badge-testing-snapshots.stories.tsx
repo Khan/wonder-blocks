@@ -4,7 +4,7 @@ import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {Badge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {commonStates, StateSheet} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
@@ -13,11 +13,9 @@ import {
 } from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    multiColoredIcon,
-    singleColoredIcon,
-} from "../components/icons-for-testing";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import singleColoredIcon from "../components/single-colored-icon.svg";
+import {multiColoredIcon} from "../components/icons-for-testing";
 
 /**
  * Badges are visual indicators used to display concise information, such as
@@ -135,56 +133,74 @@ export const Scenarios: StoryComponentType = {
         ];
         const scenarios = [
             {
-                name: "Custom svg icon with label",
+                name: "Custom svg icon using PhosphorIcon with label",
                 props: {
                     label: "Badge",
-                    icon: singleColoredIcon,
+                    icon: <PhosphorIcon icon={singleColoredIcon} />,
                 },
             },
             {
-                name: "Custom svg icon",
+                name: "Custom svg icon using PhosphorIcon",
                 props: {
-                    icon: singleColoredIcon,
+                    icon: <PhosphorIcon icon={singleColoredIcon} />,
                 },
             },
             {
-                name: "Custom multi-colored svg icon with label",
+                name: "Custom img element with svg src with label",
                 props: {
                     label: "Badge",
-                    icon: multiColoredIcon,
-                },
-            },
-            {
-                name: "Custom multi-colored svg icon",
-                props: {
-                    icon: multiColoredIcon,
-                },
-            },
-            {
-                name: "Custom img tag icon",
-                props: {
                     icon: (
-                        <img
-                            src={"./logo.svg"}
-                            alt="Wonder Blocks"
-                            style={{height: "100%", width: "100%"}}
-                        />
+                        <Icon>
+                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                        </Icon>
                     ),
                 },
             },
             {
-                name: "Custom img tag icon with label",
+                name: "Custom img element with svg src",
                 props: {
-                    label: "Badge",
                     icon: (
-                        <img
-                            src={"./logo.svg"}
-                            alt="Wonder Blocks"
-                            style={{height: "100%", width: "100%"}}
-                        />
+                        <Icon>
+                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                        </Icon>
                     ),
                 },
             },
+            {
+                name: "Custom img element with png src with label",
+                props: {
+                    label: "Badge",
+                    icon: (
+                        <Icon>
+                            <img src={"/avatar.png"} alt="Example avatar" />
+                        </Icon>
+                    ),
+                },
+            },
+            {
+                name: "Custom img element with png src",
+                props: {
+                    icon: (
+                        <Icon>
+                            <img src={"/avatar.png"} alt="Example avatar" />
+                        </Icon>
+                    ),
+                },
+            },
+            {
+                name: "Custom multi-colored inline svg using the Icon component with label",
+                props: {
+                    label: "Badge",
+                    icon: <Icon>{multiColoredIcon}</Icon>,
+                },
+            },
+            {
+                name: "Custom multi-colored inline svg using the Icon component",
+                props: {
+                    icon: <Icon>{multiColoredIcon}</Icon>,
+                },
+            },
+
             {
                 name: "Empty label and no icon",
                 props: {

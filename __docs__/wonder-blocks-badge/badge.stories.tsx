@@ -3,15 +3,13 @@ import type {StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-badge/package.json";
 import {Badge} from "@khanacademy/wonder-blocks-badge";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {
-    multiColoredIcon,
-    singleColoredIcon,
-} from "../components/icons-for-testing";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import singleColoredIcon from "../components/single-colored-icon.svg";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes from "./badge.argtypes";
+import {multiColoredIcon} from "../components/icons-for-testing";
 
 export default {
     title: "Packages / Badge / Badge",
@@ -55,11 +53,9 @@ type StoryComponentType = StoryObj<
 
 /**
  * The badge takes an icon and/or a label:
- * - `icon`: The icon to display in the badge. It can be a PhosphorIcon, a custom svg,
- *   or `img` element. Considerations:
- *   - If the icon conveys meaning, set the alt text on the icon being used
- *   - If the icon is an `img` element, it may need width: 100% and height: 100%
- *     to render properly in the badge.
+ * - `icon`: The icon to display in the badge. It can be a `PhosphorIcon` or a
+ * `Icon` for custom icons (see Custom Icons docs for more details). If the icon
+ * conveys meaning, set the alt text on the icon being used
  * - `label`: The label to display in the badge.
  */
 export const Default = {
@@ -88,12 +84,21 @@ export const IconOnly: StoryComponentType = {
 };
 
 /**
- * A badge can be used with a custom svg. Here are some examples of custom icons:
- * - A single colored svg icon - If the svg has `fill="currentColor"` then the
- * icon will use the color specified by the Badge component.
- * - A multi-colored svg icon - An svg that defines it's own fill can be used
- * - An icon using an img tag - The `img` element should have a height and width
- * of 100% to ensure it scales to the size of the badge icon.
+ * A badge can be used with a custom icon using the `PhosphorIcon` or `Icon`
+ * components. Here are some examples with custom icons:
+ * - A custom single colored svg icon
+ *   - Use with the `PhosphorIcon` component
+ *   - If the svg has `fill="currentColor"` and the `color` prop for
+ *     `PhosphorIcon` is not set, then the icon will use the color specified by
+ *     the `Badge` component.
+ * - A multi-colored inline svg
+ *   - Use with the `Icon` component
+ *   - The `Icon` component supports svg assets that define their own fill
+ * - An `img` element
+ *   - Use with the `Icon` component
+ *   - The `Icon` component supports `img` elements
+ * - For icons that are from the Phosphor library, continue using the
+ * `PhosphorIcon` component.
  *
  * If the icon conveys meaning, it should have alt text.
  */
@@ -101,18 +106,58 @@ export const CustomIcons: StoryComponentType = {
     render: () => {
         return (
             <View style={{gap: sizing.size_240}}>
-                <HeadingLarge>Custom single colored svg icon</HeadingLarge>
-                <Badge icon={singleColoredIcon} label="Custom Icon" />
-                <HeadingLarge>Custom multi-colored svg icon</HeadingLarge>
-                <Badge icon={multiColoredIcon} label="Custom Icon" />
-                <HeadingLarge>Custom icon using img tag</HeadingLarge>
+                <HeadingLarge>
+                    Custom single colored svg icon using PhosphorIcon
+                </HeadingLarge>
                 <Badge
                     icon={
-                        <img
-                            src={"/favicon.ico"}
-                            alt="Wonder Blocks"
-                            style={{height: "100%", width: "100%"}}
+                        <PhosphorIcon
+                            icon={singleColoredIcon}
+                            aria-label="Crown"
                         />
+                    }
+                    label="Custom Icon"
+                />
+                <HeadingLarge>
+                    Custom single colored svg icon using PhosphorIcon and color
+                    prop
+                </HeadingLarge>
+                <Badge
+                    icon={
+                        <PhosphorIcon
+                            icon={singleColoredIcon}
+                            aria-label="Crown"
+                            color={semanticColor.status.success.foreground}
+                        />
+                    }
+                    label="Custom Icon"
+                />
+                <HeadingLarge>
+                    Custom multi-colored inline svg using the Icon component
+                </HeadingLarge>
+                <Badge
+                    icon={<Icon>{multiColoredIcon}</Icon>}
+                    label="Custom Icon"
+                />
+                <HeadingLarge>
+                    Custom img element using the Icon component with a svg src
+                </HeadingLarge>
+                <Badge
+                    icon={
+                        <Icon>
+                            <img src={"/logo.svg"} alt="Wonder Blocks" />
+                        </Icon>
+                    }
+                    label="Custom Icon"
+                />
+                <HeadingLarge>
+                    Custom img element using the Icon component with a png src
+                </HeadingLarge>
+                <Badge
+                    icon={
+                        <Icon>
+                            <img src={"/avatar.png"} alt="Example avatar" />
+                        </Icon>
                     }
                     label="Custom Icon"
                 />

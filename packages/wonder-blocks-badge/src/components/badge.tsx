@@ -165,8 +165,13 @@ const styles = StyleSheet.create({
         color: badgeTokens.root.color.foreground,
     },
     icon: {
-        width: badgeTokens.icon.sizing.width,
-        height: badgeTokens.icon.sizing.height,
+        // Use minWidth and minHeight to ensure custom sized icons don't
+        // overflow the badge
+        minWidth: badgeTokens.icon.sizing.width,
+        minHeight: badgeTokens.icon.sizing.height,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
     },
     defaultIconStyling: {
         color: badgeTokens.icon.color.foreground,

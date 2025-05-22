@@ -4,15 +4,13 @@ import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-badge/package.json";
 import {StatusBadge} from "@khanacademy/wonder-blocks-badge";
-import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {
-    multiColoredIcon,
-    singleColoredIcon,
-} from "../components/icons-for-testing";
+import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
+import singleColoredIcon from "../components/single-colored-icon.svg";
 import {PropsFor, View} from "@khanacademy/wonder-blocks-core";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes from "./badge.argtypes";
+import {multiColoredIcon} from "../components/icons-for-testing";
 
 export default {
     title: "Packages / Badge / StatusBadge",
@@ -137,46 +135,15 @@ export const IconOnly: StoryComponentType = {
 };
 
 /**
- * A badge can be used with a custom svg. Here are some examples of custom icons:
- * - A single colored svg icon - If the svg has `fill="currentColor"` then the
- * icon will use the color specified by the Badge component.
- * - A multi-colored svg icon - An svg that defines it's own fill can be used
- * - An icon using an img tag - The `img` element should have a height and width
- * of 100% to ensure it scales to the size of the badge icon.
- *
- * If the icon conveys meaning, it should have alt text.
+ * For more details about using custom icons, see the Badge docs for custom icons.
  */
 export const CustomIcons: StoryComponentType = {
     render: () => {
         return (
             <View style={{gap: sizing.size_240}}>
-                <HeadingLarge>Custom single colored svg icon</HeadingLarge>
-                <View style={styles.container}>
-                    {kinds.map((kind) => {
-                        return (
-                            <StatusBadge
-                                key={kind}
-                                kind={kind}
-                                icon={singleColoredIcon}
-                                label="Custom Icon"
-                            />
-                        );
-                    })}
-                </View>
-                <HeadingLarge>Custom multi-colored svg icon</HeadingLarge>
-                <View style={styles.container}>
-                    {kinds.map((kind) => {
-                        return (
-                            <StatusBadge
-                                key={kind}
-                                kind={kind}
-                                icon={multiColoredIcon}
-                                label="Custom Icon"
-                            />
-                        );
-                    })}
-                </View>
-                <HeadingLarge>Custom icon using img tag</HeadingLarge>
+                <HeadingLarge>
+                    Custom single colored svg icon using PhosphorIcon
+                </HeadingLarge>
                 <View style={styles.container}>
                     {kinds.map((kind) => {
                         return (
@@ -184,11 +151,91 @@ export const CustomIcons: StoryComponentType = {
                                 key={kind}
                                 kind={kind}
                                 icon={
-                                    <img
-                                        src={"/favicon.ico"}
-                                        alt="Wonder Blocks"
-                                        style={{height: "100%", width: "100%"}}
+                                    <PhosphorIcon
+                                        icon={singleColoredIcon}
+                                        aria-label="Crown"
                                     />
+                                }
+                                label="Custom Icon"
+                            />
+                        );
+                    })}
+                </View>
+                <HeadingLarge>
+                    Custom single colored svg icon using PhosphorIcon and color
+                    prop
+                </HeadingLarge>
+                <View style={styles.container}>
+                    {kinds.map((kind) => {
+                        return (
+                            <StatusBadge
+                                key={kind}
+                                kind={kind}
+                                icon={
+                                    <PhosphorIcon
+                                        icon={singleColoredIcon}
+                                        aria-label="Crown"
+                                        color={semanticColor.icon.primary}
+                                    />
+                                }
+                                label="Custom Icon"
+                            />
+                        );
+                    })}
+                </View>
+                <HeadingLarge>
+                    Custom multi-colored inline svg using the Icon component
+                </HeadingLarge>
+                <View style={styles.container}>
+                    {kinds.map((kind) => {
+                        return (
+                            <StatusBadge
+                                key={kind}
+                                kind={kind}
+                                icon={<Icon>{multiColoredIcon}</Icon>}
+                                label="Custom Icon"
+                            />
+                        );
+                    })}
+                </View>
+                <HeadingLarge>
+                    Custom img element using the Icon component with a svg src
+                </HeadingLarge>
+                <View style={styles.container}>
+                    {kinds.map((kind) => {
+                        return (
+                            <StatusBadge
+                                key={kind}
+                                kind={kind}
+                                icon={
+                                    <Icon>
+                                        <img
+                                            src={"/logo.svg"}
+                                            alt="Wonder Blocks"
+                                        />
+                                    </Icon>
+                                }
+                                label="Custom Icon"
+                            />
+                        );
+                    })}
+                </View>
+                <HeadingLarge>
+                    Custom img element using the Icon component with a png src
+                </HeadingLarge>
+                <View style={styles.container}>
+                    {kinds.map((kind) => {
+                        return (
+                            <StatusBadge
+                                key={kind}
+                                kind={kind}
+                                icon={
+                                    <Icon>
+                                        <img
+                                            src={"/avatar.png"}
+                                            alt="Example avatar"
+                                        />
+                                    </Icon>
                                 }
                                 label="Custom Icon"
                             />
@@ -197,6 +244,13 @@ export const CustomIcons: StoryComponentType = {
                 </View>
             </View>
         );
+    },
+    parameters: {
+        chromatic: {
+            // Enable snapshots for this story so we can verify custom icons
+            // are used correctly
+            disableSnapshot: false,
+        },
     },
 };
 
