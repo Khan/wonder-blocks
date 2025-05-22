@@ -33,7 +33,7 @@ const createConfig = (pkgName) => {
                     swcrc: true,
                     minify: true,
                     // We do _not_ specify "env" here (a la @babel/preset-env)
-                    // because our TypeScrip compiler "target" is set to ES2021
+                    // because our TypeScript compiler "target" is set to ES2021
                     // which is compatible with all of Khan Academy's supported
                     // browsers _and_ will protect us against using APIs that
                     // aren't supported in this browser list).
