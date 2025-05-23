@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 3.2.0
+
+### Minor Changes
+
+- e116964: Bump TypeScript 'target' to ES2021 and remove references to 'core-js' (no longer used with swc)
+
 ## 3.1.0
 
 ### Minor Changes
