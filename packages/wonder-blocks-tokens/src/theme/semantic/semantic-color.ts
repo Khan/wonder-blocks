@@ -422,6 +422,12 @@ export const semanticColor = {
         destructive: color.red,
         disabled: color.fadedOffBlack32,
     },
+    link: {
+        rest: core.foreground.instructive.subtle,
+        hover: core.foreground.instructive.subtle,
+        press: core.foreground.instructive.default,
+        disabled: core.foreground.inverse.subtle,
+    },
     /**
      * Colors to be used exclusively for Khanmigo or to communicate a
      * relationship to it.
