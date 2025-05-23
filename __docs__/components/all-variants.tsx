@@ -134,7 +134,7 @@ export function AllVariants(props: Props) {
                                             style={[
                                                 styles.cell,
                                                 {
-                                                    border: `${border.width.thin} dashed ${semanticColor.border.primary}`,
+                                                    border: `${border.width.thin} dashed ${semanticColor.core.border.neutral.subtle}`,
                                                 },
                                                 stylesProp?.cell,
                                             ]}
@@ -220,6 +220,6 @@ const styles = StyleSheet.create({
     childrenWrapper: {
         padding: sizing.size_080,
         marginBlock: sizing.size_080,
-        border: `${border.width.thin} dashed ${semanticColor.border.primary}`,
+        border: `${border.width.thin} dashed ${semanticColor.core.border.neutral.subtle}`,
     },
 });
