@@ -360,4 +360,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         outer: color.blue_30,
         inner: color.white_100,
     },
+    link: {
+        rest: core.foreground.instructive.default,
+        hover: core.foreground.instructive.strong,
+        press: core.foreground.instructive.strong,
+        disabled: core.foreground.inverse.subtle,
+    },
 });
