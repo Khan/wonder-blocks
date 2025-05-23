@@ -18,7 +18,7 @@ export const Placeholder = (props: Props) => {
                 backgroundColor: semanticColor.surface.secondary,
                 padding: sizing.size_120,
                 margin: sizing.size_010,
-                border: `${border.width.thin}px dashed ${semanticColor.border.subtle}`,
+                border: `${border.width.thin}px dashed ${semanticColor.core.border.neutral.subtle}`,
                 width: "100%",
                 alignItems: "center",
             }}

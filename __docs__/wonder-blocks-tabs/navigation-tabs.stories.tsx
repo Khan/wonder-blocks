@@ -165,7 +165,7 @@ export const HeaderWithNavigationTabsExample: StoryComponentType = {
                 display: "flex",
                 alignItems: "center",
                 flexWrap: "wrap",
-                borderBottom: `1px solid ${semanticColor.border.primary}`,
+                borderBottom: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                 gap: sizing.size_240,
                 padding: `${headerVerticalSpacing} ${sizing.size_240}`,
             },

@@ -195,7 +195,7 @@ const theme = {
                 foreground: semanticColor.text.inverse,
             },
             focus: {
-                border: semanticColor.border.inverse,
+                border: semanticColor.core.border.inverse.strong,
                 foreground: semanticColor.text.inverse,
             },
             press: {

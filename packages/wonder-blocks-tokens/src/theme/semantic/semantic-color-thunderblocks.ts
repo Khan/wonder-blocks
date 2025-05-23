@@ -3,6 +3,53 @@ import {color} from "./internal/primitive-color-thunderblocks";
 
 import {semanticColor as defaultSemanticColor} from "./semantic-color";
 
+const transparent = "transparent";
+
+const core = {
+    transparent,
+    border: {
+        instructive: {
+            subtle: color.blue_60,
+            default: color.blue_40,
+            strong: color.blue_10,
+        },
+        neutral: {
+            subtle: color.gray_60,
+            default: color.gray_30,
+            strong: color.gray_10,
+        },
+        critical: {
+            subtle: color.red_60,
+            default: color.red_30,
+            strong: color.red_10,
+        },
+        success: {
+            subtle: color.green_60,
+            default: color.green_30,
+            strong: color.green_10,
+        },
+        warning: {
+            subtle: color.yellow_60,
+            default: color.yellow_40,
+            strong: color.yellow_10,
+        },
+        disabled: {
+            subtle: transparent,
+            default: color.gray_70,
+            strong: color.gray_60,
+        },
+        inverse: {
+            subtle: color.gray_60,
+            default: color.gray_90,
+            strong: color.white_100,
+        },
+    },
+};
+
+/**
+ * TODO(WB-1941): Remove border once we have migrated to the new core.border
+ * tokens.
+ */
 const border = {
     subtle: color.gray_60,
     // TODO(WB-1941): Change to the new core.border structure and use
@@ -35,58 +82,58 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         primary: {
             progressive: {
                 default: {
-                    border: border.progressive,
+                    border: core.border.instructive.default,
                     background: color.blue_30,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: color.blue_10,
+                    border: core.border.instructive.strong,
                     background: color.blue_10,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: color.blue_10,
+                    border: core.border.instructive.strong,
                     background: color.blue_10,
                     foreground: text.inverse,
                 },
             },
             destructive: {
                 default: {
-                    border: border.destructive,
+                    border: core.border.critical.default,
                     background: color.red_20,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: color.red_05,
+                    border: core.border.critical.strong,
                     background: color.red_05,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: color.red_05,
+                    border: core.border.critical.strong,
                     background: color.red_05,
                     foreground: text.inverse,
                 },
             },
             neutral: {
                 default: {
-                    border: border.primary,
+                    border: core.border.neutral.default,
                     background: color.gray_20,
                     foreground: text.inverse,
                 },
                 hover: {
-                    border: color.gray_05,
+                    border: core.border.neutral.strong,
                     background: color.gray_05,
                     foreground: text.inverse,
                 },
                 press: {
-                    border: color.gray_05,
+                    border: core.border.neutral.strong,
                     background: color.gray_05,
                     foreground: text.inverse,
                 },
             },
 
             disabled: {
-                border: color.gray_70,
+                border: core.transparent,
                 background: color.gray_70,
                 foreground: color.gray_50,
             },
@@ -95,58 +142,58 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         secondary: {
             progressive: {
                 default: {
-                    border: color.blue_60,
+                    border: core.border.instructive.subtle,
                     background: color.blue_80,
                     foreground: color.blue_30,
                 },
                 hover: {
-                    border: color.blue_40,
+                    border: core.border.instructive.default,
                     background: color.blue_70,
                     foreground: color.blue_30,
                 },
                 press: {
-                    border: color.blue_40,
+                    border: core.border.instructive.default,
                     background: color.blue_70,
                     foreground: color.blue_30,
                 },
             },
             destructive: {
                 default: {
-                    border: color.red_30,
+                    border: core.border.critical.default,
                     background: color.red_90,
                     foreground: color.red_20,
                 },
                 hover: {
-                    border: color.red_10,
+                    border: core.border.critical.strong,
                     background: color.red_70,
                     foreground: color.red_10,
                 },
                 press: {
-                    border: color.red_10,
+                    border: core.border.critical.strong,
                     background: color.red_70,
                     foreground: color.red_10,
                 },
             },
             neutral: {
                 default: {
-                    border: color.gray_60,
+                    border: core.border.neutral.subtle,
                     background: color.white_100,
                     foreground: color.gray_10,
                 },
                 hover: {
-                    border: color.gray_10,
+                    border: core.border.neutral.strong,
                     background: color.white_100,
                     foreground: color.black_100,
                 },
                 press: {
-                    border: color.gray_10,
+                    border: core.border.neutral.strong,
                     background: color.white_100,
                     foreground: color.black_100,
                 },
             },
 
             disabled: {
-                border: color.gray_60,
+                border: core.border.disabled.strong,
                 background: color.gray_80,
                 foreground: color.gray_50,
             },
@@ -155,17 +202,17 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         tertiary: {
             progressive: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: "transparent",
                     foreground: color.blue_30,
                 },
                 hover: {
-                    border: color.blue_10,
+                    border: core.border.instructive.strong,
                     background: "transparent",
                     foreground: color.blue_10,
                 },
                 press: {
-                    border: color.blue_10,
+                    border: core.border.instructive.strong,
                     background: "transparent",
                     foreground: color.blue_10,
                 },
@@ -173,41 +220,41 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
 
             destructive: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: "transparent",
                     foreground: color.red_20,
                 },
                 hover: {
-                    border: color.red_10,
+                    border: core.border.critical.strong,
                     background: "transparent",
                     foreground: color.red_10,
                 },
                 press: {
-                    border: color.red_10,
+                    border: core.border.critical.strong,
                     background: "transparent",
                     foreground: color.red_10,
                 },
             },
             neutral: {
                 default: {
-                    border: "transparent",
+                    border: core.transparent,
                     background: "transparent",
                     foreground: color.gray_10,
                 },
                 hover: {
-                    border: color.gray_10,
+                    border: core.border.neutral.strong,
                     background: "transparent",
                     foreground: color.black_100,
                 },
                 press: {
-                    border: color.gray_10,
+                    border: core.border.neutral.strong,
                     background: "transparent",
                     foreground: color.black_100,
                 },
             },
 
             disabled: {
-                border: "transparent",
+                border: core.border.disabled.subtle,
                 background: "transparent",
                 foreground: color.gray_50,
             },

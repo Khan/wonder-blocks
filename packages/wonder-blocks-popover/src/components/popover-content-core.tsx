@@ -103,7 +103,7 @@ export default class PopoverContentCore extends React.Component<Props> {
 const styles = StyleSheet.create({
     content: {
         borderRadius: border.radius.radius_040,
-        border: `solid 1px ${semanticColor.border.primary}`,
+        border: `solid 1px ${semanticColor.core.border.neutral.subtle}`,
         backgroundColor: semanticColor.surface.primary,
         // TODO(WB-1878): Use `elevation` token.
         boxShadow: `0 ${spacing.xSmall_8}px ${spacing.xSmall_8}px 0 ${color.offBlack8}`,
