@@ -36,8 +36,8 @@ const core = {
             strong: color.fadedOffBlack32,
         },
         inverse: {
-            subtle: color.offBlack16,
-            default: color.offBlack8,
+            subtle: color.fadedOffBlack16,
+            default: color.fadedOffBlack8,
             strong: color.white,
         },
     },
@@ -137,10 +137,10 @@ const surface = {
  * tokens.
  */
 const text = {
-    primary: color.offBlack,
-    secondary: color.fadedOffBlack72,
-    disabled: color.fadedOffBlack32,
-    inverse: color.white,
+    primary: core.foreground.neutral.strong,
+    secondary: core.foreground.neutral.default,
+    disabled: core.foreground.inverse.subtle,
+    inverse: core.foreground.inverse.strong,
 };
 
 export const semanticColor = {

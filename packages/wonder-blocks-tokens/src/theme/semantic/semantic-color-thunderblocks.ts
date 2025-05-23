@@ -139,10 +139,10 @@ const surface = {
 };
 
 const text = {
-    primary: color.black_100,
-    secondary: color.gray_20,
-    disabled: color.gray_60,
-    inverse: color.white_100,
+    primary: core.foreground.neutral.strong,
+    secondary: core.foreground.neutral.subtle,
+    disabled: core.foreground.inverse.subtle,
+    inverse: core.foreground.inverse.strong,
 };
 
 export const semanticColor = mergeTheme(defaultSemanticColor, {
