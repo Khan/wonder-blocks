@@ -332,7 +332,7 @@ const theme = {
                 foreground: actionType.press.foreground,
             },
             disabled: {
-                background: "transparent",
+                background: semanticColor.core.background.disabled.subtle,
                 foreground: semanticColor.action.secondary.disabled.foreground,
             },
         },
