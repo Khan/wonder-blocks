@@ -12,7 +12,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {useId} from "react";
-import type {AccordionCornerKindType} from "./accordion";
+import type {AccordionCornerKindType, AccordionToggleMode} from "./accordion";
 import AccordionSectionHeader from "./accordion-section-header";
 
 export type TagType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
@@ -27,7 +27,7 @@ type Props = AriaProps & {
      * passed in, it will automatically be given Body typography from
      * Wonder Blocks Typography.
      */
-    children: string | React.ReactElement;
+    children: string | React.ReactNode;
     /**
      * The header for this section. If a string is passed in, it will
      * automatically be given Body typography from Wonder Blocks Typography.
@@ -125,6 +125,12 @@ type Props = AriaProps & {
      * @ignore
      */
     isRegion?: boolean;
+    /**
+     * Whether the parent accordion is in "expand-all" or "collapse-all" mode.
+     * For internal use only.
+     * @ignore
+     */
+    parentToggleMode?: AccordionToggleMode;
 };
 
 /**
@@ -199,6 +205,7 @@ const AccordionSection = React.forwardRef(function AccordionSection(
         // Assume it's a region by default. Override this to be false
         // if we know there are more than six panels in an accordion.
         isRegion = true,
+        parentToggleMode,
         ...ariaProps
     } = props;
 
@@ -207,6 +214,12 @@ const AccordionSection = React.forwardRef(function AccordionSection(
     );
 
     const controlledMode = expanded !== undefined && onToggle;
+
+    React.useEffect(() => {
+        if (parentToggleMode) {
+            setInternalExpanded(parentToggleMode === "expand-all");
+        }
+    }, [parentToggleMode]);
 
     const uniqueSectionId = useId();
     const sectionId = id ?? uniqueSectionId;
