@@ -14,4 +14,4 @@
 "@khanacademy/wonder-blocks-tabs": patch
 ---
 
-Replace call sites to use core.background instead of `action`.
+Replace call sites to use `core.background` instead of `action`.

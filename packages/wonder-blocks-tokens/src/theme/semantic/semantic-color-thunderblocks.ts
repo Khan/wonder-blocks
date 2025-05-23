@@ -76,6 +76,42 @@ const core = {
             strong: color.gray_70,
         },
     },
+
+    /**
+     * Used for text and icons.
+     */
+    foreground: {
+        instructive: {
+            subtle: color.blue_50,
+            default: color.blue_30,
+            strong: color.blue_10,
+        },
+        neutral: {
+            subtle: color.gray_20,
+            default: color.gray_10,
+            strong: color.black_100,
+        },
+        critical: {
+            subtle: color.red_50,
+            default: color.red_20,
+            strong: color.red_10,
+        },
+        success: {
+            subtle: color.green_50,
+            default: color.green_20,
+            strong: color.green_05,
+        },
+        warning: {
+            subtle: color.yellow_50,
+            default: color.yellow_10,
+            strong: color.yellow_05,
+        },
+        inverse: {
+            subtle: color.gray_60,
+            default: color.gray_90,
+            strong: color.white_100,
+        },
+    },
 };
 
 /**
@@ -176,51 +212,51 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 default: {
                     border: core.border.instructive.subtle,
                     background: core.background.instructive.subtle,
-                    foreground: color.blue_30,
+                    foreground: core.foreground.instructive.default,
                 },
                 hover: {
                     border: core.border.instructive.default,
                     background: core.background.instructive.subtle,
-                    foreground: color.blue_30,
+                    foreground: core.foreground.instructive.default,
                 },
                 press: {
                     border: core.border.instructive.default,
                     background: core.background.instructive.subtle,
-                    foreground: color.blue_30,
+                    foreground: core.foreground.instructive.default,
                 },
             },
             destructive: {
                 default: {
                     border: core.border.critical.default,
                     background: core.background.critical.subtle,
-                    foreground: color.red_20,
+                    foreground: core.foreground.critical.default,
                 },
                 hover: {
                     border: core.border.critical.strong,
                     background: core.background.critical.subtle,
-                    foreground: color.red_10,
+                    foreground: core.foreground.critical.strong,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.background.critical.subtle,
-                    foreground: color.red_10,
+                    foreground: core.foreground.critical.strong,
                 },
             },
             neutral: {
                 default: {
                     border: core.border.neutral.subtle,
                     background: core.background.neutral.subtle,
-                    foreground: color.gray_10,
+                    foreground: core.foreground.neutral.default,
                 },
                 hover: {
                     border: core.border.neutral.strong,
                     background: core.background.neutral.subtle,
-                    foreground: color.black_100,
+                    foreground: core.foreground.neutral.strong,
                 },
                 press: {
                     border: core.border.neutral.strong,
                     background: core.background.neutral.subtle,
-                    foreground: color.black_100,
+                    foreground: core.foreground.neutral.strong,
                 },
             },
 
@@ -236,17 +272,17 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 default: {
                     border: core.transparent,
                     background: core.transparent,
-                    foreground: color.blue_30,
+                    foreground: core.foreground.instructive.default,
                 },
                 hover: {
                     border: core.border.instructive.strong,
                     background: core.transparent,
-                    foreground: color.blue_10,
+                    foreground: core.foreground.instructive.strong,
                 },
                 press: {
                     border: core.border.instructive.strong,
                     background: core.transparent,
-                    foreground: color.blue_10,
+                    foreground: core.foreground.instructive.strong,
                 },
             },
 
@@ -254,34 +290,34 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 default: {
                     border: core.transparent,
                     background: core.transparent,
-                    foreground: color.red_20,
+                    foreground: core.foreground.critical.default,
                 },
                 hover: {
                     border: core.border.critical.strong,
                     background: core.transparent,
-                    foreground: color.red_10,
+                    foreground: core.foreground.critical.strong,
                 },
                 press: {
                     border: core.border.critical.strong,
                     background: core.transparent,
-                    foreground: color.red_10,
+                    foreground: core.foreground.critical.strong,
                 },
             },
             neutral: {
                 default: {
                     border: core.transparent,
                     background: core.transparent,
-                    foreground: color.gray_10,
+                    foreground: core.foreground.neutral.default,
                 },
                 hover: {
                     border: core.border.neutral.strong,
                     background: core.transparent,
-                    foreground: color.black_100,
+                    foreground: core.foreground.neutral.strong,
                 },
                 press: {
                     border: core.border.neutral.strong,
                     background: core.transparent,
-                    foreground: color.black_100,
+                    foreground: core.foreground.neutral.strong,
                 },
             },
 
