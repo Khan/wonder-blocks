@@ -102,19 +102,22 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     // state.
     const colorAction = semanticColor.action.secondary[actionType];
 
+    const coreType = error ? "critical" : "instructive";
+    const colorCore = semanticColor.core.background[coreType];
+
     // The different states that the component can be in.
     const states = {
         // Resting state (unchecked)
         unchecked: {
             border: semanticColor.input.default.border,
-            background: colorAction.default.background,
+            background: colorCore.subtle,
         },
         checked: {
             // NOTE: This is a special case where the border is the same color
             // as the foreground. This should change as soon as we simplify the
             // existing `action` tokens.
             border: colorAction.default.foreground,
-            background: colorAction.default.background,
+            background: colorCore.subtle,
         },
         // Form validation error state
         error: {
