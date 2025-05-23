@@ -324,15 +324,15 @@ const theme = {
                 foreground: semanticColor.text.primary,
             },
             hover: {
-                background: actionType.hover.background,
+                background: semanticColor.core.background.instructive.subtle,
                 foreground: actionType.hover.foreground,
             },
             press: {
-                background: actionType.press.background,
+                background: semanticColor.core.background.instructive.strong,
                 foreground: actionType.press.foreground,
             },
             disabled: {
-                background: "transparent",
+                background: semanticColor.core.background.disabled.subtle,
                 foreground: semanticColor.action.secondary.disabled.foreground,
             },
         },

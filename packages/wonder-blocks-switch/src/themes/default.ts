@@ -13,7 +13,7 @@ const theme = {
         bg: {
             switch: {
                 off: action.default.border,
-                disabledOff: semanticColor.action.primary.disabled.background,
+                disabledOff: semanticColor.core.border.disabled.strong,
                 // NOTE: Adding this as a primitive token b/c we don't have a
                 // semantic token for this background color
                 activeOff: color.fadedOffBlack64,

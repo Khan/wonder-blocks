@@ -60,7 +60,7 @@ const disabledChecked = {
     height: size / 2,
     width: size / 2,
     borderRadius: border.radius.radius_full,
-    backgroundColor: semanticColor.action.primary.disabled.background,
+    backgroundColor: semanticColor.core.border.disabled.strong,
 } as const;
 
 const sharedStyles = StyleSheet.create({
