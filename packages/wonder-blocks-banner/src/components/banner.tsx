@@ -366,7 +366,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     link: {
-        fontSize: font.size.small,
+        fontSize: font.body.size.small,
     },
     dismiss: {
         flexShrink: 1,
