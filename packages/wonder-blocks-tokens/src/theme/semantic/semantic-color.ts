@@ -255,17 +255,17 @@ export const semanticColor = {
                 default: {
                     border: core.border.neutral.default,
                     background: core.transparent,
-                    foreground: core.foreground.neutral.subtle,
+                    foreground: core.foreground.neutral.default,
                 },
                 hover: {
                     border: core.border.neutral.default,
                     background: core.transparent,
-                    foreground: core.foreground.neutral.subtle,
+                    foreground: core.foreground.neutral.default,
                 },
                 press: {
                     border: core.border.neutral.strong,
                     background: core.background.neutral.subtle,
-                    foreground: core.foreground.neutral.default,
+                    foreground: core.foreground.neutral.strong,
                 },
             },
 
@@ -316,17 +316,17 @@ export const semanticColor = {
                 default: {
                     border: core.transparent,
                     background: core.transparent,
-                    foreground: core.foreground.neutral.subtle,
+                    foreground: core.foreground.neutral.default,
                 },
                 hover: {
                     border: core.border.neutral.default,
                     background: core.transparent,
-                    foreground: core.foreground.neutral.subtle,
+                    foreground: core.foreground.neutral.default,
                 },
                 press: {
                     border: core.border.neutral.strong,
                     background: core.transparent,
-                    foreground: core.foreground.neutral.default,
+                    foreground: core.foreground.neutral.strong,
                 },
             },
 
