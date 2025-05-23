@@ -10,8 +10,8 @@ import {RecursivePartial} from "../util/types";
 export function generateTokens<T>(
     root: T,
     prefix = CSS_VAR_PREFIX,
-): Record<string, string> {
-    const tokens = {} as Record<string, string>;
+): Record<string, string | number> {
+    const tokens = {} as Record<string, string | number>;
     function generateCssVariables(
         obj: T | RecursivePartial<T>,
         prefix = CSS_VAR_PREFIX,
@@ -20,7 +20,10 @@ export function generateTokens<T>(
             if (typeof obj[key] === "object") {
                 generateCssVariables(obj[key], `${prefix}${key}-`);
             } else {
-                if (typeof obj[key] === "string") {
+                if (
+                    typeof obj[key] === "string" ||
+                    typeof obj[key] === "number"
+                ) {
                     // preserve the original nested object structure
                     tokens[prefix + key] = obj[key];
                 }
