@@ -70,7 +70,7 @@ export const font = {
             xxlarge: sizing.size_360, // Title
         },
         lineHeight: {
-            small: sizing.size_200, // HeadingXSmall
+            small: sizing.size_160, // HeadingXSmall
             medium: sizing.size_240, // HeadingSmall and Tagline
             large: sizing.size_280, // HeadingMedium
             xlarge: sizing.size_320, // HeadingLarge
