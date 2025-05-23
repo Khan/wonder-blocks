@@ -192,11 +192,11 @@ const theme = {
     actionItem: {
         color: {
             hover: {
-                background: semanticColor.core.background.instructive.subtle,
+                background: actionType.hover.background,
                 foreground: actionType.hover.foreground,
             },
             press: {
-                background: semanticColor.core.background.instructive.strong,
+                background: actionType.press.background,
                 foreground: actionType.press.foreground,
             },
         },
