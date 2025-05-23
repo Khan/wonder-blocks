@@ -18,7 +18,7 @@ const theme = {
                 // semantic token for this background color
                 activeOff: color.fadedOffBlack64,
                 on: action.default.foreground,
-                disabledOn: action.press.background,
+                disabledOn: semanticColor.core.border.instructive.subtle,
                 activeOn: action.press.foreground,
             },
             slider: {
