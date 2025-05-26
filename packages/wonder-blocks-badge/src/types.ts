@@ -46,7 +46,7 @@ type ShowIconLabelOnly = {
 
 type ShowIconAndLabel = {
     /**
-     * Whether to show the icon.
+     * Whether to show the icon. Defaults to `false`.
      */
     showIcon: boolean;
     /**

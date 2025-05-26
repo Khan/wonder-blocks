@@ -48,6 +48,17 @@ describe("GemBadge", () => {
         expect(container).toBeEmptyDOMElement();
     });
 
+    it("should not render the icon if showIcon is not set", () => {
+        // Arrange
+        render(<GemBadge label="Badge" />);
+
+        // Act
+        const iconElement = screen.queryByRole("img");
+
+        // Assert
+        expect(iconElement).not.toBeInTheDocument();
+    });
+
     describe("Accessibility", () => {
         describe("axe", () => {
             it("should not have violations", async () => {
@@ -64,6 +75,28 @@ describe("GemBadge", () => {
                 // Assert
                 await expect(container).toHaveNoA11yViolations();
             });
+        });
+
+        it("should not have violations if there is no label", async () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <GemBadge showIcon={true} iconAriaLabel="Gem" />,
+            );
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
+        });
+
+        it("should not have violations if there is no label", async () => {
+            // Arrange
+            // Act
+            const {container} = render(
+                <GemBadge showIcon={false} iconAriaLabel="Gem" />,
+            );
+
+            // Assert
+            await expect(container).toHaveNoA11yViolations();
         });
     });
 });

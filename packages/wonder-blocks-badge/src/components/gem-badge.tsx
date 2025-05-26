@@ -19,7 +19,7 @@ type Props = {
  * and icon. For more details, see the `Badge` docs.
  */
 const GemBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-    const {label, showIcon, iconAriaLabel, ...otherProps} = props;
+    const {label, showIcon = false, iconAriaLabel, ...otherProps} = props;
     return (
         <Badge
             {...otherProps}

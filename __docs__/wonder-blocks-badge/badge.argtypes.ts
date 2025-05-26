@@ -21,7 +21,7 @@ export const iconArgType = {
 
 export const showIconArgType = {
     showIcon: {
-        description: "Whether to show the icon.",
+        description: "Whether to show the icon. Defaults to `false`.",
     },
 };
 
