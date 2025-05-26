@@ -3,6 +3,7 @@ import {render, screen} from "@testing-library/react";
 import {StatusBadge} from "../status-badge";
 import {GemBadge} from "../gem-badge";
 import {StreakBadge} from "../streak-badge";
+import {DueBadge} from "../due-badge";
 /**
  * Tests for props that are common to the different badge types.
  */
@@ -11,6 +12,7 @@ describe("Badge types", () => {
         {name: "StatusBadge", Component: StatusBadge},
         {name: "GemBadge", Component: GemBadge},
         {name: "StreakBadge", Component: StreakBadge},
+        {name: "DueBadge", Component: DueBadge},
     ])("$name", ({Component}) => {
         it("should forward the ref to the root element", () => {
             // Arrange

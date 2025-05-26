@@ -25,6 +25,7 @@ const StatusBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             ref={ref}
             {...otherProps}
             styles={{
+                ...otherProps.styles,
                 root: [getKindStyle(kind), otherProps.styles?.root],
                 icon: [getIconKindStyle(kind), otherProps.styles?.icon],
             }}
