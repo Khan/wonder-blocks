@@ -12,7 +12,7 @@ describe("GemBadge", () => {
         const badge = screen.getByText(label);
 
         // Assert
-        expect(badge).toBeInTheDocument();
+        expect(badge).toBeVisible();
     });
 
     it("should render the icon with alt text", () => {
