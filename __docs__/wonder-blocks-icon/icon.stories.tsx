@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
-import {GemIcon, Icon} from "@khanacademy/wonder-blocks-icon";
+import {GemIcon, Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -96,10 +96,15 @@ export const CompatibleElements: StoryComponentType = {
                 <Icon {...args}>{singleColoredIcon}</Icon>
                 <LabelSmall>Inline multi-colored svg</LabelSmall>
                 <Icon {...args}>{multiColoredIcon}</Icon>
-                <LabelSmall>Custom Icon Component: GemIcon</LabelSmall>
-                <Icon {...args}>
-                    <GemIcon aria-label="Gem" />
-                </Icon>
+                <LabelSmall>Custom Icon Components</LabelSmall>
+                <View style={{gap: sizing.size_080, flexDirection: "row"}}>
+                    <Icon {...args}>
+                        <GemIcon aria-label="Gem" />
+                    </Icon>
+                    <Icon {...args}>
+                        <StreakIcon aria-label="Streak" />
+                    </Icon>
+                </View>
             </View>
         );
     },
