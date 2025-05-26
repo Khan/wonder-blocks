@@ -48,7 +48,7 @@ export const NoIcon: StoryComponentType = {
 
 /**
  * Set `showIcon` to `true` to show the gem icon. Alt text for the gem icon can
- * be set using the `labels` prop.
+ * be set using the `iconAriaLabel` prop.
  */
 export const IconOnly: StoryComponentType = {
     args: {
