@@ -3,6 +3,7 @@ import {StoryObj} from "@storybook/react";
 import {StreakBadge} from "@khanacademy/wonder-blocks-badge";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-badge/package.json";
+import badgeArgTypes, {showIconArgType} from "./badge.argtypes";
 
 export default {
     title: "Packages / Badge / StreakBadge",
@@ -19,6 +20,10 @@ export default {
             disableSnapshot: true,
         },
     },
+    argTypes: {
+        ...badgeArgTypes,
+        ...showIconArgType,
+    },
 };
 
 type StoryComponentType = StoryObj<typeof StreakBadge>;
@@ -27,9 +32,7 @@ export const Default: StoryComponentType = {
     args: {
         label: "Badge",
         showIcon: true,
-        labels: {
-            iconAltText: "Streak",
-        },
+        iconAriaLabel: "Streak",
     },
 };
 
@@ -45,13 +48,11 @@ export const NoIcon: StoryComponentType = {
 
 /**
  * Set `showIcon` to `true` to show the streak icon. Alt text for the streak icon can
- * be set using the `labels` prop.
+ * be set using the `iconAriaLabel` prop.
  */
 export const IconOnly: StoryComponentType = {
     args: {
         showIcon: true,
-        labels: {
-            iconAltText: "Streak",
-        },
+        iconAriaLabel: "Streak",
     },
 };

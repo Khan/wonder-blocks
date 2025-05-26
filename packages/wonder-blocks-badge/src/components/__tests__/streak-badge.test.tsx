@@ -12,37 +12,37 @@ describe("StreakBadge", () => {
         const badge = screen.getByText(label);
 
         // Assert
-        expect(badge).toBeInTheDocument();
+        expect(badge).toBeVisible();
     });
 
     it("should render the icon with alt text", () => {
         // Arrange
-        render(<StreakBadge showIcon={true} labels={{iconAltText: "Gems"}} />);
+        render(<StreakBadge showIcon={true} iconAriaLabel="Streak" />);
 
         // Act
         const iconElement = screen.getByRole("img", {
-            name: "Gems",
+            name: "Streak",
         });
 
         // Assert
         expect(iconElement).toBeInTheDocument();
     });
 
-    it("should have a decorative icon if showIcon is true and no alt text is provided", () => {
+    it("should not have an img role if showIcon is true and no alt text is provided", () => {
         // Arrange
         render(<StreakBadge showIcon={true} />);
 
         // Act
-        const iconElement = screen.getByRole("presentation");
+        const iconElement = screen.queryByRole("img");
 
         // Assert
-        expect(iconElement).toBeInTheDocument();
+        expect(iconElement).not.toBeInTheDocument();
     });
 
-    it("should not render anything if there is no label or icon", () => {
+    it("should not render anything if there is an empty label and showIcon is false", () => {
         // Arrange
         // Act
-        const {container} = render(<StreakBadge />);
+        const {container} = render(<StreakBadge label="" showIcon={false} />);
 
         // Assert
         expect(container).toBeEmptyDOMElement();
@@ -57,7 +57,7 @@ describe("StreakBadge", () => {
                     <StreakBadge
                         label="Badge label"
                         showIcon={true}
-                        labels={{iconAltText: "Gems"}}
+                        iconAriaLabel="Streak"
                     />,
                 );
 

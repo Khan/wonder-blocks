@@ -9,28 +9,23 @@ type Props = {
      */
     showIcon?: boolean;
     /**
-     * The labels for the badge.
+     * The alt text for the streak icon.
      */
-    labels?: {
-        /**
-         * The alt text for the streak icon.
-         */
-        iconAltText?: string;
-    };
+    iconAriaLabel?: string;
 } & Omit<BadgeProps, "icon">;
 
 /**
  * A badge that represents streaks.
  */
 const StreakBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-    const {label, showIcon, labels, ...otherProps} = props;
+    const {label, showIcon, iconAriaLabel, ...otherProps} = props;
     return (
         <Badge
             {...otherProps}
             label={label}
             icon={
                 showIcon ? (
-                    <img src={streakIcon} alt={labels?.iconAltText || ""} />
+                    <img src={streakIcon} alt={iconAriaLabel || ""} />
                 ) : undefined
             }
             ref={ref}
