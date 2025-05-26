@@ -32,9 +32,7 @@ export const Default: StoryComponentType = {
     args: {
         label: "Badge",
         showIcon: true,
-        labels: {
-            iconAriaLabel: "Gems",
-        },
+        iconAriaLabel: "Gems",
     },
 };
 
@@ -55,8 +53,6 @@ export const NoIcon: StoryComponentType = {
 export const IconOnly: StoryComponentType = {
     args: {
         showIcon: true,
-        labels: {
-            iconAriaLabel: "Gems",
-        },
+        iconAriaLabel: "Gems",
     },
 };

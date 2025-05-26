@@ -17,7 +17,7 @@ describe("GemBadge", () => {
 
     it("should render the icon with alt text", () => {
         // Arrange
-        render(<GemBadge showIcon={true} labels={{iconAriaLabel: "Gems"}} />);
+        render(<GemBadge showIcon={true} iconAriaLabel="Gems" />);
 
         // Act
         const iconElement = screen.getByRole("img", {
@@ -57,7 +57,7 @@ describe("GemBadge", () => {
                     <GemBadge
                         label="Badge label"
                         showIcon={true}
-                        labels={{iconAriaLabel: "Gems"}}
+                        iconAriaLabel="Gems"
                     />,
                 );
 

@@ -6,12 +6,9 @@ import {BaseBadgeProps, ShowIconProps} from "../types";
 
 type Props = {
     /**
-     * The labels for the badge.
+     * The alt text for the gem icon.
      */
-    labels?: {
-        /** The alt text for the gem icon. */
-        iconAriaLabel?: string;
-    };
+    iconAriaLabel?: string;
 } & BaseBadgeProps &
     ShowIconProps;
 
@@ -19,7 +16,7 @@ type Props = {
  * A badge that represents gems.
  */
 const GemBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-    const {label, showIcon, labels, ...otherProps} = props;
+    const {label, showIcon, iconAriaLabel, ...otherProps} = props;
     return (
         <Badge
             {...otherProps}
@@ -27,7 +24,7 @@ const GemBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
             icon={
                 showIcon ? (
                     <Icon>
-                        <GemIcon aria-label={labels?.iconAriaLabel || ""} />
+                        <GemIcon aria-label={iconAriaLabel} />
                     </Icon>
                 ) : undefined
             }
