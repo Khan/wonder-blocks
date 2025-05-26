@@ -13,7 +13,10 @@ type Props = {
     ShowIconProps;
 
 /**
- * A badge that represents gems.
+ * A badge that represents gem rewards.
+ *
+ * `GemBadge` uses the `Badge` component and applies the appropriate styles
+ * and icon. For more details, see the `Badge` docs.
  */
 const GemBadge = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
     const {label, showIcon, iconAriaLabel, ...otherProps} = props;
