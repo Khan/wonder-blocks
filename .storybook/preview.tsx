@@ -112,7 +112,7 @@ const parameters = {
         container: DocsContainerWithTheme,
         toc: {
             // Useful for MDX pages like "Using color".
-            headingSelector: "h2, h3",
+            headingSelector: "h2, h3, h4",
             // Prevents including generic headings like "Stories" and "Usage".
             ignoreSelector:
                 ".docs-story h2, .docs-story h3, .sbdocs #stories, .sbdocs #usage, .sbdocs-subtitle",
