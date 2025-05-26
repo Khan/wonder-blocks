@@ -48,6 +48,17 @@ describe("StreakBadge", () => {
         expect(container).toBeEmptyDOMElement();
     });
 
+    it("should not render the icon if showIcon is not set", () => {
+        // Arrange
+        render(<StreakBadge label="Badge" />);
+
+        // Act
+        const iconElement = screen.queryByRole("img");
+
+        // Assert
+        expect(iconElement).not.toBeInTheDocument();
+    });
+
     describe("Accessibility", () => {
         describe("axe", () => {
             it("should not have violations", async () => {
@@ -59,6 +70,28 @@ describe("StreakBadge", () => {
                         showIcon={true}
                         iconAriaLabel="Streak"
                     />,
+                );
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+
+            it("should not have violations if there is no label", async () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <StreakBadge showIcon={true} iconAriaLabel="Streak" />,
+                );
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+
+            it("should not have violations if there is no label", async () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <StreakBadge showIcon={false} iconAriaLabel="Streak" />,
                 );
 
                 // Assert
