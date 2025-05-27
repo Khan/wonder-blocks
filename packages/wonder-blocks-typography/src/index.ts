@@ -43,7 +43,7 @@ export type BodyComponents =
 /**
  * Typography components for labels.
  */
-export type LabelComponents =
+export type Label =
     | typeof LabelLarge
     | typeof LabelMedium
     | typeof LabelSmall
@@ -55,7 +55,7 @@ export type LabelComponents =
 export type Typography =
     | HeadingComponents
     | BodyComponents
-    | LabelComponents
+    | Label
     | typeof Tagline
     | typeof Caption
     | typeof Footnote;

@@ -43,7 +43,8 @@ export const font = {
     },
     weight: {
         light: fontWeight.light,
-        medium: fontWeight.regular, // called medium to support theming across fonts
+        regular: fontWeight.regular, // WB-1964: remove regular at a later date
+        medium: fontWeight.regular, //  Lato has regular, Jakarta has medium
         semi: fontWeight.regular, // is no semi in Lato, so this is a fallback
         bold: fontWeight.bold,
         black: fontWeight.black,
