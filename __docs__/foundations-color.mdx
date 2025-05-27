@@ -265,6 +265,55 @@ For all type to ensure contrast for legibility. Inverse text applies for dark
 backgrounds in light mode.
 
 <Banner
+    kind="warning"
+    layout="full-width"
+    text="These text tokens are deprecated and will be removed in the future. Please use the semanticColor.core.foreground tokens for text instead."
+/>
+
+<ColorGroup colors={semanticColor.text} group="text" />
+
+### Core
+
+Core colors are used for the most common elements in the UI. These colors are
+used for backgrounds, borders, and text. They are the foundation of our color
+system and are used to create a consistent look and feel across the product.
+
+#### Border
+
+Borders define structure for elements. Generally borders for component elements
+would use `core.border.neutral.subtle`, `core.border.neutral.default` for when
+3:1 contrast is a priority (ex. form elements) and `core.border.neutral.strong`
+for 4.5:1 contrast.
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.core.border}
+        group="core.border"
+        includeExample={false}
+    />
+</View>
+
+#### Background
+
+Background colors are used to define the background of elements. This includes
+the background of components like buttons, banners, and other elements that
+require a background color.
+
+<View style={styles.gridCompact}>
+    <ActionColorGroup
+        category={semanticColor.core.background}
+        group="core.background"
+        includeExample={false}
+    />
+</View>
+
+#### Foreground
+
+Foreground colors are used to define the foreground of elements. This includes
+the text and icons that are displayed on top of the background color. This is
+important for ensuring that the text and icons are legible and accessible.
+
+<Banner
     kind="success"
     layout="full-width"
     text="Make sure to use these colors consistently to ensure readability and accessibility. This includes checking contrast ratios for text and background colors."
@@ -283,21 +332,10 @@ backgrounds in light mode.
     ]}
 />
 
-<ColorGroup colors={semanticColor.text} group="text" />
-
-### Core
-
-#### Border
-
-Borders define structure for elements. Generally borders for component elements
-would use `core.border.neutral.subtle`, `core.border.neutral.default` for when
-3:1 contrast is a priority (ex. form elements) and `core.border.neutral.strong`
-for 4.5:1 contrast.
-
 <View style={styles.gridCompact}>
     <ActionColorGroup
-        category={semanticColor.core.border}
-        group="border"
+        category={semanticColor.core.foreground}
+        group="core.foreground"
         includeExample={false}
     />
 </View>

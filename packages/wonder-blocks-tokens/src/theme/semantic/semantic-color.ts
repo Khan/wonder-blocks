@@ -41,6 +41,79 @@ const core = {
             strong: color.white,
         },
     },
+    background: {
+        instructive: {
+            subtle: color.fadedBlue8,
+            default: color.blue,
+            strong: color.activeBlue,
+        },
+        neutral: {
+            subtle: color.fadedOffBlack8,
+            default: color.fadedOffBlack72,
+            strong: color.offBlack,
+        },
+        critical: {
+            subtle: color.fadedRed8,
+            default: color.red,
+            strong: color.activeRed,
+        },
+        success: {
+            subtle: color.fadedGreen8,
+            default: color.green,
+            strong: color.activeGreen,
+        },
+        warning: {
+            subtle: color.fadedGold8,
+            default: color.fadedGold24,
+            strong: color.gold,
+        },
+        disabled: {
+            subtle: transparent,
+            default: color.fadedOffBlack8,
+            strong: color.fadedOffBlack16,
+        },
+    },
+
+    /**
+     * Used for text and icons.
+     */
+    foreground: {
+        instructive: {
+            subtle: color.blue,
+            default: color.activeBlue,
+            strong: color.offBlack,
+        },
+        neutral: {
+            subtle: color.fadedOffBlack64,
+            default: color.fadedOffBlack72,
+            strong: color.offBlack,
+        },
+        critical: {
+            subtle: color.red,
+            default: color.activeRed,
+            strong: color.offBlack,
+        },
+        success: {
+            subtle: color.green,
+            default: color.activeGreen,
+            strong: color.offBlack,
+        },
+        warning: {
+            subtle: color.gold,
+            default: color.activeGold,
+            strong: color.offBlack,
+        },
+        disabled: {
+            subtle: color.fadedOffBlack16,
+            default: color.fadedOffBlack32,
+            strong: color.fadedOffBlack50,
+        },
+        inverse: {
+            subtle: color.fadedOffBlack32,
+            default: color.offWhite,
+            strong: color.white,
+        },
+    },
 };
 
 /**
@@ -64,11 +137,15 @@ const surface = {
     overlay: color.offBlack64,
 };
 
+/**
+ * TODO(WB-1941): Remove text once we have migrated to the new core.foreground
+ * tokens.
+ */
 const text = {
-    primary: color.offBlack,
-    secondary: color.fadedOffBlack72,
-    disabled: color.fadedOffBlack32,
-    inverse: color.white,
+    primary: core.foreground.neutral.strong,
+    secondary: core.foreground.neutral.default,
+    disabled: core.foreground.inverse.subtle,
+    inverse: core.foreground.inverse.strong,
 };
 
 export const semanticColor = {
@@ -87,60 +164,60 @@ export const semanticColor = {
             progressive: {
                 default: {
                     border: core.transparent,
-                    background: color.blue,
-                    foreground: text.inverse,
+                    background: core.background.instructive.default,
+                    foreground: core.foreground.inverse.strong,
                 },
                 hover: {
                     border: core.border.instructive.default,
-                    background: color.blue,
-                    foreground: text.inverse,
+                    background: core.background.instructive.default,
+                    foreground: core.foreground.inverse.strong,
                 },
                 press: {
                     border: core.border.instructive.strong,
-                    background: color.activeBlue,
-                    foreground: text.inverse,
+                    background: core.background.instructive.strong,
+                    foreground: core.foreground.inverse.strong,
                 },
             },
             destructive: {
                 default: {
                     border: core.transparent,
-                    background: color.red,
-                    foreground: text.inverse,
+                    background: core.background.critical.default,
+                    foreground: core.foreground.inverse.strong,
                 },
                 hover: {
                     border: core.border.critical.default,
-                    background: color.red,
-                    foreground: text.inverse,
+                    background: core.background.critical.default,
+                    foreground: core.foreground.inverse.strong,
                 },
                 press: {
                     border: core.border.critical.strong,
-                    background: color.activeRed,
-                    foreground: text.inverse,
+                    background: core.background.critical.strong,
+                    foreground: core.foreground.inverse.strong,
                 },
             },
 
             neutral: {
                 default: {
                     border: core.transparent,
-                    background: color.fadedOffBlack72,
-                    foreground: text.inverse,
+                    background: core.background.neutral.default,
+                    foreground: core.foreground.inverse.strong,
                 },
                 hover: {
                     border: core.border.neutral.default,
-                    background: color.fadedOffBlack72,
-                    foreground: text.inverse,
+                    background: core.background.neutral.default,
+                    foreground: core.foreground.inverse.strong,
                 },
                 press: {
                     border: core.border.neutral.strong,
-                    background: color.offBlack,
-                    foreground: text.inverse,
+                    background: core.background.neutral.strong,
+                    foreground: core.foreground.inverse.strong,
                 },
             },
 
             disabled: {
                 border: core.border.disabled.strong,
-                background: color.fadedOffBlack32,
-                foreground: color.offWhite,
+                background: core.border.disabled.strong,
+                foreground: core.foreground.inverse.default,
             },
         },
 
@@ -148,59 +225,59 @@ export const semanticColor = {
             progressive: {
                 default: {
                     border: core.border.neutral.default,
-                    background: "transparent",
-                    foreground: color.blue,
+                    background: core.transparent,
+                    foreground: core.foreground.instructive.subtle,
                 },
                 hover: {
                     border: core.border.instructive.default,
-                    background: "transparent",
-                    foreground: color.blue,
+                    background: core.transparent,
+                    foreground: core.foreground.instructive.subtle,
                 },
                 press: {
                     border: core.border.instructive.strong,
-                    background: color.fadedBlue,
-                    foreground: color.activeBlue,
+                    background: core.background.instructive.subtle,
+                    foreground: core.foreground.instructive.default,
                 },
             },
             destructive: {
                 default: {
                     border: core.border.neutral.default,
-                    background: "transparent",
-                    foreground: color.red,
+                    background: core.transparent,
+                    foreground: core.foreground.critical.subtle,
                 },
                 hover: {
                     border: core.border.critical.default,
-                    background: "transparent",
-                    foreground: color.red,
+                    background: core.transparent,
+                    foreground: core.foreground.critical.subtle,
                 },
                 press: {
                     border: core.border.critical.strong,
-                    background: color.fadedRed,
-                    foreground: color.activeRed,
+                    background: core.background.critical.subtle,
+                    foreground: core.foreground.critical.default,
                 },
             },
             neutral: {
                 default: {
                     border: core.border.neutral.default,
-                    background: "transparent",
-                    foreground: text.secondary,
+                    background: core.transparent,
+                    foreground: core.foreground.neutral.default,
                 },
                 hover: {
                     border: core.border.neutral.default,
-                    background: "transparent",
-                    foreground: text.secondary,
+                    background: core.transparent,
+                    foreground: core.foreground.neutral.default,
                 },
                 press: {
                     border: core.border.neutral.strong,
-                    background: color.offBlack16,
-                    foreground: text.primary,
+                    background: core.background.neutral.subtle,
+                    foreground: core.foreground.neutral.strong,
                 },
             },
 
             disabled: {
                 border: core.border.disabled.strong,
-                background: "transparent",
-                foreground: text.disabled,
+                background: core.background.disabled.subtle,
+                foreground: core.foreground.disabled.default,
             },
         },
 
@@ -208,60 +285,60 @@ export const semanticColor = {
             progressive: {
                 default: {
                     border: core.transparent,
-                    background: "transparent",
-                    foreground: color.blue,
+                    background: core.transparent,
+                    foreground: core.foreground.instructive.subtle,
                 },
                 hover: {
                     border: core.border.instructive.default,
-                    background: "transparent",
-                    foreground: color.blue,
+                    background: core.transparent,
+                    foreground: core.foreground.instructive.subtle,
                 },
                 press: {
                     border: core.border.instructive.strong,
-                    background: "transparent",
-                    foreground: color.activeBlue,
+                    background: core.transparent,
+                    foreground: core.foreground.instructive.default,
                 },
             },
 
             destructive: {
                 default: {
                     border: core.transparent,
-                    background: "transparent",
-                    foreground: color.red,
+                    background: core.transparent,
+                    foreground: core.foreground.critical.subtle,
                 },
                 hover: {
                     border: core.border.critical.default,
-                    background: "transparent",
-                    foreground: color.red,
+                    background: core.transparent,
+                    foreground: core.foreground.critical.subtle,
                 },
                 press: {
                     border: core.border.critical.strong,
-                    background: "transparent",
-                    foreground: color.activeRed,
+                    background: core.transparent,
+                    foreground: core.foreground.critical.default,
                 },
             },
             neutral: {
                 default: {
                     border: core.transparent,
-                    background: "transparent",
-                    foreground: text.secondary,
+                    background: core.transparent,
+                    foreground: core.foreground.neutral.default,
                 },
                 hover: {
                     border: core.border.neutral.default,
-                    background: "transparent",
-                    foreground: text.secondary,
+                    background: core.transparent,
+                    foreground: core.foreground.neutral.default,
                 },
                 press: {
                     border: core.border.neutral.strong,
-                    background: "transparent",
-                    foreground: text.primary,
+                    background: core.transparent,
+                    foreground: core.foreground.neutral.strong,
                 },
             },
 
             disabled: {
                 border: core.border.disabled.default,
-                background: "transparent",
-                foreground: text.disabled,
+                background: core.background.disabled.subtle,
+                foreground: core.foreground.disabled.default,
             },
         },
     },
@@ -272,24 +349,24 @@ export const semanticColor = {
         default: {
             border: core.border.neutral.default,
             background: surface.primary,
-            foreground: text.primary,
-            placeholder: text.secondary,
+            foreground: core.foreground.neutral.strong,
+            placeholder: core.foreground.neutral.default,
         },
         checked: {
             border: core.border.instructive.default,
-            background: color.blue,
-            foreground: text.inverse,
+            background: core.background.instructive.default,
+            foreground: core.foreground.inverse.strong,
         },
         disabled: {
             border: core.border.disabled.default,
             background: color.offWhite,
-            foreground: text.secondary,
-            placeholder: text.secondary,
+            foreground: core.foreground.neutral.default,
+            placeholder: core.foreground.neutral.default,
         },
         error: {
             border: core.border.critical.default,
-            background: color.fadedRed8,
-            foreground: text.primary,
+            background: core.background.critical.subtle,
+            foreground: core.foreground.neutral.strong,
         },
     },
     /**
@@ -298,24 +375,24 @@ export const semanticColor = {
      */
     status: {
         critical: {
-            background: color.fadedRed8,
-            foreground: color.red,
+            background: core.background.critical.subtle,
+            foreground: core.foreground.critical.subtle,
         },
         warning: {
-            background: color.fadedGold8,
-            foreground: color.gold,
+            background: core.background.warning.subtle,
+            foreground: core.foreground.warning.subtle,
         },
         success: {
-            background: color.fadedGreen8,
-            foreground: color.green,
+            background: core.background.success.subtle,
+            foreground: core.foreground.success.subtle,
         },
         notice: {
-            background: color.fadedBlue8,
-            foreground: color.blue,
+            background: core.background.instructive.subtle,
+            foreground: core.foreground.instructive.subtle,
         },
         neutral: {
-            background: color.fadedOffBlack8,
-            foreground: text.primary,
+            background: core.background.neutral.subtle,
+            foreground: core.foreground.neutral.strong,
         },
     },
     /**
