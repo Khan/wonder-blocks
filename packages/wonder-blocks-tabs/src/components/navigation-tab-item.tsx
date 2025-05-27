@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
             textDecoration: "none",
             border: "none",
             outline: "none",
-            color: semanticColor.link.rest,
+            color: semanticColor.link.hover,
             backgroundColor: "transparent",
         },
         // NOTE: We use :not[aria-disabled] to avoid the hover styles to be
