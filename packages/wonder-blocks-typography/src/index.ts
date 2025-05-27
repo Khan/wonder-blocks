@@ -1,12 +1,12 @@
 import styles from "./util/styles";
 
 import Title from "./components/title";
-import HeadingComponent from "./components/heading";
+import Heading from "./components/heading";
 import HeadingLarge from "./components/heading-large";
 import HeadingMedium from "./components/heading-medium";
 import HeadingSmall from "./components/heading-small";
 import HeadingXSmall from "./components/heading-xsmall";
-import BodyTextComponent from "./components/body-text";
+import BodyText from "./components/body-text";
 import BodySerifBlock from "./components/body-serif-block";
 import BodySerif from "./components/body-serif";
 import BodyMonospace from "./components/body-monospace";
@@ -22,9 +22,9 @@ import Footnote from "./components/footnote";
 /**
  * Typography components for headings or titles.
  */
-export type Heading =
+export type HeadingComponents =
     | typeof Title
-    | typeof HeadingComponent
+    | typeof Heading
     | typeof HeadingLarge
     | typeof HeadingMedium
     | typeof HeadingSmall
@@ -33,9 +33,9 @@ export type Heading =
 /**
  * Typography components for representing body text.
  */
-export type BodyText =
+export type BodyComponents =
     | typeof Body
-    | typeof BodyTextComponent
+    | typeof BodyText
     | typeof BodySerif
     | typeof BodySerifBlock
     | typeof BodyMonospace;
@@ -53,8 +53,8 @@ export type Label =
  * All typography components.
  */
 export type Typography =
-    | Heading
-    | BodyText
+    | HeadingComponents
+    | BodyComponents
     | Label
     | typeof Tagline
     | typeof Caption
@@ -62,12 +62,12 @@ export type Typography =
 
 export {
     Title,
-    HeadingComponent as Heading,
+    Heading,
     HeadingLarge,
     HeadingMedium,
     HeadingSmall,
     HeadingXSmall,
-    BodyTextComponent as BodyText,
+    BodyText,
     BodySerifBlock,
     BodySerif,
     BodyMonospace,
