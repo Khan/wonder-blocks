@@ -417,19 +417,19 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 primary: {
                     rest: core.shadow.chonky.progressive.default,
                     hover: core.shadow.chonky.progressive.default,
-                    press: core.shadow.transparent,
+                    press: core.shadow.chonky.progressive.default,
                     selected: core.shadow.chonky.progressive.default,
                 },
                 secondary: {
                     rest: core.shadow.chonky.progressive.subtle,
                     hover: core.shadow.chonky.progressive.subtle,
-                    press: core.shadow.transparent,
+                    press: core.shadow.chonky.progressive.subtle,
                     selected: core.shadow.chonky.progressive.subtle,
                 },
                 tertiary: {
                     rest: core.shadow.transparent,
                     hover: core.shadow.chonky.neutral.subtle,
-                    press: core.shadow.transparent,
+                    press: core.shadow.chonky.neutral.subtle,
                     selected: core.shadow.chonky.progressive.subtle,
                 },
             },
@@ -499,13 +499,13 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 primary: {
                     rest: core.shadow.chonky.neutral.strong,
                     hover: core.shadow.chonky.neutral.strong,
-                    press: core.shadow.transparent,
+                    press: core.shadow.chonky.neutral.strong,
                     selected: core.shadow.chonky.neutral.strong,
                 },
                 secondary: {
                     rest: core.shadow.chonky.neutral.subtle,
                     hover: core.shadow.chonky.neutral.subtle,
-                    press: core.shadow.chonky.neutral.strong,
+                    press: core.shadow.chonky.neutral.subtle,
                     selected: core.shadow.chonky.neutral.subtle,
                 },
                 tertiary: {
