@@ -59,7 +59,7 @@ const theme = mergeTheme(defaultTheme, {
         },
         font: {
             weight: {
-                default: font.weight.medium,
+                default: font.weight.regular,
             },
         },
     },
