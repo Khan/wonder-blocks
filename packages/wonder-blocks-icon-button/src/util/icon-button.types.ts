@@ -3,8 +3,6 @@ import {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
 import {Link} from "react-router-dom-v5-compat";
 
-export type ActivityIconButtonKind = "primary" | "secondary";
-
 export type IconButtonKind = "primary" | "secondary" | "tertiary";
 
 export type IconButtonSize = "xsmall" | "small" | "medium" | "large";

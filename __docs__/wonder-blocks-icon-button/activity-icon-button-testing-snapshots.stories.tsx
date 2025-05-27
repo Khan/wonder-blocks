@@ -36,6 +36,7 @@ type StoryComponentType = StoryObj<typeof ActivityIconButton>;
 const kinds = [
     {name: "Primary", props: {kind: "primary"}},
     {name: "Secondary", props: {kind: "secondary"}},
+    {name: "Tertiary", props: {kind: "tertiary"}},
 ];
 
 const actionTypes = [

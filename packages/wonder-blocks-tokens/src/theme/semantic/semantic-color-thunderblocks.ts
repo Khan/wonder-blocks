@@ -489,10 +489,10 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                     selected: core.foreground.neutral.subtle,
                 },
                 tertiary: {
-                    rest: core.foreground.inverse.default,
-                    hover: core.foreground.inverse.default,
-                    press: core.foreground.inverse.default,
-                    selected: core.foreground.inverse.default,
+                    rest: core.foreground.neutral.default,
+                    hover: core.foreground.neutral.default,
+                    press: core.foreground.neutral.default,
+                    selected: core.foreground.neutral.default,
                 },
             },
             shadow: {

@@ -124,7 +124,7 @@ const core = {
             neutral: {
                 subtle: color.fadedOffBlack32,
                 default: color.fadedOffBlack50,
-                strong: color.fadedOffBlack72,
+                strong: color.offBlack,
             },
         },
     },
@@ -396,9 +396,9 @@ export const semanticColor = {
                 },
                 tertiary: {
                     rest: core.transparent,
-                    hover: core.transparent,
-                    press: core.transparent,
-                    selected: core.transparent,
+                    hover: core.border.neutral.subtle,
+                    press: core.border.neutral.subtle,
+                    selected: core.border.instructive.subtle,
                 },
             },
             foreground: {
@@ -497,10 +497,10 @@ export const semanticColor = {
                     selected: core.foreground.neutral.subtle,
                 },
                 tertiary: {
-                    rest: core.foreground.inverse.default,
-                    hover: core.foreground.inverse.default,
-                    press: core.foreground.inverse.default,
-                    selected: core.foreground.inverse.default,
+                    rest: core.foreground.neutral.default,
+                    hover: core.foreground.neutral.default,
+                    press: core.foreground.neutral.default,
+                    selected: core.foreground.neutral.default,
                 },
             },
             shadow: {

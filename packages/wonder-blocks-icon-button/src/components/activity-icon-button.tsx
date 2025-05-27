@@ -2,66 +2,20 @@ import * as React from "react";
 import {CSSProperties, StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom-v5-compat";
 
+import {View} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
-
-import {View} from "@khanacademy/wonder-blocks-core";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 import type {
     ActivityIconButtonActionType,
-    ActivityIconButtonKind,
+    IconButtonKind,
     IconButtonProps,
-    IconButtonSize,
 } from "../util/icon-button.types";
 
-import iconButtonTheme from "../theme/index";
 import {IconButtonUnstyled} from "./icon-button-unstyled";
 
-const theme = iconButtonTheme.activity;
-
-/**
- * Returns the phosphor icon component based on the size. This is necessary
- * so we can cast the icon to the correct type.
- */
-function IconChooser({
-    icon,
-    size,
-}: {
-    icon: IconButtonProps["icon"];
-    size: IconButtonSize;
-}) {
-    // We set the icon size based on the theme object. This is necessary
-    // because the icon size could change based on the theme.
-    const iconStyle = {
-        width: theme.icon.sizing[size],
-        height: theme.icon.sizing[size],
-    };
-
-    switch (size) {
-        case "small":
-            return (
-                <PhosphorIcon
-                    size="small"
-                    color="currentColor"
-                    icon={icon as PhosphorBold | PhosphorFill}
-                    style={iconStyle}
-                />
-            );
-        case "medium":
-        default:
-            return (
-                <PhosphorIcon
-                    size="medium"
-                    color="currentColor"
-                    icon={icon as PhosphorRegular | PhosphorFill}
-                    style={iconStyle}
-                />
-            );
-    }
-}
-
-type Props = Omit<IconButtonProps, "actionType" | "kind"> & {
+type Props = Omit<IconButtonProps, "actionType" | "size"> & {
     /**
      * The action type of the button. This determines the visual style of the
      * button.
@@ -70,11 +24,6 @@ type Props = Omit<IconButtonProps, "actionType" | "kind"> & {
      * - `neutral` is used for buttons that indicate a neutral action.
      */
     actionType?: ActivityIconButtonActionType;
-
-    /**
-     * The `kind` (hierarchy) of the activity icon button.
-     */
-    kind?: ActivityIconButtonKind;
 };
 
 /**
@@ -103,7 +52,6 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
         disabled = false,
         icon,
         kind = "primary",
-        size = "medium",
         style,
         type = "button",
         ...restProps
@@ -111,19 +59,19 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
 
     const [pressed, setPressed] = React.useState(false);
 
-    const buttonStyles = _generateStyles(actionType, !!disabled, kind, size);
+    const buttonStyles = _generateStyles(actionType, !!disabled, kind);
 
     const styles = [
-        buttonStyles.default,
+        buttonStyles.button,
         disabled && buttonStyles.disabled,
-        pressed && buttonStyles.pressed,
+        !disabled && pressed && buttonStyles.pressed,
         style,
     ];
 
     const chonkyStyles = [
         buttonStyles.chonky,
         disabled && buttonStyles.chonkyDisabled,
-        pressed && buttonStyles.chonkyPressed,
+        !disabled && pressed && buttonStyles.chonkyPressed,
     ];
 
     const handlePress = React.useCallback((isPressing: boolean) => {
@@ -139,26 +87,74 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
             style={styles}
             type={type}
         >
+            {/* NOTE: Using a regular className to be able to use descendant selectors to account for the hover and press states */}
             <View style={chonkyStyles} className="chonky">
-                <IconChooser size={size} icon={icon} />
+                <PhosphorIcon size="medium" color="currentColor" icon={icon} />
             </View>
         </IconButtonUnstyled>
     );
 });
+
+// NOTE: Theme is defined in the file directly to avoid generating CSS variables
+// as we are reusing the following tokens in all themes.
+const theme = {
+    root: {
+        border: {
+            width: {
+                primary: {
+                    rest: border.width.none,
+                    hover: border.width.none,
+                    press: border.width.none,
+                },
+                secondary: {
+                    rest: border.width.thin,
+                    hover: border.width.thin,
+                    press: border.width.thin,
+                },
+                tertiary: {
+                    rest: border.width.thin,
+                    hover: border.width.thin,
+                    press: border.width.thin,
+                },
+            },
+            radius: border.radius.radius_120,
+        },
+        layout: {
+            padding: {
+                block: sizing.size_140,
+                inline: sizing.size_200,
+            },
+        },
+        shadow: {
+            default: {
+                x: sizing.size_0,
+                y: sizing.size_060,
+                blur: sizing.size_0,
+                spread: sizing.size_0,
+            },
+            hover: {
+                y: sizing.size_080,
+            },
+            press: {
+                y: sizing.size_0,
+            },
+        },
+    },
+};
 
 const styles: Record<string, any> = {};
 
 const _generateStyles = (
     actionType: ActivityIconButtonActionType = "progressive",
     disabled: boolean,
-    kind: ActivityIconButtonKind,
-    size: IconButtonSize,
+    kind: IconButtonKind,
 ) => {
-    const buttonType = `${actionType}-d_${disabled}-${kind}-${size}`;
+    const buttonType = `${actionType}-d_${disabled}-${kind}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
+    const borderWidthKind = theme.root.border.width[kind];
     const themeVariant = semanticColor.chonky[actionType];
     const disabledState = semanticColor.chonky.disabled;
 
@@ -174,21 +170,26 @@ const _generateStyles = (
     };
 
     const chonkyPressed = {
+        // theming
         background: themeVariant.background[kind].press,
+        border: `${borderWidthKind.press} solid ${themeVariant.border[kind].press}`,
+        boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.press.y} ${theme.root.shadow.default.blur} ${themeVariant.shadow[kind].press}`,
         color: themeVariant.foreground[kind].press,
-        // Animation
-        boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.press.y} ${theme.root.shadow.default.blur} ${themeVariant.shadow[kind].rest}`,
-        transition: "all 0.15s cubic-bezier(.4,0,.2,1)",
+        // motion
         transform: `translateY(${theme.root.shadow.default.y})`,
     };
 
     const newStyles: Record<string, CSSProperties> = {
-        default: {
-            borderRadius: theme.root.border.radius,
+        button: {
+            // theming
             color: themeVariant.foreground[kind].rest,
-            flexDirection: "column",
+            // layout
+            borderRadius: theme.root.border.radius,
             paddingBlockEnd: theme.root.shadow.default.y,
-            transition: "all 0.15s ease-in-out",
+            flexDirection: "column",
+            // Prevent the button from stretching to fill the parent
+            alignSelf: "center",
+            justifySelf: "center",
             /**
              * States
              *
@@ -199,22 +200,12 @@ const _generateStyles = (
              */
             ":hover": {
                 color: themeVariant.foreground[kind].hover,
-                transition: "all 0.15s ease-in-out",
             },
             [":is(:hover) .chonky" as any]: {
                 background: themeVariant.background[kind].hover,
-                transition: "all 0.15s ease-in-out",
+                border: `${borderWidthKind.hover} solid ${themeVariant.border[kind].hover}`,
                 transform: `translateY(calc((${theme.root.shadow.hover.y} - ${theme.root.shadow.default.y}) * -1))`,
-                boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.hover.y} ${theme.root.shadow.default.blur} ${themeVariant.shadow[kind].rest}`,
-            },
-
-            // Allow hover styles on non-touch devices only. This prevents an
-            // issue with hover being sticky on touch devices (e.g. mobile).
-            ["@media not (hover: hover)" as any]: {
-                ":hover": {
-                    // reset hover styles on non-touch devices
-                    backgroundColor: "transparent",
-                },
+                boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.hover.y} ${theme.root.shadow.default.blur} ${themeVariant.shadow[kind].hover}`,
             },
 
             [":is(:active) .chonky" as any]: chonkyPressed,
@@ -225,37 +216,40 @@ const _generateStyles = (
         disabled: {
             cursor: "not-allowed",
             ...disabledStatesStyles,
-            // NOTE: Even that browsers recommend to specify pseudo-classes in
-            // this order: link, visited, focus, hover, active, we need to
-            // specify focus after hover to override hover styles. By doing this
-            // we are able to reset the border/outline styles to the default
-            // ones (rest state).
-            // For order reference: https://css-tricks.com/snippets/css/link-pseudo-classes-in-order/
+            // Reset hover and active styles on disabled buttons.
             ":hover": disabledStatesStyles,
-            [":is(:hover) .chonky" as any]: chonkyDisabled,
             ":active": disabledStatesStyles,
-            [":is(:active) .chonky" as any]: chonkyDisabled,
             ":focus-visible": {
                 transform: "none",
             },
+            // Reset hover and active styles on the chonky element.
+            [":is(:hover) .chonky" as any]: disabledStatesStyles,
+            [":is(:hover) .chonky" as any]: chonkyDisabled,
+            [":is(:active) .chonky" as any]: chonkyDisabled,
         },
         // Enable keyboard support for press styles.
         pressed: {
             [".chonky" as any]: chonkyPressed,
         },
 
-        // Adds the "chonky" look and feel to the button.
         chonky: {
             // layout
             borderRadius: theme.root.border.radius,
             paddingBlock: theme.root.layout.padding.block,
             paddingInline: theme.root.layout.padding.inline,
             // theming
-            borderStyle: "solid",
-            borderWidth: theme.root.border.width[kind],
-            borderColor: themeVariant.border[kind].rest,
             background: themeVariant.background[kind].rest,
+            borderStyle: "solid",
+            borderWidth: theme.root.border.width[kind].rest,
+            borderColor: themeVariant.border[kind].rest,
+            // Gives the button a "chonky" look and feel.
             boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.default.y} ${theme.root.shadow.default.blur} ${themeVariant.shadow[kind].rest}`,
+            // motion
+            transition: "all 0.15s cubic-bezier(.4,0,.2,1)",
+
+            ["@media not (hover: hover)" as any]: {
+                transition: "none",
+            },
         },
         chonkyPressed,
         chonkyDisabled,

@@ -61,7 +61,7 @@ export const Default: StoryComponentType = {
 };
 
 /**
- * In this example, we have `primary`, `secondary` and disabled
+ * In this example, we have `primary`, `secondary`, `tertiary` and `disabled`
  * `ActivityIconButton`s from left to right.
  */
 export const Kind: StoryComponentType = {
@@ -80,6 +80,12 @@ export const Kind: StoryComponentType = {
                     onClick={(e) => action("clicked")(e)}
                 />
                 <ActivityIconButton
+                    icon={magnifyingGlass}
+                    aria-label="search"
+                    kind="tertiary"
+                    onClick={(e) => action("clicked")(e)}
+                />
+                <ActivityIconButton
                     disabled={true}
                     icon={magnifyingGlass}
                     aria-label="search"
@@ -90,6 +96,8 @@ export const Kind: StoryComponentType = {
     },
 };
 
+const kinds = ["primary", "secondary", "tertiary"] as const;
+const actionTypes = ["progressive", "neutral"] as const;
 /**
  * ActivityIconButton has an `actionType` prop that is either `progressive` (the
  * default, as shown above) or `neutral`:
@@ -98,52 +106,33 @@ export const ActionType: StoryComponentType = {
     name: "ActionType",
     render: (args) => (
         <View style={{gap: sizing.size_160}}>
-            <View style={{gap: sizing.size_160, flexDirection: "row"}}>
-                <ActivityIconButton
-                    {...args}
-                    icon={IconMappings.arrowUpBold}
-                    onClick={() => {}}
-                    actionType="progressive"
-                />
-                <ActivityIconButton
-                    {...args}
-                    icon={IconMappings.arrowUpBold}
-                    onClick={() => {}}
-                    kind="secondary"
-                    actionType="progressive"
-                />
-                <ActivityIconButton
-                    {...args}
-                    disabled={true}
-                    icon={IconMappings.arrowUpBold}
-                    aria-label="search"
-                    onClick={(e) => action("clicked")(e)}
-                    actionType="progressive"
-                />
-            </View>
-            <View style={{gap: sizing.size_160, flexDirection: "row"}}>
-                <ActivityIconButton
-                    {...args}
-                    icon={IconMappings.arrowDownBold}
-                    onClick={() => {}}
-                    actionType="neutral"
-                />
-                <ActivityIconButton
-                    {...args}
-                    icon={IconMappings.arrowDownBold}
-                    onClick={() => {}}
-                    kind="secondary"
-                    actionType="neutral"
-                />
-                <ActivityIconButton
-                    {...args}
-                    disabled={true}
-                    icon={IconMappings.arrowDownBold}
-                    aria-label="search"
-                    onClick={(e) => action("clicked")(e)}
-                    actionType="neutral"
-                />
-            </View>
+            {actionTypes.map((actionType, index) => (
+                <View
+                    key={index}
+                    style={{gap: sizing.size_160, flexDirection: "row"}}
+                >
+                    {kinds.map((kind, index) => (
+                        <ActivityIconButton
+                            {...args}
+                            icon={IconMappings.arrowUpBold}
+                            aria-label="navigate"
+                            onClick={() => {}}
+                            actionType={actionType}
+                            kind={kind}
+                            key={`${kind}-${actionType}-${index}`}
+                        />
+                    ))}
+                    <ActivityIconButton
+                        {...args}
+                        disabled={true}
+                        icon={IconMappings.arrowUpBold}
+                        aria-label="search"
+                        onClick={(e) => action("clicked")(e)}
+                        actionType={actionType}
+                        key={`disabled-${actionType}-${index}`}
+                    />
+                </View>
+            ))}
         </View>
     ),
 };
