@@ -24,6 +24,8 @@ type Props = Omit<IconButtonProps, "actionType" | "size"> & {
      * - `neutral` is used for buttons that indicate a neutral action.
      */
     actionType?: ActivityIconButtonActionType;
+
+    selected?: boolean;
 };
 
 /**
@@ -102,9 +104,9 @@ const theme = {
         border: {
             width: {
                 primary: {
-                    rest: border.width.none,
-                    hover: border.width.none,
-                    press: border.width.none,
+                    rest: border.width.thin,
+                    hover: border.width.thin,
+                    press: border.width.thin,
                 },
                 secondary: {
                     rest: border.width.thin,
@@ -164,6 +166,8 @@ const _generateStyles = (
     };
     const chonkyDisabled = {
         background: disabledState.background[kind],
+        borderWidth: borderWidthKind.rest,
+        borderColor: disabledState.border[kind],
         color: disabledState.foreground[kind],
         boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.default.y} ${theme.root.shadow.default.blur} ${disabledState.shadow[kind]}`,
         transform: "none",

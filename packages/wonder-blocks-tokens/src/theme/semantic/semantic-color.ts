@@ -451,9 +451,9 @@ export const semanticColor = {
                     selected: core.background.neutral.default,
                 },
                 secondary: {
-                    rest: core.background.neutral.subtle,
-                    hover: core.background.neutral.subtle,
-                    press: core.background.neutral.subtle,
+                    rest: core.transparent,
+                    hover: core.transparent,
+                    press: core.transparent,
                     selected: core.background.neutral.subtle,
                 },
                 tertiary: {
@@ -531,14 +531,14 @@ export const semanticColor = {
                 tertiary: core.background.disabled.subtle,
             },
             border: {
-                primary: core.border.disabled.subtle,
-                secondary: core.border.disabled.strong,
+                primary: core.border.disabled.default,
+                secondary: core.border.disabled.default,
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
-                primary: core.foreground.inverse.strong,
-                secondary: core.foreground.neutral.subtle,
-                tertiary: core.foreground.neutral.default,
+                primary: core.foreground.neutral.subtle,
+                secondary: core.foreground.inverse.subtle,
+                tertiary: core.foreground.inverse.subtle,
             },
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,

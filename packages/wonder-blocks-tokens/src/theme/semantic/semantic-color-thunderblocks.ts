@@ -388,9 +388,9 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 },
                 tertiary: {
                     rest: core.transparent,
-                    hover: core.transparent,
-                    press: core.transparent,
-                    selected: core.transparent,
+                    hover: core.border.neutral.subtle,
+                    press: core.border.neutral.subtle,
+                    selected: core.border.instructive.subtle,
                 },
             },
             foreground: {
@@ -528,9 +528,9 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
-                primary: core.foreground.inverse.strong,
-                secondary: core.foreground.neutral.subtle,
-                tertiary: core.foreground.neutral.default,
+                primary: color.gray_50,
+                secondary: color.gray_50,
+                tertiary: color.gray_50,
             },
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,
