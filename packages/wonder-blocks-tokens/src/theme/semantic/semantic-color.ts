@@ -103,6 +103,11 @@ const core = {
             default: color.activeGold,
             strong: color.offBlack,
         },
+        disabled: {
+            subtle: color.fadedOffBlack16,
+            default: color.fadedOffBlack32,
+            strong: color.fadedOffBlack50,
+        },
         inverse: {
             subtle: color.fadedOffBlack32,
             default: color.offWhite,
@@ -272,7 +277,7 @@ export const semanticColor = {
             disabled: {
                 border: core.border.disabled.strong,
                 background: core.background.disabled.subtle,
-                foreground: core.foreground.inverse.subtle,
+                foreground: core.foreground.disabled.default,
             },
         },
 
@@ -333,7 +338,7 @@ export const semanticColor = {
             disabled: {
                 border: core.border.disabled.default,
                 background: core.background.disabled.subtle,
-                foreground: core.foreground.inverse.subtle,
+                foreground: core.foreground.disabled.default,
             },
         },
     },

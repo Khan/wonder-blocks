@@ -106,6 +106,11 @@ const core = {
             default: color.yellow_10,
             strong: color.yellow_05,
         },
+        disabled: {
+            subtle: color.gray_60,
+            default: color.gray_50,
+            strong: color.gray_40,
+        },
         inverse: {
             subtle: color.gray_60,
             default: color.gray_90,
@@ -203,7 +208,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             disabled: {
                 border: core.transparent,
                 background: core.background.disabled.strong,
-                foreground: color.gray_50,
+                foreground: core.foreground.disabled.default,
             },
         },
 
@@ -263,7 +268,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             disabled: {
                 border: core.border.disabled.strong,
                 background: core.background.disabled.default,
-                foreground: color.gray_50,
+                foreground: core.foreground.disabled.default,
             },
         },
 
@@ -324,7 +329,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             disabled: {
                 border: core.border.disabled.subtle,
                 background: core.background.disabled.subtle,
-                foreground: color.gray_50,
+                foreground: core.foreground.disabled.subtle,
             },
         },
     },
