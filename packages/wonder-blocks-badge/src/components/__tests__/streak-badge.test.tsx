@@ -30,7 +30,7 @@ describe("StreakBadge", () => {
 
     it("should not have an img role if showIcon is true and no alt text is provided", () => {
         // Arrange
-        render(<StreakBadge showIcon={true} />);
+        render(<StreakBadge showIcon={true} label="Badge" />);
 
         // Act
         const iconElement = screen.queryByRole("img");
@@ -91,7 +91,7 @@ describe("StreakBadge", () => {
                 // Arrange
                 // Act
                 const {container} = render(
-                    <StreakBadge showIcon={false} iconAriaLabel="Streak" />,
+                    <StreakBadge showIcon={false} label="Badge" />,
                 );
 
                 // Assert
