@@ -36,8 +36,8 @@ const core = {
             strong: color.fadedOffBlack32,
         },
         inverse: {
-            subtle: color.offBlack16,
-            default: color.offBlack8,
+            subtle: color.fadedOffBlack16,
+            default: color.fadedOffBlack8,
             strong: color.white,
         },
     },
@@ -64,8 +64,8 @@ const core = {
         },
         warning: {
             subtle: color.fadedGold8,
-            default: color.fadedGold24,
-            strong: color.gold,
+            default: color.gold,
+            strong: color.activeGold,
         },
         disabled: {
             subtle: transparent,
@@ -426,6 +426,12 @@ export const semanticColor = {
         action: color.blue,
         destructive: color.red,
         disabled: color.fadedOffBlack32,
+    },
+    link: {
+        rest: core.foreground.instructive.subtle,
+        hover: core.foreground.instructive.subtle,
+        press: core.foreground.instructive.default,
+        disabled: core.foreground.inverse.subtle,
     },
     /**
      * Colors to be used exclusively for Khanmigo or to communicate a
