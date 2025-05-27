@@ -36,8 +36,8 @@ const core = {
             strong: color.fadedOffBlack32,
         },
         inverse: {
-            subtle: color.fadedOffBlack16,
-            default: color.fadedOffBlack8,
+            subtle: color.offBlack16,
+            default: color.offBlack8,
             strong: color.white,
         },
     },
@@ -64,8 +64,8 @@ const core = {
         },
         warning: {
             subtle: color.fadedGold8,
-            default: color.gold,
-            strong: color.activeGold,
+            default: color.fadedGold24,
+            strong: color.gold,
         },
         disabled: {
             subtle: transparent,
