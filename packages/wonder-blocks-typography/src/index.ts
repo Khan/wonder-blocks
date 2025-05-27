@@ -22,7 +22,7 @@ import Footnote from "./components/footnote";
 /**
  * Typography components for headings or titles.
  */
-export type HeadingComponents =
+export type Heading =
     | typeof Title
     | typeof Heading
     | typeof HeadingLarge
@@ -33,7 +33,7 @@ export type HeadingComponents =
 /**
  * Typography components for representing body text.
  */
-export type BodyComponents =
+export type BodyText =
     | typeof Body
     | typeof BodyText
     | typeof BodySerif
@@ -43,7 +43,7 @@ export type BodyComponents =
 /**
  * Typography components for labels.
  */
-export type LabelComponents =
+export type Label =
     | typeof LabelLarge
     | typeof LabelMedium
     | typeof LabelSmall
@@ -53,9 +53,9 @@ export type LabelComponents =
  * All typography components.
  */
 export type Typography =
-    | HeadingComponents
-    | BodyComponents
-    | LabelComponents
+    | Heading
+    | Body
+    | Label
     | typeof Tagline
     | typeof Caption
     | typeof Footnote;
