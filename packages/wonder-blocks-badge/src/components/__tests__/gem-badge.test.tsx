@@ -30,7 +30,7 @@ describe("GemBadge", () => {
 
     it("should not have an img role if showIcon is true and no alt text is provided", () => {
         // Arrange
-        render(<GemBadge showIcon={true} />);
+        render(<GemBadge showIcon={true} label="Badge" />);
 
         // Act
         const iconElement = screen.queryByRole("img");
@@ -88,11 +88,11 @@ describe("GemBadge", () => {
             await expect(container).toHaveNoA11yViolations();
         });
 
-        it("should not have violations if there is no label", async () => {
+        it("should not have violations if there is no icon", async () => {
             // Arrange
             // Act
             const {container} = render(
-                <GemBadge showIcon={false} iconAriaLabel="Gem" />,
+                <GemBadge showIcon={false} label="Badge" />,
             );
 
             // Assert

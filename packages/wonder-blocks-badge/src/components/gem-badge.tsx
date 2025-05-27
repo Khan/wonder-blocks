@@ -4,13 +4,7 @@ import {GemIcon, Icon} from "@khanacademy/wonder-blocks-icon";
 import {Badge} from "./badge";
 import {BaseBadgeProps, ShowIconProps} from "../types";
 
-type Props = {
-    /**
-     * The alt text for the gem icon.
-     */
-    iconAriaLabel?: string;
-} & BaseBadgeProps &
-    ShowIconProps;
+type Props = BaseBadgeProps & ShowIconProps;
 
 /**
  * A badge that represents gem rewards.

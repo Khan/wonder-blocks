@@ -35,13 +35,15 @@ type IconAndLabel = {
 export type IconLabelProps = IconOnly | LabelOnly | IconAndLabel;
 
 type ShowIconOnly = {
-    showIcon: boolean;
-    label?: string;
+    showIcon: true;
+    label?: never;
+    iconAriaLabel: string;
 };
 
 type ShowIconLabelOnly = {
     showIcon?: never;
     label: string;
+    iconAriaLabel?: never;
 };
 
 type ShowIconAndLabel = {
@@ -53,6 +55,10 @@ type ShowIconAndLabel = {
      * The label to display in the badge.
      */
     label: string;
+    /**
+     * Aria label for the icon.
+     */
+    iconAriaLabel?: string;
 };
 
 export type ShowIconProps = ShowIconOnly | ShowIconLabelOnly | ShowIconAndLabel;

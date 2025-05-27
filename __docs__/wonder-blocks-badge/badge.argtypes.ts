@@ -23,6 +23,10 @@ export const showIconArgType = {
     showIcon: {
         description: "Whether to show the icon. Defaults to `false`.",
     },
+    iconAriaLabel: {
+        description:
+            "The aria label for the icon. Required if `showIcon` is `true` and there is no `label`.",
+    },
 };
 
 export default {
