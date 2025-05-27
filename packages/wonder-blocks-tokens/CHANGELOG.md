@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 10.3.0
+
+### Minor Changes
+
+- dd76e7c: - Update existing font tokens to use themes.
+    - Add font.heading and font.body tokens for size and lineHeight.
+    - Add font.weight.medium for the Thunderblocks theme with Plus Jakarta Sans.
+
+### Patch Changes
+
+- @khanacademy/wonder-blocks-theming@3.4.0
+
 ## 10.2.1
 
 ### Patch Changes
