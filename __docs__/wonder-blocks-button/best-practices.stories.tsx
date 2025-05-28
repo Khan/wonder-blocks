@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 });
 
 export default {
-    title: "Packages / Button / Best practices",
+    title: "Packages / Button / Guides / Best practices",
     component: Button,
 
     // Disables chromatic testing for these stories.

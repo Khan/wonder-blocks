@@ -10,13 +10,13 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {Link} from "react-router-dom-v5-compat";
 import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {
     ButtonActionType,
     ButtonKind,
     ButtonSize,
     ButtonProps,
+    ButtonRef,
 } from "../util/button.types";
 import {ButtonIcon} from "./button-icon";
 
@@ -26,12 +26,8 @@ import {ButtonUnstyled} from "./button-unstyled";
 type Props = ButtonProps & ChildrenProps & ClickableState;
 
 const ButtonCore: React.ForwardRefExoticComponent<
-    Props &
-        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
-> = React.forwardRef<
-    typeof Link | HTMLButtonElement | HTMLAnchorElement,
-    Props
->(function ButtonCore(props: Props, ref) {
+    Props & React.RefAttributes<ButtonRef>
+> = React.forwardRef<ButtonRef, Props>(function ButtonCore(props: Props, ref) {
     const {
         children,
         skipClientNav,

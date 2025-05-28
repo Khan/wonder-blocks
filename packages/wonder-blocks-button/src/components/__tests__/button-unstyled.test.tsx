@@ -1,5 +1,5 @@
 /**
- * Test for Wonder Blocks Button component.
+ * Test for Wonder Blocks ButtonUnstyled component.
  *
  * The test for buttons with icons are in a separate file
  * (button-with-icon.test.tsx) since this one is already too long.
@@ -10,9 +10,9 @@ import {CompatRouter, Route, Routes} from "react-router-dom-v5-compat";
 import {render, screen, waitFor} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 
-import Button from "../button";
+import {ButtonUnstyled} from "../button-unstyled";
 
-describe("Button", () => {
+describe("ButtonUnstyled", () => {
     const {location} = window;
 
     beforeAll(() => {
@@ -32,7 +32,7 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button href="/foo">Click me!</Button>
+                        <ButtonUnstyled href="/foo">Click me!</ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -58,9 +58,12 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button href="/foo" beforeNav={() => Promise.reject()}>
+                        <ButtonUnstyled
+                            href="/foo"
+                            beforeNav={() => Promise.reject()}
+                        >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -87,13 +90,13 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             beforeNav={() => Promise.reject()}
                             safeWithNav={safeWithNavMock}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -119,9 +122,12 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button href="/foo" beforeNav={() => Promise.resolve()}>
+                        <ButtonUnstyled
+                            href="/foo"
+                            beforeNav={() => Promise.resolve()}
+                        >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -151,13 +157,13 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             beforeNav={() => Promise.resolve()}
                             safeWithNav={safeWithNavMock}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -187,9 +193,12 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button href="/foo" beforeNav={() => Promise.resolve()}>
+                        <ButtonUnstyled
+                            href="/foo"
+                            beforeNav={() => Promise.resolve()}
+                        >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -217,13 +226,13 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             safeWithNav={() => Promise.resolve()}
                             skipClientNav={true}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -251,13 +260,13 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             safeWithNav={() => Promise.resolve()}
                             skipClientNav={true}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -284,14 +293,14 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             beforeNav={() => Promise.resolve()}
                             safeWithNav={() => Promise.resolve()}
                             skipClientNav={true}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -320,13 +329,13 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             safeWithNav={() => Promise.reject()}
                             skipClientNav={true}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -353,13 +362,13 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <CompatRouter>
-                    <Button
+                    <ButtonUnstyled
                         href="/foo"
                         safeWithNav={safeWithNavMock}
                         skipClientNav={false}
                     >
                         Click me!
-                    </Button>
+                    </ButtonUnstyled>
                     <Routes>
                         <Route
                             path="/foo"
@@ -387,14 +396,14 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             beforeNav={() => Promise.resolve()}
                             safeWithNav={safeWithNavMock}
                             skipClientNav={false}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -424,7 +433,9 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button href="/unknown">Click me!</Button>
+                        <ButtonUnstyled href="/unknown">
+                            Click me!
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -450,9 +461,9 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button href="/foo" skipClientNav>
+                        <ButtonUnstyled href="/foo" skipClientNav>
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -478,9 +489,9 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button href="/foo" disabled={true}>
+                        <ButtonUnstyled href="/foo" disabled={true}>
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -507,13 +518,13 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             disabled={true}
                             beforeNav={beforeNavMock}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -540,13 +551,13 @@ describe("Button", () => {
             <MemoryRouter>
                 <CompatRouter>
                     <div>
-                        <Button
+                        <ButtonUnstyled
                             href="/foo"
                             disabled={true}
                             safeWithNav={safeWithNavMock}
                         >
                             Click me!
-                        </Button>
+                        </ButtonUnstyled>
                         <Routes>
                             <Route
                                 path="/foo"
@@ -571,9 +582,9 @@ describe("Button", () => {
 
         // Act
         render(
-            <Button id="foo" onClick={() => {}}>
+            <ButtonUnstyled id="foo" onClick={() => {}}>
                 Click me!
-            </Button>,
+            </ButtonUnstyled>,
         );
 
         // Assert
@@ -585,9 +596,9 @@ describe("Button", () => {
 
         // Act
         render(
-            <Button id="foo" href="/bar">
+            <ButtonUnstyled id="foo" href="/bar">
                 Click me!
-            </Button>,
+            </ButtonUnstyled>,
         );
 
         // Assert
@@ -604,7 +615,9 @@ describe("Button", () => {
                 <MemoryRouter>
                     <CompatRouter>
                         <div>
-                            <Button href="/foo">Click me!</Button>
+                            <ButtonUnstyled href="/foo">
+                                Click me!
+                            </ButtonUnstyled>
                             <Routes>
                                 <Route
                                     path="/foo"
@@ -632,7 +645,9 @@ describe("Button", () => {
                 <MemoryRouter>
                     <CompatRouter>
                         <div>
-                            <Button href="/foo">Click me!</Button>
+                            <ButtonUnstyled href="/foo">
+                                Click me!
+                            </ButtonUnstyled>
                             <Routes>
                                 <Route
                                     path="/foo"
@@ -660,12 +675,12 @@ describe("Button", () => {
                 <MemoryRouter>
                     <CompatRouter>
                         <div>
-                            <Button
+                            <ButtonUnstyled
                                 href="/foo"
                                 beforeNav={() => Promise.reject()}
                             >
                                 Click me!
-                            </Button>
+                            </ButtonUnstyled>
                             <Routes>
                                 <Route
                                     path="/foo"
@@ -691,12 +706,12 @@ describe("Button", () => {
                 <MemoryRouter>
                     <CompatRouter>
                         <div>
-                            <Button
+                            <ButtonUnstyled
                                 href="/foo"
                                 beforeNav={() => Promise.resolve()}
                             >
                                 Click me!
-                            </Button>
+                            </ButtonUnstyled>
                             <Routes>
                                 <Route
                                     path="/foo"
@@ -727,13 +742,13 @@ describe("Button", () => {
                 <MemoryRouter>
                     <CompatRouter>
                         <div>
-                            <Button
+                            <ButtonUnstyled
                                 href="/foo"
                                 safeWithNav={() => Promise.resolve()}
                                 skipClientNav={true}
                             >
                                 Click me!
-                            </Button>
+                            </ButtonUnstyled>
                             <Routes>
                                 <Route
                                     path="/foo"
@@ -760,13 +775,13 @@ describe("Button", () => {
                 <MemoryRouter>
                     <CompatRouter>
                         <div>
-                            <Button
+                            <ButtonUnstyled
                                 href="/foo"
                                 safeWithNav={() => Promise.reject()}
                                 skipClientNav={true}
                             >
                                 Click me!
-                            </Button>
+                            </ButtonUnstyled>
                             <Routes>
                                 <Route
                                     path="/foo"
@@ -796,13 +811,13 @@ describe("Button", () => {
                 <MemoryRouter>
                     <CompatRouter>
                         <div>
-                            <Button
+                            <ButtonUnstyled
                                 href="/foo"
                                 safeWithNav={safeWithNavMock}
                                 skipClientNav={false}
                             >
                                 Click me!
-                            </Button>
+                            </ButtonUnstyled>
                             <Routes>
                                 <Route
                                     path="/foo"
@@ -831,7 +846,11 @@ describe("Button", () => {
     describe("button focus", () => {
         test("primary button can have focus", async () => {
             // Arrange
-            render(<Button testId={"button-focus-test"}>Label</Button>);
+            render(
+                <ButtonUnstyled testId={"button-focus-test"}>
+                    Label
+                </ButtonUnstyled>,
+            );
 
             // Act
             const button = await screen.findByTestId("button-focus-test");
@@ -844,9 +863,9 @@ describe("Button", () => {
         test("primary button can have focus when disabled", async () => {
             // Arrange
             render(
-                <Button disabled={true} testId={"button-focus-test"}>
+                <ButtonUnstyled disabled={true} testId={"button-focus-test"}>
                     Label
-                </Button>,
+                </ButtonUnstyled>,
             );
 
             // Act
@@ -860,13 +879,13 @@ describe("Button", () => {
         test("tertiary button can have focus when disabled", async () => {
             // Arrange
             render(
-                <Button
+                <ButtonUnstyled
                     disabled={true}
                     testId={"button-focus-test"}
                     kind="tertiary"
                 >
                     Label
-                </Button>,
+                </ButtonUnstyled>,
             );
 
             // Act
@@ -884,7 +903,7 @@ describe("Button", () => {
             const submitFnMock = jest.fn();
             render(
                 <form onSubmit={submitFnMock}>
-                    <Button type="submit">Click me!</Button>
+                    <ButtonUnstyled type="submit">Click me!</ButtonUnstyled>
                 </form>,
             );
 
@@ -901,7 +920,7 @@ describe("Button", () => {
             const submitFnMock = jest.fn();
             render(
                 <form onSubmit={submitFnMock}>
-                    <Button type="submit">Click me!</Button>
+                    <ButtonUnstyled type="submit">Click me!</ButtonUnstyled>
                 </form>,
             );
 
@@ -915,13 +934,64 @@ describe("Button", () => {
 
         test("submit button doesn't break if it's not in a form", async () => {
             // Arrange
-            render(<Button type="submit">Click me!</Button>);
+            render(<ButtonUnstyled type="submit">Click me!</ButtonUnstyled>);
 
             // Act
             expect(async () => {
                 // Assert
                 await userEvent.click(await screen.findByRole("button"));
             }).not.toThrow();
+        });
+    });
+
+    describe("Accessibility", () => {
+        describe("axe", () => {
+            it("should not have violations", async () => {
+                // Arrange
+                // Act
+                const {container} = render(
+                    <ButtonUnstyled onClick={() => {}}>Label</ButtonUnstyled>,
+                );
+
+                // Assert
+                await expect(container).toHaveNoA11yViolations();
+            });
+        });
+
+        describe("ARIA", () => {
+            it("should set aria-disabled when the disabled prop is set", () => {
+                // Arrange
+                render(<ButtonUnstyled disabled={true}>Label</ButtonUnstyled>);
+
+                // Act
+                const iconButton = screen.getByRole("button");
+
+                // Assert
+                expect(iconButton).toHaveAttribute("aria-disabled", "true");
+            });
+
+            it("should set aria props on the root element", () => {
+                // Arrange
+                const ariaDescribedBy = "aria-describedby-value";
+                render(
+                    <ButtonUnstyled
+                        aria-describedby={ariaDescribedBy}
+                        disabled={true}
+                        onClick={() => {}}
+                    >
+                        Label
+                    </ButtonUnstyled>,
+                );
+
+                // Act
+                const button = screen.getByRole("button");
+
+                // Assert
+                expect(button).toHaveAttribute(
+                    "aria-describedby",
+                    ariaDescribedBy,
+                );
+            });
         });
     });
 });
