@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
-import {GemIcon} from "@khanacademy/wonder-blocks-icon";
+import {GemIcon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
@@ -37,7 +37,12 @@ export default {
         (Story) => (
             // Set a fixed size for the custom icons since they expand to the
             // size of its parent container.
-            <View style={{width: sizing.size_400, height: sizing.size_400}}>
+            <View
+                style={{
+                    height: sizing.size_400,
+                    width: "100%",
+                }}
+            >
                 <Story />
             </View>
         ),
@@ -48,8 +53,14 @@ type StoryComponentType = StoryObj<typeof GemIcon>;
 
 export const AllCustomIcons: StoryComponentType = {
     render: (args) => (
-        <View style={{gap: sizing.size_160}}>
+        <View
+            style={{
+                gap: sizing.size_240,
+                flexDirection: "row",
+            }}
+        >
             <GemIcon {...args} />
+            <StreakIcon {...args} />
             {/* Add other custom icons here */}
         </View>
     ),
@@ -84,5 +95,16 @@ export const Gem: StoryComponentType = {
     render: (args) => <GemIcon {...args} />,
     args: {
         "aria-label": "Gem",
+    },
+};
+
+/**
+ * Use the `StreakIcon` component to represent a streak.
+ */
+export const Streak: StoryComponentType = {
+    name: "StreakIcon",
+    render: (args) => <StreakIcon {...args} />,
+    args: {
+        "aria-label": "Streak",
     },
 };

@@ -2,7 +2,12 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import {Badge, GemBadge, StatusBadge} from "@khanacademy/wonder-blocks-badge";
+import {
+    Badge,
+    GemBadge,
+    StatusBadge,
+    StreakBadge,
+} from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {commonStates, StateSheet} from "../components/state-sheet";
@@ -125,6 +130,14 @@ export const StateSheetStory: StoryComponentType = {
                     states={[commonStates.rest]}
                 >
                     {({props}) => <GemBadge {...props} />}
+                </StateSheet>
+                <HeadingLarge>Streak Badge</HeadingLarge>
+                <StateSheet
+                    rows={rows}
+                    columns={columnsWithShowIconProp}
+                    states={[commonStates.rest]}
+                >
+                    {({props}) => <StreakBadge {...props} />}
                 </StateSheet>
             </View>
         );
