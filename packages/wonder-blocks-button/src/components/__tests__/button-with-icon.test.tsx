@@ -8,9 +8,6 @@ import {render, screen} from "@testing-library/react";
 import {userEvent} from "@testing-library/user-event";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
-import {color} from "@khanacademy/wonder-blocks-tokens";
-
 import Button from "../button";
 
 describe("button with icon", () => {
@@ -160,33 +157,6 @@ describe("button with icon", () => {
 
         // Assert
         expect(iconWrapper).toHaveStyle(`backgroundColor: transparent`);
-    });
-
-    test("Khanmigo secondary button icon has hover style", async () => {
-        // Arrange
-        render(
-            <ThemeSwitcherContext.Provider value="khanmigo">
-                <Button
-                    kind="secondary"
-                    testId={"button-icon-test"}
-                    endIcon={plus}
-                >
-                    Label
-                </Button>
-            </ThemeSwitcherContext.Provider>,
-        );
-
-        // Act
-        const button = await screen.findByTestId("button-icon-test");
-        const iconWrapper = await screen.findByTestId(
-            "button-icon-test-end-icon-wrapper",
-        );
-        await userEvent.hover(button);
-
-        // Assert
-        expect(iconWrapper).toHaveStyle(
-            `backgroundColor: ${color.fadedBlue16}`,
-        );
     });
 
     /**
