@@ -79,6 +79,17 @@ describe("Badge types", () => {
                     const badge = screen.getByLabelText(ariaLabel);
                     expect(badge).toBeInTheDocument();
                 });
+
+                it("should set the role if provided", () => {
+                    // Arrange
+                    render(<Component role="button" label="Badge label" />);
+
+                    // Act
+                    const badge = screen.getByText("Badge label");
+
+                    // Assert
+                    expect(badge).toHaveAttribute("role", "button");
+                });
             });
         });
     });
