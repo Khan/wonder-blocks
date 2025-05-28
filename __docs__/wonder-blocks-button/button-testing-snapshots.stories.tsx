@@ -21,7 +21,6 @@ export default {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
-                khanmigo: allModes.themeKhanmigo,
             },
         },
     },

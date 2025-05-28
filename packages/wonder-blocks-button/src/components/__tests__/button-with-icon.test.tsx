@@ -5,7 +5,6 @@
 
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import {userEvent} from "@testing-library/user-event";
 import plus from "@phosphor-icons/core/regular/plus.svg";
 
 import Button from "../button";
