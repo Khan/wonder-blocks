@@ -24,8 +24,6 @@ type Props = Omit<IconButtonProps, "actionType" | "size"> & {
      * - `neutral` is used for buttons that indicate a neutral action.
      */
     actionType?: ActivityIconButtonActionType;
-
-    selected?: boolean;
 };
 
 /**
@@ -169,7 +167,7 @@ const _generateStyles = (
         borderWidth: borderWidthKind.rest,
         borderColor: disabledState.border[kind],
         color: disabledState.foreground[kind],
-        boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.default.y} ${theme.root.shadow.default.blur} ${disabledState.shadow[kind]}`,
+        boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.default.y} ${theme.root.shadow.default.blur} ${theme.root.shadow.default.spread} ${disabledState.shadow[kind]}`,
         transform: "none",
     };
 
@@ -177,7 +175,7 @@ const _generateStyles = (
         // theming
         background: themeVariant.background[kind].press,
         border: `${borderWidthKind.press} solid ${themeVariant.border[kind].press}`,
-        boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.press.y} ${theme.root.shadow.default.blur} ${themeVariant.shadow[kind].press}`,
+        boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.press.y} ${theme.root.shadow.default.blur} ${theme.root.shadow.default.spread} ${themeVariant.shadow[kind].press}`,
         color: themeVariant.foreground[kind].press,
         // motion
         transform: `translateY(${theme.root.shadow.default.y})`,
@@ -188,7 +186,6 @@ const _generateStyles = (
             // theming
             color: themeVariant.foreground[kind].rest,
             // layout
-            borderRadius: theme.root.border.radius,
             paddingBlockEnd: theme.root.shadow.default.y,
             flexDirection: "column",
             // Prevent the button from stretching to fill the parent
@@ -209,7 +206,7 @@ const _generateStyles = (
                 background: themeVariant.background[kind].hover,
                 border: `${borderWidthKind.hover} solid ${themeVariant.border[kind].hover}`,
                 transform: `translateY(calc((${theme.root.shadow.hover.y} - ${theme.root.shadow.default.y}) * -1))`,
-                boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.hover.y} ${theme.root.shadow.default.blur} ${themeVariant.shadow[kind].hover}`,
+                boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.hover.y} ${theme.root.shadow.default.blur} ${theme.root.shadow.default.spread} ${themeVariant.shadow[kind].hover}`,
             },
 
             [":is(:active) .chonky" as any]: chonkyPressed,
@@ -238,16 +235,15 @@ const _generateStyles = (
 
         chonky: {
             // layout
+            backgroundClip: "border-box",
             borderRadius: theme.root.border.radius,
             paddingBlock: theme.root.layout.padding.block,
             paddingInline: theme.root.layout.padding.inline,
             // theming
             background: themeVariant.background[kind].rest,
-            borderStyle: "solid",
-            borderWidth: theme.root.border.width[kind].rest,
-            borderColor: themeVariant.border[kind].rest,
+            border: `${borderWidthKind.rest} solid ${themeVariant.border[kind].rest}`,
             // Gives the button a "chonky" look and feel.
-            boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.default.y} ${theme.root.shadow.default.blur} ${themeVariant.shadow[kind].rest}`,
+            boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.default.y} ${theme.root.shadow.default.blur} ${theme.root.shadow.default.spread} ${themeVariant.shadow[kind].rest}`,
             // motion
             transition: "all 0.15s cubic-bezier(.4,0,.2,1)",
 

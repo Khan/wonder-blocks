@@ -12,7 +12,7 @@ import {allModes} from "../../.storybook/modes";
  * ActivityIconButton component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / IconButton / Testing / ActivityIconButton - Snapshots",
+    title: "Packages / IconButton / Testing / Snapshots / ActivityIconButton",
     tags: ["!autodocs"],
     args: {
         "aria-label": "Send",
