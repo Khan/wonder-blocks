@@ -7,6 +7,7 @@ import {
     GemBadge,
     StatusBadge,
     StreakBadge,
+    DueBadge,
 } from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
@@ -138,6 +139,14 @@ export const StateSheetStory: StoryComponentType = {
                     states={[commonStates.rest]}
                 >
                     {({props}) => <StreakBadge {...props} />}
+                </StateSheet>
+                <HeadingLarge>Due Badge</HeadingLarge>
+                <StateSheet
+                    rows={rows}
+                    columns={columns}
+                    states={[commonStates.rest]}
+                >
+                    {({props}) => <DueBadge {...props} />}
                 </StateSheet>
             </View>
         );

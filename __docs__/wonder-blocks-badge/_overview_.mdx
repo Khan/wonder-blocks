@@ -3,6 +3,7 @@ import * as StatusBadgeStories from "./status-badge.stories";
 import * as BadgeStories from "./badge.stories";
 import * as GemBadgeStories from "./gem-badge.stories";
 import * as StreakBadgeStories from "./streak-badge.stories";
+import * as DueBadgeStories from "./due-badge.stories";
 
 <Meta
     title="Packages / Badge / Overview"
@@ -34,7 +35,13 @@ A badge that represents a streak.
 
 <Canvas of={StreakBadgeStories.Default} />
 
-## Custom Badges
+## DueBadge
+
+A badge that represents when something is due.
+
+<Canvas of={DueBadgeStories.Default} />
+
+## Badge (Custom Badges)
 
 For custom badges, the `Badge` component can be used directly. The styles can be
 overridden using the `styles` prop.
