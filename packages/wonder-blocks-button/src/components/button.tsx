@@ -7,7 +7,6 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 import ButtonCore from "./button-core";
-import ThemedButton from "../themes/themed-button";
 import type {ButtonProps} from "../util/button.types";
 
 /**
@@ -75,26 +74,24 @@ const Button = React.forwardRef(function Button(
             {...extraClickableProps}
         >
             {(state: ClickableState, restChildProps: ChildrenProps) => (
-                <ThemedButton>
-                    <ButtonCore
-                        {...sharedButtonCoreProps}
-                        {...state}
-                        {...restChildProps}
-                        disabled={disabled}
-                        spinner={spinner || state.waiting}
-                        actionType={actionType}
-                        kind={kind}
-                        size={size}
-                        skipClientNav={skipClientNav}
-                        href={href}
-                        target={target}
-                        type={type}
-                        tabIndex={tabIndex}
-                        ref={ref}
-                    >
-                        {children}
-                    </ButtonCore>
-                </ThemedButton>
+                <ButtonCore
+                    {...sharedButtonCoreProps}
+                    {...state}
+                    {...restChildProps}
+                    disabled={disabled}
+                    spinner={spinner || state.waiting}
+                    actionType={actionType}
+                    kind={kind}
+                    size={size}
+                    skipClientNav={skipClientNav}
+                    href={href}
+                    target={target}
+                    type={type}
+                    tabIndex={tabIndex}
+                    ref={ref}
+                >
+                    {children}
+                </ButtonCore>
             )}
         </ClickableBehavior>
     );

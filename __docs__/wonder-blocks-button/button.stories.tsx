@@ -14,18 +14,13 @@ import plus from "@phosphor-icons/core/regular/plus.svg";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {color, spacing} from "@khanacademy/wonder-blocks-tokens";
-import {
-    LabelMedium,
-    LabelLarge,
-    HeadingSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {LabelMedium, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import packageConfig from "../../packages/wonder-blocks-button/package.json";
 import ComponentInfo from "../components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
-import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
 import {LabeledField} from "@khanacademy/wonder-blocks-labeled-field";
 
 export default {
@@ -545,19 +540,10 @@ export const CustomStyles = {
     },
     render: (args: any) => (
         <View style={{gap: spacing.medium_16}}>
-            <HeadingSmall>Wonder Blocks theme (default)</HeadingSmall>
             <View style={{flexDirection: "row", gap: spacing.medium_16}}>
                 <Button {...args} kind="primary" />
                 <Button {...args} kind="secondary" />
                 <Button {...args} kind="tertiary" />
-            </View>
-            <HeadingSmall>Khanmigo theme</HeadingSmall>
-            <View style={{flexDirection: "row", gap: spacing.medium_16}}>
-                <ThemeSwitcherContext.Provider value="khanmigo">
-                    <Button {...args} kind="primary" />
-                    <Button {...args} kind="secondary" />
-                    <Button {...args} kind="tertiary" />
-                </ThemeSwitcherContext.Provider>
             </View>
         </View>
     ),
