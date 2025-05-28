@@ -472,6 +472,29 @@ describe("IconButtonUnstyled", () => {
                 // Assert
                 expect(iconButton).toHaveAttribute("aria-disabled", "true");
             });
+
+            it("should set aria props on the root element", () => {
+                // Arrange
+                const ariaDescribedBy = "aria-describedby-value";
+                render(
+                    <IconButtonUnstyled
+                        aria-describedby={ariaDescribedBy}
+                        disabled={true}
+                        onClick={() => {}}
+                    >
+                        <PhosphorIcon icon={magnifyingGlassIcon} />
+                    </IconButtonUnstyled>,
+                );
+
+                // Act
+                const button = screen.getByRole("button");
+
+                // Assert
+                expect(button).toHaveAttribute(
+                    "aria-describedby",
+                    ariaDescribedBy,
+                );
+            });
         });
     });
 });
