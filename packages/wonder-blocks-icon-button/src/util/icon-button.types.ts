@@ -1,6 +1,7 @@
 import * as React from "react";
 import {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
+import {Link} from "react-router-dom-v5-compat";
 
 export type IconButtonKind = "primary" | "secondary" | "tertiary";
 
@@ -135,3 +136,5 @@ export type IconButtonProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      */
     onMouseDown?: (e: React.MouseEvent) => void;
 };
+
+export type IconButtonRef = typeof Link | HTMLButtonElement | HTMLAnchorElement;

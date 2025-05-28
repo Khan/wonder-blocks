@@ -15,7 +15,7 @@ import {allModes} from "../../.storybook/modes";
  * IconButton component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / IconButton / Testing / IconButton - Snapshots",
+    title: "Packages / IconButton / Testing / Snapshots / IconButton",
     tags: ["!autodocs"],
     args: {
         "aria-label": "Send",
