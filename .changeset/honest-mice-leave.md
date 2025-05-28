@@ -3,4 +3,4 @@
 "@khanacademy/wonder-blocks-tokens": minor
 ---
 
-Add `chonky` category and ActivityIconButton component
+Adds `chonky` category and `ActivityIconButton` component.

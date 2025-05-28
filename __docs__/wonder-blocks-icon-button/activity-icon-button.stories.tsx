@@ -66,7 +66,7 @@ export const Default: StoryComponentType = {
  * In this example, we have `primary`, `secondary`, `tertiary` and `disabled`
  * `ActivityIconButton`s from left to right.
  */
-export const Kind: StoryComponentType = {
+export const Kinds: StoryComponentType = {
     render: () => {
         return (
             <View style={{gap: sizing.size_160, flexDirection: "row"}}>

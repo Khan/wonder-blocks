@@ -536,9 +536,9 @@ export const semanticColor = {
                 tertiary: core.border.disabled.subtle,
             },
             foreground: {
-                primary: core.foreground.neutral.subtle,
-                secondary: core.foreground.inverse.subtle,
-                tertiary: core.foreground.inverse.subtle,
+                primary: core.foreground.disabled.default,
+                secondary: core.foreground.disabled.default,
+                tertiary: core.foreground.disabled.default,
             },
             shadow: {
                 primary: core.shadow.chonky.neutral.subtle,

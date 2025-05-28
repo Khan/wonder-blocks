@@ -27,10 +27,13 @@ type Props = Omit<IconButtonProps, "actionType" | "size"> & {
 };
 
 /**
- * `ActivityIconButton` is a button whose contents are an SVG image.
+ * `ActivityIconButton` is an icon button that is used for actions in the
+ * context of learner activities. It uses a "chonky" design, which is a more
+ * playful and engaging design that is suitable for learner activities
  *
  * ```tsx
- * import magnifyingGlassIcon from "@phosphor-icons/core/regular/magnifying-glass.svg";
+ * import magnifyingGlassIcon from
+ * "@phosphor-icons/core/regular/magnifying-glass.svg";
  * import {ActivityIconButton} from "@khanacademy/wonder-blocks-icon-button";
  *
  * <ActivityIconButton
@@ -184,6 +187,8 @@ const _generateStyles = (
     const newStyles: Record<string, CSSProperties> = {
         button: {
             // theming
+            // Used for the focus ring.
+            borderRadius: theme.root.border.radius,
             color: themeVariant.foreground[kind].rest,
             // layout
             paddingBlockEnd: theme.root.shadow.default.y,
@@ -235,7 +240,7 @@ const _generateStyles = (
 
         chonky: {
             // layout
-            backgroundClip: "border-box",
+            // Used for the chonky box.
             borderRadius: theme.root.border.radius,
             paddingBlock: theme.root.layout.padding.block,
             paddingInline: theme.root.layout.padding.inline,
