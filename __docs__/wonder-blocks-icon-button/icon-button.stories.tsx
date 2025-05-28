@@ -63,7 +63,7 @@ import TextField from "../../packages/wonder-blocks-form/src/components/text-fie
  * ```
  */
 export default {
-    title: "Packages / IconButton",
+    title: "Packages / IconButton / IconButton",
     component: IconButton,
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
     parameters: {
@@ -75,7 +75,7 @@ export default {
         ),
         chromatic: {
             // Disabling all snapshots because we are testing all the variants
-            // in `icon-button-variants.stories.tsx`.
+            // in `icon-button-testing-snapshots.stories.tsx`.
             disableSnapshot: true,
         },
         docs: {
@@ -156,7 +156,7 @@ export const Sizes: StoryComponentType = {
  * In this example, we have `primary`, `secondary`, `tertiary`,
  * and disabled `IconButton`s from left to right.
  */
-export const Variants: StoryComponentType = {
+export const Kinds: StoryComponentType = {
     render: () => {
         return (
             <View style={styles.row}>
