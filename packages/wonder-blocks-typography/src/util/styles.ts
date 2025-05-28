@@ -23,9 +23,21 @@ const styles: StyleDeclaration = StyleSheet.create({
     Tagline: {
         ...common,
         fontFamily: font.family.sans,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.large,
         lineHeight: font.lineHeight.large,
+    },
+    Heading: {
+        ...common,
+        fontFamily: font.family.sans,
+        // weight and size are determined by props
+        // lineHeight is determined by fontSize on REM scale
+    },
+    BodyText: {
+        ...common,
+        fontFamily: font.family.sans,
+        // weight and size are determined by props
+        // lineHeight is determined by fontSize on REM scale
     },
     HeadingLarge: {
         ...common,
@@ -72,28 +84,28 @@ const styles: StyleDeclaration = StyleSheet.create({
     BodySerifBlock: {
         ...common,
         fontFamily: font.family.serif,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.large,
         lineHeight: font.lineHeight.large,
     },
     BodySerif: {
         ...common,
         fontFamily: font.family.serif,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.medium,
         lineHeight: font.size.medium,
     },
     BodyMonospace: {
         ...common,
         fontFamily: font.family.mono,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.medium,
         lineHeight: font.lineHeight.medium,
     },
     Body: {
         ...common,
         fontFamily: font.family.sans,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.medium,
         lineHeight: font.lineHeight.xMedium,
     },
@@ -107,35 +119,35 @@ const styles: StyleDeclaration = StyleSheet.create({
     LabelMedium: {
         ...common,
         fontFamily: font.family.sans,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.medium,
         lineHeight: font.lineHeight.medium,
     },
     LabelSmall: {
         ...common,
         fontFamily: font.family.sans,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.small,
         lineHeight: font.lineHeight.small,
     },
     LabelXSmall: {
         ...common,
         fontFamily: font.family.sans,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.xSmall,
         lineHeight: font.lineHeight.xSmall,
     },
     Caption: {
         ...common,
         fontFamily: font.family.sans,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.small,
         lineHeight: font.lineHeight.medium,
     },
     Footnote: {
         ...common,
         fontFamily: font.family.sans,
-        fontWeight: font.weight.regular,
+        fontWeight: font.weight.medium,
         fontSize: font.size.xSmall,
         lineHeight: font.lineHeight.small,
     },
