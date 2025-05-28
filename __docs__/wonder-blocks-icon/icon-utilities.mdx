@@ -1,0 +1,61 @@
+import {Meta, Story, Canvas} from "@storybook/blocks";
+import * as IconUtilitiesStories from './icon-utilities.stories';
+
+<Meta of={IconUtilitiesStories} />
+
+# Icon Utilities
+
+## `useSvgAttributes(props)` hook
+
+```tsx
+import {useSvgAttributes} from "@khanacademy/wonder-blocks-icon";
+```
+
+### Description
+
+The `useSvgAttributes` hook determines what attributes should be applied
+to an `svg` element.
+
+If an `aria-label` or `aria-labelledby` is provided, it will be used and the
+attributes will include `role="img"`. This means the icon conveys meaning and
+will communicate the label to screen reader users.
+
+If neither of these are provided, the attributes will include `aria-hidden=true`.
+This means that the icon is decorative only and should not be communicated to
+screen reader users.
+
+### Arguments
+
+- `props`: An object that contains:
+```tsx
+type Props = {
+    "aria-label"?: string
+    "aria-labelledby"?: string
+}
+```
+
+### Returns
+
+The hook returns an object of HTML attributes that should be applied to an
+`svg` element.
+
+### Examples
+
+#### With Label
+
+This example shows how to use the hook to get attributes for the icon. It also
+logs the attributes provided by the hook. It provides an `aria-label` for the
+hook. When using a screen reader, the label is communicated to the user.
+
+This is useful for scenarios where an icon conveys meaning.
+
+<Canvas of={IconUtilitiesStories.UseSvgAttributesWithLabel} />
+
+#### With No Label
+
+This example shows the behaviour when no label is passed to the hook. When
+using a screen reader, the icon is not communicated to the user.
+
+This is useful for scenarios where an icon is decorative only.
+
+<Canvas of={IconUtilitiesStories.UseSvgAttributesWithNoLabel} />
