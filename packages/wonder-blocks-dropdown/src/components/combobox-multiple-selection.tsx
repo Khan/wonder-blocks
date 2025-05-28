@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     pill: {
-        fontSize: font.size.small,
+        fontSize: font.body.size.small,
         justifyContent: "space-between",
         alignItems: "center",
         marginBlockStart: spacing.xxxSmall_4,
