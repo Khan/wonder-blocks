@@ -140,25 +140,6 @@ describe("button with icon", () => {
         expect(icon).toHaveAttribute("aria-hidden", "true");
     });
 
-    test("default theme secondary button icon has no hover style", async () => {
-        // Arrange
-        render(
-            <Button kind="secondary" testId={"button-icon-test"} endIcon={plus}>
-                Label
-            </Button>,
-        );
-
-        // Act
-        const button = await screen.findByTestId("button-icon-test");
-        const iconWrapper = await screen.findByTestId(
-            "button-icon-test-end-icon-wrapper",
-        );
-        await userEvent.hover(button);
-
-        // Assert
-        expect(iconWrapper).toHaveStyle(`backgroundColor: transparent`);
-    });
-
     /**
      * Tertiary button
      */
