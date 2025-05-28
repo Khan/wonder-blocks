@@ -1,5 +1,6 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
+import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {
@@ -321,13 +322,13 @@ export const AllBadgesScenarios: StoryComponentType = {
                 }}
             >
                 <Heading>Badges</Heading>
-                <View style={{gap: sizing.size_240, flexDirection: "row"}}>
+                <View style={styles.badgesContainer}>
                     {badges.map((badge, index) => (
                         <View key={index}>{badge}</View>
                     ))}
                 </View>
                 <Heading>Badges with Tooltip</Heading>
-                <View style={{gap: sizing.size_240, flexDirection: "row"}}>
+                <View style={styles.badgesContainer}>
                     {badges.map((badge, index) => (
                         <Tooltip
                             content="Tooltip"
@@ -335,7 +336,7 @@ export const AllBadgesScenarios: StoryComponentType = {
                             key={index}
                             placement="bottom"
                         >
-                            {badge}
+                            {React.cloneElement(badge, {role: "button"})}
                         </Tooltip>
                     ))}
                 </View>
@@ -343,3 +344,10 @@ export const AllBadgesScenarios: StoryComponentType = {
         );
     },
 };
+
+const styles = StyleSheet.create({
+    badgesContainer: {
+        gap: sizing.size_240,
+        flexDirection: "row",
+    },
+});
