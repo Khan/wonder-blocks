@@ -1,6 +1,10 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {
+    border,
+    font,
+    semanticColor,
+    sizing,
+} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -37,8 +41,8 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
             data-testid={testId}
             ref={ref}
             style={[
-                typographyStyles.LabelXSmall,
                 styles.badge,
+                styles.badgeTypography,
                 styles.defaultBadgeStyling,
                 icon && !label ? styles.iconOnly : {},
                 stylesProp?.root,
@@ -114,6 +118,12 @@ const styles = StyleSheet.create({
         // Include focus styles in case the badge is made interactive by using
         // it with another component like `Tooltip`
         ...focusStyles.focus,
+    },
+    badgeTypography: {
+        fontFamily: font.family.sans,
+        fontSize: font.size.xSmall,
+        fontWeight: font.weight.bold,
+        lineHeight: font.lineHeight.xSmall,
     },
     defaultBadgeStyling: {
         backgroundColor: badgeTokens.root.color.background,
