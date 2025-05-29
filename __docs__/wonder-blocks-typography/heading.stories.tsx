@@ -7,24 +7,63 @@ import ComponentInfo from "../components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Heading} from "@khanacademy/wonder-blocks-typography";
+import {
+    Heading,
+    HeadingLarge,
+    HeadingMedium,
+    HeadingSmall,
+    HeadingXSmall,
+    Title,
+} from "@khanacademy/wonder-blocks-typography";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
 import {allModes} from "../../.storybook/modes";
 
 /**
 New component for Thunderblocks headings.
 
-When wrapped in `<ThemeSwitcher theme="classroom">`, this component will use the
+When wrapped in `<ThemeSwitcher theme="classroom">`, `Heading` will use the
 Plus Jakarta Sans font family.
+
+## Props
+
+### `size`
 
 The `size` prop will select a font size token based on our
 [REM font sizing scale](/?path=/docs/packages-tokens-typography--docs&globals=theme:thunderblocks#size).
 A corresponding line-height token will be automatically selected from our
 [line-height scale](/?path=/docs/packages-tokens-typography--docs&globals=theme:thunderblocks#lineHeight).
 
-The `weight` prop will match a font weight token based on the available
+Each size sets the following font-size and automatic line-height:
+
+- small: `sizing.size_160` / `sizing.size_200` (`HeadingXSmall`)
+- medium: `sizing.size_180` / `sizing.size_240` (`HeadingSmall`)
+- large: `sizing.size_200` / `sizing.size_280` (`HeadingMedium`)
+- xlarge: `sizing.size_240` / `sizing.size_320` (`HeadingLarge`)
+- xxlarge: `sizing.size_320` / `sizing.size_400` (`Title`)
+
+### `weight`
+
+The `weight` prop will match a font weight token for Jakarta based on the available
 [font weights](/?path=/docs/packages-tokens-typography--docs&globals=theme:thunderblocks#weight).
-Only `h1` through `h6` are allowed as tagNames for accessibility purposes.
+
+- semi: `600`
+- bold: `700`
+
+### `tag`
+
+You can override the heading level for a given content hierarchy with the `tag` prop,
+such as `<Heading size="xlarge" tag="h3">`.
+
+For each `size`, `Heading` will automatically set a heading `tagName` with a default level:
+
+- xxlarge: `"h1"`
+- xlarge: `"h2"`
+- large: `"h3"`
+- medium: `"h4"`
+- small: `"h4"`
+
+Note: only `h1` through `h6` tags are allowed for accessibility purposes. For other
+use cases, talk to us in the `#wonder-blocks` channel in Slack or raise an issue.
 
 Other content should utilize `BodyText`, primarily in `p` tags.
 **/
@@ -121,12 +160,54 @@ export const SizesAndWeights = {
     name: "Sizes and weights",
 };
 
+/**
+ * A table showing the conversion from Classic Typography components to Heading.
+ */
+export const ClassicConversionGuide = {
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
+    render: () => (
+        <View style={[styles.grid, styles.conversionGuide]}>
+            <View style={styles.row}>
+                <HeadingXSmall>HeadingXSmall</HeadingXSmall>
+                <Heading size="small">Heading size=small</Heading>
+            </View>
+            <View style={styles.row}>
+                <HeadingSmall>HeadingSmall</HeadingSmall>
+                <Heading size="medium">Heading size=medium</Heading>
+            </View>
+            <View style={styles.row}>
+                <HeadingMedium>HeadingMedium</HeadingMedium>
+                <Heading size="large">Heading size=large</Heading>
+            </View>
+            <View style={styles.row}>
+                <HeadingLarge>HeadingLarge</HeadingLarge>
+                <Heading size="xlarge">Heading size=xlarge</Heading>
+            </View>
+            <View style={styles.row}>
+                <Title>Title</Title>
+                <Heading size="xxlarge">Heading size=xxlarge</Heading>
+            </View>
+        </View>
+    ),
+};
+
 const styles = StyleSheet.create({
     grid: {
         display: "grid",
         gridTemplateColumns: "max-content max-content",
         rowGap: spacing.medium_16,
         columnGap: spacing.large_24,
+    },
+    conversionGuide: {
+        justifyContent: "flex-start",
+        gridTemplateColumns: "max-content max-content",
     },
     row: {
         display: "contents",
