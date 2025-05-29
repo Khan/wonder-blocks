@@ -5,10 +5,9 @@ import type {
     ClickableState,
     ChildrenProps,
 } from "@khanacademy/wonder-blocks-clickable";
-import {Link, useInRouterContext} from "react-router-dom-v5-compat";
+import {useInRouterContext} from "react-router-dom-v5-compat";
 import ButtonCore from "./button-core";
-import ThemedButton from "../themes/themed-button";
-import type {ButtonProps} from "../util/button.types";
+import type {ButtonProps, ButtonRef} from "../util/button.types";
 
 /**
  * The `Button` component is a reusable button that can be used in various
@@ -29,9 +28,7 @@ import type {ButtonProps} from "../util/button.types";
  */
 const Button = React.forwardRef(function Button(
     props: ButtonProps,
-    ref: React.ForwardedRef<
-        typeof Link | HTMLButtonElement | HTMLAnchorElement
-    >,
+    ref: React.ForwardedRef<ButtonRef>,
 ) {
     const {
         href = undefined,
@@ -75,26 +72,24 @@ const Button = React.forwardRef(function Button(
             {...extraClickableProps}
         >
             {(state: ClickableState, restChildProps: ChildrenProps) => (
-                <ThemedButton>
-                    <ButtonCore
-                        {...sharedButtonCoreProps}
-                        {...state}
-                        {...restChildProps}
-                        disabled={disabled}
-                        spinner={spinner || state.waiting}
-                        actionType={actionType}
-                        kind={kind}
-                        size={size}
-                        skipClientNav={skipClientNav}
-                        href={href}
-                        target={target}
-                        type={type}
-                        tabIndex={tabIndex}
-                        ref={ref}
-                    >
-                        {children}
-                    </ButtonCore>
-                </ThemedButton>
+                <ButtonCore
+                    {...sharedButtonCoreProps}
+                    {...state}
+                    {...restChildProps}
+                    disabled={disabled}
+                    spinner={spinner || state.waiting}
+                    actionType={actionType}
+                    kind={kind}
+                    size={size}
+                    skipClientNav={skipClientNav}
+                    href={href}
+                    target={target}
+                    type={type}
+                    tabIndex={tabIndex}
+                    ref={ref}
+                >
+                    {children}
+                </ButtonCore>
             )}
         </ClickableBehavior>
     );

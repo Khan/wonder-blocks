@@ -4,7 +4,7 @@ import {Link, useInRouterContext} from "react-router-dom-v5-compat";
 import {addStyle, keys} from "@khanacademy/wonder-blocks-core";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {StyleSheet} from "aphrodite";
-import type {IconButtonProps} from "../util/icon-button.types";
+import type {IconButtonProps, IconButtonRef} from "../util/icon-button.types";
 
 const StyledA = addStyle("a");
 const StyledButton = addStyle("button");
@@ -40,12 +40,11 @@ type Props = Omit<IconButtonProps, "icon"> & {
 };
 
 export const IconButtonUnstyled: React.ForwardRefExoticComponent<
-    Props &
-        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
-> = React.forwardRef<
-    typeof Link | HTMLButtonElement | HTMLAnchorElement,
-    Props
->(function IconButtonUnstyled(props: Props, ref) {
+    Props & React.RefAttributes<IconButtonRef>
+> = React.forwardRef<IconButtonRef, Props>(function IconButtonUnstyled(
+    props: Props,
+    ref,
+) {
     const {
         children,
         disabled,
@@ -79,8 +78,8 @@ export const IconButtonUnstyled: React.ForwardRefExoticComponent<
             if (!href && (key === keys.enter || key === keys.space)) {
                 if (restProps.onClick) {
                     restProps.onClick(e);
-                    onPress?.(false);
                 }
+                onPress?.(false);
             }
         },
         [href, onPress, restProps],

@@ -163,40 +163,38 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-const action = semanticColor.action.secondary.progressive;
-
 /**
- * TODO(WB-1862): Move this to a shared theme file.
+ * The object that contains the default and inverse colors for the link
+ * component.
  */
 const theme = {
     color: {
         // Primary link color
         default: {
             rest: {
-                foreground: action.default.foreground,
+                foreground: semanticColor.link.rest,
             },
             hover: {
-                foreground: action.hover.foreground,
+                foreground: semanticColor.link.hover,
             },
             focus: {
                 border: semanticColor.focus.outer,
-                foreground: action.hover.foreground,
             },
             press: {
-                foreground: action.press.foreground,
+                foreground: semanticColor.link.press,
             },
         },
         // Over dark backgrounds
+        // TODO(WB-1852): Remove light variant.
         inverse: {
             rest: {
-                foreground: semanticColor.text.inverse,
+                foreground: semanticColor.core.foreground.inverse.strong,
             },
             hover: {
-                foreground: semanticColor.text.inverse,
+                foreground: semanticColor.core.foreground.inverse.strong,
             },
             focus: {
-                border: semanticColor.border.inverse,
-                foreground: semanticColor.text.inverse,
+                border: semanticColor.core.border.inverse.strong,
             },
             press: {
                 foreground: color.fadedBlue,
@@ -214,9 +212,9 @@ const _generateStyles = (inline: boolean, light: boolean) => {
     const variant = light ? theme.color.inverse : theme.color.default;
 
     const focusStyling = {
-        color: variant.focus.foreground,
         outline: `${border.width.thin} solid ${variant.focus.border}`,
         borderRadius: border.radius.radius_040,
+        outlineOffset: border.width.medium,
     };
 
     const pressStyling = {
@@ -253,7 +251,7 @@ const _generateStyles = (inline: boolean, light: boolean) => {
             // TODO(WB-1521): Update the underline offset to be 4px after
             // the Link audit.
             // textUnderlineOffset: 4,
-            textUnderlineOffset: 2,
+            textUnderlineOffset: border.width.medium,
         },
         focus: focusStyling,
         press: pressStyling,

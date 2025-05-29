@@ -5,41 +5,29 @@ import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
-import {
-    ThemedStylesFn,
-    useScopedTheme,
-    useStyles,
-} from "@khanacademy/wonder-blocks-theming";
-
 import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
-import {Link} from "react-router-dom-v5-compat";
+import {semanticColor} from "@khanacademy/wonder-blocks-tokens";
 import type {
     ButtonActionType,
     ButtonKind,
     ButtonSize,
     ButtonProps,
+    ButtonRef,
 } from "../util/button.types";
-import {ButtonThemeContext, ButtonThemeContract} from "../themes/themed-button";
 import {ButtonIcon} from "./button-icon";
 
+import theme from "../theme";
 import {ButtonUnstyled} from "./button-unstyled";
 
 type Props = ButtonProps & ChildrenProps & ClickableState;
 
 const ButtonCore: React.ForwardRefExoticComponent<
-    Props &
-        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
-> = React.forwardRef<
-    typeof Link | HTMLButtonElement | HTMLAnchorElement,
-    Props
->(function ButtonCore(props: Props, ref) {
-    const {theme, themeName} = useScopedTheme(ButtonThemeContext);
-    const sharedStyles = useStyles(themedSharedStyles, theme);
-
+    Props & React.RefAttributes<ButtonRef>
+> = React.forwardRef<ButtonRef, Props>(function ButtonCore(props: Props, ref) {
     const {
         children,
         skipClientNav,
@@ -63,13 +51,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
         ...restProps
     } = props;
 
-    const buttonStyles = _generateStyles(
-        actionType,
-        kind,
-        size,
-        theme,
-        themeName,
-    );
+    const buttonStyles = _generateStyles(actionType, kind, size);
 
     const disabled = spinner || disabledProp;
 
@@ -159,10 +141,6 @@ const ButtonCore: React.ForwardRefExoticComponent<
                         sharedStyles.endIconWrapper,
                         kind === "tertiary" &&
                             sharedStyles.endIconWrapperTertiary,
-                        !disabled &&
-                            (focused || hovered) &&
-                            kind !== "primary" &&
-                            buttonStyles.iconWrapperHovered,
                     ]}
                 >
                     <ButtonIcon
@@ -195,7 +173,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
 
 export default ButtonCore;
 
-const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
+const sharedStyles = StyleSheet.create({
     shared: {
         height: theme.root.sizing.height.medium,
         paddingBlock: 0,
@@ -246,7 +224,6 @@ const themedSharedStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
         marginInlineStart: theme.icon.margin.inline.inner,
     },
     iconWrapper: {
-        borderRadius: theme.icon.border.radius,
         padding: theme.icon.padding,
         // View has a default minWidth of 0, which causes the label text
         // to encroach on the icon when it needs to truncate. We can fix
@@ -269,10 +246,8 @@ export const _generateStyles = (
     actionType: ButtonActionType = "progressive",
     kind: ButtonKind,
     size: ButtonSize,
-    theme: ButtonThemeContract,
-    themeName: string,
 ) => {
-    const buttonType = `${actionType}-${kind}-${size}-${themeName}`;
+    const buttonType = `${actionType}-${kind}-${size}`;
 
     if (styles[buttonType]) {
         return styles[buttonType];
@@ -283,8 +258,8 @@ export const _generateStyles = (
 
     const borderWidthKind = theme.root.border.width[kind];
     const outlineOffsetKind = theme.root.border.offset[kind];
-    const themeVariant = theme.root.color[kind][actionType];
-    const disabledState = theme.root.color[kind].disabled;
+    const themeVariant = semanticColor.action[kind][actionType];
+    const disabledState = semanticColor.action[kind].disabled;
 
     const disabledStatesStyles = {
         borderColor: disabledState.border,
@@ -422,18 +397,6 @@ export const _generateStyles = (
             ":hover": disabledStatesOverrides,
             ":active": disabledStatesOverrides,
             ":focus-visible": disabledStatesStyles,
-        },
-        iconWrapperHovered: {
-            // Only applies to secondary buttons (khanmigo theme)
-            ...(kind === "secondary"
-                ? {
-                      backgroundColor:
-                          theme.icon.color[kind][actionType].hover.background,
-
-                      color: theme.icon.color[kind][actionType].hover
-                          .foreground,
-                  }
-                : undefined),
         },
     } as const;
 

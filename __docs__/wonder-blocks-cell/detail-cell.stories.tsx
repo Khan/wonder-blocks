@@ -519,7 +519,7 @@ export const CustomRootStyle = {
                         onClick={() => {}}
                         style={[
                             {
-                                border: `1px solid ${semanticColor.border.primary}`,
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                             },
                         ]}
                         horizontalRule={"none"}
@@ -530,7 +530,7 @@ export const CustomRootStyle = {
                         style={[
                             args.rootStyle,
                             {
-                                border: `1px solid ${semanticColor.border.primary}`,
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                             },
                         ]}
                         horizontalRule={"none"}
@@ -541,7 +541,7 @@ export const CustomRootStyle = {
                         style={[
                             args.rootStyle,
                             {
-                                border: `1px solid ${semanticColor.border.primary}`,
+                                border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
                             },
                         ]}
                         horizontalRule={"none"}
