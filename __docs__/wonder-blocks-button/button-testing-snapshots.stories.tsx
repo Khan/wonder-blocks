@@ -117,6 +117,8 @@ export const Sizes: StoryComponentType = {
                                     actionType={actionType}
                                     disabled={disabled}
                                     key={index}
+                                    startIcon={paperPlaneIcon}
+                                    endIcon={paperPlaneIcon}
                                 />
                             ),
                         )}
