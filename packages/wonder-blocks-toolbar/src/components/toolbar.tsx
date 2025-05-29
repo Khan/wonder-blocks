@@ -121,7 +121,7 @@ export default function Toolbar({
 const sharedStyles = StyleSheet.create({
     container: {
         background: semanticColor.surface.primary,
-        border: `1px solid ${semanticColor.border.primary}`,
+        border: `1px solid ${semanticColor.core.border.neutral.subtle}`,
         flex: 1,
         display: "grid",
         alignItems: "center",

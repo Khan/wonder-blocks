@@ -1,9 +1,4 @@
-import {
-    border,
-    font,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {border, font, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 // The underline-offset is the distance between the text baseline and the
 // bottom of the underline. This is necessary to prevent the underline from
@@ -12,7 +7,6 @@ const textUnderlineOffset = sizing.size_040;
 
 const theme = {
     root: {
-        color: semanticColor.action,
         border: {
             width: {
                 primary: {
@@ -79,37 +73,6 @@ const theme = {
     },
 
     icon: {
-        color: {
-            secondary: {
-                progressive: {
-                    hover: {
-                        background: "transparent",
-                        foreground:
-                            semanticColor.action.secondary.progressive.hover
-                                .foreground,
-                    },
-                },
-                destructive: {
-                    hover: {
-                        background: "transparent",
-                        foreground:
-                            semanticColor.action.secondary.destructive.hover
-                                .foreground,
-                    },
-                },
-                neutral: {
-                    hover: {
-                        background: "transparent",
-                        foreground:
-                            semanticColor.action.secondary.neutral.hover
-                                .foreground,
-                    },
-                },
-            },
-        },
-        border: {
-            radius: border.radius.radius_full,
-        },
         margin: {
             inline: {
                 inner: sizing.size_060,

@@ -260,7 +260,7 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
         default: {
             border:
                 kind === "transparent"
-                    ? `1px solid ${semanticColor.border.primary}`
+                    ? `1px solid ${semanticColor.core.border.neutral.subtle}`
                     : "none",
             background: backgroundColor,
             foreground: textColor,
@@ -269,10 +269,10 @@ const _generateColorStyles = (clickable: boolean, kind: PillKind) => {
             border: semanticColor.focus.outer,
         },
         hover: {
-            border: semanticColor.action.primary.progressive.hover.border,
+            border: semanticColor.core.border.instructive.default,
         },
         press: {
-            border: semanticColor.action.primary.progressive.press.border,
+            border: semanticColor.core.border.instructive.strong,
             background: pressColor,
         },
     };

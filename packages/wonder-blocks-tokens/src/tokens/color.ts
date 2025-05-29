@@ -75,10 +75,12 @@ export const color = {
     fadedRed16: fadedColorWithWhite(baseColors.red, 0.16),
     fadedRed8: fadedColorWithWhite(baseColors.red, 0.08),
     // Green shades
+    activeGreen: mix(baseColors.offBlack32, baseColors.green),
     fadedGreen24: fadedColorWithWhite(baseColors.green, 0.24),
     fadedGreen16: fadedColorWithWhite(baseColors.green, 0.16),
     fadedGreen8: fadedColorWithWhite(baseColors.green, 0.08),
     // Gold shades
+    activeGold: mix(baseColors.offBlack32, baseColors.gold),
     fadedGold24: fadedColorWithWhite(baseColors.gold, 0.24),
     fadedGold16: fadedColorWithWhite(baseColors.gold, 0.16),
     fadedGold8: fadedColorWithWhite(baseColors.gold, 0.08),

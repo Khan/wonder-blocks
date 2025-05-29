@@ -16,12 +16,11 @@ import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
  * Button component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / Button / Testing / Button - Snapshots",
+    title: "Packages / Button / Testing / Snapshots / Button",
     parameters: {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
-                khanmigo: allModes.themeKhanmigo,
             },
         },
     },

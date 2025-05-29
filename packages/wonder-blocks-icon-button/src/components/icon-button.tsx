@@ -1,6 +1,5 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Link} from "react-router-dom-v5-compat";
 
 import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
@@ -10,6 +9,7 @@ import type {
     IconButtonActionType,
     IconButtonKind,
     IconButtonProps,
+    IconButtonRef,
     IconButtonSize,
 } from "../util/icon-button.types";
 
@@ -99,12 +99,11 @@ function IconChooser({
  * ```
  */
 export const IconButton: React.ForwardRefExoticComponent<
-    IconButtonProps &
-        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
-> = React.forwardRef<
-    typeof Link | HTMLButtonElement | HTMLAnchorElement,
-    IconButtonProps
->(function IconButton(props: IconButtonProps, ref) {
+    IconButtonProps & React.RefAttributes<IconButtonRef>
+> = React.forwardRef<IconButtonRef, IconButtonProps>(function IconButton(
+    props: IconButtonProps,
+    ref,
+) {
     const {
         actionType = "progressive",
         disabled = false,

@@ -1,11 +1,14 @@
 import * as React from "react";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {PhosphorIconAsset} from "@khanacademy/wonder-blocks-icon";
+import {Link} from "react-router-dom-v5-compat";
 
 // Variants
 export type ButtonActionType = "progressive" | "destructive" | "neutral";
 export type ButtonKind = "primary" | "secondary" | "tertiary";
 export type ButtonSize = "small" | "medium" | "large";
+
+export type ButtonRef = typeof Link | HTMLButtonElement | HTMLAnchorElement;
 
 export type ButtonProps =
     /**

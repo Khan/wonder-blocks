@@ -108,7 +108,7 @@ const SafeWithNavCallbacks = () => (
 );
 
 export default {
-    title: "Packages / Button / Navigation Callbacks",
+    title: "Packages / Button / Guides / Navigation Callbacks",
     component: Button,
 
     // Disables chromatic testing for these stories.

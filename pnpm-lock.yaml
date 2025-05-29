@@ -623,9 +623,6 @@ importers:
       '@khanacademy/wonder-blocks-styles':
         specifier: workspace:*
         version: link:../wonder-blocks-styles
-      '@khanacademy/wonder-blocks-theming':
-        specifier: workspace:*
-        version: link:../wonder-blocks-theming
       '@khanacademy/wonder-blocks-tokens':
         specifier: workspace:*
         version: link:../wonder-blocks-tokens

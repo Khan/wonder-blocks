@@ -245,7 +245,7 @@ export const CustomLabel: StoryComponentType = {
         label: (
             <View
                 style={{
-                    border: `1px dashed ${semanticColor.border.strong}`,
+                    border: `1px dashed ${semanticColor.core.border.neutral.default}`,
                     padding: spacing.medium_16,
                     flexDirection: "row",
                     justifyContent: "space-between",
