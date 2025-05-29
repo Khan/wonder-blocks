@@ -66,9 +66,14 @@ export {Badge};
 const badgeTokens = {
     root: {
         layout: {
-            paddingBlock: sizing.size_040,
-            paddingInline: sizing.size_080,
-            gap: sizing.size_040,
+            default: {
+                paddingBlock: sizing.size_040,
+                paddingInline: sizing.size_080,
+                gap: sizing.size_040,
+            },
+            iconOnly: {
+                padding: sizing.size_040,
+            },
         },
         border: {
             width: border.width.thin,
@@ -90,26 +95,21 @@ const badgeTokens = {
             foreground: semanticColor.icon.primary,
         },
     },
-    iconOnly: {
-        layout: {
-            padding: sizing.size_040,
-        },
-    },
 };
 
 const styles = StyleSheet.create({
     badge: {
         display: "inline-flex",
         alignItems: "center",
-        gap: badgeTokens.root.layout.gap,
+        gap: badgeTokens.root.layout.default.gap,
         // Make sure badge container fits the content
         width: "fit-content",
         // Make sure the badge text doesn't wrap
         textWrap: "nowrap",
         borderWidth: badgeTokens.root.border.width,
         borderStyle: badgeTokens.root.border.style,
-        paddingBlock: badgeTokens.root.layout.paddingBlock,
-        paddingInline: badgeTokens.root.layout.paddingInline,
+        paddingBlock: badgeTokens.root.layout.default.paddingBlock,
+        paddingInline: badgeTokens.root.layout.default.paddingInline,
         borderRadius: badgeTokens.root.border.radius,
         // Include focus styles in case the badge is made interactive by using
         // it with another component like `Tooltip`
@@ -133,6 +133,6 @@ const styles = StyleSheet.create({
         color: badgeTokens.icon.color.foreground,
     },
     iconOnly: {
-        padding: badgeTokens.iconOnly.layout.padding,
+        padding: badgeTokens.root.layout.iconOnly.padding,
     },
 });
