@@ -5,7 +5,7 @@ import styles from "../util/styles";
 
 type Props = PropsFor<typeof Text> & {
     size?: "xsmall" | "small" | "medium";
-    weight?: "light" | "medium" | "semi" | "bold";
+    weight?: "medium" | "semi" | "bold";
 };
 
 const BodyText = React.forwardRef(function BodyText(
