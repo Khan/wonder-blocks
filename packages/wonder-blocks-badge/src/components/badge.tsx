@@ -1,10 +1,10 @@
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {StyleSheet} from "aphrodite";
 import * as React from "react";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {BaseBadgeProps, IconLabelProps} from "../types";
-import theme from "../theme";
 
 type Props = IconLabelProps & BaseBadgeProps;
 
@@ -63,42 +63,76 @@ const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
 
 export {Badge};
 
+const badgeTokens = {
+    root: {
+        layout: {
+            paddingBlock: sizing.size_040,
+            paddingInline: sizing.size_080,
+            gap: sizing.size_040,
+        },
+        border: {
+            width: border.width.thin,
+            style: "solid",
+            radius: border.radius.radius_080,
+        },
+        color: {
+            background: semanticColor.surface.secondary,
+            foreground: semanticColor.text.primary,
+            border: semanticColor.border.subtle,
+        },
+    },
+    icon: {
+        sizing: {
+            width: sizing.size_160,
+            height: sizing.size_160,
+        },
+        color: {
+            foreground: semanticColor.icon.primary,
+        },
+    },
+    iconOnly: {
+        layout: {
+            padding: sizing.size_040,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     badge: {
         display: "inline-flex",
         alignItems: "center",
-        gap: theme.badge.root.layout.default.gap,
+        gap: badgeTokens.root.layout.gap,
         // Make sure badge container fits the content
         width: "fit-content",
         // Make sure the badge text doesn't wrap
         textWrap: "nowrap",
-        borderWidth: theme.badge.root.border.width,
-        borderStyle: theme.badge.root.border.style,
-        paddingBlock: theme.badge.root.layout.default.paddingBlock,
-        paddingInline: theme.badge.root.layout.default.paddingInline,
-        borderRadius: theme.badge.root.border.radius,
+        borderWidth: badgeTokens.root.border.width,
+        borderStyle: badgeTokens.root.border.style,
+        paddingBlock: badgeTokens.root.layout.paddingBlock,
+        paddingInline: badgeTokens.root.layout.paddingInline,
+        borderRadius: badgeTokens.root.border.radius,
         // Include focus styles in case the badge is made interactive by using
         // it with another component like `Tooltip`
         ...focusStyles.focus,
     },
     defaultBadgeStyling: {
-        backgroundColor: theme.badge.root.color.background,
-        borderColor: theme.badge.root.color.border,
-        color: theme.badge.root.color.foreground,
+        backgroundColor: badgeTokens.root.color.background,
+        borderColor: badgeTokens.root.color.border,
+        color: badgeTokens.root.color.foreground,
     },
     icon: {
         // Use minWidth and minHeight to ensure custom sized icons don't
         // overflow the badge
-        minWidth: theme.badge.icon.sizing.width,
-        minHeight: theme.badge.icon.sizing.height,
+        minWidth: badgeTokens.icon.sizing.width,
+        minHeight: badgeTokens.icon.sizing.height,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
     },
     defaultIconStyling: {
-        color: theme.badge.icon.color.foreground,
+        color: badgeTokens.icon.color.foreground,
     },
     iconOnly: {
-        padding: theme.badge.root.layout.iconOnly.padding,
+        padding: badgeTokens.iconOnly.layout.padding,
     },
 });
