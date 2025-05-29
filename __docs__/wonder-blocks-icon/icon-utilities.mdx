@@ -14,13 +14,17 @@ import {useImageRoleAttributes} from "@khanacademy/wonder-blocks-icon";
 ### Description
 
 The `useImageRoleAttributes` hook determines what attributes should be applied
-to an `svg` element.
+to an element that represents as image, such as an `svg` element or a `span`
+with a `background-image`.
 
-If an `aria-label` or `aria-labelledby` is provided, it will be used and the
+**This hook should not be used with `img` elements. Use the `alt` attribute on
+`img` tags instead!**
+
+How it works:
+- If an `aria-label` or `aria-labelledby` is provided, it will be used and the
 attributes will include `role="img"`. This means the icon conveys meaning and
 will communicate the label to screen reader users.
-
-If neither of these are provided, the attributes will include `aria-hidden=true`.
+- If neither of these are provided, the attributes will include `aria-hidden=true`.
 This means that the icon is decorative only and should not be communicated to
 screen reader users.
 
