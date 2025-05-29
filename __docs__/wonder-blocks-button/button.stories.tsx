@@ -98,7 +98,7 @@ export const styles: StyleDeclaration = StyleSheet.create({
  * There are three kinds of buttons: `primary` (default), `secondary`, and
  * `tertiary`.
  */
-export const Variants: StoryComponentType = {
+export const Kinds: StoryComponentType = {
     render: () => (
         <View style={{padding: spacing.medium_16, gap: spacing.medium_16}}>
             <View style={styles.rowWithGap}>

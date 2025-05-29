@@ -5,9 +5,9 @@ import type {
     ClickableState,
     ChildrenProps,
 } from "@khanacademy/wonder-blocks-clickable";
-import {Link, useInRouterContext} from "react-router-dom-v5-compat";
+import {useInRouterContext} from "react-router-dom-v5-compat";
 import ButtonCore from "./button-core";
-import type {ButtonProps} from "../util/button.types";
+import type {ButtonProps, ButtonRef} from "../util/button.types";
 
 /**
  * The `Button` component is a reusable button that can be used in various
@@ -28,9 +28,7 @@ import type {ButtonProps} from "../util/button.types";
  */
 const Button = React.forwardRef(function Button(
     props: ButtonProps,
-    ref: React.ForwardedRef<
-        typeof Link | HTMLButtonElement | HTMLAnchorElement
-    >,
+    ref: React.ForwardedRef<ButtonRef>,
 ) {
     const {
         href = undefined,
