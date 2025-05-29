@@ -2,4 +2,5 @@
 "@khanacademy/wonder-blocks-icon": minor
 ---
 
-Make the `useImageRoleAttributes` utility public
+- Rename `useSvgAttributes` hook to `useImageRoleAttributes`
+- Make the `useImageRoleAttributes` utility public
