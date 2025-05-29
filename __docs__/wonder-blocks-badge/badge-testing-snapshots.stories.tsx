@@ -92,12 +92,10 @@ export const StateSheetStory: StoryComponentType = {
             },
         ];
 
-        const statusRows = [
-            ...statusKinds.map((kind) => ({
-                name: kind,
-                props: {kind},
-            })),
-        ];
+        const statusRows = statusKinds.map((kind) => ({
+            name: kind,
+            props: {kind},
+        }));
 
         const columnsWithShowIconProp = [
             {

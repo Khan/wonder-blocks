@@ -230,6 +230,9 @@ export const Tag: StoryComponentType = {
  * `Badge`. This is so that it is interactive and the tooltip contents can be
  * read out properly via the `aria-describedby` attribute on the `Badge` added
  * by the Tooltip component.
+ *
+ * Note: The `Tooltip` component also sets the `tabIndex` of the `Badge` so that
+ * it is focusable.
  */
 export const BadgeWithTooltip: StoryComponentType = {
     render: (args) => {
