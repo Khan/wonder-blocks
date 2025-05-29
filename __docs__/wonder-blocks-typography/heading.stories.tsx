@@ -62,6 +62,8 @@ For each `size`, `Heading` will automatically set a heading `tagName` with a def
 - medium: `"h4"`
 - small: `"h4"`
 
+If `tag` is specified, that `h1`-`h6` value will be used in favor of the automatic algorithm.
+
 Note: only `h1` through `h6` tags are allowed for accessibility purposes. For other
 use cases, talk to us in the `#wonder-blocks` channel in Slack or raise an issue.
 
