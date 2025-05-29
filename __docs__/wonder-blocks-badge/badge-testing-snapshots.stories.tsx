@@ -1,5 +1,6 @@
 import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
+import {StyleSheet} from "aphrodite";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
 import {
@@ -11,7 +12,11 @@ import {
 } from "@khanacademy/wonder-blocks-badge";
 import {IconMappings} from "../wonder-blocks-icon/phosphor-icon.argtypes";
 import {Icon, PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
-import {commonStates, StateSheet} from "../components/state-sheet";
+import {
+    commonStates,
+    defaultPseudoStates,
+    StateSheet,
+} from "../components/state-sheet";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {
     longText,
@@ -19,9 +24,10 @@ import {
 } from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
-import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {Heading, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {multiColoredIcon} from "../components/icons-for-testing";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 /**
  * Badges are visual indicators used to display concise information, such as
@@ -41,6 +47,15 @@ export default {
 
 type StoryComponentType = StoryObj<typeof Badge>;
 
+const statusKinds = ["info", "success", "warning", "critical"] as const;
+
+const states = [
+    commonStates.rest,
+    // Include snapshots for focus states to ensure focus styles are applied
+    // correctly. The Badge is not interactive by default, but becomes interactive
+    // when used with another component like `Tooltip`.
+    commonStates.focus,
+];
 export const StateSheetStory: StoryComponentType = {
     name: "StateSheet",
     render: () => {
@@ -77,12 +92,10 @@ export const StateSheetStory: StoryComponentType = {
             },
         ];
 
-        const statusRows = [
-            ...["info", "success", "warning", "critical"].map((kind) => ({
-                name: kind,
-                props: {kind},
-            })),
-        ];
+        const statusRows = statusKinds.map((kind) => ({
+            name: kind,
+            props: {kind},
+        }));
 
         const columnsWithShowIconProp = [
             {
@@ -109,26 +122,18 @@ export const StateSheetStory: StoryComponentType = {
         return (
             <View style={{gap: sizing.size_080}}>
                 <HeadingLarge>Badge</HeadingLarge>
-                <StateSheet
-                    rows={rows}
-                    columns={columns}
-                    states={[commonStates.rest]}
-                >
+                <StateSheet rows={rows} columns={columns} states={states}>
                     {({props}) => <Badge {...props} />}
                 </StateSheet>
                 <HeadingLarge>Status Badge</HeadingLarge>
-                <StateSheet
-                    rows={statusRows}
-                    columns={columns}
-                    states={[commonStates.rest]}
-                >
+                <StateSheet rows={statusRows} columns={columns} states={states}>
                     {({props}) => <StatusBadge {...props} />}
                 </StateSheet>
                 <HeadingLarge>Gem Badge</HeadingLarge>
                 <StateSheet
                     rows={rows}
                     columns={columnsWithShowIconProp}
-                    states={[commonStates.rest]}
+                    states={states}
                 >
                     {({props}) => <GemBadge {...props} />}
                 </StateSheet>
@@ -136,20 +141,19 @@ export const StateSheetStory: StoryComponentType = {
                 <StateSheet
                     rows={rows}
                     columns={columnsWithShowIconProp}
-                    states={[commonStates.rest]}
+                    states={states}
                 >
                     {({props}) => <StreakBadge {...props} />}
                 </StateSheet>
                 <HeadingLarge>Due Badge</HeadingLarge>
-                <StateSheet
-                    rows={rows}
-                    columns={columns}
-                    states={[commonStates.rest]}
-                >
+                <StateSheet rows={rows} columns={columns} states={states}>
                     {({props}) => <DueBadge {...props} />}
                 </StateSheet>
             </View>
         );
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
     },
 };
 
@@ -280,3 +284,68 @@ export const Scenarios: StoryComponentType = {
         );
     },
 };
+
+export const AllBadgesScenarios: StoryComponentType = {
+    render: () => {
+        const badgesWithIcon = [
+            <Badge label="Badge" />,
+            ...statusKinds.map((kind) => (
+                <StatusBadge label="Badge" kind={kind} />
+            )),
+            <DueBadge label="Badge" />,
+        ].map((component) =>
+            React.cloneElement(component, {
+                icon: <PhosphorIcon icon={IconMappings.cookie} />,
+            }),
+        );
+
+        const badgesWithShowIcon = [
+            <GemBadge label="Badge" />,
+            <StreakBadge label="Badge" />,
+        ].map((component) =>
+            React.cloneElement(component, {
+                showIcon: true,
+            }),
+        );
+
+        const badges = [...badgesWithIcon, ...badgesWithShowIcon];
+
+        return (
+            <View
+                style={{
+                    gap: sizing.size_240,
+                    // Include end padding to ensure tooltips are included in the
+                    // snapshot
+                    paddingBlockEnd: sizing.size_880,
+                }}
+            >
+                <Heading>Badges</Heading>
+                <View style={styles.badgesContainer}>
+                    {badges.map((badge, index) => (
+                        <View key={index}>{badge}</View>
+                    ))}
+                </View>
+                <Heading>Badges with Tooltip</Heading>
+                <View style={styles.badgesContainer}>
+                    {badges.map((badge, index) => (
+                        <Tooltip
+                            content="Tooltip"
+                            opened={true}
+                            key={index}
+                            placement="bottom"
+                        >
+                            {React.cloneElement(badge, {role: "button"})}
+                        </Tooltip>
+                    ))}
+                </View>
+            </View>
+        );
+    },
+};
+
+const styles = StyleSheet.create({
+    badgesContainer: {
+        gap: sizing.size_240,
+        flexDirection: "row",
+    },
+});

@@ -1,5 +1,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {StatusBadge} from "../status-badge";
 import {GemBadge} from "../gem-badge";
 import {StreakBadge} from "../streak-badge";
@@ -78,6 +80,33 @@ describe("Badge types", () => {
                     // Assert
                     const badge = screen.getByLabelText(ariaLabel);
                     expect(badge).toBeInTheDocument();
+                });
+
+                it("should set the role if provided", () => {
+                    // Arrange
+                    render(<Component role="button" label="Badge label" />);
+
+                    // Act
+                    const badge = screen.getByText("Badge label");
+
+                    // Assert
+                    expect(badge).toHaveAttribute("role", "button");
+                });
+
+                it("should be focusable when used with a tooltip and it has the role=button", async () => {
+                    // Arrange
+                    render(
+                        <Tooltip content="Tooltip content">
+                            <Component role="button" label="Badge label" />
+                        </Tooltip>,
+                    );
+                    const badge = screen.getByText("Badge label");
+
+                    // Act
+                    await userEvent.tab();
+
+                    // Assert
+                    expect(badge).toHaveFocus();
                 });
             });
         });

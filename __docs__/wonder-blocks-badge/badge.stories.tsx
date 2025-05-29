@@ -10,6 +10,7 @@ import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes, {iconArgType} from "./badge.argtypes";
 import {multiColoredIcon} from "../components/icons-for-testing";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 export default {
     title: "Packages / Badge / Badge",
@@ -221,5 +222,37 @@ export const Tag: StoryComponentType = {
         label: "Badge",
         icon: "cookie",
         tag: "strong",
+    },
+};
+
+/**
+ * When using a `Badge` with a `Tooltip`, make sure to add `role="button"` on the
+ * `Badge`. This is so that it is interactive and the tooltip contents can be
+ * read out properly via the `aria-describedby` attribute on the `Badge` added
+ * by the Tooltip component.
+ *
+ * Note: The `Tooltip` component also sets the `tabIndex` of the `Badge` so that
+ * it is focusable.
+ */
+export const BadgeWithTooltip: StoryComponentType = {
+    render: (args) => {
+        return (
+            <Tooltip content="This is a tooltip" opened={true}>
+                <Badge
+                    {...args}
+                    label={args.label || ""}
+                    icon={
+                        args.icon ? (
+                            <PhosphorIcon icon={args.icon} />
+                        ) : undefined
+                    }
+                    role="button"
+                />
+            </Tooltip>
+        );
+    },
+    args: {
+        label: "Badge",
+        icon: "cookie",
     },
 };
