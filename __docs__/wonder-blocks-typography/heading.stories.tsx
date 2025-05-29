@@ -176,10 +176,9 @@ export const SizesAndWeights = {
 export const ClassicConversionGuide = {
     parameters: {
         chromatic: {
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
+            // Disabling because all typography components are covered together
+            // in the Typography stories
+            disableSnapshot: true,
         },
     },
     render: () => (
