@@ -104,9 +104,9 @@ const theme = {
         },
         padding: sizing.size_020,
         sizing: {
-            small: sizing.size_120,
-            medium: sizing.size_180,
-            large: sizing.size_200,
+            small: sizing.size_240,
+            medium: sizing.size_240,
+            large: sizing.size_240,
         },
     },
 };
