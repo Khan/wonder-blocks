@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 import {action} from "@storybook/addon-actions";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-form/package.json";
-import {useSvgAttributes} from "@khanacademy/wonder-blocks-icon";
+import {useImageRoleAttributes} from "@khanacademy/wonder-blocks-icon";
 import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 export default {
@@ -28,7 +28,7 @@ export const UseImageRoleAttributesWithLabel: StoryComponentType = {
     name: "useImageRoleAttributes (with label)",
     args: {},
     render: function Example() {
-        const attributes = useSvgAttributes({
+        const attributes = useImageRoleAttributes({
             "aria-label": "Example label for icon",
         });
 
@@ -55,7 +55,7 @@ export const UseImageRoleAttributesWithNoLabel: StoryComponentType = {
     name: "useImageRoleAttributes (with no label)",
     args: {},
     render: function Example() {
-        const attributes = useSvgAttributes({});
+        const attributes = useImageRoleAttributes({});
 
         action("attributes")(attributes);
         return (

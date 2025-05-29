@@ -1,12 +1,12 @@
-import {useSvgAttributes} from "../use-svg-attributes";
+import {useImageRoleAttributes} from "../use-image-role-attributes";
 
-describe("useSvgAttributes", () => {
+describe("useImageRoleAttributes", () => {
     it("should return presentation only attributes if there is no aria-label or aria-labelledby defined", () => {
         // Arrange
         const props = {};
 
         // Act
-        const attributes = useSvgAttributes(props);
+        const attributes = useImageRoleAttributes(props);
 
         // Assert
         expect(attributes).toEqual({
@@ -21,7 +21,7 @@ describe("useSvgAttributes", () => {
         };
 
         // Act
-        const attributes = useSvgAttributes(props);
+        const attributes = useImageRoleAttributes(props);
 
         // Assert
         expect(attributes).toEqual({
@@ -37,7 +37,7 @@ describe("useSvgAttributes", () => {
         };
 
         // Act
-        const attributes = useSvgAttributes(props);
+        const attributes = useImageRoleAttributes(props);
 
         // Assert
         expect(attributes).toEqual({

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {CustomIconProps} from "../../types";
-import {useSvgAttributes} from "../../hooks/use-svg-attributes";
+import {useImageRoleAttributes} from "../../hooks/use-image-role-attributes";
 
 const StyledSvg = addStyle("svg");
 /**
@@ -19,7 +19,7 @@ const GemIcon = React.forwardRef<SVGSVGElement, CustomIconProps>(
             ...otherProps
         } = props;
 
-        const attributes = useSvgAttributes({
+        const attributes = useImageRoleAttributes({
             "aria-label": ariaLabel,
             "aria-labelledby": ariaLabelledBy,
         });
