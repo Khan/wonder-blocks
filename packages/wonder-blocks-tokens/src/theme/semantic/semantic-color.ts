@@ -447,4 +447,41 @@ export const semanticColor = {
     mastery: {
         primary: color.purple,
     },
+    /**
+     * Colors related to feedback.
+     */
+    feedback: {
+        info: {
+            subtle: {
+                background: core.background.instructive.subtle,
+                border: core.border.instructive.subtle,
+                icon: core.foreground.instructive.default,
+                text: core.foreground.instructive.strong,
+            },
+        },
+        success: {
+            subtle: {
+                background: core.background.success.subtle,
+                border: core.border.success.subtle,
+                icon: core.foreground.success.default,
+                text: core.foreground.success.strong,
+            },
+        },
+        warning: {
+            subtle: {
+                background: core.background.warning.subtle,
+                border: core.border.warning.default,
+                icon: core.foreground.warning.default,
+                text: core.foreground.warning.strong,
+            },
+        },
+        critical: {
+            subtle: {
+                background: core.background.critical.subtle,
+                border: core.border.critical.subtle,
+                icon: core.foreground.critical.default,
+                text: core.foreground.critical.strong,
+            },
+        },
+    },
 };
