@@ -34,7 +34,7 @@ The `size` prop will select a font size token based on our
 A corresponding line-height token will be automatically selected from our
 [line-height scale](/?path=/docs/packages-tokens-typography--docs&globals=theme:thunderblocks#lineHeight).
 
-Each size sets the following font-size and automatic line-height:
+Each size resolves to the following font-size and automatic line-height using `font.heading` tokens:
 
 - small: `sizing.size_160` / `sizing.size_200` (`HeadingXSmall`)
 - medium: `sizing.size_180` / `sizing.size_240` (`HeadingSmall`)
