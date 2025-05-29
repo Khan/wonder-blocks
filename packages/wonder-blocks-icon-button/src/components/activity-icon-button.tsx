@@ -129,17 +129,10 @@ const theme = {
             },
         },
         shadow: {
-            default: {
-                x: sizing.size_0,
-                y: sizing.size_060,
-                blur: sizing.size_0,
-                spread: sizing.size_0,
-            },
-            hover: {
-                y: sizing.size_080,
-            },
-            press: {
-                y: sizing.size_0,
+            y: {
+                rest: "6px",
+                hover: "8px",
+                press: sizing.size_0,
             },
         },
     },
@@ -170,7 +163,7 @@ const _generateStyles = (
         borderWidth: borderWidthKind.rest,
         borderColor: disabledState.border[kind],
         color: disabledState.foreground[kind],
-        boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.default.y} ${theme.root.shadow.default.blur} ${theme.root.shadow.default.spread} ${disabledState.shadow[kind]}`,
+        boxShadow: `0 ${theme.root.shadow.y.rest} 0 0 ${disabledState.shadow[kind]}`,
         transform: "none",
     };
 
@@ -178,10 +171,10 @@ const _generateStyles = (
         // theming
         background: themeVariant.background[kind].press,
         border: `${borderWidthKind.press} solid ${themeVariant.border[kind].press}`,
-        boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.press.y} ${theme.root.shadow.default.blur} ${theme.root.shadow.default.spread} ${themeVariant.shadow[kind].press}`,
+        boxShadow: `0 ${theme.root.shadow.y.press} 0 0 ${themeVariant.shadow[kind].press}`,
         color: themeVariant.foreground[kind].press,
         // motion
-        transform: `translateY(${theme.root.shadow.default.y})`,
+        transform: `translateY(${theme.root.shadow.y.rest})`,
     };
 
     const newStyles: Record<string, CSSProperties> = {
@@ -191,7 +184,7 @@ const _generateStyles = (
             borderRadius: theme.root.border.radius,
             color: themeVariant.foreground[kind].rest,
             // layout
-            paddingBlockEnd: theme.root.shadow.default.y,
+            paddingBlockEnd: theme.root.shadow.y.rest,
             flexDirection: "column",
             // Prevent the button from stretching to fill the parent
             alignSelf: "center",
@@ -206,12 +199,15 @@ const _generateStyles = (
              */
             ":hover": {
                 color: themeVariant.foreground[kind].hover,
+                // paddingBlockEnd: `calc(${theme.root.shadow.default.y} * 2)`,
             },
             [":is(:hover) .chonky" as any]: {
                 background: themeVariant.background[kind].hover,
                 border: `${borderWidthKind.hover} solid ${themeVariant.border[kind].hover}`,
-                transform: `translateY(calc((${theme.root.shadow.hover.y} - ${theme.root.shadow.default.y}) * -1))`,
-                boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.hover.y} ${theme.root.shadow.default.blur} ${theme.root.shadow.default.spread} ${themeVariant.shadow[kind].hover}`,
+                boxShadow: `0 ${theme.root.shadow.y.hover} 0 0 ${themeVariant.shadow[kind].hover}`,
+                // motion
+                transform: `translateY(calc((${theme.root.shadow.y.hover} - ${theme.root.shadow.y.rest}) * -1))`,
+                // transform: `translateY(-2px)`,
             },
 
             [":is(:active) .chonky" as any]: chonkyPressed,
@@ -248,9 +244,9 @@ const _generateStyles = (
             background: themeVariant.background[kind].rest,
             border: `${borderWidthKind.rest} solid ${themeVariant.border[kind].rest}`,
             // Gives the button a "chonky" look and feel.
-            boxShadow: `${theme.root.shadow.default.x} ${theme.root.shadow.default.y} ${theme.root.shadow.default.blur} ${theme.root.shadow.default.spread} ${themeVariant.shadow[kind].rest}`,
+            boxShadow: `0 ${theme.root.shadow.y.rest} 0 0 ${themeVariant.shadow[kind].rest}`,
             // motion
-            transition: "all 0.15s cubic-bezier(.4,0,.2,1)",
+            transition: "all 0.12s ease-out",
 
             ["@media not (hover: hover)" as any]: {
                 transition: "none",
