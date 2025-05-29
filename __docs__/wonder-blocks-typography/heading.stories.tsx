@@ -176,16 +176,9 @@ export const SizesAndWeights = {
 export const ClassicConversionGuide = {
     parameters: {
         chromatic: {
-<<<<<<< HEAD
             // Disabling because all typography components are covered together
             // in the Typography stories
             disableSnapshot: true,
-=======
-            modes: {
-                default: allModes.themeDefault,
-                thunderblocks: allModes.themeThunderBlocks,
-            },
->>>>>>> fd5f1122 ([WB-1966] Add docs for Heading/BodyText)
         },
     },
     render: () => (
@@ -203,15 +196,12 @@ export const ClassicConversionGuide = {
                 <Heading size="large">Heading size=large</Heading>
             </View>
             <View style={styles.row}>
-<<<<<<< HEAD
                 <Tagline>Tagline</Tagline>
                 <Heading size="large" weight="medium">
                     Heading size=large, weight=medium
                 </Heading>
             </View>
             <View style={styles.row}>
-=======
->>>>>>> fd5f1122 ([WB-1966] Add docs for Heading/BodyText)
                 <HeadingLarge>HeadingLarge</HeadingLarge>
                 <Heading size="xlarge">Heading size=xlarge</Heading>
             </View>
