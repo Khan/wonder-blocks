@@ -5,15 +5,15 @@ import * as IconUtilitiesStories from './icon-utilities.stories';
 
 # Icon Utilities
 
-## `useSvgAttributes(props)` hook
+## `useImageRoleAttributes(props)` hook
 
 ```tsx
-import {useSvgAttributes} from "@khanacademy/wonder-blocks-icon";
+import {useImageRoleAttributes} from "@khanacademy/wonder-blocks-icon";
 ```
 
 ### Description
 
-The `useSvgAttributes` hook determines what attributes should be applied
+The `useImageRoleAttributes` hook determines what attributes should be applied
 to an `svg` element.
 
 If an `aria-label` or `aria-labelledby` is provided, it will be used and the
@@ -49,7 +49,7 @@ hook. When using a screen reader, the label is communicated to the user.
 
 This is useful for scenarios where an icon conveys meaning.
 
-<Canvas of={IconUtilitiesStories.UseSvgAttributesWithLabel} />
+<Canvas of={IconUtilitiesStories.UseImageRoleAttributesWithLabel} />
 
 #### With No Label
 
@@ -58,4 +58,4 @@ using a screen reader, the icon is not communicated to the user.
 
 This is useful for scenarios where an icon is decorative only.
 
-<Canvas of={IconUtilitiesStories.UseSvgAttributesWithNoLabel} />
+<Canvas of={IconUtilitiesStories.UseImageRoleAttributesWithNoLabel} />

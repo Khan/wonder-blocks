@@ -24,8 +24,8 @@ export default {
 
 type StoryComponentType = StoryObj;
 
-export const UseSvgAttributesWithLabel: StoryComponentType = {
-    name: "useSvgAttributes (with label)",
+export const UseImageRoleAttributesWithLabel: StoryComponentType = {
+    name: "useImageRoleAttributes (with label)",
     args: {},
     render: function Example() {
         const attributes = useSvgAttributes({
@@ -51,8 +51,8 @@ export const UseSvgAttributesWithLabel: StoryComponentType = {
     },
 };
 
-export const UseSvgAttributesWithNoLabel: StoryComponentType = {
-    name: "useSvgAttributes (with no label)",
+export const UseImageRoleAttributesWithNoLabel: StoryComponentType = {
+    name: "useImageRoleAttributes (with no label)",
     args: {},
     render: function Example() {
         const attributes = useSvgAttributes({});
