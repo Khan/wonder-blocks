@@ -11,6 +11,9 @@ type ColorType = {
     green: string;
     gold: string;
     red: string;
+    magenta: string;
+    orange: string;
+    cyan: string;
     // Neutral
     offBlack: string;
     offBlack64: string;
@@ -30,10 +33,13 @@ type ColorType = {
 
 const baseColors: ColorType = {
     // Product
-    blue: "#1865f2",
     purple: "#9059ff",
+    blue: "#1865f2",
+    cyan: "#28a9ff",
     green: "#00a60e",
     gold: "#ffb100",
+    orange: "#f8551a",
+    magenta: "#e83fa4",
     red: "#d92916",
 
     // Neutral
@@ -98,4 +104,28 @@ export const color = {
     fadedOffBlack32: fadedColorWithWhite(offBlack, 0.32),
     fadedOffBlack16: fadedColorWithWhite(offBlack, 0.16),
     fadedOffBlack8: fadedColorWithWhite(offBlack, 0.08),
+
+    // Magenta
+    activeMagenta: mix(baseColors.offBlack32, baseColors.magenta),
+    fadedMagenta50: fadedColorWithWhite(baseColors.magenta, 0.5),
+    fadedMagenta32: fadedColorWithWhite(baseColors.magenta, 0.32),
+    fadedMagenta24: fadedColorWithWhite(baseColors.magenta, 0.24),
+    fadedMagenta16: fadedColorWithWhite(baseColors.magenta, 0.16),
+    fadedMagenta8: fadedColorWithWhite(baseColors.magenta, 0.08),
+
+    // Orange
+    activeOrange: mix(baseColors.offBlack32, baseColors.orange),
+    fadedOrange50: fadedColorWithWhite(baseColors.orange, 0.5),
+    fadedOrange32: fadedColorWithWhite(baseColors.orange, 0.32),
+    fadedOrange24: fadedColorWithWhite(baseColors.orange, 0.24),
+    fadedOrange16: fadedColorWithWhite(baseColors.orange, 0.16),
+    fadedOrange8: fadedColorWithWhite(baseColors.orange, 0.08),
+
+    // Cyan
+    activeCyan: mix(baseColors.offBlack32, baseColors.cyan),
+    fadedCyan50: fadedColorWithWhite(baseColors.cyan, 0.5),
+    fadedCyan32: fadedColorWithWhite(baseColors.cyan, 0.32),
+    fadedCyan24: fadedColorWithWhite(baseColors.cyan, 0.24),
+    fadedCyan16: fadedColorWithWhite(baseColors.cyan, 0.16),
+    fadedCyan8: fadedColorWithWhite(baseColors.cyan, 0.08),
 };
