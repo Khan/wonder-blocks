@@ -14,7 +14,7 @@ const BodyText = React.forwardRef(function BodyText(
         weight = "medium",
         style,
         children,
-        tag = "span",
+        tag = "p",
         ...otherProps
     }: Props,
     ref,
