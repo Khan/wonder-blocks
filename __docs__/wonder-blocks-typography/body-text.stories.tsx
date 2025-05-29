@@ -37,20 +37,26 @@ Each size sets the following font-size and automatic line-height:
 
 - xsmall: `sizing.size_120` / `sizing.size_160` (`LabelXSmall`)
 - small: `sizing.size_140` / `sizing.size_180` (`LabelSmall`)
-- medium: `sizing.size_160` / `sizing.size_200` (`LabelMedium`, `LabelLarge`, `Body`)
+- medium (default): `sizing.size_160` / `sizing.size_200` (`LabelMedium`, `LabelLarge`, `Body`)
+
+With no `size` prop set, `BodyText` will default to `medium` font size and line height.
 
 ### `weight`
 
 The `weight` prop will match a font weight token for Jakarta based on the available
 [font weights](/?path=/docs/packages-tokens-typography--docs&globals=theme:thunderblocks#weight).
 
-- medium: `500`
+- medium (default): `500`
 - semi: `600`
 - bold: `700`
 
+With no `weight` prop set, `BodyText` will default to `medium` weight.
+
 ### `tag`
 
-The `tag` prop will set a tagName, such as `tag="span"`. `BodyText` renders with a `p` tag by default.
+The `tag` prop will set a tagName, such as `tag="span"`.
+
+`BodyText` renders with a `p` tag by default.
 
 > Note: Heading text should utilize the `Heading` component. If the size or weight you're
 looking for doesn't exist in `BodyText`, consider making it a `Heading`!

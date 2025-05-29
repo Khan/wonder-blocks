@@ -38,9 +38,13 @@ Each size sets the following font-size and automatic line-height:
 
 - small: `sizing.size_160` / `sizing.size_200` (`HeadingXSmall`)
 - medium: `sizing.size_180` / `sizing.size_240` (`HeadingSmall`)
-- large: `sizing.size_200` / `sizing.size_280` (`HeadingMedium`, `Tagline`)
+- large (default): `sizing.size_200` / `sizing.size_280` (`HeadingMedium`, `Tagline`)
 - xlarge: `sizing.size_240` / `sizing.size_320` (`HeadingLarge`)
 - xxlarge: `sizing.size_320` / `sizing.size_400` (`Title`)
+
+With no `size` prop set, `Heading` will default to `large` font-size and line-height.
+
+With no `size` or `tag` props set, `Heading` will default to `h2`.
 
 ### `weight`
 
@@ -49,7 +53,9 @@ The `weight` prop will match a font weight token for Jakarta based on the availa
 
 - medium: `500`
 - semi: `600`
-- bold: `700`
+- bold (default): `700`
+
+With no `weight` prop set, `Heading` will default to `bold` weight.
 
 ### `tag`
 
