@@ -13,6 +13,7 @@ import {
     HeadingMedium,
     HeadingSmall,
     HeadingXSmall,
+    Tagline,
     Title,
 } from "@khanacademy/wonder-blocks-typography";
 import {spacing} from "@khanacademy/wonder-blocks-tokens";
@@ -37,7 +38,7 @@ Each size sets the following font-size and automatic line-height:
 
 - small: `sizing.size_160` / `sizing.size_200` (`HeadingXSmall`)
 - medium: `sizing.size_180` / `sizing.size_240` (`HeadingSmall`)
-- large: `sizing.size_200` / `sizing.size_280` (`HeadingMedium`)
+- large: `sizing.size_200` / `sizing.size_280` (`HeadingMedium`, `Tagline`)
 - xlarge: `sizing.size_240` / `sizing.size_320` (`HeadingLarge`)
 - xxlarge: `sizing.size_320` / `sizing.size_400` (`Title`)
 
@@ -46,6 +47,7 @@ Each size sets the following font-size and automatic line-height:
 The `weight` prop will match a font weight token for Jakarta based on the available
 [font weights](/?path=/docs/packages-tokens-typography--docs&globals=theme:thunderblocks#weight).
 
+- medium: `500`
 - semi: `600`
 - bold: `700`
 
@@ -187,6 +189,12 @@ export const ClassicConversionGuide = {
             <View style={styles.row}>
                 <HeadingMedium>HeadingMedium</HeadingMedium>
                 <Heading size="large">Heading size=large</Heading>
+            </View>
+            <View style={styles.row}>
+                <Tagline>Tagline</Tagline>
+                <Heading size="large" weight="medium">
+                    Heading size=large, weight=medium
+                </Heading>
             </View>
             <View style={styles.row}>
                 <HeadingLarge>HeadingLarge</HeadingLarge>

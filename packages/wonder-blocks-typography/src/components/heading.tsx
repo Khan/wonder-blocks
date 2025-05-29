@@ -16,7 +16,7 @@ type HeadingSize = keyof typeof tagMap;
 type Props = PropsFor<typeof Text> & {
     size?: HeadingSize;
     tag?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-    weight?: "semi" | "bold";
+    weight?: "medium" | "semi" | "bold";
 };
 
 const Heading = React.forwardRef(function Heading(props: Props, ref) {
