@@ -129,6 +129,7 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
                 </View>
                 {hasVisibleLabel && (
                     <BodyText
+                        tag="span"
                         size="medium"
                         weight="semi"
                         style={buttonStyles.label}
@@ -238,6 +239,7 @@ const _generateStyles = (
             color: theme.label.color[actionType],
             // layout
             flexDirection: "column",
+            gap: sizing.size_020,
             // Prevent the button from stretching to fill the parent
             maxWidth: theme.label.layout.width,
             alignSelf: "flex-start",
