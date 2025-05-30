@@ -4,7 +4,7 @@
  *
  * @returns The attributes to apply to an svg element.
  */
-export function useSvgAttributes(props: {
+export function useImageRoleAttributes(props: {
     "aria-label"?: string;
     "aria-labelledby"?: string;
 }) {
