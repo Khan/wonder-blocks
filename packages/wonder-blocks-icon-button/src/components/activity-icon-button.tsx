@@ -7,6 +7,7 @@ import {PhosphorIcon} from "@khanacademy/wonder-blocks-icon";
 import {focusStyles} from "@khanacademy/wonder-blocks-styles";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
+import {BodyText} from "@khanacademy/wonder-blocks-typography";
 import type {
     ActivityIconButtonActionType,
     IconButtonKind,
@@ -15,16 +16,37 @@ import type {
 
 import {IconButtonUnstyled} from "./icon-button-unstyled";
 
-type Props = Omit<IconButtonProps, "actionType" | "size"> & {
+type AriaLabelOnly = {
     /**
-     * The action type of the button. This determines the visual style of the
-     * button.
-     *
-     * - `progressive` is used for actions that move the user forward in a flow.
-     * - `neutral` is used for buttons that indicate a neutral action.
+     * The alternative text for the icon button. Use `aria-label` for when
+     * there's no visible label for the button, such as when the button only
+     * contains an icon.
      */
-    actionType?: ActivityIconButtonActionType;
+    "aria-label": string;
+    label?: never;
 };
+
+type LabelOnly = {
+    "aria-label"?: never;
+    /**
+     * A label for the button that describes its action.
+     *
+     * NOTE: If `label` is set, then `aria-label` will be ignored.
+     */
+    label: string;
+};
+
+type Props = Omit<IconButtonProps, "actionType" | "size"> &
+    (AriaLabelOnly | LabelOnly) & {
+        /**
+         * The action type of the button. This determines the visual style of the
+         * button.
+         *
+         * - `progressive` is used for actions that move the user forward in a flow.
+         * - `neutral` is used for buttons that indicate a neutral action.
+         */
+        actionType?: ActivityIconButtonActionType;
+    };
 
 /**
  * `ActivityIconButton` is an icon button that is used for actions in the
@@ -57,6 +79,9 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
         kind = "primary",
         style,
         type = "button",
+        // labeling
+        "aria-label": ariaLabel,
+        label,
         ...restProps
     } = props;
 
@@ -81,6 +106,8 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
         setPressed(isPressing);
     }, []);
 
+    const hasVisibleLabel = label !== undefined && label !== "";
+
     return (
         <IconButtonUnstyled
             {...restProps}
@@ -89,11 +116,27 @@ export const ActivityIconButton: React.ForwardRefExoticComponent<
             ref={ref}
             style={styles}
             type={type}
+            {...(!hasVisibleLabel ? {"aria-label": ariaLabel} : {})}
         >
-            {/* NOTE: Using a regular className to be able to use descendant selectors to account for the hover and press states */}
-            <View style={chonkyStyles} className="chonky">
-                <PhosphorIcon size="medium" color="currentColor" icon={icon} />
-            </View>
+            <>
+                {/* NOTE: Using a regular className to be able to use descendant selectors to account for the hover and press states */}
+                <View style={chonkyStyles} className="chonky">
+                    <PhosphorIcon
+                        size="medium"
+                        color="currentColor"
+                        icon={icon}
+                    />
+                </View>
+                {hasVisibleLabel && (
+                    <BodyText
+                        size="medium"
+                        weight="semi"
+                        style={buttonStyles.label}
+                    >
+                        {label}
+                    </BodyText>
+                )}
+            </>
         </IconButtonUnstyled>
     );
 });
@@ -134,6 +177,16 @@ const theme = {
                 hover: "8px",
                 press: sizing.size_0,
             },
+        },
+    },
+    label: {
+        color: {
+            progressive: semanticColor.core.foreground.instructive.default,
+            neutral: semanticColor.core.foreground.neutral.default,
+            disabled: semanticColor.core.foreground.disabled.default,
+        },
+        layout: {
+            width: sizing.size_640,
         },
     },
 };
@@ -182,12 +235,10 @@ const _generateStyles = (
             // theming
             // Used for the focus ring.
             borderRadius: theme.root.border.radius,
-            color: themeVariant.foreground[kind].rest,
+            color: theme.label.color[actionType],
             // layout
-            paddingBlockEnd: theme.root.shadow.y.rest,
             flexDirection: "column",
             // Prevent the button from stretching to fill the parent
-            alignSelf: "center",
             justifySelf: "center",
             /**
              * States
@@ -197,17 +248,13 @@ const _generateStyles = (
              * This is important as we want to give more priority to the
              * :focus-visible styles.
              */
-            ":hover": {
-                color: themeVariant.foreground[kind].hover,
-                // paddingBlockEnd: `calc(${theme.root.shadow.default.y} * 2)`,
-            },
             [":is(:hover) .chonky" as any]: {
                 background: themeVariant.background[kind].hover,
                 border: `${borderWidthKind.hover} solid ${themeVariant.border[kind].hover}`,
                 boxShadow: `0 ${theme.root.shadow.y.hover} 0 0 ${themeVariant.shadow[kind].hover}`,
+                color: themeVariant.foreground[kind].hover,
                 // motion
                 transform: `translateY(calc((${theme.root.shadow.y.hover} - ${theme.root.shadow.y.rest}) * -1))`,
-                // transform: `translateY(-2px)`,
             },
 
             [":is(:active) .chonky" as any]: chonkyPressed,
@@ -217,6 +264,7 @@ const _generateStyles = (
         },
         disabled: {
             cursor: "not-allowed",
+            color: theme.label.color.disabled,
             ...disabledStatesStyles,
             // Reset hover and active styles on disabled buttons.
             ":hover": disabledStatesStyles,
@@ -238,11 +286,13 @@ const _generateStyles = (
             // layout
             // Used for the chonky box.
             borderRadius: theme.root.border.radius,
+            marginBlockEnd: theme.root.shadow.y.rest,
             paddingBlock: theme.root.layout.padding.block,
             paddingInline: theme.root.layout.padding.inline,
             // theming
             background: themeVariant.background[kind].rest,
             border: `${borderWidthKind.rest} solid ${themeVariant.border[kind].rest}`,
+            color: themeVariant.foreground[kind].rest,
             // Gives the button a "chonky" look and feel.
             boxShadow: `0 ${theme.root.shadow.y.rest} 0 0 ${themeVariant.shadow[kind].rest}`,
             // motion
@@ -254,6 +304,20 @@ const _generateStyles = (
         },
         chonkyPressed,
         chonkyDisabled,
+        /**
+         * Label
+         */
+        label: {
+            margin: 0,
+            maxWidth: theme.label.layout.width,
+            textAlign: "center",
+            // text clipping
+            // @see https://css-tricks.com/line-clampin/#aa-the-standardized-way
+            display: "-webkit-box",
+            WebkitBoxOrient: "vertical",
+            WebkitLineClamp: "2",
+            overflow: "hidden",
+        },
     } as const;
 
     styles[buttonType] = StyleSheet.create(newStyles);
