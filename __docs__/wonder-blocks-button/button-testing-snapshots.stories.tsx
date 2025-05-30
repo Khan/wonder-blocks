@@ -21,6 +21,7 @@ export default {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
@@ -117,6 +118,8 @@ export const Sizes: StoryComponentType = {
                                     actionType={actionType}
                                     disabled={disabled}
                                     key={index}
+                                    startIcon={paperPlaneIcon}
+                                    endIcon={paperPlaneIcon}
                                 />
                             ),
                         )}
