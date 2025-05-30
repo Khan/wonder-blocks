@@ -41,7 +41,7 @@ type Story = StoryObj<typeof ActionItem>;
  * ActionItem component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Dropdown / ActionItem / Testing / ActionItem - Snapshots",
+    title: "Packages / Dropdown / Testing / Snapshots / ActionItem",
     component: ActionItem,
     args: {
         label: "Action Item",
@@ -69,6 +69,7 @@ const meta = {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },

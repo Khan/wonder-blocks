@@ -35,7 +35,7 @@ type Story = StoryObj<typeof Radio>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Form / Radio (internal) / Radio - All Variants",
+    title: "Packages / Form / Testing / Snapshots / Radio (internal)",
     component: Radio,
     args: {
         label: "Label",
@@ -45,6 +45,7 @@ const meta = {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },

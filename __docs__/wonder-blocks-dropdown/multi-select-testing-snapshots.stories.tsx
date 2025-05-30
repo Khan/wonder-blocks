@@ -10,11 +10,12 @@ import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
  * multi select component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / Dropdown / MultiSelect / Testing / MultiSelect - Snapshots",
+    title: "Packages / Dropdown / Testing / Snapshots / MultiSelect",
     parameters: {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
