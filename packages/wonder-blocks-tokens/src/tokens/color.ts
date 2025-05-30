@@ -11,9 +11,6 @@ type ColorType = {
     green: string;
     gold: string;
     red: string;
-    magenta: string;
-    orange: string;
-    cyan: string;
     // Neutral
     offBlack: string;
     offBlack64: string;
@@ -33,13 +30,10 @@ type ColorType = {
 
 const baseColors: ColorType = {
     // Product
-    purple: "#9059ff",
     blue: "#1865f2",
-    cyan: "#28a9ff",
+    purple: "#9059ff",
     green: "#00a60e",
     gold: "#ffb100",
-    orange: "#f8551a",
-    magenta: "#e83fa4",
     red: "#d92916",
 
     // Neutral
