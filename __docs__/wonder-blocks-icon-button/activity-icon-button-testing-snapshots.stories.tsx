@@ -8,6 +8,8 @@ import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {allModes} from "../../.storybook/modes";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {longTextWithNoWordBreak} from "../components/text-for-testing";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -115,21 +117,64 @@ export const Scenarios: Story = {
             {
                 name: "Long label with multiple words",
                 props: {
-                    icon: paperPlaneIcon,
-                    label: "Send with a very long text",
+                    children: (
+                        <ActivityIconButton
+                            label="Send with a very long text"
+                            icon={paperPlaneIcon}
+                        />
+                    ),
                 },
             },
             {
-                name: "Long label with no word break",
+                name: "Long label with songle word in more than two lines",
                 props: {
-                    icon: paperPlaneIcon,
-                    label: longTextWithNoWordBreak,
+                    children: (
+                        <ActivityIconButton
+                            label={longTextWithNoWordBreak}
+                            icon={paperPlaneIcon}
+                        />
+                    ),
+                },
+            },
+            {
+                name: "Long label with single word in two lines",
+                props: {
+                    children: (
+                        <ActivityIconButton
+                            label="Conversation"
+                            icon={paperPlaneIcon}
+                        />
+                    ),
+                },
+            },
+            {
+                name: "Horizontally stacked buttons",
+                props: {
+                    children: (
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                background: semanticColor.surface.secondary,
+                                gap: sizing.size_160,
+                                padding: sizing.size_160,
+                            }}
+                        >
+                            <ActivityIconButton
+                                label="Label"
+                                icon={paperPlaneIcon}
+                            />
+                            <ActivityIconButton
+                                icon={paperPlaneIcon}
+                                aria-label="Send"
+                            />
+                        </View>
+                    ),
                 },
             },
         ];
         return (
             <ScenariosLayout scenarios={scenarios}>
-                {(props, name) => <ActivityIconButton {...props} />}
+                {(props) => props.children}
             </ScenariosLayout>
         );
     },
