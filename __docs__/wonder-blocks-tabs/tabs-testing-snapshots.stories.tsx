@@ -14,6 +14,7 @@ import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {ControlledTabs, generateTabs} from "./tabs-utils";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
+import {allModes} from "../../.storybook/modes";
 
 const StyledDiv = addStyle("div");
 
@@ -153,6 +154,14 @@ const meta = {
     component: Tabs,
     args: {
         tabs: [],
+    },
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
     },
     tags: ["!autodocs"],
 } satisfies Meta<typeof Tabs>;

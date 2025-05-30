@@ -8,6 +8,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
 import {rtlText} from "../components/text-for-testing";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
+import {allModes} from "../../.storybook/modes";
 
 const StyledDiv = addStyle("div");
 
@@ -74,6 +75,14 @@ const meta = {
     title: "Packages / Tabs / Tabs / Subcomponents / Tab / Testing / Tab - Snapshots",
     component: Tab,
     args: {},
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
     tags: ["!autodocs"],
 } satisfies Meta<typeof Tab>;
 

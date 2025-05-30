@@ -10,8 +10,8 @@ type Props = PropsFor<typeof Text> & {
 
 const BodyText = React.forwardRef(function BodyText(
     {
-        size = "small",
-        weight = "semi",
+        size = "medium",
+        weight = "medium",
         style,
         children,
         tag = "p",

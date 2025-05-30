@@ -34,7 +34,7 @@ type Story = StoryObj<typeof Checkbox>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Form / Checkbox / Testing / Checkbox - Snapshots",
+    title: "Packages / Form / Testing / Snapshots / Checkbox",
     component: Checkbox,
     args: {
         label: "Label",
@@ -44,6 +44,7 @@ const meta = {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },
