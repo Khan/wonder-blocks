@@ -60,7 +60,7 @@ type Story = StoryObj<typeof Link>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Link / Testing / Link - Snapshots",
+    title: "Packages / Link / Testing / Snapshots / Link",
     args: {
         children: "This is a Link",
         href: "https://www.khanacademy.org",
@@ -71,6 +71,7 @@ const meta = {
                 default: allModes.themeDefault,
                 "default rtl": allModes["themeDefault rtl"],
                 dark: allModes.dark,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },

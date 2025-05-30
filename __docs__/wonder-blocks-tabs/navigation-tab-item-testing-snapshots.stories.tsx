@@ -18,6 +18,7 @@ import {
 } from "../components/text-for-testing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {ScenariosLayout} from "../components/scenarios-layout";
+import {allModes} from "../../.storybook/modes";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => {
@@ -150,6 +151,14 @@ type Story = StoryObj<typeof NavigationTabItem>;
 const meta = {
     title: "Packages / Tabs / NavigationTabs / Subcomponents / NavigationTabItem / Testing / NavigationTabItem - Snapshots",
     component: NavigationTabItem,
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabItem>;
 

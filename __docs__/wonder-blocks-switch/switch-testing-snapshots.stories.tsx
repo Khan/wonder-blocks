@@ -8,6 +8,7 @@ import Switch from "@khanacademy/wonder-blocks-switch";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {sizing} from "@khanacademy/wonder-blocks-tokens";
+import {allModes} from "../../.storybook/modes";
 
 const rows = [
     {name: "Off", props: {checked: false}},
@@ -43,11 +44,19 @@ type Story = StoryObj<typeof Switch>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Switch / Testing / Switch - Snapshots",
+    title: "Packages / Switch / Testing / Snapshots / Switch",
     component: Switch,
     args: {
         onChange: () => {},
         "aria-label": "Switch",
+    },
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
     },
     tags: ["!autodocs"],
 } satisfies Meta<typeof Switch>;

@@ -21,6 +21,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {generateChildren} from "./navigation-tabs-utils";
 import {ScenariosLayout} from "../components/scenarios-layout";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
+import {allModes} from "../../.storybook/modes";
 
 const StyledA = addStyle("a");
 const generateRows = (rtl: boolean = false) => [
@@ -183,6 +184,14 @@ type Story = StoryObj<typeof NavigationTabs>;
 const meta = {
     title: "Packages / Tabs / NavigationTabs / Testing / NavigationTabs - Snapshots ",
     component: NavigationTabs,
+    parameters: {
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
+    },
     tags: ["!autodocs"],
 } satisfies Meta<typeof NavigationTabs>;
 

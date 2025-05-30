@@ -10,11 +10,12 @@ import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
  * single select component. This is only used for visual testing in Chromatic.
  */
 export default {
-    title: "Packages / Dropdown / SingleSelect / Testing / SingleSelect - Snapshots",
+    title: "Packages / Dropdown / Testing / Snapshots / SingleSelect",
     parameters: {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },

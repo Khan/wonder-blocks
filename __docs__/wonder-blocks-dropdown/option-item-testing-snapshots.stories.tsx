@@ -48,7 +48,7 @@ type Story = StoryObj<typeof OptionItem>;
  * OptionItem component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Dropdown / OptionItem / Testing / OptionItem - Snapshots",
+    title: "Packages / Dropdown / Testing / Snapshots / OptionItem",
     component: OptionItem,
 
     args: {
@@ -74,6 +74,7 @@ const meta = {
         chromatic: {
             modes: {
                 default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
             },
         },
     },

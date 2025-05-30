@@ -31,11 +31,14 @@ type Story = StoryObj<typeof Pill>;
  * component. This is only used for visual testing in Chromatic.
  */
 const meta = {
-    title: "Packages / Pill / Testing / Pill - Snapshots",
+    title: "Packages / Pill / Testing / Snapshots / Pill",
     component: Pill,
     parameters: {
         chromatic: {
-            modes: {default: allModes.themeDefault},
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
         },
     },
 
