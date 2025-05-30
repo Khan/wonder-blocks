@@ -239,6 +239,8 @@ const _generateStyles = (
             // layout
             flexDirection: "column",
             // Prevent the button from stretching to fill the parent
+            maxWidth: theme.label.layout.width,
+            alignSelf: "flex-start",
             justifySelf: "center",
             /**
              * States
@@ -309,14 +311,15 @@ const _generateStyles = (
          */
         label: {
             margin: 0,
-            maxWidth: theme.label.layout.width,
             textAlign: "center",
             // text clipping
             // @see https://css-tricks.com/line-clampin/#aa-the-standardized-way
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
+            // We restrict the label to a maximum of 2 lines.
             WebkitLineClamp: "2",
             overflow: "hidden",
+            wordBreak: "break-word",
         },
     } as const;
 
