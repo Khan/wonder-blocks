@@ -38,11 +38,6 @@ const core = {
             default: color.gray_70,
             strong: color.gray_60,
         },
-        inverse: {
-            subtle: color.gray_60,
-            default: color.gray_90,
-            strong: color.white_100,
-        },
         gems: {
             subtle: color.magenta_80,
             default: color.magenta_60,
@@ -57,6 +52,11 @@ const core = {
             subtle: color.cyan_80,
             default: color.cyan_60,
             strong: color.cyan_30,
+        },
+        inverse: {
+            subtle: color.gray_60,
+            default: color.gray_90,
+            strong: color.white_100,
         },
     },
     background: {
@@ -141,11 +141,6 @@ const core = {
             default: color.gray_50,
             strong: color.gray_40,
         },
-        inverse: {
-            subtle: color.gray_60,
-            default: color.gray_90,
-            strong: color.white_100,
-        },
         gems: {
             subtle: color.magenta_60,
             default: color.magenta_30,
@@ -160,6 +155,11 @@ const core = {
             subtle: color.cyan_60,
             default: color.cyan_20,
             strong: color.cyan_10,
+        },
+        inverse: {
+            subtle: color.gray_60,
+            default: color.gray_90,
+            strong: color.white_100,
         },
     },
 };

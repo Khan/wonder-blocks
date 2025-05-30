@@ -35,11 +35,6 @@ const core = {
             default: color.fadedOffBlack16,
             strong: color.fadedOffBlack32,
         },
-        inverse: {
-            subtle: color.fadedOffBlack16,
-            default: color.fadedOffBlack8,
-            strong: color.white,
-        },
         gems: {
             subtle: color.magenta_80,
             default: color.magenta_60,
@@ -54,6 +49,11 @@ const core = {
             subtle: color.cyan_80,
             default: color.cyan_60,
             strong: color.cyan_30,
+        },
+        inverse: {
+            subtle: color.fadedOffBlack16,
+            default: color.fadedOffBlack8,
+            strong: color.white,
         },
     },
     background: {
@@ -138,11 +138,6 @@ const core = {
             default: color.fadedOffBlack32,
             strong: color.fadedOffBlack50,
         },
-        inverse: {
-            subtle: color.fadedOffBlack32,
-            default: color.offWhite,
-            strong: color.white,
-        },
         gems: {
             subtle: color.magenta_60,
             default: color.magenta_30,
@@ -157,6 +152,11 @@ const core = {
             subtle: color.cyan_60,
             default: color.cyan_20,
             strong: color.cyan_10,
+        },
+        inverse: {
+            subtle: color.fadedOffBlack32,
+            default: color.offWhite,
+            strong: color.white,
         },
     },
 };
