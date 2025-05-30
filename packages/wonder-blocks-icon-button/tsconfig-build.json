@@ -12,6 +12,7 @@
         {"path": "../wonder-blocks-styles/tsconfig-build.json"},
         {"path": "../wonder-blocks-theming/tsconfig-build.json"},
         {"path": "../wonder-blocks-tokens/tsconfig-build.json"},
+        {"path": "../wonder-blocks-typography/tsconfig-build.json"},
         {"path": "../../utils"},
     ]
 }
