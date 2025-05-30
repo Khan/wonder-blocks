@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 10.1.2
+
+### Patch Changes
+
+- fa3e433: Fixes how the onPress handler is called when released. Updated unit tests and docs for IconButton
+- Updated dependencies [7abcccf]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [7abcccf]
+- Updated dependencies [1c3c335]
+- Updated dependencies [689f5d3]
+    - @khanacademy/wonder-blocks-tokens@10.4.0
+    - @khanacademy/wonder-blocks-clickable@7.1.5
+    - @khanacademy/wonder-blocks-styles@0.2.12
+
 ## 10.1.1
 
 ### Patch Changes
