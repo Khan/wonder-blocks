@@ -10,6 +10,7 @@ import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import badgeArgtypes, {iconArgType} from "./badge.argtypes";
 import {multiColoredIcon} from "../components/icons-for-testing";
+import {allModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Badge / DueBadge",
@@ -28,6 +29,10 @@ export default {
         chromatic: {
             // Disable snapshots since they're covered by the testing snapshots
             disableSnapshot: true,
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
         },
     },
     render: (
