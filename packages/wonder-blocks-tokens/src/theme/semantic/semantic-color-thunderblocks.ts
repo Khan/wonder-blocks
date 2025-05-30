@@ -43,6 +43,21 @@ const core = {
             default: color.gray_90,
             strong: color.white_100,
         },
+        gems: {
+            subtle: color.magenta_80,
+            default: color.magenta_60,
+            strong: color.magenta_30,
+        },
+        streak: {
+            subtle: color.orange_80,
+            default: color.orange_60,
+            strong: color.orange_30,
+        },
+        due: {
+            subtle: color.cyan_80,
+            default: color.cyan_60,
+            strong: color.cyan_30,
+        },
     },
     background: {
         instructive: {
@@ -74,6 +89,21 @@ const core = {
             subtle: transparent,
             default: color.gray_80,
             strong: color.gray_70,
+        },
+        gems: {
+            subtle: color.magenta_90,
+            default: color.magenta_80,
+            strong: color.magenta_10,
+        },
+        streak: {
+            subtle: color.orange_80,
+            default: color.orange_60,
+            strong: color.orange_10,
+        },
+        due: {
+            subtle: color.cyan_80,
+            default: color.cyan_60,
+            strong: color.cyan_10,
         },
     },
 
@@ -115,6 +145,21 @@ const core = {
             subtle: color.gray_60,
             default: color.gray_90,
             strong: color.white_100,
+        },
+        gems: {
+            subtle: color.magenta_60,
+            default: color.magenta_30,
+            strong: color.magenta_10,
+        },
+        streak: {
+            subtle: color.orange_60,
+            default: color.orange_30,
+            strong: color.orange_10,
+        },
+        due: {
+            subtle: color.cyan_60,
+            default: color.cyan_20,
+            strong: color.cyan_10,
         },
     },
 };
