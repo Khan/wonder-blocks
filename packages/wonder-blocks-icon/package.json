@@ -16,7 +16,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-core": "workspace:*"
+    "@khanacademy/wonder-blocks-core": "workspace:*",
+    "@khanacademy/wonder-blocks-tokens": "workspace:*"
   },
   "devDependencies": {
     "@khanacademy/wb-dev-build-settings": "workspace:*"

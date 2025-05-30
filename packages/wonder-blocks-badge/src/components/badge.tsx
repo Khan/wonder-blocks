@@ -1,0 +1,138 @@
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
+import {StyleSheet} from "aphrodite";
+import * as React from "react";
+import {focusStyles} from "@khanacademy/wonder-blocks-styles";
+import {BaseBadgeProps, IconLabelProps} from "../types";
+
+type Props = IconLabelProps & BaseBadgeProps;
+
+const StyledSpan = addStyle("span");
+
+/**
+ * Badges are visual indicators used to display concise information, such as
+ * a status, label, or count.
+ */
+const Badge = React.forwardRef<HTMLDivElement, Props>(function Badge(
+    props: Props,
+    ref: React.ForwardedRef<HTMLDivElement>,
+) {
+    const {
+        icon,
+        label,
+        id,
+        testId,
+        styles: stylesProp,
+        tag = "div",
+        ...otherProps
+    } = props;
+    const StyledTag = React.useMemo(() => addStyle(tag, styles.default), [tag]);
+    if (!label && !icon) {
+        return <React.Fragment />;
+    }
+    return (
+        <StyledTag
+            id={id}
+            data-testid={testId}
+            ref={ref}
+            style={[
+                typographyStyles.LabelXSmall,
+                styles.badge,
+                styles.defaultBadgeStyling,
+                icon && !label ? styles.iconOnly : {},
+                stylesProp?.root,
+            ]}
+            {...otherProps}
+        >
+            {icon && (
+                <StyledSpan
+                    style={[
+                        styles.icon,
+                        styles.defaultIconStyling,
+                        stylesProp?.icon,
+                    ]}
+                >
+                    {icon}
+                </StyledSpan>
+            )}
+            {label}
+        </StyledTag>
+    );
+});
+
+export {Badge};
+
+const badgeTokens = {
+    root: {
+        layout: {
+            paddingBlock: sizing.size_040,
+            paddingInline: sizing.size_080,
+            gap: sizing.size_040,
+        },
+        border: {
+            width: border.width.thin,
+            style: "solid",
+            radius: border.radius.radius_080,
+        },
+        color: {
+            background: semanticColor.surface.secondary,
+            foreground: semanticColor.text.primary,
+            border: semanticColor.border.subtle,
+        },
+    },
+    icon: {
+        sizing: {
+            width: sizing.size_160,
+            height: sizing.size_160,
+        },
+        color: {
+            foreground: semanticColor.icon.primary,
+        },
+    },
+    iconOnly: {
+        layout: {
+            padding: sizing.size_040,
+        },
+    },
+};
+
+const styles = StyleSheet.create({
+    badge: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: badgeTokens.root.layout.gap,
+        // Make sure badge container fits the content
+        width: "fit-content",
+        // Make sure the badge text doesn't wrap
+        textWrap: "nowrap",
+        borderWidth: badgeTokens.root.border.width,
+        borderStyle: badgeTokens.root.border.style,
+        paddingBlock: badgeTokens.root.layout.paddingBlock,
+        paddingInline: badgeTokens.root.layout.paddingInline,
+        borderRadius: badgeTokens.root.border.radius,
+        // Include focus styles in case the badge is made interactive by using
+        // it with another component like `Tooltip`
+        ...focusStyles.focus,
+    },
+    defaultBadgeStyling: {
+        backgroundColor: badgeTokens.root.color.background,
+        borderColor: badgeTokens.root.color.border,
+        color: badgeTokens.root.color.foreground,
+    },
+    icon: {
+        // Use minWidth and minHeight to ensure custom sized icons don't
+        // overflow the badge
+        minWidth: badgeTokens.icon.sizing.width,
+        minHeight: badgeTokens.icon.sizing.height,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    defaultIconStyling: {
+        color: badgeTokens.icon.color.foreground,
+    },
+    iconOnly: {
+        padding: badgeTokens.iconOnly.layout.padding,
+    },
+});
