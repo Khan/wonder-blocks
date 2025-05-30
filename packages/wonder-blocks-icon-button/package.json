@@ -30,7 +30,8 @@
     "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-theming": "workspace:*",
-    "@khanacademy/wonder-blocks-tokens": "workspace:*"
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
     "aphrodite": "catalog:",
