@@ -5,6 +5,7 @@ import {Link} from "react-router-dom-v5-compat";
 
 // Variants
 export type ButtonActionType = "progressive" | "destructive" | "neutral";
+export type ActivityButtonActionType = "progressive" | "neutral";
 export type ButtonKind = "primary" | "secondary" | "tertiary";
 export type ButtonSize = "small" | "medium" | "large";
 
