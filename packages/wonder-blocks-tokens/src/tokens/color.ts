@@ -98,4 +98,40 @@ export const color = {
     fadedOffBlack32: fadedColorWithWhite(offBlack, 0.32),
     fadedOffBlack16: fadedColorWithWhite(offBlack, 0.16),
     fadedOffBlack8: fadedColorWithWhite(offBlack, 0.08),
+
+    // Magenta - same as Thunderblocks
+    magenta_90: "#FCEEF7",
+    magenta_80: "#FFE3F4",
+    magenta_70: "#FAD4EC",
+    magenta_60: "#F9BBE1",
+    magenta_50: "#F8A2D6",
+    magenta_40: "#F670C1",
+    magenta_30: "#E83FA4",
+    magenta_20: "#C03187",
+    magenta_10: "#84275E",
+    magenta_05: "#521B3C",
+
+    // Orange - same as Thunderblocks
+    orange_90: "#FEF4F2",
+    orange_80: "#FEE9E5",
+    orange_70: "#FEDFD8",
+    orange_60: "#FEBFB1",
+    orange_50: "#FAA185",
+    orange_40: "#F97B4F",
+    orange_30: "#F8551A",
+    orange_20: "#C8481A",
+    orange_10: "#983C1A",
+    orange_05: "#672912",
+
+    // Cyan - same as Thunderblocks
+    cyan_90: "#EEF7FE",
+    cyan_80: "#DDF0FE",
+    cyan_70: "#CCE9FE",
+    cyan_60: "#A9DAFD",
+    cyan_50: "#87CBFC",
+    cyan_40: "#57BAFD",
+    cyan_30: "#28A9FF",
+    cyan_20: "#2485C7",
+    cyan_10: "#20628F",
+    cyan_05: "#1D3F58",
 };

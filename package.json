@@ -47,6 +47,7 @@
     "@khanacademy/wonder-blocks-accordion": "workspace:*",
     "@khanacademy/wonder-blocks-announcer": "workspace:*",
     "@khanacademy/wonder-blocks-banner": "workspace:*",
+    "@khanacademy/wonder-blocks-badge": "workspace:*",
     "@khanacademy/wonder-blocks-birthday-picker": "workspace:*",
     "@khanacademy/wonder-blocks-breadcrumbs": "workspace:*",
     "@khanacademy/wonder-blocks-button": "workspace:*",

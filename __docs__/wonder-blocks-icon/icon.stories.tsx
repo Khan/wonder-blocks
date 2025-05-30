@@ -11,6 +11,7 @@ import {
     multiColoredIcon,
     singleColoredIcon,
 } from "../components/icons-for-testing";
+import {allModes} from "../../.storybook/modes";
 
 export default {
     title: "Packages / Icon / Icon",
@@ -22,6 +23,12 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        chromatic: {
+            modes: {
+                default: allModes.themeDefault,
+                thunderblocks: allModes.themeThunderBlocks,
+            },
+        },
     },
 } as Meta<typeof Icon>;
 

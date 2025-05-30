@@ -69,40 +69,40 @@ const badgeTokens = {
     root: {
         color: {
             info: {
-                background: semanticColor.status.notice.background,
-                border: semanticColor.status.notice.background,
-                foreground: semanticColor.text.primary,
+                background: semanticColor.feedback.info.subtle.background,
+                border: semanticColor.feedback.info.subtle.border,
+                foreground: semanticColor.feedback.info.subtle.text,
             },
             success: {
-                background: semanticColor.status.success.background,
-                border: semanticColor.status.success.background,
-                foreground: semanticColor.text.primary,
+                background: semanticColor.feedback.success.subtle.background,
+                border: semanticColor.feedback.success.subtle.border,
+                foreground: semanticColor.feedback.success.subtle.text,
             },
             warning: {
-                background: semanticColor.status.warning.background,
-                border: semanticColor.status.warning.background,
-                foreground: semanticColor.text.primary,
+                background: semanticColor.feedback.warning.subtle.background,
+                border: semanticColor.feedback.warning.subtle.border,
+                foreground: semanticColor.feedback.warning.subtle.text,
             },
             critical: {
-                background: semanticColor.status.critical.background,
-                border: semanticColor.status.critical.background,
-                foreground: semanticColor.text.primary,
+                background: semanticColor.feedback.critical.subtle.background,
+                border: semanticColor.feedback.critical.subtle.border,
+                foreground: semanticColor.feedback.critical.subtle.text,
             },
         },
     },
     icon: {
         color: {
             info: {
-                foreground: semanticColor.status.notice.foreground,
+                foreground: semanticColor.feedback.info.subtle.icon,
             },
             success: {
-                foreground: semanticColor.status.success.foreground,
+                foreground: semanticColor.feedback.success.subtle.icon,
             },
             warning: {
-                foreground: semanticColor.status.warning.foreground,
+                foreground: semanticColor.feedback.warning.subtle.icon,
             },
             critical: {
-                foreground: semanticColor.status.critical.foreground,
+                foreground: semanticColor.feedback.critical.subtle.icon,
             },
         },
     },
