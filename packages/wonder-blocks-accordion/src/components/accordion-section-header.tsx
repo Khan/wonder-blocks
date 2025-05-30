@@ -17,7 +17,7 @@ type Props = {
     // Unique ID for this section's button.
     id: string;
     // Header content.
-    header: string | React.ReactElement;
+    header: string | React.ReactElement | TemplateStringsArray;
     // Whether the caret shows up at the start or end of the header block.
     caretPosition: "start" | "end";
     // Corner roundedness type.
