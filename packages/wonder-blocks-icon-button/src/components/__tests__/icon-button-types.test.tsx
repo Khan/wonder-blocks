@@ -18,7 +18,7 @@ describe("IconButton types", () => {
         it("should render the icon", async () => {
             // Arrange
             render(
-                <IconButton
+                <Component
                     aria-label="Search"
                     icon={magnifyingGlassIcon}
                     onClick={() => {}}
@@ -37,7 +37,13 @@ describe("IconButton types", () => {
         it("should forward the ref to the root element", () => {
             // Arrange
             const ref = React.createRef<IconButtonRef>();
-            render(<Component icon={magnifyingGlassIcon} ref={ref} />);
+            render(
+                <Component
+                    icon={magnifyingGlassIcon}
+                    aria-label="Search"
+                    ref={ref}
+                />,
+            );
 
             // Act
             const button = screen.getByRole("button");
@@ -50,7 +56,13 @@ describe("IconButton types", () => {
             it("should set the id attribute", () => {
                 // Arrange
                 const id = "button-id";
-                render(<Component icon={magnifyingGlassIcon} id={id} />);
+                render(
+                    <Component
+                        icon={magnifyingGlassIcon}
+                        aria-label="Search"
+                        id={id}
+                    />,
+                );
 
                 // Act
                 const button = screen.getByRole("button");
@@ -63,7 +75,11 @@ describe("IconButton types", () => {
                 // Arrange
                 const testId = "badge-testid";
                 render(
-                    <Component icon={magnifyingGlassIcon} testId={testId} />,
+                    <Component
+                        icon={magnifyingGlassIcon}
+                        aria-label="Search"
+                        testId={testId}
+                    />,
                 );
 
                 // Act
@@ -79,7 +95,7 @@ describe("IconButton types", () => {
                 it("should set aria-disabled when the disabled prop is set", () => {
                     // Arrange
                     render(
-                        <IconButton
+                        <Component
                             aria-label="Search"
                             disabled={true}
                             icon={magnifyingGlassIcon}
@@ -92,6 +108,25 @@ describe("IconButton types", () => {
 
                     // Assert
                     expect(iconButton).toHaveAttribute("aria-disabled", "true");
+                });
+
+                it("should use aria-label to announce the button", () => {
+                    // Arrange
+                    render(
+                        <Component
+                            aria-label="Search"
+                            icon={magnifyingGlassIcon}
+                            onClick={() => {}}
+                        />,
+                    );
+
+                    // Act
+                    const button = screen.getByRole("button", {
+                        name: "Search",
+                    });
+
+                    // Assert
+                    expect(button).toBeInTheDocument();
                 });
             });
         });
