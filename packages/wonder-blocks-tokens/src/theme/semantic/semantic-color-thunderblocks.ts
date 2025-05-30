@@ -371,4 +371,5 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
         press: core.foreground.instructive.strong,
         disabled: core.foreground.inverse.subtle,
     },
+    core,
 });
