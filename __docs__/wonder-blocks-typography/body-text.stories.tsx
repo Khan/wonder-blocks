@@ -56,7 +56,10 @@ With no `weight` prop set, `BodyText` will default to `medium` weight.
 
 The `tag` prop will set a tagName, such as `tag="span"`.
 
-`BodyText` renders with a `p` tag by default.
+`BodyText` renders with a `p` tag with `margin: 0` and block-level styling by default.
+
+For nested components or non-paragraph content, set the `tag` prop (e.g. `tag="span"`, `tag="div"`, `tag="label"`).
+The default `p` tag was selected based on historical usage and necessary semantics.
 
 > Note: Heading text should utilize the `Heading` component. If the size or weight you're
 looking for doesn't exist in `BodyText`, consider making it a `Heading`!
