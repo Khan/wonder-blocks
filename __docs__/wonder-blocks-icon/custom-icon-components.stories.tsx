@@ -2,13 +2,16 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import ComponentInfo from "../components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
-import {GemIcon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
+import {GemIcon, Icon, StreakIcon} from "@khanacademy/wonder-blocks-icon";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {border, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * Custom icon components that render an inline svg. Use with the `Icon`
  * component to display the icon.
+ *
+ * Custom icon components use semantic color tokens for the different parts of
+ * the icon so they will respond to the current theme.
  */
 export default {
     title: "Packages / Icon / Custom Icon Components",
@@ -72,6 +75,26 @@ export const AllCustomIcons: StoryComponentType = {
     },
 };
 
+/**
+ * Use the `Icon` component to display the custom icon components.
+ */
+export const WithIconComponent: StoryComponentType = {
+    render: (args) => (
+        <View
+            style={{
+                gap: sizing.size_240,
+                flexDirection: "row",
+            }}
+        >
+            <Icon size="large">
+                <GemIcon {...args} />
+            </Icon>
+            <Icon size="large">
+                <StreakIcon {...args} />
+            </Icon>
+        </View>
+    ),
+};
 /**
  * Custom icons can be styled using the `style` prop.
  */
