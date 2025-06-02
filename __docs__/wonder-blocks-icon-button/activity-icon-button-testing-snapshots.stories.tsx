@@ -6,6 +6,10 @@ import paperPlaneIcon from "@phosphor-icons/core/fill/paper-plane-tilt-fill.svg"
 import {ActivityIconButton} from "@khanacademy/wonder-blocks-icon-button";
 import {defaultPseudoStates, StateSheet} from "../components/state-sheet";
 import {allModes} from "../../.storybook/modes";
+import {ScenariosLayout} from "../components/scenarios-layout";
+import {longTextWithNoWordBreak} from "../components/text-for-testing";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 
 /**
  * The following stories are used to generate the pseudo states for the
@@ -31,7 +35,7 @@ export default {
     },
 } as Meta;
 
-type StoryComponentType = StoryObj<typeof ActivityIconButton>;
+type Story = StoryObj<typeof ActivityIconButton>;
 
 const kinds = [
     {name: "Primary", props: {kind: "primary"}},
@@ -45,7 +49,7 @@ const actionTypes = [
     {name: "Disabled", props: {disabled: true}},
 ];
 
-export const StateSheetStory: StoryComponentType = {
+export const StateSheetStory: Story = {
     name: "StateSheet",
     render: (args) => {
         return (
@@ -67,5 +71,111 @@ export const StateSheetStory: StoryComponentType = {
     },
     parameters: {
         pseudo: defaultPseudoStates,
+    },
+};
+
+const actionTypesWithLabel = [
+    {
+        name: "Progressive",
+        props: {actionType: "progressive", label: "Send"},
+    },
+    {name: "Neutral", props: {actionType: "neutral", label: "Send"}},
+    {name: "Disabled", props: {disabled: true, label: "Send"}},
+];
+
+export const StateSheetVisibleLabelStory: Story = {
+    name: "StateSheet (Visible Label)",
+    render: (args) => {
+        return (
+            <StateSheet
+                rows={kinds}
+                columns={actionTypesWithLabel}
+                title="Kind / Action Type"
+            >
+                {({props, className, name}) => (
+                    <ActivityIconButton
+                        {...args}
+                        {...props}
+                        className={className}
+                        key={name}
+                    />
+                )}
+            </StateSheet>
+        );
+    },
+    parameters: {
+        pseudo: defaultPseudoStates,
+    },
+};
+
+/**
+ * The following story shows how the component handles specific scenarios.
+ */
+export const Scenarios: Story = {
+    render() {
+        const scenarios = [
+            {
+                name: "Long label with multiple words",
+                props: {
+                    children: (
+                        <ActivityIconButton
+                            label="Send with a very long text"
+                            icon={paperPlaneIcon}
+                        />
+                    ),
+                },
+            },
+            {
+                name: "Long label with single word in more than two lines",
+                props: {
+                    children: (
+                        <ActivityIconButton
+                            label={longTextWithNoWordBreak}
+                            icon={paperPlaneIcon}
+                        />
+                    ),
+                },
+            },
+            {
+                name: "Long label with single word in two lines",
+                props: {
+                    children: (
+                        <ActivityIconButton
+                            label="Conversation"
+                            icon={paperPlaneIcon}
+                        />
+                    ),
+                },
+            },
+            {
+                name: "Horizontally stacked buttons",
+                props: {
+                    children: (
+                        <View
+                            style={{
+                                flexDirection: "row",
+                                background: semanticColor.surface.secondary,
+                                gap: sizing.size_160,
+                                padding: sizing.size_160,
+                            }}
+                        >
+                            <ActivityIconButton
+                                label="Label"
+                                icon={paperPlaneIcon}
+                            />
+                            <ActivityIconButton
+                                icon={paperPlaneIcon}
+                                aria-label="Send"
+                            />
+                        </View>
+                    ),
+                },
+            },
+        ];
+        return (
+            <ScenariosLayout scenarios={scenarios}>
+                {(props) => props.children}
+            </ScenariosLayout>
+        );
     },
 };

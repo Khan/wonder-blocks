@@ -115,7 +115,6 @@ export const ActionType: StoryComponentType = {
                 >
                     {kinds.map((kind, index) => (
                         <ActivityIconButton
-                            {...args}
                             icon={IconMappings.arrowUpBold}
                             aria-label="navigate"
                             onClick={() => {}}
@@ -125,7 +124,6 @@ export const ActionType: StoryComponentType = {
                         />
                     ))}
                     <ActivityIconButton
-                        {...args}
                         disabled={true}
                         icon={IconMappings.arrowUpBold}
                         aria-label="search"
@@ -161,9 +159,10 @@ export const UsingHref: StoryComponentType = {
 };
 
 /**
- * By default, the icon buttons do not have accessible names. The `aria-label`
- * prop must be used to explain the function of the button. Remember to keep the
- * description concise but understandable.
+ * There are two ways to provide accessible names to `ActivityIconButton`. One
+ * approach is using the `aria-label` prop that can be used to explain the
+ * function of the button. Remember to keep the description concise but
+ * understandable.
  */
 export const WithAriaLabel: StoryComponentType = {
     render: () => {
@@ -178,6 +177,37 @@ export const WithAriaLabel: StoryComponentType = {
                     icon={IconMappings.caretRightBold}
                     onClick={(e) => action("clicked")(e)}
                     aria-label="Next page"
+                />
+            </View>
+        );
+    },
+};
+
+/**
+ * Another way to provide accessible names to `ActivityIconButton` is by
+ * providing a label for the button using the `label` prop. This is
+ * recommended when the button is used as a navigation item in the context
+ * of a menu, for example.
+ */
+export const WithLabel: StoryComponentType = {
+    render: () => {
+        return (
+            <View
+                style={{
+                    gap: sizing.size_160,
+                    flexDirection: "row",
+                    alignItems: "flex-start",
+                }}
+            >
+                <ActivityIconButton
+                    icon={IconMappings.check}
+                    onClick={(e) => action("clicked")(e)}
+                    label="Check"
+                />
+                <ActivityIconButton
+                    icon={IconMappings.magnifyingGlass}
+                    onClick={(e) => action("clicked")(e)}
+                    label="Search"
                 />
             </View>
         );
