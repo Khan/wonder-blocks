@@ -76,10 +76,12 @@ export type BaseBadgeProps = AriaProps & {
      * Custom styles for the elements in the Badge component.
      * - `root`: Styles the root element
      * - `icon`: Styles the icon element
+     * - `label`: Styles the text in the badge
      */
     styles?: {
         root?: StyleType;
         icon?: StyleType;
+        label?: StyleType;
     };
     /**
      * The HTML tag to render. Defaults to `div`.
