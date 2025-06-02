@@ -36,6 +36,7 @@ const styles: StyleDeclaration = StyleSheet.create({
     BodyText: {
         ...common,
         fontFamily: font.family.sans,
+        margin: 0,
         // weight and size are determined by props
         // lineHeight is determined by fontSize on REM scale
     },
