@@ -174,6 +174,8 @@ const theme = {
         },
         shadow: {
             y: {
+                // NOTE: We use px units to prevent a bug in Safari where the
+                // shadow animation flickers when using rem units.
                 rest: "6px",
                 hover: "8px",
                 press: sizing.size_0,

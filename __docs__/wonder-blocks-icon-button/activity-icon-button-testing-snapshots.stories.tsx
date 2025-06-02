@@ -126,7 +126,7 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "Long label with songle word in more than two lines",
+                name: "Long label with single word in more than two lines",
                 props: {
                     children: (
                         <ActivityIconButton
