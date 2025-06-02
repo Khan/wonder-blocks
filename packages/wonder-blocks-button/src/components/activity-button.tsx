@@ -96,12 +96,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
                         />
                     )}
 
-                    <BodyText
-                        tag="span"
-                        size="medium"
-                        weight="semi"
-                        style={buttonStyles.label}
-                    >
+                    <BodyText tag="span" size="medium" weight="semi">
                         {children}
                     </BodyText>
 
@@ -125,7 +120,7 @@ const ActivityButtonCore: React.ForwardRefExoticComponent<
 /**
  * `ActivityButton` is a button that is used for actions in the context of
  * learner activities. It uses a "chonky" design, which is a more playful and
- * engaging design that is suitable for learner activities
+ * engaging design that is suitable for learner activities.
  *
  * ```tsx
  * import magnifyingGlassIcon from
@@ -176,8 +171,7 @@ export const ActivityButton = React.forwardRef(function ActivityButton(
         <ClickableBehavior
             disabled={spinner || disabled}
             href={href}
-            // TODO(WB-1940): Use `link` when `href` is defined.
-            role="button"
+            role={href ? "link" : "button"}
             type={type}
             onClick={onClick}
             safeWithNav={safeWithNav}
@@ -239,6 +233,8 @@ const theme = {
         },
         shadow: {
             y: {
+                // NOTE: We use px units to prevent a bug in Safari where the
+                // shadow animation flickers when using rem units.
                 rest: "6px",
                 hover: "8px",
                 press: sizing.size_0,
@@ -253,6 +249,12 @@ const theme = {
         },
         layout: {
             width: sizing.size_640,
+        },
+    },
+    icon: {
+        sizing: {
+            height: sizing.size_200,
+            width: sizing.size_200,
         },
     },
 };
@@ -299,14 +301,16 @@ const _generateStyles = (
     const newStyles: Record<string, CSSProperties> = {
         button: {
             // theming
+            // Applying a transparent background to allow the chonky box to show
+            // through.
+            background: "transparent",
             // Used for the focus ring.
             borderRadius: theme.root.border.radius,
             color: theme.label.color[actionType],
             // layout
+            height: "auto",
             flexDirection: "column",
             gap: sizing.size_020,
-            // Prevent the button from stretching to fill the parent
-            // maxWidth: theme.label.layout.width,
             alignSelf: "flex-start",
             justifySelf: "center",
             /**
@@ -359,6 +363,7 @@ const _generateStyles = (
             // Used for the chonky box.
             borderRadius: theme.root.border.radius,
             marginBlockEnd: theme.root.shadow.y.rest,
+            maxWidth: "100%",
             paddingBlock: theme.root.layout.padding.block,
             paddingInline: theme.root.layout.padding.inline,
             // theming
@@ -378,9 +383,12 @@ const _generateStyles = (
         chonkyPressed,
         chonkyDisabled,
         /**
-         * Icons
+         * Inner elements
          */
-        icon: {},
+        icon: {
+            width: theme.icon.sizing.width,
+            height: theme.icon.sizing.height,
+        },
     } as const;
 
     styles[buttonType] = StyleSheet.create(newStyles);

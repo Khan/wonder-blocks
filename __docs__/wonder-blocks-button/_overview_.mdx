@@ -1,5 +1,6 @@
 import {Meta, Canvas} from "@storybook/blocks";
 import * as ButtonStories from "./button.stories";
+import * as ActivityButtonStories from "./activity-button.stories";
 
 <Meta title="Packages / Button / Overview" />
 
@@ -20,3 +21,11 @@ It uses a flat design, our most common design pattern that can be used across
 different experiences.
 
 <Canvas of={ButtonStories.Kinds} />
+
+## ActivityButton
+
+A button that is used for actions in the context of learner activities. It uses
+a "chonky" design, which is a more playful and engaging design that is suitable
+for learner activities.
+
+<Canvas of={ActivityButtonStories.ActionType} />

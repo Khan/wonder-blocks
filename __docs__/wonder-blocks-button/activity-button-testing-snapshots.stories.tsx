@@ -114,10 +114,36 @@ export const Scenarios: Story = {
                 },
             },
             {
-                name: "Long label with songle word in more than two lines",
+                name: "Long label with multiple words in more than two lines",
+                props: {
+                    children: (
+                        <ActivityButton
+                            startIcon={paperPlaneIcon}
+                            style={{maxWidth: 200, minHeight: sizing.size_320}}
+                        >
+                            Send with a very long text
+                        </ActivityButton>
+                    ),
+                },
+            },
+            {
+                name: "Long label with single word in single line",
                 props: {
                     children: (
                         <ActivityButton startIcon={paperPlaneIcon}>
+                            {longTextWithNoWordBreak}
+                        </ActivityButton>
+                    ),
+                },
+            },
+            {
+                name: "Long label with single word overflowing",
+                props: {
+                    children: (
+                        <ActivityButton
+                            startIcon={paperPlaneIcon}
+                            style={{maxWidth: 200}}
+                        >
                             {longTextWithNoWordBreak}
                         </ActivityButton>
                     ),
