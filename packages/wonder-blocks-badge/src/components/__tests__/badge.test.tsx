@@ -44,7 +44,6 @@ describe("Badge", () => {
         const {container} = render(<Badge ref={ref} label="Badge label" />);
 
         // Assert
-        // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
         expect(ref.current).toBe(container.firstChild);
     });
 
@@ -56,7 +55,6 @@ describe("Badge", () => {
             const {container} = render(<Badge id={id} label="Badge label" />);
 
             // Assert
-            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
             expect(container.firstChild).toHaveAttribute("id", id);
         });
 
@@ -69,7 +67,6 @@ describe("Badge", () => {
             );
 
             // Assert
-            // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
             expect(container.firstChild).toHaveAttribute("data-testid", testId);
         });
     });
@@ -112,7 +109,6 @@ describe("Badge", () => {
                 );
 
                 // Assert
-                // eslint-disable-next-line testing-library/no-node-access -- explicitly check the root element
                 expect(container.firstChild).toHaveProperty(
                     "tagName",
                     "STRONG",

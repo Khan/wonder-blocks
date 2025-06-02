@@ -206,6 +206,14 @@ module.exports = {
         "testing-library/render-result-naming-convention": "off",
         "testing-library/await-async-utils": "off",
         "testing-library/await-async-query": "off",
+        // Using `container.firstChild` is helpful for verifying attributes on
+        // the root element of a component.
+        "testing-library/no-node-access": [
+            "error",
+            {
+                allowContainerFirstChild: true,
+            },
+        ],
 
         // @khanacademy
         "@khanacademy/jest-await-async-matchers": [
