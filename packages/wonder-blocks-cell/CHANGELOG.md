@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-cell
 
+## 4.1.18
+
+### Patch Changes
+
+- Updated dependencies [6998d03]
+    - @khanacademy/wonder-blocks-typography@4.2.0
+
 ## 4.1.17
 
 ### Patch Changes
