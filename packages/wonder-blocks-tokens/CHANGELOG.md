@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-tokens
 
+## 10.4.0
+
+### Minor Changes
+
+- b1ee2b4: Adds `chonky` category and `ActivityIconButton` component.
+- 7abcccf: Add `core.background` and `core.foreground` categories.
+- 9bacc1a: Adds new `semanticColor.core` category
+- 1c3c335: Adds `semanticColor.link` tokens category
+- 689f5d3: Adds `core` category to the ThunderBlocks semanticColor theme
+
+### Patch Changes
+
+- 9bacc1a: Replaces all existing `semanticColor.border` references to use `semanticColor.core.border`
+
 ## 10.3.0
 
 ### Minor Changes
