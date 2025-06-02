@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-typography
 
+## 4.2.0
+
+### Minor Changes
+
+- 6998d03: Removes default margins from BodyText component, which defaults to an HTML paragraph tag
+
 ## 4.1.0
 
 ### Minor Changes
