@@ -265,3 +265,15 @@ export const BadgeWithTooltip: StoryComponentType = {
         icon: "cookie",
     },
 };
+
+/**
+ * By default, the label is truncated after `30ch` (approximately 30 characters).
+ * If you have long lines of text to communicate information, this badge pattern
+ * is not the right component for that purpose.
+ */
+export const BadgeTruncation: StoryComponentType = {
+    args: {
+        label: "Badge with a long label that should be truncated",
+        icon: "cookie",
+    },
+};

@@ -23,12 +23,7 @@ import {
     longTextWithNoWordBreak,
 } from "../components/text-for-testing";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    border,
-    font,
-    semanticColor,
-    sizing,
-} from "@khanacademy/wonder-blocks-tokens";
+import {font, semanticColor, sizing} from "@khanacademy/wonder-blocks-tokens";
 import {Heading, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import singleColoredIcon from "../components/single-colored-icon.svg";
 import {multiColoredIcon} from "../components/icons-for-testing";
@@ -279,12 +274,7 @@ export const Scenarios: StoryComponentType = {
         ];
         return (
             <View style={{gap: sizing.size_080}}>
-                <View
-                    style={{
-                        width: "200px",
-                        border: `${border.width.thin} dashed ${semanticColor.border.primary}`,
-                    }}
-                >
+                <View>
                     <ScenariosLayout scenarios={textScenarios}>
                         {(props) => <Badge {...props} />}
                     </ScenariosLayout>
