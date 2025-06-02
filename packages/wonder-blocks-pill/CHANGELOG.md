@@ -1,5 +1,32 @@
 # @khanacademy/wonder-blocks-pill
 
+## 3.1.18
+
+### Patch Changes
+
+- Updated dependencies [6998d03]
+    - @khanacademy/wonder-blocks-typography@4.2.0
+
+## 3.1.17
+
+### Patch Changes
+
+- 9bacc1a: Replaces all existing `semanticColor.border` references to use `semanticColor.core.border`
+- 7abcccf: Replace call sites to use `core.background` instead of `action`.
+- Updated dependencies [b1ee2b4]
+- Updated dependencies [7abcccf]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [1c3c335]
+- Updated dependencies [9bacc1a]
+- Updated dependencies [7abcccf]
+- Updated dependencies [1c3c335]
+- Updated dependencies [689f5d3]
+- Updated dependencies [7d2a646]
+    - @khanacademy/wonder-blocks-tokens@10.4.0
+    - @khanacademy/wonder-blocks-link@9.1.5
+    - @khanacademy/wonder-blocks-clickable@7.1.5
+    - @khanacademy/wonder-blocks-typography@4.1.0
+
 ## 3.1.16
 
 ### Patch Changes

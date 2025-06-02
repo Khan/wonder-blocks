@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-icon-button",
-  "version": "10.1.1",
+  "version": "10.2.1",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -30,7 +30,8 @@
     "@khanacademy/wonder-blocks-icon": "workspace:*",
     "@khanacademy/wonder-blocks-styles": "workspace:*",
     "@khanacademy/wonder-blocks-theming": "workspace:*",
-    "@khanacademy/wonder-blocks-tokens": "workspace:*"
+    "@khanacademy/wonder-blocks-tokens": "workspace:*",
+    "@khanacademy/wonder-blocks-typography": "workspace:*"
   },
   "peerDependencies": {
     "aphrodite": "catalog:",

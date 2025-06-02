@@ -162,6 +162,20 @@ const core = {
             strong: color.white_100,
         },
     },
+    shadow: {
+        transparent: transparent,
+        chonky: {
+            progressive: {
+                subtle: color.blue_60,
+                default: color.blue_10,
+            },
+            neutral: {
+                subtle: color.gray_60,
+                default: color.gray_30,
+                strong: color.gray_10,
+            },
+        },
+    },
 };
 
 /**
@@ -311,7 +325,7 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
             },
 
             disabled: {
-                border: core.border.disabled.strong,
+                border: core.border.disabled.default,
                 background: core.background.disabled.default,
                 foreground: core.foreground.disabled.default,
             },
@@ -375,6 +389,198 @@ export const semanticColor = mergeTheme(defaultSemanticColor, {
                 border: core.border.disabled.subtle,
                 background: core.background.disabled.subtle,
                 foreground: core.foreground.disabled.subtle,
+            },
+        },
+    },
+
+    /**
+     * For activity and conversation buttons.
+     */
+    chonky: {
+        progressive: {
+            background: {
+                primary: {
+                    rest: core.background.instructive.default,
+                    hover: core.background.instructive.default,
+                    press: core.background.instructive.default,
+                    selected: core.background.instructive.default,
+                },
+                secondary: {
+                    rest: core.background.instructive.subtle,
+                    hover: core.background.instructive.subtle,
+                    press: core.background.instructive.subtle,
+                    selected: core.background.instructive.subtle,
+                },
+                tertiary: {
+                    rest: core.transparent,
+                    hover: core.transparent,
+                    press: core.transparent,
+                    selected: core.transparent,
+                },
+            },
+            border: {
+                primary: {
+                    rest: core.transparent,
+                    hover: core.transparent,
+                    press: core.transparent,
+                    selected: core.transparent,
+                },
+                secondary: {
+                    rest: core.border.instructive.subtle,
+                    hover: core.border.instructive.subtle,
+                    press: core.border.instructive.subtle,
+                    selected: core.border.instructive.subtle,
+                },
+                tertiary: {
+                    rest: core.transparent,
+                    hover: core.border.neutral.subtle,
+                    press: core.border.neutral.subtle,
+                    selected: core.border.instructive.subtle,
+                },
+            },
+            foreground: {
+                primary: {
+                    rest: core.foreground.inverse.strong,
+                    hover: core.foreground.inverse.strong,
+                    press: core.foreground.inverse.strong,
+                    selected: core.foreground.inverse.strong,
+                },
+                secondary: {
+                    rest: core.foreground.instructive.default,
+                    hover: core.foreground.instructive.default,
+                    press: core.foreground.instructive.default,
+                    selected: core.foreground.instructive.default,
+                },
+                tertiary: {
+                    rest: core.foreground.instructive.default,
+                    hover: core.foreground.instructive.default,
+                    press: core.foreground.instructive.default,
+                    selected: core.foreground.instructive.default,
+                },
+            },
+            shadow: {
+                primary: {
+                    rest: core.shadow.chonky.progressive.default,
+                    hover: core.shadow.chonky.progressive.default,
+                    press: core.shadow.chonky.progressive.default,
+                    selected: core.shadow.chonky.progressive.default,
+                },
+                secondary: {
+                    rest: core.shadow.chonky.progressive.subtle,
+                    hover: core.shadow.chonky.progressive.subtle,
+                    press: core.shadow.chonky.progressive.subtle,
+                    selected: core.shadow.chonky.progressive.subtle,
+                },
+                tertiary: {
+                    rest: core.shadow.transparent,
+                    hover: core.shadow.chonky.neutral.subtle,
+                    press: core.shadow.chonky.neutral.subtle,
+                    selected: core.shadow.chonky.progressive.subtle,
+                },
+            },
+        },
+        neutral: {
+            background: {
+                primary: {
+                    rest: core.background.neutral.default,
+                    hover: core.background.neutral.default,
+                    press: core.background.neutral.default,
+                    selected: core.background.neutral.default,
+                },
+                secondary: {
+                    rest: core.background.neutral.subtle,
+                    hover: core.background.neutral.subtle,
+                    press: core.background.neutral.subtle,
+                    selected: core.background.neutral.subtle,
+                },
+                tertiary: {
+                    rest: core.transparent,
+                    hover: core.transparent,
+                    press: core.transparent,
+                    selected: core.transparent,
+                },
+            },
+            border: {
+                primary: {
+                    rest: core.transparent,
+                    hover: core.transparent,
+                    press: core.transparent,
+                    selected: core.transparent,
+                },
+                secondary: {
+                    rest: core.border.neutral.subtle,
+                    hover: core.border.neutral.subtle,
+                    press: core.border.neutral.subtle,
+                    selected: core.border.neutral.subtle,
+                },
+                tertiary: {
+                    rest: core.transparent,
+                    hover: core.border.neutral.subtle,
+                    press: core.border.neutral.subtle,
+                    selected: core.transparent,
+                },
+            },
+            foreground: {
+                primary: {
+                    rest: core.foreground.inverse.strong,
+                    hover: core.foreground.inverse.strong,
+                    press: core.foreground.inverse.strong,
+                    selected: core.foreground.inverse.strong,
+                },
+                secondary: {
+                    rest: core.foreground.neutral.subtle,
+                    hover: core.foreground.neutral.subtle,
+                    press: core.foreground.neutral.subtle,
+                    selected: core.foreground.neutral.subtle,
+                },
+                tertiary: {
+                    rest: core.foreground.neutral.default,
+                    hover: core.foreground.neutral.default,
+                    press: core.foreground.neutral.default,
+                    selected: core.foreground.neutral.default,
+                },
+            },
+            shadow: {
+                primary: {
+                    rest: core.shadow.chonky.neutral.strong,
+                    hover: core.shadow.chonky.neutral.strong,
+                    press: core.shadow.chonky.neutral.strong,
+                    selected: core.shadow.chonky.neutral.strong,
+                },
+                secondary: {
+                    rest: core.shadow.chonky.neutral.subtle,
+                    hover: core.shadow.chonky.neutral.subtle,
+                    press: core.shadow.chonky.neutral.subtle,
+                    selected: core.shadow.chonky.neutral.subtle,
+                },
+                tertiary: {
+                    rest: core.shadow.transparent,
+                    hover: core.shadow.chonky.neutral.subtle,
+                    press: core.shadow.chonky.neutral.subtle,
+                    selected: core.shadow.chonky.progressive.subtle,
+                },
+            },
+        },
+        disabled: {
+            background: {
+                primary: core.background.disabled.default,
+                secondary: core.background.disabled.default,
+                tertiary: core.background.disabled.subtle,
+            },
+            border: {
+                primary: core.border.disabled.subtle,
+                secondary: core.border.disabled.strong,
+                tertiary: core.border.disabled.subtle,
+            },
+            foreground: {
+                primary: color.gray_50,
+                secondary: color.gray_50,
+                tertiary: color.gray_50,
+            },
+            shadow: {
+                primary: core.shadow.chonky.neutral.subtle,
+                secondary: core.shadow.chonky.neutral.subtle,
+                tertiary: core.shadow.transparent,
             },
         },
     },
